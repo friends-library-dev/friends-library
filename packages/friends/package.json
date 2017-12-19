@@ -1,0 +1,9 @@
+{
+  "name": "@friends-library/friends",
+  "version": "1.0.0",
+  "description": "Configuration files for documents written by early Quakers",
+  "main": "index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "private": true
+}
