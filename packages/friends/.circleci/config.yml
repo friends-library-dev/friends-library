@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/friends
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-node-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-node-{{ checksum "yarn.lock" }}
+      - run: yarn test
