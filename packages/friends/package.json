@@ -5,5 +5,14 @@
   "main": "index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "glob": "^7.1.2",
+    "jest": "^22.0.3",
+    "js-yaml": "^3.10.0",
+    "lodash": "^4.17.4"
+  }
 }

@@ -1,0 +1,138 @@
+name: Robert Barclay
+slug: robert-barclay
+description: Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in the Society of Friends. His Apology for the True Christian Divinity is perhaps the most well-known of all Quaker writings, containing a thorough explanation and defense of most of their principles and doctrines.
+documents:
+  -
+    title: Waiting Upon the Lord
+    slug: waiting-upon-the-lord
+    description: The greatest part of this booklet is an updated version of the eleventh proposition of Robert Barclay's Apology for the True Christian Divinity.1 The entire volume of Barclay's Apology (consisting of fifteen propositions in all) is a tremendous and compelling work that I strongly recommend to every serious seeker of the Truth. I have chosen to modernize and republish just this one proposi- tion because it seems to me that the invaluable practice of waiting upon the Lord has been especially neglected, and has all but disappeared from the church today.
+    tags:
+      - doctrinal
+    editions:
+      -
+        type: modernized
+        pages: 63
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Waiting Upon the Lord
+  -
+    title: Saved to the Uttermost
+    slug: saved-to-the-uttermost
+    description: The greatest part of this booklet is an updated version of the eleventh proposition of Robert Barclay's Apology for the True Christian Divinity.1 The entire volume of Barclay's Apology (consisting of fifteen propositions in all) is a tremendous and compelling work that is strongly recommended to every serious seeker of the Truth.
+    tags:
+      - doctrinal
+    editions:
+      -
+        type: modernized
+        pages: 159
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Forward
+          -
+            title: Chapter 1 -- The Condition of Man in the Fall
+          -
+            title: Chapter 2 -- A Universal Offer of Redemption
+          -
+            title: Chapter 3 -- The Seed, Light, and Grace of God
+          -
+            title: Chapter 4 -- The Proof of Our Position
+          -
+            title: Chapter 5 -- Concerning Justification
+          -
+            title: Chapter 6 -- Concerning Perfection
+  -
+    title: Apology for the True Christian Divinity
+    slug: apology
+    description: Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in the Society of Friends. His Apology for the True Christian Divinity is perhaps the most well-known of all Quaker writings, containing a thorough explanation and defense of most of their principles and doctrines.
+    tags:
+      - doctrinal
+    editions:
+      -
+        type: updated
+        pages: 288
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: 'Preface: Unto the Friendly Reader'
+          -
+            title: Theses Theologicae
+          -
+            title: The Fifteen Propositions Summarized
+          -
+            title: 'The First Proposition: Concerning the True Foundation of Knowledge'
+          -
+            title: 'The Second Proposition: Concerning Immediate Revelation'
+          -
+            title: 'The Third Proposition: Concerning the Scriptures'
+          -
+            title: 'The Fourth Proposition: Concerning the Condition of Man in the Fall'
+          -
+            title: 'The Fifth and Sixth Propositions: Concerning the Universal Redemption by Christ, and also the Saving and Spiritual Light wherewith every man is enlightened'
+          -
+            title: 'The Seventh Proposition: Concerning Justification'
+          -
+            title: 'The Eighth Proposition: Concerning Perfection'
+          -
+            title: 'The Ninth Proposition: Concerning Perseverance, and the Possibility of Falling from Grace'
+          -
+            title: 'The Tenth Proposition: Concerning the Ministry'
+          -
+            title: 'The Eleventh Proposition: Concerning Worship'
+          -
+            title: 'The Twelfth Proposition: Concerning Baptism'
+          -
+            title: 'The Thirteenth Proposition: Concerning the Communion, or participation of the Body and Blood of Christ'
+          -
+            title: 'The Fourteenth Proposition: Concerning the Power of the Civil Magistrate in Matters purely Religious and pertaining to the Conscience'
+          -
+            title: 'The Fifteenth Proposition: Concerning Salutations and Recreations, etc.'
+          -
+            title: The Conclusion
+  -
+    title: Considerations upon Recreation and Entertainment
+    slug: recreation-and-entertainment
+    description: An extract from the fifteenth proposition of Robert Barclay's "Apology for the True Christian Divinity" regarding entertainment and recreation.
+    tags:
+      - doctrinal
+    editions:
+      -
+        type: modernized
+        pages: 3
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Considerations upon Recreation and Entertainment

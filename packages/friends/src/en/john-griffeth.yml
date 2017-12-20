@@ -1,0 +1,96 @@
+name: John Griffeth
+slug: john-griffeth
+description: John Griffith (1713-1776) was a powerful minister during a time when the light, life, and power of Christ was slowly declining among the Society of Friends. Together with a remnant of bright, shining lamps in his generation, Griffith warred against a sad degeneracy into formality, tradition, and lifeless words amongst a people once distinguished by their adherence to the inward power and purity of the Holy Spirit.
+documents:
+  -
+    title: John Griffeth's Early Years & Spiritual Growth
+    slug: early-years-and-spiritual-growth
+    description: This instructive portion of his lengthy journal deals with his conversion, spiritual growth, and call to the ministry. The full journal can be found in the Friends Library, vol. 5.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 17
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: John Griffeth's Early Years & Spiritual Growth
+  -
+    title: The Complete Journal of John Griffeth
+    slug: journal
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 179
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Chapter 1
+          -
+            title: Chapter 2
+          -
+            title: Chapter 3
+          -
+            title: Chapter 4
+          -
+            title: Chapter 5
+          -
+            title: Chapter 6
+          -
+            title: Chapter 7
+          -
+            title: Chapter 8
+          -
+            title: Chapter 9
+          -
+            title: Chapter 10
+          -
+            title: A Testimony from the Monthly Meeting of Witham, in Essex, concerning John Griffith, deceased.
+  -
+    title: Remarks on Parenting, New Birth, Worship, Ministry, & Discipline
+    slug: remarks
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - treatise
+    editions:
+      -
+        type: modernized
+        pages: 48
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Section 1 -- Containing tender advice, caution, and counsel to parents and children
+          -
+            title: Section 2 -- Observations concerning the nature and necessity of the new birth
+          -
+            title: Section 3 -- Relating to the nature of true worship; with some remarks on the state of our Society, both in early times, and now
+          -
+            title: Section 4 -- Remarks upon the true and the false ministry
+          -
+            title: Section 5 -- On the nature and usefulness of Christian discipline

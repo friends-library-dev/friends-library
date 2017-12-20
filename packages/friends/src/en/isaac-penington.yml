@@ -1,0 +1,352 @@
+name: Isaac Penington
+slug: isaac-penington
+description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
+documents:
+  -
+    title: The Writings of Isaac Penington - Volume 1
+    slug: writings-volume-1
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - devotional
+      - doctrinal
+      - letters
+    editions:
+      -
+        type: modernized
+        pages: 391
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Forward
+          -
+            title: Chapter 1 -- Memoir of Isaac Penington
+          -
+            title: Chapter 2 -- The Way of Life and Death Made Manifest and Set Before Men
+          -
+            title: Chapter 3 -- Some Principles Guiding Out of the Apostasy and Into the True Christian Spirit and Life
+          -
+            title: Chapter 4 -- The Axe Laid to the Root of the Old Corrupt Tree
+          -
+            title: Chapter 5 -- The Scattered Sheep Sought After
+          -
+            title: 'Chapter 6 -- Babylon the Great: The City of Confusion Where Antichrist Reigns'
+          -
+            title: 'Chapter 7 -- The Holy Scriptures: Whether They Be the True Rule of Faith and Life'
+          -
+            title: Chapter 8 -- The Authority and Government which Christ Excluded from His Church
+          -
+            title: Chapter 9 -- The New Covenant of the Gospel Distinguished from the Old Covenant of the Law
+          -
+            title: Chapter 10 -- The Prayer, Ministry, Wisdom and Kingdom which are Spiritual
+          -
+            title: Chapter 11 -- Some Directions to the Panting Soul
+          -
+            title: Chapter 12 -- Some Questions and Answers for the Opening of the Eyes
+          -
+            title: Chapter 13 -- The Sum and Substance of True Religion
+          -
+            title: Chapter 14 -- The Two Seeds
+          -
+            title: Chapter 15 -- How to Discern the Teachings of Christ
+          -
+            title: Chapter 16 -- Letters of Isaac Penington Written Between 1658 - 1671
+  -
+    title: The Writings of Isaac Penington - Volume 2
+    slug: writings-volume-2
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - devotional
+      - doctrinal
+      - letters
+    editions:
+      -
+        type: modernized
+        pages: 431
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Chapter 1 -- Spiritual Knowledge
+          -
+            title: Chapter 2 -- Some Stumbling Blocks Removed Out of the Way of the Simple-Hearted
+          -
+            title: Chapter 3 -- The Holy Truth and People Defended
+          -
+            title: Chapter 4 -- Naked Truth Given Forth by Way of Question and Answer
+          -
+            title: Chapter 5 -- The Experiences
+          -
+            title: Chapter 6 -- A Brief Account Concerning the People Called Quakers
+          -
+            title: Chapter 7 -- To the Jews According to the Flesh and According to the Spirit
+          -
+            title: Chapter 8 -- A Testimony to Truth
+          -
+            title: Chapter 9 -- Life and Immortality Brought to Light by the Gospel
+          -
+            title: Chapter 10 -- The Ministration of Spirit and Power
+          -
+            title: Chapter 11 -- Christ's Baptism
+          -
+            title: Chapter 12 -- A Further Testimony Concerning the Work of God Upon Our Hearts
+          -
+            title: Chapter 13 -- God's Teaching and Christ's Law
+          -
+            title: Chapter 14 -- The Seed of the Kingdom
+          -
+            title: Chapter 15 -- Letters of Isaac Penington Written Between 1666 - 1679
+  -
+    title: The Unabridged Works of Isaac Penington - Volume 1
+    slug: unabridged-works-volume-1
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - devotional
+      - doctrinal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 280
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Testimony of George Fox, concerning Isaac Penington
+          -
+            title: The Testimony of Thomas Ellwood, concerning Isaac Penington
+          -
+            title: The Way of Life and Death Made Manifest, and Set Before Men
+          -
+            title: The Scattered Sheep Sought After
+          -
+            title: Babylon the Great Described
+          -
+            title: 'The Jew Outward: Being a Glass for the Professors of this Age'
+          -
+            title: The Axe Laid to the Root of the Old Corrupt Tree
+          -
+            title: To the Parliament, the Army, and all the Well-affected in the Nation, who have been faithful to the Good Old Cause
+          -
+            title: A brief account of Some Reasons why the Quakers cannot do some things, and forbear doing some things; for which they suffer, etc.
+          -
+            title: Some Considerations Proposed to the City of London, etc.
+          -
+            title: Some Considerations Proposed to the Distracted Nation of England
+          -
+            title: To the Army
+          -
+            title: A Question proposed to the Rulers, Teachers, and People of England
+          -
+            title: An examination of the Grounds or Causes which are said to induce the Court of Boston, to make that Law of Banishment etc.
+          -
+            title: Some Considerations concerning the state of Things, etc.
+          -
+            title: A Warning of Love from the Bowels of Life to Professors
+          -
+            title: Where is the Wise, where is the Scribe? etc.
+          -
+            title: Letters of Isaac Penington
+          -
+            title: 'Appendix: Additional Testimonies for Isaac Penington'
+  -
+    title: The Unabridged Works of Isaac Penington - Volume 2
+    slug: unabridged-works-volume-2
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - devotional
+      - doctrinal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 319
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Root of Popery Struck At
+          -
+            title: An Epistle to Such as Observe the Seventh Day for a Sabbath
+          -
+            title: The New Covenant of the Gospel distinguished from the Old
+          -
+            title: Some Queries and Considerations Proposed to the Cavaliers
+          -
+            title: Some Queries Concerning the Work of God in the World
+          -
+            title: Consideration of a Position Concerning the Book of Common Prayer
+          -
+            title: An Answer to that Common Objection against the Quakers etc.
+          -
+            title: The Great Question concerning the Lawfulness or Unlawfulness of Swearing under the Gospel
+          -
+            title: Something spoken to a Weighty Question concerning the Magistrate's Protection of the Innocent
+          -
+            title: Concerning Persecution
+          -
+            title: Some Directions to the Panting Soul
+          -
+            title: Concerning the worship of the Living God, which He Teaches etc.
+          -
+            title: Some Questions and Answers for... the Jews Natural
+          -
+            title: Some Questions and Answers Showing Man his Duty
+          -
+            title: To all Such as Complain they Lack Power
+          -
+            title: Some Queries to the Professors of this Age
+          -
+            title: Some Observations on that Portion of Scripture, Rom. 14:20.
+          -
+            title: Three Queries Propounded to the King and Parliament
+          -
+            title: A Salutation of Love to the Commissioners of Peace, etc.
+          -
+            title: A Weighty Question Propounded to the King and Parliament
+          -
+            title: Some of the Mysteries of God's Kingdom Glanced At
+          -
+            title: Some Queries concerning the Order and Government of the Church
+          -
+            title: Some Deep Considerations Concerning the State of Israel
+          -
+            title: Concerning God's Seeking out His Israel
+          -
+            title: To Friends in England, Ireland, Scotland, Holland, etc.
+          -
+            title: One more Tender Visitation to the Men of this Generation
+          -
+            title: Concerning the Church, or Church State under the Gospel
+          -
+            title: Concerning the Substance of our Religion who are called Quakers
+          -
+            title: Letters of Isaac Penington
+  -
+    title: The Unabridged Works of Isaac Penington - Volume 3
+    slug: unabridged-works-volume-3
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - devotional
+      - doctrinal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 348
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+            -
+              title: Some things of great Weight and Concernment to All
+            -
+              title: A Question to the Professors of Christianity
+            -
+              title: To Such as are not Satisfied with a Profession, without the true Life
+            -
+              title: Observations on Some Passages of Lodowick Muggleton
+            -
+              title: Some Things relating to Religion, proposed to the Royal Society
+            -
+              title: Of the Church in its Pure, Declining, and Declined State, and Recovery
+            -
+              title: An Inquiry after Truth and Righteousness, and after the People, etc.
+            -
+              title: The Holy Truth and People Defended, in Answer to a Letter, etc.
+            -
+              title: The Ancient Principle of Truth, or the Light within, Asserted
+            -
+              title: Naked Truth, or truth nakedly Manifesting Itself
+            -
+              title: The Flesh and Blood of Christ in the Mystery, and in the Outward
+            -
+              title: To the Jews Natural, and to the Jews Spiritual
+            -
+              title: The Everlasting Gospel and its blessed Effects Testified To
+            -
+              title: The Letters of Isaac Penington
+  -
+    title: The Unabridged Works of Isaac Penington - Volume 4
+    slug: unabridged-works-volume-4
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - devotional
+      - doctrinal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 348
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: A Further Testimony to Truth, Revived out of the Ruins of the Apostasy
+          -
+            title: Life and Immortality brought to Light through the Gospel
+          -
+            title: A Reply to your Criticisms
+          -
+            title: Experiences concerning things relating to God's everlasting Kingdom
+          -
+            title: A Treatise concerning God's Teaching, and Christ's Law
+          -
+            title: A Question answered concerning Reading the Scriptures Aright
+          -
+            title: Something Relating to Church Government
+          -
+            title: Some Misrepresentations of me Concerning Church Government
+          -
+            title: The Seed of God, and of his Kingdom Treated and Testified of
+          -
+            title: An Epistle to all serious Professors of the Christian Religion
+          -
+            title: A Reply to an answer to Queries by I.P. concerning gospel Baptism
+          -
+            title: Some Queries concerning Compulsion in Religion
+          -
+            title: Concerning the Dispensation of the Gospel, or the Dispensation of the Son in Spirit, which is the Last Dispensation
+          -
+            title: Experiences Concerning God's Way, Truth, Church, and People
+          -
+            title: Concerning the Times and Seasons, Both Which Have Been, and Are Yet to Be
+          -
+            title: Letters of Isaac Penington

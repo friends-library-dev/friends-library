@@ -1,0 +1,47 @@
+name: John Gratton
+slug: john-gratton
+description: John Gratton (1641-1711) was one of several early Quakers who were convinced of the truth directly by the Lord, apart from the preaching or writings of others in the Society. His desperate and agonizing pursuit of true Christianity (amongst the many sects and denominations of the day) finally brought him to dramatically experience the truth of Christ's promise—'Everyone who asks receives, and he who seeks finds, and to him who knocks it will be opened.'
+documents:
+  -
+    title: The Journal of John Gratton
+    slug: journal
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 136
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Forward by Editor
+          -
+            title: Chapter 1 -- Seeking Truth
+          -
+            title: Chapter 2 -- Finding Truth
+          -
+            title: Chapter 3 -- Ministry Years
+          -
+            title: Chapter 4 -- Prison Years
+          -
+            title: Chapter 5 -- Return to Ministry
+      -
+        type: updated
+        pages: 77
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Journal of John Gratton

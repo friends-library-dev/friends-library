@@ -1,0 +1,63 @@
+name: John Burnyeat
+slug: john-burnyeat
+description: John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of Friends, whose powerful ministry turned many thousands from darkness to light, and from the power of Satan to the power of God. He labored tirelessly and traveled extensively in the service of Truth, often suffering greatly for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully in his generation, putting his hand to the plow and never looking back.
+documents:
+  -
+    title: The Journal of John Burnyeat
+    slug: journal
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 18
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Journal of John Burnyeat
+  -
+    title: The Unabridged Journal and Letters of John Burnyeat
+    slug: unabridged-journal-and-letters
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - journal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 126
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Testimonies
+          -
+            title: Chapter 1
+          -
+            title: Chapter 2
+          -
+            title: Chapter 3
+          -
+            title: Chapter 4
+          -
+            title: Chapter 5
+          -
+            title: Chapter 6
+          -
+            title: Chapter 7

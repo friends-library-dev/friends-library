@@ -1,0 +1,88 @@
+name: Thomas Story
+slug: thomas-story
+description: Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados, and the American colonies. He was known for both his spiritual depth and his intellectual genius, and his writings became very influential among Quakers.
+documents:
+  -
+    title: Thomas Story's Early Years & Spiritual Growth
+    slug: early-years-and-spiritual-growth
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 20
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Thomas Story's Early Years & Spiritual Growth
+  -
+    title: Thomas Story's Journal
+    slug: journal
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 613
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Thomas Story's Journal
+  -
+    title: Salvation By Christ
+    slug: salvation-by-christ
+    description: An excerpt from the journal of Thomas Story, concerning salvation by Christ.
+    tags:
+      - doctrinal
+    editions:
+      -
+        type: updated
+        pages: 3
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Salvation By Christ
+  -
+    title: Letter to a Doubter
+    slug: letter-to-a-doubter
+    description: An excerpt from the journal of Thomas Story.
+    tags:
+      - exhortation
+    editions:
+      -
+        type: updated
+        pages: 20
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Letter to a Doubter

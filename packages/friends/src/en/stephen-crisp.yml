@@ -1,0 +1,51 @@
+name: Stephen Crisp
+slug: stephen-crisp
+description: Stephen Crisp (1628-1692) was another whose desperate search for Truth (lasting twenty long years) at last brought him to an experiential knowledge of the grace and truth that are in Jesus Christ. Having found the Pearl of great price, he sold all to buy it, and soon was made an eminent minister among the early Society of Friends, laboring for the next thirty-five years in the power and wisdom of the Spirit throughout England, Scotland, Holland, and Germany.
+documents:
+  -
+    title: The Journal of Stephen Crisp
+    slug: journal
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - journal
+      - letters
+    editions:
+      -
+        type: modernized
+        pages: 261
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Journal of Stephen Crisp
+  -
+    title: A Plain Pathway
+    slug: plain-pathway
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    tags:
+      - exhortation
+    editions:
+      -
+        type: updated
+        pages: 12
+        formats:
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: A Plain Pathway
