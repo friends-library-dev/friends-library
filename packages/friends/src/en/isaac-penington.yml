@@ -29,37 +29,53 @@ documents:
           -
             title: Forward
           -
-            title: Chapter 1 -- Memoir of Isaac Penington
+            number: 1
+            subtitle: Memoir of Isaac Penington
           -
-            title: Chapter 2 -- The Way of Life and Death Made Manifest and Set Before Men
+            number: 2
+            subtitle: The Way of Life and Death Made Manifest and Set Before Men
           -
-            title: Chapter 3 -- Some Principles Guiding Out of the Apostasy and Into the True Christian Spirit and Life
+            number: 3
+            subtitle: Some Principles Guiding Out of the Apostasy and Into the True Christian Spirit and Life
           -
-            title: Chapter 4 -- The Axe Laid to the Root of the Old Corrupt Tree
+            number: 4
+            subtitle: The Axe Laid to the Root of the Old Corrupt Tree
           -
-            title: Chapter 5 -- The Scattered Sheep Sought After
+            number: 5
+            subtitle: The Scattered Sheep Sought After
           -
-            title: 'Chapter 6 -- Babylon the Great: The City of Confusion Where Antichrist Reigns'
+            number: 6
+            subtitle: 'Babylon the Great: The City of Confusion Where Antichrist Reigns'
           -
-            title: 'Chapter 7 -- The Holy Scriptures: Whether They Be the True Rule of Faith and Life'
+            number: 7
+            subtitle: 'The Holy Scriptures: Whether They Be the True Rule of Faith and Life'
           -
-            title: Chapter 8 -- The Authority and Government which Christ Excluded from His Church
+            number: 8
+            subtitle: The Authority and Government which Christ Excluded from His Church
           -
-            title: Chapter 9 -- The New Covenant of the Gospel Distinguished from the Old Covenant of the Law
+            number: 9
+            subtitle: The New Covenant of the Gospel Distinguished from the Old Covenant of the Law
           -
-            title: Chapter 10 -- The Prayer, Ministry, Wisdom and Kingdom which are Spiritual
+            number: 1
+            subtitle: The Prayer, Ministry, Wisdom and Kingdom which are Spiritual
           -
-            title: Chapter 11 -- Some Directions to the Panting Soul
+            number: 1
+            subtitle: Some Directions to the Panting Soul
           -
-            title: Chapter 12 -- Some Questions and Answers for the Opening of the Eyes
+            number: 1
+            subtitle: Some Questions and Answers for the Opening of the Eyes
           -
-            title: Chapter 13 -- The Sum and Substance of True Religion
+            number: 1
+            subtitle: The Sum and Substance of True Religion
           -
-            title: Chapter 14 -- The Two Seeds
+            number: 1
+            subtitle: The Two Seeds
           -
-            title: Chapter 15 -- How to Discern the Teachings of Christ
+            number: 1
+            subtitle: How to Discern the Teachings of Christ
           -
-            title: Chapter 16 -- Letters of Isaac Penington Written Between 1658 - 1671
+            number: 1
+            subtitle: Letters of Isaac Penington Written Between 1658 - 1671
   -
     title: The Writings of Isaac Penington - Volume 2
     slug: writings-volume-2
@@ -85,35 +101,50 @@ documents:
             type: mobi
         chapters:
           -
-            title: Chapter 1 -- Spiritual Knowledge
+            number: 1
+            subtitle: Spiritual Knowledge
           -
-            title: Chapter 2 -- Some Stumbling Blocks Removed Out of the Way of the Simple-Hearted
+            number: 2
+            subtitle: Some Stumbling Blocks Removed Out of the Way of the Simple-Hearted
           -
-            title: Chapter 3 -- The Holy Truth and People Defended
+            number: 3
+            subtitle: The Holy Truth and People Defended
           -
-            title: Chapter 4 -- Naked Truth Given Forth by Way of Question and Answer
+            number: 4
+            subtitle: Naked Truth Given Forth by Way of Question and Answer
           -
-            title: Chapter 5 -- The Experiences
+            number: 5
+            subtitle: The Experiences
           -
-            title: Chapter 6 -- A Brief Account Concerning the People Called Quakers
+            number: 6
+            subtitle: A Brief Account Concerning the People Called Quakers
           -
-            title: Chapter 7 -- To the Jews According to the Flesh and According to the Spirit
+            number: 7
+            subtitle: To the Jews According to the Flesh and According to the Spirit
           -
-            title: Chapter 8 -- A Testimony to Truth
+            number: 8
+            subtitle: A Testimony to Truth
           -
-            title: Chapter 9 -- Life and Immortality Brought to Light by the Gospel
+            number: 9
+            subtitle: Life and Immortality Brought to Light by the Gospel
           -
-            title: Chapter 10 -- The Ministration of Spirit and Power
+            number: 10
+            subtitle: The Ministration of Spirit and Power
           -
-            title: Chapter 11 -- Christ's Baptism
+            number: 11
+            subtitle: Christ's Baptism
           -
-            title: Chapter 12 -- A Further Testimony Concerning the Work of God Upon Our Hearts
+            number: 12
+            subtitle: A Further Testimony Concerning the Work of God Upon Our Hearts
           -
-            title: Chapter 13 -- God's Teaching and Christ's Law
+            number: 13
+            subtitle: God's Teaching and Christ's Law
           -
-            title: Chapter 14 -- The Seed of the Kingdom
+            number: 14
+            subtitle: The Seed of the Kingdom
           -
-            title: Chapter 15 -- Letters of Isaac Penington Written Between 1666 - 1679
+            number: 15
+            subtitle: Letters of Isaac Penington Written Between 1666 - 1679
   -
     title: The Unabridged Works of Isaac Penington - Volume 1
     slug: unabridged-works-volume-1

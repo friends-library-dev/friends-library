@@ -51,17 +51,23 @@ documents:
           -
             title: Forward
           -
-            title: Chapter 1 -- The Condition of Man in the Fall
+            number: 1
+            subtitle: The Condition of Man in the Fall
           -
-            title: Chapter 2 -- A Universal Offer of Redemption
+            number: 2
+            subtitle: A Universal Offer of Redemption
           -
-            title: Chapter 3 -- The Seed, Light, and Grace of God
+            number: 3
+            subtitle: The Seed, Light, and Grace of God
           -
-            title: Chapter 4 -- The Proof of Our Position
+            number: 4
+            subtitle: The Proof of Our Position
           -
-            title: Chapter 5 -- Concerning Justification
+            number: 5
+            subtitle: Concerning Justification
           -
-            title: Chapter 6 -- Concerning Perfection
+            number: 6
+            subtitle: Concerning Perfection
   -
     title: Apology for the True Christian Divinity
     slug: apology
@@ -79,6 +85,7 @@ documents:
             type: epub
           -
             type: mobi
+        chapter_format: "%title%: %subtitle%"
         chapters:
           -
             title: 'Preface: Unto the Friendly Reader'
@@ -87,33 +94,47 @@ documents:
           -
             title: The Fifteen Propositions Summarized
           -
-            title: 'The First Proposition: Concerning the True Foundation of Knowledge'
+            title: The First Proposition
+            subtitle: Concerning the True Foundation of Knowledge
           -
-            title: 'The Second Proposition: Concerning Immediate Revelation'
+            title: The Second Proposition
+            subtitle: Concerning Immediate Revelation
           -
-            title: 'The Third Proposition: Concerning the Scriptures'
+            title: The Third Proposition
+            subtitle: Concerning the Scriptures
           -
-            title: 'The Fourth Proposition: Concerning the Condition of Man in the Fall'
+            title: The Fourth Proposition
+            subtitle: Concerning the Condition of Man in the Fall
           -
-            title: 'The Fifth and Sixth Propositions: Concerning the Universal Redemption by Christ, and also the Saving and Spiritual Light wherewith every man is enlightened'
+            title: The Fifth and Sixth Propositions
+            subtitle: Concerning the Universal Redemption by Christ, and also the Saving and Spiritual Light wherewith every man is enlightened
           -
-            title: 'The Seventh Proposition: Concerning Justification'
+            title: The Seventh Proposition
+            subtitle: Concerning Justification
           -
-            title: 'The Eighth Proposition: Concerning Perfection'
+            title: The Eighth Proposition
+            subtitle: Concerning Perfection
           -
-            title: 'The Ninth Proposition: Concerning Perseverance, and the Possibility of Falling from Grace'
+            title: The Ninth Proposition
+            subtitle: Concerning Perseverance, and the Possibility of Falling from Grace
           -
-            title: 'The Tenth Proposition: Concerning the Ministry'
+            title: The Tenth Proposition
+            subtitle: Concerning the Ministry
           -
-            title: 'The Eleventh Proposition: Concerning Worship'
+            title: The Eleventh Proposition
+            subtitle: Concerning Worship
           -
-            title: 'The Twelfth Proposition: Concerning Baptism'
+            title: The Twelfth Proposition
+            subtitle: Concerning Baptism
           -
-            title: 'The Thirteenth Proposition: Concerning the Communion, or participation of the Body and Blood of Christ'
+            title: The Thirteenth Proposition
+            subtitle: Concerning the Communion, or participation of the Body and Blood of Christ
           -
-            title: 'The Fourteenth Proposition: Concerning the Power of the Civil Magistrate in Matters purely Religious and pertaining to the Conscience'
+            title: The Fourteenth Proposition
+            subtitle: Concerning the Power of the Civil Magistrate in Matters purely Religious and pertaining to the Conscience
           -
-            title: 'The Fifteenth Proposition: Concerning Salutations and Recreations, etc.'
+            title: The Fifteenth Proposition
+            subtitle: Concerning Salutations and Recreations, etc.
           -
             title: The Conclusion
   -

@@ -23,15 +23,20 @@ documents:
           -
             title: Forward by Editor
           -
-            title: Chapter 1 -- Seeking Truth
+            number: 1
+            subtitle: Seeking Truth
           -
-            title: Chapter 2 -- Finding Truth
+            number: 2
+            subtitle: Finding Truth
           -
-            title: Chapter 3 -- Ministry Years
+            number: 3
+            subtitle: Ministry Years
           -
-            title: Chapter 4 -- Prison Years
+            number: 4
+            subtitle: Prison Years
           -
-            title: Chapter 5 -- Return to Ministry
+            number: 5
+            subtitle: Return to Ministry
       -
         type: updated
         pages: 77

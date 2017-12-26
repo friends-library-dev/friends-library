@@ -1,0 +1,87 @@
+name: William Penn
+slug: william-penn
+description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+documents:
+  -
+    title: No Cross, No Crown
+    slug: no-cross-no-crown
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.
+    tags:
+      - treatise
+      - exhortation
+    editions:
+      -
+        type: modernized
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              soundcloud_id_hq: 339058670 # get this & below info from local version of msf site
+              soundcloud_id_lq: 339058677
+              filesize_hq: 57716549
+              filesize_lq: 19311270
+              seconds: 3218
+              chapters:
+                - 0 # 0 is FIRST chapter: "Forward by William Evans & Thomas Evans"
+                - 1
+                - 2
+                - 3
+            -
+              title: Part 2
+              soundcloud_id_hq: 339059932
+              soundcloud_id_lq: 339059939
+              filesize_hq: 57905757
+              filesize_lq: 19758606
+              seconds: 3293
+              chapters:
+                - 4 # 4 is FIFTH chapter: "The Daily Cross"
+                - 5
+                - 6
+                - 7
+            -
+              title: Part 3
+              soundcloud_id_hq: 339061514
+              soundcloud_id_lq: 339061516
+              filesize_hq: 65747134
+              filesize_lq: 23095158
+              seconds: 3849
+              chapters:
+                - 8
+                - 9
+
+        chapters:
+          -
+            title: Forward by William Evans & Thomas Evans
+          -
+            title: Preface by William Penn
+          -
+            number: 1
+            subtitle: A Crossless Christianity
+          -
+            number: 2
+            subtitle: A Great Apostasy
+          -
+            number: 3
+            subtitle: The Daily Cross
+          -
+            number: 4
+            subtitle: Denying Lawful Self
+          -
+            number: 5
+            subtitle: Denying Unlawful Self
+          -
+            number: 6
+            subtitle: Spiritual Worship
+          -
+            number: 7
+            subtitle: The Sin of Pride
