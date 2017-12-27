@@ -26,8 +26,8 @@ documents:
           parts:
             -
               title: Part 1
-              soundcloud_id_hq: 339058670 # get this & below info from local version of msf site
-              soundcloud_id_lq: 339058677
+              external_id_hq: 339058670 # get this & below info from local version of msf site
+              external_id_lq: 339058677
               filesize_hq: 57716549
               filesize_lq: 19311270
               seconds: 3218
@@ -38,8 +38,8 @@ documents:
                 - 3
             -
               title: Part 2
-              soundcloud_id_hq: 339059932
-              soundcloud_id_lq: 339059939
+              external_id_hq: 339059932
+              external_id_lq: 339059939
               filesize_hq: 57905757
               filesize_lq: 19758606
               seconds: 3293
@@ -50,8 +50,8 @@ documents:
                 - 7
             -
               title: Part 3
-              soundcloud_id_hq: 339061514
-              soundcloud_id_lq: 339061516
+              external_id_hq: 339061514
+              external_id_lq: 339061516
               filesize_hq: 65747134
               filesize_lq: 23095158
               seconds: 3849

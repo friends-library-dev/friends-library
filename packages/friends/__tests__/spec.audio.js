@@ -43,10 +43,10 @@ files.forEach((file) => {
       });
     });
 
-    test('audio parts have soundcloud ids', () => {
+    test('audio parts have external ids', () => {
       audioParts(friend).forEach((part) => {
-        expect(typeof part.soundcloud_id_hq).toBe('number');
-        expect(typeof part.soundcloud_id_lq).toBe('number');
+        expect(typeof part.external_id_hq).toBe('number');
+        expect(typeof part.external_id_lq).toBe('number');
       });
     });
 
