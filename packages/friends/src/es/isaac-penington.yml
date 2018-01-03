@@ -1,0 +1,79 @@
+name: Isaac Penington
+slug: isaac-penington
+description: Isaac Penington (1616–1679) fue criado en una familia rica e influyente, y cultivado y pulido con una buena y amplia educación. Sin embargo, las aspiraciones de Penington, desde sus primeros días, estaban enteramente fijadas en las cosas de arriba y no en las muchas cosas del mundo que estaban a su alcance. Él dice de sí mismo — “Desde mi niñez mi corazón fue apuntado hacia el Señor, de quien me ocupé y a quien busqué desde mis tiernos años. Yo sentía que no podía estar satisfecho con (ni buscar) las cosas de este mundo perecedero, las cuales naturalmente expiran, sino que deseaba un verdadero sentido y unidad con lo que permanece para siempre.” De hecho, el hambre y la desesperación de Penington por el verdadero conocimiento y experiencia de Dios fue un sello distintivo en su vida. Buscando, encontró; llamando, la puerta se abrió delante de él. Buscó al Señor con todo su corazón, mente y fuerza, y no cabe duda de que el Señor fue encontrado por él.
+documents:
+  -
+    title: Los Escritos de Isaac Penington — Volumen 1
+    slug: escritos-volume-1
+    description: Isaac Penington (1616–1679) fue criado en una familia rica e influyente, y cultivado y pulido con una buena y amplia educación. Sin embargo, las aspiraciones de Penington, desde sus primeros días, estaban enteramente fijadas en las cosas de arriba y no en las muchas cosas del mundo que estaban a su alcance. Él dice de sí mismo — “Desde mi niñez mi corazón fue apuntado hacia el Señor, de quien me ocupé y a quien busqué desde mis tiernos años. Yo sentía que no podía estar satisfecho con (ni buscar) las cosas de este mundo perecedero, las cuales naturalmente expiran, sino que deseaba un verdadero sentido y unidad con lo que permanece para siempre.” De hecho, el hambre y la desesperación de Penington por el verdadero conocimiento y experiencia de Dios fue un sello distintivo en su vida. Buscando, encontró; llamando, la puerta se abrió delante de él. Buscó al Señor con todo su corazón, mente y fuerza, y no cabe duda de que el Señor fue encontrado por él.
+    tags:
+      - devotional
+      - doctrinal
+      - letters
+    editions:
+      -
+        type: modernized
+        pages: 391
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+
+        chapters:
+          -
+            title: Prefacio
+          -
+            number: 1
+            subtitle: Biografía de Isaac Penington
+          -
+            number: 2
+            subtitle: El Camino de la Vida y de la Muerte Hecho Manifiesto y Puesto Delante de los Hombres
+          -
+            number: 3
+            subtitle: Algunos Principios que Guían Hacia Afuera de la Apostasía
+          -
+            number: 4
+            subtitle: El Hacha Está Puesta a la Raíz del Antiguo Árbol Corrupto
+          -
+            number: 5
+            subtitle: En Busca de Las Ovejas Esparcidas
+          -
+            number: 6
+            subtitle: Babilonia la Grande – La Ciudad de Confusión
+          -
+            number: 7
+            subtitle: Las Sagradas Escrituras
+          -
+            number: 8
+            subtitle: La Autoridad y Gobierno que Cristo Excluyó de Su Iglesia
+          -
+            number: 9
+            subtitle: La Diferencia Entre el Nuevo Pacto del Evangelio y el Antiguo Pacto de la Ley
+          -
+            number: 10
+            subtitle: La Oración, el Ministerio, la Sabiduría y el Reino que son Espirituales
+          -
+            number: 11
+            subtitle: Algunas Directrices Para el Alma Anhelante
+          -
+            number: 12
+            subtitle: Algunas Preguntas y Respuestas Para Que los Ojos Sean Abiertos
+          -
+            number: 13
+            subtitle: La Suma y Sustancia de la Verdadera Religión
+          -
+            number: 14
+            subtitle: Las Dos Semillas
+          -
+            number: 15
+            subtitle: Cómo Discernir las Enseñanzas de Cristo
+          -
+            number: 16
+            subtitle: Las Cartas de Isaac Penington 1658 - 1671

@@ -5,7 +5,7 @@ documents:
   -
     title: The Writings of Isaac Penington - Volume 1
     slug: writings-volume-1
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
     tags:
       - devotional
       - doctrinal
@@ -25,6 +25,181 @@ documents:
             type: epub
           -
             type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Chapter 1
+              external_id_hq: 236087816
+              external_id_lq: 236087828
+              filesize_hq: 48529714
+              filesize_lq: 17356902
+              seconds: 2893
+              chapters:
+                - 0
+            -
+              title: Chapter 2
+              external_id_hq: 236524198
+              external_id_lq: 236524217
+              filesize_hq: 75738836
+              filesize_lq: 26268630
+              seconds: 4378
+              chapters:
+                - 1
+            -
+              title: Chapter 3
+              external_id_hq: 236683327
+              external_id_lq: 236683342
+              filesize_hq: 39053040
+              filesize_lq: 13621398
+              seconds: 2270
+              chapters:
+                - 2
+            -
+              title: Chapter 4
+              external_id_hq: 237550758
+              external_id_lq: 237550789
+              filesize_hq: 59657453
+              filesize_lq: 20848974
+              seconds: 3475
+              chapters:
+                - 3
+            -
+              title: Chapter 5
+              external_id_hq: 238137305
+              external_id_lq: 238137322
+              filesize_hq: 56478533
+              filesize_lq: 19811526
+              seconds: 3302
+              chapters:
+                - 4
+            -
+              title: Chapter 6
+              external_id_hq: 239750518
+              external_id_lq: 239750527
+              filesize_hq: 29288690
+              filesize_lq: 10044870
+              seconds: 1674
+              chapters:
+                - 5
+            -
+              title: Chapter 7
+              external_id_hq: 240543643
+              external_id_lq: 240543651
+              filesize_hq: 20944960
+              filesize_lq: 7229094
+              seconds: 1205
+              chapters:
+                - 6
+            -
+              title: Chapter 8
+              external_id_hq: 241597674
+              external_id_lq: 241597696
+              filesize_hq: 37147519
+              filesize_lq: 12809670
+              seconds: 2135
+              chapters:
+                - 7
+            -
+              title: Chapter 9
+              external_id_hq: 242604613
+              external_id_lq: 242604639
+              filesize_hq: 66885314
+              filesize_lq: 22970958
+              seconds: 3828
+              chapters:
+                - 8
+            -
+              title: Chapter 10
+              external_id_hq: 243225597
+              external_id_lq: 243225603
+              filesize_hq: 40132402
+              filesize_lq: 13754022
+              seconds: 2292
+              chapters:
+                - 9
+            -
+              title: Chapter 11
+              external_id_hq: 243893816
+              external_id_lq: 243893833
+              filesize_hq: 43985097
+              filesize_lq: 15327150
+              seconds: 2554
+              chapters:
+                - 10
+            -
+              title: Chapter 12
+              external_id_hq: 244568244
+              external_id_lq: 244568263
+              filesize_hq: 78001236
+              filesize_lq: 27153582
+              seconds: 4525
+              chapters:
+                - 11
+            -
+              title: Chapter 13
+              external_id_hq: 246068270
+              external_id_lq: 246068288
+              filesize_hq: 52201684
+              filesize_lq: 18209238
+              seconds: 3035
+              chapters:
+                - 12
+            -
+              title: Chapter 14
+              external_id_hq: 246690863
+              external_id_lq: 246690872
+              filesize_hq: 52322221
+              filesize_lq: 18234510
+              seconds: 3039
+              chapters:
+                - 13
+            -
+              title: Chapter 15
+              external_id_hq: 247512245
+              external_id_lq: 247512254
+              filesize_hq: 26640560
+              filesize_lq: 9233790
+              seconds: 1539
+              chapters:
+                - 14
+            -
+              title: Chapter 16a
+              external_id_hq: 248324309
+              external_id_lq: 248324313
+              filesize_hq: 42208697
+              filesize_lq: 14992998
+              seconds: 2499
+              chapters:
+                - 15
+            -
+              title: Chapter 16b
+              external_id_hq: 249040062
+              external_id_lq: 249040091
+              filesize_hq: 51711685
+              filesize_lq: 18323502
+              seconds: 3054
+              chapters:
+                - 16
+            -
+              title: Chapter 16c
+              external_id_hq: 249649399
+              external_id_lq: 249649406
+              filesize_hq: 54120845
+              filesize_lq: 18589182
+              seconds: 3098
+              chapters:
+                - 17
+            -
+              title: Chapter 16d
+              external_id_hq: 250650800
+              external_id_lq: 250650827
+              filesize_hq: 41260770
+              filesize_lq: 15023238
+              seconds: 2504
+              chapters:
+                - 18
+
         chapters:
           -
             title: Forward
@@ -79,7 +254,7 @@ documents:
   -
     title: The Writings of Isaac Penington - Volume 2
     slug: writings-volume-2
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
     tags:
       - devotional
       - doctrinal
@@ -99,6 +274,172 @@ documents:
             type: epub
           -
             type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Chapter 1
+              external_id_hq: 251385524
+              external_id_lq: 251385543
+              filesize_hq: 68549849
+              filesize_lq: 24184446
+              seconds: 4031
+              chapters:
+                - 0
+            -
+              title: Chapter 2
+              external_id_hq: 252169466
+              external_id_lq: 252169483
+              filesize_hq: 69490872
+              filesize_lq: 23401014
+              seconds: 3900
+              chapters:
+                - 1
+            -
+              title: Chapter 3
+              external_id_hq: 253775460
+              external_id_lq: 253775477
+              filesize_hq: 36272540
+              filesize_lq: 12662574
+              seconds: 2110
+              chapters:
+                - 2
+            -
+              title: Chapter 4
+              external_id_hq: 254976811
+              external_id_lq: 254976825
+              filesize_hq: 64854789
+              filesize_lq: 21832854
+              seconds: 3639
+              chapters:
+                - 3
+            -
+              title: Chapter 5
+              external_id_hq: 256197379
+              external_id_lq: 256197408
+              filesize_hq: 47881431
+              filesize_lq: 16057230
+              seconds: 2676
+              chapters:
+                - 4
+            -
+              title: Chapter 6
+              external_id_hq: 257247718
+              external_id_lq: 257247730
+              filesize_hq: 42199417
+              filesize_lq: 13820982
+              seconds: 2303
+              chapters:
+                - 5
+            -
+              title: Chapter 7
+              external_id_hq: 257825679
+              external_id_lq: 257825711
+              filesize_hq: 64802867
+              filesize_lq: 22226190
+              seconds: 3704
+              chapters:
+                - 6
+            -
+              title: Chapter 8
+              external_id_hq: 259679039
+              external_id_lq: 259679045
+              filesize_hq: 79200982
+              filesize_lq: 26878182
+              seconds: 4479
+              chapters:
+                - 7
+            -
+              title: Chapter 9
+              external_id_hq: 260388151
+              external_id_lq: 260388168
+              filesize_hq: 42717380
+              filesize_lq: 14959302
+              seconds: 2493
+              chapters:
+                - 8
+            -
+              title: Chapter 10
+              external_id_hq: 261020211
+              external_id_lq: 261020238
+              filesize_hq: 24642581
+              filesize_lq: 8416446
+              seconds: 1402
+              chapters:
+                - 9
+            -
+              title: Chapter 11
+              external_id_hq: 261962062
+              external_id_lq: 261962086
+              filesize_hq: 37462716
+              filesize_lq: 12729966
+              seconds: 2121
+              chapters:
+                - 10
+            -
+              title: Chapter 12
+              external_id_hq: 244568244
+              external_id_lq: 244568263
+              filesize_hq: 78001236
+              filesize_lq: 27153582
+              seconds: 4525
+              chapters:
+                - 11
+            -
+              title: Chapter 13
+              external_id_hq: 263417381
+              external_id_lq: 263417401
+              filesize_hq: 46093148
+              filesize_lq: 15490446
+              seconds: 2582
+              chapters:
+                - 12
+            -
+              title: Chapter 14
+              external_id_hq: 263944914
+              external_id_lq: 263944942
+              filesize_hq: 53395073
+              filesize_lq: 17850462
+              seconds: 2975
+              chapters:
+                - 13
+            -
+              title: Chapter 15a
+              external_id_hq: 264398118
+              external_id_lq: 264398147
+              filesize_hq: 53264911
+              filesize_lq: 18381606
+              seconds: 3063
+              chapters:
+                - 14
+            -
+              title: Chapter 15b
+              external_id_hq: 266052656
+              external_id_lq: 266052676
+              filesize_hq: 55696036
+              filesize_lq: 18964374
+              seconds: 3161
+              chapters:
+                - 15
+            -
+              title: Chapter 15c
+              external_id_hq: 267146771
+              external_id_lq: 267146794
+              filesize_hq: 53200653
+              filesize_lq: 18325662
+              seconds: 3054
+              chapters:
+                - 16
+            -
+              title: Chapter 15d
+              external_id_hq: 267791450
+              external_id_lq: 267791465
+              filesize_hq: 50015739
+              filesize_lq: 17048022
+              seconds: 2841
+              chapters:
+                - 17
+
         chapters:
           -
             number: 1
@@ -148,7 +489,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 1
     slug: unabridged-works-volume-1
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional
       - doctrinal
@@ -206,7 +547,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 2
     slug: unabridged-works-volume-2
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional
       - doctrinal
@@ -284,7 +625,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 3
     slug: unabridged-works-volume-3
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional
       - doctrinal
@@ -332,7 +673,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 4
     slug: unabridged-works-volume-4
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional
       - doctrinal
