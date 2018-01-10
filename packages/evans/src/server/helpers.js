@@ -1,16 +1,16 @@
+// @flow
 import * as React from 'react';
 import ReactDOM from 'react-dom/server';
 import { renderStaticOptimized } from 'glamor/server';
 
 const { env: { NODE_ENV, PORT } } = process;
 
-export const wrap = (Component) => {
+export const wrap = (Component: React.Element<*>): string => {
   const { html, css } = renderStaticOptimized(() => {
     return ReactDOM.renderToStaticMarkup(Component);
   });
 
   let markup = `<!doctype html>${html}`
-
   markup = markup.replace('</head>', `<style>${css}</style></head>`);
 
   if (NODE_ENV === 'development') {

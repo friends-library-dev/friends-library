@@ -8,20 +8,25 @@
     "start": "yarn sync & NODE_ENV=development PORT=2222 babel-watch src/server/index.js",
     "serve": "NODE_ENV=production PORT=3333 babel-watch src/server/index.js",
     "build": "rimraf build && babel-node build.js",
-    "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify"
+    "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify",
+    "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
   },
   "dependencies": {
     "@friends-library/friends": "friends-library/friends",
-    "axios": "^0.17.1",
+    "glamor": "^2.20.40"
+  },
+  "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "babel-watch": "^2.0.7",
     "browser-sync": "^2.23.3",
     "express": "^4.16.2",
+    "flow-bin": "^0.63.1",
+    "flow-typed": "^2.2.3",
     "fs-extra": "^5.0.0",
-    "glamor": "^2.20.40",
     "opn": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

@@ -11,11 +11,7 @@ const app = express();
 Object.keys(routes).map(route => {
   app.get(route, (req, res) => {
     const { props, children } = routes[route]();
-    res.send(wrap((
-      <App {...props}>
-        {children}
-      </App>
-    )));
+    res.send(wrap(<App {...props}>{children}</App>));
   });
 });
 
