@@ -5,13 +5,13 @@ const styles = {
   backgroundColor: 'green',
 };
 
-export default () => (
+export default ({ title, children }) => (
   <html className={css(styles)}>
     <head>
-      <title>Static sites are fast</title>
+      <title>{title}</title>
     </head>
     <body>
-      <h2>Hello, good felow.</h2>
+      {children}
     </body>
   </html>
 );

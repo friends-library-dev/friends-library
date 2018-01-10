@@ -7,7 +7,7 @@
   "scripts": {
     "start": "yarn sync & NODE_ENV=development PORT=2222 babel-watch src/server/index.js",
     "serve": "NODE_ENV=production PORT=3333 babel-watch src/server/index.js",
-    "build": "rimraf build && node build.js",
+    "build": "rimraf build && babel-node build.js",
     "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "babel-watch": "^2.0.7",
     "browser-sync": "^2.23.3",
     "express": "^4.16.2",
