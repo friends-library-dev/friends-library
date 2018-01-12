@@ -5,14 +5,43 @@ documents:
   -
     title: The Life and Letters of Catherine Phillips
     slug: life-and-letters
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Catherine Phillips (1727-1794 — better known by her maiden name, Catherine Payton) was a highly gifted minister in the Society of Friends, who traveled almost continually for forty years in the service of Truth throughout England, Ireland, and North America. Her journal and letters clearly evince a life entirely surrendered to the cross of Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with love for God and for mankind.
     tags:
       - journal
       - letters
     editions:
       -
         type: updated
-        pages: 18
+        pages: 267
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+      -
+        type: original
+        pages: 267
         formats:
           -
             type: pdf
@@ -42,13 +71,13 @@ documents:
   -
     title: Letter to a Backslidden Brother
     slug: letter-to-backslidden-brother
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: This letter was written by Catherine Phillips in 1753 to her brother Henry Payton, who had "strayed from the path of peace and safety, to seek satisfaction in the grasp of empty bubbles, which had assumed the form, in his sight, of something substantial."
     tags:
       - letters
     editions:
       -
         type: updated
-        pages: 5
+        pages: 6
         formats:
           -
             type: pdf

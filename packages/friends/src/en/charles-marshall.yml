@@ -1,0 +1,60 @@
+name: Charles Marshall
+slug: charles-marshall
+description: Charles Marshall (1637-1698) was convinced of the Truth at age seventeen by the powerful ministry of John Audland and John Camm, and eventually became a worthy minister and elder himself in the early Society of Friends. This short but instructive journal describes Marshall's progressive experience of the light of Jesus Christ, both as his judge and teacher, together with the several snares and temptations of the enemy that he met with along the way.
+documents:
+  -
+    title: The Journal of Charles Marshall
+    slug: journal
+    description: Charles Marshall (1637-1698) was convinced of the Truth at age seventeen by the powerful ministry of John Audland and John Camm, and eventually became a worthy minister and elder himself in the early Society of Friends. This short but instructive journal describes Marshall's progressive experience of the light of Jesus Christ, both as his judge and teacher, together with the several snares and temptations of the enemy that he met with along the way.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 18
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: The Journal of Charles Marshall
+              external_id_hq: 280576517
+              external_id_lq: 280576523
+              filesize_hq: 40912174
+              filesize_lq: 13724862
+              seconds: 2287
+              chapters:
+                - 0
+
+        chapters:
+          -
+            title: The Journal of Charles Marshall
+
+  -
+    title: The Way of Life Revealed and the Way of Death Discovered
+    slug: way-of-life-revealed
+    description: The Way of Life Revealed And the Way of Death Discovered; Wherein is Declared Man's Happy Estate Before the Fall, His Miserable Estate in the Fall, and the Way of Restoration Out of the Fall, Into the Image of God Again, In Which Man Was Before the Fall.
+    tags:
+      - treatise
+    editions:
+      -
+        type: updated
+        pages: 35
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Way of Life Revealed
