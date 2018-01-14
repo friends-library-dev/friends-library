@@ -8,6 +8,8 @@ const { env: { PORT } } = process;
 
 const app = express();
 
+app.use(express.static('static'));
+
 Object.keys(routes).map(route => {
   app.get(route, (req, res) => {
     const { props, children } = routes[route]();

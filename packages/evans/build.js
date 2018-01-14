@@ -5,6 +5,9 @@ import { wrap } from './src/server/helpers';
 import routes from './src/server/routes';
 import App from './src/components/App';
 
+fs.ensureDir('build');
+fs.copySync('static', 'build');
+
 Object.keys(routes).map(route => {
   const { props, children } = routes[route]();
   const html = wrap(<App {...props}>{children}</App>);

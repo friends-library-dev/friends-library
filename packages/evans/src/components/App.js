@@ -1,23 +1,32 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import StickyNav from './StickyNav';
+import Slideover from './Slideover';
 
 type Props = {|
   title: string,
   children: React.Node,
 |};
 
-const styles = {
-  backgroundColor: 'green',
-};
+const content = css`
+  padding-top: 52px;
+  position: relative;
+  background: #fff;
+  min-height: 100vh;
+`;
 
 export default ({ title, children }: Props) => (
-  <html className={css(styles)}>
+  <html>
     <head>
       <title>{title}</title>
     </head>
     <body>
-      {children}
+      <Slideover />
+      <StickyNav />
+      <div className={content}>
+        {children}
+      </div>
     </body>
   </html>
 );
