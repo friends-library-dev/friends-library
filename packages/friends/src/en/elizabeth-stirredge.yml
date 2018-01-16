@@ -1,0 +1,56 @@
+name: Elizabeth Stirredge
+slug: elizabeth-stirredge
+description: Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of Friends. She was a wife, a mother, and an extraordinary woman of God. This short but remarkable account of her life was written in the 56th year of her age for the benefit of her children and grandchildren. In it she describes her desperate search for the Lord in her younger days, her discovery of Truth, and some of the trials, persecutions, and joys she met with as she took up the daily cross and faithfully followed Christ.
+documents:
+  -
+    title: The Life of Elizabeth Stirredge
+    slug: journal
+    description: Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of Friends. She was a wife, a mother, and an extraordinary woman of God. This short but remarkable account of her life was written in the 56th year of her age for the benefit of her children and grandchildren. In it she describes her desperate search for the Lord in her younger days, her discovery of Truth, and some of the trials, persecutions, and joys she met with as she took up the daily cross and faithfully followed Christ.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 21
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: The Life of Elizabeth Stirredge
+              external_id_hq: 279985715
+              external_id_lq: 279985720
+              filesize_hq: 42199677
+              filesize_lq: 14553870
+              seconds: 2425
+              chapters:
+                - 0
+
+        chapters:
+          -
+            title: The Life of Elizabeth Stirredge
+      -
+        type: original
+        pages: 80
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            title: The Life of Elizabeth Stirredge
+          -
+            title: Testimonies Concerning Elizabeth Stirredge
