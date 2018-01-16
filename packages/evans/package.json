@@ -5,8 +5,9 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "yarn sync & NODE_ENV=development PORT=2222 babel-watch src/server/index.js",
+    "start": "yarn sync & NODE_ENV=development PORT=2222 babel-watch src/server/index.js & webpack --watch",
     "serve": "NODE_ENV=production PORT=3333 babel-watch src/server/index.js",
+    "prebuild": "webpack -p",
     "build": "rimraf build && babel-node build.js",
     "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify",
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
@@ -18,6 +19,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
@@ -31,6 +33,7 @@
     "opn": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "webpack": "^3.10.0"
   }
 }

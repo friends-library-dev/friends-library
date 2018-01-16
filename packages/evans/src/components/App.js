@@ -24,9 +24,10 @@ export default ({ title, children }: Props) => (
     <body>
       <Slideover />
       <StickyNav />
-      <div className={content}>
+      <div id="App__Content" className={content}>
         {children}
       </div>
+      <script async src="js/bundle.js"></script>
     </body>
   </html>
 );

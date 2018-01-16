@@ -20,6 +20,24 @@ html {
   box-sizing: border-box;
 }
 
+.App--slideover-open {
+  overflow: hidden;
+}
+
+.App--slideover-open #StickyNav,
+.App--slideover-open #App__Content {
+  transform: translateX(255px);
+}
+
+#StickyNav,
+#App__Content {
+  transition: transform 0.3s;
+}
+
+.App--slideover-transitioning {
+  overflow: hidden;
+}
+
 *,
 *::before,
 *::after {

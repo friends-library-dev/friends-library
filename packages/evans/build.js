@@ -7,6 +7,7 @@ import App from './src/components/App';
 
 fs.ensureDir('build');
 fs.copySync('static', 'build');
+fs.moveSync('build/js/bundle.min.js', 'build/js/bundle.js', { overwrite: true });
 
 Object.keys(routes).map(route => {
   const { props, children } = routes[route]();

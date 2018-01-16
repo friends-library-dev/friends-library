@@ -34,8 +34,8 @@ const hamburger = css`
 `;
 
 export default () => (
-  <div className={element}>
-    <span className={hamburger}>
+  <div id="StickyNav" className={element}>
+    <span id="Hamburger" className={hamburger}>
       ☰
     </span>
     <a href="/" className={logo}>
