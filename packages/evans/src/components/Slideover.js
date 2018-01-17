@@ -1,6 +1,12 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import { sync as glob } from 'glob';
+import { basename } from 'path';
+import { getFriend } from '../server/helpers';
+
+const pattern = './node_modules/@friends-library/friends/src/en/*.yml';
+const friends = glob(pattern).map(path => getFriend(basename(path, '.yml')));
 
 const element = css`
   background: #eaeaea;
@@ -22,36 +28,13 @@ export default () => (
   <div className={element}>
     <h2>Friends</h2>
     <ul>
-      <li>
-        <a href="/friend/rebecca-jones">Rebecca Jones</a>
-      </li>
-      <li>
-        <a href="/friend/isaac-penington">Isaac Penington</a>
-      </li>
-      <li>
-        <a href="/friend/robert-barclay">Robert Barclay</a>
-      </li>
-      <li>
-        <a href="/friend/john-gratton">John Gratton</a>
-      </li>
-      <li>
-        <a href="/friend/john-burnyeat">John Burnyeat</a>
-      </li>
-      <li>
-        <a href="/friend/stephen-crisp">Stephen Crisp</a>
-      </li>
-      <li>
-        <a href="/friend/catherine-payton-phillips">Catherine Phillips</a>
-      </li>
-      <li>
-        <a href="/friend/john-griffeth">John Griffeth</a>
-      </li>
-      <li>
-        <a href="/friend/thomas-story">Thomas Story</a>
-      </li>
-      <li>
-        <a href="/friend/william-penn">William Penn</a>
-      </li>
+      {friends.map(friend => (
+        <li key={friend.slug}>
+          <a href={`/friend/${friend.slug}`}>
+            {friend.name}
+          </a>
+        </li>
+      ))}
     </ul>
   </div>
 );

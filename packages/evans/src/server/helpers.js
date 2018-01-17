@@ -1,21 +1,23 @@
 // @flow
 import * as React from 'react';
-import fs from 'fs-extra';
 import ReactDOM from 'react-dom/server';
+import { readFileSync } from 'fs';
+import { safeLoad } from 'js-yaml';
+import friendFromJS from '../classes/map';
 import { renderStaticOptimized } from 'glamor/server';
-import CleanCSS from 'clean-css';
+import { minify, stripDataSelectors, format, appCss } from '../lib/css';
+import Friend from '../classes/Friend';
 
 const { env: { NODE_ENV, PORT } } = process;
 
-const appCss = fs.readFileSync('src/components/App.css', 'utf8');
 
-function minify(css: string): string {
-  return new CleanCSS().minify(css).styles;
+export function getFriend(slug: string): Friend {
+  const path = `./node_modules/@friends-library/friends/src/en/${slug}.yml`;
+  const file = readFileSync(path);
+  const data: Object = safeLoad(file);
+  return friendFromJS(data);
 }
 
-function stripDataSelectors(css: string): string {
-  return css.replace(/,\[data-css-[^{]+{/g, '{');
-}
 
 export const wrap = (Component: React.Element<*>): string => {
   const { html, css: glamorCss } = renderStaticOptimized(() => {
@@ -23,8 +25,8 @@ export const wrap = (Component: React.Element<*>): string => {
   });
 
   let markup = `<!doctype html>${html}`;
-  const css = `${minify(appCss)}${stripDataSelectors(glamorCss)}`;
-  markup = markup.replace('</head>', `<style>${css}</style></head>`);
+  const css = `${minify(appCss())}${stripDataSelectors(glamorCss)}`;
+  markup = markup.replace('</head>', `<style>${format(css)}</style></head>`);
 
   if (NODE_ENV === 'development') {
     const bsUri = 'http://localhost:2223/browser-sync/browser-sync-client.js?v=2.23.3';

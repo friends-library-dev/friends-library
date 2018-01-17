@@ -1,18 +1,37 @@
 import * as React from 'react';
 import fs from 'fs-extra';
 import opn from 'opn';
-import { wrap } from './src/server/helpers';
+import { basename } from 'path';
+import { sync as glob } from 'glob';
+import { wrap, getFriend } from './src/server/helpers';
 import routes from './src/server/routes';
 import App from './src/components/App';
+
+function generateRoute(props, children, path) {
+  const html = wrap(<App {...props}>{children}</App>);
+  fs.outputFile(`build/${path}.html`, html);
+}
 
 fs.ensureDir('build');
 fs.copySync('static', 'build');
 fs.moveSync('build/js/bundle.min.js', 'build/js/bundle.js', { overwrite: true });
 
 Object.keys(routes).map(route => {
+  if (route.indexOf('/:') !== -1) {
+    return;
+  }
   const { props, children } = routes[route]();
-  const html = wrap(<App {...props}>{children}</App>);
   const path = route === '/' ? '/index' : route;
-  fs.outputFile(`build/${path}.html`, html);
-  opn(`file:///${__dirname}/build/index.html`, { wait: false });
+  generateRoute(props, children, path);
 });
+
+const friends = glob('./node_modules/@friends-library/friends/src/en/*.yml');
+friends.forEach(friendPath => {
+  const slug = basename(friendPath, '.yml');
+  const req = { params: { slug } };
+  const { props, children } = routes['/friend/:slug'](req);
+  const path = `friend/${slug}`;
+  generateRoute(props, children, path);
+});
+
+opn(`file:///${__dirname}/build/index.html`, { wait: false });

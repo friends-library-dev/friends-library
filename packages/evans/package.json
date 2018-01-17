@@ -15,7 +15,9 @@
   "dependencies": {
     "@friends-library/friends": "friends-library/friends",
     "clean-css": "^4.1.9",
-    "glamor": "^2.20.40"
+    "express": "^4.16.2",
+    "glamor": "^2.20.40",
+    "glob": "^7.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -23,13 +25,14 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "babel-watch": "^2.0.7",
     "browser-sync": "^2.23.3",
-    "express": "^4.16.2",
     "flow-bin": "^0.63.1",
     "flow-typed": "^2.2.3",
     "fs-extra": "^5.0.0",
+    "js-yaml": "^3.10.0",
     "opn": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

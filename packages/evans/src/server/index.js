@@ -12,7 +12,7 @@ app.use(express.static('static'));
 
 Object.keys(routes).map(route => {
   app.get(route, (req, res) => {
-    const { props, children } = routes[route]();
+    const { props, children } = routes[route](req, res);
     res.send(wrap(<App {...props}>{children}</App>));
   });
 });

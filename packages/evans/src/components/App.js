@@ -20,6 +20,7 @@ export default ({ title, children }: Props) => (
   <html>
     <head>
       <title>{title}</title>
+      <link href="https:////netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet prefetch" />
     </head>
     <body>
       <Slideover />
@@ -27,7 +28,7 @@ export default ({ title, children }: Props) => (
       <div id="App__Content" className={content}>
         {children}
       </div>
-      <script async src="js/bundle.js"></script>
+      <script async src="/js/bundle.js"></script>
     </body>
   </html>
 );

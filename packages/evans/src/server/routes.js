@@ -1,29 +1,25 @@
 // @flow
 import * as React from 'react';
+import FriendPage from '../components/FriendPage';
+import { getFriend } from './helpers';
 
 export default {
   '/': () => ({
     props: {
       title: 'Home',
     },
-    children: (
-      <p>
-        <a href="foo">Home is where the heart is</a>
-        <br />
-        <a href="nested/lol">Nessted lol</a>
-      </p>
-    )
+    children: <h1>Home goes here</h1>
+
   }),
-  '/foo': () => ({
-    props: {
-      title: 'Foo',
-    },
-    children: <h1>Foo is foo.</h1>
-  }),
-  '/nested/lol': () => ({
-    props: {
-      title: 'N > Lol',
-    },
-    children: <h1>Lol ¯\_(ツ)_/¯</h1>
-  }),
+  '/friend/:slug': (req: express$Request) => {
+    const { params: { slug } } = req;
+    const friend = getFriend(slug);
+
+    return {
+      props: {
+        title: friend.name,
+      },
+      children: <FriendPage friend={friend} />,
+    };
+  }
 };
