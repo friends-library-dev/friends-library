@@ -39,6 +39,21 @@ friends.forEach(friendPath => {
     const { props, children } = routes['/:friendSlug/:docSlug'](req);
     const path = `${slug}/${document.slug}`;
     generateRoute(props, children, path);
+
+    document.editions.forEach(edition => {
+      if (!edition.audio) {
+        return;
+      }
+
+      const req = { params: {
+        friendSlug: slug,
+        docSlug: document.slug,
+        editionType: edition.type
+      } };
+      const { props, children } = routes['/:friendSlug/:docSlug/:editionType/audio'](req);
+      const path = `${slug}/${document.slug}/${edition.type}/audio`;
+      generateRoute(props, children, path);
+    });
   });
 });
 

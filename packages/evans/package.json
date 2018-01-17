@@ -13,7 +13,7 @@
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
   },
   "dependencies": {
-    "@friends-library/friends": "friends-library/friends",
+    "@friends-library/friends": "git://github.com/friends-library/friends.git#5924cf0c4c1dcb6851cdc6d888c172f29a37cdb1",
     "clean-css": "^4.1.9",
     "express": "^4.16.2",
     "glamor": "^2.20.40",

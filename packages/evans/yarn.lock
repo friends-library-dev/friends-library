@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@friends-library/friends@friends-library/friends":
+"@friends-library/friends@git://github.com/friends-library/friends.git#5924cf0c4c1dcb6851cdc6d888c172f29a37cdb1":
   version "1.0.0"
-  resolved "https://codeload.github.com/friends-library/friends/tar.gz/5924cf0c4c1dcb6851cdc6d888c172f29a37cdb1"
+  resolved "git://github.com/friends-library/friends.git#5924cf0c4c1dcb6851cdc6d888c172f29a37cdb1"
 
 abbrev@1:
   version "1.1.1"
