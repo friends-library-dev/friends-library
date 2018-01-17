@@ -24,6 +24,10 @@ html {
   overflow: hidden;
 }
 
+.App--slideover-open #Slideover {
+  display: block;
+}
+
 .App--slideover-open #StickyNav,
 .App--slideover-open #App__Content {
   transform: translateX(255px);

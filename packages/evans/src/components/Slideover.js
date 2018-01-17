@@ -18,6 +18,7 @@ const element = css`
   overflow: hidden;
   overflow-y: auto;
   position: fixed;
+  display: none;
 
   & > h2 {
     margin-top: 0;
@@ -25,7 +26,7 @@ const element = css`
 `;
 
 export default () => (
-  <div className={element}>
+  <div id="Slideover" className={element}>
     <h2>Friends</h2>
     <ul>
       {friends.map(friend => (
