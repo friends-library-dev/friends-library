@@ -32,6 +32,14 @@ friends.forEach(friendPath => {
   const { props, children } = routes['/friend/:slug'](req);
   const path = `friend/${slug}`;
   generateRoute(props, children, path);
+
+  const friend = getFriend(slug);
+  friend.documents.forEach(document => {
+    const req = { params: { friendSlug: slug, docSlug: document.slug } };
+    const { props, children } = routes['/:friendSlug/:docSlug'](req);
+    const path = `${slug}/${document.slug}`;
+    generateRoute(props, children, path);
+  });
 });
 
 opn(`file:///${__dirname}/build/index.html`, { wait: false });
