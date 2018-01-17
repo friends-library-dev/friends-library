@@ -12,7 +12,7 @@ export default {
     props: {
       title: 'Home',
     },
-    children: <h1>Home goes here</h1>
+    children: <p style={{ margin: '1em' }}>&uarr;&nbsp;&nbsp; Nothing on home page yet, click the menu icon above to try out some <b>friends pages!</b></p>
 
   }),
 
