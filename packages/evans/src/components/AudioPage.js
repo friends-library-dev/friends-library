@@ -1,15 +1,15 @@
 // @flow
 /* eslint-disable max-len */
 import * as React from 'react';
-import {css} from 'glamor';
-import {classes} from '../lib/css';
+import { css } from 'glamor';
+import { classes } from '../lib/css';
 import Edition from '../classes/Edition';
 import Document from '../classes/Document';
 import Audio from '../classes/Audio';
 import url from '../lib/url';
 import Divider from './Divider';
 import EmbeddedAudio from './EmbeddedAudio';
-import {h1, h2} from './Typography';
+import { h1, h2 } from './Typography';
 
 const element = css`
   padding: 15px;

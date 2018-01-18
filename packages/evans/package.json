@@ -10,7 +10,9 @@
     "prebuild": "webpack -p",
     "build": "rimraf build && babel-node build.js",
     "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify",
-    "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
+    "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev",
+    "lint:js": "eslint src",
+    "fix:js": "eslint src --fix"
   },
   "dependencies": {
     "@friends-library/friends": "git://github.com/friends-library/friends.git#5924cf0c4c1dcb6851cdc6d888c172f29a37cdb1",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
@@ -29,6 +32,15 @@
     "babel-register": "^6.26.0",
     "babel-watch": "^2.0.7",
     "browser-sync": "^2.23.3",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.35.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-no-only-tests": "^2.0.0",
+    "eslint-plugin-react": "^7.4.0",
     "flow-bin": "^0.63.1",
     "flow-typed": "^2.2.3",
     "fs-extra": "^5.0.0",

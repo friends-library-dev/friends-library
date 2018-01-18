@@ -25,6 +25,6 @@ export function format(css: string): string {
     return css;
   }
   let beautified = new CleanCSS({ format: 'beautify' }).minify(css).styles;
-  beautified = beautified.replace(/\n}/g, "\n}\n");
+  beautified = beautified.replace(/\n}/g, '\n}\n');
   return `\n\n${beautified}\n\n`;
 }

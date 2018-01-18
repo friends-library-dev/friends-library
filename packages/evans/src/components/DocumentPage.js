@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { css } from 'glamor';
 import url from '../lib/url';
-import {classes} from '../lib/css';
+import { classes } from '../lib/css';
 import Document from '../classes/Document';
 import Divider from './Divider';
 import Edition from './Edition';

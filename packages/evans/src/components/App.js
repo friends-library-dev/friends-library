@@ -17,7 +17,7 @@ const content = css`
 `;
 
 export default ({ title, children }: Props) => (
-  <html>
+  <html lang="en">
     <head>
       <title>{title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,7 +29,7 @@ export default ({ title, children }: Props) => (
       <div id="App__Content" className={content}>
         {children}
       </div>
-      <script async src="/js/bundle.js"></script>
+      <script async src="/js/bundle.js" />
     </body>
   </html>
 );

@@ -12,7 +12,7 @@ export default {
     props: {
       title: 'Home',
     },
-    children: <p style={{ margin: '1em' }}>&uarr;&nbsp;&nbsp; Nothing on home page yet, click the menu icon above to try out some <b>friends pages!</b></p>
+    children: <p style={{ margin: '1em' }}>&uarr;&nbsp;&nbsp; Nothing on home page yet, click the menu icon above to try out some <b>friends pages!</b></p>,
 
   }),
 
@@ -53,5 +53,5 @@ export default {
       },
       children: <AudioPage document={document} edition={edition} />,
     };
-  }
+  },
 };

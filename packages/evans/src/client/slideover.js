@@ -5,7 +5,7 @@ const html = document.documentElement;
 
 if (content && html) {
   content.addEventListener('transitionend', () => {
-    html.classList.remove('App--slideover-transitioning')
+    html.classList.remove('App--slideover-transitioning');
   });
 }
 

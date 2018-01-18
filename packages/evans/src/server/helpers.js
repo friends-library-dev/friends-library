@@ -3,12 +3,12 @@ import * as React from 'react';
 import ReactDOM from 'react-dom/server';
 import { readFileSync } from 'fs';
 import { safeLoad } from 'js-yaml';
-import friendFromJS from '../classes/map';
 import { renderStaticOptimized } from 'glamor/server';
+import friendFromJS from '../classes/map';
 import { minify, stripDataSelectors, format, appCss } from '../lib/css';
 import Friend from '../classes/Friend';
 
-const { env: { NODE_ENV, PORT } } = process;
+const { env: { NODE_ENV } } = process;
 
 
 export function getFriend(slug: string): Friend {
@@ -37,4 +37,4 @@ export const wrap = (Component: React.Element<*>): string => {
   }
 
   return markup;
-}
+};

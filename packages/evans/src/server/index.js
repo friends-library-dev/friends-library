@@ -10,11 +10,12 @@ const app = express();
 
 app.use(express.static('static'));
 
-Object.keys(routes).map(route => {
+Object.keys(routes).forEach((route) => {
   app.get(route, (req, res) => {
     const { props, children } = routes[route](req, res);
     res.send(wrap(<App {...props}>{children}</App>));
   });
 });
 
+// eslint-disable-next-line no-console
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));

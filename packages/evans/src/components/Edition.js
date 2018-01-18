@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import {css} from 'glamor';
+import { css } from 'glamor';
 import url from '../lib/url';
-import {classes} from '../lib/css';
+import { classes } from '../lib/css';
 import EditionClass from '../classes/Edition';
 import * as descriptions from './descriptions';
-import {h2, h3} from './Typography';
+import { h2, h3 } from './Typography';
 
-const description = css`
+const desc = css`
   font-size: 0.95em;
   line-height: 1.4em;
   color: #888;
@@ -31,7 +31,7 @@ const Edition = ({ edition }: Props) => {
         {edition.type} edition:
       </h1>
       <p
-        className={description}
+        className={desc}
         dangerouslySetInnerHTML={{ __html: description }}
       />
       <h2 className={h3}>Formats:</h2>
