@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "test": "jest src",
     "start": "yarn sync & NODE_ENV=development PORT=2222 babel-watch src/server/index.js & webpack --watch",
     "serve": "NODE_ENV=production PORT=3333 babel-watch src/server/index.js",
     "prebuild": "webpack -p",
@@ -44,11 +45,17 @@
     "flow-bin": "^0.63.1",
     "flow-typed": "^2.2.3",
     "fs-extra": "^5.0.0",
+    "jest": "^22.1.2",
     "js-yaml": "^3.10.0",
     "opn": "^5.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rimraf": "^2.6.2",
     "webpack": "^3.10.0"
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>/src"
+    ]
   }
 }
