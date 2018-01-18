@@ -24,7 +24,8 @@ html {
   overflow: hidden;
 }
 
-.App--slideover-open #Slideover {
+.App--slideover-open #Slideover,
+.App--slideover-transitioning #Slideover {
   display: block;
 }
 
