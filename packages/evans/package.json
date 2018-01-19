@@ -12,8 +12,10 @@
     "build": "rimraf build && babel-node build.js",
     "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify",
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev",
-    "lint:js": "eslint src",
-    "fix:js": "eslint src --fix"
+    "lint:js": "eslint src storybook",
+    "fix:js": "eslint src storybook --fix",
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "preflight": "yarn lint:js && yarn test && yarn flow"
   },
   "dependencies": {
     "@friends-library/friends": "git://github.com/friends-library/friends.git#5924cf0c4c1dcb6851cdc6d888c172f29a37cdb1",
@@ -23,6 +25,8 @@
     "glob": "^7.1.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.9",
+    "@storybook/react": "^3.3.9",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
@@ -51,7 +55,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rimraf": "^2.6.2",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "yaml-frontmatter-loader": "^0.1.0"
   },
   "jest": {
     "modulePaths": [
