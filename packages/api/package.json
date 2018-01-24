@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon src/index.js",
+    "stop": "yarn pm2 delete all",
+    "serve": "NODE_ENV=production pm2 start src/index.js",
+    "reset": "yarn db-migrate reset && yarn db-migrate up"
+  },
+  "dependencies": {
+    "db-migrate": "^0.10.2",
+    "db-migrate-mysql": "^1.1.10",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-useragent": "^1.0.8",
+    "mysql": "^2.15.0",
+    "pm2": "^2.9.3",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}

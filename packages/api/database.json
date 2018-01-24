@@ -1,0 +1,9 @@
+{
+  "defaultEnv": "production",
+  "production": {
+    "driver": "mysql",
+    "database": {"ENV": "DB_NAME"},
+    "user": {"ENV": "DB_USER"},
+    "password": {"ENV": "DB_PASSWORD"}
+  }
+}
