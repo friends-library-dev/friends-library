@@ -1,0 +1,50 @@
+name: James Gough
+slug: james-gough
+description: ​As a boy, James Gough (1712-1780) was known for his genius intellect, having mastered the Greek and Latin tongues when still a young child. At one point, after conversing with young James, a distinguished Justice of the Peace so admired his propensity for learning that he offered to pay his way through university. But although such flattery sowed seeds of pride and vain conceit in James' young heart, it pleased the Lord to visit him in power and love, and he was prevailed upon to give up all to follow Christ. James Gough became a wise and well-beloved minister among the Society of Friends, but having learned to live low at the feet of His Master, he was always remarkable for his deep humility, and low opinion of himself.
+
+documents:
+  -
+    title: The Life and Gospel Labors of James Gough
+    slug: journal
+    description: As a boy, James Gough (1712-1780) was known for his genius intellect, having mastered the Greek and Latin tongues when still a young child. At one point, after conversing with young James, a distinguished Justice of the Peace so admired his propensity for learning that he offered to pay his way through university. But although such flattery sowed seeds of pride and vain conceit in James' young heart, it pleased the Lord to visit him in power and love, and he was prevailed upon to give up all to follow Christ. James Gough became a wise and well-beloved minister among the Society of Friends, but having learned to live low at the feet of His Master, he was always remarkable for his deep humility, and low opinion of himself.
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 117
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface by the Editor
+          -
+            title: Memoir of James Gough
+          -
+            title: Supplement to the Journal
+          -
+            title: Testimony Concerning James Gough
+      -
+        type: original
+        pages: 117
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface by the Editor
+          -
+            title: Memoir of James Gough
+          -
+            title: Supplement to the Journal
+          -
+            title: Testimony Concerning James Gough

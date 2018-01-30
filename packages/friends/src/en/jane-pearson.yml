@@ -1,0 +1,34 @@
+name: Jane Pearson
+slug: jane-pearson
+description: The story of Jane Pearson (1735–1816) is both heartbreaking and deeply inspiring. Her life was fraught with inward and outward sorrows beyond description. For fourteen years she wrestled with a host of inward enemies as she sought to know and be conformed to the Beloved of her soul. And when at last she saw a measure of peace and stability in the Truth, she was then made to suffer the loss of her dear husband and seven children to a variety of illnesses. But the more she lost of the world, the more she seemed to gain of Christ, and her experiences of His closeness and kindness to her are indescribably beautiful.
+documents:
+  -
+    title: The Life and Experiences of Jane Pearson
+    slug: journal
+    description: The story of Jane Pearson (1735–1816) is both heartbreaking and deeply inspiring. Her life was fraught with inward and outward sorrows beyond description. For fourteen years she wrestled with a host of inward enemies as she sought to know and be conformed to the Beloved of her soul. And when at last she saw a measure of peace and stability in the Truth, she was then made to suffer the loss of her dear husband and seven children to a variety of illnesses. But the more she lost of the world, the more she seemed to gain of Christ, and her experiences of His closeness and kindness to her are indescribably beautiful.
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 53
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Introduction
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            title: Testimony Concerning Jane Pearson
