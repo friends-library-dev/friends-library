@@ -1,0 +1,29 @@
+name: George Fox
+slug: george-fox
+description: George Fox (1624-1691) is generally considered the founder of the Society of Friends (Quakers). As a young man, Fox could find no rest in the lifeless, outward Christianity of his day, seeing that most believers professed far more than they actually possessed. This journal tells the story of his desperate search for truth, his discovery of a Christianity that stands in the life and light of Jesus Christ, and the ensuing fifty years of powerful ministry that turned the world upside down
+documents:
+  -
+    title: The Journal and Writings of Ambrose Rigge
+    slug: journal
+    description: This is George Fox's unabridged, two-volume journal. It is extremely long, and perhaps too exhaustive for some readers. But we highly recommend that you at least read the account of his early years, his call to the ministry, and the birth of the Society of Friends.
+    tags:
+      - journal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 1197
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            number: 1
+            subtitle: Volume 1
+          -
+            number: 2
+            subtitle: Volume 2

@@ -262,7 +262,7 @@ documents:
     editions:
       -
         type: modernized
-        pages: 431
+        pages: 393
         formats:
           -
             type: softcover
@@ -497,7 +497,7 @@ documents:
     editions:
       -
         type: updated
-        pages: 280
+        pages: 538
         formats:
           -
             type: pdf
@@ -555,7 +555,7 @@ documents:
     editions:
       -
         type: updated
-        pages: 319
+        pages: 508
         formats:
           -
             type: pdf
@@ -633,7 +633,7 @@ documents:
     editions:
       -
         type: updated
-        pages: 348
+        pages: 538
         formats:
           -
             type: pdf
@@ -681,7 +681,7 @@ documents:
     editions:
       -
         type: updated
-        pages: 348
+        pages: 436
         formats:
           -
             type: pdf

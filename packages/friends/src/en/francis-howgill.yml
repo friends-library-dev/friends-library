@@ -1,0 +1,88 @@
+name: Francis Howgill
+slug: francis-howgill
+description: Francis Howgill (1618-1669), received a university education to become a minister in the Episcopal church. However, being dissatisfied with the superstition which he saw remaining in it, he soon left it, joining himself to the Independents, and then to the Anabaptists, desperately seeking the true spiritual life that his soul thirsted after. At length, being mightily affected by the ministry of George Fox, he joined the persecuted society called Quakers, among whom he became a widely respected member and evangelist. He died in prison for his testimony to the truth, leaving behind many influential books and letters.
+documents:
+  -
+    title: Some of the Mysteries of God's Kingdom Declared
+    slug: mysteries-of-gods-kingdom-declared
+    description: Francis Howgill (1618–1668) was a powerful minister of the gospel in England who suffered great persecution and eventually died in prison for "the Word of God and for the testimony of Jesus." This short book contains a remarkable explanation of the Day of the Lord, and a powerful description of the Holy Spirit's work in the heart of man.
+    tags:
+      - treatise
+      - exhortation
+    editions:
+      -
+        type: modernized
+        pages: 57
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 356658245
+              external_id_lq: 356658263
+              filesize_hq: 48983218
+              filesize_lq: 16628334
+              seconds: 2771
+              chapters:
+                - 0 # These aren't really chapters. They are "Sections"
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+                - 6
+                - 7
+            -
+              title: Part 2
+              external_id_hq: 356657495
+              external_id_lq: 356657504
+              filesize_hq: 52226383
+              filesize_lq: 18086118
+              seconds: 3014
+              chapters:
+                - 8
+                - 9
+                - 10
+                - 11
+                - 12
+
+        chapters:
+          -
+            title: Forward by the Editor
+          -
+            title: To the Reader
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+          -
+            number: 12
+          -
+            number: 13
