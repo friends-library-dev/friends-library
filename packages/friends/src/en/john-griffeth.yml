@@ -5,13 +5,13 @@ documents:
   -
     title: John Griffeth's Early Years & Spiritual Growth
     slug: early-years-and-spiritual-growth
-    description: This instructive portion of his lengthy journal deals with his conversion, spiritual growth, and call to the ministry. The full journal can be found in the Friends Library, vol. 5.
+    description: This instructive portion of his lengthy journal deals with his conversion, spiritual growth, and call to the ministry.
     tags:
       - journal
     editions:
       -
         type: modernized
-        pages: 17
+        pages: 26
         formats:
           -
             type: softcover
@@ -23,19 +23,32 @@ documents:
             type: epub
           -
             type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: The Journal of John Griffith
+              external_id_hq: 278743551
+              external_id_lq: 278743565
+              filesize_hq: 57467106
+              filesize_lq: 19362030
+              seconds: 3227
+              chapters:
+                - 0
+
         chapters:
           -
-            title: John Griffeth's Early Years & Spiritual Growth
+            title: Journal of John Griffith
   -
     title: The Complete Journal of John Griffeth
     slug: journal
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: This is the unabridged journal of John Griffith, with modernization of spellings and some archaic words.
     tags:
       - journal
     editions:
       -
         type: updated
-        pages: 179
+        pages: 289
         formats:
           -
             type: pdf
@@ -69,13 +82,13 @@ documents:
   -
     title: Remarks on Parenting, New Birth, Worship, Ministry, & Discipline
     slug: remarks
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: This treatise, written by John Griffith in 1762, contains weighty and helpful counsel on the subjects of parenting, the new birth, the nature of true worship, true and false ministry, and the nature and usefulness of Christian discipline.
     tags:
       - treatise
     editions:
       -
-        type: modernized
-        pages: 48
+        type: updated
+        pages: 75
         formats:
           -
             type: pdf

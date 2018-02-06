@@ -1,0 +1,49 @@
+name: John Spalding
+slug: john-spalding
+description: Though raised in the Church of England, John Spalding's (1765-1795) pursuit of truth left him disstaisfied with the traditional worship of his day, concluding that, in many respects, it was neither pleasing to God nor effective towards the salvation of his soul. After at last finding the Pearl of great price, he composed a public letter to beloved friends and family attending St. Giles church in Reading, entitleing it - "A Few Reasons for Leaving the National Established Mode of Worship, Addressed to the professors of religion in this day, by one who was long in the profession, but knew not the power, till it pleased the Lord, by the ministry and writings of the people called Quakers, to direct him to where alone the power is to be known, that is, within."
+documents:
+  -
+    title: A Few Reasons for Leaving the Established Mode of Worship
+    slug: a-few-reasons-for-leaving
+    description: A Few Reasons for Leaving the National Established Mode of Worship, Addressed to the professors of religion in this day, by one who was long in the profession, but knew not the power, till it pleased the Lord, by the ministry and writings of the people called Quakers, to direct him to where alone the power is to be known, that is, within.
+    tags:
+      - letter
+      - treatise
+    editions:
+      -
+        type: modernized
+        pages: 40
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 354378077
+              external_id_lq: 354378092
+              filesize_hq: 45003401
+              filesize_lq: 15559998
+              seconds: 2593
+              chapters:
+                - 0
+
+            -
+              title: Part 2
+              external_id_hq: 354370403
+              external_id_lq: 354370415
+              filesize_hq: 48852152
+              filesize_lq: 16644750
+              seconds: 2774
+                - 1
+
+        chapters:
+          -
+            title: A Few Reasons for Leaving the National Established Mode of Worship
