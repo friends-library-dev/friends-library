@@ -1,0 +1,136 @@
+name: Joseph Phipps
+slug: joseph-phipps
+description: Though a shoe maker by trade, Joseph Phipps (1708–1787) was the author of several scholarly publications explaining and defending the tenets of Early Friends. In 1772, in response to a critical publication by one Samuel Newton, Phipps wrote The Original and Present State of Man, in which he cleared the Society from many unjust and untrue charges, and also clarified the leading principles and practices of the Quakers. This book deals with "The nature of man's fall, and the necessity, means, and manner of his restoration through the sacrifice of Christ, and the sensible operation of that Divine Spirit of grace and truth."
+documents:
+  -
+    title: The Original and Present State of Man
+    slug: original-and-present-state-of-man
+    description: This remarkable little book sheds much light upon the nature of man's fall, the necessity, means, and manner of his restoration through the sacrifice of Christ, and the discernible operation of the Divine Spirit of grace and truth.
+    tags:
+      - doctrinal
+    editions:
+      -
+        type: modernized
+        pages: 97
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 314958747
+              external_id_lq: 314958750
+              filesize_hq: 36015010
+              filesize_lq: 12034446
+              seconds: 2006
+              chapters:
+                - 0
+                - 1
+                - 2
+            -
+              title: Part 2
+              external_id_hq: 314958685
+              external_id_lq: 314958688
+              filesize_hq: 51483609
+              filesize_lq: 17079558
+              seconds: 2846
+              chapters:
+                - 3
+                - 4
+                - 5
+            -
+              title: Part 3
+              external_id_hq: 314958514
+              external_id_lq: 314958518
+              filesize_hq: 36003575
+              filesize_lq: 12391494
+              seconds: 2065
+              chapters:
+                - 6
+                - 7
+            -
+              title: Part 4
+              external_id_hq: 314970845
+              external_id_lq: 314970855
+              filesize_hq: 48595791
+              filesize_lq: 16662894
+              seconds: 2777
+              chapters:
+                - 8
+                - 9
+            -
+              title: Part 5
+              external_id_hq: 315109426
+              external_id_lq: 315109431
+              filesize_hq: 29947341
+              filesize_lq: 10225230
+              seconds: 1704
+              chapters:
+                - 10
+                - 11
+            -
+              title: Part 6
+              external_id_hq: 315109737
+              external_id_lq: 315109744
+              filesize_hq: 37905863
+              filesize_lq: 13063254
+              seconds: 2177
+              chapters:
+                - 12
+                - 13
+
+        chapters:
+          -
+            title: Forward
+          -
+            number: 1
+            subtitle: The Death of the Immortal Soul
+          -
+            number: 2
+            subtitle: The Creature Subjected to Vanity
+          -
+            number: 3
+            subtitle: The Offer of Perfect Redemption
+          -
+            number: 4
+            subtitle: The Appearance of Christ in the Heart
+          -
+            number: 5
+            subtitle: A Birth of Divine Life in the Soul
+          -
+            number: 6
+            subtitle: Regeneration—A Discernible Experience
+          -
+            number: 7
+            subtitle: The Law of the Spirit of Life in Christ Jesus
+          -
+            number: 8
+            subtitle: Internal and Eternal Religion
+          -
+            number: 9
+            subtitle: The Pure Administration of the Holy Spirit
+          -
+            number: 10
+            subtitle: The Operation of Divine Grace
+          -
+            number: 11
+            subtitle: The Scriptures and the Spirit
+          -
+            number: 12
+            subtitle: The Purifying Power of the Gospel
+          -
+            number: 13
+            subtitle: Spiritual Worship and Revelation
+          -
+            number: 14
+            subtitle: The Spirit, the Gospel, and the Kingdom

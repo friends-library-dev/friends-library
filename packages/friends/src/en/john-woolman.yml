@@ -1,0 +1,63 @@
+name: John Woolman
+slug: john-woolman
+description: John Woolman (1720-1772) is one of the most well known Quakers of the 1700's because of his writings against slavery and other social evils. Unfortunately, many edited versions of his journal exist online and in print today which have removed many aspects of his Christian faith and experience, rendering him little more than a philanthropist and abolitionist. The truth is that John Woolman was a devoted servant of Jesus Christ, a preacher of truth and righteousness, and a man filled with the Spirit and love of God that overflowed towards his fellow creatures. The document provided here contains his unabridged journal and works.
+documents:
+  -
+    title: The Journal and Writings of John Woolman
+    slug: journal
+    description: John Woolman (1720-1772) is one of the most well known Quakers of the 1700's because of his writings against slavery and other social evils. Unfortunately, many edited versions of his journal exist online and in print today which have removed many aspects of his Christian faith and experience, rendering him little more than a philanthropist and abolitionist. The truth is that John Woolman was a devoted servant of Jesus Christ, a preacher of truth and righteousness, and a man filled with the Spirit and love of God that overflowed towards his fellow creatures. The document provided here contains his unabridged journal and works.
+    tags:
+      - journal
+      - treatise
+    editions:
+      -
+        type: updated
+        pages: 316
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Testimony of Friends in Yorkshire concerning John Woolman
+          -
+            title: The Testimony of Burlington Monthly Meeting Concerning John Woolman
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+          -
+            number: 12
+          -
+            title: Considerations on the Keeping of Negros, pt. 1
+          -
+            title: Considerations on the Keeping of Negros, pt. 2
+          -
+            title: Considerations on Pure Wisdom and Human Policy
+          -
+            title: Considerations on the True Harmony of Mankind
+          -
+            title: Remarks on Sundry Subjects
+          -
+            title: Epistle to the Quarterly and Monthly Meetings of Friends
