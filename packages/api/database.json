@@ -4,6 +4,6 @@
     "driver": "mysql",
     "database": {"ENV": "DB_NAME"},
     "user": {"ENV": "DB_USER"},
-    "password": {"ENV": "DB_PASSWORD"}
+    "password": {"ENV": "DB_PASS"}
   }
 }

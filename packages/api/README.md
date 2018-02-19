@@ -7,8 +7,8 @@ $ yarn reset
 $ yarn start
 ```
 
-## prod
+## deploy
 
 ```
-$ yarn serve
+$ yarn deploy
 ```

@@ -9,6 +9,8 @@ const { env: { PORT, NODE_ENV, ASSETS_URI, DB_HOST, DB_USER, DB_PASSWORD, DB_NAM
 
 const app = express();
 
+app.get('/', (req, res) => res.send('Hello Jared!'));
+
 app.get('/:lang/:friend/:doc/:edition/:filename', (req, res) => {
   const { params: { lang, friend, doc, edition, filename } } = req;
   const basename = path.basename(filename);
