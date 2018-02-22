@@ -1,0 +1,16 @@
+#!/usr/local/bin/php
+<?php
+
+use Dotenv\Dotenv;
+use Phipps\Commands\Clean;
+use Symfony\Component\Console\Application;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$dotenv = new Dotenv(__DIR__);
+$dotenv->load();
+
+$application = new Application();
+$application->add(new Clean());
+
+$application->run();

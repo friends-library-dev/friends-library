@@ -1,0 +1,8 @@
+{
+  "name": "@friends-library/phipps",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@friends-library/friends": "git://github.com/friends-library/friends.git#72d9dfc9c024f3961e9a3c051010ee7fc5da2c68"
+  }
+}
