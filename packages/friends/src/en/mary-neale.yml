@@ -1,0 +1,55 @@
+name: Mary Neale
+slug: mary-neale
+description: ​Mary Neale (1717-1757), dying only three days after her marriage to Samuel Neale, is best known by her maiden name, Mary Peisley. Having been early turned from the pursuit of worldly pleasures and vanity by the inward appearing of the Lord Jesus, Mary Neale surrendered all to the cross of Christ and was made by Him a shining example of a true gospel minister. Of her life, James Gough (another minister in the Society of Friends) wrote, "I am ready to conclude that none in our day, from the time of the effectual visitation of Christ in her soul, adhered with more steadiness to His guidance, through a variety of probations."
+
+documents:
+  -
+    title: The Life and Letters of Mary Neale
+    slug: journal
+    description: Mary Neale (1717-1757), dying only three days after her marriage to Samuel Neale, is best known by her maiden name, Mary Peisley. Having been early turned from the pursuit of worldly pleasures and vanity by the inward appearing of the Lord Jesus, Mary Neale surrendered all to the cross of Christ and was made by Him a shining example of a true gospel minister. Of her life, James Gough (another minister in the Society of Friends) wrote, "I am ready to conclude that none in our day, from the time of the effectual visitation of Christ in her soul, adhered with more steadiness to His guidance, through a variety of probations."
+    tags:
+      - journal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 129
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Introuction
+          -
+            title: The Life of Mary Neale
+          -
+            title: The Testimonies of Richard and Elizabeth Shackleton concerning Mary Neale, late Peisley
+          -
+            title: Extract from James Gough's Memoirs
+          -
+            title: Testimony of the Monthly Meeting of Mountmellick concerning Mary Neale
+      -
+        type: original
+        pages: 129
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Introuction
+          -
+            title: The Life of Mary Neale
+          -
+            title: The Testimonies of Richard and Elizabeth Shackleton concerning Mary Neale, late Peisley
+          -
+            title: Extract from James Gough's Memoirs
+          -
+            title: Testimony of the Monthly Meeting of Mountmellick concerning Mary Neale
