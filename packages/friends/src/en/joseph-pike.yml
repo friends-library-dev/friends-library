@@ -1,0 +1,39 @@
+name: Joseph Pike
+slug: joseph-pike
+description: Joseph Pike (1657-1729) was a valuable elder and minister in the Society of Friends. He was born in the year 1657, near Cork, in Ireland. In his old age he wrote an account of his early years and growth in the truth, chiefly for the benefit of his own children. This short but valuable account describes how he was first confronted and convinced of the Truth by the Lord, and then how he became progressively more familiar with, and obedient to, the light, life, and power of Christ working within.
+documents:
+  -
+    title: An Account of the Life of Joseph Pike
+    slug: journal
+    description: Joseph Pike (1657-1729) was a valuable elder and minister in the Society of Friends. He was born in the year 1657, near Cork, in Ireland. In his old age he wrote an account of his early years and growth in the truth, chiefly for the benefit of his own children. This short but valuable account describes how he was first confronted and convinced of the Truth by the Lord, and then how he became progressively more familiar with, and obedient to, the light, life, and power of Christ working within.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 18
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: An Account of the Life of Joseph Pike
+              external_id_hq: 278405473
+              external_id_lq: 278405495
+              filesize_hq: 39920794
+              filesize_lq: 13279038
+              seconds: 2213
+              chapters:
+                - 0
+
+        chapters:
+          -
+            title: An Account of the Life of Joseph Pike

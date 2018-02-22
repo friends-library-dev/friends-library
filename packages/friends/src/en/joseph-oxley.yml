@@ -1,0 +1,83 @@
+name: Joseph Oxley
+slug: joseph-oxley
+description: ​Joseph Oxley (1715–1776) was a humble and sweet-spirited minister in the Society of Friends, whose life and service in the church manifested a total reliance upon the immediate empowering of the Spirit of Christ. Though he had a low opinion of himself, he was highly regarded and respected by all, and his ministry was known to be accompanied by that heavenly power which both confutes the proud and raises up the humble. He was led to preach the gospel in England, Ireland, Scotland, and the American Colonies, where his services were said to have "proceeded from the influence of the Minister of the sanctuary and true tabernacle, which God has pitched and not man."
+
+documents:
+  -
+    title: The Journal of Joseph Oxley
+    slug: journal
+    description: Joseph Oxley (1715–1776) was a humble and sweet-spirited minister in the Society of Friends, whose life and service in the church manifested a total reliance upon the immediate empowering of the Spirit of Christ. Though he had a low opinion of himself, he was highly regarded and respected by all, and his ministry was known to be accompanied by that heavenly power which both confutes the proud and raises up the humble. He was led to preach the gospel in England, Ireland, Scotland, and the American Colonies, where his services were said to have "proceeded from the influence of the Minister of the sanctuary and true tabernacle, which God has pitched and not man."
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 164
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Joseph Oxley's Address to His Children
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+
+      -
+        type: original
+        pages: 164
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Joseph Oxley's Address to His Children
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
