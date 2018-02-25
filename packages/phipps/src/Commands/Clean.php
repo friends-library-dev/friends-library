@@ -10,6 +10,20 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Clean extends Command
 {
     /**
+     * @var Finder
+     */
+    protected $finder;
+
+    /**
+     * @param Finder $finder
+     */
+    public function __construct(Finder $finder)
+    {
+        parent::__construct();
+        $this->finder = $finder;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function configure()
@@ -35,20 +49,18 @@ class Clean extends Command
      */
     protected function fixEditionDoubleDashes(OutputInterface $output)
     {
-        $finder = new Finder();
-        $finder
-            ->in(getenv('LOCAL_ASSETS_DIR'))
-            ->exclude('Sync.Cache')
+        $files = $this->finder
             ->name('/\.(mobi|epub|pdf|mp3)$/')
             ->files();
 
         $fixed = 0;
         $pattern = '/—(updated|original|modernized)\.(mobi|epub|pdf|mp3)$/';
 
-        foreach ($finder as $file) {
+        foreach ($files as $file) {
             if (!preg_match($pattern, $file->getRelativePathname(), $matches)) {
                 continue;
             }
+
             $corrected = preg_replace(
                 "/{$matches[0]}$/",
                 "--{$matches[1]}.{$matches[2]}",
@@ -59,6 +71,7 @@ class Clean extends Command
             if (! $success) {
                 throw new \Exception("Failed to rename {$file->getRealPath()}");
             }
+
             $fixed++;
         }
 

@@ -10,7 +10,9 @@ require __DIR__ . '/vendor/autoload.php';
 $dotenv = new Dotenv(__DIR__);
 $dotenv->load();
 
+$container = require __DIR__ . '/src/services.php';
+
 $application = new Application();
-$application->add(new Clean());
+$application->add($container->make(Clean::CLASS));
 
 $application->run();
