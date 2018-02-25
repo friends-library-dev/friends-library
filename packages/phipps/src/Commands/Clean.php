@@ -4,15 +4,31 @@ namespace Phipps\Commands;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Clean extends Command
 {
     /**
+     * @var InputInterface
+     */
+    protected $input;
+
+    /**
+     * @var OutputInterface
+     */
+    protected $output;
+
+    /**
      * @var Finder
      */
     protected $finder;
+
+    /**
+     * @var $dryRun
+     */
+    protected $dryRun = true;
 
     /**
      * @param Finder $finder
@@ -30,7 +46,14 @@ class Clean extends Command
     {
         $this
             ->setName('clean')
-            ->setDescription('Cleans/prepares documents for deployment');
+            ->setDescription('Cleans/prepares documents for deployment')
+            ->addOption(
+                'dry-run',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'dry run or actually execute',
+                true
+            );
     }
 
     /**
@@ -38,16 +61,18 @@ class Clean extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->fixEditionDoubleDashes($output);
+        $this->input = $input;
+        $this->output = $output;
+        $this->dryRun = filter_var($input->getOption('dry-run'), FILTER_VALIDATE_BOOLEAN);
+        $this->fixEditionDoubleDashes();
     }
 
     /**
      * Fix bad double-dash edition suffixes
      *
-     * @param OutputInterface $output
      * @return void
      */
-    protected function fixEditionDoubleDashes(OutputInterface $output)
+    protected function fixEditionDoubleDashes()
     {
         $files = $this->finder
             ->name('/\.(mobi|epub|pdf|mp3)$/')
@@ -67,14 +92,27 @@ class Clean extends Command
                 $file->getRealPath()
             );
 
-            $success = rename($file->getRealPath(), $corrected);
-            if (! $success) {
-                throw new \Exception("Failed to rename {$file->getRealPath()}");
+            if ($this->dryRun) {
+                $this->output->writeLn([
+                    '<fg=magenta>phipps:clean</> will <comment>rename</comment> file:',
+                    "  <info>{$file->getRealPath()}</info>",
+                    "  <comment>{$corrected}</comment>",
+                ]);
+            } else {
+                $success = rename($file->getRealPath(), $corrected);
+                if (! $success) {
+                    throw new \Exception("Failed to rename {$file->getRealPath()}");
+                }
             }
 
             $fixed++;
         }
 
-        $output->writeLn("Fixed $fixed files!");
+        if ($this->dryRun) {
+            $msg = "Non dry-run would have modified $fixed files.";
+        } else {
+            $msg = "Modified $fixed files.";
+        }
+        $this->output->writeLn("<question>--> $msg</question>");
     }
 }
