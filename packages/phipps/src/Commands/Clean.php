@@ -3,7 +3,6 @@
 namespace Phipps\Commands;
 
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -11,24 +10,19 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Clean extends Command
 {
     /**
-     * @var InputInterface
+     * @var string
      */
-    protected $input;
+    protected $name = 'clean';
 
     /**
-     * @var OutputInterface
+     * @var string
      */
-    protected $output;
+    protected $description = 'Cleans/prepares documents for deployment';
 
     /**
      * @var Finder
      */
     protected $finder;
-
-    /**
-     * @var $dryRun
-     */
-    protected $dryRun = true;
 
     /**
      * @param Finder $finder
@@ -42,29 +36,9 @@ class Clean extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function fire()
     {
-        $this
-            ->setName('clean')
-            ->setDescription('Cleans/prepares documents for deployment')
-            ->addOption(
-                'dry-run',
-                null,
-                InputOption::VALUE_OPTIONAL,
-                'dry run or actually execute',
-                true
-            );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        $this->input = $input;
-        $this->output = $output;
-        $this->dryRun = filter_var($input->getOption('dry-run'), FILTER_VALIDATE_BOOLEAN);
-        $this->fixEditionDoubleDashes();
+        return $this->fixEditionDoubleDashes();
     }
 
     /**
@@ -94,9 +68,9 @@ class Clean extends Command
 
             if ($this->dryRun) {
                 $this->output->writeLn([
-                    '<fg=magenta>phipps:clean</> will <comment>rename</comment> file:',
-                    "  <info>{$file->getRealPath()}</info>",
-                    "  <comment>{$corrected}</comment>",
+                    '<purple>phipps:clean</> will <yellow>rename</> file:',
+                    "  <green>{$file->getRealPath()}</>",
+                    "  <yellow>{$corrected}</>",
                 ]);
             } else {
                 $success = rename($file->getRealPath(), $corrected);
@@ -108,11 +82,12 @@ class Clean extends Command
             $fixed++;
         }
 
+        $msg = "modified $fixed files";
         if ($this->dryRun) {
-            $msg = "Non dry-run would have modified $fixed files.";
-        } else {
-            $msg = "Modified $fixed files.";
+            $msg = 'non dry-run would have ' . $msg;
         }
-        $this->output->writeLn("<question>--> $msg</question>");
+
+        $this->output->writeLn("<result>--> phipps:clean $msg</>");
+        return $this->dryRun && $fixed > 0 ? 1 : 0;
     }
 }
