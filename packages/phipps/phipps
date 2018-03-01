@@ -3,6 +3,7 @@
 
 use Dotenv\Dotenv;
 use Phipps\Commands\Clean;
+use Phipps\Commands\Deploy;
 use Symfony\Component\Console\Application;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -14,5 +15,5 @@ $container = require __DIR__ . '/src/services.php';
 
 $application = new Application();
 $application->add($container->make(Clean::CLASS));
-
+$application->add($container->make(Deploy::CLASS));
 $application->run();

@@ -3,9 +3,6 @@
 namespace Phipps\Commands;
 
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 class Clean extends Command
 {
@@ -48,14 +45,10 @@ class Clean extends Command
      */
     protected function fixEditionDoubleDashes()
     {
-        $files = $this->finder
-            ->name('/\.(mobi|epub|pdf|mp3)$/')
-            ->files();
-
         $fixed = 0;
         $pattern = '/—(updated|original|modernized)\.(mobi|epub|pdf|mp3)$/';
 
-        foreach ($files as $file) {
+        foreach ($this->finder->files() as $file) {
             if (!preg_match($pattern, $file->getRelativePathname(), $matches)) {
                 continue;
             }
@@ -69,8 +62,8 @@ class Clean extends Command
             if ($this->dryRun) {
                 $this->output->writeLn([
                     '<purple>phipps:clean</> will <yellow>rename</> file:',
-                    "  <green>{$file->getRealPath()}</>",
-                    "  <yellow>{$corrected}</>",
+                    "  <cyan>(DRY-RUN)</> <green>{$file->getRealPath()}</>",
+                    "  <cyan>(DRY-RUN)</> <yellow>{$corrected}</>",
                 ]);
             } else {
                 $success = rename($file->getRealPath(), $corrected);
