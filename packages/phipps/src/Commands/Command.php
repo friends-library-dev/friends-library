@@ -64,6 +64,17 @@ abstract class Command extends SymfonyCommand
     abstract protected function fire();
 
     /**
+     * Print text to stdout
+     *
+     * @param mixed $args
+     * @return mixed
+     */
+    protected function print(...$args)
+    {
+        return $this->output->writeLn(...$args);
+    }
+
+    /**
      * Set easier-to-use output tag styles
      * Use `$this->printOutputStyles()` for reference
      *
