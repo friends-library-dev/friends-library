@@ -5,13 +5,13 @@ documents:
   -
     title: Waiting Upon the Lord
     slug: waiting-upon-the-lord
-    description: The greatest part of this booklet is an updated version of the eleventh proposition of Robert Barclay's Apology for the True Christian Divinity.1 The entire volume of Barclay's Apology (consisting of fifteen propositions in all) is a tremendous and compelling work that I strongly recommend to every serious seeker of the Truth. I have chosen to modernize and republish just this one proposi- tion because it seems to me that the invaluable practice of waiting upon the Lord has been especially neglected, and has all but disappeared from the church today.
+    description: Robert Barclay writes, “All true and acceptable worship to God is offered in the inward and immediate moving and drawing of His own Spirit.” It is not hard to agree with such a statement, but who has indeed stood still to see the salvation of the Lord, and known the dawning of His inward Day? Have we waited upon our God to separate the precious from the vile within, to differentiate between the pure operation of His Spirit and the wild rovings of our own soul? Have we truly known and obeyed His inward stirrings and teachings, or does the Seed of God lay buried in Christian hearts beneath a mass of superstition, assumption, and fleshy, religious activity?
     tags:
       - doctrinal
     editions:
       -
         type: modernized
-        pages: 63
+        pages: 54
         formats:
           -
             type: softcover
@@ -23,13 +23,36 @@ documents:
             type: epub
           -
             type: mobi
+
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 258518813
+              external_id_lq: 258518845
+              filesize_hq: 68297739
+              filesize_lq: 23103582
+              seconds: 3850
+              chapters:
+                - 0
+            -
+              title: Part 2
+              external_id_hq: 258706441
+              external_id_lq: 258706449
+              filesize_hq: 53748619
+              filesize_lq: 18457206
+              seconds: 3076
+              chapters:
+                - 1
+
         chapters:
           -
             title: Waiting Upon the Lord
   -
     title: Saved to the Uttermost
     slug: saved-to-the-uttermost
-    description: The greatest part of this booklet is an updated version of the eleventh proposition of Robert Barclay's Apology for the True Christian Divinity.1 The entire volume of Barclay's Apology (consisting of fifteen propositions in all) is a tremendous and compelling work that is strongly recommended to every serious seeker of the Truth.
+    description: Robert Barclay's "Apology for the True Christian Divinity" is perhaps the most well-known of all Friends' writings. "Saved to the Uttermost" (which is taken from propositions four through eight of the Apology) brilliantly expounds some of the most vital and misunderstood aspects of Christianity, plainly manifesting the true nature, experience, and extent of the salvation that God offers the soul through Jesus Christ.
     tags:
       - doctrinal
     editions:
@@ -47,6 +70,65 @@ documents:
             type: epub
           -
             type: mobi
+
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Chapter 1 - The Condition of Man in the Fall
+              external_id_hq: 318326826
+              external_id_lq: 318326834
+              filesize_hq: 28230905
+              filesize_lq: 9315222
+              seconds: 1552
+              chapters:
+                - 0
+            -
+              title: Chapter 2 - The Universal Offer of Redemption
+              external_id_hq: 318327801
+              external_id_lq: 318327805
+              filesize_hq: 27750889
+              filesize_lq: 9489534
+              seconds: 1581
+              chapters:
+                - 1
+            -
+              title: Chapter 3 - The Seed, Light, and Grace of God
+              external_id_hq: 318328293
+              external_id_lq: 318328297
+              filesize_hq: 44605038
+              filesize_lq: 15038790
+              seconds: 2506
+              chapters:
+                - 2
+            -
+              title: Chapter 4 - The Proof of our Position
+              external_id_hq: 318328737
+              external_id_lq: 318328751
+              filesize_hq: 86674413
+              filesize_lq: 28902318
+              seconds: 4817
+              chapters:
+                - 3
+            -
+              title: Chapter 5 - Concerning Justification
+              external_id_hq: 318329178
+              external_id_lq: 318329182
+              filesize_hq: 75060714
+              filesize_lq: 25775286
+              seconds: 4296
+              chapters:
+                - 4
+            -
+              title: Chapter 6 - Concerning Perfection
+              external_id_hq: 318329462
+              external_id_lq: 318329466
+              filesize_hq: 40710812
+              filesize_lq: 14086014
+              seconds: 2347
+              chapters:
+                - 5
+
         chapters:
           -
             title: Forward
@@ -71,7 +153,8 @@ documents:
   -
     title: Apology for the True Christian Divinity
     slug: apology
-    description: Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in the Society of Friends. His Apology for the True Christian Divinity is perhaps the most well-known of all Quaker writings, containing a thorough explanation and defense of most of their principles and doctrines.
+    description: Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in the Society of Friends. His "Apology for the True Christian Divinity" is perhaps the most well-known of all Quaker writings, containing a thorough explanation and defense of most of their principles and doctrines. The eBook edition provided here is unabridged, but some archaic words and spellings have been modernized by Market Street Fellowship.
+
     tags:
       - doctrinal
     editions:
@@ -85,7 +168,7 @@ documents:
             type: epub
           -
             type: mobi
-        chapter_format: "%title%: %subtitle%"
+
         chapters:
           -
             title: 'Preface: Unto the Friendly Reader'
@@ -140,7 +223,7 @@ documents:
   -
     title: Considerations upon Recreation and Entertainment
     slug: recreation-and-entertainment
-    description: An extract from the fifteenth proposition of Robert Barclay's "Apology for the True Christian Divinity" regarding entertainment and recreation.
+    description: This is a short extract from the fifteenth proposition of Robert Barclay's "Apology for the True Christian Divinity" regarding entertainment and recreation.
     tags:
       - doctrinal
     editions:
