@@ -25,6 +25,10 @@ abstract class Command extends SymfonyCommand
      */
     protected $dryRun = true;
 
+    /**
+     * @var int
+     */
+    protected $startTime;
 
     /**
      * {@inheritdoc}
@@ -52,7 +56,8 @@ abstract class Command extends SymfonyCommand
         $this->output = $output;
         $this->setOutputStyles();
         $this->dryRun = filter_var($input->getOption('dry-run'), FILTER_VALIDATE_BOOLEAN);
-        $this->fire();
+        $this->startTime = microtime(true);
+        return $this->fire();
     }
 
     /**
@@ -62,6 +67,22 @@ abstract class Command extends SymfonyCommand
      * @return int
      */
     abstract protected function fire();
+
+    /**
+     * Print a command's result message, with timing
+     *
+     * @param string $resultMsg
+     */
+    protected function result(string $resultMsg): void
+    {
+        if ($this->dryRun) {
+            $resultMsg.= ' (DRY-RUN)';
+        }
+
+        $elapsed = microtime(true) - $this->startTime;
+        $this->print("<result>Completed phipps:$this->name! $resultMsg</>");
+        $this->print('✨  Done in ' . round($elapsed, 2) . 's.');
+    }
 
     /**
      * Print text to stdout

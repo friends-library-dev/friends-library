@@ -22,6 +22,11 @@ class Clean extends Command
     protected $finder;
 
     /**
+     * @var int
+     */
+    protected $transformations = 0;
+
+    /**
      * @param Finder $finder
      */
     public function __construct(Finder $finder)
@@ -33,19 +38,20 @@ class Clean extends Command
     /**
      * {@inheritdoc}
      */
-    protected function fire()
+    protected function fire(): int
     {
-        return $this->fixEditionDoubleDashes();
+        $exitCode = $this->fixEditionDoubleDashes();
+        $this->result("Modified $this->transformations file/s.");
+        return $exitCode;
     }
 
     /**
      * Fix bad double-dash edition suffixes
      *
-     * @return void
+     * @return int
      */
-    protected function fixEditionDoubleDashes()
+    protected function fixEditionDoubleDashes(): int
     {
-        $fixed = 0;
         $pattern = '/—(updated|original|modernized)\.(mobi|epub|pdf|mp3)$/';
 
         foreach ($this->finder->files() as $file) {
@@ -72,15 +78,9 @@ class Clean extends Command
                 }
             }
 
-            $fixed++;
+            $this->transformations++;
         }
 
-        $msg = "modified $fixed files";
-        if ($this->dryRun) {
-            $msg = 'non dry-run would have ' . $msg;
-        }
-
-        $this->output->writeLn("<result>--> phipps:clean $msg</>");
-        return $this->dryRun && $fixed > 0 ? 1 : 0;
+        return $this->dryRun && $this->transformations > 0 ? 1 : 0;
     }
 }

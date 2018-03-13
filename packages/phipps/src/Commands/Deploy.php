@@ -7,6 +7,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Deploy extends Command
 {
@@ -24,6 +25,16 @@ class Deploy extends Command
      * @var Client
      */
     protected $client;
+
+    /**
+     * @var int
+     */
+    protected $transformations = 0;
+
+    /**
+     * @var Array<string>
+     */
+    protected $remoteFiles = [];
 
     /**
      * @var int
@@ -54,18 +65,37 @@ class Deploy extends Command
     /**
      * {@inheritdoc}
      */
-    protected function fire()
+    protected function fire(): int
     {
         $cleanCommand = $this->getApplication()->find('clean');
         $cleanInput = new ArrayInput(['command' => 'clean', '--dry-run' => true]);
         $cleanResult = $cleanCommand->run($cleanInput, new NullOutput());
         if ($cleanResult !== 0) {
             $this->print('<error>Files not clean. Run `php phipps clean` before deploying.</>');
-            return;
+            return 1;
         }
 
+        $this->listRemoteFiles();
         $this->syncLocalFiles();
         $this->removeDeletedFiles();
+        $this->result("Modified {$this->transformations} remote file/s.");
+        return 0;
+    }
+
+    /**
+     * Store a list of all remote files
+     *
+     * @return void
+     */
+    protected function listRemoteFiles(): void
+    {
+        $objects = $this->client->getIterator('ListObjects', [
+            'Bucket' => getenv('DEPLOY_BUCKET'),
+        ]);
+
+        foreach ($objects as $object) {
+            $this->remoteFiles[$object['Key']] = trim($object['ETag'], '"');
+        }
     }
 
     /**
@@ -87,31 +117,29 @@ class Deploy extends Command
      */
     protected function removeDeletedFiles(): void
     {
-        $objects = $this->client->getIterator('ListObjects', [
-            'Bucket' => getenv('DEPLOY_BUCKET'),
-        ]);
-
-        foreach ($objects as $object) {
-            if (file_exists(getenv('LOCAL_ASSETS_DIR') . '/' . $object['Key'])) {
+        foreach (array_keys($this->remoteFiles) as $path) {
+            if (file_exists(getenv('LOCAL_ASSETS_DIR') . '/' . $path)) {
                 continue;
             }
+
+            $this->transformations++;
 
             if ($this->dryRun) {
                 $this->print([
                     "<purple>phipps:deploy</> will <yellow>delete</> remote file not found locally:",
-                    "  <cyan>(DRY-RUN)</> 🚽  <red>{$object['Key']}</>",
+                    "  <cyan>(DRY-RUN)</> 🚽  <red>{$path}</>",
                 ]);
                 continue;
             }
 
             $this->client->deleteObject([
                 'Bucket' => getenv('DEPLOY_BUCKET'),
-                'Key' => $object['Key'],
+                'Key' => $path,
             ]);
 
             $this->print([
                 "<purple>phipps:deploy</> <yellow>deleted</> remote file not found locally:",
-                "  🚽  <red>{$object['Key']}</>",
+                "  🚽  <red>{$path}</>",
             ]);
         }
     }
@@ -127,13 +155,18 @@ class Deploy extends Command
         $status = $this->getSyncState($file);
         switch ($status) {
             case static::STATUS_REMOTE_FILE_IDENTICAL:
-                return $this->skipIdenticalFile($file);
+                $this->skipIdenticalFile($file);
+                return;
 
             case static::STATUS_REMOTE_FILE_DIFFERENT:
-                return $this->replaceFile($file);
+                $this->transformations++;
+                $this->replaceFile($file);
+                return;
 
             case static::STATUS_REMOTE_FILE_NOT_FOUND:
-                return $this->uploadFile($file);
+                $this->transformations++;
+                $this->uploadFile($file);
+                return;
         }
     }
 
@@ -145,20 +178,12 @@ class Deploy extends Command
      */
     protected function getSyncState(SplFileInfo $local): int
     {
-        try {
-            $result = $this->client->headObject([
-                'Bucket' => getenv('DEPLOY_BUCKET'),
-                'Key' => $local->getRelativePathname(),
-            ]);
-        } catch (\Exception $exception) {
-            if ($exception->getStatusCode() === 404) {
-                return static::STATUS_REMOTE_FILE_NOT_FOUND;
-            }
-            throw $exception;
+        if (! isset($this->remoteFiles[$local->getRelativePathname()])) {
+            return static::STATUS_REMOTE_FILE_NOT_FOUND;
         }
 
+        $remoteHash = $this->remoteFiles[$local->getRelativePathname()];
         $localHash = md5_file($local->getRealPath());
-        $remoteHash = trim($result['@metadata']['headers']['etag'], '"');
         if ($remoteHash === $localHash) {
             return static::STATUS_REMOTE_FILE_IDENTICAL;
         }
@@ -174,6 +199,10 @@ class Deploy extends Command
      */
     protected function skipIdenticalFile(SplFileInfo $file): void
     {
+        if (! $this->output->isVerbose()) {
+            return;
+        }
+
         if ($this->dryRun) {
             $this->print([
                 "<purple>phipps:deploy</> will <yellow>skip</> syncing identical file:",
