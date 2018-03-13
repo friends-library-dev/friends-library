@@ -54,8 +54,55 @@ class Deploy extends Command
      */
     protected function fire()
     {
+        $this->syncLocalFiles();
+        $this->removeDeletedFiles();
+    }
+
+    /**
+     * Sync all local files with remote storage
+     *
+     * @return void
+     */
+    protected function syncLocalFiles(): void
+    {
         foreach ($this->finder->files() as $file) {
             $this->syncFile($file);
+        }
+    }
+
+    /**
+     * Remove any remote files that do not exist locally
+     *
+     * @return void
+     */
+    protected function removeDeletedFiles(): void
+    {
+        $objects = $this->client->getIterator('ListObjects', [
+            'Bucket' => getenv('DEPLOY_BUCKET'),
+        ]);
+
+        foreach ($objects as $object) {
+            if (file_exists(getenv('LOCAL_ASSETS_DIR') . '/' . $object['Key'])) {
+                continue;
+            }
+
+            if ($this->dryRun) {
+                $this->print([
+                    "<purple>phipps:deploy</> will <yellow>delete</> remote file not found locally:",
+                    "  <cyan>(DRY-RUN)</> 🚽  <red>{$object['Key']}</>",
+                ]);
+                continue;
+            }
+
+            $this->client->deleteObject([
+                'Bucket' => getenv('DEPLOY_BUCKET'),
+                'Key' => $object['Key'],
+            ]);
+
+            $this->print([
+                "<purple>phipps:deploy</> <yellow>deleted</> remote file not found locally:",
+                "  🚽  <red>{$object['Key']}</>",
+            ]);
         }
     }
 
@@ -65,7 +112,7 @@ class Deploy extends Command
      * @param SplFileInfo $file
      * @return void
      */
-    protected function syncFile(SplFileInfo $file)
+    protected function syncFile(SplFileInfo $file): void
     {
         $status = $this->getSyncState($file);
         switch ($status) {
