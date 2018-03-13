@@ -5,6 +5,8 @@ namespace Phipps\Commands;
 use Aws\S3\S3ClientInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
 
 class Deploy extends Command
 {
@@ -54,6 +56,14 @@ class Deploy extends Command
      */
     protected function fire()
     {
+        $cleanCommand = $this->getApplication()->find('clean');
+        $cleanInput = new ArrayInput(['command' => 'clean', '--dry-run' => true]);
+        $cleanResult = $cleanCommand->run($cleanInput, new NullOutput());
+        if ($cleanResult !== 0) {
+            $this->print('<error>Files not clean. Run `php phipps clean` before deploying.</>');
+            return;
+        }
+
         $this->syncLocalFiles();
         $this->removeDeletedFiles();
     }
