@@ -5,6 +5,7 @@ documents:
   -
     title: John Richardson's Early Years & Spiritual Growth
     slug: early-years-and-spiritual-growth
+    filename: Journal_of_John_Richardson
     description: This instructive portion is an excerpt from his journal relating his early years, spiritual growth, and call to ministry.
     tags:
       - journal
@@ -42,6 +43,7 @@ documents:
   -
     title: The Complete Journal of John Richardson
     slug: journal
+    filename: Unabridged_Journal_of_John_Richardson
     description: This is the unabridged journal of John Richardson, with modernization of spellings and some archaic words.
     tags:
       - journal

@@ -5,6 +5,7 @@ documents:
   -
     title: The Journal of Charles Marshall
     slug: journal
+    filename: Journal_of_Charles_Marshall
     description: Charles Marshall (1637-1698) was convinced of the Truth at age seventeen by the powerful ministry of John Audland and John Camm, and eventually became a worthy minister and elder himself in the early Society of Friends. This short but instructive journal describes Marshall's progressive experience of the light of Jesus Christ, both as his judge and teacher, together with the several snares and temptations of the enemy that he met with along the way.
     tags:
       - journal
@@ -41,6 +42,7 @@ documents:
   -
     title: The Way of Life Revealed and the Way of Death Discovered
     slug: way-of-life-revealed
+    filename: Way_of_Life_Revealed
     description: The Way of Life Revealed And the Way of Death Discovered; Wherein is Declared Man's Happy Estate Before the Fall, His Miserable Estate in the Fall, and the Way of Restoration Out of the Fall, Into the Image of God Again, In Which Man Was Before the Fall.
     tags:
       - treatise

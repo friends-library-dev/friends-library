@@ -5,6 +5,7 @@ documents:
   -
     title: John Griffeth's Early Years & Spiritual Growth
     slug: early-years-and-spiritual-growth
+    filename: Journal_of_John_Griffith
     description: This instructive portion of his lengthy journal deals with his conversion, spiritual growth, and call to the ministry.
     tags:
       - journal
@@ -42,6 +43,7 @@ documents:
   -
     title: The Complete Journal of John Griffeth
     slug: journal
+    filename: Unabridged_Journal_of_John_Griffith
     description: This is the unabridged journal of John Griffith, with modernization of spellings and some archaic words.
     tags:
       - journal
@@ -82,6 +84,7 @@ documents:
   -
     title: Remarks on Parenting, New Birth, Worship, Ministry, & Discipline
     slug: remarks
+    filename: Some_Brief_Remarks
     description: This treatise, written by John Griffith in 1762, contains weighty and helpful counsel on the subjects of parenting, the new birth, the nature of true worship, true and false ministry, and the nature and usefulness of Christian discipline.
     tags:
       - treatise

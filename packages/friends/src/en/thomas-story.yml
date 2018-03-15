@@ -5,6 +5,7 @@ documents:
   -
     title: Thomas Story's Early Years & Spiritual Growth
     slug: early-years-and-spiritual-growth
+    filename: Journal_of_Thomas_Story
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
       - journal
@@ -29,6 +30,7 @@ documents:
   -
     title: Thomas Story's Journal
     slug: journal
+    filename: Unabridged_Journal_of_Thomas_Story
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
       - journal
@@ -49,6 +51,7 @@ documents:
   -
     title: Salvation By Christ
     slug: salvation-by-christ
+    filename: Salvation_by_Christ
     description: An excerpt from the journal of Thomas Story, concerning salvation by Christ.
     tags:
       - doctrinal
@@ -69,6 +72,7 @@ documents:
   -
     title: Letter to a Doubter
     slug: letter-to-a-doubter
+    filename: Letter_to_a_Doubter
     description: An excerpt from the journal of Thomas Story.
     tags:
       - exhortation

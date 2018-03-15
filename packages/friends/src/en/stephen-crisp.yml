@@ -5,6 +5,7 @@ documents:
   -
     title: The Journal of Stephen Crisp
     slug: journal
+    filename: Journal_of_Stephen_Crisp
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
       - journal
@@ -30,6 +31,7 @@ documents:
   -
     title: A Plain Pathway
     slug: plain-pathway
+    filename: Plain_Pathway
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
       - exhortation

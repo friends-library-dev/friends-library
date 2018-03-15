@@ -5,6 +5,7 @@ documents:
   -
     title: Waiting Upon the Lord
     slug: waiting-upon-the-lord
+    filename: Waiting_Upon_the_Lord
     description: Robert Barclay writes, “All true and acceptable worship to God is offered in the inward and immediate moving and drawing of His own Spirit.” It is not hard to agree with such a statement, but who has indeed stood still to see the salvation of the Lord, and known the dawning of His inward Day? Have we waited upon our God to separate the precious from the vile within, to differentiate between the pure operation of His Spirit and the wild rovings of our own soul? Have we truly known and obeyed His inward stirrings and teachings, or does the Seed of God lay buried in Christian hearts beneath a mass of superstition, assumption, and fleshy, religious activity?
     tags:
       - doctrinal
@@ -52,6 +53,7 @@ documents:
   -
     title: Saved to the Uttermost
     slug: saved-to-the-uttermost
+    filename: Saved_to_the_Uttermost
     description: Robert Barclay's "Apology for the True Christian Divinity" is perhaps the most well-known of all Friends' writings. "Saved to the Uttermost" (which is taken from propositions four through eight of the Apology) brilliantly expounds some of the most vital and misunderstood aspects of Christianity, plainly manifesting the true nature, experience, and extent of the salvation that God offers the soul through Jesus Christ.
     tags:
       - doctrinal
@@ -153,6 +155,7 @@ documents:
   -
     title: Apology for the True Christian Divinity
     slug: apology
+    filename: Apology
     description: Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in the Society of Friends. His "Apology for the True Christian Divinity" is perhaps the most well-known of all Quaker writings, containing a thorough explanation and defense of most of their principles and doctrines. The eBook edition provided here is unabridged, but some archaic words and spellings have been modernized by Market Street Fellowship.
 
     tags:
@@ -223,6 +226,7 @@ documents:
   -
     title: Considerations upon Recreation and Entertainment
     slug: recreation-and-entertainment
+    filename: Recreation_and_Entertainment
     description: This is a short extract from the fifteenth proposition of Robert Barclay's "Apology for the True Christian Divinity" regarding entertainment and recreation.
     tags:
       - doctrinal

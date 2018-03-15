@@ -5,6 +5,7 @@ documents:
   -
     title: The Journal of John Burnyeat
     slug: journal
+    filename: Journal_of_John_Burnyeat
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
       - journal
@@ -29,6 +30,7 @@ documents:
   -
     title: The Unabridged Journal and Letters of John Burnyeat
     slug: unabridged-journal-and-letters
+    filename: Unabridged_Journal_of_John_Burnyeat
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
       - journal

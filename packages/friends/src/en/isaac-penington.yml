@@ -5,6 +5,7 @@ documents:
   -
     title: The Writings of Isaac Penington - Volume 1
     slug: writings-volume-1
+    filename: Writings_of_Isaac_Penington_vol_1
     description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
     tags:
       - devotional
@@ -254,6 +255,7 @@ documents:
   -
     title: The Writings of Isaac Penington - Volume 2
     slug: writings-volume-2
+    filename: Writings_of_Isaac_Penington_vol_2
     description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
     tags:
       - devotional
@@ -489,6 +491,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 1
     slug: unabridged-works-volume-1
+    filename: Unabridged_Works_of_Isaac_Penington_vol_1
     description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional
@@ -547,6 +550,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 2
     slug: unabridged-works-volume-2
+    filename: Unabridged_Works_of_Isaac_Penington_vol_2
     description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional
@@ -625,6 +629,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 3
     slug: unabridged-works-volume-3
+    filename: Unabridged_Works_of_Isaac_Penington_vol_3
     description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional
@@ -673,6 +678,7 @@ documents:
   -
     title: The Unabridged Works of Isaac Penington - Volume 4
     slug: unabridged-works-volume-4
+    filename: Unabridged_Works_of_Isaac_Penington_vol_4
     description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
     tags:
       - devotional

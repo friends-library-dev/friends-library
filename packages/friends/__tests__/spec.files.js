@@ -44,12 +44,13 @@ files.forEach((file) => {
 
     test('has correct document props', () => {
       documents.forEach((document) => {
-        expect(Object.keys(document)).toEqual([
-          'title',
-          'slug',
+        expect(Object.keys(document).sort()).toEqual([
           'description',
-          'tags',
           'editions',
+          'filename',
+          'slug',
+          'tags',
+          'title',
         ]);
       });
     });
@@ -64,7 +65,7 @@ files.forEach((file) => {
 
     test('document props are correct type', () => {
       documents.forEach((document) => {
-        ['title', 'slug', 'description']
+        ['title', 'slug', 'description', 'filename']
           .forEach(key => expect(typeof document[key]).toBe('string'));
 
         ['tags', 'editions']
