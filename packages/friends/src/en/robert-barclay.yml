@@ -60,7 +60,7 @@ documents:
     editions:
       -
         type: modernized
-        pages: 159
+        pages: 124
         formats:
           -
             type: softcover
@@ -163,7 +163,7 @@ documents:
     editions:
       -
         type: updated
-        pages: 288
+        pages: 557
         formats:
           -
             type: pdf
@@ -233,7 +233,7 @@ documents:
     editions:
       -
         type: modernized
-        pages: 3
+        pages: 4
         formats:
           -
             type: pdf
@@ -241,6 +241,20 @@ documents:
             type: epub
           -
             type: mobi
+
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 410125461
+              external_id_lq: 410125467
+              filesize_hq: 9821821
+              filesize_lq: 3311934
+              seconds: 552
+              chapters:
+                - 0
+
         chapters:
           -
             title: Considerations upon Recreation and Entertainment

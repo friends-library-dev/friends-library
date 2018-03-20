@@ -6,13 +6,13 @@ documents:
     title: The Journal of John Gratton
     slug: journal
     filename: Journal_of_John_Gratton
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: John Gratton (1641-1711) was one of several early Quakers who were convinced of the truth directly by the Lord, apart from the preaching or writings of others in the Society. His desperate and agonizing pursuit of true Christianity (amongst the many sects and denominations of the day) finally brought him to dramatically experience the truth of Christ's promise—'Everyone who asks receives, and he who seeks finds, and to him who knocks it will be opened.'
     tags:
       - journal
     editions:
       -
         type: modernized
-        pages: 136
+        pages: 131
         formats:
           -
             type: pdf
@@ -38,16 +38,3 @@ documents:
           -
             number: 5
             subtitle: Return to Ministry
-      -
-        type: updated
-        pages: 77
-        formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
-        chapters:
-          -
-            title: The Journal of John Gratton
