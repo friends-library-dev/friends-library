@@ -72,7 +72,7 @@ class Clean extends Command
             if ($this->output->isVerbose()) {
                 $this->print([
                     "<purple>phipps:clean</> will <yellow>skip</> modifying acceptable file:",
-                    "  <cyan>(DRY-RUN)</> 🎉  <green>{$current}</>",
+                    "  🎉  <green>{$current}</>",
                 ]);
             }
             return;

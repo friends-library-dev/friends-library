@@ -109,14 +109,14 @@ class {$class}Test extends TestCase
     public function setUp()
     {
         \$this->fixer = new $class();
-        \$this->path = new Path('es/friend/doc/edition/Foo--updated.pdf');
+        \$this->path = new Path('en/friend/doc/edition/Foo--updated.pdf');
     }
 
     public function testFixesSomething()
     {
         \$fixed = \$this->fixer->fix(\$this->path);
 
-        \$this->assertSame('foo--updated.pdf', \$fixed->getBasename());
+        \$this->assertSame('Foo--updated.pdf', \$fixed->getBasename());
     }
 }
 PHP;
