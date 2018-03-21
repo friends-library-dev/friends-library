@@ -80,6 +80,13 @@ files.forEach((file) => {
       });
     });
 
+    test('document filenames may not have spaces', () => {
+      documents.forEach((document) => {
+        const hasSpace = document.filename.indexOf(' ') !== -1;
+        expect(hasSpace).toBe(false);
+      });
+    });
+
     test('editions have correct type', () => {
       editions(friend).forEach((edition) => {
         expect(['updated', 'original', 'modernized'].indexOf(edition.type)).not.toBe(-1);
