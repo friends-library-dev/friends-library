@@ -2,6 +2,8 @@
 
 namespace Phipps\Commands;
 
+use Phipps\Models\Path;
+use Phipps\Fixers\AggregateFixer;
 use Symfony\Component\Finder\Finder;
 
 class Clean extends Command
@@ -22,17 +24,24 @@ class Clean extends Command
     protected $finder;
 
     /**
+     * @var AggregateFixer
+     */
+    protected $fixer;
+
+    /**
      * @var int
      */
     protected $transformations = 0;
 
     /**
      * @param Finder $finder
+     * @param AggregateFixer $fixer;
      */
-    public function __construct(Finder $finder)
+    public function __construct(Finder $finder, AggregateFixer $fixer)
     {
         parent::__construct();
         $this->finder = $finder;
+        $this->fixer = $fixer;
     }
 
     /**
@@ -40,47 +49,56 @@ class Clean extends Command
      */
     protected function fire(): int
     {
-        $exitCode = $this->fixEditionDoubleDashes();
+        foreach ($this->finder->files() as $file) {
+            $relPath = $file->getRelativePathname();
+            $current = new Path($relPath);
+            $proposed = $this->fixer->fix(new Path($relPath));
+            $this->cleanFile($current, $proposed);
+        }
+
         $this->result("Modified $this->transformations file/s.");
-        return $exitCode;
+        return $this->dryRun && $this->transformations > 0 ? 1 : 0;
     }
 
     /**
-     * Fix bad double-dash edition suffixes
+     * Clean a file
      *
-     * @return int
+     * @param Path $current
+     * @param Path $proposed
      */
-    protected function fixEditionDoubleDashes(): int
+    protected function cleanFile(Path $current, Path $proposed): void
     {
-        $pattern = '/—(updated|original|modernized)\.(mobi|epub|pdf|mp3)$/';
-
-        foreach ($this->finder->files() as $file) {
-            if (!preg_match($pattern, $file->getRelativePathname(), $matches)) {
-                continue;
-            }
-
-            $corrected = preg_replace(
-                "/{$matches[0]}$/",
-                "--{$matches[1]}.{$matches[2]}",
-                $file->getRealPath()
-            );
-
-            if ($this->dryRun) {
-                $this->output->writeLn([
-                    '<purple>phipps:clean</> will <yellow>rename</> file:',
-                    "  <cyan>(DRY-RUN)</> <green>{$file->getRealPath()}</>",
-                    "  <cyan>(DRY-RUN)</> <yellow>{$corrected}</>",
+        if ($proposed->equals($current)) {
+            if ($this->output->isVerbose()) {
+                $this->print([
+                    "<purple>phipps:clean</> will <yellow>skip</> modifying acceptable file:",
+                    "  <cyan>(DRY-RUN)</> 🎉  <green>{$current}</>",
                 ]);
-            } else {
-                $success = rename($file->getRealPath(), $corrected);
-                if (! $success) {
-                    throw new \Exception("Failed to rename {$file->getRealPath()}");
-                }
             }
-
-            $this->transformations++;
+            return;
         }
 
-        return $this->dryRun && $this->transformations > 0 ? 1 : 0;
+        $this->transformations++;
+
+        if ($this->dryRun) {
+            $this->output->writeLn([
+                '<purple>phipps:clean</> will <yellow>rename</> file:',
+                "  <cyan>(DRY-RUN)</> <yellow>{$current}</>",
+                "  <cyan>(DRY-RUN)</> <green>{$proposed}</>",
+            ]);
+            return;
+        }
+
+        $assetsDir = getenv('LOCAL_ASSETS_DIR');
+        $success = rename("$assetsDir/$current", "$assetsDir/$proposed");
+        if (! $success) {
+            throw new \Exception("Failed to rename $current");
+        }
+
+        $this->output->writeLn([
+            '<purple>phipps:clean</> successfully <yellow>renamed</> file:',
+            "  <yellow>{$current}</>",
+            "  <green>{$proposed}</>",
+        ]);
     }
 }

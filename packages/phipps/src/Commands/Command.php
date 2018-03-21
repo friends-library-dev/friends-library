@@ -44,7 +44,18 @@ abstract class Command extends SymfonyCommand
                 InputOption::VALUE_OPTIONAL,
                 'dry run or actually execute',
                 true
-            );
+            )
+            ->configureArguments();
+    }
+
+    /**
+     * Template method for allowing child classes to setup arguments
+     *
+     * @return $this
+     */
+    protected function configureArguments()
+    {
+        return $this;
     }
 
     /**
