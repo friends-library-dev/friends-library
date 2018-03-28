@@ -77,7 +77,7 @@ abstract class Command extends SymfonyCommand
      *
      * @return int
      */
-    abstract protected function fire();
+    abstract protected function fire(): int;
 
     /**
      * Print a command's result message, with timing
@@ -90,8 +90,18 @@ abstract class Command extends SymfonyCommand
             $resultMsg.= ' (DRY-RUN)';
         }
 
-        $elapsed = microtime(true) - $this->startTime;
         $this->print("<result>Completed phipps:$this->name! $resultMsg</>");
+        $this->printElapsedTime();
+    }
+
+    /**
+     * Print command elapsed time
+     *
+     * @return void
+     */
+    protected function printElapsedTime(): void
+    {
+        $elapsed = microtime(true) - $this->startTime;
         $this->print('✨  Done in ' . round($elapsed, 2) . 's.');
     }
 

@@ -4,6 +4,7 @@
 use Dotenv\Dotenv;
 use Phipps\Commands\Clean;
 use Phipps\Commands\Deploy;
+use Phipps\Commands\Compare;
 use Phipps\Commands\ScaffoldFixer;
 use Symfony\Component\Console\Application;
 
@@ -17,5 +18,6 @@ $container = require __DIR__ . '/src/services.php';
 $application = new Application();
 $application->add($container->make(Clean::CLASS));
 $application->add($container->make(Deploy::CLASS));
+$application->add($container->make(Compare::CLASS));
 $application->add($container->make(ScaffoldFixer::CLASS));
 $application->run();
