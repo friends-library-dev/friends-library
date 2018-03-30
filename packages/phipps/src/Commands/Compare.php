@@ -81,6 +81,7 @@ class Compare extends Command
         foreach ($friend['documents'] as $document) {
             $this->compareDocument($document);
         }
+        $this->popDir();
     }
 
     /**
@@ -101,6 +102,7 @@ class Compare extends Command
         foreach ($document['editions'] as $edition) {
             $this->compareEdition($edition, $document);
         }
+        $this->popDir();
     }
 
     /**
@@ -122,6 +124,7 @@ class Compare extends Command
         foreach ($edition['formats'] as $format) {
             $this->compareFormat($format, $edition, $document);
         }
+        $this->popDir();
     }
 
     /**
@@ -196,6 +199,16 @@ class Compare extends Command
     protected function pushDir(string $dir): void
     {
         $this->dir = $this->dir . '/' . trim($dir, '/');
+    }
+
+    /**
+     * Pop the last directory off the operating stack
+     *
+     * @return void
+     */
+    protected function popDir()
+    {
+        $this->dir = dirname($this->dir);
     }
 
     /**
