@@ -6,25 +6,37 @@ documents:
     title: The Journal of Stephen Crisp
     slug: short-journal
     filename: Journal_of_Stephen_Crisp
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: Stephen Crisp (1628-1692) was another whose desperate search for Truth (lasting twenty long years) at last brought him to an experiential knowledge of the grace and truth that are in Jesus Christ. Having found the Pearl of great price, he sold all to buy it, and soon was made an eminent minister among the early Society of Friends, laboring for the next thirty-five years in the power and wisdom of the Spirit throughout England, Scotland, Holland, and Germany.
     tags:
       - journal
       - letters
     editions:
       -
         type: modernized
-        pages: 261
+        pages: 27
         formats:
           -
             type: softcover
-          -
-            type: audio
           -
             type: pdf
           -
             type: epub
           -
             type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Journal of Stephen Crisp
+              external_id_hq: 276790389
+              external_id_lq: 276790407
+              filesize_hq: 55916850
+              filesize_lq: 19218174
+              seconds: 3203
+              chapters:
+                - 0
         chapters:
           -
             title: The Journal of Stephen Crisp
@@ -32,7 +44,7 @@ documents:
     title: A Plain Pathway
     slug: plain-pathway
     filename: Plain_Pathway
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: This document is a short treatise written by Stephen Crisp concerning the appearance of Christ's light in the heart. In Crisp's words, this was written "for the answering of all doubts and objections which arise against Christ's light and truth in the inward parts; by which many are kept from obedience, and so from peace to their panting souls."
     tags:
       - exhortation
     editions:
@@ -41,13 +53,25 @@ documents:
         pages: 12
         formats:
           -
-            type: audio
-          -
             type: pdf
           -
             type: epub
           -
             type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: A Plain Pathway
+              external_id_hq: 333353574
+              external_id_lq: 333353583
+              filesize_hq: 45647137
+              filesize_lq: 15094302
+              seconds: 2515
+              chapters:
+                - 0
         chapters:
           -
             title: A Plain Pathway

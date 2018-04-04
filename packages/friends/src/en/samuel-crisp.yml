@@ -20,6 +20,31 @@ documents:
             type: epub
           -
             type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 417771204
+              external_id_lq: 417771228
+              filesize_hq: 29533411
+              filesize_lq: 10218966
+              seconds: 1703
+              chapters:
+                - 0
+
+            -
+              title: Part 2
+              external_id_hq: 417772568
+              external_id_lq: 417772596
+              filesize_hq: 36602636
+              filesize_lq: 12572718
+              seconds: 2095
+              chapters:
+                - 1
+
         chapters:
           -
             title: Memoir of Samuel Crisp
