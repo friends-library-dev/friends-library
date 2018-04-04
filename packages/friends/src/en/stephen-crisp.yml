@@ -4,7 +4,7 @@ description: Stephen Crisp (1628-1692) was another whose desperate search for Tr
 documents:
   -
     title: The Journal of Stephen Crisp
-    slug: journal
+    slug: short-journal
     filename: Journal_of_Stephen_Crisp
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
@@ -37,7 +37,7 @@ documents:
       - exhortation
     editions:
       -
-        type: updated
+        type: modernized
         pages: 12
         formats:
           -

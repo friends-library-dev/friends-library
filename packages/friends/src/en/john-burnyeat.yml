@@ -4,9 +4,9 @@ description: John Burnyeat (1631-1690) was one of the early elders and pillars i
 documents:
   -
     title: The Journal of John Burnyeat
-    slug: journal
+    slug: short-journal
     filename: Journal_of_John_Burnyeat
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of Friends, whose powerful ministry turned many thousands from darkness to light, and from the power of Satan to the power of God. He labored tirelessly and traveled extensively in the service of Truth, often suffering greatly for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully in his generation, putting his hand to the plow and never looking back.
     tags:
       - journal
     editions:
@@ -29,9 +29,9 @@ documents:
             title: The Journal of John Burnyeat
   -
     title: The Unabridged Journal and Letters of John Burnyeat
-    slug: unabridged-journal-and-letters
+    slug: journal-letters
     filename: Unabridged_Journal_of_John_Burnyeat
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    description: John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of Friends, whose powerful ministry turned many thousands from darkness to light, and from the power of Satan to the power of God. He labored tirelessly and traveled extensively in the service of Truth, often suffering greatly for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully in his generation, putting his hand to the plow and never looking back.
     tags:
       - journal
       - letters
