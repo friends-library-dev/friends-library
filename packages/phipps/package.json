@@ -7,6 +7,6 @@
     "test:watch": "php vendor/bin/phpunit-watcher watch"
   },
   "dependencies": {
-    "@friends-library/friends": "git://github.com/friends-library/friends.git#72d9dfc9c024f3961e9a3c051010ee7fc5da2c68"
+    "@friends-library/friends": "git://github.com/friends-library/friends.git#6382ffd3e93a7c2103dee18a28ebafbcf34192f7"
   }
 }

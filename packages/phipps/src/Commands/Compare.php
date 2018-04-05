@@ -141,7 +141,8 @@ class Compare extends Command
     protected function compareFormat(array $format, array $edition, array $document): void
     {
         if ($format['type'] === 'audio') {
-            return; // @TODO
+            $this->compareAudio($document['filename'], $edition['audio']['parts']);
+            return;
         }
 
         if ($format['type'] === 'softcover') {
@@ -153,6 +154,29 @@ class Compare extends Command
         if (! file_exists($this->absPath($filename))) {
             $path = $this->relPath($filename);
             $this->addWarning('format', 'file', $path);
+        }
+    }
+
+    /**
+     * Compare audio files for an edition
+     *
+     * @param string $filename
+     * @param array $audioParts
+     */
+    protected function compareAudio(string $filename, array $audioParts): void
+    {
+        $files = [];
+        foreach ($audioParts as $index => $part) {
+            $num = $index + 1;
+            $files[] = "{$filename}--pt{$num}.mp3";
+            $files[] = "{$filename}--pt{$num}--lq.mp3";
+        }
+
+        foreach ($files as $file) {
+            if (! file_exists($this->absPath($file))) {
+                $path = $this->relPath($file);
+                $this->addWarning('audio', 'file', $path);
+            }
         }
     }
 
@@ -246,13 +270,14 @@ class Compare extends Command
             'document' => '📒 ',
             'edition' => '📚 ',
             'format' => '💾 ',
+            'audio' => '🎧 ',
         ][$name];
 
         $typeStr = "$typeIcon <purple>$type</>";
         $nameStr = "$nameIcon <cyan>$name</>";
 
         $this->print([
-            "<green>Expected to find a $typeStr for the $nameStr at this location:</>",
+            "<yellow>Expected to find a $typeStr for the $nameStr at this location:</>",
             "  ↳ <red>$path</>",
             "",
         ]);
