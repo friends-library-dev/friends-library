@@ -63,11 +63,8 @@ files.forEach((file) => {
       });
     });
 
-    test('audio parts chapters are arrays of number if exists', () => {
+    test('audio parts chapters are required and should be an array of numbers', () => {
       audioParts(friend).forEach((part) => {
-        if (!hasProp(part, 'chapters')) {
-          return;
-        }
         expect(Array.isArray(part.chapters)).toBe(true);
         part.chapters.forEach(ch => expect(typeof ch).toBe('number'));
       });

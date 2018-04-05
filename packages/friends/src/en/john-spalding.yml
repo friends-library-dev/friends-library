@@ -43,6 +43,7 @@ documents:
               filesize_hq: 48852152
               filesize_lq: 16644750
               seconds: 2774
+              chapters:
                 - 1
 
         chapters:
