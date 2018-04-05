@@ -24,7 +24,6 @@ documents:
             type: epub
           -
             type: mobi
-
         audio:
           reader: Jason Henderson
           parts:
@@ -72,7 +71,6 @@ documents:
             type: epub
           -
             type: mobi
-
         audio:
           reader: Jason Henderson
           parts:
@@ -241,7 +239,8 @@ documents:
             type: epub
           -
             type: mobi
-
+          -
+            type: audio
         audio:
           reader: Jason Henderson
           parts:

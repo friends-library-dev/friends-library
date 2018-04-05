@@ -19,8 +19,6 @@ documents:
           -
             type: softcover
           -
-            type: audio
-          -
             type: pdf
           -
             type: epub

@@ -116,6 +116,27 @@ files.forEach((file) => {
       });
     });
 
+    test('audio format requires audio data', () => {
+      editions(friend).forEach((edition) => {
+        edition.formats.forEach((format) => {
+          if (format.type !== 'audio') {
+            return;
+          }
+          expect(hasProp(edition, 'audio')).toBe(true);
+        });
+      });
+    });
+
+    test('audio data requires corresponding edition format of audio', () => {
+      editions(friend).forEach((edition) => {
+        if (!hasProp(edition, 'audio')) {
+          return;
+        }
+        const formatTypes = edition.formats.map(format => format.type);
+        expect(formatTypes.indexOf('audio') !== -1).toBe(true);
+      });
+    });
+
     test('editions have at least one chapter', () => {
       editions(friend).forEach((edition) => {
         expect(Array.isArray(edition.chapters)).toBe(true);
