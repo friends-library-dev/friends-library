@@ -166,10 +166,15 @@ class Compare extends Command
     protected function compareAudio(string $filename, array $audioParts): void
     {
         $files = [];
-        foreach ($audioParts as $index => $part) {
-            $num = $index + 1;
-            $files[] = "{$filename}--pt{$num}.mp3";
-            $files[] = "{$filename}--pt{$num}--lq.mp3";
+        if (count($audioParts) > 1) {
+            foreach ($audioParts as $index => $part) {
+                $num = $index + 1;
+                $files[] = "{$filename}--pt{$num}.mp3";
+                $files[] = "{$filename}--pt{$num}--lq.mp3";
+            }
+        } else {
+            $files[] = "{$filename}.mp3";
+            $files[] = "{$filename}--lq.mp3";
         }
 
         foreach ($files as $file) {
