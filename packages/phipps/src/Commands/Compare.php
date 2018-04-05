@@ -114,13 +114,16 @@ class Compare extends Command
      */
     protected function compareEdition(array $edition, array $document): void
     {
-        if (! is_dir($this->absPath($edition['type']))) {
-            $path = $this->relPath($edition['type']);
-            $this->addWarning('edition', 'directory', $path);
-            return;
+        if ($this->checkingEnglishPath()) {
+            if (! is_dir($this->absPath($edition['type']))) {
+                $path = $this->relPath($edition['type']);
+                $this->addWarning('edition', 'directory', $path);
+                return;
+            }
+
+            $this->pushDir($edition['type']);
         }
 
-        $this->pushDir($edition['type']);
         foreach ($edition['formats'] as $format) {
             $this->compareFormat($format, $edition, $document);
         }
@@ -145,7 +148,8 @@ class Compare extends Command
             return;
         }
 
-        $filename = "{$document['filename']}--{$edition['type']}.{$format['type']}";
+        $editionSuffix = $this->checkingEnglishPath() ? "--{$edition['type']}" : '';
+        $filename = "{$document['filename']}{$editionSuffix}.{$format['type']}";
         if (! file_exists($this->absPath($filename))) {
             $path = $this->relPath($filename);
             $this->addWarning('format', 'file', $path);
@@ -158,7 +162,7 @@ class Compare extends Command
      * @param ?string $append
      * @return string
      */
-    protected function relPath(?string $append): string
+    protected function relPath(?string $append = ''): string
     {
         if (! $append) {
             return $this->dir;
@@ -252,5 +256,25 @@ class Compare extends Command
             "  ↳ <red>$path</>",
             "",
         ]);
+    }
+
+    /**
+     * Are we currently checking an English path?
+     *
+     * @return bool
+     */
+    protected function checkingEnglishPath(): bool
+    {
+        return strpos($this->relPath(), 'en/') === 0;
+    }
+
+    /**
+     * Are we currently checking a Spanish path?
+     *
+     * @return bool
+     */
+    protected function checkingSpanishPath(): bool
+    {
+        return ! $this->checkingEnglishPath();
     }
 }
