@@ -5,6 +5,8 @@ import { yamlGlob, tags, editions, formats, chapters, hasProp } from '../test-he
 
 const files = yamlGlob('src/*/*.yml');
 
+const filenames = [];
+
 describe('all files', () => {
   test('only contains yml files', () => {
     files.forEach(file => expect(file.name).toMatch(/\.yml$/));
@@ -60,6 +62,13 @@ files.forEach((file) => {
       documents.forEach((doc) => {
         expect(slugs.indexOf(doc.slug)).toBe(-1);
         slugs.push(doc.slug);
+      });
+    });
+
+    test('document filenames are globally unique', () => {
+      documents.forEach((doc) => {
+        expect(filenames.indexOf(doc.filename)).toBe(-1);
+        filenames.push(doc.filename);
       });
     });
 
