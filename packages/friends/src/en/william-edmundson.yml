@@ -1,0 +1,171 @@
+name: William Edmundson
+slug: william-edmundson
+description: William Edmundson (1627—1712) is generally considered the founder of the Society of Friends in Ireland. He was convinced of the truth as a young man, and spent over 50 years traveling and suffering for it. The journal of his life is an incredible testimony to the power of God working through a surrendered vessel.
+
+documents:
+  -
+    title: The Journal of William Edmundson
+    slug: journal
+    filename: Journal_of_William_Edmundson
+    description: William Edmundson (1627—1712) is generally considered the founder of the Society of Friends in Ireland. He was convinced of the truth as a young man, and spent over 50 years traveling and suffering for it. The journal of his life is an incredible testimony to the power of God working through a surrendered vessel.
+    tags:
+      - journal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 265
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+          -
+            number: 12
+          -
+            number: 13
+          -
+            number: 14
+          -
+            number: 15
+          -
+            number: 16
+          -
+            number: 17
+          -
+            number: 18
+          -
+            number: 19
+          -
+            number: 20
+          -
+            number: 21
+          -
+            number: 22
+          -
+            number: 23
+          -
+            number: 24
+          -
+            number: 25
+          -
+            number: 26
+          -
+            number: 27
+          -
+            number: 28
+          -
+            number: 29
+          -
+            number: 30
+            subtitle: A Supplement
+          -
+            title: Epistles and Papers of William Edmundson
+          -
+            title: Testimonies Concerning William Edmundson
+
+      -
+        type: original
+        pages: 265
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+          -
+            number: 12
+          -
+            number: 13
+          -
+            number: 14
+          -
+            number: 15
+          -
+            number: 16
+          -
+            number: 17
+          -
+            number: 18
+          -
+            number: 19
+          -
+            number: 20
+          -
+            number: 21
+          -
+            number: 22
+          -
+            number: 23
+          -
+            number: 24
+          -
+            number: 25
+          -
+            number: 26
+          -
+            number: 27
+          -
+            number: 28
+          -
+            number: 29
+          -
+            number: 30
+            subtitle: A Supplement
+          -
+            title: Epistles and Papers of William Edmundson
+          -
+            title: Testimonies Concerning William Edmundson

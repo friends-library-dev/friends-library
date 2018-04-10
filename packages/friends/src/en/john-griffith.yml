@@ -3,9 +3,9 @@ slug: john-griffith
 description: John Griffith (1713-1776) was a powerful minister during a time when the light, life, and power of Christ was slowly declining among the Society of Friends. Together with a remnant of bright, shining lamps in his generation, Griffith warred against a sad degeneracy into formality, tradition, and lifeless words amongst a people once distinguished by their adherence to the inward power and purity of the Holy Spirit.
 documents:
   -
-    title: John Griffith's Early Years & Spiritual Growth
-    slug: short-journal
-    filename: Short_Journal_of_John_Griffith
+    title: Selection from the Journal of John Griffith
+    slug: journal-selection
+    filename: Selection_Journal_of_John_Griffith
     description: This instructive portion of his lengthy journal deals with his conversion, spiritual growth, and call to the ministry.
     tags:
       - journal
@@ -28,7 +28,7 @@ documents:
           reader: Jason Henderson
           parts:
             -
-              title: The Journal of John Griffith
+              title: Selection from the Journal of John Griffith
               external_id_hq: 278743551
               external_id_lq: 278743565
               filesize_hq: 57467106
@@ -39,7 +39,7 @@ documents:
 
         chapters:
           -
-            title: Journal of John Griffith
+            title: Selection from the Journal of John Griffith
   -
     title: The Journal of John Griffith
     slug: journal

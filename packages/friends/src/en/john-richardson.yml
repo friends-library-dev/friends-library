@@ -3,9 +3,9 @@ slug: john-richardson
 description: John Richardson (1667–1753) was a humble but powerful minister in the early Society of Friends, who traveled tirelessly in his promotion of the gospel. His journal tells the amazing story of a life entirely submitted to and dependent upon the light and power of Jesus Christ.
 documents:
   -
-    title: John Richardson's Early Years & Spiritual Growth
-    slug: short-journal
-    filename: Journal_of_John_Richardson
+    title: Selection from the Journal of John Richardson
+    slug: journal-selection
+    filename: Selection_Journal_of_John_Richardson
     description: This instructive portion is an excerpt from his journal relating his early years, spiritual growth, and call to ministry.
     tags:
       - journal
@@ -28,7 +28,7 @@ documents:
           reader: Jason Henderson
           parts:
             -
-              title: The Journal of John Richardson
+              title: Selection from the Journal of John Richardson
               external_id_hq: 276947054
               external_id_lq: 276947064
               filesize_hq: 59021156

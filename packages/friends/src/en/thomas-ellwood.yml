@@ -1,0 +1,53 @@
+name: Thomas Ellwood
+slug: thomas-ellwood
+description: ​Thomas Ellwood (1639-1714) was a beloved elder and an eminent writer in the early Society of Friends. When a young man, his father took great offense at his joining in society with the despised people called Quakers, and frequently beat him with both fists and cane. At length, Ellwood found refuge in the home of Isaac and Mary Penington, where he came to be considered a member of their family, and eventually served as tutor to the Penington's young children. Thomas Ellwood is best known among Friends for his many publications in defense of the Truth, and for being the editor of George Fox's journal.
+
+documents:
+  -
+    title: The Life of Thomas Ellwood
+    slug: life
+    filename: Life_of_Thomas_Ellwood
+    description: Thomas Ellwood (1639-1714) was a beloved elder and an eminent writer in the early Society of Friends. When a young man, his father took great offense at his joining in society with the despised people called Quakers, and frequently beat him with both fists and cane. At length, Ellwood found refuge in the home of Isaac and Mary Penington, where he came to be considered a member of their family, and eventually served as tutor to the Penington's young children. Thomas Ellwood is best known among Friends for his many publications in defense of the Truth, and for being the editor of George Fox's journal.
+    tags:
+      - journal
+      - letters
+    editions:
+      -
+        type: updated
+        pages: 239
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            title: Life of Thomas Ellwood
+          -
+            title: Appendix - Containing a Supplementary Memoir of the Life of Thomas Ellwood
+          -
+            title: Testimonies of Thomas Ellwood
+
+      -
+        type: original
+        pages: 239
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            title: Life of Thomas Ellwood
+          -
+            title: Appendix - Containing a Supplementary Memoir of the Life of Thomas Ellwood
+          -
+            title: Testimonies of Thomas Ellwood

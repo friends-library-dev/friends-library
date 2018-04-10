@@ -3,16 +3,16 @@ slug: thomas-story
 description: Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados, and the American colonies. He was known for both his spiritual depth and his intellectual genius, and his writings became very influential among Quakers.
 documents:
   -
-    title: Thomas Story's Early Years & Spiritual Growth
-    slug: short-journal
-    filename: Journal_of_Thomas_Story
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    title: Selection from the Journal of Thomas Story
+    slug: journal-selection
+    filename: Selection_Journal_of_Thomas_Story
+    description: Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados, and the American colonies. He was known for both his spiritual depth and his intellectual genius, and his writings became very influential among Quakers.
     tags:
       - journal
     editions:
       -
         type: modernized
-        pages: 20
+        pages: 31
         formats:
           -
             type: softcover
@@ -22,20 +22,34 @@ documents:
             type: epub
           -
             type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Journal of Thomas Story
+              external_id_hq: 281992929
+              external_id_lq: 281992954
+              filesize_hq: 67694765
+              filesize_lq: 22560990
+              seconds: 3760
+              chapters:
+                - 0
         chapters:
           -
-            title: Thomas Story's Early Years & Spiritual Growth
+            title: Selection from the Journal of Thomas Story
   -
-    title: Thomas Story's Journal
+    title: Journal of Thomas Story
     slug: journal
-    filename: Unabridged_Journal_of_Thomas_Story
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    filename: Journal_of_Thomas_Story
+    description: Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados, and the American colonies. He was known for both his spiritual depth and his intellectual genius, and his writings became very influential among Quakers.
     tags:
       - journal
     editions:
       -
         type: updated
-        pages: 613
+        pages: 1010
         formats:
           -
             type: pdf
@@ -45,12 +59,26 @@ documents:
             type: mobi
         chapters:
           -
-            title: Thomas Story's Journal
+            title: The Journal of Thomas Story
+
+      -
+        type: original
+        pages: 1010
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Journal of Thomas Story
   -
     title: Salvation By Christ
     slug: salvation-by-christ
     filename: Salvation_by_Christ
-    description: An excerpt from the journal of Thomas Story, concerning salvation by Christ.
+    description: An excerpt from the journal of Thomas Story concerning salvation by Christ.
     tags:
       - doctrinal
     editions:
@@ -74,6 +102,7 @@ documents:
     description: An excerpt from the journal of Thomas Story.
     tags:
       - exhortation
+      - doctrinal
     editions:
       -
         type: updated
