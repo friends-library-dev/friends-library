@@ -1,18 +1,19 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({path: path.join(__dirname, "../.env")});
 const express = require('express');
 const mysql = require('mysql');
-const path = require('path');
 const uuid = require('uuid');
 const useragent = require('express-useragent');
 
-const { env: { PORT, NODE_ENV, ASSETS_URI, DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } } = process;
+const { env: { PORT, NODE_ENV, ASSETS_URI, DB_HOST, DB_USER, DB_PASS, DB_NAME } } = process;
 
 const app = express();
 
-app.get('/', (req, res) => res.send('Hello Jared!'));
+app.get('/', (req, res) => res.send(`Hello, Jared. Assets uri is: ${ASSETS_URI}`));
 
-app.get('/:lang/:friend/:doc/:edition/:filename', (req, res) => {
-  const { params: { lang, friend, doc, edition, filename } } = req;
+app.get('/download/:friend/:doc/:edition/:filename', (req, res) => {
+  const { params: { friend, doc, edition, filename } } = req;
+  const lang = 'en'; // @TODO infer from domain...?
   const basename = path.basename(filename);
   const [name, format] = basename.split('.');
 
@@ -22,7 +23,7 @@ app.get('/:lang/:friend/:doc/:edition/:filename', (req, res) => {
     friend,
     doc,
     edition,
-    `${name}--${edition}.${format}`,
+    filename,
   ].join('/');
 
   if (NODE_ENV !== 'development') {
@@ -34,7 +35,7 @@ app.get('/:lang/:friend/:doc/:edition/:filename', (req, res) => {
   const connection = mysql.createConnection({
     host: DB_HOST,
     user: DB_USER,
-    password: DB_PASSWORD,
+    password: DB_PASS,
     database: DB_NAME,
   });
 
@@ -59,7 +60,7 @@ app.get('/:lang/:friend/:doc/:edition/:filename', (req, res) => {
       format,
       is_mobile: ua.isMobile,
       user_agent: ua.source,
-      ip_address: req.ip,
+      referrer: req.get('Referrer'),
       browser: ua.browser,
       os: ua.os,
       platform: ua.platform,

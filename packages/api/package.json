@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development nodemon src/index.js",
-    "stop": "yarn pm2 delete all",
+    "stop": "pm2 delete all",
     "serve": "NODE_ENV=production pm2 start src/index.js",
     "migrate": "yarn db-migrate up",
     "reset": "yarn db-migrate reset && yarn migrate",

@@ -5,7 +5,6 @@ const {
     PRODUCTION_SERVER,
     DEPLOY_PATH,
     DEPLOY_KEY,
-    PM2_BIN,
   },
 } = process;
 
@@ -36,6 +35,6 @@ module.exports = function (shipit) {
 
   shipit.on('published', () => {
     shipit.remote(`cd ${DEPLOY_PATH}/current && yarn migrate`);
-    shipit.remote(`${PM2_BIN} restart all`);
+    shipit.remote('pm2 restart all');
   });
 };
