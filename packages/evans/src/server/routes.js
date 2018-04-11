@@ -5,6 +5,7 @@ import Edition from '../classes/Edition';
 import FriendPage from '../components/FriendPage';
 import DocumentPage from '../components/DocumentPage';
 import AudioPage from '../components/AudioPage';
+import HomePage from '../components/HomePage';
 import { getFriend } from './helpers';
 
 export default {
@@ -12,7 +13,7 @@ export default {
     props: {
       title: 'Home',
     },
-    children: <p style={{ margin: '1em' }}>&uarr;&nbsp;&nbsp; Nothing on home page yet, click the menu icon above to try out some <b>friends pages!</b></p>,
+    children: <HomePage />,
 
   }),
 
