@@ -19,6 +19,7 @@ describe('friendFromJS()', () => {
         {
           title: 'Diary and Letters',
           slug: 'diary-and-letters',
+          filename: 'Journal_of_Rebecca_Jones',
           description: 'doc desc',
           tags: ['journal', 'letters'],
           editions: [
@@ -82,6 +83,7 @@ describe('friendFromJS()', () => {
     expect(friend.documents.length).toBe(1);
     expect(friend.documents[0]).toBeInstanceOf(Document);
     expect(friend.documents[0].tags).toEqual(['journal', 'letters']);
+    expect(friend.documents[0].filename).toBe('Journal_of_Rebecca_Jones');
   });
 
   it('maps document editions', () => {

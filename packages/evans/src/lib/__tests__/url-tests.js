@@ -13,6 +13,7 @@ describe('url()', () => {
     friend.slug = 'rebecca-jones';
     document = new Document();
     document.slug = 'diary';
+    document.filename = 'Diary';
     document.friend = friend;
     friend.documents.push(document);
   });
@@ -46,7 +47,7 @@ describe('url()', () => {
     it('returns download link for a downloadable asset', () => {
       const formatUrl = url(format);
 
-      expect(formatUrl).toBe('/download/rebecca-jones/diary/updated/pdf');
+      expect(formatUrl).toBe('/download/rebecca-jones/diary/updated/Diary--updated.pdf');
     });
 
     it('returns special audio url for audio format entity', () => {

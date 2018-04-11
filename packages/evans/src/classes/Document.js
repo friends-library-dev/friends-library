@@ -6,6 +6,7 @@ export default class Document {
   title: string = '';
   slug: string = '';
   description: string = '';
+  filename: string = '';
   tags: Array<string> = [];
   editions: Array<Edition> = [];
   friend: Friend;
@@ -14,12 +15,14 @@ export default class Document {
     title: string = '',
     slug: string = '',
     description: string = '',
+    filename: string = '',
     tags: Array<string> = [],
     editions: Array<Edition> = [],
   ) {
     this.title = title;
     this.slug = slug;
     this.description = description;
+    this.filename = filename;
     this.tags = tags;
     this.editions = editions;
   }

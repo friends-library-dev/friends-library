@@ -17,6 +17,7 @@ export default function friendFromJS(js: Object): Friend {
       document.title,
       document.slug,
       document.description,
+      document.filename,
       document.tags,
       (document.editions || []).map(edition => new Edition(
         edition.type,

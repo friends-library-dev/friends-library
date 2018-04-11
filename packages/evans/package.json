@@ -6,7 +6,8 @@
   "private": false,
   "scripts": {
     "test": "jest src",
-    "start": "yarn sync & NODE_ENV=development PORT=2222 babel-watch src/server/index.js & webpack --watch",
+    "test:watch": "jest src --watch",
+    "start": "yarn sync & NODE_ENV=development PORT=2222 API_URL=http://localhost:1111 babel-watch src/server/index.js & webpack --watch",
     "serve": "NODE_ENV=production PORT=3333 babel-watch src/server/index.js",
     "prebuild": "webpack -p",
     "build": "rimraf build && babel-node build.js",
@@ -18,7 +19,7 @@
     "preflight": "yarn lint:js && yarn test && yarn flow"
   },
   "dependencies": {
-    "@friends-library/friends": "git://github.com/friends-library/friends.git#5924cf0c4c1dcb6851cdc6d888c172f29a37cdb1",
+    "@friends-library/friends": "git://github.com/friends-library/friends.git#0f49ab13ae8f6fe81a0fb7699a1165d8df3974b9",
     "clean-css": "^4.1.9",
     "express": "^4.16.2",
     "glamor": "^2.20.40",

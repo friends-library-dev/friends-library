@@ -7,6 +7,8 @@ import Format from '../classes/Format';
 
 type Entity = Friend | Format | Document | Edition;
 
+const { env: { API_URL = '' } } = process;
+
 function formatUrl(format: Format): string {
   const { edition } = format;
   const { document } = edition;
@@ -15,7 +17,8 @@ function formatUrl(format: Format): string {
     return `${url(document)}/${edition.type}/${format.type}`;
   }
 
-  return `/download${url(document)}/${edition.type}/${format.type}`;
+  // $FlowFixMe
+  return `${API_URL}/download${url(document)}/${edition.type}/${document.filename}--${edition.type}.${format.type}`;
 }
 
 function url(entity: Entity): string {

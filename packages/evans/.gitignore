@@ -3,3 +3,4 @@ static/js
 build
 *.log
 .DS_Store
+.env
