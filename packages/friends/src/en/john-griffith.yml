@@ -82,15 +82,15 @@ documents:
           -
             title: A Testimony from the Monthly Meeting of Witham, in Essex, concerning John Griffith, deceased.
   -
-    title: Remarks on Parenting, New Birth, Worship, Ministry, & Discipline
-    slug: remarks
-    filename: Some_Brief_Remarks
+    title: The Ancient Path
+    slug: ancient-path
+    filename: Ancient_Path
     description: This treatise, written by John Griffith in 1762, contains weighty and helpful counsel on the subjects of parenting, the new birth, the nature of true worship, true and false ministry, and the nature and usefulness of Christian discipline.
     tags:
       - treatise
     editions:
       -
-        type: updated
+        type: modernized
         pages: 75
         formats:
           -
@@ -99,14 +99,65 @@ documents:
             type: epub
           -
             type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Section 1 - Tender Advice, Caution, and Counsel to Parents and Children
+              external_id_hq: 407598861
+              external_id_lq: 407598879
+              filesize_hq: 32634686
+              filesize_lq: 10893534
+              seconds: 1815
+              chapters:
+                - 0
+            -
+              title: Section 2 - The Nature and Necessity of the New Birth
+              external_id_hq: 410213409
+              external_id_lq: 410213439
+              filesize_hq: 32305895
+              filesize_lq: 10845582
+              seconds: 1807
+              chapters:
+                - 1
+            -
+              title: Section 3 - The Nature of True Worship
+              external_id_hq: 414707667
+              external_id_lq: 414707691
+              filesize_hq: 33062456
+              filesize_lq: 11006070
+              seconds: 1834
+              chapters:
+                - 2
+            -
+              title: Section 4 - Remarks Upon the True and the False Ministry
+              external_id_hq: 421957032
+              external_id_lq: 421957044
+              filesize_hq: 29475317
+              filesize_lq: 10145526
+              seconds: 1691
+              chapters:
+                - 3
+            -
+              title: Section 5 - The Nature and Usefulness of Christian Discipline
+              external_id_hq: 428643531
+              external_id_lq: 428643540
+              filesize_hq: 49172349
+              filesize_lq: 10293435
+              seconds: 2573
+              chapters:
+                - 4
+
         chapters:
           -
-            title: Section 1 -- Containing tender advice, caution, and counsel to parents and children
+            title: Section 1 -- Tender Advice, Caution, and Counsel to Parents and Children
           -
-            title: Section 2 -- Observations concerning the nature and necessity of the new birth
+            title: Section 2 -- The Nature and Necessity of the New Birth
           -
-            title: Section 3 -- Relating to the nature of true worship; with some remarks on the state of our Society, both in early times, and now
+            title: Section 3 -- The Nature of True Worship
           -
-            title: Section 4 -- Remarks upon the true and the false ministry
+            title: Section 4 -- Remarks Upon the True and the False Ministry
           -
-            title: Section 5 -- On the nature and usefulness of Christian discipline
+            title: Section 5 -- The Nature and Usefulness of Christian Discipline
