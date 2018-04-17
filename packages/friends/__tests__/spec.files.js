@@ -44,6 +44,10 @@ files.forEach((file) => {
       expect(Array.isArray(friend.documents)).toBe(true);
     });
 
+    test('friend slug matches filename slug', () => {
+      expect(file.name).toBe(`${friend.slug}.yml`);
+    });
+
     test('has correct document props', () => {
       documents.forEach((document) => {
         expect(Object.keys(document).sort()).toEqual([
