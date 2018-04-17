@@ -1,6 +1,5 @@
 import * as React from 'react';
 import fs from 'fs-extra';
-import opn from 'opn';
 import { basename } from 'path';
 import { sync as glob } from 'glob';
 import { wrap, getFriend } from './src/server/helpers';
@@ -56,5 +55,3 @@ friends.forEach(friendPath => {
     });
   });
 });
-
-opn(`file:///${__dirname}/build/index.html`, { wait: false });

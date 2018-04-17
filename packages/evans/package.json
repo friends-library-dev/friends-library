@@ -7,9 +7,9 @@
   "scripts": {
     "test": "jest src",
     "test:watch": "jest src --watch",
-    "start": "yarn sync & NODE_ENV=development PORT=2222 API_URL=http://localhost:1111 babel-watch src/server/index.js & webpack --watch",
+    "start": "yarn sync & NODE_ENV=development PORT=2222 API_URL=http://localhost:1111 babel-watch src/server/index.js & webpack --mode development --watch",
     "serve": "NODE_ENV=production PORT=3333 babel-watch src/server/index.js",
-    "prebuild": "webpack -p",
+    "prebuild": "webpack --mode production -p",
     "build": "rimraf build && babel-node build.js",
     "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify",
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev",
@@ -19,7 +19,7 @@
     "preflight": "yarn lint:js && yarn test && yarn flow"
   },
   "dependencies": {
-    "@friends-library/friends": "git://github.com/friends-library/friends.git#0f49ab13ae8f6fe81a0fb7699a1165d8df3974b9",
+    "@friends-library/friends": "git://github.com/friends-library/friends.git#c35aa670a2ff991dec753d67ec093e183022691e",
     "clean-css": "^4.1.9",
     "express": "^4.16.2",
     "glamor": "^2.20.40",
@@ -47,16 +47,16 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-no-only-tests": "^2.0.0",
     "eslint-plugin-react": "^7.4.0",
-    "flow-bin": "^0.63.1",
+    "flow-bin": "^0.70.0",
     "flow-typed": "^2.2.3",
     "fs-extra": "^5.0.0",
     "jest": "^22.1.2",
     "js-yaml": "^3.10.0",
-    "opn": "^5.1.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "rimraf": "^2.6.2",
-    "webpack": "^3.10.0",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14",
     "yaml-frontmatter-loader": "^0.1.0"
   },
   "jest": {
