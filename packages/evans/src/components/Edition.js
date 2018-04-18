@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import url from '../lib/url';
-import { classes } from '../lib/css';
-import EditionClass from '../classes/Edition';
+import url from 'lib/url';
+import { classes } from 'lib/css';
+import { Edition as EditionClass } from 'classes';
 import * as descriptions from './descriptions';
 import { h2, h3 } from './Typography';
 

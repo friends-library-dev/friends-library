@@ -4,22 +4,53 @@ import ReactDOM from 'react-dom/server';
 import { readFileSync } from 'fs';
 import { safeLoad } from 'js-yaml';
 import { renderStaticOptimized } from 'glamor/server';
-import friendFromJS from '../classes/map';
-import { minify, stripDataSelectors, format, appCss } from '../lib/css';
-import Friend from '../classes/Friend';
+import { minify, stripDataSelectors, format, appCss } from 'lib/css';
+import { Friend, Document, Edition, friendFromJS } from 'classes';
 
 const { env: { NODE_ENV } } = process;
 
+type Slug = string;
+type Html = string;
 
-export function getFriend(slug: string): Friend {
+export function getFriend(slug: Slug): Friend {
   const path = `./node_modules/@friends-library/friends/src/en/${slug}.yml`;
   const file = readFileSync(path);
   const data: Object = safeLoad(file);
   return friendFromJS(data);
 }
 
+export function query(
+  friendSlug: Slug,
+  docSlug: ?Slug = null,
+  editionType: ?Slug = null,
+): {|
+  friend: Friend,
+  document: Document,
+  edition: Edition,
+|} {
+  const friend = getFriend(friendSlug);
+  const result = {
+    friend,
+    document: new Document(),
+    edition: new Edition(),
+  };
 
-export const wrap = (Component: React.Element<*>): string => {
+  if (docSlug) {
+    const { documents } = friend;
+    const document: Document = documents.find(d => d.slug === docSlug) || new Document();
+    result.document = document;
+  }
+
+  if (editionType && result.document) {
+    const { document: { editions } } = result;
+    const edition: Edition = editions.find(e => e.type === editionType) || new Edition();
+    result.edition = edition;
+  }
+
+  return result;
+}
+
+export const wrap = (Component: React.Element<*>): Html => {
   const { html, css: glamorCss } = renderStaticOptimized(() => {
     return ReactDOM.renderToStaticMarkup(Component);
   });

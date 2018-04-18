@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import url from '../lib/url';
-import responsiveDocumentTitle from '../lib/responsive';
-import Document from '../classes/Document';
+import url from 'lib/url';
+import responsiveDocumentTitle from 'lib/responsive';
+import Document from 'classes/Document';
 
 const element = css`
   color: #222;

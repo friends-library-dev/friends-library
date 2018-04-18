@@ -1,16 +1,12 @@
 // @flow
 import React from 'react';
 import { css } from 'glamor';
-import Friend from '../classes/Friend';
+import { Friend } from 'classes';
+import { classes } from 'lib/css';
 import Divider from './Divider';
 import Badge from './Badge';
 import DocumentTeaser from './DocumentTeaser';
 import { h1, h2 } from './Typography';
-import { classes } from '../lib/css';
-
-const element = css`
-  padding: 15px;
-`;
 
 const title = css`
   margin: 10px 0 25px;
@@ -33,7 +29,7 @@ const FriendPage = ({ friend }: Props) => {
 
   const { documents } = friend;
   return (
-    <div className={element}>
+    <div>
       <section>
         <h1 className={classes(title, h1)}>{friend.name}</h1>
         <p>

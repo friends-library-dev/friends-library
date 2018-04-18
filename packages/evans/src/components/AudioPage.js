@@ -1,23 +1,11 @@
 // @flow
-/* eslint-disable max-len */
 import * as React from 'react';
-import { css } from 'glamor';
-import { classes } from '../lib/css';
-import Edition from '../classes/Edition';
-import Document from '../classes/Document';
-import Audio from '../classes/Audio';
-import url from '../lib/url';
+import { Edition, Document, Audio } from 'classes';
+import url from 'lib/url';
 import Divider from './Divider';
 import EmbeddedAudio from './EmbeddedAudio';
-import { h1, h2 } from './Typography';
-
-const element = css`
-  padding: 15px;
-`;
-
-const title = css`
-  margin: 10px 0 25px;
-`;
+import PageTitle from './PageTitle';
+import ByLine from './ByLine';
 
 type Props = {|
   document: Document,
@@ -25,19 +13,19 @@ type Props = {|
 |};
 
 export default ({ document, edition }: Props) => {
-  const audio = edition.audio || new Audio();
+  const audio: Audio = edition.audio || new Audio();
 
   return (
-    <div className={element}>
+    <div>
       <div>
-        <h1 className={classes(title, h1)}>
-          {document.title} (audio)
-        </h1>
-        <h2 className={h2}>
+        <PageTitle>{document.title} (audio)</PageTitle>
+        <ByLine>
           by <a href={url(document.friend)}>{document.friend.name}</a>
-        </h2>
+        </ByLine>
         <p>
+          {/* eslint-disable max-len */}
           This is the audio version of {document.friend.name}&apos;s <a href={url(document)}>{document.title}</a>, read by {audio.reader}. For other formats besides audio, <a href={url(document)}>click here</a>.
+          {/* eslint-enable max-len */}
         </p>
       </div>
       <Divider />

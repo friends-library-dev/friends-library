@@ -1,20 +1,11 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
-import url from '../lib/url';
-import { classes } from '../lib/css';
-import Document from '../classes/Document';
+import url from 'lib/url';
+import { Document } from 'classes';
 import Divider from './Divider';
 import Edition from './Edition';
-import { h1, h2 } from './Typography';
-
-const element = css`
-  padding: 15px;
-`;
-
-const title = css`
-  margin: 10px 0 25px;
-`;
+import PageTitle from './PageTitle';
+import ByLine from './ByLine';
 
 type Props = {
   document: Document,
@@ -23,12 +14,12 @@ type Props = {
 const DocumentPage = ({ document }: Props) => {
   const { friend } = document;
   return (
-    <div className={element}>
+    <div>
       <div>
-        <h1 className={classes(title, h1)}>{document.title}</h1>
-        <h2 className={h2}>
+        <PageTitle>{document.title}</PageTitle>
+        <ByLine>
           by <a href={url(friend)}>{friend.name}</a>
-        </h2>
+        </ByLine>
         <p>{document.description}</p>
       </div>
       <Divider />

@@ -7,10 +7,10 @@
   "scripts": {
     "test": "jest src",
     "test:watch": "jest src --watch",
-    "start": "yarn sync & NODE_ENV=development PORT=2222 API_URL=http://localhost:1111 babel-watch src/server/index.js & webpack --mode development --watch",
-    "serve": "NODE_ENV=production PORT=3333 babel-watch src/server/index.js",
+    "start": "yarn sync & NODE_ENV=development PORT=2222 API_URL=http://localhost:1111 NODE_PATH=src babel-watch src/server/index.js & webpack --mode development --watch",
+    "serve": "NODE_ENV=production PORT=3333 NODE_PATH=src babel-watch src/server/index.js",
     "prebuild": "webpack --mode production -p",
-    "build": "rimraf build && babel-node build.js",
+    "build": "rimraf build && NODE_PATH=src babel-node build.js",
     "sync": "browser-sync start --port 2223 --ui-port 2224 --files src/* --no-notify",
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev",
     "lint:js": "eslint src storybook",

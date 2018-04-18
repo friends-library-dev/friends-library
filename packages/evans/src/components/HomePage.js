@@ -3,13 +3,15 @@ import * as React from 'react';
 import { css } from 'glamor';
 import { sync as glob } from 'glob';
 import { basename } from 'path';
-import { getFriend } from '../server/helpers';
+import { getFriend } from 'server/helpers';
 
 const pattern = './node_modules/@friends-library/friends/src/en/*.yml';
 const friends = glob(pattern).map(path => getFriend(basename(path, '.yml')));
 
 const element = css`
-  margin-left: 20px;
+  > h2 {
+    margin-top: 5px;
+  }
   > h2 > span {
     font-size: 55%;
     opacity: 0.8;

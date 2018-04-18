@@ -14,6 +14,10 @@ const content = css`
   position: relative;
   background: #fff;
   min-height: 100vh;
+
+  > div {
+    padding: 15px;
+  }
 `;
 
 export default ({ title, children }: Props) => (

@@ -40,18 +40,21 @@ friends.forEach(friendPath => {
     generateRoute(props, children, path);
 
     document.editions.forEach(edition => {
-      if (!edition.audio) {
-        return;
-      }
+      const formats = edition.formats.map(f => f.type);
+      formats.forEach((format) => {
+        if (!['audio', 'softcover'].includes(format)) {
+          return;
+        }
 
-      const req = { params: {
-        friendSlug: slug,
-        docSlug: document.slug,
-        editionType: edition.type
-      } };
-      const { props, children } = routes['/:friendSlug/:docSlug/:editionType/audio'](req);
-      const path = `${slug}/${document.slug}/${edition.type}/audio`;
-      generateRoute(props, children, path);
+        const req = { params: {
+          friendSlug: slug,
+          docSlug: document.slug,
+          editionType: edition.type
+        } };
+        const { props, children } = routes[`/:friendSlug/:docSlug/:editionType/${format}`](req);
+        const path = `${slug}/${document.slug}/${edition.type}/${format}`;
+        generateRoute(props, children, path);
+      });
     });
   });
 });

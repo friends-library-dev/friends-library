@@ -1,6 +1,6 @@
 import express from 'express';
-import * as React from 'react';
-import App from '../components/App';
+import React, { StrictMode } from 'react';
+import App from 'components/App';
 import routes from './routes';
 import { wrap } from './helpers';
 
@@ -13,7 +13,7 @@ app.use(express.static('static'));
 Object.keys(routes).forEach((route) => {
   app.get(route, (req, res) => {
     const { props, children } = routes[route](req, res);
-    res.send(wrap(<App {...props}>{children}</App>));
+    res.send(wrap(<StrictMode><App {...props}>{children}</App></StrictMode>));
   });
 });
 

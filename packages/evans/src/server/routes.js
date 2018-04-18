@@ -1,23 +1,28 @@
 // @flow
 import * as React from 'react';
-import Document from '../classes/Document';
-import Edition from '../classes/Edition';
-import FriendPage from '../components/FriendPage';
-import DocumentPage from '../components/DocumentPage';
-import AudioPage from '../components/AudioPage';
-import HomePage from '../components/HomePage';
-import { getFriend } from './helpers';
+import FriendPage from 'components/FriendPage';
+import DocumentPage from 'components/DocumentPage';
+import SoftcoverPage from 'components/SoftcoverPage';
+import AudioPage from 'components/AudioPage';
+import HomePage from 'components/HomePage';
+import { getFriend, query } from './helpers';
+
+type RouteSpec = {|
+  props: {
+    title: string,
+  },
+  children: React.Node,
+|};
 
 export default {
-  '/': () => ({
+  '/': (): RouteSpec => ({
     props: {
       title: 'Home',
     },
     children: <HomePage />,
-
   }),
 
-  '/friend/:slug': (req: express$Request) => {
+  '/friend/:slug': (req: express$Request): RouteSpec => {
     const { params: { slug } } = req;
     const friend = getFriend(slug);
 
@@ -29,10 +34,9 @@ export default {
     };
   },
 
-  '/:friendSlug/:docSlug': (req: express$Request) => {
+  '/:friendSlug/:docSlug': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug } } = req;
-    const friend = getFriend(friendSlug);
-    const document = friend.documents.find(doc => doc.slug === docSlug) || new Document();
+    const { document } = query(friendSlug, docSlug);
 
     return {
       props: {
@@ -42,17 +46,27 @@ export default {
     };
   },
 
-  '/:friendSlug/:docSlug/:editionType/audio': (req: express$Request) => {
+  '/:friendSlug/:docSlug/:editionType/audio': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug, editionType } } = req;
-    const friend = getFriend(friendSlug);
-    const document = friend.documents.find(doc => doc.slug === docSlug) || new Document();
-    const edition = document.editions.find(e => e.type === editionType) || new Edition();
+    const { document, edition } = query(friendSlug, docSlug, editionType);
 
     return {
       props: {
         title: `Audio: ${document.title}`,
       },
       children: <AudioPage document={document} edition={edition} />,
+    };
+  },
+
+  '/:friendSlug/:docSlug/:editionType/softcover': (req: express$Request): RouteSpec => {
+    const { params: { friendSlug, docSlug, editionType } } = req;
+    const { document } = query(friendSlug, docSlug, editionType);
+
+    return {
+      props: {
+        title: `Softcover: ${document.title}`,
+      },
+      children: <SoftcoverPage document={document} />,
     };
   },
 };
