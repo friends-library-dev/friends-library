@@ -1,0 +1,98 @@
+name: William Evans
+slug: william-evans
+description: William Evans (1787-1867) was one of the last truly living and weighty ministers amidst a greatly divided and quickly vanishing Society of Friends. His journal is remarkable for its deeply personal style, and its extremely helpful and instructive comments on Scripture, the church, the operation of grace in the soul, ministry, and many other subjects. He witnessed and stood against the two unhappy divisions that greatly crippled the Society in the first half of the 19th century (the Hicksite and Gurneyite separations), contending earnestly for the faith which was once for all delivered to the saints. William and his brother Thomas were the editors and publishers of the Friends' Library as well as an updated version of Piety Promoted (both available on this site).
+
+documents:
+  -
+    title: The Journal of William Evans
+    slug: journal
+    filename: Journal_of_William_Evans
+    description: William Evans (1787-1867) was one of the last truly living and weighty ministers amidst a greatly divided and quickly vanishing Society of Friends. His journal is remarkable for its deeply personal style, and its extremely helpful and instructive comments on Scripture, the church, the operation of grace in the soul, ministry, and many other subjects. He witnessed and stood against the two unhappy divisions that greatly crippled the Society in the first half of the 19th century (the Hicksite and Gurneyite separations), contending earnestly for the faith which was once for all delivered to the saints. William and his brother Thomas were the editors and publishers of the Friends' Library as well as an updated version of Piety Promoted (both available on this site).
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 845
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+
+        chapters:
+          -
+            title: To the Reader
+          -
+            title: Introduction
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+          -
+            number: 12
+          -
+            number: 13
+          -
+            number: 14
+          -
+            number: 15
+          -
+            number: 16
+          -
+            number: 17
+          -
+            number: 18
+          -
+            number: 19
+          -
+            number: 20
+          -
+            number: 21
+          -
+            number: 22
+          -
+            number: 23
+          -
+            number: 24
+          -
+            number: 25
+          -
+            number: 26
+          -
+            number: 27
+          -
+            number: 28
+          -
+            number: 29
+          -
+            number: 30
+          -
+            number: 31
+          -
+            number: 32
+          -
+            number: 33
+          -
+            title: Conclusion
+  

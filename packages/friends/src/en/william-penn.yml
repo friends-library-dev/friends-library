@@ -1,12 +1,12 @@
 name: William Penn
 slug: william-penn
-description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+description: William Penn (1644–1718), best known as the founder of the Province of Pennsylvania, was a man courted for his talents and accomplishments, admired for his genius intellect, and beloved for his amiable and humble disposition. He was born into a family of wealth and prominence, educated in the finest schools in London, and as a young man had the road to honor and preferment opened wide before him. But, having tasted something of the true power and purity of Christ in a meeting of the despised people called Quakers, he relinquished his prospects of honor and advantage, renounced the patterns and customs of the world, and lived a life of self-denial as a meek follower of Jesus Christ.
 documents:
   -
     title: No Cross, No Crown
     slug: no-cross-no-crown
     filename: No_Cross_No_Crown
-    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.
+    description: The classic treatise “No Cross, No Crown” was first written while William Penn was imprisoned for his faith in the Tower of London in 1668, when only twenty-four years of age. Later in life, Penn greatly enlarged upon the original publication, treating exhaustively upon the particular sins of pride, avarice, and luxury, and adding two lengthy collections of testimonies from other authors in order to further substantiate his position. This edition is unique in that it offers the reader a careful modernization of Penn's beautiful but somewhat archaic English, and has been abridged to contain only the principal and indispensable chapters of the treatise, wherein Penn clearly presents the nature, power, and experience of the daily cross of Christ, explaining what it is, where and how it is to be taken up, and the manner of its working in the true disciples of Christ.
     tags:
       - treatise
       - exhortation
@@ -21,19 +21,21 @@ documents:
           -
             type: mobi
           -
+            type: softcover
+          -
             type: audio
         audio:
           reader: Jason Henderson
           parts:
             -
               title: Part 1
-              external_id_hq: 339058670 # get this & below info from local version of msf site
+              external_id_hq: 339058670
               external_id_lq: 339058677
               filesize_hq: 57716549
               filesize_lq: 19311270
               seconds: 3218
               chapters:
-                - 0 # 0 is FIRST chapter: "Forward by William Evans & Thomas Evans"
+                - 0
                 - 1
                 - 2
                 - 3
@@ -45,10 +47,9 @@ documents:
               filesize_lq: 19758606
               seconds: 3293
               chapters:
-                - 4 # 4 is FIFTH chapter: "The Daily Cross"
+                - 4
                 - 5
                 - 6
-                - 7
             -
               title: Part 3
               external_id_hq: 339061514
@@ -86,3 +87,134 @@ documents:
           -
             number: 7
             subtitle: The Sin of Pride
+
+  -
+    title: Primitive Christianity Revived
+    slug: primitive-christianity-revived
+    filename: Primitive_Christianity_Revived
+    description: This book is a combination of two separate publications by William Penn, one being his book Primitive Christianity Revived (first published in 1696), and the other, A Brief Account of the Rise and Progress of the People Called Quakers, which originally served as the introduction to the Journal of George Fox (published in 1694) but was later printed separately. The two publications overlapped in their scope, both dealing (in various degrees) with the rise of the Society of Friends, and the distinct principles and practices of this people, and it was thought that these short books could be combined and interwoven in such a way as to present the reader with a more thorough presentation of these subjects than either publication could do individually. Penn begins with an overview of the various dispensations of God in the world, and then recounts the extraordinary work of the Lord in restoring and reestablishing the true light, life, power, and purity of the primitive church through the outpouring of His Spirit in the early Society of Friends.
+    tags:
+      - history
+      - exhortation
+      - doctrine
+    editions:
+      -
+        type: modernized
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: softcover
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 397528062
+              external_id_lq: 397528068
+              filesize_hq: 28010697
+              filesize_lq: 9354318
+              seconds: 1559
+              chapters:
+                - 0
+                - 1
+                - 2
+            -
+              title: Part 2
+              external_id_hq: 397528806
+              external_id_lq: 397528815
+              filesize_hq: 44269759
+              filesize_lq: 15172062
+              seconds: 2528
+              chapters:
+                - 3
+            -
+              title: Part 3
+              external_id_hq: 397529541
+              external_id_lq: 397529550
+              filesize_hq: 22415570
+              filesize_lq: 7689174
+              seconds: 1281
+              chapters:
+                - 4
+            -
+              title: Part 4
+              external_id_hq: 397529874
+              external_id_lq: 397529901
+              filesize_hq: 26398494
+              filesize_lq: 9076110
+              seconds: 1512
+              chapters:
+                - 5
+            -
+              title: Part 5
+              external_id_hq: 397530342
+              external_id_lq: 397530363
+              filesize_hq: 21655233
+              filesize_lq: 7464750
+              seconds: 1244
+              chapters:
+                - 6
+            -
+              title: Part 6
+              external_id_hq: 397531467
+              external_id_lq: 397531476
+              filesize_hq: 17327718
+              filesize_lq: 6025326
+              seconds: 1004
+              chapters:
+                - 7
+            -
+              title: Part 7
+              external_id_hq: 397531875
+              external_id_lq: 397531884
+              filesize_hq: 14878313
+              filesize_lq: 4922214
+              seconds: 820
+              chapters:
+                - 8
+            -
+              title: Part 8
+              external_id_hq: 397532226
+              external_id_lq: 397532244
+              filesize_hq: 39030404
+              filesize_lq: 13139502
+              seconds: 2190
+              chapters:
+                - 9
+
+        chapters:
+          -
+            title: Forward by the Editor
+          -
+            title: An Epistle to the Reader
+          -
+            number: 1
+            subtitle: A Brief Account of the Different Dispensations of God in the World
+          -
+            number: 2
+            subtitle: The First Instrumental Author, and the Rise of the People Called Quakers
+          -
+            number: 3
+            subtitle: The Gift of God—Christ's Light Within
+          -
+            number: 4
+            subtitle: Some Objections Considered and Answered
+          -
+            number: 5
+            subtitle: The Doctrines of Justification and Salvation
+          -
+            number: 6
+            subtitle: The True Worship of God, and the True Ministry, which is by His Spirit
+          -
+            number: 7
+            subtitle: Other Distinctive Principles and Practices
+          -
+            number: 8
+            subtitle: Containing Several Exhortations
