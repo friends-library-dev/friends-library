@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import { PRIMARY } from './Theme';
 
 const element = css`
   box-sizing: border-box;
@@ -10,7 +11,7 @@ const element = css`
   padding: 0 5px;
   border-radius: 500px;
   vertical-align: middle;
-  background: #1e87f0;
+  background: ${PRIMARY};
   color: #fff;
   font-size: 13.25px;
   display: inline-flex;

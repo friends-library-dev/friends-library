@@ -46,5 +46,6 @@ module.exports = {
     "arrow-body-style": 0,
     "no-only-tests/no-only-tests": 2,
     "react/no-danger": 0,
+    "import/prefer-default-export": 0,
   }
 }

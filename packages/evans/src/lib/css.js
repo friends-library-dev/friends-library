@@ -1,8 +1,7 @@
 // @flow
 import CleanCSS from 'clean-css';
 import { readFileSync } from 'fs';
-
-const { env: { NODE_ENV } } = process;
+import { NODE_ENV } from 'env';
 
 export function classes(...args: Array<string | Object>): string {
   return args.join(' ');

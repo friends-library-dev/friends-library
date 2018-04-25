@@ -1,11 +1,13 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import { t } from 'c-3po';
 import { sync as glob } from 'glob';
+import { LANG } from 'env';
 import { basename } from 'path';
 import { getFriend } from 'server/helpers';
 
-const pattern = './node_modules/@friends-library/friends/src/en/*.yml';
+const pattern = `./node_modules/@friends-library/friends/src/${LANG}/*.yml`;
 const friends = glob(pattern).map(path => getFriend(basename(path, '.yml')));
 
 const element = css`
@@ -20,7 +22,7 @@ const element = css`
 
 export default () => (
   <div className={element}>
-    <h2>Friends <span>({friends.length})</span></h2>
+    <h2>{t`Friends`} <span>({friends.length})</span></h2>
     <ul>
       {friends.map(friend => (
         <li key={friend.slug}>

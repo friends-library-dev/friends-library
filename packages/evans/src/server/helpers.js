@@ -6,14 +6,13 @@ import { safeLoad } from 'js-yaml';
 import { renderStaticOptimized } from 'glamor/server';
 import { minify, stripDataSelectors, format, appCss } from 'lib/css';
 import { Friend, Document, Edition, friendFromJS } from 'classes';
-
-const { env: { NODE_ENV } } = process;
+import { NODE_ENV, LANG } from 'env';
 
 type Slug = string;
 type Html = string;
 
 export function getFriend(slug: Slug): Friend {
-  const path = `./node_modules/@friends-library/friends/src/en/${slug}.yml`;
+  const path = `./node_modules/@friends-library/friends/src/${LANG}/${slug}.yml`;
   const file = readFileSync(path);
   const data: Object = safeLoad(file);
   return friendFromJS(data);

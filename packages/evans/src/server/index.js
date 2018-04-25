@@ -1,10 +1,12 @@
 import express from 'express';
 import React, { StrictMode } from 'react';
+import { PORT } from 'env';
+import { setLocale } from 'lib/i18n';
 import App from 'components/App';
 import routes from './routes';
 import { wrap } from './helpers';
 
-const { env: { PORT } } = process;
+setLocale();
 
 const app = express();
 

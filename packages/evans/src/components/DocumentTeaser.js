@@ -4,6 +4,7 @@ import { css } from 'glamor';
 import url from 'lib/url';
 import responsiveDocumentTitle from 'lib/responsive';
 import Document from 'classes/Document';
+import { PRIMARY } from './Theme';
 
 const element = css`
   color: #222;
@@ -37,11 +38,13 @@ const title = css`
 
 const link = css`
   padding: 0.75em;
-  background-color: #1e87f0;
-  color: #fff;
+  background-color: ${PRIMARY};
   display: block;
   text-align: center;
   text-decoration: none;
+  && {
+    color: #fff;
+  }
 `;
 
 const meta = css`

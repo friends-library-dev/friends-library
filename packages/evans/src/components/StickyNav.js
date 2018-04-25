@@ -1,9 +1,11 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import { t } from 'c-3po';
+import { PRIMARY } from './Theme';
 
 const element = css`
-  background-color: #1e87f0;
+  background-color: ${PRIMARY};
   color: #fff;
   position: fixed;
   width: 100%;
@@ -21,7 +23,9 @@ const logo = css`
   top: 50%;
   transform: translate3d(-50%, -50%, 0);
   text-decoration: none;
-  color: #fff;
+  && {
+    color: #fff;
+  }
 `;
 
 const hamburger = css`
@@ -39,7 +43,7 @@ export default () => (
       ☰
     </span>
     <a href="/" className={logo}>
-      Friends Library
+      {t`Friends Library`}
     </a>
   </div>
 );

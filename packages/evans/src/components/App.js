@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import { PRIMARY } from './Theme';
 import StickyNav from './StickyNav';
 import Slideover from './Slideover';
 
@@ -8,6 +9,15 @@ type Props = {|
   title: string,
   children: React.Node,
 |};
+
+const app = css`
+  & a {
+    color: ${PRIMARY};
+  }
+  & a:hover {
+    border-bottom-color: ${PRIMARY};
+  }
+`;
 
 const content = css`
   padding-top: 52px;
@@ -21,7 +31,7 @@ const content = css`
 `;
 
 export default ({ title, children }: Props) => (
-  <html lang="en">
+  <html lang="en" className={app}>
     <head>
       <title>{title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
