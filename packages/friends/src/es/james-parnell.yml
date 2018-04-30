@@ -1,0 +1,28 @@
+name: James Parnell
+slug: james-parnell
+description: Se dice que James Parnell (1637-1656) fue “joven, de baja estatura y de apariencia pobre,” no obstante, miles tenían que cofesar que “él hablaba como uno que tenía autoridad, y no como los escribas.” Él fue convencido de la verdad cuando tenía solo catorce años de edad, y se convirtió en un poderoso predicador y promotor del evangelio a los dieciséis. Después de un debate con un sacerdote prominente, Parnell fue arrestado por falsos cargos de ser una “persona ociosa y desordenada,” y encarcelado en el Castillo de Colchester. Allí fue encerrado en un pequeño hueco en la pared del castillo, a cuatro metros del suelo. Murió de enfermedad y maltrato después de diez meses de encarcelamiento, a la temprana edad de diecinueve.
+documents:
+  -
+    title: La Vida de James Parnell
+    slug: vida
+    filename: Vida_de_James_Parnell
+    description: Se dice que James Parnell (1637-1656) fue “joven, de baja estatura y de apariencia pobre,” no obstante, miles tenían que cofesar que “él hablaba como uno que tenía autoridad, y no como los escribas.” Él fue convencido de la verdad cuando tenía solo catorce años de edad, y se convirtió en un poderoso predicador y promotor del evangelio a los dieciséis. Después de un debate con un sacerdote prominente, Parnell fue arrestado por falsos cargos de ser una “persona ociosa y desordenada,” y encarcelado en el Castillo de Colchester. Allí fue encerrado en un pequeño hueco en la pared del castillo, a cuatro metros del suelo. Murió de enfermedad y maltrato después de diez meses de encarcelamiento, a la temprana edad de diecinueve.
+    tags:
+      - exhortation
+    editions:
+      -
+        type: modernized
+        pages: 69
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+
+        chapters:
+          -
+            title: La Vida de James Parnell
+          -
+            title: Apéndice - Acerca del Castillo de Colchester

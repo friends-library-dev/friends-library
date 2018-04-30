@@ -1,0 +1,26 @@
+name: Stephen Crisp
+slug: stephen-crisp
+description: Stephen Crisp (1628-1692) fue otro cuya búsqueda desesperada de la Verdad (que duró veinte largos años) finalmente lo llevó a un conocimiento y experiencia de la gracia y la verdad que están en Jesucristo. Después de haber encontrado la Perla de gran precio, vendió todo para comprarla, y pronto se convirtió en un ministro eminente entre la primitiva Sociedad de los Amigos, trabajando por los siguientes treinta y cinco años en el poder y la sabiduría del Espíritu a lo largo de Inglaterra, Escocia, Holanda y Alemania.
+documents:
+  -
+    title: Un Camino Simple
+    slug: camino-simple
+    filename: Camino_Simple
+    description: Este documento es un tratado corto escrito por Stephen Cristo acerca de la aparición de la luz de Cristo en el corazón, y de la necesidad de que cada creyente lo entregue todo para seguirlo. En palabras de Crisp, fue escrito para responder “todas las dudas y objeciones que se levantan en contra de la aparición de la luz y de la verdad de Cristo internamente; por las cuales muchos han dejado la obediencia, y así la paz de sus almas anhelantes.”
+    tags:
+      - exhortation
+    editions:
+      -
+        type: modernized
+        pages: 19
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+
+        chapters:
+          -
+            title: Un Camino Simple

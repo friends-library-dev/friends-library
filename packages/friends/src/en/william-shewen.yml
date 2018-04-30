@@ -1,0 +1,105 @@
+name: William Shewen
+slug: william-shewen
+description: William Shewen (1631-1695) was a very serviceable man on truth's account in several ways, and an elder in the church, being of a sound judgment and understanding in the truth. He had very clear openings in relation to the work of truth, and also of Satan's wiles to hurt and hinder the progress of it (having had long experience of both), and therefore could advise and direct the Christian traveler how to keep in the one, and be preserved out of the snares of the other.
+documents:
+  -
+    title: Meditations and Experiences
+    slug: meditations-experiences
+    filename: Meditations_and_Experiences
+    description: William Shewen (1631–1695) was an early member of the Society of Friends who lived in London. He does not appear to have been a traveling minister in the society, but was nonetheless a man known for his deep experience and understanding of the work of God in the inner man. This publication, Meditations and Experiences, is a collection of paragraphs and short treatises, penned throughout Shewen's life, describing his own experience of the heart-transforming power of Jesus Christ.
+    tags:
+      - devotional
+      - doctrine
+      - exhortation
+    editions:
+      -
+        type: modernized
+        pages: 131
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: softcover
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 428646291
+              external_id_lq: 428646360
+              filesize_hq: 42144659
+              filesize_lq: 9858444
+              seconds: 2464
+              chapters:
+                - 0
+
+            -
+              title: Part 2
+              external_id_hq: 428647167
+              external_id_lq: 428647311
+              filesize_hq: 52941220
+              filesize_lq: 11378771
+              seconds: 2844
+              chapters:
+                - 1
+
+            -
+              title: Part 3
+              external_id_hq: 431753844
+              external_id_lq: 431753880
+              filesize_hq: 44126569
+              filesize_lq: 9639434
+              seconds: 2410
+              chapters:
+                - 0
+
+            -
+              title: Part 4
+              external_id_hq: 432764763
+              external_id_lq: 432764784
+              filesize_hq: 45171467
+              filesize_lq: 9770882
+              seconds: 2442
+              chapters:
+                - 1
+
+            -
+              title: Part 5
+              external_id_hq: 435148314
+              external_id_lq: 435148326
+              filesize_hq: 27610689
+              filesize_lq: 5781879
+              seconds: 1445
+              chapters:
+                - 0
+
+            -
+              title: Part 6
+              external_id_hq: 436055172
+              external_id_lq: 436055190
+              filesize_hq: 45392364
+              filesize_lq: 9612057
+              seconds: 2403
+              chapters:
+                - 0
+
+
+        chapters:
+          -
+            title: Mediations and Experiences
+          -
+            title: A Treatise Concerning Thoughts and Imaginations
+          -
+            title: Concerning Christian Worship—In What it Stands, and How it is Performed
+          -
+            title: A Few Words Added to the Sensible Reader
+          -
+            title: Concerning the Life, State, and Enjoyment of a True Christian
+          -
+            title: Counsel to the Christian Traveler

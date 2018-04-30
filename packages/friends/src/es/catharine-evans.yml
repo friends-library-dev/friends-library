@@ -1,0 +1,26 @@
+name: Catharine Evans y Sarah Cheevers
+slug: catharine-evans
+description: Catharine Evans (1618-1692) y Sarah Cheevers (1608-1664) fueron ministras primitivas en la Sociedad de los Amigos que embarcaron juntas un viaje misionero, con la intención de ir a Alejandría, Egipto. Después de sufrir varias tormentas, su barco se detuvo en Malta, una isla que entonces estaba bajo control de la Iglesia Católica. Evans y Cheevers fueron arrestadas en la isla por predicar y repartir literatura espiritual, y puestas bajo arresto domiciliario. Después de tres meses, fueron trasladadas a una prisión local donde soportaron casi cuatro años de trato cruel a manos de la Inquisición en un intento por forzar su conversión al catolicismo.
+documents:
+  -
+    title: Los Sufrimientos de Catharine Evans y Sarah Cheevers
+    slug: sufrimientos-de-catharine-evans-sarah-cheevers
+    filename: Sufrimientos_de_Catharine_Evans_Sarah_Cheevers
+    description: Catharine Evans (1618-1692) y Sarah Cheevers (1608-1664) fueron ministras primitivas en la Sociedad de los Amigos que embarcaron juntas un viaje misionero, con la intención de ir a Alejandría, Egipto. Después de sufrir varias tormentas, su barco se detuvo en Malta, una isla que entonces estaba bajo control de la Iglesia Católica. Evans y Cheevers fueron arrestadas en la isla por predicar y repartir literatura espiritual, y puestas bajo arresto domiciliario. Después de tres meses, fueron trasladadas a una prisión local donde soportaron casi cuatro años de trato cruel a manos de la Inquisición en un intento por forzar su conversión al catolicismo.
+    tags:
+      - history
+    editions:
+      -
+        type: modernized
+        pages: 52
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+
+        chapters:
+          -
+            title: Los Sufrimientos de Catharine Evans y Sarah Cheevers
