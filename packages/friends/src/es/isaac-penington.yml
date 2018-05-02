@@ -24,6 +24,145 @@ documents:
             type: epub
           -
             type: mobi
+          -
+            type: audio
+
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Capítulo 1
+              external_id_hq: 437998704
+              filesize_hq: 66285872
+              seconds: 3739
+              chapters:
+                - 1
+            -
+              title: Capítulo 2
+              external_id_hq: 437999625
+              filesize_hq: 99852342
+              seconds: 5742
+              chapters:
+                - 2
+            -
+              title: Capítulo 3
+              external_id_hq: 437999913
+              filesize_hq: 51876065
+              seconds: 3046
+              chapters:
+                - 3
+            -
+              title: Capítulo 4
+              external_id_hq: 438000183
+              filesize_hq: 86568296
+              seconds: 4881
+              chapters:
+                - 4
+            -
+              title: Capítulo 5
+              external_id_hq: 438000381
+              filesize_hq: 78458952
+              seconds: 4565
+              chapters:
+                - 5
+            -
+              title: Capítulo 6
+              external_id_hq: 438000441
+              filesize_hq: 38933660
+              seconds: 2294
+              chapters:
+                - 6
+            -
+              title: Capítulo 7
+              external_id_hq: 438000552
+              filesize_hq: 28783821
+              seconds: 1665
+              chapters:
+                - 7
+            -
+              title: Capítulo 8
+              external_id_hq: 438001485
+              filesize_hq: 48730484
+              seconds: 2885
+              chapters:
+                - 8
+            -
+              title: Capítulo 9
+              external_id_hq: 438004299
+              filesize_hq: 92273502
+              seconds: 5203
+              chapters:
+                - 9
+            -
+              title: Capítulo 10
+              external_id_hq: 438004452
+              filesize_hq: 54231322
+              seconds: 3144
+              chapters:
+                - 10
+            -
+              title: Capítulo 11
+              external_id_hq: 438004596
+              filesize_hq: 57634825
+              seconds: 3406
+              chapters:
+                - 11
+            -
+              title: Capítulo 12
+              external_id_hq: 438005064
+              filesize_hq: 101364327
+              seconds: 5805
+              chapters:
+                - 12
+            -
+              title: Capítulo 13
+              external_id_hq: 438005073
+              filesize_hq: 65531522
+              seconds: 3950
+              chapters:
+                - 13
+            -
+              title: Capítulo 14
+              external_id_hq: 438005421
+              filesize_hq: 63857226
+              seconds: 3845
+              chapters:
+                - 14
+            -
+              title: Capítulo 15
+              external_id_hq: 438005505
+              filesize_hq: 32585223
+              seconds: 1928
+              chapters:
+                - 15
+            -
+              title: Capítulo 16, parte 1
+              external_id_hq: 438005655
+              filesize_hq: 57754510
+              seconds: 3424
+              chapters:
+                - 16
+            -
+              title: Capítulo 16, parte 2
+              external_id_hq: 438005802
+              filesize_hq: 60929571
+              seconds: 3605
+              chapters:
+                - 16
+            -
+              title: Capítulo 16, parte 3
+              external_id_hq: 438006009
+              filesize_hq: 66693528
+              seconds: 3990
+              chapters:
+                - 16
+            -
+              title: Capítulo 16, parte 4
+              external_id_hq: 438006033
+              filesize_hq: 53603265
+              seconds: 3174
+              chapters:
+                - 16
 
         chapters:
           -

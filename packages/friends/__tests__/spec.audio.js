@@ -46,20 +46,26 @@ files.forEach((file) => {
     test('audio parts have external ids', () => {
       audioParts(friend).forEach((part) => {
         expect(typeof part.external_id_hq).toBe('number');
-        expect(typeof part.external_id_lq).toBe('number');
+        if (part.external_id_lq) {
+          expect(typeof part.external_id_lq).toBe('number');
+        }
       });
     });
 
     test('audio parts have filesizes', () => {
       audioParts(friend).forEach((part) => {
         expect(typeof part.filesize_hq).toBe('number');
-        expect(typeof part.filesize_lq).toBe('number');
+        if (part.filesize_lq) {
+          expect(typeof part.filesize_lq).toBe('number');
+        }
       });
     });
 
     test('audio parts hq filesize is larger than lq', () => {
       audioParts(friend).forEach((part) => {
-        expect(part.filesize_hq).toBeGreaterThan(part.filesize_lq);
+        if (part.filesize_lq) {
+          expect(part.filesize_hq).toBeGreaterThan(part.filesize_lq);
+        }
       });
     });
 
