@@ -34,7 +34,7 @@ files.forEach((file) => {
 
     test('has correct friend props', () => {
       const keys = Object.keys(friend);
-      expect(keys).toEqual(['name', 'slug', 'description', 'documents']);
+      expect(keys).toEqual(['name', 'slug', 'gender', 'description', 'documents']);
     });
 
     test('friend props are correct type', () => {
@@ -46,6 +46,10 @@ files.forEach((file) => {
 
     test('friend slug matches filename slug', () => {
       expect(file.name).toBe(`${friend.slug}.yml`);
+    });
+
+    test('friend is male or female', () => {
+      expect(['male', 'female'].includes(friend.gender)).toBe(true);
     });
 
     test('has correct document props', () => {
