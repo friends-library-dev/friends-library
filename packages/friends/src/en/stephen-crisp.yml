@@ -76,3 +76,39 @@ documents:
         chapters:
           -
             title: A Plain Pathway
+
+  -
+    title: A Short History of a Long Travel from Babylon to Bethel
+    slug: babylon-to-bethel
+    filename: Babylon_to_Bethel
+    description: This short allegory, written by Stephen Crisp, is intended to illustrate the perilous journey of the Christian soul from Babylon (the man-made city of religious confusion) to Bethel, the true house of God.
+    tags:
+      - allegory
+    editions:
+      -
+        type: updated
+        pages: 19
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: A Short History of a Long Travel from Babylon to Bethel
+              external_id_hq: 436511247
+              external_id_lq: 436511268
+              filesize_hq: 40841822
+              filesize_lq: 8860985
+              seconds: 2215
+              chapters:
+                - 0
+        chapters:
+          -
+            title: A Short History of a Long Travel from Babylon to Bethel

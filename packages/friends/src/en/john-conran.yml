@@ -1,0 +1,43 @@
+name: John Conran
+slug: john-conran
+gender: male
+description: Until his mid 30's, John Conran (1739-1827) was a faithful and zealous member of the Church of England, but longing for true inward purity and transformation of soul, he attended a meeting of the Society of Friends where he was powerfully confronted by the Spirit of God. Having seen his true condition, and been somewhat awakened to Christ's baptism of the Holy Spirit and fire, he "denied himself, picked up his cross, and followed Christ", and so was made vessel of honor in the Lord's house. His struggles were many and painful, both with the enemies of his own soul, and with the declining condition of the Society of Friends. But John Conran kept the faith, and finished his race as monument to the transforming power of grace.
+documents:
+  -
+    title: The Journal of John Conran
+    slug: journal
+    filename: Journal_of_John_Conran
+    description: Until his mid 30's, John Conran (1739-1827) was a faithful and zealous member of the Church of England, but longing for true inward purity and transformation of soul, he attended a meeting of the Society of Friends where he was powerfully confronted by the Spirit of God. Having seen his true condition, and been somewhat awakened to Christ's baptism of the Holy Spirit and fire, he "denied himself, picked up his cross, and followed Christ", and so was made vessel of honor in the Lord's house. His struggles were many and painful, both with the enemies of his own soul, and with the declining condition of the Society of Friends. But John Conran kept the faith, and finished his race as monument to the transforming power of grace.
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 170
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+
+        chapters:
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            title: The Testimony of the Monthly Meeting of Lisburn Concerning John Conran

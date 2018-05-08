@@ -1,0 +1,41 @@
+name: John Crook
+slug: john-crook
+gender: male
+description: Like many other early Quakers, John Crook (1617-1699) was a seeker of truth from his earliest days. He was educated in London, and for a time held the office of Justice of the Peace in Bedfordshire, but when he was convinced of the truth in 1654 by the preaching of William Dewsbury, he soon lost both his public office and his freedom. In all, John Crook was imprisoned ten times for his faith, and suffered greatly at "the hands of unreasonable men."
+documents:
+  -
+    title: Life of John Crook
+    slug: life
+    filename: Life_of_John_Crook
+    description: In this document, John Crook relates his early searching after God, his convincement of and growth in the truth, and some of his ministerial labors in the early Society of Friends. A fuller collection of his writings and letters can be found in the Friends Library, vol. 13.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 27
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+          -
+            type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: The Life of John Crook
+              external_id_hq: 279389047
+              external_id_lq: 279389077
+              filesize_hq: 59009075
+              filesize_lq: 19747590
+              seconds: 3291
+              chapters:
+                - 0
+
+        chapters:
+          -
+            title: The Life of John Crook

@@ -1,10 +1,10 @@
 name: George Fox
 slug: george-fox
 gender: male
-description: George Fox (1624-1691) is generally considered the founder of the Society of Friends (Quakers). As a young man, Fox could find no rest in the lifeless, outward Christianity of his day, seeing that most believers professed far more than they actually possessed. This journal tells the story of his desperate search for truth, his discovery of a Christianity that stands in the life and light of Jesus Christ, and the ensuing fifty years of powerful ministry that turned the world upside down
+description: George Fox (1624-1691) is generally considered the founder of the Society of Friends (Quakers). As a young man, Fox could find no rest in the lifeless, outward Christianity of his day, seeing that most believers professed far more than they actually possessed. This journal tells the story of his desperate search for truth, his discovery of a Christianity that stands in the life and light of Jesus Christ, and the ensuing fifty years of powerful ministry that turned the world upside down. There are two unabridged editions of Fox's journal on this site. One is Wilson Armistead's 1852 edition, which is divided into chapters and has many interesting and valuable footnotes. The other is a recent edition which has been more modernized in spelling and language.
 documents:
   -
-    title: The Journal and Writings of Ambrose Rigge
+    title: The Journal of George Fox
     slug: journal
     filename: Journal_of_George_Fox
     description: This is George Fox's unabridged, two-volume journal. It is extremely long, and perhaps too exhaustive for some readers. But we highly recommend that you at least read the account of his early years, his call to the ministry, and the birth of the Society of Friends.
@@ -12,6 +12,23 @@ documents:
       - journal
       - letters
     editions:
+      -
+        type: original
+        pages: 1197
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            number: 1
+            subtitle: Volume 1
+          -
+            number: 2
+            subtitle: Volume 2
       -
         type: updated
         pages: 1197
