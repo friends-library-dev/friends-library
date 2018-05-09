@@ -10,6 +10,55 @@ msgstr ""
 msgid "Friends Library"
 msgstr "La Biblioteca de los Amigos"
 
-#: src/components/HomePage.js:25
+#: src/components/HomePage.js:26
 msgid "Friends"
 msgstr "Amigos"
+
+#: src/components/FriendPage.js:43
+msgid "Documents"
+msgstr "Documentos"
+
+#: src/components/DocumentTeaser.js:99
+msgid "View Document"
+msgstr "Ver documento"
+
+#: src/components/DocumentPage.js:22
+#: src/components/SoftcoverPage.js:32
+msgid "by"
+msgstr "por"
+
+#: src/components/DocumentTeaser.js:80
+msgid "Audio Available"
+msgstr "Audio disponible"
+
+#: src/components/DocumentTeaser.js:86
+msgid "Modern Available"
+msgstr "Moderno disponible"
+
+#: src/components/DocumentTeaser.js:91
+msgid "Pages"
+msgstr "Páginas"
+
+#: src/components/Edition.js:32
+msgid "edition"
+msgstr "edición"
+
+#: src/components/Edition.js:38
+msgid "Formats"
+msgstr "Formatos"
+
+#: src/components/SoftcoverPage.js:30
+msgid "Order paperback"
+msgstr "Orden de bolsillo"
+
+#: src/classes/Edition.js:43
+msgid "modernized"
+msgstr "modernizado"
+
+#: src/classes/Edition.js:45
+msgid "updated"
+msgstr "actualizado"
+
+#: src/classes/Edition.js:47
+msgid "original"
+msgstr "original"

@@ -1,4 +1,6 @@
 // @flow
+import { t } from 'c-3po';
+import { LANG } from 'env';
 import Format from './Format';
 import Chapter from './Chapter';
 import Document from './Document';
@@ -29,6 +31,21 @@ export default class Edition {
     this.chapters = chapters;
     this.description = description;
     this.audio = audio;
+  }
+
+  localizedType(): string {
+    if (LANG === 'en') {
+      return this.type;
+    }
+
+    switch (this.type) {
+      case 'modernized':
+        return t`modernized`;
+      case 'updated':
+        return t`updated`;
+      default:
+        return t`original`;
+    }
   }
 
   toJSON(): Edition {

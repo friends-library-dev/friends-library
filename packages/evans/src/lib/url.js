@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable no-use-before-define */
-import { API_URL } from 'env';
+import { API_URL, LANG } from 'env';
 import Friend from 'classes/Friend';
 import Document from 'classes/Document';
 import Edition from 'classes/Edition';
@@ -21,7 +21,11 @@ function formatUrl(format: Format): string {
 
 function url(entity: Entity): string {
   if (entity instanceof Friend) {
-    return `/friend/${entity.slug}`;
+    if (LANG === 'en') {
+      return `/friend/${entity.slug}`;
+    }
+    const amigo = entity.isMale() ? 'amigo' : 'amiga';
+    return `/${amigo}/${entity.slug}`;
   }
 
   if (entity instanceof Document) {

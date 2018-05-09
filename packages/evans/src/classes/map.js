@@ -12,6 +12,7 @@ export default function friendFromJS(js: Object): Friend {
   const friend = new Friend(
     js.name,
     js.slug,
+    js.gender,
     js.description,
     (js.documents || []).map(document => new Document(
       document.title,

@@ -11,6 +11,7 @@ describe('url()', () => {
   beforeEach(() => {
     friend = new Friend();
     friend.slug = 'rebecca-jones';
+    friend.gender = 'female';
     document = new Document();
     document.slug = 'diary';
     document.filename = 'Diary';

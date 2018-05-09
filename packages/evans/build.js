@@ -2,13 +2,11 @@ import * as React from 'react';
 import fs from 'fs-extra';
 import { basename } from 'path';
 import { sync as glob } from 'glob';
+import { t } from 'c-3po';
 import { LANG } from 'env';
 import { wrap, getFriend } from 'server/helpers';
 import routes from 'server/routes';
 import App from 'components/App';
-import { setLocale } from 'lib/i18n';
-
-setLocale();
 
 function generateRoute(props, children, path) {
   const html = wrap(<App {...props}>{children}</App>);
@@ -31,12 +29,16 @@ Object.keys(routes).map(route => {
 const friends = glob(`./node_modules/@friends-library/friends/src/${LANG}/*.yml`);
 friends.forEach(friendPath => {
   const slug = basename(friendPath, '.yml');
+  const friend = getFriend(slug);
   const req = { params: { slug } };
   const { props, children } = routes['/friend/:slug'](req);
-  const path = `friend/${slug}`;
+  let path = `friend/${slug}`;
+  if (LANG === 'es') {
+    path = friend.isMale() ? `/amigo/${slug}` : `/amiga/${slug}`;
+  }
+
   generateRoute(props, children, path);
 
-  const friend = getFriend(slug);
   friend.documents.forEach(document => {
     const req = { params: { friendSlug: slug, docSlug: document.slug } };
     const { props, children } = routes['/:friendSlug/:docSlug'](req);

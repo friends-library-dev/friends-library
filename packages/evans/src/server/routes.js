@@ -1,11 +1,14 @@
 // @flow
 import * as React from 'react';
+import { setLocale } from 'lib/i18n';
 import FriendPage from 'components/FriendPage';
 import DocumentPage from 'components/DocumentPage';
 import SoftcoverPage from 'components/SoftcoverPage';
 import AudioPage from 'components/AudioPage';
 import HomePage from 'components/HomePage';
 import { getFriend, query } from './helpers';
+
+setLocale();
 
 type RouteSpec = {|
   props: {
@@ -14,7 +17,19 @@ type RouteSpec = {|
   children: React.Node,
 |};
 
-export default {
+const renderFriendPage = (req: express$Request): RouteSpec => {
+  const { params: { slug } } = req;
+  const friend = getFriend(slug);
+
+  return {
+    props: {
+      title: friend.name,
+    },
+    children: <FriendPage friend={friend} />,
+  };
+};
+
+const routes: { [string]: (req: express$Request) => RouteSpec } = {
   '/': (): RouteSpec => ({
     props: {
       title: 'Home',
@@ -22,17 +37,9 @@ export default {
     children: <HomePage />,
   }),
 
-  '/friend/:slug': (req: express$Request): RouteSpec => {
-    const { params: { slug } } = req;
-    const friend = getFriend(slug);
-
-    return {
-      props: {
-        title: friend.name,
-      },
-      children: <FriendPage friend={friend} />,
-    };
-  },
+  '/friend/:slug': renderFriendPage,
+  '/amigo/:slug': renderFriendPage,
+  '/amiga/:slug': renderFriendPage,
 
   '/:friendSlug/:docSlug': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug } } = req;
@@ -70,3 +77,5 @@ export default {
     };
   },
 };
+
+export default routes;

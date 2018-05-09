@@ -19,4 +19,18 @@ describe('Friend', () => {
       expect(json.documents[0].friend).toBeUndefined();
     });
   });
+
+  describe('isMale()', () => {
+    it('returns true if gender is male', () => {
+      friend.gender = 'male';
+
+      expect(friend.isMale()).toBe(true);
+    });
+
+    it('returns false if gender is female', () => {
+      friend.gender = 'female';
+
+      expect(friend.isMale()).toBe(false);
+    });
+  });
 });

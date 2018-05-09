@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import { t } from 'c-3po';
 import url from 'lib/url';
 import { classes } from 'lib/css';
 import { Edition as EditionClass } from 'classes';
@@ -28,13 +29,13 @@ const Edition = ({ edition }: Props) => {
   return (
     <section>
       <h1 className={classes(title, h2)}>
-        {edition.type} edition:
+        {edition.localizedType()} {t`edition`}:
       </h1>
       <p
         className={desc}
         dangerouslySetInnerHTML={{ __html: description }}
       />
-      <h2 className={h3}>Formats:</h2>
+      <h2 className={h3}>{t`Formats`}:</h2>
       <ul>
         {edition.formats.map(format => (
           <li key={format.type}>

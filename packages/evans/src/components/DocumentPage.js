@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import url from 'lib/url';
+import { t } from 'c-3po';
 import { Document } from 'classes';
 import Divider from './Divider';
 import Edition from './Edition';
@@ -18,7 +19,7 @@ const DocumentPage = ({ document }: Props) => {
       <div>
         <PageTitle>{document.title}</PageTitle>
         <ByLine>
-          by <a href={url(friend)}>{friend.name}</a>
+          {t`by`} <a href={url(friend)}>{friend.name}</a>
         </ByLine>
         <p>{document.description}</p>
       </div>

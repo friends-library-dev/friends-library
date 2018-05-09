@@ -5,6 +5,7 @@ import { t } from 'c-3po';
 import { sync as glob } from 'glob';
 import { LANG } from 'env';
 import { basename } from 'path';
+import url from 'lib/url';
 import { getFriend } from 'server/helpers';
 
 const pattern = `./node_modules/@friends-library/friends/src/${LANG}/*.yml`;
@@ -26,7 +27,7 @@ export default () => (
     <ul>
       {friends.map(friend => (
         <li key={friend.slug}>
-          <a href={`/friend/${friend.slug}`}>
+          <a href={url(friend)}>
             {friend.name}
           </a>
         </li>

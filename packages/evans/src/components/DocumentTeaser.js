@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { t } from 'c-3po';
 import { css } from 'glamor';
 import url from 'lib/url';
 import responsiveDocumentTitle from 'lib/responsive';
@@ -76,18 +77,18 @@ const DocumentTeaser = (props: Props) => {
         {document.hasAudio() &&
           <li>
             <i className="fa fa-headphones" />
-              Audio Available
+              {t`Audio Available`}
           </li>
         }
         {document.hasModernizedEdition() &&
           <li>
             <i className="fa fa-rocket" />
-              Modern Available
+              {t`Modern Available`}
           </li>
         }
         <li>
           <i className="fa fa-clock-o" />
-          {document.shortestEdition().pages} Pages
+          {document.shortestEdition().pages} {t`Pages`}
         </li>
         <li>
           <i className="fa fa-tags" />
@@ -95,7 +96,7 @@ const DocumentTeaser = (props: Props) => {
         </li>
       </ul>
       <a className={link} href={url(document)}>
-        View Document &rarr;
+        {t`View Document`} &rarr;
       </a>
     </div>
   );

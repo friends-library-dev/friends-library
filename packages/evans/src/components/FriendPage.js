@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { t } from 'c-3po';
 import { css } from 'glamor';
 import { Friend } from 'classes';
 import { classes } from 'lib/css';
@@ -39,7 +40,7 @@ const FriendPage = ({ friend }: Props) => {
       <Divider />
       <section>
         <h2 className={classes(docs, h2)}>
-          Documents:
+          {t`Documents`}:
           <Badge>{documents.length}</Badge>
         </h2>
         {documents.map(d => <DocumentTeaser key={d.slug} document={d} />)}
