@@ -180,6 +180,11 @@ class Path
         return $this->filename . '.' . $this->extension;
     }
 
+    /**
+     * Set the basename
+     *
+     * @param string $basename
+     */
     public function setBasename(string $basename): void
     {
         $this->extension = pathinfo($basename, PATHINFO_EXTENSION);
