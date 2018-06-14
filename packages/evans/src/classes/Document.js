@@ -41,9 +41,9 @@ export default class Document {
     }, false);
   }
 
-  hasModernizedEdition(): boolean {
-    return this.editions.reduce((hasModern, edition) => {
-      return hasModern || edition.type === 'modernized';
+  hasUpdatedEdition(): boolean {
+    return this.editions.reduce((hasUpdated, edition) => {
+      return hasUpdated || edition.type === 'updated';
     }, false);
   }
 

@@ -31,10 +31,6 @@ msgstr "por"
 msgid "Audio Available"
 msgstr "Audio disponible"
 
-#: src/components/DocumentTeaser.js:86
-msgid "Modern Available"
-msgstr "Moderno disponible"
-
 #: src/components/DocumentTeaser.js:91
 msgid "Pages"
 msgstr "Páginas"
@@ -62,3 +58,7 @@ msgstr "actualizado"
 #: src/classes/Edition.js:47
 msgid "original"
 msgstr "original"
+
+#: src/components/DocumentTeaser.js:86
+msgid "Updated Available"
+msgstr "Actualizado disponible"

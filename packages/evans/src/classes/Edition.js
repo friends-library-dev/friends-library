@@ -6,7 +6,7 @@ import Chapter from './Chapter';
 import Document from './Document';
 import Audio from './Audio';
 
-type EditionType = 'original' | 'updated' | 'modernized';
+type EditionType = 'original' | 'modernized' | 'updated';
 
 export default class Edition {
   type: EditionType = 'original';
@@ -39,10 +39,10 @@ export default class Edition {
     }
 
     switch (this.type) {
-      case 'modernized':
-        return t`modernized`;
       case 'updated':
         return t`updated`;
+      case 'modernized':
+        return t`modernized`;
       default:
         return t`original`;
     }

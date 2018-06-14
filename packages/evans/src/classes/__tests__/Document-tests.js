@@ -50,26 +50,26 @@ describe('Document', () => {
     });
   });
 
-  describe('hasModernizedEdition()', () => {
-    it('returns false if document has no modernized edition', () => {
+  describe('hasUpdatedEdition()', () => {
+    it('returns false if document has no updated edition', () => {
       document.editions = [
         new Edition('original'),
-        new Edition('updated'),
+        new Edition('modernized'),
       ];
 
-      const result = document.hasModernizedEdition();
+      const result = document.hasUpdatedEdition();
 
       expect(result).toBe(false);
     });
 
-    it('returns true if document has modernized edition', () => {
+    it('returns true if document has updated edition', () => {
       document.editions = [
         new Edition('original'),
-        new Edition('updated'),
         new Edition('modernized'),
+        new Edition('updated'),
       ];
 
-      const result = document.hasModernizedEdition();
+      const result = document.hasUpdatedEdition();
 
       expect(result).toBe(true);
     });

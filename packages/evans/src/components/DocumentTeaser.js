@@ -80,10 +80,10 @@ const DocumentTeaser = (props: Props) => {
               {t`Audio Available`}
           </li>
         }
-        {document.hasModernizedEdition() &&
+        {document.hasUpdatedEdition() &&
           <li>
             <i className="fa fa-rocket" />
-              {t`Modern Available`}
+              {t`Updated Available`}
           </li>
         }
         <li>

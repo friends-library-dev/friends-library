@@ -25,7 +25,7 @@
     "po:update": "yarn c-3po update es.po src"
   },
   "dependencies": {
-    "@friends-library/friends": "git://github.com/friends-library/friends.git#083369b92a38a1ea11645b535a06dc284004c718",
+    "@friends-library/friends": "git://github.com/friends-library/friends.git#898d0535cd1c5015a317728265d0bd04709df829",
     "c-3po": "^0.8.0",
     "clean-css": "^4.1.9",
     "express": "^4.16.2",
