@@ -12,7 +12,7 @@ documents:
       - journal
     editions:
       -
-        type: modernized
+        type: updated
         pages: 26
         formats:
           -
@@ -50,7 +50,7 @@ documents:
       - journal
     editions:
       -
-        type: updated
+        type: modernized
         pages: 289
         formats:
           -
@@ -91,7 +91,7 @@ documents:
       - treatise
     editions:
       -
-        type: modernized
+        type: updated
         pages: 75
         formats:
           -

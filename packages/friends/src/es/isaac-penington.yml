@@ -14,7 +14,7 @@ documents:
       - letters
     editions:
       -
-        type: modernized
+        type: updated
         pages: 391
         formats:
           -
@@ -228,7 +228,7 @@ documents:
       - letters
     editions:
       -
-        type: modernized
+        type: updated
         pages: 391
         formats:
           -

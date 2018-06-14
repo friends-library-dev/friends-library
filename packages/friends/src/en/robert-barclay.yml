@@ -12,7 +12,7 @@ documents:
       - doctrinal
     editions:
       -
-        type: modernized
+        type: updated
         pages: 54
         formats:
           -
@@ -59,7 +59,7 @@ documents:
       - doctrinal
     editions:
       -
-        type: modernized
+        type: updated
         pages: 124
         formats:
           -
@@ -161,7 +161,7 @@ documents:
       - doctrinal
     editions:
       -
-        type: updated
+        type: modernized
         pages: 557
         formats:
           -
@@ -231,7 +231,7 @@ documents:
       - doctrinal
     editions:
       -
-        type: modernized
+        type: updated
         pages: 4
         formats:
           -
