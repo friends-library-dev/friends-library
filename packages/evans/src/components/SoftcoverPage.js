@@ -9,6 +9,7 @@ import url from 'lib/url';
 import PageTitle from './PageTitle';
 import ByLine from './ByLine';
 import Divider from './Divider';
+import Block from './Block';
 
 const address = css`
   margin-left: 1em;
@@ -26,7 +27,7 @@ type Props = {|
 |};
 
 export default ({ document }: Props) => (
-  <div>
+  <Block>
     <PageTitle>{t`Order paperback`}: {document.title}</PageTitle>
     <ByLine>
       {t`by`} <a href={url(document.friend)}>{document.friend.name}</a>
@@ -76,5 +77,5 @@ export default ({ document }: Props) => (
         </p>
       </React.Fragment>
     )}
-  </div>
+  </Block>
 );

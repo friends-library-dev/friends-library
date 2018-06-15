@@ -1,14 +1,11 @@
 // @flow
 import * as React from 'react';
+import HeroBlock from './HeroBlock';
 import TempBlock from './TempBlock';
 
 export default () => (
   <div>
-    <TempBlock
-      title="Hero/Intro Block"
-      bgColor="#444"
-      fontColor="#fff"
-    />
+    <HeroBlock />
     <TempBlock
       title="Featured Books"
       bgColor="#ccc"

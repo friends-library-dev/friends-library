@@ -6,15 +6,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/components/StickyNav.js:46
-msgid "Friends Library"
-msgstr "La Biblioteca de los Amigos"
-
-#: src/components/HomePage.js:26
+#: src/components/Slideover.js:37
 msgid "Friends"
 msgstr "Amigos"
 
-#: src/components/FriendPage.js:43
+#: src/components/FriendPage.js:44
 msgid "Documents"
 msgstr "Documentos"
 
@@ -22,8 +18,8 @@ msgstr "Documentos"
 msgid "View Document"
 msgstr "Ver documento"
 
-#: src/components/DocumentPage.js:22
-#: src/components/SoftcoverPage.js:32
+#: src/components/DocumentPage.js:23
+#: src/components/SoftcoverPage.js:33
 msgid "by"
 msgstr "por"
 
@@ -43,15 +39,15 @@ msgstr "edición"
 msgid "Formats"
 msgstr "Formatos"
 
-#: src/components/SoftcoverPage.js:30
+#: src/components/SoftcoverPage.js:31
 msgid "Order paperback"
 msgstr "Orden de bolsillo"
 
-#: src/classes/Edition.js:43
+#: src/classes/Edition.js:45
 msgid "modernized"
 msgstr "modernizado"
 
-#: src/classes/Edition.js:45
+#: src/classes/Edition.js:43
 msgid "updated"
 msgstr "actualizado"
 
@@ -62,3 +58,7 @@ msgstr "original"
 #: src/components/DocumentTeaser.js:86
 msgid "Updated Available"
 msgstr "Actualizado disponible"
+
+#: src/components/StickyNav.js:46
+msgid "The Friends Library"
+msgstr "La Biblioteca de los Amigos"

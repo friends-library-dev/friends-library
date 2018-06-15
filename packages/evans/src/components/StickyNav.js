@@ -43,7 +43,7 @@ export default () => (
       ☰
     </span>
     <a href="/" className={logo}>
-      {t`Friends Library`}
+      {t`The Friends Library`}
     </a>
   </div>
 );
