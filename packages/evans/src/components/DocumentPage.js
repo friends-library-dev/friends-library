@@ -7,6 +7,7 @@ import Divider from './Divider';
 import Edition from './Edition';
 import PageTitle from './PageTitle';
 import ByLine from './ByLine';
+import Block from './Block';
 
 type Props = {
   document: Document,
@@ -15,7 +16,7 @@ type Props = {
 const DocumentPage = ({ document }: Props) => {
   const { friend } = document;
   return (
-    <div>
+    <Block>
       <div>
         <PageTitle>{document.title}</PageTitle>
         <ByLine>
@@ -27,7 +28,7 @@ const DocumentPage = ({ document }: Props) => {
       <div>
         {document.editions.map(e => <Edition key={e.type} edition={e} />)}
       </div>
-    </div>
+    </Block>
   );
 };
 

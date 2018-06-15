@@ -6,6 +6,7 @@ import Divider from './Divider';
 import EmbeddedAudio from './EmbeddedAudio';
 import PageTitle from './PageTitle';
 import ByLine from './ByLine';
+import Block from './Block';
 
 type Props = {|
   document: Document,
@@ -16,7 +17,7 @@ export default ({ document, edition }: Props) => {
   const audio: Audio = edition.audio || new Audio();
 
   return (
-    <div>
+    <Block>
       <div>
         <PageTitle>{document.title} (audio)</PageTitle>
         <ByLine>
@@ -35,6 +36,6 @@ export default ({ document, edition }: Props) => {
           <EmbeddedAudio id={part.externalIdHq} title={part.title} />
         </div>
       ))}
-    </div>
+    </Block>
   );
 };

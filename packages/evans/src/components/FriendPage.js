@@ -8,6 +8,7 @@ import Divider from './Divider';
 import Badge from './Badge';
 import DocumentTeaser from './DocumentTeaser';
 import { h1, h2 } from './Typography';
+import Block from './Block';
 
 const title = css`
   margin: 10px 0 25px;
@@ -30,7 +31,7 @@ const FriendPage = ({ friend }: Props) => {
 
   const { documents } = friend;
   return (
-    <div>
+    <Block>
       <section>
         <h1 className={classes(title, h1)}>{friend.name}</h1>
         <p>
@@ -45,7 +46,7 @@ const FriendPage = ({ friend }: Props) => {
         </h2>
         {documents.map(d => <DocumentTeaser key={d.slug} document={d} />)}
       </section>
-    </div>
+    </Block>
   );
 };
 
