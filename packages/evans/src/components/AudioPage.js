@@ -24,9 +24,7 @@ export default ({ document, edition }: Props) => {
           by <a href={url(document.friend)}>{document.friend.name}</a>
         </ByLine>
         <p>
-          {/* eslint-disable max-len */}
           This is the audio version of {document.friend.name}&apos;s <a href={url(document)}>{document.title}</a>, read by {audio.reader}. For other formats besides audio, <a href={url(document)}>click here</a>.
-          {/* eslint-enable max-len */}
         </p>
       </div>
       <Divider />

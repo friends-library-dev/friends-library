@@ -4,18 +4,17 @@ import { css } from 'glamor';
 import Block from './Block';
 
 type Props = {|
-  title: string,
-  blurb?: string,
-  fontColor?: string,
-  bgColor?: string,
+  alt?: boolean,
+  children: React.Node,
 |};
 
-const TempBlock = ({
-  title, blurb, fontColor, bgColor,
-}: Props) => {
+const TempBlock = ({ children, alt }: Props) => {
   const element = css`
-    color: ${fontColor};
-    background-color: ${bgColor};
+    background-color: ${alt ? '#ddd' : '#fff'};
+
+    > h1 {
+      margin-top: 0.3em;
+    }
 
     > p {
       margin: 0 0 10px;
@@ -24,16 +23,13 @@ const TempBlock = ({
 
   return (
     <Block className={element}>
-      <h1>{title}</h1>
-      {blurb && <p>{blurb}</p>}
+      {children}
     </Block>
   );
 };
 
 TempBlock.defaultProps = {
-  blurb: '',
-  fontColor: '#666',
-  bgColor: '#fff',
+  alt: false,
 };
 
 export default TempBlock;

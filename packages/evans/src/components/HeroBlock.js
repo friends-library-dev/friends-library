@@ -47,9 +47,7 @@ export default () => (
     </h1>
 
     <p>
-      {/* eslint-disable max-len */}
       This website exists to freely share the writings of early members of the Religious Society of Friends (Quakers) in digital, audio, and printed formats, believing them to contain a powerful testimony to the purity and simplicity of primitive, biblical Christianity.
-      {/* eslint-enable max-len */}
     </p>
   </Block>
 );

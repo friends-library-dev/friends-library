@@ -37,6 +37,8 @@ module.exports = {
     fetch: true,
   },
   rules: {
+    "max-len": 0,
+    "react/no-unescaped-entities": 0,
     "react/jsx-filename-extension": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/click-events-have-key-events": 0,

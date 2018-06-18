@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable max-len */
 import * as React from 'react';
 import { css } from 'glamor';
 import { t } from 'c-3po';
