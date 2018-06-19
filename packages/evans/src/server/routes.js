@@ -6,6 +6,22 @@ import DocumentPage from 'components/DocumentPage';
 import SoftcoverPage from 'components/SoftcoverPage';
 import AudioPage from 'components/AudioPage';
 import HomePage from 'components/HomePage';
+import {
+  AboutPage,
+  ModernizationPage,
+  QuakersPage,
+  AudioHelpPage,
+  EbookHelpPage,
+  EditionsPage,
+  ContactPage,
+} from 'components/static';
+import {
+  FriendsPage,
+  AudiobooksPage,
+  PaperbacksPage,
+  GettingStartedPage,
+  ExplorePage,
+} from 'components/feature';
 import { getFriend, query } from './helpers';
 
 setLocale();
@@ -74,6 +90,114 @@ const routes: { [string]: (req: express$Request) => RouteSpec } = {
         title: `Softcover: ${document.title}`,
       },
       children: <SoftcoverPage document={document} />,
+    };
+  },
+
+  '/about': (): RouteSpec => {
+    return {
+      props: {
+        title: 'About the Friends Library',
+      },
+      children: <AboutPage />,
+    };
+  },
+
+  '/modernization': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Information about modernization',
+      },
+      children: <ModernizationPage />,
+    };
+  },
+
+  '/friends': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Friends',
+      },
+      children: <FriendsPage />,
+    };
+  },
+
+  '/quakers': (): RouteSpec => {
+    return {
+      props: {
+        title: 'About Quakers',
+      },
+      children: <QuakersPage />,
+    };
+  },
+
+  '/audio-help': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Audio Help',
+      },
+      children: <AudioHelpPage />,
+    };
+  },
+
+  '/ebook-help': (): RouteSpec => {
+    return {
+      props: {
+        title: 'E-book Help',
+      },
+      children: <EbookHelpPage />,
+    };
+  },
+
+  '/editions': (): RouteSpec => {
+    return {
+      props: {
+        title: 'About book editions',
+      },
+      children: <EditionsPage />,
+    };
+  },
+
+  '/contact': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Contact Us',
+      },
+      children: <ContactPage />,
+    };
+  },
+
+  '/audiobooks': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Audiobooks',
+      },
+      children: <AudiobooksPage />,
+    };
+  },
+
+  '/paperbacks': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Paperbacks',
+      },
+      children: <PaperbacksPage />,
+    };
+  },
+
+  '/getting-started': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Getting Started',
+      },
+      children: <GettingStartedPage />,
+    };
+  },
+
+  '/explore': (): RouteSpec => {
+    return {
+      props: {
+        title: 'Explore Books',
+      },
+      children: <ExplorePage />,
     };
   },
 };

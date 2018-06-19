@@ -7,6 +7,8 @@ import { renderStaticOptimized } from 'glamor/server';
 import { minify, stripDataSelectors, format, appCss } from 'lib/css';
 import { Friend, Document, Edition, friendFromJS } from 'classes';
 import { NODE_ENV, LANG } from 'env';
+import { basename } from 'path';
+import { sync as glob } from 'glob';
 
 type Slug = string;
 type Html = string;
@@ -16,6 +18,11 @@ export function getFriend(slug: Slug): Friend {
   const file = readFileSync(path);
   const data: Object = safeLoad(file);
   return friendFromJS(data);
+}
+
+export function getAllFriends(): Array<Friend> {
+  const pattern = `./node_modules/@friends-library/friends/src/${LANG}/*.yml`;
+  return glob(pattern).map(path => getFriend(basename(path, '.yml')));
 }
 
 export function query(

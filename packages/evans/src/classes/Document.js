@@ -34,8 +34,8 @@ export default class Document {
   }
 
   hasAudio(): boolean {
-    return this.editions.reduce((hasAudio, edition) => {
-      return hasAudio || edition.formats.reduce((editionHasAudio, format) => {
+    return this.editions.reduce((docHasAudio, edition) => {
+      return docHasAudio || edition.formats.reduce((editionHasAudio, format) => {
         return editionHasAudio || format.type === 'audio';
       }, false);
     }, false);

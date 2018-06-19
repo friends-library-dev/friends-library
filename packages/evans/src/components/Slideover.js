@@ -1,12 +1,6 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import { sync as glob } from 'glob';
-import { getFriend } from 'server/helpers';
-import url from 'lib/url';
-import { LANG } from 'env';
-import { basename } from 'path';
-import { t } from 'c-3po';
 
 const element = css`
   background: #eaeaea;
@@ -20,29 +14,54 @@ const element = css`
   position: fixed;
   display: none;
 
-  & > h2 {
-    margin-top: 0;
-  }
-
-  & > h2 > span {
-    font-size: 55%;
+  & > ul {
+    margin: 0;
+    padding-left: 1.5em;
   }
 `;
 
-const pattern = `./node_modules/@friends-library/friends/src/${LANG}/*.yml`;
-const friends = glob(pattern).map(path => getFriend(basename(path, '.yml')));
-
 export default () => (
   <div id="Slideover" className={element}>
-    <h2>{t`Friends`} <span>({friends.length})</span></h2>
     <ul>
-      {friends.map(friend => (
-        <li key={friend.slug}>
-          <a href={url(friend)}>
-            {friend.name}
-          </a>
-        </li>
-      ))}
+      <li>
+        <a href="/">Home</a>
+      </li>
+      <li>
+        <a href="/getting-started">Getting started</a>
+      </li>
+      <li>
+        <a href="/explore">Explore books</a>
+      </li>
+      <li>
+        <a href="/audiobooks">Audiobooks</a>
+      </li>
+      <li>
+        <a href="/paperbacks">Paperpacks</a>
+      </li>
+      <li>
+        <a href="/friends">All Friends</a>
+      </li>
+      <li>
+        <a href="/quakers">About the Quakers</a>
+      </li>
+      <li>
+        <a href="/modernization">About modernization</a>
+      </li>
+      <li>
+        <a href="/editions">About book editions</a>
+      </li>
+      <li>
+        <a href="/about">About this site</a>
+      </li>
+      <li>
+        <a href="/audio-help">Audio help</a>
+      </li>
+      <li>
+        <a href="/ebook-help">E-book help</a>
+      </li>
+      <li>
+        <a href="/contact">Contact us</a>
+      </li>
     </ul>
   </div>
 );
