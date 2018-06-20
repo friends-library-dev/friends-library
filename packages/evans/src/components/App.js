@@ -1,9 +1,10 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
+import StickyNav from 'components/StickyNav';
+import Slideover from 'components/Slideover';
+import Footer from 'components/Footer';
 import { PRIMARY } from './Theme';
-import StickyNav from './StickyNav';
-import Slideover from './Slideover';
 
 type Props = {|
   title: string,
@@ -38,6 +39,7 @@ export default ({ title, children }: Props) => (
       <StickyNav />
       <div id="App__Content" className={content}>
         {children}
+        <Footer />
       </div>
       <script async src="/js/bundle.js" />
     </body>

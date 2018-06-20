@@ -1,10 +1,9 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import HeroBlock from './HeroBlock';
-import TempBlock from './TempBlock';
-import Footer from './Footer';
-import Button from './Button';
+import HeroBlock from 'components/HeroBlock';
+import TempBlock from 'components/TempBlock';
+import Button from 'components/Button';
 
 const featured = css`
   background: #eaeaea;
@@ -27,7 +26,7 @@ const featured = css`
 `;
 
 export default () => (
-  <div>
+  <React.Fragment>
     <HeroBlock />
     <TempBlock alt>
       <h1>Featured Books</h1>
@@ -64,6 +63,5 @@ export default () => (
       <p>We currently have 113 books freely availble on this site. We'll help you find what you're looking for by searching, browsing authors, topics, genres, and more.</p>
       <Button url="/explore" text="Explore Books &raquo;" />
     </TempBlock>
-    <Footer />
-  </div>
+  </React.Fragment>
 );

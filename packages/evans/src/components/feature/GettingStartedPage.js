@@ -3,7 +3,6 @@ import * as React from 'react';
 import { css } from 'glamor';
 import Block from 'components/Block';
 import PageTitle from 'components/PageTitle';
-import Footer from 'components/Footer';
 import Divider from 'components/Divider';
 import EmbeddedAudio from 'components/EmbeddedAudio';
 
@@ -27,108 +26,105 @@ const featured = css`
 `;
 
 export default () => (
-  <React.Fragment>
-    <Block>
-      <PageTitle>Getting Started</PageTitle>
+  <Block>
+    <PageTitle>Getting Started</PageTitle>
 
-      <p><i>[This page will have the carefully thought-through, curated paths for new people to use in exploring the books on the site. This is probably a page that we will want to iterate on extensively and keep honing for quite a while. It might also be one that is in a continual state of slow change as new documents are added and we get more experience recommending books to new folks. The book choices, order, are all meant to be not much more than glorified placeholders.]</i></p>
+    <p><i>[This page will have the carefully thought-through, curated paths for new people to use in exploring the books on the site. This is probably a page that we will want to iterate on extensively and keep honing for quite a while. It might also be one that is in a continual state of slow change as new documents are added and we get more experience recommending books to new folks. The book choices, order, are all meant to be not much more than glorified placeholders.]</i></p>
 
-      <Divider />
+    <Divider />
 
-      <p>First, if you haven't listened to our introductory audio explaining who the early Quakers were, we recommend you start there by clicking the play button below:</p>
+    <p>First, if you haven't listened to our introductory audio explaining who the early Quakers were, we recommend you start there by clicking the play button below:</p>
 
-      <EmbeddedAudio
-        id={242345955}
-        title="Introduction to the Early Quakers"
-      />
+    <EmbeddedAudio
+      id={242345955}
+      title="Introduction to the Early Quakers"
+    />
 
-      <p>Next, scan the sections below to see which one feels like the best match for what you're interested in reading first.</p>
+    <p>Next, scan the sections below to see which one feels like the best match for what you're interested in reading first.</p>
 
-      <Divider />
+    <Divider />
 
-      <h2>History</h2>
+    <h2>History</h2>
 
-      <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
+    <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
 
-      <div className={featured}>
-        <h2>1. William Penn: Primitive Christianity Revived</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-penn/primitive-christianity-revived">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>1. William Penn: Primitive Christianity Revived</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-penn/primitive-christianity-revived">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>2. Mary Ann Kelty: Lives and Persecutions</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-penn/primitive-christianity-revived">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>2. Mary Ann Kelty: Lives and Persecutions</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-penn/primitive-christianity-revived">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>3. William Sewell: History of the Quakers</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-sewel/history-of-quakers">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>3. William Sewell: History of the Quakers</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-sewel/history-of-quakers">Read now &raquo;</a></p>
+    </div>
 
-      <Divider />
+    <Divider />
 
-      <h2>Doctrine</h2>
+    <h2>Doctrine</h2>
 
-      <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
+    <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
 
-      <div className={featured}>
-        <h2>1. Robert Barclay: Saved to the Uttermost</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/robert-barclay/saved-to-the-uttermost">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>1. Robert Barclay: Saved to the Uttermost</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/robert-barclay/saved-to-the-uttermost">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>2. Joseph Phipps: Original and Present State</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/joseph-phipps/original-and-present-state-of-man">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>2. Joseph Phipps: Original and Present State</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/joseph-phipps/original-and-present-state-of-man">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>3. William Penn: No Cross, No Crown</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-penn/no-cross-no-crown">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>3. William Penn: No Cross, No Crown</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-penn/no-cross-no-crown">Read now &raquo;</a></p>
+    </div>
 
-      <Divider />
+    <Divider />
 
-      <h2>Devotional</h2>
+    <h2>Devotional</h2>
 
-      <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
+    <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
 
-      <div className={featured}>
-        <h2>1. Isaac Penington: Writings, volume 1</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/isaac-penington/writings-volume-1">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>1. Isaac Penington: Writings, volume 1</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/isaac-penington/writings-volume-1">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>2. William Shewen: Meditations &amp; Experiences</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-shewen/meditations-experiences">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>2. William Shewen: Meditations &amp; Experiences</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/william-shewen/meditations-experiences">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>3. Isaac Penington: Writings, volume 2</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/isaac-penington/writings-volume-2">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>3. Isaac Penington: Writings, volume 2</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/isaac-penington/writings-volume-2">Read now &raquo;</a></p>
+    </div>
 
-      <Divider />
+    <Divider />
 
-      <h2>Journals</h2>
+    <h2>Journals</h2>
 
-      <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
+    <p><i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</i></p>
 
-      <div className={featured}>
-        <h2>1. Journal of John Richardson</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/john-richardson/journal">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>1. Journal of John Richardson</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/john-richardson/journal">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>2. Life and Letters of Rebecca Jones</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/rebecca-jones/life-letters">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>2. Life and Letters of Rebecca Jones</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/rebecca-jones/life-letters">Read now &raquo;</a></p>
+    </div>
 
-      <div className={featured}>
-        <h2>3. The Life of Thomas Ellwood</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/thomas-ellwood/life">Read now &raquo;</a></p>
-      </div>
+    <div className={featured}>
+      <h2>3. The Life of Thomas Ellwood</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="/thomas-ellwood/life">Read now &raquo;</a></p>
+    </div>
 
-    </Block>
-    <Footer />
-  </React.Fragment>
+  </Block>
 );
