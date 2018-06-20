@@ -1,7 +1,7 @@
 import { kebabCase } from 'lodash';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
-import { yamlGlob, tags, editions, formats, chapters, hasProp } from '../test-helpers';
+import { yamlGlob, tags, editions, formats, chapters, hasProp, isSlug } from '../test-helpers';
 
 const files = yamlGlob('src/*/*.yml');
 
@@ -44,6 +44,10 @@ files.forEach((file) => {
       expect(Array.isArray(friend.documents)).toBe(true);
     });
 
+    test('friend slug is in correct format', () => {
+      expect(isSlug(friend.slug)).toBe(true);
+    });
+
     test('friend slug matches filename slug', () => {
       expect(file.name).toBe(`${friend.slug}.yml`);
     });
@@ -71,6 +75,10 @@ files.forEach((file) => {
         expect(slugs.indexOf(doc.slug)).toBe(-1);
         slugs.push(doc.slug);
       });
+    });
+
+    test('document slugs are in correct format', () => {
+      documents.forEach(doc => expect(isSlug(doc.slug)).toBe(true));
     });
 
     test('document filenames are globally unique', () => {

@@ -39,3 +39,11 @@ export function audioParts(friend: Object): Array<Object> {
 export function hasProp(obj: Object, key: string): boolean {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
+
+export function isSlug(slug: mixed): boolean {
+  if (typeof slug !== 'string') {
+    return false;
+  }
+
+  return slug.match(/[^a-z0-9-]/) === null;
+}
