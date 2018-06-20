@@ -14,6 +14,7 @@ import {
   EbookHelpPage,
   EditionsPage,
   ContactPage,
+  // $FlowFixMe
 } from 'components/static';
 import {
   FriendsPage,
@@ -35,7 +36,7 @@ type RouteSpec = {|
 
 const renderFriendPage = (req: express$Request): RouteSpec => {
   const { params: { slug } } = req;
-  const friend = getFriend(slug);
+  const friend = getFriend(slug || 'compilations');
 
   return {
     props: {
@@ -56,6 +57,7 @@ const routes: { [string]: (req: express$Request) => RouteSpec } = {
   '/friend/:slug': renderFriendPage,
   '/amigo/:slug': renderFriendPage,
   '/amiga/:slug': renderFriendPage,
+  '/compilations': renderFriendPage,
 
   '/:friendSlug/:docSlug': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug } } = req;

@@ -21,9 +21,14 @@ function formatUrl(format: Format): string {
 
 function url(entity: Entity): string {
   if (entity instanceof Friend) {
+    if (entity.slug === 'compilations') {
+      return '/compilations'; // @TODO translate
+    }
+
     if (LANG === 'en') {
       return `/friend/${entity.slug}`;
     }
+
     const amigo = entity.isMale() ? 'amigo' : 'amiga';
     return `/${amigo}/${entity.slug}`;
   }

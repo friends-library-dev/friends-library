@@ -21,7 +21,7 @@ Object.keys(routes).map(route => {
   if (route.indexOf('/:') !== -1) {
     return;
   }
-  const { props, children } = routes[route]();
+  const { props, children } = routes[route]({ params: {} });
   const path = route === '/' ? '/index' : route;
   generateRoute(props, children, path);
 });

@@ -20,11 +20,9 @@ export default ({ document, edition }: Props) => {
     <Block>
       <div>
         <PageTitle>{document.title} (audio)</PageTitle>
-        <ByLine>
-          by <a href={url(document.friend)}>{document.friend.name}</a>
-        </ByLine>
+        <ByLine document={document} />
         <p>
-          This is the audio version of {document.friend.name}&apos;s <a href={url(document)}>{document.title}</a>, read by {audio.reader}. For other formats besides audio, <a href={url(document)}>click here</a>.
+          This is the audio version of {document.isCompilation() ? '' : `${document.friend.name}'s:`} <a href={url(document)}>{document.title}</a>, read by {audio.reader}. For other formats besides audio, <a href={url(document)}>click here</a>.
         </p>
       </div>
       <Divider />

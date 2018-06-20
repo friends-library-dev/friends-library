@@ -27,6 +27,10 @@ export default class Document {
     this.editions = editions;
   }
 
+  isCompilation(): boolean {
+    return this.friend.slug === 'compilations';
+  }
+
   shortestEdition(): Edition {
     return this.editions.reduce((shortest, edition) => {
       return !shortest || edition.pages < shortest.pages ? edition : shortest;

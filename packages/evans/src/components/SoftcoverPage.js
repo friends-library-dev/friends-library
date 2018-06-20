@@ -4,7 +4,6 @@ import { css } from 'glamor';
 import { t } from 'c-3po';
 import { Document } from 'classes';
 import { LANG } from 'env';
-import url from 'lib/url';
 import PageTitle from './PageTitle';
 import ByLine from './ByLine';
 import Divider from './Divider';
@@ -28,9 +27,7 @@ type Props = {|
 export default ({ document }: Props) => (
   <Block>
     <PageTitle>{t`Order paperback`}: {document.title}</PageTitle>
-    <ByLine>
-      {t`by`} <a href={url(document.friend)}>{document.friend.name}</a>
-    </ByLine>
+    <ByLine document={document} />
     {LANG === 'en' ? (
       <React.Fragment>
         <p>

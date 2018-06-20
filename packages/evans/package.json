@@ -21,11 +21,11 @@
     "lint:js": "eslint src storybook",
     "fix:js": "eslint src storybook --fix",
     "storybook": "start-storybook -p 6006 -c .storybook",
-    "preflight": "yarn lint:js && yarn test && yarn flow",
+    "preflight": "yarn lint:js && yarn test && yarn flow && yarn build",
     "po:update": "yarn c-3po update es.po src"
   },
   "dependencies": {
-    "@friends-library/friends": "git://github.com/friends-library/friends.git#898d0535cd1c5015a317728265d0bd04709df829",
+    "@friends-library/friends": "friends-library/friends",
     "c-3po": "^0.8.0",
     "clean-css": "^4.1.9",
     "express": "^4.16.2",

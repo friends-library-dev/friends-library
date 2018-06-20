@@ -22,7 +22,8 @@ export function getFriend(slug: Slug): Friend {
 
 export function getAllFriends(): Array<Friend> {
   const pattern = `./node_modules/@friends-library/friends/src/${LANG}/*.yml`;
-  return glob(pattern).map(path => getFriend(basename(path, '.yml')));
+  const friends = glob(pattern).map(path => getFriend(basename(path, '.yml')));
+  return friends.filter(friend => friend.slug !== 'compilations');
 }
 
 export function query(

@@ -1,12 +1,29 @@
 import Document from 'classes/Document';
 import Edition from 'classes/Edition';
 import Format from 'classes/Format';
+import Friend from 'classes/Friend';
 
 describe('Document', () => {
   let document;
 
   beforeEach(() => {
     document = new Document();
+  });
+
+  describe('isCompilation()', () => {
+    it('returns true if it belongs to the special compilations "friend"', () => {
+      const friend = new Friend();
+      friend.slug = 'compilations';
+      document.friend = friend;
+
+      expect(document.isCompilation()).toBe(true);
+    });
+
+    it('returns false if not part of special compilations "friend"', () => {
+      document.friend = new Friend();
+
+      expect(document.isCompilation()).toBe(false);
+    });
   });
 
   describe('shortestEdition()', () => {

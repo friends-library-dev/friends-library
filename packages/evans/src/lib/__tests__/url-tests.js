@@ -31,6 +31,26 @@ describe('url()', () => {
     expect(docUrl).toBe('/rebecca-jones/diary');
   });
 
+  describe('compilation urls', () => {
+    beforeEach(() => {
+      friend.slug = 'compilations';
+      delete friend.gender;
+      document = new Document();
+      document.slug = 'truth-in-the-inward-parts';
+      document.filename = 'Truth_in_the_Inward_arts';
+      document.friend = friend;
+      friend.documents = [document];
+    });
+
+    it('returns `/compilations` for "friend" url', () => {
+      expect(url(friend)).toBe('/compilations');
+    });
+
+    it('returns `/compilations/{SLUG}` for document url', () => {
+      expect(url(document)).toBe('/compilations/truth-in-the-inward-parts');
+    });
+  });
+
   describe('with format', () => {
     let format;
     let edition;
