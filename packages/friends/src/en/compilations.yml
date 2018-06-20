@@ -1,0 +1,153 @@
+name: Compilations
+slug: compilations
+gender: mixed
+description: Each of these books are made up of the writings of more than one author. Some were compiled and published during the early history of the Society of Friends, and some were compiled recently by the editors of this website.
+documents:
+  -
+    title: Truth in the Inward Parts
+    slug: truth-in-the-inward-parts
+    filename: Truth_in_the_Inward_Parts
+    description: This book contains the stories of ten men and women who knew the transforming work of Truth in the inner parts. Amidst a sea of Christian practice and profession, these believers would settle for nothing less than the light, power, and righteousness of Christ reigning in their purified vessels. They not only found the Pearl of great price by His own inward appearing, but they then sold all to buy this treasure, counting all things loss for the excellence of the knowledge of Christ Jesus their Lord. (Compiled and edited by Jason R. Henderson in 2016.)
+    tags:
+      - journal
+    editions:
+      -
+        type: updated
+        pages: 296
+        formats:
+          -
+            type: softcover
+          -
+            type: audio
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            -
+              title: Introduction
+              external_id_hq: 276638170
+              external_id_lq: 276638179
+              filesize_hq: 20240898
+              filesize_lq: 6721062
+              seconds: 1120
+              chapters:
+                - 0
+            -
+              title: Life of Stephen Crisp
+              external_id_hq: 276790389
+              external_id_lq: 276790407
+              filesize_hq: 55916850
+              filesize_lq: 19218174
+              seconds: 3203
+              chapters:
+                - 1
+            -
+              title: Life of John Richardson
+              external_id_hq: 276947054
+              external_id_lq: 276947064
+              filesize_hq: 59021156
+              filesize_lq: 19906998
+              seconds: 3318
+              chapters:
+                - 2
+            -
+              title: Letter of Elizabeth Webb
+              external_id_hq: 277542991
+              external_id_lq: 277543001
+              filesize_hq: 50831853
+              filesize_lq: 17091654
+              seconds: 2848
+              chapters:
+                - 3
+            -
+              title: Journal of John Burnyeat
+              external_id_hq: 277873585
+              external_id_lq: 277873611
+              filesize_hq: 64074294
+              filesize_lq: 21090894
+              seconds: 3515
+              chapters:
+                - 4
+            -
+              title: Life of Joseph Pike
+              external_id_hq: 278405473
+              external_id_lq: 278405495
+              filesize_hq: 39920794
+              filesize_lq: 13279038
+              seconds: 2213
+              chapters:
+                - 5
+            -
+              title: Journal of John Griffith
+              external_id_hq: 278743551
+              external_id_lq: 278743565
+              filesize_hq: 57467106
+              filesize_lq: 19362030
+              seconds: 3227
+              chapters:
+                - 6
+            -
+              title: Memoirs of John Crook
+              external_id_hq: 279389047
+              external_id_lq: 279389077
+              filesize_hq: 59009075
+              filesize_lq: 19747590
+              seconds: 3291
+              chapters:
+                - 7
+            -
+              title: Life of Elizabeth Stirredge
+              external_id_hq: 279985715
+              external_id_lq: 279985720
+              filesize_hq: 42199677
+              filesize_lq: 14553870
+              seconds: 2425
+              chapters:
+                - 8
+            -
+              title: Journal of Charles Marshall
+              external_id_hq: 280576517
+              external_id_lq: 280576523
+              filesize_hq: 40912174
+              filesize_lq: 13724862
+              seconds: 2287
+              chapters:
+                - 9
+            -
+              title: Life of Thomas Story
+              external_id_hq: 281992929
+              external_id_lq: 281992954
+              filesize_hq: 67694765
+              filesize_lq: 22560990
+              seconds: 3760
+              chapters:
+                - 10
+
+        chapters:
+          -
+            title: Introduction
+          -
+            title: Life of Stephen Crisp
+          -
+            title: Life of John Richardson
+          -
+            title: Letter of Elizabeth Webb
+          -
+            title: Journal of John Burnyeat
+          -
+            title: Life of Joseph Pike
+          -
+            title: Journal of John Griffith
+          -
+            title: Memoirs of John Crook
+          -
+            title: Life of Elizabeth Stirredge
+          -
+            title: Journal of Charles Marshall
+          -
+            title: Life of Thomas Story

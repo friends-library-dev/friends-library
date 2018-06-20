@@ -52,8 +52,8 @@ files.forEach((file) => {
       expect(file.name).toBe(`${friend.slug}.yml`);
     });
 
-    test('friend is male or female', () => {
-      expect(['male', 'female'].includes(friend.gender)).toBe(true);
+    test('friend is male or female or mixed (for compilations)', () => {
+      expect(['male', 'female', 'mixed'].includes(friend.gender)).toBe(true);
     });
 
     test('has correct document props', () => {
