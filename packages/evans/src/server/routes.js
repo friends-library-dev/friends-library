@@ -3,7 +3,7 @@ import * as React from 'react';
 import { setLocale } from 'lib/i18n';
 import FriendPage from 'components/FriendPage';
 import DocumentPage from 'components/DocumentPage';
-import SoftcoverPage from 'components/SoftcoverPage';
+import PaperbackPage from 'components/PaperbackPage';
 import AudioPage from 'components/AudioPage';
 import HomePage from 'components/HomePage';
 import {
@@ -83,15 +83,15 @@ const routes: { [string]: (req: express$Request) => RouteSpec } = {
     };
   },
 
-  '/:friendSlug/:docSlug/:editionType/softcover': (req: express$Request): RouteSpec => {
+  '/:friendSlug/:docSlug/:editionType/paperback': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug, editionType } } = req;
     const { document } = query(friendSlug, docSlug, editionType);
 
     return {
       props: {
-        title: `Softcover: ${document.title}`,
+        title: `Paperback: ${document.title}`,
       },
-      children: <SoftcoverPage document={document} />,
+      children: <PaperbackPage document={document} />,
     };
   },
 

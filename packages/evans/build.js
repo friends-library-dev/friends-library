@@ -54,7 +54,7 @@ friends.forEach(friendPath => {
     document.editions.forEach(edition => {
       const formats = edition.formats.map(f => f.type);
       formats.forEach((format) => {
-        if (!['audio', 'softcover'].includes(format)) {
+        if (!['audio', 'paperback'].includes(format)) {
           return;
         }
 

@@ -12,7 +12,7 @@ function formatUrl(format: Format): string {
   const { edition } = format;
   const { document } = edition;
 
-  if (['softcover', 'audio'].includes(format.type)) {
+  if (['paperback', 'audio'].includes(format.type)) {
     return `${url(document)}/${edition.type}/${format.type}`;
   }
 

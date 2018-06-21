@@ -19,7 +19,7 @@ msgid "View Document"
 msgstr "Ver documento"
 
 #: src/components/DocumentPage.js:23
-#: src/components/SoftcoverPage.js:33
+#: src/components/PaperbackPage.js:33
 msgid "by"
 msgstr "por"
 
@@ -39,7 +39,7 @@ msgstr "edición"
 msgid "Formats"
 msgstr "Formatos"
 
-#: src/components/SoftcoverPage.js:31
+#: src/components/PaperbackPage.js:31
 msgid "Order paperback"
 msgstr "Orden de bolsillo"
 

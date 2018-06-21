@@ -40,7 +40,7 @@ export default ({ document }: Props) => (
           USA
         </address>
         <p>
-          All printed editions are softcover, and cost $6 USD each.  Please add an additional $5 USD (per order) for shipping addresses outside of the United States.
+          All printed editions are paperback, and cost $6 USD each.  Please add an additional $5 USD (per order) for shipping addresses outside of the United States.
         </p>
         <p className={note}>
           * Be sure to clearly indicate the book title, quantity desired, your shipping address, and a phone number or email address where we can reach you if there is a problem.

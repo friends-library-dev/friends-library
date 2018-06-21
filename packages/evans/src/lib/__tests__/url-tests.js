@@ -78,11 +78,11 @@ describe('url()', () => {
       expect(formatUrl).toBe('/rebecca-jones/diary/updated/audio');
     });
 
-    it('returns special softcover url for softcover format entity', () => {
-      format.type = 'softcover';
+    it('returns special paperback url for paperback format entity', () => {
+      format.type = 'paperback';
       const formatUrl = url(format);
 
-      expect(formatUrl).toBe('/rebecca-jones/diary/updated/softcover');
+      expect(formatUrl).toBe('/rebecca-jones/diary/updated/paperback');
     });
   });
 });

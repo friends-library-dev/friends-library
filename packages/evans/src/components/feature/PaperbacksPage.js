@@ -11,7 +11,7 @@ const paperbacks = [];
 getAllFriends().forEach((friend) => {
   friend.documents.filter(doc => doc.hasAudio()).forEach((doc) => {
     doc.editions.forEach((ed) => {
-      ed.formats.filter(format => format.type === 'softcover').forEach((format) => {
+      ed.formats.filter(format => format.type === 'paperback').forEach((format) => {
         paperbacks.push(format);
       });
     });
