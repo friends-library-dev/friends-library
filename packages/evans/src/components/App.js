@@ -25,6 +25,8 @@ const content = css`
   position: relative;
   background: #fff;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default ({ title, children }: Props) => (

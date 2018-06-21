@@ -21,6 +21,12 @@ Object.keys(routes).map(route => {
   if (route.indexOf('/:') !== -1) {
     return;
   }
+
+  // temporary, until we have compilations in spanish
+  if (route === '/compilations') {
+    return;
+  }
+
   const { props, children } = routes[route]({ params: {} });
   const path = route === '/' ? '/index' : route;
   generateRoute(props, children, path);

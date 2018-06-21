@@ -19,4 +19,5 @@ jobs:
       - run: yarn lint:js
       - run: yarn test
       - run: yarn flow
-      - run: yarn build
+      - run: LANG=en yarn build
+      - run: LANG=es yarn build

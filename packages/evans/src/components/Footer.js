@@ -6,6 +6,7 @@ import Block from './Block';
 const element = css`
   background-color: #444;
   color: #fff;
+  margin-top: auto;
 
   > ul {
     list-style: none;
