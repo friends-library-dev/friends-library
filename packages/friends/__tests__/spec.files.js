@@ -135,7 +135,7 @@ files.forEach((file) => {
     });
 
     test('formats have correct type', () => {
-      const types = ['pdf', 'mobi', 'epub', 'softcover', 'audio'];
+      const types = ['pdf', 'mobi', 'epub', 'paperback', 'audio'];
       formats(friend).forEach((format) => {
         expect(types.indexOf(format.type)).not.toBe(-1);
       });

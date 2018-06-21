@@ -23,7 +23,7 @@ documents:
           -
             type: mobi
           -
-            type: softcover
+            type: paperback
           -
             type: audio
         audio:

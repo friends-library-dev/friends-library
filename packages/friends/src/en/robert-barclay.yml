@@ -16,7 +16,7 @@ documents:
         pages: 54
         formats:
           -
-            type: softcover
+            type: paperback
           -
             type: audio
           -
@@ -63,7 +63,7 @@ documents:
         pages: 124
         formats:
           -
-            type: softcover
+            type: paperback
           -
             type: audio
           -
