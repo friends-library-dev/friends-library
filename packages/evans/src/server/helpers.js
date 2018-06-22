@@ -9,9 +9,7 @@ import { Friend, Document, Edition, friendFromJS } from 'classes';
 import { NODE_ENV, LANG } from 'env';
 import { basename } from 'path';
 import { sync as glob } from 'glob';
-
-type Slug = string;
-type Html = string;
+import type { Slug, Html } from 'type';
 
 export function getFriend(slug: Slug): Friend {
   const path = `./node_modules/@friends-library/friends/src/${LANG}/${slug}.yml`;
@@ -63,6 +61,9 @@ export const wrap = (Component: React.Element<*>): Html => {
   });
 
   let markup = `<!doctype html>${html}`;
+
+  markup = markup.replace(/<(\/)?fragment-wrapper>/, '');
+
   const css = `${minify(appCss())}${stripDataSelectors(glamorCss)}`;
   markup = markup.replace('</head>', `<style>${format(css)}</style></head>`);
 
