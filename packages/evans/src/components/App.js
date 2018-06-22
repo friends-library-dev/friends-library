@@ -34,6 +34,7 @@ export default ({ title, children }: Props) => (
     <head>
       <title>{title}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="robots" content="noindex, nofollow" />
       <link href="https:////netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet prefetch" />
     </head>
     <body>
