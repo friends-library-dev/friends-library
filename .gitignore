@@ -1,1 +1,5 @@
-*-debug.log
+node_modules/
+*.log
+.DS_Store
+/en/
+.env

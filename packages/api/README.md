@@ -13,6 +13,26 @@ $ yarn start
 $ yarn deploy
 ```
 
+## migrations
+
+To create a migration:
+
+```SH
+$ yarn db-migrate create foobar-baz  # creates migrations/20180411004626-foobar-baz.js
+```
+
+Run the migrations:
+
+```SH
+$ yarn migrate
+```
+
+Reset migrations (tear down all and re-run):
+
+```SH
+$ yarn reset
+```
+
 ## production tidbits
 
 To start the production server, you should use this command:
