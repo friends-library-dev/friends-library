@@ -5,6 +5,7 @@ import { sync as glob } from 'glob';
 import { t } from 'c-3po';
 import { LANG } from 'env';
 import { wrap, getFriend } from 'server/helpers';
+import { podcast } from 'lib/xml';
 import routes from 'server/routes';
 import App from 'components/App';
 
@@ -66,6 +67,14 @@ friends.forEach(friendPath => {
         const { props, children } = routes[`/:friendSlug/:docSlug/:editionType/${format}`](req);
         const path = `${slug}/${document.slug}/${edition.type}/${format}`;
         generateRoute(props, children, path);
+
+        if (format !== 'audio') {
+          return;
+        }
+
+        const xmlPath = `${slug}/${document.slug}/${edition.type}/podcast`;
+        const xml = podcast(document, edition);
+        fs.outputFile(`build/${xmlPath}.rss`, xml);
       });
     });
   });

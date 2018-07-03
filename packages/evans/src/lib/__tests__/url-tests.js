@@ -2,6 +2,7 @@ import Format from 'classes/Format';
 import Edition from 'classes/Edition';
 import Document from 'classes/Document';
 import Friend from 'classes/Friend';
+import Audio from 'classes/Audio';
 import url from '../url';
 
 describe('url()', () => {
@@ -29,6 +30,20 @@ describe('url()', () => {
     const docUrl = url(document);
 
     expect(docUrl).toBe('/rebecca-jones/diary');
+  });
+
+  it('returns correct audio (podcast) urls', () => {
+    const audio = new Audio();
+    const edition = new Edition();
+    audio.edition = edition;
+    edition.type = 'updated';
+    edition.audio = audio;
+    edition.document = document;
+    document.editions.push(edition);
+
+    const audioUrl = url(audio);
+
+    expect(audioUrl).toBe('/rebecca-jones/diary/updated/podcast.rss');
   });
 
   describe('compilation urls', () => {

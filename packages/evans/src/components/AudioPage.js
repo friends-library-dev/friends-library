@@ -22,8 +22,9 @@ export default ({ document, edition }: Props) => {
         <PageTitle>{document.title} (audio)</PageTitle>
         <ByLine document={document} />
         <p>
-          This is the audio version of {document.isCompilation() ? '' : `${document.friend.name}'s:`} <a href={url(document)}>{document.title}</a>, read by {audio.reader}. For other formats besides audio, <a href={url(document)}>click here</a>.
+          This is the audiobook version of {document.isCompilation() ? '' : `${document.friend.name}'s:`} <a href={url(document)}>{document.title}</a>, read by {audio.reader}. For other formats besides audio, <a href={url(document)}>click here</a>.
         </p>
+        <p><a href={url(audio)}>Download as podcast.</a></p>
       </div>
       <Divider />
       {audio.parts.map(part => (
