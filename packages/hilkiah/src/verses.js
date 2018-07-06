@@ -68,25 +68,25 @@ function comma(pattern, start, context, ref, chapter) {
 
 // 1 Cor. 1. 24 | 1 Cor. 1. 24--27
 function romanSingleOrRange(...args) {
-  const pattern = `^\\. (${ARAB})(?:-+(${ARAB}))?(?:\\.)?`;
+  const pattern = `^\\. (${ARAB})(?:-+(${ARAB}))?`;
   return singleOrRange(pattern, ...args);
 }
 
 // 1 Cor. 1. 24, 25
 function romanComma(...args) {
-  const pattern = `^\\. (${ARAB}),(?: )?(${ARAB})${CSV}(?:\\.)?`;
+  const pattern = `^\\. (${ARAB}),(?: )?(${ARAB})${CSV}`;
   return comma(pattern, ...args);
 }
 
 // 1 Cor. 1:24,27
 function colonComma(...args) {
-  const pattern = `^:(${ARAB}),(?: )?(${ARAB})${CSV}(\\.)?`;
+  const pattern = `^:(${ARAB}),(?: )?(${ARAB})${CSV}`;
   return comma(pattern, ...args);
 }
 
 // 1 Cor. 1:24 | 1 Cor. 1:24-29
 function colonSingleOrRange(...args) {
-  const pattern = `^:(${ARAB})(?:-+(${ARAB}))?(\\.)?`;
+  const pattern = `^:(${ARAB})(?:-+(${ARAB}))?`;
   return singleOrRange(pattern, ...args);
 }
 

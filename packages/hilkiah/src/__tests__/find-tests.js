@@ -25,7 +25,7 @@ describe('find()', () => {
     ['Romans', 5, 11, 'Rom. v. 11.) Abiding'],
     ['Luke', 3, 16, 'fire.`" (Luke, iii. 16.)'],
     ['Malachi', 3, 2, 'fire,`" (Mai. iii. 2) than'],
-    ['Luke', 9, 23, 'cross, (Luke ix. 23,) and'],
+    ['Luke', 9, 23, 'cross, (Luke iX. 23,) and'],
     ['2 Corinthians', 5, 17, '(2 Cor. v. 17.) The'],
     ['Matthew', 3, 12, 'fire.`" (Matt. iii. 12.) Having'],
     ['John', 1, 12, 'name.`" (John i. 12.)'],
@@ -53,25 +53,24 @@ describe('find()', () => {
     ['John', 17, 3, 'eternal;`" (John xvii. 3) the'],
     ['Luke', 14, 27, 'disciple.`" (Luke xiv. 27.) Be'],
     ['Isaiah', 55, 4, 'Guide: (Isa. lv. 4:) and'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
+    ['Isaiah', 49, 6, 'earth`" (Isa. xlix. 6.) They'],
+    ['John', 1, 45, 'read,`" (who wrote of Christ, John i. 45,) "`the'],
+    ['2 Corinthians', 13, 5, 'reprobates?`" (2 Cor. xiii. 5.) He'],
+    ['Romans', 8, 9, 'his.`" (Rom. viii. 9.) We'],
+    ['Isaiah', 55, 4, '"`Leader;`" (Isa. lv. 4,) and'],
+    ['Ephesians', 5, 9, 'truth.`" (Eph. v. 9.) What'],
+    ['Revelation', 11, 15, 'ever.`" (Rev. xi. 15.)'],
+    ['John', 14, 6, 'me.`" (John xiv. 6.) "`Without'],
+    ['John', 15, 5, 'nothing.`" (John xv. 5.) These'],
+    ['Colossians', 2, 23, 'worship,`" (Col. ii. 23,) being'],
+    ['Matthew', 15, 9, 'men.`" (Matt. xv. 9.)'],
+    ['Matthew', 18, 20, 'them? (See Matt, xviii. 20.) The'],
+    ['Romans', 8, 26, 'uttered;`" (Rom. viii. 26,) that'],
+    ['Romans', 7, 6, 'letter;`" (Rom. vii. 6,) believing'],
+    ['Matthew', 17, 5, 'hear: (Matt. xvii. 5:) "`If'],
+    ['Luke', 9, 23, 'me.`" (Luke ix. 23.) The'],
+    ['Galatians', 2, 20, '(Gal. ii. 20.) This '],
+    ['Galatians', 5, 24, 'lusts.`" (Gal. v. 24.)'],
     // ['BOOK', 999, 111, 'CONTEXT'],
     // ['BOOK', 999, 111, 'CONTEXT'],
     // ['BOOK', 999, 111, 'CONTEXT'],
@@ -97,6 +96,13 @@ describe('find()', () => {
   });
 
   const multiRefs = [
+    [
+      'with John viii. 12, and 1 John i. 7.\n',
+      [
+        ['John viii. 12', 'John', 8, 12],
+        ['1 John i. 7', '1 John', 1, 7],
+      ]
+    ],
     [
       'im,`" (2 Pet. i. 17. Matt. xvii. 5;) --He',
       [
@@ -132,6 +138,83 @@ describe('find()', () => {
   });
 
   const multiVerses = [
+    [
+      'other.`" (Gal. v. 16, 17.) And',
+      {
+        book: "Galatians",
+        contiguous: true,
+        verses: [
+          { chapter: 5, verse: 16 },
+          { chapter: 5, verse: 17 },
+        ]
+      }
+    ],
+    [
+      'Father.`" (Phil. ii. 10, 11.) Were',
+      {
+        book: "Philippians",
+        contiguous: true,
+        verses: [
+          { chapter: 2, verse: 10 },
+          { chapter: 2, verse: 11 },
+        ]
+      }
+    ],
+    [
+      'God`" (2 Cor. v. 17, 18;) their',
+      {
+        book: "2 Corinthians",
+        contiguous: true,
+        verses: [
+          { chapter: 5, verse: 17 },
+          { chapter: 5, verse: 18 },
+        ]
+      }
+    ],
+    [
+      'life.`" (See John v. 39, 40.)',
+      {
+        book: "John",
+        contiguous: true,
+        verses: [
+          { chapter: 5, verse: 39 },
+          { chapter: 5, verse: 40 },
+        ]
+      }
+    ],
+    [
+      'truth.`" (John iv. 23,24.) On',
+      {
+        book: "John",
+        contiguous: true,
+        verses: [
+          { chapter: 4, verse: 23 },
+          { chapter: 4, verse: 24 },
+        ]
+      }
+    ],
+    [
+      '(Gal. v. 22, 23.) Again',
+      {
+        book: "Galatians",
+        contiguous: true,
+        verses: [
+          { chapter: 5, verse: 22 },
+          { chapter: 5, verse: 23 },
+        ]
+      }
+    ],
+    [
+      'away.`" (2 Cor. iii. 15, 16.) So',
+      {
+        book: "2 Corinthians",
+        contiguous: true,
+        verses: [
+          { chapter: 3, verse: 15 },
+          { chapter: 3, verse: 16 },
+        ]
+      }
+    ],
     [
       'men.`" (John i. 1, 3, 4.) Let',
       {
@@ -255,20 +338,29 @@ describe('find()', () => {
     }
   });
 
-  const trailingPeriods = [
-    ['Foo (1 Cor. i. 24.) bar.', '1 Cor. i. 24.'],
-    ['Foo (1 Cor. 1:24.) bar.', '1 Cor. 1:24.'],
-    ['Foo (1 Cor. 1:3,4.) bar.', '1 Cor. 1:3,4.'],
-    ['Foo (1 Cor. 1:1-3.) bar.', '1 Cor. 1:1-3.'],
+  const trailing = [
+    ['Foo (1 Cor. i. 24.) bar.', '1 Cor. i. 24.', 'Foo (--) bar.'],
+    ['Foo (1 Cor. i. 24:) bar.', '1 Cor. i. 24:', 'Foo (--) bar.'],
+    ['Foo is 1 Cor. i. 24: bar.', '1 Cor. i. 24', 'Foo is --: bar.'],
+    ['Foo (1 Cor. i. 24;) bar.', '1 Cor. i. 24;', 'Foo (--) bar.'],
+    ['Foo is 1 Cor. i. 24; bar.', '1 Cor. i. 24', 'Foo is --; bar.'],
+    ['Foo (1 Cor. i. 24,) bar.', '1 Cor. i. 24,', 'Foo (--) bar.'],
+    ['Foo is 1 Cor. i. 24, bar.', '1 Cor. i. 24', 'Foo is --, bar.'],
+    ['Foo (1 Cor. 1:24.) bar.', '1 Cor. 1:24.', 'Foo (--) bar.'],
+    ['Foo (1 Cor. 1:3,4.) bar.', '1 Cor. 1:3,4.', 'Foo (--) bar.'],
+    ['Foo (1 Cor. 1:1-3.) bar.', '1 Cor. 1:1-3.', 'Foo (--) bar.'],
+    ['Foo (1 Cor. 1:1-3. ) bar.', '1 Cor. 1:1-3. ', 'Foo (--) bar.'],
+    ['Foo (1 Cor. 1:1-3.  ) bar.', '1 Cor. 1:1-3.  ', 'Foo (--) bar.'],
+    ['Foo is 1 Cor. i. 24. And...', '1 Cor. i. 24', 'Foo is --. And...'],
   ];
 
-  test.each(trailingPeriods)(`range for "%s" captures trailing period`, (input, match) => {
+  test.each(trailing)(`properly captures trailing junk for "%s"`, (input, match, rpl) => {
     const [ ref ] = find(input);
     const { position: { start, end } } = ref;
 
     const result = `${input.substr(0, start)}--${input.substr(end)}`;
 
-    expect(result).toBe('Foo (--) bar.');
+    expect(result).toBe(rpl);
     expect(ref.match).toBe(match);
   });
 
