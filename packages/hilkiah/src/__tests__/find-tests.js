@@ -72,18 +72,6 @@ describe('find()', () => {
     ['Galatians', 2, 20, '(Gal. ii. 20.) This '],
     ['Galatians', 5, 24, 'lusts.`" (Gal. v. 24.)'],
     // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
-    // ['BOOK', 999, 111, 'CONTEXT'],
   ];
 
   test.each(individualVerses)(`finds {%s %s:%s} from "%s"`, (book, ch, vs, input) => {
@@ -96,6 +84,14 @@ describe('find()', () => {
   });
 
   const multiRefs = [
+    [
+      'included; (see Hosea, xii. 6; Isai. xl. 31; Psalm xl. 1;) a duty',
+      [
+        ['Hosea, xii. 6', 'Hosea', 7, 6],
+        ['Isai. xl. 31', 'Isaiah', 40, 31],
+        ['Psalm xl. i', 'Psalms', 40, 1],
+      ]
+    ],
     [
       'with John viii. 12, and 1 John i. 7.\n',
       [
@@ -138,6 +134,19 @@ describe('find()', () => {
   });
 
   const multiVerses = [
+    [
+      'nd I in them.” (John xvii. 20, 21, 23, 26.) Foobar',
+      {
+        book: "John",
+        contiguous: false,
+        verses: [
+          { chapter: 17, verse: 20 },
+          { chapter: 17, verse: 21 },
+          { chapter: 17, verse: 23 },
+          { chapter: 17, verse: 26 },
+        ]
+      }
+    ],
     [
       'other.`" (Gal. v. 16, 17.) And',
       {
@@ -372,17 +381,3 @@ describe('find()', () => {
     expect(ref.match).toBe('1 John 1. 7');
   });
 });
-
-// Jn 3:15-20
-// Jn 5:14,17
-// Joh. iii. 6.
-// Jude 14
-// (John xiii. 13; Isai. Lv. 4; John x. 14, and xvi. 13; Heb. ii. 17.)
-
-
-// errors
-// Romans 3:8-3   <- range is weird
-// Romans 22:14   <- invalid chapter
-// Romans 8:72    <- invalid verses
-// Romans 6:12-89 <- invalid verse in range
-// (Titus ii. II, 12.) <- OCR artifact (i think) from rundell

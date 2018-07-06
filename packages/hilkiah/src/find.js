@@ -21,7 +21,7 @@ function absorbRight(ref, input) {
 
 function extractRef(book, chapter, match) {
   const start = match.index + match[0].length;
-  const context = match.input.substring(start, start + 20);
+  const context = match.input.substring(start, start + 25);
 
   // order matters!
   const strategies = [

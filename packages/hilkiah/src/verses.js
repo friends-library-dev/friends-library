@@ -4,7 +4,7 @@ const { toNumber } = require('./convert');
 const ROM = '(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})'
 const ARAB = '[\\d]{1,3}';
 const ADD = `(?:,(?: )(${ARAB}))?`;
-const CSV = `${ADD}`;
+const CSV = `${ADD}${ADD}${ADD}${ADD}${ADD}${ADD}`;
 
 function exec(str, pattern) {
   const exp = new RegExp(pattern);
