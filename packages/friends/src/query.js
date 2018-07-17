@@ -4,7 +4,10 @@ import { sync as glob } from 'glob';
 import { readFileSync } from 'fs';
 import { safeLoad } from 'js-yaml';
 import type { Slug, Lang } from './type';
-import { Friend, Document, Edition, friendFromJS } from './';
+import Friend from './Friend';
+import Document from './Document';
+import Edition from './Edition';
+import friendFromJS from './map';
 
 export function getFriend(slug: Slug, lang: Lang = 'en'): Friend {
   const path = resolve(__dirname, `../yml/${lang}/${slug}.yml`);

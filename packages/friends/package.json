@@ -14,6 +14,7 @@
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
   },
   "dependencies": {
+    "babel-register": "^6.26.0",
     "glob": "^7.1.2",
     "js-yaml": "^3.12.0"
   },
