@@ -1,8 +1,4 @@
-import Format from 'classes/Format';
-import Edition from 'classes/Edition';
-import Document from 'classes/Document';
-import Friend from 'classes/Friend';
-import Audio from 'classes/Audio';
+import { Format, Edition, Document, Friend, Audio } from '@friends-library/friends';
 import url from '../url';
 
 describe('url()', () => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import { t } from 'c-3po';
 import { css } from 'glamor';
-import { Friend } from 'classes';
+import { Friend } from '@friends-library/friends';
 import { classes } from 'lib/css';
 import Divider from './Divider';
 import Badge from './Badge';

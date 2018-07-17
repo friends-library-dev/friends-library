@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
 import { t } from 'c-3po';
+import { Document } from '@friends-library/friends';
 import url from 'lib/url';
-import Document from 'classes/Document';
 import { h2 } from './Typography';
 
 type Props = {|

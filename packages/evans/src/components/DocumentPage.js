@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Document } from 'classes';
+import { Document } from '@friends-library/friends';
 import Divider from './Divider';
 import Edition from './Edition';
 import PageTitle from './PageTitle';

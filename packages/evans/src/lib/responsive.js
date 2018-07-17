@@ -1,5 +1,5 @@
 // @flow
-import Document from '../classes/Document';
+import { Document } from '@friends-library/friends';
 
 const REPLACE: string = '<span class="d-none d-sm-inline">$&</span>';
 

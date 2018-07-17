@@ -1,6 +1,5 @@
 // @flow
-import Document from 'classes/Document';
-import Friend from 'classes/Friend';
+import { Document, Friend } from '@friends-library/friends';
 import responsiveDocumentTitle from '../responsive';
 
 const expand = str => str

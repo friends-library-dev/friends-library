@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { getAllFriends } from '@friends-library/friends';
 import fs from 'fs-extra';
 import { basename } from 'path';
 import { sync as glob } from 'glob';
 import { t } from 'c-3po';
 import { LANG } from 'env';
-import { wrap, getFriend } from 'server/helpers';
+import { wrap } from 'server/helpers';
 import { podcast } from 'lib/xml';
 import routes from 'server/routes';
 import App from 'components/App';
@@ -33,10 +34,8 @@ Object.keys(routes).map(route => {
   generateRoute(props, children, path);
 });
 
-const friends = glob(`./node_modules/@friends-library/friends/src/${LANG}/*.yml`);
-friends.forEach(friendPath => {
-  const slug = basename(friendPath, '.yml');
-  const friend = getFriend(slug);
+getAllFriends(LANG).forEach(friend => {
+  const slug = friend.slug;
   const req = { params: { slug } };
   const { props, children } = routes['/friend/:slug'](req);
   let path = `friend/${slug}`;

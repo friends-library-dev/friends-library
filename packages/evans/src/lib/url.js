@@ -1,11 +1,7 @@
 // @flow
 /* eslint-disable no-use-before-define */
 import { API_URL, LANG } from 'env';
-import Friend from 'classes/Friend';
-import Document from 'classes/Document';
-import Edition from 'classes/Edition';
-import Format from 'classes/Format';
-import Audio from 'classes/Audio';
+import { Friend, Document, Edition, Format, Audio } from '@friends-library/friends';
 
 type Entity = Friend | Format | Document | Edition | Audio;
 

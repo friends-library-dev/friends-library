@@ -1,6 +1,8 @@
 // @flow
 import * as React from 'react';
 import { setLocale } from 'lib/i18n';
+import { LANG } from 'env';
+import { getFriend, query } from '@friends-library/friends';
 import FriendPage from 'components/FriendPage';
 import DocumentPage from 'components/DocumentPage';
 import PaperbackPage from 'components/PaperbackPage';
@@ -23,7 +25,6 @@ import {
   GettingStartedPage,
   ExplorePage,
 } from 'components/feature';
-import { getFriend, query } from './helpers';
 
 setLocale();
 
@@ -36,7 +37,7 @@ type RouteSpec = {|
 
 const renderFriendPage = (req: express$Request): RouteSpec => {
   const { params: { slug } } = req;
-  const friend = getFriend(slug || 'compilations');
+  const friend = getFriend(slug || 'compilations', LANG);
 
   return {
     props: {
@@ -61,7 +62,7 @@ const routes: { [string]: (req: express$Request) => RouteSpec } = {
 
   '/:friendSlug/:docSlug': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug } } = req;
-    const { document } = query(friendSlug, docSlug);
+    const { document } = query(LANG, friendSlug, docSlug);
 
     return {
       props: {
@@ -73,7 +74,7 @@ const routes: { [string]: (req: express$Request) => RouteSpec } = {
 
   '/:friendSlug/:docSlug/:editionType/audio': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug, editionType } } = req;
-    const { document, edition } = query(friendSlug, docSlug, editionType);
+    const { document, edition } = query(LANG, friendSlug, docSlug, editionType);
 
     return {
       props: {
@@ -85,7 +86,7 @@ const routes: { [string]: (req: express$Request) => RouteSpec } = {
 
   '/:friendSlug/:docSlug/:editionType/paperback': (req: express$Request): RouteSpec => {
     const { params: { friendSlug, docSlug, editionType } } = req;
-    const { document } = query(friendSlug, docSlug, editionType);
+    const { document } = query(LANG, friendSlug, docSlug, editionType);
 
     return {
       props: {

@@ -1,11 +1,12 @@
 // @flow
 import * as React from 'react';
+import { getAllFriends } from '@friends-library/friends';
+import { LANG } from 'env';
 import Block from 'components/Block';
 import PageTitle from 'components/PageTitle';
 import Divider from 'components/Divider';
 import Button from 'components/Button';
 import url from 'lib/url';
-import { getAllFriends } from 'server/helpers';
 
 export default () => (
   <Block>
@@ -18,7 +19,7 @@ export default () => (
     <Divider />
 
     <ul>
-      {getAllFriends().map(friend => (
+      {getAllFriends(LANG).map(friend => (
         <li key={friend.slug}>
           <a href={url(friend)}>
             {friend.name}

@@ -2,9 +2,9 @@
 import * as React from 'react';
 import { css } from 'glamor';
 import { t } from 'c-3po';
+import { Edition as EditionClass } from '@friends-library/friends';
 import url from 'lib/url';
 import { classes } from 'lib/css';
-import { Edition as EditionClass } from 'classes';
 import * as descriptions from './descriptions';
 import { h2, h3 } from './Typography';
 
@@ -29,7 +29,7 @@ const Edition = ({ edition }: Props) => {
   return (
     <section>
       <h1 className={classes(title, h2)}>
-        {edition.localizedType()} {t`edition`}:
+        {edition.type} {t`edition`}:
       </h1>
       <p
         className={desc}

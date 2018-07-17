@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { css } from 'glamor';
 import { t } from 'c-3po';
-import { Document } from 'classes';
+import { Document } from '@friends-library/friends';
 import { LANG } from 'env';
 import PageTitle from './PageTitle';
 import ByLine from './ByLine';

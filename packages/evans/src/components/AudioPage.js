@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Edition, Document, Audio } from 'classes';
+import { Edition, Document, Audio } from '@friends-library/friends';
 import url from 'lib/url';
 import Divider from './Divider';
 import EmbeddedAudio from './EmbeddedAudio';

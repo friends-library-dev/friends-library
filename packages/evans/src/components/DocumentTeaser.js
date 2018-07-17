@@ -2,9 +2,9 @@
 import * as React from 'react';
 import { t } from 'c-3po';
 import { css } from 'glamor';
+import { Document } from '@friends-library/friends';
 import url from 'lib/url';
 import responsiveDocumentTitle from 'lib/responsive';
-import Document from 'classes/Document';
 import { PRIMARY } from './Theme';
 
 const element = css`

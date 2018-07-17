@@ -23,7 +23,7 @@
     "po:update": "yarn c-3po update es.po src"
   },
   "dependencies": {
-    "@friends-library/friends": "friends-library/friends",
+    "@friends-library/friends": "friends-library/friends#940ae4cf88fef49ee884cdf1a4b64c8dd94b0aca",
     "asciidoctor.js": "1.5.7-beta.1",
     "c-3po": "^0.8.0",
     "clean-css": "^4.1.9",

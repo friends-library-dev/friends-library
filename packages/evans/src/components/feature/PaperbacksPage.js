@@ -1,14 +1,15 @@
 // @flow
 import * as React from 'react';
+import { getAllFriends } from '@friends-library/friends';
+import { LANG } from 'env';
 import Block from 'components/Block';
 import PageTitle from 'components/PageTitle';
 import Divider from 'components/Divider';
 import url from 'lib/url';
-import { getAllFriends } from 'server/helpers';
 
 // @TODO make this better, more functional
 const paperbacks = [];
-getAllFriends().forEach((friend) => {
+getAllFriends(LANG).forEach((friend) => {
   friend.documents.filter(doc => doc.hasAudio()).forEach((doc) => {
     doc.editions.forEach((ed) => {
       ed.formats.filter(format => format.type === 'paperback').forEach((format) => {

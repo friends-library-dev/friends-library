@@ -2,7 +2,7 @@
 /* eslint-disable indent */
 import { encode } from 'he';
 import moment from 'moment';
-import { Document, Edition } from 'classes';
+import { Document, Edition } from '@friends-library/friends';
 import url from 'lib/url';
 import { LANG, APP_URL, API_URL } from 'env';
 

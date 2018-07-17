@@ -1,9 +1,10 @@
 // @flow
 import * as React from 'react';
+import { getAllFriends } from '@friends-library/friends';
+import { LANG } from 'env';
 import Block from 'components/Block';
 import PageTitle from 'components/PageTitle';
 import Divider from 'components/Divider';
-import { getAllFriends } from 'server/helpers';
 import Button from '../Button';
 
 export default () => (
@@ -25,7 +26,7 @@ export default () => (
       <li><a href="/friend/robert-barclay">Robert Barclay</a></li>
     </ul>
 
-    <Button url="/friends" text={`See all ${getAllFriends().length} friends »`} />
+    <Button url="/friends" text={`See all ${getAllFriends(LANG).length} friends »`} />
 
     <Divider />
 
