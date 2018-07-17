@@ -1,25 +1,9 @@
-/* eslint-disable global-require */
-require('babel-register');
-const { default: friendFromJS } = require('./map');
-const { default: Friend } = require('./Friend');
-const { default: Format } = require('./Format');
-const { default: Edition } = require('./Edition');
-const { default: Document } = require('./Document');
-const { default: Chapter } = require('./Chapter');
-const { default: Audio } = require('./Audio');
-const { default: AudioPart } = require('./AudioPart');
-const { getFriend, getAllFriends, query } = require('./query');
-
-module.exports = {
-  friendFromJS,
-  Friend,
-  Format,
-  Edition,
-  Document,
-  Chapter,
-  Audio,
-  AudioPart,
-  getFriend,
-  getAllFriends,
-  query,
-};
+export { default as Friend } from './Friend';
+export { default as Format } from './Format';
+export { default as Edition } from './Edition';
+export { default as Document } from './Document';
+export { default as Chapter } from './Chapter';
+export { default as Audio } from './Audio';
+export { default as AudioPart } from './AudioPart';
+export { default as friendFromJS } from './map';
+export { getFriend, getAllFriends, query } from './query';

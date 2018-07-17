@@ -2,11 +2,13 @@
   "name": "@friends-library/friends",
   "version": "1.0.0",
   "description": "Configuration files for documents written by early Quakers",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
+    "build": "yarn babel src --out-dir dist",
+    "prepare": "yarn run build",
     "test": "jest",
     "lint:js": "eslint .",
     "fix:js": "eslint . --fix",
@@ -14,7 +16,6 @@
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
   },
   "dependencies": {
-    "babel-register": "^6.26.0",
     "glob": "^7.1.2",
     "js-yaml": "^3.12.0"
   },
