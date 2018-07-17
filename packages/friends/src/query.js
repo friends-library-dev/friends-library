@@ -18,7 +18,7 @@ export function getFriend(slug: Slug, lang: Lang = 'en'): Friend {
 
 export function getAllFriends(lang: Lang = 'en'): Array<Friend> {
   const pattern = resolve(__dirname, `../yml/${lang}/*.yml`);
-  const friends = glob(pattern).map(path => getFriend(basename(path, '.yml')));
+  const friends = glob(pattern).map(path => getFriend(basename(path, '.yml'), lang));
   return friends.filter(friend => friend.slug !== 'compilations');
 }
 
