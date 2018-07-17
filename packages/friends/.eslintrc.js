@@ -16,6 +16,12 @@ module.exports = {
     "test": false
   },
   "rules": {
-    "no-only-tests/no-only-tests": 2
+    "no-only-tests/no-only-tests": 2,
+    "arrow-body-style": 0
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    },
   }
 };
