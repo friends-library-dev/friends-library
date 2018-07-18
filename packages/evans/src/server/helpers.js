@@ -21,7 +21,7 @@ export const wrap = (Component: React.Element<*>): Html => {
 
   if (NODE_ENV === 'development') {
     const bsPort = LANG === 'en' ? '2223' : '2225';
-    const bsUri = `http://localhost:${bsPort}/browser-sync/browser-sync-client.js?v=2.23.3`;
+    const bsUri = `http://localhost:${bsPort}/browser-sync/browser-sync-client.js?v=2.24.1`;
     markup = markup.replace(
       '</body>',
       `<script async src="${bsUri}"></script></body>`,

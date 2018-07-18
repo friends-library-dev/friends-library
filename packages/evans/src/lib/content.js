@@ -25,6 +25,13 @@ const replaceEmbeddedAudio = (html: Html): Html => (
 
 const cleanAsciidoctor = (html: Html): Html => {
   return html
+    .replace(/ class="hdlist1"/gm, '')
+    .replace(/<dd>\s*<p>/gm, '<dd>')
+    .replace(/<\/p>\s*<\dd>/gm, '</dd>')
+    .replace(
+      /<div class="paragraph(?: ([^"]+))?">\s*<p>/gm,
+      (_, cls: string) => `<p${cls ? ` class="${cls}"` : ''}>`,
+    )
     .replace(/<(\/)?div([^>]+)?>/gm, '')
     .replace(/ id="_([^"]+)"/gm, '');
 };

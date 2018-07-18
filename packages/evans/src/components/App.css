@@ -72,3 +72,12 @@ a:hover {
     display: inline !important;
   }
 }
+
+p.lead {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+blockquote {
+  font-style: italic;
+}
