@@ -1,0 +1,5 @@
+_publish/
+en/
+es/
+node_modules/
+.env

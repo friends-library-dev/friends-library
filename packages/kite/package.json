@@ -1,0 +1,32 @@
+{
+  "name": "kite",
+  "version": "1.0.0",
+  "description": "\"publish .pdf, .epub, and .mobi files from source .asciidoc\"",
+  "main": "kite.js",
+  "repository": "git@github.com:friends-library/kite.git",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
+  },
+  "dependencies": {
+    "@friends-library/friends": "friends-library/friends",
+    "asciidoctor.js": "^1.5.7-rc.1",
+    "dotenv": "^6.0.0",
+    "fs-extra": "^7.0.0",
+    "glob": "^7.1.2",
+    "node-zip": "^1.1.1",
+    "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.52",
+    "@babel/preset-env": "^7.0.0-beta.52",
+    "@babel/preset-flow": "^7.0.0-beta.52",
+    "@babel/register": "^7.0.0-beta.52",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.0.1",
+    "flow-bin": "^0.76.0",
+    "flow-typed": "^2.5.1",
+    "jest": "^23.3.0"
+  }
+}
