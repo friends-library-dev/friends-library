@@ -92,9 +92,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@friends-library/friends@friends-library/friends#940ae4cf88fef49ee884cdf1a4b64c8dd94b0aca":
+"@friends-library/friends@friends-library/friends#88833821e8eb80a97688d5369f2a6248abad1eec":
   version "1.0.0"
-  resolved "https://codeload.github.com/friends-library/friends/tar.gz/940ae4cf88fef49ee884cdf1a4b64c8dd94b0aca"
+  resolved "https://codeload.github.com/friends-library/friends/tar.gz/88833821e8eb80a97688d5369f2a6248abad1eec"
   dependencies:
     babel-cli "^6.26.0"
     babel-preset-env "^1.6.1"
@@ -3972,9 +3972,9 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-flow-bin@^0.74.0:
-  version "0.74.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.74.0.tgz#8017bb00efb37cbe8d81fbb7f464038bde06adc9"
+flow-bin@^0.76.0:
+  version "0.76.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.76.0.tgz#eb00036991c3abc106743fcbc7ee321f02aa4faa"
 
 flow-typed@^2.4.0:
   version "2.4.0"
