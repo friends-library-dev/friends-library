@@ -5,6 +5,7 @@ import { sync as glob } from 'glob';
 import { basename } from 'path';
 import { resolve } from './resolve';
 import { epub, makeEpub } from '../epub';
+import { mobi, makeMobi } from '../mobi';
 
 
 function assemble(spec) {
@@ -31,10 +32,10 @@ export default (path: string = ''): void => {
     .map(assemble)
 
   specs.forEach(spec => {
-    const manifest = epub(spec);
-    // console.log(spec.html.substr(0, 100));
-    // throw new Error('lo');
-    makeEpub(manifest);
+    // const manifest = epub(spec);
+    // makeEpub(manifest);
+    const manifest = mobi(spec);
+    makeMobi(manifest);
   });
 }
 
