@@ -11,7 +11,7 @@ function data(lang: string, friend: string, document: string, edition: string) {
   return {
     lang,
     path: `${lang}/${friend}/${document}/${edition}`,
-    ...query(lang, friend, document, edition),
+    // ...query(lang, friend, document, edition),
   };
 }
 

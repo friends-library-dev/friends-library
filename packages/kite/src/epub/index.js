@@ -9,9 +9,25 @@ export function epub(spec: SourceSpec): FileManifest {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),
     'OEBPS/package-document.opf': packageDocument(spec),
-    'OEBPS/lol.xhtml': spec.html,
+    'OEBPS/lol.xhtml': wrapHtml(spec.html),
     'OEBPS/nav.xhtml': getNav(spec),
   };
+}
+
+function wrapHtml(html: string): string {
+  return `
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+  </head>
+  <body>
+    ${html}
+  </body>
+</html>`
+  .trim()
+  .replace(/<hr>/gm, '<hr />')
+  .replace(/<br>/gm, '<br />');
 }
 
 function getNav(spec: SourceSpec): string {

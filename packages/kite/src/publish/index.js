@@ -6,24 +6,23 @@ import { basename } from 'path';
 import { resolve } from './resolve';
 import { epub, makeEpub } from '../epub';
 import { mobi, makeMobi } from '../mobi';
+import { printPdf, makePdf } from '../pdf';
 
 
 function assemble(spec) {
   const adoc = glob(`${spec.path}/*.adoc`)
     .map(path => readFileSync(path).toString())
-    .join('\n');
-
-  const html = `<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
-<head>
-<meta charset="UTF-8"/></head><body>${Asciidoctor().convert(adoc)}</body></html>`
-  .replace(/<hr>/gm, '<hr />')
-  .replace(/<br>/gm, '<br />');
+    .join('\n')
+    .replace(/\^\nfootnote:\[/igm, 'footnote:[')
+    .replace(/"`/igm, '“')
+    .replace(/`"/igm, '”')
+    .replace(/'`/igm, '‘')
+    .replace(/`'/igm, '’'); // @TODO test all this...
 
   return {
     ...spec,
     adoc,
-    html,
+    html: Asciidoctor().convert(adoc),
   }
 }
 
@@ -32,24 +31,7 @@ export default (path: string = ''): void => {
     .map(assemble)
 
   specs.forEach(spec => {
-    // const manifest = epub(spec);
-    // makeEpub(manifest);
-    const manifest = mobi(spec);
-    makeMobi(manifest);
+    const manifest = printPdf(spec);
+    makePdf(manifest);
   });
 }
-
-const spec = {
-  path: '/foo/bar',
-  friend: {},
-  document: {},
-  edition: {},
-  revision: 'asdfkjsdflkj',
-  adoc: '',
-}
-
-// function epub(
-//   adoc: string,
-//   filename: string,
-//   revision: string,
-// )
