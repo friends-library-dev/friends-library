@@ -12,7 +12,7 @@ const line = fs.readFileSync('src/pdf/line.svg').toString();
 export function printPdf(spec: SourceSpec): FileManifest {
   return {
     'book.html': getHtml(spec),
-    'book.css': css,
+    'book.css': getCss(spec),
     'line.svg': line,
   };
 }
@@ -27,6 +27,11 @@ export function makePdf(manifest: FileManifest): void {
   execSync(`prince-books "${src}"`, {
     stdio: [0, 1, 2]
   });
+}
+
+function getCss(spec: SourceSpec): string {
+  return css
+    .replace(/{{{ header.title }}}/g, spec.document.title);
 }
 
 function chPart(text: string, type: 'prefix' | 'body'): string {

@@ -9,11 +9,9 @@
     padding-top: 6pt;
     margin-top: 8px;
     footnote-style-position: outside;
-    /* background: pink; */
   }
 
   @bottom-center {
-    /* background: orange; */
     content: counter(page);
     font-size: 9pt;
     padding: 0 !important;
@@ -25,10 +23,29 @@
 @page:left {
     margin-left: 0.75in;
     margin-right: 0.55in;
+
+    @top-center {
+      font-size: 8pt;
+      font-style: italic;
+      content: string(chapter, last);
+    }
 }
+
 @page:right {
     margin-left: 0.55in;
     margin-right: 0.75in;
+
+    @top-center {
+      font-size: 8pt;
+      font-style: italic;
+      content: "{{{ header.title }}}";
+    }
+}
+
+@page:first {
+  @top-center {
+    content: normal;
+  }
 }
 
 body {
@@ -38,9 +55,6 @@ body {
 
 p {
   line-height: 139%;
-}
-
-div.paragraph {
 }
 
 div.paragraph p {
@@ -56,9 +70,10 @@ div.paragraph p {
 h2 {
   margin-top: 160pt;
   margin-bottom: 24pt;
-  page-break-before: always;
   text-align: center;
   font-size: 12pt;
+  prince-page-group: start; /* allows to target @page:first for pages starting chapters */
+  string-set: chapter content();
 }
 
 h2 span {
@@ -69,6 +84,10 @@ span.chapter-title__prefix {
   font-size: 11pt;
   font-weight: 400;
   margin-bottom: 3pt;
+}
+
+span.chapter-title__body {
+  string-set: chapter content();
 }
 
 #footnotes {
@@ -94,5 +113,4 @@ span.chapter-title__prefix {
   line-height: 113%;
   float: footnote;
   text-indent: 0;
-  /* background: yellow; */
 }

@@ -57,7 +57,7 @@ function container(): XML {
 <?xml version="1.0" encoding="UTF-8"?>
 <container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
   <rootfiles>
-    <rootfile full-path="OEBPS/package.opf" media-type="application/oebps-package+xml"/>
+    <rootfile full-path="OEBPS/package-document.opf" media-type="application/oebps-package+xml"/>
   </rootfiles>
 </container>
   `.trim();
