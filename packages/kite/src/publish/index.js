@@ -1,37 +1,41 @@
 // @flow
-import { readFileSync } from 'fs';
-import Asciidoctor from 'asciidoctor.js';
-import { sync as glob } from 'glob';
 import { basename } from 'path';
+import fs from 'fs-extra';
 import { resolve } from './resolve';
 import { epub, makeEpub } from '../epub';
 import { mobi, makeMobi } from '../mobi';
 import { printPdf, makePdf } from '../pdf';
 
 
-function assemble(spec) {
-  const adoc = glob(`${spec.path}/*.adoc`)
-    .map(path => readFileSync(path).toString())
-    .join('\n')
-    .replace(/\^\nfootnote:\[/igm, 'footnote:[')
-    .replace(/"`/igm, '“')
-    .replace(/`"/igm, '”')
-    .replace(/'`/igm, '‘')
-    .replace(/`'/igm, '’'); // @TODO test all this...
-
-  return {
-    ...spec,
-    adoc,
-    html: Asciidoctor().convert(adoc),
+export default (path: string = '', formats: *): void => {
+  // @TODO bad usage of yargs but documenation is hard to grok...
+  if (typeof formats === 'string') {
+    formats = [formats];
   }
-}
 
-export default (path: string = ''): void => {
-  const specs = resolve(path)
-    .map(assemble)
+  if (formats == null || formats.length === 0) {
+    formats = ['epub', 'mobi', 'pdf'];
+  }
+
+  fs.removeSync('_publish');
+  fs.ensureDir('_publish');
+
+  const specs = resolve(path);
 
   specs.forEach(spec => {
-    const manifest = printPdf(spec);
-    makePdf(manifest);
+    if (formats.includes('epub')) {
+      const manifest = epub(spec);
+      makeEpub(manifest, spec.filename);
+    }
+
+    if (formats.includes('mobi')) {
+      const manifest = mobi(spec);
+      makeMobi(manifest, spec.filename);
+    }
+
+    if (formats.includes('pdf')) {
+      const manifest = printPdf(spec);
+      makePdf(manifest, spec.filename);
+    }
   });
 }

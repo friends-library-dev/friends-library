@@ -10,8 +10,9 @@ export type SourceSpec = {|
   friend: Friend,
   document: Document,
   edition: Edition,
-  adoc: string,
+  filename: string,
   html: string,
+  path: string,
 |};
 
 export type FileManifest = {

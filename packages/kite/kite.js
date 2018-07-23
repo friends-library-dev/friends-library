@@ -5,13 +5,13 @@ const yargs = require('yargs');
 
 yargs
   .command(
-    'publish [path]',
+    ['publish <path> [format]', '$0'],
     'publish asciidoc documents at given path',
-    ({ positional }) => positional('file', {
+    ({ positional }) => positional('path', {
       type: 'string',
       describe: 'absolute filepath to root dir containing all doc repos'
     }),
-    ({ path }) => publish(path)
+    ({ path, format }) => publish(path, format)
   )
   .help()
   .argv;

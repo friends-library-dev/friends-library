@@ -17,16 +17,16 @@ export function printPdf(spec: SourceSpec): FileManifest {
   };
 }
 
-export function makePdf(manifest: FileManifest): void {
-  fs.removeSync('_publish');
-  fs.ensureDir('_publish');
+export function makePdf(manifest: FileManifest, filename: string): void {
+  const dir = `_publish/_src_/${filename}/pdf`;
   for (let path in manifest) {
-    fs.outputFileSync(`_publish/pdf/${path}`, manifest[path]);
+    fs.outputFileSync(`${dir}/${path}`, manifest[path]);
   }
-  const src = path.resolve(__dirname, '../../_publish/pdf/book.html');
+  const src = path.resolve(__dirname, `../../${dir}/book.html`);
   execSync(`prince-books "${src}"`, {
     stdio: [0, 1, 2]
   });
+  fs.move(`${dir}/book.pdf`, `_publish/${filename}.pdf`);
 }
 
 function getCss(spec: SourceSpec): string {

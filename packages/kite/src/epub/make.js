@@ -5,13 +5,16 @@ import Zip from 'node-zip';
 import type { FileManifest } from '../type';
 
 
-export function make(manifest: FileManifest, isKindle: boolean = false) {
-  fs.removeSync('_publish');
-  fs.ensureDir('_publish');
+export function make(
+  manifest: FileManifest,
+  filename: string
+): void {
   const zip = new Zip();
   for (let path in manifest) {
     zip.file(path, manifest[path]);
+    fs.outputFileSync(`_publish/_src_/${filename}/epub/${path}`, manifest[path]);
   }
-  var data = zip.generate({ base64:false, compression: 'DEFLATE' });
-  fs.writeFileSync(`_publish/test.${isKindle ? 'kf8.' : ''}epub`, data, 'binary');
+
+  const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
+  fs.writeFileSync(`_publish/${filename}.epub`, binary, 'binary');
 }

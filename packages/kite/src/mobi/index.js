@@ -2,6 +2,7 @@
 import fs from 'fs-extra';
 import kindlegen from 'kindlegen';
 import { epub, makeEpub } from '../epub';
+import Zip from 'node-zip';
 import type { SourceSpec, FileManifest } from '../type';
 
 export function mobi(spec: SourceSpec): FileManifest {
@@ -16,10 +17,21 @@ export function mobi(spec: SourceSpec): FileManifest {
   return mobiManifest;
 }
 
-export function makeMobi(manifest: FileManifest): void {
-  makeEpub(manifest, true);
-  kindlegen(fs.readFileSync('_publish/test.kf8.epub'), (err, mobi) => {
-    fs.writeFileSync('_publish/test.mobi', mobi);
+export function makeMobi(manifest: FileManifest, filename: string): void {
+  const zip = new Zip();
+  for (let path in manifest) {
+    zip.file(path, manifest[path]);
+    fs.outputFileSync(`_publish/_src_/${filename}/mobi/${path}`, manifest[path]);
+  }
+
+  const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
+  const precursor = `_publish/${filename}.mobi.epub`;
+  fs.writeFileSync(precursor, binary, 'binary');
+
+  kindlegen(fs.readFileSync(precursor), (err, mobi) => {
+    fs.writeFileSync(`_publish/${filename}.mobi`, mobi);
+    fs.removeSync(precursor);
     process.exit();
   });
+
 }
