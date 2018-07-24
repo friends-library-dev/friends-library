@@ -3,7 +3,7 @@ import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 import { yamlGlob, tags, editions, formats, chapters, hasProp, isSlug } from '../test-helpers';
 
-const files = yamlGlob('src/*/*.yml');
+const files = yamlGlob('yml/*/*.yml');
 
 const filenames = [];
 
@@ -54,6 +54,11 @@ files.forEach((file) => {
 
     test('friend is male or female or mixed (for compilations)', () => {
       expect(['male', 'female', 'mixed'].includes(friend.gender)).toBe(true);
+    });
+
+    test('no dual friends', () => {
+      expect(friend.name).not.toContain(' and ');
+      expect(friend.name).not.toContain(' y ');
     });
 
     test('has correct document props', () => {
