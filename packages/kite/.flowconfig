@@ -1,6 +1,7 @@
 [ignore]
 .*/__tests__/.*
 .*/node_modules/.*
+../src/query.js
 
 [libs]
 ./flow-typed

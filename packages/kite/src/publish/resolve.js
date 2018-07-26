@@ -2,8 +2,9 @@
 import Asciidoctor from 'asciidoctor.js';
 import { query } from '@friends-library/friends';
 import { readFileSync } from 'fs';
+import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
-import { basename } from 'path';
+import { basename, resolve as pathResolve } from 'path';
 import type { Lang } from '../type'
 import { prepareAsciidoc } from './asciidoc';
 
@@ -11,8 +12,16 @@ import { prepareAsciidoc } from './asciidoc';
 const ROOT: string = ((process.env.DOCS_REPOS_ROOT: any): string);
 
 
-function rawAsciidoc(dir: string): string {
+function globAsciidoc(dir: string): string {
   return glob(`${dir}/*.adoc`).map(path => readFileSync(path).toString()).join('\n');
+}
+
+function gitRevision(path: string) {
+  const cmd = 'git log --max-count=1 --pretty="%h|%ct" -- .';
+  const [hash, date] = execSync(cmd, {
+    cwd: pathResolve(__dirname, '../../', path),
+  }).toString().split('|');
+  return { date: +date, hash };
 }
 
 
@@ -23,9 +32,12 @@ function data(
   editionSlug: string
 ) {
   const path = `${lang}/${friendSlug}/${docSlug}/${editionSlug}`;
-  const adoc = prepareAsciidoc(rawAsciidoc(path));
+  const adoc = prepareAsciidoc(globAsciidoc(path));
   const { friend, document, edition} = query(lang, friendSlug, docSlug, editionSlug);
+  const { date, hash } = gitRevision(path);
   return {
+    date,
+    hash,
     lang,
     path,
     friend,

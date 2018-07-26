@@ -7,8 +7,8 @@ import { mobi, makeMobi } from '../mobi';
 import { printPdf, makePdf } from '../pdf';
 
 
-export default (path: string = '', formats: *): void => {
-  // @TODO bad usage of yargs but documenation is hard to grok...
+export default (path: string = '', formats: *) => {
+  // @TODO bad usage of yargs but documentation is hard to grok...
   if (typeof formats === 'string') {
     formats = [formats];
   }
@@ -22,10 +22,10 @@ export default (path: string = '', formats: *): void => {
 
   const specs = resolve(path);
 
-  specs.forEach(spec => {
+  specs.forEach(async (spec) => {
     if (formats.includes('epub')) {
       const manifest = epub(spec);
-      makeEpub(manifest, spec.filename);
+      await makeEpub(manifest, spec.filename);
     }
 
     if (formats.includes('mobi')) {

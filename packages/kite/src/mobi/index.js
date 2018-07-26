@@ -14,6 +14,12 @@ export function mobi(spec: SourceSpec): FileManifest {
       '<meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8"/>'
     );
   }
+
+  mobiManifest['OEBPS/package-document.opf'] = mobiManifest['OEBPS/package-document.opf'].replace(
+    '<dc:identifier id="pub-id">friends-library/epub/',
+    '<dc:identifier id="pub-id">friends-library/mobi/',
+  );
+
   return mobiManifest;
 }
 
