@@ -4,6 +4,8 @@ import Friend from './Friend';
 
 export default class Document {
   title: string = '';
+  originalTitle: string = '';
+  published: ?number = null;
   slug: string = '';
   description: string = '';
   filename: string = '';
@@ -13,16 +15,20 @@ export default class Document {
 
   constructor(
     title: string = '',
+    originalTitle: string = '',
     slug: string = '',
     description: string = '',
     filename: string = '',
+    published: ?number = null,
     tags: Array<string> = [],
     editions: Array<Edition> = [],
   ) {
     this.title = title;
+    this.originalTitle = originalTitle;
     this.slug = slug;
     this.description = description;
     this.filename = filename;
+    this.published = published;
     this.tags = tags;
     this.editions = editions;
   }

@@ -130,4 +130,20 @@ describe('friendFromJS()', () => {
     expect(part.filesizeLq).toBe(2234);
     expect(part.chapters).toEqual([0, 1, 2]);
   });
+
+  it('sets optional original title on document', () => {
+    js.documents[0].original_title = 'Memorials of Rebecca Jones';
+
+    const document = friendFromJS(js).documents[0];
+
+    expect(document.originalTitle).toBe('Memorials of Rebecca Jones');
+  });
+
+  it('sets optional published attribute', () => {
+    js.documents[0].published = 1819;
+
+    const document = friendFromJS(js).documents[0];
+
+    expect(document.published).toBe(1819);
+  });
 });
