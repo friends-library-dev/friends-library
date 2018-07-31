@@ -1,7 +1,7 @@
 // @flow
 import Asciidoctor from 'asciidoctor.js';
 import { query } from '@friends-library/friends';
-import { readFileSync } from 'fs';
+import fs from 'fs-extra';
 import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
@@ -13,7 +13,7 @@ const ROOT: string = ((process.env.DOCS_REPOS_ROOT: any): string);
 
 
 function globAsciidoc(dir: string): string {
-  return glob(`${dir}/*.adoc`).map(path => readFileSync(path).toString()).join('\n');
+  return glob(`${dir}/*.adoc`).map(path => fs.readFileSync(path).toString()).join('\n');
 }
 
 function gitRevision(path: string) {
@@ -43,9 +43,18 @@ function data(
     friend,
     document,
     edition,
+    config: getConfig(path),
     filename: `${document.filename}--${edition.type}`,
     html: Asciidoctor().convert(adoc),
   };
+}
+
+function getConfig(path: string): Object {
+  const configPath = `${path}/../config.json`;
+  if (!fs.existsSync(configPath)) {
+    return {};
+  }
+  return JSON.parse(fs.readFileSync(configPath));
 }
 
 function resolveDocument(lang: Lang, friend: string, document: string) {

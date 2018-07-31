@@ -2,7 +2,11 @@
 import moment from 'moment';
 import type { SourceSpec, DocSection, Xml } from '../type';
 
-export function packageDocument(spec: SourceSpec, sections: Array<DocSection>): Xml {
+export function packageDocument(
+  spec: SourceSpec,
+  sections: Array<DocSection>,
+  perform: boolean = true
+): Xml {
   const { lang, friend, document, edition, date } = spec;
   const modified = moment.utc(moment.unix(date)).format('YYYY-MM-DDThh:mm:ss[Z]');
   const uuid = `friends-library/epub/${lang}/${friend.slug}/${document.slug}/${edition.type}`;
@@ -11,8 +15,8 @@ export function packageDocument(spec: SourceSpec, sections: Array<DocSection>): 
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:language id="pub-language">${lang}</dc:language>
-    <dc:identifier id="pub-id">${uuid}</dc:identifier>
-    <dc:title id="pub-title">${document.title}</dc:title>
+    <dc:identifier id="pub-id">${perform ? uuid : Date.now()}</dc:identifier>
+    <dc:title id="pub-title">${document.title}${perform ? '' : Date.now()}</dc:title>
     <dc:creator id="author">${friend.name}</dc:creator>
     <dc:publisher>The Friends Library</dc:publisher>
     <dc:subject>Quakers</dc:subject>
@@ -25,9 +29,12 @@ export function packageDocument(spec: SourceSpec, sections: Array<DocSection>): 
     ${sections.map(({ id }) => (
       `<item href="${id}.xhtml" media-type="application/xhtml+xml" id="${id}"/>`
     )).join('\n')}
+    <item href="frontmatter.xhtml" media-type="application/xhtml+xml" id="frontmatter"/>
     <item href="nav.xhtml" media-type="application/xhtml+xml" properties="nav" id="nav"/>
+    <item href="style.css" id="css" media-type="text/css"/>
   </manifest>
   <spine>
+    <itemref idref="frontmatter"/>
     ${sections.map(({ id }) => `<itemref idref="${id}"/>`).join('\n')}
   </spine>
 </package>

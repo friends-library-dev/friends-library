@@ -19,6 +19,7 @@ export type SourceSpec = {|
   path: string,
   date: number,
   hash: string,
+  config: Object,
 |};
 
 export type FileManifest = {
@@ -35,4 +36,5 @@ export type DocSection = {|
   chapterNumber?: number,
   chapterTitlePrefix?: string,
   chapterTitleBody?: string,
+  chapterTitleShort?: string,
 |};

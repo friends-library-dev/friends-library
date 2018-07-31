@@ -9,7 +9,8 @@ import type { FileManifest } from '../type';
 
 export async function make(
   manifest: FileManifest,
-  filename: string
+  filename: string,
+  check: boolean = true
 ): Promise<*> {
   const zip = new Zip();
   for (let path in manifest) {
@@ -19,6 +20,10 @@ export async function make(
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
   fs.writeFileSync(`_publish/${filename}.epub`, binary, 'binary');
+
+  if (!check) {
+    return;
+  }
 
   const result = await epubCheck(`_publish/_src_/${filename}/epub`);
   if (result.pass !== true) {

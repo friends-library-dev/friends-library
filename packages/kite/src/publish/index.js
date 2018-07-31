@@ -1,4 +1,5 @@
 // @flow
+const { execSync } = require('child_process');
 import { basename } from 'path';
 import fs from 'fs-extra';
 import { resolve } from './resolve';
@@ -24,8 +25,9 @@ export default (path: string = '', formats: *) => {
 
   specs.forEach(async (spec) => {
     if (formats.includes('epub')) {
-      const manifest = epub(spec);
-      await makeEpub(manifest, spec.filename);
+      const manifest = epub(spec, false);
+      await makeEpub(manifest, spec.filename, false);
+      execSync(`open -a "iBooks" _publish/${spec.filename}.epub`);
     }
 
     if (formats.includes('mobi')) {

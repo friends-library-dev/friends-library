@@ -1,14 +1,15 @@
 // @flow
-import { toArabic } from 'roman-numerals';
+import { toArabic, toRoman } from 'roman-numerals';
+import { get } from 'lodash';
 import type { Html, DocSection } from '../type';
 
 
-export function divide(html: Html): Array<DocSection> {
+export function divide(html: Html, config: Object = {}): Array<DocSection> {
   const sections = html
     .split(/(?=<div (?:class="sect1"|id="footnotes")>)/gim)
     .filter(sect => !!sect.trim())
     .map(expandFootnotes)
-    .map(extractTitle);
+    .map((html: Html, i: number) => extractTitle(html, i + 1, config));
   return linkFootnotes(sections);
 }
 
@@ -29,8 +30,8 @@ function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
   }, {});
 
   last.html = last.html.replace(
-    /href="#_footnoteref_([0-9]+)/gim,
-    (full, num) => full.replace('#', `${notes[num]}.xhtml#`)
+    /href="#_footnoteref_([0-9]+)">\d+<\/a>\./gim,
+    (full, num) => `href="${notes[num]}.xhtml#_footnoteref_${num}">${num}</a>`
   );
 
   return sections;
@@ -44,7 +45,7 @@ function expandFootnotes(html: Html): Html {
 }
 
 
-function extractTitle(html: Html, i: number): DocSection {
+function extractTitle(html: Html, num: number, config: Object): DocSection {
   const headingMatch = html.match(/<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/)
   if (!headingMatch) {
     return {
@@ -59,15 +60,16 @@ function extractTitle(html: Html, i: number): DocSection {
   const title = headingMatch[2].trim();
 
   const section: DocSection = {
-    id: `sect${i + 1}`,
+    id: `sect${num}`,
     html,
     title,
     ref,
+    chapterTitleShort: get(config, ['shortTitles', ref]),
     isChapter: true,
     isFootnotes: false,
   };
 
-  const pattern = /(Chapter ((?:[1-9]+[0-9]*)|(?:[ivxlcdm]+)))(?::|\.)\s+([^<]+)/i;
+  const pattern = /(Chapter ((?:[1-9]+[0-9]*)|(?:[ivxlcdm]+)))(?::|\.)?(?:\s+([^<]+))?/i;
   const titleMatch = title.match(pattern);
   if (!titleMatch) {
     return section;
@@ -76,19 +78,25 @@ function extractTitle(html: Html, i: number): DocSection {
   const [full, prefix, number, body] = titleMatch;
   section.chapterTitlePrefix = prefix.trim();
   section.chapterNumber = Number.isNaN(+number)? toArabic(number) : +number;
-  section.chapterTitleBody = body.trim();
+  section.chapterTitleBody = body ? body.trim() : '';
+
+  const separator = get(config, 'chapterTitleSeparator', ':');
+  let displayNumber = section.chapterNumber || '';
+  if (get(config, 'chapterNumberFormat') === 'roman') {
+    displayNumber = toRoman(section.chapterNumber).toUpperCase();
+  }
 
   section.html = html.replace(
     /(<h2[^>]+?>)(.+?)<\/h2>/i,
     [
       '$1',
         '<span class="chapter-title__prefix">',
-          `Chapter <span class="chapter-title__number">${section.chapterNumber || ''}</span>`,
+          `Chapter <span class="chapter-title__number">${displayNumber}</span>`,
         '</span>',
-        '<span class="chapter-title__separator">:</span>',
-        '<span class="chapter-title__body">',
-          ` ${section.chapterTitleBody}`,
-        '</span>',
+        body ? `<span class="chapter-title__separator">${separator}</span>` : '',
+        body ? '<span class="chapter-title__body">' : '',
+          body ? ` ${section.chapterTitleBody || ''}` : '',
+        body ? '</span>' : '',
       '</h2>',
     ].join(''),
   );

@@ -10,6 +10,7 @@ describe('mobi()', () => {
 
   beforeEach(() => {
     spec = {
+      config: {},
       html: 'Foobar',
       lang: 'en',
       friend: rebecca,
@@ -18,7 +19,7 @@ describe('mobi()', () => {
     };
   });
 
-  test.only('changes meta charset tags', () => {
+  test('changes meta charset tags', () => {
     spec.html = convert('== Chapter 1\n\nParagraph.\n');
     const manifest = mobi(spec);
 

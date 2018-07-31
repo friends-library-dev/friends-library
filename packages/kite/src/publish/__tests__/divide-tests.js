@@ -46,6 +46,13 @@ describe('divide()', () => {
     expect(notes.html).toContain('href="sect1.xhtml#_footnoteref_1"');
   });
 
+  it('removes period after link in footnote', () => {
+    const html = convert('== Ch1\n\nA para.footnote:[lol]</>');
+    const [ chapter, notes ] = divide(html);
+
+    expect(notes.html).toContain('<a href="sect1.xhtml#_footnoteref_1">1</a> lol');
+  });
+
   it('separates chapter prefix from body', () => {
     const [ section ] = divide(convert('== Chapter 1: Foobar\n\nPara.\n'));
 
@@ -109,6 +116,37 @@ describe('divide()', () => {
     const [ section ] = divide(convert('== Chapter I. On Conversion and Regeneration.\n\nPara.\n'));
 
     expect(section.chapterTitleBody).toBe('On Conversion and Regeneration.');
+  });
+
+  it('can handle numbered chapters with no title body', () => {
+    const [ section ] = divide(convert('== Chapter ii.\n\nPara.\n'));
+
+    expect(section.chapterNumber).toBe(2);
+    expect(section.chapterTitleBody).toBe('');
+    expect(section.html).not.toContain('__separator');
+    expect(section.html).not.toContain('__body');
+  });
+
+  it('finds shortened title body from config, if present', () => {
+    const config = { shortTitles: { 'ch-3': 'Foo' } };
+    const adoc = '[#ch-3]\n== Chapter 1. Foobar\n\nPara.\n';
+    const [ section ] = divide(convert(adoc), config);
+
+    expect(section.chapterTitleShort).toBe('Foo');
+  });
+
+  it('honors config for chapter number style', () => {
+    const config = { chapterNumberFormat: "roman" };
+    const [ section ] = divide(convert('== Chapter 1.\n\nPara.\n'), config);
+
+    expect(section.html).toContain('<span class="chapter-title__number">I</span>');
+  });
+
+  it('honors config for chapter separator style', () => {
+    const config = { chapterTitleSeparator: "*" };
+    const [ section ] = divide(convert('== Chapter 1. Foobar\n\nPara.\n'), config);
+
+    expect(section.html).toContain('<span class="chapter-title__separator">*</span>');
   });
 });
 

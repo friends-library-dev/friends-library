@@ -64,18 +64,16 @@ describe('packageDocument()', () => {
   test('one section produces one manifest resource and one spine item', () => {
     const xml = packageDocument(spec, sections);
 
-    expect(xml).toContain('<item href="sect1.xhtml" media-type="application/xhtml+xml" id="sect1"/>')
-    expect(xml.match(/<item href=/g).length).toBe(2); // one section, plus nav
-
+    expect(xml).toContain('<item href="sect1.xhtml" media-type="application/xhtml+xml" id="sect1"/>');
+    expect(xml.match(/<item href="sect[0-9]+\.xhtml"/g).length).toBe(1);
     expect(xml).toContain('<itemref idref="sect1"/>');
+    expect(xml.match(/<itemref idref="sect[0-9]+"/g).length).toBe(1);
   });
 
   test('footnotes go into named notes resource', () => {
     const html = convert('== Ch1\n\nFoobar.footnote:[lol]\n');
     const xml = packageDocument(spec, divide(html));
 
-    expect(xml.match(/<itemref idref=/g).length).toBe(2); // chapter + notes
-    expect(xml).toContain('<itemref idref="sect1"/>');
     expect(xml).toContain('<itemref idref="notes"/>');
   });
 });
