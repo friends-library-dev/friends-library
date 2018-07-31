@@ -33,4 +33,24 @@ describe('Friend', () => {
       expect(friend.isMale()).toBe(false);
     });
   });
+
+  describe('alphabeticalName()', () => {
+    it('returns lastname then firstname', () => {
+      friend.name = 'Jared Henderson';
+
+      expect(friend.alphabeticalName()).toBe('Henderson, Jared');
+    });
+
+    it('can handle maiden names', () => {
+      friend.name = 'Catherine (Payton) Phillips';
+
+      expect(friend.alphabeticalName()).toBe('Phillips, Catherine (Payton)');
+    });
+
+    it('can handle middle initials', () => {
+      friend.name = 'Sarah R. Grubb';
+
+      expect(friend.alphabeticalName()).toBe('Grubb, Sarah R.');
+    });
+  });
 });

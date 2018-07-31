@@ -2,6 +2,7 @@
 import { basename, resolve } from 'path';
 import { sync as glob } from 'glob';
 import { readFileSync } from 'fs';
+// $FlowFixMe
 import { safeLoad } from 'js-yaml';
 import type { Slug, Lang } from './type';
 import Friend from './Friend';

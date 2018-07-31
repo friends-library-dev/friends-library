@@ -31,4 +31,9 @@ export default class Friend {
   isFemale() {
     return !this.isMale();
   }
+
+  alphabeticalName() {
+    const parts = this.name.split(' ');
+    return `${parts.pop()}, ${parts.join(' ')}`;
+  }
 }
