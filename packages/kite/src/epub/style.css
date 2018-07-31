@@ -75,6 +75,8 @@ h2 .chapter-title__body {
 div.paragraph p {
   text-indent: 1.75em;
   text-align: left !important;
+  widows: 2;
+  orphans: 2;
 }
 
 

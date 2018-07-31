@@ -46,6 +46,13 @@ describe('divide()', () => {
     expect(notes.html).toContain('href="sect1.xhtml#_footnoteref_1"');
   });
 
+  it('removes square brackets around footnote ref', () => {
+    const html = convert('== Ch1\n\nA para.footnote:[lol]</>');
+    const [ chapter ] = divide(html);
+
+    expect(chapter.html).toMatch(/<sup class="footnote"><a[^>]+?>1<\/a><\/sup>/);
+  });
+
   it('removes period after link in footnote', () => {
     const html = convert('== Ch1\n\nA para.footnote:[lol]</>');
     const [ chapter, notes ] = divide(html);

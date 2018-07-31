@@ -9,6 +9,7 @@ export function divide(html: Html, config: Object = {}): Array<DocSection> {
     .split(/(?=<div (?:class="sect1"|id="footnotes")>)/gim)
     .filter(sect => !!sect.trim())
     .map(expandFootnotes)
+    .map(removeFootnoteBraces)
     .map((html: Html, i: number) => extractTitle(html, i + 1, config));
   return linkFootnotes(sections);
 }
@@ -38,9 +39,19 @@ function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
 }
 
 function expandFootnotes(html: Html): Html {
-   return html.replace(
+  return html.replace(
     /href="#_footnotedef_/gim,
     'href="notes.xhtml#_footnotedef_'
+  );
+}
+
+function removeFootnoteBraces(html: Html): Html {
+  return html.replace(
+    /<sup class="footnote">\[<a/gim,
+    '<sup class="footnote"><a'
+  ).replace(
+    /<\/a>\]<\/sup>/gim,
+    '</a></sup>'
   );
 }
 
