@@ -4,13 +4,13 @@ import fs from 'fs-extra';
 import epubCheck from 'epub-check';
 import chalk from 'chalk';
 import Zip from 'node-zip';
-import type { FileManifest } from '../type';
+import type { FileManifest, Command } from '../type';
 
 
 export async function make(
   manifest: FileManifest,
   filename: string,
-  check: boolean = true
+  { check }: Command
 ): Promise<*> {
   const zip = new Zip();
   for (let path in manifest) {

@@ -1,5 +1,5 @@
 // @flow
-import type { SourceSpec, Xml, Html, FileManifest, DocSection } from '../type';
+import type { SourceSpec, Xml, Html, FileManifest, DocSection, Command } from '../type';
 import fs from 'fs-extra';
 import { packageDocument } from './package-document';
 import { divide } from '../publish/divide';
@@ -9,13 +9,13 @@ export { make as makeEpub } from './make';
 
 const baseStyles = fs.readFileSync('src/epub/style.css').toString();
 
-export function epub(spec: SourceSpec, perform: boolean = true): FileManifest {
+export function epub(spec: SourceSpec, cmd: Command): FileManifest {
   const sections = divide(spec.html, spec.config);
   return {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),
     'OEBPS/style.css': baseStyles,
-    'OEBPS/package-document.opf': packageDocument(spec, sections, perform),
+    'OEBPS/package-document.opf': packageDocument(spec, sections, cmd),
     'OEBPS/nav.xhtml': toc(spec, sections),
     'OEBPS/frontmatter.xhtml': wrapHtml(frontmatter(spec)),
     ...sectionize(sections),

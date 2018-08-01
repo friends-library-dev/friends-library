@@ -4,10 +4,10 @@ const { execSync } = require('child_process');
 import kindlegen from 'kindlegen';
 import { epub, makeEpub } from '../epub';
 import Zip from 'node-zip';
-import type { SourceSpec, FileManifest } from '../type';
+import type { SourceSpec, FileManifest, Command } from '../type';
 
-export function mobi(spec: SourceSpec): FileManifest {
-  const epubManifest = epub(spec, true);
+export function mobi(spec: SourceSpec, cmd: Command): FileManifest {
+  const epubManifest = epub(spec, cmd);
   let mobiManifest = {};
   for (let path in epubManifest) {
     mobiManifest[path] = epubManifest[path].replace(
@@ -24,7 +24,7 @@ export function mobi(spec: SourceSpec): FileManifest {
   return mobiManifest;
 }
 
-export function makeMobi(manifest: FileManifest, filename: string): void {
+export function makeMobi(manifest: FileManifest, filename: string, { open }: Command): void {
   const zip = new Zip();
   for (let path in manifest) {
     zip.file(path, manifest[path]);
@@ -38,7 +38,7 @@ export function makeMobi(manifest: FileManifest, filename: string): void {
   kindlegen(fs.readFileSync(precursor), (err, mobi) => {
     fs.writeFileSync(`_publish/${filename}.mobi`, mobi);
     fs.removeSync(precursor);
-    execSync(`open -a "/Applications/Kindle.app" "_publish/${filename}.mobi"`);
+    open && execSync(`open -a "/Applications/Kindle.app" "_publish/${filename}.mobi"`);
     process.exit();
   });
 }

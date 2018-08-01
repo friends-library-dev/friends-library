@@ -9,6 +9,15 @@ export type Html = string;
 
 export type Asciidoc = string;
 
+export type FileType = 'epub' | 'mobi' | 'pdf';
+
+export type Command = {|
+  formats: Array<FileType>,
+  perform: boolean,
+  check: boolean,
+  open: boolean,
+|};
+
 export type SourceSpec = {|
   lang: Lang,
   friend: Friend,

@@ -9,6 +9,7 @@ describe('packageDocument()', () => {
 
   let spec;
   let sections;
+  let cmd;
 
   beforeEach(() => {
     spec = {
@@ -24,45 +25,50 @@ describe('packageDocument()', () => {
       isChapter: true,
       isFootnotes: false,
     }];
+
+    cmd = {
+      perform: true,
+      check: false,
+    };
   });
 
   it('correctly sets language', () => {
     spec.lang = 'es';
-    const xml = packageDocument(spec, sections);
+    const xml = packageDocument(spec, sections, cmd);
     expect(xml).toContain('<dc:language id="pub-language">es</dc:language>');
   });
 
   it('contains the document title', () => {
     spec.document.title = 'Foobar baz';
-    const xml = packageDocument(spec, sections);
+    const xml = packageDocument(spec, sections, cmd);
     expect(xml).toContain('<dc:title id="pub-title">Foobar baz</dc:title>');
   });
 
   it('contains the friend author', () => {
     spec.document.title = 'Foobar baz';
-    const xml = packageDocument(spec, sections);
+    const xml = packageDocument(spec, sections, cmd);
     expect(xml).toContain('<dc:creator id="author">Rebecca Jones</dc:creator>');
   });
 
   it('contains the file-as meta tag', () => {
-    const xml = packageDocument(spec, sections);
+    const xml = packageDocument(spec, sections, cmd);
     expect(xml).toContain('<meta property="file-as" refines="#author">Jones, Rebecca</meta>');
   });
 
   it('must contain dc:terms modified', () => {
     spec.date = 1532465023;
-    const xml = packageDocument(spec, sections);
+    const xml = packageDocument(spec, sections, cmd);
     expect(xml).toContain('<meta property="dcterms:modified">2018-07-24T08:43:43Z</meta>');
   });
 
   test('uuid should be constructed to uniquely refer to ebook doc', () => {
     const uuid = 'friends-library/epub/en/rebecca-jones/life-letters/modernized';
-    const xml = packageDocument(spec, sections);
+    const xml = packageDocument(spec, sections, cmd);
     expect(xml).toContain(`<dc:identifier id="pub-id">${uuid}</dc:identifier>`)
   });
 
   test('one section produces one manifest resource and one spine item', () => {
-    const xml = packageDocument(spec, sections);
+    const xml = packageDocument(spec, sections, cmd);
 
     expect(xml).toContain('<item href="sect1.xhtml" media-type="application/xhtml+xml" id="sect1"/>');
     expect(xml.match(/<item href="sect[0-9]+\.xhtml"/g).length).toBe(1);
@@ -72,7 +78,7 @@ describe('packageDocument()', () => {
 
   test('footnotes go into named notes resource', () => {
     const html = convert('== Ch1\n\nFoobar.footnote:[lol]\n');
-    const xml = packageDocument(spec, divide(html));
+    const xml = packageDocument(spec, divide(html), cmd);
 
     expect(xml).toContain('<itemref idref="notes"/>');
   });

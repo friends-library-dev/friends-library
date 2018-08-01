@@ -7,6 +7,7 @@ const rebecca = getFriend('rebecca-jones');
 describe('mobi()', () => {
 
   let spec;
+  let cmd;
 
   beforeEach(() => {
     spec = {
@@ -17,11 +18,15 @@ describe('mobi()', () => {
       document: rebecca.documents[0],
       edition: rebecca.documents[0].editions[0]
     };
+
+    cmd = {
+      perform: true,
+    };
   });
 
   test('changes meta charset tags', () => {
     spec.html = convert('== Chapter 1\n\nParagraph.\n');
-    const manifest = mobi(spec);
+    const manifest = mobi(spec, cmd);
 
     const epubCharset = '<meta charset="UTF-8"/>';
     const mobiCharset = '<meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8"/>';
@@ -31,7 +36,7 @@ describe('mobi()', () => {
   });
 
   test('uses mobi prefix for uuid', () => {
-    const manifest = mobi(spec);
+    const manifest = mobi(spec, cmd);
 
     const expected = '<dc:identifier id="pub-id">friends-library/mobi/';
 

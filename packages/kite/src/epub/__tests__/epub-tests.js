@@ -8,6 +8,7 @@ describe('epub()', () => {
 
   let spec;
   let sections;
+  let cmd;
 
   beforeEach(() => {
     spec = {
@@ -17,22 +18,27 @@ describe('epub()', () => {
       document: rebecca.documents[0],
       edition: rebecca.documents[0].editions[0]
     };
+
+    cmd = {
+      perform: true,
+      check: false,
+    };
   });
 
   it('returns a META-INF dir with required container.xml', () => {
-    const manifest = epub(spec);
+    const manifest = epub(spec, cmd);
     expect(manifest['META-INF/container.xml']).toBeDefined();
   });
 
   it('has mimetype file in root', () => {
-    const manifest = epub(spec);
+    const manifest = epub(spec, cmd);
     expect(manifest.mimetype).toBe('application/epub+zip');
   });
 
   it('creates section files based on splitting html', () => {
     spec.html = convert('== Ch1\n\nPara.\n\n== Ch2\n\nPara.\n'); // 2 chapters
 
-    const manifest = epub(spec);
+    const manifest = epub(spec, cmd);
 
     expect(manifest['OEBPS/sect1.xhtml']).toBeDefined();
     expect(manifest['OEBPS/sect2.xhtml']).toBeDefined();

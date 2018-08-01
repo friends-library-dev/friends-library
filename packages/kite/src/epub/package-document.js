@@ -1,22 +1,23 @@
 // @flow
 import moment from 'moment';
-import type { SourceSpec, DocSection, Xml } from '../type';
+import type { SourceSpec, DocSection, Xml, Command } from '../type';
 
 export function packageDocument(
   spec: SourceSpec,
   sections: Array<DocSection>,
-  perform: boolean = true
+  { perform }: Command
 ): Xml {
   const { lang, friend, document, edition, date } = spec;
   const modified = moment.utc(moment.unix(date)).format('YYYY-MM-DDThh:mm:ss[Z]');
   const uuid = `friends-library/epub/${lang}/${friend.slug}/${document.slug}/${edition.type}`;
+  const randomizer = ` (${moment().format('h:mm:ss')})`;
   return `
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:language id="pub-language">${lang}</dc:language>
     <dc:identifier id="pub-id">${perform ? uuid : Date.now()}</dc:identifier>
-    <dc:title id="pub-title">${document.title}${perform ? '' : Date.now()}</dc:title>
+    <dc:title id="pub-title">${document.title}${perform ? '' : randomizer}</dc:title>
     <dc:creator id="author">${friend.name}</dc:creator>
     <dc:publisher>The Friends Library</dc:publisher>
     <dc:subject>Quakers</dc:subject>

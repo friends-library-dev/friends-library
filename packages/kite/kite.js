@@ -11,7 +11,7 @@ yargs
       type: 'string',
       describe: 'absolute filepath to root dir containing all doc repos'
     }),
-    ({ path, format }) => publish(path, format)
+    publish
   )
   .help()
   .argv;
