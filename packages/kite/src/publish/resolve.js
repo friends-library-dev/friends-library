@@ -6,7 +6,7 @@ import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
 import type { Lang } from '../type'
-import { prepareAsciidoc } from './asciidoc';
+import { prepareAsciidoc, convert } from './asciidoc';
 
 
 const ROOT: string = ((process.env.DOCS_REPOS_ROOT: any): string);
@@ -45,7 +45,7 @@ function data(
     edition,
     config: getConfig(path),
     filename: `${document.filename}--${edition.type}`,
-    html: Asciidoctor().convert(adoc),
+    html: convert(adoc),
   };
 }
 

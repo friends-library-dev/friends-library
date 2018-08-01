@@ -28,14 +28,23 @@ function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
       acc[match[1]] = id;
     }
     return acc;
-  }, {});
+  }, { '1': 'frontmatter' });
 
   last.html = last.html.replace(
     /href="#_footnoteref_([0-9]+)">\d+<\/a>\./gim,
     (full, num) => `href="${notes[num]}.xhtml#_footnoteref_${num}">${num}</a>`
   );
 
+  last.html = addFootnoteBackArrows(last.html);
+
   return sections;
+}
+
+function addFootnoteBackArrows(html: Html): Html {
+  return html.replace(
+    /(?<=<a href="([^"]+?)">[0-9]+?<\/a>[\S\s]*?)(?=<\/div>\s*(<div class="footnote"|<\/div>))/gim,
+    ' <a href="$1">↩</a>',
+  );
 }
 
 function expandFootnotes(html: Html): Html {

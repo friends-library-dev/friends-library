@@ -5,15 +5,31 @@ import type { Asciidoc, Html } from '../type';
 const asciidoctor = Asciidoctor();
 
 export function convert(adoc: Asciidoc): Html {
-  const html = asciidoctor.convert(adoc);
+  let html = asciidoctor.convert(adoc);
+
+  if (html.includes(practiceNote.substr(0, 20))) {
+    html = html.replace(/<sup[\s\S]+?<\/sup>/, '');
+  }
+
   return ((html: any): Html);
 }
 
 export function prepareAsciidoc(raw: Asciidoc): Asciidoc {
-  return raw
+  let prepared = raw
     .replace(/\^\nfootnote:\[/igm, 'footnote:[')
     .replace(/"`/igm, '“')
     .replace(/`"/igm, '”')
     .replace(/'`/igm, '‘')
     .replace(/`'/igm, '’');
+
+  if (prepared.includes('footnote:[')) {
+    prepared = prepared.replace(
+      /(?=footnote:\[)/,
+      `footnote:[${practiceNote}]`
+    );
+  }
+  return prepared;
 }
+
+
+const practiceNote = 'You made it to the notes area! To get back to where you just were, click the back arrow (↩) at the end of the note, or the number at the beginning of the note, or use your e-reader’s “back to page...” feature.';

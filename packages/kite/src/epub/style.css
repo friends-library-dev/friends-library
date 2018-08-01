@@ -50,7 +50,21 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2em;
   padding-bottom: 0.65em;
 }
-
+.footnote-helper {
+  padding-top: 25%;
+}
+.footnote-helper h3 {
+  font-size: 0.95em;
+}
+.footnote-helper p {
+  font-size: 0.95em;
+  font-style: italic;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+.footnote-helper p span {
+  font-style: normal;
+}
 
 /* chapter titles */
 h2 {
@@ -102,7 +116,6 @@ blockquote + .attribution {
 }
 
 #footnotes .footnote {
-  position: relative;
 }
 
 #footnotes .footnote + .footnote {

@@ -1,11 +1,11 @@
-import { prepareAsciidoc } from '../asciidoc';
+import { prepareAsciidoc, convert } from '../asciidoc';
 
 
 describe('prepareAsciidoc()', () => {
   it('converts funky footnote newline carets', () => {
-    const result = prepareAsciidoc('A para^\nfootnote:[lol] with a caret note.');
+    const result = prepareAsciidoc('Afootnote:[a] caret^\nfootnote:[lol].');
 
-    expect(result).toBe('A parafootnote:[lol] with a caret note.');
+    expect(result).toContain('caretfootnote:[lol].');
   });
 
   it('converts to curly quotes', () => {
@@ -18,5 +18,28 @@ describe('prepareAsciidoc()', () => {
     const result = prepareAsciidoc("Hello '`good`' sir.");
 
     expect(result).toBe("Hello ‘good’ sir.");
+  });
+
+  it('does not add extra extra footnote when no footnotes', () => {
+    const result = prepareAsciidoc('== Chapter title\n\nPara.\n');
+
+    expect(result).not.toContain('footnote:');
+  });
+
+  it('adds extra explanation footnote if footnote found', () => {
+    const result = prepareAsciidoc('== Chapter title\n\nPara.footnote:[lol]\n');
+
+    expect(result.match(/footnote:/g).length).toBe(2);
+  });
+});
+
+describe('convert()', () => {
+  it('removes explanatory footnote call', () => {
+    const adoc = prepareAsciidoc('== Title\n\nPara.footnote:[lol]');
+    const html = convert(adoc);
+
+    expect(html).not.toContain('id="_footnoteref_1');
+    expect(html).not.toContain('>1</a>]</sup>');
+    expect(html.match(/<\/sup>/gim).length).toBe(1);
   });
 });

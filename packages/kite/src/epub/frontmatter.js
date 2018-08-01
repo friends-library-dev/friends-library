@@ -20,6 +20,7 @@ export function frontmatter(spec: SourceSpec): Html {
         <li>Find many other free books from early Quakers at <a href="https://friendslibrary.com">friendslibrary.com</a></li>
         <li>Contact the publishers at <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
       </ul>
+      ${footnoteHelper(spec)}
     </div>
   `;
 }
@@ -47,6 +48,21 @@ function originalTitle({ document }: SourceSpec): Html {
       </p>
       <p class="originally-titled__title">
         ${document.originalTitle}
+      </p>
+    </div>
+  `;
+}
+
+function footnoteHelper({ html }: SourceSpec): Html {
+  if (!html.includes('<div id="footnotes">')) {
+    return '';
+  }
+
+  return `
+    <div class="footnote-helper own-page">
+      <h3>Help with Footnotes</h3>
+      <p>
+        This e-book contains footnotes. When you see a reference number, click it to access the footnote. Once you're done reading the note, it's easy to get back to exactly where you were just reading—just click the the back arrow <span>(↩)</span> after the note, or the note number at the beginning of the note. Here's a sample footnote for you to practice.<sup class="footnote"><a id="_footnoteref_1" class="footnote" href="notes.xhtml#_footnotedef_1">1</a></sup>
       </p>
     </div>
   `;

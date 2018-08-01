@@ -1,4 +1,5 @@
 import { frontmatter } from '../frontmatter';
+import { prepareAsciidoc, convert } from '../../publish/asciidoc';
 
 describe('frontmatter()', () => {
 
@@ -6,6 +7,7 @@ describe('frontmatter()', () => {
 
   beforeEach(() => {
     spec = {
+      html: '',
       document: { title: 'Journal' },
       friend: { name: 'George Fox' },
       edition: { type: 'updated' },
@@ -49,5 +51,21 @@ describe('frontmatter()', () => {
     const ghUrl = 'https://github.com/friends-library-docs/fox/tree/68c1187/journal/updated';
     expect(html).toContain('>68c1187</a>');
     expect(html).toContain(ghUrl);
+  });
+
+  it('does not add footnote helper if no footnotes', () => {
+    spec.html = convert('== Chapter 1\n\nPara.\n');
+
+    const html = frontmatter(spec);
+
+    expect(html).not.toContain('footnote-helper');
+  });
+
+  it('adds footnote helper', () => {
+    spec.html = convert(prepareAsciidoc('== Chapter 1\n\nParafootnote:[foo].\n'));
+
+    const html = frontmatter(spec);
+
+    expect(html).toContain('footnote-helper');
   });
 });
