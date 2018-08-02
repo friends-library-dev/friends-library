@@ -24,7 +24,11 @@ export function mobi(spec: SourceSpec, cmd: Command): FileManifest {
   return mobiManifest;
 }
 
-export function makeMobi(manifest: FileManifest, filename: string, { open }: Command): void {
+export function makeMobi(
+  manifest: FileManifest,
+  filename: string,
+  { open, perform }: Command,
+): void {
   const zip = new Zip();
   for (let path in manifest) {
     zip.file(path, manifest[path]);
@@ -36,9 +40,10 @@ export function makeMobi(manifest: FileManifest, filename: string, { open }: Com
   fs.writeFileSync(precursor, binary, 'binary');
 
   kindlegen(fs.readFileSync(precursor), (err, mobi) => {
-    fs.writeFileSync(`_publish/${filename}.mobi`, mobi);
+    const file = `${filename}${perform ? '' : `-${Date.now()}`}`;
+    fs.writeFileSync(`_publish/${file}.mobi`, mobi);
     fs.removeSync(precursor);
-    open && execSync(`open -a "/Applications/Kindle.app" "_publish/${filename}.mobi"`);
+    open && execSync(`open -a "/Applications/Kindle.app" "_publish/${file}.mobi"`);
     process.exit();
   });
 }
