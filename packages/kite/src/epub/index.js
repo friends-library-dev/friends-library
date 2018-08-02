@@ -1,6 +1,7 @@
 // @flow
 import type { SourceSpec, Xml, Html, FileManifest, DocSection, Command } from '../type';
 import fs from 'fs-extra';
+import { mapValues, mapKeys } from 'lodash';
 import { packageDocument } from './package-document';
 import { divide } from '../publish/divide';
 import { toc } from './toc';
@@ -11,13 +12,14 @@ const baseStyles = fs.readFileSync('src/epub/style.css').toString();
 
 export function epub(spec: SourceSpec, cmd: Command): FileManifest {
   const sections = divide(spec.html, spec.config);
+  const frontMatter = frontmatter(spec);
   return {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),
     'OEBPS/style.css': baseStyles,
     'OEBPS/package-document.opf': packageDocument(spec, sections, cmd),
     'OEBPS/nav.xhtml': toc(spec, sections),
-    'OEBPS/frontmatter.xhtml': wrapHtml(frontmatter(spec)),
+    ...mapValues(mapKeys(frontMatter, (v, k) => `OEBPS/${k}.xhtml`), wrapHtml),
     ...sectionize(sections),
   };
 }

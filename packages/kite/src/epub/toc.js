@@ -15,7 +15,7 @@ export function toc(spec: SourceSpec, sections: Array<DocSection>): Html {
   <nav epub:type="toc" id="toc">
     <h2>Table of Contents</h2>
     <ol>
-      <li><a href="frontmatter.xhtml">Title</a></li>
+      <li><a href="half-title.xhtml">Title</a></li>
       ${sections.filter(s => s.id !== 'notes').map(sect =>
         `<li><a href="${sect.id}.xhtml">${entryText(sect, spec.config)}</a></li>`
       ).join('\n      ')}

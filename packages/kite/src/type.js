@@ -29,6 +29,7 @@ export type SourceSpec = {|
   date: number,
   hash: string,
   config: Object,
+  target?: FileType,
 |};
 
 export type FileManifest = {

@@ -13,6 +13,7 @@ describe('packageDocument()', () => {
 
   beforeEach(() => {
     spec = {
+      html: '',
       lang: 'en',
       friend: rebecca,
       document: rebecca.documents[0],

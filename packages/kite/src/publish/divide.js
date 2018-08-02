@@ -28,7 +28,7 @@ function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
       acc[match[1]] = id;
     }
     return acc;
-  }, { '1': 'frontmatter' });
+  }, { '1': 'footnote-helper' });
 
   last.html = last.html.replace(
     /href="#_footnoteref_([0-9]+)">\d+<\/a>\./gim,

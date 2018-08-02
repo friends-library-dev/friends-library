@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
-import type { Lang } from '../type'
+import type { Lang, SourceSpec } from '../type'
 import { prepareAsciidoc, convert } from './asciidoc';
 
 
@@ -72,7 +72,7 @@ function resolveLang(lang: Lang) {
   return friends.reduce((acc, path) => acc.concat(resolveFriend(lang, basename(path))), []);
 }
 
-export function resolve(path: string): Array<*> {
+export function resolve(path: string): Array<SourceSpec> {
   let [lang, friend, document, edition] = path.split('/');
 
   if (!lang) {

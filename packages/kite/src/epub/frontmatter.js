@@ -1,26 +1,42 @@
 // @flow
 import moment from 'moment';
+import { pickBy } from 'lodash';
 import type { SourceSpec, Html } from '../type';
 
-export function frontmatter(spec: SourceSpec): Html {
+export function frontmatter(spec: SourceSpec): { [string]: Html } {
   const { document, friend, date, hash } = spec;
   const time = moment.utc(moment.unix(date)).format('MMMM Do, YYYY');
+  const files = {
+    'half-title': halfTitle(spec),
+    'original-title': originalTitle(spec),
+    'copyright': copyright(spec),
+    'footnote-helper': footnoteHelper(spec),
+  };
+  return pickBy(files, html => html !== '');
+}
+
+function copyright(spec: SourceSpec): Html {
+  const { document, hash, date } = spec;
+  const time = moment.utc(moment.unix(date)).format('MMMM Do, YYYY');
+  return `
+  <div class="copyright-page">
+    <ul>
+      <li>Public domain in the USA</li>
+      ${document.published ? `<li>Originally published in ${document.published}</li>` : ''}
+      <li>Ebook revision <code><a href="${githubUrl(spec)}">${hash}</a></code> — ${time}</li>
+      <li>Ebook created and freely distributed by <a href="https://friendslibrary.com">The Friends Library</a></li>
+      <li>Find many other free books from early Quakers at <a href="https://friendslibrary.com">friendslibrary.com</a></li>
+      <li>Contact the publishers at <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
+    </ul>
+  </div>
+  `;
+}
+
+function halfTitle({ document, friend }: SourceSpec): Html {
   return `
     <div class="half-title-page">
       <h1>${document.title}</h1>
       <p class="byline">by ${friend.name}</p>
-    </div>
-    ${originalTitle(spec)}
-    <div class="copyright-page own-page">
-      <ul>
-        <li>Public domain in the USA</li>
-        ${document.published ? `<li>Originally published in ${document.published}</li>` : ''}
-        <li>Ebook revision <code><a href="${githubUrl(spec)}">${hash}</a></code> — ${time}</li>
-        <li>Ebook created and freely distributed by <a href="https://friendslibrary.com">The Friends Library</a></li>
-        <li>Find many other free books from early Quakers at <a href="https://friendslibrary.com">friendslibrary.com</a></li>
-        <li>Contact the publishers at <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
-      </ul>
-      ${footnoteHelper(spec)}
     </div>
   `;
 }
@@ -42,7 +58,7 @@ function originalTitle({ document }: SourceSpec): Html {
   }
 
   return `
-    <div class="original-title-page own-page">
+    <div class="original-title-page">
       <p class="originally-titled__label">
         Original title:
       </p>
@@ -59,10 +75,10 @@ function footnoteHelper({ html }: SourceSpec): Html {
   }
 
   return `
-    <div class="footnote-helper own-page">
+    <div id="_footnoteref_1" class="footnote-helper">
       <h3>Help with Footnotes</h3>
       <p>
-        This e-book contains footnotes. When you see a reference number, click it to access the footnote. Once you're done reading the note, it's easy to get back to exactly where you were just reading—just click the the back arrow <span>(↩)</span> after the note, or the note number at the beginning of the note. Here's a sample footnote for you to practice.<sup class="footnote"><a id="_footnoteref_1" class="footnote" href="notes.xhtml#_footnotedef_1">1</a></sup>
+        This e-book contains footnotes. When you see a reference number, click it to access the footnote. Once you're done reading the note, it's easy to get back to exactly where you were just reading—just click the the back arrow <span>(↩)</span> after the note, or the note number at the beginning of the note. Here's a sample footnote for you to practice.<sup class="footnote"><a class="footnote" href="notes.xhtml#_footnotedef_1">1</a></sup>
       </p>
     </div>
   `;

@@ -1,6 +1,7 @@
 // @flow
 import moment from 'moment';
 import type { SourceSpec, DocSection, Xml, Command } from '../type';
+import { frontmatter } from './frontmatter';
 
 export function packageDocument(
   spec: SourceSpec,
@@ -11,6 +12,7 @@ export function packageDocument(
   const modified = moment.utc(moment.unix(date)).format('YYYY-MM-DDThh:mm:ss[Z]');
   const uuid = `friends-library/epub/${lang}/${friend.slug}/${document.slug}/${edition.type}`;
   const randomizer = ` (${moment().format('h:mm:ss')})`;
+  const chunks = Object.keys(frontmatter(spec)).concat(sections.map(({ id }) => id));
   return `
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
@@ -27,16 +29,14 @@ export function packageDocument(
     <meta property="dcterms:modified">${modified}</meta>
   </metadata>
   <manifest>
-    ${sections.map(({ id }) => (
+    ${chunks.map(id => (
       `<item href="${id}.xhtml" media-type="application/xhtml+xml" id="${id}"/>`
     )).join('\n')}
-    <item href="frontmatter.xhtml" media-type="application/xhtml+xml" id="frontmatter"/>
     <item href="nav.xhtml" media-type="application/xhtml+xml" properties="nav" id="nav"/>
     <item href="style.css" id="css" media-type="text/css"/>
   </manifest>
   <spine>
-    <itemref idref="frontmatter"/>
-    ${sections.map(({ id }) => `<itemref idref="${id}"/>`).join('\n')}
+    ${chunks.map(id => `<itemref idref="${id}"/>`).join('\n')}
   </spine>
 </package>
   `.trim();

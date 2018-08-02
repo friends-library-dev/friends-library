@@ -15,30 +15,29 @@ describe('frontmatter()', () => {
   });
 
   it('does not include original title page if no orig title', () => {
-    const html = frontmatter(spec);
+    const files = frontmatter(spec);
 
-    expect(html).not.toContain('original-title-page');
+    expect(files['original-title']).toBeUndefined();
   });
 
   it('includes original title if document has original title', () => {
     spec.document.originalTitle = 'Journal of George Fox, &tc.';
-    const html = frontmatter(spec);
+    const files = frontmatter(spec);
 
-    expect(html).toContain('original-title-page');
-    expect(html).toContain('Journal of George Fox, &tc.');
+    expect(files['original-title']).toContain('Journal of George Fox, &tc.');
   });
 
   it('does not include publish date if not specified on document', () => {
-    const html = frontmatter(spec);
+    const { copyright } = frontmatter(spec);
 
-    expect(html).not.toContain('Originally published in');
+    expect(copyright).not.toContain('Originally published in');
   });
 
   it('does include publish date if specified on document', () => {
     spec.document.published = 1691;
-    const html = frontmatter(spec);
+    const { copyright } = frontmatter(spec);
 
-    expect(html).toContain('Originally published in 1691');
+    expect(copyright).toContain('Originally published in 1691');
   });
 
   it('includes github repo/commit/tree view link', () => {
@@ -46,26 +45,26 @@ describe('frontmatter()', () => {
     spec.friend.slug = 'fox';
     spec.hash = '68c1187';
 
-    const html = frontmatter(spec);
+    const { copyright } = frontmatter(spec);
 
     const ghUrl = 'https://github.com/friends-library-docs/fox/tree/68c1187/journal/updated';
-    expect(html).toContain('>68c1187</a>');
-    expect(html).toContain(ghUrl);
+    expect(copyright).toContain('>68c1187</a>');
+    expect(copyright).toContain(ghUrl);
   });
 
   it('does not add footnote helper if no footnotes', () => {
     spec.html = convert('== Chapter 1\n\nPara.\n');
 
-    const html = frontmatter(spec);
+    const files = frontmatter(spec);
 
-    expect(html).not.toContain('footnote-helper');
+    expect(files['footnote-helper']).toBeUndefined();
   });
 
   it('adds footnote helper', () => {
     spec.html = convert(prepareAsciidoc('== Chapter 1\n\nParafootnote:[foo].\n'));
 
-    const html = frontmatter(spec);
+    const files = frontmatter(spec);
 
-    expect(html).toContain('footnote-helper');
+    expect(files['footnote-helper']).toContain('footnote-helper');
   });
 });

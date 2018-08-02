@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 0.65em;
 }
 .footnote-helper {
-  padding-top: 25%;
+  padding-top: 5em;
 }
 .footnote-helper h3 {
   font-size: 0.95em;
@@ -87,8 +87,8 @@ h2 .chapter-title__body {
 
 /* paragraphs */
 div.paragraph p {
-  text-indent: 1.75em;
-  text-align: left !important;
+  margin: 0.5em 0;
+  text-indent: 1.4em;
   widows: 2;
   orphans: 2;
 }

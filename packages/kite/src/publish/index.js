@@ -33,17 +33,20 @@ export default (cmd: Object) => {
 
   specs.forEach(async (spec) => {
     if (cmd.format.includes('epub')) {
+      spec.target = 'epub';
       const manifest = epub(spec, cmd);
       await makeEpub(manifest, spec.filename, cmd);
       cmd.open && execSync(`open -a "iBooks" _publish/${spec.filename}.epub`);
     }
 
     if (cmd.format.includes('mobi')) {
+      spec.target = 'mobi';
       const manifest = mobi(spec, cmd);
       makeMobi(manifest, spec.filename, cmd);
     }
 
     if (cmd.format.includes('pdf')) {
+      spec.target = 'pdf';
       const manifest = printPdf(spec);
       makePdf(manifest, spec.filename);
     }
