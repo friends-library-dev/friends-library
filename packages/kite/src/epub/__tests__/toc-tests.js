@@ -52,4 +52,34 @@ describe('toc()', () => {
 
     expect(tocHtml).toContain('<a href="sect1.xhtml">Chapter I — Foobar</a>');
   });
+
+  it('includes landmarks with title page', () => {
+    const html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
+    const sections = divide(html);
+
+    const tocHtml = toc(spec, sections);
+
+    expect(tocHtml).toContain('epub:type="landmarks"');
+    expect(tocHtml).toContain('<a href="half-title.xhtml" epub:type="titlepage">Title page</a>');
+  });
+
+  test('epubs do not contain toc landmark', () => {
+    spec.target = 'epub';
+    const html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
+    const sections = divide(html);
+
+    const tocHtml = toc(spec, sections);
+
+    expect(tocHtml).not.toContain('<a href="nav.xhtml" epub:type="toc">Table of Contents</a>');
+  });
+
+  test('mobis do contain toc landmark', () => {
+    spec.target = 'mobi';
+    const html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
+    const sections = divide(html);
+
+    const tocHtml = toc(spec, sections);
+
+    expect(tocHtml).toContain('<a href="nav.xhtml" epub:type="toc">Table of Contents</a>');
+  });
 });

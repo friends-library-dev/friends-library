@@ -9,16 +9,23 @@ export function toc(spec: SourceSpec, sections: Array<DocSection>): Html {
 <head>
   <meta charset="UTF-8"/>
   <title>${spec.document.title}</title>
+  <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-  <h1>${spec.document.title}</h1>
   <nav epub:type="toc" id="toc">
     <h2>Table of Contents</h2>
-    <ol>
-      <li><a href="half-title.xhtml">Title</a></li>
+    <ol class="table-of-contents">
+      <li hidden=""><a href="half-title.xhtml">Title</a></li>
       ${sections.filter(s => s.id !== 'notes').map(sect =>
         `<li><a href="${sect.id}.xhtml">${entryText(sect, spec.config)}</a></li>`
       ).join('\n      ')}
+    </ol>
+  </nav>
+  <nav epub:type="landmarks" hidden="">
+    <ol>
+      <li><a href="half-title.xhtml" epub:type="titlepage">Title page</a></li>
+      ${spec.target == 'mobi' ? '<li><a href="nav.xhtml" epub:type="toc">Table of Contents</a></li>' : ''}
+      <li><a href="half-title.xhtml" epub:type="bodymatter">Beginning</a></li>
     </ol>
   </nav>
 </body>

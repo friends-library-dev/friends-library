@@ -66,6 +66,18 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal;
 }
 
+/* toc */
+.table-of-contents {
+  list-style-type: none;
+}
+#toc h2 {
+  margin-bottom: 2em;
+}
+.table-of-contents li {
+  line-height: 1.2;
+  margin: 0.75em 0;
+}
+
 /* chapter titles */
 h2 {
   margin-top: 5em;
@@ -111,6 +123,22 @@ blockquote + .attribution {
 
 
 /* footnotes */
+sup {
+  font-size: 0.675em;
+  line-height: 1.2;
+  vertical-align: super;
+  vertical-align: 35%;
+}
+
+sup a::before {
+  content: "["
+}
+
+sup a::after {
+  content: "]"
+}
+
+
 #footnotes hr {
   display: none;
 }

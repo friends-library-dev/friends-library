@@ -83,6 +83,20 @@ describe('packageDocument()', () => {
 
     expect(xml).toContain('<itemref idref="notes"/>');
   });
+
+  test('nav included in spine for mobi docs', () => {
+    spec.target = 'mobi';
+    const xml = packageDocument(spec, sections, cmd);
+
+    expect(xml).toContain('<itemref idref="nav"/>');
+  });
+
+  test('nav not included in spine for mobi docs', () => {
+    spec.target = 'epub';
+    const xml = packageDocument(spec, sections, cmd);
+
+    expect(xml).not.toContain('<itemref idref="nav"/>');
+  });
 });
 
 // test html gets <html>etc...

@@ -12,7 +12,8 @@ export function packageDocument(
   const modified = moment.utc(moment.unix(date)).format('YYYY-MM-DDThh:mm:ss[Z]');
   const uuid = `friends-library/epub/${lang}/${friend.slug}/${document.slug}/${edition.type}`;
   const randomizer = ` (${moment().format('h:mm:ss')})`;
-  const chunks = Object.keys(frontmatter(spec)).concat(sections.map(({ id }) => id));
+  const chunks = Object.keys(frontmatter(spec)).concat(['nav']).concat(sections.map(({ id }) => id));
+  const spineChunks = chunks.filter(id => spec.target === 'mobi' ? true : id !== 'nav');
   return `
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
@@ -29,15 +30,18 @@ export function packageDocument(
     <meta property="dcterms:modified">${modified}</meta>
   </metadata>
   <manifest>
-    ${chunks.map(id => (
-      `<item href="${id}.xhtml" media-type="application/xhtml+xml" id="${id}"/>`
-    )).join('\n')}
-    <item href="nav.xhtml" media-type="application/xhtml+xml" properties="nav" id="nav"/>
+    ${chunks.map(manifestItem).join('\n    ')}
     <item href="style.css" id="css" media-type="text/css"/>
   </manifest>
   <spine>
-    ${chunks.map(id => `<itemref idref="${id}"/>`).join('\n')}
+    ${spineChunks.map(id => `<itemref idref="${id}"/>`).join('\n    ')}
   </spine>
 </package>
   `.trim();
+}
+
+
+function manifestItem(id: string): Xml {
+  const props = id === 'nav' ? 'properties="nav" ' : '';
+  return `<item href="${id}.xhtml" media-type="application/xhtml+xml" ${props}id="${id}"/>`;
 }
