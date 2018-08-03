@@ -11,7 +11,7 @@ export async function make(
   manifest: FileManifest,
   filename: string,
   { check }: Command
-): Promise<*> {
+): Promise<string> {
   const zip = new Zip();
   for (let path in manifest) {
     zip.file(path, manifest[path]);
@@ -19,18 +19,19 @@ export async function make(
   }
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
-  fs.writeFileSync(`_publish/${filename}.epub`, binary, 'binary');
+  const file = `${filename}.epub`;
+  fs.writeFileSync(`_publish/${file}`, binary, 'binary');
 
-  if (!check) {
-    return;
+  if (check) {
+    const result = await epubCheck(`_publish/_src_/${filename}/epub`);
+    if (result.pass !== true) {
+      console.log(chalk.red(JSON.stringify(simplifyErrors(result.messages), null, 2)));
+      console.log(`${chalk.red('Invalid epub created:')} ${chalk.yellow(filename)}`);
+      process.exit();
+    }
   }
 
-  const result = await epubCheck(`_publish/_src_/${filename}/epub`);
-  if (result.pass !== true) {
-    console.log(chalk.red(JSON.stringify(simplifyErrors(result.messages), null, 2)));
-    console.log(`${chalk.red('Invalid epub created:')} ${chalk.yellow(filename)}`);
-    process.exit();
-  }
+  return file;
 }
 
 

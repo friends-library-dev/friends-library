@@ -17,6 +17,7 @@
     "epub-check": "^0.3.0",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
+    "gmail-send": "^1.2.14",
     "kindlegen": "^1.1.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",

@@ -1,10 +1,13 @@
 // @flow
+import { promisify } from 'util';
 import fs from 'fs-extra';
 const { execSync } = require('child_process');
 import kindlegen from 'kindlegen';
 import { epub, makeEpub } from '../epub';
 import Zip from 'node-zip';
 import type { SourceSpec, FileManifest, Command } from '../type';
+
+const asyncKindlegen = promisify(kindlegen);
 
 export function mobi(spec: SourceSpec, cmd: Command): FileManifest {
   const epubManifest = epub(spec, cmd);
@@ -24,11 +27,11 @@ export function mobi(spec: SourceSpec, cmd: Command): FileManifest {
   return mobiManifest;
 }
 
-export function makeMobi(
+export async function makeMobi(
   manifest: FileManifest,
   filename: string,
   { open, perform }: Command,
-): void {
+): Promise<string> {
   const zip = new Zip();
   for (let path in manifest) {
     zip.file(path, manifest[path]);
@@ -39,11 +42,10 @@ export function makeMobi(
   const precursor = `_publish/${filename}.mobi.epub`;
   fs.writeFileSync(precursor, binary, 'binary');
 
-  kindlegen(fs.readFileSync(precursor), (err, mobi) => {
-    const file = `${filename}${perform ? '' : `-${Date.now()}`}`;
-    fs.writeFileSync(`_publish/${file}.mobi`, mobi);
-    fs.removeSync(precursor);
-    open && execSync(`open -a "/Applications/Kindle.app" "_publish/${file}.mobi"`);
-    process.exit();
-  });
+  const mobi = await asyncKindlegen(fs.readFileSync(precursor))
+  const file = `${filename}${perform ? '' : `-${Date.now()}`}`;
+  fs.writeFileSync(`_publish/${file}.mobi`, mobi);
+  fs.removeSync(precursor);
+  open && execSync(`open -a "/Applications/Kindle.app" "_publish/${file}.mobi"`);
+  return `${file}.mobi`;
 }

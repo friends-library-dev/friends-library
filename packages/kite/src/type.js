@@ -16,6 +16,8 @@ export type Command = {|
   perform: boolean,
   check: boolean,
   open: boolean,
+  send: boolean,
+  email?: string,
 |};
 
 export type SourceSpec = {|
