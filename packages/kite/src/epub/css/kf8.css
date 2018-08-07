@@ -6,3 +6,13 @@ div.paragraph p {
   display: none;
   visibility: hidden;
 }
+
+.content-toc div {
+  font-size: 1em;
+  line-height: 1.2;
+  margin: 1em 0;
+}
+
+.copyright-page ul {
+  font-size: 0.8em;
+}

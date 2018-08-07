@@ -18,7 +18,7 @@ export function divide(spec: SourceSpec): Array<DocSection> {
 
 function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
   const last = sections.slice(-1).pop();
-  if (last.id !== 'notes') {
+  if (!last || last.id !== 'notes') {
     return sections; // no footnotes
   }
 

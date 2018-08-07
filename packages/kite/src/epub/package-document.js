@@ -13,7 +13,7 @@ export function packageDocument(
   const uuid = `friends-library/epub/${lang}/${friend.slug}/${document.slug}/${edition.type}`;
   const randomizer = ` (${moment().format('h:mm:ss')})`;
   const chunks = Object.keys(frontmatter(spec)).concat(['nav']).concat(sections.map(({ id }) => id));
-  const spineChunks = chunks.filter(id => spec.target === 'mobi' ? true : id !== 'nav');
+  const spineChunks = chunks.filter(id => id !== 'nav');
   return `
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">

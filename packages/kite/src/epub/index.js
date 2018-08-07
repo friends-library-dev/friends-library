@@ -58,7 +58,7 @@ function sectionize(sections: Array<DocSection>): { [string]: Html } {
   }, {});
 }
 
-function wrapHtml(html: string): string {
+export function wrapHtml(html: string): string {
   return `
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">

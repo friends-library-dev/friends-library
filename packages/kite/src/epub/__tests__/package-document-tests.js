@@ -84,18 +84,18 @@ describe('packageDocument()', () => {
     expect(xml).toContain('<itemref idref="notes"/>');
   });
 
-  test('nav included in spine for mobi docs', () => {
+  test('content-toc included in spine for mobi docs', () => {
     spec.target = 'mobi';
     const xml = packageDocument(spec, sections, cmd);
 
-    expect(xml).toContain('<itemref idref="nav"/>');
+    expect(xml).toContain('<itemref idref="content-toc"/>');
   });
 
-  test('nav not included in spine for mobi docs', () => {
+  test('content-toc not included in spine for epub docs', () => {
     spec.target = 'epub';
     const xml = packageDocument(spec, sections, cmd);
 
-    expect(xml).not.toContain('<itemref idref="nav"/>');
+    expect(xml).not.toContain('<itemref idref="ontent-toc"/>');
   });
 });
 

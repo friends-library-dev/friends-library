@@ -1,36 +1,39 @@
 // @flow
 import { toRoman } from 'roman-numerals';
 import type { SourceSpec, DocSection, Html } from '../type';
+import { wrapHtml } from './';
+import {M7BR} from './index';
 
 export function toc(spec: SourceSpec, sections: Array<DocSection>): Html {
-  return `
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <title>${spec.document.title}</title>
-  <link href="style.css" rel="stylesheet" type="text/css"/>
-</head>
-<body>
-  <nav epub:type="toc" id="toc">
-    <h2>Table of Contents</h2>
-    <ol class="table-of-contents">
-      <li hidden=""><a href="half-title.xhtml">Title</a></li>
-      ${sections.filter(s => s.id !== 'notes').map(sect =>
-        `<li><a href="${sect.id}.xhtml">${entryText(sect, spec.config)}</a></li>`
-      ).join('\n      ')}
-    </ol>
-  </nav>
-  <nav epub:type="landmarks" hidden="">
-    <ol>
-      <li><a href="half-title.xhtml" epub:type="titlepage">Title page</a></li>
-      ${spec.target == 'mobi' ? '<li><a href="nav.xhtml" epub:type="toc">Table of Contents</a></li>' : ''}
-      <li><a href="half-title.xhtml" epub:type="bodymatter">Beginning</a></li>
-    </ol>
-  </nav>
-</body>
-</html>
-  `.trim();
+  return wrapHtml(`
+<nav epub:type="toc" id="toc">
+  <h2>Table of Contents</h2>
+  <ol class="table-of-contents">
+    <li hidden=""><a href="half-title.xhtml">Title</a></li>
+    ${sections.filter(s => s.id !== 'notes').map(sect =>
+      `<li><a href="${sect.id}.xhtml">${entryText(sect, spec.config)}</a></li>`
+    ).join('\n      ')}
+  </ol>
+</nav>
+<nav epub:type="landmarks" hidden="">
+  <ol>
+    <li><a href="half-title.xhtml" epub:type="titlepage">Title page</a></li>
+    ${spec.target == 'mobi' ? '<li><a href="nav.xhtml" epub:type="toc">Table of Contents</a></li>' : ''}
+    <li><a href="half-title.xhtml" epub:type="bodymatter">Beginning</a></li>
+  </ol>
+</nav>
+  `.trim());
+}
+
+export function contentToc(spec: SourceSpec, sections: Array<DocSection>): Html {
+  return wrapHtml(`
+<section class="content-toc">
+  <h1>Table of Contents</h1>
+  ${sections.filter(s => s.id !== 'notes').map(sect =>
+    `<div>${M7BR}<a href="${sect.id}.xhtml">${entryText(sect, spec.config)}</a>${M7BR}</div>`
+  ).join(`\n      `)}
+</section>
+  `.trim());
 }
 
 

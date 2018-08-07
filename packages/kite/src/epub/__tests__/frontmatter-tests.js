@@ -11,6 +11,7 @@ describe('frontmatter()', () => {
       document: { title: 'Journal' },
       friend: { name: 'George Fox' },
       edition: { type: 'updated' },
+      config: {},
     };
   });
 
