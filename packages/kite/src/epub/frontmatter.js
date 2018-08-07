@@ -68,7 +68,7 @@ function originalTitle({ document }: SourceSpec): Html {
         ${M7BR}${M7BR}
       </p>
       <p class="originally-titled__title">
-        ${document.originalTitle}
+        ${document.originalTitle.toUpperCase()}
       </p>
     </div>
   `;

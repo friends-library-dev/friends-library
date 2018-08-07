@@ -1,5 +1,6 @@
 import { divide } from '../divide';
 import { convert } from '../asciidoc';
+import { M7BR } from '../../epub/index';
 
 describe('divide()', () => {
 
@@ -108,18 +109,22 @@ describe('divide()', () => {
     const [ section ] = divide(spec);
 
     const expected = `
-      <h2 id="_chapter_i_foobar">
-        <span class="chapter-title__prefix">
+      <header id="_chapter_i_foobar">
+        <h2 class="chapter-title__prefix">
           Chapter <span class="chapter-title__number">1</span>
-        </span>
-        <span class="chapter-title__separator">:</span>
-        <span class="chapter-title__body">
-          Foobar
-        </span>
-      </h2>
+        </h2>
+        ${M7BR}
+        <div>
+          <span class="chapter-title__separator">:</span>
+          <span class="chapter-title__body">
+            FOOBAR
+          </span>
+        </div>
+        ${M7BR}
+      </header>
     `;
 
-    expect(section.html).toContain(stripWhitespace(expected).replace('Foobar', ' Foobar'));
+    expect(section.html).toContain(stripWhitespace(expected).replace('FOOBAR', ' FOOBAR'));
   });
 
   it('adds no extra whitespace that causes rendering issues', () => {
@@ -134,7 +139,7 @@ describe('divide()', () => {
     spec.html = convert('== Chapter i: Foobar\n\nPara.\n');
     const [ section ] = divide(spec);
 
-    expect(section.html).toContain(' Foobar');
+    expect(section.html).toContain(' FOOBAR');
   });
 
   it('finds full chapter title bodies', () => {

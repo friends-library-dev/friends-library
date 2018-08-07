@@ -93,6 +93,7 @@ function extractTitle(html: Html, num: number, config: Object): DocSection {
   const pattern = /(Chapter ((?:[1-9]+[0-9]*)|(?:[ivxlcdm]+)))(?::|\.)?(?:\s+([^<]+))?/i;
   const titleMatch = title.match(pattern);
   if (!titleMatch) {
+    section.html = section.html.replace(/<\/h2>/, `</h2>${M7BR}`);
     return section;
   }
 
@@ -108,17 +109,19 @@ function extractTitle(html: Html, num: number, config: Object): DocSection {
   }
 
   section.html = html.replace(
-    /(<h2[^>]+?>)(.+?)<\/h2>/i,
+    /<h2([^>]+?)>(.+?)<\/h2>/i,
     [
-      '$1',
-        '<span class="chapter-title__prefix">',
+      '<header$1>',
+        '<h2 class="chapter-title__prefix">',
           `Chapter <span class="chapter-title__number">${displayNumber}</span>`,
-        '</span>',
-        body ? `<span class="chapter-title__separator">${separator}</span>` : '',
-        body ? '<span class="chapter-title__body">' : '',
-          body ? ` ${section.chapterTitleBody || ''}` : '',
-        body ? '</span>' : '',
-      '</h2>',
+        `</h2>${M7BR}`,
+        body ? '<div>' : M7BR,
+          body ? `<span class="chapter-title__separator">${separator}</span>` : '',
+          body ? '<span class="chapter-title__body">' : '',
+            body ? ` ${section.chapterTitleBody || ''}`.toUpperCase() : '',
+          body ? '</span>' : '',
+        body ? `</div>${M7BR}` : '',
+      '</header>',
     ].join(''),
   );
 

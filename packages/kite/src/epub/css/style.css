@@ -79,14 +79,18 @@ h2 {
   font-size: 1.1em;
 }
 
-h2 .chapter-title__prefix {
+.chapter-title__prefix {
   font-weight: 400;
   font-size: 0.9em;
 }
 
-h2 .chapter-title__body {
+.chapter-title__body {
   display: block;
   margin: 0.6em 0 2em;
+  text-align: center;
+  font-weight: 700;
+  hyphens: none;
+  -webkit-hyphens: none;
 }
 
 

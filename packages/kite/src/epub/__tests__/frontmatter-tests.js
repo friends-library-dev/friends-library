@@ -25,7 +25,8 @@ describe('frontmatter()', () => {
     spec.document.originalTitle = 'Journal of George Fox, &tc.';
     const files = frontmatter(spec);
 
-    expect(files['original-title']).toContain('Journal of George Fox, &tc.');
+    // uppercasing is to help mobi7 which can't CSS
+    expect(files['original-title']).toContain('JOURNAL OF GEORGE FOX, &TC.');
   });
 
   it('does not include publish date if not specified on document', () => {
