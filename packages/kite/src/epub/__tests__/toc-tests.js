@@ -16,8 +16,8 @@ describe('toc()', () => {
   });
 
   it('formats numbered chapters', () => {
-    const html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(html);
+    spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
+    const sections = divide(spec);
 
     const tocHtml = toc(spec, sections);
 
@@ -26,8 +26,9 @@ describe('toc()', () => {
   });
 
   it('prefers using short title', () => {
-    const html = convert('[#intro]\n== Introduction\n\nPara.\n\n');
-    const sections = divide(html, { shortTitles: { intro: 'Intro' } });
+    spec.html = convert('[#intro]\n== Introduction\n\nPara.\n\n');
+    spec.config = { shortTitles: { intro: 'Intro' } };
+    const sections = divide(spec);
 
     const tocHtml = toc(spec, sections);
 
@@ -35,8 +36,9 @@ describe('toc()', () => {
   });
 
   it('prefers short title with numbered chapter', () => {
-    const html = convert('[#intro]\n== Chapter i. Introduction\n\nPara.\n\n');
-    const sections = divide(html, { shortTitles: { intro: 'Intro' } });
+    spec.html = convert('[#intro]\n== Chapter i. Introduction\n\nPara.\n\n');
+    spec.config = { shortTitles: { intro: 'Intro' } };
+    const sections = divide(spec);
 
     const tocHtml = toc(spec, sections);
 
@@ -45,8 +47,8 @@ describe('toc()', () => {
 
   it('honors config chapter number style', () => {
     spec.config = { chapterNumberFormat: "roman" };
-    const html = convert('== Chapter 1: Foobar\n\nPara.\n');
-    const sections = divide(html, spec.config);
+    spec.html = convert('== Chapter 1: Foobar\n\nPara.\n');
+    const sections = divide(spec);
 
     const tocHtml = toc(spec, sections);
 
@@ -54,8 +56,8 @@ describe('toc()', () => {
   });
 
   it('includes landmarks with title page', () => {
-    const html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(html);
+    spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
+    const sections = divide(spec);
 
     const tocHtml = toc(spec, sections);
 
@@ -65,8 +67,8 @@ describe('toc()', () => {
 
   test('epubs do not contain toc landmark', () => {
     spec.target = 'epub';
-    const html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(html);
+    spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
+    const sections = divide(spec);
 
     const tocHtml = toc(spec, sections);
 
@@ -75,8 +77,8 @@ describe('toc()', () => {
 
   test('mobis do contain toc landmark', () => {
     spec.target = 'mobi';
-    const html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(html);
+    spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
+    const sections = divide(spec);
 
     const tocHtml = toc(spec, sections);
 

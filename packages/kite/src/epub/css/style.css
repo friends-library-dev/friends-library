@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
 }
 .original-title-page {
-  padding-top: 22%;
+  margin-top: 22%; /* NOT padding-top for mobi7 */
 }
 .originally-titled__label {
   font-style: italic;
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 0.65em;
 }
 .footnote-helper {
-  padding-top: 5em;
+  margin-top: 5em; /* NOT padding-top for mobi7 */
 }
 .footnote-helper h3 {
   font-size: 0.95em;
@@ -99,12 +99,11 @@ h2 .chapter-title__body {
 
 /* paragraphs */
 div.paragraph p {
-  margin: 0.5em 0;
+  /* margin: 0.5em 0; */
   text-indent: 1.4em;
   widows: 2;
   orphans: 2;
 }
-
 
 /* blockquotes */
 blockquote {
@@ -136,14 +135,6 @@ sup a::before {
 
 sup a::after {
   content: "]"
-}
-
-
-#footnotes hr {
-  display: none;
-}
-
-#footnotes .footnote {
 }
 
 #footnotes .footnote + .footnote {

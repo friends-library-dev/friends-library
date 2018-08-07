@@ -1,0 +1,8 @@
+div.paragraph p {
+  margin: 0.5em 0; /* hide from mobi7 */
+}
+
+.m7 {
+  display: none;
+  visibility: hidden;
+}

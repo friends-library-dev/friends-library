@@ -78,8 +78,8 @@ describe('packageDocument()', () => {
   });
 
   test('footnotes go into named notes resource', () => {
-    const html = convert('== Ch1\n\nFoobar.footnote:[lol]\n');
-    const xml = packageDocument(spec, divide(html), cmd);
+    spec.html = convert('== Ch1\n\nFoobar.footnote:[lol]\n');
+    const xml = packageDocument(spec, divide(spec), cmd);
 
     expect(xml).toContain('<itemref idref="notes"/>');
   });

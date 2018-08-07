@@ -1,16 +1,17 @@
 // @flow
 import { toArabic, toRoman } from 'roman-numerals';
 import { get } from 'lodash';
-import type { Html, DocSection } from '../type';
+import type { Html, SourceSpec, DocSection } from '../type';
+import { M7BR } from '../epub';
 
 
-export function divide(html: Html, config: Object = {}): Array<DocSection> {
-  const sections = html
+export function divide(spec: SourceSpec): Array<DocSection> {
+  const sections = spec.html
     .split(/(?=<div (?:class="sect1"|id="footnotes")>)/gim)
     .filter(sect => !!sect.trim())
     .map(expandFootnotes)
     .map(removeFootnoteBraces)
-    .map((html: Html, i: number) => extractTitle(html, i + 1, config));
+    .map((html: Html, i: number) => extractTitle(html, i + 1, spec.config));
   return linkFootnotes(sections);
 }
 
@@ -43,7 +44,7 @@ function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
 function addFootnoteBackArrows(html: Html): Html {
   return html.replace(
     /(?<=<a href="([^"]+?)">[0-9]+?<\/a>[\S\s]*?)(?=<\/div>\s*(<div class="footnote"|<\/div>))/gim,
-    ' <a href="$1">↩</a>',
+    ` <a href="$1">\u23CE</a>${M7BR}${M7BR}`,
   );
 }
 

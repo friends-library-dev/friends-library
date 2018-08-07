@@ -11,6 +11,11 @@ export function convert(adoc: Asciidoc): Html {
     html = html.replace(/<sup[\s\S]+?<\/sup>/, '');
   }
 
+  html = html.replace(
+    /<div id="footnotes">\s*<hr>/,
+    '<div id="footnotes">\n',
+  );
+
   return ((html: any): Html);
 }
 
@@ -32,4 +37,4 @@ export function prepareAsciidoc(raw: Asciidoc): Asciidoc {
 }
 
 
-const practiceNote = 'You made it to the notes area! To get back to where you just were, click the back arrow (↩) at the end of the note, or the number at the beginning of the note, or use your e-reader’s “back to page...” feature.';
+const practiceNote = 'You made it to the notes area! To get back to where you just were, click the back arrow (\u23CE) at the end of the note, or the number at the beginning of the note, or use your e-reader’s “back to page...” feature.';

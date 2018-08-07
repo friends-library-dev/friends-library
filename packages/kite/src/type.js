@@ -9,6 +9,8 @@ export type Html = string;
 
 export type Asciidoc = string;
 
+export type Css = string;
+
 export type FileType = 'epub' | 'mobi' | 'pdf';
 
 export type Command = {|

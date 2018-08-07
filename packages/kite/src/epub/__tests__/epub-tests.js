@@ -1,6 +1,6 @@
 import { getFriend } from '@friends-library/friends';
 import { convert } from '../../publish/asciidoc';
-import { epub } from '../';
+import { epub, M7BR } from '../';
 
 const rebecca = getFriend('rebecca-jones');
 
@@ -42,5 +42,38 @@ describe('epub()', () => {
 
     expect(manifest['OEBPS/sect1.xhtml']).toBeDefined();
     expect(manifest['OEBPS/sect2.xhtml']).toBeDefined();
+  });
+
+  test('css file has no kf8 for target epub', () => {
+    spec.target = 'epub';
+
+    const manifest = epub(spec, cmd);
+
+    expect(manifest['OEBPS/style.css']).not.toContain('@media amzn-kf8 ');
+  });
+
+  test('css file has kf8 media query for target mobi', () => {
+    spec.target = 'mobi';
+
+    const manifest = epub(spec, cmd);
+
+    expect(manifest['OEBPS/style.css']).toContain('@media amzn-kf8 ');
+  });
+
+  test('half-title for epub has no <br> tags', () => {
+    spec.target = 'epub';
+
+    const manifest = epub(spec, cmd);
+
+    expect(manifest['OEBPS/half-title.xhtml']).not.toContain('<br class="m7"/>');
+    expect(manifest['OEBPS/half-title.xhtml']).not.toContain(M7BR);
+  });
+
+  test('half-title for mobi has gets sad <br> tags', () => {
+    spec.target = 'mobi';
+
+    const manifest = epub(spec, cmd);
+
+    expect(manifest['OEBPS/half-title.xhtml']).toContain('<br class="m7"/>');
   });
 });

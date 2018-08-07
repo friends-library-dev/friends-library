@@ -42,4 +42,11 @@ describe('convert()', () => {
     expect(html).not.toContain('>1</a>]</sup>');
     expect(html.match(/<\/sup>/gim).length).toBe(1);
   });
+
+  // #footnotes hr { display: none; } breaks mobi7 ¯\_(ツ)_/¯
+  it('removes the <hr> element from the #footnotes div', () => {
+    const html = convert('== Title\n\nPara.footnote:[lol]');
+
+    expect(html).not.toContain('<hr>');
+  });
 });
