@@ -19,7 +19,7 @@ export function frontmatter(spec: SourceSpec): { [string]: Html } {
   return pickBy(files, html => html !== '');
 }
 
-function copyright(spec: SourceSpec): Html {
+export function copyright(spec: SourceSpec): Html {
   const { document, hash, date } = spec;
   const time = moment.utc(moment.unix(date)).format('MMMM Do, YYYY');
   return `

@@ -1,0 +1,22 @@
+.original-title-page {
+  text-align: center;
+  padding-top: 5rem;
+  page: original-title;
+}
+
+.originally-titled__label {
+  font-style: italic;
+}
+
+.originally-titled__title {
+  text-transform: uppercase;
+}
+
+@page original-title {
+  @bottom-center {
+    content: normal;
+  }
+  @top-center {
+    content: normal;
+  }
+}

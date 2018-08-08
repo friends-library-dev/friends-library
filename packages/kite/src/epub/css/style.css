@@ -143,3 +143,10 @@ sup a::after {
   margin-right: 0.4em;
   text-decoration: underline;
 }
+
+div.asterism {
+  text-align: center;
+  padding-top: 0.5em;
+  vertical-align: middle;
+  line-height: 2em;
+}

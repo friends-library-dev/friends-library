@@ -1,0 +1,33 @@
+.toc {
+  page: toc;
+  padding-top: 15%;
+}
+
+.toc h1 {
+  font-size: 1.4rem;
+  margin-bottom: 2.5rem;
+}
+
+.toc a {
+  text-decoration: none;
+  color: black;
+}
+
+.toc a > span {
+  display: inline-block;
+  width: 85%;
+}
+
+.toc a[href]::after {
+  content: leader(" ") target-counter(attr(href), page);
+  vertical-align: top;
+}
+
+@page toc {
+  @bottom-center {
+    content: normal;
+  }
+  @top-center {
+    content: normal;
+  }
+}

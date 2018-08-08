@@ -6,14 +6,14 @@ import { defaults, omit } from 'lodash';
 import { resolve } from './resolve';
 import { epub, makeEpub } from '../epub';
 import { mobi, makeMobi } from '../mobi';
-import { printPdf, makePdf } from '../pdf';
+import { pdf, makePdf } from '../pdf';
 import { send } from './send';
 
 
 export default async (cmd: Object) => {
   const path = cmd.path;
   cmd = defaults(omit(cmd, ['$0', '_', 'path']), {
-    format: ['epub', 'mobi', 'pdf'],
+    format: ['epub', 'mobi', 'pdf-web', 'pdf-print'],
     perform: false,
     check: false,
     open: false,
@@ -50,10 +50,18 @@ export default async (cmd: Object) => {
       files.push(await makeMobi(manifest, spec.filename, cmd));
     }
 
-    if (cmd.format.includes('pdf')) {
-      spec.target = 'pdf';
-      const manifest = printPdf(spec);
-      makePdf(manifest, spec.filename);
+    if (cmd.format.includes('pdf-print')) {
+      spec.target = 'pdf-print';
+      const manifest = pdf(spec);
+      makePdf(manifest, `${spec.filename}--(print)`, cmd);
+      files.push(`${spec.filename}--(print).pdf`);
+    }
+
+    if (cmd.format.includes('pdf-web')) {
+      spec.target = 'pdf-web';
+      const manifest = pdf(spec);
+      makePdf(manifest, spec.filename, cmd);
+      files.push(`${spec.filename}.pdf`);
     }
   }
 

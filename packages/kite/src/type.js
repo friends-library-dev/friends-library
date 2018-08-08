@@ -11,7 +11,7 @@ export type Asciidoc = string;
 
 export type Css = string;
 
-export type FileType = 'epub' | 'mobi' | 'pdf';
+export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 
 export type Command = {|
   formats: Array<FileType>,

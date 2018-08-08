@@ -1,15 +1,16 @@
 // @flow
 import fs from 'fs-extra';
 import path from 'path';
+import { memoize } from 'lodash';
 const { execSync } = require('child_process');
 import striptags from 'striptags';
-import type { SourceSpec, FileManifest } from '../type';
+import type { SourceSpec, FileManifest, Command, Css } from '../type';
+import { frontmatter } from './frontmatter';
 
-const css = fs.readFileSync('src/pdf/pdf.css').toString();
 const line = fs.readFileSync('src/pdf/line.svg').toString();
 
 
-export function printPdf(spec: SourceSpec): FileManifest {
+export function pdf(spec: SourceSpec): FileManifest {
   return {
     'book.html': getHtml(spec),
     'book.css': getCss(spec),
@@ -17,7 +18,11 @@ export function printPdf(spec: SourceSpec): FileManifest {
   };
 }
 
-export function makePdf(manifest: FileManifest, filename: string): void {
+export function makePdf(
+  manifest: FileManifest,
+  filename: string,
+  { open }: Command,
+): void {
   const dir = `_publish/_src_/${filename}/pdf`;
   for (let path in manifest) {
     fs.outputFileSync(`${dir}/${path}`, manifest[path]);
@@ -26,13 +31,28 @@ export function makePdf(manifest: FileManifest, filename: string): void {
   execSync(`prince-books "${src}"`, {
     stdio: [0, 1, 2]
   });
-  fs.move(`${dir}/book.pdf`, `_publish/${filename}.pdf`);
+  fs.moveSync(`${dir}/book.pdf`, `_publish/${filename}.pdf`);
+
+  if (open) {
+    execSync(`open "_publish/${filename}.pdf"`);
+  }
 }
 
-function getCss(spec: SourceSpec): string {
-  return css
-    .replace(/{{{ header.title }}}/g, spec.document.title);
-}
+const getCss = (() => {
+  const css = ['base','half-title', 'original-title', 'copyright', 'toc']
+    .map(slug => `src/pdf/css/${slug}.css`)
+    .map(file => fs.readFileSync(file).toString())
+    .join('\n');
+
+  const printCss = fs.readFileSync('src/pdf/css/print.css');
+  const webCss = fs.readFileSync('src/pdf/css/web.css');
+
+  return (spec: SourceSpec): Css => {
+    return css
+      .concat(spec.target === 'pdf-web' ? webCss : printCss)
+      .replace(/{{{ header.title }}}/g, spec.document.title)
+  }
+})();
 
 function chPart(text: string, type: 'prefix' | 'body'): string {
   return `<span class="chapter-title__${type}">${text}</span>`;
@@ -69,6 +89,10 @@ function getHtml(spec: SourceSpec): string {
     }
   );
 
+  html = html.replace(
+    '<div class="sect1">',
+    '<div class="sect1 first-chapter">',
+  );
 
   return `
 <!DOCTYPE html>
@@ -77,6 +101,7 @@ function getHtml(spec: SourceSpec): string {
     <link href="book.css" rel="stylesheet" type="text/css">
   </head>
   <body>
+    ${frontmatter(spec)}
     ${html}
   </body>
 </html>

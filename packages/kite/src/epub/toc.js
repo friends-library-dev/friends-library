@@ -37,7 +37,7 @@ export function contentToc(spec: SourceSpec, sections: Array<DocSection>): Html 
 }
 
 
-function entryText(section: DocSection, config: Object): string {
+export function entryText(section: DocSection, config: Object): string {
   if (!section.chapterNumber) {
     return section.chapterTitleShort || section.title || '';
   }

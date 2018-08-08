@@ -1,0 +1,43 @@
+html {
+  font-size: 10pt;
+}
+
+@page {
+  size: 12.9cm 19.8cm; /* 5.5in x 8.5in for large books */
+  margin-top: 0.5in;
+  margin-bottom: 0.7in;
+}
+
+@page:left {
+  margin-left: 0.55in;
+  margin-right: 0.75in;
+}
+
+@page:right {
+  margin-left: 0.75in;
+  margin-right: 0.55in;
+}
+
+.sect1 {
+  page-break-before: recto; /* keep start of chapters on recto */
+}
+
+.copyright-page {
+  height: 17.1cm;
+}
+
+blockquote div.paragraph p {
+  font-size: 0.95rem;
+}
+
+blockquote div.paragraph + div.paragraph {
+  margin-top: 0.4em;
+}
+
+.half-title-page {
+  height: 16.5cm;
+}
+
+.first-chapter {
+  counter-reset: page 1;
+}

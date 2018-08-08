@@ -31,6 +31,13 @@ describe('prepareAsciidoc()', () => {
 
     expect(result.match(/footnote:/g).length).toBe(2);
   });
+
+  it('converts hr.asterism to pass-thru html', () => {
+    const result = prepareAsciidoc("[.asterism]\n'''\n\nPara.");
+
+    expect(result).not.toContain("[.asterism]\n'''");
+    expect(result).toContain('++++\n<div class="asterism">');
+  });
 });
 
 describe('convert()', () => {

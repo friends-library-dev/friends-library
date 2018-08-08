@@ -1,8 +1,7 @@
-import Asciidoctor from 'asciidoctor.js';
 import { getFriend } from '@friends-library/friends';
-import { printPdf } from '../';
+import { pdf } from '../';
+import { convert } from '../../publish/asciidoc';
 
-const asciidoctor = new Asciidoctor();
 const rebecca = getFriend('rebecca-jones');
 
 const simpleAdoc = `
@@ -12,9 +11,9 @@ A paragraphfootnote:[_So_ cool!] with a sentence
 and a single footnote.
 `;
 
-const simpleHtml = asciidoctor.convert(simpleAdoc);
+const simpleHtml = convert(simpleAdoc);
 
-describe('printPdf()', () => {
+describe('pdf()', () => {
   let spec;
 
   beforeEach(() => {
@@ -24,17 +23,18 @@ describe('printPdf()', () => {
       document: rebecca.documents[0],
       edition: rebecca.documents[0].editions[0],
       html: simpleHtml,
+      config: {},
     };
   });
 
   it('adds css file', () => {
-    const manifest = printPdf(spec);
+    const manifest = pdf(spec);
 
     expect(manifest['book.css']).toContain('@page');
   });
 
   test('html has reference to css file', () => {
-    const manifest = printPdf(spec);
+    const manifest = pdf(spec);
 
     const expected = '<link href="book.css" rel="stylesheet" type="text/css">';
 
@@ -42,7 +42,7 @@ describe('printPdf()', () => {
   });
 
   it('moves footnotes back inline', () => {
-    const manifest = printPdf(spec);
+    const manifest = pdf(spec);
 
     const expected = 'A paragraph<span class="footnote"><em>So</em> cool!</span> with';
 
@@ -51,7 +51,7 @@ describe('printPdf()', () => {
 
   it('splits up chapter titles', () => {
     spec.html = spec.html.replace('My title', 'Chapter 1: Foobar');
-    const manifest = printPdf(spec);
+    const manifest = pdf(spec);
 
     const expected = [
       '<span class="chapter-title__prefix">Chapter 1</span>',
@@ -59,5 +59,14 @@ describe('printPdf()', () => {
     ].join('');
 
     expect(manifest['book.html']).toContain(expected);
+  });
+
+  it.only('adds first-chapter classes to only first chapter', () => {
+    spec.html = convert('== One\n\nPara.\n\n== Two\n\nPara.\n');
+
+    const manifest = pdf(spec);
+
+    expect(manifest['book.html']).toContain('<div class="sect1 first-chapter">');
+    expect(manifest['book.html']).toContain('<div class="sect1">');
   });
 });

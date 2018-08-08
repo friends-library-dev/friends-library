@@ -25,7 +25,9 @@ export function prepareAsciidoc(raw: Asciidoc): Asciidoc {
     .replace(/"`/igm, '“')
     .replace(/`"/igm, '”')
     .replace(/'`/igm, '‘')
-    .replace(/`'/igm, '’');
+    .replace(/`'/igm, '’')
+    .replace(/--/igm, '&#8212;')
+    .replace(/\[\.asterism\]\n'''/igm, '++++\n<div class="asterism">*&#160;&#160;*&#160;&#160;*</div>\n++++');
 
   if (prepared.includes('footnote:[')) {
     prepared = prepared.replace(
