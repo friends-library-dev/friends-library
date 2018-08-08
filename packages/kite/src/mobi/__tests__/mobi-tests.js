@@ -16,7 +16,13 @@ describe('mobi()', () => {
       lang: 'en',
       friend: rebecca,
       document: rebecca.documents[0],
-      edition: rebecca.documents[0].editions[0]
+      edition: rebecca.documents[0].editions[0],
+      sections: [{
+        id: 'sect1',
+        html: 'foobar',
+        isChapter: true,
+        isFootnotes: false,
+      }],
     };
 
     cmd = {

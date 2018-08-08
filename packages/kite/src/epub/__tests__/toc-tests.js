@@ -17,9 +17,9 @@ describe('toc()', () => {
 
   it('formats numbered chapters', () => {
     spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(spec);
+    spec.sections = divide(spec.html);
 
-    const tocHtml = toc(spec, sections);
+    const tocHtml = toc(spec);
 
     expect(tocHtml).toContain('<a href="sect1.xhtml">Introduction</a>');
     expect(tocHtml).toContain('<a href="sect2.xhtml">Chapter 1 — Foo</a>');
@@ -28,9 +28,9 @@ describe('toc()', () => {
   it('prefers using short title', () => {
     spec.html = convert('[#intro]\n== Introduction\n\nPara.\n\n');
     spec.config = { shortTitles: { intro: 'Intro' } };
-    const sections = divide(spec);
+    spec.sections = divide(spec.html, spec.config);
 
-    const tocHtml = toc(spec, sections);
+    const tocHtml = toc(spec);
 
     expect(tocHtml).toContain('<a href="sect1.xhtml">Intro</a>');
   });
@@ -38,9 +38,9 @@ describe('toc()', () => {
   it('prefers short title with numbered chapter', () => {
     spec.html = convert('[#intro]\n== Chapter i. Introduction\n\nPara.\n\n');
     spec.config = { shortTitles: { intro: 'Intro' } };
-    const sections = divide(spec);
+    spec.sections = divide(spec.html, spec.config);
 
-    const tocHtml = toc(spec, sections);
+    const tocHtml = toc(spec);
 
     expect(tocHtml).toContain('<a href="sect1.xhtml">Chapter 1 — Intro</a>');
   });
@@ -48,18 +48,18 @@ describe('toc()', () => {
   it('honors config chapter number style', () => {
     spec.config = { chapterNumberFormat: "roman" };
     spec.html = convert('== Chapter 1: Foobar\n\nPara.\n');
-    const sections = divide(spec);
+    spec.sections = divide(spec.html);
 
-    const tocHtml = toc(spec, sections);
+    const tocHtml = toc(spec);
 
     expect(tocHtml).toContain('<a href="sect1.xhtml">Chapter I — Foobar</a>');
   });
 
   it('includes landmarks with title page', () => {
     spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(spec);
+    spec.sections = divide(spec.html);
 
-    const tocHtml = toc(spec, sections);
+    const tocHtml = toc(spec);
 
     expect(tocHtml).toContain('epub:type="landmarks"');
     expect(tocHtml).toContain('<a href="half-title.xhtml" epub:type="titlepage">Title page</a>');
@@ -68,9 +68,9 @@ describe('toc()', () => {
   test('epubs do not contain toc landmark', () => {
     spec.target = 'epub';
     spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(spec);
+    spec.sections = divide(spec.html);
 
-    const tocHtml = toc(spec, sections);
+    const tocHtml = toc(spec);
 
     expect(tocHtml).not.toContain('<a href="nav.xhtml" epub:type="toc">Table of Contents</a>');
   });
@@ -78,9 +78,9 @@ describe('toc()', () => {
   test('mobis do contain toc landmark', () => {
     spec.target = 'mobi';
     spec.html = convert('== Introduction\n\nPara.\n\n== Chapter i. Foo\n\nPara.\n');
-    const sections = divide(spec);
+    spec.sections = divide(spec.html);
 
-    const tocHtml = toc(spec, sections);
+    const tocHtml = toc(spec);
 
     expect(tocHtml).toContain('<a href="nav.xhtml" epub:type="toc">Table of Contents</a>');
   });

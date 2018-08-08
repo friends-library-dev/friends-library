@@ -1,17 +1,17 @@
 // @flow
 import { toArabic, toRoman } from 'roman-numerals';
 import { get } from 'lodash';
-import type { Html, SourceSpec, DocSection } from '../type';
+import type { Html, DocSection } from '../type';
 import { M7BR } from '../epub';
 
 
-export function divide(spec: SourceSpec): Array<DocSection> {
-  const sections = spec.html
+export function divide(html: Html, config: Object): Array<DocSection> {
+  const sections = html
     .split(/(?=<div (?:class="sect1"|id="footnotes")>)/gim)
     .filter(sect => !!sect.trim())
     .map(expandFootnotes)
     .map(removeFootnoteBraces)
-    .map((html: Html, i: number) => extractTitle(html, i + 1, spec.config));
+    .map((html: Html, i: number) => extractTitle(html, i + 1, config));
   return linkFootnotes(sections);
 }
 
@@ -108,6 +108,7 @@ function extractTitle(html: Html, num: number, config: Object): DocSection {
     displayNumber = toRoman(section.chapterNumber).toUpperCase();
   }
 
+  // @TODO mixing data and view concerns here bigtime
   section.html = html.replace(
     /<h2([^>]+?)>(.+?)<\/h2>/i,
     [

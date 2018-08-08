@@ -1,7 +1,6 @@
 // @flow
 import type { SourceSpec, Html } from '../type';
 import { copyright as epubCopyright } from '../epub/frontmatter';
-import { divide } from '../publish/divide';
 import { entryText } from '../epub/toc';
 
 export function frontmatter(spec: SourceSpec): Html {
@@ -13,8 +12,7 @@ export function frontmatter(spec: SourceSpec): Html {
   `;
 }
 
-function toc(spec: SourceSpec): Html {
-  const sections = divide(spec);
+function toc({ sections, config }: SourceSpec): Html {
   return `
     <div class="toc own-page">
       <h1>Contents</h1>
@@ -22,7 +20,7 @@ function toc(spec: SourceSpec): Html {
         return `
           <p>
             <a href="#${section.ref || ''}">
-              <span>${entryText(section, spec.config)}</span>
+              <span>${entryText(section, config)}</span>
             </a>
           </p>
         `;

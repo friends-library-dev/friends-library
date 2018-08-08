@@ -15,16 +15,15 @@ const epubStyles = fs.readFileSync('src/epub/css/epub.css').toString();
 export const M7BR = '{{{ MOBI7_BR }}}';
 
 export function epub(spec: SourceSpec, cmd: Command): FileManifest {
-  const sections = divide(spec);
   const frontMatter = frontmatter(spec);
   const manifest = {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),
     'OEBPS/style.css': css(spec),
-    'OEBPS/package-document.opf': packageDocument(spec, sections, cmd),
-    'OEBPS/nav.xhtml': toc(spec, sections),
+    'OEBPS/package-document.opf': packageDocument(spec, cmd),
+    'OEBPS/nav.xhtml': toc(spec),
     ...mapValues(mapKeys(frontMatter, (v, k) => `OEBPS/${k}.xhtml`), wrapHtml),
-    ...sectionize(sections),
+    ...sectionize(spec.sections),
   };
 
   return Object.keys(manifest).reduce((acc, key) => {

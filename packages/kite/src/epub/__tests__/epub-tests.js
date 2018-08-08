@@ -1,6 +1,7 @@
 import { getFriend } from '@friends-library/friends';
 import { convert } from '../../publish/asciidoc';
 import { epub, M7BR } from '../';
+import { divide } from '../../publish/divide';
 
 const rebecca = getFriend('rebecca-jones');
 
@@ -16,7 +17,14 @@ describe('epub()', () => {
       lang: 'en',
       friend: rebecca,
       document: rebecca.documents[0],
-      edition: rebecca.documents[0].editions[0]
+      edition: rebecca.documents[0].editions[0],
+      target: 'epub',
+      sections: [{
+        id: 'sect1',
+        html: 'foobar',
+        isChapter: true,
+        isFootnotes: false,
+      }],
     };
 
     cmd = {
@@ -35,8 +43,9 @@ describe('epub()', () => {
     expect(manifest.mimetype).toBe('application/epub+zip');
   });
 
-  it('creates section files based on splitting html', () => {
+  it('creates section files based on sections', () => {
     spec.html = convert('== Ch1\n\nPara.\n\n== Ch2\n\nPara.\n'); // 2 chapters
+    spec.sections = divide(spec.html, spec.config);
 
     const manifest = epub(spec, cmd);
 

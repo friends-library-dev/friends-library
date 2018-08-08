@@ -24,6 +24,12 @@ describe('pdf()', () => {
       edition: rebecca.documents[0].editions[0],
       html: simpleHtml,
       config: {},
+      sections: [{
+        id: 'sect1',
+        html: simpleHtml,
+        isChapter: true,
+        isFootnotes: false,
+      }],
     };
   });
 
@@ -61,7 +67,7 @@ describe('pdf()', () => {
     expect(manifest['book.html']).toContain(expected);
   });
 
-  it.only('adds first-chapter classes to only first chapter', () => {
+  it('adds first-chapter classes to only first chapter', () => {
     spec.html = convert('== One\n\nPara.\n\n== Two\n\nPara.\n');
 
     const manifest = pdf(spec);

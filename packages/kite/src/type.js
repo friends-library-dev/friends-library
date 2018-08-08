@@ -33,6 +33,7 @@ export type SourceSpec = {|
   date: number,
   hash: string,
   config: Object,
+  sections: Array<DocSection>,
   target?: FileType,
 |};
 

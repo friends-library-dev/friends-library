@@ -14,7 +14,7 @@ export function frontmatter(spec: SourceSpec): { [string]: Html } {
     'original-title': originalTitle(spec),
     'copyright': copyright(spec),
     'footnote-helper': footnoteHelper(spec),
-    'content-toc': spec.target === 'epub' ? '' : contentToc(spec, divide(spec))
+    'content-toc': spec.target === 'epub' ? '' : contentToc(spec)
   };
   return pickBy(files, html => html !== '');
 }

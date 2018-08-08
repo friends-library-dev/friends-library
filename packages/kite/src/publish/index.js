@@ -3,7 +3,7 @@ const { execSync } = require('child_process');
 import { basename } from 'path';
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
-import { resolve } from './resolve';
+import { specsFromPath } from './specs';
 import { epub, makeEpub } from '../epub';
 import { mobi, makeMobi } from '../mobi';
 import { pdf, makePdf } from '../pdf';
@@ -32,7 +32,7 @@ export default async (cmd: Object) => {
   fs.removeSync('_publish');
   fs.ensureDir('_publish');
 
-  const specs = resolve(path);
+  const specs = specsFromPath(path);
 
   const files = [];
 

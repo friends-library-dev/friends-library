@@ -12,6 +12,12 @@ describe('frontmatter()', () => {
       friend: { name: 'George Fox' },
       edition: { type: 'updated' },
       config: {},
+      sections: [{
+        id: 'sect1',
+        html: 'foobar',
+        isChapter: true,
+        isFootnotes: false,
+      }],
     };
   });
 
