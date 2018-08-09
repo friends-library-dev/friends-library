@@ -5,7 +5,6 @@ import { mobi } from '../index';
 const rebecca = getFriend('rebecca-jones');
 
 describe('mobi()', () => {
-
   let spec;
   let cmd;
 

@@ -32,7 +32,7 @@ export function prepareAsciidoc(raw: Asciidoc): Asciidoc {
   if (prepared.includes('footnote:[')) {
     prepared = prepared.replace(
       /(?=footnote:\[)/,
-      `footnote:[${practiceNote}]`
+      `footnote:[${practiceNote}]`,
     );
   }
   return prepared;

@@ -1,6 +1,5 @@
 // @flow
-const { execSync } = require('child_process');
-import { basename } from 'path';
+/* eslint-disable no-restricted-syntax, no-await-in-loop */
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
 import { specsFromPath } from './specs';
@@ -9,10 +8,11 @@ import { mobi, makeMobi } from '../mobi';
 import { pdf, makePdf } from '../pdf';
 import { send } from './send';
 
+const { execSync } = require('child_process');
 
-export default async (cmd: Object) => {
-  const path = cmd.path;
-  cmd = defaults(omit(cmd, ['$0', '_', 'path']), {
+
+export default async (command: Object) => {
+  const cmd = defaults(omit(command, ['$0', '_', 'path']), {
     format: ['epub', 'mobi', 'pdf-web', 'pdf-print'],
     perform: false,
     check: false,
@@ -32,7 +32,7 @@ export default async (cmd: Object) => {
   fs.removeSync('_publish');
   fs.ensureDir('_publish');
 
-  const specs = specsFromPath(path);
+  const specs = specsFromPath(command.path);
 
   const files = [];
 
@@ -41,7 +41,9 @@ export default async (cmd: Object) => {
       spec.target = 'epub';
       const manifest = epub(spec, cmd);
       files.push(await makeEpub(manifest, spec.filename, cmd));
-      cmd.open && execSync(`open -a "iBooks" _publish/${spec.filename}.epub`);
+      if (cmd.open) {
+        execSync(`open -a "iBooks" _publish/${spec.filename}.epub`);
+      }
     }
 
     if (cmd.format.includes('mobi')) {
@@ -68,4 +70,4 @@ export default async (cmd: Object) => {
   if (cmd.send) {
     send(files, cmd);
   }
-}
+};

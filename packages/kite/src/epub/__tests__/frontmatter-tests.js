@@ -2,7 +2,6 @@ import { frontmatter } from '../frontmatter';
 import { prepareAsciidoc, convert } from '../../publish/asciidoc';
 
 describe('frontmatter()', () => {
-
   let spec;
 
   beforeEach(() => {

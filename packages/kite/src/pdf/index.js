@@ -1,11 +1,11 @@
 // @flow
 import fs from 'fs-extra';
 import path from 'path';
-import { memoize } from 'lodash';
-const { execSync } = require('child_process');
 import striptags from 'striptags';
 import type { SourceSpec, FileManifest, Command, Css } from '../type';
 import { frontmatter } from './frontmatter';
+
+const { execSync } = require('child_process');
 
 const line = fs.readFileSync('src/pdf/line.svg').toString();
 
@@ -24,12 +24,13 @@ export function makePdf(
   { open }: Command,
 ): void {
   const dir = `_publish/_src_/${filename}/pdf`;
-  for (let path in manifest) {
-    fs.outputFileSync(`${dir}/${path}`, manifest[path]);
-  }
+  Object.keys(manifest).forEach(filepath => {
+    fs.outputFileSync(`${dir}/${filepath}`, manifest[filepath]);
+  });
+
   const src = path.resolve(__dirname, `../../${dir}/book.html`);
   execSync(`prince-books "${src}"`, {
-    stdio: [0, 1, 2]
+    stdio: [0, 1, 2],
   });
   fs.moveSync(`${dir}/book.pdf`, `_publish/${filename}.pdf`);
 
@@ -39,7 +40,7 @@ export function makePdf(
 }
 
 const getCss = (() => {
-  const css = ['base','half-title', 'original-title', 'copyright', 'toc']
+  const css = ['base', 'half-title', 'original-title', 'copyright', 'toc']
     .map(slug => `src/pdf/css/${slug}.css`)
     .map(file => fs.readFileSync(file).toString())
     .join('\n');
@@ -50,8 +51,8 @@ const getCss = (() => {
   return (spec: SourceSpec): Css => {
     return css
       .concat(spec.target === 'pdf-web' ? webCss : printCss)
-      .replace(/{{{ header.title }}}/g, spec.document.title)
-  }
+      .replace(/{{{ header.title }}}/g, spec.document.title);
+  };
 })();
 
 function chPart(text: string, type: 'prefix' | 'body'): string {
@@ -70,7 +71,7 @@ function getHtml(spec: SourceSpec): string {
     (full, num) => {
       footnotes[num] = striptags(full, ['em', 'i', 'strong', 'b']).trim().replace(/^[0-9]+\. /, '');
       return '';
-    }
+    },
   );
 
   html = html.replace(
@@ -85,8 +86,8 @@ function getHtml(spec: SourceSpec): string {
         return full;
       }
       const [pref, body] = title.split(': ');
-      return open + chPart(pref, 'prefix') + chPart(body, 'body') + '</h2>';
-    }
+      return `${open + chPart(pref, 'prefix') + chPart(body, 'body')}</h2>`;
+    },
   );
 
   html = html.replace(

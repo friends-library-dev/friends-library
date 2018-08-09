@@ -3,7 +3,6 @@ import { convert } from '../../publish/asciidoc';
 import { divide } from '../../publish/divide';
 
 describe('toc()', () => {
-
   let spec;
 
   beforeEach(() => {
@@ -11,7 +10,7 @@ describe('toc()', () => {
       config: {},
       document: {
         title: 'Document Title',
-      }
+      },
     };
   });
 
@@ -46,7 +45,7 @@ describe('toc()', () => {
   });
 
   it('honors config chapter number style', () => {
-    spec.config = { chapterNumberFormat: "roman" };
+    spec.config = { chapterNumberFormat: 'roman' };
     spec.html = convert('== Chapter 1: Foobar\n\nPara.\n');
     spec.sections = divide(spec.html);
 

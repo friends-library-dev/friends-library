@@ -11,7 +11,7 @@ export function divide(html: Html, config: Object): Array<DocSection> {
     .filter(sect => !!sect.trim())
     .map(expandFootnotes)
     .map(removeFootnoteBraces)
-    .map((html: Html, i: number) => extractTitle(html, i + 1, config));
+    .map((sectionHtml: Html, i: number) => extractTitle(sectionHtml, i + 1, config));
   return linkFootnotes(sections);
 }
 
@@ -25,15 +25,15 @@ function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
   const notes = sections.reduce((acc, { html, id }) => {
     const regex = /notes\.xhtml#_footnotedef_([0-9]+)/g;
     let match;
-    while (match = regex.exec(html)) {
+    while (match = regex.exec(html)) { // eslint-disable-line no-cond-assign
       acc[match[1]] = id;
     }
     return acc;
-  }, { '1': 'footnote-helper' });
+  }, { '1': 'footnote-helper' }); // eslint-disable-line quote-props
 
   last.html = last.html.replace(
     /href="#_footnoteref_([0-9]+)">\d+<\/a>\./gim,
-    (full, num) => `href="${notes[num]}.xhtml#_footnoteref_${num}">${num}</a>`
+    (full, num) => `href="${notes[num]}.xhtml#_footnoteref_${num}">${num}</a>`,
   );
 
   last.html = addFootnoteBackArrows(last.html);
@@ -51,23 +51,23 @@ function addFootnoteBackArrows(html: Html): Html {
 function expandFootnotes(html: Html): Html {
   return html.replace(
     /href="#_footnotedef_/gim,
-    'href="notes.xhtml#_footnotedef_'
+    'href="notes.xhtml#_footnotedef_',
   );
 }
 
 function removeFootnoteBraces(html: Html): Html {
   return html.replace(
     /<sup class="footnote">\[<a/gim,
-    '<sup class="footnote"><a'
+    '<sup class="footnote"><a',
   ).replace(
     /<\/a>\]<\/sup>/gim,
-    '</a></sup>'
+    '</a></sup>',
   );
 }
 
 
 function extractTitle(html: Html, num: number, config: Object): DocSection {
-  const headingMatch = html.match(/<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/)
+  const headingMatch = html.match(/<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/);
   if (!headingMatch) {
     return {
       html,
@@ -97,9 +97,9 @@ function extractTitle(html: Html, num: number, config: Object): DocSection {
     return section;
   }
 
-  const [full, prefix, number, body] = titleMatch;
+  const [_, prefix, number, body] = titleMatch;
   section.chapterTitlePrefix = prefix.trim();
-  section.chapterNumber = Number.isNaN(+number)? toArabic(number) : +number;
+  section.chapterNumber = Number.isNaN(+number) ? toArabic(number) : +number;
   section.chapterTitleBody = body ? body.trim() : '';
 
   const separator = get(config, 'chapterTitleSeparator', ':');
@@ -113,15 +113,15 @@ function extractTitle(html: Html, num: number, config: Object): DocSection {
     /<h2([^>]+?)>(.+?)<\/h2>/i,
     [
       '<header$1>',
-        '<h2 class="chapter-title__prefix">',
-          `Chapter <span class="chapter-title__number">${displayNumber}</span>`,
-        `</h2>${M7BR}`,
-        body ? '<div>' : M7BR,
-          body ? `<span class="chapter-title__separator">${separator}</span>` : '',
-          body ? '<span class="chapter-title__body">' : '',
-            body ? ` ${section.chapterTitleBody || ''}`.toUpperCase() : '',
-          body ? '</span>' : '',
-        body ? `</div>${M7BR}` : '',
+      '<h2 class="chapter-title__prefix">',
+      `Chapter <span class="chapter-title__number">${displayNumber}</span>`,
+      `</h2>${M7BR}`,
+      body ? '<div>' : M7BR,
+      body ? `<span class="chapter-title__separator">${separator}</span>` : '',
+      body ? '<span class="chapter-title__body">' : '',
+      body ? ` ${section.chapterTitleBody || ''}`.toUpperCase() : '',
+      body ? '</span>' : '',
+      body ? `</div>${M7BR}` : '',
       '</header>',
     ].join(''),
   );

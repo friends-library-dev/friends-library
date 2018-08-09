@@ -6,9 +6,7 @@ import { packageDocument } from '../package-document';
 const rebecca = getFriend('rebecca-jones');
 
 describe('packageDocument()', () => {
-
   let spec;
-  let sections;
   let cmd;
 
   beforeEach(() => {
@@ -64,7 +62,7 @@ describe('packageDocument()', () => {
   test('uuid should be constructed to uniquely refer to ebook doc', () => {
     const uuid = 'friends-library/epub/en/rebecca-jones/life-and-letters/modernized';
     const xml = packageDocument(spec, cmd);
-    expect(xml).toContain(`<dc:identifier id="pub-id">${uuid}</dc:identifier>`)
+    expect(xml).toContain(`<dc:identifier id="pub-id">${uuid}</dc:identifier>`);
   });
 
   test('one section produces one manifest resource and one spine item', () => {

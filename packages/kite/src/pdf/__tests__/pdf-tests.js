@@ -1,5 +1,5 @@
 import { getFriend } from '@friends-library/friends';
-import { pdf } from '../';
+import { pdf } from '..';
 import { convert } from '../../publish/asciidoc';
 
 const rebecca = getFriend('rebecca-jones');
@@ -61,7 +61,7 @@ describe('pdf()', () => {
 
     const expected = [
       '<span class="chapter-title__prefix">Chapter 1</span>',
-      '<span class="chapter-title__body">Foobar</span>'
+      '<span class="chapter-title__body">Foobar</span>',
     ].join('');
 
     expect(manifest['book.html']).toContain(expected);

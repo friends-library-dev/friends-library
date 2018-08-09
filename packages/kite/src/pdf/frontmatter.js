@@ -16,15 +16,15 @@ function toc({ sections, config }: SourceSpec): Html {
   return `
     <div class="toc own-page">
       <h1>Contents</h1>
-      ${sections.filter(s => s.id !== 'notes').map(section => {
-        return `
+      ${sections.filter(s => s.id !== 'notes').map((section) => {
+    return `
           <p>
             <a href="#${section.ref || ''}">
               <span>${entryText(section, config)}</span>
             </a>
           </p>
         `;
-      }).join('\n')}
+  }).join('\n')}
     </div>
   `;
 }

@@ -1,5 +1,4 @@
 // @flow
-import { resolve } from 'path';
 import fs from 'fs-extra';
 import epubCheck from 'epub-check';
 import chalk from 'chalk';
@@ -10,13 +9,13 @@ import type { FileManifest, Command } from '../type';
 export async function make(
   manifest: FileManifest,
   filename: string,
-  { check }: Command
+  { check }: Command,
 ): Promise<string> {
   const zip = new Zip();
-  for (let path in manifest) {
+  Object.keys(manifest).forEach(path => {
     zip.file(path, manifest[path]);
     fs.outputFileSync(`_publish/_src_/${filename}/epub/${path}`, manifest[path]);
-  }
+  });
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
   const file = `${filename}.epub`;

@@ -1,11 +1,11 @@
 // @flow
-import type { SourceSpec, Xml, Html, FileManifest, DocSection, Command, Css } from '../type';
 import fs from 'fs-extra';
 import { mapValues, mapKeys } from 'lodash';
+import type { SourceSpec, Xml, Html, FileManifest, DocSection, Command, Css } from '../type';
 import { packageDocument } from './package-document';
-import { divide } from '../publish/divide';
 import { toc } from './toc';
 import { frontmatter } from './frontmatter';
+
 export { make as makeEpub } from './make';
 
 const baseStyles = fs.readFileSync('src/epub/css/style.css').toString();
@@ -39,13 +39,13 @@ export function epub(spec: SourceSpec, cmd: Command): FileManifest {
 }
 
 function css(spec: SourceSpec): Css {
-  let css = baseStyles;
+  let styles = baseStyles;
   if (spec.target === 'mobi') {
-    css += `\n\n@media amzn-kf8 {\n${kf8Styles}\n}`;
+    styles += `\n\n@media amzn-kf8 {\n${kf8Styles}\n}`;
   } else {
-    css += `\n\n${epubStyles}`;
+    styles += `\n\n${epubStyles}`;
   }
-  return css;
+  return styles;
 }
 
 function sectionize(sections: Array<DocSection>): { [string]: Html } {
@@ -69,9 +69,9 @@ export function wrapHtml(html: string): string {
     ${html}
   </body>
 </html>`
-  .trim()
-  .replace(/<hr>/gm, '<hr />')
-  .replace(/<br>/gm, '<br />');
+    .trim()
+    .replace(/<hr>/gm, '<hr />')
+    .replace(/<br>/gm, '<br />');
 }
 
 

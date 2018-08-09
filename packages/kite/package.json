@@ -7,9 +7,12 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
+    "lint:js": "eslint .",
+    "fix:js": "eslint . --fix",
     "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
   },
   "dependencies": {
+    "@babel/register": "^7.0.0-beta.52",
     "@friends-library/friends": "friends-library/friends",
     "asciidoctor.js": "^1.5.7-rc.1",
     "chalk": "^2.4.1",
@@ -30,9 +33,17 @@
     "@babel/core": "^7.0.0-beta.52",
     "@babel/preset-env": "^7.0.0-beta.52",
     "@babel/preset-flow": "^7.0.0-beta.52",
-    "@babel/register": "^7.0.0-beta.52",
     "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^8.2.6",
     "babel-jest": "^23.0.1",
+    "eslint": "^4.14.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-no-only-tests": "^2.0.1",
+    "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.76.0",
     "flow-typed": "^2.5.1",
     "jest": "^23.3.0"

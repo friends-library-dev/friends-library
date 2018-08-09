@@ -1,16 +1,16 @@
 // @flow
-import Asciidoctor from 'asciidoctor.js';
 import { query } from '@friends-library/friends';
 import fs from 'fs-extra';
 import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
-import type { Lang, SourceSpec } from '../type'
+import type { Lang, SourceSpec } from '../type';
 import { prepareAsciidoc, convert } from './asciidoc';
 import { divide } from './divide';
 
 
 export function specsFromPath(path: string): Array<SourceSpec> {
+  // eslint-disable-next-line prefer-const
   let [lang, friend, document, edition] = path.split('/');
 
   if (!lang) {
@@ -52,13 +52,13 @@ function buildSpec(
   lang: Lang,
   friendSlug: string,
   docSlug: string,
-  editionSlug: string
+  editionSlug: string,
 ): SourceSpec {
   const path = `${lang}/${friendSlug}/${docSlug}/${editionSlug}`;
   const adoc = prepareAsciidoc(globAsciidoc(path));
   const html = convert(adoc);
   const config = getConfig(path);
-  const { friend, document, edition} = query(lang, friendSlug, docSlug, editionSlug);
+  const { friend, document, edition } = query(lang, friendSlug, docSlug, editionSlug);
   const { date, hash } = gitRevision(path);
   return {
     date,

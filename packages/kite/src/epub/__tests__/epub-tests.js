@@ -1,14 +1,12 @@
 import { getFriend } from '@friends-library/friends';
 import { convert } from '../../publish/asciidoc';
-import { epub, M7BR } from '../';
+import { epub, M7BR } from '..';
 import { divide } from '../../publish/divide';
 
 const rebecca = getFriend('rebecca-jones');
 
 describe('epub()', () => {
-
   let spec;
-  let sections;
   let cmd;
 
   beforeEach(() => {

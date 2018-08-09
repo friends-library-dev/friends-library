@@ -1,13 +1,15 @@
 // @flow
 import moment from 'moment';
-import type { SourceSpec, DocSection, Xml, Command } from '../type';
+import type { SourceSpec, Xml, Command } from '../type';
 import { frontmatter } from './frontmatter';
 
 export function packageDocument(
   spec: SourceSpec,
-  { perform }: Command
+  { perform }: Command,
 ): Xml {
-  const { lang, friend, document, edition, date, sections } = spec;
+  const {
+    lang, friend, document, edition, date, sections,
+  } = spec;
   const modified = moment.utc(moment.unix(date)).format('YYYY-MM-DDThh:mm:ss[Z]');
   const uuid = `friends-library/epub/${lang}/${friend.slug}/${document.slug}/${edition.type}`;
   const randomizer = ` (${moment().format('h:mm:ss')})`;

@@ -4,17 +4,14 @@ import { pickBy } from 'lodash';
 import type { SourceSpec, Html } from '../type';
 import { M7BR } from './index';
 import { contentToc } from './toc';
-import { divide } from '../publish/divide';
 
 export function frontmatter(spec: SourceSpec): { [string]: Html } {
-  const { document, friend, date, hash } = spec;
-  const time = moment.utc(moment.unix(date)).format('MMMM Do, YYYY');
   const files = {
     'half-title': halfTitle(spec),
     'original-title': originalTitle(spec),
-    'copyright': copyright(spec),
+    copyright: copyright(spec),
     'footnote-helper': footnoteHelper(spec),
-    'content-toc': spec.target === 'epub' ? '' : contentToc(spec)
+    'content-toc': spec.target === 'epub' ? '' : contentToc(spec),
   };
   return pickBy(files, html => html !== '');
 }

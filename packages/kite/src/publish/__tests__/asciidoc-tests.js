@@ -11,13 +11,13 @@ describe('prepareAsciidoc()', () => {
   it('converts to curly quotes', () => {
     const result = prepareAsciidoc('Hello "`good`" sir.');
 
-    expect(result).toBe("Hello “good” sir.");
+    expect(result).toBe('Hello “good” sir.');
   });
 
   it('converts curly apostrophes', () => {
     const result = prepareAsciidoc("Hello '`good`' sir.");
 
-    expect(result).toBe("Hello ‘good’ sir.");
+    expect(result).toBe('Hello ‘good’ sir.');
   });
 
   it('does not add extra extra footnote when no footnotes', () => {
