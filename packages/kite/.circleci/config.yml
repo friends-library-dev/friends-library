@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11.1
+    working_directory: ~/kite
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-node-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-node-{{ checksum "yarn.lock" }}
+      - run: yarn jest
+      - run: yarn lint:js
+      - run: yarn flow
