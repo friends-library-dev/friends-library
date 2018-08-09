@@ -25,9 +25,9 @@ describe('toc()', () => {
   });
 
   it('prefers using short title', () => {
-    spec.html = convert('[#intro]\n== Introduction\n\nPara.\n\n');
-    spec.config = { shortTitles: { intro: 'Intro' } };
-    spec.sections = divide(spec.html, spec.config);
+    const adoc = '[#intro, short="Intro"]\n== Introduction\n\nPara.\n\n';
+    spec.html = convert(adoc);
+    spec.sections = divide(spec.html, spec.config, adoc);
 
     const tocHtml = toc(spec);
 
@@ -35,9 +35,9 @@ describe('toc()', () => {
   });
 
   it('prefers short title with numbered chapter', () => {
-    spec.html = convert('[#intro]\n== Chapter i. Introduction\n\nPara.\n\n');
-    spec.config = { shortTitles: { intro: 'Intro' } };
-    spec.sections = divide(spec.html, spec.config);
+    const adoc = '[#intro, short="Intro"]\n== Chapter i. Introduction\n\nPara.\n\n';
+    spec.html = convert(adoc);
+    spec.sections = divide(spec.html, spec.config, adoc);
 
     const tocHtml = toc(spec);
 

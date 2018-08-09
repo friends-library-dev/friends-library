@@ -10,14 +10,15 @@ import { divide } from './divide';
 
 
 export function specsFromPath(path: string): Array<SourceSpec> {
-  // eslint-disable-next-line prefer-const
-  let [lang, friend, document, edition] = path.split('/');
+  const [lang, friend, document, edition] = path.split('/');
 
   if (!lang) {
     return [...resolveLang('en'), ...resolveLang('es')];
   }
 
-  lang = ((lang: any): Lang);
+  if (lang !== 'en' || lang !== 'es') {
+    throw new Error(`Invalid lang ${lang}`);
+  }
 
   if (!friend) {
     return resolveLang(lang);
@@ -70,7 +71,7 @@ function buildSpec(
     edition,
     html,
     config,
-    sections: divide(html, config),
+    sections: divide(html, config, adoc),
     filename: `${document.filename}--${edition.type}`,
   };
 }

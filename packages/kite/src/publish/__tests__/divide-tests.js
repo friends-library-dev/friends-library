@@ -155,12 +155,18 @@ describe('divide()', () => {
     expect(section.html).not.toContain('__body');
   });
 
-  it('finds shortened title body from config, if present', () => {
-    config = { shortTitles: { 'ch-3': 'Foo' } };
-    const html = convert('[#ch-3]\n== Chapter 1. Foobar\n\nPara.\n');
-    const [section] = divide(html, config);
+  it('finds short chapter names from raw adoc', () => {
+    const adoc = `
+[#mychapter, short="Short title"]
+== A really, really, long title with a shorter short title
 
-    expect(section.chapterTitleShort).toBe('Foo');
+Foobar.
+    `;
+
+    const html = convert(adoc);
+    const [section] = divide(html, config, adoc);
+
+    expect(section.chapterTitleShort).toBe('Short title');
   });
 
   it('honors config for chapter number style', () => {

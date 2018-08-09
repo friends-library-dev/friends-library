@@ -1,20 +1,32 @@
 // @flow
 import { toArabic, toRoman } from 'roman-numerals';
 import { get } from 'lodash';
-import type { Html, DocSection } from '../type';
+import type { Html, DocSection, Asciidoc } from '../type';
 import { M7BR } from '../epub';
 
 
-export function divide(html: Html, config: Object): Array<DocSection> {
+export function divide(html: Html, config: Object, adoc: Asciidoc = ''): Array<DocSection> {
   const sections = html
     .split(/(?=<div (?:class="sect1"|id="footnotes")>)/gim)
     .filter(sect => !!sect.trim())
     .map(expandFootnotes)
     .map(removeFootnoteBraces)
     .map((sectionHtml: Html, i: number) => extractTitle(sectionHtml, i + 1, config));
-  return linkFootnotes(sections);
+  return linkFootnotes(extractShortTitles(sections, adoc));
 }
 
+function extractShortTitles(sections: Array<DocSection>, adoc: Asciidoc): Array<DocSection> {
+  const regex = /\[#([a-z0-9-_]+),.*?short="(.*?)"\]\n== /gim;
+  let match;
+  while ((match = regex.exec(adoc))) {
+    const [_, ref, short] = match;
+    const found = sections.find(section => section.ref === ref);
+    if (found) {
+      found.chapterTitleShort = short;
+    }
+  }
+  return sections;
+}
 
 function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
   const last = sections.slice(-1).pop();
@@ -25,7 +37,7 @@ function linkFootnotes(sections: Array<DocSection>): Array<DocSection> {
   const notes = sections.reduce((acc, { html, id }) => {
     const regex = /notes\.xhtml#_footnotedef_([0-9]+)/g;
     let match;
-    while (match = regex.exec(html)) { // eslint-disable-line no-cond-assign
+    while (match = regex.exec(html)) {
       acc[match[1]] = id;
     }
     return acc;
@@ -85,7 +97,6 @@ function extractTitle(html: Html, num: number, config: Object): DocSection {
     html,
     title,
     ref,
-    chapterTitleShort: get(config, ['shortTitles', ref]),
     isChapter: true,
     isFootnotes: false,
   };

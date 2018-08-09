@@ -27,7 +27,8 @@ module.exports = {
     "no-unused-vars": ["error", {
       "argsIgnorePattern": "^_",
       "varsIgnorePattern": "^_"
-    }]
+    }],
+    "no-cond-assign": 0
   },
   "settings": {
     "flowtype": {

@@ -9,11 +9,12 @@
   "scripts": {
     "lint:js": "eslint .",
     "fix:js": "eslint . --fix",
-    "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev"
+    "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev",
+    "preflight": "yarn lint:js && yarn jest && yarn flow"
   },
   "dependencies": {
     "@babel/register": "^7.0.0-beta.52",
-    "@friends-library/friends": "friends-library/friends",
+    "@friends-library/friends": "friends-library/friends#a19d386c90728e948671b00e2119b1417e2775f4",
     "asciidoctor.js": "^1.5.7-rc.1",
     "chalk": "^2.4.1",
     "dotenv": "^6.0.0",
