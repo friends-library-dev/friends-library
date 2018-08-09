@@ -8,6 +8,13 @@ describe('find()', () => {
     expect(found).toEqual([]);
   });
 
+  it('does not find Song of Solomon ref inside of Thessalonians ref', () => {
+    const found = find('Blah blahh, 1 Thess. 5:2.');
+
+    expect(found[0].book).toBe('1 Thessalonians');
+    expect(found.length).toBe(1);
+  });
+
   const individualVerses = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],

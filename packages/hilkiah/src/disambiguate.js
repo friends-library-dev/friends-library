@@ -41,4 +41,20 @@ function incorrectJohannine({ book, position: { start } }, input) {
   return bool;
 }
 
-module.exports = { incorrectJohannine };
+function incorrectSong({ book, match, position: { start } }, input) {
+  if (book !== 'Song of Solomon') {
+    return false;
+  }
+
+  if (!match.match(/^ss\./)) {
+    return false;
+  }
+
+  if (input.substring(start - 4, start).toLowerCase() === ' the') {
+    return true;
+  }
+
+  return false;
+}
+
+module.exports = { incorrectJohannine, incorrectSong };
