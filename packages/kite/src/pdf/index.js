@@ -60,7 +60,18 @@ function chPart(text: string, type: 'prefix' | 'body'): string {
 }
 
 function getHtml(spec: SourceSpec): string {
-  let html = spec.html.replace(
+  let html = spec.sections.map(section => {
+    let sectionHtml = section.html.replace(/{{{ MOBI7_BR }}}/gm, '');
+    if (section.chapterTitleShort) {
+      sectionHtml = sectionHtml.replace(
+        '<div class="sectionbody">',
+        `<div class="sectionbody" short="${section.chapterTitleShort || ''}">`,
+      );
+    }
+    return sectionHtml;
+  }).join('\n');
+
+  html = html.replace(
     /<sup class="footnote">\[<a id="_footnoteref_([0-9]+).+?<\/sup>/igm,
     '<span class="footnote">{{{footnote: $1}}}</span>',
   );

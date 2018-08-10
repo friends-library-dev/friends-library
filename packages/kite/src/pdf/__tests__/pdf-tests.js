@@ -1,6 +1,7 @@
 import { getFriend } from '@friends-library/friends';
 import { pdf } from '..';
 import { convert } from '../../publish/asciidoc';
+import { divide } from '../../publish/divide';
 
 const rebecca = getFriend('rebecca-jones');
 
@@ -55,24 +56,13 @@ describe('pdf()', () => {
     expect(manifest['book.html']).toContain(expected);
   });
 
-  it('splits up chapter titles', () => {
-    spec.html = spec.html.replace('My title', 'Chapter 1: Foobar');
-    const manifest = pdf(spec);
-
-    const expected = [
-      '<span class="chapter-title__prefix">Chapter 1</span>',
-      '<span class="chapter-title__body">Foobar</span>',
-    ].join('');
-
-    expect(manifest['book.html']).toContain(expected);
-  });
-
   it('adds first-chapter classes to only first chapter', () => {
     spec.html = convert('== One\n\nPara.\n\n== Two\n\nPara.\n');
+    spec.sections = divide(spec.html, spec.config);
 
     const manifest = pdf(spec);
 
-    expect(manifest['book.html']).toContain('<div class="sect1 first-chapter">');
-    expect(manifest['book.html']).toContain('<div class="sect1">');
+    expect(manifest['book.html']).toContain('<div class="sect1 first-chapter"');
+    expect(manifest['book.html']).toContain('<div class="sect1"');
   });
 });

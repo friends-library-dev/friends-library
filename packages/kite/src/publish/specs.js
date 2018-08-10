@@ -16,7 +16,7 @@ export function specsFromPath(path: string): Array<SourceSpec> {
     return [...resolveLang('en'), ...resolveLang('es')];
   }
 
-  if (lang !== 'en' || lang !== 'es') {
+  if (lang !== 'en' && lang !== 'es') {
     throw new Error(`Invalid lang ${lang}`);
   }
 

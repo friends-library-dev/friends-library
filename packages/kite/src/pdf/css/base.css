@@ -94,6 +94,10 @@ span.chapter-title__body {
   display: none;
 }
 
+.sectionbody {
+  string-set: chapter attr(short);
+}
+
 *::footnote-call {
   content: counter(footnote);
   vertical-align: super;

@@ -1,9 +1,9 @@
 .toc {
   page: toc;
-  padding-top: 15%;
 }
 
 .toc h1 {
+  padding-top: 15%;
   font-size: 1.4rem;
   margin-bottom: 2.5rem;
 }
