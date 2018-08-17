@@ -1,6 +1,6 @@
 // @flow
 import type { Job, Html, DocSection } from '../../type';
-import { copyright as commonCopyright } from '../frontmatter';
+import { copyright as commonCopyright, halfTitle as commonHalfTitle } from '../frontmatter';
 import { navText } from '../headings';
 
 export function frontmatter(job: Job): Html {
@@ -39,12 +39,11 @@ function copyright(job: Job): Html {
     .replace(/([^@])friendslibrary\.com/g, '$1www.friendslibrary.com');
 }
 
-function halfTitle({ spec: { meta: { title, author } } }: Job): Html {
+function halfTitle(job: Job): Html {
   return `
     <div class="half-title-page own-page">
       <div>
-        <h1>${title}</h1>
-        <p class="byline">by ${author.name}</p>
+        ${commonHalfTitle(job)}
       </div>
     </div>
   `;

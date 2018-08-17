@@ -1,4 +1,4 @@
-import { frontmatter } from '../frontmatter';
+import { frontmatter, halfTitle } from '../frontmatter';
 import { testJob } from '../test-helpers';
 
 describe('frontmatter()', () => {
@@ -34,5 +34,27 @@ describe('frontmatter()', () => {
     const files = frontmatter(job);
 
     expect(files.copyright).not.toContain('Originally published');
+  });
+});
+
+describe('halfTitle()', () => {
+  it('omits byline if author name in author title', () => {
+    const job = testJob();
+    job.spec.meta.author.name = 'Ambrose Rigge';
+    job.spec.meta.title = 'Journal of Ambrose Rigge';
+
+    const ht = halfTitle(job);
+
+    expect(ht).not.toContain('byline');
+  });
+
+  it('keeps byline if author name not in author title', () => {
+    const job = testJob();
+    job.spec.meta.author.name = 'Ambrose Rigge';
+    job.spec.meta.title = 'Journal &c.';
+
+    const ht = halfTitle(job);
+
+    expect(ht).toContain('byline');
   });
 });

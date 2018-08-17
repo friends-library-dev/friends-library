@@ -8,6 +8,8 @@ import { callMarkup } from './notes';
 export const frontmatter = memoize((job: Job): { [string]: Html } => {
   const fm = commonFrontmatter(job);
 
+  fm['half-title'] = `<div class="half-title-page">${fm['half-title']}</div>`;
+
   if (job.spec.notes.size) {
     fm['footnote-helper'] = footnoteHelper();
   }

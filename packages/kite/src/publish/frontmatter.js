@@ -12,14 +12,14 @@ export const frontmatter = memoize((job: Job): { [string]: Html } => {
   return pickBy(files, html => html !== '');
 });
 
-function halfTitle(job: Job): Html {
+export function halfTitle(job: Job): Html {
   const { spec: { meta: { title, author: { name } } } } = job;
-  return `
-    <div class="half-title-page">
-      <h1>${title}</h1>
-      <p class="byline"><br class="m7"/>by ${name}</p>
-    </div>
-  `;
+  const header = `<h1>${title}</h1>`;
+  const nameInTitle = title.indexOf(name) !== -1;
+  if (nameInTitle) {
+    return header;
+  }
+  return `${header}\n<p class="byline"><br class="m7"/>by ${name}</p>`;
 }
 
 function originalTitle({ spec: { meta } }: Job): Html {
