@@ -1,19 +1,54 @@
 // @flow
-/* eslint-disable no-restricted-syntax, no-await-in-loop */
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
-import { specsFromPath } from './specs';
-import { epub, makeEpub } from '../epub';
-import { mobi, makeMobi } from '../mobi';
-import { pdf, makePdf } from '../pdf';
+import type { Command, Job, SourceSpec, FileType, SourcePrecursor } from '../type';
+import { makeEpub } from './epub/make';
+import { makeMobi } from './mobi/make';
+import { makePdf } from './pdf/make';
+import { prepare } from './spec';
+import { getPrecursors } from './precursors';
 import { send } from './send';
 
-const { execSync } = require('child_process');
+export default function publish(argv: Object): Promise<*> {
+  const cmd = createCommand(argv);
+  const precursors = getPrecursors(argv.path);
+  return publishPrecursors(precursors, cmd);
+}
 
+export function publishPrecursors(
+  precursors: Array<SourcePrecursor>,
+  cmd: Command,
+): Promise<*> {
+  fs.removeSync('_publish');
+  fs.ensureDir('_publish');
 
-export default async (command: Object) => {
-  const cmd = defaults(omit(command, ['$0', '_', 'path']), {
-    format: ['epub', 'mobi', 'pdf-web', 'pdf-print'],
+  const specs = precursors.map(prepare);
+  const jobs = specs.reduce(reduceSpecsToJobs(cmd), []);
+  const complete = Promise.all(jobs.map(take));
+
+  if (cmd.send) {
+    complete.then(() => send(jobs.map(j => j.filename), cmd));
+  }
+
+  return complete;
+}
+
+export function take(job: Job): Promise<string> {
+  const { target } = job;
+
+  switch (target) {
+    case 'epub':
+      return makeEpub(job);
+    case 'mobi':
+      return makeMobi(job);
+    default:
+      return makePdf(job);
+  }
+}
+
+export function createCommand(argv: Object): Command {
+  const cmd = defaults(omit(argv, ['$0', '_', 'path']), {
+    target: ['epub', 'mobi', 'pdf-web', 'pdf-print'],
     perform: false,
     check: false,
     open: false,
@@ -25,49 +60,41 @@ export default async (command: Object) => {
     cmd.check = true;
   }
 
-  if (typeof cmd.format === 'string') {
-    cmd.format = [cmd.format];
+  if (typeof cmd.target === 'string') {
+    cmd.target = [cmd.target];
   }
 
-  fs.removeSync('_publish');
-  fs.ensureDir('_publish');
+  cmd.targets = cmd.target;
+  delete cmd.target;
 
-  const specs = specsFromPath(command.path);
+  return cmd;
+}
 
-  const files = [];
+export function reduceSpecsToJobs(cmd: Command): * {
+  return (jobs: Array<Job>, spec: SourceSpec): Array<Job> => {
+    cmd.targets.forEach(target => jobs.push({
+      id: `${target}/${spec.id}`,
+      spec,
+      target,
+      cmd,
+      filename: jobFilename(target, spec, cmd),
+    }));
+    return jobs;
+  };
+}
 
-  for (const spec of specs) {
-    if (cmd.format.includes('epub')) {
-      spec.target = 'epub';
-      const manifest = epub(spec, cmd);
-      files.push(await makeEpub(manifest, spec.filename, cmd));
-      if (cmd.open) {
-        execSync(`open -a "iBooks" _publish/${spec.filename}.epub`);
-      }
+function jobFilename(target: FileType, { filename }: SourceSpec, cmd: Command): string {
+  switch (target) {
+    case 'pdf-print':
+      return `${filename}--(print).pdf`;
+    case 'pdf-web':
+      return `${filename}.pdf`;
+    case 'mobi': {
+      // kindle app needs unique filenames to differentiate test docs
+      const timestamp = Math.floor(Date.now() / 1000);
+      return `${filename}${cmd.perform ? '' : `--${timestamp}`}.mobi`;
     }
-
-    if (cmd.format.includes('mobi')) {
-      spec.target = 'mobi';
-      const manifest = mobi(spec, cmd);
-      files.push(await makeMobi(manifest, spec.filename, cmd));
-    }
-
-    if (cmd.format.includes('pdf-print')) {
-      spec.target = 'pdf-print';
-      const manifest = pdf(spec);
-      makePdf(manifest, `${spec.filename}--(print)`, cmd);
-      files.push(`${spec.filename}--(print).pdf`);
-    }
-
-    if (cmd.format.includes('pdf-web')) {
-      spec.target = 'pdf-web';
-      const manifest = pdf(spec);
-      makePdf(manifest, spec.filename, cmd);
-      files.push(`${spec.filename}.pdf`);
-    }
+    default:
+      return `${filename}.epub`;
   }
-
-  if (cmd.send) {
-    send(files, cmd);
-  }
-};
+}

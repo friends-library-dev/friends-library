@@ -1,0 +1,72 @@
+html {
+  font-size: 14pt;
+}
+
+.blank-page {
+  display: none;
+}
+
+@page {
+  size: 8.5in 11in;
+  margin-top: 1in;
+  margin-bottom: 1in;
+
+  @footnotes {
+    margin-top: 1.5rem;
+  }
+}
+
+@page:left {
+  margin-left: 1in;
+  margin-right: 1in;
+}
+
+@page:right {
+  margin-left: 1in;
+  margin-right: 1in;
+}
+
+
+/* typography tweaks */
+p {
+  font-size: 0.875rem;
+  line-height: 160%;
+}
+
+div.paragraph + div.paragraph {
+  margin-top: 1rem;
+}
+
+blockquote div.paragraph + div.paragraph {
+  margin-top: 0.7rem;
+}
+
+blockquote {
+  margin-right: 0;
+  padding-right: 0;
+  border-left: dotted 1px #aaa;
+}
+
+blockquote div.paragraph p {
+  font-size: 0.8rem;
+}
+
+.footnote {
+  font-size: 0.75rem;
+}
+
+.half-title-page {
+  height: 8.5in; /* 11 minus margins, minus fudge */
+}
+
+.copyright-page {
+  height: 9in; /* 11 minus margins */
+}
+
+.toc p {
+  font-size: 0.95rem;
+}
+
+div.asterism {
+  font-size: 0.81rem;
+}

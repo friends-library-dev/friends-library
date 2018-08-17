@@ -25,15 +25,18 @@
     "kindlegen": "^1.1.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
+    "node-sass": "^4.9.3",
     "node-zip": "^1.1.1",
     "roman-numerals": "^0.3.2",
     "striptags": "^3.1.1",
+    "uuid": "^3.3.2",
     "yargs": "^12.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.52",
     "@babel/preset-env": "^7.0.0-beta.52",
     "@babel/preset-flow": "^7.0.0-beta.52",
+    "babel-cli": "^6.26.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.0.1",
@@ -48,5 +51,8 @@
     "flow-bin": "^0.76.0",
     "flow-typed": "^2.5.1",
     "jest": "^23.3.0"
+  },
+  "jest": {
+    "testRegex": "__tests__/.*tests\\.js"
   }
 }

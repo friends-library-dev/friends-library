@@ -1,0 +1,12 @@
+.epigraph {
+  font-style: italic;
+}
+
+/* chicago manual of style says first para of blockquote should not be indented */
+blockquote div.paragraph:first-of-type p {
+  text-indent: 0;
+}
+
+div.paragraph.no-indent p {
+  text-indent: 0;
+}
