@@ -1,6 +1,7 @@
 // @flow
-import { query } from '@friends-library/friends';
+import { query, Friend, Document, Edition } from '@friends-library/friends';
 import fs from 'fs-extra';
+import chalk from 'chalk';
 import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
@@ -38,6 +39,10 @@ function gitRevision(path: string) {
   const [sha, timestamp] = execSync(cmd, {
     cwd: pathResolve(__dirname, '../../', path),
   }).toString().split('|');
+  if (!sha || !timestamp) {
+    console.log(chalk.red(`Could not determine git revision info for path: ${path}`));
+    process.exit(1);
+  }
   return {
     timestamp: +timestamp,
     sha,
@@ -54,6 +59,7 @@ function buildPrecursor(
   const path = `${lang}/${friendSlug}/${docSlug}/${editionType}`;
   const { sha, timestamp } = gitRevision(path);
   const { friend, document, edition } = query(lang, friendSlug, docSlug, editionType);
+  validateQueried(friend, document, edition, path);
   return {
     id: path,
     config: getConfig(path),
@@ -82,6 +88,21 @@ function buildPrecursor(
     lang,
     adoc: globAsciidoc(path),
   };
+}
+
+function validateQueried(friend: Friend, document: Document, edition: Edition, path: string): void {
+  if (friend.name === '') {
+    console.log(chalk.red(`Failed to query Friend at path: ${path}`));
+    process.exit(1);
+  }
+  if (document.title === '') {
+    console.log(chalk.red(`Failed to query Document at path: ${path}`));
+    process.exit(1);
+  }
+  if (edition.type === '') {
+    console.log(chalk.red(`Failed to query Edition at path: ${path}`));
+    process.exit(1);
+  }
 }
 
 function getConfig(path: string): Object {
