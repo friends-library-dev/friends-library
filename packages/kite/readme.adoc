@@ -24,8 +24,8 @@ PUBLISH_ROOT=/path/to/publish  # absolute filepath to destination (publish) root
 $ kite publish                               # recursively publish all documents in all editions
 $ kite publish en/george-fox                 # publish all g. f. docs in all editions
 $ kite publish en/george-fox/journal/updated # publish just the updated journal
-$ kite publish en/george-fox --format mobi   # only publish mobi
-$ kite publish --format mobi --format epub   # publish only mobi and epub (also: pdf.print & pdf.web)
+$ kite publish en/george-fox --target mobi   # only publish mobi
+$ kite publish --target mobi --target epub   # publish only mobi and epub (also: pdf.print & pdf.web)
 ```
 
 [WARNING]

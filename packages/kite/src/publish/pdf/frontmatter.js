@@ -1,6 +1,6 @@
 // @flow
 import type { Job, Html, DocSection } from '../../type';
-import { copyright as commonCopyright, halfTitle as commonHalfTitle } from '../frontmatter';
+import { copyright as commonCopyright, halfTitle as commonHalfTitle, epigraph } from '../frontmatter';
 import { navText } from '../headings';
 
 export function frontmatter(job: Job): Html {
@@ -8,6 +8,7 @@ export function frontmatter(job: Job): Html {
     ${halfTitle(job)}
     ${originalTitle(job)}
     ${copyright(job)}
+    ${epigraph(job)}
     ${toc(job)}
   `;
 }

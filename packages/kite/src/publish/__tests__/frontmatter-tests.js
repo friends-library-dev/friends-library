@@ -35,6 +35,21 @@ describe('frontmatter()', () => {
 
     expect(files.copyright).not.toContain('Originally published');
   });
+
+  it('includes epigraphs if necessary', () => {
+    const adoc = `
+[quote.epigraph, , citation]
+____
+Quote text.
+____
+
+== Chapter 1
+    `.trim();
+
+    const files = frontmatter(testJob(adoc));
+    console.log('lol');
+    expect(files.epigraph).toContain('Quote text.');
+  });
 });
 
 describe('halfTitle()', () => {

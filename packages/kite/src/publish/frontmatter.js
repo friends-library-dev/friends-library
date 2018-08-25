@@ -1,16 +1,39 @@
 // @flow
 import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
-import type { Job, Html } from '../type';
+import type { Job, Html, FileManifest, Epigraph } from '../type';
 
-export const frontmatter = memoize((job: Job): { [string]: Html } => {
+export const frontmatter = memoize((job: Job): FileManifest => {
   const files = {
     'half-title': halfTitle(job),
     'original-title': originalTitle(job),
     copyright: copyright(job),
+    epigraph: epigraph(job),
   };
   return pickBy(files, html => html !== '');
 });
+
+export function epigraph({ spec: { epigraphs } }: Job): Html {
+  if (!epigraphs.length) {
+    return '';
+  }
+  return `
+    <div class="epigraphs own-page">
+      ${epigraphs.map(renderEpigraph).join('\n')}
+    </div>
+  `;
+}
+
+function renderEpigraph({ text, source }: Epigraph): Html {
+  return `
+    <div class="epigraph">
+      <div class="epigraph__text">
+        ${text}
+      </div>
+      ${source ? `<div class="epigraph__source">${source}</div>` : ''}
+    </div>
+  `;
+}
 
 export function halfTitle(job: Job): Html {
   const { spec: { meta: { title, author: { name } } } } = job;

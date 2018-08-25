@@ -1,4 +1,6 @@
 // @flow
+import fs from 'fs-extra';
+import path from 'path';
 import type { SourcePrecursor } from '../../type';
 import { createCommand, publishPrecursors } from '..';
 
@@ -13,7 +15,7 @@ function getRefPrecursor(): SourcePrecursor {
   return {
     id: 'ref',
     lang: 'en',
-    adoc: '== Hello World\n\nTest paragraph.footnote:[A note.]',
+    adoc: fs.readFileSync(path.resolve(__dirname, 'ref.adoc')).toString(),
     revision: {
       timestamp: Math.floor(Date.now() / 1000),
       sha: 'fb0c71b',
