@@ -1,5 +1,43 @@
+.epigraphs {
+  margin-top: 30%; // not padding-top for mobi7
+  text-align: center;
+}
+
 .epigraph {
   font-style: italic;
+
+  &__text {
+    &::before {
+      content: "\201C";
+    }
+
+    &::after {
+      content: "\201D";
+    }
+  }
+
+  &__source {
+    font-size: 0.9em;
+    white-space: nowrap;
+
+    &::before {
+      content: "(";
+    }
+
+    &::after {
+      content: ")";
+    }
+  }
+
+  // using sibling selecter doesn't work because of <br class="m7"/> added for mobi
+  &--not-first {
+    &::before {
+      content: "*\00a0\00a0\00a0\00a0\00a0*\00a0\00a0\00a0\00a0\00a0*";
+      margin-top: 2.5em;
+      padding-bottom: 2em;
+      display: block;
+    }
+  }
 }
 
 /* chicago manual of style says first para of blockquote should not be indented */

@@ -6,6 +6,7 @@ import chalk from 'chalk';
 import epubCheck from 'epub-check';
 import type { Job, FileManifest } from '../../type';
 import { getEpubManifest } from './manifest';
+import { PUBLISH_DIR } from '../file';
 
 export function makeEpub(job: Job): Promise<string> {
   const manifest = getEpubManifest(job);
@@ -17,7 +18,7 @@ export function makeEpub(job: Job): Promise<string> {
     })
     .then(() => {
       if (job.cmd.open) {
-        exec(`open -a "iBooks" _publish/${job.filename}`);
+        exec(`open -a "iBooks" ${PUBLISH_DIR}/${job.filename}`);
       }
     })
     .then(() => job.filename);
@@ -31,20 +32,20 @@ export function writeEbookManifest(manifest: FileManifest, job: Job): Promise<*>
   Object.keys(manifest).forEach(path => {
     zip.file(path, manifest[path]);
     promises.push(fs.outputFile(
-      `_publish/_src_/${spec.filename}/${target}/${path}`,
+      `${PUBLISH_DIR}/_src_/${spec.filename}/${target}/${path}`,
       manifest[path],
     ));
   });
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
   const basename = `${spec.filename}${target === 'mobi' ? '.mobi' : ''}.epub`;
-  promises.push(fs.writeFile(`_publish/${basename}`, binary, 'binary'));
+  promises.push(fs.writeFile(`${PUBLISH_DIR}/${basename}`, binary, 'binary'));
   return Promise.all(promises).then(() => basename);
 }
 
 function check(filename: string): Promise<*> {
   return new Promise((resolve, reject) => {
-    epubCheck(`_publish/_src_/${filename}/epub`)
+    epubCheck(`${PUBLISH_DIR}/_src_/${filename}/epub`)
       .then(result => (result.pass ? resolve() : reject(result.messages)));
   });
 }

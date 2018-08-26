@@ -15,7 +15,7 @@ export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type Lang = 'en' | 'es';
 
 export type Job = {|
-  id: string,
+  +id: string,
   +spec: SourceSpec,
   +cmd: Command,
   +target: FileType,
