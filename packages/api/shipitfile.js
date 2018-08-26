@@ -16,7 +16,7 @@ module.exports = function (shipit) {
   shipit.initConfig({
     default: {
       workspace: '/tmp/api',
-      repositoryUrl: 'git@github.com:friends-library/api.git',
+      repositoryUrl: 'git@github.com:friends-library/friends-library.git',
       ignore: ['.git', 'node_modules'],
       keepReleases: 5,
       deleteOnRollback: false,
@@ -25,7 +25,7 @@ module.exports = function (shipit) {
       key: DEPLOY_KEY,
       shared: {
         overwrite: true,
-        files: ['.env']
+        files: ['packages/api/.env']
       }
     },
     production: {
@@ -34,7 +34,7 @@ module.exports = function (shipit) {
   });
 
   shipit.on('published', () => {
-    shipit.remote(`cd ${DEPLOY_PATH}/current && yarn migrate`);
+    shipit.remote(`cd ${DEPLOY_PATH}/current/packages/api && yarn migrate`);
     shipit.remote('pm2 restart all');
   });
 };

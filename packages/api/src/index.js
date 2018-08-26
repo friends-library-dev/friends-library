@@ -7,7 +7,7 @@ const { env: { PORT, ASSETS_URI } } = process;
 
 const app = express();
 
-app.get('/', (req, res) => res.send(`Hello, Jared. Assets uri is: ${ASSETS_URI}`));
+app.get('/', (req, res) => res.send('༼ つ ◕_◕ ༽つ'));
 
 app.get('/download/:friend/:document/:edition/:filename', (req, res) => {
   const { params: { friend, document, edition, filename } } = req;
