@@ -12,7 +12,7 @@
     "start:es": "yarn sync:es & LANG=es NODE_ENV=development PORT=3333 API_URL=http://localhost:1111 NODE_PATH=src babel-watch --watch es.po src/server/index.js & webpack --mode development --watch",
     "serve": "NODE_ENV=production PORT=4444 NODE_PATH=src babel-watch src/server/index.js",
     "prebuild": "webpack --mode production -p",
-    "build": "rimraf build && NODE_PATH=src babel-node build.js",
+    "build": "rimraf build && NODE_PATH=src babel-node --ignore '../../node_modules/' build.js",
     "sync:en": "yarn browser-sync start --port 2223 --reload-delay 200 --ui-port 2224 --files src/* --no-notify",
     "sync:es": "yarn browser-sync start --port 2225 --reload-delay 200 --ui-port 2226 --files src/* es.po --no-notify",
     "po:update": "yarn c-3po update es.po src"
@@ -32,6 +32,7 @@
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
+    "@babel/node": "^7.0.0-rc.3",
     "@babel/preset-react": "^7.0.0-rc.3",
     "babel-loader": "^8.0.0-beta.6",
     "babel-watch": "monathur/babel-watch.git#ebc252359970458bf2e0a6c417bce3d3dc6d8da7",
