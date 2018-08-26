@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  testnode:
+  node:
     docker:
       - image: circleci/node:8.11.1
     working_directory: ~/fl-node
@@ -22,7 +22,9 @@ jobs:
       - run: yarn evans:test
       - run: yarn hilkiah:test
       - run: yarn flow
-  testphp:
+      - run: cd packages/evans && LANG=en yarn build
+      - run: cd packages/evans && LANG=es yarn build
+  php:
     docker:
       - image: circleci/php:7.2-apache-node-browsers
     working_directory: ~/fl-php
@@ -41,5 +43,5 @@ workflows:
   version: 2
   test_node_and_php:
     jobs:
-      - testnode
-      - testphp
+      - node
+      - php
