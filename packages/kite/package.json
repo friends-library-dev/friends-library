@@ -1,20 +1,16 @@
 {
-  "name": "kite",
+  "name": "@friends-library/kite",
   "version": "1.0.0",
   "description": "\"publish .pdf, .epub, and .mobi files from source .asciidoc\"",
+  "bin": {
+    "kite": "./kite.js"
+  },
   "main": "kite.js",
-  "repository": "git@github.com:friends-library/kite.git",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
-  "scripts": {
-    "lint:js": "eslint .",
-    "fix:js": "eslint . --fix",
-    "flow-typed:update": "yarn flow-typed install --overwrite --ignoreDeps dev",
-    "preflight": "yarn lint:js && yarn jest && yarn flow"
-  },
   "dependencies": {
-    "@babel/register": "^7.0.0-beta.52",
-    "@friends-library/friends": "friends-library/friends#a19d386c90728e948671b00e2119b1417e2775f4",
+    "@friends-library/friends": "1.0.0",
+    "@babel/register": "^7.0.0-rc.3",
     "asciidoctor.js": "^1.5.7-rc.1",
     "chalk": "^2.4.1",
     "dotenv": "^6.0.0",
@@ -22,7 +18,6 @@
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
     "gmail-send": "^1.2.14",
-    "kindlegen": "^1.1.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "node-sass": "^4.9.3",
@@ -31,28 +26,5 @@
     "striptags": "^3.1.1",
     "uuid": "^3.3.2",
     "yargs": "^12.0.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.0.0-beta.52",
-    "@babel/preset-env": "^7.0.0-beta.52",
-    "@babel/preset-flow": "^7.0.0-beta.52",
-    "babel-cli": "^6.26.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^8.2.6",
-    "babel-jest": "^23.0.1",
-    "eslint": "^4.14.0",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-airbnb-base": "^13.0.0",
-    "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-no-only-tests": "^2.0.1",
-    "eslint-plugin-react": "^7.10.0",
-    "flow-bin": "^0.76.0",
-    "flow-typed": "^2.5.1",
-    "jest": "^23.3.0"
-  },
-  "jest": {
-    "testRegex": "__tests__/.*tests\\.js"
   }
 }

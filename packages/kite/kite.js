@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 require('@babel/register');
 require('dotenv').config();
 const yargs = require('yargs');

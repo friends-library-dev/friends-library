@@ -1,10 +1,11 @@
 import express from 'express';
 import React, { StrictMode } from 'react';
-import { PORT } from 'env';
-import App from 'components/App';
-import { podcast } from 'lib/xml';
+import { query } from '@friends-library/friends';
+import { PORT } from '../env';
+import App from '../components/App';
+import { podcast } from '../lib/xml';
 import routes from './routes';
-import { wrap, query } from './helpers';
+import { wrap } from './helpers';
 
 const app = express();
 

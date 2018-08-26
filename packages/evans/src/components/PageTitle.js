@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import { classes } from 'lib/css';
+import { classes } from '../lib/css';
 import { h1 } from './Typography';
 
 const title = css`

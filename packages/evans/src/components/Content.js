@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { get } from 'lib/content';
+import { get } from '../lib/content';
 
 type Props = {|
   file: string,

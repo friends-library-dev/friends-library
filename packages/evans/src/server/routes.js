@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import { setLocale } from 'lib/i18n';
-import { LANG } from 'env';
 import { getFriend, query } from '@friends-library/friends';
-import FriendPage from 'components/FriendPage';
-import DocumentPage from 'components/DocumentPage';
-import PaperbackPage from 'components/PaperbackPage';
-import AudioPage from 'components/AudioPage';
-import HomePage from 'components/HomePage';
+import { setLocale } from '../lib/i18n';
+import { LANG } from '../env';
+import FriendPage from '../components/FriendPage';
+import DocumentPage from '../components/DocumentPage';
+import PaperbackPage from '../components/PaperbackPage';
+import AudioPage from '../components/AudioPage';
+import HomePage from '../components/HomePage';
 import {
   AboutPage,
   ModernizationPage,
@@ -16,15 +16,14 @@ import {
   EbookHelpPage,
   EditionsPage,
   ContactPage,
-  // $FlowFixMe
-} from 'components/static';
+} from '../components/static';
 import {
   FriendsPage,
   AudiobooksPage,
   PaperbacksPage,
   GettingStartedPage,
   ExplorePage,
-} from 'components/feature';
+} from '../components/feature';
 
 setLocale();
 

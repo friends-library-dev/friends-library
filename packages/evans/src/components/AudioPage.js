@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { Edition, Document, Audio } from '@friends-library/friends';
-import url from 'lib/url';
+import url from '../lib/url';
 import Divider from './Divider';
 import EmbeddedAudio from './EmbeddedAudio';
 import PageTitle from './PageTitle';

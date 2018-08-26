@@ -1,22 +1,33 @@
 const books = require('./books.json');
 const { toNumber } = require('./convert');
 const { romanSingleOrRange, colonComma, colonSingleOrRange, romanComma } = require('./verses');
-const { incorrectJohannine, incorrectSong } = require ('./disambiguate');
+const { incorrectJohannine, incorrectSong } = require('./disambiguate');
 
-const ROM = '(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})'
+const ROM = '(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})';
 const ARAB = '[\\d]{1,3}';
 
 
 function absorbRight(ref, input) {
-  const { position: { start, end } } = ref;
+  const { position: { end } } = ref;
   const afterRef = input.substr(end);
-  const match = afterRef.match(/^(?:[\.|:|;|,])? *\)/);
-  if (match) {
-    const absorbed = match[0].substr(0, match[0].length - 1);
-    ref.match += absorbed;
-    ref.position.end += absorbed.length;
+  const match = afterRef.match(/^(?:[.|:|;|,])? *\)/);
+
+  if (!match) {
+    return ref;
   }
-  return ref;
+
+  const absorbed = match[0].substr(0, match[0].length - 1);
+
+  const newRef = {
+    ...ref,
+    match: ref.match.concat(absorbed),
+    position: {
+      ...ref.position,
+      end: ref.position.end + absorbed.length,
+    },
+  };
+
+  return newRef;
 }
 
 function extractRef(book, chapter, match) {
@@ -37,7 +48,7 @@ function extractRef(book, chapter, match) {
     verses: [],
     position: {
       start: match.index,
-    }
+    },
   };
 
   strategies.forEach(strategy => {
@@ -74,10 +85,10 @@ function find(str) {
       .map(abbrev => abbrev.replace('.', '\\.'))
       .join('|');
 
-    pattern = `(?:${pattern})(?:\.)? (${ARAB}|${ROM})`;
+    pattern = `(?:${pattern})(?:.)? (${ARAB}|${ROM})`;
     const exp = new RegExp(pattern, 'gi');
     let match;
-    while (match = exp.exec(str)) {
+    while ((match = exp.exec(str))) {
       refs.push(extractRef(book.name, toNumber(match[1]), match));
     }
   });

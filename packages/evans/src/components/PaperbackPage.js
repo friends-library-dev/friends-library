@@ -3,7 +3,7 @@ import * as React from 'react';
 import { css } from 'glamor';
 import { t } from 'c-3po';
 import { Document } from '@friends-library/friends';
-import { LANG } from 'env';
+import { LANG } from '../env';
 import PageTitle from './PageTitle';
 import ByLine from './ByLine';
 import Divider from './Divider';

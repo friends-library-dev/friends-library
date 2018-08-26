@@ -1,5 +1,6 @@
 // @flow
 import fs from 'fs-extra';
+import path from 'path';
 import { defaults, omit } from 'lodash';
 import type { Command, Job, SourceSpec, FileType, SourcePrecursor } from '../type';
 import { makeEpub } from './epub/make';
@@ -19,8 +20,9 @@ export function publishPrecursors(
   precursors: Array<SourcePrecursor>,
   cmd: Command,
 ): Promise<*> {
-  fs.removeSync('_publish');
-  fs.ensureDir('_publish');
+  const dir = path.resolve(__dirname, '../../_publish');
+  fs.removeSync(dir);
+  fs.ensureDir(dir);
 
   const specs = precursors.map(prepare);
   const jobs = specs.reduce(reduceSpecsToJobs(cmd), []);

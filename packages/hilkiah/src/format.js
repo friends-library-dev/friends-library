@@ -8,7 +8,7 @@ function format({ book, verses, contiguous, match }, opts = {}) {
   };
 
   let str = book;
-  const { short, name } = books.find(b => b.name == book);
+  const { short } = books.find(b => b.name === book);
 
   if (options.shortBookNames && short !== book) {
     str = `${short}.`;
@@ -24,10 +24,10 @@ function format({ book, verses, contiguous, match }, opts = {}) {
   }
 
   if (contiguous) {
-    return str += `-${verses.pop().verse}`;
+    return `${str}-${verses.pop().verse}`;
   }
 
-  return str += `,${verses.slice(1).map(v => v.verse).join(',')}`;
+  return `${str},${verses.slice(1).map(v => v.verse).join(',')}`;
 }
 
 module.exports = { format };

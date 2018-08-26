@@ -3,11 +3,11 @@ import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { readFileSync, existsSync } from 'fs';
 import { flow } from 'lodash';
-import type { Html } from 'type';
-import { LANG } from 'env';
 import Asciidoctor from 'asciidoctor.js';
-import Divider from 'components/Divider';
-import EmbeddedAudio from 'components/EmbeddedAudio';
+import type { Html } from '../type';
+import { LANG } from '../env';
+import Divider from '../components/Divider';
+import EmbeddedAudio from '../components/EmbeddedAudio';
 
 const replaceDividers = (html: Html): Html => (
   html.replace(

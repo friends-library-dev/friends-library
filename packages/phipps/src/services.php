@@ -35,8 +35,9 @@ $container->bind(S3ClientInterface::CLASS, function (Container $container) {
 
 $container->bind(Iterator::CLASS, function () {
     $friendFiles = Finder::create()
-        ->in(__DIR__ . '/../../friends/src')
-        ->files();
+        ->in(__DIR__ . '/../../friends/yml')
+        ->files()
+        ->name('*.yml');
 
     foreach ($friendFiles as $file) {
         $path = $file->getRelativePathname();

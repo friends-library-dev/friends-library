@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
 
@@ -20,15 +19,15 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [
-              ["env", {
+              ['@babel/preset-env', {
                 targets: {
-                  browsers: ["last 2 versions"]
-                }
-              }]
-            ]
-          }
-        }
-      }
-    ]
+                  browsers: ['last 2 versions'],
+                },
+              }],
+            ],
+          },
+        },
+      },
+    ],
   },
 };

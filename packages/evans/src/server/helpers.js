@@ -2,9 +2,9 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom/server';
 import { renderStaticOptimized } from 'glamor/server';
-import { minify, stripDataSelectors, format, appCss } from 'lib/css';
-import { NODE_ENV, LANG } from 'env';
-import type { Html } from 'type';
+import { minify, stripDataSelectors, format, appCss } from '../lib/css';
+import { NODE_ENV, LANG } from '../env';
+import type { Html } from '../type';
 
 
 export const wrap = (Component: React.Element<*>): Html => {

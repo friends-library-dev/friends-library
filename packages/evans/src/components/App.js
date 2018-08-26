@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import StickyNav from 'components/StickyNav';
-import Slideover from 'components/Slideover';
-import Footer from 'components/Footer';
+import StickyNav from './StickyNav';
+import Slideover from './Slideover';
+import Footer from './Footer';
 import { PRIMARY } from './Theme';
 
 type Props = {|

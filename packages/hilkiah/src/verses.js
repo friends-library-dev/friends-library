@@ -1,7 +1,6 @@
 const { toNumber } = require('./convert');
 
 // @TODO duplication...
-const ROM = '(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})'
 const ARAB = '[\\d]{1,3}';
 const ADD = `(?:,(?: )(${ARAB}))?`;
 const CSV = `${ADD}${ADD}${ADD}${ADD}${ADD}${ADD}`;
@@ -12,12 +11,12 @@ function exec(str, pattern) {
 }
 
 function singleOrRange(pattern, start, context, ref, chapter) {
-  let match = exec(context, pattern);
+  const match = exec(context, pattern);
   if (!match) {
     return ref;
   }
 
-  const [ versesSubString, verseStart, verseEnd ] = match;
+  const [versesSubString, verseStart, verseEnd] = match;
   ref.verses.push({
     chapter,
     verse: toNumber(verseStart),

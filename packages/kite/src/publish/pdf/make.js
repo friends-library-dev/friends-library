@@ -8,14 +8,15 @@ import { getPdfManifest } from './manifest';
 export function makePdf(job: Job): Promise<string> {
   const { spec, target, filename } = job;
   const manifest = getPdfManifest(job);
-  const dir = `_publish/_src_/${spec.filename}/${target}`;
+  const pubDir = pathResolve(__dirname, '../../../_publish');
+  const dir = `${pubDir}/_src_/${spec.filename}/${target}`;
   const writeFiles = Promise.all(Object.keys(manifest).map(path => (
     fs.outputFile(`${dir}/${path}`, manifest[path])
   )));
 
   return writeFiles
     .then(() => {
-      const src = pathResolve(__dirname, `../../../${dir}/book.html`);
+      const src = `${dir}/book.html`;
       const prince = spawn('prince-books', [src]);
       return new Promise((resolve, reject) => {
         prince.stderr.on('data', data => {
@@ -30,11 +31,11 @@ export function makePdf(job: Job): Promise<string> {
       });
     })
     .then(() => {
-      return fs.move(`${dir}/book.pdf`, `_publish/${filename}`);
+      return fs.move(`${dir}/book.pdf`, `${pubDir}/${filename}`);
     })
     .then(() => {
       if (job.cmd.open) {
-        exec(`open "_publish/${filename}"`);
+        exec(`open "${pubDir}/${filename}"`);
       }
       return filename;
     });

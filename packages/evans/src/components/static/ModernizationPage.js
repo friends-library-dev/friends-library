@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import Block from 'components/Block';
-import PageTitle from 'components/PageTitle';
-import Content from 'components/Content';
+import Block from '../Block';
+import PageTitle from '../PageTitle';
+import Content from '../Content';
 
 const element = css`
   & dl {

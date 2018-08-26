@@ -1,14 +1,16 @@
 // @flow
-import { query, Friend, Document, Edition } from '@friends-library/friends';
 import fs from 'fs-extra';
 import chalk from 'chalk';
 import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
+import { query, Friend, Document, Edition } from '@friends-library/friends';
 import type { SourcePrecursor, Lang, Asciidoc } from '../type';
 
 export function getPrecursors(path: string): Array<SourcePrecursor> {
-  const [lang, friend, document, edition] = path.split('/');
+  const [lang, friend, document, edition] = path
+    .replace(/^\.\/packages\/kite\//, '')
+    .split('/');
 
   if (!lang) {
     return [...resolveLang('en'), ...resolveLang('es')];
@@ -37,7 +39,7 @@ export function getPrecursors(path: string): Array<SourcePrecursor> {
 function gitRevision(path: string) {
   const cmd = 'git log --max-count=1 --pretty="%h|%ct" -- .';
   const [sha, timestamp] = execSync(cmd, {
-    cwd: pathResolve(__dirname, '../../', path),
+    cwd: pathResolve(__dirname, '../../../../', path),
   }).toString().split('|');
   if (!sha || !timestamp) {
     console.log(chalk.red(`Could not determine git revision info for path: ${path}`));

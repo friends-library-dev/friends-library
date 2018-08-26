@@ -3,8 +3,8 @@ import * as React from 'react';
 import { t } from 'c-3po';
 import { css } from 'glamor';
 import { Document } from '@friends-library/friends';
-import url from 'lib/url';
-import responsiveDocumentTitle from 'lib/responsive';
+import url from '../lib/url';
+import responsiveDocumentTitle from '../lib/responsive';
 import { PRIMARY } from './Theme';
 
 const element = css`
@@ -74,18 +74,18 @@ const DocumentTeaser = (props: Props) => {
         dangerouslySetInnerHTML={{ __html: responsiveDocumentTitle(document) }}
       />
       <ul className={meta}>
-        {document.hasAudio() &&
+        {document.hasAudio() && (
           <li>
             <i className="fa fa-headphones" />
-              {t`Audio Available`}
+            {t`Audio Available`}
           </li>
-        }
-        {document.hasUpdatedEdition() &&
+        )}
+        {document.hasUpdatedEdition() && (
           <li>
             <i className="fa fa-rocket" />
-              {t`Updated Available`}
+            {t`Updated Available`}
           </li>
-        }
+        )}
         <li>
           <i className="fa fa-clock-o" />
           {document.shortestEdition().pages} {t`Pages`}

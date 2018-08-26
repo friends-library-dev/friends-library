@@ -1,7 +1,52 @@
 {
   "name": "root",
   "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "kite": "node ./packages/kite/kite.js",
+    "phipps": "php ./packages/phipps/phipps",
+    "lint": "yarn eslint .",
+    "test": "yarn jest && yarn phipps:test",
+    "friends:lint": "yarn eslint packages/friends",
+    "kite:lint": "yarn eslint packages/kite",
+    "evans:lint": "yarn eslint packages/evans",
+    "hilkiah:lint": "yarn eslint packages/hilkiah",
+    "friends:test": "yarn jest packages/friends",
+    "kite:test": "yarn jest packages/kite",
+    "evans:test": "yarn jest packages/evans",
+    "hilkiah:test": "yarn jest packages/hilkiah",
+    "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
+    "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
+    "preflight": "yarn lint && yarn test && yarn flow"
+  },
   "devDependencies": {
+    "@babel/core": "^7.0.0-rc.3",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.3",
+    "@babel/preset-env": "^7.0.0-rc.3",
+    "@babel/preset-flow": "^7.0.0-rc.3",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.2",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-no-only-tests": "^2.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "flow-bin": "^0.79.1",
+    "jest": "^23.5.0",
     "lerna": "^3.1.4"
+  },
+  "workspaces": [
+    "packages/evans",
+    "packages/kite",
+    "packages/friends",
+    "packages/hilkiah",
+    "packages/phipps",
+    "packages/api"
+  ],
+  "jest": {
+    "testRegex": "__tests__/.*tests?\\.js"
   }
 }

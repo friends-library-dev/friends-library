@@ -1,53 +1,23 @@
-module.exports = {
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      generators: true,
-      experimentalObjectRestSpread: true
-    },
-    sourceType: 'module',
-    allowImportExportEverywhere: false
-  },
-  plugins: ['flowtype', 'no-only-tests'],
-  extends: ['airbnb', 'plugin:flowtype/recommended'],
-  settings: {
-    flowtype: {
-      onlyFilesWithFlowAnnotation: true
-    },
-    'import/resolver': {
-      node: {
-        paths: ['src'],
-        extensions: ['.js', '.json', '.css']
-      }
-    }
-  },
-  globals: {
-    window: true,
-    document: true,
-    __dirname: true,
-    __DEV__: true,
-    CONFIG: true,
-    process: true,
-    jest: true,
-    describe: true,
-    test: true,
-    it: true,
-    expect: true,
-    beforeEach: true,
-    fetch: true,
-  },
-  rules: {
-    "max-len": 0,
-    "react/no-unescaped-entities": 0,
-    "react/jsx-filename-extension": 0,
-    "jsx-a11y/anchor-is-valid": 0,
-    "jsx-a11y/click-events-have-key-events": 0,
-    "jsx-a11y/interactive-supports-focus": 0,
-    "jsx-a11y/no-static-element-interactions": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "arrow-body-style": 0,
-    "no-only-tests/no-only-tests": 2,
-    "react/no-danger": 0,
-    "import/prefer-default-export": 0,
-  }
-}
+const config = require('../../.eslintrc.js');
+
+config.globals = {
+  ...config.globals,
+  document: true,
+  window: true,
+};
+
+config.rules = {
+  ...config.rules,
+  "max-len": 0,
+  "react/no-unescaped-entities": 0,
+  "react/jsx-one-expression-per-line": 0,
+  "react/jsx-filename-extension": 0,
+  "jsx-a11y/anchor-is-valid": 0,
+  "jsx-a11y/click-events-have-key-events": 0,
+  "jsx-a11y/interactive-supports-focus": 0,
+  "jsx-a11y/no-static-element-interactions": 0,
+  "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+  "react/no-danger": 0,
+};
+
+module.exports = config;

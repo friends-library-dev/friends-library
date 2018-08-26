@@ -1,0 +1,13 @@
+name: Samuel Rundell
+slug: samuel-rundell
+gender: male
+documents:
+  -
+    title: The Work of Vital Religion in the Soul
+    original_title: Observations on the Commencement and Progress of the Work of Vital Religion in the Soul; on Divine Worship; and on the Partaking of the Flesh and blood of Our Lord Jesus Christ
+    published: 1834 # best guess from clues in John Barclay's letters found in Wilbur's journal
+    slug: vital-religion
+    filename: Work_of_Vital_Religion_in_the_Soul
+    editions:
+      -
+        type: updated

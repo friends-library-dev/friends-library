@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { getAllFriends } from '@friends-library/friends';
 import fs from 'fs-extra';
 import { basename } from 'path';
 import { sync as glob } from 'glob';
@@ -9,6 +8,7 @@ import { wrap } from 'server/helpers';
 import { podcast } from 'lib/xml';
 import routes from 'server/routes';
 import App from 'components/App';
+import { getAllFriends } from '@friends-library/friends';
 
 function generateRoute(props, children, path) {
   const html = wrap(<App {...props}>{children}</App>);
@@ -61,7 +61,7 @@ getAllFriends(LANG).forEach(friend => {
         const req = { params: {
           friendSlug: slug,
           docSlug: document.slug,
-          editionType: edition.type
+          editionType: edition.type,
         } };
         const { props, children } = routes[`/:friendSlug/:docSlug/:editionType/${format}`](req);
         const path = `${slug}/${document.slug}/${edition.type}/${format}`;

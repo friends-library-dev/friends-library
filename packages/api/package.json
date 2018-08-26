@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "@friends-library/api",
   "version": "1.0.0",
   "main": "src/index.js",
   "author": "Jared Henderson <jared@netrivet.com>",

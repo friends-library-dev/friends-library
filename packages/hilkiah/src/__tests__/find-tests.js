@@ -1,7 +1,6 @@
 const { find } = require('../');
 
 describe('find()', () => {
-
   it('returns empty array if no refs found', () => {
     const found = find('blah blah');
 
@@ -81,7 +80,7 @@ describe('find()', () => {
     // ['BOOK', 999, 111, 'CONTEXT'],
   ];
 
-  test.each(individualVerses)(`finds {%s %s:%s} from "%s"`, (book, ch, vs, input) => {
+  test.each(individualVerses)('finds {%s %s:%s} from "%s"', (book, ch, vs, input) => {
     const [ref] = find(input);
     expect(ref.book).toBe(book);
     expect(ref.verses.length).toBe(1);
@@ -94,49 +93,49 @@ describe('find()', () => {
     [
       'included; (see Hosea, xii. 6; Isai. xl. 31; Psalm xl. 1;) a duty',
       [
-        ['Hosea, xii. 6', 'Hosea', 7, 6],
+        ['Psalm xl. 1;', 'Psalms', 40, 1],
         ['Isai. xl. 31', 'Isaiah', 40, 31],
-        ['Psalm xl. i', 'Psalms', 40, 1],
-      ]
+        ['Hosea, xii. 6', 'Hosea', 12, 6],
+      ],
     ],
     [
       'with John viii. 12, and 1 John i. 7.\n',
       [
         ['John viii. 12', 'John', 8, 12],
         ['1 John i. 7', '1 John', 1, 7],
-      ]
+      ],
     ],
     [
       'im,`" (2 Pet. i. 17. Matt. xvii. 5;) --He',
       [
-        ['2 Pet. i. 17.', '2 Peter', 1, 17],
         ['Matt. xvii. 5;', 'Matthew', 17, 5],
-      ]
+        ['2 Pet. i. 17', '2 Peter', 1, 17],
+      ],
     ],
     [
       '(Ezek. xxxiii. 18. 1 Cor. ix. 27.) So also',
       [
-        ['Ezek. xxxiii. 18.', 'Ezekiel', 33, 18],
+        ['Ezek. xxxiii. 18', 'Ezekiel', 33, 18],
         ['1 Cor. ix. 27.', '1 Corinthians', 9, 27],
-      ]
+      ],
     ],
     [
       'blah Jn 3:16 blah blah Joh 14:6',
       [
         ['Jn 3:16', 'John', 3, 16],
-        ['Joh 14:6', 'John',13, 6],
-      ]
-    ]
+        ['Joh 14:6', 'John', 14, 6],
+      ],
+    ],
   ];
 
-  test.each(multiRefs)(`should extract multiple refs from "%s"`, (input, expected) => {
+  test.each(multiRefs)('should extract multiple refs from "%s"', (input, expected) => {
     const refs = find(input);
 
-    for (var i = 0; i < expected.length; i++) {
-      refs[i].match = expected[0];
-      refs[i].book = expected[1];
-      refs[i].verses[0].chapter = expected[2];
-      refs[i].verses[0].verse = expected[3];
+    for (let i = 0; i < expected.length; i++) {
+      expect(refs[i].match).toBe(expected[i][0]);
+      expect(refs[i].book).toBe(expected[i][1]);
+      expect(refs[i].verses[0].chapter).toBe(expected[i][2]);
+      expect(refs[i].verses[0].verse).toBe(expected[i][3]);
     }
   });
 
@@ -144,214 +143,214 @@ describe('find()', () => {
     [
       'nd I in them.” (John xvii. 20, 21, 23, 26.) Foobar',
       {
-        book: "John",
+        book: 'John',
         contiguous: false,
         verses: [
           { chapter: 17, verse: 20 },
           { chapter: 17, verse: 21 },
           { chapter: 17, verse: 23 },
           { chapter: 17, verse: 26 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'other.`" (Gal. v. 16, 17.) And',
       {
-        book: "Galatians",
+        book: 'Galatians',
         contiguous: true,
         verses: [
           { chapter: 5, verse: 16 },
           { chapter: 5, verse: 17 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'Father.`" (Phil. ii. 10, 11.) Were',
       {
-        book: "Philippians",
+        book: 'Philippians',
         contiguous: true,
         verses: [
           { chapter: 2, verse: 10 },
           { chapter: 2, verse: 11 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'God`" (2 Cor. v. 17, 18;) their',
       {
-        book: "2 Corinthians",
+        book: '2 Corinthians',
         contiguous: true,
         verses: [
           { chapter: 5, verse: 17 },
           { chapter: 5, verse: 18 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'life.`" (See John v. 39, 40.)',
       {
-        book: "John",
+        book: 'John',
         contiguous: true,
         verses: [
           { chapter: 5, verse: 39 },
           { chapter: 5, verse: 40 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'truth.`" (John iv. 23,24.) On',
       {
-        book: "John",
+        book: 'John',
         contiguous: true,
         verses: [
           { chapter: 4, verse: 23 },
           { chapter: 4, verse: 24 },
-        ]
-      }
+        ],
+      },
     ],
     [
       '(Gal. v. 22, 23.) Again',
       {
-        book: "Galatians",
+        book: 'Galatians',
         contiguous: true,
         verses: [
           { chapter: 5, verse: 22 },
           { chapter: 5, verse: 23 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'away.`" (2 Cor. iii. 15, 16.) So',
       {
-        book: "2 Corinthians",
+        book: '2 Corinthians',
         contiguous: true,
         verses: [
           { chapter: 3, verse: 15 },
           { chapter: 3, verse: 16 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'men.`" (John i. 1, 3, 4.) Let',
       {
-        book: "John",
+        book: 'John',
         contiguous: false,
         verses: [
           { chapter: 1, verse: 1 },
           { chapter: 1, verse: 3 },
           { chapter: 1, verse: 4 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'Jesus.`" (2 Tim. iii. 15, 16, 17.) They',
       {
-        book: "2 Timothy",
+        book: '2 Timothy',
         contiguous: true,
         verses: [
           { chapter: 3, verse: 15 },
           { chapter: 3, verse: 16 },
           { chapter: 3, verse: 17 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'do.`" (Heb. iv. 12, 13.) Here',
       {
-        book: "Hebrews",
+        book: 'Hebrews',
         contiguous: true,
         verses: [
           { chapter: 4, verse: 12 },
           { chapter: 4, verse: 13 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'ever.`" (1 Peter i. 23, 24, 25.) In',
       {
-        book: "1 Peter",
+        book: '1 Peter',
         contiguous: true,
         verses: [
           { chapter: 1, verse: 23 },
           { chapter: 1, verse: 24 },
           { chapter: 1, verse: 25 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'Jn 4:23-24',
       {
-        book: "John",
+        book: 'John',
         contiguous: true,
         verses: [
           { chapter: 4, verse: 23 },
           { chapter: 4, verse: 24 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'Jn 4:23,27',
       {
-        book: "John",
+        book: 'John',
         contiguous: false,
         verses: [
           { chapter: 4, verse: 23 },
           { chapter: 4, verse: 27 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'light.`" (John xii. 35, 36.) These',
       {
-        book: "John",
+        book: 'John',
         contiguous: true,
         verses: [
           { chapter: 12, verse: 35 },
           { chapter: 12, verse: 36 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'world.`" (Titus ii. 11, 12.)',
       {
-        book: "Titus",
+        book: 'Titus',
         contiguous: true,
         verses: [
           { chapter: 2, verse: 11 },
           { chapter: 2, verse: 12 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'world.`" (John i. 4--6.)',
       {
-        book: "John",
+        book: 'John',
         contiguous: true,
         verses: [
           { chapter: 1, verse: 4 },
           { chapter: 1, verse: 5 },
           { chapter: 1, verse: 6 },
-        ]
-      }
+        ],
+      },
     ],
     [
       'us.`" (2 Cor. iv. 6, 7.) The',
       {
-        book: "2 Corinthians",
+        book: '2 Corinthians',
         contiguous: true,
         verses: [
           { chapter: 4, verse: 6 },
           { chapter: 4, verse: 7 },
-        ]
-      }
+        ],
+      },
     ],
   ];
 
-  test.each(multiVerses)(`finds all verses from "%s"`, (input, expected) => {
-    const [ ref ] = find(input);
-    for (let key in expected) {
+  test.each(multiVerses)('finds all verses from "%s"', (input, expected) => {
+    const [ref] = find(input);
+    Object.keys(expected).forEach(key => {
       expect(ref[key]).toEqual(expected[key]);
-    }
+    });
   });
 
   const trailing = [
@@ -370,8 +369,8 @@ describe('find()', () => {
     ['Foo is 1 Cor. i. 24. And...', '1 Cor. i. 24', 'Foo is --. And...'],
   ];
 
-  test.each(trailing)(`properly captures trailing junk for "%s"`, (input, match, rpl) => {
-    const [ ref ] = find(input);
+  test.each(trailing)('properly captures trailing junk for "%s"', (input, match, rpl) => {
+    const [ref] = find(input);
     const { position: { start, end } } = ref;
 
     const result = `${input.substr(0, start)}--${input.substr(end)}`;
@@ -383,7 +382,7 @@ describe('find()', () => {
   it('does not include trailing period when not in parens', () => {
     const input = 'This is shown in 1 John 1. 7. And, more...';
 
-    const [ ref ] = find(input);
+    const [ref] = find(input);
 
     expect(ref.match).toBe('1 John 1. 7');
   });

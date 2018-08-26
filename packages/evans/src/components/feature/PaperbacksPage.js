@@ -1,11 +1,11 @@
 // @flow
 import * as React from 'react';
 import { getAllFriends } from '@friends-library/friends';
-import { LANG } from 'env';
-import Block from 'components/Block';
-import PageTitle from 'components/PageTitle';
-import Divider from 'components/Divider';
-import url from 'lib/url';
+import { LANG } from '../../env';
+import Block from '../Block';
+import PageTitle from '../PageTitle';
+import Divider from '../Divider';
+import url from '../../lib/url';
 
 // @TODO make this better, more functional
 const paperbacks = [];

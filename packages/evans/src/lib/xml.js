@@ -3,8 +3,8 @@
 import { encode } from 'he';
 import moment from 'moment';
 import { Document, Edition } from '@friends-library/friends';
-import url from 'lib/url';
-import { LANG, APP_URL, API_URL } from 'env';
+import url from './url';
+import { LANG, APP_URL, API_URL } from '../env';
 
 export function podcast(document: Document, edition: Edition): string {
   const { friend } = document;

@@ -47,7 +47,7 @@ ____
     `.trim();
 
     const files = frontmatter(testJob(adoc));
-    console.log('lol');
+
     expect(files.epigraph).toContain('Quote text.');
   });
 });

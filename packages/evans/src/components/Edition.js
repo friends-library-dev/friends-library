@@ -3,8 +3,8 @@ import * as React from 'react';
 import { css } from 'glamor';
 import { t } from 'c-3po';
 import { Edition as EditionClass } from '@friends-library/friends';
-import url from 'lib/url';
-import { classes } from 'lib/css';
+import url from '../lib/url';
+import { classes } from '../lib/css';
 import * as descriptions from './descriptions';
 import { h2, h3 } from './Typography';
 

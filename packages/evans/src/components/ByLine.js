@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { t } from 'c-3po';
 import { Document } from '@friends-library/friends';
-import url from 'lib/url';
+import url from '../lib/url';
 import { h2 } from './Typography';
 
 type Props = {|

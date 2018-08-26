@@ -3,7 +3,7 @@ function incorrectJohannine({ book, position: { start } }, input) {
     return false;
   }
 
-  var bool = false;
+  let bool = false;
 
   const prefs = [
     '1',

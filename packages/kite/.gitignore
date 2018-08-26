@@ -1,6 +1,1 @@
-_publish/
-en/
-es/
-node_modules/
-.env
-.DS_Store
+_publish

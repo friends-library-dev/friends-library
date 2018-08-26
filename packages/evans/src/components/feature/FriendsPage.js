@@ -1,12 +1,12 @@
 // @flow
 import * as React from 'react';
 import { getAllFriends } from '@friends-library/friends';
-import { LANG } from 'env';
-import Block from 'components/Block';
-import PageTitle from 'components/PageTitle';
-import Divider from 'components/Divider';
-import Button from 'components/Button';
-import url from 'lib/url';
+import { LANG } from '../../env';
+import Block from '../Block';
+import PageTitle from '../PageTitle';
+import Divider from '../Divider';
+import Button from '../Button';
+import url from '../../lib/url';
 
 export default () => (
   <Block>

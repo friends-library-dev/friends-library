@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
-import Block from 'components/Block';
-import PageTitle from 'components/PageTitle';
-import Divider from 'components/Divider';
+import Block from '../Block';
+import PageTitle from '../PageTitle';
+import Divider from '../Divider';
 import { original, modernized, updated } from '../descriptions';
 
 export default () => (

@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import Block from 'components/Block';
-import PageTitle from 'components/PageTitle';
-import Divider from 'components/Divider';
-import EmbeddedAudio from 'components/EmbeddedAudio';
+import Block from '../Block';
+import PageTitle from '../PageTitle';
+import Divider from '../Divider';
+import EmbeddedAudio from '../EmbeddedAudio';
 
 const featured = css`
   background: #eaeaea;

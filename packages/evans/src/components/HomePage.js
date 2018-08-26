@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import HeroBlock from 'components/HeroBlock';
-import TempBlock from 'components/TempBlock';
-import Button from 'components/Button';
+import HeroBlock from './HeroBlock';
+import TempBlock from './TempBlock';
+import Button from './Button';
 
 const featured = css`
   background: #eaeaea;
