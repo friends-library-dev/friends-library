@@ -1,4 +1,5 @@
 // @flow
+import path from 'path';
 import makeSend from 'gmail-send';
 import moment from 'moment';
 import type { Command, Html } from '../type';
@@ -16,7 +17,7 @@ export function send(files: Array<Html>, cmd: Command) {
     subject: `[kite.js] test docs @ ${time}`,
     html: `Attached files:<br /><ul>${files.map(f => `<li>${f}</li>`).join('')}</ul>`,
     to: cmd.email || GMAIL_USER,
-    files: files.map(f => `_publish/${f}`),
+    files: files.map(f => path.resolve(__dirname, `../../_publish/${f}`)),
   }, (err) => {
     if (err) console.warn(err);
   });

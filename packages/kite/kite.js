@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 require('@babel/register');
-require('dotenv').config();
+require('dotenv').config({ path: `${__dirname}/.env` });
 const yargs = require('yargs');
 const publish = require('./src/publish').default;
 const publishRef = require('./src/publish/ref').default;
@@ -34,7 +34,7 @@ function timed(fn) {
     const start = Date.now();
     fn(...args).then(() => {
       const stop = Date.now();
-      console.log(`✨  Done in ${(stop - start) / 1000}s.`);
+      console.log(`📗  Done in ${(stop - start) / 1000}s.`);
     });
   };
 }
