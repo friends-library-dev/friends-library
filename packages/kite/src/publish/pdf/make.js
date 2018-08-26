@@ -1,15 +1,14 @@
 // @flow
 import fs from 'fs-extra';
-import { resolve as pathResolve } from 'path';
 import { spawn, exec } from 'child_process';
 import type { Job } from '../../type';
 import { getPdfManifest } from './manifest';
+import { PUBLISH_DIR } from '../file';
 
 export function makePdf(job: Job): Promise<string> {
   const { spec, target, filename } = job;
   const manifest = getPdfManifest(job);
-  const pubDir = pathResolve(__dirname, '../../../_publish');
-  const dir = `${pubDir}/_src_/${spec.filename}/${target}`;
+  const dir = `${PUBLISH_DIR}/_src_/${spec.filename}/${target}`;
   const writeFiles = Promise.all(Object.keys(manifest).map(path => (
     fs.outputFile(`${dir}/${path}`, manifest[path])
   )));
@@ -31,11 +30,11 @@ export function makePdf(job: Job): Promise<string> {
       });
     })
     .then(() => {
-      return fs.move(`${dir}/book.pdf`, `${pubDir}/${filename}`);
+      return fs.move(`${dir}/book.pdf`, `${PUBLISH_DIR}/${filename}`);
     })
     .then(() => {
       if (job.cmd.open) {
-        exec(`open "${pubDir}/${filename}"`);
+        exec(`open "${PUBLISH_DIR}/${filename}"`);
       }
       return filename;
     });

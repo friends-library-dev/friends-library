@@ -1,6 +1,5 @@
 // @flow
 import fs from 'fs-extra';
-import path from 'path';
 import { defaults, omit } from 'lodash';
 import type { Command, Job, SourceSpec, FileType, SourcePrecursor } from '../type';
 import { makeEpub } from './epub/make';
@@ -9,6 +8,7 @@ import { makePdf } from './pdf/make';
 import { prepare } from './spec';
 import { getPrecursors } from './precursors';
 import { send } from './send';
+import { PUBLISH_DIR } from './file';
 
 export default function publish(argv: Object): Promise<*> {
   const cmd = createCommand(argv);
@@ -20,9 +20,8 @@ export function publishPrecursors(
   precursors: Array<SourcePrecursor>,
   cmd: Command,
 ): Promise<*> {
-  const dir = path.resolve(__dirname, '../../_publish');
-  fs.removeSync(dir);
-  fs.ensureDir(dir);
+  fs.removeSync(PUBLISH_DIR);
+  fs.ensureDir(PUBLISH_DIR);
 
   const specs = precursors.map(prepare);
   const jobs = specs.reduce(reduceSpecsToJobs(cmd), []);

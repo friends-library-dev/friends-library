@@ -19,18 +19,18 @@ export function epigraph({ spec: { epigraphs } }: Job): Html {
   }
   return `
     <div class="epigraphs own-page">
-      ${epigraphs.map(renderEpigraph).join('\n')}
+      ${epigraphs.map(renderEpigraph).join('\n<br class="m7"/>\n<br class="m7"/>\n')}
     </div>
   `;
 }
 
-function renderEpigraph({ text, source }: Epigraph): Html {
+function renderEpigraph({ text, source }: Epigraph, index: number): Html {
   return `
-    <div class="epigraph">
-      <div class="epigraph__text">
+    <div class="epigraph${index > 0 ? ' epigraph--not-first' : ''}">
+      <span class="epigraph__text">
         ${text}
-      </div>
-      ${source ? `<div class="epigraph__source">${source}</div>` : ''}
+      </span>
+      ${source ? `<span class="epigraph__source">${source}</span>` : ''}
     </div>
   `;
 }

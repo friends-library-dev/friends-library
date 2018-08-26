@@ -6,6 +6,7 @@ import chalk from 'chalk';
 import type { Job } from '../../type';
 import { getMobiManifest } from './manifest';
 import { writeEbookManifest } from '../epub/make';
+import { PUBLISH_DIR } from '../file';
 
 export function makeMobi(job: Job): Promise<string> {
   const manifest = getMobiManifest(job);
@@ -18,18 +19,20 @@ export function makeMobi(job: Job): Promise<string> {
     })
     .then(() => {
       if (job.cmd.open) {
-        exec(`open -a "/Applications/Kindle.app" _publish/${job.filename}`);
+        exec(`open -a "/Applications/Kindle.app" ${PUBLISH_DIR}/${job.filename}`);
       }
     })
     .then(() => job.filename);
 }
 
 function kindlegen(precursor: string, job: Job): Promise<*> {
-  const precursorPath = `_publish/${precursor}`;
-  const stream = spawn(
-    `${path.dirname(require.main.filename)}/node_modules/kindlegen/bin/kindlegen`,
-    [precursorPath, '-c2', '-verbose', '-o', job.filename],
+  const precursorPath = `${PUBLISH_DIR}/${precursor}`;
+  const bin = path.resolve(
+    path.dirname(require.main.filename),
+    '../../node_modules/kindlegen/bin/kindlegen',
   );
+
+  const stream = spawn(bin, [precursorPath, '-c2', '-verbose', '-o', job.filename]);
 
   return new Promise((resolve, reject) => {
     let errors = [];

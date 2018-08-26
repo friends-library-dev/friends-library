@@ -14,3 +14,5 @@ export const toCss = memoize((path: string): Css => {
     data: file(path),
   }).css.toString();
 });
+
+export const PUBLISH_DIR: string = pathResolve(__dirname, '../../_publish');
