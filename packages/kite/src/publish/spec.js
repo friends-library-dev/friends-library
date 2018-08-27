@@ -111,9 +111,25 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/--/igm, '&#8212;'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
   adoc => asciidoctor.convert(adoc),
+  changeVerseMarkup,
   html => html.replace(/<hr>/igm, '<hr />'),
   html => html.replace(/<br>/igm, '<br />'),
 ]));
+
+function changeVerseMarkup(html: Html): Html {
+  return html.replace(
+    /<div class="verseblock">\n<pre class="content">([\s\S]*?)<\/pre>\n<\/div>/gim,
+    (_, verses) => {
+      return verses
+        .trim()
+        .split('\n')
+        .map(v => `<div class="verse__line">${v}</div>`)
+        .reduce((els, el) => els.concat([el]), ['<div class="verse">'])
+        .concat(['</div>'])
+        .join('\n');
+    },
+  );
+}
 
 function replaceAsterisms(adoc: Asciidoc): Asciidoc {
   return adoc.replace(

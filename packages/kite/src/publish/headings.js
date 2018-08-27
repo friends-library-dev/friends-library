@@ -36,10 +36,11 @@ function headingMarkup({ id, sequence, text }: Heading): Html {
 }
 
 export function navText({ text, shortText, sequence }: Heading): string {
+  const mainText = (shortText || text).replace(/(?<!etc)\.$/, '');
   if (!sequence) {
-    return shortText || text;
+    return mainText;
   }
 
   const type = sequence.type === 'chapter' ? 'Chapter' : 'Section';
-  return `${type} ${sequence.number} &#8212; ${shortText || text}`;
+  return `${type} ${sequence.number} &#8212; ${mainText}`;
 }

@@ -40,6 +40,16 @@
   }
 }
 
+.verse {
+  font-style: italic;
+
+  &__line {
+    padding-left: 1.4em;
+    text-indent: -1.4em;
+    line-height: 1.75em;
+  }
+}
+
 /* chicago manual of style says first para of blockquote should not be indented */
 blockquote div.paragraph:first-of-type p {
   text-indent: 0;

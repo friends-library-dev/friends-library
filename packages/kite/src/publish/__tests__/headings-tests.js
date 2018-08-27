@@ -13,6 +13,7 @@ describe('replaceHeadings()', () => {
     const replaced = replaceHeadings(html, heading);
 
     const expected = '<h2>Foobar</h2>';
+
     expect(replaced).toContain(expected);
   });
 
@@ -30,6 +31,22 @@ describe('replaceHeadings()', () => {
 });
 
 describe('navText()', () => {
+  it('trims trailing period', () => {
+    const heading = { text: 'Foobar.' };
+
+    const replaced = navText(heading);
+
+    expect(replaced).not.toContain('Foobar.');
+  });
+
+  it('does not trim period after etc.', () => {
+    const heading = { text: 'Foobar, etc.' };
+
+    const replaced = navText(heading);
+
+    expect(replaced).toContain('Foobar, etc.');
+  });
+
   it('returns heading.text if no short text and not sequence', () => {
     const heading = { text: 'Foobar' };
     const text = navText(heading);
