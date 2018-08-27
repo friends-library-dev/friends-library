@@ -67,6 +67,33 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
     expect(sections[0].html).not.toContain('epigraph');
   });
 
+  it('replaces asciidoctor verseblock markup with custom markup', () => {
+    const adoc = `
+== A Poem
+
+[verse]  
+____
+Foo bar,
+So much baz,
+Foo bar and baz.
+____
+    `.trim();
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    const expected = `
+<div class="verse">
+<div class="verse__line">Foo bar,</div>
+<div class="verse__line">So much baz,</div>
+<div class="verse__line">Foo bar and baz.</div>
+</div>
+    `.trim();
+
+    expect(section.html).toContain(expected);
+    expect(section.html).not.toContain('verseblock');
+    expect(section.html).not.toContain('<pre class="content">');
+  });
+
   it('converts to curly quotes', () => {
     const { sections } = prepare(precursor('== Ch1\n\nHello "`good`" sir.'));
 
