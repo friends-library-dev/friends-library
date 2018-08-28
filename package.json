@@ -17,7 +17,8 @@
     "hilkiah:test": "yarn jest packages/hilkiah",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
-    "preflight": "yarn lint && yarn test && yarn flow && cd packages/evans && LANG=en yarn build && LANG=es yarn build"
+    "sass:lint": "yarn stylelint packages/kite/**/*.scss",
+    "preflight": "yarn sass:lint && yarn lint && yarn test && yarn flow && cd packages/evans && LANG=en yarn build && LANG=es yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-rc.3",
@@ -36,7 +37,9 @@
     "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.79.1",
     "jest": "^23.5.0",
-    "lerna": "^3.1.4"
+    "lerna": "^3.1.4",
+    "stylelint": "^9.5.0",
+    "stylelint-config-recommended": "^2.1.0"
   },
   "workspaces": [
     "packages/evans",

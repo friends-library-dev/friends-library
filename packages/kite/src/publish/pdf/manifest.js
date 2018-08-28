@@ -18,6 +18,7 @@ function getCss({ target, spec }: Job): Css {
   return [
     'sass/common.scss',
     'pdf/sass/base.scss',
+    'pdf/sass/typography.scss',
     'pdf/sass/half-title.scss',
     'pdf/sass/original-title.scss',
     'pdf/sass/copyright.scss',
