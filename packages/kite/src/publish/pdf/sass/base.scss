@@ -64,25 +64,6 @@ div.paragraph p {
   hyphens: auto;
 }
 
-h2 {
-  margin-top: 160pt;
-  margin-bottom: 24pt;
-  text-align: center;
-  prince-page-group: start; /* allows to target @page:first for pages starting chapters */
-}
-
-h2.chapter__sequence {
-  font-weight: 400;
-  margin-bottom: 0.65rem;
-}
-
-.chapter__title {
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
 .own-page {
   page-break-before: always;
   page-break-after:  always;
@@ -148,7 +129,7 @@ h2 {
   font-size: 1.2rem;
 }
 
-.chapter__sequence {
+.chapter-heading__sequence {
   font-size: 1.1rem;
 }
 

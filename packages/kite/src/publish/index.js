@@ -5,7 +5,7 @@ import type { Command, Job, SourceSpec, FileType, SourcePrecursor } from '../typ
 import { makeEpub } from './epub/make';
 import { makeMobi } from './mobi/make';
 import { makePdf } from './pdf/make';
-import { prepare } from './spec';
+import { prepare } from './prepare';
 import { getPrecursors } from './precursors';
 import { send } from './send';
 import { PUBLISH_DIR } from './file';

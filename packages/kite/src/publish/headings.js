@@ -1,17 +1,18 @@
 // @flow
-import type { Html, Heading } from '../type';
+import type { Html, Heading, Job } from '../type';
 
-export function replaceHeadings(html: Html, heading: Heading): Html {
+export function replaceHeadings(html: Html, heading: Heading, job: Job): Html {
+  const docStyle = job.spec.config.chapterHeadingStyle || 'normal';
   return html.replace(
-    '{% chapter-heading %}',
-    headingMarkup(heading),
+    /{% chapter-heading(?:, ([a-z]+))? %}/,
+    (_, style) => headingMarkup(heading, style || docStyle),
   );
 }
 
-function headingMarkup({ id, sequence, text }: Heading): Html {
+function headingMarkup({ id, sequence, text }: Heading, style: string): Html {
   if (!sequence) {
     return `
-      <div class="chapter" id="${id}">
+      <div class="chapter-heading chapter-heading--${style}" id="${id}">
         <h2>${text}</h2>
         <br class="m7"/>
       </div>
@@ -19,15 +20,15 @@ function headingMarkup({ id, sequence, text }: Heading): Html {
   }
 
   return `
-    <div class="chapter" id="${id}">
-      <h2 class="chapter__sequence">
+    <div class="chapter-heading chapter-heading--${style}" id="${id}">
+      <h2 class="chapter-heading__sequence">
         ${sequence.type === 'chapter' ? 'Chapter ' : 'Section '}
-        <span class="chapter__sequence__number">
+        <span class="chapter-heading__sequence__number">
           ${sequence.number}
         </span>
       </h2>
       <br class="m7"/>
-      <div class="chapter__title">
+      <div class="chapter-heading__title">
         ${text}
       </div>
       <br class="m7"/>

@@ -1,4 +1,4 @@
-import { prepare } from '../spec';
+import { prepare } from '../prepare';
 import { testPrecursor as precursor } from '../test-helpers';
 
 

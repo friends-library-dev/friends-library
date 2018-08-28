@@ -23,6 +23,7 @@ export function prepare(precursor: SourcePrecursor): SourceSpec {
     meta: precursor.meta,
     filename: precursor.filename,
     revision: precursor.revision,
+    config: precursor.config,
     epigraphs,
     sections,
     notes,
@@ -49,7 +50,7 @@ function processAdoc(
 
 function extractShortHeadings(adoc: Asciidoc): Map<string, string> {
   const headings = new Map();
-  const regex = /\[#([a-z0-9-_]+),.*?short="(.*?)"\]\n== /gim;
+  const regex = /\[#([a-z0-9-_]+)(?:\.[a-z0-9-_]+?)?,.*?short="(.*?)"\]\n== /gim;
   let match;
   while ((match = regex.exec(adoc))) {
     const [_, ref, short] = match;
@@ -68,14 +69,16 @@ function htmlToSections(docHtml: Html, shortHeadings: Map<string, string>): Arra
 
 function extractHeading(section: Object, short: Map<string, string>) {
   section.html = section.html.replace(
-    /<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/,
-    (_, id, inner) => {
+    /(<div class="sect1(?: style-([a-z]+))?">\n)<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/,
+    (_, start, style, id, inner) => {
       section.heading = {
         id,
         ...parseHeading(inner),
         ...short.has(id) ? { shortText: short.get(id) } : {},
       };
-      return '{% chapter-heading %}';
+
+      const sectionStart = start.replace(/ style-[a-z]+/, '');
+      return `${sectionStart}{% chapter-heading${style ? `, ${style}` : ''} %}`;
     },
   );
 
