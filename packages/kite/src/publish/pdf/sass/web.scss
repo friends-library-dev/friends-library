@@ -47,6 +47,10 @@ blockquote {
   border-left: dotted 1px #aaa;
 }
 
+.toc p {
+  font-size: 0.95rem;
+}
+
 blockquote div.paragraph p {
   font-size: 0.8rem;
 }
@@ -61,10 +65,6 @@ blockquote div.paragraph p {
 
 .copyright-page {
   height: 9in; /* 11 minus margins */
-}
-
-.toc p {
-  font-size: 0.95rem;
 }
 
 div.asterism {

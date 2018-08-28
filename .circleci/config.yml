@@ -21,6 +21,7 @@ jobs:
       - run: yarn kite:test
       - run: yarn evans:test
       - run: yarn hilkiah:test
+      - run: yarn sass:lint
       - run: yarn flow
       - run: cd packages/evans && LANG=en yarn build
       - run: cd packages/evans && LANG=es yarn build
