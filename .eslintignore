@@ -4,3 +4,4 @@ packages/evans/build.js
 packages/evans/static/js/*
 packages/phipps/vendor
 packages/api/*
+packages/evans/build/*

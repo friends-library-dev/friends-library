@@ -1,16 +1,19 @@
 import { replaceHeadings, navText } from '../headings';
+import { testJob } from '../test-helpers';
 
 describe('replaceHeadings()', () => {
   let html;
   let heading;
+  let job;
 
   beforeEach(() => {
     html = '{% chapter-heading %}';
     heading = { id: '_', text: 'Foobar' };
+    job = testJob();
   });
 
   it('replaces simple heading with wrapped h2', () => {
-    const replaced = replaceHeadings(html, heading);
+    const replaced = replaceHeadings(html, heading, job);
 
     const expected = '<h2>Foobar</h2>';
 
@@ -20,13 +23,33 @@ describe('replaceHeadings()', () => {
   it('replaces sequence-headers with more complex markup', () => {
     heading.sequence = { type: 'chapter', number: 3 };
 
-    const replaced = replaceHeadings(html, heading);
+    const replaced = replaceHeadings(html, heading, job);
 
     expect(replaced).toContain('Chapter ');
     expect(replaced).toMatch(/3\s+<\/span>/);
-    expect(replaced).toContain('chapter__sequence__number');
-    expect(replaced).toContain('<div class="chapter__title"');
+    expect(replaced).toContain('chapter-heading__sequence__number');
+    expect(replaced).toContain('<div class="chapter-heading__title"');
     expect(replaced).toMatch(/Foobar\s+<\/div>/);
+  });
+
+  it('passes heading style through to markup', () => {
+    html = '{% chapter-heading, foo %}';
+    const replaced = replaceHeadings(html, heading, job);
+
+    expect(replaced).toContain('chapter-heading--foo');
+  });
+
+  it('sets heading style to normal if no inline designation nor doc config', () => {
+    const replaced = replaceHeadings(html, heading, job);
+
+    expect(replaced).toContain('chapter-heading--normal');
+  });
+
+  it('uses doc config for document-wide heading style override', () => {
+    job.spec.config.chapterHeadingStyle = 'blurb';
+    const replaced = replaceHeadings(html, heading, job);
+
+    expect(replaced).toContain('chapter-heading--blurb');
   });
 });
 

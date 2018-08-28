@@ -1,4 +1,4 @@
-import { prepare } from '../spec';
+import { prepare } from '../prepare';
 import { testPrecursor as precursor } from '../test-helpers';
 
 let mockCounter = 0;
@@ -29,6 +29,21 @@ describe('prepare()', () => {
     expect(section.html).not.toContain('h2');
   });
 
+  it('transfers heading style class to placeholder', () => {
+    const adoc = '[.style-blurb]\n== Title\n\nPara.';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('{% chapter-heading, blurb %}');
+    expect(section.html).not.toContain(' style-blurb'); // interferes with `first-chapter`
+  });
+
+  it('transfers heading style class to placeholder, even with id', () => {
+    const adoc = '[#foo.style-lol, short="Foo"]\n== Title\n\nPara.';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('{% chapter-heading, lol %}');
+  });
+
   it('extracts heading short text from adoc', () => {
     const adoc = '[#intro, short="Intro"]\n== Introduction\n\nPara.';
     const { sections: [section] } = prepare(precursor(adoc));
@@ -38,6 +53,13 @@ describe('prepare()', () => {
       text: 'Introduction',
       shortText: 'Intro',
     });
+  });
+
+  it('extracts short heading from adoc when id also has class', () => {
+    const adoc = '[#intro.style-foo, short="Intro"]\n== Introduction\n\nPara.';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.heading.shortText).toBe('Intro');
   });
 
   it('extracts epigraphs', () => {
@@ -71,7 +93,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
     const adoc = `
 == A Poem
 
-[verse]  
+[verse]
 ____
 Foo bar,
 So much baz,

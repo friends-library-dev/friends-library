@@ -1,6 +1,6 @@
 // @flow
 import type { Job, SourcePrecursor, Asciidoc } from '../type';
-import { prepare } from './spec';
+import { prepare } from './prepare';
 import { createCommand } from '.';
 
 

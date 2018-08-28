@@ -22,6 +22,7 @@ function getCss({ target, spec }: Job): Css {
     'pdf/sass/original-title.scss',
     'pdf/sass/copyright.scss',
     'pdf/sass/toc.scss',
+    'pdf/sass/chapter-heading.scss',
     ...target === 'pdf-web' ? ['pdf/sass/web.scss'] : ['pdf/sass/print.scss'],
   ]
     .map(toCss)
@@ -42,7 +43,7 @@ function getHtml(job: Job): Html {
 
 function joinSections([_, job]: [Html, Job]): [Html, Job] {
   const joined = job.spec.sections.map(({ html, heading }) => {
-    return replaceHeadings(html, heading)
+    return replaceHeadings(html, heading, job)
       .replace(
         '<div class="sectionbody">',
         `<div class="sectionbody" short="${heading.shortText || heading.text}">`,

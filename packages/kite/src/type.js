@@ -27,6 +27,7 @@ export type SourceSpec = {|
   +lang: Lang,
   +filename: string,
   +epigraphs: Array<Epigraph>,
+  +config: Object,
   +meta: DocumentMeta,
   +revision: DocumentRevision,
   +sections: Array<DocSection>,

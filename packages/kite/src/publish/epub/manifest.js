@@ -43,7 +43,7 @@ function sectionFiles(job: Job): SubManifest<Html> {
   return sections.reduce((files, section) => {
     files[`OEBPS/${section.id}.xhtml`] = flow([
       replaceFootnoteCalls,
-      html => replaceHeadings(html, section.heading),
+      html => replaceHeadings(html, section.heading, job),
       wrapHtml,
     ])(section.html);
     return files;

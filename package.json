@@ -17,7 +17,7 @@
     "hilkiah:test": "yarn jest packages/hilkiah",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
-    "preflight": "yarn lint && yarn test && yarn flow"
+    "preflight": "yarn lint && yarn test && yarn flow && cd packages/evans && LANG=en yarn build && LANG=es yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-rc.3",

@@ -91,23 +91,23 @@ h1, h2, h3, h4, h5, h6 {
 h2 {
   margin-top: 5em;
   text-transform: uppercase;
-  text-align: center;
   font-size: 1.1em;
 }
 
-.chapter__sequence {
-  font-weight: 400;
+.chapter-heading__sequence {
   font-size: 0.9em;
 }
 
-.chapter__title {
+.chapter-heading__title {
   display: block;
   margin: 0.6em 0 2em;
-  text-align: center;
-  font-weight: 700;
   hyphens: none;
   text-transform: uppercase;
   -webkit-hyphens: none;
+}
+
+.chapter-heading--blurb {
+  margin-bottom: 2em;
 }
 
 
