@@ -26,11 +26,11 @@ html {
   height: 17.1cm;
 }
 
-blockquote div.paragraph p {
+blockquote .paragraph p {
   font-size: 0.95rem;
 }
 
-blockquote div.paragraph + div.paragraph {
+blockquote .paragraph + .paragraph {
   margin-top: 0.4em;
 }
 

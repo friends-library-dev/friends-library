@@ -21,12 +21,25 @@ describe('prepare()', () => {
     expect(sections[1].id).toBe('section2');
   });
 
+  test('custom classes dont mess up sectioning', () => {
+    const { sections } = prepare(precursor('== Ch1\n\nPara1.\n\n[.style-foo]\n== Ch 2\n\nPara2.\n'));
+
+    expect(sections).toHaveLength(2);
+  });
+
   it('placeholders chapter headings', () => {
     const { sections: [section] } = prepare(precursor('== Ch1\n\nPara1.'));
 
     expect(section.html).toContain('{% chapter-heading %}');
     expect(section.html).not.toContain('Ch1');
     expect(section.html).not.toContain('h2');
+  });
+
+  it('trims spaces when joining lines with emdash in between', () => {
+    const adoc = '== Ch\n\nFoo bar--\nan aside--\njim jam.';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('bar&#8212;an aside&#8212;jim');
   });
 
   it('transfers heading style class to placeholder', () => {
@@ -157,5 +170,12 @@ Foobar.
 
     expect(sect1.html).toContain('<div class="asterism"');
     expect(sect1.html).not.toContain('<hr');
+  });
+
+  it('removes paragraph class off certain divs', () => {
+    const adoc = '== Ch\n\n[.signed-section-signature]\nFoo.';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('class="signed-section-signature"');
   });
 });

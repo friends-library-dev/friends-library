@@ -33,11 +33,11 @@ p {
   line-height: 160%;
 }
 
-div.paragraph + div.paragraph {
+.paragraph + .paragraph {
   margin-top: 1rem;
 }
 
-blockquote div.paragraph + div.paragraph {
+blockquote .paragraph + .paragraph {
   margin-top: 0.7rem;
 }
 
@@ -51,7 +51,7 @@ blockquote {
   font-size: 0.95rem;
 }
 
-blockquote div.paragraph p {
+blockquote .paragraph p {
   font-size: 0.8rem;
 }
 
