@@ -41,20 +41,30 @@ function incorrectJohannine({ book, position: { start } }, input) {
   return bool;
 }
 
-function incorrectSong({ book, match, position: { start } }, input) {
-  if (book !== 'Song of Solomon') {
+function incorrect(wrongBook, wrongMatch, prev) {
+  return ({ book, match, position: { start } }, input) => {
+    if (book !== wrongBook) {
+      return false;
+    }
+
+    if (!match.match(wrongMatch)) {
+      return false;
+    }
+
+    if (input.substring(start - prev.length, start).toLowerCase() === prev) {
+      return true;
+    }
+
     return false;
-  }
-
-  if (!match.match(/^ss\./)) {
-    return false;
-  }
-
-  if (input.substring(start - 4, start).toLowerCase() === ' the') {
-    return true;
-  }
-
-  return false;
+  };
 }
 
-module.exports = { incorrectJohannine, incorrectSong };
+function incorrectAmbiguous(ref, input) {
+  return [
+    incorrectJohannine,
+    incorrect('Song of Solomon', /^ss\./, ' the'),
+    incorrect('Esther', /^es /, 'jam'),
+  ].reduce((result, fn) => result || fn(ref, input), false);
+}
+
+module.exports = { incorrectAmbiguous };

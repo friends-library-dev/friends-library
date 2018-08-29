@@ -14,6 +14,13 @@ describe('find()', () => {
     expect(found.length).toBe(1);
   });
 
+  it('does not find Esther ref inside of James ref', () => {
+    const found = find('brings forth death, James 1:15.');
+
+    expect(found[0].book).toBe('James');
+    expect(found.length).toBe(1);
+  });
+
   const individualVerses = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],

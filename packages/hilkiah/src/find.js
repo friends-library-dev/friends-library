@@ -1,7 +1,7 @@
 const books = require('./books.json');
 const { toNumber } = require('./convert');
 const { romanSingleOrRange, colonComma, colonSingleOrRange, romanComma } = require('./verses');
-const { incorrectJohannine, incorrectSong } = require('./disambiguate');
+const { incorrectAmbiguous } = require('./disambiguate');
 
 const ROM = '(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})';
 const ARAB = '[\\d]{1,3}';
@@ -68,7 +68,7 @@ function extractRef(book, chapter, match) {
 
   ref = absorbRight(ref, match.input);
 
-  if (incorrectJohannine(ref, match.input) || incorrectSong(ref, match.input)) {
+  if (incorrectAmbiguous(ref, match.input)) {
     return null;
   }
 

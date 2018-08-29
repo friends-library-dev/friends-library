@@ -72,6 +72,7 @@ function css({ target }: Job): Css {
   }
 
   if (target === 'mobi') {
+    combined += `\n@media amzn-mobi {\n${toCss('mobi/sass/mobi.scss')}\n}`;
     combined += `\n@media amzn-kf8 {\n${toCss('mobi/sass/kf8.scss')}\n}`;
   }
 

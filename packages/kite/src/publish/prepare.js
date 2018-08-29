@@ -61,7 +61,7 @@ function extractShortHeadings(adoc: Asciidoc): Map<string, string> {
 
 function htmlToSections(docHtml: Html, shortHeadings: Map<string, string>): Array<DocSection> {
   return docHtml
-    .split(/(?=<div class="sect1">)/gim)
+    .split(/(?=<div class="sect1[^>]+?>)/gim)
     .filter(html => !!html.trim())
     .map((html: Html, i: number) => ({ index: i, id: `section${i + 1}`, html }))
     .map(section => extractHeading(section, shortHeadings));
@@ -112,25 +112,27 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/'`/igm, '&#8216;'),
   adoc => adoc.replace(/`'/igm, '&#8217;'),
   adoc => adoc.replace(/--/igm, '&#8212;'),
+  adoc => adoc.replace(/&#8212;\n([a-z])/gm, '&#8212;$1'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
   adoc => asciidoctor.convert(adoc),
   changeVerseMarkup,
   html => html.replace(/<hr>/igm, '<hr />'),
   html => html.replace(/<br>/igm, '<br />'),
+  html => html.replace(/class="paragraph salutation"/gim, 'class="salutation"'),
+  html => html.replace(/class="paragraph signed-section-/gim, 'class="signed-section-'),
 ]));
 
 function changeVerseMarkup(html: Html): Html {
   return html.replace(
     /<div class="verseblock">\n<pre class="content">([\s\S]*?)<\/pre>\n<\/div>/gim,
-    (_, verses) => {
-      return verses
-        .trim()
-        .split('\n')
-        .map(v => `<div class="verse__line">${v}</div>`)
-        .reduce((els, el) => els.concat([el]), ['<div class="verse">'])
-        .concat(['</div>'])
-        .join('\n');
-    },
+    (_, verses) => (verses
+      .trim()
+      .split('\n')
+      .map(v => `<div class="verse__line">${v}</div>`)
+      .reduce((els, el) => els.concat([el]), ['<div class="verse">'])
+      .concat(['</div>'])
+      .join('\n')
+    ),
   );
 }
 

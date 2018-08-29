@@ -75,11 +75,54 @@ h2 {
   }
 }
 
-div.paragraph.no-indent p {
+.signed-section-context-close {
+  font-style: italic;
+  font-size: 0.9em;
+  page-break-before: avoid;
+  margin-bottom: 1em;
+}
+
+.signed-section-signature {
+  margin-top: 1.35em;
+  margin-bottom: 0;
+  font-variant: small-caps;
+
+  p::before {
+    content: "\2014"; // emdash
+  }
+}
+
+.signed-section-signature,
+.signed-section-context-close {
+
+  p {
+    text-align: right;
+    text-indent: 0;
+  }
+}
+
+.salutation {
+
+  p {
+    margin-bottom: 0.5em;
+  }
+}
+
+.signed-section-signature + .signed-section-context-close {
+  margin-top: -1.1em;
+}
+
+.paragraph.no-indent p {
   text-indent: 0;
 }
 
 /* chicago manual of style says first para of blockquote should not be indented */
-blockquote div.paragraph:first-of-type p {
+blockquote .paragraph:first-of-type p {
   text-indent: 0;
+}
+
+h3.alt {
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
 }

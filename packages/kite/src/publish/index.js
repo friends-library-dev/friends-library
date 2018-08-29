@@ -68,6 +68,21 @@ export function createCommand(argv: Object): Command {
   cmd.targets = cmd.target;
   delete cmd.target;
 
+  // target=ebook is shorthand for epub AND mobi
+  if (cmd.targets.length === 1 && cmd.targets[0] === 'ebook') {
+    cmd.targets = ['epub', 'mobi'];
+  }
+
+  // target=pdf is shorthand for pdf-print AND pdf-web
+  if (cmd.targets.length === 1 && cmd.targets[0] === 'pdf') {
+    cmd.targets = ['pdf-print', 'pdf-web'];
+  }
+
+  // target=all shorthand for ALL formats (or leave off --target arg)
+  if (cmd.targets.length === 1 && cmd.targets[0] === 'all') {
+    cmd.targets = ['epub', 'mobi', 'pdf-print', 'pdf-web'];
+  }
+
   return cmd;
 }
 
