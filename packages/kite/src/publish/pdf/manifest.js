@@ -1,6 +1,7 @@
 // @flow
 import { flow } from 'lodash';
-import type { Job, FileManifest, Css, Html } from '../../type';
+import { toRoman } from 'roman-numerals';
+import type { Job, FileManifest, Css, Html, Heading } from '../../type';
 import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';
 import { removeMobiBrs } from '../html';
@@ -47,11 +48,19 @@ function joinSections([_, job]: [Html, Job]): [Html, Job] {
     return replaceHeadings(html, heading, job)
       .replace(
         '<div class="sectionbody">',
-        `<div class="sectionbody" short="${heading.shortText || heading.text}">`,
+        `<div class="sectionbody" short="${runningHeader(heading)}">`,
       );
   }).join('\n');
 
   return [joined, job];
+}
+
+function runningHeader({ shortText, text, sequence }: Heading): string {
+  if (shortText || text || !sequence) {
+    return shortText || text;
+  }
+
+  return `${sequence.type} ${toRoman(sequence.number)}`;
 }
 
 function addFirstChapterClass([html, job]: [Html, Job]): [Html, Job] {

@@ -1,4 +1,5 @@
 // @flow
+import { toRoman } from 'roman-numerals';
 import type { Html, Heading, Job } from '../type';
 
 export function replaceHeadings(html: Html, heading: Heading, job: Job): Html {
@@ -10,10 +11,10 @@ export function replaceHeadings(html: Html, heading: Heading, job: Job): Html {
 }
 
 function headingMarkup({ id, sequence, text }: Heading, style: string): Html {
-  if (!sequence) {
+  if (!sequence || (sequence && !text)) {
     return `
       <div class="chapter-heading chapter-heading--${style}" id="${id}">
-        <h2>${text}</h2>
+        <h2>${!sequence ? text : `${sequence.type} ${toRoman(sequence.number)}`}</h2>
         <br class="m7"/>
       </div>
     `;
@@ -22,9 +23,9 @@ function headingMarkup({ id, sequence, text }: Heading, style: string): Html {
   return `
     <div class="chapter-heading chapter-heading--${style}" id="${id}">
       <h2 class="chapter-heading__sequence">
-        ${sequence.type === 'chapter' ? 'Chapter ' : 'Section '}
+        ${sequence.type}&#160;
         <span class="chapter-heading__sequence__number">
-          ${sequence.number}
+          ${toRoman(sequence.number)}
         </span>
       </h2>
       <br class="m7"/>
@@ -42,6 +43,5 @@ export function navText({ text, shortText, sequence }: Heading): string {
     return mainText;
   }
 
-  const type = sequence.type === 'chapter' ? 'Chapter' : 'Section';
-  return `${type} ${sequence.number} &#8212; ${mainText}`;
+  return `${sequence.type} ${toRoman(sequence.number)}${mainText ? ` &#8212; ${mainText}` : ''}`;
 }

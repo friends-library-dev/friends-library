@@ -22,7 +22,7 @@ describe('parsing headings', () => {
       {
         text: 'Foobar',
         sequence: {
-          type: 'chapter',
+          type: 'Chapter',
           number: 3,
         },
       },
@@ -42,7 +42,7 @@ describe('parsing headings', () => {
       {
         text: 'Lorem',
         sequence: {
-          type: 'section',
+          type: 'Section',
           number: 5,
         },
       },
