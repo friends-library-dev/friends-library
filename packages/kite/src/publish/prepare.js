@@ -114,6 +114,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/`'/igm, '&#8217;'),
   adoc => adoc.replace(/--/igm, '&#8212;'),
   adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gm, '&#8212;$1'),
+  adoc => adoc.replace(/ &#8220;\n([a-z])/gim, ' &#8220;$1'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
   adoc => asciidoctor.convert(adoc),
   changeVerseMarkup,

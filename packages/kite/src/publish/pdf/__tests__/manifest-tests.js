@@ -21,11 +21,22 @@ describe('getPdfManifest()', () => {
   });
 
   test('css file gets header title dynamically from job', () => {
+    job = testJob('== C1\n\nPara.\n\n== C2\n\nPara.');
     job.spec.meta.title = 'Anarchy of the Ranters';
 
     const manifest = getPdfManifest(job);
 
     expect(manifest['book.css']).toContain('content: "Anarchy of the Ranters";');
+  });
+
+  test('css file uses author for title if only one section', () => {
+    job = testJob('== Only Section\n\nPara.');
+    job.spec.meta.title = 'Anarchy of the Ranters';
+    job.spec.meta.author.name = 'Robert Barclay';
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['book.css']).toContain('content: "Robert Barclay";');
   });
 
   test('html includes combined sections', () => {
@@ -62,5 +73,22 @@ describe('getPdfManifest()', () => {
     const expected = 'A paragraph<span class="footnote"><em>So</em> cool!</span> with';
 
     expect(manifest['book.html']).toContain(expected);
+  });
+
+  test('docs with less than 5 footnotes use symbols', () => {
+    job = testJob('== C1\n\nA paragraphfootnote:[_So_ cool!] with some text.');
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['book.css']).toContain('counter(footnote, symbols(');
+  });
+
+  test('doc with more than 4 footnotes do not use symbols', () => {
+    const adoc = '== T\nafootnote:[a]bfootnote:[b]cfootnote:[c]dfootnote:[d]efootnote:[e]';
+    job = testJob(adoc);
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['book.css']).not.toContain('counter(footnote, symbols(');
   });
 });

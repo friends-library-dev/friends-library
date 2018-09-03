@@ -16,7 +16,7 @@ export default function convert(file: string): void {
     combineLines,
     replaceScriptureReferences,
     splitLines,
-    str => str.replace(/\[/gm, '+++[+++'),
+    str => str.replace(/(?<!footnote:)\[/gm, '+++[+++'),
     str => str.replace(/{•}/gm, '.').replace(/{\^}/gm, ':'),
   )(fs.readFileSync(target).toString());
 

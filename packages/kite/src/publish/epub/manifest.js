@@ -39,7 +39,7 @@ function frontmatterFiles(job: Job): SubManifest<Html> {
 
 function sectionFiles(job: Job): SubManifest<Html> {
   const { spec: { sections } } = job;
-  const replaceFootnoteCalls = makeFootnoteCallReplacer(2);
+  const replaceFootnoteCalls = makeFootnoteCallReplacer(job);
   return sections.reduce((files, section) => {
     files[`OEBPS/${section.id}.xhtml`] = flow([
       replaceFootnoteCalls,

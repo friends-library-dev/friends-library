@@ -12,7 +12,7 @@ export const file = memoize((path: string): string => {
 export const toCss = memoize((path: string): Css => {
   return sass.renderSync({
     data: file(path),
-  }).css.toString();
+  }).css.toString().replace(/^@charset "UTF-8";\n/gm, '');
 });
 
 export const PUBLISH_DIR: string = pathResolve(__dirname, '../../_publish');

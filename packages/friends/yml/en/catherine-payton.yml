@@ -1,13 +1,15 @@
-name: Catherine (Payton) Phillips
-slug: catherine-payton-phillips
+name: Catherine Payton
+slug: catherine-payton
 gender: female
-description: Catherine Phillips (1727-1794 — better known by her maiden name, Catherine Payton) was a highly gifted minister in the Society of Friends, who traveled almost continually for forty years in the service of Truth throughout England, Ireland, and North America. Her journal and letters clearly evince a life entirely surrendered to the cross of Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with love for God and for mankind.
+description: Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips) was a highly gifted minister in the Society of Friends, who traveled almost continually for forty years in the service of Truth throughout England, Ireland, and North America. Her journal and letters clearly demonstrate a life entirely surrendered to the cross of Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with love for God and for mankind.
 documents:
   -
     title: The Life and Letters of Catherine Phillips
+    original_title: "Memoirs of the Life of Catherine Phillips: To Which are Annexed Some of Her Epistles"
+    published: 1797
     slug: life-and-letters
     filename: Life_and_Letters_of_Catherine_Phillips
-    description: Catherine Phillips (1727-1794 — better known by her maiden name, Catherine Payton) was a highly gifted minister in the Society of Friends, who traveled almost continually for forty years in the service of Truth throughout England, Ireland, and North America. Her journal and letters clearly evince a life entirely surrendered to the cross of Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with love for God and for mankind.
+    description: Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips) was a highly gifted minister in the Society of Friends, who traveled almost continually for forty years in the service of Truth throughout England, Ireland, and North America. Her journal and letters clearly demonstrate a life entirely surrendered to the cross of Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with love for God and for mankind.
     tags:
       - journal
       - letters

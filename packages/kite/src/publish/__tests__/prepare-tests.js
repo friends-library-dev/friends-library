@@ -42,6 +42,13 @@ describe('prepare()', () => {
     expect(section.html).toContain('bar&#8212;an aside&#8212;jim');
   });
 
+  it('corrects for improperly broken quotes', () => {
+    const adoc = '== Ch\n\nFoo bar "`\njim jam.`"';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('&#8220;jim jam.&#8221;');
+  });
+
   it('trims spaces when joining quoted lines with emdash in between', () => {
     const adoc = '== Ch\n\n"`Foo bar`"--\n"`jim jam.`"';
     const { sections: [section] } = prepare(precursor(adoc));
