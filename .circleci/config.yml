@@ -17,6 +17,7 @@ jobs:
       - run: yarn kite:lint
       - run: yarn evans:lint
       - run: yarn hilkiah:lint
+      - run: yarn color:lint
       - run: yarn friends:test
       - run: yarn kite:test
       - run: yarn evans:test

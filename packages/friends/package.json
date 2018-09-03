@@ -4,6 +4,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^2.4.1",
     "glob": "^7.1.2",
     "js-yaml": "^3.12.0",
     "lodash": "^4.17.10"

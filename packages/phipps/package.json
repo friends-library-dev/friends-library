@@ -9,6 +9,7 @@
     "test:watch": "php vendor/bin/phpunit-watcher watch"
   },
   "dependencies": {
-    "@friends-library/friends": "1.0.0"
+    "@friends-library/friends": "1.0.0",
+    "chalk": "^2.4.1"
   }
 }

@@ -48,13 +48,14 @@ export function take(job: Job): Promise<string> {
 }
 
 export function createCommand(argv: Object): Command {
-  const cmd = defaults(omit(argv, ['$0', '_', 'path']), {
+  const cmd = defaults(omit(argv, ['$0', '_', 'path', 'no-frontmatter']), {
     target: ['epub', 'mobi', 'pdf-web', 'pdf-print'],
     perform: false,
     check: false,
     open: false,
     send: false,
     email: null,
+    frontmatter: true,
   });
 
   if (cmd.perform === true) {

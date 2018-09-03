@@ -4,6 +4,10 @@ import { copyright as commonCopyright, halfTitle as commonHalfTitle, epigraph } 
 import { navText } from '../headings';
 
 export function frontmatter(job: Job): Html {
+  if (!job.cmd.frontmatter) {
+    return '';
+  }
+
   return `
     ${halfTitle(job)}
     ${originalTitle(job)}

@@ -40,6 +40,7 @@ export type Command = {|
   +check: boolean,
   +open: boolean,
   +send: boolean,
+  +frontmatter: boolean,
   +email?: string,
 |};
 
