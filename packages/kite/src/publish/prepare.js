@@ -107,12 +107,13 @@ const asciidoctor = new Asciidoctor();
 
 const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   replaceAsterisms,
+  changeChapterSynopsisMarkup,
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
   adoc => adoc.replace(/'`/igm, '&#8216;'),
   adoc => adoc.replace(/`'/igm, '&#8217;'),
   adoc => adoc.replace(/--/igm, '&#8212;'),
-  adoc => adoc.replace(/&#8212;\n([a-z])/gm, '&#8212;$1'),
+  adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gm, '&#8212;$1'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
   adoc => asciidoctor.convert(adoc),
   changeVerseMarkup,
@@ -133,6 +134,21 @@ function changeVerseMarkup(html: Html): Html {
       .concat(['</div>'])
       .join('\n')
     ),
+  );
+}
+
+function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /\[\.chapter-synopsis\]\n([\s\S]+?)(?=\n\n)/gim,
+    (_, inner) => {
+      const joined = inner
+        .trim()
+        .split('\n')
+        .map(line => line.trim())
+        .map(line => line.replace(/^\* /, ''))
+        .join('&#8212;');
+      return `++++\n<p class="chapter-synopsis">${joined}</p>\n++++`;
+    },
   );
 }
 

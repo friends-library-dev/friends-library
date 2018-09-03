@@ -4,6 +4,7 @@ require('dotenv').config({ path: `${__dirname}/.env` });
 const yargs = require('yargs');
 const publish = require('./src/publish').default;
 const publishRef = require('./src/publish/ref').default;
+const convert = require('./src/convert').default;
 
 // eslint-disable-next-line no-unused-expressions
 yargs
@@ -24,6 +25,15 @@ yargs
       describe: 'absolute filepath to root dir containing doc repos',
     }),
     timed(publish),
+  )
+  .command(
+    ['convert <file>'],
+    'convert docbook.xml to asciidoc',
+    ({ positional }) => positional('file', {
+      type: 'string',
+      describe: 'full filepath to docbook xml file',
+    }),
+    ({ file }) => convert(file),
   )
   .help()
   .argv;

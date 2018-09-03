@@ -11,6 +11,7 @@
     "kite:lint": "yarn eslint packages/kite",
     "evans:lint": "yarn eslint packages/evans",
     "hilkiah:lint": "yarn eslint packages/hilkiah",
+    "color:lint": "yarn eslint packages/color",
     "friends:test": "yarn jest packages/friends",
     "kite:test": "yarn jest packages/kite",
     "evans:test": "yarn jest packages/evans",
@@ -47,7 +48,8 @@
     "packages/friends",
     "packages/hilkiah",
     "packages/phipps",
-    "packages/api"
+    "packages/api",
+    "packages/color"
   ],
   "jest": {
     "testRegex": "__tests__/.*tests?\\.js"

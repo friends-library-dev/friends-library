@@ -42,6 +42,13 @@ describe('prepare()', () => {
     expect(section.html).toContain('bar&#8212;an aside&#8212;jim');
   });
 
+  it('trims spaces when joining quoted lines with emdash in between', () => {
+    const adoc = '== Ch\n\n"`Foo bar`"--\n"`jim jam.`"';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('bar&#8221;&#8212;&#8220;jim');
+  });
+
   it('transfers heading style class to placeholder', () => {
     const adoc = '[.style-blurb]\n== Title\n\nPara.';
     const { sections: [section] } = prepare(precursor(adoc));
@@ -177,5 +184,24 @@ Foobar.
     const { sections: [section] } = prepare(precursor(adoc));
 
     expect(section.html).toContain('class="signed-section-signature"');
+  });
+
+  it('re-forms chapter-synopsis', () => {
+    const adoc = `
+== Chapter 1
+
+[.chapter-synopsis]
+* foo
+* bar
+* baz
+
+Para.
+    `.trim();
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    const expected = '<p class="chapter-synopsis">foo&#8212;bar&#8212;baz</p>';
+    expect(section.html).toContain(expected);
+    expect(section.html).not.toContain('<ul');
   });
 });

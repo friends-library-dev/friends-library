@@ -4,5 +4,8 @@
   "description": "finds scripture references embedded in text",
   "main": "src/index.js",
   "author": "jared@netrivet.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
 }
