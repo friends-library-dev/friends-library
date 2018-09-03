@@ -56,7 +56,7 @@ export type Heading = {|
   +text: string,
   +shortText?: string,
   +sequence?: {|
-    +type: 'chapter' | 'section',
+    +type: 'Chapter' | 'Section',
     +number: number,
   |}
 |};

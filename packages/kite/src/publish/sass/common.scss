@@ -66,6 +66,8 @@ h2 {
 }
 
 .verse {
+  margin-top: 2em;
+  margin-bottom: 2em;
   font-style: italic;
 
   &__line {
@@ -75,11 +77,14 @@ h2 {
   }
 }
 
+.signed-section-context-open,
 .signed-section-context-close {
   font-style: italic;
   font-size: 0.9em;
+}
+
+.signed-section-context-close {
   page-break-before: avoid;
-  margin-bottom: 1em;
 }
 
 .signed-section-signature {

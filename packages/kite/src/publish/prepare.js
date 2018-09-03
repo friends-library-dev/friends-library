@@ -97,7 +97,7 @@ function parseHeading(text: string): Object {
   return {
     text: (body || '').trim(),
     sequence: {
-      type: type.toLowerCase(),
+      type: type.toLowerCase() === 'section' ? 'Section' : 'Chapter',
       number: Number.isNaN(+number) ? toArabic(number) : +number,
     },
   };
@@ -129,7 +129,7 @@ function changeVerseMarkup(html: Html): Html {
     (_, verses) => (verses
       .trim()
       .split('\n')
-      .map(v => `<div class="verse__line">${v}</div>`)
+      .map(v => (v ? `<div class="verse__line">${v}</div>` : '<br />'))
       .reduce((els, el) => els.concat([el]), ['<div class="verse">'])
       .concat(['</div>'])
       .join('\n')

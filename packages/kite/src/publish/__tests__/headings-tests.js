@@ -21,15 +21,24 @@ describe('replaceHeadings()', () => {
   });
 
   it('replaces sequence-headers with more complex markup', () => {
-    heading.sequence = { type: 'chapter', number: 3 };
+    heading.sequence = { type: 'Chapter', number: 3 };
 
     const replaced = replaceHeadings(html, heading, job);
 
-    expect(replaced).toContain('Chapter ');
-    expect(replaced).toMatch(/3\s+<\/span>/);
+    expect(replaced).toContain('Chapter&#160;');
+    expect(replaced).toMatch(/\s+III\s+<\/span>/);
     expect(replaced).toContain('chapter-heading__sequence__number');
     expect(replaced).toContain('<div class="chapter-heading__title"');
     expect(replaced).toMatch(/Foobar\s+<\/div>/);
+  });
+
+  it('replaces sequence-only header with simple markup', () => {
+    heading.text = '';
+    heading.sequence = { type: 'Chapter', number: 3 };
+
+    const replaced = replaceHeadings(html, heading, job);
+
+    expect(replaced).toContain('<h2>Chapter III</h2>');
   });
 
   it('passes heading style through to markup', () => {
@@ -89,27 +98,41 @@ describe('navText()', () => {
       text: 'Foobar',
       shortText: 'Foo',
       sequence: {
-        type: 'chapter',
+        type: 'Chapter',
         number: 5,
       },
     };
 
     const text = navText(heading);
 
-    expect(text).toBe('Chapter 5 &#8212; Foo');
+    expect(text).toBe('Chapter V &#8212; Foo');
   });
 
   it('returns chapter and text (when no short text) for sequence', () => {
     const heading = {
       text: 'Foobar',
       sequence: {
-        type: 'chapter',
+        type: 'Chapter',
         number: 5,
       },
     };
 
     const text = navText(heading);
 
-    expect(text).toBe('Chapter 5 &#8212; Foobar');
+    expect(text).toBe('Chapter V &#8212; Foobar');
+  });
+
+  it('does not include trailing emdash if sequence and no text', () => {
+    const heading = {
+      text: '',
+      sequence: {
+        type: 'Chapter',
+        number: 4,
+      },
+    };
+
+    const text = navText(heading);
+
+    expect(text).toBe('Chapter IV');
   });
 });

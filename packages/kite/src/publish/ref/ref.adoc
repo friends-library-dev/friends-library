@@ -9,6 +9,30 @@ ____
 Whose faith follow; considering the outcome of their conduct.
 ____
 
+== A Letter
+
+[.signed-section-context-open]
+Mount Gilead, Ninth Month 20th, 1840.
+
+[.salutation]
+Dear Sir,
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.signed-section-closing]
+Affectionately your daughter,
+
+[.signed-section-signature]
+Ambrose Rigge
+
+[.signed-section-context-close]
+Riegate in Surrey, the 24th of the Twelfth month, 1702-3.
+
 == Chapter with Synopsis
 
 [.chapter-synopsis]
@@ -48,24 +72,6 @@ Duis aute irure "`dolor`" in reprehenderit in voluptate velit esse pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
 
-== A Letter
-
-[.salutation]
-Dear Sir,
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-mollit anim id est laborum.
-
-[.signed-section-signature]
-Ambrose Rigge
-
-[.signed-section-context-close]
-Riegate in Surrey, the 24th of the Twelfth month, 1702-3.
-
 [#ch1.style-blurb, short="Shortened Chapter Title"]
 == This is a lengthy chapter title that has been set to the "Blurb" style
 
@@ -94,9 +100,11 @@ And sound high praises, to thy Heavenly King:
 Who has destroyed death; that he may be forevermore a Savior unto thee and this line is really long.
 Therefore to live is Christ, to die is gain,
 That thou with Him, forever may remain.
+
 In perfect triumph, over death and hell.
 In those sweet mansions, which no tongue can tell.
 So while on earth thou do continue here.
+
 Mind thy Redeemer, with continual fear;
 Who will preserve thee, to your finishing day,
 From sin to death, and every evil way,
