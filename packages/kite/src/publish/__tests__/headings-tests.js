@@ -127,8 +127,8 @@ describe('navText()', () => {
       text: '',
       sequence: {
         type: 'Chapter',
-        number: 4
-      }
+        number: 4,
+      },
     };
 
     const text = navText(heading);

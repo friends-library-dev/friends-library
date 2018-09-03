@@ -129,7 +129,7 @@ function changeVerseMarkup(html: Html): Html {
     (_, verses) => (verses
       .trim()
       .split('\n')
-      .map(v =>  v ? `<div class="verse__line">${v}</div>` : '<br />')
+      .map(v => (v ? `<div class="verse__line">${v}</div>` : '<br />'))
       .reduce((els, el) => els.concat([el]), ['<div class="verse">'])
       .concat(['</div>'])
       .join('\n')
