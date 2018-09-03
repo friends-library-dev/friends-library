@@ -15,7 +15,7 @@ export function getPdfManifest(job: Job): FileManifest {
   };
 }
 
-function getCss({ target, spec }: Job): Css {
+function getCss({ target, spec: { notes, meta, sections } }: Job): Css {
   return [
     'sass/common.scss',
     'pdf/sass/base.scss',
@@ -26,10 +26,11 @@ function getCss({ target, spec }: Job): Css {
     'pdf/sass/toc.scss',
     'pdf/sass/chapter-heading.scss',
     ...target === 'pdf-web' ? ['pdf/sass/web.scss'] : ['pdf/sass/print.scss'],
+    ...notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : [],
   ]
     .map(toCss)
     .join('\n')
-    .replace(/{{{ header.title }}}/g, spec.meta.title);
+    .replace(/{{{ header.title }}}/g, sections.length === 1 ? meta.author.name : meta.title);
 }
 
 function getHtml(job: Job): Html {

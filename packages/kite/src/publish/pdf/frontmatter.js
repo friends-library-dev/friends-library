@@ -18,6 +18,9 @@ export function frontmatter(job: Job): Html {
 }
 
 function toc({ spec: { sections } }: Job): Html {
+  if (sections.length === 1) {
+    return '';
+  }
   return `
     <div class="toc own-page">
       <h1>Contents</h1>
