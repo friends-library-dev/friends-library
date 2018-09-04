@@ -14,7 +14,7 @@ export const frontmatter = memoize((job: Job): { [string]: Html } => {
     fm['footnote-helper'] = footnoteHelper(job);
   }
 
-  if (job.target === 'mobi') {
+  if (job.target === 'mobi' && job.spec.sections.length > 1) {
     fm['content-toc'] = contentToc(job);
   }
 

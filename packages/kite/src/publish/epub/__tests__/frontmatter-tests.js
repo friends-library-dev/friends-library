@@ -40,4 +40,13 @@ describe('frontmatter()', () => {
     expect(fm['content-toc']).toContain('content-toc');
     expect(Object.keys(fm)[3]).toBe('content-toc');
   });
+
+  test('mobi does not contain content-toc for single-section doc', () => {
+    job = testJob('== C1\n\nOnly one section.');
+    job.target = 'mobi';
+
+    const fm = frontmatter(job);
+
+    expect(fm['content-toc']).toBeUndefined();
+  });
 });

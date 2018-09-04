@@ -21,6 +21,12 @@ describe('nav()', () => {
     expect(markup).toContain('epub:type="landmarks" hidden=""');
     expect(markup).toContain('epub:type="titlepage">Title page<');
   });
+
+  test('single-section document contains blank nav', () => {
+    const markup = nav(testJob('== C1\n\nPara.'));
+
+    expect(markup).toBe('<nav epub:type="toc" id="toc"><ol></ol></nav>');
+  });
 });
 
 describe('tocItems()', () => {
