@@ -133,5 +133,7 @@ function resolveLang(lang: Lang) {
 }
 
 function globAsciidoc(dir: string): Asciidoc {
-  return glob(`${dir}/*.adoc`).map(path => fs.readFileSync(path).toString()).join('\n');
+  const adoc = glob(`${dir}/*.adoc`).map(path => fs.readFileSync(path).toString()).join('\n');
+  // fs.outputFileSync('/Users/jared/Desktop/error.adoc', adoc); // debug asciidoctor.js errors
+  return adoc;
 }

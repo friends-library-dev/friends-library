@@ -70,6 +70,11 @@ h2 {
   margin-bottom: 2em;
   font-style: italic;
 
+  &__stanza {
+    page-break-inside: avoid;
+    margin-bottom: 1.5em;
+  }
+
   &__line {
     padding-left: 1.4em;
     text-indent: -1.4em;
@@ -110,6 +115,17 @@ h2 {
 
   p {
     margin-bottom: 0.5em;
+  }
+}
+
+.letter-participants {
+  margin: 1.5em 0;
+
+  p {
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: 700;
+    text-align: center;
   }
 }
 

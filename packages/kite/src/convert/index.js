@@ -5,6 +5,7 @@ import { red, green } from '@friends-library/color';
 import hilkiah from '@friends-library/hilkiah';
 import { splitLines } from './split';
 import { combineLines } from './combine';
+import { processAsciidoc } from './process';
 
 const { execSync } = require('child_process');
 
@@ -16,7 +17,7 @@ export default function convert(file: string): void {
     combineLines,
     replaceScriptureReferences,
     splitLines,
-    str => str.replace(/(?<!footnote:)\[/gm, '+++[+++'),
+    processAsciidoc,
     str => str.replace(/{•}/gm, '.').replace(/{\^}/gm, ':'),
   )(fs.readFileSync(target).toString());
 

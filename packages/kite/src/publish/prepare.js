@@ -122,20 +122,45 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   html => html.replace(/<br>/igm, '<br />'),
   html => html.replace(/class="paragraph salutation"/gim, 'class="salutation"'),
   html => html.replace(/class="paragraph signed-section-/gim, 'class="signed-section-'),
+  html => html.replace(/class="paragraph letter-participants"/gim, 'class="letter-participants"'),
 ]));
 
 function changeVerseMarkup(html: Html): Html {
   return html.replace(
     /<div class="verseblock">\n<pre class="content">([\s\S]*?)<\/pre>\n<\/div>/gim,
-    (_, verses) => (verses
-      .trim()
-      .split('\n')
-      .map(v => (v ? `<div class="verse__line">${v}</div>` : '<br />'))
-      .reduce((els, el) => els.concat([el]), ['<div class="verse">'])
-      .concat(['</div>'])
-      .join('\n')
-    ),
+    (_, verses) => {
+      const hasStanzas = verses.match(/\n\n/gm);
+      const stanzaOpen = hasStanzas ? '\n<div class="verse__stanza">' : '';
+      const stanzaClose = hasStanzas ? '</div>\n' : '';
+      return verses
+        .trim()
+        .split('\n')
+        .map(v => (v ? `<div class="verse__line">${v}</div>` : `${stanzaClose}${stanzaOpen}`))
+        .reduce(wrapper(`<div class="verse">${stanzaOpen}`, `${stanzaClose}</div>`), [])
+        .join('\n');
+    },
   );
+}
+
+function wrapper(
+  before: string,
+  after: string,
+): (
+  acc: Array<string>,
+  str: string,
+  index: number,
+  array: Array<string>,
+) => Array<string> {
+  return (acc, str, index, array) => {
+    if (index === 0) {
+      acc.unshift(before);
+    }
+    acc.push(str);
+    if (index === array.length - 1) {
+      acc.push(after);
+    }
+    return acc;
+  };
 }
 
 function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
