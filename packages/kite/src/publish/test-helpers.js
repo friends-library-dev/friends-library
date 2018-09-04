@@ -23,7 +23,7 @@ export function testPrecursor(adoc: ?Asciidoc = null): SourcePrecursor {
     lang: 'en',
     filename: 'test-filename',
     config: {},
-    adoc: adoc || '== Chapter 1\n\nWe parted friendly.footnote:[A note.]\n',
+    adoc: adoc || '== C1\n\nPara.\n\n== C2\n\nPara.footnote:[A note.]',
     meta: {
       title: 'Test Doc',
       author: {

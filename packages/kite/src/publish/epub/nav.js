@@ -3,6 +3,10 @@ import type { Job, Html } from '../../type';
 import { navText } from '../headings';
 
 export function nav(job: Job): Html {
+  if (job.spec.sections.length === 1) {
+    return '<nav epub:type="toc" id="toc"><ol></ol></nav>';
+  }
+
   return `
     <nav epub:type="toc" id="toc">
       <h2>Table of Contents</h2>
