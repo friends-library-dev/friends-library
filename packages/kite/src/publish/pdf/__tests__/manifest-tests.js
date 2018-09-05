@@ -6,6 +6,7 @@ describe('getPdfManifest()', () => {
 
   beforeEach(() => {
     job = testJob();
+    job.target = 'pdf-print';
   });
 
   it('has css file', () => {
@@ -37,6 +38,16 @@ describe('getPdfManifest()', () => {
     const manifest = getPdfManifest(job);
 
     expect(manifest['book.css']).toContain('content: "Robert Barclay";');
+  });
+
+  test('config short title for running headers preferred, if present', () => {
+    job = testJob('== C1\n\nPara.\n\n== C2\n\nPara.');
+    job.spec.meta.title = 'Anarchy of the Ranters';
+    job.spec.config.shortTitle = 'Anarchy';
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['book.css']).toContain('content: "Anarchy";');
   });
 
   test('html includes combined sections', () => {
@@ -90,5 +101,15 @@ describe('getPdfManifest()', () => {
     const manifest = getPdfManifest(job);
 
     expect(manifest['book.css']).not.toContain('counter(footnote, symbols(');
+  });
+
+  test('custom css is appended', () => {
+    job.spec.customCss = {
+      'pdf-print': '/* my custom css */',
+    };
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['book.css']).toContain('/* my custom css */');
   });
 });

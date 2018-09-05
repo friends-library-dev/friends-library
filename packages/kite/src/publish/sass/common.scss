@@ -31,16 +31,6 @@ h2 {
 .epigraph {
   font-style: italic;
 
-  &__text {
-    &::before {
-      content: "\201C";
-    }
-
-    &::after {
-      content: "\201D";
-    }
-  }
-
   &__source {
     font-size: 0.9em;
     white-space: nowrap;

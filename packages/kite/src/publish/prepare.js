@@ -4,6 +4,7 @@ import striptags from 'striptags';
 import { toArabic } from 'roman-numerals';
 import Asciidoctor from 'asciidoctor.js';
 import { flow, memoize } from 'lodash';
+import { wrapper } from './text';
 import type {
   Epigraph,
   Asciidoc,
@@ -24,6 +25,7 @@ export function prepare(precursor: SourcePrecursor): SourceSpec {
     filename: precursor.filename,
     revision: precursor.revision,
     config: precursor.config,
+    customCss: precursor.customCss,
     epigraphs,
     sections,
     notes,
@@ -140,27 +142,6 @@ function changeVerseMarkup(html: Html): Html {
         .join('\n');
     },
   );
-}
-
-function wrapper(
-  before: string,
-  after: string,
-): (
-  acc: Array<string>,
-  str: string,
-  index: number,
-  array: Array<string>,
-) => Array<string> {
-  return (acc, str, index, array) => {
-    if (index === 0) {
-      acc.unshift(before);
-    }
-    acc.push(str);
-    if (index === array.length - 1) {
-      acc.push(after);
-    }
-    return acc;
-  };
 }
 
 function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {

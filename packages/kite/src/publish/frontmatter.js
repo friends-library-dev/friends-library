@@ -28,7 +28,7 @@ function renderEpigraph({ text, source }: Epigraph, index: number): Html {
   return `
     <div class="epigraph${index > 0 ? ' epigraph--not-first' : ''}">
       <span class="epigraph__text">
-        ${text}
+        &#8220;${text}&#8221;
       </span>
       ${source ? `<span class="epigraph__source">${source}</span>` : ''}
     </div>
