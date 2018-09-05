@@ -2,6 +2,7 @@
 import { flow } from 'lodash';
 import { toRoman } from 'roman-numerals';
 import type { Job, FileManifest, Css, Html, Heading } from '../../type';
+import { capitalizeTitle, trimTrailingPeriod } from '../text';
 import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';
 import { removeMobiBrs } from '../html';
@@ -15,7 +16,8 @@ export function getPdfManifest(job: Job): FileManifest {
   };
 }
 
-function getCss({ target, spec: { notes, meta, sections } }: Job): Css {
+function getCss({ target, spec: { notes, meta, sections, config, customCss } }: Job): Css {
+  const title = sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
   return [
     'sass/common.scss',
     'pdf/sass/base.scss',
@@ -30,7 +32,8 @@ function getCss({ target, spec: { notes, meta, sections } }: Job): Css {
   ]
     .map(toCss)
     .join('\n')
-    .replace(/{{{ header.title }}}/g, sections.length === 1 ? meta.author.name : meta.title);
+    .concat(customCss[target] || '')
+    .replace(/{{{ header.title }}}/g, title);
 }
 
 function getHtml(job: Job): Html {
@@ -58,7 +61,7 @@ function joinSections([_, job]: [Html, Job]): [Html, Job] {
 
 function runningHeader({ shortText, text, sequence }: Heading): string {
   if (shortText || text || !sequence) {
-    return shortText || text;
+    return capitalizeTitle(trimTrailingPeriod(shortText || text));
   }
 
   return `${sequence.type} ${toRoman(sequence.number)}`;

@@ -1,5 +1,6 @@
 // @flow
 import { toRoman } from 'roman-numerals';
+import { trimTrailingPeriod } from './text';
 import type { Html, Heading, Job } from '../type';
 
 export function replaceHeadings(html: Html, heading: Heading, job: Job): Html {
@@ -38,7 +39,7 @@ function headingMarkup({ id, sequence, text }: Heading, style: string): Html {
 }
 
 export function navText({ text, shortText, sequence }: Heading): string {
-  const mainText = (shortText || text).replace(/(?<!etc)\.$/, '');
+  const mainText = trimTrailingPeriod(shortText || text);
   if (!sequence) {
     return mainText;
   }

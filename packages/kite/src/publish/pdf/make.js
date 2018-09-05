@@ -1,5 +1,6 @@
 // @flow
 import fs from 'fs-extra';
+import { yellow } from '@friends-library/color';
 import { spawn, exec } from 'child_process';
 import type { Job } from '../../type';
 import { getPdfManifest } from './manifest';
@@ -17,16 +18,27 @@ export function makePdf(job: Job): Promise<string> {
     .then(() => {
       const src = `${dir}/book.html`;
       const prince = spawn('prince-books', [src]);
+      let output = '';
+
       return new Promise((resolve, reject) => {
         prince.stderr.on('data', data => {
-          const str = data.toString().trim();
-          if (str && !str.match(/^prince: warning: cannot fit footnote/)) {
-            reject(new Error(str));
-          }
+          output = output.concat(data.toString());
         });
-        prince.on('close', code => (
-          code === 0 ? resolve() : reject(new Error('prince-books error'))
-        ));
+
+        prince.on('close', code => {
+          output = output
+            .trim()
+            .split('\n')
+            .filter(filterPrinceOutput)
+            .map(l => `  ${job.filename} -> ${l}`)
+            .join('\n');
+
+          if (output) {
+            yellow(output);
+          }
+
+          return code === 0 ? resolve() : reject(new Error(`prince-books error ${code}`));
+        });
       });
     })
     .then(() => {
@@ -38,4 +50,17 @@ export function makePdf(job: Job): Promise<string> {
       }
       return filename;
     });
+}
+
+
+function filterPrinceOutput(line: string): boolean {
+  if (line.trim() === '') {
+    return false;
+  }
+
+  if (line.match(/^prince: warning: cannot fit footnote\(s\) on page/)) {
+    return false;
+  }
+
+  return true;
 }

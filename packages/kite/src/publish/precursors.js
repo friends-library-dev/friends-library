@@ -5,7 +5,7 @@ import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
 import { query, Friend, Document, Edition } from '@friends-library/friends';
-import type { SourcePrecursor, Lang, Asciidoc } from '../type';
+import type { SourcePrecursor, Lang, Asciidoc, FileType, Css } from '../type';
 
 export function getPrecursors(path: string): Array<SourcePrecursor> {
   const [lang, friend, document, edition] = path
@@ -65,6 +65,7 @@ function buildPrecursor(
   return {
     id: path,
     config: getConfig(path),
+    customCss: getCustomCss(path),
     meta: {
       title: document.title,
       author: {
@@ -115,10 +116,19 @@ function getConfig(path: string): Object {
   return JSON.parse(fs.readFileSync(configPath));
 }
 
+function getCustomCss(path: string): {[FileType]: Css} {
+  const files = glob(`${path}/../*.css`);
+  return files.reduce((customCss, filepath) => {
+    const type = basename(filepath).replace(/\.css$/, '');
+    customCss[type] = fs.readFileSync(filepath).toString();
+    return customCss;
+  }, {});
+}
+
 const ROOT: string = ((process.env.DOCS_REPOS_ROOT: any): string);
 
 function resolveDocument(lang: Lang, friend: string, document: string) {
-  const editions = glob(`${ROOT}/${lang}/${friend}/${document}/*`);
+  const editions = glob(`${ROOT}/${lang}/${friend}/${document}/*`).filter(nonDirs);
   return editions.map(path => buildPrecursor(lang, friend, document, basename(path)));
 }
 
@@ -136,4 +146,8 @@ function globAsciidoc(dir: string): Asciidoc {
   const adoc = glob(`${dir}/*.adoc`).map(path => fs.readFileSync(path).toString()).join('\n');
   // fs.outputFileSync('/Users/jared/Desktop/error.adoc', adoc); // debug asciidoctor.js errors
   return adoc;
+}
+
+function nonDirs(path: string): boolean {
+  return !path.match(/\.(json|css)$/);
 }
