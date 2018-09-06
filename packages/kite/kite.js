@@ -37,7 +37,7 @@ yargs
     ({ file }) => convert(file),
   )
   .command(
-    ['chapterize <file> <dest>'],
+    ['chapterize <file> <dest> <chStart>'],
     'convert docbook.xml to asciidoc',
     ({ positional }) => {
       positional('file', {
@@ -48,8 +48,12 @@ yargs
         type: 'string',
         describe: 'relative (to DOCS_REPOS_ROOT) path to dest. dir for placing chapterized files',
       });
+      positional('chStart', {
+        type: 'number',
+        describe: 'number section at which numbered chapters begin',
+      });
     },
-    ({ file, dest }) => chapterize(file, dest),
+    ({ file, dest, chStart }) => chapterize(file, dest, chStart),
   )
   .help()
   .argv;

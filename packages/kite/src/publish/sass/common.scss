@@ -77,6 +77,10 @@ h2 {
      margin-top: 2em;
      margin-bottom: 0;
    }
+
+   & + .paragraph {
+    margin-top: 0.75em;
+   }
 }
 
 .signed-section-context-open,

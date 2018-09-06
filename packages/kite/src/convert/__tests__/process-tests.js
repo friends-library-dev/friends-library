@@ -52,4 +52,12 @@ describe('processAsciidoc()', () => {
 
     expect(processed).toBe('Foo\n\nW+++.+++ E. foobar\n');
   });
+
+  it('escapes periods after paragraphs that start with only four-digit year', () => {
+    const adoc = '== Ch1\n\n1771. I went to the meeting.';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== Ch1\n\n1771+++.+++ I went to the meeting.');
+  });
 });
