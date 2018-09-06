@@ -246,4 +246,19 @@ Para.
     expect(section.html).toContain(expected);
     expect(section.html).not.toContain('<ul');
   });
+
+  it('makes alt h3 discrete', () => {
+    const adoc = `
+== Chapter 1
+
+Foobar
+
+[.alt]
+=== H3
+    `.trim();
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<h3 id="_h3" class="discrete alt">');
+  });
 });

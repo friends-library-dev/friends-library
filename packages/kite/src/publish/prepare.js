@@ -110,6 +110,7 @@ const asciidoctor = new Asciidoctor();
 const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   replaceAsterisms,
   changeChapterSynopsisMarkup,
+  adoc => adoc.replace(/\[\.alt\]\n=== /gm, '[discrete.alt]\n=== '),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
   adoc => adoc.replace(/'`/igm, '&#8216;'),
