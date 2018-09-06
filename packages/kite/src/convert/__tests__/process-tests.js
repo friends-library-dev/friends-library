@@ -28,4 +28,28 @@ describe('processAsciidoc()', () => {
 
     expect(processed).toBe(expected);
   });
+
+  it('swaps jasons horizontal rule thingies', () => {
+    const adoc = '== C1\n\nPara.\n\n-------------\n\nPara';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== C1\n\nPara.\n\n[.asterism]\n\'\'\'\n\nPara');
+  });
+
+  it('removes weird trailing number', () => {
+    const adoc = '== C1\n\n33\n\n== Ch2\n\nPara2.\n\n11';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== C1\n\n33\n\n== Ch2\n\nPara2.\n');
+  });
+
+  it('escapes start-of-para abbreviations that confuse asciidoc', () => {
+    const adoc = 'Foo\n\nW. E. foobar\n';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('Foo\n\nW+++.+++ E. foobar\n');
+  });
 });

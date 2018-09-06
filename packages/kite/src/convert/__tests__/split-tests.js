@@ -112,4 +112,12 @@ describe('splitShort()', () => {
 
     expect(result).not.toMatch(/three-\n/);
   });
+
+  it('understands sentences ending with 4-digit years', () => {
+    const input = 'Foobar, hash baz, 1842. We went about a half a mile.';
+
+    const result = splitShort(input);
+
+    expect(result).not.toMatch(/1842\. /);
+  });
 });
