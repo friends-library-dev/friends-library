@@ -159,7 +159,6 @@ and here the sentence finishes.
 
 === A level 3 heading
 
-
 Duis aute irure dolor in reprehenderit in voluptate velit esse pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
