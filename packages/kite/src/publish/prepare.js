@@ -124,6 +124,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   html => html.replace(/<hr>/igm, '<hr />'),
   html => html.replace(/<br>/igm, '<br />'),
   html => html.replace(/class="paragraph salutation"/gim, 'class="salutation"'),
+  html => html.replace(/class="paragraph offset"/gim, 'class="offset"'),
   html => html.replace(/class="paragraph signed-section-/gim, 'class="signed-section-'),
   html => html.replace(/class="paragraph letter-participants"/gim, 'class="letter-participants"'),
 ]));

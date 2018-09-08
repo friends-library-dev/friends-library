@@ -30,7 +30,7 @@ export default function chapterize(file: string, dest: string, chStart: number =
     if (chapterNum || (index + 1) === chStart) {
       filename += `chapter-${++chapterNum}.adoc`;
     } else {
-      filename += `${fm[index]}.acdoc`;
+      filename += `${fm[index]}.adoc`;
     }
     fs.outputFileSync(`${destPath}/${filename}`, part);
     cmds.push(`mv ${filename} ${paddedNum}-FOOBAR.adoc`);

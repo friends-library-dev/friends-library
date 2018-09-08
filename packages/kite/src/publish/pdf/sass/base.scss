@@ -16,7 +16,8 @@
   }
 
   @top-center {
-    font-size: 0.8rem;
+    margin-top: 0.35in;
+    font-size: 0.9rem;
     font-style: italic;
   }
 }
@@ -90,6 +91,9 @@ div.asterism {
   float: footnote;
   padding-top: 0.6em;
   text-indent: 0;
+  text-align: left !important;
+  font-weight: 400;
+  text-transform: none !important;
 }
 
 .blank-page {

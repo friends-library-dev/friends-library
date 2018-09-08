@@ -120,4 +120,12 @@ describe('splitShort()', () => {
 
     expect(result).not.toMatch(/1842\. /);
   });
+
+  it('does not put etc. on its own line', () => {
+    const input = 'In the spring of that year he spread his prospect before his friends, and in the 5th month he obtained a certificate from the yearly meeting of New York to Friends in Great Britain, etc. He felt his mind drawn to pay another visit to New England, and then embark from there to Halifax or Liverpool, as way might open.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toMatch(/\netc\.\n/);
+  });
 });

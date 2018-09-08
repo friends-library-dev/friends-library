@@ -60,4 +60,12 @@ describe('processAsciidoc()', () => {
 
     expect(processed).toBe('== Ch1\n\n1771+++.+++ I went to the meeting.');
   });
+
+  it('escapes periods after single upper-case letter at beginning of line', () => {
+    const adoc = '== C1\n\nFoo bar\nW. Evans came with T. Evans\nto lunch';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== C1\n\nFoo bar\nW+++.+++ Evans came with T. Evans\nto lunch');
+  });
 });
