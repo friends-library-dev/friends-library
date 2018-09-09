@@ -1,0 +1,54 @@
+name: Deborah Bell
+slug: deborah-bell
+gender: female
+description: TODO
+documents:
+  -
+    title: The Life and Letters of Deborah Bell
+    original_title: A Short Journal of the Labours and Travels in the Work of the Ministry, of that Faithful Servant of Christ, Deborah Bell.
+    slug: life-and-letters
+    filename: Life_and_Letters_of_Deborah_Bell
+    description: TODO
+    tags:
+      - journal
+    editions:
+      -
+        type: original
+        formats:
+            -
+              type: pdf
+            -
+              type: epub
+            -
+              type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            title: John Bell's Testimony
+          -
+            title: Journal
+          -
+            title: Correspondence with Joseph Pike
+          -
+            title: A Supplement, by Her Husband
+      -
+        type: modernized
+        formats:
+            -
+              type: pdf
+            -
+              type: epub
+            -
+              type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            title: John Bell's Testimony
+          -
+            title: Journal
+          -
+            title: Correspondence with Joseph Pike
+          -
+            title: A Supplement, by Her Husband
