@@ -72,8 +72,12 @@ function forceSplit(maxLen: number, minLen: number): * {
 }
 
 function cleanup(lines: Array<string>, line: string, index: number): Array<string> {
+  // this fixes lines like ^Oh,$
   if (lines[index - 1] && lines[index - 1].match(/^[A-Z][a-z]{1,3},$/)) {
     lines[index - 1] = `${lines[index - 1]} ${line}`;
+  // this fixes lines that are just ^etc.$
+  } else if (line === 'etc.' && index > 0) {
+    lines[index - 1] = `${lines[index - 1]} etc.`;
   } else {
     lines.push(line);
   }

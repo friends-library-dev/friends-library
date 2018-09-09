@@ -1,13 +1,17 @@
-import { kebabCase } from 'lodash';
+import path from 'path';
+import { kebabCase, without } from 'lodash';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 import { yamlGlob, tags, editions, formats, chapters, hasProp, isSlug } from '../test-helpers';
 
-const files = yamlGlob('yml/*/*.yml');
-
+const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
 const filenames = [];
 
 describe('all files', () => {
+  test('files is not empty', () => {
+    expect(files.length).not.toBe(0);
+  });
+
   test('only contains yml files', () => {
     files.forEach(file => expect(file.name).toMatch(/\.yml$/));
   });
@@ -22,14 +26,20 @@ files.forEach((file) => {
   describe(`${file.short}`, () => {
     let friend;
     let documents;
+    let fileContents;
 
-    test('is valid yaml', () => {
-      try {
-        friend = safeLoad(readFileSync(file.path, 'utf8'));
-        documents = friend.documents; // eslint-disable-line prefer-destructuring
-      } catch (err) {
-        throw new Error(err.message);
-      }
+    try {
+      fileContents = readFileSync(file.path, 'utf8');
+      friend = safeLoad(fileContents);
+      documents = friend.documents; // eslint-disable-line prefer-destructuring
+    } catch (err) {
+      throw new Error(err.message);
+    }
+
+    // @TODO re-enable this test when things stabilize
+    xtest('no todo or lorem text', () => { // eslint-disable-line no-undef
+      expect(fileContents).not.toContain(': TODO');
+      expect(fileContents).not.toContain('Lorem');
     });
 
     test('has correct friend props', () => {
@@ -63,7 +73,7 @@ files.forEach((file) => {
 
     test('has correct document props', () => {
       documents.forEach((document) => {
-        expect(Object.keys(document).sort()).toEqual([
+        expect(without(Object.keys(document).sort(), 'original_title', 'published')).toEqual([
           'description',
           'editions',
           'filename',

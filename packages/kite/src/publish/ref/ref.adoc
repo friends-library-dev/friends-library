@@ -9,6 +9,55 @@ ____
 Whose faith follow; considering the outcome of their conduct.
 ____
 
+== Offset paragraphs
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum.
+
+[.offset]
++++[+++He proceeded on his voyage;
+in the course of which he addressed the following
+letter to his friend the late Samuel Smith of Sheffield.]
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..
+
+[.offset]
++++[+++He proceeded on his voyage;
+in the course of which he addressed the following
+letter to his friend the late Samuel Smith of Sheffield.]
+
+[.signed-section-context-open]
+Sixth Month 26th, 1818.
+
+[.salutation]
+My Dear Friend,
+
+According to my promise, I have the pleasure of informing thee,
+that we are now pushing for the roads of Elsineur,
+and expect to anchor in about two hours, having had a passage of four days and nights.
+It has been what the sailors call a fine run;
+yet some of my company have thought it rough enough.
+The supper-table was well attended the evening we left Hull,
+and sailing was talked of with the greatest enthusiasm.
+
+[.signed-section-signature]
+Daniel Wheeler
+
 == Letters in flow of doc
 
 _Below shows double `.signed-section-context-open` with salutation and content before:_
@@ -148,6 +197,41 @@ mollit anim id est laborum.
 
 [.signed-section-signature]
 David Sands
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.asterism]
+'''
+
+_The next letter has TWO signatures:_
+
+[.salutation]
+Dear Friend,
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.signed-section-signature]
+John Thomas, Chairman.
+
+[.signed-section-signature]
+James Watkin, Secretary.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
 
 == Chapter with Synopsis
 

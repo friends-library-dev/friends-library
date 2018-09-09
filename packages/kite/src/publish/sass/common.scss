@@ -146,17 +146,23 @@ h2 {
 }
 
 .letter-participants {
-  margin: 1.8em 0 1.2em;
+  margin: 2.25em 0 0.5em;
 
   p {
     text-transform: uppercase;
     font-size: 0.85em;
     font-weight: 700;
     text-align: center;
+    margin: 0;
   }
 }
 
-.signed-section-signature + .signed-section-context-close {
+.letter-participants + .signed-section-context-open {
+  margin-top: -0.65em;
+}
+
+.signed-section-signature + .signed-section-context-close,
+.signed-section-signature + .signed-section-signature {
   margin-top: -2.5em;
 }
 
@@ -182,4 +188,9 @@ h3.alt {
   margin-right: 1.5em;
   margin-left: 1.5em;
   margin-bottom: 2em;
+}
+
+.offset + .signed-section-context-open,
+.offset + .salutation {
+  margin-top: -0.5em;
 }

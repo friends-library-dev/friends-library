@@ -1,6 +1,7 @@
 name: Samuel Rundell
 slug: samuel-rundell
 gender: male
+description: TODO
 documents:
   -
     title: The Work of Vital Religion in the Soul
@@ -8,6 +9,80 @@ documents:
     published: 1834 # best guess from clues in John Barclay's letters found in Wilbur's journal
     slug: vital-religion
     filename: Work_of_Vital_Religion_in_the_Soul
+    description: TODO
+    tags:
+      - treatise
+      - exhortation
     editions:
       -
         type: updated
+        formats:
+            -
+              type: pdf
+            -
+              type: epub
+            -
+              type: mobi
+
+        chapters:
+          -
+            title: Introduction
+          -
+            number: 1
+            subtitle: On Conversion and Regeneration
+          -
+            number: 2
+            subtitle: The Worship Ordained of God
+          -
+            number: 3
+            subtitle: Baptism, Worship, and Partaking of the Flesh and Blood
+          -
+            title: Concluding Observations
+      -
+        type: modernized
+        formats:
+            -
+              type: pdf
+            -
+              type: epub
+            -
+              type: mobi
+
+        chapters:
+          -
+            title: Introduction
+          -
+            number: 1
+            subtitle: On Conversion, and Regeneration
+          -
+            number: 2
+            subtitle: The Worship Which, Under the Christian Dispensation, is Ordained of God
+          -
+            number: 3
+            subtitle: On Baptism.--Continuation of the Subject of Divine Worship, in Connection with Observations on the Partaking of the Flesh and Blood of Christ
+          -
+            title: Concluding Observations
+      -
+        type: original
+        formats:
+            -
+              type: pdf
+            -
+              type: epub
+            -
+              type: mobi
+
+        chapters:
+          -
+            title: Introduction
+          -
+            number: 1
+            subtitle: On Conversion, and Regeneration
+          -
+            number: 2
+            subtitle: The Worship Which, Under the Christian Dispensation, is Ordained of God
+          -
+            number: 3
+            subtitle: On Baptism.--Continuation of the Subject of Divine Worship, in Connection with Observations on the Partaking of the Flesh and Blood of Christ
+          -
+            title: Concluding Observations
