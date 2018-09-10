@@ -261,4 +261,42 @@ Foobar
 
     expect(section.html).toContain('<h3 id="_h3" class="discrete alt">');
   });
+
+  it('changes markup for chapter-subtitle--blurb', () => {
+    const adoc = `
+== Chapter 1
+
+[.chapter-subtitle--blurb]
+Foo
+bar
+baz
+
+Para.
+    `.trim();
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<h3 class="chapter-subtitle--blurb">Foo bar baz</h3>');
+  });
+
+  it('italicizes staring words of discourse-parts', () => {
+    const adoc = `
+== Chapter 1
+
+[.discourse-part]
+Question: Foo bar?
+
+[.discourse-part]
+Answer: Hash baz.
+
+[.discourse-part]
+Objection: Qux!
+    `.trim();
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<em>Question:</em>');
+    expect(section.html).toContain('<em>Answer:</em>');
+    expect(section.html).toContain('<em>Objection:</em>');
+  });
 });

@@ -18,7 +18,7 @@ export default function chapterize(file: string, dest: string, chStart: number =
   fs.ensureDirSync(destPath);
 
   const adoc = fs.readFileSync(file).toString().trim();
-  const parts = adoc.split(/(?=== )/);
+  const parts = adoc.split(/(?<=\n)(?=== )/);
 
   const cmds = [];
   let chapterNum = 0;

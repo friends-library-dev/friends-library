@@ -21,6 +21,14 @@ h2 {
   }
 }
 
+.chapter-subtitle--blurb {
+  font-weight: normal;
+  font-style: italic;
+  text-transform: none;
+  text-align: center;
+  margin: -1em 0 2.25em;
+}
+
 
 // epigraphs
 .epigraphs {
@@ -193,4 +201,19 @@ h3.alt {
 .offset + .signed-section-context-open,
 .offset + .salutation {
   margin-top: -0.5em;
+}
+
+.offset {
+
+  p {
+    text-align: justify;
+  }
+}
+
+.discourse-part {
+
+  p {
+    margin-bottom: 0;
+    text-align: justify;
+  }
 }
