@@ -110,12 +110,14 @@ const asciidoctor = new Asciidoctor();
 const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   replaceAsterisms,
   changeChapterSynopsisMarkup,
+  changeChapterSubtitleBlurbMarkup,
+  prepareDiscourseParts,
   adoc => adoc.replace(/\[\.alt\]\n=== /gm, '[discrete.alt]\n=== '),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
   adoc => adoc.replace(/'`/igm, '&#8216;'),
   adoc => adoc.replace(/`'/igm, '&#8217;'),
-  adoc => adoc.replace(/--/igm, '&#8212;'),
+  adoc => adoc.replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;'),
   adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gm, '&#8212;$1'),
   adoc => adoc.replace(/ &#8220;\n([a-z])/gim, ' &#8220;$1'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
@@ -124,6 +126,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   html => html.replace(/<hr>/igm, '<hr />'),
   html => html.replace(/<br>/igm, '<br />'),
   html => html.replace(/class="paragraph salutation"/gim, 'class="salutation"'),
+  html => html.replace(/class="paragraph discourse-part"/gim, 'class="discourse-part"'),
   html => html.replace(/class="paragraph offset"/gim, 'class="offset"'),
   html => html.replace(/class="paragraph signed-section-/gim, 'class="signed-section-'),
   html => html.replace(/class="paragraph letter-participants"/gim, 'class="letter-participants"'),
@@ -158,6 +161,26 @@ function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
         .join('&#8212;');
       return `++++\n<p class="chapter-synopsis">${joined}</p>\n++++`;
     },
+  );
+}
+
+function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /\[\.chapter-subtitle--blurb\]\n([\s\S]+?)(?=\n\n)/gim,
+    (_, inner) => {
+      const joined = inner
+        .trim()
+        .split('\n')
+        .join(' ');
+      return `++++\n<h3 class="chapter-subtitle--blurb">${joined}</h3>\n++++`;
+    },
+  );
+}
+
+function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /(?<=\[\.discourse-part\]\n)(Question:|Answer:|Objection:) /gim,
+    '_$1_ ',
   );
 }
 
