@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "kite": "node ./packages/kite/kite.js",
+    "fell": "node ./packages/fell/fell.js",
     "phipps": "php ./packages/phipps/phipps",
     "lint": "yarn eslint .",
     "test": "yarn jest && yarn phipps:test",
@@ -49,7 +50,8 @@
     "packages/hilkiah",
     "packages/phipps",
     "packages/api",
-    "packages/color"
+    "packages/color",
+    "packages/fell"
   ],
   "jest": {
     "testRegex": "__tests__/.*tests?\\.js"
