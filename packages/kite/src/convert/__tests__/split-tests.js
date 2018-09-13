@@ -136,4 +136,12 @@ describe('splitShort()', () => {
 
     expect(result).toContain('bar?\nHash');
   });
+
+  test('{footnote-paragraph-split} get put on own lines', () => {
+    const input = 'Foo bar.footnote[Jim jam.{footnote-paragraph-split}Hash baz.]';
+
+    const result = splitShort(input);
+
+    expect(result).toContain('jam.\n{footnote-paragraph-split}\nHash');
+  });
 });
