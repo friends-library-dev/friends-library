@@ -89,14 +89,14 @@ export function makeSplitLines(maxLen: number, minLen: number): * {
     return input
       .replace(/footnote:\[/gm, '^\nfootnote:[')
       .replace(/\] /gm, ']\n')
-      .replace(/((?:[A-Za-z]{3}| [a-z]{2}| 1[678][0-9]{2}))\.(`")? (.)/gm, (full, a, b, c) => {
+      .replace(/((?:[A-Za-z]{3}| [a-z]{2}| 1[678][0-9]{2}))(\.|\?)(`")? (.)/gm, (full, a, b, c, d) => {
         if (a === 'viz') {
           return full;
         }
-        if (a === 'etc' && c.match(/[a-z]/)) {
+        if (a === 'etc' && d.match(/[a-z]/)) {
           return full;
         }
-        return `${a}.${b || ''}${NEWLINE}${c}`;
+        return `${a}${b}${c || ''}${NEWLINE}${d}`;
       })
       .replace(/([A-Za-z]{2})!(`")? ([A-Z])/gm, `$1!$2${NEWLINE}$3`)
       .split(NEWLINE)

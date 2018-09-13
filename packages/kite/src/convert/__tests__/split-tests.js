@@ -128,4 +128,12 @@ describe('splitShort()', () => {
 
     expect(result).not.toMatch(/\netc\.\n/);
   });
+
+  it('understands that question marks end sentences', () => {
+    const input = 'Foo bar? Hash baz foo bar jim jam.';
+
+    const result = splitShort(input);
+
+    expect(result).toContain('bar?\nHash');
+  });
 });
