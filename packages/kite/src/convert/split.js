@@ -89,7 +89,7 @@ export function makeSplitLines(maxLen: number, minLen: number): * {
     const split = input
       .replace(/footnote:\[/gm, '^\nfootnote:[')
       .replace(/\] /gm, ']\n')
-      .replace(/((?:[A-Za-z]{3}| [a-z]{2}| 1[678][0-9]{2}))(\.|\?)(`")? (.)/gm, (full, a, b, c, d) => {
+      .replace(/((?:[A-Za-z]{3}| [a-z]{2}| 1[678][0-9]{2}))(\.|\?)(`"|')? (.)/gm, (full, a, b, c, d) => {
         if (a === 'viz') {
           return full;
         }

@@ -43,6 +43,14 @@ describe('splitShort()', () => {
     expect(result).toBe('A quote follow "`Foo is bar.`"\nAnd hello sir.');
   });
 
+  it('should split on sentences ending with single-quotes', () => {
+    const sentence = "A quote follows 'Foo is bar.' And hello sir.";
+
+    const result = splitShort(sentence);
+
+    expect(result).toBe("A quote follows 'Foo is bar.'\nAnd hello sir.");
+  });
+
   it('should split long sentences', () => {
     const sentence = 'This is a really long sentence, should be split at comma.';
 
