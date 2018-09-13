@@ -250,9 +250,9 @@ Ann Jones
 [.asterism]
 '''
 
-_The next letter uses the `.letter-participants` style heading:_
+_The next letter uses the `.letter-heading` style heading:_
 
-[.letter-participants]
+[.letter-heading]
 Samuel Fothergill to His Sister
 
 [.salutation]
