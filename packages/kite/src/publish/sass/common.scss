@@ -217,3 +217,21 @@ h3.alt {
     text-align: justify;
   }
 }
+
+.small-break {
+  height: 1em;
+}
+
+.fn-split {
+  display: block;
+  height: 0.5em;
+}
+
+.the-end {
+  text-transform: uppercase;
+  margin-top: 3em;
+
+  p {
+    text-align: center;
+  }
+}

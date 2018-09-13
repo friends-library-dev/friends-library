@@ -299,4 +299,66 @@ Objection: Qux!
     expect(section.html).toContain('<em>Answer:</em>');
     expect(section.html).toContain('<em>Objection:</em>');
   });
+
+  it('replaces hr.small-break with custom markup', () => {
+    const adoc = '== Ch1\n\nPara.\n\n[.small-break]\n\'\'\'\n\nPara.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<div class="small-break">');
+  });
+
+  it('adds m7 breaks to .offset sections', () => {
+    const adoc = '== Ch1\n\n[.offset]\nFoo.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<br class="m7"/><p>Foo.</p>\n<br class="m7"/>');
+  });
+
+  it('adds m7 break to top of .discourse-part sections', () => {
+    const adoc = '== Ch1\n\n[.discourse-part]\nFoo.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<div class="discourse-part"><br class="m7"/>');
+  });
+
+  it('adds special markup for faux multi-paragraph footnotes', () => {
+    const adoc = `
+== Chapter 1
+
+Foo.^
+footnote:[Jim jam.
+Foo bar.
+{footnote-paragraph-split}
+Hash baz.]
+    `.trim();
+
+    const { notes } = prepare(precursor(adoc));
+
+    const splitMarkup = '<span class="fn-split"><br class="m7"/><br class="m7"/></span>';
+    expect(notes.get('uuid1')).toContain(`bar. ${splitMarkup} Hash`);
+  });
+
+  const removeParagraphClass = [
+    'salutation',
+    'discourse-part',
+    'offset',
+    'the-end',
+    'letter-participants',
+    'signed-section-signature',
+    'signed-section-closing',
+    'signed-section-context-open',
+    'signed-section-context-close',
+  ];
+
+  test.each(removeParagraphClass)('it removes the paragraph class on %1 divs', (kls) => {
+    const adoc = `== Ch1\n\n[.${kls}]\nFoobar.`;
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain(`<div class="${kls}">`);
+    expect(section.html).not.toContain('paragraph');
+  });
 });
