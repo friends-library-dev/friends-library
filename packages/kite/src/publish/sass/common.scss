@@ -64,19 +64,44 @@ h2 {
 }
 
 .verse {
+  display: block;
   margin-top: 2em;
   margin-bottom: 2em;
   font-style: italic;
 
   &__stanza {
+    display: block;
     page-break-inside: avoid;
     margin-bottom: 1.5em;
   }
 
   &__line {
+    display: block;
     padding-left: 1.4em;
     text-indent: -1.4em;
     line-height: 1.75em;
+  }
+}
+
+.footnote {
+
+  .verse {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+
+    &__stanza {
+      margin-bottom: 0;
+
+      + .verse__stanza {
+        margin-top: 0.45em;
+      }
+    }
+
+    &__line {
+      padding-left: 3.5em;
+      text-indent: -1.5em;
+      line-height: 1.2em;
+    }
   }
 }
 
@@ -170,6 +195,7 @@ h2 {
 }
 
 .signed-section-signature + .signed-section-context-close,
+.signed-section-context-close + .signed-section-context-close,
 .signed-section-signature + .signed-section-signature {
   margin-top: -2.5em;
 }

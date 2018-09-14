@@ -236,7 +236,7 @@ function extractNotes(srcHtml: Html): [Notes, Html] {
         .trim()
         .replace(/{footnote-paragraph-split}/g, `<span class="fn-split">${br7}${br7}</span>`)
         .replace(/^[0-9]+\. /, '');
-      notes.set(map.get(num) || '', note);
+      notes.set(map.get(num) || '', expandFootnotePoetry(note));
       return '';
     },
   );
@@ -244,6 +244,30 @@ function extractNotes(srcHtml: Html): [Notes, Html] {
   html = html.replace(/<div id="footnotes"[\s\S]+?<\/div>/igm, '');
 
   return [notes, html];
+}
+
+function expandFootnotePoetry(html: Html): Html {
+  const nowrap = wrapper('', '');
+  return html.replace(
+    / ` {4}(.+?) *?`( )?/gim,
+    (_, poem) => {
+      let stanzas = false;
+      return poem
+        .split('      ')
+        .map(line => {
+          if (line.match(/^- - -/)) {
+            stanzas = true;
+            return '</span>\n<span class="verse__stanza">';
+          }
+          const spacer = '&#160;&#160;&#160;&#160;';
+          line = line.replace(/^ +/, s => s.split().map(() => spacer).join(''));
+          return `<span class="verse__line">${line}</span>`;
+        })
+        .reduce(stanzas ? wrapper('<span class="verse__stanza">', '</span>') : nowrap, [])
+        .reduce(wrapper('<span class="verse">', '</span>'), [])
+        .join('\n');
+    },
+  );
 }
 
 function extractEpigraphs(adoc: Asciidoc): [Array<Epigraph>, Asciidoc] {

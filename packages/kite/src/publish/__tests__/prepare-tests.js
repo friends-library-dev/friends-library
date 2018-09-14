@@ -178,6 +178,40 @@ ____
     expect(section.html).not.toContain('<pre class="content">');
   });
 
+  it('converts made-up syntax for poetry in footnotes', () => {
+    const adoc = `
+== Chapter
+
+Hash baz.^
+footnote:[Foo bar.
+\`    Foo bar,
+     So much baz.
+     - - - - - -
+     Foo bar
+     And baz.  \`
+End of footnote here.]
+    `.trim();
+
+    const { notes } = prepare(precursor(adoc));
+
+    const expected = `
+<span class="verse">
+<span class="verse__stanza">
+<span class="verse__line">Foo bar,</span>
+<span class="verse__line">So much baz.</span>
+</span>
+<span class="verse__stanza">
+<span class="verse__line">Foo bar</span>
+<span class="verse__line">And baz.</span>
+</span>
+</span>
+    `.trim();
+
+    expect(notes.get('uuid1')).toContain(expected);
+    expect(notes.get('uuid1')).not.toContain('`');
+    expect(notes.get('uuid1')).not.toContain('- -');
+  });
+
   it('converts to curly quotes', () => {
     const { sections } = prepare(precursor('== Ch1\n\nHello "`good`" sir.'));
 
