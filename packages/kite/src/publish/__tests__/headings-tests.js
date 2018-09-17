@@ -79,6 +79,14 @@ describe('navText()', () => {
     expect(replaced).toContain('Foobar, etc.');
   });
 
+  it('trims trailing comma', () => {
+    const heading = { text: 'Foobar,' };
+
+    const replaced = navText(heading);
+
+    expect(replaced).not.toContain('Foobar,');
+  });
+
   it('returns heading.text if no short text and not sequence', () => {
     const heading = { text: 'Foobar' };
     const text = navText(heading);

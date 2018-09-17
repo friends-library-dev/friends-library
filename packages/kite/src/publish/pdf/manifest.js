@@ -2,7 +2,7 @@
 import { flow } from 'lodash';
 import { toRoman } from 'roman-numerals';
 import type { Job, FileManifest, Css, Html, Heading } from '../../type';
-import { capitalizeTitle, trimTrailingPeriod } from '../text';
+import { capitalizeTitle, trimTrailingPunctuation } from '../text';
 import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';
 import { removeMobiBrs } from '../html';
@@ -28,6 +28,7 @@ function getCss({ target, spec: { notes, meta, sections, config, customCss } }: 
     'pdf/sass/toc.scss',
     'pdf/sass/chapter-heading.scss',
     ...target === 'pdf-web' ? ['pdf/sass/web.scss'] : ['pdf/sass/print.scss'],
+    // 'pdf/sass/print-6x9.scss',
     ...notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : [],
   ]
     .map(toCss)
@@ -61,7 +62,7 @@ function joinSections([_, job]: [Html, Job]): [Html, Job] {
 
 function runningHeader({ shortText, text, sequence }: Heading): string {
   if (shortText || text || !sequence) {
-    return capitalizeTitle(trimTrailingPeriod(shortText || text));
+    return capitalizeTitle(trimTrailingPunctuation(shortText || text));
   }
 
   return `${sequence.type} ${toRoman(sequence.number)}`;

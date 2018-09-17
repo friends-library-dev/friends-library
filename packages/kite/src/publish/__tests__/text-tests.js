@@ -1,4 +1,4 @@
-import { capitalizeTitle, wrapper, trimTrailingPeriod } from '../text';
+import { capitalizeTitle, wrapper, trimTrailingPunctuation } from '../text';
 
 describe('capitalizeTitle()', () => {
   const pairs = [
@@ -23,13 +23,13 @@ describe('wrapper()', () => {
   });
 });
 
-describe('trimTrailingPeriod()', () => {
+describe('trimTrailingPunctuation()', () => {
   const pairs = [
     ['Foo bar.', 'Foo bar'],
     ['Foo bar, etc.', 'Foo bar, etc.'],
   ];
 
   test.each(pairs)('it transforms %s to %s', (input, expected) => {
-    expect(trimTrailingPeriod(input)).toBe(expected);
+    expect(trimTrailingPunctuation(input)).toBe(expected);
   });
 });

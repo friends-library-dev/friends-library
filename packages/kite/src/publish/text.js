@@ -16,8 +16,8 @@ export function capitalizeTitle(str: string): string {
     .join(' ');
 }
 
-export function trimTrailingPeriod(str: string): string {
-  return str.replace(/(?<!etc)\.$/, '');
+export function trimTrailingPunctuation(str: string): string {
+  return str.replace(/(?<!etc)[.,]$/, '');
 }
 
 export function wrapper(
