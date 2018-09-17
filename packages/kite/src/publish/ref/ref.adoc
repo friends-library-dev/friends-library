@@ -9,6 +9,85 @@ ____
 Whose faith follow; considering the outcome of their conduct.
 ____
 
+== Footnote with Poetry
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.^
+footnote:[Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+`    Foo bar,
+     So much baz.
+     - - - - - -
+     Foo bar
+     And baz. `
+Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.]
+Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+== Multi-paragraph footnote
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.^
+footnote:[First, lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+{footnote-paragraph-split}
+Second, duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+{footnote-paragraph-split}
+Third, lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.]
+
+== Breaks
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+[.offset]
+Besides this, I wrote another letter to the judges, to this effect:--
+
+"`I am moved to write unto you that ye do true justice to every man;
+and see that none be oppressed, or wronged, or any oaths imposed;
+for the land mourneth because of oaths, and adulteries, and sorceries, and drunkenness,
+and profaneness.
+O consider, ye that are men set in authority: be moderate,
+and in lowliness consider these things.
+Show mercy to the fatherless, to the widows, and to the poor;
+and take heed of rewards or gifts, for they blind the eyes of the wise;
+the Lord doth loathe all such.
+Love mercy and true judgment, justice, and righteousness, for the Lord delighteth therein.
+Consider these things in time, and take heed how ye spend your time.
+Now ye have time, prize it; and show mercy, that ye may receive mercy from the Lord;
+for he is coming to try all things, and will plead with all flesh, as by fire.`"
+
+[.small-break]
+'''
+
+Moreover, I laid before the judges what an hurtful thing it was,
+that prisoners should lie so long in jail;
+showing how they learned wickedness one of another in talking of their bad deeds:
+and therefore speedy justice should be done.
+For I was a tender youth, and dwelt in the fear of God,
+and being grieved to hear their bad language,
+I was often made to reprove them for their wicked words,
+and evil conduct towards each other.
+People admired that I was so preserved and kept;
+for they could never catch a word or action from me, to make any thing of against me,
+all the time I was there;
+for the Lord's infinite power upheld and preserved me all that time;
+to him be praises and glory for ever!
+
 == Discourse
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
@@ -192,9 +271,9 @@ Ann Jones
 [.asterism]
 '''
 
-_The next letter uses the `.letter-participants` style heading:_
+_The next letter uses the `.letter-heading` style heading:_
 
-[.letter-participants]
+[.letter-heading]
 Samuel Fothergill to His Sister
 
 [.salutation]
@@ -262,6 +341,27 @@ exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
+
+[.asterism]
+'''
+_The next letter has TWO closing contexts:_
+
+[.salutation]
+Dear friend,
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.signed-section-context-close]
+Given forth in Launceston Jail, in Cornwall.
+
+[.signed-section-context-close]
+To the Bowlers in the Green.
+
 
 == Chapter with Synopsis
 
@@ -336,6 +436,9 @@ exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
+
+[.the-end]
+THE END.
 
 == A Poem
 

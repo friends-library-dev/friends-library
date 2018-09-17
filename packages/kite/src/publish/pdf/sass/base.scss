@@ -71,6 +71,10 @@ div.asterism {
   display: none;
 }
 
+.sect1 {
+  counter-reset: footnote;
+}
+
 .sectionbody {
   string-set: chapter attr(short);
 }
@@ -91,9 +95,11 @@ div.asterism {
   float: footnote;
   padding-top: 0.5em;
   text-indent: 0;
-  text-align: left !important;
+  text-align: justify !important;
   font-weight: 400;
   text-transform: none !important;
+  font-variant: normal !important;
+  font-style: normal;
 }
 
 .blank-page {

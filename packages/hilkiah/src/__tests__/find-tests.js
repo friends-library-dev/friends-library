@@ -21,6 +21,12 @@ describe('find()', () => {
     expect(found.length).toBe(1);
   });
 
+  it('does not find Revelation reference in "chap."', () => {
+    const found = find('said of him by the prophet Isaiah, chap. xlix. 6, “I will');
+
+    expect(found).toEqual([]);
+  });
+
   const individualVerses = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],

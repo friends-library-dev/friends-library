@@ -86,17 +86,17 @@ function cleanup(lines: Array<string>, line: string, index: number): Array<strin
 
 export function makeSplitLines(maxLen: number, minLen: number): * {
   return (input: string): string => {
-    return input
+    const split = input
       .replace(/footnote:\[/gm, '^\nfootnote:[')
       .replace(/\] /gm, ']\n')
-      .replace(/((?:[A-Za-z]{3}| [a-z]{2}| 1[678][0-9]{2}))\.(`")? (.)/gm, (full, a, b, c) => {
+      .replace(/((?:[A-Za-z]{3}| [a-z]{2}| 1[678][0-9]{2}))(\.|\?)(`"|')? (.)/gm, (full, a, b, c, d) => {
         if (a === 'viz') {
           return full;
         }
-        if (a === 'etc' && c.match(/[a-z]/)) {
+        if (a === 'etc' && d.match(/[a-z]/)) {
           return full;
         }
-        return `${a}.${b || ''}${NEWLINE}${c}`;
+        return `${a}${b}${c || ''}${NEWLINE}${d}`;
       })
       .replace(/([A-Za-z]{2})!(`")? ([A-Z])/gm, `$1!$2${NEWLINE}$3`)
       .split(NEWLINE)
@@ -116,7 +116,20 @@ export function makeSplitLines(maxLen: number, minLen: number): * {
           .join('\n');
       })
       .join('\n');
+    return fixFootnoteSplitters(split);
   };
 }
 
 export const splitLines: (input: string) => string = makeSplitLines(90, 45);
+
+function fixFootnoteSplitters(input: string): string {
+  return input
+    .replace(
+      /{(\n)?footnote(\n)?-(\n)?paragraph(\n)?-(\n)?split(\n)?}/gm,
+      '\n{footnote-paragraph-split}\n',
+    )
+    .replace(
+      /\n+{footnote-paragraph-split}\n+/gm,
+      '\n{footnote-paragraph-split}\n',
+    );
+}

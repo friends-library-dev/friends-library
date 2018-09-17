@@ -68,4 +68,12 @@ describe('processAsciidoc()', () => {
 
     expect(processed).toBe('== C1\n\nFoo bar\nW+++.+++ Evans came with T. Evans\nto lunch');
   });
+
+  it('escapes periods after single digit at beginning of line', () => {
+    const adoc = '== C1\n\nFoo bar\n2. Foobar\njim jam';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== C1\n\nFoo bar\n2+++.+++ Foobar\njim jam');
+  });
 });

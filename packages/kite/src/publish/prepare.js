@@ -3,7 +3,7 @@ import uuid from 'uuid/v4';
 import striptags from 'striptags';
 import { toArabic } from 'roman-numerals';
 import Asciidoctor from 'asciidoctor.js';
-import { flow, memoize } from 'lodash';
+import { flow, memoize, intersection } from 'lodash';
 import { wrapper } from './text';
 import type {
   Epigraph,
@@ -106,12 +106,15 @@ function parseHeading(text: string): Object {
 }
 
 const asciidoctor = new Asciidoctor();
+const br7 = '<br class="m7"/>';
+const raw = (input: string): Asciidoc => `++++\n${input}\n++++`;
 
 const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   replaceAsterisms,
   changeChapterSynopsisMarkup,
   changeChapterSubtitleBlurbMarkup,
   prepareDiscourseParts,
+  adoc => adoc.replace(/[–|—]/g, '--'),
   adoc => adoc.replace(/\[\.alt\]\n=== /gm, '[discrete.alt]\n=== '),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
@@ -120,17 +123,43 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;'),
   adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gm, '&#8212;$1'),
   adoc => adoc.replace(/ &#8220;\n([a-z])/gim, ' &#8220;$1'),
+  adoc => adoc.replace(/&#8212;(?:\n)?_([^_]+?)_(?=[^_])/gm, '&#8212;__$1__'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
+  adoc => adoc.replace(/\[\.small-break\]\n'''/gm, raw(`<div class="small-break">${br7}</div>`)),
   adoc => asciidoctor.convert(adoc),
   changeVerseMarkup,
   html => html.replace(/<hr>/igm, '<hr />'),
   html => html.replace(/<br>/igm, '<br />'),
-  html => html.replace(/class="paragraph salutation"/gim, 'class="salutation"'),
-  html => html.replace(/class="paragraph discourse-part"/gim, 'class="discourse-part"'),
-  html => html.replace(/class="paragraph offset"/gim, 'class="offset"'),
-  html => html.replace(/class="paragraph signed-section-/gim, 'class="signed-section-'),
-  html => html.replace(/class="paragraph letter-participants"/gim, 'class="letter-participants"'),
+  removeParagraphClass,
+  html => html.replace(/(?<=<div class="offset">\n)([\s\S]*?)(?=<\/div>)/gim, `${br7}$1${br7}`),
+  html => html.replace(/<div class="discourse-part">/gm, `<div class="discourse-part">${br7}`),
 ]));
+
+
+function removeParagraphClass(html: Html): Html {
+  const standalone = [
+    'salutation',
+    'discourse-part',
+    'offset',
+    'the-end',
+    'letter-participants',
+    'signed-section-signature',
+    'signed-section-closing',
+    'signed-section-context-open',
+    'signed-section-context-close',
+  ];
+
+  return html.replace(
+    /<div class="paragraph ([a-z0-9- ]+?)">/g,
+    (full, extra) => {
+      const classes = extra.split(' ');
+      if (intersection(standalone, classes).length) {
+        return `<div class="${extra}">`;
+      }
+      return full;
+    },
+  );
+}
 
 function changeVerseMarkup(html: Html): Html {
   return html.replace(
@@ -159,7 +188,7 @@ function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
         .map(line => line.trim())
         .map(line => line.replace(/^\* /, ''))
         .join('&#8212;');
-      return `++++\n<p class="chapter-synopsis">${joined}</p>\n++++`;
+      return raw(`<p class="chapter-synopsis">${joined}</p>`);
     },
   );
 }
@@ -172,7 +201,7 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
         .trim()
         .split('\n')
         .join(' ');
-      return `++++\n<h3 class="chapter-subtitle--blurb">${joined}</h3>\n++++`;
+      return raw(`<h3 class="chapter-subtitle--blurb">${joined}</h3>`);
     },
   );
 }
@@ -187,7 +216,7 @@ function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
 function replaceAsterisms(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /\[\.asterism\]\n'''/igm,
-    '++++\n<div class="asterism">*&#160;&#160;*&#160;&#160;*</div>\n++++',
+    raw('<div class="asterism">*&#160;&#160;*&#160;&#160;*</div>'),
   );
 }
 
@@ -208,8 +237,9 @@ function extractNotes(srcHtml: Html): [Notes, Html] {
     (full, num) => {
       const note = striptags(full, ['em', 'i', 'strong', 'b'])
         .trim()
+        .replace(/{footnote-paragraph-split}/g, `<span class="fn-split">${br7}${br7}</span>`)
         .replace(/^[0-9]+\. /, '');
-      notes.set(map.get(num) || '', note);
+      notes.set(map.get(num) || '', expandFootnotePoetry(note));
       return '';
     },
   );
@@ -217,6 +247,30 @@ function extractNotes(srcHtml: Html): [Notes, Html] {
   html = html.replace(/<div id="footnotes"[\s\S]+?<\/div>/igm, '');
 
   return [notes, html];
+}
+
+function expandFootnotePoetry(html: Html): Html {
+  const nowrap = wrapper('', '');
+  return html.replace(
+    / ` {4}(.+?) *?`( )?/gim,
+    (_, poem) => {
+      let stanzas = false;
+      return poem
+        .split('      ')
+        .map(line => {
+          if (line.match(/^- - -/)) {
+            stanzas = true;
+            return '</span>\n<span class="verse__stanza">';
+          }
+          const spacer = '&#160;&#160;&#160;&#160;';
+          line = line.replace(/^ +/, s => s.split().map(() => spacer).join(''));
+          return `<span class="verse__line">${line}</span>`;
+        })
+        .reduce(stanzas ? wrapper('<span class="verse__stanza">', '</span>') : nowrap, [])
+        .reduce(wrapper('<span class="verse">', '</span>'), [])
+        .join('\n');
+    },
+  );
 }
 
 function extractEpigraphs(adoc: Asciidoc): [Array<Epigraph>, Asciidoc] {

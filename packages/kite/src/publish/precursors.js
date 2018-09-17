@@ -143,11 +143,18 @@ function resolveLang(lang: Lang) {
 }
 
 function globAsciidoc(dir: string): Asciidoc {
-  const adoc = glob(`${dir}/*.adoc`).map(path => fs.readFileSync(path).toString()).join('\n');
+  const pattern = getPattern();
+  const adoc = glob(`${dir}/${pattern}.adoc`).map(path => fs.readFileSync(path).toString()).join('\n');
   // fs.outputFileSync('/Users/jared/Desktop/error.adoc', adoc); // debug asciidoctor.js errors
   return adoc;
 }
 
 function nonDirs(path: string): boolean {
   return !path.match(/\.(json|css)$/);
+}
+
+function getPattern(): string {
+  const { argv } = process;
+  const index = argv.indexOf('--glob');
+  return index === -1 ? '*' : argv[index + 1];
 }

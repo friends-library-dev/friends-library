@@ -56,6 +56,22 @@ describe('prepare()', () => {
     expect(section.html).toContain('bar&#8221;&#8212;&#8220;jim');
   });
 
+  it('correctly handles unencoded actual emdashes in source asciidoc', () => {
+    const adoc = '== C1\n\nFoo—bar.';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('Foo&#8212;bar.');
+  });
+
+  it('self-corrects problematic italics after emdash', () => {
+    const adoc = '== C1\n\nFoo--_bar_. Beep--\n_boop_ baz.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('Foo&#8212;<em>bar</em>.');
+    expect(section.html).toContain('Beep&#8212;<em>boop</em> baz.');
+  });
+
   it('transfers heading style class to placeholder', () => {
     const adoc = '[.style-blurb]\n== Title\n\nPara.';
     const { sections: [section] } = prepare(precursor(adoc));
@@ -178,6 +194,40 @@ ____
     expect(section.html).not.toContain('<pre class="content">');
   });
 
+  it('converts made-up syntax for poetry in footnotes', () => {
+    const adoc = `
+== Chapter
+
+Hash baz.^
+footnote:[Foo bar.
+\`    Foo bar,
+     So much baz.
+     - - - - - -
+     Foo bar
+     And baz.  \`
+End of footnote here.]
+    `.trim();
+
+    const { notes } = prepare(precursor(adoc));
+
+    const expected = `
+<span class="verse">
+<span class="verse__stanza">
+<span class="verse__line">Foo bar,</span>
+<span class="verse__line">So much baz.</span>
+</span>
+<span class="verse__stanza">
+<span class="verse__line">Foo bar</span>
+<span class="verse__line">And baz.</span>
+</span>
+</span>
+    `.trim();
+
+    expect(notes.get('uuid1')).toContain(expected);
+    expect(notes.get('uuid1')).not.toContain('`');
+    expect(notes.get('uuid1')).not.toContain('- -');
+  });
+
   it('converts to curly quotes', () => {
     const { sections } = prepare(precursor('== Ch1\n\nHello "`good`" sir.'));
 
@@ -298,5 +348,67 @@ Objection: Qux!
     expect(section.html).toContain('<em>Question:</em>');
     expect(section.html).toContain('<em>Answer:</em>');
     expect(section.html).toContain('<em>Objection:</em>');
+  });
+
+  it('replaces hr.small-break with custom markup', () => {
+    const adoc = '== Ch1\n\nPara.\n\n[.small-break]\n\'\'\'\n\nPara.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<div class="small-break">');
+  });
+
+  it('adds m7 breaks to .offset sections', () => {
+    const adoc = '== Ch1\n\n[.offset]\nFoo.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<br class="m7"/><p>Foo.</p>\n<br class="m7"/>');
+  });
+
+  it('adds m7 break to top of .discourse-part sections', () => {
+    const adoc = '== Ch1\n\n[.discourse-part]\nFoo.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<div class="discourse-part"><br class="m7"/>');
+  });
+
+  it('adds special markup for faux multi-paragraph footnotes', () => {
+    const adoc = `
+== Chapter 1
+
+Foo.^
+footnote:[Jim jam.
+Foo bar.
+{footnote-paragraph-split}
+Hash baz.]
+    `.trim();
+
+    const { notes } = prepare(precursor(adoc));
+
+    const splitMarkup = '<span class="fn-split"><br class="m7"/><br class="m7"/></span>';
+    expect(notes.get('uuid1')).toContain(`bar. ${splitMarkup} Hash`);
+  });
+
+  const removeParagraphClass = [
+    'salutation',
+    'discourse-part',
+    'offset',
+    'the-end',
+    'letter-participants',
+    'signed-section-signature',
+    'signed-section-closing',
+    'signed-section-context-open',
+    'signed-section-context-close',
+  ];
+
+  test.each(removeParagraphClass)('it removes the paragraph class on %1 divs', (kls) => {
+    const adoc = `== Ch1\n\n[.${kls}]\nFoobar.`;
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain(`<div class="${kls}">`);
+    expect(section.html).not.toContain('paragraph');
   });
 });

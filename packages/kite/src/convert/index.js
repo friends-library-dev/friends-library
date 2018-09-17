@@ -1,5 +1,5 @@
 // @flow
-import fs from 'fs';
+import fs from 'fs-extra';
 import { flow } from 'lodash';
 import { red, green } from '@friends-library/color';
 import hilkiah from '@friends-library/hilkiah';
@@ -11,6 +11,7 @@ const { execSync } = require('child_process');
 
 export default function convert(file: string): void {
   const { src, target } = validate(file);
+  prepMultiParagraphFootnotes(src);
   generateRawAsciiDoc(src, target);
 
   const processed = flow(
@@ -23,6 +24,23 @@ export default function convert(file: string): void {
 
   fs.writeFileSync(target, processed);
   green(`Processed asciidoc file overwritten at: ${target}`);
+}
+
+function prepMultiParagraphFootnotes(src: string): void {
+  const xml = fs.readFileSync(src).toString();
+  const replaced = xml.replace(
+    /<footnote>([\s\S]+?)<\/footnote>/gm,
+    (_, note) => {
+      const prepped = note.replace(
+        /<\/para><para> */g,
+        '{footnote-paragraph-split}',
+      );
+      return `<footnote>${prepped}</footnote>`;
+    },
+  );
+  if (replaced !== xml) {
+    fs.writeFileSync(src, replaced);
+  }
 }
 
 function validate(src: string): {| src: string, target: string |} {
