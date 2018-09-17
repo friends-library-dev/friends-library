@@ -71,6 +71,10 @@ div.asterism {
   display: none;
 }
 
+.sect1 {
+  counter-reset: footnote;
+}
+
 .sectionbody {
   string-set: chapter attr(short);
 }
