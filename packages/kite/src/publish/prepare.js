@@ -114,6 +114,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   changeChapterSynopsisMarkup,
   changeChapterSubtitleBlurbMarkup,
   prepareDiscourseParts,
+  adoc => adoc.replace(/[–|—]/g, '--'),
   adoc => adoc.replace(/\[\.alt\]\n=== /gm, '[discrete.alt]\n=== '),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
@@ -122,6 +123,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;'),
   adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gm, '&#8212;$1'),
   adoc => adoc.replace(/ &#8220;\n([a-z])/gim, ' &#8220;$1'),
+  adoc => adoc.replace(/&#8212;(?:\n)?_([^_]+?)_(?=[^_])/gm, '&#8212;__$1__'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
   adoc => adoc.replace(/\[\.small-break\]\n'''/gm, raw(`<div class="small-break">${br7}</div>`)),
   adoc => asciidoctor.convert(adoc),
@@ -132,6 +134,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   html => html.replace(/(?<=<div class="offset">\n)([\s\S]*?)(?=<\/div>)/gim, `${br7}$1${br7}`),
   html => html.replace(/<div class="discourse-part">/gm, `<div class="discourse-part">${br7}`),
 ]));
+
 
 function removeParagraphClass(html: Html): Html {
   const standalone = [

@@ -56,6 +56,22 @@ describe('prepare()', () => {
     expect(section.html).toContain('bar&#8221;&#8212;&#8220;jim');
   });
 
+  it('correctly handles unencoded actual emdashes in source asciidoc', () => {
+    const adoc = '== C1\n\nFoo—bar.';
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('Foo&#8212;bar.');
+  });
+
+  it('self-corrects problematic italics after emdash', () => {
+    const adoc = '== C1\n\nFoo--_bar_. Beep--\n_boop_ baz.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('Foo&#8212;<em>bar</em>.');
+    expect(section.html).toContain('Beep&#8212;<em>boop</em> baz.');
+  });
+
   it('transfers heading style class to placeholder', () => {
     const adoc = '[.style-blurb]\n== Title\n\nPara.';
     const { sections: [section] } = prepare(precursor(adoc));
