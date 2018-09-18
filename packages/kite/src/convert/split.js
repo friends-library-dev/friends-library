@@ -30,8 +30,19 @@ function scoreForceSplit(
     }
     if (prev) {
       score += Math.abs(part.length - prev.length);
+
       // prevent splitting between double-dash
       if (part.match(/^-/) && prev.match(/-$/)) {
+        score += 200;
+      }
+
+      // prevent splitting inside smart quote open
+      if (prev.match(/("|')$/) && part.match(/^`/)) {
+        score += 200;
+      }
+
+      // prevent splitting inside smart quote close
+      if (prev.match(/`$/) && part.match(/^("|')/)) {
         score += 200;
       }
     }
