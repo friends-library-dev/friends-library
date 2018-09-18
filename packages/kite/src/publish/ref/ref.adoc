@@ -9,6 +9,30 @@ ____
 Whose faith follow; considering the outcome of their conduct.
 ____
 
+== Definition List
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+Original Edition::
+Thou takest up Cain's weapons, and fain wouldst thou kill thy brother,
+because his sacrifice in the faith testifies against thine.
+
+This Edition::
+You take up Cain's weapons, and you would eagerly kill your brother,
+because his sacrifice in the faith testifies against yours.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
 == Footnote with Poetry
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
