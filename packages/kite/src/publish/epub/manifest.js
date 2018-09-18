@@ -61,7 +61,7 @@ function notesFile(job: Job): SubManifest<Html> {
 }
 
 
-function css({ target }: Job): Css {
+function css({ target, spec: { customCss } }: Job): Css {
   let combined = [
     toCss('sass/common.scss'),
     toCss('sass/ebook.scss'),
@@ -75,6 +75,10 @@ function css({ target }: Job): Css {
     combined += `\n@media amzn-mobi {\n${toCss('mobi/sass/mobi.scss')}\n}`;
     combined += `\n@media amzn-kf8 {\n${toCss('mobi/sass/kf8.scss')}\n}`;
   }
+
+  combined += customCss.all || '';
+  combined += customCss.ebook || '';
+  combined += customCss[target] || '';
 
   return combined;
 }

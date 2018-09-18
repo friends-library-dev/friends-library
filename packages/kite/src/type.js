@@ -44,12 +44,16 @@ export type SourceSpec = {|
   +filename: string,
   +epigraphs: Array<Epigraph>,
   +config: Object,
-  +customCss: {[FileType]: Css},
+  +customCss: CustomCss,
   +meta: DocumentMeta,
   +revision: DocumentRevision,
   +sections: Array<DocSection>,
   +notes: Notes,
 |};
+
+export type CustomCss = {
+  [FileType | 'pdf' | 'ebook' | 'all']: Css,
+};
 
 export type Command = {|
   +targets: Array<FileType>,
@@ -93,7 +97,7 @@ export type SourcePrecursor = {|
   +lang: Lang,
   +adoc: Asciidoc,
   +config: Object,
-  +customCss: {[FileType]: Css},
+  +customCss: CustomCss,
   +revision: DocumentRevision,
   +meta: DocumentMeta,
   +filename: string,
