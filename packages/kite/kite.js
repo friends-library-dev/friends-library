@@ -2,10 +2,12 @@
 require('@babel/register');
 require('dotenv').config({ path: `${__dirname}/.env` });
 const yargs = require('yargs');
+const { omit } = require('lodash');
 const publish = require('./src/publish').default;
 const publishRef = require('./src/publish/ref').default;
 const convert = require('./src/convert').default;
 const chapterize = require('./src/chapterize').default;
+const cover = require('./src/cover').default;
 
 // eslint-disable-next-line no-unused-expressions
 yargs
@@ -54,6 +56,14 @@ yargs
       });
     },
     ({ file, dest, chStart }) => chapterize(file, dest, chStart),
+  )
+  .command(
+    ['cover'],
+    'create a book cover',
+    (args) => {
+      const argv = omit(args.argv, '_', '$0', 'command');
+      cover(argv);
+    },
   )
   .help()
   .argv;
