@@ -10,8 +10,8 @@ import { frontmatter } from './frontmatter';
 
 export function getPdfManifest(job: Job): FileManifest {
   return {
-    'book.html': getHtml(job),
-    'book.css': getCss(job),
+    'doc.html': getHtml(job),
+    'doc.css': getCss(job),
     'line.svg': file('pdf/line.svg'),
   };
 }
@@ -31,7 +31,7 @@ function getCss({ target, spec: { notes, meta, sections, config, customCss } }: 
     // 'pdf/sass/print-6x9.scss',
     ...notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : [],
   ]
-    .map(toCss)
+    .map(path => toCss(path))
     .join('\n')
     .concat(customCss[target] || '')
     .replace(/{{{ header.title }}}/g, title);
@@ -88,7 +88,7 @@ function wrapHtml([html, job]: [Html, Job]): [Html, Job] {
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="book.css" rel="stylesheet" type="text/css">
+  <link href="doc.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   ${html}

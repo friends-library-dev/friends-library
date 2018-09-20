@@ -12,13 +12,13 @@ describe('getPdfManifest()', () => {
   it('has css file', () => {
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.css']).toContain('@page');
+    expect(manifest['doc.css']).toContain('@page');
   });
 
   it('html wrapped in full document', () => {
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.html']).toContain('<!DOCTYPE html>');
+    expect(manifest['doc.html']).toContain('<!DOCTYPE html>');
   });
 
   test('css file gets header title dynamically from job', () => {
@@ -27,7 +27,7 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.css']).toContain('content: "Anarchy of the Ranters";');
+    expect(manifest['doc.css']).toContain('content: "Anarchy of the Ranters";');
   });
 
   test('css file uses author for title if only one section', () => {
@@ -37,7 +37,7 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.css']).toContain('content: "Robert Barclay";');
+    expect(manifest['doc.css']).toContain('content: "Robert Barclay";');
   });
 
   test('config short title for running headers preferred, if present', () => {
@@ -47,7 +47,7 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.css']).toContain('content: "Anarchy";');
+    expect(manifest['doc.css']).toContain('content: "Anarchy";');
   });
 
   test('html includes combined sections', () => {
@@ -55,8 +55,8 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.html']).toContain('C1');
-    expect(manifest['book.html']).toContain('C2');
+    expect(manifest['doc.html']).toContain('C1');
+    expect(manifest['doc.html']).toContain('C2');
   });
 
   test('short chapter titles added to section body attr', () => {
@@ -65,7 +65,7 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.html']).toContain('sectionbody" short="Intro">');
+    expect(manifest['doc.html']).toContain('sectionbody" short="Intro">');
   });
 
   test('adds first chapter class to first chapter', () => {
@@ -73,8 +73,8 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.html']).toContain('<div class="sect1 first-chapter"');
-    expect(manifest['book.html']).toContain('<div class="sect1"');
+    expect(manifest['doc.html']).toContain('<div class="sect1 first-chapter"');
+    expect(manifest['doc.html']).toContain('<div class="sect1"');
   });
 
   it('moves footnotes back inline', () => {
@@ -83,7 +83,7 @@ describe('getPdfManifest()', () => {
 
     const expected = 'A paragraph<span class="footnote"><em>So</em> cool!</span> with';
 
-    expect(manifest['book.html']).toContain(expected);
+    expect(manifest['doc.html']).toContain(expected);
   });
 
   test('docs with less than 5 footnotes use symbols', () => {
@@ -91,7 +91,7 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.css']).toContain('counter(footnote, symbols(');
+    expect(manifest['doc.css']).toContain('counter(footnote, symbols(');
   });
 
   test('doc with more than 4 footnotes do not use symbols', () => {
@@ -100,7 +100,7 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.css']).not.toContain('counter(footnote, symbols(');
+    expect(manifest['doc.css']).not.toContain('counter(footnote, symbols(');
   });
 
   test('custom css is appended', () => {
@@ -110,6 +110,6 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['book.css']).toContain('/* my custom css */');
+    expect(manifest['doc.css']).toContain('/* my custom css */');
   });
 });

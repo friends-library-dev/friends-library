@@ -9,9 +9,10 @@ export const file = memoize((path: string): string => {
   return fs.readFileSync(pathResolve(__dirname, path)).toString();
 });
 
-export const toCss = memoize((path: string): Css => {
+export const toCss = memoize((path: string, vars: { [string]: string } = {}): Css => {
+  const sassVars = Object.keys(vars).map(name => `$${name}: ${vars[name]};`).join('\n');
   return sass.renderSync({
-    data: file(path),
+    data: `${sassVars}\n${file(path)}`,
   }).css.toString().replace(/^@charset "UTF-8";\n/gm, '');
 });
 

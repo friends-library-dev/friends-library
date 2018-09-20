@@ -1,0 +1,175 @@
+$bg: #fdf6e6;
+
+html {
+  font-size: 1in;
+  background: $bg;
+  color: #000;
+  font-family: "Bodoni 72 Smallcaps", Georgia, serif;
+}
+
+html.size--s {
+  font-size: 0.85in;
+
+  .title {
+    padding: 1em 0.5em;
+  }
+}
+
+html.size--xl,
+html.size--xxl {
+  font-size: 1.1in;
+}
+
+h1, h2 {
+  font-weight: 400 !important;
+}
+
+@page {
+  size: $cover-width $cover-height landscape;
+  margin: 0;
+}
+
+.title,
+.author {
+  position: absolute;
+  width: $page-width - (2 * $safety);
+  right: $trim + $safety;
+  text-align: center;
+  margin: 0;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 0.6rem;
+  top: $trim + $safety;
+}
+
+.author {
+  font-size: 0.25rem;
+  font-style: italic;
+  bottom: $trim + $safety + $safety;
+}
+
+.spine-title,
+.spine-author {
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  position: absolute;
+  writing-mode: vertical-rl;
+  line-height: $spine-width;
+}
+
+.spine-author {
+  font-size: 0.2rem;
+  font-style: italic;
+  bottom: $trim + $safety + $trim;
+  text-align: right;
+}
+
+.spine-title {
+  font-size: 0.3rem;
+  width: $spine-width;
+  top: $trim + $safety + $trim;
+}
+
+.trim,
+.safety,
+.dimensions {
+  display: none;
+  position: absolute;
+}
+
+.guides {
+  .trim,
+  .safety,
+  .dimensions {
+    display: block;
+  }
+}
+
+.dimensions {
+  font-size: 10px;
+  top: 1px;
+  left: 1px;
+}
+code + code {
+  margin-left: 1.2em;
+}
+
+.trim {
+  background-color: #c6ebf2;
+
+  &--l {
+    top: 0;
+    left: 0;
+    width: $trim;
+    height: $cover-height;
+  }
+
+  &--r {
+    top: 0;
+    right: 0;
+    width: $trim;
+    height: $cover-height;
+  }
+
+  &--t {
+    top: 0;
+    left: 0;
+    height: $trim;
+    width: $cover-width;
+  }
+
+  &--b {
+    bottom: 0;
+    left: 0;
+    height: $trim;
+    width: $cover-width;
+  }
+}
+
+.safety {
+  background-color: #6ac3d2;
+
+  &--spine {
+    border: ($safety + $fold) solid #6ac3d2;
+    width: $spine-width - (2 * $fold);
+    height: $cover-height;
+    background-color: $bg;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+    right: 0;
+    transform: translateX(-50%);
+  }
+
+  &--l {
+    top: $trim;
+    left: $trim;
+    width: $safety;
+    height: $cover-height - (2 * $trim);
+  }
+
+  &--r {
+    top: $trim;
+    right: $trim;
+    width: $safety;
+    height: $cover-height - (2 * $trim);
+  }
+
+  &--t {
+    top: $trim;
+    left: $trim;
+    height: $safety;
+    width: $cover-width - (2 * $trim);
+  }
+
+  &--b {
+    bottom: $trim;
+    left: $trim;
+    height: $safety;
+    width: $cover-width - (2 * $trim);
+  }
+}

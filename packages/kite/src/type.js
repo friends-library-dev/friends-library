@@ -22,6 +22,19 @@ export type Job = {|
   +filename: string,
 |};
 
+export type BookSize = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
+
+export type BookSizeData = {|
+  name: BookSize,
+  size: 's' | 'm' | 'l' | 'xl' | 'xxl',
+  dims: {|
+    inches: {|
+      height: number,
+      width: number,
+    |}
+  |}
+|};
+
 export type SourceSpec = {|
   +id: string,
   +lang: Lang,
