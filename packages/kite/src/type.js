@@ -60,6 +60,7 @@ export type Command = {|
   +frontmatter: boolean,
   +printSize?: PrintSizeAbbrev,
   +debugPrintMargins: boolean,
+  +condense: boolean,
   +email?: string,
 |};
 

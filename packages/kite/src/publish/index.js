@@ -48,8 +48,17 @@ export function take(job: Job): Promise<string> {
 }
 
 export function createCommand(argv: Object): Command {
-  const cmd = defaults(omit(argv, ['$0', '_', 'path', 'no-frontmatter', 'print-size', 'debug-print-margins']), {
-    target: ['epub', 'mobi', 'pdf-web', 'pdf-print'],
+  const remove = [
+    '$0',
+    '_',
+    'path',
+    'no-frontmatter',
+    'print-size',
+    'debug-print-margins',
+  ];
+
+  const cmd = defaults(omit(argv, remove), {
+    target: ['pdf-print'],
     perform: false,
     check: false,
     open: false,
@@ -57,6 +66,7 @@ export function createCommand(argv: Object): Command {
     email: null,
     frontmatter: true,
     debugPrintMargins: false,
+    condense: false,
   });
 
   if (cmd.perform === true) {
@@ -80,7 +90,7 @@ export function createCommand(argv: Object): Command {
     cmd.targets = ['pdf-print', 'pdf-web'];
   }
 
-  // target=all shorthand for ALL formats (or leave off --target arg)
+  // target=all shorthand for ALL formats
   if (cmd.targets.length === 1 && cmd.targets[0] === 'all') {
     cmd.targets = ['epub', 'mobi', 'pdf-print', 'pdf-web'];
   }
