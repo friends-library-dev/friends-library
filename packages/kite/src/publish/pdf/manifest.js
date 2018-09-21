@@ -18,7 +18,7 @@ export function getPdfManifest(job: Job): FileManifest {
 }
 
 function getCss(job: Job): Css {
-  const { target, spec: { notes, customCss } } = job;
+  const { target, spec: { notes, customCss }, cmd: { condense } } = job;
   const vars = getSassVars(job);
   return [
     'sass/common.scss',
@@ -31,6 +31,7 @@ function getCss(job: Job): Css {
     'pdf/sass/chapter-heading.scss',
     ...target === 'pdf-print' ? ['pdf/sass/print.scss'] : ['pdf/sass/web.scss'],
     ...notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : [],
+    ...condense ? ['pdf/sass/condense.scss'] : [],
   ]
     .map(path => toCss(path, vars))
     .join('\n')
