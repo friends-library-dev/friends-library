@@ -20,6 +20,7 @@ export function prepare(precursor: SourcePrecursor): SourceSpec {
   const { epigraphs, sections, notes } = processAdoc(precursor.adoc);
   return {
     id: precursor.id,
+    size: precursor.adoc.length,
     lang: precursor.lang,
     meta: precursor.meta,
     filename: precursor.filename,

@@ -22,7 +22,9 @@ function getRefPrecursor(): SourcePrecursor {
       url: 'https://github.com/ref/test/tree/fb0c71b/doc/edition',
     },
     config: {},
-    customCss: {},
+    customCss: {
+      'pdf-print': '.sect1 { page-break-before: avoid; }',
+    },
     filename: 'test',
     meta: {
       title: 'Reference Document',

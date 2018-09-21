@@ -1,6 +1,6 @@
 // @flow
 import fs from 'fs-extra';
-import type { BookSizeData } from '../type';
+import type { PrintSize } from '../type';
 import { PUBLISH_DIR, toCss } from '../publish/file';
 import { prince } from '../publish/pdf/prince';
 import { getBookSize } from '../publish/book-sizes';
@@ -29,7 +29,7 @@ export function makeCover(
   title: string,
   author: string,
   pages: number,
-  size: BookSizeData,
+  size: PrintSize,
   withGuides: boolean,
 ) {
   fs.removeSync(PUBLISH_DIR);
@@ -48,13 +48,13 @@ function getHtml(
   title: string,
   author: string,
   pages: number,
-  size: BookSizeData,
+  size: PrintSize,
   withGuides: boolean,
 ) {
   const dims = getDims(pages, size);
   return `
 <!DOCTYPE html>
-<html lang="en" class="size--${size.size}">
+<html lang="en" class="size--${size.abbrev}">
   <head>
     <meta charset="UTF-8"/>
     <link href="doc.css" rel="stylesheet" type="text/css"/>
@@ -70,9 +70,9 @@ function getHtml(
     <div class="safety safety--b"></div>
     <div class="safety safety--spine"></div>
     <h1 class="title">${title}</h1>
-    <h1 class="spine-title">${title}</h1>
+    ${pages > 135 ? `<h1 class="spine-title">${title}</h1>` : ''}
     <h2 class="author">${author}</h2>
-    <h2 class="spine-author">${author}</h2>
+    ${pages > 135 ? `<h2 class="spine-author">${author}</h2>` : ''}
     <div class="dimensions">
       <code>Width: ${dims['cover-width']}</code>
       <code>Height: ${dims['cover-height']}</code>
@@ -83,12 +83,12 @@ function getHtml(
     .trim();
 }
 
-function getCss(pages: number, size: BookSizeData) {
+function getCss(pages: number, size: PrintSize) {
   const css = toCss('../cover/cover.scss', getDims(pages, size));
   return css;
 }
 
-function getDims(pages: number, size: BookSizeData): {[string]: string} {
+function getDims(pages: number, size: PrintSize): {[string]: string} {
   // For Perfect Softcovers: (#PGS / 444) + 0.06” = Spine Width
   const pageWidth = size.dims.inches.width;
   const pageHeight = size.dims.inches.height;
