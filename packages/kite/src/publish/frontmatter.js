@@ -2,6 +2,7 @@
 import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
 import type { Job, Html, FileManifest, Epigraph } from '../type';
+import { printDims } from './pdf/manifest';
 
 export const frontmatter = memoize((job: Job): FileManifest => {
   const files = {
@@ -66,10 +67,21 @@ function originalTitle({ spec: { meta } }: Job): Html {
 
 export function copyright(job: Job): Html {
   const { spec: { revision: { timestamp, sha, url }, meta: { published } } } = job;
+  let marginData = '';
+  if (job.cmd.debugPrintMargins) {
+    const dims = printDims(job);
+    marginData = Object.keys(dims).map(k => {
+      if (!k.match(/-margin/)) {
+        return '';
+      }
+      return `<li class="debug"><code>$${k}: ${dims[k]};</code></li>`;
+    }).join('\n').concat('<li></li><li></li>');
+  }
   const time = moment.utc(moment.unix(timestamp)).format('MMMM Do, YYYY');
   return `
   <div class="copyright-page">
     <ul>
+      ${marginData}
       <li>Public domain in the USA</li>
       ${published ? `<li>Originally published in ${published}</li>` : ''}
       <li>Ebook revision <code><a href="${url}">${sha}</a></code> — ${time}</li>

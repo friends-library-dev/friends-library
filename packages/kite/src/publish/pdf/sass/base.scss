@@ -24,7 +24,7 @@
 
 @page:left {
   @top-center {
-    content: "{{{ header.title }}}";
+    content: $running-head-title;
   }
 }
 

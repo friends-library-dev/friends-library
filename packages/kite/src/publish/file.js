@@ -14,6 +14,8 @@ export const toCss = memoize((path: string, vars: { [string]: string } = {}): Cs
   return sass.renderSync({
     data: `${sassVars}\n${file(path)}`,
   }).css.toString().replace(/^@charset "UTF-8";\n/gm, '');
+}, (path, vars = {}) => {
+  return `${path}>>${Object.entries(vars).map(p => p.join('|')).join(' || ')}`;
 });
 
 export const PUBLISH_DIR: string = pathResolve(__dirname, '../../_publish');

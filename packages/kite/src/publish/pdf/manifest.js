@@ -1,5 +1,5 @@
 // @flow
-import { flow } from 'lodash';
+import { flow, mapValues } from 'lodash';
 import { toRoman } from 'roman-numerals';
 import type { Job, FileManifest, Css, Html, Heading } from '../../type';
 import { capitalizeTitle, trimTrailingPunctuation } from '../text';
@@ -7,6 +7,7 @@ import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';
 import { removeMobiBrs } from '../html';
 import { frontmatter } from './frontmatter';
+import { getBookSize } from '../book-sizes';
 
 export function getPdfManifest(job: Job): FileManifest {
   return {
@@ -16,8 +17,9 @@ export function getPdfManifest(job: Job): FileManifest {
   };
 }
 
-function getCss({ target, spec: { notes, meta, sections, config, customCss } }: Job): Css {
-  const title = sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
+function getCss(job: Job): Css {
+  const { target, spec: { notes, customCss } } = job;
+  const vars = getSassVars(job);
   return [
     'sass/common.scss',
     'pdf/sass/base.scss',
@@ -27,14 +29,36 @@ function getCss({ target, spec: { notes, meta, sections, config, customCss } }: 
     'pdf/sass/copyright.scss',
     'pdf/sass/toc.scss',
     'pdf/sass/chapter-heading.scss',
-    ...target === 'pdf-web' ? ['pdf/sass/web.scss'] : ['pdf/sass/print.scss'],
-    // 'pdf/sass/print-6x9.scss',
+    ...target === 'pdf-print' ? ['pdf/sass/print.scss'] : ['pdf/sass/web.scss'],
     ...notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : [],
   ]
-    .map(path => toCss(path))
+    .map(path => toCss(path, vars))
     .join('\n')
-    .concat(customCss[target] || '')
-    .replace(/{{{ header.title }}}/g, title);
+    .concat(customCss[target] || '');
+}
+
+function getSassVars(job: Job): { [string]: string } {
+  const { target, spec: { meta, sections, config } } = job;
+  const title = sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
+  return {
+    'running-head-title': `"${title}"`,
+    ...target === 'pdf-print' ? printDims(job) : {},
+  };
+}
+
+export function printDims(job: Job): { [string]: string } {
+  const { cmd } = job;
+  const trim = getBookSize(cmd.printSize || 'm');
+  const isSmall = trim.abbrev === 's';
+  return mapValues({
+    'page-width': trim.dims.inches.width,
+    'page-height': trim.dims.inches.height,
+    'page-top-margin': (0.85 * (isSmall ? 0.8 : 1)),
+    'page-bottom-margin': (0.65 * (isSmall ? 0.8 : 1)),
+    'page-outer-margin': (0.6 * (isSmall ? 0.8 : 1)),
+    'page-inner-margin': (0.66 * (isSmall ? 0.8 : 1)),
+    'running-head-margin-top': isSmall ? 0.18 : 0.35,
+  }, v => `${v}in`);
 }
 
 function getHtml(job: Job): Html {

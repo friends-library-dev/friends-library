@@ -8,24 +8,12 @@ html {
 
 @page {
   size: 8.5in 11in;
-  margin-top: 1in;
-  margin-bottom: 1in;
+  margin: 1in;
 
   @footnotes {
     margin-top: 1.5rem;
   }
 }
-
-@page:left {
-  margin-left: 1in;
-  margin-right: 1in;
-}
-
-@page:right {
-  margin-left: 1in;
-  margin-right: 1in;
-}
-
 
 /* typography tweaks */
 p {
@@ -60,7 +48,7 @@ blockquote .paragraph p {
 }
 
 .half-title-page {
-  height: 8.5in; /* 11 minus margins, minus fudge */
+  height: 8in; /* 11 minus margins, minus fudge */
 }
 
 .copyright-page {

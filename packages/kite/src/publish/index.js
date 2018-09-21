@@ -48,7 +48,7 @@ export function take(job: Job): Promise<string> {
 }
 
 export function createCommand(argv: Object): Command {
-  const cmd = defaults(omit(argv, ['$0', '_', 'path', 'no-frontmatter']), {
+  const cmd = defaults(omit(argv, ['$0', '_', 'path', 'no-frontmatter', 'print-size', 'debug-print-margins']), {
     target: ['epub', 'mobi', 'pdf-web', 'pdf-print'],
     perform: false,
     check: false,
@@ -56,6 +56,7 @@ export function createCommand(argv: Object): Command {
     send: false,
     email: null,
     frontmatter: true,
+    debugPrintMargins: false,
   });
 
   if (cmd.perform === true) {

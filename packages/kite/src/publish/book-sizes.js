@@ -1,10 +1,10 @@
 // @flow
-import type { BookSize, BookSizeData } from '../type';
+import type { PrintSizeName, PrintSize } from '../type';
 
-export const sizes: { [BookSize]: BookSizeData } = {
+export const sizes: { [PrintSizeName]: PrintSize } = {
   'Pocket Book': {
     name: 'Pocket Book',
-    size: 's',
+    abbrev: 's',
     dims: {
       inches: {
         height: 6.875,
@@ -14,7 +14,7 @@ export const sizes: { [BookSize]: BookSizeData } = {
   },
   Digest: {
     name: 'Digest',
-    size: 'm',
+    abbrev: 'm',
     dims: {
       inches: {
         height: 8.5,
@@ -24,7 +24,7 @@ export const sizes: { [BookSize]: BookSizeData } = {
   },
   A5: {
     name: 'A5',
-    size: 'l',
+    abbrev: 'l',
     dims: {
       inches: {
         height: 8.27,
@@ -34,7 +34,7 @@ export const sizes: { [BookSize]: BookSizeData } = {
   },
   'US Trade': {
     name: 'US Trade',
-    size: 'xl',
+    abbrev: 'xl',
     dims: {
       inches: {
         height: 9,
@@ -44,7 +44,7 @@ export const sizes: { [BookSize]: BookSizeData } = {
   },
   'Crown Quarto': {
     name: 'Crown Quarto',
-    size: 'xxl',
+    abbrev: 'xxl',
     dims: {
       inches: {
         height: 9.68,
@@ -55,7 +55,18 @@ export const sizes: { [BookSize]: BookSizeData } = {
 };
 
 
-export function getBookSize(id: string): ?BookSizeData {
-  // $FlowFixMe
-  return Object.values(sizes).filter(s => s.name === id || s.size === id)[0];
+export function getBookSize(id: string): PrintSize {
+  let size;
+
+  Object.values(sizes).forEach(s => {
+    if (s && (s.name === id || s.abbrev === id)) {
+      size = s;
+    }
+  });
+
+  if (!size) {
+    throw new Error(`Unknown print size identifier: "${id}"`);
+  }
+
+  return size;
 }

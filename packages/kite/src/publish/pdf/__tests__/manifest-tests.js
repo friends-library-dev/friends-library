@@ -6,7 +6,7 @@ describe('getPdfManifest()', () => {
 
   beforeEach(() => {
     job = testJob();
-    job.target = 'pdf-print';
+    job.target = 'pdf-web';
   });
 
   it('has css file', () => {
@@ -105,7 +105,7 @@ describe('getPdfManifest()', () => {
 
   test('custom css is appended', () => {
     job.spec.customCss = {
-      'pdf-print': '/* my custom css */',
+      'pdf-web': '/* my custom css */',
     };
 
     const manifest = getPdfManifest(job);

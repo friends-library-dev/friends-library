@@ -22,11 +22,13 @@ export type Job = {|
   +filename: string,
 |};
 
-export type BookSize = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
+export type PrintSizeName = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
 
-export type BookSizeData = {|
-  name: BookSize,
-  size: 's' | 'm' | 'l' | 'xl' | 'xxl',
+export type PrintSizeAbbrev = 's' | 'm' | 'l' | 'xl' | 'xxl';
+
+export type PrintSize = {|
+  name: PrintSizeName,
+  abbrev: PrintSizeAbbrev,
   dims: {|
     inches: {|
       height: number,
@@ -38,6 +40,7 @@ export type BookSizeData = {|
 export type SourceSpec = {|
   +id: string,
   +lang: Lang,
+  +size: number,
   +filename: string,
   +epigraphs: Array<Epigraph>,
   +config: Object,
@@ -55,6 +58,8 @@ export type Command = {|
   +open: boolean,
   +send: boolean,
   +frontmatter: boolean,
+  +printSize?: PrintSizeAbbrev,
+  +debugPrintMargins: boolean,
   +email?: string,
 |};
 
