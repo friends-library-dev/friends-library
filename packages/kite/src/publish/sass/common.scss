@@ -3,6 +3,20 @@ h2 {
   text-align: center;
 }
 
+h2 span.line,
+.chapter-heading__title span.line {
+  display: block;
+  line-height: 1.5em;
+}
+
+.line-2 {
+  font-size: 0.9em;
+}
+
+.line-3 {
+  font-size: 0.8em;
+}
+
 .chapter-heading__sequence {
   font-weight: 400;
 }
@@ -213,7 +227,7 @@ blockquote .paragraph:first-of-type p {
   text-indent: 0;
 }
 
-h3.alt {
+h3.blurb {
   font-weight: 400;
   font-style: italic;
   text-align: center;
@@ -233,7 +247,8 @@ h3.alt {
   margin-top: -0.5em;
 }
 
-.offset {
+.offset,
+.numbered {
 
   p {
     text-align: justify;
@@ -262,6 +277,52 @@ h3.alt {
   margin-top: 3em;
 
   p {
+    text-align: center;
+  }
+}
+
+
+h3.old-style {
+  margin-top: 2.75em;
+  text-align: center;
+
+  span:first-child {
+    margin-bottom: 0.5em;
+  }
+
+  span {
+    display: block;
+    line-height: 1.5em;
+  }
+
+  span + span {
+    font-weight: 400;
+    font-style: italic;
+  }
+}
+
+h3.old-style.bold {
+
+  span + span {
+    font-weight: 700;
+    font-style: normal;
+
+    em {
+      font-style: normal;
+    }
+  }
+}
+
+h3.alt,
+h4.alt {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.centered {
+  text-align: center;
+
+  > * {
     text-align: center;
   }
 }

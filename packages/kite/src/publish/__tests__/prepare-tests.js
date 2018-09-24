@@ -297,19 +297,22 @@ Para.
     expect(section.html).not.toContain('<ul');
   });
 
-  it('makes alt h3 discrete', () => {
-    const adoc = `
-== Chapter 1
+  const discretes = [
+    ['blurb', 'blurb'],
+    ['alt', 'alt'],
+    ['centered', 'centered'],
+    ['blurb.alt', 'blurb alt'],
+    ['centered.alt', 'centered alt'],
+    ['blurb.centered', 'blurb centered'],
+  ];
 
-Foobar
-
-[.alt]
-=== H3
-    `.trim();
+  test.each(discretes)('it makes headers with certain classes discrete', (kls, expected) => {
+    const adoc = `== Ch\n\n[.${kls}]\n=== H3\n\n[.${kls}]\n==== H4`;
 
     const { sections: [section] } = prepare(precursor(adoc));
 
-    expect(section.html).toContain('<h3 id="_h3" class="discrete alt">');
+    expect(section.html).toContain(`<h3 id="_h3" class="discrete ${expected}">`);
+    expect(section.html).toContain(`<h4 id="_h4" class="discrete ${expected}">`);
   });
 
   it('changes markup for chapter-subtitle--blurb', () => {
@@ -410,5 +413,37 @@ Hash baz.]
 
     expect(section.html).toContain(`<div class="${kls}">`);
     expect(section.html).not.toContain('paragraph');
+  });
+
+  test('.old-style headings are broken up into custom markup', () => {
+    const adoc = '[.old-style]\n=== Foo / Bar / Baz\n\nPara.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    const expected = `
+      <h3 id="_foo_bar_baz" class="old-style">
+        <span>Foo <br class="m7"/></span>
+        <span><em>Bar</em> <br class="m7"/></span>
+        <span><em>Baz</em></span>
+      </h3>
+    `.replace(/\s\s+/gm, '');
+
+    expect(section.html).toContain(expected);
+  });
+
+  test('.old-style.bold headings are broken up into custom markup', () => {
+    const adoc = '[.old-style.bold]\n=== Foo / Bar / Baz\n\nPara.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    const expected = `
+      <h3 id="_foo_bar_baz" class="old-style bold">
+        <span>Foo <br class="m7"/></span>
+        <span><em>Bar</em> <br class="m7"/></span>
+        <span><em>Baz</em></span>
+      </h3>
+    `.replace(/\s\s+/gm, '');
+
+    expect(section.html).toContain(expected);
   });
 });
