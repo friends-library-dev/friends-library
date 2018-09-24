@@ -27,6 +27,13 @@ describe('find()', () => {
     expect(found).toEqual([]);
   });
 
+  it('does not find Amos reference inside James ref.', () => {
+    const found = find('the soul.” Jam. 1:21. This');
+
+    expect(found[0].book).toBe('James');
+    expect(found.length).toBe(1);
+  });
+
   const individualVerses = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],
