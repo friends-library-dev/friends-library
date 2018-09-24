@@ -235,8 +235,8 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
 
 function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
-    /(?<=\[\.discourse-part\]\n)(Question:|Answer:|Objection:|Inquiry [0-9]+:) /gim,
-    '_$1_ ',
+    /(?<=\[\.discourse-part\]\n)(Question:|Answer(?: [0-9]+)?:|Objection:|Inquiry [0-9]+:)( |\n)/gim,
+    '_$1_$2',
   );
 }
 
