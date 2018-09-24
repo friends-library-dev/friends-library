@@ -152,4 +152,20 @@ describe('splitShort()', () => {
 
     expect(result).toContain('jam.\n{footnote-paragraph-split}\nHash');
   });
+
+  test('does not break up smart quote', () => {
+    const input = 'May it never be said of us as it was of Ephraim of old "`he has joined himself to his idols--let him alone.`"';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('"`he');
+  });
+
+  test('does not break up smart quote falling to next line', () => {
+    const input = 'After a while I went to Whitehall again, and was moved "`to declare the day of the Lord amongst them, and that the Lord was come to teach his people himself;`" so I preached truth both to the officers, and to them that were called Oliver\'s gentlemen, who were of his guard.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('himself;`"');
+  });
 });

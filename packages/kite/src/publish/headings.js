@@ -12,10 +12,11 @@ export function replaceHeadings(html: Html, heading: Heading, job: Job): Html {
 }
 
 function headingMarkup({ id, sequence, text }: Heading, style: string): Html {
+  const textMarkup = headingTextMarkup(text);
   if (!sequence || (sequence && !text)) {
     return `
       <div class="chapter-heading chapter-heading--${style}" id="${id}">
-        <h2>${!sequence ? text : `${sequence.type} ${toRoman(sequence.number)}`}</h2>
+        <h2>${!sequence ? textMarkup : `${sequence.type} ${toRoman(sequence.number)}`}</h2>
         <br class="m7"/>
       </div>
     `;
@@ -31,15 +32,33 @@ function headingMarkup({ id, sequence, text }: Heading, style: string): Html {
       </h2>
       <br class="m7"/>
       <div class="chapter-heading__title">
-        ${text}
+        ${textMarkup}
       </div>
       <br class="m7"/>
     </div>
   `;
 }
 
+function headingTextMarkup(text: string): string {
+  if (text.indexOf(' / ') === -1) {
+    return text;
+  }
+
+  return text
+    .split(' / ')
+    .map((part, index, parts) => {
+      if (index === 0) {
+        return `<span class="line line-1">${part} <br class="m7"/></span>`;
+      } if (index === parts.length - 1) {
+        return `<span class="line line-${index + 1}">${part}</span>`;
+      }
+      return `<span class="line line-${index + 1}">${part}</span>`;
+    })
+    .join('');
+}
+
 export function navText({ text, shortText, sequence }: Heading): string {
-  const mainText = trimTrailingPunctuation(shortText || text);
+  const mainText = trimTrailingPunctuation(shortText || text).replace(/ \/ .+/, '');
   if (!sequence) {
     return mainText;
   }

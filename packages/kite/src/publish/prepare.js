@@ -115,8 +115,8 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   changeChapterSynopsisMarkup,
   changeChapterSubtitleBlurbMarkup,
   prepareDiscourseParts,
+  discreteize,
   adoc => adoc.replace(/[–|—]/g, '--'),
-  adoc => adoc.replace(/\[\.alt\]\n=== /gm, '[discrete.alt]\n=== '),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
   adoc => adoc.replace(/'`/igm, '&#8216;'),
@@ -129,6 +129,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/\[\.small-break\]\n'''/gm, raw(`<div class="small-break">${br7}</div>`)),
   adoc => asciidoctor.convert(adoc),
   changeVerseMarkup,
+  modifyOldStyleHeadings,
   html => html.replace(/<hr>/igm, '<hr />'),
   html => html.replace(/<br>/igm, '<br />'),
   removeParagraphClass,
@@ -136,12 +137,37 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   html => html.replace(/<div class="discourse-part">/gm, `<div class="discourse-part">${br7}`),
 ]));
 
+function discreteize(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /\[((?:\.blurb|\.alt|\.centered)+)\]\n(====?) /gm,
+    '[discrete$1]\n$2 ',
+  );
+}
+
+function modifyOldStyleHeadings(html: Html): Html {
+  return html.replace(
+    /<div class="sect2 old-style( [^"]+?)?">\n<h3 ([^>]+?)>([\s\S]+?)<\/h3>/igm,
+    (_, kls, h3id, text) => {
+      const inner = text.split(' / ').map((part, index, parts) => {
+        if (index === 0) {
+          return `<span>${part} <br class="m7"/></span>`;
+        }
+        if (index === parts.length - 1) {
+          return `<span><em>${part}</em></span>`;
+        }
+        return `<span><em>${part}</em> <br class="m7"/></span>`;
+      }).join('');
+      return `<div class="sect2"><h3 ${h3id} class="old-style${kls || ''}">${inner}</h3>`;
+    },
+  );
+}
 
 function removeParagraphClass(html: Html): Html {
   const standalone = [
     'salutation',
     'discourse-part',
     'offset',
+    'numbered',
     'the-end',
     'letter-participants',
     'signed-section-signature',
@@ -209,7 +235,7 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
 
 function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
-    /(?<=\[\.discourse-part\]\n)(Question:|Answer:|Objection:) /gim,
+    /(?<=\[\.discourse-part\]\n)(Question:|Answer:|Objection:|Inquiry [0-9]+:) /gim,
     '_$1_ ',
   );
 }

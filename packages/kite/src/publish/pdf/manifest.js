@@ -35,6 +35,8 @@ function getCss(job: Job): Css {
   ]
     .map(path => toCss(path, vars))
     .join('\n')
+    .concat(customCss.all || '')
+    .concat(customCss.pdf || '')
     .concat(customCss[target] || '');
 }
 

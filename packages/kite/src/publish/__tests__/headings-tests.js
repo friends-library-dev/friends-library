@@ -32,6 +32,21 @@ describe('replaceHeadings()', () => {
     expect(replaced).toMatch(/Foobar\s+<\/div>/);
   });
 
+  it('marks up multi-line simple h2s', () => {
+    heading.text = 'Foobar / Baz'; // line breaks indicated by " / "
+
+    const replaced = replaceHeadings(html, heading, job);
+
+    const expected = `
+      <h2>
+        <span class="line line-1">Foobar <br class="m7"/></span>
+        <span class="line line-2">Baz</span>
+      </h2>
+    `.replace(/\s\s+/gm, '');
+
+    expect(replaced).toContain(expected);
+  });
+
   it('replaces sequence-only header with simple markup', () => {
     heading.text = '';
     heading.sequence = { type: 'Chapter', number: 3 };
@@ -142,5 +157,19 @@ describe('navText()', () => {
     const text = navText(heading);
 
     expect(text).toBe('Chapter IV');
+  });
+
+  it('does not include trailing lines if multi-line text', () => {
+    const heading = {
+      text: 'Foobar / Hashbaz',
+      sequence: {
+        type: 'Chapter',
+        number: 4,
+      },
+    };
+
+    const text = navText(heading);
+
+    expect(text).toBe('Chapter IV &#8212; Foobar');
   });
 });

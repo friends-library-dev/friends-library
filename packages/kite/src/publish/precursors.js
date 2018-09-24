@@ -116,7 +116,7 @@ function getConfig(path: string): Object {
   return JSON.parse(fs.readFileSync(configPath));
 }
 
-function getCustomCss(path: string): {[FileType]: Css} {
+function getCustomCss(path: string): {[FileType | 'pdf' | 'ebook' | 'all']: Css} {
   const files = glob(`${path}/../*.css`);
   return files.reduce((customCss, filepath) => {
     const type = basename(filepath).replace(/\.css$/, '');
