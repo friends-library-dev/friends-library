@@ -11,12 +11,13 @@ const { execSync } = require('child_process');
 
 export default function convert(file: string): void {
   const { src, target } = validate(file);
+  const withRefs = process.argv.includes('--no-refs') === false;
   prepMultiParagraphFootnotes(src);
   generateRawAsciiDoc(src, target);
 
   const processed = flow(
     combineLines,
-    replaceScriptureReferences,
+    withRefs ? replaceScriptureReferences : s => s,
     splitLines,
     processAsciidoc,
     str => str.replace(/{•}/gm, '.').replace(/{\^}/gm, ':'),
