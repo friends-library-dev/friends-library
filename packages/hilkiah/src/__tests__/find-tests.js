@@ -48,6 +48,13 @@ describe('find()', () => {
     expect(found.length).toBe(1);
   });
 
+  it('does not find Lev. reference inside 1 Chron. ref.', () => {
+    const found = find('foo bar 2 Chronicles 36:15-16 hash');
+
+    expect(found[0].book).toBe('2 Chronicles');
+    expect(found.length).toBe(1);
+  });
+
   const individualVerses = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],
