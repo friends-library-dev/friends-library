@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { flow } from 'lodash';
 import { red, green } from '@friends-library/color';
 import hilkiah from '@friends-library/hilkiah';
-import { splitLines } from './split';
+import { splitLines, refMutate, refUnmutate } from './split';
 import { combineLines } from './combine';
 import { processAsciidoc } from './process';
 
@@ -20,7 +20,7 @@ export default function convert(file: string): void {
     withRefs ? replaceScriptureReferences : s => s,
     splitLines,
     processAsciidoc,
-    str => str.replace(/{•}/gm, '.').replace(/{\^}/gm, ':'),
+    refUnmutate,
   )(fs.readFileSync(target).toString());
 
   fs.writeFileSync(target, processed);
@@ -76,9 +76,7 @@ function replaceScriptureReferences(input: string): string {
       refs.forEach(ref => {
         replaced = replaced.replace(
           ref.match,
-          hilkiah.format(ref)
-            .replace(/\./gm, '{•}')
-            .replace(/:/gm, '{^}'), // prevent next step from splitting on . or :
+          refMutate(hilkiah.format(ref)),
         );
       });
       return replaced;

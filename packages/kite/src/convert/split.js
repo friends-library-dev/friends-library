@@ -37,6 +37,11 @@ function scoreForceSplit(
       score += 200;
     }
 
+    // prevent splitting before/after smart quote open
+    if (part.match(/ ("|')`$/) || part.match(/^`("|')/)) {
+      score += 200;
+    }
+
     if (prev) {
       score += Math.abs(part.length - prev.length);
 
@@ -115,6 +120,11 @@ const getLeadingRef = memoize((line: string): ?number => {
     return line.indexOf('.') + 1;
   }
 
+  // catch refs in their "mutated" state
+  if (line.match(/^((1|2) )?[A-Z][a-z]+({•})? [0-9]{1,2}{\^}[0-9,-]+\./)) {
+    return line.indexOf('.') + 1;
+  }
+
   const refs = find(line);
 
   if (refs.length === 0 || refs[0].position.start !== 0) {
@@ -122,7 +132,7 @@ const getLeadingRef = memoize((line: string): ?number => {
   }
 
   if (line[refs[0].position.end] === '.') {
-    return refs[0].position.end + 1;
+    return line.indexOf('.') + 1;
   }
 
   return null;
@@ -137,7 +147,7 @@ export function makeSplitLines(maxLen: number, minLen: number): * {
         if (a === 'viz') {
           return full;
         }
-        if (a === 'ver' && b === '.') {
+        if (a === 'ver' && b === '.' && d.match(/\d/)) {
           return full;
         }
         if (a === 'etc' && d.match(/[a-z]/)) {
@@ -180,4 +190,12 @@ function fixFootnoteSplitters(input: string): string {
       /\n+{footnote-paragraph-split}\n+/gm,
       '\n{footnote-paragraph-split}\n',
     );
+}
+
+export function refUnmutate(str: string): string {
+  return str.replace(/{•}/gm, '.').replace(/{\^}/gm, ':');
+}
+
+export function refMutate(str: string): string {
+  return str.replace(/\./gm, '{•}').replace(/:/gm, '{^}');
 }

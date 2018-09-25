@@ -216,4 +216,37 @@ describe('splitShort()', () => {
 
     expect(result).toContain('"`able ');
   });
+
+  it('knows that sentences that end with "ver" are not verse refs.', () => {
+    const input = 'Answer: The seasons of the true worship stand in the will of God. They are his gifts, and the time of them stands in the will of the Giver. Prayer is a gift. A man cannot pray whenever he desires; but he is to watch and to wait when the Father will kindle in him living breathings towards himself.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toContain('Giver. Prayer');
+  });
+
+  it('can account for scripture refs in intermediate mutated state', () => {
+    const input = 'So too with singing. Indeed the whole life and conduct of the Christian is to be in the Spirit. Gal{•} 5{^}25. The mortifying of all corruption is to be done by the Spirit. "`If you, through the Spirit, mortify the deeds of the body, you shall live.`" Rom{•} 8{^}13. Indeed a Christian is nothing, and can do nothing, without the power and presence of the Spirit of God in him. So then, if nothing in religion can be done (and be accepted by God) without the Spirit, then the Spirit is the first thing to be looked after by him who would be truly religious.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('the Spirit. Gal{•} 5{^}25.');
+    expect(result).toContain('you shall live.`" Rom{•} 8{^}13.');
+  });
+
+  it('does not split just after smart quote open', () => {
+    const input = 'These pretend to be of this birth from above, though indeed they are born but "`of blood,`" or "`of the will of the flesh,`" or "`of the will of man,`"  John 1{^}13. And though they will be imitating the things which God begets in and gives to the true child.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toMatch(/"`\n/);
+  });
+
+  it('does not split just before smart quote close', () => {
+    const input = 'I quite thought that he had been right in making the offer, at the outset, inasmuch as he had promoted my being set at liberty by the "`Meeting for Sufferings,`" which would not have been the case if another Friend had not offered himself.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toMatch(/\n`"/);
+  });
 });
