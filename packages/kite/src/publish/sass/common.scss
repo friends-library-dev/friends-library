@@ -43,6 +43,10 @@ h2 span.line,
   margin: -1em 0 2.25em;
 }
 
+h3 + h4 {
+  margin-top: 0;
+}
+
 // epigraphs
 .epigraphs {
   margin-top: 30%; // not padding-top for mobi7
@@ -204,6 +208,7 @@ h2 span.line,
     font-size: 0.85em;
     font-weight: 700;
     text-align: center !important;
+    text-indent: 0 !important;
     margin: 0;
   }
 }

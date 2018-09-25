@@ -76,4 +76,20 @@ describe('processAsciidoc()', () => {
 
     expect(processed).toBe('== C1\n\nFoo bar\n2+++.+++ Foobar\njim jam');
   });
+
+  it('escapes periods after single digit beginning of paragraph (with leading whitespace)', () => {
+    const adoc = '== Ch1\n\nPara.\n\n    1. Babylon is called a city.';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== Ch1\n\nPara.\n\n1+++.+++ Babylon is called a city.');
+  });
+
+  it('removes leading para spaces', () => {
+    const adoc = '== Ch1\n\n      Babylon is the spiritual fabric of iniquity';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== Ch1\n\nBabylon is the spiritual fabric of iniquity');
+  });
 });

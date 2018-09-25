@@ -14,6 +14,13 @@ describe('find()', () => {
     expect(found.length).toBe(1);
   });
 
+  it('does not find Song of Solomon ref inside of Micah ref', () => {
+    const found = find('Blah blahh, Micah 6:8.');
+
+    expect(found[0].book).toBe('Micah');
+    expect(found.length).toBe(1);
+  });
+
   it('does not find Esther ref inside of James ref', () => {
     const found = find('brings forth death, James 1:15.');
 
@@ -25,6 +32,13 @@ describe('find()', () => {
     const found = find('said of him by the prophet Isaiah, chap. xlix. 6, “I will');
 
     expect(found).toEqual([]);
+  });
+
+  it('does not find Amos reference inside James ref.', () => {
+    const found = find('the soul.” Jam. 1:21. This');
+
+    expect(found[0].book).toBe('James');
+    expect(found.length).toBe(1);
   });
 
   const individualVerses = [
@@ -354,6 +368,19 @@ describe('find()', () => {
         verses: [
           { chapter: 4, verse: 6 },
           { chapter: 4, verse: 7 },
+        ],
+      },
+    ],
+
+    [
+      'foo. Heb. 12:5,6,7',
+      {
+        book: 'Hebrews',
+        contiguous: true,
+        verses: [
+          { chapter: 12, verse: 5 },
+          { chapter: 12, verse: 6 },
+          { chapter: 12, verse: 7 },
         ],
       },
     ],

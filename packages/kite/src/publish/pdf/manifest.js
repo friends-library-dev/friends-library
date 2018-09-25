@@ -89,7 +89,8 @@ function joinSections([_, job]: [Html, Job]): [Html, Job] {
 
 function runningHeader({ shortText, text, sequence }: Heading): string {
   if (shortText || text || !sequence) {
-    return capitalizeTitle(trimTrailingPunctuation(shortText || text));
+    return capitalizeTitle(trimTrailingPunctuation(shortText || text))
+      .replace(/ \/ .+/, '');
   }
 
   return `${sequence.type} ${toRoman(sequence.number)}`;

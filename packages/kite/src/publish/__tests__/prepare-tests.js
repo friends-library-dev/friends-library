@@ -343,6 +343,9 @@ Question: Foo bar?
 Answer: Hash baz.
 
 [.discourse-part]
+Answer 143: Hash baz.
+
+[.discourse-part]
 Objection: Qux!
     `.trim();
 
@@ -350,6 +353,7 @@ Objection: Qux!
 
     expect(section.html).toContain('<em>Question:</em>');
     expect(section.html).toContain('<em>Answer:</em>');
+    expect(section.html).toContain('<em>Answer 143:</em>');
     expect(section.html).toContain('<em>Objection:</em>');
   });
 

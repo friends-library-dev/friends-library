@@ -168,4 +168,85 @@ describe('splitShort()', () => {
 
     expect(result).toContain('himself;`"');
   });
+
+  test('does not break at a paren', () => {
+    const input = 'Yet at length, the Lord powerfully touched and raised up the life in me (which by all these reasonings and consultations I had slain); and then by degrees (waiting upon it) I saw, I felt, I tasted, I handled, the living word.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('(which');
+  });
+
+  it('tries to associate trailing scripture ref mini-sentence with previous line', () => {
+    const input = 'They call Christ "`the Way, the Truth, the Life.`" John 14:6. (The way is the rule, the truth is the rule, the life is the rule).';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('the Life.`" John 14:6.');
+  });
+
+  it('understands periods after close parens', () => {
+    const input = 'They call Christ "`the Way, the Truth, the Life.`" John 14:6. (The way is the rule, the truth is the rule, the life is the rule). They call the new creature the rule; walking according to which the peace and mercy is received and enjoyed. Gal. 6:16.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toContain('rule). They');
+  });
+
+  it('understands "ver. X" does not end sentence', () => {
+    const input = '"`It is truth, and no lie,`" ver. 27, and it leads into all truth and out of every lie; and this will teach you to abide in him.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('ver. 27');
+  });
+
+  it('associates "verse X. with prev line"', () => {
+    const input = 'And he that draws another to any practice before the life leads him, this one does injure the soul of that person. verse 15. This was the apostle\'s rule: that everyone perform singly unto the Lord what he did, and not for one to meddle with the light of conscience of another (undervaluing his brother, or judging him because his light and practices differed from his, chap. 14:10.)';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('person. verse 15.');
+  });
+
+  it('does not break after open smart quote', () => {
+    const input = 'The apostle Paul says that God had made them "`able ministers of the new covenant, not of the letter, but of the Spirit.`" 2 Cor. 3:6.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('"`able ');
+  });
+
+  it('knows that sentences that end with "ver" are not verse refs.', () => {
+    const input = 'Answer: The seasons of the true worship stand in the will of God. They are his gifts, and the time of them stands in the will of the Giver. Prayer is a gift. A man cannot pray whenever he desires; but he is to watch and to wait when the Father will kindle in him living breathings towards himself.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toContain('Giver. Prayer');
+  });
+
+  it('can account for scripture refs in intermediate mutated state', () => {
+    const input = 'So too with singing. Indeed the whole life and conduct of the Christian is to be in the Spirit. Gal{•} 5{^}25. The mortifying of all corruption is to be done by the Spirit. "`If you, through the Spirit, mortify the deeds of the body, you shall live.`" Rom{•} 8{^}13. Indeed a Christian is nothing, and can do nothing, without the power and presence of the Spirit of God in him. So then, if nothing in religion can be done (and be accepted by God) without the Spirit, then the Spirit is the first thing to be looked after by him who would be truly religious.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('the Spirit. Gal{•} 5{^}25.');
+    expect(result).toContain('you shall live.`" Rom{•} 8{^}13.');
+  });
+
+  it('does not split just after smart quote open', () => {
+    const input = 'These pretend to be of this birth from above, though indeed they are born but "`of blood,`" or "`of the will of the flesh,`" or "`of the will of man,`"  John 1{^}13. And though they will be imitating the things which God begets in and gives to the true child.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toMatch(/"`\n/);
+  });
+
+  it('does not split just before smart quote close', () => {
+    const input = 'I quite thought that he had been right in making the offer, at the outset, inasmuch as he had promoted my being set at liberty by the "`Meeting for Sufferings,`" which would not have been the case if another Friend had not offered himself.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toMatch(/\n`"/);
+  });
 });

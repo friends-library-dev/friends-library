@@ -9,18 +9,25 @@ type Argv = {|
   exclude?: string,
   message?: string,
   push?: boolean,
+  hard?: boolean,
 |};
 
 export function gitStatus(argv: Argv): void {
   const { dirty } = getRepoStatuses(argv);
   if (dirty.length === 0) {
     green('🛁  No uncommitted changes in any document repos.');
+    return;
   }
 
   red(`🚽  Uncommitted changes found in ${dirty.length} repos:`);
   dirty.forEach(repo => {
     console.log(`   ${chalk.grey('↳')} ${chalk.yellow(rel(repo))}`);
   });
+}
+
+export function gitReset(argv: Argv): void {
+  const { dirty } = getRepoStatuses(argv);
+  dirty.forEach(repo => cmd(`git reset ${argv.hard ? '--hard ' : ''}HEAD`, repo));
 }
 
 export function gitDiff(argv: Argv): void {
