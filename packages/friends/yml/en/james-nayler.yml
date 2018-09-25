@@ -1,0 +1,46 @@
+name: James Nayler
+slug: james-nayler
+gender: male
+description: TODO
+documents:
+  -
+    title: There is a Spirit Which I Feel
+    slug: writings
+    filename: writings
+    description: TODO
+    tags:
+      - treatise
+      - devotional
+    editions:
+      -
+        type: updated
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Forward
+          -
+            number: 1
+            subtitle: Living Faith and its Fruits
+          -
+            number: 2
+            subtitle: The Lamb's War
+          -
+            number: 3
+            subtitle: How Sin is Strengthened, and How it is Overcome
+          -
+            number: 4
+            subtitle: A Door Opened to the Imprisoned Seed
+          -
+            number: 5
+            subtitle: Milk for Babes, Meat for Strong Men
+          -
+            number: 6
+            subtitle: Love to the Lost
+          -
+            title: "Appendix: A Brief Biography of James Nayler"
