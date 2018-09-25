@@ -1,4 +1,7 @@
 // @flow
+import { find } from '@friends-library/hilkiah';
+import { memoize } from 'lodash';
+
 const NEWLINE = '~~~__newline__~~~';
 
 const splitByPunctuation = (maxLen: number) => {
@@ -28,6 +31,12 @@ function scoreForceSplit(
     if (part.length < minLen) {
       score += 20;
     }
+
+    // prevent splitting on opening/closing parens
+    if (part.match(/ \($/) || part.match(/^\)/)) {
+      score += 200;
+    }
+
     if (prev) {
       score += Math.abs(part.length - prev.length);
 
@@ -89,18 +98,38 @@ function cleanup(lines: Array<string>, line: string, index: number): Array<strin
   // this fixes lines that are just ^etc.$
   } else if (line === 'etc.' && index > 0) {
     lines[index - 1] = `${lines[index - 1]} etc.`;
+  } else if (getLeadingRef(line) && index) {
+    const pos = getLeadingRef(line) || 0;
+    const ref = line.substring(0, pos);
+    const rest = line.substring(pos).trim();
+    lines[index - 1] = `${lines[index - 1]} ${ref}`;
+    lines.push(rest);
   } else {
     lines.push(line);
   }
   return lines;
 }
 
+const getLeadingRef = memoize((line: string): ?number => {
+  const refs = find(line);
+
+  if (refs.length === 0 || refs[0].position.start !== 0) {
+    return null;
+  }
+
+  if (line[refs[0].position.end] === '.') {
+    return refs[0].position.end + 1;
+  }
+
+  return null;
+});
+
 export function makeSplitLines(maxLen: number, minLen: number): * {
   return (input: string): string => {
     const split = input
       .replace(/footnote:\[/gm, '^\nfootnote:[')
       .replace(/\] /gm, ']\n')
-      .replace(/((?:[A-Za-z]{3}| [a-z]{2}| 1[678][0-9]{2}))(\.|\?)(`"|')? (.)/gm, (full, a, b, c, d) => {
+      .replace(/((?:[A-Za-z)]{3}| [a-z)]{2}| 1[678][0-9]{2}))(\.|\?)(`"|')? (.)/gm, (full, a, b, c, d) => {
         if (a === 'viz') {
           return full;
         }
@@ -126,6 +155,7 @@ export function makeSplitLines(maxLen: number, minLen: number): * {
           .reduce(cleanup, [])
           .join('\n');
       })
+      .reduce(cleanup, [])
       .join('\n');
     return fixFootnoteSplitters(split);
   };

@@ -168,4 +168,28 @@ describe('splitShort()', () => {
 
     expect(result).toContain('himself;`"');
   });
+
+  test('does not break at a paren', () => {
+    const input = 'Yet at length, the Lord powerfully touched and raised up the life in me (which by all these reasonings and consultations I had slain); and then by degrees (waiting upon it) I saw, I felt, I tasted, I handled, the living word.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('(which');
+  });
+
+  it('tries to associate trailing scripture ref mini-sentence with previous line', () => {
+    const input = 'They call Christ "`the Way, the Truth, the Life.`" John 14:6. (The way is the rule, the truth is the rule, the life is the rule).';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('the Life.`" John 14:6.');
+  });
+
+  it('understands periods after close parens', () => {
+    const input = 'They call Christ "`the Way, the Truth, the Life.`" John 14:6. (The way is the rule, the truth is the rule, the life is the rule). They call the new creature the rule; walking according to which the peace and mercy is received and enjoyed. Gal. 6:16.';
+
+    const result = splitLines(input);
+
+    expect(result).not.toContain('rule). They');
+  });
 });
