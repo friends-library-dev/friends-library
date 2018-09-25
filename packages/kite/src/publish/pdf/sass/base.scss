@@ -40,6 +40,12 @@
   }
 }
 
+.letter-heading,
+.letter-heading p {
+  -webkit-hyphens: none !important;
+  hyphens: none !important;
+}
+
 body {
   font-family: Georgia, serif;
 }
