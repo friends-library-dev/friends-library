@@ -111,6 +111,10 @@ function cleanup(lines: Array<string>, line: string, index: number): Array<strin
 }
 
 const getLeadingRef = memoize((line: string): ?number => {
+  if (line.match(/verse [0-9]+\./)) {
+    return line.indexOf('.') + 1;
+  }
+
   const refs = find(line);
 
   if (refs.length === 0 || refs[0].position.start !== 0) {
@@ -131,6 +135,9 @@ export function makeSplitLines(maxLen: number, minLen: number): * {
       .replace(/\] /gm, ']\n')
       .replace(/((?:[A-Za-z)]{3}| [a-z)]{2}| 1[678][0-9]{2}))(\.|\?)(`"|')? (.)/gm, (full, a, b, c, d) => {
         if (a === 'viz') {
+          return full;
+        }
+        if (a === 'ver' && b === '.') {
           return full;
         }
         if (a === 'etc' && d.match(/[a-z]/)) {

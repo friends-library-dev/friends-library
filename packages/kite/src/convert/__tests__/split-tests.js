@@ -192,4 +192,28 @@ describe('splitShort()', () => {
 
     expect(result).not.toContain('rule). They');
   });
+
+  it('understands "ver. X" does not end sentence', () => {
+    const input = '"`It is truth, and no lie,`" ver. 27, and it leads into all truth and out of every lie; and this will teach you to abide in him.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('ver. 27');
+  });
+
+  it('associates "verse X. with prev line"', () => {
+    const input = 'And he that draws another to any practice before the life leads him, this one does injure the soul of that person. verse 15. This was the apostle\'s rule: that everyone perform singly unto the Lord what he did, and not for one to meddle with the light of conscience of another (undervaluing his brother, or judging him because his light and practices differed from his, chap. 14:10.)';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('person. verse 15.');
+  });
+
+  it('does not break after open smart quote', () => {
+    const input = 'The apostle Paul says that God had made them "`able ministers of the new covenant, not of the letter, but of the Spirit.`" 2 Cor. 3:6.';
+
+    const result = splitLines(input);
+
+    expect(result).toContain('"`able ');
+  });
 });
