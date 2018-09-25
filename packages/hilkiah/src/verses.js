@@ -2,7 +2,7 @@ const { toNumber } = require('./convert');
 
 // @TODO duplication...
 const ARAB = '[\\d]{1,3}';
-const ADD = `(?:,(?: )(${ARAB}))?`;
+const ADD = `(?:, ?(${ARAB}))?`;
 const CSV = `${ADD}${ADD}${ADD}${ADD}${ADD}${ADD}`;
 
 function exec(str, pattern) {

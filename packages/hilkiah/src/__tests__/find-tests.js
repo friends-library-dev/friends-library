@@ -371,6 +371,19 @@ describe('find()', () => {
         ],
       },
     ],
+
+    [
+      'foo. Heb. 12:5,6,7',
+      {
+        book: 'Hebrews',
+        contiguous: true,
+        verses: [
+          { chapter: 12, verse: 5 },
+          { chapter: 12, verse: 6 },
+          { chapter: 12, verse: 7 },
+        ],
+      },
+    ],
   ];
 
   test.each(multiVerses)('finds all verses from "%s"', (input, expected) => {
