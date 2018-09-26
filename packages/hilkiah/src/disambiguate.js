@@ -64,6 +64,7 @@ function incorrectAmbiguous(ref, input) {
     incorrectJohannine,
     incorrect('Song of Solomon', /^ss\./, ' the'),
     incorrect('Esther', /^es /, 'jam'),
+    incorrect('Esther', /^es /, 'chronicl'),
     incorrect('Amos', /^am\. /, 'j'),
   ].reduce((result, fn) => result || fn(ref, input), false);
 }

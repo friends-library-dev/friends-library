@@ -92,4 +92,12 @@ describe('processAsciidoc()', () => {
 
     expect(processed).toBe('== Ch1\n\nBabylon is the spiritual fabric of iniquity');
   });
+
+  it('removes leading weird spaces', () => {
+    const adoc = '== Foo\n\n        The bar.';
+
+    const processed = processAsciidoc(adoc);
+
+    expect(processed).toBe('== Foo\n\nThe bar.');
+  });
 });
