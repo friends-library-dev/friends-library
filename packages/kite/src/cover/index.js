@@ -1,5 +1,6 @@
 // @flow
 import fs from 'fs-extra';
+import path from 'path';
 import type { PrintSize } from '../type';
 import { PUBLISH_DIR, toCss } from '../publish/file';
 import { prince } from '../publish/pdf/prince';
@@ -35,9 +36,12 @@ export function makeCover(
   fs.removeSync(PUBLISH_DIR);
   fs.ensureDir(PUBLISH_DIR);
 
+  const isbn = '978-1-64476-000-0';
+
   const manifest = {
     'doc.html': getHtml(title, author, pages, size, withGuides),
     'doc.css': getCss(pages, size),
+    'isbn.png': fs.readFileSync(path.resolve(__dirname, '..', `isbn/imgs/${isbn}.png`)),
   };
 
   const dir = '__cover__';
@@ -69,6 +73,7 @@ function getHtml(
     <div class="safety safety--t"></div>
     <div class="safety safety--b"></div>
     <div class="safety safety--spine"></div>
+    <img id="isbn" src="isbn.png" />
     <h1 class="title">${title}</h1>
     ${pages > 135 ? `<h1 class="spine-title">${title}</h1>` : ''}
     <h2 class="author">${author}</h2>

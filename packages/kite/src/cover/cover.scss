@@ -24,6 +24,22 @@ h1, h2 {
   font-weight: 400 !important;
 }
 
+$isbn-img-width: 348px;
+$isbn-img-height: 176px;
+$isbn-multiplier: 0.4;
+$isbn-img-padding: 0.08in;
+$isbn-offset: 0.2in;
+
+img#isbn {
+  position: absolute;
+  bottom: $trim + $safety + $isbn-offset;
+  right: $page-width + $spine-width + $safety + $fold + $fold + $isbn-offset;
+  width: $isbn-img-width * $isbn-multiplier;
+  height: $isbn-img-height * $isbn-multiplier;
+  padding: $isbn-img-padding;
+  background: #fff;
+}
+
 @page {
   size: $cover-width $cover-height landscape;
   margin: 0;
