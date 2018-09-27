@@ -88,7 +88,6 @@ h3 + h4 {
 
   &__stanza {
     display: block;
-    page-break-inside: avoid;
     margin-bottom: 1.5em;
   }
 
@@ -140,8 +139,6 @@ h3 + h4 {
 }
 
 .signed-section-context-close {
-  page-break-before: avoid;
-
   p {
     margin-bottom: 2.5em;
   }
