@@ -99,8 +99,8 @@ function runningHeader({ shortText, text, sequence }: Heading): string {
 
 function addFirstChapterClass([html, job]: [Html, Job]): [Html, Job] {
   return [html.replace(
-    '<div class="sect1">',
-    '<div class="sect1 first-chapter">',
+    '<div class="sect1',
+    '<div class="sect1 first-chapter',
   ), job];
 }
 

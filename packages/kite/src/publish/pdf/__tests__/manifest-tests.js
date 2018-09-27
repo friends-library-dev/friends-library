@@ -73,8 +73,8 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['doc.html']).toContain('<div class="sect1 first-chapter"');
-    expect(manifest['doc.html']).toContain('<div class="sect1"');
+    expect(manifest['doc.html']).toContain('<div class="sect1 first-chapter');
+    expect(manifest['doc.html']).toContain('<div class="sect1 chapter--no-signed-section"');
   });
 
   it('moves footnotes back inline', () => {

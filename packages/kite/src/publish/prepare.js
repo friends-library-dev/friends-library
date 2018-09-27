@@ -66,22 +66,29 @@ function htmlToSections(docHtml: Html, shortHeadings: Map<string, string>): Arra
   return docHtml
     .split(/(?=<div class="sect1[^>]+?>)/gim)
     .filter(html => !!html.trim())
+    .map(addSignedSectionClass)
     .map((html: Html, i: number) => ({ index: i, id: `section${i + 1}`, html }))
     .map(section => extractHeading(section, shortHeadings));
 }
 
+function addSignedSectionClass(html: Html): Html {
+  const has = html.match(/\n\[\.(signed-section|salutation|letter-heading)/gm) ? 'has' : 'no';
+  return html.replace(/^<div class="sect1/, `<div class="sect1 chapter--${has}-signed-section`);
+}
+
 function extractHeading(section: Object, short: Map<string, string>) {
   section.html = section.html.replace(
-    /(<div class="sect1(?: style-([a-z]+))?">\n)<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/,
-    (_, start, style, id, inner) => {
+    /(<div class="sect1([^"]+?)?">\n)<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/,
+    (_, start, kls, id, inner) => {
       section.heading = {
         id,
         ...parseHeading(inner),
         ...short.has(id) ? { shortText: short.get(id) } : {},
       };
 
+      const match = kls.match(/ style-([a-z]+)/);
       const sectionStart = start.replace(/ style-[a-z]+/, '');
-      return `${sectionStart}{% chapter-heading${style ? `, ${style}` : ''} %}`;
+      return `${sectionStart}{% chapter-heading${match ? `, ${match[1]}` : ''} %}`;
     },
   );
 
