@@ -229,6 +229,10 @@ blockquote .paragraph:first-of-type p {
   text-indent: 0;
 }
 
+.quoteblock.scripture blockquote p {
+  font-style: italic;
+}
+
 h3.blurb {
   font-weight: 400;
   font-style: italic;
