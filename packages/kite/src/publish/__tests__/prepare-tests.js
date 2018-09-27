@@ -450,4 +450,13 @@ Hash baz.]
 
     expect(section.html).toContain(expected);
   });
+
+  test('adds classes signifying if chapters have signed (letter) chunks', () => {
+    const adoc = '== C1\n\nPara.\n\n== C2\n\n[.salutation]\nDear Friend,';
+
+    const { sections: [sect1, sect2] } = prepare(precursor(adoc));
+
+    expect(sect1.html).toMatch(/^<div class="sect1 chapter--no-signed-section"/);
+    expect(sect2.html).not.toMatch(/^<div class="sect1 chapter--has-signed-section"/);
+  });
 });

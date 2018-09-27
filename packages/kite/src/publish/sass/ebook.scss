@@ -3,10 +3,6 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-hyphens: none;
   hyphens: none;
   word-wrap: break-word;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  -webkit-column-break-after: avoid;
-  page-break-after: avoid;
 }
 
 
@@ -117,7 +113,6 @@ h2 {
 
 /* paragraphs */
 .paragraph p {
-  /* margin: 0.5em 0; */
   text-indent: 1.4em;
   widows: 2;
   orphans: 2;

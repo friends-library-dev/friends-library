@@ -22,6 +22,7 @@ function getCss(job: Job): Css {
   const vars = getSassVars(job);
   return [
     'sass/common.scss',
+    'sass/paging.scss',
     'pdf/sass/base.scss',
     'pdf/sass/typography.scss',
     'pdf/sass/half-title.scss',
@@ -98,8 +99,8 @@ function runningHeader({ shortText, text, sequence }: Heading): string {
 
 function addFirstChapterClass([html, job]: [Html, Job]): [Html, Job] {
   return [html.replace(
-    '<div class="sect1">',
-    '<div class="sect1 first-chapter">',
+    '<div class="sect1',
+    '<div class="sect1 first-chapter',
   ), job];
 }
 
