@@ -70,6 +70,13 @@ describe('find()', () => {
     expect(found.length).toBe(1);
   });
 
+  it('does not find Genesis & Esther reference inside Judges ref.', () => {
+    const found = find('foo Judges 14:14');
+
+    expect(found[0].book).toBe('Judges');
+    expect(found.length).toBe(1);
+  });
+
   const individualVerses = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],
