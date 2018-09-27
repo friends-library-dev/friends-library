@@ -329,6 +329,14 @@ h4.alt {
   }
 }
 
+.emphasized {
+  font-style: italic;
+
+  > * {
+    font-style: italic;
+  }
+}
+
 dl {
   margin-top: 1.5em;
 }
