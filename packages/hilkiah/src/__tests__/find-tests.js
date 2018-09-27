@@ -55,6 +55,21 @@ describe('find()', () => {
     expect(found.length).toBe(1);
   });
 
+  it('does not find Esther reference inside 1/2 Thes. ref.', () => {
+    const found = find('foo 1 Thes. 2:11 bar 2 Thes. 1:1');
+
+    expect(found[0].book).toBe('1 Thessalonians');
+    expect(found[1].book).toBe('2 Thessalonians');
+    expect(found.length).toBe(2);
+  });
+
+  it('does not find Esther reference inside Ephes. ref.', () => {
+    const found = find('foo Ephes. 1:1');
+
+    expect(found[0].book).toBe('Ephesians');
+    expect(found.length).toBe(1);
+  });
+
   const individualVerses = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],
