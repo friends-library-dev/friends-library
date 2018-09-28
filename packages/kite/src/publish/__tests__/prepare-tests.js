@@ -457,6 +457,6 @@ Hash baz.]
     const { sections: [sect1, sect2] } = prepare(precursor(adoc));
 
     expect(sect1.html).toMatch(/^<div class="sect1 chapter--no-signed-section"/);
-    expect(sect2.html).not.toMatch(/^<div class="sect1 chapter--has-signed-section"/);
+    expect(sect2.html).toMatch(/^<div class="sect1 chapter--has-signed-section"/);
   });
 });
