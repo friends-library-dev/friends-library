@@ -28,6 +28,7 @@ function getRefPrecursor(): SourcePrecursor {
     filename: 'test',
     meta: {
       title: 'Reference Document',
+      isbn: '978-1-64476-000-0',
       author: {
         name: 'Thomas Kite',
         nameSort: 'Kite, Thomas',

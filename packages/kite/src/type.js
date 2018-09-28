@@ -1,4 +1,5 @@
 // @flow
+import type { ISBN } from '../../../type';
 
 export type Xml = string;
 
@@ -113,6 +114,7 @@ export type DocumentMeta = {|
   +title: string,
   +originalTitle?: string,
   +published?: number,
+  +isbn?: ISBN,
   +author: {|
     +name: string,
     +nameSort: string,

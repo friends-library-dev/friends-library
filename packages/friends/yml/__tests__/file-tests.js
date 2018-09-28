@@ -149,6 +149,15 @@ files.forEach((file) => {
       });
     });
 
+    test('edition isbn is correct if exists', () => {
+      editions(friend).forEach((edition) => {
+        if (!hasProp(edition, 'isbn')) {
+          return;
+        }
+        expect(edition.isbn).toMatch(/^978-1-64476-[0-9]{3}-[0-9]$/);
+      });
+    });
+
     test('formats have correct type', () => {
       const types = ['pdf', 'mobi', 'epub', 'paperback', 'audio'];
       formats(friend).forEach((format) => {

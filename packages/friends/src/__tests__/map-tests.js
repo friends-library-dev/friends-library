@@ -26,6 +26,7 @@ describe('friendFromJS()', () => {
             {
               type: 'updated',
               description: 'edition description',
+              isbn: '978-1-64476-000-0',
               pages: 261,
               formats: [
                 { type: 'pdf' },
@@ -102,6 +103,12 @@ describe('friendFromJS()', () => {
     expect(formats[0].type).toBe('pdf');
     expect(formats[1].type).toBe('epub');
     expect(formats[2].type).toBe('mobi');
+  });
+
+  it('maps document edition isbn', () => {
+    const edition = friendFromJS(js).documents[0].editions[0];
+
+    expect(edition.isbn).toBe('978-1-64476-000-0');
   });
 
   it('maps document edition chapters', () => {

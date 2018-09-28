@@ -66,7 +66,7 @@ function originalTitle({ spec: { meta } }: Job): Html {
 }
 
 export function copyright(job: Job): Html {
-  const { spec: { revision: { timestamp, sha, url }, meta: { published } } } = job;
+  const { spec: { revision: { timestamp, sha, url }, meta: { published, isbn } } } = job;
   let marginData = '';
   if (job.cmd.debugPrintMargins) {
     const dims = printDims(job);
@@ -84,9 +84,10 @@ export function copyright(job: Job): Html {
       ${marginData}
       <li>Public domain in the USA</li>
       ${published ? `<li>Originally published in ${published}</li>` : ''}
-      <li>Ebook revision <code><a href="${url}">${sha}</a></code> — ${time}</li>
-      <li>Ebook created and freely distributed by <a href="https://friendslibrary.com">The Friends Library</a></li>
-      <li>Find many other free books from early Quakers at <a href="https://friendslibrary.com">friendslibrary.com</a></li>
+      ${isbn ? `<li id="isbn">ISBN: <code>${isbn}</code></li>` : ''}
+      <li>Text revision <code><a href="${url}">${sha}</a></code> — ${time}</li>
+      <li>Ebook created and freely distributed by <a href="https://friendslibrary.com">Friends Library Publishing</a></li>
+      <li>Find more free books from early Quakers at <a href="https://friendslibrary.com">friendslibrary.com</a></li>
       <li>Contact the publishers at <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
     </ul>
   </div>
