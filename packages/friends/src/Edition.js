@@ -13,6 +13,7 @@ export default class Edition {
   formats: Array<Format> = [];
   chapters: Array<Chapter> = [];
   description: ?string;
+  editor: ? string;
   isbn: ?ISBN;
   audio: ?Audio;
   document: Document;
@@ -23,6 +24,7 @@ export default class Edition {
     formats: Array<Format> = [],
     chapters: Array<Chapter> = [],
     description: ?string = null,
+    editor: ?string = null,
     isbn: ?ISBN = null,
     audio: ?Audio = null,
   ) {
@@ -31,6 +33,7 @@ export default class Edition {
     this.formats = formats;
     this.chapters = chapters;
     this.description = description;
+    this.editor = editor;
     this.isbn = isbn;
     this.audio = audio;
   }
