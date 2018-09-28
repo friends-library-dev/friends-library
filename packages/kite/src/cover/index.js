@@ -16,8 +16,8 @@ export default function cover(argv: Object): void {
   }
 
   makeCover(
-    'The Work of Vital Religion in the Soul',
-    'Samuel Rundell',
+    'There is a Spirit Which I Feel',
+    'Edited by Jason R. Henderson',
     // 'The Original and Present State of Man',
     // 'Joseph Phipps',
     pages,
@@ -75,9 +75,11 @@ function getHtml(
     <div class="safety safety--spine"></div>
     <img id="isbn" src="isbn.png" />
     <h1 class="title">${title}</h1>
+    <p class="subtitle">Selected&nbsp;Writings&nbsp;of <span>James&nbsp;Nayler</span>
+  <br /><em>with a Short Biographical Sketch</em></p>
     ${pages > 135 ? `<h1 class="spine-title">${title}</h1>` : ''}
     <h2 class="author">${author}</h2>
-    ${pages > 135 ? `<h2 class="spine-author">${author}</h2>` : ''}
+    ${pages > 135 ? `<h2 class="spine-author">James Nayler</h2>` : ''}
     <h3 class="publisher">Friends Library Publishing</h3>
     <div class="dimensions">
       <code>Width: ${dims['cover-width']}</code>
@@ -85,24 +87,20 @@ function getHtml(
       <code> Pages: ${pages}</code>
     </div>
     <p class="blurb">
-      “Do you believe in Christ,
-in reference to His spiritual appearance in your own soul?
-Have you, in the metaphorical language of Scripture,
-opened the door of your heart unto Him, when,
-by the secret convictions of His holy Light or Spirit,
-He has knocked there for admission?
-Have you in this way received Christ to be your leader,
-your baptizer,
-your high-priest and your king?
-Has it become your daily concern to obey Him in all things,
-avoiding in every part of your conduct and conversation
-that which the light manifests to be evil,
-denying yourself and taking up the cross
-in respect to every pursuit and gratification which this divine Monitor does not allow,
-however earnestly pleaded for by your natural inclination and desires?
-And finally, do you witness,
-through submission to the baptizing operation of His Holy Spirit,
-the work of regeneration begun, and gradually progressing in your soul?”
+James Nayler was a prominent leader and gifted
+minister in the early Society of Friends in England.
+Though a farmer by trade, and a man of limited education,
+his deep spiritual understanding, piercing discernment,
+and powerful communication of the gospel caused multitudes to acknowledge
+that he preached in the demonstration of the Spirit and power,
+as one having authority, and not as the scribes.
+Sadly, he is best known for a single (and much regretted) act
+of folly committed in a time of weakness and temptation,
+when, “because of the abundance of revelation” and the
+unchecked flattery of a few imprudent admirers,
+he accepted greater praise than is due to any man.
+This modernized edition was prepared
+from a strong desire that the writings of this pious and experienced Christian not be lost in history.
 <p>
   </body>
 </html>`

@@ -39,19 +39,33 @@ function renderEpigraph({ text, source }: Epigraph, index: number): Html {
   `;
 }
 
+// export function halfTitle(job: Job): Html {
+//   const { spec: { meta: { title, author: { name } } } } = job;
+//   const header = `<h1>${title}</h1>`;
+//   const nameInTitle = title.indexOf(name) !== -1;
+//   if (nameInTitle) {
+//     return header;
+//   }
+//   return `${header}\n<p class="byline"><br class="m7"/>by ${name}</p>`;
+// }
+
 export function halfTitle(job: Job): Html {
-  const { spec: { meta: { title, editor, author: { name } } } } = job;
-  let markup = `<h1>${title}</h1>`;
-  const nameInTitle = title.indexOf(name) !== -1;
-  if (!nameInTitle) {
-    markup = `${markup}\n<p class="byline">${br7}by ${name}</p>`;
-  }
+  return `
+    <h1>There is a Spirit<br />Which I Feel</h1>
 
-  if (editor) {
-    markup += `\n<p class="editor">${br7}${br7}${br7}Edited by ${editor}</p>`;
-  }
+    <p class="byline">
+      Selected Writings of<br />
+      <span>James Nayler</span>
+    </p>
 
-  return markup;
+    <p class="lol-bio">
+      <span>With a short Biographical Sketch</span>
+      Relating His Early Piety and Eminence in the Society of Friends, His Tragic Fall Evinced in the Bristol
+Incident, His Open Acknowledgement of Error and Sincere Repentance, and His Subsequent Restoration to Fellowship and Usefulness in the Body of Christ.
+</p>
+
+    <p class="byline editor">edited by Jason R. Henderson</p>
+  `;
 }
 
 function originalTitle({ spec: { meta } }: Job): Html {

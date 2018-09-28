@@ -67,3 +67,35 @@ blockquote .paragraph + .paragraph {
 .content-signed-section + .content-signed-section {
   margin-top: 0;
 }
+
+
+
+// lol
+h1 {
+  font-size: 45px;
+}
+
+p.byline {
+  span {
+    display: block;
+    font-size: 1.5em;
+  }
+}
+
+.editor {
+  transform: translateY(80px);
+}
+
+.lol-bio {
+  margin: 0.75in 0 1in 0;
+  font-style: italic;
+  span {
+    font-style: normal;
+    display: block;
+    font-weight: 700;
+  }
+}
+
+body .half-title-page {
+  height: 6.5in !important;
+}

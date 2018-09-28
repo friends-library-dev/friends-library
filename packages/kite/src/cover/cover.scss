@@ -1,10 +1,10 @@
-$bg: #232323;
+$bg: brown;
 
 html {
   font-size: 1in;
   background: $bg;
   color: white;
-  font-family: Impact, "Bodoni 72 Smallcaps", Georgia, serif;
+  font-family: "Bodoni 72 Smallcaps", Georgia, serif;
 }
 
 html.size--s {
@@ -46,7 +46,8 @@ img#isbn {
   margin: 0;
 }
 
-.blurb {
+.blurb,
+.subtitle {
   position: absolute;
   hyphens: auto;
   text-indent: 1.4em;
@@ -62,6 +63,28 @@ img#isbn {
   // color: #000;
 }
 
+.subtitle {
+  left: auto;
+  right: $trim + $safety;
+  top: 2.65in;
+  text-align: center;
+  font-size: 0.24rem;
+  padding: 0 1rem;
+  text-indent: 0;
+  font-style: italic;
+
+  span {
+    font-style: normal;
+    font-size: 0.33rem;
+  }
+
+  em {
+    display: block;
+    transform: translateY(-3px);
+    font-size: 0.15rem;
+  }
+}
+
 .title,
 .author,
 .publisher {
@@ -75,7 +98,9 @@ img#isbn {
 }
 
 .title {
-  font-size: 0.6rem;
+  margin-top: -0.2in;
+  font-size: 0.65rem;
+  padding: 1em 0.7em;
   top: $trim + $safety;
 }
 
@@ -88,7 +113,7 @@ img#isbn {
 }
 
 .author {
-  font-size: 0.33rem;
+  font-size: 0.24rem;
   font-style: italic;
   bottom: $trim + $safety + $safety + 0.25in;
 }
@@ -104,14 +129,14 @@ img#isbn {
 }
 
 .spine-author {
-  font-size: 0.2rem;
+  font-size: 0.22rem;
   font-style: italic;
   bottom: $trim + $safety + $trim;
   text-align: right;
 }
 
 .spine-title {
-  font-size: 0.3rem;
+  font-size: 0.32rem;
   width: $spine-width;
   top: $trim + $safety + $trim;
 }
