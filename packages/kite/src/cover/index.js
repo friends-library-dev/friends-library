@@ -36,7 +36,7 @@ export function makeCover(
   fs.removeSync(PUBLISH_DIR);
   fs.ensureDir(PUBLISH_DIR);
 
-  const isbn = '978-1-64476-000-0';
+  const isbn = '978-1-64476-001-7';
 
   const manifest = {
     'doc.html': getHtml(title, author, pages, size, withGuides),
@@ -78,11 +78,32 @@ function getHtml(
     ${pages > 135 ? `<h1 class="spine-title">${title}</h1>` : ''}
     <h2 class="author">${author}</h2>
     ${pages > 135 ? `<h2 class="spine-author">${author}</h2>` : ''}
+    <h3 class="publisher">Friends Library Publishing</h3>
     <div class="dimensions">
       <code>Width: ${dims['cover-width']}</code>
       <code>Height: ${dims['cover-height']}</code>
       <code> Pages: ${pages}</code>
     </div>
+    <p class="blurb">
+      “Do you believe in Christ,
+in reference to His spiritual appearance in your own soul?
+Have you, in the metaphorical language of Scripture,
+opened the door of your heart unto Him, when,
+by the secret convictions of His holy Light or Spirit,
+He has knocked there for admission?
+Have you in this way received Christ to be your leader,
+your baptizer,
+your high-priest and your king?
+Has it become your daily concern to obey Him in all things,
+avoiding in every part of your conduct and conversation
+that which the light manifests to be evil,
+denying yourself and taking up the cross
+in respect to every pursuit and gratification which this divine Monitor does not allow,
+however earnestly pleaded for by your natural inclination and desires?
+And finally, do you witness,
+through submission to the baptizing operation of His Holy Spirit,
+the work of regeneration begun, and gradually progressing in your soul?”
+<p>
   </body>
 </html>`
     .trim();
