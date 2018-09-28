@@ -112,4 +112,12 @@ describe('getPdfManifest()', () => {
 
     expect(manifest['doc.css']).toContain('/* my custom css */');
   });
+
+  test('book trim size added to body class', () => {
+    job.cmd.printSize = 'xl';
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['doc.html']).toContain('<body class="trim--xl">');
+  });
 });

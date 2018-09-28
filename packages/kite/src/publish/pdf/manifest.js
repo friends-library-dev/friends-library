@@ -1,7 +1,7 @@
 // @flow
 import { flow, mapValues } from 'lodash';
 import { toRoman } from 'roman-numerals';
-import type { Job, FileManifest, Css, Html, Heading } from '../../type';
+import type { Job, FileManifest, Css, Html, Heading, PrintSize } from '../../type';
 import { capitalizeTitle, trimTrailingPunctuation } from '../text';
 import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';
@@ -51,8 +51,7 @@ function getSassVars(job: Job): { [string]: string } {
 }
 
 export function printDims(job: Job): { [string]: string } {
-  const { cmd } = job;
-  const trim = getBookSize(cmd.printSize || 'm');
+  const trim = getTrim(job);
   const isSmall = trim.abbrev === 's';
   return mapValues({
     'page-width': trim.dims.inches.width,
@@ -65,6 +64,10 @@ export function printDims(job: Job): { [string]: string } {
   }, v => `${v}in`);
 }
 
+function getTrim({ cmd }: Job): PrintSize {
+  return getBookSize(cmd.printSize || 'm');
+}
+
 function getHtml(job: Job): Html {
   return flow([
     joinSections,
@@ -73,6 +76,7 @@ function getHtml(job: Job): Html {
     prependFrontmatter,
     ([html, j]) => [removeMobiBrs(html), j],
     wrapHtml,
+    addTrimClass,
   ])(['', job])[0];
 }
 
@@ -101,6 +105,14 @@ function addFirstChapterClass([html, job]: [Html, Job]): [Html, Job] {
   return [html.replace(
     '<div class="sect1',
     '<div class="sect1 first-chapter',
+  ), job];
+}
+
+function addTrimClass([html, job]: [Html, Job]): [Html, Job] {
+  const { abbrev } = getTrim(job);
+  return [html.replace(
+    '<body>',
+    `<body class="trim--${abbrev}">`,
   ), job];
 }
 
