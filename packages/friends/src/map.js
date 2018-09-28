@@ -28,6 +28,7 @@ export default function friendFromJS(js: Object): Friend {
         (edition.formats || []).map(format => new Format(format.type)),
         (edition.chapters || []).map(chapter => new Chapter(chapter.title)),
         edition.description || null,
+        edition.isbn || null,
         edition.audio ? new Audio(
           edition.audio.reader,
           edition.audio.parts.map(part => new AudioPart(

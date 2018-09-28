@@ -42,7 +42,6 @@ function tocEntry({ heading }: DocSection): Html {
 function copyright(job: Job): Html {
   return commonCopyright(job)
     .replace('copyright-page', 'copyright-page own-page')
-    .replace('Ebook revision', 'Text revision:')
     .replace('Ebook created', 'Created')
     .replace(/([^@])friendslibrary\.com/g, '$1www.friendslibrary.com');
 }
