@@ -50,3 +50,20 @@ blockquote .paragraph + .paragraph {
 .first-chapter {
   counter-reset: page 1;
 }
+
+.content-signed-section {
+  margin-left: 1.3em;
+  font-family: "Times New Roman", Palatino, Arial, serif;
+}
+
+.paragraph + .content-signed-section {
+  margin-top: 1.5em;
+}
+
+.content-signed-section + .paragraph {
+  margin-top: 1.5em;
+}
+
+.content-signed-section + .content-signed-section {
+  margin-top: 0;
+}
