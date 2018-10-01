@@ -211,14 +211,14 @@ End of footnote here.]
     const { notes } = prepare(precursor(adoc));
 
     const expected = `
-<span class="verse">
+<span class="verse"><br class="m7"/>
 <span class="verse__stanza">
-<span class="verse__line">Foo bar,</span>
-<span class="verse__line">So much baz.</span>
+<span class="verse__line"><br class="m7"/>Foo bar,</span>
+<span class="verse__line"><br class="m7"/>So much baz.</span>
 </span>
 <span class="verse__stanza">
-<span class="verse__line">Foo bar</span>
-<span class="verse__line">And baz.</span>
+<span class="verse__line"><br class="m7"/>Foo bar</span>
+<span class="verse__line"><br class="m7"/>And baz.</span>
 </span>
 </span>
     `.trim();
@@ -466,5 +466,13 @@ Hash baz.]
     const { sections: [section] } = prepare(precursor(adoc));
 
     expect(section.html).not.toContain('<p>&#8212;</p>');
+  });
+
+  test('blockquote tag gets mobi-7 br tag', () => {
+    const adoc = '== C1\n\n[quote]\n____\nFoo.\n____';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<blockquote><br class="m7"/>');
   });
 });

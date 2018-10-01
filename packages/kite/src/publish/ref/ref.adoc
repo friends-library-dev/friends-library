@@ -79,6 +79,38 @@ dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla par
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
 mollit anim id est laborum.
 
+== Some misc stuff
+
+The following is a quote that also has the class `.scripture`:
+
+[quote.scripture, , ]
+____
+But Jesus called them to himself and said,
+"`You know that the rulers of the Gentiles lord it over them,
+and those who are great exercise authority over them.
+Yet it shall not be so among you; but whoever desires to become great among you,
+let him be your servant.
+And whoever desires to be first among you,
+let him be your slave--just as the Son of Man did not come to be served, but to serve,
+and to give his life a ransom for many.`"
+____
+
+[.offset]
+The below paragraph has the `.emphasized` class:
+
+[.emphasized]
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+[.offset]
+The below paragraph has the `.centered` class:
+
+[.centered]
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
 == Chapter IX. Babylon the Great / The City of Confusion Where Antichrist Reigns
 
 This chapter title demonstrates a multi-line break using ` / `.

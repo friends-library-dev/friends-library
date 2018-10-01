@@ -141,6 +141,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   modifyOldStyleHeadings,
   html => html.replace(/<hr>/igm, '<hr />'),
   html => html.replace(/<br>/igm, '<br />'),
+  html => html.replace(/<blockquote>/igm, `<blockquote>${br7}`),
   removeParagraphClass,
   html => html.replace(/(?<=<div class="offset">\n)([\s\S]*?)(?=<\/div>)/gim, `${br7}$1${br7}`),
   html => html.replace(/<div class="discourse-part">/gm, `<div class="discourse-part">${br7}`),
@@ -252,7 +253,7 @@ function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
 function replaceAsterisms(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /\[\.asterism\]\n'''/igm,
-    raw('<div class="asterism">*&#160;&#160;*&#160;&#160;*</div>'),
+    raw(`<div class="asterism">${br7}*&#160;&#160;*&#160;&#160;*${br7}${br7}</div>`),
   );
 }
 
@@ -300,10 +301,10 @@ function expandFootnotePoetry(html: Html): Html {
           }
           const spacer = '&#160;&#160;&#160;&#160;';
           line = line.replace(/^ +/, s => s.split().map(() => spacer).join(''));
-          return `<span class="verse__line">${line}</span>`;
+          return `<span class="verse__line">${br7}${line}</span>`;
         })
         .reduce(stanzas ? wrapper('<span class="verse__stanza">', '</span>') : nowrap, [])
-        .reduce(wrapper('<span class="verse">', '</span>'), [])
+        .reduce(wrapper(`<span class="verse">${br7}`, '</span>'), [])
         .join('\n');
     },
   );

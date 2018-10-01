@@ -3,7 +3,7 @@ import { flow, mapValues } from 'lodash';
 import type { Job, FileManifest, Xml, Css, Html } from '../../type';
 import { toCss } from '../file';
 import { replaceHeadings } from '../headings';
-import { wrapHtml, removeMobiBrs } from '../html';
+import { wrapHtml, removeMobi7Tags } from '../html';
 import { packageDocument } from './package-document';
 import { makeFootnoteCallReplacer, notesMarkup } from './notes';
 import { nav } from './nav';
@@ -14,7 +14,7 @@ type SubManifest<T> = {
 };
 
 export function getEpubManifest(job: Job): FileManifest {
-  return mapValues(getEbookManifest(job), removeMobiBrs);
+  return mapValues(getEbookManifest(job), removeMobi7Tags);
 }
 
 export function getEbookManifest(job: Job): FileManifest {
