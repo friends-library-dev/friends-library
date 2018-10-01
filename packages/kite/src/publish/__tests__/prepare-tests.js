@@ -459,4 +459,12 @@ Hash baz.]
     expect(sect1.html).toMatch(/^<div class="sect1 chapter--no-signed-section"/);
     expect(sect2.html).toMatch(/^<div class="sect1 chapter--has-signed-section"/);
   });
+
+  test('open block delimiters not changed into emdash', () => {
+    const adoc = '== C1\n\n[.embedded-content-document]\n--\n\nFoo, bar.\n\n--\n';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).not.toContain('<p>&#8212;</p>');
+  });
 });
