@@ -5,6 +5,7 @@ import { toArabic } from 'roman-numerals';
 import Asciidoctor from 'asciidoctor.js';
 import { flow, memoize, intersection } from 'lodash';
 import { wrapper } from './text';
+import { br7 } from './html';
 import type {
   Epigraph,
   Asciidoc,
@@ -114,7 +115,6 @@ function parseHeading(text: string): Object {
 }
 
 const asciidoctor = new Asciidoctor();
-const br7 = '<br class="m7"/>';
 const raw = (input: string): Asciidoc => `++++\n${input}\n++++`;
 
 const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
