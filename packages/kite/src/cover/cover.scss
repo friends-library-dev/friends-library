@@ -31,6 +31,7 @@ $isbn-img-padding: 0.08in;
 $isbn-offset: 0.2in;
 
 img#isbn {
+  display: none;
   position: absolute;
   bottom: $trim + $safety + $isbn-offset;
   right: $page-width + $spine-width + $safety + $fold + $fold + $isbn-offset;
