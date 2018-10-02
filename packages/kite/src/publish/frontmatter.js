@@ -3,6 +3,7 @@ import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
 import type { Job, Html, FileManifest, Epigraph } from '../type';
 import { printDims } from './pdf/manifest';
+import { capitalizeTitle } from './text';
 
 export const frontmatter = memoize((job: Job): FileManifest => {
   const files = {
@@ -59,7 +60,7 @@ function originalTitle({ spec: { meta } }: Job): Html {
         <br class="m7"/>
       </p>
       <p class="originally-titled__title">
-        ${meta.originalTitle}
+        ${capitalizeTitle(meta.originalTitle)}
       </p>
     </div>
   `;
