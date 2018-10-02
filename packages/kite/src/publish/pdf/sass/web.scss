@@ -1,5 +1,5 @@
 html {
-  font-size: 14pt;
+  font-size: 12.5pt;
 }
 
 .blank-page {
@@ -8,10 +8,19 @@ html {
 
 @page {
   size: 8.5in 11in;
-  margin: 1in;
+  margin: 0.75in;
+  margin-bottom: 0.95in;
 
   @footnotes {
     margin-top: 1.5rem;
+  }
+
+  @top-center {
+    content: normal !important;
+  }
+
+  @bottom-center {
+    margin-top: 0.2in;
   }
 }
 
@@ -21,8 +30,12 @@ p {
   line-height: 160%;
 }
 
+.paragraph p {
+  text-indent: 0;
+}
+
 .paragraph + .paragraph {
-  margin-top: 1rem;
+  margin-top: 0.85rem;
 }
 
 blockquote .paragraph + .paragraph {
@@ -53,6 +66,12 @@ blockquote .paragraph p {
 
 .copyright-page {
   height: 9in; /* 11 minus margins */
+}
+
+.original-title-page,
+.copyright-page,
+.toc {
+  display: none;
 }
 
 div.asterism {

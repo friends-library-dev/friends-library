@@ -24,6 +24,7 @@ html {
 
 h2 {
   margin-top: $page-height / 4;
+  prince-page-group: start; /* forces new page & allows target @page:first for pages starting chapters */
 }
 
 .sect1 {
