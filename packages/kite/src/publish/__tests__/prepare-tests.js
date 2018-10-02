@@ -42,6 +42,15 @@ describe('prepare()', () => {
     expect(section.html).toContain('bar&#8212;an aside&#8212;jim');
   });
 
+  it('inserts emdash before .signed-section-signature', () => {
+    // using css content::before doesn't work on mobi-7
+    const adoc = '== Ch\n\nFoo.\n\n[.signed-section-signature]\nJared.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('&#8212;Jared.');
+  });
+
   it('corrects for improperly broken quotes', () => {
     const adoc = '== Ch\n\nFoo bar "`\njim jam.`"';
     const { sections: [section] } = prepare(precursor(adoc));

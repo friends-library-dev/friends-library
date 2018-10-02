@@ -128,6 +128,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/`"/igm, '&#8221;'),
   adoc => adoc.replace(/'`/igm, '&#8216;'),
   adoc => adoc.replace(/`'/igm, '&#8217;'),
+  adoc => adoc.replace(/(\[\.signed-section-signature\]\n)/gm, '$1--'),
   adoc => adoc.replace(/\n--\n/gm, '{open-block-delimiter}'),
   adoc => adoc.replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;'),
   adoc => adoc.replace(/{open-block-delimiter}/gm, '\n--\n'),

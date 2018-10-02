@@ -153,10 +153,6 @@ h3 + h4 {
   p {
     margin-top: 0;
   }
-
-  p::before {
-    content: "\2014"; // emdash
-  }
 }
 
 .signed-section-signature,
