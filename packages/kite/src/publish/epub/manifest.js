@@ -65,15 +65,12 @@ function css({ target, spec: { customCss } }: Job): Css {
   let combined = [
     toCss('sass/common.scss'),
     toCss('sass/ebook.scss'),
+    ...target === 'epub' ? [toCss('sass/not-mobi7.scss'), toCss('epub/sass/epub.scss')] : [],
   ].join('\n');
-
-  if (target === 'epub') {
-    combined += `\n${toCss('epub/sass/epub.scss')}`;
-  }
 
   if (target === 'mobi') {
     combined += `\n@media amzn-mobi {\n${toCss('mobi/sass/mobi.scss')}\n}`;
-    combined += `\n@media amzn-kf8 {\n${toCss('mobi/sass/kf8.scss')}\n}`;
+    combined += `\n@media amzn-kf8 {\n${toCss('sass/not-mobi7.scss')}\n${toCss('mobi/sass/kf8.scss')}\n}`;
   }
 
   combined += customCss.all || '';

@@ -22,6 +22,7 @@ function getCss(job: Job): Css {
   const vars = getSassVars(job);
   return [
     'sass/common.scss',
+    'sass/not-mobi7.scss',
     'sass/paging.scss',
     'pdf/sass/base.scss',
     'pdf/sass/typography.scss',

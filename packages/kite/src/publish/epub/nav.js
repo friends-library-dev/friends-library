@@ -48,7 +48,7 @@ export function tocItems({ spec: { sections } }: Job): Array<Object> {
 }
 
 
-export function landmarks(job: Job): Array<Object> {
+export function landmarks({ target, cmd }: Job): Array<Object> {
   const landmarkItems = [];
 
   landmarkItems.push({
@@ -57,7 +57,7 @@ export function landmarks(job: Job): Array<Object> {
     text: 'Title page',
   });
 
-  if (job.target === 'mobi') {
+  if (target === 'mobi') {
     landmarkItems.push({
       type: 'toc',
       href: 'nav.xhtml',
@@ -67,7 +67,7 @@ export function landmarks(job: Job): Array<Object> {
 
   landmarkItems.push({
     type: 'bodymatter',
-    href: 'half-title.xhtml',
+    href: cmd.frontmatter ? 'half-title.xhtml' : 'section1.xhtml',
     text: 'Beginning',
   });
 
