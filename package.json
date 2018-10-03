@@ -54,6 +54,8 @@
     "packages/fell"
   ],
   "jest": {
+    "errorOnDeprecated": true,
+    "testEnvironment": "node",
     "testRegex": "__tests__/.*tests?\\.js"
   }
 }
