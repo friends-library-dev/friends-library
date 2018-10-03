@@ -15,11 +15,11 @@ describe('frontmatter()', () => {
   });
 
   it('includes original title if document has original title', () => {
-    job.spec.meta.originalTitle = 'Original title &c.';
+    job.spec.meta.originalTitle = 'Original Title &c.';
 
     const files = frontmatter(job);
 
-    expect(files['original-title']).toContain('Original title &c.');
+    expect(files['original-title']).toContain('Original Title &c.');
   });
 
   test('copyright has published date if data exists on spec', () => {

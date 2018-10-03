@@ -3,6 +3,8 @@ import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
 import type { Job, Html, FileManifest, Epigraph } from '../type';
 import { printDims } from './pdf/manifest';
+import { capitalizeTitle } from './text';
+import { br7 } from './html';
 
 export const frontmatter = memoize((job: Job): FileManifest => {
   const files = {
@@ -20,7 +22,7 @@ export function epigraph({ spec: { epigraphs } }: Job): Html {
   }
   return `
     <div class="epigraphs own-page">
-      ${epigraphs.map(renderEpigraph).join('\n<br class="m7"/>\n<br class="m7"/>\n')}
+      ${epigraphs.map(renderEpigraph).join(`\n${br7}\n${br7}\n`)}
     </div>
   `;
 }
@@ -37,13 +39,18 @@ function renderEpigraph({ text, source }: Epigraph, index: number): Html {
 }
 
 export function halfTitle(job: Job): Html {
-  const { spec: { meta: { title, author: { name } } } } = job;
-  const header = `<h1>${title}</h1>`;
+  const { spec: { meta: { title, editor, author: { name } } } } = job;
+  let markup = `<h1>${title}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
-  if (nameInTitle) {
-    return header;
+  if (!nameInTitle) {
+    markup = `${markup}\n<p class="byline">${br7}by ${name}</p>`;
   }
-  return `${header}\n<p class="byline"><br class="m7"/>by ${name}</p>`;
+
+  if (editor) {
+    markup += `\n<p class="editor">${br7}${br7}${br7}Edited by ${editor}</p>`;
+  }
+
+  return markup;
 }
 
 function originalTitle({ spec: { meta } }: Job): Html {
@@ -55,11 +62,11 @@ function originalTitle({ spec: { meta } }: Job): Html {
     <div class="original-title-page">
       <p class="originally-titled__label">
         Original title:
-        <br class="m7"/>
-        <br class="m7"/>
+        ${br7}
+        ${br7}
       </p>
       <p class="originally-titled__title">
-        ${meta.originalTitle}
+        ${capitalizeTitle(meta.originalTitle)}
       </p>
     </div>
   `;

@@ -16,6 +16,11 @@ export function wrapHtml(html: Html): Html {
     .trim();
 }
 
-export function removeMobiBrs(file: string): string {
-  return file.replace(/ *<br class="m7" *\/>\n?/igm, '');
+export function removeMobi7Tags(file: string): string {
+  return file
+    .replace(/ *<br class="m7" *\/>\n?/igm, '')
+    .replace(/ *<span class="m7">.+?<\/span>\n?/igm, '');
 }
+
+
+export const br7: string = '<br class="m7"/>';

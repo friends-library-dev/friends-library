@@ -99,28 +99,6 @@ h3 + h4 {
   }
 }
 
-.footnote {
-
-  .verse {
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
-
-    &__stanza {
-      margin-bottom: 0;
-
-      + .verse__stanza {
-        margin-top: 0.45em;
-      }
-    }
-
-    &__line {
-      padding-left: 3.5em;
-      text-indent: -1.5em;
-      line-height: 1.2em;
-    }
-  }
-}
-
 .signed-section-context-open {
    p {
      margin-top: 2em;
@@ -174,10 +152,6 @@ h3 + h4 {
 
   p {
     margin-top: 0;
-  }
-
-  p::before {
-    content: "\2014"; // emdash
   }
 }
 
@@ -343,4 +317,19 @@ h4.alt {
 
 dl {
   margin-top: 1.5em;
+}
+
+dt {
+  font-weight: 700;
+}
+
+.embedded-content-document {
+  margin: 1.35em 0 1.35em;
+}
+
+
+.half-title-page .editor {
+  font-style: italic;
+  text-align: center;
+  font-size: 0.65em;
 }

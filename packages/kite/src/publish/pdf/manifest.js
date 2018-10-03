@@ -5,7 +5,7 @@ import type { Job, FileManifest, Css, Html, Heading, PrintSize } from '../../typ
 import { capitalizeTitle, trimTrailingPunctuation } from '../text';
 import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';
-import { removeMobiBrs } from '../html';
+import { removeMobi7Tags } from '../html';
 import { frontmatter } from './frontmatter';
 import { getBookSize } from '../book-sizes';
 
@@ -22,6 +22,7 @@ function getCss(job: Job): Css {
   const vars = getSassVars(job);
   return [
     'sass/common.scss',
+    'sass/not-mobi7.scss',
     'sass/paging.scss',
     'pdf/sass/base.scss',
     'pdf/sass/typography.scss',
@@ -74,7 +75,7 @@ function getHtml(job: Job): Html {
     addFirstChapterClass,
     inlineNotes,
     prependFrontmatter,
-    ([html, j]) => [removeMobiBrs(html), j],
+    ([html, j]) => [removeMobi7Tags(html), j],
     wrapHtml,
     addTrimClass,
   ])(['', job])[0];

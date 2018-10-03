@@ -3,7 +3,7 @@ import { flow, mapValues } from 'lodash';
 import type { Job, FileManifest, Xml, Css, Html } from '../../type';
 import { toCss } from '../file';
 import { replaceHeadings } from '../headings';
-import { wrapHtml, removeMobiBrs } from '../html';
+import { wrapHtml, removeMobi7Tags } from '../html';
 import { packageDocument } from './package-document';
 import { makeFootnoteCallReplacer, notesMarkup } from './notes';
 import { nav } from './nav';
@@ -14,7 +14,7 @@ type SubManifest<T> = {
 };
 
 export function getEpubManifest(job: Job): FileManifest {
-  return mapValues(getEbookManifest(job), removeMobiBrs);
+  return mapValues(getEbookManifest(job), removeMobi7Tags);
 }
 
 export function getEbookManifest(job: Job): FileManifest {
@@ -65,15 +65,12 @@ function css({ target, spec: { customCss } }: Job): Css {
   let combined = [
     toCss('sass/common.scss'),
     toCss('sass/ebook.scss'),
+    ...target === 'epub' ? [toCss('sass/not-mobi7.scss'), toCss('epub/sass/epub.scss')] : [],
   ].join('\n');
-
-  if (target === 'epub') {
-    combined += `\n${toCss('epub/sass/epub.scss')}`;
-  }
 
   if (target === 'mobi') {
     combined += `\n@media amzn-mobi {\n${toCss('mobi/sass/mobi.scss')}\n}`;
-    combined += `\n@media amzn-kf8 {\n${toCss('mobi/sass/kf8.scss')}\n}`;
+    combined += `\n@media amzn-kf8 {\n${toCss('sass/not-mobi7.scss')}\n${toCss('mobi/sass/kf8.scss')}\n}`;
   }
 
   combined += customCss.all || '';

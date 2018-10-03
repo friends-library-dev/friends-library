@@ -42,6 +42,15 @@ describe('prepare()', () => {
     expect(section.html).toContain('bar&#8212;an aside&#8212;jim');
   });
 
+  it('inserts emdash before .signed-section-signature', () => {
+    // using css content::before doesn't work on mobi-7
+    const adoc = '== Ch\n\nFoo.\n\n[.signed-section-signature]\nJared.';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('&#8212;Jared.');
+  });
+
   it('corrects for improperly broken quotes', () => {
     const adoc = '== Ch\n\nFoo bar "`\njim jam.`"';
     const { sections: [section] } = prepare(precursor(adoc));
@@ -211,14 +220,14 @@ End of footnote here.]
     const { notes } = prepare(precursor(adoc));
 
     const expected = `
-<span class="verse">
+<span class="verse"><br class="m7"/>
 <span class="verse__stanza">
-<span class="verse__line">Foo bar,</span>
-<span class="verse__line">So much baz.</span>
+<span class="verse__line"><br class="m7"/>Foo bar,</span>
+<span class="verse__line"><br class="m7"/>So much baz.</span>
 </span>
 <span class="verse__stanza">
-<span class="verse__line">Foo bar</span>
-<span class="verse__line">And baz.</span>
+<span class="verse__line"><br class="m7"/>Foo bar</span>
+<span class="verse__line"><br class="m7"/>And baz.</span>
 </span>
 </span>
     `.trim();
@@ -458,5 +467,21 @@ Hash baz.]
 
     expect(sect1.html).toMatch(/^<div class="sect1 chapter--no-signed-section"/);
     expect(sect2.html).toMatch(/^<div class="sect1 chapter--has-signed-section"/);
+  });
+
+  test('open block delimiters not changed into emdash', () => {
+    const adoc = '== C1\n\n[.embedded-content-document]\n--\n\nFoo, bar.\n\n--\n';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).not.toContain('<p>&#8212;</p>');
+  });
+
+  test('blockquote tag gets mobi-7 br tag', () => {
+    const adoc = '== C1\n\n[quote]\n____\nFoo.\n____';
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<blockquote><br class="m7"/>');
   });
 });

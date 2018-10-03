@@ -115,6 +115,7 @@ export type DocumentMeta = {|
   +originalTitle?: string,
   +published?: number,
   +isbn?: ISBN,
+  +editor?: string,
   +author: {|
     +name: string,
     +nameSort: string,

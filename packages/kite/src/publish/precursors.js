@@ -75,6 +75,7 @@ function buildPrecursor(
       ...document.originalTitle ? { originalTitle: document.originalTitle } : {},
       ...document.published ? { published: document.published } : {},
       ...edition.isbn ? { isbn: edition.isbn } : {},
+      ...edition.editor ? { editor: edition.editor } : {},
     },
     filename: `${document.filename}--${edition.type}`,
     revision: {
