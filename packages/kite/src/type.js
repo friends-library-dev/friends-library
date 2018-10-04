@@ -28,13 +28,18 @@ export type PrintSizeName = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crow
 export type PrintSizeAbbrev = 's' | 'm' | 'l' | 'xl' | 'xxl';
 
 export type PrintSize = {|
-  name: PrintSizeName,
-  abbrev: PrintSizeAbbrev,
-  dims: {|
-    inches: {|
-      height: number,
-      width: number,
-    |}
+  +name: PrintSizeName,
+  +abbrev: PrintSizeAbbrev,
+  +dims: {|
+    +height: number,
+    +width: number,
+  |},
+  +margins: {|
+    +top: number,
+    +bottom: number,
+    +outer: number,
+    +inner: number,
+    +runningHeadTop: number,
   |}
 |};
 
