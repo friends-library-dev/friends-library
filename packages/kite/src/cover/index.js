@@ -95,8 +95,8 @@ function getCss(pages: number, size: PrintSize) {
 
 function getDims(pages: number, size: PrintSize): {[string]: string} {
   // For Perfect Softcovers: (#PGS / 444) + 0.06” = Spine Width
-  const pageWidth = size.dims.inches.width;
-  const pageHeight = size.dims.inches.height;
+  const pageWidth = size.dims.width;
+  const pageHeight = size.dims.height;
   const spinePad = 0.06;
   const coverPad = 0.25;
   const pagesPerInch = 444;

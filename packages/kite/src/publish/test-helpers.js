@@ -35,7 +35,7 @@ export function testPrecursor(adoc: ?Asciidoc = null): SourcePrecursor {
     revision: {
       timestamp: Math.floor(Date.now() / 1000),
       sha: 'fb0c71b',
-      url: 'https://github.com/friends-library-docs/test/tree/fb0c71b/doc/edition',
+      url: 'https://github.com/friends-library/test/tree/fb0c71b/doc/edition',
     },
   };
 }

@@ -53,15 +53,14 @@ function getSassVars(job: Job): { [string]: string } {
 
 export function printDims(job: Job): { [string]: string } {
   const trim = getTrim(job);
-  const isSmall = trim.abbrev === 's';
   return mapValues({
-    'page-width': trim.dims.inches.width,
-    'page-height': trim.dims.inches.height,
-    'page-top-margin': (0.85 * (isSmall ? 0.8 : 1)),
-    'page-bottom-margin': (0.65 * (isSmall ? 0.8 : 1)),
-    'page-outer-margin': (0.6 * (isSmall ? 0.8 : 1)),
-    'page-inner-margin': (0.66 * (isSmall ? 0.8 : 1)),
-    'running-head-margin-top': isSmall ? 0.18 : 0.35,
+    'page-width': trim.dims.width,
+    'page-height': trim.dims.height,
+    'page-top-margin': trim.margins.top,
+    'page-bottom-margin': trim.margins.bottom,
+    'page-outer-margin': trim.margins.outer,
+    'page-inner-margin': trim.margins.inner,
+    'running-head-margin-top': trim.margins.runningHeadTop,
   }, v => `${v}in`);
 }
 
