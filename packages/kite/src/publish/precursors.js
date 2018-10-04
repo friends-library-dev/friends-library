@@ -82,7 +82,7 @@ function buildPrecursor(
       timestamp,
       sha,
       url: [
-        'https://github.com/friends-library-docs',
+        'https://github.com/friends-library',
         friendSlug,
         'tree',
         sha,
