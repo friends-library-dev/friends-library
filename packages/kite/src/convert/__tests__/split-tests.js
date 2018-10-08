@@ -249,4 +249,12 @@ describe('splitShort()', () => {
 
     expect(result).not.toMatch(/\n`"/);
   });
+
+  it('does not split just after dashed smart quote open', () => {
+    const input = 'If we are rich, let us not hide our talent in the earth, but be rich in good works: and if we are in a middling condition as to outward circumstances, let us endeavor so to act, as to be able strictly to adopt the apostle\'s language,--"`these hands have ministered unto my necessities, and to them that were with me.`"';
+
+    const result = splitLines(input);
+
+    expect(result).not.toMatch(/"`\n/);
+  });
 });

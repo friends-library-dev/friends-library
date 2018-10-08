@@ -38,7 +38,7 @@ function scoreForceSplit(
     }
 
     // prevent splitting before/after smart quote open
-    if (part.match(/ ("|')`$/) || part.match(/^`("|')/)) {
+    if (part.match(/(--| )("|')`$/) || part.match(/^`("|')/)) {
       score += 200;
     }
 
