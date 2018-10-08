@@ -5,7 +5,7 @@ const defaultMargins = {
   top: 0.85,
   bottom: 0.65,
   outer: 0.6,
-  inner: 0.66,
+  inner: 0.7,
   runningHeadTop: 0.35,
 };
 
