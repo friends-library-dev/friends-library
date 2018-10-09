@@ -35,11 +35,15 @@ describe('prepare()', () => {
     expect(section.html).not.toContain('h2');
   });
 
-  it('trims spaces when joining lines with emdash in between', () => {
-    const adoc = '== Ch\n\nFoo bar--\nan aside--\njim jam.';
+  const emdashSplits = [
+    ['== Ch\n\nFoo bar--\nan aside--\njim jam.', 'bar&#8212;an aside&#8212;jim'],
+    ['== Ch\n\n"The earth,`"--\nHe says.', '&#8212;He'],
+  ];
+
+  it.each(emdashSplits)('trims spaces when joining lines with emdash in between', (adoc, frag) => {
     const { sections: [section] } = prepare(precursor(adoc));
 
-    expect(section.html).toContain('bar&#8212;an aside&#8212;jim');
+    expect(section.html).toContain(frag);
   });
 
   it('inserts emdash before .signed-section-signature', () => {

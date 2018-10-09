@@ -132,7 +132,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/\n--\n/gm, '{open-block-delimiter}'),
   adoc => adoc.replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;'),
   adoc => adoc.replace(/{open-block-delimiter}/gm, '\n--\n'),
-  adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gm, '&#8212;$1'),
+  adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gim, '&#8212;$1'),
   adoc => adoc.replace(/ &#8220;\n([a-z])/gim, ' &#8220;$1'),
   adoc => adoc.replace(/&#8212;(?:\n)?_([^_]+?)_(?=[^_])/gm, '&#8212;__$1__'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
