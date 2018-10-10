@@ -172,10 +172,10 @@ function headingsInOpenBlocks(adoc: Asciidoc): Asciidoc {
         (__, start, bracket, heading) => {
           const discrete = (bracket || '').indexOf('discrete') !== -1 ? '' : 'discrete';
           return `${start}[${discrete}${bracket || ''}]\n${heading}`;
-        }
+        },
       );
       return `${open}${inner}${end}`;
-    }
+    },
   );
 }
 
