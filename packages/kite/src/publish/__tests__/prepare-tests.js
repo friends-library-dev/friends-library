@@ -488,4 +488,22 @@ Hash baz.]
 
     expect(section.html).toContain('<blockquote><br class="m7"/>');
   });
+
+  const headingsInOpenBlocks = [
+    ['== Ch1\n\n[.embedded-content-document]\n--\n\n=== Foo\n\n--\n'],
+    ['== Ch1\n\n[.embedded-content-document]\n--\n\n[.blurb]\n=== Foo\n\n--\n'],
+    ['== Ch1\n\n[.embedded-content-document]\n--\n\n[.foo]\n=== Foo\n\n--\n'],
+  ];
+
+  test.each(headingsInOpenBlocks)('h3 right after opening open block parse correctly', adoc => {
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).not.toContain('=== Foo');
+  });
+
+  test('unresolved heading in final html throws', () => {
+    const adoc = '== C1\n\n+++<p>=== Foo</p>+++';
+
+    expect(() => prepare(precursor(adoc))).toThrow();
+  });
 });
