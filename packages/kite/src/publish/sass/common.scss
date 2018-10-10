@@ -301,9 +301,11 @@ h4.alt {
 
 .centered {
   text-align: center !important;
+  text-indent: 0 !important;
 
   > * {
     text-align: center !important;
+    text-indent: 0 !important;
   }
 }
 

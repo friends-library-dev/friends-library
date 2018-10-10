@@ -45,11 +45,18 @@ function processAdoc(
   const [epigraphs, adocSansEpigraphs] = extractEpigraphs(adoc);
   const completeHtml = adocToHtml(adocSansEpigraphs);
   const [notes, htmlSansNotes] = extractNotes(completeHtml);
+  verifyHtml(htmlSansNotes);
   return {
     notes,
     epigraphs,
     sections: htmlToSections(htmlSansNotes, shortHeadings),
   };
+}
+
+function verifyHtml(html: Html): void {
+  if (html.match(/>==+ /gm)) {
+    throw new Error('Html error: unresolved heading asciidoc');
+  }
 }
 
 function extractShortHeadings(adoc: Asciidoc): Map<string, string> {
@@ -123,6 +130,7 @@ const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
   changeChapterSubtitleBlurbMarkup,
   prepareDiscourseParts,
   discreteize,
+  headingsInOpenBlocks,
   adoc => adoc.replace(/[–|—]/g, '--'),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
@@ -152,6 +160,22 @@ function discreteize(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /\[((?:\.blurb|\.alt|\.centered)+)\]\n(====?) /gm,
     '[discrete$1]\n$2 ',
+  );
+}
+
+function headingsInOpenBlocks(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /(\n--\n\n)([\s\S]*?)(\n\n--\n)/igm,
+    (_, open, content, end) => {
+      const inner = content.replace(
+        /(^|\n\n)(?:\[([^\]]+?)\]\n)?(===+ )/igm,
+        (__, start, bracket, heading) => {
+          const discrete = (bracket || '').indexOf('discrete') !== -1 ? '' : 'discrete';
+          return `${start}[${discrete}${bracket || ''}]\n${heading}`;
+        }
+      );
+      return `${open}${inner}${end}`;
+    }
   );
 }
 
