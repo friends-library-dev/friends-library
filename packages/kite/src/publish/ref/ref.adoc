@@ -371,6 +371,49 @@ Daniel Wheeler
 
 == Letters in flow of doc
 
+_Below shows a letter that has a `.signed-section-context-close` BEFORE the signature:_
+
+[.asterism]
+'''
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Dear Friend,
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.signed-section-context-close]
+Carr End, the 11th of the First month, 1720.
+
+[.signed-section-signature]
+John Fothergill.
+
+--
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.asterism]
+'''
+
 _Below shows double `.signed-section-context-open` with salutation and content before:_
 
 [.asterism]
