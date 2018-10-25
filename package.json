@@ -51,7 +51,8 @@
     "packages/phipps",
     "packages/api",
     "packages/color",
-    "packages/fell"
+    "packages/fell",
+    "packages/styleguide"
   ],
   "jest": {
     "errorOnDeprecated": true,

@@ -1,0 +1,478 @@
+.rendered-adoc {
+  /* chicago manual of style says first para of blockquote should not be indented */ }
+  .rendered-adoc h2 {
+    text-align: center; }
+  .rendered-adoc h2 span.line,
+  .rendered-adoc .chapter-heading__title span.line {
+    display: block;
+    line-height: 1.5em; }
+  .rendered-adoc .line-2 {
+    font-size: 0.9em; }
+  .rendered-adoc .line-3 {
+    font-size: 0.8em; }
+  .rendered-adoc .chapter-heading__sequence {
+    font-weight: 400; }
+  .rendered-adoc .chapter-heading__title {
+    text-align: center;
+    font-weight: 700; }
+  .rendered-adoc .chapter-heading--blurb h2 {
+    font-weight: normal;
+    font-style: italic;
+    text-transform: none; }
+  .rendered-adoc .chapter-subtitle--blurb {
+    font-weight: normal;
+    font-style: italic;
+    text-transform: none;
+    text-align: center;
+    margin: -1em 0 2.25em; }
+  .rendered-adoc h3 + h4 {
+    margin-top: 0; }
+  .rendered-adoc .epigraphs {
+    margin-top: 30%;
+    text-align: center; }
+  .rendered-adoc .epigraph {
+    font-style: italic; }
+    .rendered-adoc .epigraph__source {
+      font-size: 0.9em;
+      white-space: nowrap; }
+      .rendered-adoc .epigraph__source::before {
+        content: "("; }
+      .rendered-adoc .epigraph__source::after {
+        content: ")"; }
+    .rendered-adoc .epigraph--not-first::before {
+      content: "*\00a0\00a0\00a0\00a0\00a0*\00a0\00a0\00a0\00a0\00a0*";
+      margin-top: 2.5em;
+      padding-bottom: 2em;
+      display: block; }
+  .rendered-adoc .verse {
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-style: italic; }
+    .rendered-adoc .verse__stanza {
+      display: block;
+      margin-bottom: 1.5em; }
+    .rendered-adoc .verse__line {
+      display: block;
+      padding-left: 1.4em;
+      text-indent: -1.4em;
+      line-height: 1.75em; }
+  .rendered-adoc .signed-section-context-open p {
+    margin-top: 2em;
+    margin-bottom: 0; }
+  .rendered-adoc .signed-section-context-open + .paragraph {
+    margin-top: 0.75em; }
+  .rendered-adoc .signed-section-context-open,
+  .rendered-adoc .signed-section-context-close {
+    font-style: italic;
+    font-size: 0.9em; }
+  .rendered-adoc .signed-section-context-close p {
+    margin-bottom: 2.5em; }
+  .rendered-adoc .signed-section-closing p {
+    text-align: right;
+    margin-top: 0.5em; }
+  .rendered-adoc .signed-section-closing + .signed-section-signature {
+    margin-top: -0.5em; }
+  .rendered-adoc .signed-section-context-open + .salutation p {
+    margin-top: 0.75em; }
+  .rendered-adoc .signed-section-context-open + .signed-section-context-open p {
+    margin-top: 0.1em; }
+  .rendered-adoc .signed-section-signature {
+    margin-top: 0.45em;
+    margin-bottom: 2.5em;
+    font-variant: small-caps; }
+    .rendered-adoc .signed-section-signature p {
+      margin-top: 0; }
+  .rendered-adoc .signed-section-signature p,
+  .rendered-adoc .signed-section-context-close p {
+    text-align: right;
+    text-indent: 0; }
+  .rendered-adoc .salutation p {
+    margin-bottom: 0.5em; }
+  .rendered-adoc .letter-heading {
+    margin: 2.25em 0 0.5em; }
+    .rendered-adoc .letter-heading p {
+      text-transform: uppercase;
+      font-size: 0.85em;
+      font-weight: 700;
+      text-align: center !important;
+      text-indent: 0 !important;
+      margin: 0; }
+  .rendered-adoc .letter-heading + .signed-section-context-open {
+    margin-top: -0.65em; }
+  .rendered-adoc .signed-section-signature + .signed-section-context-close,
+  .rendered-adoc .signed-section-context-close + .signed-section-context-close,
+  .rendered-adoc .signed-section-signature + .signed-section-signature {
+    margin-top: -2.5em; }
+  .rendered-adoc .paragraph.no-indent p {
+    text-indent: 0; }
+  .rendered-adoc blockquote .paragraph:first-of-type p {
+    text-indent: 0; }
+  .rendered-adoc .quoteblock.scripture blockquote p {
+    font-style: italic; }
+  .rendered-adoc h3.blurb {
+    font-weight: 400;
+    font-style: italic;
+    text-align: center; }
+  .rendered-adoc .chapter-synopsis {
+    font-style: italic;
+    text-align: center;
+    font-size: 0.85em;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+    margin-bottom: 2em; }
+  .rendered-adoc .offset + .signed-section-context-open,
+  .rendered-adoc .offset + .salutation {
+    margin-top: -0.5em; }
+  .rendered-adoc .offset p,
+  .rendered-adoc .numbered p {
+    text-align: justify; }
+  .rendered-adoc .discourse-part p {
+    margin-bottom: 0;
+    text-align: justify; }
+  .rendered-adoc .small-break {
+    height: 1em; }
+  .rendered-adoc .fn-split {
+    display: block;
+    height: 0.5em; }
+  .rendered-adoc .the-end {
+    text-transform: uppercase;
+    margin-top: 3em; }
+    .rendered-adoc .the-end p {
+      text-align: center; }
+  .rendered-adoc h3.old-style {
+    margin-top: 2.75em;
+    text-align: center; }
+    .rendered-adoc h3.old-style span:first-child {
+      margin-bottom: 0.5em; }
+    .rendered-adoc h3.old-style span {
+      display: block;
+      line-height: 1.5em; }
+    .rendered-adoc h3.old-style span + span {
+      font-weight: 400;
+      font-style: italic; }
+  .rendered-adoc h3.old-style.bold span + span {
+    font-weight: 700;
+    font-style: normal; }
+    .rendered-adoc h3.old-style.bold span + span em {
+      font-style: normal; }
+  .rendered-adoc h3.alt,
+  .rendered-adoc h4.alt {
+    font-weight: 400;
+    font-style: italic; }
+  .rendered-adoc .centered {
+    text-align: center !important;
+    text-indent: 0 !important; }
+    .rendered-adoc .centered > * {
+      text-align: center !important;
+      text-indent: 0 !important; }
+  .rendered-adoc .emphasized {
+    font-style: italic; }
+    .rendered-adoc .emphasized > * {
+      font-style: italic; }
+  .rendered-adoc dl {
+    margin-top: 1.5em; }
+  .rendered-adoc dt {
+    font-weight: 700; }
+  .rendered-adoc .embedded-content-document {
+    margin: 1.35em 0 1.35em; }
+  .rendered-adoc .half-title-page .editor {
+    font-style: italic;
+    text-align: center;
+    font-size: 0.65em; }
+  .rendered-adoc .footnote .verse {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em; }
+    .rendered-adoc .footnote .verse__stanza {
+      margin-bottom: 0; }
+      .rendered-adoc .footnote .verse__stanza + .verse__stanza {
+        margin-top: 0.45em; }
+    .rendered-adoc .footnote .verse__line {
+      padding-left: 3.5em;
+      text-indent: -1.5em;
+      line-height: 1.2em; }
+  .rendered-adoc h1, .rendered-adoc h2, .rendered-adoc h3, .rendered-adoc h4, .rendered-adoc h5, .rendered-adoc h6,
+  .rendered-adoc .verse__stanza {
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid; }
+  .rendered-adoc .signed-section-signature,
+  .rendered-adoc .signed-section-context-close {
+    page-break-before: avoid; }
+  .rendered-adoc h1, .rendered-adoc h2, .rendered-adoc h3, .rendered-adoc h4, .rendered-adoc h5, .rendered-adoc h6,
+  .rendered-adoc .letter-heading,
+  .rendered-adoc .salutation,
+  .rendered-adoc .signed-section-context-open {
+    page-break-after: avoid;
+    -webkit-column-break-after: avoid; }
+  .rendered-adoc .chapter--no-signed-section p {
+    widows: 2;
+    orphans: 2; }
+  .rendered-adoc .footnote {
+    widows: 2;
+    orphans: 2; }
+
+@page {
+  @footnotes {
+    .rendered-adoc {
+      max-height: 80%;
+      background: url(line.svg) no-repeat top left;
+      padding-left: 12pt;
+      padding-top: 2pt;
+      margin-top: 8px;
+      footnote-style-position: outside; } }
+  @bottom-center {
+    .rendered-adoc {
+      content: counter(page);
+      font-size: 0.9rem;
+      padding: 0 !important;
+      vertical-align: text-top;
+      margin-top: 5pt; } }
+  @top-center {
+    .rendered-adoc {
+      margin-top: 0.35in;
+      font-size: 0.9rem;
+      font-style: italic; } } }
+
+@page :left {
+  @top-center {
+    .rendered-adoc {
+      content: "Style guide"; } } }
+
+@page :right {
+  @top-center {
+    .rendered-adoc {
+      content: string(chapter, last); } } }
+
+@page :first {
+  @top-center {
+    .rendered-adoc {
+      content: normal; } } }
+  .rendered-adoc .letter-heading,
+  .rendered-adoc .letter-heading p {
+    -webkit-hyphens: none !important;
+    hyphens: none !important; }
+  .rendered-adoc body {
+    font-family: Georgia, serif; }
+  .rendered-adoc div.asterism {
+    text-align: center;
+    letter-spacing: 0.15em;
+    vertical-align: middle;
+    line-height: 2em;
+    margin: 1em 0 0.6em 0; }
+  .rendered-adoc .paragraph p {
+    text-indent: 1.5em;
+    text-align: justify;
+    margin: 0;
+    hyphens: auto; }
+  .rendered-adoc .own-page {
+    page-break-before: always;
+    page-break-after: always; }
+  .rendered-adoc #footnotes {
+    display: none; }
+  .rendered-adoc .sect1 {
+    counter-reset: footnote; }
+  .rendered-adoc .sectionbody {
+    string-set: chapter attr(short); }
+  .rendered-adoc *::footnote-call {
+    content: counter(footnote);
+    vertical-align: super;
+    line-height: none; }
+  .rendered-adoc *::footnote-marker {
+    content: counter(footnote);
+    padding-right: 7pt;
+    opacity: 0.9; }
+  .rendered-adoc .footnote {
+    float: footnote;
+    padding-top: 0.5em;
+    text-indent: 0;
+    text-align: justify !important;
+    font-weight: 400;
+    text-transform: none !important;
+    font-variant: normal !important;
+    font-style: normal; }
+  .rendered-adoc .blank-page {
+    page: blank; }
+
+@page blank {
+  @bottom-center {
+    .rendered-adoc {
+      content: normal; } }
+  @top-center {
+    .rendered-adoc {
+      content: normal; } } }
+
+@page :blank {
+  @bottom-center {
+    .rendered-adoc {
+      content: normal; } }
+  @top-center {
+    .rendered-adoc {
+      content: normal; } } }
+  .rendered-adoc .embedded-content-document {
+    margin-left: 1.3em;
+    font-family: "Times New Roman", Palatino, Arial, serif; }
+  .rendered-adoc body {
+    font-size: 1.06rem; }
+  .rendered-adoc p {
+    line-height: 139%; }
+  .rendered-adoc h2 {
+    font-size: 1.2rem; }
+  .rendered-adoc h3 {
+    font-size: 1.1rem; }
+  .rendered-adoc h4 {
+    font-size: 1.0rem; }
+  .rendered-adoc h3, .rendered-adoc h4 {
+    margin-top: 2.5em; }
+  .rendered-adoc .chapter-heading__sequence {
+    font-size: 1.1rem; }
+  .rendered-adoc *::footnote-call {
+    font-size: 0.83rem; }
+  .rendered-adoc *::footnote-marker {
+    font-size: 0.8rem; }
+  .rendered-adoc .footnote {
+    font-size: 0.85rem;
+    line-height: 113%; }
+  .rendered-adoc .copyright-page {
+    font-size: .95rem; }
+  .rendered-adoc .half-title-page .byline {
+    font-size: 1.3rem; }
+  .rendered-adoc .originally-titled__title {
+    font-size: 1.3rem; }
+  .rendered-adoc blockquote .paragraph p {
+    line-height: 137%;
+    padding-left: 1.65em; }
+  .rendered-adoc blockquote {
+    margin-right: 0;
+    margin-left: 1em;
+    border-left: dotted 1px #bbb; }
+  .rendered-adoc .attribution {
+    text-align: right;
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-bottom: 1.5em;
+    margin-top: -1em; }
+  .rendered-adoc .half-title-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    page: half-title; }
+    .rendered-adoc .half-title-page .byline {
+      font-style: italic;
+      padding-top: 13pt; }
+    .rendered-adoc .half-title-page .editor {
+      transform: translateY(3in); }
+  .rendered-adoc .half-title-page > div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); }
+
+@page half-title {
+  @bottom-center {
+    .rendered-adoc {
+      content: normal; } } }
+  .rendered-adoc .original-title-page {
+    text-align: center;
+    padding-top: 5rem;
+    page: original-title; }
+  .rendered-adoc .originally-titled__label {
+    font-style: italic; }
+
+@page original-title {
+  @bottom-center {
+    .rendered-adoc {
+      content: normal; } }
+  @top-center {
+    .rendered-adoc {
+      content: normal; } } }
+  .rendered-adoc .copyright-page {
+    page: copyright;
+    display: flex; }
+    .rendered-adoc .copyright-page a {
+      color: black;
+      text-decoration: none;
+      font-style: italic; }
+    .rendered-adoc .copyright-page ul {
+      list-style-type: none;
+      padding: 0;
+      margin: auto 0 0 0; }
+      .rendered-adoc .copyright-page ul li {
+        padding-bottom: 0.85em; }
+        .rendered-adoc .copyright-page ul li.debug {
+          font-size: 0.8em; }
+
+@page copyright {
+  @bottom-center {
+    .rendered-adoc {
+      content: normal; } }
+  @top-center {
+    .rendered-adoc {
+      content: normal; } } }
+  .rendered-adoc .toc {
+    page: toc; }
+  .rendered-adoc .toc h1 {
+    padding-top: 15%;
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem; }
+  .rendered-adoc .toc a {
+    text-decoration: none;
+    color: black; }
+  .rendered-adoc .toc a > span {
+    display: inline-block;
+    width: 85%; }
+  .rendered-adoc .toc a[href]::after {
+    content: leader(" ") target-counter(attr(href), page);
+    vertical-align: top; }
+
+@page toc {
+  @bottom-center {
+    .rendered-adoc {
+      content: normal; } }
+  @top-center {
+    .rendered-adoc {
+      content: normal; } } }
+  .rendered-adoc h2 {
+    margin-bottom: 24pt; }
+  .rendered-adoc h2.chapter-heading__sequence {
+    margin-bottom: 0.65rem; }
+  .rendered-adoc .chapter-heading__title {
+    font-size: 1.2rem;
+    margin-bottom: 2rem; }
+  .rendered-adoc html {
+    font-size: 10pt; }
+
+@page {
+  .rendered-adoc {
+    size: 5.5 8.5;
+    margin-top: 0.85;
+    margin-bottom: 0.65; }
+  @top-center {
+    .rendered-adoc {
+      margin-top: 0.35; } } }
+
+@page :left {
+  .rendered-adoc {
+    margin-left: 0.6;
+    margin-right: 0.7; } }
+
+@page :right {
+  .rendered-adoc {
+    margin-left: 0.7;
+    margin-right: 0.6; } }
+  .rendered-adoc h2 {
+    margin-top: 2.125;
+    prince-page-group: start;
+    /* forces new page & allows target @page:first for pages starting chapters */ }
+  .rendered-adoc .sect1 {
+    page-break-before: recto;
+    /* keep start of chapters on recto */ }
+  .rendered-adoc .copyright-page {
+    height: 7; }
+  .rendered-adoc .half-title-page {
+    height: 4; }
+  .rendered-adoc blockquote .paragraph p {
+    font-size: 0.98rem; }
+  .rendered-adoc blockquote .paragraph + .paragraph {
+    margin-top: 0.4em; }
+  .rendered-adoc .first-chapter {
+    counter-reset: page 1; }
