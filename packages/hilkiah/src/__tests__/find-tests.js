@@ -11,21 +11,21 @@ describe('find()', () => {
     const found = find('Blah blahh, 1 Thess. 5:2.');
 
     expect(found[0].book).toBe('1 Thessalonians');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
   });
 
   it('does not find Song of Solomon ref inside of Micah ref', () => {
     const found = find('Blah blahh, Micah 6:8.');
 
     expect(found[0].book).toBe('Micah');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
   });
 
   it('does not find Esther ref inside of James ref', () => {
     const found = find('brings forth death, James 1:15.');
 
     expect(found[0].book).toBe('James');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
   });
 
   it('does not find Revelation reference in "chap."', () => {
@@ -38,21 +38,21 @@ describe('find()', () => {
     const found = find('the soul.” Jam. 1:21. This');
 
     expect(found[0].book).toBe('James');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
   });
 
   it('does not find Dueteronomy reference inside Jude ref.', () => {
     const found = find('foo bar Jude 1:3 hash');
 
     expect(found[0].book).toBe('Jude');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
   });
 
   it('does not find Lev. reference inside 1 Chron. ref.', () => {
     const found = find('foo bar 2 Chronicles 36:15-16 hash');
 
     expect(found[0].book).toBe('2 Chronicles');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
   });
 
   it('does not find Esther reference inside 1/2 Thes. ref.', () => {
@@ -60,21 +60,34 @@ describe('find()', () => {
 
     expect(found[0].book).toBe('1 Thessalonians');
     expect(found[1].book).toBe('2 Thessalonians');
-    expect(found.length).toBe(2);
+    expect(found).toHaveLength(2);
   });
 
   it('does not find Esther reference inside Ephes. ref.', () => {
     const found = find('foo Ephes. 1:1');
 
     expect(found[0].book).toBe('Ephesians');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
   });
 
   it('does not find Genesis & Esther reference inside Judges ref.', () => {
     const found = find('foo Judges 14:14');
 
     expect(found[0].book).toBe('Judges');
-    expect(found.length).toBe(1);
+    expect(found).toHaveLength(1);
+  });
+
+  it('does not find Song reference in word "also"', () => {
+    const found = find('see also 11:15-16');
+
+    expect(found).toHaveLength(0);
+  });
+
+  it('does not find Ester ref in Ecclesiastes', () => {
+    const found = find('Solomon in Ecclesiastes 5:1-3 are');
+
+    expect(found[0].book).toBe('Ecclesiastes');
+    expect(found).toHaveLength(1);
   });
 
   const individualVerses = [
