@@ -44,6 +44,8 @@ documents:
   -
     title: The Journal of John Griffith
     slug: journal
+    original_title: A Journal of the Life, Travels, and Labours in the Work of the Ministry, of John Griffith
+    published: 1779
     filename: Journal_of_John_Griffith
     description: This is the unabridged journal of John Griffith, with modernization of spellings and some archaic words.
     tags:
