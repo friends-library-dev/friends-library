@@ -1,0 +1,66 @@
+name: John Pemberton
+slug: john-pemberton
+gender: male
+description: TODO
+documents:
+  -
+    title: The Journal of John Pemberton
+    original_title: The Life and Travels of John Pemberton, A Minister Of The Gospel Of Christ
+    published: 1844
+    slug: journal
+    filename: Journal_of_John_Pemberton
+    description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      -
+        type: modernized
+        formats:
+            -
+              type: pdf
+            -
+              type: epub
+            -
+              type: mobi
+
+        chapters:
+          -
+            title: To The Reader
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            title: Testimony of Philadelphia Monthly Meeting
+          -
+            title: Testimony of Pyrmont Friends
+      -
+        type: original
+        formats:
+            -
+              type: pdf
+            -
+              type: epub
+            -
+              type: mobi
+
+        chapters:
+          -
+            title: To The Reader
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            title: Testimony of Philadelphia Monthly Meeting
+          -
+            title: Testimony of Pyrmont Friends
