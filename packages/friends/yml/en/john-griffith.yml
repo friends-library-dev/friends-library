@@ -86,6 +86,8 @@ documents:
     title: The Ancient Path
     slug: ancient-path
     filename: Ancient_Path
+    published: 1764
+    original_title: Some Brief Remarks Upon Sundry Important Subjects, Necessary to be understood and attended to by all professing the Christian Religion. Principally Addressed to the People called Quakers
     description: This treatise, written by John Griffith in 1762, contains weighty and helpful counsel on the subjects of parenting, the new birth, the nature of true worship, true and false ministry, and the nature and usefulness of Christian discipline.
     tags:
       - treatise
