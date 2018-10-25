@@ -63,7 +63,9 @@ function incorrectAmbiguous(ref, input) {
   return [
     incorrectJohannine,
     incorrect('Song of Solomon', /^ss\./, ' the'),
+    incorrect('Song of Solomon', /^so /, 'al'),
     incorrect('Esther', /^es /, 'jam'),
+    incorrect('Esther', /^es /, 'ecclesiast'),
     incorrect('Esther', /^es /, 'chronicl'),
     incorrect('Esther', /^es\. /, '1 th'),
     incorrect('Esther', /^es\. /, '2 th'),
