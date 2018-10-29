@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "format": "yarn prettier --write '**/*.js'",
     "kite": "node ./packages/kite/kite.js",
     "fell": "node ./packages/fell/fell.js",
     "phipps": "php ./packages/phipps/phipps",

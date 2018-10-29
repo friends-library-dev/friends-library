@@ -8,18 +8,13 @@ const StyledPre = styled.pre`
   position: relative;
 
   &::before {
-    content: "ASCIIDOC";
+    content: 'ASCIIDOC';
     position: absolute;
     top: 5px;
     right: 5px;
     font-size: 11px;
-    ${'' /* color: #999; */}
-    opacity: 0.25;
+    ${'' /* color: #999; */} opacity: 0.25;
   }
 `;
 
-export default ({ adoc }) => (
-  <StyledPre>
-    {adoc}
-  </StyledPre>
-);
+export default ({ adoc }) => <StyledPre>{adoc}</StyledPre>;

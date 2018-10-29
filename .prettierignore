@@ -1,4 +1,5 @@
-!packages/
+flow-typed/
 
+!packages/
 packages/*
 !packages/styleguide

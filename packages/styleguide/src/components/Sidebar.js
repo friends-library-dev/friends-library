@@ -10,8 +10,4 @@ const StyledSidebar = styled.section`
   position: fixed;
 `;
 
-export default () => (
-  <StyledSidebar>
-    Sidebar Content
-  </StyledSidebar>
-);
+export default () => <StyledSidebar>Sidebar Content</StyledSidebar>;

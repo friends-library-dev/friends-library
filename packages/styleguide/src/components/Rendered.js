@@ -19,5 +19,8 @@ const StyledDiv = styled.div`
 `;
 
 export default ({ adoc }) => (
-  <StyledDiv className="rendered-adoc" dangerouslySetInnerHTML={{__html: frags.foo }} />
+  <StyledDiv
+    className="rendered-adoc"
+    dangerouslySetInnerHTML={{ __html: frags.foo }}
+  />
 );
