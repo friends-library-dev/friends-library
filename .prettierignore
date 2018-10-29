@@ -1,5 +1,0 @@
-flow-typed/
-
-!packages/
-packages/*
-!packages/styleguide
