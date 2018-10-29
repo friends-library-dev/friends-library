@@ -40,7 +40,7 @@ fs.writeFileSync(path.resolve(__dirname, '..', 'dist/pdf.css'), css);
 
 fs.writeFileSync(
   path.resolve(__dirname, '..', 'dist/frags.json'),
-  JSON.stringify(frags)
+  JSON.stringify(frags),
 );
 
 function normalizeAdoc(adoc) {

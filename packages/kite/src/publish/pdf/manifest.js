@@ -1,14 +1,7 @@
 // @flow
 import { flow, mapValues } from 'lodash';
 import { toRoman } from 'roman-numerals';
-import type {
-  Job,
-  FileManifest,
-  Css,
-  Html,
-  Heading,
-  PrintSize,
-} from '../../type';
+import type { Job, FileManifest, Css, Html, Heading, PrintSize } from '../../type';
 import { capitalizeTitle, trimTrailingPunctuation } from '../text';
 import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';
@@ -25,11 +18,7 @@ export function getPdfManifest(job: Job): FileManifest {
 }
 
 export function getCss(job: Job): Css {
-  const {
-    target,
-    spec: { notes, customCss },
-    cmd: { condense },
-  } = job;
+  const { target, spec: { notes, customCss }, cmd: { condense } } = job;
   const vars = getSassVars(job);
   return [
     'sass/common.scss',
@@ -42,11 +31,9 @@ export function getCss(job: Job): Css {
     'pdf/sass/copyright.scss',
     'pdf/sass/toc.scss',
     'pdf/sass/chapter-heading.scss',
-    ...(target === 'pdf-print'
-      ? ['pdf/sass/print.scss']
-      : ['pdf/sass/web.scss']),
-    ...(notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : []),
-    ...(condense ? ['pdf/sass/condense.scss'] : []),
+    ...target === 'pdf-print' ? ['pdf/sass/print.scss'] : ['pdf/sass/web.scss'],
+    ...notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : [],
+    ...condense ? ['pdf/sass/condense.scss'] : [],
   ]
     .map(path => toCss(path, vars))
     .join('\n')
@@ -56,32 +43,25 @@ export function getCss(job: Job): Css {
 }
 
 function getSassVars(job: Job): { [string]: string } {
-  const {
-    target,
-    spec: { meta, sections, config },
-  } = job;
-  const title =
-    sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
+  const { target, spec: { meta, sections, config } } = job;
+  const title = sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
   return {
     'running-head-title': `"${title}"`,
-    ...(target === 'pdf-print' ? printDims(job) : {}),
+    ...target === 'pdf-print' ? printDims(job) : {},
   };
 }
 
 export function printDims(job: Job): { [string]: string } {
   const trim = getTrim(job);
-  return mapValues(
-    {
-      'page-width': trim.dims.width,
-      'page-height': trim.dims.height,
-      'page-top-margin': trim.margins.top,
-      'page-bottom-margin': trim.margins.bottom,
-      'page-outer-margin': trim.margins.outer,
-      'page-inner-margin': trim.margins.inner,
-      'running-head-margin-top': trim.margins.runningHeadTop,
-    },
-    v => `${v}in`
-  );
+  return mapValues({
+    'page-width': trim.dims.width,
+    'page-height': trim.dims.height,
+    'page-top-margin': trim.margins.top,
+    'page-bottom-margin': trim.margins.bottom,
+    'page-outer-margin': trim.margins.outer,
+    'page-inner-margin': trim.margins.inner,
+    'running-head-margin-top': trim.margins.runningHeadTop,
+  }, v => `${v}in`);
 }
 
 function getTrim({ cmd }: Job): PrintSize {
@@ -101,52 +81,47 @@ export function getHtml(job: Job): Html {
 }
 
 function joinSections([_, job]: [Html, Job]): [Html, Job] {
-  const joined = job.spec.sections
-    .map(({ html, heading }) => {
-      return replaceHeadings(html, heading, job).replace(
+  const joined = job.spec.sections.map(({ html, heading }) => {
+    return replaceHeadings(html, heading, job)
+      .replace(
         '<div class="sectionbody">',
-        `<div class="sectionbody" short="${runningHeader(heading)}">`
+        `<div class="sectionbody" short="${runningHeader(heading)}">`,
       );
-    })
-    .join('\n');
+  }).join('\n');
 
   return [joined, job];
 }
 
 function runningHeader({ shortText, text, sequence }: Heading): string {
   if (shortText || text || !sequence) {
-    return capitalizeTitle(trimTrailingPunctuation(shortText || text)).replace(
-      / \/ .+/,
-      ''
-    );
+    return capitalizeTitle(trimTrailingPunctuation(shortText || text))
+      .replace(/ \/ .+/, '');
   }
 
   return `${sequence.type} ${toRoman(sequence.number)}`;
 }
 
 function addFirstChapterClass([html, job]: [Html, Job]): [Html, Job] {
-  return [
-    html.replace('<div class="sect1', '<div class="sect1 first-chapter'),
-    job,
-  ];
+  return [html.replace(
+    '<div class="sect1',
+    '<div class="sect1 first-chapter',
+  ), job];
 }
 
 function addTrimClass([html, job]: [Html, Job]): [Html, Job] {
   const { abbrev } = getTrim(job);
-  return [html.replace('<body>', `<body class="trim--${abbrev}">`), job];
+  return [html.replace(
+    '<body>',
+    `<body class="trim--${abbrev}">`,
+  ), job];
 }
 
 function inlineNotes([html, job]: [Html, Job]): [Html, Job] {
-  const {
-    spec: { notes },
-  } = job;
-  return [
-    html.replace(
-      /{% note: ([a-z0-9-]+) %}/gim,
-      (_, id) => `<span class="footnote">${notes.get(id) || ''}</span>`
-    ),
-    job,
-  ];
+  const { spec: { notes } } = job;
+  return [html.replace(
+    /{% note: ([a-z0-9-]+) %}/gim,
+    (_, id) => `<span class="footnote">${notes.get(id) || ''}</span>`,
+  ), job];
 }
 
 function wrapHtml([html, job]: [Html, Job]): [Html, Job] {

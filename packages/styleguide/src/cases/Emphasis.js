@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
+import styled from 'styled-components';
 import Asciidoc from '../components/Asciidoc';
 import Rendered from '../components/Rendered';
-import styled from 'styled-components';
 
 const Code = styled.code`
   color: red;
@@ -16,7 +16,11 @@ export default () => (
   <>
     <h1>Emphasis</h1>
     <p>
-      Use underscores <Code>_</Code> for basic emphasis.
+      Use underscores
+      {' '}
+      <Code>_</Code>
+      {' '}
+for basic emphasis.
     </p>
     <Asciidoc id="foo" />
     <Rendered id="foo" />

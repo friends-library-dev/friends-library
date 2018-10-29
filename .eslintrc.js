@@ -7,6 +7,7 @@ module.exports = {
     it: false,
     describe: false,
     beforeEach: false,
+    document: false,
     test: false,
     jest: false,
   },
@@ -19,6 +20,7 @@ module.exports = {
     'arrow-parens': 0,
     'no-plusplus': 0,
     'no-param-reassign': 0,
+    'react/jsx-filename-extension': [0],
     'no-cond-assign': 0,
     'no-unused-vars': [
       'error',
