@@ -4,13 +4,6 @@ import styled from 'styled-components';
 
 import frags from '../../dist/frags.json';
 
-// let doctor;
-// const convert = (adoc) => {
-//   if (!doctor) {
-//     doctor = new window.Asciidoctor();
-//   }
-//   return doctor.convert(adoc);
-// }
 
 const StyledDiv = styled.div`
   background: green;
@@ -18,9 +11,9 @@ const StyledDiv = styled.div`
   padding: 1em;
 `;
 
-export default ({ adoc }) => (
+export default ({ id }: { id: string }) => (
   <StyledDiv
     className="rendered-adoc"
-    dangerouslySetInnerHTML={{ __html: frags.foo }}
+    dangerouslySetInnerHTML={{ __html: frags[id].html }}
   />
 );

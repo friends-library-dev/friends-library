@@ -6,14 +6,16 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn sass && yarn webpack-dev-server --mode development --watch --hot",
-    "build": "webpack --mode production",
-    "prebuild": "yarn sass",
-    "sass": "cat src/start.scss ../kite/src/publish/{sass/common.scss,sass/not-mobi7.scss,sass/paging.scss,pdf/sass/base.scss,pdf/sass/typography.scss,pdf/sass/half-title.scss,pdf/sass/original-title.scss,pdf/sass/copyright.scss,pdf/sass/toc.scss,pdf/sass/chapter-heading.scss,pdf/sass/print.scss} src/end.scss | ./node_modules/.bin/node-sass > ./dist/rendered.css"
+    "start": "yarn webpack-dev-server --mode development --watch --hot",
+    "build": "webpack --mode production"
   },
   "dependencies": {
-    "asciidoctor.js": "^1.5.7-rc.1",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "node-sass": "^4.9.4",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",
     "styled-components": "^4.0.2",
     "webpack": "^4.22.0"

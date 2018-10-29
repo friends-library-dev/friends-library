@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import styled from 'styled-components';
+import frags from '../../dist/frags'
 
 const StyledPre = styled.pre`
   background: #f9f9d1;
@@ -17,4 +18,4 @@ const StyledPre = styled.pre`
   }
 `;
 
-export default ({ adoc }) => <StyledPre>{adoc}</StyledPre>;
+export default ({ id }: { id: string }) => <StyledPre>{frags[id].adoc}</StyledPre>;
