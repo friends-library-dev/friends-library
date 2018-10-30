@@ -12,7 +12,7 @@ import { getAllFriends } from '@friends-library/friends';
 
 function generateRoute(props, children, path) {
   const html = wrap(<App {...props}>{children}</App>);
-  fs.outputFile(`build/${path}.html`, html);
+  fs.outputFile(`build/${path}.``html`, html);
 }
 
 fs.ensureDir('build');

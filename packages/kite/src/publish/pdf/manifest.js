@@ -76,7 +76,7 @@ export function getHtml(job: Job): Html {
     prependFrontmatter,
     ([html, j]) => [removeMobi7Tags(html), j],
     wrapHtml,
-    addTrimClass,
+    addBodyClasses,
   ])(['', job])[0];
 }
 
@@ -108,11 +108,11 @@ function addFirstChapterClass([html, job]: [Html, Job]): [Html, Job] {
   ), job];
 }
 
-function addTrimClass([html, job]: [Html, Job]): [Html, Job] {
+function addBodyClasses([html, job]: [Html, Job]): [Html, Job] {
   const { abbrev } = getTrim(job);
   return [html.replace(
     '<body>',
-    `<body class="trim--${abbrev}">`,
+    `<body class="body trim--${abbrev}">`,
   ), job];
 }
 

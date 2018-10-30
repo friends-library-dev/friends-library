@@ -1,6 +1,8 @@
 const fs = require('fs-extra');
 const { sync: glob } = require('glob');
 const path = require('path');
+const chokidar = require('chokidar');
+const { magenta } = require('chalk');
 const {
   getRefPrecursor,
   prepare,
@@ -9,39 +11,54 @@ const {
 } = require('@friends-library/kite');
 
 const precursor = getRefPrecursor();
-const files = glob(path.resolve(__dirname, 'adoc/*.adoc'));
-const frags = {};
-let css;
+const adocGlob = path.resolve(__dirname, 'adoc/*.adoc');
 
-files.forEach(file => {
-  const adoc = normalizeAdoc(fs.readFileSync(file).toString());
-  const spec = prepare({ ...precursor, adoc });
-  const id = path.basename(file).replace(/\.adoc$/, '');
-  const cmd = createCommand({ frontmatter: false });
-  const job = {
-    id,
-    spec,
-    cmd,
-    target: 'pdf-print',
-    filename: '_',
-  };
+if (process.argv.includes('--watch')) {
+  chokidar
+    .watch(adocGlob)
+    .add(path.resolve(__dirname, '../../../kite/src/publish/*'))
+    .on('all', regen);
+} else {
+  regen();
+}
 
-  if (!css) {
-    css = pdf.getCss(job);
-  }
+function regen() {
+  const files = glob(adocGlob);
+  const frags = {};
+  let css;
 
-  frags[id] = {
-    html: innerHtml(pdf.getHtml(job)),
-    adoc,
-  };
-});
+  files.forEach(file => {
+    const adoc = normalizeAdoc(fs.readFileSync(file).toString());
+    const spec = prepare({ ...precursor, adoc });
+    const id = path.basename(file).replace(/\.adoc$/, '');
+    const cmd = createCommand({ frontmatter: false });
+    const job = {
+      id,
+      spec,
+      cmd,
+      target: 'pdf-print',
+      filename: '_',
+    };
 
-fs.writeFileSync(path.resolve(__dirname, '..', 'dist/pdf.css'), css);
+    if (!css) {
+      css = pdf.getCss(job);
+    }
 
-fs.writeFileSync(
-  path.resolve(__dirname, '..', 'dist/frags.json'),
-  JSON.stringify(frags),
-);
+    frags[id] = {
+      html: innerHtml(pdf.getHtml(job)),
+      adoc,
+    };
+  });
+
+  fs.writeFileSync(path.resolve(__dirname, '..', 'dist/pdf.css'), css);
+
+  fs.writeFileSync(
+    path.resolve(__dirname, '..', 'dist/frags.json'),
+    JSON.stringify(frags),
+  );
+  console.log(magenta('🚁  styleguide fragments regenerated'));
+}
+
 
 function normalizeAdoc(adoc) {
   if (adoc.match(/(^|\n)== /)) {

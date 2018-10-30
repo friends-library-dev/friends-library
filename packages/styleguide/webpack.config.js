@@ -4,6 +4,9 @@ const path = require('path');
 module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
+    stats: 'minimal',
+    overlay: true,
+    watchContentBase: true,
   },
   module: {
     rules: [

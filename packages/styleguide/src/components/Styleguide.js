@@ -6,7 +6,6 @@ import Sidebar from './Sidebar';
 import Content from './Content';
 
 const StyledApp = styled.div`
-  ${''};
 `;
 
 const App = () => (

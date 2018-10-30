@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "styleguide:start": "yarn styleguide:build-frags && cd ./packages/styleguide && yarn start",
-    "styleguide:build-frags": "node ./packages/styleguide/src/build-frags.js",
+    "styleguide:start": "cd ./packages/styleguide && yarn start",
+    "styleguide:build": "cd ./packages/styleguide && yarn build",
     "kite": "node ./packages/kite/kite.js",
     "fell": "node ./packages/fell/fell.js",
     "phipps": "php ./packages/phipps/phipps",

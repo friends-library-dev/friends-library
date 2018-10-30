@@ -6,16 +6,20 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn webpack-dev-server --mode development --watch --hot",
-    "build": "webpack --mode production"
+    "start": "yarn webpack-dev-server --mode development --watch --hot & yarn watch:frags",
+    "watch:frags": "cd ../../ && node ./packages/styleguide/src/build-frags.js --watch",
+    "build:frags": "cd ../../ && node ./packages/styleguide/src/build-frags.js && cd ./packages/styleguide",
+    "build": "yarn build:frags && webpack --mode production"
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@friends-library/kite": "1.0.0",
+    "chokidar": "^2.0.4",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.2",
+    "left-pad": "^1.3.0",
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",

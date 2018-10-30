@@ -1,7 +1,0 @@
-== A Lovely Title
-
-With a paragraph showing _italic_ and also
-it has "`a short quote`".
-
-[.signed-section-signature]
-Jared Henderson

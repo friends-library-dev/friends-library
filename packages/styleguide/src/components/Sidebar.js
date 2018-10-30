@@ -3,11 +3,23 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const StyledSidebar = styled.section`
-  background: #333;
+  background: #caebf2;
   height: 100%;
-  color: white;
-  width: 200px;
+  color: #666;
+  padding: 1em;
+  width: 260px;
   position: fixed;
 `;
 
-export default () => <StyledSidebar>Sidebar Content</StyledSidebar>;
+export default () => (
+  <StyledSidebar>
+    <ul>
+      <li>
+        <a href="#chapter-headings">Chapter Headings</a>
+      </li>
+      <li>
+        <a href="#emphasis">Emphasis</a>
+      </li>
+    </ul>
+  </StyledSidebar>
+);
