@@ -6,6 +6,7 @@ const { magenta } = require('chalk');
 const {
   getRefPrecursor,
   prepare,
+  epigraph,
   pdf,
   createCommand,
 } = require('@friends-library/kite');
@@ -45,7 +46,7 @@ function regen() {
     }
 
     frags[id] = {
-      html: innerHtml(pdf.getHtml(job)),
+      html: innerHtml(job),
       adoc,
     };
   });
@@ -68,9 +69,10 @@ function normalizeAdoc(adoc) {
   return `== Generated\n\n${adoc}`;
 }
 
-function innerHtml(html) {
-  return html
+function innerHtml(job) {
+  const main = pdf.getHtml(job)
     .replace(/[\s\S]+?<div class="sect1/gim, '<div class="sect1')
     .replace('\n</body>\n</html>', '')
     .trim();
+  return `${epigraph(job)}${main}`;
 }

@@ -5,7 +5,7 @@ export default styled.code`
   color: red;
   background: #eaeaea;
   white-space: nowrap;
-  font-size: 0.85em;
+  font-size: 15px;
   padding: 0.225em 0.425em;
   border: 1px solid #ccc;
   border-radius: 3px;

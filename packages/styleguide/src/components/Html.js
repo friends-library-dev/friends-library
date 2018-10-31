@@ -9,7 +9,7 @@ const StyledDiv = styled.div`
   font-family: Georgia;
   padding: 3em 5em;
   box-shadow: 3px 3px 3px #aaa;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
 `;
 
 export default ({ id }: { id: string }) => (

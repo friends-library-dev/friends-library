@@ -8,14 +8,18 @@
     <style>
       html, body { margin: 0; }
       html {
-        font-size: 16px;
+        font-size: 19px;
         box-sizing: border-box;
       }
       *, *:before, *:after {
         box-sizing: inherit;
       }
-      h2 {
+      .rendered-adoc h2,
+      .rendered-adoc .epigraphs {
         margin-top: 0 !important;
+      }
+      .epigraph--not-first::before {
+        margin-top: 0.5em;
       }
       #_generated { display: none; }
     </style>

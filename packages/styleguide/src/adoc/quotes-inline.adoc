@@ -1,0 +1,2 @@
+Here is an "`inline quotation with smart quotes.`"
+And here is '`one with smart apostrophes (single-quotes).`'

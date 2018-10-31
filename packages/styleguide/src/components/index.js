@@ -8,3 +8,4 @@ export { default as Para } from './Para';
 export { default as Section } from './Section';
 export { default as Pair } from './Pair';
 export { default as Note } from './Note';
+export { default as Snippet } from './Snippet';
