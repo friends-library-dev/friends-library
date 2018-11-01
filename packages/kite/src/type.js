@@ -1,19 +1,7 @@
 // @flow
-import type { ISBN } from '../../../type';
-
-export type Xml = string;
-
-export type Html = string;
-
-export type Asciidoc = string;
-
-export type Css = string;
-
-export type Url = string;
+import type { ISBN, Asciidoc, Html, Css, Url, Lang } from '../../../type';
 
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
-
-export type Lang = 'en' | 'es';
 
 export type Job = {|
   +id: string,

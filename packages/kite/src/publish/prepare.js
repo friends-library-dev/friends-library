@@ -6,13 +6,12 @@ import Asciidoctor from 'asciidoctor.js';
 import { flow, memoize, intersection } from 'lodash';
 import { wrapper } from './text';
 import { br7 } from './html';
+import type { Asciidoc, Html } from '../../../../type';
 import type {
   Epigraph,
-  Asciidoc,
   DocSection,
   SourcePrecursor,
   SourceSpec,
-  Html,
   Notes,
 } from '../type';
 

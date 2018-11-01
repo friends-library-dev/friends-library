@@ -1,5 +1,6 @@
 // @flow
-import type { Job, Html } from '../../type';
+import type { Html } from '../../../../../type';
+import type { Job } from '../../type';
 import { navText } from '../headings';
 
 export function nav(job: Job): Html {

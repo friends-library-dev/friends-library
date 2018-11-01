@@ -1,6 +1,7 @@
 // @flow
 import { memoize } from 'lodash';
-import type { Job, Html } from '../../type';
+import type { Html } from '../../../../../type';
+import type { Job } from '../../type';
 import { frontmatter as commonFrontmatter } from '../frontmatter';
 import { navText } from '../headings';
 import { callMarkup, useSymbols } from './notes';

@@ -1,7 +1,8 @@
 // @flow
 import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
-import type { Job, Html, FileManifest, Epigraph } from '../type';
+import type { Html } from '../../../../type';
+import type { Job, FileManifest, Epigraph } from '../type';
 import { printDims } from './pdf/manifest';
 import { capitalizeTitle } from './text';
 import { br7 } from './html';

@@ -7,6 +7,7 @@
     "styleguide:build": "cd ./packages/styleguide && yarn build",
     "kite": "node ./packages/kite/kite.js",
     "fell": "node ./packages/fell/fell.js",
+    "mod": "node ./packages/mod/mod.js",
     "phipps": "php ./packages/phipps/phipps",
     "lint": "yarn eslint .",
     "test": "yarn jest && yarn phipps:test",
@@ -25,10 +26,11 @@
     "preflight": "yarn sass:lint && yarn lint && yarn test && yarn flow && yarn styleguide:build && cd packages/evans && LANG=en yarn build && LANG=es yarn build"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-rc.3",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.3",
-    "@babel/preset-env": "^7.0.0-rc.3",
-    "@babel/preset-flow": "^7.0.0-rc.3",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.6",
@@ -55,7 +57,8 @@
     "packages/api",
     "packages/color",
     "packages/fell",
-    "packages/styleguide"
+    "packages/styleguide",
+    "packages/mod"
   ],
   "jest": {
     "errorOnDeprecated": true,

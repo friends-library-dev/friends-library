@@ -1,5 +1,6 @@
 // @flow
-import type { Html, Job, DocSection, Notes } from '../../type';
+import type { Html } from '../../../../../type';
+import type { Job, DocSection, Notes } from '../../type';
 
 const symbolMap = new Map([
   [1, '§'],

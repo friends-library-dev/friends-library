@@ -1,5 +1,5 @@
 // @flow
-import type { Asciidoc } from '../type';
+import type { Asciidoc } from '../../../../type';
 
 
 export function processAsciidoc(adoc: Asciidoc): Asciidoc {

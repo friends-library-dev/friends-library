@@ -1,7 +1,8 @@
 // @flow
 import { flow, mapValues } from 'lodash';
 import { toRoman } from 'roman-numerals';
-import type { Job, FileManifest, Css, Html, Heading, PrintSize } from '../../type';
+import type { Css, Html } from '../../../../../type';
+import type { Job, FileManifest, Heading, PrintSize } from '../../type';
 import { capitalizeTitle, trimTrailingPunctuation } from '../text';
 import { file, toCss } from '../file';
 import { replaceHeadings } from '../headings';

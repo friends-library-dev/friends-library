@@ -1,7 +1,8 @@
 // @flow
 import { toRoman } from 'roman-numerals';
 import { trimTrailingPunctuation } from './text';
-import type { Html, Heading, Job } from '../type';
+import type { Html } from '../../../../type';
+import type { Heading, Job } from '../type';
 
 export function replaceHeadings(html: Html, heading: Heading, job: Job): Html {
   const docStyle = job.spec.config.chapterHeadingStyle || 'normal';

@@ -1,5 +1,6 @@
 // @flow
-import type { Job, Html, DocSection } from '../../type';
+import type { Html } from '../../../../../type';
+import type { Job, DocSection } from '../../type';
 import { copyright as commonCopyright, halfTitle as commonHalfTitle, epigraph } from '../frontmatter';
 import { navText } from '../headings';
 

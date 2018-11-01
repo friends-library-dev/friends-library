@@ -1,6 +1,7 @@
 // @flow
 import { flow, mapValues } from 'lodash';
-import type { Job, FileManifest, Xml, Css, Html } from '../../type';
+import type { Xml, Css, Html } from '../../../../../type';
+import type { Job, FileManifest } from '../../type';
 import { toCss } from '../file';
 import { replaceHeadings } from '../headings';
 import { wrapHtml, removeMobi7Tags } from '../html';

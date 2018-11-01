@@ -1,7 +1,8 @@
 // @flow
 import makeSend from 'gmail-send';
 import moment from 'moment';
-import type { Command, Html } from '../type';
+import type { Html } from '../../../../type';
+import type { Command } from '../type';
 import { PUBLISH_DIR } from './file';
 
 const { env: { GMAIL_USER, GMAIL_PASS } } = process;
