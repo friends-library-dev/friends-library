@@ -9,7 +9,7 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/register": "^7.0.0-rc.3",
+    "@babel/register": "^7.0.0",
     "@friends-library/color": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/hilkiah": "1.0.0",
