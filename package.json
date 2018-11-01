@@ -19,6 +19,8 @@
     "styleguide:build": "cd ./packages/styleguide && yarn build",
     "evans:build:en": "cd packages/evans && LANG=en yarn build",
     "evans:build:es": "cd packages/evans && LANG=es yarn build",
+    "evans:develop:en": "cd packages/evans && yarn start:en",
+    "evans:develop:es": "cd packages/evans && yarn start:es",
     "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es"
   },
   "devDependencies": {
@@ -28,7 +30,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-flow": "^7.0.0",
     "@babel/runtime": "^7.1.2",
-    "babel-core": "^7.0.0-0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
     "eslint": "^5.4.0",

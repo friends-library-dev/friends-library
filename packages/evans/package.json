@@ -33,9 +33,9 @@
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
-    "@babel/node": "^7.0.0-rc.3",
-    "@babel/preset-react": "^7.0.0-rc.3",
-    "babel-loader": "^8.0.0-beta.6",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "babel-watch": "monathur/babel-watch.git#ebc252359970458bf2e0a6c417bce3d3dc6d8da7",
     "browser-sync": "^2.23.3",
     "webpack": "^4.6.0",
