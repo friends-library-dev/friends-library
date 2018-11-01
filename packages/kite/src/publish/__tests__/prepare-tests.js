@@ -481,6 +481,12 @@ Hash baz.]
     expect(section.html).not.toContain('<p>&#8212;</p>');
   });
 
+  test('busted open-block delimeters in final html throws', () => {
+    const adoc = '== C1\n\n+++<p>&#8212;</p>+++';
+
+    expect(() => prepare(precursor(adoc))).toThrow();
+  });
+
   test('blockquote tag gets mobi-7 br tag', () => {
     const adoc = '== C1\n\n[quote]\n____\nFoo.\n____';
 
