@@ -75,19 +75,19 @@ export default () => (
       <br /><i style={{ color: '#d62529' }}>Styleguide</i>
     </h1>
     <ul style={{ marginTop: 30 }}>
-      <Item text="Sub-Headings" />
-      <Item text="Signed Sections" href="letters" />
-      <Item text="Gotchas!" href="gotchas" />
-      <Item text="Footnotes" href="footnotes-section" />
-      <Item text="Misc. Styling" href="styling" />
+      <Item text="Emphasis" />
       <Item text="Quotes" />
       <Item text="Epigraphs" />
-      <Item text="Poetry" />
-      <Item text="Breaks &amp; Offsets" href="breaks" />
-      <Item text="Discourse" />
-      <Item text="Chapter Synopsis" />
       <Item text="Chapter Headings" />
-      <Item text="Emphasis" />
+      <Item text="Chapter Synopsis" />
+      <Item text="Sub-Headings" />
+      <Item text="Breaks &amp; Offsets" href="breaks" />
+      <Item text="Footnotes" href="footnotes-section" />
+      <Item text="Signed Sections" href="letters" />
+      <Item text="Discourse" />
+      <Item text="Poetry" />
+      <Item text="Misc. Styling" href="styling" />
+      <Item text="Gotchas!" href="gotchas" />
     </ul>
   </StyledSidebar>
 );

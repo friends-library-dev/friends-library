@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "styleguide:start": "cd ./packages/styleguide && yarn start",
+    "styleguide:develop": "cd ./packages/styleguide && yarn start",
     "styleguide:build": "cd ./packages/styleguide && yarn build",
     "kite": "node ./packages/kite/kite.js",
     "fell": "node ./packages/fell/fell.js",

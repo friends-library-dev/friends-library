@@ -14,7 +14,7 @@ import {
 } from '../components';
 
 export default () => (
-  <Section id="chapter-synopsis">
+  <Section id="discourse">
     <H1>Discourse</H1>
     <Para>
       Chunks of books where there is a form of <i>discourse</i> can
@@ -22,14 +22,16 @@ export default () => (
     </Para>
     <Snippet trigger="dp" expansion="[.discourse-part]" />
     <Pair id="discourse" emphasize={[1,6]} />
-    <H2>Italicizing discourse speakers:</H2>
+
+    <H2>Italicizing Discourse Identifiers:</H2>
     <Para>
       The words <i>Question</i>, <i>Answer</i>, <i>Objection</i>,
       and <i>Inquiry</i> that begin a discourse-part
       paragraph will be <b>automatically italicized</b>.
+      (See above asciidoc example.)
       Also, <i>"Answer <b>X</b>"</i> where <Code>X</Code> is
       a number will also be automatically italicized.
-      Other non-standard speaker identifiers besides these need to
+      Other <i>non-standard discourse identifiers</i> besides these need to
       manually italicized, as shown below:
     </Para>
     <Note>

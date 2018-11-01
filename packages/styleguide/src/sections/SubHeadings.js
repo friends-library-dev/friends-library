@@ -20,7 +20,7 @@ export default () => (
     <Para>
       As noted in the <a href="chapter-headings">chapter-headings</a> section,
       chapter headings use <i>two equals signs</i> <Code>== Some Title</Code>.
-      Secondary and tertiary headings can be designated by
+      {' '}<i>Secondary</i> and <i>tertiary</i> headings can be designated by
       using <i>three</i> or <i>four</i> equals signs, respectively:
     </Para>
     <Pair id="sub-headings" emphasize={[3, 9]} />

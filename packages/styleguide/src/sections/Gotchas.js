@@ -46,5 +46,11 @@ export default () => (
       must be escaped:
     </Para>
     <Pair id="underscores" />
+
+    <Note>
+      The tool that converts <code>.odt</code> to raw asciidoc for
+      intake <i>takes care of escaping these special cases</i>, so you
+      rarely have to actually manually add or edit these sequences. 👍
+    </Note>
   </Section>
 )

@@ -51,7 +51,7 @@ export default () => (
       Block quotes are designated with an opening line
       with <Code>[quote]</Code> followed by a <b>quote block</b>, which
       is demarcated by <code>4</code> underscores <Code>____</Code> before
-      and after:
+      {' '}<i>and</i> after:
     </Para>
     <Pair id="quote-block" emphasize={[3,4,11]} />
 

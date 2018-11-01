@@ -46,38 +46,35 @@ export default () => (
       when the title logically breaks into chunks, with the <b>first chunk
       being the most important.</b>
     </Note>
-    <Pair id="chapter-breaks" />
+    <Pair id="chapter-breaks" emphasize={[1]} />
 
     <H2>Blurb-style chapter headings</H2>
-
     <Para>
       Some chapter headings are long and weird. They can be designated
       in an alternate <i>blurb</i> style by adding a <Code>[.style-blurb]</Code> class
       above the heading.
     </Para>
-
     <Note>
-      Long titles still need to be kept on a single line, which will cause
-      some wrapping, as seen below. That's OK. 👍
+      In the asciidoc source files, ong titles still need to be <i>kept on a
+      single line,</i> which will cause some wrapping, as seen below. That's OK. 👍
     </Note>
     <Pair id="chapter-blurb" emphasize={[1]} />
 
     <H2>Chapter <i>subtitle</i> blurbs</H2>
     <Para>
-      Another form of chapter heading is a heading whose subtitle is
+      Another form of chapter heading is a heading with a subtitle that is
       long and <i>blurb-like</i>. These are marked up a bit differently,
-      with a paragraph directly below the chapter heading with the
+      with a <i>paragraph</i> directly below the chapter heading with the
       class <Code>[.chapter-subtitle--blurb]</Code> added.
     </Para>
     <Snippet trigger="csb" expansion="[.chapter-subtitle--blurb]" />
     <Pair id="chapter-subtitle-blurb" emphasize={[3,4,5,6]} />
 
     <H2>Short titles</H2>
-
     <Para>
-      By default, the chapter titles will be used for running headers and
+      By default, the chapter titles will be used for <i>running headers</i> and
       the table of contents. This can be problematic with <i>long</i> titles.
-      You can specify a shortened version of the title to be used in these
+      You can specify a <b>shortened version of the title</b> to be used in these
       locations by adding custom <Code>id</Code> and <Code>short</Code> attributes
       separated by a comma, as shown below (line <code>1</code>):
     </Para>

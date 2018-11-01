@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import styled from 'styled-components';
-import * as c from '../cases';
+import * as sections from '../sections';
 
 const StyledContent = styled.section`
   background: rgba(239, 239, 239, 0.7);
@@ -11,18 +11,18 @@ const StyledContent = styled.section`
 
 export default () => (
   <StyledContent>
-    <c.SubHeadings />
-    <c.Letters />
-    <c.Gotchas />
-    <c.Footnotes />
-    <c.Styling />
-    <c.Epigraphs />
-    <c.Quotes />
-    <c.Poetry />
-    <c.Breaks />
-    <c.Discourse />
-    <c.ChapterSynopsis />
-    <c.ChapterHeadings />
-    <c.Emphasis />
+    <sections.Emphasis />
+    <sections.Quotes />
+    <sections.Epigraphs />
+    <sections.ChapterHeadings />
+    <sections.ChapterSynopsis />
+    <sections.SubHeadings />
+    <sections.Breaks />
+    <sections.Footnotes />
+    <sections.Letters />
+    <sections.Discourse />
+    <sections.Poetry />
+    <sections.Styling />
+    <sections.Gotchas />
   </StyledContent>
 );

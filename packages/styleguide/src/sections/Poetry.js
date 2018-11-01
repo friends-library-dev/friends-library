@@ -34,10 +34,10 @@ export default () => (
 
     <H2>Poetry in footnotes:</H2>
     <Para>
-      Poetry appearing in footnotes needs to be marked up with this
+      Poetry appearing in footnotes are not natively supported in the
+      asciidoc format, so it needs to be marked up with this
       crazy made-up syntax I came up with shown below.
-      These are rare and weird, so ping Jared if you're having trouble.
-      🤔
+      These are rare and weird, so ping Jared if you're having trouble. 🤔
     </Para>
     <Asciidoc id="poetry-footnote" emphasize={[7,8,9,10,11]} />
     <Note>

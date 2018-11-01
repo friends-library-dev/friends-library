@@ -14,7 +14,7 @@ import {
 } from '../components';
 
 export default () => (
-  <Section id="chapter-synopsis">
+  <Section id="breaks">
     <H1>Breaks &amp; Offsets</H1>
 
     <H2>Asterisms:</H2>

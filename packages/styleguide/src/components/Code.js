@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export default styled.code`
-  color: red;
+  color: #d62529;
   background: #eaeaea;
   white-space: nowrap;
   font-size: 15px;

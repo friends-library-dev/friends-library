@@ -99,8 +99,8 @@ export default () => (
       are <i>embedded</i> within a larger section, like a chapter.
       These sorts of sections need to be demarcated by special
       asciidoc markers. Before they begin, you must add a line
-      designating the class <Code>[.embedded-content-document.{`<TYPE>`}]</Code>
-      where <Code>{`<TYPE>`}</Code> is replaced by a class indicating
+      with the class <Code>[.embedded-content-document.{`<TYPE>`}]</Code>
+      {' '}where <Code>{`<TYPE>`}</Code> is replaced by a class indicating
       type <i>type</i> of embedded document it is. You can
       choose from the following types:
     </Para>
@@ -145,7 +145,7 @@ export default () => (
     <Para>
       An <i>embedded content document</i> does not need to have
       a salutation, context, or signature.  As long as it is truly
-      and <i>document embedded in the chapter</i>, it can be marked
+      a <i>document embedded in the chapter</i>, it can be marked
       up as such:
     </Para>
     <Pair id="bare-embedded" />

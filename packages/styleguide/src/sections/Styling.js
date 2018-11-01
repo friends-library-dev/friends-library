@@ -52,7 +52,7 @@ export default () => (
     </Note>
     <Para>
       Frequently, numbered sections will begin with full words, which
-      often <i>should be rendered with italics:</i>
+      sometimes <i>should be rendered with italics:</i>
     </Para>
     <Pair id="numbered-alt" />
 
@@ -89,7 +89,7 @@ export default () => (
     </Para>
     <Pair id="centered-emphasized" emphasize={[1]} />
     <Note>
-      As an example of not mis-using these presentational classes, you
+      As an example of abusing these presentational classes, you
       might consider the temptation to mark up a scrap of poetry using
       this method, with <Code>[.centered.emphasized]</Code>.
       Instead, use a <a href="#poetry">verse block</a>, which will
