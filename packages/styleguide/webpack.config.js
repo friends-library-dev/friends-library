@@ -8,6 +8,9 @@ module.exports = {
     overlay: true,
     watchContentBase: true,
   },
+  performance: {
+    hints: false,
+  },
   module: {
     rules: [
       {

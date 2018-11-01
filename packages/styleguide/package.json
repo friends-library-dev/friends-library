@@ -9,7 +9,7 @@
     "start": "yarn webpack-dev-server --mode development --watch --hot & yarn watch:frags",
     "watch:frags": "cd ../../ && node ./packages/styleguide/src/build-frags.js --watch",
     "build:frags": "cd ../../ && node ./packages/styleguide/src/build-frags.js && cd ./packages/styleguide",
-    "build": "yarn build:frags && webpack --mode production"
+    "build": "yarn build:frags && webpack --mode production --display=minimal"
   },
   "dependencies": {
     "@babel/core": "^7.1.2",

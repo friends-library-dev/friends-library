@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import LineNumber from './LineNumber';
 import LineText from './LineText';
-import frags from '../../dist/frags';
+import { adoc as getAdoc } from '../frags';
 
 const StyleDiv = styled.div`
   background: #333;
@@ -46,7 +46,7 @@ let inFootnote;
 const Asciidoc = ({ id, emphasize }: Props) => {
   inVerse = false;
   inFootnote = false;
-  const adoc = frags[id].adoc.trim().replace(/^== Generated\n\n/, '');
+  const adoc = getAdoc(id).trim().replace(/^== Generated\n\n/, '');
   const lines = adoc.split('\n');
   return (
     <StyleDiv className="asciidoc">

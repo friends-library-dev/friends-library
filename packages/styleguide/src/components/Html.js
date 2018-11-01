@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import styled from 'styled-components';
-import frags from '../../dist/frags.json';
+import { html } from '../frags';
 
 const StyledDiv = styled.div`
   background: white;
@@ -23,6 +23,6 @@ const StyledDiv = styled.div`
 
 export default ({ id }: { id: string }) => (
   <StyledDiv className="rendered-adoc html">
-    <div className="body" dangerouslySetInnerHTML={{ __html: frags[id].html }} />
+    <div className="body" dangerouslySetInnerHTML={{ __html: html(id) }} />
   </StyledDiv>
 );
