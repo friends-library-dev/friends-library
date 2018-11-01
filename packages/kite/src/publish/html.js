@@ -1,5 +1,5 @@
 // @flow
-import type { Html } from '../type';
+import type { Html } from '../../../../type';
 
 export function wrapHtml(html: Html): Html {
   return `

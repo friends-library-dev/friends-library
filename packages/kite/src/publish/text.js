@@ -2,7 +2,9 @@
 
 const small = 'a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|via'.split('|');
 
-const ucfirst = lower => lower.replace(/^\w/, c => c.toUpperCase());
+export function ucfirst(lower: string): string {
+  return lower.replace(/^\w/, c => c.toUpperCase());
+}
 
 export function capitalizeTitle(str: string): string {
   return str

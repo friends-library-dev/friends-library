@@ -1,6 +1,7 @@
 // @flow
 import moment from 'moment';
-import type { Job, Xml } from '../../type';
+import type { Xml } from '../../../../../type';
+import type { Job } from '../../type';
 import { frontmatter } from './frontmatter';
 
 export function packageDocument(job: Job): Xml {
