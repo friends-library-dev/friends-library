@@ -1,0 +1,2 @@
+[.centered.emphasized]
+I am both centered, and emphasized! Class chaining FTW!

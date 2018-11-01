@@ -11,7 +11,7 @@ export default function publishRef(argv: Object): Promise<*> {
 }
 
 
-function getRefPrecursor(): SourcePrecursor {
+export function getRefPrecursor(): SourcePrecursor {
   return {
     id: 'ref',
     lang: 'en',

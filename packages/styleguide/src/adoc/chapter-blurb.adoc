@@ -1,0 +1,6 @@
+[.style-blurb]
+== A Testimony from the monthly meeting of Friends for the Western Division of Cornwall, held at Falmouth the 6th of the fourth month, 1795, concerning our late valued friend, Catherine Phillips, formerly Payton.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...

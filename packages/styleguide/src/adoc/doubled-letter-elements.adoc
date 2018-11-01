@@ -1,0 +1,24 @@
+[.signed-section-context-open]
+Springfield, Guilford Co., N. C,
+
+[.signed-section-context-open]
+Third Month 11th, 1825.
+
+[.salutation]
+Dear Friend,
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+[.signed-section-signature]
+George Fox
+
+[.signed-section-signature]
+Edward Pyot
+
+[.signed-section-context-close]
+Given forth in Launceston Jail, in Cornwall.
+
+[.signed-section-context-close]
+To the Bowlers in the Green.

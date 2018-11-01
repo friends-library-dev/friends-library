@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Friends Library Style Guide</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/asciidoctor.js/1.5.7-rc.1/asciidoctor.min.js"></script>
+    <link rel="stylesheet" href="pdf.css" />
+    <style>
+      html, body { margin: 0; }
+      html {
+        font-size: 19px;
+        box-sizing: border-box;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+      .rendered-adoc h2,
+      .rendered-adoc .epigraphs {
+        margin-top: 0 !important;
+      }
+      .epigraph--not-first::before {
+        margin-top: 0.5em;
+      }
+      #_generated { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

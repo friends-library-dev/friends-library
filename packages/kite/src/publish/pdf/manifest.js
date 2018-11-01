@@ -17,7 +17,7 @@ export function getPdfManifest(job: Job): FileManifest {
   };
 }
 
-function getCss(job: Job): Css {
+export function getCss(job: Job): Css {
   const { target, spec: { notes, customCss }, cmd: { condense } } = job;
   const vars = getSassVars(job);
   return [
@@ -68,7 +68,7 @@ function getTrim({ cmd }: Job): PrintSize {
   return getBookSize(cmd.printSize || 'm');
 }
 
-function getHtml(job: Job): Html {
+export function getHtml(job: Job): Html {
   return flow([
     joinSections,
     addFirstChapterClass,
@@ -76,7 +76,7 @@ function getHtml(job: Job): Html {
     prependFrontmatter,
     ([html, j]) => [removeMobi7Tags(html), j],
     wrapHtml,
-    addTrimClass,
+    addBodyClasses,
   ])(['', job])[0];
 }
 
@@ -108,11 +108,11 @@ function addFirstChapterClass([html, job]: [Html, Job]): [Html, Job] {
   ), job];
 }
 
-function addTrimClass([html, job]: [Html, Job]): [Html, Job] {
+function addBodyClasses([html, job]: [Html, Job]): [Html, Job] {
   const { abbrev } = getTrim(job);
   return [html.replace(
     '<body>',
-    `<body class="trim--${abbrev}">`,
+    `<body class="body trim--${abbrev}">`,
   ), job];
 }
 

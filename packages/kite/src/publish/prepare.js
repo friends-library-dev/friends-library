@@ -204,6 +204,7 @@ function removeParagraphClass(html: Html): Html {
     'offset',
     'numbered',
     'the-end',
+    'postscript',
     'letter-participants',
     'signed-section-signature',
     'signed-section-closing',

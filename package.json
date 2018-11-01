@@ -3,6 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "styleguide:develop": "cd ./packages/styleguide && yarn start",
+    "styleguide:build": "cd ./packages/styleguide && yarn build",
     "kite": "node ./packages/kite/kite.js",
     "fell": "node ./packages/fell/fell.js",
     "phipps": "php ./packages/phipps/phipps",
@@ -20,13 +22,14 @@
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
-    "preflight": "yarn sass:lint && yarn lint && yarn test && yarn flow && cd packages/evans && LANG=en yarn build && LANG=es yarn build"
+    "preflight": "yarn sass:lint && yarn lint && yarn test && yarn flow && yarn styleguide:build && cd packages/evans && LANG=en yarn build && LANG=es yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-rc.3",
     "@babel/plugin-proposal-class-properties": "^7.0.0-rc.3",
     "@babel/preset-env": "^7.0.0-rc.3",
     "@babel/preset-flow": "^7.0.0-rc.3",
+    "@babel/runtime": "^7.1.2",
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
@@ -51,7 +54,8 @@
     "packages/phipps",
     "packages/api",
     "packages/color",
-    "packages/fell"
+    "packages/fell",
+    "packages/styleguide"
   ],
   "jest": {
     "errorOnDeprecated": true,
