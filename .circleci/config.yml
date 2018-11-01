@@ -13,20 +13,13 @@ jobs:
           paths:
             - node_modules
           key: v1-node-{{ checksum "yarn.lock" }}
-      - run: yarn friends:lint
-      - run: yarn kite:lint
-      - run: yarn evans:lint
-      - run: yarn hilkiah:lint
-      - run: yarn color:lint
-      - run: yarn friends:test
-      - run: yarn kite:test
-      - run: yarn evans:test
-      - run: yarn hilkiah:test
+      - run: yarn js:lint
       - run: yarn sass:lint
+      - run: yarn js:test
       - run: yarn flow
       - run: yarn styleguide:build
-      - run: cd packages/evans && LANG=en yarn build
-      - run: cd packages/evans && LANG=es yarn build
+      - run: yarn evans:build:en
+      - run: yarn evans:build:es
   php:
     docker:
       - image: circleci/php:7.2-apache-node-browsers
