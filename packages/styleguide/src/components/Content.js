@@ -11,6 +11,9 @@ const StyledContent = styled.section`
 
 export default () => (
   <StyledContent>
+    <c.SubHeadings />
+    <c.Letters />
+    <c.Gotchas />
     <c.Footnotes />
     <c.Styling />
     <c.Epigraphs />

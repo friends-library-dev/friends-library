@@ -7,7 +7,7 @@ import frags from '../../dist/frags.json';
 const StyledDiv = styled.div`
   background: white;
   font-family: Georgia;
-  padding: 3em 5em;
+  padding: 2.5em 5em 3em 5em;
   box-shadow: 3px 3px 3px #aaa;
   margin-bottom: 60px;
 `;

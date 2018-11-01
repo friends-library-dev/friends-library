@@ -7,13 +7,13 @@ import frags from '../../dist/frags';
 const Wrap = styled.div`
   background: #333;
   padding: 1.6em 0 1.6em 1em;
-  line-height: 1.25em;
+  line-height: 1.425em;
   padding-left: 0;
   color: #bbb;
   margin-bottom: 40px;
-  font-size: 16px;
+  font-size: 15px;
   position: relative;
-  font-family: monospace;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
 
   &::before {
     content: 'ASCIIDOC';
@@ -44,9 +44,10 @@ const Number = styled.span`
       color: #000;
       content: "👉";
       position: absolute;
+      text-shadow: 0.75px 0.75px 0.75px #888;
       left: -30px;
-      top: 2px;
-      font-size: 22.5px;
+      top: 1px;
+      font-size: 23px;
     }
   }
 `;
@@ -121,8 +122,8 @@ export default ({ id, emphasize }: Props) => {
 function enhance(line) {
   return line
     .replace(
-      /\+\+\+\.\+\+\+/g,
-      '{orange}+++{/}{green}.{/}{orange}+++{/}',
+      /\+\+\+(.+?)\+\+\+/g,
+      '{orange}+++{/}{green}$1{/}{orange}+++{/}',
     )
     .replace(
       /(.+)::$/,
@@ -130,10 +131,14 @@ function enhance(line) {
     )
     .replace(
       /("`|'`)(.+?)(`"|`')/g,
-      '{orange}$1$2$3{/}',
+      '{orange}<i>$1$2$3</i>{/}',
     )
     .replace(
-      /footnote:\[(.+)\]/,
+      /^--$/,
+      '{blue}--{/}',
+    )
+    .replace(
+      /footnote:\[(.+)\]/, // single-line footnotes
       '{blue}footnote{/}:[{green}$1{/}]'
     )
     .replace(
@@ -141,7 +146,7 @@ function enhance(line) {
       '{grey}{footnote-paragraph-split}{/}'
     )
     .replace(
-      /footnote:\[([^\]]+)$/g,
+      /footnote:\[([^\]]+)$/g, // start of multi-line footnote
       (_, rest) => {
         inFootnote = !inFootnote;
         return `{blue}footnote{/}{normal}:[{/}{green}${rest}{/}`;
@@ -187,7 +192,10 @@ function enhance(line) {
     )
     .replace(
       /^\[(\.|#)(.+)\]$/g,
-      '{white}[$1{/}{grey}$2{/}{white}]{/}',
+      (_, start, inner) => {
+        inner = inner.replace(/\./g, '{white}.{/}');
+        return `{white}[${start}{/}{grey}${inner}{/}{white}]{/}`;
+      },
     )
     .replace(
       /, short="/g,

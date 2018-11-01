@@ -8,3 +8,6 @@ export { default as Quotes } from './Quotes';
 export { default as Epigraphs } from './Epigraphs';
 export { default as Styling } from './Styling';
 export { default as Footnotes } from './Footnotes';
+export { default as Gotchas } from './Gotchas';
+export { default as Letters } from './Letters';
+export { default as SubHeadings } from './SubHeadings';

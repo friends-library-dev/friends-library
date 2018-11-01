@@ -52,7 +52,32 @@ const Item = ({ text, href }: ItemProps) => {
 
 export default () => (
   <StyledSidebar>
-    <ul>
+    <img
+      style={{ width: 90, borderRadius: 20, marginLeft: 10 }}
+      src="https://avatars0.githubusercontent.com/u/32500148?s=200&v=4"
+    />
+    <h1
+      style={{
+        fontSize: 17.5,
+        lineHeight: '1.3em',
+        position: 'absolute',
+        top: 5,
+        left: 135,
+        color: '#222',
+        opacity: 0.8,
+        fontFamily: 'Georgia',
+        fontWeight: 200,
+      }}
+    >
+      Friends
+      <br />Library
+      <br />Publishing
+      <br /><i style={{ color: '#d62529' }}>Styleguide</i>
+    </h1>
+    <ul style={{ marginTop: 30 }}>
+      <Item text="Sub-Headings" />
+      <Item text="Signed Sections" href="letters" />
+      <Item text="Gotchas!" href="gotchas" />
       <Item text="Footnotes" href="footnotes-section" />
       <Item text="Misc. Styling" href="styling" />
       <Item text="Quotes" />

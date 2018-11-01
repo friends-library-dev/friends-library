@@ -95,5 +95,16 @@ export default () => (
       Instead, use a <a href="#poetry">verse block</a>, which will
       provide both proper styling and correct semantics.
     </Note>
+
+    <H2>The End:</H2>
+
+    <Para>
+      A small number of our books end with a single paragraph saying something
+      like <i>THE END</i> or <i>FINIS</i>, because I think this was a relatively
+      common publishing convention. At least in the <i>original editions</i> I've
+      been leaving these intact, but I designate them with the
+      class <Code>[.the-end]</Code> so that I can style them appropriately:
+    </Para>
+    <Pair id="the-end" emphasize={[7]} />
   </Section>
 )
