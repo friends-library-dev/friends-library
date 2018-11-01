@@ -56,6 +56,9 @@ function verifyHtml(html: Html): void {
   if (html.match(/>==+ /gm)) {
     throw new Error('Html error: unresolved heading asciidoc');
   }
+  if (html.match(/<p>&#8212;<\/p>/gm)) {
+    throw new Error('Html error: unresolved open block delimiter');
+  }
 }
 
 function extractShortHeadings(adoc: Asciidoc): Map<string, string> {
