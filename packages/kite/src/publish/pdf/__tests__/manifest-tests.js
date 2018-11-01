@@ -118,6 +118,6 @@ describe('getPdfManifest()', () => {
 
     const manifest = getPdfManifest(job);
 
-    expect(manifest['doc.html']).toContain('<body class="trim--xl">');
+    expect(manifest['doc.html']).toContain('<body class="body trim--xl">');
   });
 });

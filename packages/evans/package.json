@@ -39,6 +39,6 @@
     "babel-watch": "monathur/babel-watch.git#ebc252359970458bf2e0a6c417bce3d3dc6d8da7",
     "browser-sync": "^2.23.3",
     "webpack": "^4.6.0",
-    "webpack-command": "^0.2.1"
+    "webpack-cli": "^3.1.2"
   }
 }
