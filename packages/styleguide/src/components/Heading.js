@@ -17,7 +17,7 @@ export const H1 = styled.h1`
   & + h1 {
     margin-top: 50px;
   }
-`
+`;
 
 
 export const H2 = styled.h1`
@@ -28,4 +28,4 @@ export const H2 = styled.h1`
   font-size: 1.85em;
   margin-top: 85px;
   margin-bottom: -30px;
-`
+`;

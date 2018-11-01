@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note, Asciidoc } from '../components';
 
 export default () => (
   <Section id="poetry">
@@ -23,7 +12,7 @@ export default () => (
       wrapped in a <i>quote block</i> which is demarcated
       by <code>4</code> underscores <Code>____</Code> before <i>and</i> after.
     </Para>
-    <Pair id="poetry" emphasize={[1,2,7]} />
+    <Pair id="poetry" emphasize={[1, 2, 7]} />
 
     <H2>Poetry with stanzas:</H2>
     <Para>
@@ -39,7 +28,7 @@ export default () => (
       crazy made-up syntax I came up with shown below.
       These are rare and weird, so ping Jared if you're having trouble. 🤔
     </Para>
-    <Asciidoc id="poetry-footnote" emphasize={[7,8,9,10,11]} />
+    <Asciidoc id="poetry-footnote" emphasize={[7, 8, 9, 10, 11]} />
     <Note>
       Line 7 above is a backtick <Code>`</Code> followed by <code>4</code> spaces.
       Lines 8-11 start with <code>5</code> spaces. Oh, and the last line
@@ -51,4 +40,4 @@ export default () => (
       no preview here, sorry. It works, if you do it right, trust me!
     </Note>
   </Section>
-)
+);

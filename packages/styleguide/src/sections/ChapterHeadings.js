@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note, Snippet, Asciidoc } from '../components';
 
 export default () => (
   <Section id="chapter-headings">
@@ -68,7 +57,7 @@ export default () => (
       class <Code>[.chapter-subtitle--blurb]</Code> added.
     </Para>
     <Snippet trigger="csb" expansion="[.chapter-subtitle--blurb]" />
-    <Pair id="chapter-subtitle-blurb" emphasize={[3,4,5,6]} />
+    <Pair id="chapter-subtitle-blurb" emphasize={[3, 4, 5, 6]} />
 
     <H2>Short titles</H2>
     <Para>

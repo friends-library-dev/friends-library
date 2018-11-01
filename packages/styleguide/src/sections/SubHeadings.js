@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note } from '../components';
 
 export default () => (
   <Section id="sub-headings">
@@ -35,7 +24,7 @@ export default () => (
       which provides a different presentation. This is a bit of a compromise,
       as it's purely a presentational consideration, but hey!
     </Para>
-    <Pair id="sub-headings-alt" emphasize={[1,8]} />
+    <Pair id="sub-headings-alt" emphasize={[1, 8]} />
 
     <H2>"Old-Style" Sub-Headings:</H2>
     <Para>
@@ -75,4 +64,4 @@ export default () => (
     </Note>
     <Pair id="styled-headings" emphasize={[1]} />
   </Section>
-)
+);

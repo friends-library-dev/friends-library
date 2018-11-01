@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { H1, H2, Para, Code, Section, Note, Asciidoc } from '../components';
 
 export default () => (
   <Section id="footnotes-section">
@@ -35,7 +24,7 @@ export default () => (
       before the footnote, which is how almost all of the footnotes
       in the existing documents are formatted, shown below:
     </Para>
-    <Asciidoc id="footnote" emphasize={[3,4,5]} />
+    <Asciidoc id="footnote" emphasize={[3, 4, 5]} />
 
     <Para>
       Footnotes can span multiple lines (as shown above and below), and
@@ -49,8 +38,8 @@ export default () => (
       The asciidoc format doesn't natively support <b>multi-paragraph</b> footnotes,
       so I had to invent a syntax for this. Instead of leaving an extra empty
       line, like normal paragraphs, instead insert a line containing
-      only <Code>{`{footnote-paragraph-split}`}</Code>:
+      only <Code>{'{footnote-paragraph-split}'}</Code>:
     </Para>
     <Asciidoc id="footnote-multi" emphasize={[11]} />
   </Section>
-)
+);

@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
 export default () => (
   <Section id="quotes">
@@ -53,7 +42,7 @@ export default () => (
       is demarcated by <code>4</code> underscores <Code>____</Code> before
       {' '}<i>and</i> after:
     </Para>
-    <Pair id="quote-block" emphasize={[3,4,11]} />
+    <Pair id="quote-block" emphasize={[3, 4, 11]} />
 
     <H2>Block Quotes with Attribution:</H2>
     <Para>
@@ -87,4 +76,4 @@ export default () => (
       in <a href="#epigraphs">their own section.</a>
     </Note>
   </Section>
-)
+);

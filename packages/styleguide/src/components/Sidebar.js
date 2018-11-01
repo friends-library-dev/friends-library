@@ -38,8 +38,8 @@ const StyledSidebar = styled.section`
 
 
 type ItemProps = {
-  href?: string,
   text: string,
+  href?: string,
 }
 
 const Item = ({ text, href }: ItemProps) => {
@@ -48,11 +48,14 @@ const Item = ({ text, href }: ItemProps) => {
       <a href={`#${href || text.toLowerCase().replace(/ /g, '-')}`}>{text}</a>
     </li>
   );
-}
+};
+
+Item.defaultProps = { href: '' };
 
 export default () => (
   <StyledSidebar>
     <img
+      alt=""
       style={{ width: 90, borderRadius: 20, marginLeft: 10 }}
       src="https://avatars0.githubusercontent.com/u/32500148?s=200&v=4"
     />
@@ -70,9 +73,12 @@ export default () => (
       }}
     >
       Friends
-      <br />Library
-      <br />Publishing
-      <br /><i style={{ color: '#d62529' }}>Styleguide</i>
+      <br />
+Library
+      <br />
+Publishing
+      <br />
+      <i style={{ color: '#d62529' }}>Styleguide</i>
     </h1>
     <ul style={{ marginTop: 30 }}>
       <Item text="Emphasis" />

@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note } from '../components';
 
 export default () => (
   <Section id="epigraphs">
@@ -38,4 +27,4 @@ export default () => (
       in their proper place with the rest of the frontmatter.
     </Note>
   </Section>
-)
+);

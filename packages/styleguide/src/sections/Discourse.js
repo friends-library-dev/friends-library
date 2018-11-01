@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
 export default () => (
   <Section id="discourse">
@@ -21,7 +10,7 @@ export default () => (
       be marked up with the <Code>[.discourse-part]</Code> annotation.
     </Para>
     <Snippet trigger="dp" expansion="[.discourse-part]" />
-    <Pair id="discourse" emphasize={[1,6]} />
+    <Pair id="discourse" emphasize={[1, 6]} />
 
     <H2>Italicizing Discourse Identifiers:</H2>
     <Para>
@@ -40,6 +29,6 @@ export default () => (
       class also creates spacing between the items, removes text-indent,
       and provides better semantics.
     </Note>
-    <Pair id="discourse-non-standard" emphasize={[2,5,8]} />
+    <Pair id="discourse-non-standard" emphasize={[2, 5, 8]} />
   </Section>
-)
+);

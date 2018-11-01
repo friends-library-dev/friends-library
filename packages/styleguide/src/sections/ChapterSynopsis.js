@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, Para, Section, Snippet } from '../components';
 
 export default () => (
   <Section id="chapter-synopsis">
@@ -22,6 +11,6 @@ export default () => (
       shown below:
     </Para>
     <Snippet trigger="cs" expansion="[.chapter-synopsis]" />
-    <Pair id="chapter-synopsis" xemphasize={[3,4,5,6,7,8,9,10]} />
+    <Pair id="chapter-synopsis" />
   </Section>
-)
+);

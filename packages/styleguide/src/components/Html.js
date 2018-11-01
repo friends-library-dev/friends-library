@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import styled from 'styled-components';
-
 import frags from '../../dist/frags.json';
 
 const StyledDiv = styled.div`

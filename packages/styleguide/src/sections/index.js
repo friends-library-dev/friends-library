@@ -1,3 +1,4 @@
+// @flow
 export { default as Emphasis } from './Emphasis';
 export { default as ChapterHeadings } from './ChapterHeadings';
 export { default as ChapterSynopsis } from './ChapterSynopsis';

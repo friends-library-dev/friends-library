@@ -1,6 +1,7 @@
+// @flow
 import * as Heading from './Heading';
-export const H1 = Heading.H1;
-export const H2 = Heading.H2;
+
+export const { H1, H2 } = Heading;
 export { default as Asciidoc } from './Asciidoc';
 export { default as Html } from './Html';
 export { default as Code } from './Code';

@@ -14,6 +14,8 @@ const {
 const precursor = getRefPrecursor();
 const adocGlob = path.resolve(__dirname, 'adoc/*.adoc');
 
+fs.ensureDir(path.resolve(__dirname, '..', 'dist/'));
+
 if (process.argv.includes('--watch')) {
   chokidar
     .watch(adocGlob)
@@ -57,7 +59,7 @@ function regen() {
     path.resolve(__dirname, '..', 'dist/frags.json'),
     JSON.stringify(frags),
   );
-  console.log(magenta('🚁  styleguide fragments regenerated'));
+  console.log(magenta('🚁  styleguide fragments regenerated')); // eslint-disable-line no-console
 }
 
 

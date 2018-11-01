@@ -1,17 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from 'styled-components';
-import {
-  Pair,
-  H1,
-  H2,
-  Para,
-  Code,
-  Section,
-  Note,
-  Snippet,
-  Asciidoc,
-} from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
 export default () => (
   <Section id="letters">
@@ -91,7 +80,7 @@ export default () => (
       <li>signature</li>
       <li>closing context</li>
     </ul>
-    <Pair id="doubled-letter-elements" emphasize={[1,4,14,17,20,23]} />
+    <Pair id="doubled-letter-elements" emphasize={[1, 4, 14, 17, 20, 23]} />
 
     <H2>Embeded Content Documents:</H2>
     <Para>
@@ -99,8 +88,8 @@ export default () => (
       are <i>embedded</i> within a larger section, like a chapter.
       These sorts of sections need to be demarcated by special
       asciidoc markers. Before they begin, you must add a line
-      with the class <Code>[.embedded-content-document.{`<TYPE>`}]</Code>
-      {' '}where <Code>{`<TYPE>`}</Code> is replaced by a class indicating
+      with the class <Code>[.embedded-content-document.{'<TYPE>'}]</Code>
+      {' '}where <Code>{'<TYPE>'}</Code> is replaced by a class indicating
       type <i>type</i> of embedded document it is. You can
       choose from the following types:
     </Para>
@@ -121,15 +110,15 @@ export default () => (
       line with just two dashes <Code>--</Code> (surrounded by empty lines)
       to close the section. Below is a simple (but representative) example:
     </Para>
-    <Snippet trigger="ed" expansion={`.embedded-content-document.TYPE\n--`} />
-    <Pair id="embedded-letter" emphasize={[5,6,18]} />
+    <Snippet trigger="ed" expansion={'.embedded-content-document.TYPE\n--'} />
+    <Pair id="embedded-letter" emphasize={[5, 6, 18]} />
 
     <H2>Postscripts:</H2>
     <Para>
       Postscripts are designated with the <Code>[.postscript]</Code> class,
       and should be kept <b>inside an embedded letter block</b>.
     </Para>
-    <Pair id="postscript" emphasize={[14,18]} />
+    <Pair id="postscript" emphasize={[14, 18]} />
 
     <H2>Non-Embedded Signed Sections:</H2>
     <Para>
@@ -150,4 +139,4 @@ export default () => (
     </Para>
     <Pair id="bare-embedded" />
   </Section>
-)
+);

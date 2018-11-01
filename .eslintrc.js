@@ -12,6 +12,7 @@ module.exports = {
     jest: false,
   },
   rules: {
+    'react/no-danger': 0,
     'no-only-tests/no-only-tests': 2,
     'arrow-body-style': 0,
     'object-curly-newline': 0,
@@ -20,6 +21,7 @@ module.exports = {
     'arrow-parens': 0,
     'no-plusplus': 0,
     'no-param-reassign': 0,
+    'react/jsx-one-expression-per-line': 0,
     'react/jsx-filename-extension': [0],
     'no-cond-assign': 0,
     'no-unused-vars': [

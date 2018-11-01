@@ -57,7 +57,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const logo = `https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/131px-Atom_editor_logo.svg.png`;
+const logo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/131px-Atom_editor_logo.svg.png';
 
 type Props = {
   trigger: string,
@@ -65,26 +65,30 @@ type Props = {
   acronym?: string,
 };
 
-export default ({ trigger, expansion, acronym }: Props) => (
+const Snippet = ({ trigger, expansion, acronym }: Props) => (
   <StyledDiv>
-    <img src={logo} />
+    <img src={logo} alt="" />
     <p>
       The Atom snippet <code className="trigger">{trigger}</code>
-      {' '}<Acronym text={acronym} /> will expand
+      {' '}<Acronym text={acronym || ''} /> will expand
       to <Expansion expansion={expansion} />
     </p>
   </StyledDiv>
-)
+);
 
-const Expansion = ({ expansion }) => {
+Snippet.defaultProps = { acronym: '' };
+
+export default Snippet;
+
+const Expansion = ({ expansion }: { expansion: string }) => {
   const html = expansion
     .split('\n')
     .map(part => `<span class="expansion">${part}</span>`)
     .join(' and ');
-  return <span dangerouslySetInnerHTML={{ __html: html }} />
-}
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+};
 
-const Acronym = ({ text }) => {
+const Acronym = ({ text }: { text: string }) => {
   if (!text) {
     return '';
   }
@@ -100,5 +104,5 @@ const Acronym = ({ text }) => {
   const html = `(${inner})`;
   return (
     <span className="acronym" dangerouslySetInnerHTML={{ __html: html }} />
-  )
-}
+  );
+};
