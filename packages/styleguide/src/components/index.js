@@ -1,7 +1,5 @@
 // @flow
-import * as Heading from './Heading';
-
-export const { H1, H2 } = Heading;
+export { H1, H2 } from './Heading';
 export { default as Asciidoc } from './Asciidoc';
 export { default as Html } from './Html';
 export { default as Code } from './Code';

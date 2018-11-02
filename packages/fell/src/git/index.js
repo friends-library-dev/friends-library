@@ -5,6 +5,8 @@ import glob from 'glob';
 import chalk from 'chalk';
 import { red, green, log } from '@friends-library/color';
 
+export { gitClone } from './clone';
+
 type Argv = {|
   exclude?: string,
   message?: string,
@@ -102,6 +104,6 @@ function getBranch(repo): string {
   return cmd('git rev-parse --abbrev-ref HEAD', repo).trim();
 }
 
-function cmd(command: string, repo: string): string {
-  return execSync(`cd ${repo} && ${command}`).toString();
+export function cmd(command: string, dir: string): string {
+  return execSync(`cd ${dir} && ${command}`).toString();
 }
