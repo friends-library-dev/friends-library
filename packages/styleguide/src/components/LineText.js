@@ -31,4 +31,7 @@ export default styled.span`
   & .asciidoc--orange {
     color: #d19a66;
   }
+  & .asciidoc--pink {
+    color: #cc89a2
+  }
 `;
