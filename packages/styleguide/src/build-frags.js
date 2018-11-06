@@ -3,6 +3,7 @@ const { sync: glob } = require('glob');
 const path = require('path');
 const chokidar = require('chokidar');
 const { magenta } = require('chalk');
+const { throttle } = require('lodash');
 const {
   getRefPrecursor,
   prepare,
@@ -10,6 +11,10 @@ const {
   pdf,
   createCommand,
 } = require('@friends-library/kite');
+
+const notify = throttle(() => {
+  console.log(magenta('🚁  styleguide fragments regenerated')); // eslint-disable-line no-console
+}, 5000);
 
 const precursor = getRefPrecursor();
 const adocGlob = path.resolve(__dirname, 'adoc/*.adoc');
@@ -59,7 +64,7 @@ function regen() {
     path.resolve(__dirname, '..', 'dist/frags.json'),
     JSON.stringify(frags),
   );
-  console.log(magenta('🚁  styleguide fragments regenerated')); // eslint-disable-line no-console
+  notify();
 }
 
 

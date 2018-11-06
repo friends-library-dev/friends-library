@@ -5,6 +5,15 @@ import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components'
 export default () => (
   <Section id="styling">
     <H1>Misc. Styling</H1>
+
+    <H2>Book Titles:</H2>
+    <Para>
+      <b>Book titles</b> should be indicated with an inline class,
+      and <Code>#</Code> delimiters, like so: <Code>[.book-title]#TITLE#</Code>
+      {' '}and <i>not</i> with plain italics:
+    </Para>
+    <Pair id="book-title" />
+
     <H2>Definition Lists:</H2>
     <Para>
       <b>Definition lists</b> are lists of pairs, usually comprising

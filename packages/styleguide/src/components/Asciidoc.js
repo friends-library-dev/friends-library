@@ -152,6 +152,10 @@ function colorize(line: string): string {
       },
     )
     .replace(
+      /\[\.book-title\]#([^#]+)#/,
+      '{grey}[.book-title]{/}{pink}#$1#{/}',
+    )
+    .replace(
       /, short="/g,
       '{white},{/} short="',
     )
@@ -168,7 +172,7 @@ function colorize(line: string): string {
       (_, l) => (inFootnote ? `{green}${l}{/}` : l),
     )
     .replace(
-      /{(i|red|blue|grey|white|green|orange|normal)}/g,
+      /{(i|red|blue|grey|white|green|orange|normal|pink)}/g,
       '<span class="asciidoc--$1">',
     )
     .replace(

@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Pair, H1, Para, Code, Section } from '../components';
+import { Pair, H1, Para, Code, Section, Note } from '../components';
 
 export default () => (
   <Section id="emphasis">
@@ -18,5 +18,9 @@ export default () => (
       syntax highlighting, as shown below, but it still works.
     </Para>
     <Pair id="emphasis-multiline" />
+    <Note>
+      Cited <b>book titles</b> should <i>not</i> be denoted using bare
+      italics. Use the <a href="#styling">dedicated syntax</a> instead.
+    </Note>
   </Section>
 );
