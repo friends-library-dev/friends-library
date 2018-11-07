@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Pair, H1, Para, Section, Snippet } from '../components';
+import { Pair, Asciidoc, H1, Note, Para, Section, Snippet } from '../components';
 
 export default () => (
   <Section id="chapter-synopsis">
@@ -12,5 +12,11 @@ export default () => (
     </Para>
     <Snippet trigger="cs" expansion="[.chapter-synopsis]" />
     <Pair id="chapter-synopsis" />
+
+    <Note>
+      Any <b>footnote</b> on a chapter synopsis <i>item</i> needs to be
+      contained on the same line, as shown here:
+    </Note>
+    <Asciidoc id="chapter-synopsis-footnote" emphasize={[4]} />
   </Section>
 );

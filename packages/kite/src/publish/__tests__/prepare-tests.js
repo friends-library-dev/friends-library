@@ -305,9 +305,21 @@ Para.
 
     const { sections: [section] } = prepare(precursor(adoc));
 
-    const expected = '<p class="chapter-synopsis">foo&#8212;bar&#8212;baz</p>';
+    const expected = `
+<div class="chapter-synopsis">
+<p>foo&#8212;bar&#8212;baz</p>
+</div>
+    `.trim();
     expect(section.html).toContain(expected);
     expect(section.html).not.toContain('<ul');
+  });
+
+  it('allows footnotes on chapter-synopsis items', () => {
+    const adoc = '== C1\n\n[.chapter-synopsis]\n* foofootnote:[bar]\n* baz\n\n';
+
+    const { notes } = prepare(precursor(adoc));
+
+    expect(notes.get('uuid1')).toBe('bar');
   });
 
   const discretes = [

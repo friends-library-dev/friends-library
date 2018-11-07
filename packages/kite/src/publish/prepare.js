@@ -207,6 +207,7 @@ function removeParagraphClass(html: Html): Html {
     'numbered',
     'the-end',
     'postscript',
+    'chapter-synopsis',
     'letter-participants',
     'signed-section-signature',
     'signed-section-closing',
@@ -253,7 +254,7 @@ function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
         .map(line => line.trim())
         .map(line => line.replace(/^\* /, ''))
         .join('&#8212;');
-      return raw(`<p class="chapter-synopsis">${joined}</p>`);
+      return `[.chapter-synopsis]\n${joined}\n\n`;
     },
   );
 }
