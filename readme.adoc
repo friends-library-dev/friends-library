@@ -1,0 +1,5 @@
+# 🚀 Friends Library Monorepo
+
+For documentation, see `readme` for each package:
+
+* link:packages/kite/readme.adoc[kite docs] _(derive/publish book formats from source asciidoc)_
