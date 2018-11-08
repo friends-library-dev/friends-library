@@ -1,22 +1,13 @@
 const fs = require('fs-extra');
+const { getRefPrecursor, prepare, epigraph, pdf, createCommand } = require('@friends-library/kite');
+const { magenta } = require('@friends-library/cli/color');
 const { sync: glob } = require('glob');
 const path = require('path');
 const chokidar = require('chokidar');
-const { magenta } = require('chalk');
 const { throttle } = require('lodash');
-const {
-  getRefPrecursor,
-  prepare,
-  epigraph,
-  pdf,
-  createCommand,
-} = require('@friends-library/kite');
 
-const notify = throttle(() => {
-  console.log(magenta('🚁  styleguide fragments regenerated')); // eslint-disable-line no-console
-}, 5000);
-
-const precursor = getRefPrecursor();
+const notify = throttle(() => magenta('🚁  styleguide fragments regenerated'), 5000);
+const precursor = getRefPrecursor('misc');
 const adocGlob = path.resolve(__dirname, 'adoc/*.adoc');
 
 fs.ensureDir(path.resolve(__dirname, '..', 'dist/'));

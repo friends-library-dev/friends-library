@@ -1,4 +1,7 @@
-// chapter headings
+h2, h3, h4, h5 {
+  line-height: 1.5em;
+}
+
 h2 {
   text-align: center;
 }
@@ -211,7 +214,8 @@ blockquote .paragraph:first-of-type p {
   font-style: italic;
 }
 
-h3.blurb {
+h3.blurb,
+h4.blurb {
   font-weight: 400;
   font-style: italic;
   text-align: center;

@@ -15,11 +15,11 @@ prettifyErrors();
 // eslint-disable-next-line no-unused-expressions
 yargs
   .command(
-    'publish:ref <path> [format]',
+    'publish:ref <path>',
     'publish reference asciidoc document at given path',
     ({ positional }) => positional('path', {
       type: 'string',
-      describe: 'relative filepath to reference doc (from project root)',
+      describe: 'relative filepath to reference doc (from packages/kite/src/publish/ref)',
     }),
     timed(catchify(publishRef)),
   )
