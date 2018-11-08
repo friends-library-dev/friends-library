@@ -2,10 +2,12 @@
 import uuid from 'uuid/v4';
 import striptags from 'striptags';
 import { toArabic } from 'roman-numerals';
-import Asciidoctor from 'asciidoctor.js';
-import { flow, memoize, intersection } from 'lodash';
+import { flow, memoize } from 'lodash';
 import { wrapper } from './text';
 import { br7 } from './html';
+import { transformAsciidoc } from './transform-asciidoc';
+import { transformHtml } from './transform-html';
+import { convertAsciidoc } from './convert-asciidoc';
 import type { Asciidoc, Html } from '../../../../type';
 import type {
   Epigraph,
@@ -33,9 +35,7 @@ export function prepare(precursor: SourcePrecursor): SourceSpec {
   };
 }
 
-function processAdoc(
-  adoc: Asciidoc,
-): {
+function processAdoc(adoc: Asciidoc): {
   epigraphs: Array<Epigraph>,
   sections: Array<DocSection>,
   notes: Notes,
@@ -123,168 +123,11 @@ function parseHeading(text: string): Object {
   };
 }
 
-const asciidoctor = new Asciidoctor();
-const raw = (input: string): Asciidoc => `++++\n${input}\n++++`;
-
 const adocToHtml: (adoc: Asciidoc) => Html = memoize(flow([
-  replaceAsterisms,
-  changeChapterSynopsisMarkup,
-  changeChapterSubtitleBlurbMarkup,
-  prepareDiscourseParts,
-  discreteize,
-  headingsInOpenBlocks,
-  adoc => adoc.replace(/[–|—]/g, '--'),
-  adoc => adoc.replace(/"`/igm, '&#8220;'),
-  adoc => adoc.replace(/`"/igm, '&#8221;'),
-  adoc => adoc.replace(/'`/igm, '&#8216;'),
-  adoc => adoc.replace(/`'/igm, '&#8217;'),
-  adoc => adoc.replace(/(\[\.signed-section-signature\]\n)/gm, '$1--'),
-  adoc => adoc.replace(/\n--\n/gm, '{open-block-delimiter}'),
-  adoc => adoc.replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;'),
-  adoc => adoc.replace(/{open-block-delimiter}/gm, '\n--\n'),
-  adoc => adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gim, '&#8212;$1'),
-  adoc => adoc.replace(/ &#8220;\n([a-z])/gim, ' &#8220;$1'),
-  adoc => adoc.replace(/&#8212;(?:\n)?_([^_]+?)_(?=[^_])/gm, '&#8212;__$1__'),
-  adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
-  adoc => adoc.replace(/\[\.small-break\]\n'''/gm, raw(`<div class="small-break">${br7}</div>`)),
-  adoc => asciidoctor.convert(adoc),
-  changeVerseMarkup,
-  modifyOldStyleHeadings,
-  html => html.replace(/<hr>/igm, '<hr />'),
-  html => html.replace(/<br>/igm, '<br />'),
-  html => html.replace(/<blockquote>/igm, `<blockquote>${br7}`),
-  removeParagraphClass,
-  html => html.replace(/(?<=<div class="offset">\n)([\s\S]*?)(?=<\/div>)/gim, `${br7}$1${br7}`),
-  html => html.replace(/<div class="discourse-part">/gm, `<div class="discourse-part">${br7}`),
+  transformAsciidoc,
+  convertAsciidoc,
+  transformHtml,
 ]));
-
-function discreteize(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(
-    /\[((?:\.blurb|\.alt|\.centered)+)\]\n(====?) /gm,
-    '[discrete$1]\n$2 ',
-  );
-}
-
-function headingsInOpenBlocks(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(
-    /(\n--\n\n)([\s\S]*?)(\n\n--\n)/igm,
-    (_, open, content, end) => {
-      const inner = content.replace(
-        /(^|\n\n)(?:\[([^\]]+?)\]\n)?(===+ )/igm,
-        (__, start, bracket, heading) => {
-          const discrete = (bracket || '').indexOf('discrete') !== -1 ? '' : 'discrete';
-          return `${start}[${discrete}${bracket || ''}]\n${heading}`;
-        },
-      );
-      return `${open}${inner}${end}`;
-    },
-  );
-}
-
-function modifyOldStyleHeadings(html: Html): Html {
-  return html.replace(
-    /<div class="sect2 old-style( [^"]+?)?">\n<h3 ([^>]+?)>([\s\S]+?)<\/h3>/igm,
-    (_, kls, h3id, text) => {
-      const inner = text.split(' / ').map((part, index, parts) => {
-        if (index === 0) {
-          return `<span>${part} <br class="m7"/></span>`;
-        }
-        if (index === parts.length - 1) {
-          return `<span><em>${part}</em></span>`;
-        }
-        return `<span><em>${part}</em> <br class="m7"/></span>`;
-      }).join('');
-      return `<div class="sect2"><h3 ${h3id} class="old-style${kls || ''}">${inner}</h3>`;
-    },
-  );
-}
-
-function removeParagraphClass(html: Html): Html {
-  const standalone = [
-    'salutation',
-    'discourse-part',
-    'offset',
-    'numbered',
-    'the-end',
-    'postscript',
-    'chapter-synopsis',
-    'letter-participants',
-    'signed-section-signature',
-    'signed-section-closing',
-    'signed-section-context-open',
-    'signed-section-context-close',
-  ];
-
-  return html.replace(
-    /<div class="paragraph ([a-z0-9- ]+?)">/g,
-    (full, extra) => {
-      const classes = extra.split(' ');
-      if (intersection(standalone, classes).length) {
-        return `<div class="${extra}">`;
-      }
-      return full;
-    },
-  );
-}
-
-function changeVerseMarkup(html: Html): Html {
-  return html.replace(
-    /<div class="verseblock">\n<pre class="content">([\s\S]*?)<\/pre>\n<\/div>/gim,
-    (_, verses) => {
-      const hasStanzas = verses.match(/\n\n/gm);
-      const stanzaOpen = hasStanzas ? '\n<div class="verse__stanza">' : '';
-      const stanzaClose = hasStanzas ? '</div>\n' : '';
-      return verses
-        .trim()
-        .split('\n')
-        .map(v => (v ? `<div class="verse__line">${v}</div>` : `${stanzaClose}${stanzaOpen}`))
-        .reduce(wrapper(`<div class="verse">${stanzaOpen}`, `${stanzaClose}</div>`), [])
-        .join('\n');
-    },
-  );
-}
-
-function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(
-    /\[\.chapter-synopsis\]\n([\s\S]+?)(?=\n\n)/gim,
-    (_, inner) => {
-      const joined = inner
-        .trim()
-        .split('\n')
-        .map(line => line.trim())
-        .map(line => line.replace(/^\* /, ''))
-        .join('&#8212;');
-      return `[.chapter-synopsis]\n${joined}\n\n`;
-    },
-  );
-}
-
-function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(
-    /\[\.chapter-subtitle--blurb\]\n([\s\S]+?)(?=\n\n)/gim,
-    (_, inner) => {
-      const joined = inner
-        .trim()
-        .split('\n')
-        .join(' ');
-      return raw(`<h3 class="chapter-subtitle--blurb">${joined}</h3>`);
-    },
-  );
-}
-
-function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(
-    /(?<=\[\.discourse-part\]\n)(Question:|Answer(?: [0-9]+)?:|Objection:|Inquiry [0-9]+:)( |\n)/gim,
-    '_$1_$2',
-  );
-}
-
-function replaceAsterisms(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(
-    /\[\.asterism\]\n'''/igm,
-    raw(`<div class="asterism">${br7}*&#160;&#160;*&#160;&#160;*${br7}${br7}</div>`),
-  );
-}
 
 function extractNotes(srcHtml: Html): [Notes, Html] {
   const map = new Map();

@@ -524,4 +524,10 @@ Hash baz.]
 
     expect(() => prepare(precursor(adoc))).toThrow();
   });
+
+  test('unclosed open block throws', () => {
+    const adoc = '== C1\n\n[.embedded-content-document]\n--\n\nFoo.';
+
+    expect(() => prepare(precursor(adoc))).toThrow();
+  });
 });

@@ -5,7 +5,7 @@ import { resolve as pathResolve } from 'path';
 import glob from 'glob';
 import Prompt from 'prompt-sync';
 import History from 'prompt-sync-history';
-import { grey, log } from '@friends-library/color';
+import { grey, log } from '@friends-library/cli/color';
 
 function clear() {
   process.stdout.write('\x1B[2J\x1B[0f');

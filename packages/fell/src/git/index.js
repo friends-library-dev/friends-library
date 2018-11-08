@@ -3,7 +3,7 @@ import { resolve as pathResolve } from 'path';
 import { execSync } from 'child_process';
 import glob from 'glob';
 import chalk from 'chalk';
-import { red, green, log } from '@friends-library/color';
+import { red, green, log } from '@friends-library/cli/color';
 
 export { gitClone } from './clone';
 

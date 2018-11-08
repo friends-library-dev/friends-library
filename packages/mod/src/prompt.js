@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import rightPad from 'right-pad';
 import { find, max } from 'lodash';
 import inquirer from 'inquirer';
-import { grey } from '@friends-library/color';
+import { grey } from '@friends-library/cli/color';
 import { mutateLine } from './mutate';
 import type { MutationResolver, Line, MatchLocation, LineContext, LineMutation } from './type';
 

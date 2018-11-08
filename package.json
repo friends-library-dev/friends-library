@@ -53,7 +53,7 @@
     "packages/hilkiah",
     "packages/phipps",
     "packages/api",
-    "packages/color",
+    "packages/cli",
     "packages/fell",
     "packages/styleguide",
     "packages/mod"
