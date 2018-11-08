@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/register": "^7.0.0",
-    "@friends-library/color": "1.0.0",
+    "@friends-library/cli": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/hilkiah": "1.0.0",
     "asciidoctor.js": "^1.5.7-rc.1",

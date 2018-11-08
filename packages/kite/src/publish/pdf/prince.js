@@ -1,7 +1,7 @@
 // @flow
 import fs from 'fs-extra';
 import { spawn, exec } from 'child_process';
-import { yellow } from '@friends-library/color';
+import { yellow } from '@friends-library/cli/color';
 import type { FileManifest } from '../../type';
 import { PUBLISH_DIR } from '../file';
 

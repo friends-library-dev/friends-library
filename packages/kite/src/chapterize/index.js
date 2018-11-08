@@ -2,7 +2,7 @@
 import fs from 'fs-extra';
 import leftPad from 'left-pad';
 import path from 'path';
-import { red } from '@friends-library/color';
+import { red } from '@friends-library/cli/color';
 
 const { env: { DOCS_REPOS_ROOT } } = process;
 

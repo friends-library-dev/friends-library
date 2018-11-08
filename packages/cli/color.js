@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable no-console */
 const chalk = require('chalk');
 
 function red(...args: Array<string>): void {

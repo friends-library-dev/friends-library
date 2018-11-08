@@ -1,5 +1,5 @@
 // @flow
-import { green, magenta } from '@friends-library/color';
+import { green, magenta } from '@friends-library/cli/color';
 import fetch from 'node-fetch';
 import { flatten } from 'lodash';
 import fs from 'fs-extra';

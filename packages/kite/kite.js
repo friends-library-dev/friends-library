@@ -3,11 +3,14 @@ require('@babel/register');
 require('dotenv').config({ path: `${__dirname}/.env` });
 const yargs = require('yargs');
 const { omit } = require('lodash');
+const { prettifyErrors, catchify } = require('@friends-library/cli/error');
 const publish = require('./src/publish').default;
 const publishRef = require('./src/publish/ref').default;
 const convert = require('./src/convert').default;
 const chapterize = require('./src/chapterize').default;
 const cover = require('./src/cover').default;
+
+prettifyErrors();
 
 // eslint-disable-next-line no-unused-expressions
 yargs
@@ -18,7 +21,7 @@ yargs
       type: 'string',
       describe: 'relative filepath to reference doc (from project root)',
     }),
-    timed(publishRef),
+    timed(catchify(publishRef)),
   )
   .command(
     ['publish <path> [format]', '$0'],
@@ -27,7 +30,7 @@ yargs
       type: 'string',
       describe: 'absolute filepath to root dir containing doc repos',
     }),
-    timed(publish),
+    timed(catchify(publish)),
   )
   .command(
     ['convert <file>'],

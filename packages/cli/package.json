@@ -1,11 +1,12 @@
 {
-  "name": "@friends-library/color",
+  "name": "@friends-library/cli",
   "version": "1.0.0",
   "description": "simple color logging util",
   "main": "index.js",
   "author": "jared@netrivet.com",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.1",
+    "pretty-error": "^2.1.1"
   }
 }
