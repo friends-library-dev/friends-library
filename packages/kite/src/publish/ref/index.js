@@ -6,16 +6,16 @@ import { createCommand, publishPrecursors } from '..';
 
 export default function publishRef(argv: Object): Promise<*> {
   const cmd = createCommand(argv);
-  const precursor = getRefPrecursor();
+  const precursor = getRefPrecursor(argv.path || 'misc');
   return publishPrecursors([precursor], cmd);
 }
 
 
-export function getRefPrecursor(): SourcePrecursor {
+export function getRefPrecursor(doc: string): SourcePrecursor {
   return {
     id: 'ref',
     lang: 'en',
-    adoc: fs.readFileSync(path.resolve(__dirname, 'ref.adoc')).toString(),
+    adoc: fs.readFileSync(path.resolve(__dirname, `${doc}.adoc`)).toString(),
     revision: {
       timestamp: Math.floor(Date.now() / 1000),
       sha: 'fb0c71b',
