@@ -158,6 +158,15 @@ files.forEach((file) => {
       });
     });
 
+    test('updated editions have editor', () => {
+      editions(friend).forEach((edition) => {
+        if (edition.type === 'updated' && file.path.indexOf('/es/') === -1) {
+          expect(hasProp(edition, 'editor')).toBe(true);
+          expect(typeof edition.editor).toBe('string');
+        }
+      });
+    });
+
     test('formats have correct type', () => {
       const types = ['pdf', 'mobi', 'epub', 'paperback', 'audio'];
       formats(friend).forEach((format) => {

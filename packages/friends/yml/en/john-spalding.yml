@@ -41,6 +41,7 @@ documents:
     editions:
       -
         type: updated
+        editor: Jason R. Henderson
         pages: 40
         formats:
           -

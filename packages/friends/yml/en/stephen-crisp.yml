@@ -14,6 +14,7 @@ documents:
     editions:
       -
         type: updated
+        editor: Jason R. Henderson
         pages: 27
         formats:
           -
@@ -51,6 +52,7 @@ documents:
     editions:
       -
         type: updated
+        editor: Jason R. Henderson
         pages: 12
         formats:
           -
