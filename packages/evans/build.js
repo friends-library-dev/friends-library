@@ -2,7 +2,7 @@ import * as React from 'react';
 import fs from 'fs-extra';
 import { basename } from 'path';
 import { sync as glob } from 'glob';
-import { t } from 'c-3po';
+import { t } from 'ttag';
 import { LANG } from 'env';
 import { wrap } from 'server/helpers';
 import { podcast } from 'lib/xml';

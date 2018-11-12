@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { css } from 'glamor';
-import { t } from 'c-3po';
+import { t } from 'ttag';
 import { Document } from '@friends-library/friends';
 import { LANG } from '../env';
 import PageTitle from './PageTitle';

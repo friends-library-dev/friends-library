@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { t } from 'c-3po';
+import { t } from 'ttag';
 import { css } from 'glamor';
 import { Friend } from '@friends-library/friends';
 import { classes } from '../lib/css';
