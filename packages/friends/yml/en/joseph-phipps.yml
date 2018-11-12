@@ -7,6 +7,7 @@ documents:
     title: The Original and Present State of Man
     slug: original-and-present-state-of-man
     filename: Original_and_Present_State_of_Man
+    original_title: The Original, and Present State of Man, briefly considered; wherein is shewn, the Nature of his Fall, and the Necessity, Means, and Manner of his Restoration, through the Sacrifice of Christ, and the sensible Operation of that Divine Principle of Grace and Truth, held forth to the World by the People called Quakers. To which are added, Some Remarks on the Arguments of Samuel Newton, of Norwich.
     description: This remarkable little book sheds much light upon the nature of man's fall, the necessity, means, and manner of his restoration through the sacrifice of Christ, and the discernible operation of the Divine Spirit of grace and truth.
     tags:
       - doctrinal
@@ -14,6 +15,7 @@ documents:
       -
         type: updated
         pages: 97
+        editor: Jason R. Henderson
         formats:
           -
             type: paperback
