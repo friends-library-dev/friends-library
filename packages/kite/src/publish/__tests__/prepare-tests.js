@@ -530,4 +530,10 @@ Hash baz.]
 
     expect(() => prepare(precursor(adoc))).toThrow();
   });
+
+  test('single-underscored italics touching footnote throws', () => {
+    const adoc = '== C1\n\n_Foo._^\nfootnote:[bar]';
+
+    expect(() => prepare(precursor(adoc))).toThrow();
+  });
 });

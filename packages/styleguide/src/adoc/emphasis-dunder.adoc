@@ -1,1 +1,2 @@
-Using __double__ underscore __works the same.__
+Using __double__ underscore __works the same,__ but also
+supports italicizing with__in__ wo__rd__s.

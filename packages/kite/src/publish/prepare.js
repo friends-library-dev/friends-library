@@ -1,5 +1,6 @@
 // @flow
 import uuid from 'uuid/v4';
+import chalk from 'chalk';
 import striptags from 'striptags';
 import { toArabic } from 'roman-numerals';
 import { flow, memoize } from 'lodash';
@@ -58,6 +59,14 @@ function verifyHtml(html: Html): void {
   }
   if (html.match(/<p>&#8212;<\/p>/gm)) {
     throw new Error('Html error: unresolved open block delimiter');
+  }
+  if (html.match(/[^_]_{% note:/)) {
+    const context = html.match(/([^\n]{3,500})_(?={% note:)/);
+    let msg = 'Asciidoc error: need to use double underscores for italics that touch footnote.';
+    if (context) {
+      msg += `\n       Hint: check near ${chalk.cyan(context[0])}`;
+    }
+    throw new Error(msg);
   }
 }
 
