@@ -12,7 +12,6 @@ describe('Document', () => {
 
   describe('isCompilation()', () => {
     it('returns true if it belongs to the special compilations "friend"', () => {
-      // console.log(getAllFriends('en', 'rebecca-jones'));
       const friend = new Friend();
       friend.slug = 'compilations';
       document.friend = friend;

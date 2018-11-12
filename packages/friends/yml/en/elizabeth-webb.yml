@@ -15,6 +15,7 @@ documents:
       -
         type: updated
         pages: 25
+        editor: Jason R. Henderson
         formats:
           -
             type: pdf
