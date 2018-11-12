@@ -14,6 +14,22 @@ export default () => (
     </Para>
     <Pair id="book-title" />
 
+    <H2>Underlining</H2>
+
+    <Para>
+      <i>Underlining</i> can be achieved with an inline class, like
+      so: <Code>[.underline]#TEXT HERE#</Code>.
+    </Para>
+
+    <Note>
+      Underlining should be used <i>very sparingly</i>, for emphasizing
+      text that is already italicized, or for extreme emphasis, or if the
+      original text contains it, and it seems warranted.
+      It should not be used for styling headings.
+    </Note>
+
+    <Pair id="underline" emphasize={[12]} />
+
     <H2>Definition Lists:</H2>
     <Para>
       <b>Definition lists</b> are lists of pairs, usually comprising
