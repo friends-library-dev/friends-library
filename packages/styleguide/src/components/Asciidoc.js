@@ -152,8 +152,8 @@ function colorize(line: string): string {
       },
     )
     .replace(
-      /\[\.book-title\]#([^#]+)#/,
-      '{grey}[.book-title]{/}{pink}#$1#{/}',
+      /\[\.([a-z_]+?)\]#([^#]+)#/,
+      '{grey}[.$1]{/}{pink}#$2#{/}',
     )
     .replace(
       /, short="/g,

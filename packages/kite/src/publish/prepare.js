@@ -153,7 +153,7 @@ function extractNotes(srcHtml: Html): [Notes, Html] {
   html = html.replace(
     /<div class="footnote" id="_footnotedef_([0-9]+)[\S\s]+?<\/div>/igm,
     (full, num) => {
-      const note = striptags(full, ['em', 'i', 'strong', 'b'])
+      const note = striptags(full, ['em', 'i', 'strong', 'b', 'span'])
         .trim()
         .replace(/{footnote-paragraph-split}/g, `<span class="fn-split">${br7}${br7}</span>`)
         .replace(/^[0-9]+\. /, '');
