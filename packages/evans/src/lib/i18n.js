@@ -1,5 +1,5 @@
 // @flow
-import { addLocale, useLocale } from 'c-3po';
+import { addLocale, useLocale } from 'ttag';
 import { readFileSync } from 'fs';
 import gt from 'gettext-parser';
 import { LANG } from '../env';

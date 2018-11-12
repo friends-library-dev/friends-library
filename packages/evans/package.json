@@ -15,12 +15,11 @@
     "build": "rimraf build && NODE_PATH=src babel-node --ignore '../../node_modules/' build.js",
     "sync:en": "yarn browser-sync start --port 2223 --reload-delay 200 --ui-port 2224 --files src/* --no-notify",
     "sync:es": "yarn browser-sync start --port 2225 --reload-delay 200 --ui-port 2226 --files src/* es.po --no-notify",
-    "po:update": "yarn c-3po update es.po src"
+    "po:update": "yarn ttag update es.po src"
   },
   "dependencies": {
     "@friends-library/friends": "1.0.0",
     "asciidoctor.js": "^1.5.7-rc.1",
-    "c-3po": "^0.8.1",
     "chalk": "^2.4.1",
     "clean-css": "^4.2.1",
     "express": "^4.16.3",
@@ -30,7 +29,9 @@
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "ttag": "^1.4.2",
+    "ttag-cli": "^1.4.2"
   },
   "devDependencies": {
     "@babel/node": "^7.0.0",
