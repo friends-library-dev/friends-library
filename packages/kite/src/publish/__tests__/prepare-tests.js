@@ -536,4 +536,13 @@ Hash baz.]
 
     expect(() => prepare(precursor(adoc))).toThrow();
   });
+
+  test('caret-style footnote after inline class works', () => {
+    const adoc = '== C1\n\nFoo [.book-title]#bar#^\nfootnote:[jim +++[+++jam+++]+++.]\nis baz.';
+
+    const { sections: [section], notes } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('<span class="book-title">bar{% note: uuid1 %}</span>');
+    expect(notes.get('uuid1')).toBe('jim [jam].');
+  });
 });
