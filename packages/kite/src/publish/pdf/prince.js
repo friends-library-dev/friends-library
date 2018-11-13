@@ -1,4 +1,5 @@
 // @flow
+/* istanbul ignore file */
 import fs from 'fs-extra';
 import { spawn, exec } from 'child_process';
 import { yellow } from '@friends-library/cli/color';

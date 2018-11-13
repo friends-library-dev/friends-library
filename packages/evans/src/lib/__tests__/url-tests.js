@@ -1,5 +1,6 @@
-import { Format, Edition, Document, Friend, Audio } from '@friends-library/friends';
+import { Format, Edition, Document, Friend, Audio, AudioPart } from '@friends-library/friends';
 import url from '../url';
+
 
 describe('url()', () => {
   let friend;
@@ -94,6 +95,12 @@ describe('url()', () => {
       const formatUrl = url(format);
 
       expect(formatUrl).toBe('/rebecca-jones/diary/updated/paperback');
+    });
+
+    it('returns /not-found for an entity that cant be resolved to a url', () => {
+      const entity = new AudioPart();
+
+      expect(url(entity)).toBe('/not-found');
     });
   });
 });

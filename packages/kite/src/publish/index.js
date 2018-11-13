@@ -1,4 +1,5 @@
 // @flow
+/* istanbul ignore file */
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
 import type { Command, Job, SourceSpec, FileType, SourcePrecursor } from '../type';

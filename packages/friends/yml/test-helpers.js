@@ -1,4 +1,5 @@
 // @flow
+/* istanbul ignore file */
 import glob from 'glob';
 import { basename } from 'path';
 

@@ -114,10 +114,28 @@ describe('getPdfManifest()', () => {
   });
 
   test('book trim size added to body class', () => {
+    job.target = 'pdf-print';
     job.cmd.printSize = 'xl';
 
     const manifest = getPdfManifest(job);
 
     expect(manifest['doc.html']).toContain('<body class="body trim--xl">');
+  });
+
+  test('frontmatter omitted if specified in command', () => {
+    job.cmd.frontmatter = false;
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['doc.html']).not.toContain('half-title-page');
+  });
+
+  test('contains original title if present', () => {
+    job.spec.meta.originalTitle = 'Ye Olde Title, &c.';
+
+    const manifest = getPdfManifest(job);
+
+    expect(manifest['doc.html']).toContain('Ye Olde Title, &c.');
+    expect(manifest['doc.html']).toContain('original-title-page');
   });
 });
