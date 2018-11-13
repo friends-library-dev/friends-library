@@ -24,6 +24,7 @@ export const transformAsciidoc: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/&#8212;(?:\n)?_([^_]+?)_(?=[^_])/gm, '&#8212;__$1__'),
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
   adoc => adoc.replace(/\[\.small-break\]\n'''/gm, raw(`<div class="small-break">${br7}</div>`)),
+  adoc => adoc.replace(/#footnote:\[([\s\S]+?(?<!\+\+\+))\]/gm, 'footnote:[$1]#'),
 ]));
 
 function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
