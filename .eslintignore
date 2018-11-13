@@ -1,5 +1,6 @@
 node_modules
 flow-typed
+coverage
 packages/evans/build.js
 packages/evans/static/js/*
 packages/phipps/vendor

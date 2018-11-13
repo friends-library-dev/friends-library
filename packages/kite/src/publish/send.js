@@ -1,4 +1,5 @@
 // @flow
+/* istanbul ignore file */
 import makeSend from 'gmail-send';
 import moment from 'moment';
 import type { Html } from '../../../../type';

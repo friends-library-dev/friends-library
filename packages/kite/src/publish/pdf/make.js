@@ -1,4 +1,5 @@
 // @flow
+/* istanbul ignore file */
 import type { Job } from '../../type';
 import { getPdfManifest } from './manifest';
 import { prince } from './prince';

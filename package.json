@@ -8,7 +8,7 @@
     "mod": "node ./packages/mod/mod.js",
     "phipps": "php ./packages/phipps/phipps",
     "test": "yarn js:test && yarn php:test",
-    "js:test": "yarn jest",
+    "js:test": "yarn jest --coverage",
     "php:test": "yarn phipps:test",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
@@ -61,6 +61,19 @@
   "jest": {
     "errorOnDeprecated": true,
     "testEnvironment": "node",
-    "testRegex": "__tests__/.*tests?\\.js"
+    "testRegex": "__tests__/.*tests?\\.js",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/packages/cli",
+      "<rootDir>/packages/mod"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 94,
+        "branches": 85,
+        "functions": 94,
+        "lines": 94
+      }
+    }
   }
 }
