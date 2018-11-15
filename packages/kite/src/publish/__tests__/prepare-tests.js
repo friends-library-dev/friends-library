@@ -545,4 +545,21 @@ Hash baz.]
     expect(section.html).toContain('<span class="book-title">bar{% note: uuid1 %}</span>');
     expect(notes.get('uuid1')).toBe('jim [jam].');
   });
+
+  test('verse lines ending with emdash not joined', () => {
+    const adoc = `
+== C1
+
+[verse]
+____
+Foo bar;--
+So much baz!
+____
+    `.trim();
+
+    const { sections: [section] } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('>Foo bar;&#8212;<');
+    expect(section.html).toContain('>So much baz!<');
+  });
 });
