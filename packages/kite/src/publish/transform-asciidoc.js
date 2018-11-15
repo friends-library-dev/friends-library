@@ -1,15 +1,16 @@
 // @flow
 import { flow, memoize } from 'lodash';
-import type { Asciidoc, Html } from '../../../../type';
+import type { Asciidoc } from '../../../../type';
 import { br7 } from './html';
 
-export const transformAsciidoc: (adoc: Asciidoc) => Html = memoize(flow([
+export const transformAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(flow([
   replaceAsterisms,
   changeChapterSynopsisMarkup,
   changeChapterSubtitleBlurbMarkup,
   prepareDiscourseParts,
   discreteize,
   headingsInOpenBlocks,
+  preserveLineEndingDashesInVerse,
   adoc => adoc.replace(/[–|—]/g, '--'),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
@@ -25,7 +26,15 @@ export const transformAsciidoc: (adoc: Asciidoc) => Html = memoize(flow([
   adoc => adoc.replace(/\^\nfootnote:\[/igm, 'footnote:['),
   adoc => adoc.replace(/\[\.small-break\]\n'''/gm, raw(`<div class="small-break">${br7}</div>`)),
   adoc => adoc.replace(/#footnote:\[([\s\S]+?(?<!\+\+\+))\]/gm, 'footnote:[$1]#'),
+  adoc => adoc.replace(/{verse-end-emdash}/g, '&#8212;'),
 ]));
+
+function preserveLineEndingDashesInVerse(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /(?<=\n\[verse.*?\]\n____\n)([\s|\S]+?)(?=\n____)/gm,
+    (_, verseLines) => verseLines.replace(/--\n/mg, '{verse-end-emdash}\n'),
+  );
+}
 
 function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
