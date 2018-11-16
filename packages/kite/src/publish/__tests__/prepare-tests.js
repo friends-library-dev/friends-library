@@ -542,8 +542,23 @@ Hash baz.]
 
     const { sections: [section], notes } = prepare(precursor(adoc));
 
-    expect(section.html).toContain('<span class="book-title">bar{% note: uuid1 %}</span>');
+    expect(section.html).toContain('<span class="book-title">bar</span>{% note: uuid1 %}');
     expect(notes.get('uuid1')).toBe('jim [jam].');
+  });
+
+  test('book-title inside footnote on book-title works', () => {
+    const adoc = `
+== C1
+
+I was reading [.book-title]#Sewell#^
+footnote:[[.book-title]#Sewells History#]
+yesterday.
+    `.trim();
+
+    const { sections: [section], notes } = prepare(precursor(adoc));
+
+    expect(section.html).not.toContain('#Sewells History#]');
+    expect(notes.get('uuid1')).toBe('<span class="book-title">Sewells History</span>');
   });
 
   test('verse lines ending with emdash not joined', () => {
