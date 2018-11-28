@@ -11,6 +11,7 @@ export const transformAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(flow([
   discreteize,
   headingsInOpenBlocks,
   preserveLineEndingDashesInVerse,
+  emdashBeforeBookTitle,
   adoc => adoc.replace(/[–|—]/g, '--'),
   adoc => adoc.replace(/"`/igm, '&#8220;'),
   adoc => adoc.replace(/`"/igm, '&#8221;'),
@@ -29,6 +30,13 @@ export const transformAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(flow([
   adoc => adoc.replace(/{verse-end-emdash}/g, '&#8212;'),
 ]));
 
+
+function emdashBeforeBookTitle(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /--\[\.book-title\]#([\s|\S]+?)#/gm,
+    '--+++<span class="book-title">+++$1+++</span>+++',
+  );
+}
 function preserveLineEndingDashesInVerse(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /(?<=\n\[verse.*?\]\n____\n)([\s|\S]+?)(?=\n____)/gm,
