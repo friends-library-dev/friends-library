@@ -577,4 +577,13 @@ ____
     expect(section.html).toContain('>Foo bar;&#8212;<');
     expect(section.html).toContain('>So much baz!<');
   });
+
+  test('emdash before booktitle', () => {
+    const adoc = '== C1\n\nFoo^\nfootnote:[--[.book-title]#title#]\nbar.';
+
+    const { sections: [section], notes } = prepare(precursor(adoc));
+
+    expect(section.html).toContain('Foo{% note: uuid1 %}\nbar.');
+    expect(notes.get('uuid1')).toBe('&#8212;<span class="book-title">title</span>');
+  });
 });
