@@ -4,6 +4,11 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-flow": "^7.0.0",
     "gatsby": "^2.0.53",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.9",
@@ -22,8 +27,12 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "start": "npm run develop",
+    "start": "yarn build:friends && yarn develop",
+    "develop": "gatsby develop --port 9222",
+    "build:friends": "yarn cleanup:friends && yarn copy:friends && yarn transpile:friends",
+    "transpile:friends": "yarn babel ./plugins/gatsby-source-friends-library/friends/src --out-dir ./plugins/gatsby-source-friends-library/friends/es5 --presets=@babel/preset-env,@babel/flow --plugins=@babel/proposal-class-properties",
+    "copy:friends": "cp -r ../friends ./plugins/gatsby-source-friends-library/friends",
+    "cleanup:friends": "rm -rf ./plugins/gatsby-source-friends-library/friends",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

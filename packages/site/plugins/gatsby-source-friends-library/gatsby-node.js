@@ -1,3 +1,5 @@
+const { getFriend } = require('./friends/es5');
+
 exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   configOptions
@@ -8,5 +10,5 @@ exports.sourceNodes = (
   delete configOptions.plugins
 
   // plugin code goes here...
-  console.log("Testing my plugin", configOptions)
+  console.log("Testing my plugin", getFriend('rebecca-jones'));
 }
