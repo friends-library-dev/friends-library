@@ -6,7 +6,7 @@ import { css } from '@emotion/core';
 
 const element = css`
   ${'' /* background-color: ${PRIMARY}; */}
-  background-color: blue;
+  background-color: #1e87f0;
   color: #fff;
   position: fixed;
   width: 100%;
