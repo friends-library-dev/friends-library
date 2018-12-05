@@ -9,11 +9,7 @@ exports.sourceNodes = (
   // Gatsby adds a configOption that's not needed for this plugin, delete it
   delete configOptions.plugins
 
-  // const allFriends = getAllFriends();
-  const allFriends = [getFriend('rebecca-jones')];
-  allFriends.forEach(friend => {
-    console.log(createNodeId(friend.slug));
-    console.log(JSON.stringify(friend));
+  getAllFriends().forEach(friend => {
     createNode({
       id: createNodeId(friend.slug),
       parent: null,
@@ -23,6 +19,8 @@ exports.sourceNodes = (
         content: JSON.stringify(friend),
         contentDigest: createContentDigest(friend),
       },
+      ...friend,
+      documents: friend.documents,
     });
   });
 }
