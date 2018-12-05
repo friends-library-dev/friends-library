@@ -2,13 +2,14 @@
 import * as React from 'react'
 import Helmet from 'react-helmet'
 import Slideover from './Slideover';
+import StickyNav from './StickyNav';
 
 type Props = {|
   children: React.Node,
 |};
 
 export default ({ children }: Props) => (
-  <>
+  <React.Fragment>
     <Helmet>
       <html lang="en" />
       <title>Friends Library</title>
@@ -16,6 +17,7 @@ export default ({ children }: Props) => (
     </Helmet>
     <div>
       <Slideover />
+      <StickyNav />
     </div>
-  </>
+  </React.Fragment>
 )

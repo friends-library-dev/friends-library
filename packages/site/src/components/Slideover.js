@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
+import { css } from '@emotion/core';
 
 const element = css`
   background: #eaeaea;
@@ -21,7 +21,7 @@ const element = css`
 `;
 
 export default () => (
-  <div id="Slideover" className={element}>
+  <div id="Slideover" css={element}>
     <ul>
       <li>
         <a href="/">Home</a>
