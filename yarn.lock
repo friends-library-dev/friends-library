@@ -768,7 +768,7 @@
     js-levenshtein "^1.1.3"
     semver "^5.3.0"
 
-"@babel/preset-flow@^7.0.0":
+"@babel/preset-flow@^7.0.0", "@babel/preset-flow@^7.0.0-rc.1":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.0.0.tgz#afd764835d9535ec63d8c7d4caf1c06457263da2"
   integrity sha512-bJOHrYOPqJZCkPVbG1Lot2r5OSsB+iUOaxiHdlOeB1yPWS6evswVHwvkDLZ54WTaTRIk89ds0iHmGZSnxlPejQ==
@@ -7340,6 +7340,14 @@ gatsby-link@^2.0.7:
     "@reach/router" "^1.1.1"
     "@types/reach__router" "^1.0.0"
     prop-types "^15.6.1"
+
+gatsby-plugin-flow@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-flow/-/gatsby-plugin-flow-1.0.2.tgz#e27315899a1bbffa213e7518e69c2b4b7387b8e7"
+  integrity sha512-DKzYcbN0EOMh15bKjaaA+ACsKK1qPP18ZBlTVqYVklhKEtzDIE2+L0qaE4fIOVnqtNpKzOeugi3sAQDqvi8Hsg==
+  dependencies:
+    "@babel/preset-flow" "^7.0.0-rc.1"
+    "@babel/runtime" "^7.0.0"
 
 gatsby-plugin-manifest@^2.0.9:
   version "2.0.11"
