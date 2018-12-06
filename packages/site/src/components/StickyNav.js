@@ -38,9 +38,14 @@ const hamburger = css`
   font-size: 26px;
 `;
 
-export default () => (
-  <div id="StickyNav" css={element}>
-    <span id="Hamburger" css={hamburger}>
+
+type Props = {|
+  onHamburgerClick: (any) => *,
+|};
+
+export default ({ onHamburgerClick }: Props) => (
+  <div css={element}>
+    <span css={hamburger} onClick={onHamburgerClick}>
       ☰
     </span>
     <a href="/" css={logo}>

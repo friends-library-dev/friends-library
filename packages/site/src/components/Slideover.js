@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
-import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 
-const element = css`
+const Slideover = styled.div`
+  z-index: 555;
   background: #eaeaea;
   color: #222;
   padding: 15px;
@@ -11,17 +12,33 @@ const element = css`
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
-  position: fixed;
-  display: none;
+  position: absolute;
+  transition: left 0.3s ease;
+  top: 0;
+  left: ${({ isOpen }) => isOpen ? '0' : '-255px'};
 
   & > ul {
     margin: 0;
     padding-left: 1.5em;
   }
+
+  & .Close {
+    position: absolute;
+    top: 0.75em;
+    right: 0.75em;
+    color: #666;
+    font-size: 16px;
+  }
 `;
 
-export default () => (
-  <div id="Slideover" css={element}>
+type Props = {|
+  isOpen: boolean,
+  close: (any) => *,
+|};
+
+export default ({ isOpen, close }: Props) => (
+  <Slideover isOpen={isOpen}>
+    <i className="Close fa fa-close" onClick={close} />
     <ul>
       <li>
         <a href="/">Home</a>
@@ -63,5 +80,5 @@ export default () => (
         <a href="/contact">Contact us</a>
       </li>
     </ul>
-  </div>
+  </Slideover>
 );
