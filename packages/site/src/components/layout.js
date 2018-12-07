@@ -1,6 +1,7 @@
 // @flow
 import React, { useState, Fragment } from 'react'
 import type { Node } from 'react';
+import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming'
 import Helmet from 'react-helmet'
@@ -23,10 +24,20 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
+const html = css`
+  & a {
+    color: ${theme.primary};
+  }
+  & a:hover {
+    border-bottom-color: ${theme.primary};
+  }
+`;
+
 export default ({ children }: Props) => {
   const [navOpen, setNavOpen] = useState(false);
   return (
     <Fragment>
+      <Global styles={html}/>
       <Helmet>
         <html lang="en" />
         <title>Friends Library</title>
