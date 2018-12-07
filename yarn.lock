@@ -737,7 +737,7 @@
     core-js "^2.5.7"
     regenerator-runtime "^0.11.1"
 
-"@babel/preset-env@^7.0.0", "@babel/preset-env@^7.1.0", "@babel/preset-env@^7.1.6":
+"@babel/preset-env@^7.0.0", "@babel/preset-env@^7.1.0":
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.1.6.tgz#a0bf4b96b6bfcf6e000afc5b72b4abe7cc13ae97"
   integrity sha512-YIBfpJNQMBkb6MCkjz/A9J76SNCSuGVamOVBgoUkLzpJD/z8ghHi9I42LQ4pulVX68N/MmImz6ZTixt7Azgexw==
@@ -3076,6 +3076,21 @@ babel-plugin-ttag@1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-ttag/-/babel-plugin-ttag-1.4.1.tgz#51109b334d2b218cefc7be776750aea2a0b9f26f"
   integrity sha512-W/ZQgz5ELwz076/l29UgJl7IbFJKICIHuN7joQyiX2065//r6j19rn4jlwM9C1Mxi8jSfnv/wq1S2H1P2HgeiQ==
+  dependencies:
+    "@babel/generator" "^7.0.0"
+    "@babel/template" "^7.0.0"
+    "@babel/types" "^7.0.0"
+    ajv "4.9.0"
+    babel-plugin-macros "^2.4.2"
+    dedent "0.6.0"
+    gettext-parser "1.2.0"
+    mkdirp "0.5.1"
+    plural-forms "^0.2.0"
+
+babel-plugin-ttag@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-ttag/-/babel-plugin-ttag-1.4.2.tgz#f11b3a6365f68c16fae7ca32d9010af31fb01099"
+  integrity sha512-GHn3CuLdeRHmfDkhFJOoLLLyow93VLsLC9X/2zLPRazNWOOqLaborCGrZMr2w5J1975onRC41/FwEgQJD7WzWA==
   dependencies:
     "@babel/generator" "^7.0.0"
     "@babel/template" "^7.0.0"
@@ -7902,6 +7917,15 @@ gettext-parser@^2.0.0:
   dependencies:
     encoding "^0.1.12"
     readable-stream "^2.0.0"
+    safe-buffer "^5.1.2"
+
+gettext-parser@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/gettext-parser/-/gettext-parser-3.1.0.tgz#a92f4aa09cdaa944ce71832677749d84ac683649"
+  integrity sha512-eVD8RxFMeHg8pjl5zsk7xlEDaKdcYlotLztiMaYGLvI13LMXwWlybLg7rg6eagct79vyGkPGZrMPBsdjsQOnWg==
+  dependencies:
+    encoding "^0.1.12"
+    readable-stream "^3.0.6"
     safe-buffer "^5.1.2"
 
 git-raw-commits@2.0.0:

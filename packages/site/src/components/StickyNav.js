@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { css } from '@emotion/core';
-// import { t } from 'ttag';
+import { t } from 'ttag';
 // import { PRIMARY } from './Theme';
 
 const element = css`
@@ -49,8 +49,7 @@ export default ({ onHamburgerClick }: Props) => (
       ☰
     </span>
     <a href="/" css={logo}>
-      {/* {t`The Friends Library`} */}
-      The Friends Library
+      {t`The Friends Library`}
     </a>
   </div>
 );
