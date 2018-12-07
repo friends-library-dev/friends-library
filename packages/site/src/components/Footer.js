@@ -1,45 +1,38 @@
 // @flow
 import * as React from 'react';
 import { Link } from 'gatsby';
-import styled from '@emotion/styled';
+import { css } from '@emotion/core';
+import Block from './Block';
 
-const Slideover = styled.div`
-  z-index: 555;
-  background: #eaeaea;
-  color: #222;
-  padding: 15px;
-  font-size: 16px;
-  width: 255px;
-  height: 100%;
-  overflow: hidden;
-  overflow-y: auto;
-  position: absolute;
-  transition: left 0.3s ease;
-  top: 0;
-  left: ${({ isOpen }) => isOpen ? '0' : '-255px'};
+const element = css`
+  background-color: #444;
+  color: #fff;
+  margin-top: auto;
 
-  & > ul {
-    margin: 0;
-    padding-left: 1.5em;
+  > ul {
+    list-style: none;
+    padding: 0 0 0 15px;
   }
 
-  & .Close {
-    position: absolute;
-    top: 0.75em;
-    right: 0.75em;
-    color: #666;
-    font-size: 16px;
+  > ul > li {
+    margin: 7px 0;
+  }
+
+  > ul > li > a {
+    color: #fff;
+  }
+
+  & p {
+    text-align: center;
+    font-style: italic;
+    color: #bbb;
+    margin: 0;
+    font-size: 0.8em;
   }
 `;
 
-type Props = {|
-  isOpen: boolean,
-  close: (any) => *,
-|};
-
-export default ({ isOpen, close }: Props) => (
-  <Slideover isOpen={isOpen}>
-    <i className="Close fa fa-close" onClick={close} />
+export default () => (
+  <Block css={element}>
     <ul>
       <li>
         <Link to="/">Home</Link>
@@ -81,5 +74,7 @@ export default ({ isOpen, close }: Props) => (
         <Link to="/contact">Contact us</Link>
       </li>
     </ul>
-  </Slideover>
+
+    <p>&copy; 2018 The Friends Library</p>
+  </Block>
 );

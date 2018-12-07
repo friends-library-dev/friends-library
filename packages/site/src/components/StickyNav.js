@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import { Link } from 'gatsby';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { t } from 'ttag';
@@ -47,8 +48,8 @@ export default ({ onHamburgerClick }: Props) => (
     <span css={hamburger} onClick={onHamburgerClick}>
       ☰
     </span>
-    <a href="/" css={logo}>
+    <Link to="/" css={logo}>
       {t`The Friends Library`}
-    </a>
+    </Link>
   </StickyNav>
 );
