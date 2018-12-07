@@ -6039,6 +6039,15 @@ emotion-server@^10.0.2:
   dependencies:
     create-emotion-server "10.0.0"
 
+emotion-theming@^10.0.4:
+  version "10.0.4"
+  resolved "https://registry.yarnpkg.com/emotion-theming/-/emotion-theming-10.0.4.tgz#efaf77e71e80793a4e31a116c5520c2ab223b6d2"
+  integrity sha512-pVktvH1rsLuAYAb3Uc2aLJeB/cwPr9otSjU0tj2d2p73QuknH9gZ06vyqIeNY3DAslyKht9zTCdlv5pX1mGnBA==
+  dependencies:
+    "@emotion/weak-memoize" "0.2.2"
+    hoist-non-react-statics "^2.3.1"
+    object-assign "^4.1.1"
+
 emotion@^10.0.2:
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/emotion/-/emotion-10.0.2.tgz#17018c4090590c247905f93f9fcd7168888fa573"
@@ -8560,7 +8569,7 @@ hoek@4.x.x:
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
   integrity sha512-QLg82fGkfnJ/4iy1xZ81/9SIJiq1NGFUMGs6ParyjBZr6jW2Ufj/snDqTHixNlHdPNwN2RLVD0Pi3igeK9+JfA==
 
-hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
@@ -13883,7 +13892,7 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
-react-hot-loader@^4.3.11, react-hot-loader@^4.5.1:
+react-hot-loader@4.5.1, react-hot-loader@^4.3.11, react-hot-loader@^4.5.1:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.5.1.tgz#4a9cf136542b1db4f948ac74b31fa16a411ceebb"
   integrity sha512-aqw8F0ZTCakfTXTj1n3F9vXfEKWWHEpQ3Mq9YmYvrNdHvey5RfkSGv7rz4r9TXjqVLt2mpItqydJQdhboZ/acQ==

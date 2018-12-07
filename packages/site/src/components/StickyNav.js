@@ -1,12 +1,11 @@
 // @flow
 import * as React from 'react';
 import { css } from '@emotion/core';
+import styled from '@emotion/styled';
 import { t } from 'ttag';
-// import { PRIMARY } from './Theme';
 
-const element = css`
-  ${'' /* background-color: ${PRIMARY}; */}
-  background-color: #1e87f0;
+const StickyNav = styled.div`
+  background-color: ${({ theme }) => theme.primary};
   color: #fff;
   position: fixed;
   width: 100%;
@@ -44,12 +43,12 @@ type Props = {|
 |};
 
 export default ({ onHamburgerClick }: Props) => (
-  <div css={element}>
+  <StickyNav>
     <span css={hamburger} onClick={onHamburgerClick}>
       ☰
     </span>
     <a href="/" css={logo}>
       {t`The Friends Library`}
     </a>
-  </div>
+  </StickyNav>
 );

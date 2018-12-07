@@ -8,7 +8,7 @@ module.exports = {
       "babel-plugin-ttag",
       {
         "resolve": {
-          "translations": process.env.LANG === "es" ? "es.po" : "default",
+          "translations": process.env.GATSBY_LANG === "es" ? "es.po" : "default",
         },
       },
     ],
