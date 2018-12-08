@@ -40,6 +40,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "cache:clear": "rm -rf .cache",
     "build:en": "GATSBY_LANG=en yarn build:friends && gatsby build",
     "build:en": "GATSBY_LANG=es yarn build:friends && gatsby build",
     "start:en": "yarn build:friends && yarn develop:en",

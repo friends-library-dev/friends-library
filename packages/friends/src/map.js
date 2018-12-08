@@ -10,6 +10,7 @@ import AudioPart from './AudioPart';
 
 export default function friendFromJS(js: Object): Friend {
   const friend = new Friend(
+    js.lang,
     js.name,
     js.slug,
     js.gender,

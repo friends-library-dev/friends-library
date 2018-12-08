@@ -1,7 +1,15 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path');
 
-// You can delete this file if you're not using it
+exports.onCreateNode = ({ node, actions: { createPage } }) => {
+  if (node.internal.type !== 'Friend') {
+    return;
+  }
+
+  createPage({
+    path: node.url,
+    component: path.resolve('src/templates/FriendPage.js'),
+    context: {
+      slug: node.slug,
+    },
+  });
+}

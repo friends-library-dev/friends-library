@@ -12,6 +12,7 @@ describe('friendFromJS()', () => {
 
   beforeEach(() => {
     js = {
+      lang: 'en',
       name: 'Rebecca Jones',
       slug: 'rebecca-jones',
       description: 'description',
@@ -73,6 +74,7 @@ describe('friendFromJS()', () => {
   it('should map the basic props', () => {
     const friend = friendFromJS(js);
 
+    expect(friend.lang).toBe('en');
     expect(friend.name).toBe('Rebecca Jones');
     expect(friend.slug).toBe('rebecca-jones');
     expect(friend.description).toBe('description');

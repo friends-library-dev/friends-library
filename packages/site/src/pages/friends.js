@@ -6,7 +6,6 @@ import PageTitle from '../components/PageTitle';
 import Divider from '../components/Divider';
 import Button from '../components/Button';
 import Layout from '../components/Layout';
-import { friendUrl } from '../lib/url';
 
 type Props = {
   data: *,
@@ -26,7 +25,7 @@ export default ({ data }: Props) => (
       <ul>
         {data.allFriend.edges.map(({ node: friend }) => (
           <li key={friend.slug}>
-            <Link to={friendUrl(friend.slug, friend.gender)}>
+            <Link to={friend.url}>
               {friend.name}
             </Link>
           </li>
@@ -52,7 +51,7 @@ export const query = graphql`
         node {
           slug
           name
-          gender
+          url
         }
       }
     }

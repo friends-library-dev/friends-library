@@ -20,6 +20,33 @@ describe('Friend', () => {
     });
   });
 
+  describe('.url()', () => {
+    it('returns correct relative url', () => {
+      friend.lang = 'en';
+      friend.slug = 'george-fox';
+      expect(friend.url()).toBe('/friend/george-fox');
+    });
+
+    it('returns special url for compilations pseudo-friend', () => {
+      friend.slug = 'compilations';
+      expect(friend.url()).toBe('/compilations');
+    });
+
+    it('returns correct url for spanish male', () => {
+      friend.lang = 'es';
+      friend.slug = 'isaac-penington';
+      friend.gender = 'male';
+      expect(friend.url()).toBe('/amigo/isaac-penington');
+    });
+
+    it('returns correct url for spanish male', () => {
+      friend.lang = 'es';
+      friend.slug = 'rebecca-jones';
+      friend.gender = 'female';
+      expect(friend.url()).toBe('/amiga/rebecca-jones');
+    });
+  });
+
   describe('isMale()', () => {
     it('returns true if gender is male', () => {
       friend.gender = 'male';

@@ -13,6 +13,12 @@ export type Url = string;
 
 export type Slug = string;
 
+export type Name = string;
+
+export type Title = string;
+
+export type Description = string;
+
 export type Gender = 'male' | 'female';
 
 export type Lang = 'en' | 'es';

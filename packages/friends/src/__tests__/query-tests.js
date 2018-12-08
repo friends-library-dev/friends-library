@@ -4,8 +4,12 @@ import { Friend, Document, Edition } from '..';
 describe('getFriend()', () => {
   it('resolves a valid friend', () => {
     const george = getFriend('george-fox');
-
     expect(george).toBeInstanceOf(Friend);
+  });
+
+  it('sets the language on the friend', () => {
+    const isaac = getFriend('isaac-penington', 'es');
+    expect(isaac.lang).toBe('es');
   });
 });
 
