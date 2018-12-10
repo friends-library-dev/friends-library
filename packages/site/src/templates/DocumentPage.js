@@ -3,9 +3,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import { Layout, Block, PageTitle, Divider, ByLine, Edition } from '../components';
 
-export default ({ data: { friend }, pageContext: { documentSlug } }: *) => {
-  const document = friend.documents.find(d => d.slug === documentSlug);
-  console.log({ document });
+export default ({ data: { friend, document } }: *) => {
   return (
     <Layout>
       <Block>
@@ -28,28 +26,25 @@ export default ({ data: { friend }, pageContext: { documentSlug } }: *) => {
 };
 
 
-// @TODO we're getting ALL the documents here, but I can't
-// figure out how to limit the return of the sub-object
-// because my graphql skills are terrible right now ¯\_(ツ)_/¯
 export const query = graphql`
-  query GetFriendDoc($friendSlug: String!) {
+  query DocumentPage($documentSlug: String!, $friendSlug: String!) {
     friend(slug: {eq: $friendSlug}) {
       name
       url
-      documents {
-        editions {
-          type
-          description
-          formats {
-            type
-            url
-          }
-        }
-        isCompilation
+    }
+    document(slug: {eq: $documentSlug}, friendSlug: {eq: $friendSlug}) {
+      editions {
+        type
         description
-        slug
-        title
+        formats {
+          type
+          url
+        }
       }
+      isCompilation
+      description
+      slug
+      title
     }
   }
 `
