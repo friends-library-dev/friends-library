@@ -23,4 +23,8 @@ export type Gender = 'male' | 'female';
 
 export type Lang = 'en' | 'es';
 
+export type EditionType = 'original' | 'modernized' | 'updated';
+
+export type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
+
 export type NodeEnv = 'production' | 'development';

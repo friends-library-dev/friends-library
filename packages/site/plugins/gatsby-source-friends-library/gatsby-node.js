@@ -88,6 +88,15 @@ function documentNodeProps(doc, friend) {
             url: format.url()
           }
         }),
+        ...edition.audio ? {
+          audio: {
+            reader: edition.audio.reader,
+            parts: edition.audio.parts.map(part => ({
+              title: part.title,
+              externalIdHq: part.externalIdHq,
+            }))
+          }
+        } : {}
       };
     }),
   };

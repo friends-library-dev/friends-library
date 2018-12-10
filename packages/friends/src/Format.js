@@ -1,8 +1,6 @@
 // @flow
 import Edition from './Edition';
-import type { Url } from '../../../type';
-
-type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
+import type { Url, FormatType } from '../../../type';
 
 export default class Format {
   type: FormatType = 'pdf';

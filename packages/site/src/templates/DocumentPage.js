@@ -1,7 +1,31 @@
 // @flow
 import * as React from 'react';
+import type { FormatType, EditionType, Url, Title, Name, Slug, Description } from '../../../../type';
 import { graphql } from 'gatsby';
 import { Layout, Block, PageTitle, Divider, ByLine, Edition } from '../components';
+
+type Props = {|
+  data: {|
+    friend: {|
+      name: Name,
+      url: Url,
+    |},
+    document: {|
+      slug: Slug,
+      title: Title,
+      description: Description,
+      isCompilation: boolean,
+      editions: Array<{|
+        type: EditionType,
+        description: Description,
+        formats: Array<{|
+          type: FormatType,
+          url: Url,
+        |}>
+      |}>
+    |}
+  |},
+|};
 
 export default ({ data: { friend, document } }: *) => {
   return (
