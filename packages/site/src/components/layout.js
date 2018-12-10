@@ -11,10 +11,6 @@ import Footer from './Footer';
 import theme from '../theme';
 import './Layout.css';
 
-type Props = {|
-  children: Node,
-|};
-
 const Content = styled.div`
   padding-top: 52px;
   position: relative;
@@ -33,25 +29,39 @@ const html = css`
   }
 `;
 
-export default ({ children }: Props) => {
-  const [navOpen, setNavOpen] = useState(false);
-  return (
-    <Fragment>
-      <Global styles={html}/>
-      <Helmet>
-        <html lang="en" />
-        <title>Friends Library</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet prefetch" />
-      </Helmet>
-      <ThemeProvider theme={theme}>
-        <Slideover isOpen={navOpen} close={() => setNavOpen(false)} />
-        <StickyNav onHamburgerClick={() => setNavOpen(!navOpen)} />
-        <Content>
-          {children}
-          <Footer />
-        </Content>
-      </ThemeProvider>
-    </Fragment>
-  )
+type Props = {|
+  children: Node,
+|};
+
+type State = {|
+  navOpen: boolean,
+|};
+
+export default class Layout extends React.Component<Props, State> {
+  state = {
+    navOpen: false,
+  }
+
+  render() {
+    const { navOpen } = this.state;
+    return (
+      <Fragment>
+        <Global styles={html}/>
+        <Helmet>
+          <html lang="en" />
+          <title>Friends Library</title>
+          <meta name="robots" content="noindex, nofollow" />
+          <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet prefetch" />
+        </Helmet>
+        <ThemeProvider theme={theme}>
+          <Slideover isOpen={navOpen} close={() => this.setState({ navOpen: false })} />
+          <StickyNav onHamburgerClick={() => this.setState({ navOpen: !navOpen })} />
+          <Content>
+            {this.props.children}
+            <Footer />
+          </Content>
+        </ThemeProvider>
+      </Fragment>
+    )
+  }
 }

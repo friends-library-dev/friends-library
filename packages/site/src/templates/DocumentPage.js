@@ -27,7 +27,7 @@ type Props = {|
   |},
 |};
 
-export default ({ data: { friend, document } }: *) => {
+export default ({ data: { friend, document } }: Props) => {
   return (
     <Layout>
       <Block>
