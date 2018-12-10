@@ -3,6 +3,20 @@ const { getAllFriends, getFriend } = require('./friends/es5');
 
 const LANG = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
 
+exports.onPostBuild = () => {
+  getAllFriends(LANG).forEach(friend => {
+    friend.documents.forEach(document => {
+      document.editions.forEach(edition => {
+        edition.formats.forEach(format => {
+          if (format.type === 'audio') {
+            // const xml = podcast(document, edition);
+          }
+        });
+      });
+    });
+  });
+};
+
 exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   configOptions
@@ -13,6 +27,7 @@ exports.sourceNodes = (
   delete configOptions.plugins
 
   console.log('\n🚀  Creating nodes from Friends .yml files');
+  console.log('-----------------------------------------');
 
   getAllFriends(LANG).forEach(friend => {
     const color = friend.isMale() ? 'cyan' : 'magenta';
