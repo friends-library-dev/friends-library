@@ -1,21 +1,45 @@
-const chalk = require('chalk');
-const { getAllFriends, getFriend } = require('./friends/es5');
+require('@babel/register')({
+  only: [
+    /packages\/friends/,
+    /packages\/site/,
+  ]
+});
 
-const LANG = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
+const chalk = require('chalk');
+const fs = require('fs-extra');
+const { getAllFriends } = require('@friends-library/friends');
+const { podcast } = require('../../src/lib/xml');
+const { LANG, APP_URL } = require('../../src/env');
+
+let allFriends = [];
+
+// cache all friends in a variable for reuse in later api hooks
+exports.onPreInit = () => allFriends = getAllFriends(LANG);
 
 exports.onPostBuild = () => {
-  getAllFriends(LANG).forEach(friend => {
-    friend.documents.forEach(document => {
-      document.editions.forEach(edition => {
-        edition.formats.forEach(format => {
-          if (format.type === 'audio') {
-            // const xml = podcast(document, edition);
-          }
-        });
-      });
-    });
-  });
+  eachFormat(({ format, document, edition }) => {
+    if (format.type === 'audio') {
+      edition.audio.edition = edition;
+      const xml = podcast(document, edition);
+      fs.outputFileSync(`./public/${document.url()}/${edition.type}/podcast.rss`, xml);
+    }
+  })
 };
+
+exports.onCreateDevServer = ({ app }) => {
+  eachFormat(({ document, edition, format }) => {
+    if (format.type === 'audio') {
+      app.get(
+        `${document.url()}/${edition.type}/podcast.rss`,
+        (req, res) => {
+          edition.audio.edition = edition;
+          res.type('application/xml');
+          res.send(podcast(document, edition));
+        }
+      )
+    }
+  });
+}
 
 exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
@@ -29,7 +53,7 @@ exports.sourceNodes = (
   console.log('\n🚀  Creating nodes from Friends .yml files');
   console.log('-----------------------------------------');
 
-  getAllFriends(LANG).forEach(friend => {
+  allFriends.forEach(friend => {
     const color = friend.isMale() ? 'cyan' : 'magenta';
     const msg = chalk[color].dim(`Create friend node: ${friend.slug}`);
     console.log(`${friend.isMale() ? '👴' : '👵'}  ${msg}`);
@@ -115,4 +139,16 @@ function documentNodeProps(doc, friend) {
       };
     }),
   };
+}
+
+function eachFormat(cb) {
+  allFriends.forEach(friend => {
+    friend.documents.forEach(document => {
+      document.editions.forEach(edition => {
+        edition.formats.forEach(format => {
+          cb({ friend, document, edition, format });
+        });
+      });
+    });
+  });
 }

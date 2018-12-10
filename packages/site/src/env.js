@@ -1,5 +1,5 @@
 // @flow
-import type { Lang, NodeEnv } from '../../../type';
+import type { Lang, NodeEnv, Url } from '../../../type';
 
 /**
  * Node env
@@ -18,9 +18,9 @@ export const LANG: Lang = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
 /**
  * Api url
  *
- * @type {String}
+ * @type {Url}
  */
-export const API_URL: string = typeof process.env.API_URL === 'string'
+export const API_URL: Url = typeof process.env.API_URL === 'string'
   ? process.env.API_URL
   : '';
 
@@ -29,15 +29,14 @@ export const API_URL: string = typeof process.env.API_URL === 'string'
  *
  * @type {String}
  */
-export const PORT: string = ((process.env.PORT: any): string);
-
+export const PORT: string = ((process.env.GATSBY_PORT: any): string);
 
 /**
  * Api url
  *
- * @type {String}
+ * @type {Url}
  */
-export const APP_URL: string = (() => {
+export const APP_URL: Url = (() => {
   if (NODE_ENV === 'development') {
     return `http://localhost:${PORT}`;
   }

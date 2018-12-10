@@ -13,7 +13,7 @@ export default function responsiveDocumentTitle(
   }
 
   title = title.replace(/^The /, REPLACE);
-  if (document.title.length <= 39 && document.title.match(/^The /)) {
+  if (originalTitle.length <= 39 && originalTitle.match(/^The /)) {
     return title;
   }
 

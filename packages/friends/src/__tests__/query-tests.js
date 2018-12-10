@@ -43,4 +43,11 @@ describe('query', () => {
     expect(edition).toBeInstanceOf(Edition);
     expect(edition.type).toBe('original');
   });
+
+  it('resolves all of the audio relationships', () => {
+    const { edition } = query('en', 'isaac-penington', 'writings-volume-1', 'updated');
+
+    expect(edition.audio).not.toBeNull();
+    expect(edition.audio.url()).toBe('/isaac-penington/writings-volume-1/updated/podcast.rss');
+  });
 });
