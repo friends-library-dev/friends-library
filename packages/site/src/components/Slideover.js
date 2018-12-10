@@ -13,10 +13,9 @@ const Slideover = styled.div`
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
-  position: absolute;
-  transition: left 0.3s ease;
-  top: 0;
-  left: ${({ isOpen }) => isOpen ? '0' : '-255px'};
+  position: fixed;
+  transition: transform 0.3s ease;
+  transform: ${({ isOpen }) => isOpen ? 'none' : 'translate3d(-100%, 0, 0)'};
 
   & > ul {
     margin: 0;
