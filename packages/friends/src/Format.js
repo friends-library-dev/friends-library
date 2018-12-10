@@ -1,5 +1,6 @@
 // @flow
 import Edition from './Edition';
+import type { Url } from '../../../type';
 
 type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
 
@@ -9,6 +10,17 @@ export default class Format {
 
   constructor(type: FormatType = 'pdf') {
     this.type = type;
+  }
+
+  url(): Url {
+    const edType = this.edition.type;
+    const doc = this.edition.document;
+
+    if (['paperback', 'audio'].includes(this.type)) {
+      return `${doc.url()}/${edType}/${this.type}`;
+    }
+
+    return `${doc.url()}/${edType}/${doc.filename}--${edType}.${this.type}`;
   }
 
   toJSON(): Format {
