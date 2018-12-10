@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import type { Node } from 'react';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';

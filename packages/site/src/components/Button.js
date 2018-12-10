@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
+import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 
-const Button = styled.a`
+const Button = styled(Link)`
   display: block;
   background-color: ${({ theme }) => theme.primary};
   text-align: center;
@@ -22,5 +23,5 @@ type Props = {|
 |};
 
 export default ({ text, url }: Props) => (
-  <Button href={url}>{text}</Button>
+  <Button to={url}>{text}</Button>
 );
