@@ -2,7 +2,6 @@
 import { basename, resolve } from 'path';
 import { sync as glob } from 'glob';
 import { readFileSync } from 'fs';
-// $FlowFixMe
 import { safeLoad } from 'js-yaml';
 import type { Slug, Lang } from './type';
 import Friend from './Friend';
@@ -14,7 +13,7 @@ export function getFriend(slug: Slug, lang: Lang = 'en'): Friend {
   const path = resolve(__dirname, `../yml/${lang}/${slug}.yml`);
   const file = readFileSync(path);
   const data: Object = safeLoad(file);
-  return friendFromJS(data);
+  return friendFromJS({ lang, ...data });
 }
 
 export function getAllFriends(lang: Lang = 'en'): Array<Friend> {

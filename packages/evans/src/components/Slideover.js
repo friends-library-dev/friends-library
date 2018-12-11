@@ -1,8 +1,10 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
+import { Link } from 'gatsby';
+import styled from '@emotion/styled';
 
-const element = css`
+const Slideover = styled.div`
+  z-index: 555;
   background: #eaeaea;
   color: #222;
   padding: 15px;
@@ -12,56 +14,71 @@ const element = css`
   overflow: hidden;
   overflow-y: auto;
   position: fixed;
-  display: none;
+  transition: transform 0.3s ease;
+  transform: ${({ isOpen }) => (isOpen ? 'none' : 'translate3d(-100%, 0, 0)')};
 
   & > ul {
     margin: 0;
     padding-left: 1.5em;
   }
+
+  & .Close {
+    position: absolute;
+    top: 0.75em;
+    right: 0.75em;
+    color: #666;
+    font-size: 16px;
+  }
 `;
 
-export default () => (
-  <div id="Slideover" className={element}>
+type Props = {|
+  isOpen: boolean,
+  close: (any) => *,
+|};
+
+export default ({ isOpen, close }: Props) => (
+  <Slideover isOpen={isOpen}>
+    <i className="Close fa fa-close" onClick={close} />
     <ul>
       <li>
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a href="/getting-started">Getting started</a>
+        <Link to="/getting-started">Getting started</Link>
       </li>
       <li>
-        <a href="/explore">Explore books</a>
+        <Link to="/explore">Explore books</Link>
       </li>
       <li>
-        <a href="/audiobooks">Audiobooks</a>
+        <Link to="/audiobooks">Audiobooks</Link>
       </li>
       <li>
-        <a href="/paperbacks">Paperpacks</a>
+        <Link to="/paperbacks">Paperpacks</Link>
       </li>
       <li>
-        <a href="/friends">All Friends</a>
+        <Link to="/friends">All Friends</Link>
       </li>
       <li>
-        <a href="/quakers">About the Quakers</a>
+        <Link to="/quakers">About the Quakers</Link>
       </li>
       <li>
-        <a href="/modernization">About modernization</a>
+        <Link to="/modernization">About modernization</Link>
       </li>
       <li>
-        <a href="/editions">About book editions</a>
+        <Link to="/editions">About book editions</Link>
       </li>
       <li>
-        <a href="/about">About this site</a>
+        <Link to="/about">About this site</Link>
       </li>
       <li>
-        <a href="/audio-help">Audio help</a>
+        <Link to="/audio-help">Audio help</Link>
       </li>
       <li>
-        <a href="/ebook-help">E-book help</a>
+        <Link to="/ebook-help">E-book help</Link>
       </li>
       <li>
-        <a href="/contact">Contact us</a>
+        <Link to="/contact">Contact us</Link>
       </li>
     </ul>
-  </div>
+  </Slideover>
 );

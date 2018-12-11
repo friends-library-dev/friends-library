@@ -4,8 +4,12 @@ import { Friend, Document, Edition } from '..';
 describe('getFriend()', () => {
   it('resolves a valid friend', () => {
     const george = getFriend('george-fox');
-
     expect(george).toBeInstanceOf(Friend);
+  });
+
+  it('sets the language on the friend', () => {
+    const isaac = getFriend('isaac-penington', 'es');
+    expect(isaac.lang).toBe('es');
   });
 });
 
@@ -38,5 +42,12 @@ describe('query', () => {
     expect(document.slug).toBe('journal');
     expect(edition).toBeInstanceOf(Edition);
     expect(edition.type).toBe('original');
+  });
+
+  it('resolves all of the audio relationships', () => {
+    const { edition } = query('en', 'isaac-penington', 'writings-volume-1', 'updated');
+
+    expect(edition.audio).not.toBeNull();
+    expect(edition.audio.url()).toBe('/isaac-penington/writings-volume-1/updated/podcast.rss');
   });
 });

@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react';
 import { t } from 'ttag';
-import { css } from 'glamor';
-import { Document } from '@friends-library/friends';
-import url from '../lib/url';
+import { Link } from 'gatsby';
+import styled from '@emotion/styled';
+import type { Title, Name, Url } from '../../../../type';
 import responsiveDocumentTitle from '../lib/responsive';
-import { PRIMARY } from './Theme';
 
-const element = css`
+const DocumentTeaser = styled.div`
   color: #222;
   display: block;
   background-color: #ededed;
@@ -27,7 +26,7 @@ const element = css`
   }
 `;
 
-const title = css`
+const Heading = styled.h3`
   font-weight: 300;
   margin: 0;
   padding: 0.65em;
@@ -37,9 +36,9 @@ const title = css`
   color: #fff;
 `;
 
-const link = css`
+const StyledLink = styled(Link)`
   padding: 0.75em;
-  background-color: ${PRIMARY};
+  background-color: ${({ theme }) => theme.primary};
   display: block;
   text-align: center;
   text-decoration: none;
@@ -48,7 +47,7 @@ const link = css`
   }
 `;
 
-const meta = css`
+const MetaUl = styled.ul`
   list-style: none;
   margin: 0;
   padding: 1em 2em;
@@ -61,26 +60,39 @@ const meta = css`
   }
 `;
 
-type Props = {
-  document: Document,
-};
+type Props = {|
+  title: Title,
+  friendName: Name,
+  hasAudio: boolean,
+  hasUpdatedEdition: boolean,
+  shortestEditionPages: number,
+  tags: Array<string>,
+  url: Url,
+|};
 
-const DocumentTeaser = (props: Props) => {
-  const { document } = props;
+export default ({
+  title,
+  friendName,
+  hasAudio,
+  hasUpdatedEdition,
+  shortestEditionPages,
+  tags,
+  url,
+}: Props) => {
   return (
-    <div className={element}>
-      <h3
-        className={title}
-        dangerouslySetInnerHTML={{ __html: responsiveDocumentTitle(document) }}
+    <DocumentTeaser>
+      <Heading dangerouslySetInnerHTML={{
+        __html: responsiveDocumentTitle(title, friendName),
+      }}
       />
-      <ul className={meta}>
-        {document.hasAudio() && (
+      <MetaUl>
+        {hasAudio && (
           <li>
             <i className="fa fa-headphones" />
             {t`Audio Available`}
           </li>
         )}
-        {document.hasUpdatedEdition() && (
+        {hasUpdatedEdition && (
           <li>
             <i className="fa fa-rocket" />
             {t`Updated Available`}
@@ -88,18 +100,16 @@ const DocumentTeaser = (props: Props) => {
         )}
         <li>
           <i className="fa fa-clock-o" />
-          {document.shortestEdition().pages} {t`Pages`}
+          {shortestEditionPages} {t`Pages`}
         </li>
         <li>
           <i className="fa fa-tags" />
-          {document.tags.join(', ')}
+          {tags.join(', ')}
         </li>
-      </ul>
-      <a className={link} href={url(document)}>
+      </MetaUl>
+      <StyledLink to={url}>
         {t`View Document`} &rarr;
-      </a>
-    </div>
+      </StyledLink>
+    </DocumentTeaser>
   );
 };
-
-export default DocumentTeaser;

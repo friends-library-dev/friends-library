@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
+import { css } from '@emotion/core';
 import Block from './Block';
 
 type Props = {|
@@ -22,7 +22,7 @@ const TempBlock = ({ children, alt }: Props) => {
   `;
 
   return (
-    <Block className={element}>
+    <Block css={element}>
       {children}
     </Block>
   );
