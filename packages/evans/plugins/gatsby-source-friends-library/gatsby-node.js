@@ -64,6 +64,27 @@ exports.sourceNodes = ({ actions, createContentDigest }, configOptions) => {
       });
     });
   });
+
+  eachFormat(({ format, document, edition, friend }) => {
+    if (format.type === 'audio') {
+      const props = {
+        id: `audio:${edition.audio.url()}`,
+        url: format.url(),
+        podcastUrl: edition.audio.url(),
+        friendName: friend.name,
+        documentTitle: document.title,
+      };
+      createNode({
+        ...props,
+        internal: {
+          type: 'Audio',
+          content: JSON.stringify(props),
+          contentDigest: createContentDigest(props),
+        },
+      });
+    }
+  });
+
   console.log('\n');
 };
 
