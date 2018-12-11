@@ -1,4 +1,3 @@
-import { Document, Friend } from '@friends-library/friends';
 import responsiveDocumentTitle from '../responsive';
 
 const expand = str => str
