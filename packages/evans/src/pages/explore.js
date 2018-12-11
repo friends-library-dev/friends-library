@@ -68,11 +68,10 @@ export default ({ data: { allFriend: { edges } } }: Props) => (
 
       <h2>Explore by Format/Edition</h2>
 
-      <p>Not all the books on this site are available in all formats or editions. In particular, we find many people are most interested in our <i>updated</i> editions, in books with available <i>paperbacks</i>, and in books that have been converted into <i>audiobooks</i>.</p>
+      <p>Not all the books on this site are available in all formats or editions. In particular, we find many people are most interested in our <i>updated</i> editions and in books that have been converted into <i>audiobooks</i>.</p>
 
       <ul>
         <li><Link to="/audiobooks">Audiobooks</Link></li>
-        <li><Link to="/paperbacks">Paperbacks</Link></li>
         <li><Link to="/updated">Updated editions</Link></li>
       </ul>
 

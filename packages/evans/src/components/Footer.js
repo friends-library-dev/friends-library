@@ -47,9 +47,6 @@ export default () => (
         <Link to="/audiobooks">Audiobooks</Link>
       </li>
       <li>
-        <Link to="/paperbacks">Paperpacks</Link>
-      </li>
-      <li>
         <Link to="/friends">All Friends</Link>
       </li>
       <li>
