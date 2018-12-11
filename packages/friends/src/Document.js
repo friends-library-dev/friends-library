@@ -34,6 +34,10 @@ export default class Document {
     this.editions = editions;
   }
 
+  id(): string {
+    return `${this.friend.id()}/${this.slug}`;
+  }
+
   url(): Url {
     return `/${this.friend.slug}/${this.slug}`;
   }

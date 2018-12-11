@@ -6,6 +6,8 @@ describe('Friend', () => {
 
   beforeEach(() => {
     friend = new Friend();
+    friend.lang = 'en';
+    friend.slug = 'george-fox';
   });
 
   describe('toJSON()', () => {
@@ -20,10 +22,14 @@ describe('Friend', () => {
     });
   });
 
+  describe('.id()', () => {
+    it('returns combo of lang and slug', () => {
+      expect(friend.id()).toBe('en/george-fox');
+    });
+  });
+
   describe('.url()', () => {
     it('returns correct relative url', () => {
-      friend.lang = 'en';
-      friend.slug = 'george-fox';
       expect(friend.url()).toBe('/friend/george-fox');
     });
 

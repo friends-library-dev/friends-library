@@ -26,6 +26,10 @@ export default class Friend {
     this.documents = documents;
   }
 
+  id(): string {
+    return `${this.lang}/${this.slug}`;
+  }
+
   url(): Url {
     if (this.slug === 'compilations') {
       return '/compilations';

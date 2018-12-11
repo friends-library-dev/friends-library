@@ -19,7 +19,6 @@ exports.onPreInit = () => allFriends = getAllFriends(LANG);
 exports.onPostBuild = () => {
   eachFormat(({ format, document, edition }) => {
     if (format.type === 'audio') {
-      edition.audio.edition = edition;
       const xml = podcast(document, edition);
       fs.outputFileSync(`./public/${document.url()}/${edition.type}/podcast.rss`, xml);
     }
@@ -29,25 +28,16 @@ exports.onPostBuild = () => {
 exports.onCreateDevServer = ({ app }) => {
   eachFormat(({ document, edition, format }) => {
     if (format.type === 'audio') {
-      app.get(
-        `${document.url()}/${edition.type}/podcast.rss`,
-        (req, res) => {
-          edition.audio.edition = edition;
-          res.type('application/xml');
-          res.send(podcast(document, edition));
-        }
-      )
+      app.get(edition.audio.url(), (req, res) => {
+        res.type('application/xml');
+        res.send(podcast(document, edition));
+      });
     }
   });
 }
 
-exports.sourceNodes = (
-  { actions, createNodeId, createContentDigest },
-  configOptions
-) => {
+exports.sourceNodes = ({ actions, createContentDigest }, configOptions) => {
   const { createNode } = actions
-
-  // Gatsby adds a configOption that's not needed for this plugin, delete it
   delete configOptions.plugins
 
   console.log('\n🚀  Creating nodes from Friends .yml files');
@@ -55,25 +45,26 @@ exports.sourceNodes = (
 
   allFriends.forEach(friend => {
     const color = friend.isMale() ? 'cyan' : 'magenta';
-    const msg = chalk[color].dim(`Create friend node: ${friend.slug}`);
+    const msg = chalk[color].dim(`Create friend node: ${friend.id()}`);
     console.log(`${friend.isMale() ? '👴' : '👵'}  ${msg}`);
+    const friendProps = friendNodeProps(friend);
     createNode({
-      id: createNodeId(friend.slug),
+      id: friend.id(),
       parent: null,
       children: [],
       internal: {
         type: 'Friend',
-        content: JSON.stringify(friend),
-        contentDigest: createContentDigest(friend),
+        content: JSON.stringify(friendProps),
+        contentDigest: createContentDigest(friendProps),
       },
-      ...friendNodeProps(friend),
+      ...friendProps,
     });
 
     friend.documents.forEach(document => {
-      console.log(chalk.gray(`  ↳ 📙  Create document node: ${friend.slug}/${document.slug}`));
+      console.log(chalk.gray(`  ↳ 📙  Create document node: ${document.id()}`));
       const docProps = documentNodeProps(document, friend);
       createNode({
-        id: createNodeId(`${friend.slug}/${document.slug}`),
+        id: document.id(),
         parent: null,
         children: [],
         internal: {
@@ -86,10 +77,8 @@ exports.sourceNodes = (
       })
     })
   });
-
   console.log('\n');
 }
-
 
 function friendNodeProps(friend) {
   return {
@@ -103,7 +92,6 @@ function friendNodeProps(friend) {
 }
 
 function documentNodeProps(doc, friend) {
-  doc.friend = friend;
   return {
     slug: doc.slug,
     title: doc.title,
@@ -115,29 +103,23 @@ function documentNodeProps(doc, friend) {
     shortestEdition: (({ pages }) => ({ pages }))(doc.shortestEdition()),
     tags: doc.tags,
     url: doc.url(),
-    editions: doc.editions.map(edition => {
-      edition.document = doc;
-      return {
-        type: edition.type,
-        description: edition.description || '',
-        formats: edition.formats.map(format => {
-          format.edition = edition;
-          return {
-            type: format.type,
-            url: format.url()
-          }
-        }),
-        ...edition.audio ? {
-          audio: {
-            reader: edition.audio.reader,
-            parts: edition.audio.parts.map(part => ({
-              title: part.title,
-              externalIdHq: part.externalIdHq,
-            }))
-          }
-        } : {}
-      };
-    }),
+    editions: doc.editions.map(edition => ({
+      type: edition.type,
+      description: edition.description || '',
+      formats: edition.formats.map(format => ({
+        type: format.type,
+        url: format.url()
+      })),
+      ...edition.audio ? {
+        audio: {
+          reader: edition.audio.reader,
+          parts: edition.audio.parts.map(part => ({
+            title: part.title,
+            externalIdHq: part.externalIdHq,
+          }))
+        }
+      } : {}
+    })),
   };
 }
 
