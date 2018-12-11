@@ -11,8 +11,61 @@ const fs = require('fs-extra');
 const { getAllFriends } = require('@friends-library/friends');
 const { podcast } = require('../../src/lib/xml');
 const { LANG } = require('../../src/env');
+const { getPartials } = require('../../src/lib/partials');
 
 const allFriends = getAllFriends(LANG);
+
+exports.sourceNodes = ({ actions, createContentDigest }, configOptions) => {
+  const { createNode } = actions;
+  delete configOptions.plugins;
+
+  Object.entries(getPartials()).forEach(([slug, html]) => {
+    createNode({
+      id: `partial:${slug}`,
+      html,
+      internal: {
+        type: 'Partial',
+        content: html,
+        contentDigest: createContentDigest(html),
+      },
+    });
+  });
+
+  console.log('\n🚀  Creating nodes from Friends .yml files');
+  console.log('-----------------------------------------');
+
+  allFriends.forEach(friend => {
+    const color = friend.isMale() ? 'cyan' : 'magenta';
+    const msg = chalk[color].dim(`Create friend node: ${friend.id()}`);
+    console.log(`${friend.isMale() ? '👴' : '👵'}  ${msg}`);
+    const friendProps = friendNodeProps(friend);
+    createNode({
+      id: friend.id(),
+      internal: {
+        type: 'Friend',
+        content: JSON.stringify(friendProps),
+        contentDigest: createContentDigest(friendProps),
+      },
+      ...friendProps,
+    });
+
+    friend.documents.forEach(document => {
+      console.log(chalk.gray(`  ↳ 📙  Create document node: ${document.id()}`));
+      const docProps = documentNodeProps(document);
+      createNode({
+        id: document.id(),
+        internal: {
+          type: 'Document',
+          content: JSON.stringify(docProps),
+          contentDigest: createContentDigest(docProps),
+        },
+        friendSlug: friend.slug,
+        ...docProps,
+      });
+    });
+  });
+  console.log('\n');
+};
 
 exports.onPostBuild = () => {
   eachFormat(({ format, document, edition }) => {
@@ -32,50 +85,6 @@ exports.onCreateDevServer = ({ app }) => {
       });
     }
   });
-};
-
-exports.sourceNodes = ({ actions, createContentDigest }, configOptions) => {
-  const { createNode } = actions;
-  delete configOptions.plugins;
-
-  console.log('\n🚀  Creating nodes from Friends .yml files');
-  console.log('-----------------------------------------');
-
-  allFriends.forEach(friend => {
-    const color = friend.isMale() ? 'cyan' : 'magenta';
-    const msg = chalk[color].dim(`Create friend node: ${friend.id()}`);
-    console.log(`${friend.isMale() ? '👴' : '👵'}  ${msg}`);
-    const friendProps = friendNodeProps(friend);
-    createNode({
-      id: friend.id(),
-      parent: null,
-      children: [],
-      internal: {
-        type: 'Friend',
-        content: JSON.stringify(friendProps),
-        contentDigest: createContentDigest(friendProps),
-      },
-      ...friendProps,
-    });
-
-    friend.documents.forEach(document => {
-      console.log(chalk.gray(`  ↳ 📙  Create document node: ${document.id()}`));
-      const docProps = documentNodeProps(document);
-      createNode({
-        id: document.id(),
-        parent: null,
-        children: [],
-        internal: {
-          type: 'Document',
-          content: JSON.stringify(docProps),
-          contentDigest: createContentDigest(docProps),
-        },
-        friendSlug: friend.slug,
-        ...docProps,
-      });
-    });
-  });
-  console.log('\n');
 };
 
 exports.onPostBootstrap = () => {
