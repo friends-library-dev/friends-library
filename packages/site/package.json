@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "@friends-library/evans",
+  "description": "Friends Library Website",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Jared Henderson <jared@netrivet.com>",
   "dependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
@@ -38,12 +38,6 @@
     "ttag": "^1.4.2",
     "ttag-cli": "^1.4.2"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "resolutions": {
-    "react-hot-loader": "4.5.1"
-  },
   "license": "MIT",
   "scripts": {
     "cache:clear": "cp .cache/babelState.json . && rm -rf .cache && mkdir .cache && mv babelState.json .cache && rm -rf public",
@@ -52,6 +46,5 @@
     "develop:en": "yarn cache:clear && DISABLE_V8_COMPILE_CACHE=1 GATSBY_LANG=en GATSBY_PORT=9222 gatsby develop --port 9222",
     "develop:es": "yarn cache:clear && DISABLE_V8_COMPILE_CACHE=1 GATSBY_LANG=es GATSBY_PORT=9222 gatsby develop --port 9222",
     "po:update": "yarn ttag update es.po src"
-  },
-  "devDependencies": {}
+  }
 }
