@@ -2,7 +2,7 @@
 require('@babel/register')({
   only: [
     /packages\/friends/,
-    /packages\/site/,
+    /packages\/evans/,
   ],
 });
 
