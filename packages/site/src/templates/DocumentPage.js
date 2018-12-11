@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import type { FormatType, EditionType, Url, Title, Name, Slug, Description } from '../../../../type';
 import { graphql } from 'gatsby';
+import type { FormatType, EditionType, Url, Title, Name, Slug, Description } from '../../../../type';
 import { Layout, Block, PageTitle, Divider, ByLine, Edition } from '../components';
 
 type Props = {|
@@ -71,4 +71,4 @@ export const query = graphql`
       title
     }
   }
-`
+`;

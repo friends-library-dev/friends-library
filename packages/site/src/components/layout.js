@@ -1,10 +1,10 @@
 // @flow
-import React, { Fragment } from 'react'
+import React, { Fragment } from 'react';
 import type { Node } from 'react';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { ThemeProvider } from 'emotion-theming'
-import Helmet from 'react-helmet'
+import { ThemeProvider } from 'emotion-theming';
+import Helmet from 'react-helmet';
 import Slideover from './Slideover';
 import StickyNav from './StickyNav';
 import Footer from './Footer';
@@ -44,9 +44,10 @@ export default class Layout extends React.Component<Props, State> {
 
   render() {
     const { navOpen } = this.state;
+    const { children } = this.props;
     return (
       <Fragment>
-        <Global styles={html}/>
+        <Global styles={html} />
         <Helmet>
           <html lang="en" />
           <title>Friends Library</title>
@@ -57,11 +58,11 @@ export default class Layout extends React.Component<Props, State> {
           <Slideover isOpen={navOpen} close={() => this.setState({ navOpen: false })} />
           <StickyNav onHamburgerClick={() => this.setState({ navOpen: !navOpen })} />
           <Content>
-            {this.props.children}
+            {children}
             <Footer />
           </Content>
         </ThemeProvider>
       </Fragment>
-    )
+    );
   }
 }

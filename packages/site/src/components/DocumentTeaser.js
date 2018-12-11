@@ -82,8 +82,9 @@ export default ({
   return (
     <DocumentTeaser>
       <Heading dangerouslySetInnerHTML={{
-        __html: responsiveDocumentTitle(title, friendName)
-      }} />
+        __html: responsiveDocumentTitle(title, friendName),
+      }}
+      />
       <MetaUl>
         {hasAudio && (
           <li>
@@ -111,4 +112,4 @@ export default ({
       </StyledLink>
     </DocumentTeaser>
   );
-}
+};

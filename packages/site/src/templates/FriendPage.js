@@ -21,7 +21,7 @@ const DocsHeader = styled.h2`
   > span {
     margin-left: 6px;
   }
-`
+`;
 
 export default ({ data: { friend } }: Props) => (
   <Layout>
@@ -55,7 +55,7 @@ export default ({ data: { friend } }: Props) => (
       </section>
     </Block>
   </Layout>
-)
+);
 
 export const query = graphql`
   query GetFriend($slug: String!) {

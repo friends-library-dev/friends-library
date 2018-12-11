@@ -24,7 +24,7 @@ exports.onCreateNode = ({ node, actions: { createPage } }) => {
       context: {
         friendSlug: node.slug,
         documentSlug: document.slug,
-      }
+      },
     });
 
     document.editions.forEach(edition => {
@@ -37,10 +37,10 @@ exports.onCreateNode = ({ node, actions: { createPage } }) => {
               friendSlug: node.slug,
               documentSlug: document.slug,
               editionType: edition.type,
-            }
+            },
           });
         }
       });
     });
   });
-}
+};

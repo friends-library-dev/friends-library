@@ -15,7 +15,7 @@ const Slideover = styled.div`
   overflow-y: auto;
   position: fixed;
   transition: transform 0.3s ease;
-  transform: ${({ isOpen }) => isOpen ? 'none' : 'translate3d(-100%, 0, 0)'};
+  transform: ${({ isOpen }) => (isOpen ? 'none' : 'translate3d(-100%, 0, 0)')};
 
   & > ul {
     margin: 0;

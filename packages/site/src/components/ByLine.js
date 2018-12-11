@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
 import { Link } from 'gatsby';
-import type { Url, Name } from '../../../../type';
 import { t } from 'ttag';
+import type { Url, Name } from '../../../../type';
 import { h2 } from '../typography';
 
 type Props = {|

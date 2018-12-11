@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import type { EditionType, Url, Title, Name } from '../../../../type';
 import { graphql, Link } from 'gatsby';
+import type { EditionType, Url, Title, Name } from '../../../../type';
 import { Layout, Divider, PageTitle, ByLine, Block, EmbeddedAudio } from '../components';
 
 type Props = {|
@@ -33,7 +33,7 @@ type Props = {|
 
 
 export default (
-  { data: { document, friend }, pageContext: { editionType } }: Props
+  { data: { document, friend }, pageContext: { editionType } }: Props,
 ) => {
   const edition = document.editions.find(e => e.type === editionType);
   if (!edition) {
@@ -69,7 +69,7 @@ export default (
       </Block>
     </Layout>
   );
-}
+};
 
 
 export const query = graphql`
@@ -94,4 +94,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

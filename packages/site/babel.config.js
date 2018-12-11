@@ -1,16 +1,16 @@
 module.exports = {
-  "presets": [
-    "babel-preset-gatsby",
-    "@babel/preset-flow",
+  presets: [
+    'babel-preset-gatsby',
+    '@babel/preset-flow',
   ],
-  "plugins": [
+  plugins: [
     [
-      "babel-plugin-ttag",
+      'babel-plugin-ttag',
       {
-        "resolve": {
-          "translations": process.env.GATSBY_LANG === "es" ? "es.po" : "default",
+        resolve: {
+          translations: process.env.GATSBY_LANG === 'es' ? 'es.po' : 'default',
         },
       },
     ],
   ],
-}
+};

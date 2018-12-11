@@ -1,11 +1,9 @@
 import Document from '../Document';
 import Edition from '../Edition';
-import Format from '../Format';
 import Friend from '../Friend';
 import Audio from '../Audio';
 
 describe('Audio', () => {
-  let format;
   let edition;
   let document;
   let friend;

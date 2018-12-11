@@ -7,5 +7,5 @@ export default {
   },
   es: {
     primary: 'green',
-  }
+  },
 }[LANG];

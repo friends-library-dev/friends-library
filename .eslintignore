@@ -7,3 +7,5 @@ packages/phipps/vendor
 packages/api/*
 packages/evans/build/*
 packages/styleguide/dist/*
+packages/site/public/*
+packages/site/.cache/*

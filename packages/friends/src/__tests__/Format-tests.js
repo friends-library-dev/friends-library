@@ -42,7 +42,6 @@ describe('Format', () => {
       document.filename = 'Journal';
 
       expect(format.url()).toBe('/george-fox/journal/modernized/Journal--modernized.pdf');
-
     });
   });
 });

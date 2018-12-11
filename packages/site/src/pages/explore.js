@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import type { Slug } from '../../../../type';
 import { Link, graphql } from 'gatsby';
+import type { Slug } from '../../../../type';
 import { Layout, Block, PageTitle, Divider, Button } from '../components';
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
   |},
 }
 
-export default ({ data: { allFriend: { edges } }}: Props) => (
+export default ({ data: { allFriend: { edges } } }: Props) => (
   <Layout>
     <Block>
       <PageTitle>Explore Books</PageTitle>

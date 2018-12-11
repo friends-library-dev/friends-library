@@ -1,20 +1,18 @@
+/* eslint-disable no-console */
 require('@babel/register')({
   only: [
     /packages\/friends/,
     /packages\/site/,
-  ]
+  ],
 });
 
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const { getAllFriends } = require('@friends-library/friends');
 const { podcast } = require('../../src/lib/xml');
-const { LANG, APP_URL } = require('../../src/env');
+const { LANG } = require('../../src/env');
 
-let allFriends = [];
-
-// cache all friends in a variable for reuse in later api hooks
-exports.onPreInit = () => allFriends = getAllFriends(LANG);
+const allFriends = getAllFriends(LANG);
 
 exports.onPostBuild = () => {
   eachFormat(({ format, document, edition }) => {
@@ -22,7 +20,7 @@ exports.onPostBuild = () => {
       const xml = podcast(document, edition);
       fs.outputFileSync(`./public/${document.url()}/${edition.type}/podcast.rss`, xml);
     }
-  })
+  });
 };
 
 exports.onCreateDevServer = ({ app }) => {
@@ -34,11 +32,11 @@ exports.onCreateDevServer = ({ app }) => {
       });
     }
   });
-}
+};
 
 exports.sourceNodes = ({ actions, createContentDigest }, configOptions) => {
-  const { createNode } = actions
-  delete configOptions.plugins
+  const { createNode } = actions;
+  delete configOptions.plugins;
 
   console.log('\n🚀  Creating nodes from Friends .yml files');
   console.log('-----------------------------------------');
@@ -62,7 +60,7 @@ exports.sourceNodes = ({ actions, createContentDigest }, configOptions) => {
 
     friend.documents.forEach(document => {
       console.log(chalk.gray(`  ↳ 📙  Create document node: ${document.id()}`));
-      const docProps = documentNodeProps(document, friend);
+      const docProps = documentNodeProps(document);
       createNode({
         id: document.id(),
         parent: null,
@@ -74,11 +72,11 @@ exports.sourceNodes = ({ actions, createContentDigest }, configOptions) => {
         },
         friendSlug: friend.slug,
         ...docProps,
-      })
-    })
+      });
+    });
   });
   console.log('\n');
-}
+};
 
 function friendNodeProps(friend) {
   return {
@@ -87,11 +85,11 @@ function friendNodeProps(friend) {
     gender: friend.gender,
     description: friend.description,
     url: friend.url(),
-    documents: friend.documents.map(doc => documentNodeProps(doc, friend)),
-  }
+    documents: friend.documents.map(documentNodeProps),
+  };
 }
 
-function documentNodeProps(doc, friend) {
+function documentNodeProps(doc) {
   return {
     slug: doc.slug,
     title: doc.title,
@@ -108,7 +106,7 @@ function documentNodeProps(doc, friend) {
       description: edition.description || '',
       formats: edition.formats.map(format => ({
         type: format.type,
-        url: format.url()
+        url: format.url(),
       })),
       ...edition.audio ? {
         audio: {
@@ -116,9 +114,9 @@ function documentNodeProps(doc, friend) {
           parts: edition.audio.parts.map(part => ({
             title: part.title,
             externalIdHq: part.externalIdHq,
-          }))
-        }
-      } : {}
+          })),
+        },
+      } : {},
     })),
   };
 }
