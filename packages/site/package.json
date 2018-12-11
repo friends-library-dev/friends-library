@@ -47,18 +47,11 @@
   "license": "MIT",
   "scripts": {
     "cache:clear": "cp .cache/babelState.json . && rm -rf .cache && mkdir .cache && mv babelState.json .cache && rm -rf public",
-    "build:en": "GATSBY_LANG=en gatsby build",
-    "build:es": "GATSBY_LANG=es gatsby build",
-    "develop:en": "DISABLE_V8_COMPILE_CACHE=1 GATSBY_LANG=en GATSBY_PORT=9222 gatsby develop --port 9222",
-    "develop:es": "DISABLE_V8_COMPILE_CACHE=1 GATSBY_LANG=es GATSBY_PORT=9222 gatsby develop --port 9222",
-    "format": "prettier --write \"src/**/*.js\"",
+    "build:en": "yarn cache:clear && GATSBY_LANG=en yarn gatsby build",
+    "build:es": "yarn cache:clear && GATSBY_LANG=es yarn gatsby build",
+    "develop:en": "yarn cache:clear && DISABLE_V8_COMPILE_CACHE=1 GATSBY_LANG=en GATSBY_PORT=9222 gatsby develop --port 9222",
+    "develop:es": "yarn cache:clear && DISABLE_V8_COMPILE_CACHE=1 GATSBY_LANG=es GATSBY_PORT=9222 gatsby develop --port 9222",
     "po:update": "yarn ttag update es.po src"
   },
-  "devDependencies": {
-    "prettier": "^1.15.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  }
+  "devDependencies": {}
 }

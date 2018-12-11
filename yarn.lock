@@ -13520,11 +13520,6 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@^1.15.3:
-  version "1.15.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
-  integrity sha512-gAU9AGAPMaKb3NNSUUuhhFAS7SCO4ALTN4nRIn6PJ075Qd28Yn2Ig2ahEJWdJwJmlEBTUfC7mMUSFy8MwsOCfg==
-
 pretty-bytes@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-4.0.2.tgz#b2bf82e7350d65c6c33aa95aaa5a4f6327f61cd9"
@@ -13920,7 +13915,7 @@ react-helmet@^5.2.0:
     prop-types "^15.5.4"
     react-side-effect "^1.1.0"
 
-react-hot-loader@4.5.1, react-hot-loader@^4.3.11, react-hot-loader@^4.5.1:
+react-hot-loader@^4.3.11, react-hot-loader@^4.5.1:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.5.1.tgz#4a9cf136542b1db4f948ac74b31fa16a411ceebb"
   integrity sha512-aqw8F0ZTCakfTXTj1n3F9vXfEKWWHEpQ3Mq9YmYvrNdHvey5RfkSGv7rz4r9TXjqVLt2mpItqydJQdhboZ/acQ==
