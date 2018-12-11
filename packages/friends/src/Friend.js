@@ -1,22 +1,24 @@
 // @flow
 import Document from './Document';
-
-type Gender = 'male' | 'female';
+import type { Gender, Lang, Slug, Name, Description, Url } from '../../../type';
 
 export default class Friend {
-  name: string = '';
-  slug: string = '';
+  lang: Lang = 'en';
+  name: Name = '';
+  slug: Slug = '';
   gender: Gender = 'male';
-  description: string = '';
+  description: Description = '';
   documents: Array<Document> = [];
 
   constructor(
-    name: string = '',
-    slug: string = '',
+    lang: Lang = 'en',
+    name: Name = '',
+    slug: Slug = '',
     gender: Gender = 'male',
-    description: string = '',
+    description: Description = '',
     documents: Array<Document> = [],
   ) {
+    this.lang = lang;
     this.name = name;
     this.slug = slug;
     this.gender = gender;
@@ -24,15 +26,32 @@ export default class Friend {
     this.documents = documents;
   }
 
-  isMale() {
+  id(): string {
+    return `${this.lang}/${this.slug}`;
+  }
+
+  url(): Url {
+    if (this.slug === 'compilations') {
+      return '/compilations';
+    }
+
+    if (this.lang === 'en') {
+      return `/friend/${this.slug}`;
+    }
+
+    const pref = this.isMale() ? 'amigo' : 'amiga';
+    return `/${pref}/${this.slug}`;
+  }
+
+  isMale(): boolean {
     return this.gender === 'male';
   }
 
-  isFemale() {
+  isFemale(): boolean {
     return !this.isMale();
   }
 
-  alphabeticalName() {
+  alphabeticalName(): string {
     const parts = this.name.split(' ');
     return `${parts.pop()}, ${parts.join(' ')}`;
   }

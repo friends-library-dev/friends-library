@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
+import { css } from '@emotion/core';
 
 const element = css`
   position: relative;
@@ -14,26 +14,26 @@ const element = css`
   overflow: visible;
 
   :before {
-    content: ${'""'};
+    content: "";
     position: absolute;
     top: 50%;
-    max-width: ${'calc(50% - 25px)'};
+    max-width: calc(50% - 25px);
     border-bottom: 1px solid #e5e5e5;
     height: 0.5px;
-    right: ${'calc(50% + 25px)'};
+    right: calc(50% + 25px);
     width: 100%;
   }
 
   :after {
-    content: ${'""'};
+    content: "";
     position: absolute;
     top: 50%;
-    max-width: ${'calc(50% - 25px)'};
+    max-width: calc(50% - 25px);
     border-bottom: 1px solid #e5e5e5;
     height: 0.5px;
-    left: ${'calc(50% + 25px)'};
+    left: calc(50% + 25px);
     width: 100%;
   }
 `;
 
-export default () => <hr className={element} />;
+export default () => <hr css={element} />;

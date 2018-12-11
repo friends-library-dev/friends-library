@@ -1,11 +1,11 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
-import { PRIMARY } from './Theme';
+import { Link } from 'gatsby';
+import styled from '@emotion/styled';
 
-const button = css`
+const Button = styled(Link)`
   display: block;
-  background-color: ${PRIMARY};
+  background-color: ${({ theme }) => theme.primary};
   text-align: center;
   text-transform: uppercase;
   margin: 20px 0 5px;
@@ -23,5 +23,5 @@ type Props = {|
 |};
 
 export default ({ text, url }: Props) => (
-  <a href={url} className={button}>{text}</a>
+  <Button to={url}>{text}</Button>
 );

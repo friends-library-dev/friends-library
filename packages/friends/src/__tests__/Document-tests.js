@@ -5,17 +5,32 @@ import Friend from '../Friend';
 
 describe('Document', () => {
   let document;
+  let friend;
 
   beforeEach(() => {
     document = new Document();
+    document.slug = 'journal';
+    friend = new Friend();
+    friend.lang = 'en';
+    friend.slug = 'george-fox';
+    document.friend = friend;
+  });
+
+  describe('url()', () => {
+    it('returns url consisting of friend slug and doc slug', () => {
+      expect(document.url()).toBe('/george-fox/journal');
+    });
+  });
+
+  describe('id()', () => {
+    it('returns correct id', () => {
+      expect(document.id()).toBe('en/george-fox/journal');
+    });
   });
 
   describe('isCompilation()', () => {
     it('returns true if it belongs to the special compilations "friend"', () => {
-      const friend = new Friend();
       friend.slug = 'compilations';
-      document.friend = friend;
-
       expect(document.isCompilation()).toBe(true);
     });
 

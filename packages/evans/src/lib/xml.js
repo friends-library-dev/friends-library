@@ -3,8 +3,8 @@
 import { encode } from 'he';
 import moment from 'moment';
 import { Document, Edition } from '@friends-library/friends';
-import url from './url';
 import { LANG, APP_URL, API_URL } from '../env';
+
 
 export function podcast(document: Document, edition: Edition): string {
   const { friend } = document;
@@ -18,7 +18,7 @@ export function podcast(document: Document, edition: Edition): string {
 >
   <channel>
     <atom:link
-      href="${APP_URL}${url(audio)}"
+      href="${APP_URL}${audio.url()}"
       rel="self"
       type="application/rss+xml"
     />
@@ -26,7 +26,7 @@ export function podcast(document: Document, edition: Edition): string {
     <itunes:subtitle>
       Audiobook of ${document.isCompilation() ? '' : `${friend.name}'s`} "${document.title}" from The Friends Library. Read by ${audio.reader}.
     </itunes:subtitle>
-    <link>${APP_URL}${url(audio)}</link>
+    <link>${APP_URL}${audio.url()}</link>
     <language>${LANG}</language>
     <itunes:author>${encode(friend.name)}</itunes:author>
     <description>${encode(document.description)}</description>
@@ -42,7 +42,7 @@ export function podcast(document: Document, edition: Edition): string {
     <image>
       <url>${APP_URL}/img/podcast-artwork.gif</url>
       <title>${encode(document.title)}</title>
-      <link>${APP_URL}${url(audio)}</link>
+      <link>${APP_URL}${audio.url()}</link>
     </image>
     <itunes:category text="Religion &amp; Spirituality">
       <itunes:category text="Christianity" />
@@ -61,7 +61,7 @@ export function podcast(document: Document, edition: Edition): string {
       <itunes:summary>${desc}</itunes:summary>
       <itunes:subtitle>${desc}</itunes:subtitle>
       <description>${desc}</description>
-      <guid isPermaLink="false">${url(audio)} pt-${num} at ${APP_URL}</guid>
+      <guid isPermaLink="false">${audio.url()} pt-${num} at ${APP_URL}</guid>
       <pubDate>${moment().format('ddd, DD MMM YYYY hh:mm:ss ZZ')}</pubDate>
       <itunes:duration>${part.seconds}</itunes:duration>
       <itunes:order>${num}</itunes:order>

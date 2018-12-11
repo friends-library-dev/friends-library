@@ -1,14 +1,16 @@
-const glamor = require('glamor/babel');
-const config = require('../../babel.config.js');
-
-config.presets = [
-  ...config.presets,
-  '@babel/preset-react',
-];
-
-config.plugins = [
-  ...config.plugins,
-  () => glamor,
-];
-
-module.exports = config;
+module.exports = {
+  presets: [
+    'babel-preset-gatsby',
+    '@babel/preset-flow',
+  ],
+  plugins: [
+    [
+      'babel-plugin-ttag',
+      {
+        resolve: {
+          translations: process.env.GATSBY_LANG === 'es' ? 'es.po' : 'default',
+        },
+      },
+    ],
+  ],
+};

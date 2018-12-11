@@ -1,24 +1,26 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
-
-const element = css`
-  padding: 15px;
-`;
+import styled from '@emotion/styled';
 
 type Props = {|
   className?: string,
+  css?: *,
   children: React.Node,
 |};
 
-const Block = ({ children, className }: Props) => (
-  <section className={`${element}${className ? ` ${className}` : ''}`}>
+const BlockSection = styled.section`
+  padding: 15px;
+`;
+
+const Block = ({ children, className, css }: Props) => (
+  <BlockSection className={className} css={css}>
     {children}
-  </section>
+  </BlockSection>
 );
 
 Block.defaultProps = {
   className: '',
+  css: null,
 };
 
 export default Block;

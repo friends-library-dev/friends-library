@@ -1,22 +1,24 @@
 // @flow
 import * as React from 'react';
+import { Link } from 'gatsby';
 import { t } from 'ttag';
-import { Document } from '@friends-library/friends';
-import url from '../lib/url';
-import { h2 } from './Typography';
+import type { Url, Name } from '../../../../type';
+import { h2 } from '../typography';
 
 type Props = {|
-  document: Document
+  isCompilation: boolean,
+  friendUrl: Url,
+  friendName: Name,
 |};
 
-export default ({ document }: Props) => {
-  if (document.isCompilation()) {
+export default ({ isCompilation, friendUrl, friendName }: Props) => {
+  if (isCompilation) {
     return null;
   }
 
   return (
-    <h2 className={h2}>
-      {t`by`} <a href={url(document.friend)}>{document.friend.name}</a>
+    <h2 css={h2}>
+      {t`by`} <Link to={friendUrl}>{friendName}</Link>
     </h2>
   );
 };

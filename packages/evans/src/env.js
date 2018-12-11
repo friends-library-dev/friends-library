@@ -1,51 +1,49 @@
 // @flow
-
-const { env } = process;
-
-type NodeEnv = 'production' | 'development';
+import type { Lang, NodeEnv, Url } from '../../../type';
 
 /**
  * Node env
  *
  * @type {NodeEnv}
  */
-export const NODE_ENV: NodeEnv = ((env.NODE_ENV: any): NodeEnv);
+export const NODE_ENV: NodeEnv = ((process.env.NODE_ENV: any): NodeEnv);
 
 /**
  * Language
  *
  * @type {String}
  */
-export const LANG: 'en' | 'es' = env.LANG === 'es' ? 'es' : 'en';
+export const LANG: Lang = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
 
 /**
  * Api url
  *
- * @type {String}
+ * @type {Url}
  */
-export const API_URL: string = typeof env.API_URL === 'string' ? env.API_URL : '';
+export const API_URL: Url = typeof process.env.API_URL === 'string'
+  ? process.env.API_URL
+  : '';
 
 /**
  * Port
  *
  * @type {String}
  */
-export const PORT: string = ((env.PORT: any): string);
-
+export const PORT: string = ((process.env.GATSBY_PORT: any): string);
 
 /**
  * Api url
  *
- * @type {String}
+ * @type {Url}
  */
-export const APP_URL: string = (() => {
+export const APP_URL: Url = (() => {
   if (NODE_ENV === 'development') {
     return `http://localhost:${PORT}`;
   }
 
-  if (env.HEAD === 'master') {
-    return ((env.URL: any): string);
+  if (process.env.HEAD === 'master') {
+    return ((process.env.URL: any): string);
   }
 
-  return ((env.DEPLOY_PRIME_URL: any): string);
+  return ((process.env.DEPLOY_PRIME_URL: any): string);
 })();

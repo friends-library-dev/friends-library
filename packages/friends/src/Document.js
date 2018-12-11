@@ -1,23 +1,24 @@
 // @flow
 import Edition from './Edition';
 import Friend from './Friend';
+import type { Title, Slug, Description, Url } from '../../../type';
 
 export default class Document {
-  title: string = '';
-  originalTitle: string = '';
+  title: Title = '';
+  originalTitle: Title = '';
   published: ?number = null;
-  slug: string = '';
-  description: string = '';
+  slug: Slug = '';
+  description: Description = '';
   filename: string = '';
   tags: Array<string> = [];
   editions: Array<Edition> = [];
   friend: Friend;
 
   constructor(
-    title: string = '',
-    originalTitle: string = '',
-    slug: string = '',
-    description: string = '',
+    title: Title = '',
+    originalTitle: Title = '',
+    slug: Slug = '',
+    description: Description = '',
     filename: string = '',
     published: ?number = null,
     tags: Array<string> = [],
@@ -31,6 +32,14 @@ export default class Document {
     this.published = published;
     this.tags = tags;
     this.editions = editions;
+  }
+
+  id(): string {
+    return `${this.friend.id()}/${this.slug}`;
+  }
+
+  url(): Url {
+    return `/${this.friend.slug}/${this.slug}`;
   }
 
   isCompilation(): boolean {

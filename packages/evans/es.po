@@ -6,42 +6,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/components/FriendPage.js:44
-msgid "Documents"
-msgstr "Documentos"
-
-#: src/components/DocumentTeaser.js:99
-msgid "View Document"
-msgstr "Ver documento"
-
-#: src/components/ByLine.js:19
-msgid "by"
-msgstr "por"
-
-#: src/components/DocumentTeaser.js:80
-msgid "Audio Available"
-msgstr "Audio disponible"
-
-#: src/components/DocumentTeaser.js:91
-msgid "Pages"
-msgstr "Páginas"
-
-#: src/components/Edition.js:32
-msgid "edition"
-msgstr "edición"
-
-#: src/components/Edition.js:38
-msgid "Formats"
-msgstr "Formatos"
-
-#: src/components/PaperbackPage.js:29
-msgid "Order paperback"
-msgstr "Orden de bolsillo"
-
-#: src/components/DocumentTeaser.js:86
-msgid "Updated Available"
-msgstr "Actualizado disponible"
-
-#: src/components/StickyNav.js:46
+#: src/components/StickyNav.js:52
 msgid "The Friends Library"
 msgstr "La Biblioteca de los Amigos"

@@ -1,12 +1,11 @@
 // @flow
 import * as React from 'react';
-import { css } from 'glamor';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 import { t } from 'ttag';
-import { Edition as EditionClass } from '@friends-library/friends';
-import url from '../lib/url';
-import { classes } from '../lib/css';
-import * as descriptions from './descriptions';
-import { h2, h3 } from './Typography';
+import * as descriptions from '../descriptions';
+import { h2, h3 } from '../typography';
 
 const desc = css`
   font-size: 0.95em;
@@ -14,32 +13,31 @@ const desc = css`
   color: #888;
 `;
 
-const title = css`
+const EditionHeading = styled.h1`
+  compose: ${h2};
   :first-letter {
     text-transform: capitalize;
   }
 `;
 
-type Props = {
-  edition: EditionClass,
-};
+type Props = *
 
 const Edition = ({ edition }: Props) => {
   const description = edition.description || descriptions[edition.type];
   return (
     <section>
-      <h1 className={classes(title, h2)}>
+      <EditionHeading>
         {edition.type} {t`edition`}:
-      </h1>
+      </EditionHeading>
       <p
-        className={desc}
+        css={desc}
         dangerouslySetInnerHTML={{ __html: description }}
       />
-      <h2 className={h3}>{t`Formats`}:</h2>
+      <h2 css={h3}>{t`Formats`}:</h2>
       <ul>
         {edition.formats.map(format => (
           <li key={format.type}>
-            <a href={url(format)}>{format.type}</a>
+            <Link to={format.url}>{format.type}</Link>
           </li>
         ))}
       </ul>

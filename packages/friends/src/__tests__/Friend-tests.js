@@ -6,6 +6,8 @@ describe('Friend', () => {
 
   beforeEach(() => {
     friend = new Friend();
+    friend.lang = 'en';
+    friend.slug = 'george-fox';
   });
 
   describe('toJSON()', () => {
@@ -17,6 +19,37 @@ describe('Friend', () => {
       const json = JSON.parse(JSON.stringify(friend));
 
       expect(json.documents[0].friend).toBeUndefined();
+    });
+  });
+
+  describe('.id()', () => {
+    it('returns combo of lang and slug', () => {
+      expect(friend.id()).toBe('en/george-fox');
+    });
+  });
+
+  describe('.url()', () => {
+    it('returns correct relative url', () => {
+      expect(friend.url()).toBe('/friend/george-fox');
+    });
+
+    it('returns special url for compilations pseudo-friend', () => {
+      friend.slug = 'compilations';
+      expect(friend.url()).toBe('/compilations');
+    });
+
+    it('returns correct url for spanish male', () => {
+      friend.lang = 'es';
+      friend.slug = 'isaac-penington';
+      friend.gender = 'male';
+      expect(friend.url()).toBe('/amigo/isaac-penington');
+    });
+
+    it('returns correct url for spanish male', () => {
+      friend.lang = 'es';
+      friend.slug = 'rebecca-jones';
+      friend.gender = 'female';
+      expect(friend.url()).toBe('/amiga/rebecca-jones');
     });
   });
 

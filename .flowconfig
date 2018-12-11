@@ -1,6 +1,9 @@
 [ignore]
 .*/__tests__/.*
 .*/node_modules/.*
+.*/gatsby-source-friends-library/friends/.*
+.*/.cache/.*
+.*/packages/evans/public/.*
 
 [libs]
 ./flow-typed

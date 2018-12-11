@@ -1,9 +1,8 @@
 node_modules
 flow-typed
 coverage
-packages/evans/build.js
-packages/evans/static/js/*
 packages/phipps/vendor
 packages/api/*
-packages/evans/build/*
 packages/styleguide/dist/*
+packages/evans/public/*
+packages/evans/.cache/*

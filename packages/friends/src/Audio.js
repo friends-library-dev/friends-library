@@ -1,15 +1,20 @@
 // @flow
+import type { Name, Url } from '../../../type';
 import Edition from './Edition';
 import AudioPart from './AudioPart';
 
 export default class Audio {
-  reader: string = '';
+  reader: Name = '';
   parts: Array<AudioPart> = [];
   edition: Edition;
 
-  constructor(reader: string = '', parts: Array<AudioPart> = []) {
+  constructor(reader: Name = '', parts: Array<AudioPart> = []) {
     this.reader = reader;
     this.parts = parts;
+  }
+
+  url(): Url {
+    return `${this.edition.document.url()}/${this.edition.type}/podcast.rss`;
   }
 
   toJSON(): Audio {
