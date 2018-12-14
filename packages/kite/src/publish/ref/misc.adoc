@@ -9,6 +9,40 @@ ____
 Whose faith follow; considering the outcome of their conduct.
 ____
 
+== Syllogisms
+
+But the apostle puts this controversy out of doubt, for,
+if we may believe his plain assertion,
+he tells us that some Gentiles indeed "`did the things contained in the law.`"
+From all of which I argue as follows:
+
+[.syllogism]
+* In every nation, he that fears God and works righteousness is accepted.
+* But some of the heathen did fear God, and wrought righteousness by Him.
+* Therefore they were accepted.
+
+Can there be anything more clear?
+And this appears even more plain by another verse,
+taken out of the same chapter (v. 13).
+The words are, "`The doers of the Law shall be justified.`"
+From which I thus argue, from plain Scripture:
+
+[.syllogism]
+* The doers of the Law shall be justified
+* But some of the Gentiles did the things contained in the Law,
+showing that the work of the Law was written in their hearts.^
+footnote:[Romans 2:15]
+* Therefore these were justified.
+
+Paul, through that whole chapter,
+labors as if he were contending now with our adversaries,
+in order to confirm this doctrine.
+He says, "`Tribulation and anguish on every soul of man who does evil,
+of the Jew first and also of the Gentile; but glory, honor,
+and peace to everyone who works what is good,
+to the Jew first and also to the Greek.
+For there is no partiality with God.`"
+
 == Embedded content
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
