@@ -351,3 +351,15 @@ dt {
 .underline {
   text-decoration: underline;
 }
+
+.syllogism {
+
+  ul {
+    padding-left: 0;
+    margin-left: 2.5em;
+  }
+
+  li {
+    font-style: italic;
+  }
+}

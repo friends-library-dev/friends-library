@@ -110,6 +110,16 @@ export default () => (
       provide both proper styling and correct semantics.
     </Note>
 
+    <H2>Syllogisms</H2>
+
+    <Para>
+      To denote a list of arguments in a <i>syllogism</i>, use the
+      asciidoc unordered list (lines starting with <Code>*</Code>) and
+      the class <Code>[.syllogism]</Code>:
+    </Para>
+
+    <Pair id="syllogism" emphasize={[6, 7, 8, 9]} />
+
     <H2>The End:</H2>
 
     <Para>
