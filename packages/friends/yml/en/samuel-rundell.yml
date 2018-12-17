@@ -25,6 +25,8 @@ documents:
               type: epub
             -
               type: mobi
+            -
+              type: audio
 
         chapters:
           -
@@ -40,6 +42,38 @@ documents:
             subtitle: Baptism, Worship, and Partaking of the Flesh and Blood
           -
             title: Concluding Observations
+        audio:
+          reader: Jared Henderson
+          parts:
+            -
+              title: Part 1
+              external_id_hq: 545074938
+              external_id_lq: 545074959
+              filesize_hq: 46856872
+              filesize_lq: 10402000
+              seconds: 2600
+              chapters:
+                - 0
+                - 1
+            -
+              title: Chapter 2
+              external_id_hq: 545075766
+              external_id_lq: 545075796
+              filesize_hq: 59243041
+              filesize_lq: 13415799
+              seconds: 3353
+              chapters:
+                - 2
+                - 3
+            -
+              title: Chapter 3
+              external_id_hq: 545076069
+              external_id_lq: 545076105
+              filesize_hq: 24465878
+              filesize_lq: 5626399
+              seconds: 1406
+              chapters:
+                - 4
       -
         type: modernized
         formats:
