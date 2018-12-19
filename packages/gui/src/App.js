@@ -1,32 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from "react-redux";
+import { getFriendRepos } from './lib/friend-repos';
+import { RECEIVE_REPOS } from './actions';
 
-const {app} = window.require('electron').remote;
 
-console.log(Object.keys(window.require('electron')));
+const Repos = ({ repos }) => (
+  <ul>
+    {repos.map(repo => <Repo repo={repo} key={repo.name} />)}
+  </ul>
+);
+
+const Repo = ({ repo }) => (
+  <li>{repo.name}</li>
+);
+
+// const {app} = window.require('electron').remote;
+
 
 class App extends Component {
+
+  async componentDidMount() {
+    const { repos, receiveRepos } = this.props;
+    if (repos.length === 0) {
+      const received = await getFriendRepos();
+      receiveRepos(received);
+    }
+  }
+
   render() {
+    const { repos } = this.props;
+    if (repos.length === 0) {
+      return null;
+    }
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Version: {app.getVersion()}
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Repos repos={repos} />
       </div>
     );
   }
 }
 
-export default App;
+const mapState = state => ({
+  repos: state.repos,
+});
+
+const mapDispatch = {
+  receiveRepos: RECEIVE_REPOS,
+};
+
+export default connect(mapState, mapDispatch)(App);

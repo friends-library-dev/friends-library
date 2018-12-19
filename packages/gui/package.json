@@ -5,12 +5,15 @@
   "main": "src/electron-main.js",
   "dependencies": {
     "concurrently": "^4.1.0",
+    "emotion": "^10.0.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-redux": "^6.0.0",
+    "react-scripts": "2.1.1",
+    "redux-starter-kit": "^0.2.0"
   },
   "scripts": {
-    "develop": "concurrently --kill-others \"yarn start\" \"sleep 5 && yarn electron\"",
+    "develop": "concurrently --kill-others \"yarn start\" \"wait-on http://localhost:3000 && yarn electron\"",
     "start": "SKIP_PREFLIGHT_CHECK=true BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -27,6 +30,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "electron": "^3.0.13"
+    "electron": "^3.0.13",
+    "wait-on": "^3.2.0"
   }
 }
