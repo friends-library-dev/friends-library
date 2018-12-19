@@ -5,9 +5,9 @@ const url = require('url');
 const fs = require('fs');
 const os = require('os');
 const logger = require('electron-timber');
+const isDev = require('electron-is-dev');
 const { execSync } = require('child_process');
 const { PATH_EN } = require('./lib/path');
-// const { getFriendRepos } = require('./lib/friend-repos');
 
 try {
   execSync('git --version');
@@ -40,7 +40,10 @@ function createMainWindow() {
   });
   mainWindow.loadURL(startUrl);
 
-  mainWindow.webContents.openDevTools();
+  if (isDev) {
+    BrowserWindow.addDevToolsExtension('/Users/jared/Library/Application Support/Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.17.0_0');
+    mainWindow.webContents.openDevTools();
+  }
 
   mainWindow.on('closed', () => {
     mainWindow = null
@@ -69,9 +72,22 @@ app.on('activate', () => {
   }
 });
 
+ipcMain.on('receive:friend', (_, friend, lang) => {
+  if (mainWindow) {
+    mainWindow.webContents.send('RECEIVE_FRIEND', friend, lang);
+  }
+});
+
 ipcMain.on('receive:repos', (_, repos) => {
   repos.forEach(repo => {
-    const repoPath = `${PATH_EN}/${repo.name}`;
-    workerWindow.webContents.send('update:repo', repoPath);
+    const slug = `en/${repo.name}`;
+    workerWindow.webContents.send('friend:get', slug);
   });
+
+  if (!isDev) {
+    repos.forEach(repo => {
+      const repoPath = `${PATH_EN}/${repo.name}`;
+      workerWindow.webContents.send('update:repo', repoPath);
+    });
+  }
 });

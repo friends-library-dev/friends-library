@@ -5,6 +5,7 @@
   "main": "src/electron-main.js",
   "dependencies": {
     "concurrently": "^4.1.0",
+    "electron-is-dev": "^1.0.1",
     "electron-timber": "^0.5.1",
     "emotion": "^10.0.5",
     "react": "^16.6.3",

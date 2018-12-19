@@ -1,23 +1,22 @@
 // @flow
 import * as React from 'react';
 import { connect } from "react-redux";
-import { getFriendRepos } from './lib/friend-repos';
-import { RECEIVE_REPOS } from './actions';
-import fs from 'fs';
 import AceEditor from 'react-ace';
-import brace from 'brace';
+import { getFriendRepos } from './lib/friend-repos';
+import { RECEIVE_REPOS, RECEIVE_FRIEND } from './actions';
+import { ipcRenderer } from './webpack-electron';
 import 'brace/mode/asciidoc';
 import 'brace/theme/solarized_dark';
 
 
 const Repos = ({ repos }) => (
   <ul>
-    {repos.map(repo => <Repo repo={repo} key={repo.name} />)}
+    {repos.map(repo => <Repo repo={repo} key={repo.slug} />)}
   </ul>
 );
 
 const Repo = ({ repo }) => (
-  <li>{repo.name}</li>
+  <li>{repo.slug}</li>
 );
 
 const adoc = `
@@ -33,15 +32,15 @@ exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 `.trim();
 
-const { ipcRenderer } = window.require('electron');
-
-// const pen = window.require('fs').readFileSync(`../friends/yml/en/isaac-penington.yml`);
-// console.log(pen.toString());
 
 class App extends React.Component<*> {
 
   async componentDidMount() {
-    const { repos, receiveRepos } = this.props;
+    const { repos, receiveRepos, receiveFriend } = this.props;
+    ipcRenderer.on('RECEIVE_FRIEND', (_, friend, lang) => {
+      receiveFriend({ friend, lang });
+    });
+
     if (repos.length === 0) {
       const received = await getFriendRepos();
       receiveRepos(received);
@@ -50,13 +49,13 @@ class App extends React.Component<*> {
   }
 
   render() {
-    const { repos } = this.props;
+    const { repos, friends } = this.props;
     if (repos.length === 0) {
       return null;
     }
     return (
       <div>
-        <AceEditor
+        { false && <AceEditor
           mode="asciidoc"
           theme="solarized_dark"
           name="blah2"
@@ -73,7 +72,7 @@ class App extends React.Component<*> {
           enableSnippets: false,
           showLineNumbers: true,
           tabSize: 2,
-          }}/>
+        }}/>}
         <Repos repos={repos} />
       </div>
     );
@@ -82,10 +81,12 @@ class App extends React.Component<*> {
 
 const mapState = state => ({
   repos: state.repos,
+  friends: state.friends,
 });
 
 const mapDispatch = {
   receiveRepos: RECEIVE_REPOS,
+  receiveFriend: RECEIVE_FRIEND,
 };
 
 export default connect(mapState, mapDispatch)(App);

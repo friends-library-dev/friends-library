@@ -5,6 +5,7 @@ import rootReducer from './reducers'
 export default configureStore({
   reducer: rootReducer,
   preloadedState: {
+    friends: {},
     repos: [],
   },
 });
