@@ -56,7 +56,8 @@
     "packages/cli",
     "packages/fell",
     "packages/styleguide",
-    "packages/mod"
+    "packages/mod",
+    "packages/gui"
   ],
   "jest": {
     "errorOnDeprecated": true,
