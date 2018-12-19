@@ -33,7 +33,7 @@ exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 `.trim();
 
-// const {app} = window.require('electron').remote;
+const { ipcRenderer } = window.require('electron');
 
 // const pen = window.require('fs').readFileSync(`../friends/yml/en/isaac-penington.yml`);
 // console.log(pen.toString());
@@ -45,6 +45,7 @@ class App extends React.Component<*> {
     if (repos.length === 0) {
       const received = await getFriendRepos();
       receiveRepos(received);
+      ipcRenderer.send('receive:repos', received);
     }
   }
 

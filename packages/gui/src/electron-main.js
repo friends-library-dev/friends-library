@@ -1,26 +1,32 @@
 // @flow
-const { app, BrowserWindow, dialog } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
 const os = require('os');
+const logger = require('electron-timber');
 const { execSync } = require('child_process');
+const { PATH_EN } = require('./lib/path');
+// const { getFriendRepos } = require('./lib/friend-repos');
 
 try {
   execSync('git --version');
 } catch (e) {
+  logger.error('git not installed');
   dialog.showErrorBox('Error: git is not installed.', '');
   app.quit();
 }
 
-if (!fs.existsSync(path.join(os.homedir(), 'fl', 'en'))) {
+if (!fs.existsSync(PATH_EN)) {
+  logger.error('bad repo path');
   dialog.showErrorBox('Error: doc repo path must be ~/fl/{en,es}/', '');
   app.quit();
 }
 
 let mainWindow;
+let workerWindow;
 
-function createWindow() {
+function createMainWindow() {
   mainWindow = new BrowserWindow({
     backgroundColor: '#282c34',
     width: 1600,
@@ -41,10 +47,14 @@ function createWindow() {
   })
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
+function createWorkerWindow() {
+  workerWindow = new BrowserWindow({ show: false });
+  workerWindow.loadFile('src/worker.html');
+  workerWindow.webContents.openDevTools();
+}
+
+app.on('ready', createWorkerWindow);
+app.on('ready', createMainWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -55,6 +65,13 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (mainWindow === null) {
-    createWindow()
+    createMainWindow()
   }
+});
+
+ipcMain.on('receive:repos', (_, repos) => {
+  repos.forEach(repo => {
+    const repoPath = `${PATH_EN}/${repo.name}`;
+    workerWindow.webContents.send('update:repo', repoPath);
+  });
 });
