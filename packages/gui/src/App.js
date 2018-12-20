@@ -1,37 +1,12 @@
 // @flow
 import * as React from 'react';
 import { connect } from "react-redux";
-import AceEditor from 'react-ace';
 import { getFriendRepos } from './lib/friend-repos';
-import { RECEIVE_REPOS, RECEIVE_FRIEND } from './actions';
+import { receiveRepos, receiveFriend } from './actions';
 import { ipcRenderer } from './webpack-electron';
-import 'brace/mode/asciidoc';
-import 'brace/theme/solarized_dark';
-
-
-const Repos = ({ repos }) => (
-  <ul>
-    {repos.map(repo => <Repo repo={repo} key={repo.slug} />)}
-  </ul>
-);
-
-const Repo = ({ repo }) => (
-  <li>{repo.slug}</li>
-);
-
-const adoc = `
-== Chapter 1
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-[.foo]
-* foo
-* bar
-
-`.trim();
-
+import * as screens from './screens';
+import Welcome from './components/Welcome';
+import EditTask from './components/EditTask';
 
 class App extends React.Component<*> {
 
@@ -48,32 +23,33 @@ class App extends React.Component<*> {
     }
   }
 
-  render() {
-    const { repos, friends } = this.props;
-    if (repos.length === 0) {
-      return null;
+  renderScreen() {
+    const { screen } = this.props;
+    switch (screen) {
+      case screens.WELCOME:
+        return <Welcome />;
+      case screens.EDIT_TASK:
+        return (<EditTask />);
+      default:
+        return null;
     }
+  }
+
+  render() {
     return (
       <div>
-        { false && <AceEditor
-          mode="asciidoc"
-          theme="solarized_dark"
-          name="blah2"
-          onLoad={() => {}}
-          onChange={(...args) => console.log(args)}
-          fontSize={14}
-          showPrintMargin={true}
-          showGutter={true}
-          highlightActiveLine={true}
-          value={adoc}
-          setOptions={{
-          enableBasicAutocompletion: false,
-          enableLiveAutocompletion: false,
-          enableSnippets: false,
-          showLineNumbers: true,
-          tabSize: 2,
-        }}/>}
-        <Repos repos={repos} />
+        {this.renderScreen()}
+        <span style={{
+          position: 'absolute',
+          bottom: 5,
+          left: 5,
+          cursor: 'pointer',
+        }} onClick={() => {
+          try {
+            sessionStorage.removeItem('state');
+            window.location.reload();
+          } catch (e) {}
+        }}>RESET</span>
       </div>
     );
   }
@@ -81,12 +57,12 @@ class App extends React.Component<*> {
 
 const mapState = state => ({
   repos: state.repos,
-  friends: state.friends,
+  screen: state.screen,
 });
 
 const mapDispatch = {
-  receiveRepos: RECEIVE_REPOS,
-  receiveFriend: RECEIVE_FRIEND,
+  receiveRepos,
+  receiveFriend,
 };
 
 export default connect(mapState, mapDispatch)(App);

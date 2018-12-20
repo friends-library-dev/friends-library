@@ -8,7 +8,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 render(
-  <Provider store={store}>
+  <Provider store={store()}>
     <App />
   </Provider>,
   // $FlowFixMe
