@@ -5,6 +5,7 @@ import * as screens from './screens';
 export default {
   screen: createReducer(screens.WELCOME, {
     CHANGE_SCREEN: (state, action) => action.payload,
+    WORK_ON_TASK: () => screens.WORK,
   }),
   currentTask: createReducer(null, {
     CREATE_TASK: (state, action) => {
@@ -21,6 +22,9 @@ export default {
         return null;
       }
       return state;
+    },
+    WORK_ON_TASK: (state, { payload }) => {
+      return payload;
     }
   }),
   tasks: createReducer([], {
@@ -52,6 +56,15 @@ export default {
     RECEIVE_FRIEND: (state, action) => {
       const { payload: { friend, lang } } = action;
       state[`${lang}/${friend.slug}`] = friend;
+    },
+    RECEIVE_REPO_FILES: (state, action) => {
+      const { payload: { friendSlug, files } } = action;
+      state[`en/${friendSlug}`].files = files;
+    },
+    RECEIVE_FILE_CONTENT: (state, action) => {
+      const { payload: { friendSlug, fullPath, content } } = action;
+      const file = state[`en/${friendSlug}`].files.find(f => f.fullPath === fullPath);
+      file.content = content;
     }
   }),
   repos: createReducer([], {

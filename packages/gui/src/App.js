@@ -7,6 +7,7 @@ import { ipcRenderer } from './webpack-electron';
 import * as screens from './screens';
 import Welcome from './components/Welcome';
 import EditTask from './components/EditTask';
+import Work from './components/Work';
 
 class App extends React.Component<*> {
 
@@ -30,6 +31,8 @@ class App extends React.Component<*> {
         return <Welcome />;
       case screens.EDIT_TASK:
         return (<EditTask />);
+      case screens.WORK:
+        return (<Work />);
       default:
         return null;
     }

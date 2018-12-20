@@ -1,7 +1,10 @@
 const { safeLoad } = require('js-yaml');
+const { sync: glob } = require('glob');
+const fs = require('fs');
 const { ipcRenderer } = require('electron');
 const logger = require('electron-timber');
 const { updateRepo } = require('./lib/git');
+const { PATH_EN } = require('./lib/path');
 
 ipcRenderer.on('friend:get', (_, slug) => {
   const baseUrl = 'https://raw.githubusercontent.com/friends-library/friends-library/master/packages/friends/yml';
@@ -13,6 +16,20 @@ ipcRenderer.on('friend:get', (_, slug) => {
 });
 
 ipcRenderer.on('update:repo', (_, repoPath) => {
-  logger.log(`update:repo ${repoPath}`);
   updateRepo(repoPath);
+});
+
+ipcRenderer.on('request:files', (_, friendSlug) => {
+  const files = glob(`${PATH_EN}/${friendSlug}/**/*.adoc`)
+    .map(file => ({
+      fullPath: file,
+      relPath: file.replace(`${PATH_EN}/${friendSlug}/`, ''),
+      content: null,
+    }));
+  ipcRenderer.send('receive:files', friendSlug, files);
+});
+
+ipcRenderer.on('request:filecontent', (_, path) => {
+  const content = fs.readFileSync(path).toString();
+  ipcRenderer.send('receive:filecontent', path, content);
 });

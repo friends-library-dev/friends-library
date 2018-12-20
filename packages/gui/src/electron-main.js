@@ -29,8 +29,8 @@ let workerWindow;
 function createMainWindow() {
   mainWindow = new BrowserWindow({
     backgroundColor: '#282c34',
-    width: 1600,
-    height: 800,
+    width: 1123,
+    height: 1411,
   });
 
   const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -71,6 +71,28 @@ app.on('activate', () => {
     createMainWindow()
   }
 });
+
+ipcMain.on('request:files', (_, friendSlug) => {
+  workerWindow.webContents.send('request:files', friendSlug);
+});
+
+ipcMain.on('receive:files', (_, friendSlug, files) => {
+  if (mainWindow) {
+    mainWindow.webContents.send('RECEIVE_REPO_FILES', friendSlug, files);
+  }
+});
+
+
+ipcMain.on('request:filecontent', (_, path) => {
+  workerWindow.webContents.send('request:filecontent', path);
+});
+
+ipcMain.on('receive:filecontent', (_, path, content) => {
+  if (mainWindow) {
+    mainWindow.webContents.send('RECEIVE_FILE_CONTENT', path, content);
+  }
+});
+
 
 ipcMain.on('receive:friend', (_, friend, lang) => {
   if (mainWindow) {

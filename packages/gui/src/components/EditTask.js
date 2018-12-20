@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import { updateTask, changeScreen, deleteTask } from '../actions';
 import * as screens from '../screens';
+import Button from './Button';
+import Heading from './Heading';
 
 const FriendList = styled.ul`
-  margin: 0;
+  margin: 0 0 50px 0;
   padding: 0;
   & li {
     display: inline-block;
@@ -39,24 +41,6 @@ const Input = styled.input`
   width: 500px;
 `;
 
-const Heading = styled.h3`
-  color: #61afef;
-  margin-bottom: 12px;
-  margin-top: 35px;
-`;
-
-const Button = styled.span`
-  opacity: ${(props) => props.disabled ? 0.15 : 1};
-  cursor: ${(props) => props.disabled ? 'not-allowed' : 'pointer'};
-  display: inline-block;
-  width: 190px;
-  height: 50px;
-  background: #666;
-  margin: 50px 20px 0 0;
-  text-align: center;
-  line-height: 50px;
-`;
-
 class EditTask extends React.Component<*, *> {
 
   constructor(props) {
@@ -67,9 +51,30 @@ class EditTask extends React.Component<*, *> {
     };
   }
 
+  clickSave = () => {
+    const { name, repo } = this.state;
+    const { updateTask, goToWelcome, task } = this.props;
+    if (!repo || !name.trim()) {
+      return;
+    }
+    updateTask({
+      id: task.id,
+      data: { name, repo, isNew: false }
+    });
+    goToWelcome();
+  }
+
+  clickCancel = () => {
+    const { deleteTask, goToWelcome, task } = this.props;
+    if (task.isNew) {
+      deleteTask(task.id);
+    }
+    goToWelcome();
+  }
+
   render() {
     const { name, repo } = this.state;
-    const { task, friends, updateTask, changeScreen, deleteTask } = this.props;
+    const { task, friends } = this.props;
     return (
       <div>
         <h1>{task.isNew ? 'Create' : 'Edit'} Task:</h1>
@@ -91,34 +96,10 @@ class EditTask extends React.Component<*, *> {
             </li>
           ))}
         </FriendList>
-        <Button
-          onClick={() => {
-            if (task.isNew) {
-              deleteTask(task.id);
-            }
-            changeScreen(screens.WELCOME);
-          }}
-        >
+        <Button secondary={true} onClick={this.clickCancel}>
           Cancel
         </Button>
-        <Button
-          disabled={!repo || !name.trim()}
-          style={{ background: '#61afef'}}
-          onClick={() => {
-            if (!repo || !name.trim()) {
-              return;
-            }
-            updateTask({
-              id: task.id,
-              data: {
-                name,
-                repo,
-                isNew: false,
-              }
-            });
-            changeScreen(screens.WELCOME);
-          }}
-        >
+        <Button disabled={!repo || !name.trim()} onClick={this.clickSave}>
           Save
         </Button>
       </div>
@@ -133,7 +114,7 @@ const mapState = state => ({
 
 const mapDispatch = {
   updateTask,
-  changeScreen,
+  goToWelcome: () => changeScreen(screens.WELCOME),
   deleteTask,
 };
 

@@ -4,22 +4,24 @@ import { connect } from 'react-redux';
 import uuid from 'uuid';
 import { changeScreen, createTask } from '../actions';
 import * as screens from '../screens';
+import Button from './Button';
+import Heading from './Heading';
+import TaskList from './TaskList';
 
 const Welcome = ({ tasks, changeScreen, createTask }) => (
   <div>
     <h1>Welcome!</h1>
-    <p>You have {tasks.length} tasks!</p>
-    <button onClick={() => {
-      const taskId = uuid.v4();
-      createTask({ taskId });
+    <Heading>You have {tasks.length} task{tasks.length === 1 ? '' : 's'}:</Heading>
+    <TaskList />
+    <Button onClick={() => {
+      createTask({ taskId: uuid.v4() });
       changeScreen(screens.EDIT_TASK);
-    }}>Create a task</button>
+    }}>Create a task</Button>
   </div>
 );
 
 const mapState = state => ({
   tasks: state.tasks,
-  currentTask: state.currentTask,
 });
 
 const mapDispatch = {
