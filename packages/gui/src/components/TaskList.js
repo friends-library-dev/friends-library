@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import { workOnTask } from '../actions';
+import { workOnTask } from '../redux/actions';
 
 const List = styled.ul`
   margin: 45px 0;
@@ -61,7 +61,7 @@ const TaskList = ({ tasks, friends, workOnTask }) => {
 
 const mapState = state => ({
   friends: state.friends,
-  tasks: state.tasks,
+  tasks: Object.values(state.tasks),
 });
 
 const mapDispatch = {

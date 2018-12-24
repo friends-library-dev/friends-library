@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import AceEditor from 'react-ace';
 import { ipcRenderer } from '../webpack-electron';
-import * as actions from '../actions';
+import * as actions from '../redux/actions';
+import 'brace/ext/searchbox';
 import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
 
@@ -51,19 +52,21 @@ const File = styled.li`
 
 class Work extends React.Component<*, *> {
 
-  state = {
-    selectedFile: null,
-  };
+  // state = {
+  //   selectedFile: null,
+  // };
 
   componentDidMount() {
-    const { selectedFile } = this.state;
+    // const { selectedFile } = this.state;
     const { receiveRepoFiles, receiveFileContent, friend } = this.props;
-    if (!friend.files) {
+    if (!friend.filesReceived) {
       ipcRenderer.send('request:files', friend.slug);
     }
+
     ipcRenderer.on('RECEIVE_REPO_FILES', (_, friendSlug, files) => {
       receiveRepoFiles({ friendSlug, files });
     });
+
     ipcRenderer.on('RECEIVE_FILE_CONTENT', (_, fullPath, content) => {
       receiveFileContent({
         friendSlug: friend.slug,
@@ -73,19 +76,18 @@ class Work extends React.Component<*, *> {
     });
   }
 
-  selectFile(relPath) {
-    const { friend } = this.props;
-    const file = friend.files.find(f => f.relPath === relPath);
-    this.setState({ selectedFile: file });
-    if (file.content === null) {
-      console.log('request the file content! for:', file.fullPath);
-      ipcRenderer.send('request:filecontent', file.fullPath);
-    }
-  }
+  // selectFile(relPath) {
+  //   const { friend } = this.props;
+  //   const file = friend.files.find(f => f.relPath === relPath);
+  //   this.setState({ selectedFile: file });
+  //   if (file.content === null) {
+  //     ipcRenderer.send('request:filecontent', file.fullPath);
+  //   }
+  // }
 
   renderFiles() {
     const { friend } = this.props;
-    if (!friend.files) {
+    if (!friend.filesReceived) {
       return (
         <Loading>
           Loading...
@@ -94,18 +96,18 @@ class Work extends React.Component<*, *> {
     }
     return (
       <ul style={{ padding: 0 }}>
-        {friend.files.map(({ relPath }) => (
+        {/* {friend.files.map(({ relPath }) => (
           <File onClick={() => this.selectFile(relPath)} key={relPath}>
             {relPath}
           </File>
-        ))}
+        ))} */}
+        <li> the files will be here ¯\_(ツ)_/¯</li>
       </ul>
     )
   }
 
   render() {
-    const { selectedFile } = this.state;
-    console.log(selectedFile);
+    // const { selectedFile } = this.state;
     return (
       <Wrap>
         <Sidebar>
@@ -116,7 +118,8 @@ class Work extends React.Component<*, *> {
             mode="asciidoc"
             theme="tomorrow_night"
             onChange={() => {}}
-            value={selectedFile && selectedFile.content ? selectedFile.content : ''}
+            // value={selectedFile && selectedFile.content ? selectedFile.content : ''}
+            value="== lol rofl"
             editorProps={{$blockScrolling: true}}
           />
         </EditorPane>
@@ -126,7 +129,7 @@ class Work extends React.Component<*, *> {
 };
 
 const mapState = state => {
-  const task = state.tasks.find(({ id }) => id === state.currentTask);
+  const task = state.tasks[state.currentTask];
   return {
     friend: state.friends[`en/${task.repo}`],
     task,

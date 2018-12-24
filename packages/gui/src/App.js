@@ -2,9 +2,9 @@
 import * as React from 'react';
 import { connect } from "react-redux";
 import { getFriendRepos } from './lib/friend-repos';
-import { receiveRepos, receiveFriend } from './actions';
+import { receiveRepos, receiveFriend } from './redux/actions';
 import { ipcRenderer } from './webpack-electron';
-import * as screens from './screens';
+import * as screens from './redux/screens';
 import Welcome from './components/Welcome';
 import EditTask from './components/EditTask';
 import Work from './components/Work';
@@ -49,7 +49,7 @@ class App extends React.Component<*> {
           cursor: 'pointer',
         }} onClick={() => {
           try {
-            sessionStorage.removeItem('state');
+            localStorage.removeItem('state');
             window.location.reload();
           } catch (e) {}
         }}>RESET</span>
@@ -59,7 +59,7 @@ class App extends React.Component<*> {
 }
 
 const mapState = state => ({
-  repos: state.repos,
+  repos: Object.values(state.repos),
   screen: state.screen,
 });
 

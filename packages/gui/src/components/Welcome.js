@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
-import { changeScreen, createTask } from '../actions';
-import * as screens from '../screens';
+import { changeScreen, createTask } from '../redux/actions';
+import * as screens from '../redux/screens';
 import Button from './Button';
 import Heading from './Heading';
 import TaskList from './TaskList';
@@ -21,7 +21,7 @@ const Welcome = ({ tasks, changeScreen, createTask }) => (
 );
 
 const mapState = state => ({
-  tasks: state.tasks,
+  tasks: Object.values(state.tasks),
 });
 
 const mapDispatch = {

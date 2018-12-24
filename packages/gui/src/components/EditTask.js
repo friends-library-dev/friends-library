@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import { updateTask, changeScreen, deleteTask } from '../actions';
-import * as screens from '../screens';
+import { updateTask, changeScreen, deleteTask } from '../redux/actions';
+import * as screens from '../redux/screens';
 import Button from './Button';
 import Heading from './Heading';
 
@@ -109,7 +109,7 @@ class EditTask extends React.Component<*, *> {
 
 const mapState = state => ({
   friends: Object.values(state.friends),
-  task: state.tasks.find(({ id }) => id === state.currentTask),
+  task: state.tasks[state.currentTask],
 });
 
 const mapDispatch = {

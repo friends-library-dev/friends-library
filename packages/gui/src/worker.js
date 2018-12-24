@@ -24,7 +24,6 @@ ipcRenderer.on('request:files', (_, friendSlug) => {
     .map(file => ({
       fullPath: file,
       relPath: file.replace(`${PATH_EN}/${friendSlug}/`, ''),
-      content: null,
     }));
   ipcRenderer.send('receive:files', friendSlug, files);
 });

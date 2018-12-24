@@ -5,7 +5,7 @@ import * as screens from './screens';
 
 const loadState = () => {
   try {
-    const serializedState = sessionStorage.getItem('state');
+    const serializedState = localStorage.getItem('state');
     if (serializedState == null) {
       return undefined;
     }
@@ -18,10 +18,8 @@ const loadState = () => {
 const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
-    sessionStorage.setItem('state', serializedState);
-  } catch (err) {
-    // Ignore write errors.
-  }
+    localStorage.setItem('state', serializedState);
+  } catch (err) {}
 };
 
 export default function() {
@@ -30,9 +28,9 @@ export default function() {
     preloadedState: loadState() || {
       screen: screens.WELCOME,
       currentTask: null,
-      tasks: [],
+      tasks: {},
       friends: {},
-      repos: [],
+      repos: {},
     },
   });
 

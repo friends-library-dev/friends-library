@@ -4,6 +4,7 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs');
 const os = require('os');
+const devtron = require('devtron');
 const logger = require('electron-timber');
 const isDev = require('electron-is-dev');
 const { execSync } = require('child_process');
@@ -56,8 +57,9 @@ function createWorkerWindow() {
   workerWindow.webContents.openDevTools();
 }
 
-app.on('ready', createWorkerWindow);
 app.on('ready', createMainWindow);
+app.on('ready', createWorkerWindow);
+app.on('ready', () => devtron.install() );
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -73,6 +75,7 @@ app.on('activate', () => {
 });
 
 ipcMain.on('request:files', (_, friendSlug) => {
+  console.log(`MAIN will send along the files for ${friendSlug}`)
   workerWindow.webContents.send('request:files', friendSlug);
 });
 
@@ -101,7 +104,7 @@ ipcMain.on('receive:friend', (_, friend, lang) => {
 });
 
 ipcMain.on('receive:repos', (_, repos) => {
-  repos.forEach(repo => {
+  [repos[0]].forEach(repo => {
     const slug = `en/${repo.name}`;
     workerWindow.webContents.send('friend:get', slug);
   });
