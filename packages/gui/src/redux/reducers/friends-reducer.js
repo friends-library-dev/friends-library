@@ -1,6 +1,6 @@
 // @flow
 import { createReducer } from 'redux-starter-kit'
-import { get, set } from 'lodash';
+import { get } from 'lodash';
 
 export default createReducer({}, {
   RECEIVE_FRIEND: (state, action) => {
@@ -42,8 +42,18 @@ export default createReducer({}, {
     });
   },
   RECEIVE_FILE_CONTENT: (state, action) => {
-    const { payload: { friendSlug, fullPath, content } } = action;
-    const file = state[`en/${friendSlug}`].files.find(f => f.fullPath === fullPath);
+    console.log('RECEIVE_FILE_CONTENT reducer!');
+    const { payload: {
+      lang,
+      friendSlug,
+      documentSlug,
+      editionType,
+      filename,
+      content,
+    } } = action;
+    const document = state[`${lang}/${friendSlug}`].documents[documentSlug];
+    const file = document.editions[editionType].files[filename];
     file.content = content;
+    console.log(file, content);
   }
 });

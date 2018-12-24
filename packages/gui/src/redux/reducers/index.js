@@ -4,6 +4,7 @@ import currentTask from './current-task-reducer';
 import tasks from './tasks-reducer';
 import friends from './friends-reducer';
 import repos from './repos-reducer';
+import editingFile from './editing-file-reducer';
 
 export default {
   screen,
@@ -11,4 +12,5 @@ export default {
   tasks,
   friends,
   repos,
+  editingFile,
 };

@@ -2,12 +2,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import AceEditor from 'react-ace';
 import { ipcRenderer } from '../webpack-electron';
 import * as actions from '../redux/actions';
-import 'brace/ext/searchbox';
-import 'brace/mode/asciidoc';
-import 'brace/theme/tomorrow_night';
+import FriendFiles from './FriendFiles';
+import Editor from './Editor';
+
 
 const Wrap = styled.div`
   display: flex;
@@ -22,42 +21,15 @@ const Sidebar = styled.div`
 `;
 
 const EditorPane = styled.div`
-  background: #555;
   flex: 2 0 0;
-
-  & .ace_editor {
-    width: 100% !important;
-    height: 100% !important;
-  }
 `;
 
-const Loading = styled.h1`
-  text-align: center;
-  line-height: calc(100vh - 30px);
-  opacity: 0.3;
-`;
 
-const File = styled.li`
-  list-style: none;
-  padding: 0.5em;
-  padding-left: 2.5em;
-  font-family: monospace;
-  font-size: 12px;
-  cursor: pointer;
-  &:hover {
-    background: #232323;
-  }
-`;
 
 
 class Work extends React.Component<*, *> {
 
-  // state = {
-  //   selectedFile: null,
-  // };
-
   componentDidMount() {
-    // const { selectedFile } = this.state;
     const { receiveRepoFiles, receiveFileContent, friend } = this.props;
     if (!friend.filesReceived) {
       ipcRenderer.send('request:files', friend.slug);
@@ -66,62 +38,17 @@ class Work extends React.Component<*, *> {
     ipcRenderer.on('RECEIVE_REPO_FILES', (_, friendSlug, files) => {
       receiveRepoFiles({ friendSlug, files });
     });
-
-    ipcRenderer.on('RECEIVE_FILE_CONTENT', (_, fullPath, content) => {
-      receiveFileContent({
-        friendSlug: friend.slug,
-        fullPath,
-        content,
-      });
-    });
-  }
-
-  // selectFile(relPath) {
-  //   const { friend } = this.props;
-  //   const file = friend.files.find(f => f.relPath === relPath);
-  //   this.setState({ selectedFile: file });
-  //   if (file.content === null) {
-  //     ipcRenderer.send('request:filecontent', file.fullPath);
-  //   }
-  // }
-
-  renderFiles() {
-    const { friend } = this.props;
-    if (!friend.filesReceived) {
-      return (
-        <Loading>
-          Loading...
-        </Loading>
-      );
-    }
-    return (
-      <ul style={{ padding: 0 }}>
-        {/* {friend.files.map(({ relPath }) => (
-          <File onClick={() => this.selectFile(relPath)} key={relPath}>
-            {relPath}
-          </File>
-        ))} */}
-        <li> the files will be here ¯\_(ツ)_/¯</li>
-      </ul>
-    )
   }
 
   render() {
-    // const { selectedFile } = this.state;
+    const { friend } = this.props;
     return (
       <Wrap>
         <Sidebar>
-          {this.renderFiles()}
+          <FriendFiles friend={friend} />
         </Sidebar>
         <EditorPane>
-          <AceEditor
-            mode="asciidoc"
-            theme="tomorrow_night"
-            onChange={() => {}}
-            // value={selectedFile && selectedFile.content ? selectedFile.content : ''}
-            value="== lol rofl"
-            editorProps={{$blockScrolling: true}}
-          />
+          <Editor />
         </EditorPane>
       </Wrap>
     );

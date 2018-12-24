@@ -10,3 +10,4 @@ export const deleteTask = createAction('DELETE_TASK');
 export const workOnTask = createAction('WORK_ON_TASK');
 export const receiveRepoFiles = createAction('RECEIVE_REPO_FILES');
 export const receiveFileContent = createAction('RECEIVE_FILE_CONTENT');
+export const setEditingFile = createAction('SET_EDITING_FILE');

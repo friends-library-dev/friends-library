@@ -28,6 +28,7 @@ export default function() {
     preloadedState: loadState() || {
       screen: screens.WELCOME,
       currentTask: null,
+      editingFile: null,
       tasks: {},
       friends: {},
       repos: {},
