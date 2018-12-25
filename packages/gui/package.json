@@ -2,7 +2,10 @@
   "name": "@friends-library/gui",
   "version": "1.0.0",
   "private": true,
-  "main": "src/electron-main.js",
+  "main": "public/electron.js",
+  "description": "gui for Friends Library asciidoc work",
+  "author": "jared@netrivet.com",
+  "homepage": "./",
   "dependencies": {
     "concurrently": "^4.1.0",
     "electron-is-dev": "^1.0.1",
@@ -19,13 +22,31 @@
   "scripts": {
     "develop": "concurrently --kill-others \"yarn start\" \"wait-on http://localhost:3000 && yarn electron\"",
     "start": "SKIP_PREFLIGHT_CHECK=true BROWSER=none react-scripts start",
-    "build": "react-scripts build",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true ELECTRON_START_URL=http://localhost:3000 electron ."
+    "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true ELECTRON_START_URL=http://localhost:3000 electron .",
+    "package": "yarn build && yarn electron-builder"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "build": {
+    "extends": null,
+    "asar": false,
+    "extraMetadata": {
+      "main": "build/electron.js"
+    },
+    "productName": "Friends Library GUI",
+    "appId": "com.e.ectron.friends-library/gui",
+    "mac": {
+      "category": "your.app.category.type",
+      "target": ["dmg"]
+    },
+    "files": [
+      "build/**/*",
+      "src/**/*"
+    ]
   },
   "browserslist": [
     ">0.2%",
@@ -36,6 +57,7 @@
   "devDependencies": {
     "devtron": "^1.4.0",
     "electron": "^3.0.13",
+    "electron-builder": "^20.38.4",
     "wait-on": "^3.2.0"
   }
 }

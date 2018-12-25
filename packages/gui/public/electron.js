@@ -4,11 +4,10 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs');
 const os = require('os');
-const devtron = require('devtron');
 const logger = require('electron-timber');
 const isDev = require('electron-is-dev');
 const { execSync } = require('child_process');
-const { PATH_EN } = require('./lib/path');
+const { PATH_EN } = require('../src/lib/path');
 
 try {
   execSync('git --version');
@@ -43,8 +42,8 @@ function createMainWindow() {
 
   if (isDev) {
     BrowserWindow.addDevToolsExtension('/Users/jared/Library/Application Support/Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.17.0_0');
-    mainWindow.webContents.openDevTools();
   }
+  mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', () => {
     mainWindow = null
@@ -59,7 +58,10 @@ function createWorkerWindow() {
 
 app.on('ready', createMainWindow);
 app.on('ready', createWorkerWindow);
-app.on('ready', () => devtron.install() );
+
+if (isDev) {
+  app.on('ready', () => require('devtron').install());
+}
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
