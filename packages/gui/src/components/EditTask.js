@@ -27,7 +27,7 @@ const FriendList = styled.ul`
     }
 
     &.selected {
-      background: #61afef;
+      background: var(--accent);
       color: black;
       cursor: default;
     }

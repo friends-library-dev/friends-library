@@ -1,3 +1,7 @@
+:root {
+  --accent: #61afef;
+}
+
 body {
   margin: 0;
   padding: 1em 2em;

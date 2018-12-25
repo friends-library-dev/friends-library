@@ -75,7 +75,6 @@ app.on('activate', () => {
 });
 
 ipcMain.on('request:files', (_, friendSlug) => {
-  console.log(`MAIN will send along the files for ${friendSlug}`)
   workerWindow.webContents.send('request:files', friendSlug);
 });
 
@@ -104,7 +103,7 @@ ipcMain.on('receive:friend', (_, friend, lang) => {
 });
 
 ipcMain.on('receive:repos', (_, repos) => {
-  [repos[0]].forEach(repo => {
+  repos.forEach(repo => {
     const slug = `en/${repo.name}`;
     workerWindow.webContents.send('friend:get', slug);
   });

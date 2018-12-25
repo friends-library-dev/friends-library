@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 import styled from '@emotion/styled';
-import type { Friend } from '../redux/type';
+import type { Friend, EditingFile, Dispatch } from '../redux/type';
 import { values } from './utils';
 import * as actions from '../redux/actions';
 
@@ -36,12 +37,33 @@ const EditionLi = styled.li`
   }
 `;
 
+const Filename = styled.li`
+  margin: 5px;
+  & code {
+    font-size: 13px;
+    cursor: pointer;
+    padding: 2px 8px;
+    background: #232323;
+    &:hover {
+      background: #000;
+    }
+  }
+  &.editing {
+    & code {
+      color: #000;
+      cursor: default;
+      background: var(--accent);
+    }
+  }
+`;
+
 type Props = {|
   friend: Friend,
-  selectFile: (any) => *,
+  editingFile: EditingFile,
+  selectFile: Dispatch,
 |};
 
-const FriendFiles = ({ friend, selectFile }: Props) => {
+const FriendFiles = ({ friend, selectFile, editingFile }: Props) => {
   if (!friend.filesReceived) {
     return (<Loading>Loading...</Loading>);
   }
@@ -56,17 +78,25 @@ const FriendFiles = ({ friend, selectFile }: Props) => {
                 <i className="far fa-bookmark" />
                 <span className="edition-type">{edition.type}</span> edition:
                 <ul>
-                  {values(edition.files).map(file => (
-                    <li key={file.filename} onClick={() => selectFile({
+                  {values(edition.files).map(({ filename }) => {
+                    const file = {
                       lang: 'en',
                       friend: friend.slug,
                       document: document.slug,
                       edition: edition.type,
-                      filename: file.filename,
-                    })}>
-                      <code>{file.filename}</code>
-                    </li>
-                  ))}
+                      filename: filename,
+                    };
+                    const editing = isEqual(file, editingFile);
+                    console.log(editing);
+                    return (
+                      <Filename
+                        key={filename}
+                        onClick={() => selectFile(file)}
+                        className={editing ? 'editing' : ''}>
+                        <code>{filename}</code>
+                      </Filename>
+                    );
+                  })}
                 </ul>
               </EditionLi>
             ))}
@@ -77,8 +107,12 @@ const FriendFiles = ({ friend, selectFile }: Props) => {
   )
 }
 
+const mapState = state => ({
+  editingFile: state.editingFile,
+});
+
 const mapDispatch = {
   selectFile: actions.setEditingFile,
 };
 
-export default connect(null, mapDispatch)(FriendFiles);
+export default connect(mapState, mapDispatch)(FriendFiles);
