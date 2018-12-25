@@ -4,12 +4,21 @@ import { connect } from "react-redux";
 import { getFriendRepos } from './lib/friend-repos';
 import { receiveRepos, receiveFriend } from './redux/actions';
 import { ipcRenderer } from './webpack-electron';
+import type { Repos, Dispatch } from './redux/type';
 import * as screens from './redux/screens';
 import Welcome from './components/Welcome';
 import EditTask from './components/EditTask';
 import Work from './components/Work';
+import { values } from './components/utils';
 
-class App extends React.Component<*> {
+type Props = {|
+  screen: string,
+  repos: Repos,
+  receiveRepos: Dispatch,
+  receiveFriend: Dispatch,
+|};
+
+class App extends React.Component<Props> {
 
   async componentDidMount() {
     const { repos, receiveRepos, receiveFriend } = this.props;
@@ -59,7 +68,7 @@ class App extends React.Component<*> {
 }
 
 const mapState = state => ({
-  repos: Object.values(state.repos),
+  repos: values(state.repos),
   screen: state.screen,
 });
 

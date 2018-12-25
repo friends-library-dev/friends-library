@@ -2,6 +2,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
+import type { Friend, Task, Dispatch } from '../redux/type';
+import { values } from './utils';
 import { updateTask, changeScreen, deleteTask } from '../redux/actions';
 import * as screens from '../redux/screens';
 import Button from './Button';
@@ -41,7 +43,20 @@ const Input = styled.input`
   width: 500px;
 `;
 
-class EditTask extends React.Component<*, *> {
+type Props = {|
+  friends: Array<Friend>,
+  task: Task,
+  updateTask: Dispatch,
+  goToWelcome: Dispatch,
+  deleteTask: Dispatch,
+|};
+
+type State = {|
+  name: string,
+  repo: string,
+|};
+
+class EditTask extends React.Component<Props, State> {
 
   constructor(props) {
     super(props);
@@ -108,7 +123,7 @@ class EditTask extends React.Component<*, *> {
 }
 
 const mapState = state => ({
-  friends: Object.values(state.friends),
+  friends: values(state.friends),
   task: state.tasks[state.currentTask],
 });
 

@@ -30,14 +30,14 @@ type Props = {|
 class Editor extends React.Component<Props> {
 
   componentDidMount() {
-    this.requestFile();
+    this.maybeRequestFileContent();
   }
 
   componentDidUpdate() {
-    this.requestFile();
+    this.maybeRequestFileContent();
   }
 
-  requestFile() {
+  maybeRequestFileContent() {
     const { filepath, content, receiveFileContent } = this.props;
     if (null === content) {
       ipcRenderer.send('request:filecontent', filepath);

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import { ipcRenderer } from '../webpack-electron';
+import type { Task, Friend, Dispatch } from '../redux/type';
 import * as actions from '../redux/actions';
 import FriendFiles from './FriendFiles';
 import Editor from './Editor';
@@ -24,10 +25,14 @@ const EditorPane = styled.div`
   flex: 2 0 0;
 `;
 
+type Props = {|
+  task: Task,
+  friend: Friend,
+  receiveRepoFiles: Dispatch,
+  receiveFileContent: Dispatch,
+|};
 
-
-
-class Work extends React.Component<*, *> {
+class Work extends React.Component<Props> {
 
   componentDidMount() {
     const { receiveRepoFiles, receiveFileContent, friend } = this.props;

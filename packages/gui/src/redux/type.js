@@ -1,4 +1,7 @@
 // @flow
+import type { Slug, Title, Uuid, Name } from '../../../../type';
+
+export type Dispatch = (any) => *;
 
 export type File = {|
   filename: string,
@@ -20,8 +23,8 @@ export type Editions = {
 };
 
 export type Document = {|
-  slug: string,
-  title: string,
+  slug: Slug,
+  title: Title,
   editions: Editions,
 |};
 
@@ -32,5 +35,21 @@ export type Documents = {|
 export type Friend = {|
   filesReceived: boolean,
   documents: Documents,
-  slug: string,
+  slug: Slug,
+  name: Name,
+|};
+
+export type Repo = {
+  slug: Slug,
+};
+
+export type Repos = {
+  [string]: Repo,
+};
+
+export type Task = {|
+  id: Uuid,
+  name: string,
+  repo: Slug,
+  isNew: boolean,
 |};
