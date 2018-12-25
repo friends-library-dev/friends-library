@@ -42,7 +42,6 @@ export default createReducer({}, {
     });
   },
   RECEIVE_FILE_CONTENT: (state, action) => {
-    console.log('RECEIVE_FILE_CONTENT reducer!');
     const { payload: {
       lang,
       friendSlug,
@@ -54,6 +53,5 @@ export default createReducer({}, {
     const document = state[`${lang}/${friendSlug}`].documents[documentSlug];
     const file = document.editions[editionType].files[filename];
     file.content = content;
-    console.log(file, content);
   }
 });

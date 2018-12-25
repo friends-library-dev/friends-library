@@ -29,13 +29,12 @@ type Props = {|
   task: Task,
   friend: Friend,
   receiveRepoFiles: Dispatch,
-  receiveFileContent: Dispatch,
 |};
 
 class Work extends React.Component<Props> {
 
   componentDidMount() {
-    const { receiveRepoFiles, receiveFileContent, friend } = this.props;
+    const { receiveRepoFiles, friend } = this.props;
     if (!friend.filesReceived) {
       ipcRenderer.send('request:files', friend.slug);
     }
@@ -70,7 +69,6 @@ const mapState = state => {
 
 const mapDispatch = {
   receiveRepoFiles: actions.receiveRepoFiles,
-  receiveFileContent: actions.receiveFileContent,
 };
 
 export default connect(mapState, mapDispatch)(Work);
