@@ -1,7 +1,14 @@
+const path = require('path');
+const logger = require('electron-timber');
 const { execSync } = require('child_process');
+const { existsSync } = require('fs');
 const { PATH_EN } = require('./path');
 
-function updateRepo(repoDir) {
+function updateRepo(repo) {
+  const repoDir = `${PATH_EN}/${repo.name}`;
+  if (!existsSync(repoDir)) {
+    cmd(`git clone ${repo.ssh_url}`, path.dirname(repoDir));
+  }
   if (isStatusClean(repoDir) && getBranch(repoDir) === 'master') {
     cmd('git pull --rebase origin master', repoDir, true);
   }
@@ -21,7 +28,7 @@ function getBranch(repoDir) {
 
 function cmd(command, repoDir, log) {
   if (log) {
-    console.log(`${repoDir}: ${command}`);
+    logger.log(`${repoDir}: ${command}`);
   }
   return execSync(`cd ${repoDir} && ${command}`, { stdio: 'ignore' }).toString();
 }

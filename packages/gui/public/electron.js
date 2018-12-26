@@ -53,7 +53,9 @@ function createMainWindow() {
 function createWorkerWindow() {
   workerWindow = new BrowserWindow({ show: false });
   workerWindow.loadFile('src/worker.html');
-  workerWindow.webContents.openDevTools();
+  if (isDev) {
+    workerWindow.webContents.openDevTools();
+  }
 }
 
 app.on('ready', createMainWindow);
@@ -110,10 +112,9 @@ ipcMain.on('receive:repos', (_, repos) => {
     workerWindow.webContents.send('friend:get', slug);
   });
 
-  if (!isDev) {
+  if (!isDev || 1) {
     repos.forEach(repo => {
-      const repoPath = `${PATH_EN}/${repo.name}`;
-      workerWindow.webContents.send('update:repo', repoPath);
+      workerWindow.webContents.send('update:repo', repo);
     });
   }
 });

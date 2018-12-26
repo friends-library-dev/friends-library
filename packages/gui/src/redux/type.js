@@ -41,6 +41,7 @@ export type Friend = {|
 
 export type Repo = {
   slug: Slug,
+  sshUrl: string,
 };
 
 export type Repos = {
