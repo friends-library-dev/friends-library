@@ -87,7 +87,6 @@ const FriendFiles = ({ friend, selectFile, editingFile }: Props) => {
                       filename: filename,
                     };
                     const editing = isEqual(file, editingFile);
-                    console.log(editing);
                     return (
                       <Filename
                         key={filename}

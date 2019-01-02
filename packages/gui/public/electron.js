@@ -2,7 +2,7 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('path');
 const url = require('url');
-const fs = require('fs');
+const fs = require('fs-extra');
 const os = require('os');
 const logger = require('electron-timber');
 const isDev = require('electron-is-dev');
@@ -95,7 +95,7 @@ ipcMain.on('request:filecontent', (_, path) => {
 
 ipcMain.on('receive:filecontent', (_, path, content) => {
   if (mainWindow) {
-    mainWindow.webContents.send('RECEIVE_FILE_CONTENT', path, content);
+    mainWindow.webContents.send('UPDATE_FILE_CONTENT', path, content);
   }
 });
 
@@ -112,9 +112,13 @@ ipcMain.on('receive:repos', (_, repos) => {
     workerWindow.webContents.send('friend:get', slug);
   });
 
-  if (!isDev || 1) {
+  if (!isDev) {
     repos.forEach(repo => {
       workerWindow.webContents.send('update:repo', repo);
     });
   }
+});
+
+ipcMain.on('save:file', (_, path, content) => {
+  fs.writeFileSync(path, content);
 });

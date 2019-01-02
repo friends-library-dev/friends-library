@@ -11,6 +11,7 @@ import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
 
 const Wrap = styled.div`
+  position: relative;
   background: #555;
   width: 100%;
   height: 100%;
@@ -21,42 +22,60 @@ const Wrap = styled.div`
   }
 `;
 
+const Save = styled.button`
+  position: fixed;
+  top: 0;
+  right: 18px;
+  border-width: 0;
+  padding: 0.75em 1.5em;
+  opacity: ${({ enabled }) => enabled ? 0.75 : 0.1 };
+  z-index: 11;
+  background: var(--accent);
+  color: #000;
+`;
+
 type Props = {|
   filepath: string,
   content?: Asciidoc,
-  receiveFileContent: (any) => *,
+  updateFileContent: (any) => *,
 |};
 
-class Editor extends React.Component<Props> {
+type State = {|
+  edited?: boolean,
+  current?: Asciidoc,
+|};
+
+class Editor extends React.Component<Props, State> {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: props.content,
+      edited: false,
+    }
+  }
 
   componentDidMount() {
     this.maybeRequestFileContent();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+    const { filepath, content } = this.props;
+    if (prevProps.filepath !== filepath || prevProps.content === null) {
+      this.setState({ current: content });
+    }
     this.maybeRequestFileContent();
   }
 
   maybeRequestFileContent() {
-    const { filepath, content, receiveFileContent } = this.props;
+    const { filepath, content, updateFileContent } = this.props;
     if (null === content) {
       ipcRenderer.send('request:filecontent', filepath);
-      ipcRenderer.once('RECEIVE_FILE_CONTENT', (_, path, received) => {
+      ipcRenderer.once('UPDATE_FILE_CONTENT', (_, path, received) => {
         if (path === filepath) {
-          const [
-            filename,
-            editionType,
-            documentSlug,
-            friendSlug,
-            lang,
-          ] = path.split('/').reverse();
-
-          receiveFileContent({
-            lang,
-            friendSlug,
-            documentSlug,
-            editionType,
-            filename,
+          updateFileContent({
+            ...this.editingFile(),
             content: received,
           });
         }
@@ -64,15 +83,49 @@ class Editor extends React.Component<Props> {
     }
   }
 
+  editingFile() {
+    const { filepath } = this.props;
+    const [
+      filename,
+      editionType,
+      documentSlug,
+      friendSlug,
+      lang,
+    ] = filepath.split('/').reverse();
+
+    return {
+      lang,
+      friendSlug,
+      documentSlug,
+      editionType,
+      filename,
+    };
+  }
+
+  save = () => {
+    const { current } = this.state;
+    const { filepath, updateFileContent } = this.props;
+    updateFileContent({
+      ...this.editingFile(),
+      content: current,
+    });
+    ipcRenderer.send('save:file', filepath, current);
+  }
+
   render() {
+    console.log(this.props.filepath);
+    const { current } = this.state;
     const { content } = this.props;
     return (
       <Wrap>
+        <Save enabled={current !== content} onClick={this.save}>Save</Save>
         <AceEditor
           mode="asciidoc"
           theme="tomorrow_night"
-          onChange={() => {}}
-          value={content || '== Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}
+          onChange={(val, event) => {
+            this.setState({ current: val });
+          }}
+          value={current || ''}
           editorProps={{$blockScrolling: true}}
           setOptions={{ wrap: true }}
         />
@@ -96,7 +149,7 @@ const mapState = state => {
 };
 
 const mapDispatch = {
-  receiveFileContent: actions.receiveFileContent,
+  updateFileContent: actions.updateFileContent,
 };
 
 export default connect(mapState, mapDispatch)(Editor);
