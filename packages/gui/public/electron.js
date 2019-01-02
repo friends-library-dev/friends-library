@@ -124,6 +124,8 @@ ipcMain.on('save:file', (_, path, content) => {
   fs.writeFileSync(path, content);
 });
 
+ipcMain.on('error', (_, msg) => dialog.showErrorBox(msg, ''));
+
 answerRenderer('ensure:branch', async task => {
   const branch = await callRenderer(workerWindow, 'ensure:branch', task);
   return branch;

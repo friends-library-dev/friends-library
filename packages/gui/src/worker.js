@@ -35,6 +35,5 @@ ipcRenderer.on('request:filecontent', (_, path) => {
 });
 
 answerMain('ensure:branch', task => {
-  logger.log(`ensure the branch for task: ${task.id}`)
   return Promise.resolve(ensureBranch(task));
 });

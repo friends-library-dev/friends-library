@@ -1,4 +1,5 @@
 const path = require('path');
+const { ipcRenderer } = require('electron');
 const logger = require('electron-timber');
 const { execSync } = require('child_process');
 const { existsSync } = require('fs');
@@ -10,7 +11,7 @@ function updateRepo(repo) {
     cmd(`git clone ${repo.ssh_url}`, path.dirname(repoDir));
   }
   if (isStatusClean(repoDir) && getBranch(repoDir) === 'master') {
-    cmd('git pull --rebase origin master', repoDir, true);
+    cmd('git pull --rebase origin master', repoDir);
   }
 }
 
@@ -19,41 +20,40 @@ function ensureBranch(task) {
   const taskBranch = `task-${id}`;
   const repoDir = `${PATH_EN}/${repo}`;
 
-  logger.log('repoDir', repoDir);
-  logger.log('taskBranch', taskBranch);
   if (getBranch(repoDir) === taskBranch) {
-    logger.log('already on it!');
     return taskBranch;
   }
 
-  logger.log('check if status is clean')
   if (!isStatusClean(repoDir)) {
-    logger.log('status is not clean');
-    cmd('git add . && git commit -m "guibot: WIP auto-commit to switch to task branch"');
-  } else {
-    logger.log('status is clean! 👍');
+    cmd('git add . && git commit -m "guibot: WIP auto-commit to switch to task branch"', repoDir);
   }
 
-  logger.log('check if branch exists');
   if (!branchExists(repoDir, taskBranch)) {
-    logger.log('branch does not exist. ¯\_(ツ)_/¯');
+    if (getBranch(repoDir) !== 'master') {
+      cmd('git checkout master', repoDir);
+    }
+    cmd('git pull --rebase origin master', repoDir);
     cmd(`git branch "${taskBranch}"`, repoDir);
   }
 
-  logger.log('checkout the branch');
   cmd(`git checkout "${taskBranch}"`, repoDir);
 
   if (getBranch(repoDir) === taskBranch) {
-    logger.log('looks good, checked it out. 👍');
     return taskBranch;
   }
 
-  logger.log('error!');
-  throw new Error(`Unable to ensure branch ${taskBranch} for repo ${repoDir}`);
+  notifyAndThrow(`Unable to ensure branch ${taskBranch} for repo ${repoDir}`);
+}
+
+function notifyAndThrow(err) {
+  ipcRenderer.send('error', err);
+  throw new Error(err);
 }
 
 function branchExists(repoDir, branch) {
-  const branches = cmd('git branch', repoDir).split('\n').map(b => b.trim());
+  const branches = cmd('git branch', repoDir)
+    .split('\n')
+    .map(b => b.trim().replace(/^\* /, ''));
   return branches.includes(branch);
 }
 
@@ -71,20 +71,16 @@ function getBranch(repoDir) {
 
 function cmd(command, repoDir, log) {
   if (!repoDir) {
-    throw new Error(`Repodir required for command: ${command}`);
+    notifyAndThrow(`No repoDir passed for command ${command}`);
+    return '';
   }
 
-  if (log || 1) {
+  if (log) {
     logger.log(`${repoDir}: ${command}`);
   }
 
-  let result;
-  try {
-    result = execSync(`cd ${repoDir} && ${command}`, { stdio: 'ignore' }).toString();
-  } catch (e) {
-    // ¯\_(ツ)_/¯
-  }
-  return result;
+  const output = execSync(`${command}`, { stdio: 'ignore', cwd: repoDir });
+  return output && typeof output.toString === 'function' ? output.toString() : '';
 }
 
 module.exports = {

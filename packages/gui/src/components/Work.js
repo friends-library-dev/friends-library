@@ -37,6 +37,8 @@ type State = {|
 
 class Work extends React.Component<Props, State> {
 
+  state = {}
+
   async componentDidMount() {
     const { receiveRepoFiles, friend, task } = this.props;
     if (!friend.filesReceived) {
@@ -48,11 +50,15 @@ class Work extends React.Component<Props, State> {
     });
 
     const branch = await callMain('ensure:branch', task);
-    console.log(branch, 'branch');
+    this.setState({ branch });
   }
 
   render() {
+    const { branch } = this.state;
     const { friend } = this.props;
+    if (!branch) {
+      return <p>Hang on there one sec...</p>;
+    }
     return (
       <Wrap>
         <Sidebar>
