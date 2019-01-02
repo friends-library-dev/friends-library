@@ -20,7 +20,7 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "develop": "concurrently --kill-others \"yarn start\" \"wait-on http://localhost:3000 && yarn electron\"",
+    "develop": "concurrently --kill-others --kill-others-on-fail \"yarn start\" \"wait-on http://localhost:3000 && yarn electron\"",
     "start": "SKIP_PREFLIGHT_CHECK=true BROWSER=none react-scripts start",
     "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "react-scripts test",

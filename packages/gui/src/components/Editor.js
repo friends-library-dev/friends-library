@@ -62,7 +62,7 @@ class Editor extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps) {
     const { filepath, content } = this.props;
-    if (prevProps.filepath !== filepath || prevProps.content === null) {
+    if (prevProps.filepath !== filepath || (prevProps.content === null && content !== null)) {
       this.setState({ current: content });
     }
     this.maybeRequestFileContent();
@@ -70,7 +70,7 @@ class Editor extends React.Component<Props, State> {
 
   maybeRequestFileContent() {
     const { filepath, content, updateFileContent } = this.props;
-    if (null === content) {
+    if (filepath && null === content) {
       ipcRenderer.send('request:filecontent', filepath);
       ipcRenderer.once('UPDATE_FILE_CONTENT', (_, path, received) => {
         if (path === filepath) {
@@ -113,7 +113,6 @@ class Editor extends React.Component<Props, State> {
   }
 
   render() {
-    console.log(this.props.filepath);
     const { current } = this.state;
     const { content } = this.props;
     return (
@@ -136,7 +135,7 @@ class Editor extends React.Component<Props, State> {
 
 const mapState = state => {
   if (!state.editingFile) {
-    return { filepath: '', content: '' };
+    return { filepath: '', content: null };
   }
   const { lang, friend, document, edition, filename } = state.editingFile;
   const doc = state.friends[`${lang}/${friend}`].documents[document];

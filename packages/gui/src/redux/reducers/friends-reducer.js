@@ -5,6 +5,9 @@ import { get } from 'lodash';
 export default createReducer({}, {
   RECEIVE_FRIEND: (state, action) => {
     const { payload: { friend, lang } } = action;
+    if (friend[404] === 'Not Found') {
+      return state;
+    }
     state[`${lang}/${friend.slug}`] = {
       name: friend.name,
       slug: friend.slug,

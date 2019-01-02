@@ -21,7 +21,8 @@
     "evans:build:es": "cd packages/evans && yarn build:es",
     "evans:develop:en": "cd packages/evans && yarn develop:en",
     "evans:develop:es": "cd packages/evans && yarn develop:es",
-    "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es"
+    "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es",
+    "postinstall": "patch-package"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
