@@ -35,5 +35,8 @@ export default function chapterize(file: string, dest: string, chStart: number =
     fs.outputFileSync(`${destPath}/${filename}`, part);
     cmds.push(`mv ${filename} ${paddedNum}-FOOBAR.adoc`);
   });
-  fs.outputFileSync(`${destPath}/rename.sh`, cmds.join('\n'));
+
+  if (parts.length > 3) {
+    fs.outputFileSync(`${destPath}/rename.sh`, cmds.join('\n'));
+  }
 }
