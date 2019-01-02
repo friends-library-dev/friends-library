@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import { ipcRenderer } from '../webpack-electron';
+import { ipcRenderer, callMain } from '../webpack-electron';
 import type { Task, Friend, Dispatch } from '../redux/type';
 import * as actions from '../redux/actions';
 import FriendFiles from './FriendFiles';
@@ -31,10 +31,14 @@ type Props = {|
   receiveRepoFiles: Dispatch,
 |};
 
-class Work extends React.Component<Props> {
+type State = {|
+  branch?: string,
+|};
 
-  componentDidMount() {
-    const { receiveRepoFiles, friend } = this.props;
+class Work extends React.Component<Props, State> {
+
+  async componentDidMount() {
+    const { receiveRepoFiles, friend, task } = this.props;
     if (!friend.filesReceived) {
       ipcRenderer.send('request:files', friend.slug);
     }
@@ -42,6 +46,9 @@ class Work extends React.Component<Props> {
     ipcRenderer.on('RECEIVE_REPO_FILES', (_, friendSlug, files) => {
       receiveRepoFiles({ friendSlug, files });
     });
+
+    const branch = await callMain('ensure:branch', task);
+    console.log(branch, 'branch');
   }
 
   render() {

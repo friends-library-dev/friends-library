@@ -1,5 +1,6 @@
 // @flow
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { answerRenderer, callRenderer } = require('electron-better-ipc');
 const path = require('path');
 const url = require('url');
 const fs = require('fs-extra');
@@ -121,4 +122,9 @@ ipcMain.on('receive:repos', (_, repos) => {
 
 ipcMain.on('save:file', (_, path, content) => {
   fs.writeFileSync(path, content);
+});
+
+answerRenderer('ensure:branch', async task => {
+  const branch = await callRenderer(workerWindow, 'ensure:branch', task);
+  return branch;
 });

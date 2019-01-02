@@ -8,6 +8,7 @@
   "homepage": "./",
   "dependencies": {
     "concurrently": "^4.1.0",
+    "electron-better-ipc": "^0.1.2",
     "electron-is-dev": "^1.0.1",
     "electron-timber": "^0.5.1",
     "emotion": "^10.0.5",
@@ -38,10 +39,12 @@
       "main": "build/electron.js"
     },
     "productName": "Friends Library GUI",
-    "appId": "com.e.ectron.friends-library/gui",
+    "appId": "com.electron.friends-library/gui",
     "mac": {
       "category": "your.app.category.type",
-      "target": ["dmg"]
+      "target": [
+        "dmg"
+      ]
     },
     "files": [
       "build/**/*",

@@ -6763,6 +6763,11 @@ ejs@^2.6.1:
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.6.1.tgz#498ec0d495655abc6f23cd61868d926464071aa0"
   integrity sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==
 
+electron-better-ipc@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/electron-better-ipc/-/electron-better-ipc-0.1.2.tgz#8ff9d216d0a70924bca466699bcb50c5d42911e5"
+  integrity sha512-tn00v9+/kcln2nV7GCffXzaoVUMoH7HHQj0Sya43U7xt2bqgjT1DF5T3+nkG2CChkuCE/TgVTQyFOv2jm0Vogg==
+
 electron-builder@^20.38.4:
   version "20.38.4"
   resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-20.38.4.tgz#67727529ffb87e7fdd78b3a84ea0d6c22bf04ec2"
