@@ -53,6 +53,7 @@ export type Task = {|
   name: string,
   repo: Slug,
   isNew: boolean,
+  prNumber: number?,
 |};
 
 export type EditingFile = {|

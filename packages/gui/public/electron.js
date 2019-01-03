@@ -1,5 +1,5 @@
 // @flow
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 const { answerRenderer, callRenderer } = require('electron-better-ipc');
 const path = require('path');
 const url = require('url');
@@ -135,3 +135,11 @@ answerRenderer('ensure:branch', async task => {
   const branch = await callRenderer(workerWindow, 'ensure:branch', task);
   return branch;
 });
+
+answerRenderer('git:push', async task => {
+  await callRenderer(workerWindow, 'git:push', task);
+  return 'pushed';
+});
+
+
+ipcMain.on('open:url', (_, url) => shell.openExternal(url));

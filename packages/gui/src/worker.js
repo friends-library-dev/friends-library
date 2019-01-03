@@ -4,7 +4,7 @@ const fs = require('fs');
 const { ipcRenderer } = require('electron');
 const { answerMain } = require('electron-better-ipc');
 const logger = require('electron-timber');
-const { updateRepo, ensureBranch, commitWip } = require('./lib/git');
+const { updateRepo, ensureBranch, commitWip, pushTask } = require('./lib/git');
 const { PATH_EN } = require('./lib/path');
 
 ipcRenderer.on('friend:get', (_, slug) => {
@@ -36,6 +36,10 @@ ipcRenderer.on('request:filecontent', (_, path) => {
 
 answerMain('ensure:branch', task => {
   return Promise.resolve(ensureBranch(task));
+});
+
+answerMain('git:push', task => {
+  return Promise.resolve(pushTask(task));
 });
 
 ipcRenderer.on('commit:wip', (_, friendSlug) => {

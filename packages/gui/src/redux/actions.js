@@ -11,4 +11,3 @@ export const workOnTask = createAction('WORK_ON_TASK');
 export const receiveRepoFiles = createAction('RECEIVE_REPO_FILES');
 export const updateFileContent = createAction('UPDATE_FILE_CONTENT');
 export const setEditingFile = createAction('SET_EDITING_FILE');
-export const submitTask = createAction('SUBMIT_TASK');

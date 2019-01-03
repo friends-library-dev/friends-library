@@ -51,11 +51,20 @@ function ensureBranch(task) {
 
 function commitWip(repo) {
   const repoDir = `${PATH_EN}/${repo}`;
+  if (isStatusClean(repoDir)) {
+    return;
+  }
   commit(`guibot: WIP saved at ${new Date().toString()}`, repoDir);
 }
 
 function commit(msg, repoDir) {
   return cmd(`git add . && git commit -m "${msg}"`, repoDir);
+}
+
+function pushTask(task) {
+  const repoDir = `${PATH_EN}/${task.repo}`;
+  ensureBranch(task);
+  return cmd(`git push origin task-${task.id}`, repoDir);
 }
 
 function notifyAndThrow(err) {
@@ -97,6 +106,7 @@ function cmd(command, repoDir, log) {
 }
 
 module.exports = {
+  pushTask,
   updateRepo,
   ensureBranch,
   commitWip,
