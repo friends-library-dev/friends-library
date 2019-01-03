@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import { workOnTask } from '../redux/actions';
+import * as actions from '../redux/actions';
 
 const List = styled.ul`
   margin: 45px 0;
@@ -65,7 +65,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  workOnTask,
+  workOnTask: actions.workOnTask,
 };
 
 export default connect(mapState, mapDispatch)(TaskList);
