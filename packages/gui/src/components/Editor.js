@@ -105,11 +105,13 @@ class Editor extends React.Component<Props, State> {
   save = () => {
     const { current } = this.state;
     const { filepath, updateFileContent } = this.props;
+    const editingFile = this.editingFile();
     updateFileContent({
-      ...this.editingFile(),
+      ...editingFile,
       content: current,
     });
     ipcRenderer.send('save:file', filepath, current);
+    ipcRenderer.send('commit:wip', editingFile.friendSlug);
   }
 
   render() {

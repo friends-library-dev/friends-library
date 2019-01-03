@@ -124,6 +124,11 @@ ipcMain.on('save:file', (_, path, content) => {
   fs.writeFileSync(path, content);
 });
 
+ipcMain.on('commit:wip', (_, friendSlug) => {
+  logger.log('main commit:wip', friendSlug);
+  workerWindow.webContents.send('commit:wip', friendSlug);
+});
+
 ipcMain.on('error', (_, msg) => dialog.showErrorBox(msg, ''));
 
 answerRenderer('ensure:branch', async task => {

@@ -25,7 +25,7 @@ function ensureBranch(task) {
   }
 
   if (!isStatusClean(repoDir)) {
-    cmd('git add . && git commit -m "guibot: WIP auto-commit to switch to task branch"', repoDir);
+    commit('guibot: WIP auto-commit to switch to task branch', repoDir);
   }
 
   if (!branchExists(repoDir, taskBranch)) {
@@ -38,11 +38,24 @@ function ensureBranch(task) {
 
   cmd(`git checkout "${taskBranch}"`, repoDir);
 
+  logger.log('------');
+  logger.log(getBranch(repoDir));
+  logger.log(taskBranch);
+  logger.log(getBranch(repoDir) === taskBranch);
   if (getBranch(repoDir) === taskBranch) {
     return taskBranch;
   }
 
   notifyAndThrow(`Unable to ensure branch ${taskBranch} for repo ${repoDir}`);
+}
+
+function commitWip(repo) {
+  const repoDir = `${PATH_EN}/${repo}`;
+  commit(`guibot: WIP saved at ${new Date().toString()}`, repoDir);
+}
+
+function commit(msg, repoDir) {
+  return cmd(`git add . && git commit -m "${msg}"`, repoDir);
 }
 
 function notifyAndThrow(err) {
@@ -75,15 +88,16 @@ function cmd(command, repoDir, log) {
     return '';
   }
 
-  if (log) {
+  if (log || 1) {
     logger.log(`${repoDir}: ${command}`);
   }
 
-  const output = execSync(`${command}`, { stdio: 'ignore', cwd: repoDir });
+  const output = execSync(`${command}`, { lol_stdio: 'ignore', cwd: repoDir });
   return output && typeof output.toString === 'function' ? output.toString() : '';
 }
 
 module.exports = {
   updateRepo,
   ensureBranch,
+  commitWip,
 }
