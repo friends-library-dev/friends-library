@@ -12,7 +12,7 @@ export default createReducer(null, {
     return state;
   },
   CHANGE_SCREEN: (state, action) => {
-    if (action.payload === 'WELCOME') {
+    if (action.payload === 'TASKS') {
       return null;
     }
     return state;

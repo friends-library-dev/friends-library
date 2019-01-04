@@ -26,7 +26,7 @@ export default function() {
   const store = configureStore({
     reducer: rootReducer,
     preloadedState: loadState() || {
-      screen: screens.WELCOME,
+      screen: screens.TASKS,
       currentTask: null,
       editingFile: null,
       tasks: {},

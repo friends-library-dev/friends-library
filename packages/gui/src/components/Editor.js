@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import type { Asciidoc } from '../../../../type';
 import { ipcRenderer } from '../webpack-electron';
 import * as actions from '../redux/actions';
+import Button from './Button';
 import 'brace/ext/searchbox';
 import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
@@ -22,16 +23,19 @@ const Wrap = styled.div`
   }
 `;
 
-const Save = styled.button`
+const Save = styled(Button)`
   position: fixed;
   top: 0;
-  right: 18px;
-  border-width: 0;
-  padding: 0.75em 1.5em;
-  opacity: ${({ enabled }) => enabled ? 0.75 : 0.1 };
-  z-index: 11;
-  background: var(--accent);
-  color: #000;
+  right: 0;
+  height: 35px;
+  line-height: 35px;
+  margin-right: 0;
+  opacity: ${({ enabled }) => enabled ? 0.75 : 0.4 };
+  cursor: ${({ enabled }) => enabled ? 'pointer' : 'not-allowed' };
+  background: ${({ enabled }) => enabled ? 'var(--accent)' : '#666'};
+  & i {
+    padding-right: 0.5em;
+  }
 `;
 
 type Props = {|
@@ -104,7 +108,11 @@ class Editor extends React.Component<Props, State> {
 
   save = () => {
     const { current } = this.state;
-    const { filepath, updateFileContent } = this.props;
+    const { filepath, updateFileContent, content } = this.props;
+    if (current === content) {
+      return;
+    }
+
     const editingFile = this.editingFile();
     updateFileContent({
       ...editingFile,
@@ -119,7 +127,10 @@ class Editor extends React.Component<Props, State> {
     const { content } = this.props;
     return (
       <Wrap>
-        <Save enabled={current !== content} onClick={this.save}>Save</Save>
+        <Save enabled={current !== content} onClick={this.save}>
+          <i className="fas fa-save" />
+          Save
+        </Save>
         <AceEditor
           mode="asciidoc"
           theme="tomorrow_night"

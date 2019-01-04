@@ -2,9 +2,6 @@
 
 === Todo:
 
-* [ ] tasks need "submitted" boolean flag
-* [ ] App/Work top bar component for persistent nav
-* [ ] Submit task (create PR)
 * [ ] Delete task (with confirmation)
 * [ ] file-based json state storage
 * [ ] auto updates
@@ -16,6 +13,9 @@
 * [ ] add timestamps to tasks
 * [ ] global (by friend or doc or edition) find
 * [ ] match syntax highlighting of atom
+* [x] App/Work top bar component for persistent nav
+* [x] tasks need "submitted" boolean flag
+* [x] Submit task (create PR)
 * [x] commit at save time
 * [x] saving files
 * [x] basic git branching

@@ -36,7 +36,7 @@ class App extends React.Component<Props> {
   renderScreen() {
     const { screen } = this.props;
     switch (screen) {
-      case screens.WELCOME:
+      case screens.TASKS:
         return <Welcome />;
       case screens.EDIT_TASK:
         return (<EditTask />);

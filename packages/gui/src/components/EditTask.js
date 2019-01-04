@@ -47,7 +47,7 @@ type Props = {|
   friends: Array<Friend>,
   task: Task,
   updateTask: Dispatch,
-  goToWelcome: Dispatch,
+  goToTasks: Dispatch,
   deleteTask: Dispatch,
 |};
 
@@ -68,7 +68,7 @@ class EditTask extends React.Component<Props, State> {
 
   clickSave = () => {
     const { name, repo } = this.state;
-    const { updateTask, goToWelcome, task } = this.props;
+    const { updateTask, goToTasks, task } = this.props;
     if (!repo || !name.trim()) {
       return;
     }
@@ -76,15 +76,15 @@ class EditTask extends React.Component<Props, State> {
       id: task.id,
       data: { name, repo, isNew: false }
     });
-    goToWelcome();
+    goToTasks();
   }
 
   clickCancel = () => {
-    const { deleteTask, goToWelcome, task } = this.props;
+    const { deleteTask, goToTasks, task } = this.props;
     if (task.isNew) {
       deleteTask(task.id);
     }
-    goToWelcome();
+    goToTasks();
   }
 
   render() {
@@ -129,7 +129,7 @@ const mapState = state => ({
 
 const mapDispatch = {
   updateTask,
-  goToWelcome: () => changeScreen(screens.WELCOME),
+  goToTasks: () => changeScreen(screens.TASKS),
   deleteTask,
 };
 
