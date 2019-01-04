@@ -30,10 +30,9 @@ function getNumRepoPages(): Promise<number> {
 
 function getReposPage(page: number): Promise<*> {
   // unscoped token, no privileges, read-only to public info, so ¯\_(ツ)_/¯
-  const token = '&access_token=bc14d218db2e8a03d5c209c159bc29d7cf02e8c3';
-  return fetch(`https://api.github.com/orgs/friends-library/repos?page=${page}${token}`, {
+  const token = '?access_token=bc14d218db2e8a03d5c209c159bc29d7cf02e8c3';
+  return fetch(`https://api.github.com/orgs/friends-library/repos${token}&page=${page}`, {
     method: 'GET',
     headers: { Accept: 'application/vnd.github.v3+json' },
   });
 }
-// "https://api.github.com/repos/friends-library/samuel-rundell/pulls{/number}",

@@ -1,8 +1,8 @@
 const path = require('path');
 const { ipcRenderer } = require('electron');
-const logger = require('electron-timber');
 const { execSync } = require('child_process');
 const { existsSync } = require('fs');
+const logger = require('./log');
 const { PATH_EN } = require('./path');
 
 function updateRepo(repo) {

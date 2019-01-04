@@ -3,7 +3,7 @@ const { sync: glob } = require('glob');
 const fs = require('fs');
 const { ipcRenderer } = require('electron');
 const { answerMain } = require('electron-better-ipc');
-const logger = require('electron-timber');
+const logger = require('./lib/log');
 const { updateRepo, ensureBranch, commitWip, pushTask } = require('./lib/git');
 const { PATH_EN } = require('./lib/path');
 

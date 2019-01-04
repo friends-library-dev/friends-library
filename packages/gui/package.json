@@ -12,6 +12,7 @@
     "electron-is-dev": "^1.0.1",
     "electron-timber": "^0.5.1",
     "emotion": "^10.0.5",
+    "fix-path": "^2.1.0",
     "react": "^16.6.3",
     "react-ace": "^6.2.0",
     "react-dom": "^16.6.3",

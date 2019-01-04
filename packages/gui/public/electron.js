@@ -1,14 +1,16 @@
-// @flow
 const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 const { answerRenderer, callRenderer } = require('electron-better-ipc');
 const path = require('path');
 const url = require('url');
 const fs = require('fs-extra');
 const os = require('os');
-const logger = require('electron-timber');
 const isDev = require('electron-is-dev');
 const { execSync } = require('child_process');
+const logger = require('../src/lib/log');
 const { PATH_EN } = require('../src/lib/path');
+
+// ensure we use the full $PATH from the shell when packaged
+require('fix-path')();
 
 try {
   execSync('git --version');
