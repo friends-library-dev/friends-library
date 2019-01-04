@@ -1,23 +1,40 @@
 // @flow
 import { configureStore } from 'redux-starter-kit'
+// import isDev from 'electron-is-dev';
+// import Storage from 'electron-store';
 import rootReducer from './reducers'
 import * as screens from './screens';
+
+const isDev = process.env.NODE_ENV === 'development';
+console.log({ isDev });
+
+const defaultState = {
+  screen: screens.TASKS,
+  currentTask: null,
+  editingFile: null,
+  tasks: {},
+  friends: {},
+  repos: {},
+};
+
+
 
 const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state');
     if (serializedState == null) {
-      return undefined;
+      return {};
     }
     return JSON.parse(serializedState);
   } catch (err) {
-    return undefined;
+    return {};
   }
 };
 
 const saveState = (state) => {
   try {
-    const serializedState = JSON.stringify(state);
+    const toSave = isDev ? state : { tasks: state.tasks };
+    const serializedState = JSON.stringify(toSave);
     localStorage.setItem('state', serializedState);
   } catch (err) {}
 };
@@ -25,13 +42,9 @@ const saveState = (state) => {
 export default function() {
   const store = configureStore({
     reducer: rootReducer,
-    preloadedState: loadState() || {
-      screen: screens.TASKS,
-      currentTask: null,
-      editingFile: null,
-      tasks: {},
-      friends: {},
-      repos: {},
+    preloadedState: {
+      ...defaultState,
+      ...loadState(),
     },
   });
 
