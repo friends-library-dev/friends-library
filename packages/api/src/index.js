@@ -34,6 +34,13 @@ app.get('/download/:friend/:document/:edition/:filename', (req, res) => {
   });
 });
 
+// temp for testing gui app auto-updating
+app.get('/gui/update', (req, res) => {
+  res.json({
+    url: 'https://friends-library-assets.nyc3.digitaloceanspaces.com/Friends%20Library%20GUI-1.0.0-mac.zip',
+  });
+});
+
 app.get('/podcast-item/:quality/:friend/:document/:edition/:part/:filename', (req, res) => {
   const { params: { quality, friend, document, edition, part, filename } } = req;
   const lang = 'en'; // @TODO infer from domain...?
