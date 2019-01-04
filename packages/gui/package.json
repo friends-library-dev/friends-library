@@ -45,7 +45,8 @@
     "mac": {
       "category": "your.app.category.type",
       "target": [
-        "dmg"
+        "dmg",
+        "zip"
       ]
     },
     "files": [

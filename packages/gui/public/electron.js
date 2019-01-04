@@ -1,4 +1,4 @@
-const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, autoUpdater, dialog, ipcMain, shell } = require('electron');
 const { answerRenderer, callRenderer } = require('electron-better-ipc');
 const path = require('path');
 const url = require('url');
@@ -24,6 +24,36 @@ if (!fs.existsSync(PATH_EN)) {
   logger.error('bad repo path');
   dialog.showErrorBox('Error: doc repo path must be ~/fl/{en,es}/', '');
   app.quit();
+}
+
+if (!isDev) {
+  let checking = false;
+
+  autoUpdater.setFeedURL('http://localhost:1111/gui/update');
+
+  setInterval(() => {
+    if (!checking) {
+      checking = true;
+      autoUpdater.checkForUpdates()
+    }
+  }, 20000);
+
+  autoUpdater.on('update-not-available', () => checking = false);
+
+  autoUpdater.on('update-downloaded', () => {
+    checking = false;
+    const dialogOpts = {
+      type: 'info',
+      buttons: ['Restart', 'Later'],
+      title: 'Application Update',
+      message: 'New version!',
+      detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+    }
+
+    dialog.showMessageBox(dialogOpts, (response) => {
+      if (response === 0) autoUpdater.quitAndInstall()
+    })
+  })
 }
 
 let mainWindow;

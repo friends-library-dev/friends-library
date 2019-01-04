@@ -2,9 +2,9 @@
 
 === Todo:
 
+* [ ] auto updates
 * [ ] Delete task (with confirmation)
 * [ ] file-based json state storage
-* [ ] auto updates
 * [ ] bundle git
 * [ ] render/HTML preview
 * [ ] minimize sidebar

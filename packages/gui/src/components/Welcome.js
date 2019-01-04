@@ -10,7 +10,7 @@ import TaskList from './TaskList';
 
 const Welcome = ({ tasks, changeScreen, createTask }) => (
   <div>
-    <h1>Welcome!</h1>
+    <h1>Tasks</h1>
     <Heading>You have {tasks.length} task{tasks.length === 1 ? '' : 's'}:</Heading>
     <TaskList />
     <Button onClick={() => {
