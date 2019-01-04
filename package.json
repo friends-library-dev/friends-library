@@ -16,6 +16,7 @@
     "js:lint": "yarn eslint .",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
     "api:develop": "cd ./packages/api && yarn start",
+    "api:deploy": "cd ./packages/api && yarn deploy",
     "styleguide:develop": "cd ./packages/styleguide && yarn start",
     "styleguide:build": "cd ./packages/styleguide && yarn build",
     "evans:build:en": "cd packages/evans && yarn build:en",

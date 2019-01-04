@@ -8,6 +8,7 @@ const isDev = require('electron-is-dev');
 const { execSync } = require('child_process');
 const logger = require('../src/lib/log');
 const { PATH_EN } = require('../src/lib/path');
+const { watchForAutoUpdates } = require('../src/lib/auto-update');
 
 // ensure we use the full $PATH from the shell when packaged
 require('fix-path')();
@@ -27,33 +28,7 @@ if (!fs.existsSync(PATH_EN)) {
 }
 
 if (!isDev) {
-  let checking = false;
-
-  autoUpdater.setFeedURL('http://localhost:1111/gui/update');
-
-  setInterval(() => {
-    if (!checking) {
-      checking = true;
-      autoUpdater.checkForUpdates()
-    }
-  }, 20000);
-
-  autoUpdater.on('update-not-available', () => checking = false);
-
-  autoUpdater.on('update-downloaded', () => {
-    checking = false;
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Restart', 'Later'],
-      title: 'Application Update',
-      message: 'New version!',
-      detail: 'A new version has been downloaded. Restart the application to apply the updates.'
-    }
-
-    dialog.showMessageBox(dialogOpts, (response) => {
-      if (response === 0) autoUpdater.quitAndInstall()
-    })
-  })
+  watchForAutoUpdates();
 }
 
 let mainWindow;
