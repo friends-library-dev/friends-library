@@ -1,12 +1,10 @@
 // @flow
 import { configureStore } from 'redux-starter-kit'
-// import isDev from 'electron-is-dev';
-// import Storage from 'electron-store';
 import rootReducer from './reducers'
 import * as screens from './screens';
 
 const isDev = process.env.NODE_ENV === 'development';
-console.log({ isDev });
+console.log('store', process.env);
 
 const defaultState = {
   screen: screens.TASKS,

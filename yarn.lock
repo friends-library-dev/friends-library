@@ -1142,6 +1142,14 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@cloudcmd/create-element@^1.0.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@cloudcmd/create-element/-/create-element-1.1.1.tgz#d99197addb11731c128c5042b8e1b35643288272"
+  integrity sha512-RntwJVi2Pw2nnEBKsGtheEvpb7eBN3fW4SuqTYhLP/uFDIhWLcpvpNeYAbKHZCjUXSQwUd3t8b0VwGqPib5oZQ==
+  dependencies:
+    currify "^3.0.0"
+    fullstore "^1.0.0"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -5240,17 +5248,6 @@ concurrently@^4.1.0:
     tree-kill "^1.1.0"
     yargs "^12.0.1"
 
-conf@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/conf/-/conf-2.1.0.tgz#43ade5879a82ff23dbeb466995d50209f7dfcd07"
-  integrity sha512-IcWtHiBjeNtyCG+XK/v9Pz8Q4+nsyvO60Zabn6SsHTR2TMaLN6os/jrUtuQnATb12RI82RHKt+PVEXTsH6XMXQ==
-  dependencies:
-    dot-prop "^4.1.0"
-    env-paths "^1.0.0"
-    make-dir "^1.0.0"
-    pkg-up "^2.0.0"
-    write-file-atomic "^2.3.0"
-
 config-chain@^1.1.11:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/config-chain/-/config-chain-1.1.12.tgz#0fde8d091200eb5e808caf25fe618c02f48e4efa"
@@ -5906,6 +5903,11 @@ curriable@^1.0.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/curriable/-/curriable-1.2.2.tgz#07529e2d82c7bdcc16469511a65682b0f02c1158"
   integrity sha512-gCvU0Hl8EYScI0mPksUiI+kLEV5M9Cva357EWMQGwXI3vc9mBWv7VnqN90YfMhd8tyDuTxakzuZv7lAdPBozow==
+
+currify@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/currify/-/currify-3.0.0.tgz#ec5b18fe65c2b3b08daba7f2a75a01063b2c89c2"
+  integrity sha512-ecz0Dq3T2UwiLwhiYvEFhdM4yUvlCLRgVbvpt6oI8RteJzEztum1UbLbN6snQ5nfHqtMcnrxkd7N0LeAIErorw==
 
 cwebp-bin@^4.0.0:
   version "4.0.0"
@@ -6860,13 +6862,6 @@ electron-publish@20.38.3:
     fs-extra-p "^7.0.0"
     lazy-val "^1.0.3"
     mime "^2.4.0"
-
-electron-store@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/electron-store/-/electron-store-2.0.0.tgz#1035cca2a95409d1f54c7466606345852450d64a"
-  integrity sha512-1WCFYHsYvZBqDsoaS0Relnz0rd81ZkBAI0Fgx7Nq2UWU77rSNs1qxm4S6uH7TCZ0bV3LQpJFk7id/is/ZgoOPA==
-  dependencies:
-    conf "^2.0.0"
 
 electron-timber@^0.5.1:
   version "0.5.1"
@@ -8502,6 +8497,11 @@ fstream@^1.0.0, fstream@^1.0.2:
     inherits "~2.0.0"
     mkdirp ">=0.5 0"
     rimraf "2"
+
+fullstore@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fullstore/-/fullstore-1.1.0.tgz#a7a8b00ca07d86faca05fb825c45e5d1c3bba97e"
+  integrity sha512-XNlCWr3KBIL97G8mTR+dZ/J648ECCffflfFRgZW3Zm7pO0PYnH/ZCbwZjV1Dw4LrrDdhV6gnayiIcmdIY4JTsw==
 
 function-bind@^1.1.0, function-bind@^1.1.1:
   version "1.1.1"
@@ -14206,7 +14206,7 @@ pkg-dir@^3.0.0:
   dependencies:
     find-up "^3.0.0"
 
-pkg-up@2.0.0, pkg-up@^2.0.0:
+pkg-up@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/pkg-up/-/pkg-up-2.0.0.tgz#c819ac728059a461cab1c3889a2be3c49a004d7f"
   integrity sha1-yBmscoBZpGHKscOImivjxJoATX8=
@@ -16959,6 +16959,15 @@ slide@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
   integrity sha1-VusCfWW00tzmyy4tMsTUr8nh1wc=
+
+smalltalk@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/smalltalk/-/smalltalk-3.2.2.tgz#08d8dbdb8a229f615a2ea706fd1f73fa2424a447"
+  integrity sha512-UwHCzzIg89XEwC6KkIAQcQbXt9rZNt/iUgmiQn8uaHx9CSXczMbYa70wy9+ZiTW+PkKmYvFG+CZNhxJaeNFpcg==
+  dependencies:
+    "@cloudcmd/create-element" "^1.0.0"
+    currify "^3.0.0"
+    fullstore "^1.0.0"
 
 smart-buffer@^4.0.1:
   version "4.0.1"

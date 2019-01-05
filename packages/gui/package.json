@@ -10,7 +10,6 @@
     "concurrently": "^4.1.0",
     "electron-better-ipc": "^0.1.2",
     "electron-is-dev": "^1.0.1",
-    "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "emotion": "^10.0.5",
     "fix-path": "^2.1.0",
@@ -21,6 +20,7 @@
     "react-scripts": "2.1.1",
     "redux-starter-kit": "^0.2.0",
     "run-electron": "^0.1.0",
+    "smalltalk": "^3.2.2",
     "uuid": "^3.3.2"
   },
   "scripts": {
@@ -29,7 +29,7 @@
     "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true ELECTRON_START_URL=http://localhost:3000 run-electron .",
+    "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true ELECTRON_START_URL=http://localhost:3000 electron .",
     "package": "yarn build && yarn electron-builder"
   },
   "eslintConfig": {

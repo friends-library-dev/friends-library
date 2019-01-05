@@ -20,6 +20,7 @@ try {
   dialog.showErrorBox('Error: git is not installed.', '');
   app.quit();
 }
+console.log(process.env);
 
 if (!fs.existsSync(PATH_EN)) {
   logger.error('bad repo path');
@@ -118,6 +119,7 @@ ipcMain.on('receive:friend', (_, friend, lang) => {
   }
 });
 
+
 ipcMain.on('receive:repos', (_, repos) => {
   repos.forEach(repo => {
     const slug = `en/${repo.name}`;
@@ -152,5 +154,8 @@ answerRenderer('git:push', async task => {
   return 'pushed';
 });
 
-
 ipcMain.on('open:url', (_, url) => shell.openExternal(url));
+
+ipcMain.on('delete:task-branch', (_, task) => {
+  workerWindow.webContents.send('delete:task-branch', task);
+});

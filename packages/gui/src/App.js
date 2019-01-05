@@ -26,7 +26,7 @@ class App extends React.Component<Props> {
       receiveFriend({ friend, lang });
     });
 
-    if (repos.length === 0) {
+    if (Object.values(repos).length === 0) {
       const received = await getFriendRepos();
       receiveRepos(received);
       ipcRenderer.send('receive:repos', received);

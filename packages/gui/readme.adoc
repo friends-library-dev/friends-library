@@ -2,7 +2,7 @@
 
 === Todo:
 
-* [ ] Delete task (with confirmation)
+* [ ] yarn preflight / merge into master
 * [ ] file-based json state storage
 * [ ] bundle git
 * [ ] render/HTML preview
@@ -12,6 +12,7 @@
 * [ ] add timestamps to tasks
 * [ ] global (by friend or doc or edition) find
 * [ ] match syntax highlighting of atom
+* [x] Delete task (with confirmation)
 * [x] auto updates
 * [x] App/Work top bar component for persistent nav
 * [x] tasks need "submitted" boolean flag

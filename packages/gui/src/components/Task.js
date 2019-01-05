@@ -6,6 +6,7 @@ import * as actions from '../redux/actions';
 import type { Task as TaskType, Friend, Dispatch } from '../redux/type';
 import { callMain, ipcRenderer as ipc } from '../webpack-electron';
 import Button from './Button';
+import smalltalk from 'smalltalk/legacy';
 
 const Wrap = styled.li`
   background: orange;
@@ -79,15 +80,6 @@ class Task extends React.Component<Props, State> {
     prOpened: false,
     pollingPrNum: false,
   };
-
-  componentDidMount() {
-    // temp!
-    // console.log('did mount!')
-    // const { task, updateTask } = this.props;
-    // updateTask({ id: task.id, data: {
-    //   submitted: false,
-    // }});
-  }
 
   submit = async () => {
     const { task } = this.props;
@@ -167,6 +159,23 @@ class Task extends React.Component<Props, State> {
     return 'Submit';
   }
 
+  confirmDelete = () => {
+    const msg = 'You will lose any work and there is no undo.\nPlease type "Hubberthorne" to confirm:\n\n';
+    smalltalk
+      .prompt('Delete Task?', msg)
+      .then((value) => {
+        if (value === 'Hubberthorne') {
+          this.deleteTask();
+        }
+      }).catch(() => {});
+  }
+
+  deleteTask() {
+    const { task, deleteTask } = this.props;
+    deleteTask(task.id);
+    ipc.send('delete:task-branch', task);
+  }
+
   render() {
     const { submitting, gitPushing } = this.state;
     const { task, friend, workOnTask } = this.props;
@@ -193,6 +202,7 @@ class Task extends React.Component<Props, State> {
           <Button
             secondary={true}
             className="delete"
+            onClick={this.confirmDelete}
           >
             Delete
           </Button>
@@ -225,6 +235,7 @@ const mapState = (state, { task }) => ({
 const mapDispatch = {
   workOnTask: actions.workOnTask,
   updateTask: actions.updateTask,
+  deleteTask: actions.deleteTask,
 };
 
 export default connect(mapState, mapDispatch)(Task);

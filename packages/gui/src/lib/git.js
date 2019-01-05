@@ -1,3 +1,4 @@
+// @flow
 const path = require('path');
 const { ipcRenderer } = require('electron');
 const { execSync } = require('child_process');
@@ -63,6 +64,22 @@ function pushTask(task) {
   return cmd(`git push origin task-${task.id}`, repoDir);
 }
 
+function deleteTaskBranch(task) {
+  const repoDir = `${PATH_EN}/${task.repo}`;
+  const branch = `task-${task.id}`;
+
+  if (!branchExists(repoDir, branch)) {
+    return;
+  }
+
+  if (getBranch(repoDir) === branch) {
+    cmd('git reset --hard HEAD', repoDir);
+    cmd('git checkout master', repoDir);
+  }
+
+  cmd(`git branch -D ${branch}`, repoDir);
+}
+
 function notifyAndThrow(err) {
   ipcRenderer.send('error', err);
   throw new Error(err);
@@ -87,7 +104,10 @@ function getBranch(repoDir) {
   return cmd('git rev-parse --abbrev-ref HEAD', repoDir).trim();
 }
 
-function cmd(command, repoDir, log) {
+
+const log = true;
+
+function cmd(command, repoDir) {
   if (!repoDir) {
     notifyAndThrow(`No repoDir passed for command ${command}`);
     return '';
@@ -97,7 +117,11 @@ function cmd(command, repoDir, log) {
     logger.log(`${repoDir}: ${command}`);
   }
 
-  const output = execSync(`${command}`, { stdio: 'ignore', cwd: repoDir });
+  const output = execSync(`${command}`, {
+    cwd: repoDir,
+    ...log ? {} : { stdio: 'ignore' },
+  });
+
   return output && typeof output.toString === 'function' ? output.toString() : '';
 }
 
@@ -106,4 +130,5 @@ module.exports = {
   updateRepo,
   ensureBranch,
   commitWip,
+  deleteTaskBranch,
 }
