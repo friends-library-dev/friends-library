@@ -2,7 +2,7 @@ version: 2
 jobs:
   node:
     docker:
-      - image: circleci/node:8.11.1
+      - image: circleci/node:8.14.1
     working_directory: ~/fl-node
     steps:
       - checkout

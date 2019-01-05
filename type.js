@@ -1,6 +1,8 @@
 // @flow
 export type ISBN = string;
 
+export type Uuid = string;
+
 export type Asciidoc = string;
 
 export type Xml = string;
