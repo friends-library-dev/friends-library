@@ -2,6 +2,7 @@
 
 === Todo:
 
+* [ ] make a real strategy for auto-update api feed
 * [ ] collapse/expand books/editions
 * [ ] render/HTML preview
 * [ ] minimize sidebar
@@ -10,6 +11,7 @@
 * [ ] add timestamps to tasks
 * [ ] global (by friend or doc or edition) find
 * [ ] match syntax highlighting of atom
+* [x] re-initialize file when switching tasks
 * [x] file-based json state storage
 * [x] yarn preflight / merge into master
 * [x] Delete task (with confirmation)

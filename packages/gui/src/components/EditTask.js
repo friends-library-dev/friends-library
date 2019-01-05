@@ -100,7 +100,7 @@ class EditTask extends React.Component<Props, State> {
         />
         <Heading>Friend:</Heading>
         <FriendList>
-          {friends.sort((a, b) => a.name < b.name ? -1 : 1).map(friend => (
+          {friends.sort((a, b) => (a.name < b.name ? -1 : 1)).map(friend => (
             <li
               key={friend.slug}
               className={repo === friend.slug ? 'selected' : ''}
