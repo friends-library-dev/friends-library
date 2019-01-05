@@ -49,22 +49,21 @@ type Props = {|
 |};
 
 type State = {|
-  branch?: string,
+  branch: string,
 |};
 
 class Work extends React.Component<Props, State> {
-
-  state = {}
+  state = {
+    branch: '',
+  }
 
   async componentDidMount() {
     const { receiveRepoFiles, friend, task } = this.props;
     if (!friend.filesReceived) {
-      console.log('request files!', friend.slug);
       ipcRenderer.send('request:files', friend.slug);
     }
 
     ipcRenderer.on('RECEIVE_REPO_FILES', (_, friendSlug, files) => {
-      console.log('receive files!', friendSlug);
       receiveRepoFiles({ friendSlug, files });
     });
 
@@ -81,7 +80,7 @@ class Work extends React.Component<Props, State> {
     return (
       <Wrap>
         <Nav>
-          <Button className="tasks" secondary={true} onClick={toTasks}>&larr; Tasks</Button>
+          <Button className="tasks" secondary onClick={toTasks}>&larr; Tasks</Button>
           <span className="task-friend">{friend.name}:&nbsp;</span>
           <span className="task-name"><i>{task.name}</i></span>
         </Nav>
@@ -96,7 +95,7 @@ class Work extends React.Component<Props, State> {
       </Wrap>
     );
   }
-};
+}
 
 const mapState = state => {
   const task = state.tasks[state.currentTask];

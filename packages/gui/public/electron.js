@@ -1,9 +1,9 @@
-const { app, BrowserWindow, autoUpdater, dialog, ipcMain, shell } = require('electron');
+const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 const { answerRenderer, callRenderer } = require('electron-better-ipc');
 const path = require('path');
+const fixPath = require('fix-path');
 const url = require('url');
 const fs = require('fs-extra');
-const os = require('os');
 const isDev = require('electron-is-dev');
 const { execSync } = require('child_process');
 const logger = require('../src/lib/log');
@@ -11,7 +11,7 @@ const { PATH_EN } = require('../src/lib/path');
 const { watchForAutoUpdates } = require('../src/lib/auto-update');
 
 // ensure we use the full $PATH from the shell when packaged
-require('fix-path')();
+fixPath();
 
 try {
   execSync('git --version');
@@ -20,7 +20,6 @@ try {
   dialog.showErrorBox('Error: git is not installed.', '');
   app.quit();
 }
-console.log(process.env);
 
 if (!fs.existsSync(PATH_EN)) {
   logger.error('bad repo path');
@@ -46,7 +45,7 @@ function createMainWindow() {
   const startUrl = process.env.ELECTRON_START_URL || url.format({
     pathname: path.join(__dirname, '/../build/index.html'),
     protocol: 'file:',
-    slashes: true
+    slashes: true,
   });
   mainWindow.loadURL(startUrl);
 
@@ -56,8 +55,8 @@ function createMainWindow() {
   mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', () => {
-    mainWindow = null
-  })
+    mainWindow = null;
+  });
 }
 
 function createWorkerWindow() {
@@ -75,19 +74,20 @@ app.on('ready', createWorkerWindow);
 app.on('ready', createBgWorkerWindow);
 
 if (isDev) {
+  /* eslint-disable-next-line global-require */
   app.on('ready', () => require('devtron').install());
 }
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
 });
 
 app.on('activate', () => {
   if (mainWindow === null) {
-    createMainWindow()
+    createMainWindow();
   }
 });
 
@@ -102,13 +102,13 @@ ipcMain.on('receive:files', (_, friendSlug, files) => {
 });
 
 
-ipcMain.on('request:filecontent', (_, path) => {
-  workerWindow.webContents.send('request:filecontent', path);
+ipcMain.on('request:filecontent', (_, filepath) => {
+  workerWindow.webContents.send('request:filecontent', filepath);
 });
 
-ipcMain.on('receive:filecontent', (_, path, content) => {
+ipcMain.on('receive:filecontent', (_, filepath, content) => {
   if (mainWindow) {
-    mainWindow.webContents.send('UPDATE_FILE_CONTENT', path, content);
+    mainWindow.webContents.send('UPDATE_FILE_CONTENT', filepath, content);
   }
 });
 
@@ -133,8 +133,8 @@ ipcMain.on('receive:repos', (_, repos) => {
   }
 });
 
-ipcMain.on('save:file', (_, path, content) => {
-  fs.writeFileSync(path, content);
+ipcMain.on('save:file', (_, filepath, content) => {
+  fs.writeFileSync(filepath, content);
 });
 
 ipcMain.on('commit:wip', (_, friendSlug) => {
@@ -154,7 +154,7 @@ answerRenderer('git:push', async task => {
   return 'pushed';
 });
 
-ipcMain.on('open:url', (_, url) => shell.openExternal(url));
+ipcMain.on('open:url', (_, uri) => shell.openExternal(uri));
 
 ipcMain.on('delete:task-branch', (_, task) => {
   workerWindow.webContents.send('delete:task-branch', task);

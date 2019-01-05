@@ -2,13 +2,20 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
-import { changeScreen, createTask } from '../redux/actions';
+import type { Task, Dispatch } from '../redux/type';
+import * as actions from '../redux/actions';
 import * as screens from '../redux/screens';
 import Button from './Button';
 import Heading from './Heading';
 import TaskList from './TaskList';
 
-const Welcome = ({ tasks, changeScreen, createTask }) => (
+type Props = {|
+  tasks: Array<Task>,
+  changeScreen: Dispatch,
+  createTask: Dispatch,
+|};
+
+const Welcome = ({ tasks, changeScreen, createTask }: Props) => (
   <div>
     <h1>Tasks</h1>
     <Heading>You have {tasks.length} task{tasks.length === 1 ? '' : 's'}:</Heading>
@@ -16,7 +23,9 @@ const Welcome = ({ tasks, changeScreen, createTask }) => (
     <Button onClick={() => {
       createTask({ taskId: uuid.v4() });
       changeScreen(screens.EDIT_TASK);
-    }}>Create a task</Button>
+    }}
+    >Create a task
+    </Button>
   </div>
 );
 
@@ -25,8 +34,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  changeScreen,
-  createTask,
+  changeScreen: actions.changeScreen,
+  createTask: actions.createTask,
 };
 
 export default connect(mapState, mapDispatch)(Welcome);

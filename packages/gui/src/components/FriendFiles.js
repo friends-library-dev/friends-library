@@ -84,14 +84,15 @@ const FriendFiles = ({ friend, selectFile, editingFile }: Props) => {
                       friend: friend.slug,
                       document: document.slug,
                       edition: edition.type,
-                      filename: filename,
+                      filename,
                     };
                     const editing = isEqual(file, editingFile);
                     return (
                       <Filename
                         key={filename}
                         onClick={() => selectFile(file)}
-                        className={editing ? 'editing' : ''}>
+                        className={editing ? 'editing' : ''}
+                      >
                         <code>{filename}</code>
                       </Filename>
                     );
@@ -103,8 +104,8 @@ const FriendFiles = ({ friend, selectFile, editingFile }: Props) => {
         </li>
       ))}
     </Wrap>
-  )
-}
+  );
+};
 
 const mapState = state => ({
   editingFile: state.editingFile,

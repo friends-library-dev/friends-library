@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import type { Friend, Task, Dispatch } from '../redux/type';
 import { values } from './utils';
-import { updateTask, changeScreen, deleteTask } from '../redux/actions';
+import * as actions from '../redux/actions';
 import * as screens from '../redux/screens';
 import Button from './Button';
 import Heading from './Heading';
@@ -57,7 +57,6 @@ type State = {|
 |};
 
 class EditTask extends React.Component<Props, State> {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -74,7 +73,7 @@ class EditTask extends React.Component<Props, State> {
     }
     updateTask({
       id: task.id,
-      data: { name, repo, isNew: false }
+      data: { name, repo, isNew: false },
     });
     goToTasks();
   }
@@ -111,14 +110,14 @@ class EditTask extends React.Component<Props, State> {
             </li>
           ))}
         </FriendList>
-        <Button secondary={true} onClick={this.clickCancel}>
+        <Button secondary onClick={this.clickCancel}>
           Cancel
         </Button>
         <Button disabled={!repo || !name.trim()} onClick={this.clickSave}>
           Save
         </Button>
       </div>
-    )
+    );
   }
 }
 
@@ -128,9 +127,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  updateTask,
-  goToTasks: () => changeScreen(screens.TASKS),
-  deleteTask,
+  updateTask: actions.updateTask,
+  goToTasks: () => actions.changeScreen(screens.TASKS),
+  deleteTask: actions.deleteTask,
 };
 
 export default connect(mapState, mapDispatch)(EditTask);

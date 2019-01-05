@@ -1,5 +1,5 @@
 // @flow
-import { createReducer } from 'redux-starter-kit'
+import { createReducer } from 'redux-starter-kit';
 import { get } from 'lodash';
 
 export default createReducer({}, {
@@ -20,14 +20,15 @@ export default createReducer({}, {
             eds[ed.type] = {
               type: ed.type,
               files: {},
-            }
+            };
             return eds;
-          }, {})
-        }
+          }, {}),
+        };
         return docs;
       }, {}),
       filesReceived: false,
     };
+    return state;
   },
   RECEIVE_REPO_FILES: (state, action) => {
     const { payload: { friendSlug, files } } = action;

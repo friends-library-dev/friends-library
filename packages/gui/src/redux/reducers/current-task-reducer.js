@@ -1,5 +1,5 @@
 // @flow
-import { createReducer } from 'redux-starter-kit'
+import { createReducer } from 'redux-starter-kit';
 
 export default createReducer(null, {
   CREATE_TASK: (state, action) => {
@@ -19,5 +19,5 @@ export default createReducer(null, {
   },
   WORK_ON_TASK: (state, { payload }) => {
     return payload;
-  }
+  },
 });

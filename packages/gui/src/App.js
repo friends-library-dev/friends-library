@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { getFriendRepos } from './lib/friend-repos';
-import { receiveRepos, receiveFriend } from './redux/actions';
+import * as actions from './redux/actions';
 import { ipcRenderer } from './webpack-electron';
 import type { Repos, Dispatch } from './redux/type';
 import * as screens from './redux/screens';
@@ -19,7 +19,6 @@ type Props = {|
 |};
 
 class App extends React.Component<Props> {
-
   async componentDidMount() {
     const { repos, receiveRepos, receiveFriend } = this.props;
     ipcRenderer.on('RECEIVE_FRIEND', (_, friend, lang) => {
@@ -51,17 +50,23 @@ class App extends React.Component<Props> {
     return (
       <div>
         {this.renderScreen()}
-        <span style={{
-          position: 'absolute',
-          bottom: 5,
-          left: 5,
-          cursor: 'pointer',
-        }} onClick={() => {
-          try {
-            localStorage.removeItem('state');
-            window.location.reload();
-          } catch (e) {}
-        }}>RESET</span>
+        <span
+          style={{
+            position: 'absolute',
+            bottom: 5,
+            left: 5,
+            cursor: 'pointer',
+          }}
+          onClick={() => {
+            try {
+              localStorage.removeItem('state');
+              window.location.reload();
+            } catch (e) {
+              // ¯\_(ツ)_/¯
+            }
+          }}
+        >RESET
+        </span>
       </div>
     );
   }
@@ -73,8 +78,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  receiveRepos,
-  receiveFriend,
+  receiveRepos: actions.receiveRepos,
+  receiveFriend: actions.receiveFriend,
 };
 
 export default connect(mapState, mapDispatch)(App);

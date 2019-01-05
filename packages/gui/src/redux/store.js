@@ -1,10 +1,9 @@
 // @flow
-import { configureStore } from 'redux-starter-kit'
-import rootReducer from './reducers'
+import { configureStore } from 'redux-starter-kit';
+import rootReducer from './reducers';
 import * as screens from './screens';
 
 const isDev = process.env.NODE_ENV === 'development';
-console.log('store', process.env);
 
 const defaultState = {
   screen: screens.TASKS,
@@ -14,7 +13,6 @@ const defaultState = {
   friends: {},
   repos: {},
 };
-
 
 
 const loadState = () => {
@@ -34,10 +32,12 @@ const saveState = (state) => {
     const toSave = isDev ? state : { tasks: state.tasks };
     const serializedState = JSON.stringify(toSave);
     localStorage.setItem('state', serializedState);
-  } catch (err) {}
+  } catch (err) {
+    // ¯\_(ツ)_/¯
+  }
 };
 
-export default function() {
+export default function () {
   const store = configureStore({
     reducer: rootReducer,
     preloadedState: {
@@ -51,6 +51,7 @@ export default function() {
   // $FlowFixMe
   if (module.hot) {
     module.hot.accept('./reducers', () => {
+      /* eslint-disable-next-line global-require */
       const nextReducer = require('./reducers').default;
       store.replaceReducer(nextReducer);
     });

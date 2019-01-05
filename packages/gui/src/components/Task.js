@@ -2,11 +2,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
+// $FlowFixMe
+import smalltalk from 'smalltalk/legacy';
 import * as actions from '../redux/actions';
 import type { Task as TaskType, Friend, Dispatch } from '../redux/type';
 import { callMain, ipcRenderer as ipc } from '../webpack-electron';
 import Button from './Button';
-import smalltalk from 'smalltalk/legacy';
 
 const Wrap = styled.li`
   background: orange;
@@ -64,21 +65,20 @@ type Props = {|
   task: TaskType,
   friend: Friend,
   workOnTask: Dispatch,
+  deleteTask: Dispatch,
+  updateTask: Dispatch,
 |};
 
 type State = {|
   submitting: boolean,
   gitPushing: boolean,
-  prOpened: boolean,
-  pollingPrNum: boolean,
 |};
+
 
 class Task extends React.Component<Props, State> {
   state = {
     submitting: false,
     gitPushing: false,
-    prOpened: false,
-    pollingPrNum: false,
   };
 
   submit = async () => {
@@ -86,11 +86,6 @@ class Task extends React.Component<Props, State> {
     this.setState({ submitting: true, gitPushing: true });
     await callMain('git:push', task);
     this.setState({ gitPushing: false });
-  }
-
-  prNeedsCreation() {
-    const { task } = this.props;
-    return !Boolean(task.prNumber);
   }
 
   prText() {
@@ -108,12 +103,11 @@ class Task extends React.Component<Props, State> {
       const title = encodeURIComponent(name);
       const url = `${repoUrl}/compare/task-${id}?expand=1&title=${title}`;
       ipc.send('open:url', url);
-      this.setState({ pollingPrNum: true });
       this.startPoll();
       return;
     }
 
-    const url = `${repoUrl}/pull/${prNumber}`;
+    const url = `${repoUrl}/pull/${prNumber || ''}`;
     ipc.send('open:url', url);
   }
 
@@ -176,6 +170,11 @@ class Task extends React.Component<Props, State> {
     ipc.send('delete:task-branch', task);
   }
 
+  prNeedsCreation() {
+    const { task } = this.props;
+    return !task.prNumber;
+  }
+
   render() {
     const { submitting, gitPushing } = this.state;
     const { task, friend, workOnTask } = this.props;
@@ -195,12 +194,12 @@ class Task extends React.Component<Props, State> {
         <div className="actions">
 
           {((submitting && !gitPushing) || task.prNumber)
-            ? <Button secondary={true} onClick={this.pr} className="pr">{this.prText()}</Button>
+            ? <Button secondary onClick={this.pr} className="pr">{this.prText()}</Button>
             : <Button className="invisible">¯\_(ツ)_/¯</Button>
           }
 
           <Button
-            secondary={true}
+            secondary
             className="delete"
             onClick={this.confirmDelete}
           >
@@ -208,7 +207,7 @@ class Task extends React.Component<Props, State> {
           </Button>
 
           <Button
-            secondary={true}
+            secondary
             className="submit"
             onClick={this.submit}
           >

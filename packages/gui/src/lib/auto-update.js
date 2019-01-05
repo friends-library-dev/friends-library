@@ -11,11 +11,13 @@ function watchForAutoUpdates() {
   setInterval(() => {
     if (!checking) {
       checking = true;
-      autoUpdater.checkForUpdates()
+      autoUpdater.checkForUpdates();
     }
   }, 20000);
 
-  autoUpdater.on('update-not-available', () => checking = false);
+  autoUpdater.on('update-not-available', () => {
+    checking = false;
+  });
 
   autoUpdater.on('update-downloaded', () => {
     checking = false;
@@ -24,12 +26,12 @@ function watchForAutoUpdates() {
       buttons: ['Restart', 'Later'],
       title: 'Application Update',
       message: 'New version!',
-      detail: 'A new version has been downloaded. Restart the application to apply the updates.'
-    }
+      detail: 'A new version has been downloaded. Restart the application to apply the updates.',
+    };
 
     dialog.showMessageBox(dialogOpts, (response) => {
-      if (response === 0) autoUpdater.quitAndInstall()
-    })
+      if (response === 0) autoUpdater.quitAndInstall();
+    });
   });
 }
 

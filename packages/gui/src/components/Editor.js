@@ -30,9 +30,9 @@ const Save = styled(Button)`
   height: 35px;
   line-height: 35px;
   margin-right: 0;
-  opacity: ${({ enabled }) => enabled ? 0.75 : 0.4 };
-  cursor: ${({ enabled }) => enabled ? 'pointer' : 'not-allowed' };
-  background: ${({ enabled }) => enabled ? 'var(--accent)' : '#666'};
+  opacity: ${({ enabled }) => (enabled ? 0.75 : 0.4)};
+  cursor: ${({ enabled }) => (enabled ? 'pointer' : 'not-allowed')};
+  background: ${({ enabled }) => (enabled ? 'var(--accent)' : '#666')};
   & i {
     padding-right: 0.5em;
   }
@@ -45,19 +45,20 @@ type Props = {|
 |};
 
 type State = {|
-  edited?: boolean,
   current?: Asciidoc,
 |};
 
 class Editor extends React.Component<Props, State> {
+  static defaultProps = {
+    content: null,
+  }
 
   constructor(props) {
     super(props);
 
     this.state = {
       current: props.content,
-      edited: false,
-    }
+    };
   }
 
   componentDidMount() {
@@ -67,6 +68,7 @@ class Editor extends React.Component<Props, State> {
   componentDidUpdate(prevProps) {
     const { filepath, content } = this.props;
     if (prevProps.filepath !== filepath || (prevProps.content === null && content !== null)) {
+      // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ current: content });
     }
     this.maybeRequestFileContent();
@@ -74,7 +76,7 @@ class Editor extends React.Component<Props, State> {
 
   maybeRequestFileContent() {
     const { filepath, content, updateFileContent } = this.props;
-    if (filepath && null === content) {
+    if (filepath && content === null) {
       ipcRenderer.send('request:filecontent', filepath);
       ipcRenderer.once('UPDATE_FILE_CONTENT', (_, path, received) => {
         if (path === filepath) {
@@ -134,11 +136,11 @@ class Editor extends React.Component<Props, State> {
         <AceEditor
           mode="asciidoc"
           theme="tomorrow_night"
-          onChange={(val, event) => {
+          onChange={val => {
             this.setState({ current: val });
           }}
           value={current || ''}
-          editorProps={{$blockScrolling: true}}
+          editorProps={{ $blockScrolling: true }}
           setOptions={{ wrap: true }}
         />
       </Wrap>

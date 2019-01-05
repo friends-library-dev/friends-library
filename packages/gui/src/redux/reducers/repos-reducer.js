@@ -1,5 +1,5 @@
 // @flow
-import { createReducer } from 'redux-starter-kit'
+import { createReducer } from 'redux-starter-kit';
 
 export default createReducer([], {
   RECEIVE_REPOS: (state, action) => {
@@ -11,5 +11,5 @@ export default createReducer([], {
       };
     });
     return repos;
-  }
+  },
 });

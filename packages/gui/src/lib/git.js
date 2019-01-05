@@ -1,4 +1,3 @@
-// @flow
 const path = require('path');
 const { ipcRenderer } = require('electron');
 const { execSync } = require('child_process');
@@ -43,7 +42,7 @@ function ensureBranch(task) {
     return taskBranch;
   }
 
-  notifyAndThrow(`Unable to ensure branch ${taskBranch} for repo ${repoDir}`);
+  return notifyAndThrow(`Unable to ensure branch ${taskBranch} for repo ${repoDir}`);
 }
 
 function commitWip(repo) {
@@ -131,4 +130,4 @@ module.exports = {
   ensureBranch,
   commitWip,
   deleteTaskBranch,
-}
+};
