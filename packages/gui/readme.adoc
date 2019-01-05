@@ -2,7 +2,6 @@
 
 === Todo:
 
-* [ ] file-based json state storage
 * [ ] bundle git
 * [ ] render/HTML preview
 * [ ] minimize sidebar
@@ -11,6 +10,7 @@
 * [ ] add timestamps to tasks
 * [ ] global (by friend or doc or edition) find
 * [ ] match syntax highlighting of atom
+* [x] file-based json state storage
 * [x] yarn preflight / merge into master
 * [x] Delete task (with confirmation)
 * [x] auto updates

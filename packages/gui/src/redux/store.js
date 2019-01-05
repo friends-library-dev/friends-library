@@ -1,9 +1,11 @@
 // @flow
 import { configureStore } from 'redux-starter-kit';
+import { debounce } from 'lodash';
+import { ipcRenderer as ipc } from '../webpack-electron';
 import rootReducer from './reducers';
 import * as screens from './screens';
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development' && false;
 
 const defaultState = {
   screen: screens.TASKS,
@@ -29,24 +31,31 @@ const loadState = () => {
 
 const saveState = (state) => {
   try {
-    const toSave = isDev ? state : { tasks: state.tasks };
-    const serializedState = JSON.stringify(toSave);
+    const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState);
   } catch (err) {
     // ¯\_(ツ)_/¯
   }
 };
 
+
 export default function () {
   const store = configureStore({
     reducer: rootReducer,
     preloadedState: {
       ...defaultState,
-      ...loadState(),
+      ...isDev ? loadState() : {},
     },
   });
 
-  store.subscribe(() => saveState(store.getState()));
+  if (isDev) {
+    store.subscribe(() => saveState(store.getState()));
+  }
+
+  store.subscribe(debounce(
+    () => ipc.send('storage:update-state', store.getState()),
+    2500,
+  ));
 
   // $FlowFixMe
   if (module.hot) {

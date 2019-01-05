@@ -10,6 +10,7 @@
     "concurrently": "^4.1.0",
     "electron-better-ipc": "^0.1.2",
     "electron-is-dev": "^1.0.1",
+    "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
     "emotion": "^10.0.5",
     "fix-path": "^2.1.0",

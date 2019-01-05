@@ -177,6 +177,9 @@ class Task extends React.Component<Props, State> {
   render() {
     const { submitting, gitPushing } = this.state;
     const { task, friend, workOnTask } = this.props;
+    if (!friend) {
+      return null;
+    }
     return (
       <Wrap>
 

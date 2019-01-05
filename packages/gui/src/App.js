@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { getFriendRepos } from './lib/friend-repos';
 import * as actions from './redux/actions';
-import { ipcRenderer } from './webpack-electron';
+import { ipcRenderer as ipc, callMain } from './webpack-electron';
 import type { Repos, Dispatch } from './redux/type';
 import * as screens from './redux/screens';
 import Welcome from './components/Welcome';
@@ -16,23 +16,42 @@ type Props = {|
   repos: Repos,
   receiveRepos: Dispatch,
   receiveFriend: Dispatch,
+  rehydrate: Dispatch,
 |};
 
-class App extends React.Component<Props> {
+type State = {|
+  stateRehydrated: boolean,
+|};
+
+class App extends React.Component<Props, State> {
+  state = {
+    stateRehydrated: false,
+  };
+
   async componentDidMount() {
-    const { repos, receiveRepos, receiveFriend } = this.props;
-    ipcRenderer.on('RECEIVE_FRIEND', (_, friend, lang) => {
+    const { repos, receiveRepos, receiveFriend, rehydrate } = this.props;
+
+    const storedState = await callMain('stored-state:get');
+    rehydrate(storedState);
+    this.setState({ stateRehydrated: true });
+
+    ipc.on('RECEIVE_FRIEND', (_, friend, lang) => {
       receiveFriend({ friend, lang });
     });
 
-    if (Object.values(repos).length === 0) {
+    if (repos.length === 0) {
       const received = await getFriendRepos();
       receiveRepos(received);
-      ipcRenderer.send('receive:repos', received);
+      ipc.send('receive:repos', received);
     }
   }
 
   renderScreen() {
+    const { stateRehydrated } = this.state;
+    if (!stateRehydrated) {
+      return <p>Loading...</p>;
+    }
+
     const { screen } = this.props;
     switch (screen) {
       case screens.TASKS:
@@ -80,6 +99,7 @@ const mapState = state => ({
 const mapDispatch = {
   receiveRepos: actions.receiveRepos,
   receiveFriend: actions.receiveFriend,
+  rehydrate: actions.rehydrate,
 };
 
 export default connect(mapState, mapDispatch)(App);
