@@ -1,6 +1,7 @@
 // @flow
 import { createReducer } from 'redux-starter-kit';
 import { get } from 'lodash';
+import { values } from '../../components/utils';
 
 export default createReducer({}, {
   RECEIVE_FRIEND: (state, action) => {
@@ -43,6 +44,18 @@ export default createReducer({}, {
           content: null,
         };
       }
+    });
+  },
+  WORK_ON_TASK: (state) => {
+    // reset files whicn switching tasks to remove
+    // stale filecontent state from another task
+    values(state).forEach(friend => {
+      friend.filesReceived = false;
+      values(friend.documents).forEach(document => {
+        values(document.editions).forEach(edition => {
+          edition.files = {};
+        });
+      });
     });
   },
   UPDATE_FILE_CONTENT: (state, action) => {

@@ -9,25 +9,28 @@ import { callMain, ipcRenderer as ipc } from '../webpack-electron';
 import Button from './Button';
 
 const Wrap = styled.li`
-  background: orange;
-  color: #444;
+  background: #999;
+  color: #222;
+  border-radius: 7px;
   display: inline-block;
   width: 450px;
   list-style: none;
   margin-right: 20px;
   margin-bottom: 20px;
-  padding: 11px 18px;
+  padding: 14px 21px;
   cursor: pointer;
 
   & h1 {
     font-size: 22px;
-    margin: 0;
+    margin: 0 0 12px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #666;
   }
 
   & p {
     font-size: 16px;
     padding-left: 1.4em;
-    color: #555;
+    color: #333;
   }
 
   & .create-pr-msg {
