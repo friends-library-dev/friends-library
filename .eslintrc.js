@@ -3,6 +3,7 @@ module.exports = {
   plugins: ['flowtype', 'no-only-tests'],
   extends: ['airbnb', 'plugin:flowtype/recommended'],
   globals: {
+    window: false,
     expect: false,
     it: false,
     describe: false,
@@ -21,7 +22,9 @@ module.exports = {
     'arrow-parens': 0,
     'no-plusplus': 0,
     'no-param-reassign': 0,
+    'import/no-extraneous-dependencies': 0,
     'react/jsx-one-expression-per-line': 0,
+    'react/sort-comp': 0,
     'react/jsx-filename-extension': [0],
     'no-cond-assign': 0,
     'no-unused-vars': [
