@@ -2,7 +2,7 @@
 
 === Todo:
 
-* [ ] bundle git
+* [ ] collapse/expand books/editions
 * [ ] render/HTML preview
 * [ ] minimize sidebar
 * [ ] resize sidebar & panes
@@ -20,3 +20,7 @@
 * [x] commit at save time
 * [x] saving files
 * [x] basic git branching
+
+=== Maybe later todos:
+
+* [ ] bundle git
