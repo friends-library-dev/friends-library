@@ -2,6 +2,9 @@
 import { createReducer } from 'redux-starter-kit';
 
 export default createReducer([], {
+  REHYDRATE: (state, action) => {
+    return action.payload.tasks;
+  },
   CREATE_TASK: (state, action) => {
     const { payload: { taskId } } = action;
     state[taskId] = {

@@ -8,6 +8,7 @@ const isDev = require('electron-is-dev');
 const { execSync } = require('child_process');
 const logger = require('../src/lib/log');
 const { PATH_EN } = require('../src/lib/path');
+const storage = require('../src/lib/storage');
 const { watchForAutoUpdates } = require('../src/lib/auto-update');
 
 // ensure we use the full $PATH from the shell when packaged
@@ -152,6 +153,14 @@ answerRenderer('ensure:branch', async task => {
 answerRenderer('git:push', async task => {
   await callRenderer(workerWindow, 'git:push', task);
   return 'pushed';
+});
+
+answerRenderer('stored-state:get', () => {
+  return Promise.resolve(storage.get('state'));
+});
+
+ipcMain.on('storage:update-state', (_, { tasks }) => {
+  storage.set('state.tasks', tasks);
 });
 
 ipcMain.on('open:url', (_, uri) => shell.openExternal(uri));
