@@ -17,10 +17,12 @@ ipcRenderer.on('friend:get', (_, slug) => {
 });
 
 ipcRenderer.on('update:repo', (_, repoPath) => {
+  logger.log('worker update:repo');
   updateRepo(repoPath);
 });
 
 ipcRenderer.on('request:files', (_, friendSlug) => {
+  logger.log('worker request:files');
   const files = glob(`${PATH_EN}/${friendSlug}/**/*.adoc`)
     .map(file => ({
       fullPath: file,
@@ -30,15 +32,18 @@ ipcRenderer.on('request:files', (_, friendSlug) => {
 });
 
 ipcRenderer.on('request:filecontent', (_, path) => {
+  logger.log('worker request:filecontent');
   const content = fs.readFileSync(path).toString();
   ipcRenderer.send('receive:filecontent', path, content);
 });
 
 answerMain('ensure:branch', task => {
+  logger.log('worker ensure:branch');
   return Promise.resolve(ensureBranch(task));
 });
 
 answerMain('git:push', task => {
+  logger.log('worker git:push');
   return Promise.resolve(pushTask(task));
 });
 

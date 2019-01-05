@@ -33,6 +33,7 @@ if (!isDev) {
 
 let mainWindow;
 let workerWindow;
+let bgWorkerWindow;
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -61,13 +62,16 @@ function createMainWindow() {
 function createWorkerWindow() {
   workerWindow = new BrowserWindow({ show: false });
   workerWindow.loadFile('src/worker.html');
-  if (isDev) {
-    workerWindow.webContents.openDevTools();
-  }
+}
+
+function createBgWorkerWindow() {
+  bgWorkerWindow = new BrowserWindow({ show: false });
+  bgWorkerWindow.loadFile('src/bg-worker.html');
 }
 
 app.on('ready', createMainWindow);
 app.on('ready', createWorkerWindow);
+app.on('ready', createBgWorkerWindow);
 
 if (isDev) {
   app.on('ready', () => require('devtron').install());
@@ -122,7 +126,7 @@ ipcMain.on('receive:repos', (_, repos) => {
 
   if (!isDev) {
     repos.forEach(repo => {
-      workerWindow.webContents.send('update:repo', repo);
+      bgWorkerWindow.webContents.send('update:repo', repo);
     });
   }
 });

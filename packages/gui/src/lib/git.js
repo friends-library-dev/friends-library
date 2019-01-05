@@ -38,10 +38,6 @@ function ensureBranch(task) {
 
   cmd(`git checkout "${taskBranch}"`, repoDir);
 
-  logger.log('------');
-  logger.log(getBranch(repoDir));
-  logger.log(taskBranch);
-  logger.log(getBranch(repoDir) === taskBranch);
   if (getBranch(repoDir) === taskBranch) {
     return taskBranch;
   }
@@ -97,11 +93,11 @@ function cmd(command, repoDir, log) {
     return '';
   }
 
-  if (log || 1) {
+  if (log) {
     logger.log(`${repoDir}: ${command}`);
   }
 
-  const output = execSync(`${command}`, { lol_stdio: 'ignore', cwd: repoDir });
+  const output = execSync(`${command}`, { stdio: 'ignore', cwd: repoDir });
   return output && typeof output.toString === 'function' ? output.toString() : '';
 }
 
