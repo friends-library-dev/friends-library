@@ -30,6 +30,11 @@ const Wrap = styled.li`
     color: #555;
   }
 
+  & .create-pr-msg {
+    padding-left: 0;
+    font-style: italic;
+  }
+
   & i {
     padding-right: 0.4em;
   }
@@ -82,7 +87,7 @@ class Task extends React.Component<Props, State> {
 
   submit = async () => {
     const { task } = this.props;
-    this.setState({ submitting: true, gitPushing: true });
+    this.setState({ submitting: !task.prNumber, gitPushing: true });
     await callMain('git:push', task);
     this.setState({ gitPushing: false });
   }
@@ -180,6 +185,7 @@ class Task extends React.Component<Props, State> {
     if (!friend) {
       return null;
     }
+
     return (
       <Wrap>
 
@@ -192,6 +198,14 @@ class Task extends React.Component<Props, State> {
           <i className={`fas fa-${friend.gender}`} />
           Friend: <em>{friend.name}</em>
         </p>
+
+        {(submitting && !gitPushing && !task.prNumber) && (
+          <p className="create-pr-msg">
+            Click the "Create Pull Request" button below and then
+            click the green "Create Pull Request" button on Github
+            to finalize submission of this task.
+          </p>
+        )}
 
         <div className="actions">
 
