@@ -1,6 +1,7 @@
 const path = require('path');
 require('dotenv').config({path: path.join(__dirname, "../.env")});
 const express = require('express');
+const semver = require('semver');
 const { redirAndLog } =  require('./download');
 
 const { env: { PORT, ASSETS_URI } } = process;
@@ -34,18 +35,19 @@ app.get('/download/:friend/:document/:edition/:filename', (req, res) => {
   });
 });
 
-// temp for testing gui app auto-updating
+
 app.get('/gui/update', (req, res) => {
+  const latest = require('@friends-library/gui/package.json').version;
+  const checking = req.query.version;
+  if (!checking || !semver.gt(latest, checking)) {
+    res.status(204).send();
+    return;
+  }
   res.json({
-    url: 'https://friends-library-assets.nyc3.digitaloceanspaces.com/Friends%20Library%20GUI-1.0.0-mac.zip',
+    url: `${ASSETS_URI}/gui/friends-library-gui-${latest}.zip`,
   });
 });
 
-app.get('/gui/update', (req, res) => {
-  res.json({
-    url: 'https://friends-library-assets.nyc3.digitaloceanspaces.com/Friends%20Library%20GUI-1.0.0-mac.zip',
-  });
-});
 
 app.get('/podcast-item/:quality/:friend/:document/:edition/:part/:filename', (req, res) => {
   const { params: { quality, friend, document, edition, part, filename } } = req;

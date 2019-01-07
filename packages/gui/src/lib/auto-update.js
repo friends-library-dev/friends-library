@@ -1,12 +1,13 @@
 const { autoUpdater, dialog } = require('electron');
 const isDev = require('electron-is-dev');
+const { version } = require('../../package.json');
 
 const endpoint = isDev ? 'http://localhost:1111' : 'https://api.friendslibrary.com';
 
 function watchForAutoUpdates() {
   let checking = false;
 
-  autoUpdater.setFeedURL(`${endpoint}/gui/update`);
+  autoUpdater.setFeedURL(`${endpoint}/gui/update?version=${version}`);
 
   setInterval(() => {
     if (!checking) {
