@@ -39,8 +39,10 @@ let bgWorkerWindow;
 function createMainWindow() {
   mainWindow = new BrowserWindow({
     backgroundColor: '#282c34',
-    width: 1123,
-    height: 1411,
+    x: 0,
+    y: 0,
+    width: 1211,
+    height: 10000, // max height
   });
 
   const startUrl = process.env.ELECTRON_START_URL || url.format({
