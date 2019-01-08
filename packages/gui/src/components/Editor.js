@@ -2,8 +2,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
+import { withSize } from 'react-sizeme';
 import styled from '@emotion/styled';
 import type { Asciidoc } from '../../../../type';
+import type { Dispatch } from '../redux/type';
 import { ipcRenderer } from '../webpack-electron';
 import * as actions from '../redux/actions';
 import Button from './Button';
@@ -13,6 +15,7 @@ import 'brace/theme/tomorrow_night';
 
 const Wrap = styled.div`
   position: relative;
+  z-index: 1;
   background: #555;
   width: 100%;
   height: 100%;
@@ -41,7 +44,8 @@ const Save = styled(Button)`
 type Props = {|
   filepath: string,
   content?: Asciidoc,
-  updateFileContent: (any) => *,
+  updateFileContent: Dispatch,
+  size: {| width: number |},
 |};
 
 type State = {|
@@ -53,9 +57,11 @@ class Editor extends React.Component<Props, State> {
     content: null,
   }
 
+  aceRef: any
+
   constructor(props) {
     super(props);
-
+    this.aceRef = React.createRef();
     this.state = {
       current: props.content,
     };
@@ -65,13 +71,24 @@ class Editor extends React.Component<Props, State> {
     this.maybeRequestFileContent();
   }
 
-  componentDidUpdate(prevProps) {
-    const { filepath, content } = this.props;
-    if (prevProps.filepath !== filepath || (prevProps.content === null && content !== null)) {
+  componentDidUpdate(prev) {
+    const { filepath, content, size } = this.props;
+    if (prev.filepath !== filepath || (prev.content === null && content !== null)) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ current: content });
     }
+
+    if (size.width !== prev.size.width) {
+      this.resizeEditor();
+    }
+
     this.maybeRequestFileContent();
+  }
+
+  resizeEditor() {
+    if (this.aceRef.current) {
+      this.aceRef.current.editor.resize();
+    }
   }
 
   maybeRequestFileContent() {
@@ -134,6 +151,7 @@ class Editor extends React.Component<Props, State> {
           Save
         </Save>
         <AceEditor
+          ref={this.aceRef}
           mode="asciidoc"
           theme="tomorrow_night"
           onChange={val => {
@@ -166,4 +184,4 @@ const mapDispatch = {
   updateFileContent: actions.updateFileContent,
 };
 
-export default connect(mapState, mapDispatch)(Editor);
+export default connect(mapState, mapDispatch)(withSize()(Editor));

@@ -22,6 +22,7 @@ module.exports = {
     'arrow-parens': 0,
     'no-plusplus': 0,
     'no-param-reassign': 0,
+    'no-confusing-arrow': 0,
     'import/no-extraneous-dependencies': 0,
     'react/jsx-one-expression-per-line': 0,
     'react/sort-comp': 0,
