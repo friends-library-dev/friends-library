@@ -136,8 +136,10 @@ ipcMain.on('receive:repos', (_, repos) => {
   }
 });
 
-ipcMain.on('save:file', (_, filepath, content) => {
-  fs.writeFileSync(filepath, content);
+ipcMain.on('save:files', (_, files) => {
+  files.forEach(({ path: filepath, editedContent }) => {
+    fs.writeFile(filepath, editedContent);
+  });
 });
 
 ipcMain.on('commit:wip', (_, friendSlug) => {
@@ -164,6 +166,8 @@ answerRenderer('stored-state:get', () => {
 ipcMain.on('storage:update-state', (_, { tasks }) => {
   storage.set('state.tasks', tasks);
 });
+
+ipcMain.on('reset:storage', () => storage.set('state', {}));
 
 ipcMain.on('open:url', (_, uri) => shell.openExternal(uri));
 

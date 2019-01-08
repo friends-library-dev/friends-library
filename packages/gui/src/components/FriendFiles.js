@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
+import classNames from 'classnames';
 import styled from '@emotion/styled';
 import type { Friend, EditingFile, Dispatch } from '../redux/type';
 import { values } from './utils';
@@ -36,12 +37,22 @@ const EditionLi = styled.li`
   }
   & > ul {
     margin: 0.35em 0 0.75em;
-    padding-left: 1.5em;
+    padding-left: 0.75em;
   }
 `;
 
 const Filename = styled.li`
   margin: 5px;
+
+  &::before {
+    content: "• ";
+    opacity: 0;
+    color: orange;
+  }
+
+  &.edited::before {
+    opacity: 1;
+  }
 
   & code {
     font-size: 13px;
@@ -82,22 +93,25 @@ const FriendFiles = ({ friend, selectFile, editingFile }: Props) => {
                 <i className="far fa-bookmark" />
                 <span className="edition-type">{edition.type}</span> edition:
                 <ul>
-                  {values(edition.files).map(({ filename }) => {
-                    const file = {
+                  {values(edition.files).map((file) => {
+                    const fileData = {
                       lang: 'en',
                       friend: friend.slug,
                       document: document.slug,
                       edition: edition.type,
-                      filename,
+                      filename: file.filename,
                     };
-                    const editing = isEqual(file, editingFile);
+                    const editing = isEqual(fileData, editingFile);
                     return (
                       <Filename
-                        key={filename}
-                        onClick={() => selectFile(file)}
-                        className={editing ? 'editing' : ''}
+                        key={file.filename}
+                        onClick={() => selectFile(fileData)}
+                        className={classNames({
+                          editing,
+                          edited: file.diskContent !== file.editedContent,
+                        })}
                       >
-                        <code>{filename}</code>
+                        <code>{file.filename}</code>
                       </Filename>
                     );
                   })}

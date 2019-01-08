@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import { ipcRenderer, callMain } from '../webpack-electron';
 import type { Task, Friend, Dispatch } from '../redux/type';
+import { currentTaskFriend } from '../redux/select';
 import * as actions from '../redux/actions';
 import Editor from './Editor';
 import Button from './Button';
@@ -89,13 +90,7 @@ class Work extends React.Component<Props, State> {
   }
 }
 
-const mapState = state => {
-  const task = state.tasks[state.currentTask];
-  return {
-    friend: state.friends[`en/${task.repo}`],
-    task,
-  };
-};
+const mapState = state => currentTaskFriend(state);
 
 const mapDispatch = dispatch => ({
   toTasks: () => dispatch(actions.changeScreen('TASKS')),

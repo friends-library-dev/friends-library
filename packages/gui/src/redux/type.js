@@ -1,12 +1,22 @@
 // @flow
-import type { Slug, Title, Uuid, Name, Lang, EditionType, Gender } from '../../../../type';
+import type {
+  Slug,
+  Title,
+  Uuid,
+  Name,
+  Lang,
+  EditionType,
+  Gender,
+  Asciidoc,
+} from '../../../../type';
 
 export type Dispatch = (any) => *;
 
 export type File = {|
   filename: string,
   path: string,
-  content?: string,
+  diskContent?: Asciidoc,
+  editedContent?: Asciidoc,
 |};
 
 export type Files = {
@@ -63,4 +73,13 @@ export type EditingFile = {|
   document: Slug,
   edition: EditionType,
   filename: string,
+|};
+
+export type State = {|
+  screen: string,
+  currentTask: Uuid,
+  tasks: { [string]: Task },
+  friends: { [Slug]: Friend },
+  repos: { [string]: Repo },
+  editingFile: EditingFile,
 |};

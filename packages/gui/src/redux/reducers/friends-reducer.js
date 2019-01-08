@@ -1,7 +1,7 @@
 // @flow
 import { createReducer } from 'redux-starter-kit';
 import { get } from 'lodash';
-import { values } from '../../components/utils';
+import { friendIterator, friendsIterator } from '../select';
 
 export default createReducer({}, {
   RECEIVE_FRIEND: (state, action) => {
@@ -31,6 +31,7 @@ export default createReducer({}, {
     };
     return state;
   },
+
   RECEIVE_REPO_FILES: (state, action) => {
     const { payload: { friendSlug, files } } = action;
     const friend = state[`en/${friendSlug}`];
@@ -41,23 +42,35 @@ export default createReducer({}, {
         friend.documents[docSlug].editions[editionSlug].files[filename] = {
           filename,
           path: fullPath,
-          content: null,
+          diskContent: null,
+          editedContent: null,
         };
       }
     });
   },
-  WORK_ON_TASK: (state) => {
-    // reset files whicn switching tasks to remove
-    // stale filecontent state from another task
-    values(state).forEach(friend => {
-      friend.filesReceived = false;
-      values(friend.documents).forEach(document => {
-        values(document.editions).forEach(edition => {
-          edition.files = {};
-        });
-      });
+
+  SAVE_FILES: (state, { payload: friendSlug }) => {
+    const friend = state[`en/${friendSlug}`];
+    friendIterator(friend, {
+      file: file => {
+        file.diskContent = file.editedContent;
+      },
     });
   },
+
+  WORK_ON_TASK: (state) => {
+    // reset files when switching tasks to remove
+    // stale filecontent state from another task
+    friendsIterator(state, {
+      friend: (friend) => {
+        friend.filesReceived = false;
+      },
+      edition: (edition) => {
+        edition.files = {};
+      },
+    });
+  },
+
   UPDATE_FILE_CONTENT: (state, action) => {
     const { payload: {
       lang,
@@ -65,10 +78,16 @@ export default createReducer({}, {
       documentSlug,
       editionType,
       filename,
-      content,
+      diskContent,
+      editedContent,
     } } = action;
     const document = state[`${lang}/${friendSlug}`].documents[documentSlug];
     const file = document.editions[editionType].files[filename];
-    file.content = content;
+    if (diskContent !== undefined) {
+      file.diskContent = diskContent;
+    }
+    if (editedContent !== undefined) {
+      file.editedContent = editedContent;
+    }
   },
 });
