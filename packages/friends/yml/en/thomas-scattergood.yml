@@ -1,0 +1,88 @@
+name: Thomas Scattergood
+slug: thomas-scattergood
+gender: male
+description: Thomas Scattergood is really nice. I need to write some more stuff here.
+documents:
+  -
+    title: The Journal of Thomas Scattergood
+    original_title: Memoirs of the Life and Religious Labors of Thomas Scattergood, A Minister of the Gospel in the Society of Friends.
+    filename: Journal_of_Thomas_Scattergood
+    description: The Journal of Thomas Scattergood is really good, Blah blah.
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        pages: 596
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+          -
+            number: 12
+
+      -
+        type: original
+        pages: 596
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+          -
+            number: 8
+          -
+            number: 9
+          -
+            number: 10
+          -
+            number: 11
+          -
+            number: 12
