@@ -4,12 +4,12 @@
 
 * [ ] collapse/expand books/editions
 * [ ] render/HTML preview
-* [ ] minimize sidebar
-* [ ] resize sidebar & panes
 * [ ] edit task name
 * [ ] add timestamps to tasks
 * [ ] global (by friend or doc or edition) find
 * [ ] match syntax highlighting of atom
+* [x] minimize sidebar
+* [x] resize sidebar & panes
 * [x] make a real strategy for auto-update api feed
 * [x] re-initialize file when switching tasks
 * [x] file-based json state storage

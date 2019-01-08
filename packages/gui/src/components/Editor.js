@@ -8,7 +8,7 @@ import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../redux/type';
 import { ipcRenderer } from '../webpack-electron';
 import * as actions from '../redux/actions';
-import Button from './Button';
+import SaveEditedFiles from './SaveEditedFiles';
 import 'brace/ext/searchbox';
 import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
@@ -26,45 +26,21 @@ const Wrap = styled.div`
   }
 `;
 
-const Save = styled(Button)`
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 35px;
-  line-height: 35px;
-  margin-right: 0;
-  opacity: ${({ enabled }) => (enabled ? 0.75 : 0.4)};
-  cursor: ${({ enabled }) => (enabled ? 'pointer' : 'not-allowed')};
-  background: ${({ enabled }) => (enabled ? 'var(--accent)' : '#666')};
-  & i {
-    padding-right: 0.5em;
-  }
-`;
 
 type Props = {|
   filepath: string,
-  content?: Asciidoc,
-  updateFileContent: Dispatch,
+  adoc: ?Asciidoc,
+  updateFile: Dispatch,
   size: {| width: number |},
 |};
 
-type State = {|
-  current?: Asciidoc,
-|};
 
-class Editor extends React.Component<Props, State> {
-  static defaultProps = {
-    content: null,
-  }
-
+class Editor extends React.Component<Props> {
   aceRef: any
 
   constructor(props) {
     super(props);
     this.aceRef = React.createRef();
-    this.state = {
-      current: props.content,
-    };
   }
 
   componentDidMount() {
@@ -72,12 +48,7 @@ class Editor extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prev) {
-    const { filepath, content, size } = this.props;
-    if (prev.filepath !== filepath || (prev.content === null && content !== null)) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ current: content });
-    }
-
+    const { size } = this.props;
     if (size.width !== prev.size.width) {
       this.resizeEditor();
     }
@@ -92,75 +63,36 @@ class Editor extends React.Component<Props, State> {
   }
 
   maybeRequestFileContent() {
-    const { filepath, content, updateFileContent } = this.props;
-    if (filepath && content === null) {
+    const { filepath, adoc, updateFile } = this.props;
+    if (filepath && adoc === null) {
       ipcRenderer.send('request:filecontent', filepath);
       ipcRenderer.once('UPDATE_FILE_CONTENT', (_, path, received) => {
         if (path === filepath) {
-          updateFileContent({
-            ...this.editingFile(),
-            content: received,
+          updateFile({
+            diskContent: received,
+            editedContent: received,
           });
         }
       });
     }
   }
 
-  editingFile() {
-    const { filepath } = this.props;
-    const [
-      filename,
-      editionType,
-      documentSlug,
-      friendSlug,
-      lang,
-    ] = filepath.split('/').reverse();
-
-    return {
-      lang,
-      friendSlug,
-      documentSlug,
-      editionType,
-      filename,
-    };
-  }
-
-  save = () => {
-    const { current } = this.state;
-    const { filepath, updateFileContent, content } = this.props;
-    if (current === content) {
-      return;
-    }
-
-    const editingFile = this.editingFile();
-    updateFileContent({
-      ...editingFile,
-      content: current,
-    });
-    ipcRenderer.send('save:file', filepath, current);
-    ipcRenderer.send('commit:wip', editingFile.friendSlug);
-  }
-
   render() {
-    const { current } = this.state;
-    const { content } = this.props;
+    const { updateFile, adoc } = this.props;
     return (
       <Wrap>
-        <Save enabled={current !== content} onClick={this.save}>
-          <i className="fas fa-save" />
-          Save
-        </Save>
+        <SaveEditedFiles />
+        {adoc !== null && (
         <AceEditor
           ref={this.aceRef}
           mode="asciidoc"
           theme="tomorrow_night"
-          onChange={val => {
-            this.setState({ current: val });
-          }}
-          value={current || ''}
+          onChange={editedContent => updateFile({ editedContent })}
+          value={adoc}
           editorProps={{ $blockScrolling: true }}
           setOptions={{ wrap: true }}
         />
+        )}
       </Wrap>
     );
   }
@@ -168,15 +100,21 @@ class Editor extends React.Component<Props, State> {
 
 const mapState = state => {
   if (!state.editingFile) {
-    return { filepath: '', content: null };
+    return {
+      editingFile: {},
+      filepath: '',
+      adoc: null,
+    };
   }
   const { lang, friend, document, edition, filename } = state.editingFile;
   const doc = state.friends[`${lang}/${friend}`].documents[document];
   const file = doc.editions[edition].files[filename];
+  console.log(state.editingFile);
 
   return {
+    editingFile: state.editingFile,
     filepath: file.path,
-    content: file.content,
+    adoc: file.editedContent,
   };
 };
 
@@ -184,4 +122,19 @@ const mapDispatch = {
   updateFileContent: actions.updateFileContent,
 };
 
-export default connect(mapState, mapDispatch)(withSize()(Editor));
+const merge = (state, dispatch) => ({
+  filepath: state.filepath,
+  adoc: state.adoc,
+  updateFile: content => {
+    dispatch.updateFileContent({
+      lang: state.editingFile.lang,
+      friendSlug: state.editingFile.friend,
+      documentSlug: state.editingFile.document,
+      editionType: state.editingFile.edition,
+      filename: state.editingFile.filename,
+      ...content,
+    });
+  },
+});
+
+export default connect(mapState, mapDispatch, merge)(withSize()(Editor));

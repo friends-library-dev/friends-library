@@ -78,6 +78,7 @@ class App extends React.Component<Props, State> {
           }}
           onClick={() => {
             try {
+              ipc.send('reset:storage');
               localStorage.removeItem('state');
               window.location.reload();
             } catch (e) {
