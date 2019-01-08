@@ -5,9 +5,9 @@ import styled from '@emotion/styled';
 import { ipcRenderer, callMain } from '../webpack-electron';
 import type { Task, Friend, Dispatch } from '../redux/type';
 import * as actions from '../redux/actions';
-import FriendFiles from './FriendFiles';
 import Editor from './Editor';
 import Button from './Button';
+import Sidebar from './Sidebar';
 
 const Nav = styled.nav`
   height: 35px;
@@ -31,14 +31,8 @@ const Wrap = styled.div`
   margin: -1em -2em;
 `;
 
-const Sidebar = styled.div`
-  background: #333;
-  flex: 1 0 0;
-  overflow: auto;
-`;
-
 const EditorPane = styled.div`
-  flex: 2 0 0;
+  flex: auto;
 `;
 
 type Props = {|
@@ -85,9 +79,7 @@ class Work extends React.Component<Props, State> {
           <span className="task-name"><i>{task.name}</i></span>
         </Nav>
         <Main>
-          <Sidebar>
-            <FriendFiles friend={friend} />
-          </Sidebar>
+          <Sidebar friend={friend} />
           <EditorPane>
             <Editor />
           </EditorPane>

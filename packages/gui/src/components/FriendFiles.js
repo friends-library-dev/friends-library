@@ -22,23 +22,27 @@ const Wrap = styled.ul`
   }
 
   & li {
+    white-space: nowrap;
     list-style: none;
   }
 `;
 
 const EditionLi = styled.li`
   margin-top: 0.5em;
+  white-space: nowrap;
   & > span {
     text-transform: capitalize;
     margin-left: 0.5em;
   }
   & > ul {
     margin: 0.35em 0 0.75em;
+    padding-left: 1.5em;
   }
 `;
 
 const Filename = styled.li`
   margin: 5px;
+
   & code {
     font-size: 13px;
     cursor: pointer;

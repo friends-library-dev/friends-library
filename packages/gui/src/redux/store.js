@@ -5,7 +5,7 @@ import { ipcRenderer as ipc } from '../webpack-electron';
 import rootReducer from './reducers';
 import * as screens from './screens';
 
-const isDev = process.env.NODE_ENV === 'development' && false;
+const isDev = process.env.NODE_ENV === 'development';
 
 const defaultState = {
   screen: screens.TASKS,
