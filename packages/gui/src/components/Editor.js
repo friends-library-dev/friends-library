@@ -13,6 +13,15 @@ import 'brace/ext/searchbox';
 import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
 
+
+const noopEditor = new Proxy({}, {
+  get(target, prop, receiver) {
+    const fn = () => receiver;
+    Object.setPrototypeOf(fn, receiver);
+    return fn;
+  },
+});
+
 const Wrap = styled.div`
   position: relative;
   z-index: 1;
@@ -50,16 +59,17 @@ class Editor extends React.Component<Props> {
   componentDidUpdate(prev) {
     const { size } = this.props;
     if (size.width !== prev.size.width) {
-      this.resizeEditor();
+      this.editor().resize();
     }
 
     this.maybeRequestFileContent();
   }
 
-  resizeEditor() {
-    if (this.aceRef.current) {
-      this.aceRef.current.editor.resize();
+  editor() {
+    if (this.aceRef.current && this.aceRef.current.editor) {
+      return this.aceRef.current.editor;
     }
+    return noopEditor;
   }
 
   maybeRequestFileContent() {
@@ -81,18 +91,18 @@ class Editor extends React.Component<Props> {
     const { updateFile, adoc } = this.props;
     return (
       <Wrap>
-        <SaveEditedFiles />
         {adoc !== null && (
-        <AceEditor
-          ref={this.aceRef}
-          mode="asciidoc"
-          theme="tomorrow_night"
-          onChange={editedContent => updateFile({ editedContent })}
-          value={adoc}
-          editorProps={{ $blockScrolling: true }}
-          setOptions={{ wrap: true }}
-        />
+          <AceEditor
+            ref={this.aceRef}
+            mode="asciidoc"
+            theme="tomorrow_night"
+            onChange={editedContent => updateFile({ editedContent })}
+            value={adoc}
+            editorProps={{ $blockScrolling: true }}
+            setOptions={{ wrap: true }}
+          />
         )}
+        <SaveEditedFiles editor={this.editor()} />
       </Wrap>
     );
   }

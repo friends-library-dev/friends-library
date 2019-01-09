@@ -1,7 +1,9 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 import styled from '@emotion/styled';
+import { once } from 'lodash';
 import type { Asciidoc, Slug, Uuid } from '../../../../type';
 import type { Dispatch } from '../redux/type';
 import Button from './Button';
@@ -37,6 +39,7 @@ const Save = styled(Button)`
 `;
 
 type Props = {|
+  editor: *,
   editedFiles: Array<{|
     path: string,
     editedContent: Asciidoc,
@@ -47,31 +50,52 @@ type Props = {|
   friendSlug: Slug,
 |};
 
-const SaveEditedFiles = ({
-  editedFiles,
-  saveFiles,
-  friendSlug,
-  touchTask,
-  taskId,
-}: Props) => (
-  <Save
-    enabled={editedFiles.length > 0}
-    onClick={() => {
+class SaveEditedFiles extends React.Component<Props> {
+  componentDidUpdate() {
+    this.bindSave();
+  }
+
+  bindSave = once(() => {
+    const { editor } = this.props;
+    editor.commands.addCommand({
+      name: 'Save',
+      bindKey: { mac: 'Command-S', win: 'Ctrl-S' },
+      exec: () => this.save(),
+    });
+  });
+
+  save() {
+    const { editedFiles, friendSlug, touchTask, taskId, saveFiles } = this.props;
+    if (editedFiles.length > 0) {
       ipc.send('save:files', editedFiles);
       ipc.send('commit:wip', friendSlug);
       touchTask(taskId);
       saveFiles(friendSlug);
-    }}
-  >
-    <i className="fas fa-save" />
-    Save
-    {editedFiles.length > 1 && (
-      <span className="badge">
-        <b>{editedFiles.length}</b>
-      </span>
-    )}
-  </Save>
-);
+    }
+  }
+
+  render() {
+    const { editedFiles } = this.props;
+    return (
+      <Save
+        enabled={editedFiles.length > 0}
+        onClick={() => this.save()}
+      >
+        <i className="fas fa-save" />
+        Save
+        {editedFiles.length > 1 && (
+          <span className="badge">
+            <b>{editedFiles.length}</b>
+          </span>
+        )}
+        <KeyboardEventHandler
+          handleKeys={['meta+s', 'ctrl+s']}
+          onKeyEvent={() => this.save()}
+        />
+      </Save>
+    );
+  }
+}
 
 const mapState = state => {
   const { friend, task } = currentTaskFriend(state);
