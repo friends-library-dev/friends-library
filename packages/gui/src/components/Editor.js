@@ -106,6 +106,7 @@ const mapState = state => {
       adoc: null,
     };
   }
+
   const { lang, friend, document, edition, filename } = state.editingFile;
   const doc = state.friends[`${lang}/${friend}`].documents[document];
   const file = doc.editions[edition].files[filename];

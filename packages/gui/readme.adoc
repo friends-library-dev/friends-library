@@ -2,12 +2,12 @@
 
 === Todo:
 
-* [ ] collapse/expand books/editions
+* [ ] try to prevent losing unsaved changes on switch task, quit
 * [ ] render/HTML preview
-* [ ] edit task name
-* [ ] add timestamps to tasks
 * [ ] global (by friend or doc or edition) find
 * [ ] match syntax highlighting of atom
+* [x] collapse/expand books/editions
+* [x] add timestamps to tasks
 * [x] minimize sidebar
 * [x] resize sidebar & panes
 * [x] make a real strategy for auto-update api feed
@@ -25,4 +25,5 @@
 
 === Maybe later todos:
 
+* [ ] edit task name
 * [ ] bundle git

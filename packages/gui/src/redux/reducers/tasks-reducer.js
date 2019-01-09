@@ -16,6 +16,7 @@ export default createReducer([], {
       created: time,
       updated: time,
       isNew: true,
+      collapsed: {},
     };
   },
 
@@ -33,6 +34,13 @@ export default createReducer([], {
     const task = state[taskId];
     if (task) {
       task.updated = (new Date()).toJSON();
+    }
+  },
+
+  COLLAPSE_TASK: (state, { payload: { taskId, key, isCollapsed } }) => {
+    const task = state[taskId];
+    if (task) {
+      task.collapsed[key] = !isCollapsed;
     }
   },
 

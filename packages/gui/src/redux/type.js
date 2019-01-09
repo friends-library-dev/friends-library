@@ -69,6 +69,7 @@ export type Task = {|
   repo: Slug,
   isNew: boolean,
   prNumber: ?number,
+  collapsed: ?Object,
 |};
 
 export type EditingFile = {|
