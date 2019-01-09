@@ -12,6 +12,8 @@ import type {
 
 export type Dispatch = (any) => *;
 
+export type DateString = string;
+
 export type File = {|
   filename: string,
   path: string,
@@ -62,6 +64,8 @@ export type Repos = {
 export type Task = {|
   id: Uuid,
   name: string,
+  created: DateString,
+  updated: DateString,
   repo: Slug,
   isNew: boolean,
   prNumber: ?number,

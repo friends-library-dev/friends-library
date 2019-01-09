@@ -11,6 +11,10 @@ const Button = styled.span`
   text-align: center;
   line-height: 50px;
   margin-right: 20px;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default Button;
