@@ -1,5 +1,12 @@
 const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 const { answerRenderer, callRenderer } = require('electron-better-ipc');
+const {
+  default: installExtension,
+  REACT_DEVELOPER_TOOLS,
+  REDUX_DEVTOOLS,
+} = require('electron-devtools-installer');
+const devTron = require('devtron');
+const debug = require('electron-debug');
 const path = require('path');
 const fixPath = require('fix-path');
 const url = require('url');
@@ -13,6 +20,12 @@ const { watchForAutoUpdates } = require('../src/lib/auto-update');
 
 // ensure we use the full $PATH from the shell when packaged
 fixPath();
+
+debug({
+  enabled: true, // always enable, even in production
+  showDevTools: isDev,
+  devToolsMode: 'bottom',
+});
 
 try {
   execSync('git --version');
@@ -52,10 +65,7 @@ function createMainWindow() {
   });
   mainWindow.loadURL(startUrl);
 
-  if (isDev) {
-    BrowserWindow.addDevToolsExtension('/Users/jared/Library/Application Support/Google/Chrome/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/2.17.0_0');
-  }
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -76,10 +86,11 @@ app.on('ready', createMainWindow);
 app.on('ready', createWorkerWindow);
 app.on('ready', createBgWorkerWindow);
 
-if (isDev) {
-  /* eslint-disable-next-line global-require */
-  app.on('ready', () => require('devtron').install());
-}
+app.on('ready', () => {
+  devTron.install();
+  installExtension(REACT_DEVELOPER_TOOLS);
+  installExtension(REDUX_DEVTOOLS);
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
