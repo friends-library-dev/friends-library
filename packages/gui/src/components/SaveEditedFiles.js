@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import type { Asciidoc, Slug } from '../../../../type';
+import type { Asciidoc, Slug, Uuid } from '../../../../type';
 import type { Dispatch } from '../redux/type';
 import Button from './Button';
 import { ipcRenderer as ipc } from '../webpack-electron';
@@ -41,16 +41,25 @@ type Props = {|
     path: string,
     editedContent: Asciidoc,
   |}>,
+  taskId: Uuid,
   saveFiles: Dispatch,
+  touchTask: Dispatch,
   friendSlug: Slug,
 |};
 
-const SaveEditedFiles = ({ editedFiles, saveFiles, friendSlug }: Props) => (
+const SaveEditedFiles = ({
+  editedFiles,
+  saveFiles,
+  friendSlug,
+  touchTask,
+  taskId,
+}: Props) => (
   <Save
     enabled={editedFiles.length > 0}
     onClick={() => {
       ipc.send('save:files', editedFiles);
       ipc.send('commit:wip', friendSlug);
+      touchTask(taskId);
       saveFiles(friendSlug);
     }}
   >
@@ -65,7 +74,7 @@ const SaveEditedFiles = ({ editedFiles, saveFiles, friendSlug }: Props) => (
 );
 
 const mapState = state => {
-  const { friend } = currentTaskFriend(state);
+  const { friend, task } = currentTaskFriend(state);
   const editedFiles = [];
   friendIterator(friend, {
     file: ({ diskContent, editedContent, path }) => {
@@ -77,14 +86,17 @@ const mapState = state => {
       }
     },
   });
+
   return {
     editedFiles,
+    taskId: task.id,
     friendSlug: friend.slug,
   };
 };
 
 const mapDispatch = {
   saveFiles: actions.saveFiles,
+  touchTask: actions.touchTask,
 };
 
 export default connect(mapState, mapDispatch)(SaveEditedFiles);

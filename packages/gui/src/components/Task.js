@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
+import moment from 'moment';
 import smalltalk from 'smalltalk';
 import * as actions from '../redux/actions';
 import type { Task as TaskType, Friend, Dispatch } from '../redux/type';
@@ -11,7 +12,8 @@ import Button from './Button';
 const Wrap = styled.li`
   background: #999;
   color: #222;
-  border-radius: 7px;
+  border-radius: 3px;
+  box-shadow: 3px 6px 9px black;
   display: inline-block;
   width: 450px;
   list-style: none;
@@ -21,15 +23,18 @@ const Wrap = styled.li`
   cursor: pointer;
 
   & h1 {
-    font-size: 22px;
-    margin: 0 0 12px 0;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #666;
+    font-size: 25px;
+    background: #121212;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    color: white;
+    margin: -14px -21px 12px -21px;
+    padding: 16px;
   }
 
   & p {
-    font-size: 16px;
-    padding-left: 1.4em;
+    font-size: 19px;
+    padding-left: 20px;
     color: #333;
   }
 
@@ -43,14 +48,20 @@ const Wrap = styled.li`
   }
 
   & .actions {
+    margin-bottom: 10px;
 
     & .delete, & .work {
-      margin-left: 70px;
+      margin-left: 50px;
+    }
+
+    & .delete {
+      color: red;
     }
 
     & > * {
+      border-radius: 3px;
       display: inline-block;
-      width: 190px;
+      width: 200px;
       margin-right: 0;
       margin-top: 10px;
       background: #eaeaea;
@@ -65,6 +76,15 @@ const Wrap = styled.li`
       opacity: 0;
       cursor: default;
     }
+  }
+
+  & .time {
+    list-style: none;
+    color: white;
+    opacity: 0.5;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    line-height: 150%;
   }
 `;
 
@@ -202,6 +222,17 @@ class Task extends React.Component<Props, State> {
           Friend: <em>{friend.name}</em>
         </p>
 
+        <ul className="time">
+          <li>
+            <i className="far fa-calendar" />
+            <i>Created:</i>{moment(task.created).format('D/M/YY [at] h:mm:ssa')}
+          </li>
+          <li>
+            <i className="far fa-calendar" />
+            <i>Last updated:</i>{moment(task.updated).from(moment())}
+          </li>
+        </ul>
+
         {(submitting && !gitPushing && !task.prNumber) && (
           <p className="create-pr-msg">
             Click the "Create Pull Request" button below and then
@@ -213,7 +244,12 @@ class Task extends React.Component<Props, State> {
         <div className="actions">
 
           {((submitting && !gitPushing) || task.prNumber)
-            ? <Button secondary onClick={this.pr} className="pr">{this.prText()}</Button>
+            ? (
+              <Button secondary onClick={this.pr} className="pr">
+                <i className="fas fa-code-branch" />
+                {this.prText()}
+              </Button>
+            )
             : <Button className="invisible">¯\_(ツ)_/¯</Button>
           }
 
@@ -222,6 +258,7 @@ class Task extends React.Component<Props, State> {
             className="delete"
             onClick={this.confirmDelete}
           >
+            <i className="far fa-trash-alt" />
             Delete
           </Button>
 
@@ -230,6 +267,7 @@ class Task extends React.Component<Props, State> {
             className="submit"
             onClick={this.submit}
           >
+            <i className="fas fa-cloud-upload-alt" />
             {this.submitText()}
           </Button>
 
@@ -237,6 +275,7 @@ class Task extends React.Component<Props, State> {
             className="work"
             onClick={() => workOnTask(task.id)}
           >
+            <i className="fas fa-pencil-alt" />
             Work
           </Button>
         </div>
