@@ -9,7 +9,10 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "concurrently": "^4.1.0",
+    "devtron": "^1.4.0",
     "electron-better-ipc": "^0.1.2",
+    "electron-debug": "^2.0.0",
+    "electron-devtools-installer": "^2.2.4",
     "electron-is-dev": "^1.0.1",
     "electron-store": "^2.0.0",
     "electron-timber": "^0.5.1",
@@ -64,7 +67,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "devtron": "^1.4.0",
     "electron": "^3.0.13",
     "electron-builder": "^20.38.4",
     "wait-on": "^3.2.0"
