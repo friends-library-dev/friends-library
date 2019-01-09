@@ -12,6 +12,10 @@ const Div = styled(Resizable)`
   position: relative;
   z-index: 2;
   transform: translateZ(0);
+
+  & .resize-handle > div {
+    right: 0 !important;
+  }
 `;
 
 const ToggleEl = styled.div`
@@ -97,7 +101,7 @@ class Sidebar extends React.Component<Props, State> {
     return (
       <Div
         minWidth={200}
-        defaultSize={{ width }}
+        handleWrapperClass="resize-handle"
         onResizeStop={(e, dir, ref, delta) => {
           this.setState({ width: width + delta.width });
         }}
