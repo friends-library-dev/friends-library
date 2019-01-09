@@ -23,6 +23,7 @@
     "react": "^16.6.3",
     "react-ace": "^6.2.0",
     "react-dom": "^16.6.3",
+    "react-keyboard-event-handler": "^1.4.1",
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.1",
     "react-sizeme": "^2.5.2",

@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 import { getFriendRepos } from './lib/friend-repos';
 import * as actions from './redux/actions';
 import { ipcRenderer as ipc, callMain } from './webpack-electron';
@@ -68,15 +69,9 @@ class App extends React.Component<Props, State> {
   render() {
     return (
       <div>
-        {this.renderScreen()}
-        <span
-          style={{
-            position: 'absolute',
-            bottom: 5,
-            left: 5,
-            cursor: 'pointer',
-          }}
-          onClick={() => {
+        <KeyboardEventHandler
+          handleKeys={['meta+shift+1']}
+          onKeyEvent={() => {
             try {
               ipc.send('reset:storage');
               localStorage.removeItem('state');
@@ -85,8 +80,8 @@ class App extends React.Component<Props, State> {
               // ¯\_(ツ)_/¯
             }
           }}
-        >RESET
-        </span>
+        />
+        {this.renderScreen()}
       </div>
     );
   }
