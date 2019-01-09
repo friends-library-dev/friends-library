@@ -53,7 +53,7 @@ const Closed = styled.div`
   width: 25px;
   background: transparent;
   position: absolute;
-  height: 100%;
+  height: calc(100vh - 35px);
   z-index: 2;
 `;
 
