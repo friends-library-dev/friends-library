@@ -17,8 +17,8 @@ const Wrap = styled.li`
   display: inline-block;
   width: 450px;
   list-style: none;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin-right: 35px;
+  margin-bottom: 35px;
   padding: 14px 21px;
   cursor: pointer;
 
@@ -32,10 +32,14 @@ const Wrap = styled.li`
     padding: 16px;
   }
 
-  & p {
+  & p.friend {
     font-size: 19px;
     padding-left: 20px;
     color: #333;
+  }
+
+  & .fa-male, & .fa-female {
+    font-size: 28px;
   }
 
   & .create-pr-msg {
@@ -217,7 +221,7 @@ class Task extends React.Component<Props, State> {
           {task.name}
         </h1>
 
-        <p>
+        <p className="friend">
           <i className={`fas fa-${friend.gender}`} />
           Friend: <em>{friend.name}</em>
         </p>
