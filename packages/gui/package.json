@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true ELECTRON_START_URL=http://localhost:3000 run-electron .",
-    "package": "yarn build && yarn electron-builder"
+    "package": "yarn build && cp ./src/icon.png ./build && yarn electron-builder"
   },
   "build": {
     "extends": null,
