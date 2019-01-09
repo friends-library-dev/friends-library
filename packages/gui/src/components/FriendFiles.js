@@ -22,17 +22,15 @@ const wrap = css`
   margin: 0;
   padding: 1.5em;
 
-  & .far, & .fas {
-    padding-right: 11px;
-    color: #999;
+  & .search {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: -28px;
   }
 
-  & .collapsible {
-    cursor: n-resize;
-  }
-
-  & .collapsible.collapsed {
-    cursor: s-resize;
+  & .parent:hover .search {
+    display: block;
   }
 
   & > li {
@@ -53,6 +51,7 @@ const wrap = css`
   }
 
   & .toggler::before {
+    cursor: pointer;
     width: 11px;
     display: inline-block;
     font-style: normal;
@@ -63,7 +62,7 @@ const wrap = css`
     font-weight: 900;
     content: "\f0d7";
     color: var(--accent);
-    margin-right: 1em;
+    margin-right: 0;
   }
 
   & .collapsed .toggler::before {
@@ -117,6 +116,29 @@ const Filename = styled.li`
   }
 `;
 
+const IconSearch = styled.i`
+  padding-left: 10px;
+
+  &::before {
+    width: 11px;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: ${(props) => props.isEdition ? '"\f02e"' : '"\f02d"'};
+    margin-right: 0.75em;
+    color: #999;
+  }
+
+  &:hover::before {
+    content: "\f002";
+    color: white;
+  }
+`;
+
 
 type Props = {|
   taskId: Uuid,
@@ -130,17 +152,20 @@ type Props = {|
 class FriendFiles extends React.Component<Props> {
   renderDoc = (doc) => {
     const { collapsed, collapseTask, taskId } = this.props;
-    const isCollapsed = collapsed[doc.slug] || false;
+    const key = doc.slug;
+    const isCollapsed = collapsed[key] || false;
     return (
       <li
         key={doc.slug}
-        className={cx('collapsible', { collapsed: isCollapsed })}
-        onClick={() => collapseTask({ taskId, key: doc.slug, isCollapsed })}
+        className={cx('parent', { collapsed: isCollapsed })}
       >
-        <span className="toggler" />
-        <i className="fas fa-book" />
+        <span
+          className="toggler"
+          onClick={() => collapseTask({ taskId, key, isCollapsed })}
+        />
+        <IconSearch />
         {doc.title}
-        <ul onClick={e => e.stopPropagation()}>
+        <ul>
           {values(doc.editions).map(ed => this.renderEdition(ed, doc))}
         </ul>
       </li>
@@ -154,17 +179,16 @@ class FriendFiles extends React.Component<Props> {
     return (
       <li
         key={doc.slug}
-        className={cx('collapsible', { collapsed: isCollapsed })}
+        className={cx('parent', { collapsed: isCollapsed })}
         css={editionLi}
-        onClick={(e) => {
-          e.stopPropagation();
-          collapseTask({ taskId, key, isCollapsed });
-        }}
       >
-        <span className="toggler" />
-        <i className="far fa-bookmark" />
+        <span
+          className="toggler"
+          onClick={() => collapseTask({ taskId, key, isCollapsed })}
+        />
+        <IconSearch isEdition />
         <span className="edition-type">{ed.type}</span> edition:
-        <ul onClick={e => e.stopPropagation()}>
+        <ul>
           {values(ed.files).map(file => this.renderFile(file, ed, doc))}
         </ul>
       </li>
