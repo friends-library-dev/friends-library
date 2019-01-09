@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
-import classNames from 'classnames';
+import cx from 'classnames';
 import styled from '@emotion/styled';
 import { jsx, css } from '@emotion/core';
 import type { Uuid } from '../../../../type';
@@ -27,6 +27,14 @@ const wrap = css`
     color: #999;
   }
 
+  & .collapsible {
+    cursor: n-resize;
+  }
+
+  & .collapsible.collapsed {
+    cursor: s-resize;
+  }
+
   & > li {
     margin-bottom: 9px;
   }
@@ -44,11 +52,8 @@ const wrap = css`
     display: none;
   }
 
-  & .toggler {
-    cursor: pointer;
-  }
-
   & .toggler::before {
+    width: 11px;
     display: inline-block;
     font-style: normal;
     font-variant: normal;
@@ -57,7 +62,6 @@ const wrap = css`
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: "\f0d7";
-    color: #aaa;
     color: var(--accent);
     margin-right: 1em;
   }
@@ -130,13 +134,13 @@ class FriendFiles extends React.Component<Props> {
     return (
       <li
         key={doc.slug}
-        className={isCollapsed ? 'collapsed' : ''}
+        className={cx('collapsible', { collapsed: isCollapsed })}
         onClick={() => collapseTask({ taskId, key: doc.slug, isCollapsed })}
       >
         <span className="toggler" />
         <i className="fas fa-book" />
         {doc.title}
-        <ul>
+        <ul onClick={e => e.stopPropagation()}>
           {values(doc.editions).map(ed => this.renderEdition(ed, doc))}
         </ul>
       </li>
@@ -150,7 +154,7 @@ class FriendFiles extends React.Component<Props> {
     return (
       <li
         key={doc.slug}
-        className={isCollapsed ? 'collapsed' : ''}
+        className={cx('collapsible', { collapsed: isCollapsed })}
         css={editionLi}
         onClick={(e) => {
           e.stopPropagation();
@@ -160,7 +164,7 @@ class FriendFiles extends React.Component<Props> {
         <span className="toggler" />
         <i className="far fa-bookmark" />
         <span className="edition-type">{ed.type}</span> edition:
-        <ul>
+        <ul onClick={e => e.stopPropagation()}>
           {values(ed.files).map(file => this.renderFile(file, ed, doc))}
         </ul>
       </li>
@@ -184,7 +188,7 @@ class FriendFiles extends React.Component<Props> {
           e.stopPropagation();
           selectFile(fileData);
         }}
-        className={classNames({
+        className={cx({
           editing,
           edited: file.diskContent !== file.editedContent,
         })}

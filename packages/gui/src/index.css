@@ -2,6 +2,10 @@
   --accent: #61afef;
 }
 
+* {
+  user-select: none;
+}
+
 body {
   margin: 0;
   padding: 1em 2em;
