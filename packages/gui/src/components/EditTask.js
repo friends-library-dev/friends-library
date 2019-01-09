@@ -90,7 +90,7 @@ class EditTask extends React.Component<Props, State> {
     const { name, repo } = this.state;
     const { task, friends } = this.props;
     return (
-      <div>
+      <div className="padded-wrap">
         <h1>{task.isNew ? 'Create' : 'Edit'} Task:</h1>
         <Heading>Task Name:</Heading>
         <Input

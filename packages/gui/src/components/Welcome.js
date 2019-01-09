@@ -16,7 +16,7 @@ type Props = {|
 |};
 
 const Welcome = ({ tasks, changeScreen, createTask }: Props) => (
-  <div>
+  <div className="padded-wrap">
     <h1>Tasks</h1>
     <Heading>You have {tasks.length} task{tasks.length === 1 ? '' : 's'}:</Heading>
     <TaskList />
