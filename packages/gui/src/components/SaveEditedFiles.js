@@ -3,7 +3,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import styled from '@emotion/styled';
-import { once } from 'lodash';
 import type { Asciidoc, Slug, Uuid } from '../../../../type';
 import type { Dispatch } from '../redux/type';
 import Button from './Button';
@@ -39,7 +38,6 @@ const Save = styled(Button)`
 `;
 
 type Props = {|
-  editor: *,
   editedFiles: Array<{|
     path: string,
     editedContent: Asciidoc,
@@ -51,18 +49,13 @@ type Props = {|
 |};
 
 class SaveEditedFiles extends React.Component<Props> {
-  componentDidUpdate() {
-    this.bindSave();
-  }
-
-  bindSave = once(() => {
-    const { editor } = this.props;
-    editor.commands.addCommand({
-      name: 'Save',
-      bindKey: { mac: 'Command-S', win: 'Ctrl-S' },
-      exec: () => this.save(),
+  componentDidMount() {
+    ipc.on('editor:key-event', (_, keys) => {
+      if (keys === 'cmd+s') {
+        this.save();
+      }
     });
-  });
+  }
 
   save() {
     const { editedFiles, friendSlug, touchTask, taskId, saveFiles } = this.props;
