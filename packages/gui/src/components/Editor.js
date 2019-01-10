@@ -6,7 +6,7 @@ import { withSize } from 'react-sizeme';
 import styled from '@emotion/styled';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../redux/type';
-import { ipcRenderer } from '../webpack-electron';
+import { ipcRenderer as ipc } from '../webpack-electron';
 import * as actions from '../redux/actions';
 import SaveEditedFiles from './SaveEditedFiles';
 import 'brace/ext/searchbox';
@@ -55,6 +55,7 @@ class Editor extends React.Component<Props> {
 
   componentDidMount() {
     this.maybeRequestFileContent();
+    this.forwardKeyEvents();
   }
 
   componentDidUpdate(prev) {
@@ -64,6 +65,14 @@ class Editor extends React.Component<Props> {
     }
 
     this.maybeRequestFileContent();
+  }
+
+  forwardKeyEvents() {
+    this.editor().commands.addCommand({
+      name: 'Save',
+      bindKey: { mac: 'Command-S', win: 'Ctrl-S' },
+      exec: () => ipc.send('forward:editor:key-event', 'cmd+s'),
+    });
   }
 
   editor() {
@@ -76,8 +85,8 @@ class Editor extends React.Component<Props> {
   maybeRequestFileContent() {
     const { filepath, adoc, updateFile } = this.props;
     if (filepath && adoc === null) {
-      ipcRenderer.send('request:filecontent', filepath);
-      ipcRenderer.once('UPDATE_FILE_CONTENT', (_, path, received) => {
+      ipc.send('request:filecontent', filepath);
+      ipc.once('UPDATE_FILE_CONTENT', (_, path, received) => {
         if (path === filepath) {
           updateFile({
             diskContent: received,
@@ -103,7 +112,7 @@ class Editor extends React.Component<Props> {
             setOptions={{ wrap: true }}
           />
         )}
-        <SaveEditedFiles editor={this.editor()} />
+        <SaveEditedFiles />
       </Wrap>
     );
   }

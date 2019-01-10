@@ -198,3 +198,7 @@ ipcMain.on('open:url', (_, uri) => shell.openExternal(uri));
 ipcMain.on('delete:task-branch', (_, task) => {
   workerWindow.webContents.send('delete:task-branch', task);
 });
+
+ipcMain.on('forward:editor:key-event', (_, keys) => {
+  mainWindow.webContents.send('editor:key-event', keys);
+});
