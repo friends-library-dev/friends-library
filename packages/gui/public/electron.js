@@ -49,6 +49,12 @@ let mainWindow;
 let workerWindow;
 let bgWorkerWindow;
 
+function dispatch(type, payload) {
+  if (mainWindow) {
+    mainWindow.webContents.send('DISPATCH', type, payload);
+  }
+}
+
 function createMainWindow() {
   mainWindow = new BrowserWindow({
     backgroundColor: '#282c34',
@@ -108,9 +114,7 @@ ipcMain.on('request:files', (_, friendSlug) => {
 });
 
 ipcMain.on('receive:files', (_, friendSlug, files) => {
-  if (mainWindow) {
-    mainWindow.webContents.send('RECEIVE_REPO_FILES', friendSlug, files);
-  }
+  dispatch('RECEIVE_REPO_FILES', { friendSlug, files });
 });
 
 
@@ -127,7 +131,7 @@ ipcMain.on('receive:filecontent', (_, filepath, content) => {
     lang,
   ] = filepath.split('/').reverse();
 
-  mainWindow.webContents.send('DISPATCH', 'UPDATE_FILE_CONTENT', {
+  dispatch('UPDATE_FILE_CONTENT', {
     filename,
     editionType,
     documentSlug,
@@ -138,11 +142,8 @@ ipcMain.on('receive:filecontent', (_, filepath, content) => {
   });
 });
 
-
 ipcMain.on('receive:friend', (_, friend, lang) => {
-  if (mainWindow) {
-    mainWindow.webContents.send('RECEIVE_FRIEND', friend, lang);
-  }
+  dispatch('RECEIVE_FRIEND', { friend, lang });
 });
 
 
