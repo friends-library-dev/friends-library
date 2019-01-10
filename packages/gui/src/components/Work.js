@@ -42,7 +42,6 @@ const EditorPane = styled.div`
 type Props = {|
   task: Task,
   friend: Friend,
-  receiveRepoFiles: Dispatch,
   toTasks: Dispatch,
 |};
 
@@ -56,14 +55,10 @@ class Work extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const { receiveRepoFiles, friend, task } = this.props;
+    const { friend, task } = this.props;
     if (!friend.filesReceived) {
       ipcRenderer.send('request:files', friend.slug);
     }
-
-    ipcRenderer.on('RECEIVE_REPO_FILES', (_, friendSlug, files) => {
-      receiveRepoFiles({ friendSlug, files });
-    });
 
     const branch = await callMain('ensure:branch', task);
     this.setState({ branch });
@@ -98,7 +93,6 @@ const mapState = state => currentTaskFriend(state);
 
 const mapDispatch = dispatch => ({
   toTasks: () => dispatch(actions.changeScreen('TASKS')),
-  receiveRepoFiles: (...args) => dispatch(actions.receiveRepoFiles(...args)),
 });
 
 export default connect(mapState, mapDispatch)(Work);
