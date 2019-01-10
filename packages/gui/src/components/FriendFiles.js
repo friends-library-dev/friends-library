@@ -10,7 +10,9 @@ import { jsx, css } from '@emotion/core';
 import type { Uuid } from '../../../../type';
 import type { Friend, EditingFile, Dispatch } from '../redux/type';
 import { values } from './utils';
+import { ipcRenderer as ipc } from '../webpack-electron';
 import * as actions from '../redux/actions';
+import { friendIterator } from '../redux/select';
 
 const Loading = styled.h1`
   text-align: center;
@@ -147,9 +149,40 @@ type Props = {|
   editingFile: EditingFile,
   selectFile: Dispatch,
   collapseTask: Dispatch,
+  updateSearch: Dispatch,
 |};
 
 class FriendFiles extends React.Component<Props> {
+  search(path) {
+    const { updateSearch } = this.props;
+    const parts = path.split('/');
+    const documentSlug = parts[0] || null;
+    const editionType = parts[1] || null;
+    this.loadSearchedFiles(documentSlug, editionType);
+    updateSearch({
+      searching: true,
+      documentSlug,
+      editionType,
+    });
+  }
+
+  loadSearchedFiles(docSlug, editionType) {
+    const { friend } = this.props;
+    friendIterator(friend, {
+      file: (file, ed, doc) => {
+        if (docSlug && doc.slug !== docSlug) {
+          return;
+        }
+        if (editionType && ed.type !== editionType) {
+          return;
+        }
+        if (file.diskContent === null) {
+          ipc.send('request:filecontent', file.path);
+        }
+      },
+    });
+  }
+
   renderDoc = (doc) => {
     const { collapsed, collapseTask, taskId } = this.props;
     const key = doc.slug;
@@ -163,7 +196,7 @@ class FriendFiles extends React.Component<Props> {
           className="toggler"
           onClick={() => collapseTask({ taskId, key, isCollapsed })}
         />
-        <IconSearch />
+        <IconSearch onClick={() => this.search(key)} />
         {doc.title}
         <ul>
           {values(doc.editions).map(ed => this.renderEdition(ed, doc))}
@@ -186,7 +219,7 @@ class FriendFiles extends React.Component<Props> {
           className="toggler"
           onClick={() => collapseTask({ taskId, key, isCollapsed })}
         />
-        <IconSearch isEdition />
+        <IconSearch onClick={() => this.search(key)} isEdition />
         <span className="edition-type">{ed.type}</span> edition:
         <ul>
           {values(ed.files).map(file => this.renderFile(file, ed, doc))}
@@ -248,6 +281,7 @@ const mapState = state => {
 const mapDispatch = {
   selectFile: actions.setEditingFile,
   collapseTask: actions.collapseTask,
+  updateSearch: actions.updateSearch,
 };
 
 export default connect(mapState, mapDispatch)(FriendFiles);

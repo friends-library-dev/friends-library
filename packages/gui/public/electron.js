@@ -65,8 +65,6 @@ function createMainWindow() {
   });
   mainWindow.loadURL(startUrl);
 
-  // mainWindow.webContents.openDevTools();
-
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -121,9 +119,23 @@ ipcMain.on('request:filecontent', (_, filepath) => {
 });
 
 ipcMain.on('receive:filecontent', (_, filepath, content) => {
-  if (mainWindow) {
-    mainWindow.webContents.send('UPDATE_FILE_CONTENT', filepath, content);
-  }
+  const [
+    filename,
+    editionType,
+    documentSlug,
+    friendSlug,
+    lang,
+  ] = filepath.split('/').reverse();
+
+  mainWindow.webContents.send('DISPATCH', 'UPDATE_FILE_CONTENT', {
+    filename,
+    editionType,
+    documentSlug,
+    friendSlug,
+    lang,
+    diskContent: content,
+    editedContent: content,
+  });
 });
 
 

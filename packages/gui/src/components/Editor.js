@@ -27,11 +27,11 @@ const Wrap = styled.div`
   z-index: 1;
   background: #555;
   width: 100%;
-  height: 100%;
+  height: ${p => p.searching ? 'auto' : '100%'};
 
   & .ace_editor {
     width: 100% !important;
-    height: 100% !important;
+    height: ${(p) => p.searching ? 'calc(35vh - 35px)' : '100%'} !important;
   }
 `;
 
@@ -40,7 +40,8 @@ type Props = {|
   filepath: string,
   adoc: ?Asciidoc,
   updateFile: Dispatch,
-  size: {| width: number |},
+  searching: boolean,
+  size: {| width: number, height: number |},
 |};
 
 
@@ -57,8 +58,8 @@ class Editor extends React.Component<Props> {
   }
 
   componentDidUpdate(prev) {
-    const { size } = this.props;
-    if (size.width !== prev.size.width) {
+    const { size, searching } = this.props;
+    if (size.width !== prev.size.width || searching !== prev.searching) {
       this.editor().resize();
     }
 
@@ -88,10 +89,10 @@ class Editor extends React.Component<Props> {
   }
 
   render() {
-    const { updateFile, adoc } = this.props;
+    const { updateFile, adoc, searching } = this.props;
     return (
-      <Wrap>
-        {adoc !== null && (
+      <Wrap searching={searching}>
+        {(adoc !== null && true) && (
           <AceEditor
             ref={this.aceRef}
             mode="asciidoc"
@@ -122,6 +123,7 @@ const mapState = state => {
   const file = doc.editions[edition].files[filename];
 
   return {
+    searching: state.search.searching,
     editingFile: state.editingFile,
     filepath: file.path,
     adoc: file.editedContent,
@@ -135,6 +137,7 @@ const mapDispatch = {
 const merge = (state, dispatch) => ({
   filepath: state.filepath,
   adoc: state.adoc,
+  searching: state.searching,
   updateFile: content => {
     dispatch.updateFileContent({
       lang: state.editingFile.lang,
@@ -147,4 +150,4 @@ const merge = (state, dispatch) => ({
   },
 });
 
-export default connect(mapState, mapDispatch, merge)(withSize()(Editor));
+export default connect(mapState, mapDispatch, merge)(withSize({ monitorHeight: true })(Editor));
