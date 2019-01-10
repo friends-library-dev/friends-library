@@ -3,6 +3,7 @@ import { configureStore } from 'redux-starter-kit';
 import { debounce } from 'lodash';
 import { ipcRenderer as ipc } from '../webpack-electron';
 import rootReducer from './reducers';
+import { defaultState as defaultSearchState } from './reducers/search-reducer';
 import * as screens from './screens';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -14,6 +15,7 @@ const defaultState = {
   tasks: {},
   friends: {},
   repos: {},
+  search: defaultSearchState,
 };
 
 

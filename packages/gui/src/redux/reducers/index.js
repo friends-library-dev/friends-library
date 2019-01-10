@@ -5,6 +5,7 @@ import tasks from './tasks-reducer';
 import friends from './friends-reducer';
 import repos from './repos-reducer';
 import editingFile from './editing-file-reducer';
+import search from './search-reducer';
 
 export default {
   screen,
@@ -13,4 +14,5 @@ export default {
   friends,
   repos,
   editingFile,
+  search,
 };

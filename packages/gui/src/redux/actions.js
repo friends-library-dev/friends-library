@@ -15,3 +15,4 @@ export const updateFileContent = createAction('UPDATE_FILE_CONTENT');
 export const setEditingFile = createAction('SET_EDITING_FILE');
 export const rehydrate = createAction('REHYDRATE');
 export const saveFiles = createAction('SAVE_FILES');
+export const updateSearch = createAction('UPDATE_SEARCH');

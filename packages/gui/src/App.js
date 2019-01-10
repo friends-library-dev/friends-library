@@ -18,6 +18,7 @@ type Props = {|
   receiveRepos: Dispatch,
   receiveFriend: Dispatch,
   rehydrate: Dispatch,
+  dispatch: Dispatch,
 |};
 
 type State = {|
@@ -30,7 +31,7 @@ class App extends React.Component<Props, State> {
   };
 
   async componentDidMount() {
-    const { repos, receiveRepos, receiveFriend, rehydrate } = this.props;
+    const { repos, receiveRepos, receiveFriend, rehydrate, dispatch } = this.props;
 
     const storedState = await callMain('stored-state:get');
     rehydrate(storedState);
@@ -38,6 +39,10 @@ class App extends React.Component<Props, State> {
 
     ipc.on('RECEIVE_FRIEND', (_, friend, lang) => {
       receiveFriend({ friend, lang });
+    });
+
+    ipc.on('DISPATCH', (_, type, payload) => {
+      dispatch({ type, payload });
     });
 
     if (repos.length === 0) {
@@ -92,10 +97,11 @@ const mapState = state => ({
   screen: state.screen,
 });
 
-const mapDispatch = {
-  receiveRepos: actions.receiveRepos,
-  receiveFriend: actions.receiveFriend,
-  rehydrate: actions.rehydrate,
-};
+const mapDispatch = dispatch => ({
+  dispatch,
+  receiveRepos: (...args) => dispatch(actions.receiveRepos(...args)),
+  receiveFriend: (...args) => dispatch(actions.receiveFriend(...args)),
+  rehydrate: (...args) => dispatch(actions.rehydrate(...args)),
+});
 
 export default connect(mapState, mapDispatch)(App);

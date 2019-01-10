@@ -9,6 +9,7 @@ import * as actions from '../redux/actions';
 import Editor from './Editor';
 import Button from './Button';
 import Sidebar from './Sidebar';
+import Search from './Search';
 
 const Nav = styled.nav`
   height: 35px;
@@ -33,6 +34,9 @@ const Wrap = styled.div`
 
 const EditorPane = styled.div`
   flex: auto;
+  display: flex;
+  height: calc(100vh - 35px);
+  flex-flow: column nowrap;
 `;
 
 type Props = {|
@@ -82,6 +86,7 @@ class Work extends React.Component<Props, State> {
           <Sidebar friend={friend} />
           <EditorPane>
             <Editor />
+            <Search />
           </EditorPane>
         </Main>
       </Wrap>
