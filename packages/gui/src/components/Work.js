@@ -6,20 +6,11 @@ import { ipcRenderer, callMain } from '../webpack-electron';
 import type { Task, Friend, Dispatch } from '../redux/type';
 import { currentTaskFriend } from '../redux/select';
 import * as actions from '../redux/actions';
+import KeyCommand from './KeyCommand';
 import Editor from './Editor';
-import Button from './Button';
 import Sidebar from './Sidebar';
 import Search from './Search';
-
-const Nav = styled.nav`
-  height: 35px;
-  background: black;
-
-  & .tasks {
-    height: 35px;
-    line-height: 35px;
-  }
-`;
+import WorkNav from './WorkNav';
 
 const Main = styled.div`
   display: flex;
@@ -42,7 +33,8 @@ const EditorPane = styled.div`
 type Props = {|
   task: Task,
   friend: Friend,
-  toTasks: Dispatch,
+  increaseFontSize: Dispatch,
+  decreaseFontSize: Dispatch,
 |};
 
 type State = {|
@@ -66,17 +58,13 @@ class Work extends React.Component<Props, State> {
 
   render() {
     const { branch } = this.state;
-    const { friend, task, toTasks } = this.props;
+    const { friend, increaseFontSize, decreaseFontSize } = this.props;
     if (!branch) {
       return <p>Hang on there one sec...</p>;
     }
     return (
       <Wrap>
-        <Nav>
-          <Button className="tasks" secondary onClick={toTasks}>&larr; Tasks</Button>
-          <span className="task-friend">{friend.name}:&nbsp;</span>
-          <span className="task-name"><i>{task.name}</i></span>
-        </Nav>
+        <WorkNav />
         <Main>
           <Sidebar friend={friend} />
           <EditorPane>
@@ -84,6 +72,14 @@ class Work extends React.Component<Props, State> {
             <Search />
           </EditorPane>
         </Main>
+        <KeyCommand
+          keys={['Cmd+Up']}
+          handle={increaseFontSize}
+        />
+        <KeyCommand
+          keys={['Cmd+Down']}
+          handle={decreaseFontSize}
+        />
       </Wrap>
     );
   }
@@ -91,8 +87,9 @@ class Work extends React.Component<Props, State> {
 
 const mapState = state => currentTaskFriend(state);
 
-const mapDispatch = dispatch => ({
-  toTasks: () => dispatch(actions.changeScreen('TASKS')),
-});
+const mapDispatch = {
+  increaseFontSize: actions.increaseEditorFontSize,
+  decreaseFontSize: actions.decreaseEditorFontSize,
+};
 
 export default connect(mapState, mapDispatch)(Work);

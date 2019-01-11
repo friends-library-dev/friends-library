@@ -187,8 +187,9 @@ answerRenderer('stored-state:get', () => {
   return Promise.resolve(storage.get('state'));
 });
 
-ipcMain.on('storage:update-state', (_, { tasks }) => {
+ipcMain.on('storage:update-state', (_, { tasks, prefs }) => {
   storage.set('state.tasks', tasks);
+  storage.set('state.prefs', prefs);
 });
 
 ipcMain.on('reset:storage', () => storage.set('state', {}));

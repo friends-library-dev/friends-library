@@ -16,3 +16,5 @@ export const setEditingFile = createAction('SET_EDITING_FILE');
 export const rehydrate = createAction('REHYDRATE');
 export const saveFiles = createAction('SAVE_FILES');
 export const updateSearch = createAction('UPDATE_SEARCH');
+export const increaseEditorFontSize = createAction('INCREASE_EDITOR_FONT_SIZE');
+export const decreaseEditorFontSize = createAction('DECREASE_EDITOR_FONT_SIZE');

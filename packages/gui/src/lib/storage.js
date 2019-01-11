@@ -4,6 +4,7 @@ const storage = new Store({
   defaults: {
     state: {
       tasks: {},
+      prefs: {},
     },
   },
 });

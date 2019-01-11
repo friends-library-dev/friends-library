@@ -7,10 +7,9 @@ const Button = styled.span`
   background: ${({ secondary }) => (secondary ? '#666' : '#61afef')};
   display: inline-block;
   width: 190px;
-  height: 50px;
+  height: ${p => p.height || '50'}px;
   text-align: center;
-  line-height: 50px;
-  margin-right: 20px;
+  line-height: ${p => p.height || '50'}px;
 
   &:hover {
     text-decoration: underline;

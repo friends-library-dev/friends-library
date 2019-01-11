@@ -110,7 +110,7 @@ class EditTask extends React.Component<Props, State> {
             </li>
           ))}
         </FriendList>
-        <Button secondary onClick={this.clickCancel}>
+        <Button secondary onClick={this.clickCancel} style={{ marginRight: 20 }}>
           Cancel
         </Button>
         <Button disabled={!repo || !name.trim()} onClick={this.clickSave}>
