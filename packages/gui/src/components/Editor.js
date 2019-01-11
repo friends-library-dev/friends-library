@@ -6,6 +6,7 @@ import { withSize } from 'react-sizeme';
 import styled from '@emotion/styled';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../redux/type';
+import { editingFile } from '../redux/select';
 import { ipcRenderer as ipc } from '../webpack-electron';
 import * as actions from '../redux/actions';
 import 'brace/ext/searchbox';
@@ -136,46 +137,18 @@ class Editor extends React.Component<Props> {
 }
 
 const mapState = state => {
-  if (!state.editingFile) {
-    return {
-      editingFile: {},
-      filepath: '',
-      adoc: null,
-    };
-  }
-
-  const { lang, friend, document, edition, filename } = state.editingFile;
-  const doc = state.friends[`${lang}/${friend}`].documents[document];
-  const file = doc.editions[edition].files[filename];
-
+  const file = editingFile(state);
   return {
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
-    editingFile: state.editingFile,
-    filepath: file.path,
-    adoc: file.editedContent,
+    filepath: file ? file.path : '',
+    adoc: file ? file.editedContent : null,
   };
 };
 
 const mapDispatch = {
-  updateFileContent: actions.updateFileContent,
+  updateFile: actions.updateEditingFile,
 };
 
-const merge = (state, dispatch) => ({
-  filepath: state.filepath,
-  adoc: state.adoc,
-  searching: state.searching,
-  fontSize: state.fontSize,
-  updateFile: content => {
-    dispatch.updateFileContent({
-      lang: state.editingFile.lang,
-      friendSlug: state.editingFile.friend,
-      documentSlug: state.editingFile.document,
-      editionType: state.editingFile.edition,
-      filename: state.editingFile.filename,
-      ...content,
-    });
-  },
-});
-
-export default connect(mapState, mapDispatch, merge)(withSize({ monitorHeight: true })(Editor));
+const SizedEditor = withSize({ monitorHeight: true })(Editor);
+export default connect(mapState, mapDispatch)(SizedEditor);

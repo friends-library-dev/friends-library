@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import type { Dispatch } from '../redux/type';
 import * as actions from '../redux/actions';
-import { currentTaskFriend } from '../redux/select';
-import SaveEditedFiles from './SaveEditedFiles';
+import { currentTaskFriend, editedCurrentTaskFiles } from '../redux/select';
+import Save from './Save';
 import Button from './Button';
 
 const Nav = styled.nav`
@@ -33,15 +33,20 @@ type Props = {|
   taskName: string,
   friendName: string,
   toTasks: Dispatch,
+  save: Dispatch,
+  numEdited: number,
 |};
 
-const WorkNav = ({ toTasks, friendName, taskName }: Props) => (
+const WorkNav = ({ toTasks, friendName, taskName, save, numEdited }: Props) => (
   <Nav>
     <Button
       secondary
       height={35}
       className="to-tasks"
-      onClick={toTasks}
+      onClick={() => {
+        save();
+        toTasks();
+      }}
     >
       &larr; Tasks
     </Button>
@@ -50,19 +55,21 @@ const WorkNav = ({ toTasks, friendName, taskName }: Props) => (
       <span className="task-friend">{friendName}:&nbsp;</span>
       <span className="task-name"><i>{taskName}</i></span>
     </div>
-    <SaveEditedFiles />
+    <Save onClick={save} numEdited={numEdited} />
   </Nav>
 );
 
 const mapState = state => {
   const { friend, task } = currentTaskFriend(state);
   return {
+    numEdited: editedCurrentTaskFiles(state).length,
     friendName: friend.name,
     taskName: task.name,
-  }
+  };
 };
 
 const mapDispatch = dispatch => ({
+  save: () => dispatch(actions.saveCurrentTaskEditedFiles()),
   toTasks: () => dispatch(actions.changeScreen('TASKS')),
 });
 
