@@ -7,7 +7,7 @@ import * as actions from './redux/actions';
 import { ipcRenderer as ipc, callMain } from './webpack-electron';
 import type { Repos, Dispatch } from './redux/type';
 import * as screens from './redux/screens';
-import Welcome from './components/Welcome';
+import Tasks from './components/Tasks';
 import EditTask from './components/EditTask';
 import Work from './components/Work';
 import { values } from './components/utils';
@@ -56,7 +56,7 @@ class App extends React.Component<Props, State> {
     const { screen } = this.props;
     switch (screen) {
       case screens.TASKS:
-        return <Welcome />;
+        return <Tasks />;
       case screens.EDIT_TASK:
         return (<EditTask />);
       case screens.WORK:

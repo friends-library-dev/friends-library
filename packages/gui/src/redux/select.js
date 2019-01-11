@@ -49,3 +49,25 @@ export function currentTaskFriend(state: State): { friend: Friend, task: Task} {
   const friend = state.friends[`en/${friendSlug}`];
   return { task, friend };
 }
+
+export function editedCurrentTaskFiles(state: State): Array<File> {
+  const { friend } = currentTaskFriend(state);
+  const editedFiles = [];
+  friendIterator(friend, {
+    file: (file) => {
+      if (file.diskContent !== file.editedContent) {
+        editedFiles.push(file);
+      }
+    },
+  });
+  return editedFiles;
+}
+
+export function editingFile(state: State): ?File {
+  if (!state.editingFile) {
+    return null;
+  }
+  const { lang, friend, document, edition, filename } = state.editingFile;
+  const doc = state.friends[`${lang}/${friend}`].documents[document];
+  return doc.editions[edition].files[filename];
+}

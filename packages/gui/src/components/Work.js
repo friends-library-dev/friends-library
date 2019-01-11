@@ -33,6 +33,7 @@ const EditorPane = styled.div`
 type Props = {|
   task: Task,
   friend: Friend,
+  saveEdited: Dispatch,
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
 |};
@@ -58,7 +59,7 @@ class Work extends React.Component<Props, State> {
 
   render() {
     const { branch } = this.state;
-    const { friend, increaseFontSize, decreaseFontSize } = this.props;
+    const { friend, increaseFontSize, decreaseFontSize, saveEdited } = this.props;
     if (!branch) {
       return <p>Hang on there one sec...</p>;
     }
@@ -72,6 +73,10 @@ class Work extends React.Component<Props, State> {
             <Search />
           </EditorPane>
         </Main>
+        <KeyCommand
+          keys={['Cmd+S']}
+          handle={saveEdited}
+        />
         <KeyCommand
           keys={['Cmd+Up']}
           handle={increaseFontSize}
@@ -88,6 +93,7 @@ class Work extends React.Component<Props, State> {
 const mapState = state => currentTaskFriend(state);
 
 const mapDispatch = {
+  saveEdited: actions.saveCurrentTaskEditedFiles,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,
 };
