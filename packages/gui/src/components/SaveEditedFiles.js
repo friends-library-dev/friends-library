@@ -1,22 +1,16 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import KeyboardEventHandler from 'react-keyboard-event-handler';
 import styled from '@emotion/styled';
 import type { Asciidoc, Slug, Uuid } from '../../../../type';
 import type { Dispatch } from '../redux/type';
 import Button from './Button';
+import KeyCommand from './KeyCommand';
 import { ipcRenderer as ipc } from '../webpack-electron';
 import * as actions from '../redux/actions';
 import { friendIterator, currentTaskFriend } from '../redux/select';
 
 const Save = styled(Button)`
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 35px;
-  line-height: 35px;
-  margin-right: 0;
   opacity: ${({ enabled }) => (enabled ? 1 : 0.4)};
   cursor: ${({ enabled }) => (enabled ? 'pointer' : 'not-allowed')};
   background: ${({ enabled }) => (enabled ? 'var(--accent)' : '#666')};
@@ -49,14 +43,6 @@ type Props = {|
 |};
 
 class SaveEditedFiles extends React.Component<Props> {
-  componentDidMount() {
-    ipc.on('editor:key-event', (_, keys) => {
-      if (keys === 'cmd+s') {
-        this.save();
-      }
-    });
-  }
-
   save() {
     const { editedFiles, friendSlug, touchTask, taskId, saveFiles } = this.props;
     if (editedFiles.length > 0) {
@@ -71,6 +57,7 @@ class SaveEditedFiles extends React.Component<Props> {
     const { editedFiles } = this.props;
     return (
       <Save
+        height={35}
         enabled={editedFiles.length > 0}
         onClick={() => this.save()}
       >
@@ -81,9 +68,9 @@ class SaveEditedFiles extends React.Component<Props> {
             <b>{editedFiles.length}</b>
           </span>
         )}
-        <KeyboardEventHandler
-          handleKeys={['meta+s', 'ctrl+s']}
-          onKeyEvent={() => this.save()}
+        <KeyCommand
+          keys={['Cmd+S']}
+          handle={() => this.save()}
         />
       </Save>
     );

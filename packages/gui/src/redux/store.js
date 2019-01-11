@@ -4,6 +4,7 @@ import { debounce } from 'lodash';
 import { ipcRenderer as ipc } from '../webpack-electron';
 import rootReducer from './reducers';
 import { defaultState as defaultSearchState } from './reducers/search-reducer';
+import { defaultState as defaultPrefsState } from './reducers/prefs-reducer';
 import * as screens from './screens';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -16,6 +17,7 @@ const defaultState = {
   friends: {},
   repos: {},
   search: defaultSearchState,
+  prefs: defaultPrefsState,
 };
 
 

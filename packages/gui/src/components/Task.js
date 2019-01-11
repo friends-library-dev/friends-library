@@ -66,7 +66,6 @@ const Wrap = styled.li`
       border-radius: 3px;
       display: inline-block;
       width: 200px;
-      margin-right: 0;
       margin-top: 10px;
       background: #eaeaea;
     }

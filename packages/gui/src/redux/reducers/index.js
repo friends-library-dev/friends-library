@@ -6,6 +6,7 @@ import friends from './friends-reducer';
 import repos from './repos-reducer';
 import editingFile from './editing-file-reducer';
 import search from './search-reducer';
+import prefs from './prefs-reducer';
 
 export default {
   screen,
@@ -15,4 +16,5 @@ export default {
   repos,
   editingFile,
   search,
+  prefs,
 };

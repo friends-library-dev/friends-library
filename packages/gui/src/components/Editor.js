@@ -8,7 +8,6 @@ import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../redux/type';
 import { ipcRenderer as ipc } from '../webpack-electron';
 import * as actions from '../redux/actions';
-import SaveEditedFiles from './SaveEditedFiles';
 import 'brace/ext/searchbox';
 import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
@@ -37,6 +36,7 @@ const Wrap = styled.div`
 
 
 type Props = {|
+  fontSize: number,
   filepath: string,
   adoc: ?Asciidoc,
   updateFile: Dispatch,
@@ -55,7 +55,7 @@ class Editor extends React.Component<Props> {
 
   componentDidMount() {
     this.maybeRequestFileContent();
-    this.forwardKeyEvents();
+    this.addKeyCommands();
   }
 
   componentDidUpdate(prev) {
@@ -64,14 +64,31 @@ class Editor extends React.Component<Props> {
       this.editor().resize();
     }
 
+    // ace seems to sometimes lose commands ¯\_(ツ)_/¯
+    if (!this.editor().commands.commands.increaseFontSize) {
+      this.addKeyCommands();
+    }
+
     this.maybeRequestFileContent();
   }
 
-  forwardKeyEvents() {
+  addKeyCommands() {
     this.editor().commands.addCommand({
-      name: 'Save',
+      name: 'save',
       bindKey: { mac: 'Command-S', win: 'Ctrl-S' },
-      exec: () => ipc.send('forward:editor:key-event', 'cmd+s'),
+      exec: () => ipc.send('forward:editor:key-event', 'Cmd+S'),
+    });
+
+    this.editor().commands.addCommand({
+      name: 'increaseFontSize',
+      bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
+      exec: () => ipc.send('forward:editor:key-event', 'Cmd+Up'),
+    });
+
+    this.editor().commands.addCommand({
+      name: 'decreaseFontSize',
+      bindKey: { mac: 'Command-Down', win: 'Ctrl-Down' },
+      exec: () => ipc.send('forward:editor:key-event', 'Cmd+Down'),
     });
   }
 
@@ -98,11 +115,12 @@ class Editor extends React.Component<Props> {
   }
 
   render() {
-    const { updateFile, adoc, searching } = this.props;
+    const { updateFile, adoc, searching, fontSize } = this.props;
     return (
       <Wrap searching={searching}>
-        {(adoc !== null && true) && (
+        {adoc !== null && (
           <AceEditor
+            style={{ fontSize }}
             ref={this.aceRef}
             mode="asciidoc"
             theme="tomorrow_night"
@@ -112,7 +130,6 @@ class Editor extends React.Component<Props> {
             setOptions={{ wrap: true }}
           />
         )}
-        <SaveEditedFiles />
       </Wrap>
     );
   }
@@ -132,6 +149,7 @@ const mapState = state => {
   const file = doc.editions[edition].files[filename];
 
   return {
+    fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
     editingFile: state.editingFile,
     filepath: file.path,
@@ -147,6 +165,7 @@ const merge = (state, dispatch) => ({
   filepath: state.filepath,
   adoc: state.adoc,
   searching: state.searching,
+  fontSize: state.fontSize,
   updateFile: content => {
     dispatch.updateFileContent({
       lang: state.editingFile.lang,
