@@ -2,7 +2,7 @@
 import { createAction } from 'redux-starter-kit';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch, State } from './type';
-import { currentTaskFriend, editedCurrentTaskFiles } from './select';
+import { currentTaskFriend, editedCurrentTaskFiles, searchedFiles } from './select';
 import { ipcRenderer as ipc } from '../webpack-electron';
 
 export const receiveRepos = createAction('RECEIVE_REPOS');
@@ -19,10 +19,18 @@ export const updateFileContent = createAction('UPDATE_FILE_CONTENT');
 export const setEditingFile = createAction('SET_EDITING_FILE');
 export const rehydrate = createAction('REHYDRATE');
 export const saveFiles = createAction('SAVE_FILES');
-export const updateSearch = createAction('UPDATE_SEARCH');
 export const increaseEditorFontSize = createAction('INCREASE_EDITOR_FONT_SIZE');
 export const decreaseEditorFontSize = createAction('DECREASE_EDITOR_FONT_SIZE');
 
+
+export function updateSearch(payload: Object) {
+  return (dispatch: Dispatch, getState: () => State) => {
+    dispatch({ type: 'UPDATE_SEARCH', payload });
+    searchedFiles(getState()).filter(f => f.diskContent === null).forEach(f => {
+      ipc.send('request:filecontent', f.path);
+    });
+  };
+}
 
 export function saveCurrentTaskEditedFiles() {
   return (dispatch: Dispatch, getState: () => State) => {

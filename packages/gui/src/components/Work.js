@@ -28,6 +28,7 @@ const EditorPane = styled.div`
   display: flex;
   height: calc(100vh - 35px);
   flex-flow: column nowrap;
+  justify-content: flex-end;
 `;
 
 type Props = {|

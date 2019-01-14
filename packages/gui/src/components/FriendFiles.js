@@ -10,9 +10,7 @@ import { jsx, css } from '@emotion/core';
 import type { Uuid } from '../../../../type';
 import type { Friend, EditingFile, Dispatch } from '../redux/type';
 import { values } from './utils';
-import { ipcRenderer as ipc } from '../webpack-electron';
 import * as actions from '../redux/actions';
-import { friendIterator } from '../redux/select';
 
 const Loading = styled.h1`
   text-align: center;
@@ -155,31 +153,11 @@ type Props = {|
 class FriendFiles extends React.Component<Props> {
   search(path) {
     const { updateSearch } = this.props;
-    const parts = path.split('/');
-    const documentSlug = parts[0] || null;
-    const editionType = parts[1] || null;
-    this.loadSearchedFiles(documentSlug, editionType);
+    const [documentSlug, editionType] = path.split('/');
     updateSearch({
       searching: true,
-      documentSlug,
-      editionType,
-    });
-  }
-
-  loadSearchedFiles(docSlug, editionType) {
-    const { friend } = this.props;
-    friendIterator(friend, {
-      file: (file, ed, doc) => {
-        if (docSlug && doc.slug !== docSlug) {
-          return;
-        }
-        if (editionType && ed.type !== editionType) {
-          return;
-        }
-        if (file.diskContent === null) {
-          ipc.send('request:filecontent', file.path);
-        }
-      },
+      documentSlug: documentSlug || null,
+      editionType: editionType || null,
     });
   }
 

@@ -80,6 +80,31 @@ export type EditingFile = {|
   filename: string,
 |};
 
+export type Search = {|
+  searching: boolean,
+  documentSlug: ?Slug,
+  editionType: ?EditionType,
+  regexp: boolean,
+  caseSensitive: boolean,
+  string: ?string,
+|};
+
+export type SearchResult = {|
+  filename: string,
+  start: {|
+    line: number,
+    column: number,
+  |},
+  end: {|
+    line: number,
+    column: number,
+  |},
+  context: Array<{|
+    lineNumber: number,
+    content: Asciidoc,
+  |}>
+|};
+
 export type State = {|
   screen: string,
   currentTask: Uuid,
@@ -87,4 +112,5 @@ export type State = {|
   friends: { [Slug]: Friend },
   repos: { [string]: Repo },
   editingFile: EditingFile,
+  search: Search,
 |};

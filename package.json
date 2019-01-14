@@ -68,6 +68,11 @@
     "errorOnDeprecated": true,
     "testEnvironment": "node",
     "testRegex": "__tests__/.*tests?\\.js",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/packages/gui/dist",
+      "<rootDir>/packages/gui/build",
+      "<rootDir>/evans/gui/public"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/packages/cli",
