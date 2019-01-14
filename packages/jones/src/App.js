@@ -1,9 +1,13 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
+import KeyEvent from 'react-keyboard-event-handler';
 import * as screens from './screens';
 import * as actions from './actions';
 import Login from './components/Login';
+import TopNav from './components/TopNav';
+
+const isDev = process.env.NODE_ENV === 'development';
 
 class App extends React.Component<*> {
 
@@ -12,14 +16,13 @@ class App extends React.Component<*> {
     if (query.has('access_token')) {
       const { receiveAccessToken } = this.props;
       receiveAccessToken(query.get('access_token'));
+      window.location.replace('/');
     }
   }
 
   renderScreen() {
-    const { screen, loggedIn } = this.props;
-    if (!loggedIn) {
-      return <Login />
-    }
+    const { screen } = this.props;
+
     switch (screen) {
       case screens.TASKS:
         return <h1>tasks</h1>;//<Tasks />;
@@ -33,9 +36,19 @@ class App extends React.Component<*> {
   }
 
   render() {
+    const { loggedIn, hardReset } = this.props;
+    if (!loggedIn) {
+      return <Login />
+    }
+
     return (
       <div>
+        <TopNav />
         {this.renderScreen()}
+        {isDev && <KeyEvent
+          handleKeys={['meta+1']}
+          onKeyEvent={hardReset}
+        />}
       </div>
     );
   }
@@ -48,6 +61,7 @@ const mapState = state => ({
 
 const mapDispatch = {
   receiveAccessToken: actions.receiveAccessToken,
+  hardReset: actions.hardReset,
 }
 
 export default connect(mapState, mapDispatch)(App);

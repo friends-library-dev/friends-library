@@ -1,17 +1,63 @@
 // @flow
 import { configureStore } from 'redux-starter-kit';
+import { combineReducers } from 'redux';
+import { defaultState as githubDefaultState } from './reducers/github-reducer';
 import rootReducer from './reducers';
 
+const defaultState = {
+  screen: 'TASKS',
+  version: 1,
+  github: githubDefaultState,
+};
+
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('jones');
+    if (serializedState == null) {
+      return {};
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return {};
+  }
+};
+
+const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('jones', serializedState);
+  } catch (err) {
+    // ¯\_(ツ)_/¯
+  }
+};
+
+const sliceReducer = combineReducers(rootReducer);
+
+const reducer = (state, action) => {
+  if (action.type === 'HARD_RESET') {
+    localStorage.removeItem('jones');
+    state = undefined;
+  }
+
+  return sliceReducer(state, action);
+}
+
 export default function () {
+
   const store = configureStore({
-    reducer: rootReducer,
-    preloadedState: {},
+    reducer,
+    preloadedState: {
+      ...defaultState,
+      ...loadState(),
+    },
   });
+
+  store.subscribe(() => saveState(store.getState()));
 
   // $FlowFixMe
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      /* eslint-disable-next-line global-require */
+      // eslint-disable global-require
       const nextReducer = require('./reducers').default;
       store.replaceReducer(nextReducer);
     });

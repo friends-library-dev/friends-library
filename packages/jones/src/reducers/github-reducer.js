@@ -8,5 +8,10 @@ export const defaultState = {
 export default createReducer(defaultState, {
   RECEIVE_ACCESS_TOKEN: (state, { payload }) => {
     state.token = payload;
+  },
+
+  RECEIVE_GITHUB_USER: (state, { payload }) => {
+    state.name = payload.name;
+    state.avatar = payload.avatar;
   }
 })
