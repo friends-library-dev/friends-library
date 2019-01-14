@@ -236,6 +236,14 @@ h4.blurb {
   margin-top: -0.5em;
 }
 
+.offset + .embedded-content-document {
+  margin-top: -0.25em;
+}
+
+.offset + .embedded-content-document .content .letter-heading {
+  margin-top: 1.5em;
+}
+
 .offset,
 .numbered {
 
