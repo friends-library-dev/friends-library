@@ -2,12 +2,24 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as screens from './screens';
-import './App.css';
+import * as actions from './actions';
+import Login from './components/Login';
 
 class App extends React.Component<*> {
 
+  componentDidMount() {
+    const query = new URLSearchParams(window.location.search);
+    if (query.has('access_token')) {
+      const { receiveAccessToken } = this.props;
+      receiveAccessToken(query.get('access_token'));
+    }
+  }
+
   renderScreen() {
-    const { screen } = this.props;
+    const { screen, loggedIn } = this.props;
+    if (!loggedIn) {
+      return <Login />
+    }
     switch (screen) {
       case screens.TASKS:
         return <h1>tasks</h1>;//<Tasks />;
@@ -30,7 +42,12 @@ class App extends React.Component<*> {
 }
 
 const mapState = state => ({
+  loggedIn: state.github.token !== null,
   screen: state.screen,
 });
 
-export default connect(mapState)(App);
+const mapDispatch = {
+  receiveAccessToken: actions.receiveAccessToken,
+}
+
+export default connect(mapState, mapDispatch)(App);

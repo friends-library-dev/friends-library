@@ -1,5 +1,8 @@
 // @flow
+import github from './github-reducer';
+
 export default {
-  screen: () => 'TASKS',
+  github,
   version: () => 1,
+  screen: () => 'TASKS',
 };
