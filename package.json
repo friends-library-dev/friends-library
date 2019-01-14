@@ -23,6 +23,7 @@
     "evans:build:es": "cd packages/evans && yarn build:es",
     "evans:develop:en": "cd packages/evans && yarn develop:en",
     "evans:develop:es": "cd packages/evans && yarn develop:es",
+    "jones:develop": "cd packages/jones && yarn develop",
     "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es",
     "postinstall": "patch-package"
   },
@@ -62,7 +63,8 @@
     "packages/fell",
     "packages/styleguide",
     "packages/mod",
-    "packages/gui"
+    "packages/gui",
+    "packages/jones"
   ],
   "jest": {
     "errorOnDeprecated": true,
