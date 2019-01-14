@@ -71,3 +71,25 @@ export function editingFile(state: State): ?File {
   const doc = state.friends[`${lang}/${friend}`].documents[document];
   return doc.editions[edition].files[filename];
 }
+
+export function searchedFiles(state: State): Array<File> {
+  const { friend } = currentTaskFriend(state);
+  const { search: { searching, documentSlug, editionType } } = state;
+  if (!searching) {
+    return [];
+  }
+
+  const files = [];
+  friendIterator(friend, {
+    file: (file, ed, doc) => {
+      if (documentSlug && documentSlug !== doc.slug) {
+        return;
+      }
+      if (editionType && editionType !== ed.type) {
+        return;
+      }
+      files.push(file);
+    },
+  });
+  return files;
+}

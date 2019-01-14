@@ -3,21 +3,49 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
-import { currentTaskFriend, friendIterator } from '../redux/select';
-import Button from './Button';
+import { searchedFiles } from '../redux/select';
 import { searchFiles } from '../lib/search';
+import Button from './Button';
+import SearchResult from './SearchResult';
 
 const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
   background: #000;
+  padding: 1.5em;
   height: 65vh;
   flex: 0 0 auto;
   color: white;
   position: relative;
+  box-sizing: border-box;
 
   & .close {
     position: absolute;
     top: 5px;
     right: 5px;
+  }
+`;
+
+const Results = styled.div`
+  overflow: hidden;
+  height: 100%;
+  overflow: auto;
+  margin-right: -1.5em;
+  margin-bottom: -1.5em;
+`;
+
+const SearchBar = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  & input {
+    flex-grow: 1;
+    background: #333;
+    color: #ddd;
+    padding: 0 8px;
+    font-size: 20px;
+    font-family: monospace;
+    border: none;
   }
 `;
 
@@ -29,6 +57,10 @@ class Search extends React.Component<*, *> {
 
   handleChange = (e) => {
     this.setState({ string: e.target.value });
+  }
+
+  componentDidMount() {
+    // this.search();
   }
 
   search = () => {
@@ -48,7 +80,7 @@ class Search extends React.Component<*, *> {
     // temp
     if (process.env.NODE_ENV !== 'development') {
       return (
-        <Wrap sytle={{ display: 'flex' }}>
+        <Wrap>
           <i
             className="close fas fa-times-circle"
             onClick={() => update({ searching: false })}
@@ -76,43 +108,35 @@ class Search extends React.Component<*, *> {
 
     return (
       <Wrap>
-        <i
-          className="close fas fa-times-circle"
-          onClick={() => update({ searching: false })}
-        />
-        <input value={string} onChange={this.handleChange} />
-        <Button secondary onClick={this.search}>
-          Search!
-        </Button>
-        <pre>
-          {JSON.stringify(results, null, 2)}
-        </pre>
+        <div>
+          <SearchBar>
+            <i
+              className="close fas fa-times-circle"
+              onClick={() => update({ searching: false })}
+            />
+            <input value={string} onChange={this.handleChange} />
+            <Button secondary onClick={this.search} height={35}>
+              Search!
+            </Button>
+          </SearchBar>
+          <p>Found <code>{results.length}</code> result{results.length === 1 ? '' : 's'}:</p>
+        </div>
+        <Results>
+          {results.map(r => <SearchResult result={r} key={r.filename} />)}
+        </Results>
       </Wrap>
     );
   }
 }
 
 const mapState = state => {
-  const { friend } = currentTaskFriend(state);
-  const { search } = state;
-  const { searching, documentSlug, editionType } = search;
-  const files = [];
-  friendIterator(friend, {
-    file: (file, ed, doc) => {
-      if (documentSlug && documentSlug !== doc.slug) {
-        return;
-      }
-      if (editionType && editionType !== ed.type) {
-        return;
-      }
-      files.push(file);
-    },
-  });
+  const { search: { searching, regexp, caseSensitive } } = state;
+  const files = searchedFiles(state);
   return {
     files,
     searching,
-    regexp: search.regexp,
-    caseSensitive: search.caseSensitive,
+    regexp,
+    caseSensitive,
     filesLoaded: !!files.find(f => f.diskContent),
   };
 };

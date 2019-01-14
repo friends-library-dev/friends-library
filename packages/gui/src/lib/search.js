@@ -1,11 +1,5 @@
 // @flow
-import type { File } from '../redux/type';
-
-type SearchResult = {|
-  line: number,
-  colStart: number,
-  filename: string,
-|};
+import type { File, SearchResult } from '../redux/type';
 
 export function searchFiles(
   str: string,
@@ -19,14 +13,57 @@ export function searchFiles(
     lines.forEach((line, index) => {
       let match;
       while ((match = exp.exec(line))) {
-        results.push({
+        const result = {
           filename: file.filename,
-          line: index + 1,
-          colStart: match.index,
+          start: {
+            line: index + 1,
+            column: match.index,
+          },
+          end: {
+            line: index + 1,
+            column: match.index + str.length,
+          },
+        };
+        results.push({
+          ...result,
+          context: getContext(result, lines),
         });
       }
     });
 
     return results;
   }, []);
+}
+
+function getContext(result, lines) {
+  const context = [];
+  const { start, end } = result;
+
+  const beforeLineIndex = start.line - 2;
+  if (beforeLineIndex > -1 && lines[beforeLineIndex].trim()) {
+    context.push({
+      lineNumber: beforeLineIndex + 1,
+      content: lines[beforeLineIndex],
+    });
+  }
+
+  const resultLines = end.line - start.line + 1;
+  for (let i = 1; i <= resultLines; i++) {
+    context.push({
+      lineNumber: start.line + (i - 1),
+      content: lines[start.line + (i - 2)],
+    });
+  }
+
+  const afterLineIndex = end.line;
+  if (afterLineIndex <= lines.length && lines[afterLineIndex].trim()) {
+    context.push({
+      lineNumber: afterLineIndex + 1,
+      content: lines[afterLineIndex],
+    });
+  }
+
+  // console.log(JSON.stringify(context, null, 2));
+
+  return context;
 }
