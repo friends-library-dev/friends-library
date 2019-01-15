@@ -1,9 +1,12 @@
 // @flow
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { connect } from 'react-redux';
 import Resizable from 're-resizable';
 import type { Friend } from '../redux/type';
 import FriendFiles from './FriendFiles';
+import { currentTask } from '../select';
+import * as actions from '../actions';
 
 const Div = styled(Resizable)`
   background: #333;
@@ -13,8 +16,11 @@ const Div = styled(Resizable)`
   z-index: 2;
   transform: translateZ(0);
 
-  & .resize-handle > div {
-    right: 0 !important;
+  .resize-handle {
+    position: static;
+    > div {
+      right: 0 !important;
+    }
   }
 `;
 
@@ -78,32 +84,22 @@ const Toggle = ({ onClick, isOpen }: ToggleProps) => (
 );
 
 class Sidebar extends React.Component<Props, State> {
-  state = {
-    open: true,
-    width: 400,
-  }
-
-  toggle = () => {
-    const { open } = this.state;
-    this.setState({ open: !open });
-  }
-
   render() {
-    const { open, width } = this.state;
-    const { friend } = this.props;
+    const { open, width, toggleOpen, updateWidth } = this.props;
     if (!open) {
       return (
         <Closed>
-          <Toggle onClick={this.toggle} isOpen />
+          <Toggle onClick={toggleOpen} isOpen />
         </Closed>
       );
     }
     return (
       <Div
         minWidth={200}
+        defaultSize={{ width }}
         handleWrapperClass="resize-handle"
         onResizeStop={(e, dir, ref, delta) => {
-          this.setState({ width: width + delta.width });
+          updateWidth(width + delta.width);
         }}
         enable={{
           top: false,
@@ -116,11 +112,25 @@ class Sidebar extends React.Component<Props, State> {
           topLeft: false,
         }}
       >
-        <Toggle onClick={this.toggle} isOpen={false} />
+        <Toggle onClick={toggleOpen} isOpen={false} />
         <FriendFiles />
       </Div>
     );
   }
 }
 
-export default Sidebar;
+const mapState = state => {
+  const task = currentTask(state);
+  console.log(task);
+  return {
+    open: task.sidebarOpen,
+    width: task.sidebarWidth,
+  };
+};
+
+const mapDispatch = {
+  toggleOpen: actions.toggleSidebarOpen,
+  updateWidth: actions.updateSidebarWidth,
+}
+
+export default connect(mapState, mapDispatch)(Sidebar);

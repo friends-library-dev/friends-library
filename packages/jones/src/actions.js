@@ -28,10 +28,29 @@ function friendYmlUrl(friendSlug: Slug): Url {
   ].join('');
 }
 
+export function toggleSidebarOpen(adoc: Asciidoc): ReduxThunk {
+  return (dispatch: Dispatch, getState: () => State) => {
+    const { id } = currentTask(getState());
+    dispatch({
+      type: 'TOGGLE_SIDEBAR_OPEN',
+      payload: { id }
+    });
+  };
+}
+
+export function updateSidebarWidth(width: number): ReduxThunk {
+  return (dispatch: Dispatch, getState: () => State) => {
+    const { id } = currentTask(getState());
+    dispatch({
+      type: 'UPDATE_SIDEBAR_WIDTH',
+      payload: { id, width }
+    });
+  };
+}
+
 export function updateEditingFile(adoc: Asciidoc): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {
-    const state = getState();
-    const task = currentTask(state);
+    const task = currentTask(getState());
     dispatch({
       type: 'UPDATE_EDITING_FILE',
       payload: {

@@ -16,10 +16,26 @@ export default createReducer({}, {
       created: time,
       updated: time,
       isNew: true,
+      sidebarOpen: true,
+      sidebarWidth: 400,
       collapsed: {},
       documentTitles: {},
       files: {},
     };
+  },
+
+  TOGGLE_SIDEBAR_OPEN: (state, { payload: { id } }) => {
+    const task = state[id];
+    if (task) {
+      task.sidebarOpen = !task.sidebarOpen;
+    }
+  },
+
+  UPDATE_SIDEBAR_WIDTH: (state, { payload: { id, width } }) => {
+    const task = state[id];
+    if (task) {
+      task.sidebarWidth = width;
+    }
   },
 
   UPDATE_EDITING_FILE: (state, { payload: { id, adoc } }) => {

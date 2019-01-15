@@ -37,6 +37,8 @@ export type Task = {|
   isNew: boolean,
   prNumber?: number,
   collapsed: { [string]: boolean },
+  sidebarOpen: boolean,
+  sidebarWidth: number,
   documentTitles: { [slug]: Title },
   files: { [FilePath]: File },
   editingFile?: FilePath,
