@@ -121,7 +121,6 @@ class Sidebar extends React.Component<Props, State> {
 
 const mapState = state => {
   const task = currentTask(state);
-  console.log(task);
   return {
     open: task.sidebarOpen,
     width: task.sidebarWidth,

@@ -61,6 +61,7 @@ export function updateEditingFile(adoc: Asciidoc): ReduxThunk {
   };
 }
 
+
 export function checkout(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const repoSlug = await gh.getRepoSlug(task.repoId);

@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import * as actions from '../actions';
 import * as gh from '../lib/github-api';
 import fox from '../george-fox.png';
+import NavContent from './NavContent';
 
 const Div = styled.div`
   height: 50px;
@@ -26,6 +27,7 @@ const Div = styled.div`
     flex-grow: 1;
 
     & i {
+      padding-left: 0.25em;
       color: var(--accent);
     }
   }
@@ -35,12 +37,12 @@ const Div = styled.div`
     color: #bbb;
     display: flex;
     & .name {
-      padding: 0 0.5em 0 1em;
+      padding: 0 0.5em 0 0.8em;
       display: block;
     }
   }
 `;
-// "<https://api.github.com/organizations/32500148/repos?access_token=7586ce05e74ca8f0fde1beb563921254551e7dbb&page=2>; rel="next", <https://api.github.com/organizations/32500148/repos?access_token=7586ce05e74ca8f0fde1beb563921254551e7dbb&page=2>; rel="last""
+
 class TopNav extends React.Component<*> {
 
   componentDidMount() {
@@ -52,12 +54,12 @@ class TopNav extends React.Component<*> {
   }
 
   render() {
-    const { avatar, name } = this.props;
+    const { avatar, name, screen } = this.props;
     return (
       <Div>
         <img className="icon" src={fox} alt="" />
         <div className="center">
-          Friends Library Publishing <i>Online Editor</i>
+          <NavContent screen={screen} />
         </div>
         {name && <div className="github">
           <span className="name">{name}</span>
@@ -68,11 +70,10 @@ class TopNav extends React.Component<*> {
   }
 }
 
-// const mapState = state => ({
-//   name: state.github.name,
-//   avatar: state.github.avatar,
-// });
-const mapState = ({ github }) => github;
+const mapState = state => ({
+  ...state.github,
+  screen: state.screen,
+});
 
 const mapDispatch = {
   requestGitHubUser: actions.requestGitHubUser,

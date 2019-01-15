@@ -15,7 +15,7 @@ const FriendList = styled.ul`
   & li {
     display: inline-block;
     width: 160px;
-    height: 28px;
+    height: 36px;
     text-align: center;
     background: gray;
     margin: 5px;

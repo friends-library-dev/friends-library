@@ -8,6 +8,7 @@ import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../type';
 import { currentTask } from '../select';
 import * as actions from '../actions';
+import Centered from './Centered';
 import 'brace/ext/searchbox';
 import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
@@ -33,6 +34,12 @@ const Wrap = styled.div`
     height: ${(p) => p.searching ? 'calc(35vh - 35px)' : '100%'} !important;
   }
 `;
+
+const ChooseAFile = () => (
+  <Centered>
+    <p style={{ opacity: 0.5 }}>👈 choose a file</p>
+  </Centered>
+);
 
 
 type Props = {|
@@ -92,22 +99,27 @@ class Editor extends React.Component<Props> {
     return noopEditor;
   }
 
+  renderAce() {
+    const { updateFile, adoc, fontSize } = this.props;
+    return (
+      <AceEditor
+        style={{ fontSize }}
+        ref={this.aceRef}
+        mode="asciidoc"
+        theme="tomorrow_night"
+        onChange={updateFile}
+        value={adoc}
+        editorProps={{ $blockScrolling: true }}
+        setOptions={{ wrap: true }}
+      />
+    );
+  }
+
   render() {
-    const { updateFile, adoc, searching, fontSize } = this.props;
+    const { adoc, searching } = this.props;
     return (
       <Wrap searching={searching}>
-        {adoc !== null && (
-          <AceEditor
-            style={{ fontSize }}
-            ref={this.aceRef}
-            mode="asciidoc"
-            theme="tomorrow_night"
-            onChange={updateFile}
-            value={adoc}
-            editorProps={{ $blockScrolling: true }}
-            setOptions={{ wrap: true }}
-          />
-        )}
+        {adoc === null ? <ChooseAFile /> : this.renderAce()}
       </Wrap>
     );
   }

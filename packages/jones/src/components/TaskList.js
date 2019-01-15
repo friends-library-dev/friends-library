@@ -6,8 +6,16 @@ import type { Task as TaskType } from '../type';
 import Task from './Task';
 
 const List = styled.ul`
-  margin: 45px 0;
+  margin: 30px -15px;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > li {
+    flex-basis: 480px;
+    margin: 15px;
+  }
 `;
 
 type Props = {|

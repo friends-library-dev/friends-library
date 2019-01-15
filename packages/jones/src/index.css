@@ -3,7 +3,6 @@
 }
 
 * {
-  position: relative;
   user-select: none;
   box-sizing: border-box;
 }

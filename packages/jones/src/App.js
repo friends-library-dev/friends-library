@@ -15,9 +15,9 @@ const isDev = process.env.NODE_ENV === 'development';
 class App extends React.Component<*> {
 
   componentDidMount() {
+    const { receiveAccessToken } = this.props;
     const query = new URLSearchParams(window.location.search);
     if (query.has('access_token')) {
-      const { receiveAccessToken } = this.props;
       receiveAccessToken(query.get('access_token'));
       window.location.replace('/');
     }

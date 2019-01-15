@@ -2,7 +2,7 @@
 import { createReducer } from 'redux-starter-kit';
 
 export default createReducer([], {
-  RECEIVE_REPOS: (state, action) => {
+  RECEIVE_FRIEND_REPOS: (state, action) => {
     const repos = {};
     action.payload.forEach(repo => {
       repos[`en/${repo.name}`] = {

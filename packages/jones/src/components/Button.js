@@ -1,7 +1,8 @@
 // @flow
+import * as React from 'react';
 import styled from '@emotion/styled';
 
-const Button = styled.span`
+const StyledSpan = styled.span`
   opacity: ${({ disabled }) => (disabled ? 0.15 : 1)};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   background: ${({ secondary }) => (secondary ? '#666' : '#61afef')};
@@ -11,9 +12,21 @@ const Button = styled.span`
   text-align: center;
   line-height: ${p => p.height || '50'}px;
 
+  &:link {
+    text-decoration: none;
+    color: inherit;
+  }
+
   &:hover {
-    text-decoration: underline;
+    ${p => p.disabled ? '' : p.secondary ? 'background: #777' : 'background: #4d99d8'}
   }
 `;
 
-export default Button;
+export default props => (
+  <StyledSpan
+    {...props}
+    {...props.href ? { as: 'a' } : {}}
+  >
+    {props.children}
+  </StyledSpan>
+);

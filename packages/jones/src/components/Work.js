@@ -13,7 +13,6 @@ import Loading from './Loading';
 
 const Main = styled.div`
   display: flex;
-  ${'' /* height: calc(100vh - 35px); */}
   height: 100%;
 `;
 
@@ -42,10 +41,10 @@ type Props = {|
 
 class Work extends React.Component<Props> {
 
-  async componentDidMount() {
+  componentDidMount() {
     const { task, checkout } = this.props;
     if (!task.baseCommit) {
-      checkout(task);
+      checkout({...task});
     }
   }
 
@@ -58,7 +57,6 @@ class Work extends React.Component<Props> {
 
     return (
       <Wrap>
-        {/* <WorkNav /> */}
         <Main>
           <Sidebar />
           <EditorPane>

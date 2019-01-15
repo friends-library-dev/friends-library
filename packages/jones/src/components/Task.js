@@ -14,36 +14,25 @@ const Wrap = styled.li`
   border-radius: 3px;
   box-shadow: 3px 6px 9px black;
   display: inline-block;
-  width: 450px;
   list-style: none;
-  margin-right: 35px;
   margin-bottom: 35px;
   padding: 14px 21px;
   cursor: pointer;
 
   & h1 {
-    font-size: 25px;
+    font-size: 20px;
     background: #121212;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    color: white;
+    color: #ddd;
     margin: -14px -21px 12px -21px;
     padding: 16px;
   }
 
   & p.friend {
-    font-size: 19px;
-    padding-left: 20px;
+    font-weight: 700;
+    font-size: 17px;
     color: #333;
-  }
-
-  & .fa-male, & .fa-female {
-    font-size: 28px;
-  }
-
-  & .create-pr-msg {
-    padding-left: 0;
-    font-style: italic;
   }
 
   & i {
@@ -64,7 +53,7 @@ const Wrap = styled.li`
     & > * {
       border-radius: 3px;
       display: inline-block;
-      width: 200px;
+      width: 190px;
       margin-top: 10px;
       background: #eaeaea;
     }
@@ -99,8 +88,6 @@ type Props = {|
 |};
 
 
-
-
 class Task extends React.Component<Props> {
 
   state = {
@@ -124,27 +111,25 @@ class Task extends React.Component<Props> {
     deleteTask(task.id);
   }
 
-  prNeedsCreation() {
-    const { task } = this.props;
-    return !task.prNumber;
+  submitText() {
+    const { task: { prNumber } } = this.props;
+    const { submitting } = this.state;
+    if (submitting) {
+      return 'Submitting...';
+    }
+    return prNumber ? 'Re-submit' : 'Submit';
   }
 
   render() {
-    const { submitting, gitPushing } = this.state;
-    const { task, repo, workOnTask } = this.props;
+    const { submitting } = this.state;
+    const { task, repo, workOnTask, taskHasWork } = this.props;
 
     return (
       <Wrap>
-
         <h1>
-          <i className="fas fa-code-branch" />
-          {task.name}
+          <i className="fas fa-code-branch" /> {task.name}
         </h1>
-
-        <p className="friend">
-          Friend: <em>{repo.friendName}</em>
-        </p>
-
+        <p className="friend">Friend: <em>{repo.friendName}</em></p>
         <ul className="time">
           <li>
             <i className="far fa-calendar" />
@@ -155,27 +140,20 @@ class Task extends React.Component<Props> {
             <i>Last updated:</i>{moment(task.updated).from(moment())}
           </li>
         </ul>
-
-        {(submitting && !gitPushing && !task.prNumber) && (
-          <p className="create-pr-msg">
-            Click the "Create Pull Request" button below and then
-            click the green "Create Pull Request" button on Github
-            to finalize submission of this task.
-          </p>
-        )}
-
         <div className="actions">
-
-          {((submitting && !gitPushing) || task.prNumber)
+          {task.prNumber
             ? (
-              <Button secondary onClick={this.pr} className="pr">
+              <Button
+                secondary
+                href={`https://github.com/friends-library/${repo.slug}/pull/${task.prNumber}`}
+                className="pr"
+              >
                 <i className="fas fa-code-branch" />
-                {this.prText()}
+                View pull request
               </Button>
             )
             : <Button className="invisible">¯\_(ツ)_/¯</Button>
           }
-
           <Button
             secondary
             className="delete"
@@ -184,16 +162,15 @@ class Task extends React.Component<Props> {
             <i className="far fa-trash-alt" />
             Delete
           </Button>
-
           <Button
             secondary
+            disabled={!taskHasWork}
             className="submit"
             onClick={this.submit}
           >
             <i className="fas fa-cloud-upload-alt" />
-            Submit Task
+            {this.submitText()}
           </Button>
-
           <Button
             className="work"
             onClick={() => workOnTask(task.id)}
@@ -207,10 +184,14 @@ class Task extends React.Component<Props> {
   }
 }
 
-const mapState = (state, { task }) => ({
-  repo: state.repos.find(r => r.id === task.repoId),
-  task,
-});
+const mapState = (state, { task }) => {
+  const repo = state.repos.find(r => r.id === task.repoId);
+  return {
+    task,
+    repo,
+    taskHasWork: !!Object.values(task.files).find(f => f.editedContent),
+  };
+};
 
 const mapDispatch = {
   workOnTask: actions.workOnTask,
