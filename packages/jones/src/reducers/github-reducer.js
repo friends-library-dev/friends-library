@@ -13,5 +13,6 @@ export default createReducer(defaultState, {
   RECEIVE_GITHUB_USER: (state, { payload }) => {
     state.name = payload.name;
     state.avatar = payload.avatar;
+    state.user = payload.user;
   }
 })

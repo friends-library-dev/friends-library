@@ -111,6 +111,17 @@ class Task extends React.Component<Props> {
     deleteTask(task.id);
   }
 
+  componentDidMount() {
+    // this.submit();
+  }
+
+  submit = async () => {
+    const { task, submit, taskHasWork } = this.props;
+    this.setState({ submitting: true });
+    await submit(task);
+    this.setState({ submitting: false });
+  }
+
   submitText() {
     const { task: { prNumber } } = this.props;
     const { submitting } = this.state;
@@ -194,6 +205,7 @@ const mapState = (state, { task }) => {
 };
 
 const mapDispatch = {
+  submit: actions.submitTask,
   workOnTask: actions.workOnTask,
   updateTask: actions.updateTask,
   deleteTask: actions.deleteTask,

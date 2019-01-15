@@ -19,6 +19,9 @@ export type Sha = string;
 
 export type GitHub = {|
   token: string,
+  name: Name,
+  avatar: Url,
+  user: string,
 |};
 
 export type File = {|

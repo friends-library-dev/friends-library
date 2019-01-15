@@ -61,6 +61,18 @@ export function updateEditingFile(adoc: Asciidoc): ReduxThunk {
   };
 }
 
+export function submitTask(task: Task): ReduxThunk {
+  return async (dispatch: Dispatch, getState: () => State) => {
+    const { github: { user } } = getState();
+    dispatch({ type: 'SUBMITTING_TASK' });
+    const prNumber = await gh.createNewPullRequest(task, user);
+    dispatch({ type: 'TASK_SUBMITTED', payload: {
+      id: task.id,
+      prNumber,
+    } });
+  };
+}
+
 
 export function checkout(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
@@ -105,6 +117,7 @@ export function requestGitHubUser() {
       payload: {
         name: user.name,
         avatar: user.avatar_url,
+        user: user.login,
       }
     });
   }

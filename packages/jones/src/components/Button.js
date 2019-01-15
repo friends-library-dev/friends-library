@@ -25,7 +25,8 @@ const StyledSpan = styled.span`
 export default props => (
   <StyledSpan
     {...props}
-    {...props.href ? { as: 'a' } : {}}
+    {...props.href && !props.disabled ? { as: 'a' } : {}}
+    {...props.disabled ? { onClick: null } : {}}
   >
     {props.children}
   </StyledSpan>

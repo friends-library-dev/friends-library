@@ -3,6 +3,7 @@
 import Octokit from '@octokit/rest';
 // $FlowFixMe
 import uuid from 'uuid/v4';
+import type { Task, File } from '../type';
 
 
 type Sha = string;
@@ -69,16 +70,147 @@ export async function getAdocFiles(
   return await Promise.all(filePromises);
 }
 
+async function createFork(repo: RepoSlug, user: string): Promise<void> {
+  await req('POST /repos/:owner/:repo/forks', {
+    repo,
+  });
+  return new Promise(resolve => {
+    const interval = setInterval(async () => {
+      const forkExists = await hasFork(repo, user);
+      if (forkExists) {
+        clearInterval(interval);
+        resolve();
+      }
+    }, 250);
+  });
+}
+
+async function hasFork(repo: RepoSlug, user: string): Promise<boolean> {
+  try {
+    await req('/repos/:owner/:repo', {
+      owner: user,
+      repo,
+    });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+async function syncFork(repo: RepoSlug, user: string): Promise<void> {
+  const upstream = await req('/repos/:owner/:repo/git/refs/heads/master', {
+    repo,
+  });
+
+  const res = await req('PATCH /repos/:owner/:repo/git/refs/heads/master', {
+    sha: upstream.data.object.sha,
+    owner: user,
+    repo,
+  });
+}
+
+async function ensureSyncedFork(repo: RepoSlug, user: string): Promise<void> {
+  const forkExists = await hasFork(repo, user);
+  if (!forkExists) {
+    await createFork(repo, user);
+  }
+  await syncFork(repo, user);
+}
+
+export async function createNewPullRequest(task: Task, user: string): Promise<number> {
+  const { baseCommit, repoId, id, files } = task;
+  const branchName = `task-${Date.now()}`;
+  const repo = await getRepoSlug(repoId);
+  await ensureSyncedFork(repo, user);
+  const newBranchSha = await createBranch(repo, branchName, baseCommit, user);
+  const baseTreeSha = await getTreeSha(repo, baseCommit, user);
+  const newTreeSha = await createTree(repo, baseTreeSha, files, user);
+  const newCommitSha = await createCommit(repo, newTreeSha, baseCommit, task.name, user);
+  await updateHead(repo, branchName, newCommitSha, user);
+  return await openPullRequest(repo, branchName, task.name, user);
+}
+
+async function openPullRequest(
+  repo: RepoSlug,
+  branch: BranchName,
+  title: string,
+  user: string,
+): Promise<number> {
+  const { data: { number } } = await req('POST /repos/:owner/:repo/pulls', {
+    repo,
+    title,
+    owner: 'friends-library',
+    head: `${user}:${branch}`,
+    base: 'master',
+    body: 'yo, you should merge this rad PR',
+    maintainer_can_modify: true,
+  });
+  return number;
+}
+
+async function updateHead(
+  repo: RepoSlug,
+  branch: BranchName,
+  sha: Sha,
+  owner: string = 'friends-library',
+): Promise<void> {
+  const res = await req('PATCH /repos/:owner/:repo/git/refs/heads/:branch', {
+      repo,
+      owner,
+      branch,
+      sha,
+      // force: true, // ???
+    });
+}
+
+async function createCommit(
+  repo: RepoSlug,
+  treeSha: Sha,
+  parent: Sha,
+  message: string,
+  owner: string = 'friends-library',
+): Promise<Sha> {
+  const { data: { sha } } = await req('POST /repos/:owner/:repo/git/commits', {
+    owner,
+    repo,
+    message,
+    tree: treeSha,
+    parents: [parent],
+  });
+  return sha;
+}
+
+async function createTree(
+  repo: RepoSlug,
+  baseTreeSha: Sha,
+  files: Array<File>,
+  owner: string = 'friends-library',
+): Promise<Sha> {
+  const { data: { sha } } = await req('POST /repos/:owner/:repo/git/trees', {
+      repo,
+      owner,
+      base_tree: baseTreeSha,
+      tree: Object.values(files).filter(f => f.editedContent).map(f => ({
+        path: f.path,
+        mode: '100644',
+        type: 'blob',
+        content: f.editedContent,
+      })),
+    });
+    return sha;
+}
+
 
 export async function createBranch(
-  repo: number,
+  repo: RepoSlug,
   newBranchName: BranchName,
-  parentBranch: BranchName = 'master',
+  baseCommit: Sha,
+  owner: string = 'friends-library',
 ): Promise<{| branch: BranchName, sha: Sha |}> {
-  const sha = await getHeadSha(repo, parentBranch);
-  const res = await req('POST /repos/:owner/:repo/git/refs', {
+  const res = await gh.git.createRef({
+    owner,
     repo,
-    sha,
+    sha: baseCommit,
     ref: `refs/heads/${newBranchName}`,
   });
   if (res.status === 201) {
@@ -89,10 +221,11 @@ export async function createBranch(
 
 export async function getTreeSha(
   repo: RepoSlug,
-  branch: BranchName = 'master',
+  sha: Sha,
+  owner: string = 'friends-library'
 ): Promise<Sha> {
-  const sha = await getHeadSha(repo);
   const res = await req('/repos/:owner/:repo/git/commits/:sha', {
+    owner,
     repo,
     sha,
   });

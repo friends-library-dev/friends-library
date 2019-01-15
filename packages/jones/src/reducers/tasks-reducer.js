@@ -24,6 +24,13 @@ export default createReducer({}, {
     };
   },
 
+  TASK_SUBMITTED: (state, { payload: { id, prNumber } }) => {
+    const task = state[id];
+    if (task) {
+      task.prNumber = prNumber;
+    }
+  },
+
   TOGGLE_SIDEBAR_OPEN: (state, { payload: { id } }) => {
     const task = state[id];
     if (task) {
