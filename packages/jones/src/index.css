@@ -3,7 +3,9 @@
 }
 
 * {
+  position: relative;
   user-select: none;
+  box-sizing: border-box;
 }
 
 body {
@@ -15,7 +17,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  box-sizing: border-box;
+}
+
+#root {
+  height: 100vh;
 }
 
 code {

@@ -28,6 +28,11 @@ export async function getFriendRepos(): Promise<Array<Object>> {
   return repos.filter(repo => repo.name !== 'friends-library');
 }
 
+export async function getRepoSlug(repoId: number): Promise<Slug> {
+  const { data: { name: slug } } = await req('/repositories/:id', { id: repoId });
+  return slug;
+}
+
 export async function getHeadSha(
   repo: RepoSlug,
   branch: BranchName = 'master',
@@ -40,12 +45,13 @@ export async function getHeadSha(
   return sha;
 }
 
-export async function getAdocFiles(repo: RepoSlug): Promise<Array<GitFile>> {
-  const headSHA = await getHeadSha(repo);
-
+export async function getAdocFiles(
+  repo: RepoSlug,
+  sha: Sha,
+): Promise<Array<GitFile>> {
   const { data: { tree } } = await req('/repos/:owner/:repo/git/trees/:sha?recursive=1', {
     repo,
-    sha: headSHA,
+    sha,
   });
 
   const filePromises = tree.filter(isAsciidoc).map(async blob => {
@@ -65,21 +71,18 @@ export async function getAdocFiles(repo: RepoSlug): Promise<Array<GitFile>> {
 
 
 export async function createBranch(
-  repo: RepoSlug,
+  repo: number,
+  newBranchName: BranchName,
   parentBranch: BranchName = 'master',
 ): Promise<{| branch: BranchName, sha: Sha |}> {
   const sha = await getHeadSha(repo, parentBranch);
-  const branch = `task-${uuid()}`;
   const res = await req('POST /repos/:owner/:repo/git/refs', {
     repo,
     sha,
-    ref: `refs/heads/${branch}`,
+    ref: `refs/heads/${newBranchName}`,
   });
   if (res.status === 201) {
-    return {
-      branch,
-      sha: res.data.object.sha,
-    }
+    return res.data.object.sha;
   }
   throw new Error(`Failed to create branch ¯\\_(ツ)_/¯`);
 }

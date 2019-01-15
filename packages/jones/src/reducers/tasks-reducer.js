@@ -12,11 +12,13 @@ export default createReducer({}, {
     state[taskId] = {
       id: taskId,
       name: '',
-      repo: '',
+      repoId: null,
       created: time,
       updated: time,
       isNew: true,
       collapsed: {},
+      documentTitles: {},
+      files: {},
     };
   },
 

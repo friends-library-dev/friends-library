@@ -8,6 +8,7 @@ import Login from './components/Login';
 import TopNav from './components/TopNav';
 import Tasks from './components/Tasks';
 import EditTask from './components/EditTask';
+import Work from './components/Work';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -31,7 +32,7 @@ class App extends React.Component<*> {
       case screens.EDIT_TASK:
         return <EditTask />;
       case screens.WORK:
-        return <h1>work</h1>;//<Tasks />;
+        return <Work />;
       default:
         return null;
     }
@@ -44,14 +45,16 @@ class App extends React.Component<*> {
     }
 
     return (
-      <div>
+      <>
         <TopNav />
-        {this.renderScreen()}
+        <div style={{ height: 'calc(100vh - 50px)' }}>
+          {this.renderScreen()}
+        </div>
         {isDev && <KeyEvent
           handleKeys={['meta+1']}
           onKeyEvent={hardReset}
         />}
-      </div>
+      </>
     );
   }
 }

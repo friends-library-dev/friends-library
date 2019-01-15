@@ -11607,6 +11607,14 @@ js-yaml@^3.10.0, js-yaml@^3.12.0, js-yaml@^3.5.2, js-yaml@^3.7.0, js-yaml@^3.9.0
     argparse "^1.0.7"
     esprima "^4.0.0"
 
+js-yaml@^3.12.1:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.1.tgz#295c8632a18a23e054cf5c9d3cecafe678167600"
+  integrity sha512-um46hB9wNOKlwkHgiuyEVAybXBjwFUV0Z/RaHJblRd9DXltue9FTYvzCr9ErQrK9Adz5MU4gHWVaNUfdmrC8qA==
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^4.0.0"
+
 js-yaml@~3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.7.0.tgz#5c967ddd837a9bfdca5f2de84253abe8a1c03b80"
@@ -15808,6 +15816,17 @@ react-ace@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-6.2.0.tgz#9ab0fd88cd1ef6712fec4b243b61431964481c11"
   integrity sha512-Cr27xFNZV2wlQi+mFjgUWfd3yPZV84Sf7XVrEXkDBZmQ5I/oY3x4KvtBjX6ImN7SCWu3sU6z9F3Zh6jH3/jtzw==
+  dependencies:
+    brace "^0.11.1"
+    diff-match-patch "^1.0.4"
+    lodash.get "^4.4.2"
+    lodash.isequal "^4.5.0"
+    prop-types "^15.6.2"
+
+react-ace@^6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-6.3.2.tgz#4fc75edce17d79c3169791dc184744950aca4794"
+  integrity sha512-eSk0fWvrBe2oqYIYX0njLddLG5H0hemWv5VVoQi5yDSPTjGlSSnzFwdgPyfuwRe8mSARZuRdprPQa5p61hKirw==
   dependencies:
     brace "^0.11.1"
     diff-match-patch "^1.0.4"

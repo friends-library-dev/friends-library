@@ -4,9 +4,8 @@ import type {
   Title,
   Uuid,
   Name,
-  Lang,
-  EditionType,
-  Gender,
+  // EditionType,
+  // Gender,
   Asciidoc,
 } from '../../../type';
 
@@ -14,8 +13,19 @@ export type Dispatch = (any) => *;
 
 export type DateString = string;
 
+export type FilePath = string;
+
+export type Sha = string;
+
 export type GitHub = {|
   token: string,
+|};
+
+export type File = {|
+  sha: Sha,
+  path: FilePath,
+  content: Asciidoc,
+  editedContent: Asciidoc,
 |};
 
 export type Task = {|
@@ -25,8 +35,12 @@ export type Task = {|
   updated: DateString,
   repoId: number,
   isNew: boolean,
-  prNumber: ?number,
-  collapsed: ?Object,
+  prNumber?: number,
+  collapsed: { [string]: boolean },
+  documentTitles: { [slug]: Title },
+  files: { [FilePath]: File },
+  editingFile?: FilePath,
+  baseCommit?: Sha,
 |};
 
 export type Repo = {|
@@ -47,3 +61,5 @@ export type State = {|
   // editingFile: EditingFile,
   // search: Search,
 |};
+
+export type ReduxThunk = (dispatch: Dispatch, getState: () => State) => *;
