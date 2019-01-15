@@ -5,8 +5,11 @@ import { defaultState as githubDefaultState } from './reducers/github-reducer';
 import rootReducer from './reducers';
 
 const defaultState = {
-  screen: 'TASKS',
   version: 1,
+  screen: 'TASKS',
+  currentTask: null,
+  tasks: {},
+  repos: [],
   github: githubDefaultState,
 };
 
@@ -49,6 +52,12 @@ export default function () {
     preloadedState: {
       ...defaultState,
       ...loadState(),
+      // ...{
+      //   screen: 'TASKS',
+      //   tasks: {},
+      //   currentTask: null,
+      //   repos: [],
+      // },
     },
   });
 

@@ -40,13 +40,13 @@ const Div = styled.div`
     }
   }
 `;
-
+// "<https://api.github.com/organizations/32500148/repos?access_token=7586ce05e74ca8f0fde1beb563921254551e7dbb&page=2>; rel="next", <https://api.github.com/organizations/32500148/repos?access_token=7586ce05e74ca8f0fde1beb563921254551e7dbb&page=2>; rel="last""
 class TopNav extends React.Component<*> {
 
   componentDidMount() {
     const { token, avatar, requestGitHubUser } = this.props;
+    gh.authenticate(token);
     if (!avatar) {
-      gh.authenticate(token);
       requestGitHubUser();
     }
   }

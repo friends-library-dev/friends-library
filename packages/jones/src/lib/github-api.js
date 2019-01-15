@@ -23,6 +23,11 @@ export function authenticate(token: string): void {
   });
 }
 
+export async function getFriendRepos(): Promise<Array<Object>> {
+  const repos = await gh.paginate('/orgs/friends-library/repos');
+  return repos.filter(repo => repo.name !== 'friends-library');
+}
+
 export async function getHeadSha(
   repo: RepoSlug,
   branch: BranchName = 'master',

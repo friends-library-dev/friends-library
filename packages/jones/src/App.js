@@ -6,6 +6,8 @@ import * as screens from './screens';
 import * as actions from './actions';
 import Login from './components/Login';
 import TopNav from './components/TopNav';
+import Tasks from './components/Tasks';
+import EditTask from './components/EditTask';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -25,9 +27,9 @@ class App extends React.Component<*> {
 
     switch (screen) {
       case screens.TASKS:
-        return <h1>tasks</h1>;//<Tasks />;
+        return <Tasks />;
       case screens.EDIT_TASK:
-        return <h1>edit task</h1>;//<Tasks />;
+        return <EditTask />;
       case screens.WORK:
         return <h1>work</h1>;//<Tasks />;
       default:
