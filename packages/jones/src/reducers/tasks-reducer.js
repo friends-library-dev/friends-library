@@ -22,6 +22,21 @@ export default createReducer({}, {
     };
   },
 
+  UPDATE_EDITING_FILE: (state, { payload: { id, adoc } }) => {
+    const task = state[id];
+    if (!task) {
+      return;
+    }
+
+    const { files, editingFile } = task;
+    const file = files[editingFile];
+    if (adoc === file.content) {
+      file.editedContent = null;
+    } else {
+      file.editedContent = adoc;
+    }
+  },
+
   UPDATE_TASK: (state, { payload }) => {
     const task = state[payload.id];
     if (task) {

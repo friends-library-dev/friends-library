@@ -4,6 +4,7 @@ import { safeLoad as ymlToJs } from 'js-yaml';
 import type { Slug, Url } from '../../../type';
 import type { Dispatch, State, Task, ReduxThunk } from './type';
 import * as gh from './lib/github-api';
+import { currentTask } from './select';
 
 export const receiveAccessToken = createAction('RECEIVE_ACCESS_TOKEN');
 export const hardReset = createAction('HARD_RESET');
@@ -15,6 +16,8 @@ export const workOnTask = createAction('WORK_ON_TASK');
 export const collapseTask = createAction('COLLAPSE_TASK');
 export const setEditingFile = createAction('SET_EDITING_FILE');
 export const updateSearch = createAction('UPDATE_SEARCH');
+export const increaseEditorFontSize = createAction('INCREASE_EDITOR_FONT_SIZE');
+export const decreaseEditorFontSize = createAction('DECREASE_EDITOR_FONT_SIZE');
 
 function friendYmlUrl(friendSlug: Slug): Url {
   return [
@@ -25,11 +28,29 @@ function friendYmlUrl(friendSlug: Slug): Url {
   ].join('');
 }
 
+export function updateEditingFile(adoc: Asciidoc): ReduxThunk {
+  return (dispatch: Dispatch, getState: () => State) => {
+    const state = getState();
+    const task = currentTask(state);
+    dispatch({
+      type: 'UPDATE_EDITING_FILE',
+      payload: {
+        id: task.id,
+        adoc,
+      }
+    });
+  };
+}
+
 export function checkout(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const repoSlug = await gh.getRepoSlug(task.repoId);
     const baseCommit = await gh.getHeadSha(repoSlug, 'master');
-    const files = await gh.getAdocFiles(repoSlug, baseCommit);
+    let files = await gh.getAdocFiles(repoSlug, baseCommit);
+    files = files.reduce((acc, file) => {
+      acc[file.path] = file;
+      return acc;
+    }, {});
     const yml = await fetch(friendYmlUrl(repoSlug)).then(r => r.text());
     const { documents } = ymlToJs(yml);
     const documentTitles = documents.reduce((acc, doc) => {

@@ -2,10 +2,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
+import KeyEvent from 'react-keyboard-event-handler';
 import type { Task, Friend, Dispatch } from '../type';
 import { currentTask } from '../select';
 import * as actions from '../actions';
-// import KeyCommand from './KeyCommand';
 import Editor from './Editor';
 import Sidebar from './Sidebar';
 import Search from './Search';
@@ -26,7 +26,7 @@ const Wrap = styled.div`
 const EditorPane = styled.div`
   flex: auto;
   display: flex;
-  height: calc(100vh - 35px);
+  height: calc(100vh - 50px);
   flex-flow: column nowrap;
   justify-content: flex-end;
 `;
@@ -51,7 +51,7 @@ class Work extends React.Component<Props> {
 
   render() {
     const { task } = this.props;
-    // const { increaseFontSize, decreaseFontSize, saveEdited } = this.props;
+    const { increaseFontSize, decreaseFontSize } = this.props;
     if (!task.baseCommit) {
       return <Loading />;
     }
@@ -66,18 +66,14 @@ class Work extends React.Component<Props> {
             <Search />
           </EditorPane>
         </Main>
-        {/* <KeyCommand
-          keys={['Cmd+S']}
-          handle={saveEdited}
+        <KeyEvent
+          handleKeys={['meta+Up', 'ctrl+Up']}
+          onKeyEvent={increaseFontSize}
         />
-        <KeyCommand
-          keys={['Cmd+Up']}
-          handle={increaseFontSize}
+        <KeyEvent
+          handleKeys={['meta+Down', 'ctrl+Down']}
+          onKeyEvent={decreaseFontSize}
         />
-        <KeyCommand
-          keys={['Cmd+Down']}
-          handle={decreaseFontSize}
-        /> */}
       </Wrap>
     );
   }
@@ -89,9 +85,8 @@ const mapState = state => ({
 
 const mapDispatch = {
   checkout: actions.checkout,
-  // saveEdited: actions.saveCurrentTaskEditedFiles,
-  // increaseFontSize: actions.increaseEditorFontSize,
-  // decreaseFontSize: actions.decreaseEditorFontSize,
+  increaseFontSize: actions.increaseEditorFontSize,
+  decreaseFontSize: actions.decreaseEditorFontSize,
 };
 
 export default connect(mapState, mapDispatch)(Work);

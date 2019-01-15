@@ -6,7 +6,7 @@ export function currentTask(state: State): Task {
 }
 
 export function documentTree(task: Task): Array<Object> {
-  return task.files.reduce((docs, file) => {
+  return Object.values(task.files).reduce((docs, file) => {
     const [docSlug, edType, filename] = file.path.split('/');
     let document = docs.find(d => d.slug === docSlug);
     if (!document) {

@@ -2,6 +2,7 @@
 import { configureStore } from 'redux-starter-kit';
 import { combineReducers } from 'redux';
 import { defaultState as githubDefaultState } from './reducers/github-reducer';
+import { defaultState as prefsDefaultState } from './reducers/prefs-reducer';
 import rootReducer from './reducers';
 
 const defaultState = {
@@ -11,6 +12,7 @@ const defaultState = {
   tasks: {},
   repos: [],
   github: githubDefaultState,
+  prefs: prefsDefaultState,
 };
 
 const loadState = () => {

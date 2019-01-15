@@ -6,7 +6,7 @@ import { withSize } from 'react-sizeme';
 import styled from '@emotion/styled';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../type';
-// import { editingFile } from '../redux/select';
+import { currentTask } from '../select';
 import * as actions from '../actions';
 import 'brace/ext/searchbox';
 import 'brace/mode/asciidoc';
@@ -37,10 +37,11 @@ const Wrap = styled.div`
 
 type Props = {|
   fontSize: number,
-  filepath: string,
   adoc: ?Asciidoc,
   updateFile: Dispatch,
   searching: boolean,
+  increaseFontSize: Dispatch,
+  decreaseFontSize: Dispatch,
   size: {| width: number, height: number |},
 |};
 
@@ -54,7 +55,6 @@ class Editor extends React.Component<Props> {
   }
 
   componentDidMount() {
-    this.maybeRequestFileContent();
     this.addKeyCommands();
   }
 
@@ -68,27 +68,20 @@ class Editor extends React.Component<Props> {
     if (!this.editor().commands.commands.increaseFontSize) {
       this.addKeyCommands();
     }
-
-    this.maybeRequestFileContent();
   }
 
   addKeyCommands() {
-    this.editor().commands.addCommand({
-      name: 'save',
-      bindKey: { mac: 'Command-S', win: 'Ctrl-S' },
-      exec: () => console.log('forward:editor:key-event', 'Cmd+S'),
-    });
-
+    const { increaseFontSize, decreaseFontSize } = this.props;
     this.editor().commands.addCommand({
       name: 'increaseFontSize',
       bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
-      exec: () => console.log('forward:editor:key-event', 'Cmd+Up'),
+      exec: () => increaseFontSize(),
     });
 
     this.editor().commands.addCommand({
       name: 'decreaseFontSize',
       bindKey: { mac: 'Command-Down', win: 'Ctrl-Down' },
-      exec: () => console.log('forward:editor:key-event', 'Cmd+Down'),
+      exec: () => decreaseFontSize(),
     });
   }
 
@@ -97,21 +90,6 @@ class Editor extends React.Component<Props> {
       return this.aceRef.current.editor;
     }
     return noopEditor;
-  }
-
-  maybeRequestFileContent() {
-    // const { filepath, adoc, updateFile } = this.props;
-    // if (filepath && adoc === null) {
-    //   ipc.send('request:filecontent', filepath);
-    //   ipc.once('UPDATE_FILE_CONTENT', (_, path, received) => {
-    //     if (path === filepath) {
-    //       updateFile({
-    //         diskContent: received,
-    //         editedContent: received,
-    //       });
-    //     }
-    //   });
-    // }
   }
 
   render() {
@@ -124,8 +102,7 @@ class Editor extends React.Component<Props> {
             ref={this.aceRef}
             mode="asciidoc"
             theme="tomorrow_night"
-            // onChange={editedContent => updateFile({ editedContent })}
-            onChange={ec => console.log(ec)}
+            onChange={updateFile}
             value={adoc}
             editorProps={{ $blockScrolling: true }}
             setOptions={{ wrap: true }}
@@ -137,17 +114,19 @@ class Editor extends React.Component<Props> {
 }
 
 const mapState = state => {
-  // const file = editingFile(state);
+  const task = currentTask(state);
+  const file = task.files[task.editingFile];
   return {
-    fontSize: 16,//state.prefs.editorFontSize,
+    fontSize: state.prefs.editorFontSize,
     searching: false, //state.search.searching,
-    filepath: '',//file ? file.path : '',
-    adoc: null,//file ? file.editedContent : null,
+    adoc: file ? file.editedContent || file.content : null,
   };
 };
 
 const mapDispatch = {
-  // updateFile: actions.updateEditingFile,
+  updateFile: actions.updateEditingFile,
+  increaseFontSize: actions.increaseEditorFontSize,
+  decreaseFontSize: actions.decreaseEditorFontSize,
 };
 
 const SizedEditor = withSize({ monitorHeight: true })(Editor);
