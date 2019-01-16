@@ -21,6 +21,7 @@
     "express": "^4.16.2",
     "express-useragent": "^1.0.8",
     "mysql": "^2.15.0",
+    "node-fetch": "^2.3.0",
     "semver": "^5.6.0",
     "uuid": "^3.2.1"
   },

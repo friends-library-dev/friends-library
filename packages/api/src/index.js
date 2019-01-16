@@ -1,10 +1,16 @@
 const path = require('path');
 require('dotenv').config({path: path.join(__dirname, "../.env")});
 const express = require('express');
-const semver = require('semver');
+const fetch = require('node-fetch');
 const { redirAndLog } =  require('./download');
 
-const { env: { PORT, ASSETS_URI } } = process;
+const { env: {
+  PORT,
+  ASSETS_URI,
+  JONES_OAUTH_CLIENT_ID,
+  JONES_OAUTH_CLIENT_SECRET,
+  JONES_OAUTH_REDIR_URI,
+} } = process;
 
 const app = express();
 
@@ -36,16 +42,24 @@ app.get('/download/:friend/:document/:edition/:filename', (req, res) => {
 });
 
 
-app.get('/gui/update', (req, res) => {
-  const latest = require('@friends-library/gui/package.json').version;
-  const checking = req.query.version;
-  if (!checking || !semver.gt(latest, checking)) {
-    res.status(204).send();
-    return;
-  }
-  res.json({
-    url: `${ASSETS_URI}/gui/friends-library-gui-${latest}.zip`,
-  });
+app.get('/oauth/editor', (req, res) => {
+  const url = [
+    'https://github.com/login/oauth/access_token',
+    `?client_id=${JONES_OAUTH_CLIENT_ID}`,
+    `&client_secret=${JONES_OAUTH_CLIENT_SECRET}`,
+    `&code=${req.query.code}`,
+  ].join('');
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+    },
+  })
+    .then(r => r.json())
+    .then(({ access_token }) => {
+      res.redirect(302, `${JONES_OAUTH_REDIR_URI}?access_token=${access_token}`);
+    });
 });
 
 

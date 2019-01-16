@@ -1,0 +1,19 @@
+== Jones: The Friends Library Online Editor
+
+> Named in honor of Rebecca Jones, an early Friend who was a minister and (in her early years) a highly-respected teacher of girls in Philadelphia
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+=== Todo:
+
+* [ ] render/HTML preview
+* [ ] global (by friend or doc or edition) find
+* [ ] match syntax highlighting of atom
+* [ ] allow custom PR body composition at submit time
+* [ ] allow custom commit message for re-submit commits
+* [ ] delete branch from fork when deleting task
+
+
+=== Maybe later todos:
+
+* [ ] edit task name
