@@ -4,14 +4,9 @@ import type {
   Title,
   Uuid,
   Name,
-  // EditionType,
-  // Gender,
   Asciidoc,
 } from '../../../type';
 
-// re-submit task
-// delete task
-// flow & lint
 // clean up login screen
 
 export type Dispatch = (any) => *;

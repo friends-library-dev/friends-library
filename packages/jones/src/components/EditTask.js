@@ -57,8 +57,11 @@ type State = {|
 |};
 
 class EditTask extends React.Component<Props, State> {
+  input: any
+
   constructor(props) {
     super(props);
+    this.input = React.createRef();
     this.state = {
       name: props.task.name,
       repoId: props.task.repoId,
@@ -70,6 +73,7 @@ class EditTask extends React.Component<Props, State> {
     if (friends.length === 0) {
       fetchFriendRepos();
     }
+    this.input.current.focus();
   }
 
   clickSave = () => {
@@ -101,6 +105,7 @@ class EditTask extends React.Component<Props, State> {
         <h1>{task.isNew ? 'Create' : 'Edit'} Task:</h1>
         <Heading>Task Name:</Heading>
         <Input
+          ref={this.input}
           type="text"
           value={name}
           onChange={e => this.setState({ name: e.target.value })}
