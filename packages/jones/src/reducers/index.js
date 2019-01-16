@@ -5,6 +5,7 @@ import currentTask from './current-task-reducer';
 import screen from './screen-reducer';
 import repos from './repos-reducer';
 import prefs from './prefs-reducer';
+import search from './search-reducer';
 
 export default {
   github,
@@ -13,5 +14,6 @@ export default {
   screen,
   repos,
   prefs,
+  search,
   version: () => 1,
 };

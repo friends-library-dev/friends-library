@@ -3,6 +3,7 @@ import { configureStore } from 'redux-starter-kit';
 import { combineReducers } from 'redux';
 import { defaultState as githubDefaultState } from './reducers/github-reducer';
 import { defaultState as prefsDefaultState } from './reducers/prefs-reducer';
+import { defaultState as defaultSearchState } from './reducers/search-reducer';
 import rootReducer from './reducers';
 
 const defaultState = {
@@ -11,6 +12,7 @@ const defaultState = {
   currentTask: null,
   tasks: {},
   repos: [],
+  search: defaultSearchState,
   github: githubDefaultState,
   prefs: prefsDefaultState,
 };
