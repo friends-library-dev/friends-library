@@ -12,7 +12,8 @@ const StyledSpan = styled.span`
   text-align: center;
   line-height: ${p => p.height || '50'}px;
 
-  &:link {
+  &:link,
+  &:visited {
     text-decoration: none;
     color: inherit;
   }

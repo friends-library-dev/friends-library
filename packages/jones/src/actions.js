@@ -65,11 +65,21 @@ export function submitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const { github: { user } } = getState();
     dispatch({ type: 'SUBMITTING_TASK' });
-    const prNumber = await gh.createNewPullRequest(task, user);
+    const pr = await gh.createNewPullRequest(task, user);
     dispatch({ type: 'TASK_SUBMITTED', payload: {
       id: task.id,
-      prNumber,
-    } });
+      prNumber: pr.number,
+      parentCommit: pr.commit,
+    }});
+  };
+}
+
+export function resubmitTask(task: Task): ReduxThunk {
+  return async (dispatch: Dispatch, getState: () => State) => {
+    const { github: { user } } = getState();
+    dispatch({ type: 'RE_SUBMITTING_TASK' });
+    await gh.addCommit(task, user);
+    dispatch({ type: 'TASK_RE_SUBMITTED' });
   };
 }
 
@@ -77,8 +87,8 @@ export function submitTask(task: Task): ReduxThunk {
 export function checkout(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const repoSlug = await gh.getRepoSlug(task.repoId);
-    const baseCommit = await gh.getHeadSha(repoSlug, 'master');
-    let files = await gh.getAdocFiles(repoSlug, baseCommit);
+    const parentCommit = await gh.getHeadSha(repoSlug, 'master');
+    let files = await gh.getAdocFiles(repoSlug, parentCommit);
     files = files.reduce((acc, file) => {
       acc[file.path] = file;
       return acc;
@@ -94,7 +104,7 @@ export function checkout(task: Task): ReduxThunk {
       type: 'UPDATE_TASK',
       payload: {
         id: task.id,
-        data: { documentTitles, files, baseCommit }
+        data: { documentTitles, files, parentCommit }
       }
     });
   }

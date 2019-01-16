@@ -9,6 +9,11 @@ import type {
   Asciidoc,
 } from '../../../type';
 
+// re-submit task
+// delete task
+// flow & lint
+// clean up login screen
+
 export type Dispatch = (any) => *;
 
 export type DateString = string;
@@ -45,7 +50,7 @@ export type Task = {|
   documentTitles: { [slug]: Title },
   files: { [FilePath]: File },
   editingFile?: FilePath,
-  baseCommit?: Sha,
+  parentCommit?: Sha,
 |};
 
 export type Repo = {|

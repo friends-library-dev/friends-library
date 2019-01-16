@@ -41,7 +41,10 @@ const sliceReducer = combineReducers(rootReducer);
 const reducer = (state, action) => {
   if (action.type === 'HARD_RESET') {
     localStorage.removeItem('jones');
-    state = undefined;
+    state = {
+      ...defaultState,
+      github: state.github,
+    };
   }
 
   return sliceReducer(state, action);

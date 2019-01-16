@@ -24,10 +24,15 @@ export default createReducer({}, {
     };
   },
 
-  TASK_SUBMITTED: (state, { payload: { id, prNumber } }) => {
+  TASK_SUBMITTED: (state, { payload: { id, prNumber, parentCommit } }) => {
     const task = state[id];
     if (task) {
       task.prNumber = prNumber;
+      task.parentCommit = parentCommit;
+      Object.values(task.files).forEach(file => {
+        file.content = file.editedContent || file.content;
+        file.editedContent = null;
+      })
     }
   },
 

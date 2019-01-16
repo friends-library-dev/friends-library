@@ -111,14 +111,17 @@ class Task extends React.Component<Props> {
     deleteTask(task.id);
   }
 
-  componentDidMount() {
-    // this.submit();
-  }
-
   submit = async () => {
-    const { task, submit, taskHasWork } = this.props;
+    const { task, submit } = this.props;
     this.setState({ submitting: true });
     await submit(task);
+    this.setState({ submitting: false });
+  }
+
+  resubmit = async () => {
+    const { task, resubmit } = this.props;
+    this.setState({ submitting: true });
+    await resubmit(task);
     this.setState({ submitting: false });
   }
 
@@ -156,6 +159,7 @@ class Task extends React.Component<Props> {
             ? (
               <Button
                 secondary
+                target="_blank"
                 href={`https://github.com/friends-library/${repo.slug}/pull/${task.prNumber}`}
                 className="pr"
               >
@@ -177,7 +181,7 @@ class Task extends React.Component<Props> {
             secondary
             disabled={!taskHasWork}
             className="submit"
-            onClick={this.submit}
+            onClick={task.prNumber ? this.resubmit : this.submit}
           >
             <i className="fas fa-cloud-upload-alt" />
             {this.submitText()}
@@ -206,6 +210,7 @@ const mapState = (state, { task }) => {
 
 const mapDispatch = {
   submit: actions.submitTask,
+  resubmit: actions.resubmitTask,
   workOnTask: actions.workOnTask,
   updateTask: actions.updateTask,
   deleteTask: actions.deleteTask,

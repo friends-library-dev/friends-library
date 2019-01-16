@@ -43,7 +43,7 @@ class Work extends React.Component<Props> {
 
   componentDidMount() {
     const { task, checkout } = this.props;
-    if (!task.baseCommit) {
+    if (!task.parentCommit) {
       checkout({...task});
     }
   }
@@ -51,7 +51,7 @@ class Work extends React.Component<Props> {
   render() {
     const { task } = this.props;
     const { increaseFontSize, decreaseFontSize } = this.props;
-    if (!task.baseCommit) {
+    if (!task.parentCommit) {
       return <Loading />;
     }
 

@@ -117,17 +117,35 @@ async function ensureSyncedFork(repo: RepoSlug, user: string): Promise<void> {
   await syncFork(repo, user);
 }
 
-export async function createNewPullRequest(task: Task, user: string): Promise<number> {
-  const { baseCommit, repoId, id, files } = task;
-  const branchName = `task-${Date.now()}`;
+export async function addCommit(task: Task, user: String): Promise<Sha> {
+  const { parentCommit, repoId, id, files } = task;
+  const branchName = `task-${id}`;
+  const repo = await getRepoSlug(repoId);
+  const baseTreeSha = await getTreeSha(repo, parentCommit, user);
+  const newTreeSha = await createTree(repo, baseTreeSha, files, user);
+  const msg = `updates to task: ${task.name}`;
+  const newCommitSha = await createCommit(repo, newTreeSha, parentCommit, msg, user);
+  await updateHead(repo, branchName, newCommitSha, user);
+}
+
+export async function createNewPullRequest(
+  task: Task,
+  user: string,
+): Promise<{ number: number, commit: Sha }> {
+  const { parentCommit, repoId, id, files } = task;
+  const branchName = `task-${id}`;
   const repo = await getRepoSlug(repoId);
   await ensureSyncedFork(repo, user);
-  const newBranchSha = await createBranch(repo, branchName, baseCommit, user);
-  const baseTreeSha = await getTreeSha(repo, baseCommit, user);
+  await createBranch(repo, branchName, parentCommit, user);
+  const baseTreeSha = await getTreeSha(repo, parentCommit, user);
   const newTreeSha = await createTree(repo, baseTreeSha, files, user);
-  const newCommitSha = await createCommit(repo, newTreeSha, baseCommit, task.name, user);
+  const newCommitSha = await createCommit(repo, newTreeSha, parentCommit, task.name, user);
   await updateHead(repo, branchName, newCommitSha, user);
-  return await openPullRequest(repo, branchName, task.name, user);
+  const prNumber = await openPullRequest(repo, branchName, task.name, user);
+  return {
+    commit: newCommitSha,
+    number: prNumber,
+  }
 }
 
 async function openPullRequest(
@@ -155,12 +173,11 @@ async function updateHead(
   owner: string = 'friends-library',
 ): Promise<void> {
   const res = await req('PATCH /repos/:owner/:repo/git/refs/heads/:branch', {
-      repo,
-      owner,
-      branch,
-      sha,
-      // force: true, // ???
-    });
+    repo,
+    owner,
+    branch,
+    sha,
+  });
 }
 
 async function createCommit(
@@ -204,13 +221,13 @@ async function createTree(
 export async function createBranch(
   repo: RepoSlug,
   newBranchName: BranchName,
-  baseCommit: Sha,
+  parentCommit: Sha,
   owner: string = 'friends-library',
 ): Promise<{| branch: BranchName, sha: Sha |}> {
   const res = await gh.git.createRef({
     owner,
     repo,
-    sha: baseCommit,
+    sha: parentCommit,
     ref: `refs/heads/${newBranchName}`,
   });
   if (res.status === 201) {

@@ -19,6 +19,6 @@ const task = {
     },
     // ... many more ...
   }
-  baseCommit: 'a6154321acf0a70eebc7f77c90ea2988d372612e',
+  parentCommit: 'a6154321acf0a70eebc7f77c90ea2988d372612e',
   editingFile: 'journal/modernized/01-chapter-1.adoc'
 }
