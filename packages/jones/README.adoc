@@ -13,7 +13,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [ ] allow custom commit message for re-submit commits
 * [ ] delete branch from fork when deleting task
 
-
 === Maybe later todos:
 
 * [ ] edit task name
