@@ -6,6 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 === Todo:
 
+* [ ] multi-column view editor
+* [ ] don't show friends that don't have .yml files
+* [ ] re-fetch look for new friends
 * [ ] render/HTML preview
 * [ ] global (by friend or doc or edition) find
 * [ ] match syntax highlighting of atom

@@ -54,15 +54,15 @@ class TopNav extends React.Component<*> {
   }
 
   render() {
-    const { avatar, name, screen } = this.props;
+    const { avatar, name, screen, user } = this.props;
     return (
       <Div>
         <img className="icon" src={fox} alt="" />
         <div className="center">
           <NavContent screen={screen} />
         </div>
-        {name && <div className="github">
-          <span className="name">{name}</span>
+        {(name || user) && <div className="github">
+          <span className="name">{name ? name : user}</span>
           <img className="avatar" src={avatar} alt="" />
         </div>}
       </Div>
