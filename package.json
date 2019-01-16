@@ -24,8 +24,7 @@
     "evans:develop:en": "cd packages/evans && yarn develop:en",
     "evans:develop:es": "cd packages/evans && yarn develop:es",
     "jones:develop": "cd packages/jones && yarn develop",
-    "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es",
-    "postinstall": "patch-package"
+    "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -48,8 +47,6 @@
     "flow-bin": "^0.89.0",
     "jest": "^23.5.0",
     "lerna": "^3.1.4",
-    "patch-package": "^5.1.1",
-    "postinstall-postinstall": "^2.0.0",
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0"
   },
@@ -64,7 +61,6 @@
     "packages/fell",
     "packages/styleguide",
     "packages/mod",
-    "packages/gui",
     "packages/jones"
   ],
   "jest": {
@@ -72,9 +68,8 @@
     "testEnvironment": "node",
     "testRegex": "__tests__/.*tests?\\.js",
     "modulePathIgnorePatterns": [
-      "<rootDir>/packages/gui",
       "<rootDir>/packages/jones/build",
-      "<rootDir>/evans/public"
+      "<rootDir>/packages/evans/public"
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",

@@ -13,7 +13,6 @@
     "deploy": "yarn shipit production deploy"
   },
   "dependencies": {
-    "@friends-library/gui": "^1.0.0",
     "chalk": "^2.4.1",
     "db-migrate": "^0.10.2",
     "db-migrate-mysql": "^1.1.10",

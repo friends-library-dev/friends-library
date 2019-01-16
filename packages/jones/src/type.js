@@ -16,8 +16,6 @@ export type FilePath = string;
 
 export type Sha = string;
 
-export type ReduxThunk = (dispatch: Dispatch, getState: () => State) => *;
-
 export type GitHub = {|
   token: string,
   name: Name,
@@ -78,3 +76,5 @@ export type State = {|
   tasks: { [Uuid]: Task },
   repos: Array<Repo>
 |};
+
+export type ReduxThunk = (dispatch: Dispatch, getState: () => State) => *;
