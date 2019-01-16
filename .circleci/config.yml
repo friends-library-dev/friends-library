@@ -20,6 +20,7 @@ jobs:
       - run: yarn styleguide:build
       - run: yarn evans:build:en
       - run: yarn evans:build:es
+      - run: yarn jones:build
   php:
     docker:
       - image: circleci/php:7.2-apache-node-browsers

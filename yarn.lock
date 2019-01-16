@@ -1030,6 +1030,14 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@cloudcmd/create-element@^1.0.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@cloudcmd/create-element/-/create-element-1.1.1.tgz#d99197addb11731c128c5042b8e1b35643288272"
+  integrity sha512-RntwJVi2Pw2nnEBKsGtheEvpb7eBN3fW4SuqTYhLP/uFDIhWLcpvpNeYAbKHZCjUXSQwUd3t8b0VwGqPib5oZQ==
+  dependencies:
+    currify "^3.0.0"
+    fullstore "^1.0.0"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -4727,6 +4735,11 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+
 clean-css@4.2.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.2.1.tgz#2d411ef76b8569b6d0c84068dabe85b0aa5e5c17"
@@ -5695,6 +5708,11 @@ curriable@^1.0.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/curriable/-/curriable-1.2.2.tgz#07529e2d82c7bdcc16469511a65682b0f02c1158"
   integrity sha512-gCvU0Hl8EYScI0mPksUiI+kLEV5M9Cva357EWMQGwXI3vc9mBWv7VnqN90YfMhd8tyDuTxakzuZv7lAdPBozow==
+
+currify@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/currify/-/currify-3.0.0.tgz#ec5b18fe65c2b3b08daba7f2a75a01063b2c89c2"
+  integrity sha512-ecz0Dq3T2UwiLwhiYvEFhdM4yUvlCLRgVbvpt6oI8RteJzEztum1UbLbN6snQ5nfHqtMcnrxkd7N0LeAIErorw==
 
 cwebp-bin@^4.0.0:
   version "4.0.0"
@@ -8107,6 +8125,11 @@ fstream@^1.0.0, fstream@^1.0.2:
     inherits "~2.0.0"
     mkdirp ">=0.5 0"
     rimraf "2"
+
+fullstore@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fullstore/-/fullstore-1.1.0.tgz#a7a8b00ca07d86faca05fb825c45e5d1c3bba97e"
+  integrity sha512-XNlCWr3KBIL97G8mTR+dZ/J648ECCffflfFRgZW3Zm7pO0PYnH/ZCbwZjV1Dw4LrrDdhV6gnayiIcmdIY4JTsw==
 
 function-bind@^1.1.0, function-bind@^1.1.1:
   version "1.1.1"
@@ -14964,6 +14987,11 @@ rc@^1.0.1, rc@^1.1.2, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+re-resizable@^4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-4.11.0.tgz#d5df10bda445c4ec0945751a223bf195afb61890"
+  integrity sha512-dye+7rERqNf/6mDT1iwps+4Gf42420xuZgygF33uX178DxffqcyeuHbBuJ382FIcB5iP6mMZOhfW7kI0uXwb/Q==
+
 react-ace@^6.3.2:
   version "6.3.2"
   resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-6.3.2.tgz#4fc75edce17d79c3169791dc184744950aca4794"
@@ -16489,6 +16517,15 @@ slide@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
   integrity sha1-VusCfWW00tzmyy4tMsTUr8nh1wc=
+
+smalltalk@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/smalltalk/-/smalltalk-3.2.2.tgz#08d8dbdb8a229f615a2ea706fd1f73fa2424a447"
+  integrity sha512-UwHCzzIg89XEwC6KkIAQcQbXt9rZNt/iUgmiQn8uaHx9CSXczMbYa70wy9+ZiTW+PkKmYvFG+CZNhxJaeNFpcg==
+  dependencies:
+    "@cloudcmd/create-element" "^1.0.0"
+    currify "^3.0.0"
+    fullstore "^1.0.0"
 
 smart-buffer@^4.0.1:
   version "4.0.1"
