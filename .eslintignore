@@ -6,6 +6,4 @@ packages/api/*
 packages/styleguide/dist/*
 packages/evans/public/*
 packages/evans/.cache/*
-packages/gui/build/*
-packages/gui/dist/*
-packages/gui/src/serviceWorker.js
+packages/jones/build/*
