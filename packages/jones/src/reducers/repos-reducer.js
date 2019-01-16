@@ -7,7 +7,7 @@ export default createReducer([], {
       id: repo.id,
       slug: repo.name,
       friendName: repo.description.replace(
-        /^.. ([^(]+) \(.+$/,
+        /^.. (.+) \(\d.+$/,
         (_, name) => name,
       ),
     }));
