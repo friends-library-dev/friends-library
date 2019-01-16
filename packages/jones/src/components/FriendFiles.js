@@ -1,19 +1,14 @@
 // @flow
 /** @jsx jsx */
-/* eslint-disable react/no-this-in-sfc */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { isEqual } from 'lodash';
 import cx from 'classnames';
 import styled from '@emotion/styled';
 import { jsx, css } from '@emotion/core';
 import type { Uuid } from '../../../../type';
 import type { Friend, EditingFile, Dispatch } from '../type';
-import { values } from '../lib/utils';
 import * as actions from '../actions';
 import { documentTree } from '../select';
-import Loading from './Loading';
-
 
 const wrap = css`
   margin: 0;

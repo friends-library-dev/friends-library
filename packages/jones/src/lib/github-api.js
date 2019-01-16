@@ -1,10 +1,6 @@
 // @flow
-// $FlowFixMe
 import Octokit from '@octokit/rest';
-// $FlowFixMe
-import uuid from 'uuid/v4';
 import type { Task, File } from '../type';
-
 
 type Sha = string;
 type RepoSlug = string;
@@ -102,7 +98,7 @@ async function syncFork(repo: RepoSlug, user: string): Promise<void> {
     repo,
   });
 
-  const res = await req('PATCH /repos/:owner/:repo/git/refs/heads/master', {
+  await req('PATCH /repos/:owner/:repo/git/refs/heads/master', {
     sha: upstream.data.object.sha,
     owner: user,
     repo,
@@ -172,7 +168,7 @@ async function updateHead(
   sha: Sha,
   owner: string = 'friends-library',
 ): Promise<void> {
-  const res = await req('PATCH /repos/:owner/:repo/git/refs/heads/:branch', {
+  await req('PATCH /repos/:owner/:repo/git/refs/heads/:branch', {
     repo,
     owner,
     branch,

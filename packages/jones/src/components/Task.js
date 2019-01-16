@@ -135,9 +135,7 @@ class Task extends React.Component<Props> {
   }
 
   render() {
-    const { submitting } = this.state;
     const { task, repo, workOnTask, taskHasWork } = this.props;
-
     return (
       <Wrap>
         <h1>

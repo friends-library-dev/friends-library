@@ -3,7 +3,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import type { Friend, Task, Dispatch } from '../type';
-import { values } from '../lib/utils';
 import * as actions from '../actions';
 import * as screens from '../screens';
 import Button from './Button';

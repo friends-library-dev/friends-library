@@ -3,7 +3,6 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-// import { searchedFiles } from '../select';
 import { searchFiles } from '../lib/search';
 import Button from './Button';
 import SearchResult from './SearchResult';
@@ -142,8 +141,7 @@ const mapState = state => {
 };
 
 const mapDispatch = {
-  // update: actions.updateSearch,
-  update: () => {},
+  update: actions.updateSearch,
 };
 
 export default connect(mapState, mapDispatch)(Search);

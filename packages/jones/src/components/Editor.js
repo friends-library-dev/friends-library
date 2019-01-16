@@ -37,7 +37,9 @@ const Wrap = styled.div`
 
 const ChooseAFile = () => (
   <Centered>
-    <p style={{ opacity: 0.5 }}>👈 choose a file</p>
+    <p style={{ opacity: 0.5 }}>
+      <span role="img" aria-label="left">👈 </span> choose a file
+    </p>
   </Centered>
 );
 
