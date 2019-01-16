@@ -58,10 +58,6 @@ class Search extends React.Component<*, *> {
     this.setState({ string: e.target.value });
   }
 
-  componentDidMount() {
-    // this.search();
-  }
-
   search = () => {
     const { string } = this.state;
     const { update, files, regexp, caseSensitive } = this.props;
@@ -74,10 +70,10 @@ class Search extends React.Component<*, *> {
 
   render() {
     const { string, results } = this.state;
-    const { update, searching, filesLoaded } = this.props;
+    const { update, searching } = this.props;
 
     // temp
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV !== 'development' && searching) {
       return (
         <Wrap>
           <i
@@ -97,12 +93,6 @@ class Search extends React.Component<*, *> {
 
     if (!searching) {
       return null;
-    }
-
-    if (!filesLoaded) {
-      return (
-        <Wrap><p>Loading files...</p></Wrap>
-      );
     }
 
     return (
@@ -129,14 +119,12 @@ class Search extends React.Component<*, *> {
 }
 
 const mapState = state => {
-  // const { search: { searching, regexp, caseSensitive } } = state;
-  // const files = searchedFiles(state);
+  const { search: { searching } } = state;
   return {
     files: [],//files,
-    searching: false,
+    searching,
     regexp: false,
     caseSensitive: false,
-    filesLoaded: true,// !!files.find(f => f.diskContent),
   };
 };
 

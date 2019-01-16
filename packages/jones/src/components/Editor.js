@@ -31,7 +31,7 @@ const Wrap = styled.div`
 
   & .ace_editor {
     width: 100% !important;
-    height: ${(p) => p.searching ? 'calc(35vh - 35px)' : '100%'} !important;
+    height: ${(p) => p.searching ? 'calc(35vh - 50px)' : '100%'} !important;
   }
 `;
 
@@ -132,7 +132,7 @@ const mapState = state => {
   const file = task ? task.files[task.editingFile || ''] : null;
   return {
     fontSize: state.prefs.editorFontSize,
-    searching: false, //state.search.searching,
+    searching: state.search.searching,
     adoc: file ? file.editedContent || file.content : null,
   };
 };
