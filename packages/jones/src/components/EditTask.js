@@ -11,15 +11,24 @@ import Heading from './Heading';
 const FriendList = styled.ul`
   margin: 0 0 50px 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: calc(100vh - 400px);
+  align-content: flex-start;
+  overflow: auto;
+  min-height: 0;
+
   & li {
-    display: inline-block;
-    width: 160px;
-    height: 36px;
-    text-align: center;
+    list-style-type: none;
+    flex-shrink: 0;
+    min-width: 120px;
+    height: 32px;
     background: gray;
     margin: 5px;
-    padding-top: 9px;
+    padding: 7px;
     cursor: pointer;
+    font-size: 14px;
 
     &:hover {
       background: #444;
@@ -30,6 +39,29 @@ const FriendList = styled.ul`
       color: black;
       cursor: default;
     }
+  }
+`;
+
+const Btns = styled.div`
+  position: fixed;
+  height: 100px;
+  display: flex;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 35px;
+  align-items: center;
+
+  > * {
+    margin-right: 30px;
+  }
+`;
+
+const H1 = styled.h1`
+  > i {
+    color: var(--accent);
+    padding-right: 0.35em;
+    font-size: 0.85em;
   }
 `;
 
@@ -102,15 +134,18 @@ class EditTask extends React.Component<Props, State> {
     const { task, friends } = this.props;
     return (
       <div className="padded-wrap">
-        <h1>{task.isNew ? 'Create' : 'Edit'} Task:</h1>
-        <Heading>Task Name:</Heading>
+        <H1>
+          <i className="fas fa-code-branch" />
+          {task.isNew ? 'Create' : 'Edit'} Task
+        </H1>
+        <Heading>Task name:</Heading>
         <Input
           ref={this.input}
           type="text"
           value={name}
           onChange={e => this.setState({ name: e.target.value })}
         />
-        <Heading>Friend:</Heading>
+        <Heading>Choose a Friend:</Heading>
         <FriendList>
           {friends.sort((a, b) => (a.name < b.name ? -1 : 1)).map(friend => (
             <li
@@ -122,12 +157,14 @@ class EditTask extends React.Component<Props, State> {
             </li>
           ))}
         </FriendList>
-        <Button secondary onClick={this.clickCancel} style={{ marginRight: 20 }}>
-          Cancel
-        </Button>
-        <Button disabled={!repoId || !name.trim()} onClick={this.clickSave}>
-          Save
-        </Button>
+        <Btns>
+          <Button height={50} secondary onClick={this.clickCancel}>
+            Cancel
+          </Button>
+          <Button height={50} disabled={!repoId || !name.trim()} onClick={this.clickSave}>
+            Save
+          </Button>
+        </Btns>
       </div>
     );
   }
