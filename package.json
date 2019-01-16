@@ -23,6 +23,7 @@
     "evans:build:es": "cd packages/evans && yarn build:es",
     "evans:develop:en": "cd packages/evans && yarn develop:en",
     "evans:develop:es": "cd packages/evans && yarn develop:es",
+    "jones:develop": "cd packages/jones && yarn develop",
     "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es",
     "postinstall": "patch-package"
   },
@@ -38,6 +39,7 @@
     "babel-jest": "^23.4.2",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-react-app": "^3.0.6",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
@@ -62,16 +64,17 @@
     "packages/fell",
     "packages/styleguide",
     "packages/mod",
-    "packages/gui"
+    "packages/gui",
+    "packages/jones"
   ],
   "jest": {
     "errorOnDeprecated": true,
     "testEnvironment": "node",
     "testRegex": "__tests__/.*tests?\\.js",
     "modulePathIgnorePatterns": [
-      "<rootDir>/packages/gui/dist",
-      "<rootDir>/packages/gui/build",
-      "<rootDir>/evans/gui/public"
+      "<rootDir>/packages/gui",
+      "<rootDir>/packages/jones/build",
+      "<rootDir>/evans/public"
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
