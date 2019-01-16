@@ -10,16 +10,33 @@ const Div = styled.div`
   justify-content: center;
   align-items: center;
 
-  & > div {
-    width: 500px;
-    height: 300px;
-    background: #eee;
+  img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: -15px auto 20px auto;
+  }
+
+  .login-btn {
+    width: 100%;
+    color: white !important;
+    display: block;
+    margin: 30px auto 15px auto;
+  }
+
+  a {
+    color: var(--accent);
+  }
+
+  > div {
+    width: 400px;
+    background: white;
     padding: 2em;
-    color: #000;
+    color: #555;
+  }
 
-    & p {
-
-    }
+  p {
+    line-height: 140%;
   }
 `;
 
@@ -36,10 +53,14 @@ export default () => {
     <Div>
       <div>
         <p>
-          To use the editor, you'll need to login with a
-          (free) <a href="https://github.com">GitHub</a> account.
+          <img
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            alt="github logo"
+          />
+          To use the <i>Friends Library Editor,</i> you'll need to login with a
+          (free) <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a> account.
         </p>
-        <Button onClick={() => window.location.assign(url)}>Login</Button>
+        <Button className="login-btn" href={url}>Login</Button>
       </div>
     </Div>
   );
