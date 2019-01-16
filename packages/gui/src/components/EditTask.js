@@ -57,6 +57,8 @@ type State = {|
 |};
 
 class EditTask extends React.Component<Props, State> {
+  input: any
+
   constructor(props) {
     super(props);
     this.state = {

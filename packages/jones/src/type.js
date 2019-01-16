@@ -1,13 +1,12 @@
 // @flow
 import type {
   Slug,
+  Url,
   Title,
   Uuid,
   Name,
   Asciidoc,
 } from '../../../type';
-
-// clean up login screen
 
 export type Dispatch = (any) => *;
 
@@ -22,6 +21,22 @@ export type GitHub = {|
   name: Name,
   avatar: Url,
   user: string,
+|};
+
+export type SearchResult = {|
+  filename: string,
+  start: {|
+    line: number,
+    column: number,
+  |},
+  end: {|
+    line: number,
+    column: number,
+  |},
+  context: Array<{|
+    lineNumber: number,
+    content: Asciidoc,
+  |}>
 |};
 
 export type File = {|
@@ -42,7 +57,7 @@ export type Task = {|
   collapsed: { [string]: boolean },
   sidebarOpen: boolean,
   sidebarWidth: number,
-  documentTitles: { [slug]: Title },
+  documentTitles: { [Slug]: Title },
   files: { [FilePath]: File },
   editingFile?: FilePath,
   parentCommit?: Sha,

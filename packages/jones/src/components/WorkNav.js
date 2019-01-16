@@ -42,7 +42,7 @@ const WorkNav = ({ task, goToTasks, friendName }) => (
 );
 
 const mapState = state => {
-  const task = currentTask(state);
+  const task = currentTask(state) || {};
   return {
     task,
     friendName: state.repos.find(r => r.id === task.repoId).friendName,

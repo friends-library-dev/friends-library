@@ -110,7 +110,7 @@ class Editor extends React.Component<Props> {
         mode="asciidoc"
         theme="tomorrow_night"
         onChange={updateFile}
-        value={adoc}
+        value={adoc || ''}
         editorProps={{ $blockScrolling: true }}
         setOptions={{ wrap: true }}
       />
@@ -129,7 +129,7 @@ class Editor extends React.Component<Props> {
 
 const mapState = state => {
   const task = currentTask(state);
-  const file = task.files[task.editingFile];
+  const file = task ? task.files[task.editingFile || ''] : null;
   return {
     fontSize: state.prefs.editorFontSize,
     searching: false, //state.search.searching,

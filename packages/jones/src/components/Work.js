@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
 import KeyEvent from 'react-keyboard-event-handler';
-import type { Task, Friend, Dispatch } from '../type';
+import type { Task, Dispatch } from '../type';
 import { currentTask } from '../select';
 import * as actions from '../actions';
 import Editor from './Editor';
@@ -32,8 +32,7 @@ const EditorPane = styled.div`
 
 type Props = {|
   task: Task,
-  friend: Friend,
-  saveEdited: Dispatch,
+  checkout: Dispatch,
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
 |};
@@ -44,7 +43,7 @@ class Work extends React.Component<Props> {
   componentDidMount() {
     const { task, checkout } = this.props;
     if (!task.parentCommit) {
-      checkout({...task});
+      checkout(task);
     }
   }
 

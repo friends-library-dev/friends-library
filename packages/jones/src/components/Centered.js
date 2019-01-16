@@ -9,7 +9,7 @@ const Wrap = styled.div`
   height: 100%;
 `;
 
-export default ({ children }) => (
+export default ({ children }: { children: React.Node }) => (
   <Wrap>
     {children}
   </Wrap>

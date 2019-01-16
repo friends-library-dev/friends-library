@@ -1,5 +1,6 @@
 // @flow
 import { createReducer } from 'redux-starter-kit';
+import { values } from '../lib/utils';
 
 export default createReducer({}, {
   REHYDRATE: (state, action) => {
@@ -29,7 +30,7 @@ export default createReducer({}, {
     if (task) {
       task.prNumber = prNumber;
       task.parentCommit = parentCommit;
-      Object.values(task.files).forEach(file => {
+      values(task.files).forEach(file => {
         file.content = file.editedContent || file.content;
         file.editedContent = null;
       })

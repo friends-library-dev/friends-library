@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled';
-import type { Friend, Task, Dispatch } from '../type';
+import type { Task, Dispatch } from '../type';
 import * as actions from '../actions';
 import * as screens from '../screens';
 import Button from './Button';
@@ -43,11 +43,12 @@ const Input = styled.input`
 `;
 
 type Props = {|
-  friends: Array<Friend>,
+  friends: Array<*>,
   task: Task,
   updateTask: Dispatch,
   goToTasks: Dispatch,
   deleteTask: Dispatch,
+  fetchFriendRepos: Dispatch,
 |};
 
 type State = {|

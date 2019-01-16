@@ -23,7 +23,7 @@ const StyledSpan = styled.span`
   }
 `;
 
-export default props => (
+export default (props: *) => (
   <StyledSpan
     {...props}
     {...props.href && !props.disabled ? { as: 'a' } : {}}

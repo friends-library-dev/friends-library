@@ -1,12 +1,16 @@
 // @flow
-import { State, Task } from './type';
+import type { State, Task } from './type';
+import { values } from './lib/utils';
 
-export function currentTask(state: State): Task {
+export function currentTask(state: State): ?Task {
+  if (!state.currentTask) {
+    return null;
+  }
   return state.tasks[state.currentTask];
 }
 
-export function documentTree(task: Task): Array<Object> {
-  return Object.values(task.files).reduce((docs, file) => {
+export function documentTree(task: Task): Array<*> {
+  return values(task.files).reduce((docs, file) => {
     const [docSlug, edType, filename] = file.path.split('/');
     let document = docs.find(d => d.slug === docSlug);
     if (!document) {

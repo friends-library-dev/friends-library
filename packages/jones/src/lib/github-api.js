@@ -1,6 +1,8 @@
 // @flow
 import Octokit from '@octokit/rest';
+import type { Slug } from '../../../../type';
 import type { Task, File } from '../type';
+import { values } from './utils';
 
 type Sha = string;
 type RepoSlug = string;
@@ -113,8 +115,8 @@ async function ensureSyncedFork(repo: RepoSlug, user: string): Promise<void> {
   await syncFork(repo, user);
 }
 
-export async function addCommit(task: Task, user: String): Promise<Sha> {
-  const { parentCommit, repoId, id, files } = task;
+export async function addCommit(task: Task, user: string): Promise<Sha> {
+  const { parentCommit = '', repoId, id, files } = task;
   const branchName = `task-${id}`;
   const repo = await getRepoSlug(repoId);
   const baseTreeSha = await getTreeSha(repo, parentCommit, user);
@@ -122,13 +124,14 @@ export async function addCommit(task: Task, user: String): Promise<Sha> {
   const msg = `updates to task: ${task.name}`;
   const newCommitSha = await createCommit(repo, newTreeSha, parentCommit, msg, user);
   await updateHead(repo, branchName, newCommitSha, user);
+  return newCommitSha;
 }
 
 export async function createNewPullRequest(
   task: Task,
   user: string,
 ): Promise<{ number: number, commit: Sha }> {
-  const { parentCommit, repoId, id, files } = task;
+  const { parentCommit = '', repoId, id, files } = task;
   const branchName = `task-${id}`;
   const repo = await getRepoSlug(repoId);
   await ensureSyncedFork(repo, user);
@@ -196,14 +199,14 @@ async function createCommit(
 async function createTree(
   repo: RepoSlug,
   baseTreeSha: Sha,
-  files: Array<File>,
+  files: { [string]: File },
   owner: string = 'friends-library',
 ): Promise<Sha> {
   const { data: { sha } } = await req('POST /repos/:owner/:repo/git/trees', {
       repo,
       owner,
       base_tree: baseTreeSha,
-      tree: Object.values(files).filter(f => f.editedContent).map(f => ({
+      tree: values(files).filter(f => f.editedContent).map(f => ({
         path: f.path,
         mode: '100644',
         type: 'blob',

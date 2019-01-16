@@ -6,7 +6,7 @@ import cx from 'classnames';
 import styled from '@emotion/styled';
 import { jsx, css } from '@emotion/core';
 import type { Uuid } from '../../../../type';
-import type { Friend, EditingFile, Dispatch } from '../type';
+import type { Dispatch, FilePath } from '../type';
 import * as actions from '../actions';
 import { documentTree } from '../select';
 
@@ -135,11 +135,11 @@ const IconSearch = styled.i`
 type Props = {|
   taskId: Uuid,
   collapsed: Object,
-  friend: Friend,
-  editingFile: EditingFile,
+  editingFile: FilePath,
   updateTask: Dispatch,
   collapseTask: Dispatch,
   updateSearch: Dispatch,
+  documents: *,
 |};
 
 class FriendFiles extends React.Component<Props> {
@@ -223,7 +223,6 @@ class FriendFiles extends React.Component<Props> {
     return (
       <ul css={wrap}>
         {documents.map(this.renderDoc)}
-        {/* {Object.entries(books).map(book => this.renderDoc(...book))} */}
       </ul>
     );
   }

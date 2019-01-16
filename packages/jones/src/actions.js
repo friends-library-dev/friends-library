@@ -1,7 +1,7 @@
 // @flow
 import { createAction } from 'redux-starter-kit';
 import { safeLoad as ymlToJs } from 'js-yaml';
-import type { Slug, Url } from '../../../type';
+import type { Slug, Url, Asciidoc } from '../../../type';
 import type { Dispatch, State, Task, ReduxThunk } from './type';
 import * as gh from './lib/github-api';
 import { currentTask } from './select';
@@ -30,7 +30,7 @@ function friendYmlUrl(friendSlug: Slug): Url {
 
 export function toggleSidebarOpen(adoc: Asciidoc): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {
-    const { id } = currentTask(getState());
+    const { id } = currentTask(getState()) || {};
     dispatch({
       type: 'TOGGLE_SIDEBAR_OPEN',
       payload: { id }
@@ -40,7 +40,7 @@ export function toggleSidebarOpen(adoc: Asciidoc): ReduxThunk {
 
 export function updateSidebarWidth(width: number): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {
-    const { id } = currentTask(getState());
+    const { id } = currentTask(getState()) || {};
     dispatch({
       type: 'UPDATE_SIDEBAR_WIDTH',
       payload: { id, width }
@@ -50,7 +50,7 @@ export function updateSidebarWidth(width: number): ReduxThunk {
 
 export function updateEditingFile(adoc: Asciidoc): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {
-    const task = currentTask(getState());
+    const task = currentTask(getState()) || {};
     dispatch({
       type: 'UPDATE_EDITING_FILE',
       payload: {

@@ -14,7 +14,7 @@ export function searchFiles(
       let match;
       while ((match = exp.exec(line))) {
         const result = {
-          filename: file.filename,
+          filename: file.path.split('/').pop(),
           start: {
             line: index + 1,
             column: match.index,

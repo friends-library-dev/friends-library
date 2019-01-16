@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import Resizable from 're-resizable';
-import type { Friend } from '../redux/type';
+import type { Dispatch } from '../type';
 import FriendFiles from './FriendFiles';
 import { currentTask } from '../select';
 import * as actions from '../actions';
@@ -63,15 +63,6 @@ const Closed = styled.div`
   z-index: 2;
 `;
 
-type Props = {|
-  friend: Friend,
-|};
-
-type State = {|
-  width: number,
-  open: boolean,
-|};
-
 type ToggleProps = {|
   onClick: (any) => *,
   isOpen: boolean,
@@ -83,7 +74,15 @@ const Toggle = ({ onClick, isOpen }: ToggleProps) => (
   </ToggleEl>
 );
 
-class Sidebar extends React.Component<Props, State> {
+
+type Props = {|
+  open: boolean,
+  width: number,
+  toggleOpen: Dispatch,
+  updateWidth: Dispatch,
+|};
+
+class Sidebar extends React.Component<Props> {
   render() {
     const { open, width, toggleOpen, updateWidth } = this.props;
     if (!open) {
@@ -120,7 +119,7 @@ class Sidebar extends React.Component<Props, State> {
 }
 
 const mapState = state => {
-  const task = currentTask(state);
+  const task = currentTask(state) || {};
   return {
     open: task.sidebarOpen,
     width: task.sidebarWidth,

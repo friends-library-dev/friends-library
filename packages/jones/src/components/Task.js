@@ -5,7 +5,8 @@ import styled from '@emotion/styled';
 import moment from 'moment';
 import smalltalk from 'smalltalk';
 import * as actions from '../actions';
-import type { Task as TaskType, Friend, Dispatch } from '../type';
+import { values } from '../lib/utils';
+import type { Task as TaskType, Dispatch, Repo } from '../type';
 import Button from './Button';
 
 const Wrap = styled.li`
@@ -81,18 +82,23 @@ const Wrap = styled.li`
 
 type Props = {|
   task: TaskType,
-  friend: Friend,
+  repo: Repo,
+  taskHasWork: boolean,
+  resubmit: Dispatch,
+  submit: Dispatch,
   workOnTask: Dispatch,
   deleteTask: Dispatch,
   updateTask: Dispatch,
 |};
 
+type State = {|
+  submitting: boolean,
+|};
 
-class Task extends React.Component<Props> {
+class Task extends React.Component<Props, State> {
 
   state = {
     submitting: false,
-    gitPushing: false
   }
 
   confirmDelete = () => {
@@ -202,7 +208,7 @@ const mapState = (state, { task }) => {
   return {
     task,
     repo,
-    taskHasWork: !!Object.values(task.files).find(f => f.editedContent),
+    taskHasWork: !!values(task.files).find(f => f.editedContent),
   };
 };
 
