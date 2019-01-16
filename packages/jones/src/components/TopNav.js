@@ -46,11 +46,10 @@ const Div = styled.div`
 class TopNav extends React.Component<*> {
 
   componentDidMount() {
-    const { token, avatar, requestGitHubUser } = this.props;
+    const { token, requestGitHubUser } = this.props;
     gh.authenticate(token);
-    if (!avatar) {
-      requestGitHubUser();
-    }
+    // always re-request the github user so we pull in new avatars, etc
+    requestGitHubUser();
   }
 
   render() {
@@ -61,9 +60,9 @@ class TopNav extends React.Component<*> {
         <div className="center">
           <NavContent screen={screen} />
         </div>
-        {(name || user) && <div className="github">
+        {user && <div className="github">
           <span className="name">{name ? name : user}</span>
-          <img className="avatar" src={avatar} alt="" />
+          {avatar &&<img className="avatar" src={avatar} alt="" />}
         </div>}
       </Div>
     )
