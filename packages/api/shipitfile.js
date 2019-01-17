@@ -2,9 +2,8 @@ require('dotenv').config();
 
 const {
   env: {
-    PRODUCTION_SERVER,
-    DEPLOY_PATH,
-    DEPLOY_KEY,
+    API_PRODUCTION_SERVER,
+    API_DEPLOY_PATH,
   },
 } = process;
 
