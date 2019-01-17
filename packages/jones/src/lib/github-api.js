@@ -166,7 +166,7 @@ async function openPullRequest(
     owner: 'friends-library',
     head: `${user}:${branch}`,
     base: 'master',
-    body: 'yo, you should merge this rad PR',
+    body: '@jaredh159 @Henderjay',
     maintainer_can_modify: true,
   });
   return number;
