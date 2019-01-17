@@ -7,6 +7,7 @@ import * as actions from '../actions';
 import * as screens from '../screens';
 import Button from './Button';
 import Heading from './Heading';
+import Loading from './Loading';
 
 const FriendList = styled.ul`
   margin: 0 0 50px 0;
@@ -74,6 +75,8 @@ const Input = styled.input`
   width: 500px;
 `;
 
+let friendsFetchedThisSession = false;
+
 type Props = {|
   friends: Array<*>,
   task: Task,
@@ -101,9 +104,11 @@ class EditTask extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const { friends, fetchFriendRepos } = this.props;
-    if (friends.length === 0) {
+    const { fetchFriendRepos } = this.props;
+    // re-fetch friend repos once per session to add new friends
+    if (!friendsFetchedThisSession) {
       fetchFriendRepos();
+      friendsFetchedThisSession = true;
     }
     this.input.current.focus();
   }
@@ -146,17 +151,22 @@ class EditTask extends React.Component<Props, State> {
           onChange={e => this.setState({ name: e.target.value })}
         />
         <Heading>Choose a Friend:</Heading>
-        <FriendList>
-          {friends.sort((a, b) => (a.name < b.name ? -1 : 1)).map(friend => (
-            <li
-              key={friend.repoId}
-              className={repoId === friend.repoId ? 'selected' : ''}
-              onClick={() => this.setState({ repoId: friend.repoId })}
-            >
-              {friend.name}
-            </li>
-          ))}
-        </FriendList>
+        {friends.length === 0
+          ? <Loading />
+          : (
+              <FriendList>
+                {friends.sort((a, b) => (a.name < b.name ? -1 : 1)).map(friend => (
+                  <li
+                    key={friend.repoId}
+                    className={repoId === friend.repoId ? 'selected' : ''}
+                    onClick={() => this.setState({ repoId: friend.repoId })}
+                  >
+                    {friend.name}
+                  </li>
+                ))}
+              </FriendList>
+            )
+          }
         <Btns>
           <Button height={50} secondary onClick={this.clickCancel}>
             Cancel

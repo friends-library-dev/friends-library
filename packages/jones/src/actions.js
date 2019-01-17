@@ -114,7 +114,13 @@ export function fetchFriendRepos() {
   return async (dispatch: Dispatch, getState: () => State) => {
     dispatch({ type: 'REQUEST_FRIEND_REPOS' });
     const friendRepos = await gh.getFriendRepos();
-    dispatch({ type: 'RECEIVE_FRIEND_REPOS', payload: friendRepos });
+    // filter out any friend repos that don't have a yml file yet
+    const ymlsPath = '/repos/:owner/:repo/contents/packages/friends/yml/en';
+    const { data: ymls } = await gh.req(ymlsPath, { repo: 'friends-library' });
+    const filtered = friendRepos.filter(repo => {
+      return !!ymls.find(y => y.name === `${repo.name}.yml`);
+    });
+    dispatch({ type: 'RECEIVE_FRIEND_REPOS', payload: filtered });
   }
 }
 
