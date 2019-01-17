@@ -21,15 +21,14 @@ module.exports = function (shipit) {
       keepReleases: 5,
       deleteOnRollback: false,
       shallowClone: true,
-      deployTo: DEPLOY_PATH,
-      key: DEPLOY_KEY,
+      deployTo: API_DEPLOY_PATH,
       shared: {
         overwrite: true,
         files: ['packages/api/.env']
       }
     },
     production: {
-      servers: PRODUCTION_SERVER
+      servers: API_PRODUCTION_SERVER
     }
   });
 

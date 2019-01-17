@@ -36,9 +36,31 @@ jobs:
             - ./packages/phipps/vendor
           key: v1-dependencies-{{ checksum "packages/phipps/composer.json" }}
       - run: cd packages/phipps && vendor/bin/phpunit
+  deploy_api:
+    docker:
+      - image: circleci/node:8.14.1
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "ce:27:a7:ac:8c:5d:4f:2b:0b:7c:f6:b8:8f:bb:e5:8b"
+      - restore_cache:
+          key: v1-node-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-node-{{ checksum "yarn.lock" }}
+      - run: yarn api:deploy
 workflows:
   version: 2
   test_node_and_php:
     jobs:
       - node
       - php
+  deploy:
+    jobs:
+      - deploy_api:
+          filters:
+            branches:
+              only:
+                - master

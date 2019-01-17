@@ -14,7 +14,7 @@ const { env: {
 
 const app = express();
 
-app.get('/', (req, res) => res.send('༼ つ ◕_◕ ༽つ'));
+app.get('/', (req, res) => res.send('AUTO ༼ つ ◕_◕ ༽つ DEPLOYED!'));
 
 app.get('/download/:friend/:document/:edition/:filename', (req, res) => {
   const { params: { friend, document, edition, filename } } = req;
