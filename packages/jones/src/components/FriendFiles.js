@@ -181,7 +181,7 @@ class FriendFiles extends React.Component<Props> {
     const isCollapsed = collapsed[key] || false;
     return (
       <li
-        key={doc.slug}
+        key={`${doc.slug}/${ed.type}`}
         className={cx('parent', { collapsed: isCollapsed })}
         css={editionLi}
       >

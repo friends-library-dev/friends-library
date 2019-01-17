@@ -48,11 +48,7 @@ export async function getAdocFiles(
   repo: RepoSlug,
   sha: Sha,
 ): Promise<Array<GitFile>> {
-  const { data: { tree } } = await req('/repos/:owner/:repo/git/trees/:sha?recursive=1', {
-    repo,
-    sha,
-  });
-
+  const tree = await getTree(repo, sha);
   const filePromises = tree.filter(isAsciidoc).map(async blob => {
     const { data: { content } } = await req('/repos/:owner/:repo/git/blobs/:sha', {
       repo,
@@ -66,6 +62,17 @@ export async function getAdocFiles(
   });
 
   return await Promise.all(filePromises);
+}
+
+export async function getTree(
+  repo: RepoSlug,
+  sha: Sha,
+): Promise<Array<*>> {
+  const { data: { tree } } = await req('/repos/:owner/:repo/git/trees/:sha?recursive=1', {
+    repo,
+    sha,
+  });
+  return tree;
 }
 
 async function createFork(repo: RepoSlug, user: string): Promise<void> {
