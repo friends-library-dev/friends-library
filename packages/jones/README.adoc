@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [ ] allow custom PR body composition at submit time
 * [ ] allow custom commit message for re-submit commits
 * [ ] delete branch from fork when deleting task
-* [ ] change auto submit commit message to mention jared/jason
+* [x] change auto submit commit message to mention jared/jason
 * [x] re-fetch look for new friends
 * [x] don't show friends that don't have .yml files
 * [x] refetch github user details so they update
