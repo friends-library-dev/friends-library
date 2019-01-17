@@ -32,7 +32,7 @@ module.exports = function (shipit) {
   });
 
   shipit.on('published', () => {
-    shipit.remote(`cd ${DEPLOY_PATH}/current/packages/api && yarn migrate`);
+    shipit.remote(`cd ${API_DEPLOY_PATH}/current/packages/api && yarn migrate`);
     shipit.remote('pm2 restart all');
   });
 };
