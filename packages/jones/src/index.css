@@ -18,6 +18,11 @@ body {
   color: white;
 }
 
+.smalltalk .page {
+  max-width: 500px !important;
+  line-height: 150% !important;
+}
+
 #root {
   height: 100vh;
 }
