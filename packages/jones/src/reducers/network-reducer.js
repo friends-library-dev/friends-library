@@ -21,4 +21,6 @@ export default createReducer([], {
   ...pair('SUBMITTING_TASK', 'TASK_SUBMITTED'),
   ...pair('RE_SUBMITTING_TASK', 'TASK_RE_SUBMITTED'),
   ...pair('START_CHECKOUT', 'END_CHECKOUT'),
+
+  NETWORK_ERROR: () => [],
 });
