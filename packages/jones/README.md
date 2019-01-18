@@ -7,7 +7,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Todo:
 
 * [ ] network error recovery
-* [ ] dudley bug: funky character/encoding
 * [ ] communication state for app throbbing network things
 * [ ] delete task when PR merged (and task has no unpushed work)
 * [ ] multi-column view editor
@@ -17,6 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [ ] allow custom PR body composition at submit time
 * [ ] allow custom commit message for re-submit commits
 * [ ] delete branch from fork when deleting task
+* [x] dudley bug: funky character/encoding
 * [x] order editions in sidebar (updated, modernized, orig)
 * [x] launch super-basic search
 * [x] change auto submit commit message to mention jared/jason
