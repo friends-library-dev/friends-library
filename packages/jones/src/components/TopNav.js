@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import * as actions from '../actions';
 import * as gh from '../lib/github-api';
 import fox from '../george-fox.png';

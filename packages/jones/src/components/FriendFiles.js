@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import { jsx, css } from '@emotion/core';
 import type { Uuid } from '../../../../type';
 import type { Dispatch, FilePath } from '../type';
@@ -139,7 +139,7 @@ type Props = {|
   updateTask: Dispatch,
   collapseTask: Dispatch,
   updateSearch: Dispatch,
-  documents: *,
+  documents: Array<*>,
 |};
 
 class FriendFiles extends React.Component<Props> {
@@ -153,10 +153,22 @@ class FriendFiles extends React.Component<Props> {
     });
   }
 
+  isCollapsed(key: string): boolean {
+    const { collapsed, editingFile } = this.props;
+
+    // ensure editing file is always visible, because we can
+    // jump to a collapsed section from the search feature
+    if (editingFile && editingFile.indexOf(key) === 0) {
+      return false;
+    }
+
+    return collapsed[key] || false;
+  }
+
   renderDoc = (doc) => {
-    const { collapsed, collapseTask, taskId } = this.props;
+    const { collapseTask, taskId } = this.props;
     const key = doc.slug;
-    const isCollapsed = collapsed[key] || false;
+    const isCollapsed = this.isCollapsed(key);
     return (
       <li
         key={doc.slug}
@@ -176,9 +188,9 @@ class FriendFiles extends React.Component<Props> {
   }
 
   renderEdition = (ed, doc) => {
-    const { collapsed, collapseTask, taskId } = this.props;
+    const { collapseTask, taskId } = this.props;
     const key = [doc.slug, ed.type].join('/');
-    const isCollapsed = collapsed[key] || false;
+    const isCollapsed = this.isCollapsed(key);
     return (
       <li
         key={`${doc.slug}/${ed.type}`}

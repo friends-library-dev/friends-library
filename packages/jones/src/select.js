@@ -1,5 +1,5 @@
 // @flow
-import type { State, Task } from './type';
+import type { State, Task, File } from './type';
 import { values } from './lib/utils';
 
 export function currentTask(state: State): ?Task {
@@ -9,8 +9,29 @@ export function currentTask(state: State): ?Task {
   return state.tasks[state.currentTask];
 }
 
+export function searchedFiles(state: State): Array<File> {
+  const { searching, documentSlug, editionType } = state.search;
+  const task = currentTask(state);
+  if (!task || !searching) {
+    return [];
+  }
+
+  return values(task.files).filter(file => {
+    const [docSlug, edType] = file.path.split('/');
+    if (documentSlug && docSlug !== documentSlug) {
+      return false;
+    }
+
+    if (editionType && edType !== editionType) {
+      return false;
+    }
+
+    return true;
+  });
+}
+
 export function documentTree(task: Task): Array<*> {
-  return values(task.files).reduce((docs, file) => {
+  const documents = values(task.files).reduce((docs, file) => {
     const [docSlug, edType, filename] = file.path.split('/');
     let document = docs.find(d => d.slug === docSlug);
     if (!document) {
@@ -36,4 +57,19 @@ export function documentTree(task: Task): Array<*> {
     });
     return docs;
   }, []);
+
+  documents.forEach(doc => {
+    doc.editions = doc.editions.sort(({ type }) => {
+      switch (type) {
+        case 'updated':
+          return -1;
+        case 'modernized':
+          return 0;
+        default:
+          return 1;
+      }
+    });
+  });
+
+  return documents;
 }

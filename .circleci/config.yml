@@ -1,43 +1,33 @@
-version: 2
+version: "2.1"
+
 jobs:
+
   node:
     docker:
       - image: circleci/node:8.14.1
     working_directory: ~/fl-node
     steps:
       - checkout
-      - restore_cache:
-          key: v1-node-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-node-{{ checksum "yarn.lock" }}
-      - run: yarn js:lint
-      - run: yarn sass:lint
+      - yarn_cached_install
       - run: yarn js:test
-      - run: yarn flow
-      - run: yarn styleguide:build
       - run: yarn evans:build:en
       - run: yarn evans:build:es
-      - run: yarn jones:build
+
   php:
     docker:
-      - image: circleci/php:7.2-apache-node-browsers
+      - image: circleci/php:7.3-node
     working_directory: ~/fl-php
     steps:
       - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "packages/phipps/composer.json" }}
-      - run: cd packages/phipps && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./packages/phipps/vendor
-          key: v1-dependencies-{{ checksum "packages/phipps/composer.json" }}
+      - composer_cached_install
       - run: cd packages/phipps && vendor/bin/phpunit
+      - yarn_cached_install
+      - run: yarn js:lint
+      - run: yarn sass:lint
+      - run: yarn flow
+      - run: yarn styleguide:build
+      - run: yarn jones:build
+
   deploy_api:
     docker:
       - image: circleci/node:8.14.1
@@ -49,18 +39,11 @@ jobs:
           name: Add to Known Hosts
           command: ssh-keyscan -H api.friendslibrary.com >> ~/.ssh/known_hosts
       - checkout
-      - restore_cache:
-          key: v1-node-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-node-{{ checksum "yarn.lock" }}
+      - yarn_cached_install
       - run: yarn api:deploy
+
 workflows:
-  version: 2
+  version: "2.1"
   test_node_and_php:
     jobs:
       - node
@@ -72,3 +55,43 @@ workflows:
             branches:
               only:
                 - master
+
+commands:
+
+  yarn_cached_install:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - v1-node-{{ .Branch }}
+            - v1-node
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          paths:
+            - node_modules
+            - packages/api/node_modules
+            - packages/cli/node_modules
+            - packages/evans/node_modules
+            - packages/fell/node_modules
+            - packages/friends/node_modules
+            - packages/hilkiah/node_modules
+            - packages/jones/node_modules
+            - packages/kite/node_modules
+            - packages/mod/node_modules
+            - packages/styleguide/node_modules
+          key: v1-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+  composer_cached_install:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-php-{{ .Branch }}-{{ checksum "packages/phipps/composer.json" }}
+            - v1-php-{{ .Branch }}
+            - v1-php
+      - run: cd packages/phipps && composer install -n --prefer-dist
+      - save_cache:
+          paths:
+            - ./packages/phipps/vendor
+          key: v1-php-{{ .Branch }}-{{ checksum "packages/phipps/composer.json" }}

@@ -7,14 +7,18 @@ export function searchFiles(
   _regexp: boolean = false,
   _caseSensitive: boolean = false,
 ): Array<SearchResult> {
-  return files.reduce((results, file) => {
-    const lines = (file.editedContent || '').split(/\n/);
+  const results = files.reduce((acc, file) => {
+    const lines = (file.editedContent || file.content || '').split(/\n/);
     const exp = new RegExp(`\\b${str}\\b`, 'gi');
     lines.forEach((line, index) => {
       let match;
       while ((match = exp.exec(line))) {
+        const [documentSlug, editionType, filename] = file.path.split('/');
         const result = {
-          filename: file.path.split('/').pop(),
+          path: file.path,
+          documentSlug,
+          editionType,
+          filename,
           start: {
             line: index + 1,
             column: match.index,
@@ -24,15 +28,24 @@ export function searchFiles(
             column: match.index + str.length,
           },
         };
-        results.push({
+        acc.push({
           ...result,
           context: getContext(result, lines),
         });
       }
     });
-
-    return results;
+    return acc;
   }, []);
+  return results.sort(({ editionType }) => {
+    switch (editionType) {
+      case 'updated':
+        return -1;
+      case 'modernized':
+        return 0;
+      default:
+        return 1;
+    }
+  });
 }
 
 function getContext(result, lines) {

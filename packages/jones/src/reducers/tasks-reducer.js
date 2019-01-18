@@ -25,6 +25,13 @@ export default createReducer({}, {
     };
   },
 
+  EDIT_SEARCH_RESULT: (state, { payload: { taskId, result } }) => {
+    const task = state[taskId];
+    if (task) {
+      task.editingFile = result.path;
+    }
+  },
+
   TASK_SUBMITTED: (state, { payload: { id, prNumber, parentCommit } }) => {
     const task = state[id];
     if (task) {

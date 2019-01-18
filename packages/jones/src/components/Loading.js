@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import Centered from './Centered';
 
 const H1 = styled.h1`

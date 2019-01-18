@@ -1,35 +1,64 @@
 // @flow
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
+import { connect } from 'react-redux';
 import type { Html } from '../../../../type';
-import type { SearchResult } from '../type';
+import type { SearchResult as SearchResultType, Dispatch } from '../type';
+import * as actions from '../actions';
 
 const ResultWrap = styled.div`
-  margin-right: 1.2em;
-  padding-bottom: 1.2em;
+  padding-right: 1.2em;
+  padding-bottom: 1.5em;
   color: #aaa;
 
-  & .filename {
+  code {
     font-size: 0.85em;
-    background: #111;
-    color: var(--accent);
     padding: 0 0.35em;
+    background: #111;
   }
+
+  .sep {
+    padding: 0;
+    opacity: 0.5;
+  }
+
+  .edition-type {
+    color: #b0b66c;
+    margin-left: 0.25em;
+  }
+
+  .filename {
+    color: var(--accent);
+  }
+
   & + & {
     border-top: dashed 1px #333;
   }
 `;
 
+const ResultHeading = styled.p`
+  margin: 0;
+  padding: 1em 0;
+`;
+
 type Props = {|
-  result: SearchResult,
+  result: SearchResultType,
+  edit: Dispatch,
 |};
 
-export default ({ result }: Props) => (
-  <ResultWrap>
-    <p>Match in file: <code className="filename">{result.filename}</code></p>
-    <Preview result={result} />
-  </ResultWrap>
-);
+const SearchResult = ({ result, edit }: Props) => {
+  return (
+    <ResultWrap>
+      <ResultHeading>
+        Match in file:
+        <code className="edition-type">{result.editionType}</code>
+        <code className="sep">/</code>
+        <code className="filename">{result.filename}</code>
+      </ResultHeading>
+      <Preview result={result} edit={edit} />
+    </ResultWrap>
+  );
+};
 
 const PreviewWrap = styled.div`
   color: white;
@@ -41,29 +70,57 @@ const PreviewWrap = styled.div`
 const LineNumber = styled.span`
   opacity: 0.4;
   margin: 0 0.5em 0 0.3em;
+  text-align: right;
+  width: 2.5em;
 `;
 
 const Line = styled.div`
   line-height: 1.3em;
-  & b {
+  display: flex;
+  flex-wrap: nowrap;
+
+  .content {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .content-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: pre-line;
+  }
+
+  b {
     font-weight: 700;
     background: green;
+    cursor: ne-resize;
   }
 `;
 
-const Preview = ({ result }: { result: SearchResult }) => (
-  <PreviewWrap>
-    {result.context.map((line, index) => (
-      <Line>
-        <LineNumber>{line.lineNumber}</LineNumber>
-        <span dangerouslySetInnerHTML={{
-          __html: lineContent(line, index, result),
-        }}
-        />
-      </Line>
-    ))}
-  </PreviewWrap>
-);
+const Preview = ({ result, edit }: { result: SearchResultType, edit: (any) => * }) => {
+  return (
+    <PreviewWrap onClick={e => {
+      if (e.target.nodeName === 'B') {
+        edit(result);
+      }
+    }}>
+      {result.context.map((line, index, lines) => (
+        <Line key={line.lineNumber}>
+          <LineNumber>
+            {line.lineNumber}
+          </LineNumber>
+          <div className="content">
+            <span className="content-inner" dangerouslySetInnerHTML={{
+              __html: lineContent(line, index, result),
+            }}/>
+          </div>
+        </Line>
+      ))}
+    </PreviewWrap>
+  );
+};
 
 
 function lineContent(line: Object, index: number, result): Html {
@@ -82,3 +139,9 @@ function lineContent(line: Object, index: number, result): Html {
   }
   return line.content;
 }
+
+const mapDispatch = {
+  edit: actions.editSearchResult,
+};
+
+export default connect(null, mapDispatch)(SearchResult);
