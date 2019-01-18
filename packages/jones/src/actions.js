@@ -99,14 +99,21 @@ export function resubmitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const { github: { user } } = getState();
     dispatch({ type: 'RE_SUBMITTING_TASK' });
-    await gh.addCommit(task, user);
-    dispatch({ type: 'TASK_RE_SUBMITTED' });
+    const sha = await gh.addCommit(task, user);
+    dispatch({
+      type: 'TASK_RE_SUBMITTED',
+      payload: {
+        id: task.id,
+        parentCommit: sha,
+      }
+    });
   };
 }
 
 
 export function checkout(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
+    dispatch({ type: 'START_CHECKOUT' });
     const repoSlug = await gh.getRepoSlug(task.repoId);
     const parentCommit = await gh.getHeadSha(repoSlug, 'master');
     let files = await gh.getAdocFiles(repoSlug, parentCommit);
@@ -121,6 +128,7 @@ export function checkout(task: Task): ReduxThunk {
       return acc;
     }, {});
 
+    dispatch({ type: 'END_CHECKOUT' });
     dispatch({
       type: 'UPDATE_TASK',
       payload: {

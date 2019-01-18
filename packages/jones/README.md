@@ -6,6 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Todo:
 
+* [ ] undo/redo stuff (omnidan/redux-undo -- on just `tasks`?)
 * [ ] network error recovery
 * [ ] communication state for app throbbing network things
 * [ ] delete task when PR merged (and task has no unpushed work)

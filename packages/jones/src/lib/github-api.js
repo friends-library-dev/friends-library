@@ -4,6 +4,8 @@ import type { Slug } from '../../../../type';
 import type { Task, File } from '../type';
 import { values } from './utils';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 type Sha = string;
 type RepoSlug = string;
 type BranchName = string;
@@ -166,7 +168,7 @@ async function openPullRequest(
     owner: 'friends-library',
     head: `${user}:${branch}`,
     base: 'master',
-    body: '@jaredh159 @Henderjay',
+    body: isDev ? 'ignore, testing' : '@jaredh159 @Henderjay',
     maintainer_can_modify: true,
   });
   return number;
@@ -223,7 +225,6 @@ async function createTree(
     return sha;
 }
 
-
 export async function createBranch(
   repo: RepoSlug,
   newBranchName: BranchName,
@@ -254,7 +255,6 @@ export async function getTreeSha(
   });
   return res.data.tree.sha;
 }
-
 
 export async function req(route: string, opts: Object = {}): Promise<*> {
   if (route.match(/:owner/) && !opts.owner) {

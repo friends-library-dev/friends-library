@@ -2,6 +2,14 @@
 import { createReducer } from 'redux-starter-kit';
 import { values } from '../lib/utils';
 
+function fastForward(task, commit) {
+  task.parentCommit = commit;
+  values(task.files).forEach(file => {
+    file.content = file.editedContent || file.content;
+    file.editedContent = null;
+  });
+}
+
 export default createReducer({}, {
   REHYDRATE: (state, action) => {
     return action.payload.tasks;
@@ -36,11 +44,14 @@ export default createReducer({}, {
     const task = state[id];
     if (task) {
       task.prNumber = prNumber;
-      task.parentCommit = parentCommit;
-      values(task.files).forEach(file => {
-        file.content = file.editedContent || file.content;
-        file.editedContent = null;
-      })
+      fastForward(task, parentCommit);
+    }
+  },
+
+  TASK_RE_SUBMITTED: (state, { payload: { id, parentCommit } }) => {
+    const task = state[id];
+    if (task) {
+      fastForward(task, parentCommit);
     }
   },
 

@@ -15,6 +15,7 @@ const defaultState = {
   search: defaultSearchState,
   github: githubDefaultState,
   prefs: prefsDefaultState,
+  network: [],
 };
 
 const loadState = () => {
@@ -59,6 +60,7 @@ export default function () {
     preloadedState: {
       ...defaultState,
       ...loadState(),
+      ...{ network: [] },
     },
   });
 
