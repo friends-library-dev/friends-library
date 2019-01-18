@@ -89,6 +89,7 @@ export type State = {|
   tasks: { [Uuid]: Task },
   repos: Array<Repo>,
   search: Search,
+  network: Array<string>
 |};
 
 export type ReduxThunk = (dispatch: Dispatch, getState: () => State) => *;

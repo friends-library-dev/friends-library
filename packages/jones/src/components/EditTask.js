@@ -104,9 +104,9 @@ class EditTask extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    const { fetchFriendRepos } = this.props;
+    const { fetchFriendRepos, friends } = this.props;
     // re-fetch friend repos once per session to add new friends
-    if (!friendsFetchedThisSession) {
+    if (!friendsFetchedThisSession || friends.length === 0) {
       fetchFriendRepos();
       friendsFetchedThisSession = true;
     }

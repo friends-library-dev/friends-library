@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import * as actions from '../actions';
 import * as gh from '../lib/github-api';
-import fox from '../george-fox.png';
+import fox from '../assets/george-fox.png';
+import throbber from '../assets/throbber.gif';
 import NavContent from './NavContent';
 
-const Div = styled.div`
+const TopNav = styled.div`
   height: 50px;
   color: #ddd;
   background: black;
@@ -22,8 +23,21 @@ const Div = styled.div`
     margin: 5px;
   }
 
+  .icon {
+    transition: opacity 200ms ease;
+    opacity: ${p => p.throbbing ? 0.5 : 1};
+  }
+
+  .spinner {
+    opacity: ${p => p.throbbing ? 0.75 : 0};
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+
   & .center {
-    padding-left: 0.5em;
     flex-grow: 1;
 
     & i {
@@ -43,7 +57,7 @@ const Div = styled.div`
   }
 `;
 
-class TopNav extends React.Component<*> {
+class Component extends React.Component<*> {
 
   componentDidMount() {
     const { token, requestGitHubUser } = this.props;
@@ -53,10 +67,11 @@ class TopNav extends React.Component<*> {
   }
 
   render() {
-    const { avatar, name, screen, user } = this.props;
+    const { avatar, name, screen, user, throbbing } = this.props;
     return (
-      <Div>
+      <TopNav throbbing={throbbing}>
         <img className="icon" src={fox} alt="" />
+        <img className="spinner" src={throbber} alt="" />
         <div className="center">
           <NavContent screen={screen} />
         </div>
@@ -64,7 +79,7 @@ class TopNav extends React.Component<*> {
           <span className="name">{name ? name : user}</span>
           {avatar &&<img className="avatar" src={avatar} alt="" />}
         </div>}
-      </Div>
+      </TopNav>
     )
   }
 }
@@ -72,10 +87,11 @@ class TopNav extends React.Component<*> {
 const mapState = state => ({
   ...state.github,
   screen: state.screen,
+  throbbing: state.network.length > 0,
 });
 
 const mapDispatch = {
   requestGitHubUser: actions.requestGitHubUser,
 }
 
-export default connect(mapState, mapDispatch)(TopNav);
+export default connect(mapState, mapDispatch)(Component);

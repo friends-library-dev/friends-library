@@ -141,6 +141,7 @@ class Task extends React.Component<Props, State> {
   }
 
   render() {
+    const { submitting } = this.state;
     const { task, repo, workOnTask, taskHasWork } = this.props;
     return (
       <Wrap>
@@ -183,7 +184,7 @@ class Task extends React.Component<Props, State> {
           </Button>
           <Button
             secondary
-            disabled={!taskHasWork}
+            disabled={!taskHasWork || submitting}
             className="submit"
             onClick={task.prNumber ? this.resubmit : this.submit}
           >
