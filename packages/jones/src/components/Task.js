@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import moment from 'moment';
 import smalltalk from 'smalltalk';
 import * as actions from '../actions';

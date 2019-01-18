@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import { connect } from 'react-redux';
 import Resizable from 're-resizable';
 import type { Dispatch } from '../type';

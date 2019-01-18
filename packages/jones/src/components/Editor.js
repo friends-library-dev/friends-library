@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../type';
 import { currentTask } from '../select';
@@ -27,11 +27,26 @@ const Wrap = styled.div`
   z-index: 1;
   background: #555;
   width: 100%;
-  height: ${p => p.searching ? 'auto' : '100%'};
+  height: ${p => p.searching ? 'calc(35vh - 50px)' : '100%'};
 
   & .ace_editor {
     width: 100% !important;
     height: ${(p) => p.searching ? 'calc(35vh - 50px)' : '100%'} !important;
+
+    .ace_active-line {
+      background: #454545 !important;
+    }
+
+    .ace_selection {
+      background: blue !important;
+    }
+
+    .search-result {
+      position: absolute;
+      z-index: 20;
+      background: green !important;
+      opacity: 0.75;
+    }
   }
 `;
 
@@ -51,6 +66,7 @@ type Props = {|
   searching: boolean,
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
+  toggleSidebarOpen: Dispatch,
   size: {| width: number, height: number |},
 |};
 
@@ -80,7 +96,7 @@ class Editor extends React.Component<Props> {
   }
 
   addKeyCommands() {
-    const { increaseFontSize, decreaseFontSize } = this.props;
+    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen } = this.props;
     this.editor().commands.addCommand({
       name: 'increaseFontSize',
       bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
@@ -91,6 +107,12 @@ class Editor extends React.Component<Props> {
       name: 'decreaseFontSize',
       bindKey: { mac: 'Command-Down', win: 'Ctrl-Down' },
       exec: () => decreaseFontSize(),
+    });
+
+    this.editor().commands.addCommand({
+      name: 'toggleSidebarOpen',
+      bindKey: { mac: 'Command-Ctrl-7', win: 'Alt-Ctrl-7' },
+      exec: () => toggleSidebarOpen(),
     });
   }
 
@@ -120,7 +142,7 @@ class Editor extends React.Component<Props> {
   render() {
     const { adoc, searching } = this.props;
     return (
-      <Wrap searching={searching}>
+      <Wrap searching={searching} className="Editor">
         {adoc === null ? <ChooseAFile /> : this.renderAce()}
       </Wrap>
     );
@@ -139,6 +161,7 @@ const mapState = state => {
 
 const mapDispatch = {
   updateFile: actions.updateEditingFile,
+  toggleSidebarOpen: actions.toggleSidebarOpen,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,
 };

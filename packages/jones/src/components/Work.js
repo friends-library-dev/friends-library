@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import styled from '@emotion/styled';
+import styled from '@emotion/styled/macro';
 import KeyEvent from 'react-keyboard-event-handler';
 import type { Task, Dispatch } from '../type';
 import { currentTask } from '../select';
@@ -35,6 +35,7 @@ type Props = {|
   checkout: Dispatch,
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
+  toggleSidebarOpen: Dispatch,
 |};
 
 
@@ -49,7 +50,7 @@ class Work extends React.Component<Props> {
 
   render() {
     const { task } = this.props;
-    const { increaseFontSize, decreaseFontSize } = this.props;
+    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen } = this.props;
     if (!task.parentCommit) {
       return <Loading />;
     }
@@ -71,6 +72,10 @@ class Work extends React.Component<Props> {
           handleKeys={['meta+Down', 'ctrl+Down']}
           onKeyEvent={decreaseFontSize}
         />
+        <KeyEvent
+          handleKeys={['meta+ctrl+7', 'alt+ctrl+7']}
+          onKeyEvent={toggleSidebarOpen}
+        />
       </Wrap>
     );
   }
@@ -82,6 +87,7 @@ const mapState = state => ({
 
 const mapDispatch = {
   checkout: actions.checkout,
+  toggleSidebarOpen: actions.toggleSidebarOpen,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,
 };

@@ -2,8 +2,9 @@
 import { createAction } from 'redux-starter-kit';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import type { Slug, Url, Asciidoc } from '../../../type';
-import type { Dispatch, State, Task, ReduxThunk } from './type';
+import type { Dispatch, State, Task, ReduxThunk, SearchResult } from './type';
 import * as gh from './lib/github-api';
+import { goToSearchResult } from './lib/ace';
 import { currentTask } from './select';
 
 export const receiveAccessToken = createAction('RECEIVE_ACCESS_TOKEN');
@@ -18,6 +19,26 @@ export const setEditingFile = createAction('SET_EDITING_FILE');
 export const updateSearch = createAction('UPDATE_SEARCH');
 export const increaseEditorFontSize = createAction('INCREASE_EDITOR_FONT_SIZE');
 export const decreaseEditorFontSize = createAction('DECREASE_EDITOR_FONT_SIZE');
+export const cancelSearch = createAction('CANCEL_SEARCH');
+
+
+export function editSearchResult(result: SearchResult): ReduxThunk {
+  return (dispatch: Dispatch, getState: () => State) => {
+    const task = currentTask(getState());
+    if (!task) {
+      return;
+    }
+    dispatch({
+      type: 'EDIT_SEARCH_RESULT',
+      payload: {
+        taskId: task.id,
+        result: result,
+      }
+    });
+    // defer till next tick so ace editor can init
+    setTimeout(() => goToSearchResult(result), 1);
+  }
+}
 
 function friendYmlUrl(friendSlug: Slug): Url {
   return [

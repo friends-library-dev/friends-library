@@ -6,6 +6,7 @@ import type {
   Uuid,
   Name,
   Asciidoc,
+  EditionType,
 } from '../../../type';
 
 export type Dispatch = (any) => *;
@@ -24,6 +25,9 @@ export type GitHub = {|
 |};
 
 export type SearchResult = {|
+  documentSlug: Slug,
+  editionType: string,
+  path: FilePath,
   filename: string,
   start: {|
     line: number,
@@ -69,12 +73,22 @@ export type Repo = {|
   friendName: Name,
 |};
 
+export type Search = {|
+  searching: boolean,
+  string: string,
+  regexp: boolean,
+  caseSensitive: boolean,
+  documentSlug: ?Slug,
+  editionType: ?EditionType,
+|};
+
 export type State = {|
   github: GitHub,
   screen: string,
   currentTask?: Uuid,
   tasks: { [Uuid]: Task },
-  repos: Array<Repo>
+  repos: Array<Repo>,
+  search: Search,
 |};
 
 export type ReduxThunk = (dispatch: Dispatch, getState: () => State) => *;

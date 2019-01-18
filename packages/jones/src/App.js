@@ -51,7 +51,7 @@ class App extends React.Component<*> {
           {this.renderScreen()}
         </div>
         {isDev && <KeyEvent
-          handleKeys={['meta+1']}
+          handleKeys={['meta+ctrl+1']}
           onKeyEvent={hardReset}
         />}
       </>

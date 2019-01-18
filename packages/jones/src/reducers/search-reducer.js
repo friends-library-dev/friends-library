@@ -7,6 +7,17 @@ export const defaultState = {
 
 export default createReducer(defaultState, {
   UPDATE_SEARCH: (state, { payload }) => {
-    state.searching = !!payload.searching;
+    return {
+      ...state,
+      ...payload,
+    }
+  },
+
+  CANCEL_SEARCH: () => {
+    return defaultState;
+  },
+
+  WORK_ON_TASK: () => {
+    return defaultState;
   }
 });
