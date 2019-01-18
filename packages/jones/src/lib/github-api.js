@@ -217,7 +217,7 @@ async function createTree(
         path: f.path,
         mode: '100644',
         type: 'blob',
-        content: f.editedContent,
+        content: f.editedContent.replace(/Â£/g, '£'),
       })),
     });
     return sha;
