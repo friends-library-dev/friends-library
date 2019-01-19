@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import AceEditor from 'react-ace';
+import { Controlled as CodeMirror } from 'react-codemirror2'
 import { withSize } from 'react-sizeme';
 import styled from '@emotion/styled/macro';
 import type { Asciidoc } from '../../../../type';
@@ -9,10 +9,12 @@ import type { Dispatch } from '../type';
 import { currentTask } from '../select';
 import * as actions from '../actions';
 import Centered from './Centered';
-import 'brace/ext/searchbox';
-import 'brace/mode/asciidoc';
-import 'brace/theme/tomorrow_night';
+import throttle from 'lodash/throttle';
+import 'codemirror-asciidoc';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/darcula.css';
 
+const isMac = navigator.platform.indexOf('Mac') > -1;
 
 const noopEditor = new Proxy({}, {
   get(target, prop, receiver) {
@@ -22,31 +24,74 @@ const noopEditor = new Proxy({}, {
   },
 });
 
-const Wrap = styled.div`
+const EditorWrap = styled.div`
   position: relative;
   z-index: 1;
   background: #555;
   width: 100%;
   height: ${p => p.searching ? 'calc(35vh - 50px)' : '100%'};
 
-  & .ace_editor {
+  .react-codemirror2,
+  .CodeMirror {
     width: 100% !important;
     height: ${(p) => p.searching ? 'calc(35vh - 50px)' : '100%'} !important;
+  }
 
-    .ace_active-line {
-      background: #454545 !important;
-    }
+  .CodeMirror {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: ${p => p.fontSize}px;
+    background: #202125;
+    color: #bbb;
+    line-height: 140%;
+  }
 
-    .ace_selection {
-      background: blue !important;
-    }
+  .CodeMirror-gutters {
+    background: #202125;
+    border-right-color: #202125;
+  }
 
-    .search-result {
-      position: absolute;
-      z-index: 20;
-      background: green !important;
-      opacity: 0.75;
-    }
+  .CodeMirror-linenumber {
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #555;
+  }
+
+  .cm-header,
+  .adoc--white {
+    color: white;
+    font-style: bold;
+  }
+
+  .cm-string-2,
+  .cm-atom,
+  .adoc--grey {
+    color: rgba(171, 178, 191, 0.5) !important;
+  }
+
+  .cm-builtin,
+  .adoc--orange {
+    color: #d19a66 !important;
+  }
+
+  .adoc--red {
+    color: #cc6b73 !important;
+  }
+
+  .cm-variable-2,
+  .cm-keyword,
+  .adoc--blue {
+    color: #61afef !important;
+  }
+
+  .cm-variable-2 + .cm-keyword,
+  .adoc--green {
+    color: #98c379 !important;
+  }
+
+  .cm-string,
+  .adoc--purple {
+    color: #c678dd !important;
+    font-style: italic !important;
   }
 `;
 
@@ -67,84 +112,101 @@ type Props = {|
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
   toggleSidebarOpen: Dispatch,
+  path: string,
   size: {| width: number, height: number |},
 |};
 
 
 class Editor extends React.Component<Props> {
-  aceRef: any
+  cm: *
+  keyCommands: Object
 
   constructor(props) {
     super(props);
-    this.aceRef = React.createRef();
-  }
-
-  componentDidMount() {
-    this.addKeyCommands();
-  }
-
-  componentDidUpdate(prev) {
-    const { size, searching } = this.props;
-    if (size.width !== prev.size.width || searching !== prev.searching) {
-      this.editor().resize();
-    }
-
-    // ace seems to sometimes lose commands ¯\_(ツ)_/¯
-    if (!this.editor().commands.commands.increaseFontSize) {
-      this.addKeyCommands();
+    this.cm = noopEditor;
+    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen } = props;
+    const cmd = isMac ? 'Cmd' : 'Ctrl';
+    this.keyCommands = {
+      [isMac ? 'Cmd-Ctrl-7' : 'Alt-Ctrl-7']: () => toggleSidebarOpen(),
+      [`${cmd}-Up`]: () => increaseFontSize(),
+      [`${cmd}-Down`]: () => decreaseFontSize(),
     }
   }
 
-  addKeyCommands() {
-    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen } = this.props;
-    this.editor().commands.addCommand({
-      name: 'increaseFontSize',
-      bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
-      exec: () => increaseFontSize(),
-    });
-
-    this.editor().commands.addCommand({
-      name: 'decreaseFontSize',
-      bindKey: { mac: 'Command-Down', win: 'Ctrl-Down' },
-      exec: () => decreaseFontSize(),
-    });
-
-    this.editor().commands.addCommand({
-      name: 'toggleSidebarOpen',
-      bindKey: { mac: 'Command-Ctrl-7', win: 'Alt-Ctrl-7' },
-      exec: () => toggleSidebarOpen(),
-    });
-  }
-
-  editor() {
-    if (this.aceRef.current && this.aceRef.current.editor) {
-      return this.aceRef.current.editor;
+  componentDidUpdate(prev: Props) {
+    const { path } = this.props;
+    if (path !== prev.path) {
+      this.cm.refresh();
+      this.cm.scrollIntoView({ ch: 0, line: 0 });
     }
-    return noopEditor;
   }
 
-  renderAce() {
+  renderCodeMirror() {
     const { updateFile, adoc, fontSize } = this.props;
     return (
-      <AceEditor
-        style={{ fontSize }}
-        ref={this.aceRef}
-        mode="asciidoc"
-        theme="tomorrow_night"
-        onChange={updateFile}
-        value={adoc || ''}
-        editorProps={{ $blockScrolling: true }}
-        setOptions={{ wrap: true }}
+      <CodeMirror
+        editorDidMount={e => {
+          const quoteDelimiters = new Set();
+          e.on('renderLine', (cm, line, el) => {
+            const { line: lineNumber } = cm.lineInfo(line);
+
+            if (line.text === '____') {
+              quoteDelimiters.add(lineNumber)
+              const span = el.querySelector('.cm-variable-2');
+              if (span) {
+                span.classList = 'adoc--purple';
+              }
+            } else {
+              quoteDelimiters.delete(lineNumber);
+
+              const ordered = [...quoteDelimiters];
+              const inQuote = ordered.filter(ln => ln < lineNumber).length % 2;
+
+              if (inQuote) {
+                const span = el.querySelector('span');
+                if (span) {
+                  span.classList = 'adoc--purple';
+                }
+              }
+            }
+
+            // console.log(quoteDelimiters.values())
+
+
+            if (line.text.indexOf('* ') === 0) {
+              const span = el.querySelector('.cm-keyword');
+              if (span) {
+                span.classList = 'adoc--red';
+              }
+            }
+
+            if (line.text.indexOf('[') === 0) {
+              // console.log(line, el);
+            }
+          });
+          e.refresh();
+          this.cm = e;
+        }}
+        value={adoc}
+        onBeforeChange={(ed, data, value) => updateFile(value)}
+        options={{
+          lineNumbers: true,
+          theme: 'darcula',
+          mode: 'asciidoc',
+          lineWrapping: true,
+          // viewportMargin: Infinity,
+          extraKeys: this.keyCommands,
+        }}
       />
     );
   }
 
   render() {
-    const { adoc, searching } = this.props;
+    const { adoc, searching, fontSize } = this.props;
     return (
-      <Wrap searching={searching} className="Editor">
-        {adoc === null ? <ChooseAFile /> : this.renderAce()}
-      </Wrap>
+      <EditorWrap searching={searching} fontSize={fontSize}>
+        {adoc === null ? <ChooseAFile /> : this.renderCodeMirror()}
+      </EditorWrap>
     );
   }
 }
@@ -156,6 +218,7 @@ const mapState = state => {
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
     adoc: file ? file.editedContent || file.content : null,
+    path: file ? file.path : '',
   };
 };
 

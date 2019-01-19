@@ -1,5 +1,6 @@
 // @flow
 import Octokit from '@octokit/rest';
+import { Base64 } from 'js-base64';
 import type { Slug } from '../../../../type';
 import type { Task, File } from '../type';
 import { values } from './utils';
@@ -67,7 +68,7 @@ export async function getAdocFiles(
     return {
       path: blob.path,
       sha: blob.sha,
-      content: window.atob(content),
+      content: Base64.decode(content),
     }
   });
 
