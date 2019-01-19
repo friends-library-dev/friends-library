@@ -6,6 +6,14 @@ import { values } from './utils';
 
 const isDev = process.env.NODE_ENV === 'development';
 
+let GITHUB_ORG = 'friends-library';
+if (process.env.GITHUB_ORG) {
+  GITHUB_ORG = process.env.GITHUB_ORG;
+} else if (process.env.REACT_APP_NETLIFY_CONTEXT === 'deploy-preview' || isDev) {
+  GITHUB_ORG = 'friends-library-sandbox';
+}
+export const ORG = GITHUB_ORG;
+
 type Sha = string;
 type RepoSlug = string;
 type BranchName = string;
@@ -25,8 +33,8 @@ export function authenticate(token: string): void {
 }
 
 export async function getFriendRepos(): Promise<Array<Object>> {
-  const repos = await gh.paginate('/orgs/friends-library/repos');
-  return repos.filter(repo => repo.name !== 'friends-library');
+  const repos = await gh.paginate(`/orgs/${ORG}/repos`);
+  return repos.filter(repo => repo.name !== ORG);
 }
 
 export async function getRepoSlug(repoId: number): Promise<Slug> {
@@ -165,10 +173,10 @@ async function openPullRequest(
   const { data: { number } } = await req('POST /repos/:owner/:repo/pulls', {
     repo,
     title,
-    owner: 'friends-library',
+    owner: ORG,
     head: `${user}:${branch}`,
     base: 'master',
-    body: isDev ? 'ignore, testing' : '@jaredh159 @Henderjay',
+    body: !isDev && ORG === 'friends-library' ? '@jaredh159 @Henderjay' : '',
     maintainer_can_modify: true,
   });
   return number;
@@ -178,7 +186,7 @@ async function updateHead(
   repo: RepoSlug,
   branch: BranchName,
   sha: Sha,
-  owner: string = 'friends-library',
+  owner: string = ORG,
 ): Promise<void> {
   await req('PATCH /repos/:owner/:repo/git/refs/heads/:branch', {
     repo,
@@ -193,7 +201,7 @@ async function createCommit(
   treeSha: Sha,
   parent: Sha,
   message: string,
-  owner: string = 'friends-library',
+  owner: string = ORG,
 ): Promise<Sha> {
   const { data: { sha } } = await req('POST /repos/:owner/:repo/git/commits', {
     owner,
@@ -209,7 +217,7 @@ async function createTree(
   repo: RepoSlug,
   baseTreeSha: Sha,
   files: { [string]: File },
-  owner: string = 'friends-library',
+  owner: string = ORG,
 ): Promise<Sha> {
   const { data: { sha } } = await req('POST /repos/:owner/:repo/git/trees', {
       repo,
@@ -229,7 +237,7 @@ export async function createBranch(
   repo: RepoSlug,
   newBranchName: BranchName,
   parentCommit: Sha,
-  owner: string = 'friends-library',
+  owner: string = ORG,
 ): Promise<{| branch: BranchName, sha: Sha |}> {
   const res = await gh.git.createRef({
     owner,
@@ -246,7 +254,7 @@ export async function createBranch(
 export async function getTreeSha(
   repo: RepoSlug,
   sha: Sha,
-  owner: string = 'friends-library'
+  owner: string = ORG
 ): Promise<Sha> {
   const res = await req('/repos/:owner/:repo/git/commits/:sha', {
     owner,
@@ -258,7 +266,7 @@ export async function getTreeSha(
 
 export async function req(route: string, opts: Object = {}): Promise<*> {
   if (route.match(/:owner/) && !opts.owner) {
-    opts = { ...opts, owner: 'friends-library' };
+    opts = { ...opts, owner: ORG };
   }
   return gh.request(route, opts);
 }

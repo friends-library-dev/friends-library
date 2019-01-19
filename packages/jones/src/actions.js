@@ -6,6 +6,7 @@ import type { Slug, Url, Asciidoc } from '../../../type';
 import type { Dispatch, State, Task, ReduxThunk, SearchResult } from './type';
 import * as gh from './lib/github-api';
 import { goToSearchResult } from './lib/ace';
+import { ORG } from './lib/github-api';
 import { currentTask } from './select';
 
 export const receiveAccessToken = createAction('RECEIVE_ACCESS_TOKEN');
@@ -44,7 +45,7 @@ export function editSearchResult(result: SearchResult): ReduxThunk {
 function friendYmlUrl(friendSlug: Slug): Url {
   return [
     'https://raw.githubusercontent.com/',
-    'friends-library/friends-library/master/',
+    `${ORG}/friends-library/master/`,
     'packages/friends/yml/en/',
     `${friendSlug}.yml`,
   ].join('');

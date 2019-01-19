@@ -7,7 +7,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Todo:
 
 * [ ] undo/redo stuff (omnidan/redux-undo -- on just `tasks`?)
-* [ ] communication state for app throbbing network things
 * [ ] delete task when PR merged (and task has no unpushed work)
 * [ ] multi-column view editor
 * [ ] render/HTML preview
@@ -16,6 +15,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [ ] allow custom PR body composition at submit time
 * [ ] allow custom commit message for re-submit commits
 * [ ] delete branch from fork when deleting task
+* [x] communication state for app throbbing network things
 * [x] network error recovery
 * [x] dudley bug: funky character/encoding
 * [x] order editions in sidebar (updated, modernized, orig)
