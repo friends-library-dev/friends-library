@@ -8,6 +8,7 @@ import * as actions from '../actions';
 import { values } from '../lib/utils';
 import type { Task as TaskType, Dispatch, Repo } from '../type';
 import Button from './Button';
+import { ORG } from '../lib/github-api';
 
 const Wrap = styled.li`
   background: #999;
@@ -102,6 +103,11 @@ class Task extends React.Component<Props, State> {
   }
 
   confirmDelete = () => {
+    if (process.env.NODE_ENV === 'development') {
+      this.deleteTask();
+      return;
+    }
+
     const msg = 'You will lose any work and there is no undo.\nPlease type "Hubberthorne" to confirm:\n\n';
     smalltalk
       .prompt('Delete Task?', msg)
@@ -165,7 +171,7 @@ class Task extends React.Component<Props, State> {
               <Button
                 secondary
                 target="_blank"
-                href={`https://github.com/friends-library/${repo.slug}/pull/${task.prNumber}`}
+                href={`https://github.com/${ORG}/${repo.slug}/pull/${task.prNumber}`}
                 className="pr"
               >
                 <i className="fas fa-code-branch" />
