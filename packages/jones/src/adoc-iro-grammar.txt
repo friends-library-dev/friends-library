@@ -1,0 +1,217 @@
+## plugin this data at https://eeyo.io/iro/ to generate ace grammar 👍
+
+name = adoc
+file_extensions [] = adoc;
+background_color = #222
+color = #aaa
+
+contexts[] {
+  main : context {
+    : pattern {
+      regex \= (^=+ .+$)
+      styles[] = .header;
+    }
+    : pattern {
+      regex \= (^\* )
+      styles[] = .list_item;
+    }
+    : pattern {
+      regex \= (^--$)
+      styles[] = .obd;
+    }
+    : pattern {
+      regex \= (("|')`.+`("|'))
+      styles[] = .inline_quote;
+    }
+    : pattern {
+      regex \= (\^$)
+      styles[] = .fn_caret;
+    }
+    : inline_push {
+      regex \= (^.+(?=::$))
+      styles[] = .dl_term;
+      default_style = .dl_colon
+      : eol_pop {}
+    }
+    : inline_push {
+      regex \= (\+\+\+)
+      styles[] = .escaper;
+      default_style = .escaped
+      : pop {
+         regex \= (\+\+\+)
+         styles[] = .escaper;
+      }
+    }
+    : inline_push {
+      regex \= (^____$)
+      styles[] = .quote;
+      default_style = .quote
+      : pop {
+         regex \= (^____$)
+         styles[] = .quote;
+      }
+    }
+    : pattern {
+      regex \= (__*.+?__*)
+      styles[] = .italic;
+    }
+    : pattern {
+      regex \= (^'''$)
+      styles[] = .hr;
+    }
+    : inline_push {
+      regex \= (footnote(?=:\[))
+      styles[] = .footnote;
+      : pop {
+         regex \= (\])
+         styles[] = .fn_delimit;
+      }
+      : pattern {
+         regex \= (:\[)
+         styles[] = .fn_delimit;
+      }
+      : pattern {
+         regex \= (^{footnote-paragraph-split}$)
+         styles[] = .multi_fn_split;
+      }
+      : pattern {
+         regex \= ([^\]]+)
+         styles[] = .footnote_content;
+      }
+    }
+    : inline_push {
+      regex \= (^\[(?=(quote|verse)))
+      styles[] = .quote_head;
+      : pop {
+        regex \= (\]$)
+        styles[] = .quote_head;
+      }
+      : pattern {
+         regex \= ((quote|verse))
+         styles[] = .quote_type;
+      }
+      : pattern {
+         regex \= (\.|,)
+         styles[] = .quote_head_meta;
+      }
+      : pattern {
+         regex \= ([^\],\.]+)
+         styles[] = .quote_head_subtle;
+      }
+    }
+    : inline_push {
+      regex \= (^\[)
+      styles[] = .bracket;
+      : pop {
+        regex \= (\]$)
+        styles[] = .bracket;
+      }
+      : pattern {
+         regex \= (\.|#)
+         styles[] = .dot;
+      }
+      : pattern {
+         regex \= (.)
+         styles[] = .bracket_inner;
+      }
+    }
+  }
+}
+
+styles [] {
+  .hr : style {
+    textmate_scope = "meta.diff.header.from-file";
+    color = "cyan";
+  }
+  .bracket_inner : style {
+    textmate_scope = "keyword.control";
+    color = "red";
+   }
+  .multi_fn_split : style {
+    textmate_scope = "comment";
+    color = "#333";
+  }
+  .dl_term : style {
+    textmate_scope = "markup.heading";
+    color = "white";
+    bold = "true";
+  }
+  .dl_colon : style {
+    textmate_scope = "markup.raw";
+    color = "orange";
+  }
+  .escaped : style {
+    textmate_scope = "keyword.other.unit";
+    color = "green";
+  }
+  .escaper : style {
+    textmate_scope = "meta.separator";
+    color = "orange";
+  }
+  .fn_caret : style {
+    textmate_scope = "markup.inserted punctuation";
+    color = "yellow";
+  }
+  .inline_quote : style {
+    textmate_scope = "meta.selector";
+    color = "orange";
+  }
+  .quote_head_subtle : style {
+    textmate_scope = "invalid";
+    color = "#555";
+  }
+  .quote_head_meta : style {
+    textmate_scope = "meta.property-name";
+    color = "purple";
+  }
+  .quote_type : style {
+    textmate_scope = "invalid.illegal";
+    color = "blue";
+  }
+  .quote_head : style {
+    textmate_scope = "meta.require";
+    color = "purple";
+    italic = "true";
+  }
+  .italic : style {
+    textmate_scope = "markup.italic";
+    color = "purple";
+    italic = "true";
+  }
+  .quote : style {
+    textmate_scope = "markup.quote";
+    color = "purple";
+  }
+  .footnote_content : style {
+    textmate_scope = "meta.diff.index";
+    color = "green";
+  }
+  .fn_delimit : style {
+    textmate_scope = "meta.diff";
+    color = "pink";
+  }
+  .footnote : style {
+    textmate_scope = "markup.raw.inline";
+    color = "light_blue";
+  }
+  .obd : style {
+    textmate_scope = "markup.bold";
+    color = "blue" ;
+  }
+  .dot : style {
+    textmate_scope = "meta.tag string.quoted";
+    color = "orange" ;
+  }
+  .header : style {
+    textmate_scope = "punctuation";
+    color = "white" ;
+  }
+  .list_item : style {
+    textmate_scope = "meta.function-call";
+    color = "red" ;
+  }
+  .bracket : style {
+    textmate_scope = "punctuation.definition.comment";
+    color = "yellow" ;
+  }
+}

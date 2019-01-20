@@ -2,7 +2,7 @@
 import { createReducer } from 'redux-starter-kit';
 
 export const defaultState = {
-  editorFontSize: 13,
+  editorFontSize: 15,
 };
 
 export default createReducer(defaultState, {

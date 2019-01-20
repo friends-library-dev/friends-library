@@ -3,16 +3,15 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
-import styled from '@emotion/styled/macro';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../type';
 import { currentTask } from '../select';
 import * as actions from '../actions';
 import Centered from './Centered';
+import StyledEditor from './StyledEditor';
+import './adoc-mode';
 import 'brace/ext/searchbox';
-import 'brace/mode/asciidoc';
 import 'brace/theme/tomorrow_night';
-
 
 const noopEditor = new Proxy({}, {
   get(target, prop, receiver) {
@@ -21,34 +20,6 @@ const noopEditor = new Proxy({}, {
     return fn;
   },
 });
-
-const Wrap = styled.div`
-  position: relative;
-  z-index: 1;
-  background: #555;
-  width: 100%;
-  height: ${p => p.searching ? 'calc(35vh - 50px)' : '100%'};
-
-  & .ace_editor {
-    width: 100% !important;
-    height: ${(p) => p.searching ? 'calc(35vh - 50px)' : '100%'} !important;
-
-    .ace_active-line {
-      background: #454545 !important;
-    }
-
-    .ace_selection {
-      background: blue !important;
-    }
-
-    .search-result {
-      position: absolute;
-      z-index: 20;
-      background: green !important;
-      opacity: 0.75;
-    }
-  }
-`;
 
 const ChooseAFile = () => (
   <Centered>
@@ -129,7 +100,7 @@ class Editor extends React.Component<Props> {
       <AceEditor
         style={{ fontSize }}
         ref={this.aceRef}
-        mode="asciidoc"
+        mode="adoc"
         theme="tomorrow_night"
         onChange={updateFile}
         value={adoc || ''}
@@ -142,9 +113,9 @@ class Editor extends React.Component<Props> {
   render() {
     const { adoc, searching } = this.props;
     return (
-      <Wrap searching={searching} className="Editor">
+      <StyledEditor searching={searching} className="Editor">
         {adoc === null ? <ChooseAFile /> : this.renderAce()}
-      </Wrap>
+      </StyledEditor>
     );
   }
 }
