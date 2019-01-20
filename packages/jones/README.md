@@ -11,10 +11,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [ ] multi-column view editor
 * [ ] render/HTML preview
 * [ ] global (by friend or doc or edition) find
-* [ ] match syntax highlighting of atom
 * [ ] allow custom PR body composition at submit time
 * [ ] allow custom commit message for re-submit commits
 * [ ] delete branch from fork when deleting task
+* [x] match syntax highlighting of atom
 * [x] communication state for app throbbing network things
 * [x] network error recovery
 * [x] dudley bug: funky character/encoding
