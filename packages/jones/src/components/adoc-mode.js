@@ -179,7 +179,6 @@ window.ace.define(
     /* ------------------------ END ------------------------------ */
     oop.inherits(AdocHighlightRules, TextHighlightRules);
     exports.AdocHighlightRules = AdocHighlightRules;
-    console.log({ AdocHighlightRules });
   }
 );
 

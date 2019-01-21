@@ -35,6 +35,7 @@ type Props = {|
   adoc: ?Asciidoc,
   updateFile: Dispatch,
   searching: boolean,
+  editingFile: string,
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
   toggleSidebarOpen: Dispatch,
@@ -52,12 +53,18 @@ class Editor extends React.Component<Props> {
 
   componentDidMount() {
     this.addKeyCommands();
+    this.editor().focus();
+    this.editor().gotoLine(0);
   }
 
   componentDidUpdate(prev) {
-    const { size, searching } = this.props;
+    const { size, searching, editingFile } = this.props;
     if (size.width !== prev.size.width || searching !== prev.searching) {
       this.editor().resize();
+    }
+
+    if (editingFile !== prev.editingFile) {
+      this.editor().getSession().setUndoManager(new window.ace.UndoManager())
     }
 
     // ace seems to sometimes lose commands ¯\_(ツ)_/¯
@@ -124,6 +131,7 @@ const mapState = state => {
   const task = currentTask(state);
   const file = task ? task.files[task.editingFile || ''] : null;
   return {
+    editingFile: task ? task.editingFile : '',
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
     adoc: file ? file.editedContent || file.content : null,
