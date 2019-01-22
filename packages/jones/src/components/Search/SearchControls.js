@@ -7,6 +7,43 @@ import debounce from 'lodash/debounce';
 import Button from '../Button';
 import * as actions from '../../actions';
 
+const Modifiers = styled.div`
+  color: #555;
+  font-size: 13px;
+
+  label {
+    margin-right: 0.9em;
+    position: relative;
+    display: inline-block;
+    line-height: 29px;
+    vertical-align: middle;
+    padding-left: 20px;
+  }
+
+  input {
+    appearance: none;
+    background: #222;
+    margin-right: 0.35em;
+    width: 12px;
+    height: 12px;
+    position: absolute !important;
+    bottom: 5px;
+    left: 1px;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+  }
+
+  input:focus {
+    outline: 0;
+  }
+
+  input:checked {
+    opacity: 0.6;
+    background: var(--accent);
+  }
+`;
+
 const SearchBar = styled.div`
   padding-right: 1.5em;
   display: flex;
@@ -43,6 +80,12 @@ type Props = {|
   undo: Dispatch,
   redo: Dispatch,
   cancelSearch: Dispatch,
+  toggleCaseSensitive: Dispatch,
+  toggleRegexp: Dispatch,
+  toggleWords: Dispatch,
+  caseSensitive: boolean,
+  words: boolean,
+  regexp: boolean,
   changeSearchTerm: (string) => void,
   changeReplaceTerm: (string) => void,
   search: () => void,
@@ -108,9 +151,46 @@ class Component extends React.Component<Props, State> {
 
   render() {
     const { replaceTerm, } = this.state;
-    const { searchTerm, changeSearchTerm, search } = this.props;
+    const {
+      searchTerm,
+      changeSearchTerm,
+      search,
+      toggleCaseSensitive,
+      toggleWords,
+      toggleRegexp,
+      regexp,
+      words,
+      caseSensitive,
+    } = this.props;
+
     return (
       <div>
+        <Modifiers>
+          <label>
+            <input
+              type="checkbox"
+              checked={words}
+              onChange={() => toggleWords()}
+            />
+            whole words
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={caseSensitive}
+              onChange={() => toggleCaseSensitive()}
+            />
+            case sensitive
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={regexp}
+              onChange={() => toggleRegexp()}
+            />
+            regexp
+          </label>
+        </Modifiers>
         <SearchBar>
           <input
             ref={this.searchInput}
@@ -146,10 +226,19 @@ class Component extends React.Component<Props, State> {
   }
 }
 
+const mapState = state => ({
+  words: state.search.words,
+  regexp: state.search.regexp,
+  caseSensitive: state.search.caseSensitive,
+});
+
 const mapDispatch = {
+  toggleWords: actions.toggleSearchWords,
+  toggleCaseSensitive: actions.toggleSearchCaseSensitive,
+  toggleRegexp: actions.toggleSearchRegexp,
   cancelSearch: actions.cancelSearch,
   undo: actions.undoTasks,
   redo: actions.redoTasks,
 }
 
-export default connect(null, mapDispatch)(Component);
+export default connect(mapState, mapDispatch)(Component);

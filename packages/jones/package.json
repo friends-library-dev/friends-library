@@ -6,6 +6,7 @@
     "@octokit/rest": "^16.8.1",
     "classnames": "^2.2.6",
     "emotion": "^10.0.6",
+    "escape-string-regexp": "^1.0.5",
     "js-base64": "^2.5.0",
     "js-yaml": "^3.12.1",
     "re-resizable": "^4.11.0",

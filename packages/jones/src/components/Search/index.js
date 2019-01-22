@@ -16,7 +16,7 @@ const SearchWrap = styled.div`
   display: flex;
   flex-direction: column;
   background: #000;
-  padding: 1.5em 0 0 1.5em;
+  padding: 0.75em 0 0 1.5em;
   height: 70vh;
   flex: 0 0 auto;
   color: white;
@@ -48,6 +48,7 @@ type Props = {|
   files: Array<File>,
   searching: boolean,
   regexp: boolean,
+  words: boolean,
   caseSensitive: boolean,
   cancelSearch: Dispatch,
   replaceAll: Dispatch,
@@ -64,9 +65,17 @@ class Search extends React.Component<Props, State> {
   state = initialState
 
   componentDidUpdate(prev) {
-    const { files } = this.props;
+    const { files, regexp, words, caseSensitive } = this.props;
     if (files.length !== prev.files.length) {
       this.setState(initialState);
+      return;
+    }
+    if (
+      (regexp !== prev.regexp)
+      || (words !== prev.words)
+      || (caseSensitive !== prev.caseSensitive)
+    ) {
+      this.setState({ results: [], searchComplete: false }, this.search);
     }
   }
 
@@ -86,13 +95,14 @@ class Search extends React.Component<Props, State> {
 
   search = () => {
     const { searchTerm } = this.state;
-    const { files, regexp, caseSensitive } = this.props;
+    const { files, regexp, caseSensitive, words } = this.props;
     if (searchTerm.trim()) {
       const results = searchFiles(
         searchTerm,
         files,
-        regexp,
+        words,
         caseSensitive,
+        regexp,
       );
       this.setState({ results, searchComplete: true });
     }
@@ -166,12 +176,13 @@ class Search extends React.Component<Props, State> {
 }
 
 const mapState = state => {
-  const { search: { searching } } = state;
+  const { search: { searching, regexp, caseSensitive, words } } = state;
   return {
     files: searchedFiles(state),
     searching,
-    regexp: false,
-    caseSensitive: false,
+    regexp,
+    caseSensitive,
+    words,
   };
 };
 
