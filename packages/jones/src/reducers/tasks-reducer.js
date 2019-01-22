@@ -10,9 +10,48 @@ function fastForward(task, commit) {
   });
 }
 
+function replaceInResult(result, replace, files, adjust = new Map()) {
+  const { path, start, end } = result;
+  const file = files[path];
+  const content = file.editedContent || file.content;
+  const lines = content.split('\n');
+  const index = start.line - 1;
+  const line = lines[index];
+  const prevLength = line.length;
+  const key = `${result.path}:${index}`;
+
+  if (!adjust.has(key)) {
+    adjust.set(key, 0);
+  }
+
+  const offset = adjust.get(key) || 0;
+
+  lines[index] = [
+    line.substring(0 - offset, start.column - offset),
+    replace,
+    line.substring(end.column - offset)
+  ].join('');
+
+  const diff = prevLength - lines[index].length;
+  adjust.set(key, offset + diff);
+  file.editedContent = lines.join('\n');
+}
+
 export default createReducer({}, {
-  REHYDRATE: (state, action) => {
-    return action.payload.tasks;
+  REPLACE_IN_RESULT: (state, { payload: { taskId, result, replace } }) => {
+    const task = state[taskId];
+    if (task) {
+      task.editingFile = result.path;
+      replaceInResult(result, replace, task.files);
+    }
+  },
+
+  REPLACE_IN_RESULTS: (state, { payload: { taskId, results, replace } }) => {
+    const task = state[taskId];
+    if (task) {
+      const adjust = new Map();
+      results.forEach(r => replaceInResult(r, replace, task.files, adjust));
+    }
   },
 
   CREATE_TASK: (state, action) => {

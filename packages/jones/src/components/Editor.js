@@ -112,7 +112,10 @@ class Editor extends React.Component<Props> {
         onChange={updateFile}
         value={adoc || ''}
         editorProps={{ $blockScrolling: true }}
-        setOptions={{ wrap: true }}
+        setOptions={{
+          indentedSoftWrap: false,
+          wrap: true, // !!! <- must be after `indentedSoftWrap`
+        }}
       />
     );
   }
