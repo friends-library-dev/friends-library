@@ -1,15 +1,21 @@
 // @flow
+import escape from 'escape-string-regexp';
 import type { File, SearchResult } from '../type';
 
 export function searchFiles(
   searchTerm: string,
   files: Array<File>,
-  _regexp: boolean = false,
-  _caseSensitive: boolean = false,
+  words: boolean = true,
+  caseSensitive: boolean = false,
+  regexp: boolean = false,
 ): Array<SearchResult> {
   const results = files.reduce((acc, file) => {
     const lines = (file.editedContent || file.content || '').split(/\n/);
-    const exp = new RegExp(`\\b${searchTerm}\\b`, 'gi');
+    let pattern = regexp ? searchTerm : escape(searchTerm);
+    if (words) {
+      pattern = `\\b${pattern}\\b`;
+    }
+    const exp = new RegExp(pattern, `g${caseSensitive ? '' : 'i'}`);
     lines.forEach((line, index) => {
       let match;
       while ((match = exp.exec(line))) {

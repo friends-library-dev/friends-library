@@ -85,6 +85,7 @@ export type Repo = {|
 export type Search = {|
   searching: boolean,
   regexp: boolean,
+  words: boolean,
   caseSensitive: boolean,
   documentSlug?: ?Slug,
   editionType?: ?EditionType,

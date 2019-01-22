@@ -150,6 +150,7 @@ class FriendFiles extends React.Component<Props> {
       searching: true,
       documentSlug: documentSlug || null,
       editionType: editionType || null,
+      filename: null,
     });
   }
 
