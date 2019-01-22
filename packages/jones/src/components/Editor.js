@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
+import debounce from 'lodash/debounce';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../type';
 import { currentTask } from '../select';
@@ -34,6 +35,8 @@ type Props = {|
   fontSize: number,
   adoc: ?Asciidoc,
   updateFile: Dispatch,
+  undo: Dispatch,
+  redo: Dispatch,
   searching: boolean,
   editingFile: string,
   increaseFontSize: Dispatch,
@@ -74,7 +77,7 @@ class Editor extends React.Component<Props> {
   }
 
   addKeyCommands() {
-    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen } = this.props;
+    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen, undo, redo, } = this.props;
     this.editor().commands.addCommand({
       name: 'increaseFontSize',
       bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
@@ -91,6 +94,18 @@ class Editor extends React.Component<Props> {
       name: 'toggleSidebarOpen',
       bindKey: { mac: 'Command-Ctrl-7', win: 'Alt-Ctrl-7' },
       exec: () => toggleSidebarOpen(),
+    });
+
+    this.editor().commands.addCommand({
+      name: 'undo',
+      bindKey: { mac: 'Command-Z', win: 'Ctrl-Z' },
+      exec: () => undo(),
+    });
+
+    this.editor().commands.addCommand({
+      name: 'redo',
+      bindKey: { mac: 'Command-Shift-Z', win: 'Alt-Shift-Z' },
+      exec: () => redo(),
     });
   }
 
@@ -109,7 +124,7 @@ class Editor extends React.Component<Props> {
         ref={this.aceRef}
         mode="adoc"
         theme="tomorrow_night"
-        onChange={updateFile}
+        onChange={debounce(updateFile, 500)}
         value={adoc || ''}
         editorProps={{ $blockScrolling: true }}
         setOptions={{
@@ -144,6 +159,8 @@ const mapState = state => {
 const mapDispatch = {
   updateFile: actions.updateEditingFile,
   toggleSidebarOpen: actions.toggleSidebarOpen,
+  undo: actions.undoTasks,
+  redo: actions.redoTasks,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,
 };

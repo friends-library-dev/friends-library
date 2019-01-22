@@ -1,19 +1,23 @@
 // @flow
 import { configureStore } from 'redux-starter-kit';
 import { combineReducers } from 'redux';
-import { defaultState as githubDefaultState } from './reducers/github-reducer';
+import type { State } from './type';
 import { defaultState as prefsDefaultState } from './reducers/prefs-reducer';
 import { defaultState as defaultSearchState } from './reducers/search-reducer';
 import rootReducer from './reducers';
 
-const defaultState = {
+const defaultState: State = {
   version: 1,
   screen: 'TASKS',
   currentTask: null,
-  tasks: {},
+  tasks: {
+    past: [],
+    present: {},
+    future: [],
+  },
   repos: [],
   search: defaultSearchState,
-  github: githubDefaultState,
+  github: {},
   prefs: prefsDefaultState,
   network: [],
 };
@@ -24,7 +28,15 @@ const loadState = () => {
     if (serializedState == null) {
       return {};
     }
-    return JSON.parse(serializedState);
+    const state = JSON.parse(serializedState);
+    return {
+      ...state,
+      tasks: {
+        past: [],
+        present: state.tasks || {},
+        future: [],
+      }
+    }
   } catch (err) {
     return {};
   }
@@ -64,7 +76,13 @@ export default function () {
     },
   });
 
-  store.subscribe(() => saveState(store.getState()));
+  store.subscribe(() => {
+    const state = store.getState()
+    saveState({
+      ...state,
+      tasks: state.tasks.present,
+    });
+  });
 
   // $FlowFixMe
   if (module.hot) {

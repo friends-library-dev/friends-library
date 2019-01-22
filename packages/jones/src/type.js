@@ -26,10 +26,10 @@ export type Action = {|
 |};
 
 export type GitHub = {|
-  token: string,
-  name: Name,
-  avatar: Url,
-  user: string,
+  token?: string,
+  name?: Name,
+  avatar?: Url,
+  user?: string,
 |};
 
 export type SearchResult = {|
@@ -87,15 +87,25 @@ export type Search = {|
   searchTerm: string,
   regexp: boolean,
   caseSensitive: boolean,
-  documentSlug: ?Slug,
-  editionType: ?EditionType,
+  documentSlug?: ?Slug,
+  editionType?: ?EditionType,
+|};
+
+export type Tasks = { [Uuid]: Task };
+
+export type UndoableTasks = {|
+  past: Array<Tasks>,
+  present: Tasks,
+  future: Array<Tasks>,
 |};
 
 export type State = {|
+  version: number,
+  prefs: Object,
   github: GitHub,
   screen: string,
-  currentTask?: Uuid,
-  tasks: { [Uuid]: Task },
+  currentTask: ?Uuid,
+  tasks: UndoableTasks,
   repos: Array<Repo>,
   search: Search,
   network: Array<string>

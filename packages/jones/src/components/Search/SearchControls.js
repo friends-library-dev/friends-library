@@ -1,8 +1,11 @@
 // @flow
 import * as React from 'react';
+import { connect } from 'react-redux';
+import type { Dispatch } from '../../type';
 import styled from '@emotion/styled/macro';
 import debounce from 'lodash/debounce';
 import Button from '../Button';
+import * as actions from '../../actions';
 
 const SearchBar = styled.div`
   padding-right: 1.5em;
@@ -37,6 +40,8 @@ const SearchBar = styled.div`
 
 type Props = {|
   searchTerm: string,
+  undo: Dispatch,
+  redo: Dispatch,
   changeSearchTerm: (string) => void,
   changeReplaceTerm: (string) => void,
   search: () => void,
@@ -83,8 +88,16 @@ class Component extends React.Component<Props, State> {
     this.props.replaceAll();
   }
 
+  handleUndoRedo = event => {
+    const { undo, redo } = this.props;
+    if (event.key === 'z' && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      event.shiftKey ? redo() : undo();
+    }
+  }
+
   render() {
-    const { replaceTerm } = this.state;
+    const { replaceTerm, } = this.state;
     const { searchTerm, changeSearchTerm, search } = this.props;
     return (
       <div>
@@ -94,7 +107,8 @@ class Component extends React.Component<Props, State> {
             value={searchTerm}
             placeholder="Find"
             onChange={(e) => changeSearchTerm(e.target.value)}
-            onKeyPress={event => {
+            onKeyDown={event => {
+              this.handleUndoRedo(event);
               if (event.key === 'Enter') {
                 search();
               }
@@ -110,6 +124,7 @@ class Component extends React.Component<Props, State> {
             value={replaceTerm}
             placeholder="Replace"
             onChange={this.handleReplaceTermChange}
+            onKeyDown={this.handleUndoRedo}
           />
           <Button className="Button" secondary onClick={this.replaceAll} height={35}>
             <i className="fas fa-sync" />
@@ -121,4 +136,9 @@ class Component extends React.Component<Props, State> {
   }
 }
 
-export default Component;
+const mapDispatch = {
+  undo: actions.undoTasks,
+  redo: actions.redoTasks,
+}
+
+export default connect(null, mapDispatch)(Component);

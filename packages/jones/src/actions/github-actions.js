@@ -8,6 +8,9 @@ import type { Task, ReduxThunk, Dispatch, State } from '../type';
 export function submitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const { github: { user } } = getState();
+    if (!user) {
+      return;
+    }
     dispatch({ type: 'SUBMITTING_TASK' });
     const pr = await tryGithub(async () => {
       return await gh.createNewPullRequest(task, user)
@@ -25,6 +28,9 @@ export function submitTask(task: Task): ReduxThunk {
 export function resubmitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const { github: { user } } = getState();
+    if (!user) {
+      return;
+    }
     dispatch({ type: 'RE_SUBMITTING_TASK' });
     const sha = await tryGithub(async () => {
       return await gh.addCommit(task, user);
@@ -63,7 +69,6 @@ export function checkout(task: Task): ReduxThunk {
     }, 'CHECKOUT', dispatch);
 
     if (data) {
-      dispatch({ type: 'END_CHECKOUT' });
       dispatch({
         type: 'UPDATE_TASK',
         payload: {
@@ -71,6 +76,7 @@ export function checkout(task: Task): ReduxThunk {
           data,
         }
       });
+      dispatch({ type: 'END_CHECKOUT' });
     } else {
       dispatch({ type: 'CHANGE_SCREEN', payload: 'TASKS' });
     }

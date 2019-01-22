@@ -8,7 +8,7 @@ import { jsx, css } from '@emotion/core';
 import type { Uuid } from '../../../../type';
 import type { Dispatch, FilePath } from '../type';
 import * as actions from '../actions';
-import { documentTree } from '../select';
+import { documentTree, currentTask } from '../select';
 
 const wrap = css`
   margin: 0;
@@ -241,9 +241,12 @@ class FriendFiles extends React.Component<Props> {
 }
 
 const mapState = state => {
-  const task = state.tasks[state.currentTask];
+  const task = currentTask(state);
+  if (!task) {
+    throw new Error('task not found');
+  }
   return {
-    taskId: task.id || '',
+    taskId: task.id,
     documents: documentTree(task),
     editingFile: task.editingFile,
     collapsed: task.collapsed || {},
