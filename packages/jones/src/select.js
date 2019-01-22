@@ -9,20 +9,38 @@ export function currentTask(state: State): ?Task {
   return state.tasks.present[state.currentTask];
 }
 
+export function currentTaskFriendName(state: State): string {
+  const task = currentTask(state);
+  if (!task) {
+    return '';
+  }
+
+  const repo = state.repos.find(r => r.id === task.repoId);
+  if (!repo) {
+    return '';
+  }
+
+  return repo.friendName;
+}
+
 export function searchedFiles(state: State): Array<File> {
-  const { searching, documentSlug, editionType } = state.search;
+  const { searching, documentSlug, editionType, filename } = state.search;
   const task = currentTask(state);
   if (!task || !searching) {
     return [];
   }
 
   return values(task.files).filter(file => {
-    const [docSlug, edType] = file.path.split('/');
+    const [docSlug, edType, basename] = file.path.split('/');
     if (documentSlug && docSlug !== documentSlug) {
       return false;
     }
 
     if (editionType && edType !== editionType) {
+      return false;
+    }
+
+    if (filename && basename !== filename) {
       return false;
     }
 

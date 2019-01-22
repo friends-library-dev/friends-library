@@ -2,6 +2,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled/macro';
 import { connect } from 'react-redux';
+import KeyEvent from 'react-keyboard-event-handler';
 import type { Dispatch, File, SearchResult as SearchResultType } from '../../type';
 import * as actions from '../../actions';
 import { searchedFiles } from '../../select';
@@ -9,13 +10,14 @@ import { searchFiles } from '../../lib/search';
 import SearchResult from './SearchResult';
 import SearchControls from './SearchControls';
 import SearchSummary from './SearchSummary';
+import SearchScope from './SearchScope';
 
 const SearchWrap = styled.div`
   display: flex;
   flex-direction: column;
   background: #000;
   padding: 1.5em 0 0 1.5em;
-  height: 65vh;
+  height: 70vh;
   flex: 0 0 auto;
   color: white;
   position: relative;
@@ -34,6 +36,13 @@ const Results = styled.div`
   overflow: auto;
 `;
 
+const initialState = {
+  searchComplete: false,
+  searchTerm: '',
+  replaceTerm: '',
+  results: [],
+};
+
 
 type Props = {|
   files: Array<File>,
@@ -41,7 +50,6 @@ type Props = {|
   regexp: boolean,
   caseSensitive: boolean,
   cancelSearch: Dispatch,
-  update: Dispatch,
   replaceAll: Dispatch,
 |};
 
@@ -53,11 +61,13 @@ type State = {|
 |};
 
 class Search extends React.Component<Props, State> {
-  state = {
-    searchComplete: false,
-    searchTerm: '',
-    replaceTerm: '',
-    results: [],
+  state = initialState
+
+  componentDidUpdate(prev) {
+    const { files } = this.props;
+    if (files.length !== prev.files.length) {
+      this.setState(initialState);
+    }
   }
 
   changeSearchTerm = searchTerm => {
@@ -76,9 +86,8 @@ class Search extends React.Component<Props, State> {
 
   search = () => {
     const { searchTerm } = this.state;
-    const { update, files, regexp, caseSensitive } = this.props;
+    const { files, regexp, caseSensitive } = this.props;
     if (searchTerm.trim()) {
-      update({ searchTerm });
       const results = searchFiles(
         searchTerm,
         files,
@@ -133,6 +142,7 @@ class Search extends React.Component<Props, State> {
             search={this.search}
             replaceAll={this.replaceAll}
           />
+          <SearchScope />
           {searchComplete && <SearchSummary results={results} />}
         </div>
         <Results>
@@ -146,6 +156,10 @@ class Search extends React.Component<Props, State> {
             />
           ))}
         </Results>
+        <KeyEvent
+          handleKeys={['esc']}
+          onKeyEvent={this.cancelSearch}
+        />
       </SearchWrap>
     );
   }
@@ -164,7 +178,6 @@ const mapState = state => {
 const mapDispatch = {
   replaceAll: actions.replaceAll,
   cancelSearch: actions.cancelSearch,
-  update: actions.updateSearch,
 };
 
 export default connect(mapState, mapDispatch)(Search);

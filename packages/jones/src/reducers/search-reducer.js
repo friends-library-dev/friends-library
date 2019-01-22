@@ -5,13 +5,12 @@ export const defaultState = {
   searching: false,
   caseSensitive: false,
   regexp: false,
-  searchTerm: '',
 };
 
 export default createReducer(defaultState, {
   UPDATE_SEARCH: (state, { payload }) => {
     return {
-      ...state,
+      ...defaultState,
       ...payload,
     }
   },

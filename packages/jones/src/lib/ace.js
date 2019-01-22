@@ -7,20 +7,57 @@ type AceMarker = {|
   clazz: string,
 |};
 
+function getEditor() {
+  const el = document.getElementById('brace-editor');
+  if (!el) {
+    return;
+  }
+
+  try {
+    const editor = window.ace.edit('brace-editor');
+    if (editor) {
+      return editor;
+    }
+  } catch (e) {
+    // ¯\_(ツ)_/¯
+  }
+
+  return null;
+}
+
+export function clearSearchResultHighlights(): void {
+  const editor = getEditor();
+  if (!editor) {
+    return;
+  }
+
+  try {
+    const session = editor.getSession();
+    Object.values(session.getMarkers()).forEach(m => {
+      const marker = ((m: any): AceMarker);
+      if (marker.clazz === 'search-result') {
+        session.removeMarker(marker.id);
+      }
+    });
+  } catch (e) {
+    // ¯\_(ツ)_/¯
+  }
+}
+
 export function goToSearchResult(
   result: SearchResult,
   replace: ?string = null,
 ): void {
   // defer to allow ace to re-init
   defer(() => {
-    const el = document.getElementById('brace-editor');
-    if (!el) {
-      return;
-    }
-
     try {
+      const editor = getEditor();
+      if (!editor) {
+        return;
+      }
+
+      const session = editor.getSession();
       const Range = window.ace.acequire('ace/range').Range;
-      const editor = window.ace.edit('brace-editor');
       editor.gotoLine(result.start.line);
 
       const endCol = replace
@@ -35,15 +72,8 @@ export function goToSearchResult(
       );
 
       editor.scrollToLine(result.start.line - 1, true, true);
-      const session = editor.getSession();
 
-      // clear out any previous search result markers
-      Object.values(session.getMarkers()).forEach(m => {
-        const marker = ((m: any): AceMarker);
-        if (marker.clazz === 'search-result') {
-          session.removeMarker(marker.id);
-        }
-      });
+      clearSearchResultHighlights();
 
       // highlight selected search result
       const marker = session.addMarker(range,'search-result', 'text');

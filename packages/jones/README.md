@@ -9,11 +9,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [ ] delete task when PR merged (and task has no unpushed work)
 * [ ] multi-column view editor
 * [ ] render/HTML preview
-* [ ] global (by friend or doc or edition) find
 * [ ] allow custom PR body composition at submit time
 * [ ] allow custom commit message for re-submit commits
 * [ ] delete branch from fork when deleting task
-* [ ] better cross-file undo (omnidan/redux-undo -- on just `tasks`?)
+* [x] global (by friend or doc or edition) find
+* [x] better cross-file undo (omnidan/redux-undo -- on just `tasks`?)
 * [x] match syntax highlighting of atom
 * [x] communication state for app throbbing network things
 * [x] network error recovery

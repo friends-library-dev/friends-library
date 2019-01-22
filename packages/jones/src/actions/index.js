@@ -16,6 +16,7 @@ export {
   replaceInResult,
   replaceAll,
   editSearchResult,
+  findInCurrentFile,
 } from './find-replace-actions';
 
 export const receiveAccessToken = createAction('RECEIVE_ACCESS_TOKEN');
