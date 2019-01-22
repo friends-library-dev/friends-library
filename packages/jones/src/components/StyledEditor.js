@@ -1,12 +1,14 @@
 // @flow
 import styled from '@emotion/styled/macro';
 
+const minusSearch = 'calc(30vh - 50px)';
+
 export default styled.div`
   position: relative;
   z-index: 1;
   background: #555;
   width: 100%;
-  height: ${p => p.searching ? 'calc(35vh - 50px)' : '100%'};
+  height: ${p => p.searching ? minusSearch : '100%'};
 
   .ace_gutter {
     background: #282c34;
@@ -18,7 +20,7 @@ export default styled.div`
     color: rgb(171, 178, 191);
     font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
     width: 100% !important;
-    height: ${(p) => p.searching ? 'calc(35vh - 50px)' : '100%'} !important;
+    height: ${(p) => p.searching ? minusSearch : '100%'} !important;
 
     .ace_active-line {
       background: #454545 !important;

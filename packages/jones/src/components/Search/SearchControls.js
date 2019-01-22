@@ -42,6 +42,7 @@ type Props = {|
   searchTerm: string,
   undo: Dispatch,
   redo: Dispatch,
+  cancelSearch: Dispatch,
   changeSearchTerm: (string) => void,
   changeReplaceTerm: (string) => void,
   search: () => void,
@@ -88,11 +89,20 @@ class Component extends React.Component<Props, State> {
     this.props.replaceAll();
   }
 
-  handleUndoRedo = event => {
-    const { undo, redo } = this.props;
+  handleSpecialKeys = event => {
+    const { undo, redo, cancelSearch } = this.props;
     if (event.key === 'z' && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
       event.shiftKey ? redo() : undo();
+    }
+
+    if (event.key === 'Escape') {
+      cancelSearch();
+    }
+
+    if (event.key === 'f' && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      cancelSearch();
     }
   }
 
@@ -108,7 +118,7 @@ class Component extends React.Component<Props, State> {
             placeholder="Find"
             onChange={(e) => changeSearchTerm(e.target.value)}
             onKeyDown={event => {
-              this.handleUndoRedo(event);
+              this.handleSpecialKeys(event);
               if (event.key === 'Enter') {
                 search();
               }
@@ -124,7 +134,7 @@ class Component extends React.Component<Props, State> {
             value={replaceTerm}
             placeholder="Replace"
             onChange={this.handleReplaceTermChange}
-            onKeyDown={this.handleUndoRedo}
+            onKeyDown={this.handleSpecialKeys}
           />
           <Button className="Button" secondary onClick={this.replaceAll} height={35}>
             <i className="fas fa-sync" />
@@ -137,6 +147,7 @@ class Component extends React.Component<Props, State> {
 }
 
 const mapDispatch = {
+  cancelSearch: actions.cancelSearch,
   undo: actions.undoTasks,
   redo: actions.redoTasks,
 }

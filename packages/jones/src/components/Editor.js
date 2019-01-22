@@ -11,7 +11,6 @@ import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
 import './adoc-mode';
-import 'brace/ext/searchbox';
 import 'brace/theme/tomorrow_night';
 
 const noopEditor = new Proxy({}, {
@@ -37,6 +36,7 @@ type Props = {|
   updateFile: Dispatch,
   undo: Dispatch,
   redo: Dispatch,
+  find: Dispatch,
   searching: boolean,
   editingFile: string,
   increaseFontSize: Dispatch,
@@ -77,7 +77,15 @@ class Editor extends React.Component<Props> {
   }
 
   addKeyCommands() {
-    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen, undo, redo, } = this.props;
+    const {
+      increaseFontSize,
+      decreaseFontSize,
+      toggleSidebarOpen,
+      undo,
+      redo,
+      find,
+    } = this.props;
+
     this.editor().commands.addCommand({
       name: 'increaseFontSize',
       bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
@@ -94,6 +102,12 @@ class Editor extends React.Component<Props> {
       name: 'toggleSidebarOpen',
       bindKey: { mac: 'Command-Ctrl-7', win: 'Alt-Ctrl-7' },
       exec: () => toggleSidebarOpen(),
+    });
+
+    this.editor().commands.addCommand({
+      name: 'find',
+      bindKey: { mac: 'Command-F', win: 'Ctrl-F' },
+      exec: () => find(),
     });
 
     this.editor().commands.addCommand({
@@ -161,6 +175,7 @@ const mapDispatch = {
   toggleSidebarOpen: actions.toggleSidebarOpen,
   undo: actions.undoTasks,
   redo: actions.redoTasks,
+  find: actions.findInCurrentFile,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,
 };

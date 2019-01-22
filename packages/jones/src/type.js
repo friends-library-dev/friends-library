@@ -84,11 +84,11 @@ export type Repo = {|
 
 export type Search = {|
   searching: boolean,
-  searchTerm: string,
   regexp: boolean,
   caseSensitive: boolean,
   documentSlug?: ?Slug,
   editionType?: ?EditionType,
+  filename?: ?string,
 |};
 
 export type Tasks = { [Uuid]: Task };

@@ -35,6 +35,7 @@ type Props = {|
   checkout: Dispatch,
   undo: Dispatch,
   redo: Dispatch,
+  find: Dispatch,
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
   toggleSidebarOpen: Dispatch,
@@ -58,6 +59,7 @@ class Work extends React.Component<Props> {
       toggleSidebarOpen,
       undo,
       redo,
+      find,
     } = this.props;
 
     if (!task.parentCommit) {
@@ -87,14 +89,18 @@ class Work extends React.Component<Props> {
         />
         <KeyEvent
           handleKeys={['meta+Z', 'ctrl+Z']}
-          onKeyEvent={() => {
-            console.log('handled!');
-            undo();
-          }}
+          onKeyEvent={undo}
         />
         <KeyEvent
           handleKeys={['meta+shift+Z', 'ctrl+shift+Z']}
           onKeyEvent={redo}
+        />
+        <KeyEvent
+          handleKeys={['meta+F', 'ctrl+F']}
+          onKeyEvent={(_, event) => {
+            find();
+            event.preventDefault();
+          }}
         />
       </Wrap>
     );
@@ -109,6 +115,7 @@ const mapDispatch = {
   checkout: actions.checkout,
   undo: actions.undoTasks,
   redo: actions.redoTasks,
+  find: actions.findInCurrentFile,
   toggleSidebarOpen: actions.toggleSidebarOpen,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,
