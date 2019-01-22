@@ -6,7 +6,7 @@ export function currentTask(state: State): ?Task {
   if (!state.currentTask) {
     return null;
   }
-  return state.tasks[state.currentTask];
+  return state.tasks.present[state.currentTask];
 }
 
 export function searchedFiles(state: State): Array<File> {

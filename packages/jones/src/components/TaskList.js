@@ -31,7 +31,7 @@ const TaskList = ({ tasks }: Props) => {
 };
 
 const mapState = state => ({
-  tasks: Object.values(state.tasks),
+  tasks: Object.values(state.tasks.present),
 });
 
 export default connect(mapState)(TaskList);

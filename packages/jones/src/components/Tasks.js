@@ -30,7 +30,7 @@ const Welcome = ({ tasks, changeScreen, createTask }: Props) => (
 );
 
 const mapState = state => ({
-  tasks: Object.values(state.tasks),
+  tasks: Object.values(state.tasks.present),
 });
 
 const mapDispatch = {

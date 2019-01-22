@@ -45,7 +45,10 @@ class Component extends React.Component<Props> {
         <Button height={26} secondary onClick={() => goto()}>
           Edit
         </Button>
-        <Button className="replace" height={26} onClick={replace}>
+        <Button className="replace" height={26} onClick={() => {
+          dismiss();
+          replace();
+        }}>
           Replace
         </Button>
       </SearchResultActions>

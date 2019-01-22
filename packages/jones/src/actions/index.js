@@ -31,7 +31,8 @@ export const updateSearch = createAction('UPDATE_SEARCH');
 export const increaseEditorFontSize = createAction('INCREASE_EDITOR_FONT_SIZE');
 export const decreaseEditorFontSize = createAction('DECREASE_EDITOR_FONT_SIZE');
 export const cancelSearch = createAction('CANCEL_SEARCH');
-
+export const undoTasks = createAction('UNDO_TASKS');
+export const redoTasks = createAction('REDO_TASKS');
 
 export function toggleSidebarOpen(adoc: Asciidoc): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {

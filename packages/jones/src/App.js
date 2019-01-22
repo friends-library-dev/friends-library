@@ -60,7 +60,7 @@ class App extends React.Component<*> {
 }
 
 const mapState = state => ({
-  loggedIn: state.github.token !== null,
+  loggedIn: Boolean(state.github.token),
   screen: state.screen,
 });
 

@@ -33,6 +33,8 @@ const EditorPane = styled.div`
 type Props = {|
   task: Task,
   checkout: Dispatch,
+  undo: Dispatch,
+  redo: Dispatch,
   increaseFontSize: Dispatch,
   decreaseFontSize: Dispatch,
   toggleSidebarOpen: Dispatch,
@@ -50,7 +52,14 @@ class Work extends React.Component<Props> {
 
   render() {
     const { task } = this.props;
-    const { increaseFontSize, decreaseFontSize, toggleSidebarOpen } = this.props;
+    const {
+      increaseFontSize,
+      decreaseFontSize,
+      toggleSidebarOpen,
+      undo,
+      redo,
+    } = this.props;
+
     if (!task.parentCommit) {
       return <Loading />;
     }
@@ -76,6 +85,17 @@ class Work extends React.Component<Props> {
           handleKeys={['meta+ctrl+7', 'alt+ctrl+7']}
           onKeyEvent={toggleSidebarOpen}
         />
+        <KeyEvent
+          handleKeys={['meta+Z', 'ctrl+Z']}
+          onKeyEvent={() => {
+            console.log('handled!');
+            undo();
+          }}
+        />
+        <KeyEvent
+          handleKeys={['meta+shift+Z', 'ctrl+shift+Z']}
+          onKeyEvent={redo}
+        />
       </Wrap>
     );
   }
@@ -87,6 +107,8 @@ const mapState = state => ({
 
 const mapDispatch = {
   checkout: actions.checkout,
+  undo: actions.undoTasks,
+  redo: actions.redoTasks,
   toggleSidebarOpen: actions.toggleSidebarOpen,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,

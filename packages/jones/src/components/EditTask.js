@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import type { Task, Dispatch } from '../type';
+import { currentTask } from '../select';
 import * as actions from '../actions';
 import * as screens from '../screens';
 import Button from './Button';
@@ -186,7 +187,7 @@ const mapState = state => ({
     name: r.friendName,
     slug: r.slug,
   })),
-  task: state.tasks[state.currentTask],
+  task: currentTask(state) || {},
 });
 
 const mapDispatch = {
