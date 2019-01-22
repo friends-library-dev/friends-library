@@ -2,14 +2,14 @@
 import type { File, SearchResult } from '../type';
 
 export function searchFiles(
-  str: string,
+  searchTerm: string,
   files: Array<File>,
   _regexp: boolean = false,
   _caseSensitive: boolean = false,
 ): Array<SearchResult> {
   const results = files.reduce((acc, file) => {
     const lines = (file.editedContent || file.content || '').split(/\n/);
-    const exp = new RegExp(`\\b${str}\\b`, 'gi');
+    const exp = new RegExp(`\\b${searchTerm}\\b`, 'gi');
     lines.forEach((line, index) => {
       let match;
       while ((match = exp.exec(line))) {
@@ -25,7 +25,7 @@ export function searchFiles(
           },
           end: {
             line: index + 1,
-            column: match.index + str.length,
+            column: match.index + searchTerm.length,
           },
         };
         acc.push({

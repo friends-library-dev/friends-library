@@ -1,4 +1,7 @@
 // @flow
+
+import type { Dispatch as ReduxDispatch } from 'redux';
+
 import type {
   Slug,
   Url,
@@ -9,13 +12,18 @@ import type {
   EditionType,
 } from '../../../type';
 
-export type Dispatch = (any) => *;
+export type Dispatch = ReduxDispatch<*>;
 
 export type DateString = string;
 
 export type FilePath = string;
 
 export type Sha = string;
+
+export type Action = {|
+  type: string,
+  payload?: *,
+|};
 
 export type GitHub = {|
   token: string,
@@ -29,6 +37,7 @@ export type SearchResult = {|
   editionType: string,
   path: FilePath,
   filename: string,
+  dismissed?: true,
   start: {|
     line: number,
     column: number,
@@ -75,7 +84,7 @@ export type Repo = {|
 
 export type Search = {|
   searching: boolean,
-  string: string,
+  searchTerm: string,
   regexp: boolean,
   caseSensitive: boolean,
   documentSlug: ?Slug,
