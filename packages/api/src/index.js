@@ -2,7 +2,9 @@ const path = require('path');
 require('dotenv').config({path: path.join(__dirname, "../.env")});
 const express = require('express');
 const fetch = require('node-fetch');
+const bodyParser = require('body-parser');
 const { redirAndLog } =  require('./download');
+const { handleGithubWebhook } = require('./github-webhook');
 
 const { env: {
   PORT,
@@ -14,7 +16,11 @@ const { env: {
 
 const app = express();
 
-app.get('/', (req, res) => res.send('AUTO ༼ つ ◕_◕ ༽つ DEPLOYED!'));
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => res.send('Beep ༼ つ ◕_◕ ༽つ Boop!'));
+
+app.post('/github-webhook', handleGithubWebhook);
 
 app.get('/download/:friend/:document/:edition/:filename', (req, res) => {
   const { params: { friend, document, edition, filename } } = req;
