@@ -57,7 +57,7 @@ export default () => (
     <img
       alt=""
       style={{ width: 90, borderRadius: 20, marginLeft: 10 }}
-      src="https://raw.githubusercontent.com/friends-library/friends-library/master/packages/jones/src/george-fox.png"
+      src="https://raw.githubusercontent.com/friends-library/friends-library/master/packages/jones/src/assets/george-fox.png"
     />
     <h1
       style={{
