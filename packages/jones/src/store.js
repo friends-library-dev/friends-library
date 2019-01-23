@@ -4,17 +4,14 @@ import { combineReducers } from 'redux';
 import type { State } from './type';
 import { defaultState as prefsDefaultState } from './reducers/prefs-reducer';
 import { defaultState as defaultSearchState } from './reducers/search-reducer';
+import { emptyUndoable } from './reducers/undoable';
 import rootReducer from './reducers';
 
 const defaultState: State = {
   version: 1,
   screen: 'TASKS',
   currentTask: null,
-  tasks: {
-    past: [],
-    present: {},
-    future: [],
-  },
+  tasks: emptyUndoable(),
   repos: [],
   search: defaultSearchState,
   github: {},
@@ -53,10 +50,10 @@ const saveState = (state) => {
 
 const sliceReducer = combineReducers(rootReducer);
 
-const reducer = (state, action) => {
+const reducer = (state: State = defaultState, action) => {
   if (action.type === 'HARD_RESET') {
     localStorage.removeItem('jones');
-    state = {
+    return {
       ...defaultState,
       github: state.github,
     };
