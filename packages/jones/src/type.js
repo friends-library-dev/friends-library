@@ -94,11 +94,13 @@ export type Search = {|
 
 export type Tasks = { [Uuid]: Task };
 
-export type UndoableTasks = {|
-  past: Array<Tasks>,
-  present: Tasks,
-  future: Array<Tasks>,
+export type Undoable<T> = {|
+  past: Array<T>,
+  present: T,
+  future: Array<T>,
 |};
+
+export type UndoableTasks = Undoable<Tasks>;
 
 export type State = {|
   version: number,

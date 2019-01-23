@@ -75,7 +75,7 @@ function getContext(result, lines) {
   }
 
   const afterLineIndex = end.line;
-  if (afterLineIndex <= lines.length && lines[afterLineIndex].trim()) {
+  if (lines[afterLineIndex] && lines[afterLineIndex].trim()) {
     context.push({
       lineNumber: afterLineIndex + 1,
       content: lines[afterLineIndex],

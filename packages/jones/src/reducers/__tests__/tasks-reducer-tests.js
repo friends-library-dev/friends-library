@@ -62,6 +62,13 @@ describe('taskReducer()', () => {
     expect(newState.id.sidebarWidth).toBe(555);
   });
 
+  test('DELETE_TASK deletes task', () => {
+    action.type = 'DELETE_TASK';
+    action.payload = 'id';
+    const newState = taskReducer(state, action);
+    expect(newState).toEqual({});
+  });
+
   test('CREATE_TASK creates a task', () => {
     action = { type: 'CREATE_TASK', payload: { taskId: 'abc123' } };
     const newState = taskReducer(state, action);

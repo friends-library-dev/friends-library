@@ -14,7 +14,7 @@ Jim Jam.
 
     files = [{
       filename: '01.adoc',
-      path: 'en/george-fox/journal/updated/01.adoc',
+      path: 'journal/updated/01.adoc',
       editedContent: adoc,
     }];
   });
@@ -35,5 +35,27 @@ Jim Jam.
     expect(context[1].content).toBe('Bar.');
     expect(context[2].lineNumber).toBe(5);
     expect(context[2].content).toBe('Jim Jam.');
+  });
+
+  it('sorts results by edition type', () => {
+    files = [{
+      filename: '01.adoc',
+      path: 'journal/original/01.adoc',
+      editedContent: 'foobar lol',
+    }, {
+      filename: '01.adoc',
+      path: 'journal/updated/01.adoc',
+      editedContent: 'foobar lol',
+    }, {
+      filename: '01.adoc',
+      path: 'journal/modernized/01.adoc',
+      editedContent: 'foobar lol',
+    }];
+
+    const results = searchFiles('foobar', files);
+
+    expect(results[0].editionType).toBe('updated');
+    expect(results[1].editionType).toBe('modernized');
+    expect(results[2].editionType).toBe('original');
   });
 });
