@@ -9,6 +9,7 @@ const publishRef = require('./src/publish/ref').default;
 const convert = require('./src/convert').default;
 const chapterize = require('./src/chapterize').default;
 const cover = require('./src/cover').default;
+const quotifyDir = require('./src/quotify').default;
 
 prettifyErrors();
 
@@ -67,6 +68,15 @@ yargs
       const argv = omit(args.argv, '_', '$0', 'command');
       cover(argv);
     },
+  )
+  .command(
+    ['quotify <path>'],
+    'correct straight quotes/apostrophes',
+    ({ positional }) => positional('path', {
+      type: 'string',
+      describe: 'full filepath to asciidoc dir to quoutify',
+    }),
+    ({ path }) => quotifyDir(path),
   )
   .help()
   .argv;
