@@ -1,14 +1,17 @@
 // @flow
 import find from './find';
 import type { Asciidoc } from '../../../type';
-import type { MutationResolver } from './type';
+import type { MutationResolver, Finder } from './type';
 import { mutateLine } from './mutate';
 
-export default async function transform(adoc: Asciidoc, resolver: MutationResolver): Promise<Asciidoc> {
+export default async function transform(
+  adoc: Asciidoc,
+  resolver: MutationResolver,
+): Promise<Asciidoc> {
   const lines = adoc.split('\n');
   const finders = Object.values(find);
   for (let k = 0; k < finders.length; k++) {
-    const finder = typeof finders[k] === 'function' ? finders[k] : (_) => [];
+    const finder = ((finders[k]: any): Finder);
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       const found = finder(line);
