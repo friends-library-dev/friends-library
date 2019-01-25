@@ -1,5 +1,5 @@
 // @flow
-import type { MatchLocation } from './type';
+import type { MatchLocation, Finder } from './type';
 import { ucfirst } from '../../kite/src/publish/text';
 
 export default {
@@ -63,7 +63,7 @@ function word(
   old: string,
   replacements: Array<string>,
   ask: boolean = true,
-): (line: string) => Array<MatchLocation> {
+): Finder {
   return (line: string): Array<MatchLocation> => {
     if (line.match(/^\[.*\]$/)) {
       return [];
