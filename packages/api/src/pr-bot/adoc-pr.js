@@ -19,7 +19,7 @@ export async function adocPrCommitHandler(event: string, payload: WebhookPayload
   const allFiles = await gh.getPrFiles(repo, sha);
   const jobs = pdf.createJobs(friend, modifiedFiles, allFiles);
   const pdfs = await pdf.makePdfs(jobs);
-  const uploadMap = getUploadMap(pdfs, repo, number);
+  const uploadMap = getUploadMap(pdfs, repo, number, sha);
   const urls = await cloud.uploadFiles(uploadMap);
   const body = getComment(urls, sha);
   gh.updateableComment(repo, number, body, 'PDF previews (commit');
@@ -34,9 +34,10 @@ function getUploadMap(
   pdfs: Array<string>,
   repo: string,
   number: number,
+  sha: Sha,
 ): Map<string, string> {
   return pdfs.reduce((map, pdf) => {
     const filename = path.basename(pdf);
-    return map.set(`adoc-pr/${repo}/${number}/${filename}`, pdf);
+    return map.set(`adoc-pr/${repo}/${number}/${sha}/${filename}`, pdf);
   }, new Map());
 }
