@@ -15,13 +15,17 @@
     "lint": "yarn js:lint && yarn sass:lint",
     "js:lint": "yarn eslint .",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
+    "api:develop": "cd ./packages/api && yarn start",
+    "api:deploy": "cd ./packages/api && yarn deploy",
     "styleguide:develop": "cd ./packages/styleguide && yarn start",
     "styleguide:build": "cd ./packages/styleguide && yarn build",
     "evans:build:en": "cd packages/evans && yarn build:en",
     "evans:build:es": "cd packages/evans && yarn build:es",
     "evans:develop:en": "cd packages/evans && yarn develop:en",
     "evans:develop:es": "cd packages/evans && yarn develop:es",
-    "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es"
+    "jones:develop": "cd packages/jones && yarn develop",
+    "jones:build": "cd packages/jones && yarn build",
+    "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -35,13 +39,14 @@
     "babel-jest": "^23.4.2",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-react-app": "^3.0.6",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-no-only-tests": "^2.0.1",
     "eslint-plugin-react": "^7.11.1",
-    "flow-bin": "^0.89.0",
-    "jest": "^23.5.0",
+    "flow-bin": "^0.91.0",
+    "jest": "^24.0.0",
     "lerna": "^3.1.4",
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0"
@@ -56,12 +61,17 @@
     "packages/cli",
     "packages/fell",
     "packages/styleguide",
-    "packages/mod"
+    "packages/mod",
+    "packages/jones"
   ],
   "jest": {
     "errorOnDeprecated": true,
     "testEnvironment": "node",
     "testRegex": "__tests__/.*tests?\\.js",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/packages/jones/build",
+      "<rootDir>/packages/evans/public"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "<rootDir>/packages/cli",

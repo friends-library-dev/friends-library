@@ -21,9 +21,7 @@ export function publishPrecursors(
   precursors: Array<SourcePrecursor>,
   cmd: Command,
 ): Promise<*> {
-  fs.removeSync(PUBLISH_DIR);
-  fs.ensureDir(PUBLISH_DIR);
-
+  resetPublishDir();
   const specs = precursors.map(prepare);
   const jobs = specs.reduce(reduceSpecsToJobs(cmd), []);
   const complete = Promise.all(jobs.map(take));
@@ -33,6 +31,11 @@ export function publishPrecursors(
   }
 
   return complete;
+}
+
+export function resetPublishDir(): void {
+  fs.removeSync(PUBLISH_DIR);
+  fs.ensureDir(PUBLISH_DIR);
 }
 
 export function take(job: Job): Promise<string> {

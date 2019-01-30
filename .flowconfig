@@ -4,6 +4,7 @@
 .*/gatsby-source-friends-library/friends/.*
 .*/.cache/.*
 .*/packages/evans/public/.*
+.*/packages/jones/build/.*
 
 [libs]
 ./flow-typed

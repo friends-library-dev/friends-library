@@ -9,6 +9,107 @@ ____
 Whose faith follow; considering the outcome of their conduct.
 ____
 
+== Offset Followed by Letters
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+[.offset]
++++[+++From Amsterdam he wrote to his friend Richard Shackleton,
+under date of 17th of seventh month, from which the following is extracted:]--
+
+[.embedded-content-document.letter]
+--
+
+[.letter-heading]
+Samuel Neale to Sarah Grubb
+
+The hand and judgments of the Lord are to be laid upon
+every of his vessels and instruments in his house,
+for their being fitted and formed according to the will and wisdom of Him,
+being written in the aboundings of that love which
+fills a heart that wishes you prosperity in every sense;
+I am, your very affectionate friend,
+
+[.signed-section-signature]
+Samuel Neale.
+
+--
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+[.offset]
++++[+++From Amsterdam he wrote to his friend Richard Shackleton,
+under date of 17th of seventh month, from which the following is extracted:]--
+
+[.embedded-content-document.letter]
+--
+
+[.signed-section-context-open]
+Dublin, fourth month,
+
+The hand and judgments of the Lord are to be laid upon
+every of his vessels and instruments in his house,
+for their being fitted and formed according to the will and wisdom of Him,
+being written in the aboundings of that love which
+fills a heart that wishes you prosperity in every sense;
+I am, your very affectionate friend,
+
+[.signed-section-signature]
+Samuel Neale.
+
+--
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.offset]
++++[+++From Amsterdam he wrote to his friend Richard Shackleton,
+under date of 17th of seventh month, from which the following is extracted:]--
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+My dear Friend,
+
+The hand and judgments of the Lord are to be laid upon
+every of his vessels and instruments in his house,
+for their being fitted and formed according to the will and wisdom of Him,
+being written in the aboundings of that love which
+fills a heart that wishes you prosperity in every sense;
+I am, your very affectionate friend,
+
+[.signed-section-signature]
+Samuel Neale.
+
+--
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
 == Syllogisms
 
 But the apostle puts this controversy out of doubt, for,
@@ -654,7 +755,7 @@ To the Bowlers in the Green.
 * Visit to a Neighboring Monthly Meeting
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+incididunt ut labore et '`dolore magna`' aliqua. Ut enim ad minim veniam, quis nostrud
 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt

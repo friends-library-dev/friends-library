@@ -2,9 +2,8 @@ require('dotenv').config();
 
 const {
   env: {
-    PRODUCTION_SERVER,
-    DEPLOY_PATH,
-    DEPLOY_KEY,
+    API_PRODUCTION_SERVER,
+    API_DEPLOY_PATH,
   },
 } = process;
 
@@ -21,20 +20,20 @@ module.exports = function (shipit) {
       keepReleases: 5,
       deleteOnRollback: false,
       shallowClone: true,
-      deployTo: DEPLOY_PATH,
-      key: DEPLOY_KEY,
+      deployTo: API_DEPLOY_PATH,
       shared: {
         overwrite: true,
         files: ['packages/api/.env']
       }
     },
     production: {
-      servers: PRODUCTION_SERVER
+      servers: API_PRODUCTION_SERVER
     }
   });
 
   shipit.on('published', () => {
-    shipit.remote(`cd ${DEPLOY_PATH}/current/packages/api && yarn migrate`);
-    shipit.remote('pm2 restart all');
+    shipit.remote(`cd ${API_DEPLOY_PATH}/current/packages/api && yarn migrate`);
+    shipit.remote('pm2 delete all');
+    shipit.remote(`cd ${API_DEPLOY_PATH}/current && NODE_ENV=production pm2 start packages/api/index.js`);
   });
 };

@@ -7,7 +7,7 @@ import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
 import { query, Friend, Document, Edition } from '@friends-library/friends';
 import type { Lang, Asciidoc, Css } from '../../../../type';
-import type { SourcePrecursor, FileType } from '../type';
+import type { SourcePrecursor, FileType, DocumentMeta } from '../type';
 
 export function getPrecursors(path: string): Array<SourcePrecursor> {
   const [lang, friend, document, edition] = path
@@ -68,17 +68,7 @@ function buildPrecursor(
     id: path,
     config: getConfig(path),
     customCss: getCustomCss(path),
-    meta: {
-      title: document.title,
-      author: {
-        name: friend.name,
-        nameSort: friend.alphabeticalName(),
-      },
-      ...document.originalTitle ? { originalTitle: document.originalTitle } : {},
-      ...document.published ? { published: document.published } : {},
-      ...edition.isbn ? { isbn: edition.isbn } : {},
-      ...edition.editor ? { editor: edition.editor } : {},
-    },
+    meta: getDocumentMeta(edition),
     filename: `${document.filename}--${edition.type}`,
     revision: {
       timestamp,
@@ -94,6 +84,22 @@ function buildPrecursor(
     },
     lang,
     adoc: globAsciidoc(path),
+  };
+}
+
+export function getDocumentMeta(edition: Edition): DocumentMeta {
+  const { document } = edition;
+  const { friend } = document;
+  return {
+    title: document.title,
+    author: {
+      name: friend.name,
+      nameSort: friend.alphabeticalName(),
+    },
+    ...document.originalTitle ? { originalTitle: document.originalTitle } : {},
+    ...document.published ? { published: document.published } : {},
+    ...edition.isbn ? { isbn: edition.isbn } : {},
+    ...edition.editor ? { editor: edition.editor } : {},
   };
 }
 

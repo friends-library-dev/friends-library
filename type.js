@@ -1,6 +1,8 @@
 // @flow
 export type ISBN = string;
 
+export type Uuid = string;
+
 export type Asciidoc = string;
 
 export type Xml = string;
@@ -18,6 +20,10 @@ export type Name = string;
 export type Title = string;
 
 export type Description = string;
+
+export type FilePath = string;
+
+export type Sha = string;
 
 export type Gender = 'male' | 'female';
 
