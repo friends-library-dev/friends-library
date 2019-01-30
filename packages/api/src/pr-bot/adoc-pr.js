@@ -7,7 +7,10 @@ import * as gh from './github';
 import * as pdf from './pdf';
 import * as cloud from './cloud';
 
-export async function adocPrCommitHandler(event: string, payload: WebhookPayload): * {
+export async function handleNewCommit(
+  event: string,
+  payload: WebhookPayload,
+): Promise<void> {
   const {
     number,
     repository: { name: repo },
@@ -23,6 +26,14 @@ export async function adocPrCommitHandler(event: string, payload: WebhookPayload
   const urls = await cloud.uploadFiles(uploadMap);
   const body = getComment(urls, sha);
   gh.updateableComment(repo, number, body, 'PDF previews (commit');
+}
+
+export async function handleClose(
+  event: string,
+  payload: WebhookPayload,
+): Promise<void> {
+  const { number, repository: { name: repo } } = payload;
+  await cloud.rimraf(`adoc-pr/${repo}/${number}`);
 }
 
 function getComment(urls: Array<Url>, sha: Sha): string {
