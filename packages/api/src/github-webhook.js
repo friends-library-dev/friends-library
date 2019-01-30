@@ -1,18 +1,26 @@
-const slack = require('./slack');
+// @flow
+import type { $Request, $Response } from 'express';
+import get from 'lodash/get';
+import type { WebhookPayload } from './type';
+import slack from './slack';
+import * as prBot from './pr-bot';
 
-async function handleGithubWebhook(req, res) {
+async function handleGithubWebhook(req: $Request, res: $Response): Promise<void> {
   res.sendStatus(202);
   res.end();
+  const event = req.header('X-Github-Event') || '';
+  const payload = ((req.body: any): WebhookPayload);
+  await prBot.handle(event, payload);
+  await logToSlack(event, payload);
+}
 
-  // for now, just log it to slack so I can figure out
-  // which events I want to handle, and what their payload is
+function logToSlack(event: string, payload: WebhookPayload): void {
   const channel = '#_temp-gh-webhook';
-  const payload = JSON.stringify(req.body, null, 2);
   const filename = `webhook-${Date.now()}.json`;
-  const event = req.header('X-Github-Event');
   const msg = `New incoming github webhook, event: \`${event}\``;
-  const file = await slack.uploadSnippet(filename, payload, channel);
-  await slack.postMessage('', channel, {
+  const json = JSON.stringify(payload, null, 2);
+  const file = slack.uploadSnippet(filename, json, channel);
+  slack.postMessage('', channel, {
     attachments: [{
       fallback: 'webhook payload',
       pretext: msg,

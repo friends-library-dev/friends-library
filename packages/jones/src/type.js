@@ -10,15 +10,15 @@ import type {
   Name,
   Asciidoc,
   EditionType,
+  Sha,
+  FilePath,
 } from '../../../type';
+
+export type { Sha, FilePath } from '../../../type';
 
 export type Dispatch = ReduxDispatch<*>;
 
 export type DateString = string;
-
-export type FilePath = string;
-
-export type Sha = string;
 
 export type Action = {|
   type: string,
