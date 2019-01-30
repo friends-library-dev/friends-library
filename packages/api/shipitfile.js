@@ -33,6 +33,7 @@ module.exports = function (shipit) {
 
   shipit.on('published', () => {
     shipit.remote(`cd ${API_DEPLOY_PATH}/current/packages/api && yarn migrate`);
-    shipit.remote('pm2 restart all');
+    shipit.remote('pm2 delete all');
+    shipit.remote(`cd ${API_DEPLOY_PATH}/current && NODE_ENV=production pm2 start packages/api/index.js`);
   });
 };
