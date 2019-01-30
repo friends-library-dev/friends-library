@@ -63,7 +63,7 @@ describe('adocPrCommitHandler()', () => {
     pdf.makePdfs.mockReturnValue(['/path/to/created.pdf']);
     await adocPrCommitHandler('pull_request', payload);
     expect(cloud.uploadFiles).toBeCalledWith(new Map([[
-      'adoc-pr/jane-doe/11/created.pdf',
+      'adoc-pr/jane-doe/11/2d306bb70578e6c019e3579c02d4f78f17bf915e/created.pdf',
       '/path/to/created.pdf',
     ]]));
   });
