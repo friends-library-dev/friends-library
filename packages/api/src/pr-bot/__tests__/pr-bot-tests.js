@@ -1,8 +1,8 @@
 import { getHandler } from '../';
-import { adocPrCommitHandler } from '../adoc-pr';
+import * as adocPr from '../adoc-pr';
 
 describe('getHandler()', () => {
-  it('returns adocPrCommitHandler() when friend PR opened', () => {
+  it('returns adocPr.handleNewCommit() when friend PR opened', () => {
     const payload = {
       action: "opened",
       repository: {
@@ -10,10 +10,21 @@ describe('getHandler()', () => {
       }
     }
     const handler = getHandler('pull_request', payload);
-    expect(handler).toBe(adocPrCommitHandler);
+    expect(handler).toBe(adocPr.handleNewCommit);
   });
 
-  test('monorepo commits not handled by adocPrCommitHandler', () => {
+  it('returns adocPr.handleClose() when friend PR closed', () => {
+    const payload = {
+      action: "closed",
+      repository: {
+        name: 'george-fox',
+      }
+    }
+    const handler = getHandler('pull_request', payload);
+    expect(handler).toBe(adocPr.handleClose);
+  });
+
+  test('monorepo commits not handled by adocPr.handleNewCommit', () => {
     const payload = {
       action: "opened",
       repository: {
@@ -21,6 +32,6 @@ describe('getHandler()', () => {
       }
     }
     const handler = getHandler('pull_request', payload);
-    expect(handler).not.toBe(adocPrCommitHandler);
+    expect(handler).not.toBe(adocPr.handleNewCommit);
   });
 });

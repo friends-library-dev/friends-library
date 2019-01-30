@@ -1,7 +1,7 @@
 // @flow
 import get from 'lodash/get';
 import type { WebhookPayload } from '../type';
-import { adocPrCommitHandler } from './adoc-pr';
+import * as adocPr from './adoc-pr';
 
 type Handler = (event: string, payload: WebhookPayload) => void | Promise<void>;
 
@@ -17,13 +17,17 @@ export function getHandler(event: string, payload: WebhookPayload): ?Handler {
     return null;
   }
 
-  if (!['opened', 'synchronize'].includes(payload.action)) {
-    return null;
-  }
-
   if (get(payload, 'repository.name') === 'friends-library') {
     return null;
   }
 
-  return adocPrCommitHandler;
+  if (payload.action === 'closed') {
+    return adocPr.handleClose;
+  }
+
+  if (!['opened', 'synchronize', 'reopened'].includes(payload.action)) {
+    return null;
+  }
+
+  return adocPr.handleNewCommit;
 }

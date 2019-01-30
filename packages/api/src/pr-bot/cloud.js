@@ -24,6 +24,34 @@ function getClient() {
   });
 }
 
+export async function rimraf(
+  path: CloudFilePath,
+): Promise<Array<CloudFilePath>> {
+  const client = getClient();
+  // note, in `aws-sdk` v3 (now in alpha), it looks like they
+  // switched to allowing `const data = await client.operation(...)`
+  // so, should switch when released to avoid these shenanigans
+  return new Promise((resolve, reject) => {
+    client.listObjects({
+      Bucket: 'friends-library-assets',
+      Prefix: path,
+    }, (err, data) => {
+      client.deleteObjects({
+        Bucket: 'friends-library-assets',
+        Delete: {
+          Objects: data.Contents.map(({ Key }) => ({ Key }))
+        }
+      }, (err, data) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(data.Deleted.map(({ Key }) => Key));
+      });
+    });
+  });
+}
+
 export async function uploadFiles(
   files: Map<CloudFilePath, LocalFilePath>,
 ): Promise<Array<Url>> {
