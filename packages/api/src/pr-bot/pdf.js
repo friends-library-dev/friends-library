@@ -74,9 +74,15 @@ function getJob(
 }
 
 
-export async function makePdfs(jobs: Array<Job>): Promise<Array<FilePath>> {
+export async function makePdfs(
+  jobs: Array<Job>,
+): Promise<Array<FilePath>> {
   resetPublishDir();
-  return await Promise.all(jobs.map(pdf.make)).then(filenames => {
-    return filenames.map(filename => `${PUBLISH_DIR}/${filename}`);
-  });
+  let paths = [];
+  // do these serially to avoid running out of memory
+  for (var i = 0; i < jobs.length; i++) {
+    const filename = await pdf.make(jobs[i]);
+    paths.push(`${PUBLISH_DIR}/${filename}`);
+  }
+  return Promise.resolve(paths)
 }
