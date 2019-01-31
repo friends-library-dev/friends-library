@@ -8,19 +8,23 @@ import type { Job, SourcePrecursor } from '../../../../packages/kite/src/type';
 export function createJobs(
   friend: Friend,
   modifiedFiles: Array<FilePath>,
-  prFiles: Map<FilePath, Asciidoc | Css>
+  prFiles: Map<FilePath, Asciidoc | Css>,
+  chapters: boolean = false,
 ): Array<*> {
   return [...modifiedFiles.reduce((jobs, file) => {
     const [docSlug, editionType] = file.split('/');
     const document = friend.documents.find(doc => doc.slug === docSlug);
     const edition = document.editions.find(ed => ed.type === editionType);
-    const chapterFilename = [
-      document.slug,
-      edition.type,
-      `${path.basename(file, '.adoc')}.pdf`,
-    ].join('--');
-    const chapterJob = getJob(chapterFilename, edition, prFiles.get(file) || '');
-    jobs.set(file, chapterJob);
+
+    if (chapters) {
+      const chapterFilename = [
+        document.slug,
+        edition.type,
+        `${path.basename(file, '.adoc')}.pdf`,
+      ].join('--');
+      const chapterJob = getJob(chapterFilename, edition, prFiles.get(file) || '');
+      jobs.set(file, chapterJob);
+    }
 
     if (!jobs.has(edition.type)) {
       const editionFilename = `${document.slug}--${edition.type}.pdf`;

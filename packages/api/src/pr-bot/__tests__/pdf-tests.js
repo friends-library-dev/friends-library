@@ -27,15 +27,21 @@ describe('pdf()', () => {
     });
   });
 
+  test('does not make chapter files when flag is false', () => {
+    const jobs = createJobs(friend, modifiedFiles, prFiles, false);
+    expect(jobs).toHaveLength(1);
+    expect(jobs[0].filename).toBe('journal--updated.pdf');
+  });
+
   test('two jobs created for one modified file (file & edition)', () => {
-    const jobs = createJobs(friend, modifiedFiles, prFiles);
+    const jobs = createJobs(friend, modifiedFiles, prFiles, true);
     expect(jobs).toHaveLength(2);
     expect(jobs[0].filename).toBe('journal--updated--01.pdf');
     expect(jobs[1].filename).toBe('journal--updated.pdf');
   });
 
   test('job has correct properties', () => {
-    const [chapter, edition] = createJobs(friend, modifiedFiles, prFiles);
+    const [chapter, edition] = createJobs(friend, modifiedFiles, prFiles, true);
 
     expect(chapter.target).toBe('pdf-print');
     expect(edition.target).toBe('pdf-print');
@@ -44,7 +50,7 @@ describe('pdf()', () => {
   });
 
   test('job spec property is correctly formed', () => {
-    const [chapter, edition] = createJobs(friend, modifiedFiles, prFiles);
+    const [chapter, edition] = createJobs(friend, modifiedFiles, prFiles, true);
 
     const shape = {
       lang: 'en',
