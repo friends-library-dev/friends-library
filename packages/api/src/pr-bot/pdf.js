@@ -28,12 +28,18 @@ export function createJobs(
 
     if (!jobs.has(edition.type)) {
       const editionFilename = `${document.slug}--${edition.type}.pdf`;
-      const adoc = [...prFiles.entries()].reduce((acc, [path, content]) => {
+      const parts = [...prFiles.entries()].reduce((acc, [path, content]) => {
         if (path.indexOf(`${document.slug}/${edition.type}`) === 0) {
-          return `${acc}\n${content}`;
+          acc.push({ path, content });
         }
         return acc;
-      }, '');
+      }, []);
+
+      const adoc = parts
+        .sort((a, b) => a.path < b.path ? -1 : 1)
+        .map(({ content }) => content)
+        .join('\n');
+
       jobs.set(edition.type, getJob(editionFilename, edition, adoc));
     }
 

@@ -27,6 +27,16 @@ describe('pdf()', () => {
     });
   });
 
+  test('orders out-of-order PR files', () => {
+    prFiles = new Map([
+      ['journal/updated/02.adoc', '== Ch 2'],
+      ['journal/updated/01.adoc', '== Ch 1'],
+    ]);
+    const [job] = createJobs(friend, modifiedFiles, prFiles);
+    expect(job.spec.sections[0].heading.text).toBe('Ch 1');
+    expect(job.spec.sections[1].heading.text).toBe('Ch 2');
+  });
+
   test('does not make chapter files when flag is false', () => {
     const jobs = createJobs(friend, modifiedFiles, prFiles, false);
     expect(jobs).toHaveLength(1);
