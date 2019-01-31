@@ -15,20 +15,17 @@ async function handleGithubWebhook(req: $Request, res: $Response): Promise<void>
 }
 
 function logToSlack(event: string, payload: WebhookPayload): void {
-  const channel = '#_temp-gh-webhook';
-  const filename = `webhook-${Date.now()}.json`;
-  const msg = `New incoming github webhook, event: \`${event}\``;
-  const json = JSON.stringify(payload, null, 2);
-  const file = slack.uploadSnippet(filename, json, channel);
-  slack.postMessage('', channel, {
-    attachments: [{
-      fallback: 'webhook payload',
-      pretext: msg,
-      title: "Payload JSON",
-      title_link: file.permalink,
-      color: "#7CD197"
-    }]
-  });
+  let msg = `Webhook, event: \`${event}\``;
+  if (payload.action) {
+    msg += `, action: \`${payload.action}\``;
+  }
+  if (get(payload, 'repository.name')) {
+    msg += `, repo: \`${payload.repository.name}\``;
+  }
+  if (payload.number) {
+    msg += `, pr: \`${payload.number}\``;
+  }
+  slack.postMessage(msg, '#_temp-gh-webhook');
 }
 
 module.exports = {
