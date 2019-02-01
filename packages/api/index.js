@@ -5,9 +5,9 @@ require('@babel/register')({
         return false;
       }
       return filepath.match(/node_modules/);
-    }
+    },
   ],
 });
 const path = require('path');
-require('dotenv').config({path: path.join(__dirname, '.env')});
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 require('./src/index');

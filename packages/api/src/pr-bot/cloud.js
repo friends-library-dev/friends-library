@@ -1,7 +1,7 @@
 // @flow
 /* istanbul ignore file */
 import AWS from 'aws-sdk';
-import fs from 'fs';
+import fs from 'fs-extra';
 import type { Url } from '../../../../type';
 
 const { env: {
@@ -20,7 +20,7 @@ function getClient() {
     credentials: new AWS.Credentials({
       accessKeyId: S3_KEY,
       secretAccessKey: S3_SECRET,
-    })
+    }),
   });
 }
 
@@ -35,18 +35,22 @@ export async function rimraf(
     client.listObjects({
       Bucket: 'friends-library-assets',
       Prefix: path,
-    }, (err, data) => {
+    }, (listErr, listData) => {
+      if (listErr) {
+        reject(new Error(listErr));
+        return;
+      }
       client.deleteObjects({
         Bucket: 'friends-library-assets',
         Delete: {
-          Objects: data.Contents.map(({ Key }) => ({ Key }))
-        }
-      }, (err, data) => {
-        if (err) {
-          reject(err);
+          Objects: listData.Contents.map(({ Key }) => ({ Key })),
+        },
+      }, (deleteErr, deleteData) => {
+        if (deleteErr) {
+          reject(new Error(deleteErr));
           return;
         }
-        resolve(data.Deleted.map(({ Key }) => Key));
+        resolve(deleteData.Deleted.map(({ Key }) => Key));
       });
     });
   });
@@ -65,24 +69,20 @@ export async function uploadFiles(
         Bucket: 'friends-library-assets',
         ContentType: 'application/pdf',
         ACL: 'public-read',
-      }, (err, data) => {
+      }, (err) => {
         if (err) {
           reject(new Error(err));
           return;
         }
         if (opts.delete) {
-          try {
-            fs.unlinkSync(path);
-          } catch (e) {
-            // ¯\_(ツ)_/¯
-          }
+          fs.removeSync(path);
         }
         resolve();
       });
-    })
+    });
   });
 
-  return await Promise.all(promises)
+  return Promise.all(promises)
     .then(() => {
       return [...files.keys()]
         .map(Key => `${S3_BUCKET_URL || ''}/${Key}`);

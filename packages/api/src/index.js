@@ -3,7 +3,7 @@ import express, { type $Request, type $Response } from 'express';
 import path from 'path';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
-import { redirAndLog } from  './download';
+import { redirAndLog } from './download';
 import { handleGithubWebhook } from './github-webhook';
 
 const { env: {
@@ -26,7 +26,7 @@ app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $
   const { params: { friend, document, edition, filename } } = req;
   const lang = 'en'; // @TODO infer from domain...?
   const basename = path.basename(filename);
-  const [name, format] = basename.split('.');
+  const [, format] = basename.split('.');
 
   const redirUri = [
     ASSETS_URI,
@@ -49,7 +49,7 @@ app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $
 
 
 app.get('/oauth/editor', (req: $Request, res: $Response) => {
-  const code = ((req.query.code: any): string)
+  const code = ((req.query.code: any): string);
   const url = [
     'https://github.com/login/oauth/access_token',
     `?client_id=${JONES_OAUTH_CLIENT_ID || ''}`,
@@ -60,7 +60,7 @@ app.get('/oauth/editor', (req: $Request, res: $Response) => {
   fetch(url, {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
     },
   })
     .then(r => r.json())
@@ -73,7 +73,6 @@ app.get('/oauth/editor', (req: $Request, res: $Response) => {
 app.get('/podcast-item/:quality/:friend/:document/:edition/:part/:filename', (req: $Request, res: $Response) => {
   const { params: { quality, friend, document, edition, part, filename } } = req;
   const lang = 'en'; // @TODO infer from domain...?
-  const basename = path.basename(filename);
 
   const redirUri = [
     ASSETS_URI,

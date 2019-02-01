@@ -1,10 +1,10 @@
 // @flow
 import fs from 'fs-extra';
-import path from 'path';
+import { dirname, basename } from 'path';
 import { Friend, Edition } from '@friends-library/friends';
-import { prepare, getDocumentMeta, pdf, PUBLISH_DIR } from '@friends-library/kite';
-import type { Slug, FilePath, Asciidoc, Css, Lang, Sha } from '../../../../type';
-import type { Job, SourcePrecursor } from '../../../../packages/kite/src/type';
+import { prepare, getDocumentMeta, pdf } from '@friends-library/kite';
+import type { FilePath, Asciidoc, Css, Sha } from '../../../../type';
+import type { Job } from '../../../kite/src/type';
 
 export function createJobs(
   friend: Friend,
@@ -22,7 +22,7 @@ export function createJobs(
       const chFilename = [
         document.slug,
         edition.type,
-        `${path.basename(file, '.adoc')}.pdf`,
+        `${basename(file, '.adoc')}.pdf`,
       ].join('--');
       const chapterJob = getJob(chFilename, edition, prFiles.get(file) || '', sha);
       jobs.set(file, chapterJob);
@@ -65,7 +65,7 @@ function getJob(
       id: filename,
       config: {},
       customCss: {},
-      filename: path.basename(filename, '.pdf'),
+      filename: basename(filename, '.pdf'),
       revision: {
         timestamp: Date.now() / 1000,
         sha: shortSha,
@@ -92,12 +92,13 @@ function getJob(
 export async function makePdfs(
   jobs: Array<Job>,
 ): Promise<Array<FilePath>> {
-  let paths = [];
-  // do these serially to avoid running out of memory
-  for (var i = 0; i < jobs.length; i++) {
+  const paths = [];
+  for (let i = 0; i < jobs.length; i++) {
+    // we do these serially to avoid running out of memory
+    // eslint-disable-next-line no-await-in-loop
     const { pdf: pdfPath, srcDir } = await pdf.make(jobs[i]);
     paths.push(pdfPath);
-    fs.removeSync(path.dirname(srcDir));
+    fs.removeSync(dirname(srcDir));
   }
-  return Promise.resolve(paths)
+  return Promise.resolve(paths);
 }
