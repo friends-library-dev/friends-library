@@ -1,20 +1,18 @@
-'use strict';
 
-var dbm;
-var type;
-var seed;
+
+let dbm;
+let type;
 
 /**
   * We receive the dbmigrate dependency from dbmigrate initially.
   * This enables us to not have to rely on NODE_PATH.
   */
-exports.setup = function(options, seedLink) {
+exports.setup = (options) => {
   dbm = options.dbmigrate;
   type = dbm.dataType;
-  seed = seedLink;
 };
 
-exports.up = function(db) {
+exports.up = (db) => {
   return db.changeColumn('downloads', 'referrer', {
     type: type.STRING,
     length: 255,
@@ -22,14 +20,15 @@ exports.up = function(db) {
   });
 };
 
-exports.down = function(db) {
+exports.down = (db) => {
   return db.changeColumn('downloads', 'referrer', {
     type: type.STRING,
     length: 100,
     notNull: true,
-  });;
+  });
 };
 
+// eslint-disable-next-line no-underscore-dangle
 exports._meta = {
-  "version": 1
+  version: 1,
 };

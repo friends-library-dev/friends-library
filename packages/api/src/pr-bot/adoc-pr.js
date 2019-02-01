@@ -14,7 +14,7 @@ export async function handleNewCommit(
   const {
     number,
     repository: { name: repo },
-    pull_request: { head: { sha } }
+    pull_request: { head: { sha } },
   } = payload;
 
   const friend = getFriend(repo);
@@ -38,7 +38,7 @@ export async function handleClose(
 
 function getComment(urls: Array<Url>, sha: Sha): string {
   const list = urls.map(url => {
-    return `- [${path.basename(url).substring(9)}](${url})`
+    return `- [${path.basename(url).substring(9)}](${url})`;
   }).join('\n');
   return `PDF previews (commit ${sha}):\n\n${list}`;
 }
@@ -48,8 +48,8 @@ function getUploadMap(
   repo: string,
   number: number,
 ): Map<string, string> {
-  return pdfs.reduce((map, pdf) => {
-    const filename = path.basename(pdf);
-    return map.set(`adoc-pr/${repo}/${number}/${filename}`, pdf);
+  return pdfs.reduce((map, filepath) => {
+    const filename = path.basename(filepath);
+    return map.set(`adoc-pr/${repo}/${number}/${filename}`, filepath);
   }, new Map());
 }

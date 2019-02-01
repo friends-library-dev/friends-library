@@ -2,13 +2,12 @@
 /* istanbul ignore file */
 import { Base64 } from 'js-base64';
 import Octokit from '@octokit/rest';
-import get from 'lodash/get';
-import type { Slug, Sha, FilePath, Asciidoc, Css, Url } from '../../../../type';
+import type { Slug, Sha, FilePath, Asciidoc, Css } from '../../../../type';
 
 const { env: { GITHUB_API_TOKEN, NODE_ENV } } = process;
 
 const gh = new Octokit({
-  auth: `token ${GITHUB_API_TOKEN || ''}`
+  auth: `token ${GITHUB_API_TOKEN || ''}`,
 });
 
 const owner = `friends-library${NODE_ENV === 'production' ? '' : '-sandbox'}`;
@@ -17,7 +16,7 @@ export async function getModifiedFiles(
   repo: Slug,
   prNumber: number,
 ): Promise<Array<string>> {
-  return await gh.request(
+  return gh.request(
     '/repos/:owner/:repo/pulls/:number/files',
     { repo, owner, number: prNumber },
   ).then(res => res.data.map(file => file.filename));
@@ -62,7 +61,7 @@ export async function updateableComment(
 
   const prevComment = comments.find(c => c.body.includes(search));
   if (!prevComment) {
-    return await gh.request(`POST ${endpoint}`, {
+    return gh.request(`POST ${endpoint}`, {
       repo,
       owner,
       number,
@@ -70,7 +69,7 @@ export async function updateableComment(
     });
   }
 
-  return await gh.request('PATCH /repos/:owner/:repo/issues/comments/:id', {
+  return gh.request('PATCH /repos/:owner/:repo/issues/comments/:id', {
     repo,
     owner,
     id: prevComment.id,

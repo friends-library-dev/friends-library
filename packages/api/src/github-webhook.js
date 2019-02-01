@@ -2,19 +2,26 @@
 import type { $Request, $Response } from 'express';
 import get from 'lodash/get';
 import type { WebhookPayload } from './type';
-import slack from './slack';
+import * as slack from './slack';
 import * as prBot from './pr-bot';
 
-async function handleGithubWebhook(req: $Request, res: $Response): Promise<void> {
+export async function handleGithubWebhook(
+  req: $Request,
+  res: $Response,
+) {
   res.sendStatus(202);
   res.end();
+
   const event = req.header('X-Github-Event') || '';
   const payload = ((req.body: any): WebhookPayload);
   await prBot.handle(event, payload);
-  await logToSlack(event, payload);
+
+  if (process.env.NODE_ENV === 'production') {
+    await logToSlack(event, payload);
+  }
 }
 
-function logToSlack(event: string, payload: WebhookPayload): void {
+async function logToSlack(event: string, payload: WebhookPayload) {
   let msg = `Webhook, event: \`${event}\``;
   if (payload.action) {
     msg += `, action: \`${payload.action}\``;
@@ -25,9 +32,6 @@ function logToSlack(event: string, payload: WebhookPayload): void {
   if (payload.number) {
     msg += `, pr: \`${payload.number}\``;
   }
-  slack.postMessage(msg, '#_temp-gh-webhook');
-}
 
-module.exports = {
-  handleGithubWebhook,
+  await slack.postMessage(msg, '#_temp-gh-webhook');
 }

@@ -21,8 +21,8 @@ describe('handleNewCommit()', () => {
       number: 11,
       pull_request: {
         head: {
-          sha: "2d306bb70578e6c019e3579c02d4f78f17bf915e"
-        }
+          sha: '2d306bb70578e6c019e3579c02d4f78f17bf915e',
+        },
       },
       repository: {
         name: 'jane-doe',

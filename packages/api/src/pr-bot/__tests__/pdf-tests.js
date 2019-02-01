@@ -21,10 +21,10 @@ describe('pdf()', () => {
           editions: [
             {
               type: 'updated',
-            }
-          ]
-        }
-      ]
+            },
+          ],
+        },
+      ],
     });
   });
 

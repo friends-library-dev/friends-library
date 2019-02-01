@@ -1,57 +1,35 @@
 // @flow
-const { WebClient } = require('@slack/client');
+import { WebClient } from '@slack/client';
 
-const isDev = process.env.NODE_ENV !== 'production';
-const token = process.env.SLACK_API_TOKEN;
-const client = new WebClient(token);
+const client = new WebClient(process.env.SLACK_API_TOKEN);
 
-async function postMessage(
+export async function postMessage(
   text: string,
   channel: string,
   opts: Object = {},
 ) {
-  if (isDev) {
-    return;
-  }
-  try {
-    // See: https://api.slack.com/methods/chat.postMessage
-    const options = Object.assign({
-      username: 'Api Bot',
-      icon_emoji: ':robot_face:',
-      parse: 'full',
-    }, opts, {
-      channel,
-      text,
-    });
-    return await client.chat.postMessage(options);
-  } catch (e) {
-    // ¯\_(ツ)_/¯
-  }
+  // See: https://api.slack.com/methods/chat.postMessage
+  const options = Object.assign({
+    username: 'Api Bot',
+    icon_emoji: ':robot_face:',
+    parse: 'full',
+  }, opts, {
+    channel,
+    text,
+  });
+  await client.chat.postMessage(options);
 }
 
-async function uploadSnippet(
+export async function uploadSnippet(
   filename: string,
   content: string,
   channel: string,
-  opts: Object = {},
 ) {
-  if (isDev) {
-    return;
-  }
-  try {
-    // See: https://api.slack.com/methods/files.upload
-    const res = await client.files.upload({
-      filename,
-      content,
-      channel,
-    });
-    return res.file;
-  } catch (e) {
-    // ¯\_(ツ)_/¯
-  }
-}
-
-module.exports = {
-  postMessage,
-  uploadSnippet,
+  // See: https://api.slack.com/methods/files.upload
+  const res = await client.files.upload({
+    filename,
+    content,
+    channel,
+  });
+  return res.file;
 }

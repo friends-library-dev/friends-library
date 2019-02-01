@@ -1,21 +1,20 @@
-'use strict';
 
-var async = require('async');
-var dbm;
-var type;
-var seed;
+
+const async = require('async');
+
+let dbm;
+let type;
 
 /**
   * We receive the dbmigrate dependency from dbmigrate initially.
   * This enables us to not have to rely on NODE_PATH.
   */
-exports.setup = function(options, seedLink) {
+exports.setup = (options) => {
   dbm = options.dbmigrate;
   type = dbm.dataType;
-  seed = seedLink;
 };
 
-exports.up = function(db, callback) {
+exports.up = (db, callback) => {
   const { STRING, SMALL_INTEGER } = type;
   async.series([
     db.addColumn.bind(db, 'downloads', 'context', {
@@ -35,7 +34,7 @@ exports.up = function(db, callback) {
   ], callback);
 };
 
-exports.down = function(db, callback) {
+exports.down = (db, callback) => {
   async.series([
     db.removeColumn.bind(db, 'downloads', 'context'),
     db.removeColumn.bind(db, 'downloads', 'quality'),
@@ -43,6 +42,7 @@ exports.down = function(db, callback) {
   ], callback);
 };
 
+// eslint-disable-next-line no-underscore-dangle
 exports._meta = {
-  "version": 1
+  version: 1,
 };

@@ -1,14 +1,14 @@
 module.exports = {
   presets: [
     ['@babel/preset-env', {
-      "targets": {
-        "node": "current"
-      }
+      targets: {
+        node: 'current',
+      },
     }],
     '@babel/preset-flow',
   ],
   plugins: [
     '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-transform-async-to-generator'
+    '@babel/plugin-transform-async-to-generator',
   ],
 };

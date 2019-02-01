@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 require('dotenv').config();
 
 const {
@@ -7,7 +8,7 @@ const {
   },
 } = process;
 
-module.exports = function (shipit) {
+module.exports = (shipit) => {
   require('shipit-deploy')(shipit);
   require('shipit-yarn')(shipit);
   require('shipit-shared')(shipit);
@@ -23,12 +24,12 @@ module.exports = function (shipit) {
       deployTo: API_DEPLOY_PATH,
       shared: {
         overwrite: true,
-        files: ['packages/api/.env']
-      }
+        files: ['packages/api/.env'],
+      },
     },
     production: {
-      servers: API_PRODUCTION_SERVER
-    }
+      servers: API_PRODUCTION_SERVER,
+    },
   });
 
   shipit.on('published', () => {
