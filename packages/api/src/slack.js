@@ -1,9 +1,18 @@
+// @flow
 const { WebClient } = require('@slack/client');
 
+const isDev = process.env.NODE_ENV !== 'production';
 const token = process.env.SLACK_API_TOKEN;
 const client = new WebClient(token);
 
-async function postMessage(text, channel, opts = {}) {
+async function postMessage(
+  text: string,
+  channel: string,
+  opts: Object = {},
+) {
+  if (isDev) {
+    return;
+  }
   try {
     // See: https://api.slack.com/methods/chat.postMessage
     const options = Object.assign({
@@ -20,7 +29,15 @@ async function postMessage(text, channel, opts = {}) {
   }
 }
 
-async function uploadSnippet(filename, content, channel, opts = {}) {
+async function uploadSnippet(
+  filename: string,
+  content: string,
+  channel: string,
+  opts: Object = {},
+) {
+  if (isDev) {
+    return;
+  }
   try {
     // See: https://api.slack.com/methods/files.upload
     const res = await client.files.upload({

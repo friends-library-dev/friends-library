@@ -20,10 +20,10 @@ export async function handleNewCommit(
   const friend = getFriend(repo);
   const modifiedFiles = await gh.getModifiedFiles(repo, number);
   const allFiles = await gh.getPrFiles(repo, sha);
-  const jobs = pdf.createJobs(friend, modifiedFiles, allFiles);
+  const jobs = pdf.createJobs(friend, modifiedFiles, allFiles, sha);
   const pdfs = await pdf.makePdfs(jobs);
-  const uploadMap = getUploadMap(pdfs, repo, number, sha);
-  const urls = await cloud.uploadFiles(uploadMap);
+  const uploadMap = getUploadMap(pdfs, repo, number);
+  const urls = await cloud.uploadFiles(uploadMap, { delete: true });
   const body = getComment(urls, sha);
   gh.updateableComment(repo, number, body, 'PDF previews (commit');
 }
@@ -37,7 +37,9 @@ export async function handleClose(
 }
 
 function getComment(urls: Array<Url>, sha: Sha): string {
-  const list = urls.map(u => `- [${path.basename(u)}](${u})`).join('\n');
+  const list = urls.map(url => {
+    return `- [${path.basename(url).substring(9)}](${url})`
+  }).join('\n');
   return `PDF previews (commit ${sha}):\n\n${list}`;
 }
 
@@ -45,10 +47,9 @@ function getUploadMap(
   pdfs: Array<string>,
   repo: string,
   number: number,
-  sha: Sha,
 ): Map<string, string> {
   return pdfs.reduce((map, pdf) => {
     const filename = path.basename(pdf);
-    return map.set(`adoc-pr/${repo}/${number}/${sha}/${filename}`, pdf);
+    return map.set(`adoc-pr/${repo}/${number}/${filename}`, pdf);
   }, new Map());
 }

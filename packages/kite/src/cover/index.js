@@ -45,7 +45,9 @@ export function makeCover(
   };
 
   const dir = '__cover__';
-  return prince(manifest, dir, 'cover.pdf', process.argv.includes('--open'));
+  return prince(manifest, dir, 'cover.pdf', {
+    open: process.argv.includes('--open'),
+  });
 }
 
 function getHtml(

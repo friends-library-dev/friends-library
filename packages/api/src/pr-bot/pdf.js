@@ -1,7 +1,8 @@
 // @flow
+import fs from 'fs-extra';
 import path from 'path';
 import { Friend, Edition } from '@friends-library/friends';
-import { prepare, getDocumentMeta, pdf, resetPublishDir, PUBLISH_DIR } from '@friends-library/kite';
+import { prepare, getDocumentMeta, pdf, PUBLISH_DIR } from '@friends-library/kite';
 import type { Slug, FilePath, Asciidoc, Css, Lang, Sha } from '../../../../type';
 import type { Job, SourcePrecursor } from '../../../../packages/kite/src/type';
 
@@ -9,6 +10,7 @@ export function createJobs(
   friend: Friend,
   modifiedFiles: Array<FilePath>,
   prFiles: Map<FilePath, Asciidoc | Css>,
+  sha: Sha,
   chapters: boolean = false,
 ): Array<*> {
   return [...modifiedFiles.reduce((jobs, file) => {
@@ -17,12 +19,12 @@ export function createJobs(
     const edition = document.editions.find(ed => ed.type === editionType);
 
     if (chapters) {
-      const chapterFilename = [
+      const chFilename = [
         document.slug,
         edition.type,
         `${path.basename(file, '.adoc')}.pdf`,
       ].join('--');
-      const chapterJob = getJob(chapterFilename, edition, prFiles.get(file) || '');
+      const chapterJob = getJob(chFilename, edition, prFiles.get(file) || '', sha);
       jobs.set(file, chapterJob);
     }
 
@@ -40,7 +42,7 @@ export function createJobs(
         .map(({ content }) => content)
         .join('\n');
 
-      jobs.set(edition.type, getJob(editionFilename, edition, adoc));
+      jobs.set(edition.type, getJob(editionFilename, edition, adoc, sha));
     }
 
     return jobs;
@@ -48,10 +50,13 @@ export function createJobs(
 }
 
 function getJob(
-  filename: string,
+  filenameBase: string,
   edition: Edition,
   adoc: Asciidoc,
+  sha: Sha,
 ): Job {
+  const shortSha = sha.substring(0, 7);
+  const filename = `${shortSha}--${filenameBase}`;
   return {
     id: filename,
     filename,
@@ -60,10 +65,10 @@ function getJob(
       id: filename,
       config: {},
       customCss: {},
-      filename,
+      filename: path.basename(filename, '.pdf'),
       revision: {
-        timestamp: Date.now(),
-        sha: 'pr-test',
+        timestamp: Date.now() / 1000,
+        sha: shortSha,
         url: '#',
       },
       lang: 'en',
@@ -78,7 +83,7 @@ function getJob(
       send: false,
       debugPrintMargins: false,
       condense: false,
-      frontmatter: filename.split('--').length < 3,
+      frontmatter: filename.split('--').length < 4,
     },
   };
 }
@@ -87,12 +92,12 @@ function getJob(
 export async function makePdfs(
   jobs: Array<Job>,
 ): Promise<Array<FilePath>> {
-  resetPublishDir();
   let paths = [];
   // do these serially to avoid running out of memory
   for (var i = 0; i < jobs.length; i++) {
-    const filename = await pdf.make(jobs[i]);
-    paths.push(`${PUBLISH_DIR}/${filename}`);
+    const { pdf: pdfPath, srcDir } = await pdf.make(jobs[i]);
+    paths.push(pdfPath);
+    fs.removeSync(path.dirname(srcDir));
   }
   return Promise.resolve(paths)
 }

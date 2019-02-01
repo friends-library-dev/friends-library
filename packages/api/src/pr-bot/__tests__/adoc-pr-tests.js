@@ -49,7 +49,12 @@ describe('handleNewCommit()', () => {
     gh.getPrFiles.mockReturnValue(prFiles);
     await handleNewCommit('pull_request', payload);
     expect(friends.getFriend).toBeCalledWith('jane-doe');
-    expect(pdf.createJobs).toBeCalledWith('FakeFriend', modifiedFiles, prFiles);
+    expect(pdf.createJobs).toBeCalledWith(
+      'FakeFriend',
+      modifiedFiles,
+      prFiles,
+      '2d306bb70578e6c019e3579c02d4f78f17bf915e',
+    );
   });
 
   it('calls pdf.createPdfs with created jobs', async () => {
@@ -63,19 +68,19 @@ describe('handleNewCommit()', () => {
     pdf.makePdfs.mockReturnValue(['/path/to/created.pdf']);
     await handleNewCommit('pull_request', payload);
     expect(cloud.uploadFiles).toBeCalledWith(new Map([[
-      'adoc-pr/jane-doe/11/2d306bb70578e6c019e3579c02d4f78f17bf915e/created.pdf',
+      'adoc-pr/jane-doe/11/created.pdf',
       '/path/to/created.pdf',
-    ]]));
+    ]]), { delete: true });
   });
 
   it('calls gh.updateableComment with correct params', async () => {
-    cloud.uploadFiles.mockReturnValue(['http://foo.com/bar/some.pdf']);
+    cloud.uploadFiles.mockReturnValue(['http://foo.com/bar/2d306bb--some.pdf']);
     await handleNewCommit('pull_request', payload);
 
     const body = stripIndent(`
       PDF previews (commit 2d306bb70578e6c019e3579c02d4f78f17bf915e):
 
-      - [some.pdf](http://foo.com/bar/some.pdf)
+      - [some.pdf](http://foo.com/bar/2d306bb--some.pdf)
     `).trim();
 
     expect(gh.updateableComment).toBeCalledWith(
