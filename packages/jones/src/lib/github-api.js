@@ -171,16 +171,27 @@ async function openPullRequest(
   title: string,
   user: string,
 ): Promise<number> {
+  const body = getPrBody(user);
   const { data: { number } } = await req('POST /repos/:owner/:repo/pulls', {
     repo,
     title,
     owner: ORG,
     head: `${user}:${branch}`,
     base: 'master',
-    body: !isDev && ORG === 'friends-library' ? '@jaredh159 @Henderjay' : '',
+    body,
     maintainer_can_modify: true,
   });
   return number;
+}
+
+function getPrBody(user: string): string {
+  if (isDev || ORG !== 'friends-library' || user === 'jaredh159') {
+    return '';
+  }
+  if (user === 'Henderjay') {
+    return '@jaredh159';
+  }
+  return '@jaredh159 @Henderjay';
 }
 
 async function updateHead(
