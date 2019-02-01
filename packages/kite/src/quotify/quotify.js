@@ -23,20 +23,20 @@ function quotifyLine(line: Asciidoc): Asciidoc {
   while ((match = expr.exec(line))) {
     const type = match[0];
     const { index } = match;
+    const before = line.substring(0, index);
+    const after = line.substring(index + 1);
+    const charBefore = before[index - 1];
+    const charAfter = after[0];
 
     if (chars[index - 1] === BACKTICK || chars[index + 1] === BACKTICK) {
       continue;
     }
 
+    // beginning of line? point right
     if (index === 0) {
       mod[0] = right(type);
       continue;
     }
-
-    const before = line.substring(0, index);
-    const after = line.substring(index + 1);
-    const charBefore = before[index - 1];
-    const charAfter = after[0];
 
     // in the middle of a word like `don't`? point left
     if (
@@ -71,11 +71,20 @@ function quotifyLine(line: Asciidoc): Asciidoc {
       continue;
     }
 
+    if (charBefore && charBefore.match(/[a-z0-9,;:.]/)) {
+      mod[index] = left(type);
+      continue;
+    }
+
     // fallthrough
     mod[index] = right(type);
   }
 
-  return mod.join('');
+  const newLine = mod.join('');
+
+  return newLine
+    .replace(/([^` ])'`"/g, '$1`\'`"')
+    .replace(/([^` ])"`'/g, '$1`"`\'');
 }
 
 function right(type: string): string {
