@@ -3,16 +3,26 @@
 import fs from 'fs-extra';
 import { spawn, exec } from 'child_process';
 import { yellow } from '@friends-library/cli/color';
+import type { FilePath } from '../../../../../type';
 import type { FileManifest } from '../../type';
 import { PUBLISH_DIR } from '../file';
+
+type Options = {
+  open?: boolean,
+  formatOutput?: (line: string) => string,
+};
+
+type Artifacts = {|
+  pdf: FilePath,
+  srcDir: FilePath,
+|};
 
 export function prince(
   manifest: FileManifest,
   srcDir: string,
   filename: string,
-  open: boolean = false,
-  outputLineMap: (line: string) => string = l => l,
-): Promise<string> {
+  opts?: Options = {},
+): Promise<Artifacts> {
   if (srcDir.indexOf(`${PUBLISH_DIR}/_src_/`) === 0) {
     throw new Error(`srcDir param must be relative to ${PUBLISH_DIR}/_src_/`);
   }
@@ -37,7 +47,7 @@ export function prince(
             .trim()
             .split('\n')
             .filter(filterPrinceOutput)
-            .map(outputLineMap)
+            .map(opts.formatOutput || (l => l))
             .join('\n');
 
           if (output) {
@@ -52,10 +62,13 @@ export function prince(
       return fs.move(`${dir}/doc.pdf`, `${PUBLISH_DIR}/${filename}`);
     })
     .then(() => {
-      if (open) {
+      if (opts.open) {
         exec(`open "${PUBLISH_DIR}/${filename}"`);
       }
-      return filename;
+      return {
+        pdf: `${PUBLISH_DIR}/${filename}`,
+        srcDir: dir,
+      };
     });
 }
 

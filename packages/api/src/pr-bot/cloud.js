@@ -54,16 +54,32 @@ export async function rimraf(
 
 export async function uploadFiles(
   files: Map<CloudFilePath, LocalFilePath>,
+  opts?: { delete: boolean } = { delete: false },
 ): Promise<Array<Url>> {
   const client = getClient();
   const promises = [...files.entries()].map(([Key, path]) => {
-    return client.putObject({
-      Key,
-      Body: fs.readFileSync(path),
-      Bucket: 'friends-library-assets',
-      ContentType: 'application/pdf',
-      ACL: 'public-read',
-    }).send();
+    return new Promise((resolve, reject) => {
+      client.putObject({
+        Key,
+        Body: fs.readFileSync(path),
+        Bucket: 'friends-library-assets',
+        ContentType: 'application/pdf',
+        ACL: 'public-read',
+      }, (err, data) => {
+        if (err) {
+          reject(new Error(err));
+          return;
+        }
+        if (opts.delete) {
+          try {
+            fs.unlinkSync(path);
+          } catch (e) {
+            // ¯\_(ツ)_/¯
+          }
+        }
+        resolve();
+      });
+    })
   });
 
   return await Promise.all(promises)
