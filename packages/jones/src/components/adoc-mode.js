@@ -32,8 +32,12 @@ window.ace.define(
             regex: "(^--$)"
           },
           {
+            token: "comment.block.documentation",
+            regex: "(^//.+$)"
+          },
+          {
             token: "meta.selector",
-            regex: "((\"|')`.+`(\"|'))"
+            regex: "((\"|')`.+?`(\"|'))"
           },
           {
             token: "markup.inserted punctuation",
