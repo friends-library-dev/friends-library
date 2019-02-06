@@ -68,7 +68,7 @@ $ yarn fell commit --message "my message" --scope feature-x
 $ yarn fell commit -m "my message" # -m shorthand for message
 ```
 
-### `push <branch> [--open-pr] [--pr-title] [--pr-body] [--org]`
+### `push <branch> [--open-pr] [--pr-title] [--pr-body] [--delay]`
 
 Push branch from all repos to remote: `origin`. Can also auto-open Pull Requests
 with the `--open-pr` option. By default the pull request title will be the most
@@ -77,9 +77,14 @@ custom strings using `--pr-title` and/or `--pr-body`.
 
 __Note:__ This command *auto-scopes* to the `<branch>` you pass.
 
+__Note:__ You can pass a `--delay` flag (in seconds) to add seconds between
+PR creation. This helps prevent GitHub api abuse sensors, and gives time for the API
+to not be overwhelmed `kite`-ing pdf previews.
+
 ```SHELL
-$ yarn fell push feature-x --scope feature-x --open-pr --pr-title "my rad pr!"
+$ yarn fell push feature-x --open-pr --pr-title "my rad pr!"
 $ yarn fell push master # push all repos straight to master
+$ yarn fell push feature-x --delay 120 # delay 2 minutes between each push
 ```
 
 ### `delete <branch> [--exclude] [--scope]`

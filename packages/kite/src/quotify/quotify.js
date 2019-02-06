@@ -86,6 +86,7 @@ function quotifyLine(line: Asciidoc): Asciidoc {
     .replace(/([^`]|^)"`'([^` ])/g, '$1"`\'`$2')
     .replace(/([^` [])'`"/g, '$1`\'`"')
     .replace(/([^` [])"`'/g, '$1`"`\'')
+    .replace(/(^|\b| |`|-)'`(\d\d)(\b|$| )/g, '$1`\'$2$3')
     .replace(
       /(^|\b| |`|-)'`(')?(T|t)is(\b|$| )/g,
       (_, a, b, c, d) => {
