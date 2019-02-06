@@ -28,7 +28,7 @@ function quotifyLine(line: Asciidoc): Asciidoc {
     const charBefore = before[index - 1];
     const charAfter = after[0];
 
-    if (chars[index - 1] === BACKTICK || chars[index + 1] === BACKTICK) {
+    if (charBefore === BACKTICK || charAfter === BACKTICK) {
       continue;
     }
 
@@ -83,8 +83,9 @@ function quotifyLine(line: Asciidoc): Asciidoc {
   const newLine = mod.join('');
 
   return newLine
-    .replace(/([^` ])'`"/g, '$1`\'`"')
-    .replace(/([^` ])"`'/g, '$1`"`\'');
+    .replace(/([^`]|^)"`'([^` ])/g, '$1"`\'`$2')
+    .replace(/([^` [])'`"/g, '$1`\'`"')
+    .replace(/([^` [])"`'/g, '$1`"`\'');
 }
 
 function right(type: string): string {
