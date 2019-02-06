@@ -1,0 +1,32 @@
+// @flow
+import fs from 'fs-extra';
+import { green, magenta } from '@friends-library/cli/color';
+import { excludable, scopeable } from './helpers';
+import { getFriendRepos } from '../github';
+import * as git from '../git';
+
+export async function handler() {
+  let alreadyCloned = 0;
+  const cwd = process.cwd();
+  const repos = await getFriendRepos();
+  await Promise.all(repos.map(repo => {
+    const slug = repo.name;
+    const repoPath = `${cwd}/en/${slug}`;
+    if (fs.pathExistsSync(repoPath)) {
+      alreadyCloned++;
+      return Promise.resolve();
+    }
+    green(`📡  Cloning missing repo "/en/${slug}"`);
+    return git.clone(repoPath, repo.ssh_url);
+  }));
+  magenta(`👌  Skipped ${alreadyCloned} repos already cloned.`);
+}
+
+export const command = 'clone';
+
+export const describe = 'Clones down all doc repos';
+
+export const builder = {
+  ...excludable,
+  ...scopeable,
+};
