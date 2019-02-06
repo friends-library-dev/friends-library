@@ -100,8 +100,9 @@ export default styled.div`
     color #61afef;
   }
 
-  /* footnote (:[) */
-  .ace_meta.ace_diff {
+  /* footnote (:[) and comments */
+  .ace_meta.ace_diff,
+  .ace_comment.ace_block.ace_documentation {
     color: rgba(171, 178, 191, 0.5) !important;
   }
 

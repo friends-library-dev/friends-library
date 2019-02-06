@@ -20,7 +20,11 @@ contexts[] {
       styles[] = .obd;
     }
     : pattern {
-      regex \= (("|')`.+`("|'))
+      regex \= (^//.+$)
+      styles[] = .comment;
+    }
+    : pattern {
+      regex \= (("|')`.+?`("|'))
       styles[] = .inline_quote;
     }
     : pattern {
@@ -122,6 +126,10 @@ styles [] {
   .hr : style {
     textmate_scope = "meta.diff.header.from-file";
     color = "cyan";
+  }
+  .comment : style {
+    textmate_scope = "comment.block.documentation";
+    color = "black";
   }
   .bracket_inner : style {
     textmate_scope = "keyword.control";
