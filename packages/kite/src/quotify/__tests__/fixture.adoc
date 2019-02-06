@@ -1,3 +1,60 @@
+'`Tis foo
+`'Tis foo
+
+Foo 'Tis
+Foo `'Tis
+
+Foo '`Tis
+Foo `'Tis
+
+Foo '`Tissue`'
+Foo '`Tissue`'
+
+Foo 'Tissue'
+Foo '`Tissue`'
+
+Foo "Tissue"
+Foo "`Tissue`"
+
+'`tis then he is aroused
+`'tis then he is aroused
+
+on the subject, but '`tis,
+on the subject, but `'tis,
+
+on the subject, but 'tis,
+on the subject, but `'tis,
+
+"`'`Tis soft knocks must enter hard blocks.`"
+"``'Tis soft knocks must enter hard blocks.`"
+
+"'Tis soft knocks must enter hard blocks."
+"``'Tis soft knocks must enter hard blocks.`"
+
+and where '`tis from a
+and where `'tis from a
+
+and where 'tis from a
+and where `'tis from a
+
+'`Tis this--'`tis Innocence
+`'Tis this--`'tis Innocence
+
+"`Yes--'`tis her!-- '`tis her!--'`tis Rebarka Jones!`"
+"`Yes--`'tis her!-- `'tis her!--`'tis Rebarka Jones!`"
+
+"Yes--'tis her!-- 'tis her!--'tis Rebarka Jones!"
+"`Yes--`'tis her!-- `'tis her!--`'tis Rebarka Jones!`"
+
+Peter saith, '`'`Tis not the putting
+Peter saith, '``'Tis not the putting
+
+Peter saith, '`'Tis not the putting
+Peter saith, '``'Tis not the putting
+
+Peter saith, "'Tis not the putting"
+Peter saith, "``'Tis not the putting`"
+
 "`'So take the talent
 "`'`So take the talent
 

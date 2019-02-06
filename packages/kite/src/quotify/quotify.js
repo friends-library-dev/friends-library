@@ -85,7 +85,13 @@ function quotifyLine(line: Asciidoc): Asciidoc {
   return newLine
     .replace(/([^`]|^)"`'([^` ])/g, '$1"`\'`$2')
     .replace(/([^` [])'`"/g, '$1`\'`"')
-    .replace(/([^` [])"`'/g, '$1`"`\'');
+    .replace(/([^` [])"`'/g, '$1`"`\'')
+    .replace(
+      /(^|\b| |`|-)'`(')?(T|t)is(\b|$| )/g,
+      (_, a, b, c, d) => {
+        return `${a}${b ? "'`" : ''}\`'${c}is${d}`;
+      },
+    );
 }
 
 function right(type: string): string {
