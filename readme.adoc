@@ -3,4 +3,4 @@
 For documentation, see `readme` for each package:
 
 * link:packages/kite/readme.adoc[kite docs] _(derive/publish book formats from source asciidoc)_
-* link:packages/fell/readme.adoc[fell docs] _(group manipulation of document source repos)_
+* link:packages/fell/readme.md[fell docs] _(group manipulation of document source repos)_
