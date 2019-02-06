@@ -1,3 +1,21 @@
+"`'So take the talent
+"`'`So take the talent
+
+footnote:["`'So take the talent
+footnote:["`'`So take the talent
+
+foo bar end'`"
+foo bar end`'`"
+
+foo bar end"`'
+foo bar end`"`'
+
+foo bar end'`" jim jam
+foo bar end`'`" jim jam
+
+foo bar end"`' jim jam
+foo bar end`"`' jim jam
+
 Father in Heaven.'`" These are true seekers,
 Father in Heaven.`'`" These are true seekers,
 
