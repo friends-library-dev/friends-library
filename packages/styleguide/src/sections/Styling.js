@@ -13,6 +13,7 @@ export default () => (
       {' '}and <i>not</i> with plain italics:
     </Para>
     <Pair id="book-title" />
+    <Snippet trigger="bt" expansion="[.book-title]#" />
 
     <H2>Underlining</H2>
 

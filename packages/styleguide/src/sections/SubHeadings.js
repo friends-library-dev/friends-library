@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { Pair, H1, H2, Para, Code, Section, Note } from '../components';
+import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
 export default () => (
   <Section id="sub-headings">
@@ -42,6 +42,7 @@ export default () => (
       appear bold, instead of italic, as shown:
     </Para>
     <Pair id="old-style-bold" emphasize={[1]} />
+    <Snippet trigger="os" expansion="[.old-style]" />
 
     <H2>Blurb-Style Headings</H2>
     <Para>
