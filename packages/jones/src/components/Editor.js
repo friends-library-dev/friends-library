@@ -11,6 +11,7 @@ import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
 import './adoc-mode';
+import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
 
 const noopEditor = new Proxy({}, {
@@ -142,6 +143,7 @@ class Editor extends React.Component<Props> {
         value={adoc || ''}
         editorProps={{ $blockScrolling: true }}
         setOptions={{
+          enableSnippets: true,
           indentedSoftWrap: false,
           wrap: true, // !!! <- must be after `indentedSoftWrap`
         }}
