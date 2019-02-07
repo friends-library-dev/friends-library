@@ -70,6 +70,11 @@ describe('find()', () => {
     expect(found).toHaveLength(1);
   });
 
+  it('does not find Romans ref inside "from"', () => {
+    const found = find('(from v. 21 of the same)');
+    expect(found).toHaveLength(0);
+  });
+
   it('does not find Genesis & Esther reference inside Judges ref.', () => {
     const found = find('foo Judges 14:14');
 
