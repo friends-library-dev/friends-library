@@ -15,7 +15,6 @@ window.ace.define(
   (acequire, exports) => {
     const oop = acequire("ace/lib/oop");
     const { TextHighlightRules } = acequire("ace/mode/text_highlight_rules");
-
     const AdocHighlightRules = function() {
       this.$rules = {
         start: [
