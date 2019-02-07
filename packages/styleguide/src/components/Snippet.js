@@ -69,7 +69,7 @@ const Snippet = ({ trigger, expansion, acronym }: Props) => (
   <StyledDiv>
     <img src={logo} alt="" />
     <p>
-      The Atom snippet <code className="trigger">{trigger}</code>
+      The snippet <code className="trigger">{trigger}</code>
       {' '}<Acronym text={acronym || ''} /> will expand
       to <Expansion expansion={expansion} />
     </p>

@@ -2,12 +2,19 @@
 import * as React from 'react';
 import { Pair, H1, Para, Code, Section, Note, Asciidoc } from '../components';
 
+const editorUrl = 'https://flp-editor.netlify.com';
+
 export default () => (
   <Section id="emphasis">
     <H1>Emphasis (italic)</H1>
     <Para>
       Use underscores <Code>_</Code> for basic emphasis.
     </Para>
+    <Note>
+      In the <a href={editorUrl}>Online Editor</a>, you can highlight a chunk of
+      non-italicized text and press <code>Cmd+I</code> or <code>Ctrl+I</code> and
+      the required underscores will be <em>added automatically.</em>
+    </Note>
     <Pair id="emphasis-1" />
     <Para>
       You can also use <i>2</i> underscores <Code>__</Code> for emphasis.
@@ -24,7 +31,7 @@ export default () => (
     <Asciidoc id="emphasis-footnote" emphasize={[2]} />
 
     <Para>
-      Italics can span across multiple lines, but Atom won't give you nice
+      Italics can span across multiple lines, you won't get nice
       syntax highlighting, as shown below, but it still works.
     </Para>
     <Pair id="emphasis-multiline" />

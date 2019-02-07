@@ -29,7 +29,7 @@ export default () => (
     <H2>Multi-line Inline Quotes:</H2>
     <Para>
       Inline quotations work fine when <i>they span multiple lines</i>, but,
-      like italics, you <i>lose syntax-highlighting</i> from Atom. 😥
+      like italics, you <i>lose syntax-highlighting</i>. 😥
       For this reason, I sometimes hand-tweak the line-breaks to keep short
       inline quotations on the same line, so they are easier to see at a glance.
     </Para>
@@ -43,6 +43,7 @@ export default () => (
       {' '}<i>and</i> after:
     </Para>
     <Pair id="quote-block" emphasize={[3, 4, 11]} />
+    <Snippet trigger="q" expansion={'[quote]\n____'} />
 
     <H2>Block Quotes with Attribution:</H2>
     <Para>
@@ -71,6 +72,7 @@ export default () => (
       Scripture block quotes are also italicized.
     </Para>
     <Pair id="quote-scripture" emphasize={[1]} />
+    <Snippet trigger="qs" expansion={'[quote.scripture, , ]\n____'} />
     <Note>
       <b>Epigraphs</b> are a special type of block quote, but are covered
       in <a href="#epigraphs">their own section.</a>

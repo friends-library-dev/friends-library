@@ -4,7 +4,7 @@ import { Pair, H1, H2, Para, Code, Section, Note } from '../components';
 
 export default () => (
   <Section id="gotchas">
-    <H1>Gotchas!</H1>
+    <H1>Gotchas 😬</H1>
     <H2>Square Brackets:</H2>
     <Para>
       Because <b>square brackets</b> <Code>[ ]</Code> have a special meaning in
