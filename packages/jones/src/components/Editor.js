@@ -10,6 +10,7 @@ import { currentTask } from '../select';
 import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
+import { italicize } from '../lib/format';
 import './adoc-mode';
 import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
@@ -87,41 +88,56 @@ class Editor extends React.Component<Props> {
       find,
     } = this.props;
 
-    this.editor().commands.addCommand({
+    const editor = this.editor();
+
+    editor.commands.addCommand({
       name: 'increaseFontSize',
       bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
       exec: () => increaseFontSize(),
     });
 
-    this.editor().commands.addCommand({
+    editor.commands.addCommand({
       name: 'decreaseFontSize',
       bindKey: { mac: 'Command-Down', win: 'Ctrl-Down' },
       exec: () => decreaseFontSize(),
     });
 
-    this.editor().commands.addCommand({
+    editor.commands.addCommand({
       name: 'toggleSidebarOpen',
       bindKey: { mac: 'Command-Ctrl-7', win: 'Alt-Ctrl-7' },
       exec: () => toggleSidebarOpen(),
     });
 
-    this.editor().commands.addCommand({
+    editor.commands.addCommand({
       name: 'find',
       bindKey: { mac: 'Command-F', win: 'Ctrl-F' },
       exec: () => find(),
     });
 
-    this.editor().commands.addCommand({
+    editor.commands.addCommand({
       name: 'undo',
       bindKey: { mac: 'Command-Z', win: 'Ctrl-Z' },
       exec: () => undo(),
     });
 
-    this.editor().commands.addCommand({
+    editor.commands.addCommand({
       name: 'redo',
       bindKey: { mac: 'Command-Shift-Z', win: 'Alt-Shift-Z' },
       exec: () => redo(),
     });
+
+    editor.commands.addCommand({
+      name: 'italicize',
+      bindKey: { mac: 'Command-I', win: 'Ctrl-I' },
+      exec: () => {
+        const selected = editor.getSelectedText();
+        const range = editor.getSelectionRange();
+        const firstLine = editor.session.getLine(range.start.row);
+        const lastLine = editor.session.getLine(range.end.row);
+        const replacement = italicize(selected, firstLine, lastLine, range);
+        editor.session.replace(range, replacement);
+      }
+    })
   }
 
   editor() {
