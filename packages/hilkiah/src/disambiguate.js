@@ -73,6 +73,7 @@ function incorrectAmbiguous(ref, input) {
     incorrect('Esther', /^es /, 'judg'),
     incorrect('Genesis', /^ges /, 'jud'),
     incorrect('Amos', /^am\. /, 'j'),
+    incorrect('Romans', /^rom /, 'f'),
   ].reduce((result, fn) => result || fn(ref, input), false);
 }
 
