@@ -14,6 +14,7 @@ export async function handleGithubWebhook(
 
   const event = req.header('X-Github-Event') || '';
   const payload = ((req.body: any): WebhookPayload);
+  console.log({ payload });
   await prBot.handle(event, payload);
 
   if (process.env.NODE_ENV === 'production') {
