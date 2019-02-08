@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 require('@babel/register');
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '.env') });
+require('dotenv').config({ path: path.join(__dirname, '..', '..', '.env') });
 const { prettifyErrors } = require('@friends-library/cli/error');
 const yargs = require('yargs');
 const branch = require('./src/cmd/branch');

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 require('@babel/register');
-require('dotenv').config({ path: `${__dirname}/.env` });
+require('dotenv').config({ path: `${__dirname}/../../.env` });
 const yargs = require('yargs');
 const { omit } = require('lodash');
 const { prettifyErrors, catchify } = require('@friends-library/cli/error');
@@ -52,7 +52,7 @@ yargs
       });
       positional('dest', {
         type: 'string',
-        describe: 'relative (to DOCS_REPOS_ROOT) path to dest. dir for placing chapterized files',
+        describe: 'relative (to KITE_DOCS_REPOS_ROOT) path to dest. dir for placing chapterized files',
       });
       positional('chStart', {
         type: 'number',

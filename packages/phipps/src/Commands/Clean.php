@@ -89,7 +89,7 @@ class Clean extends Command
             return;
         }
 
-        $assetsDir = getenv('LOCAL_ASSETS_DIR');
+        $assetsDir = getenv('PHIPPS_LOCAL_ASSETS_DIR');
         $success = rename("$assetsDir/$current", "$assetsDir/$proposed");
         if (! $success) {
             throw new \Exception("Failed to rename $current");

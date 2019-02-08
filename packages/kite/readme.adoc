@@ -146,16 +146,15 @@ like the _epub_ in `--target *epub*`, it needs to be directly after its own flag
 
 == Configuration
 
-`kite` uses a `.env` file for configuration. Main variables shown below, see `.env.example` for more granular detail:
+`kite` uses a `.env` (in monorepo root dir) file for configuration.
+Main variables shown below, see `.env.example` for more granular detail:
 
 ```
-DOCS_REPOS_ROOT=/path/to/root  # absolute filepath to source root dir containing all doc repos
-PUBLISH_ROOT=/path/to/publish  # absolute filepath to destination (publish) root dir
-GMAIL_PASS=lol-so-secret-password
-GMAIL_USER=you@gmail.com
+KITE_DOCS_REPOS_ROOT=/path/to/root  # absolute filepath to source root dir containing all doc repos
+KITE_GMAIL_PASS=lol-so-secret-password
+KITE_GMAIL_USER=you@gmail.com
 ```
 
 [TIP]
-The `GMAIL_*` config options are required to use the `--send` option.
-The `GMAIL_PASS` should be an _application-specific password_ you create for kite.
-The `.env` file is gitignored, so it will never be made public.
+The `KITE_GMAIL_*` config options are required to use the `--send` option.
+The `KITE_GMAIL_PASS` should be an _application-specific password_ you create for kite.

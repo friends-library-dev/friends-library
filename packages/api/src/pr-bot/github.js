@@ -4,10 +4,10 @@ import { Base64 } from 'js-base64';
 import Octokit from '@octokit/rest';
 import type { Slug, Sha, FilePath, Asciidoc, Css } from '../../../../type';
 
-const { env: { GITHUB_API_TOKEN, NODE_ENV } } = process;
+const { env: { API_GITHUB_TOKEN, NODE_ENV } } = process;
 
 const gh = new Octokit({
-  auth: `token ${GITHUB_API_TOKEN || ''}`,
+  auth: `token ${API_GITHUB_TOKEN || ''}`,
 });
 
 const owner = `friends-library${NODE_ENV === 'production' ? '' : '-sandbox'}`;

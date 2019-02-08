@@ -90,7 +90,7 @@ class Deploy extends Command
     protected function listRemoteFiles(): void
     {
         $objects = $this->client->getIterator('ListObjects', [
-            'Bucket' => getenv('DEPLOY_BUCKET'),
+            'Bucket' => getenv('CLOUD_STORAGE_BUCKET'),
         ]);
 
         foreach ($objects as $object) {
@@ -118,7 +118,7 @@ class Deploy extends Command
     protected function removeDeletedFiles(): void
     {
         foreach (array_keys($this->remoteFiles) as $path) {
-            if (file_exists(getenv('LOCAL_ASSETS_DIR') . '/' . $path)) {
+            if (file_exists(getenv('PHIPPS_LOCAL_ASSETS_DIR') . '/' . $path)) {
                 continue;
             }
 
@@ -133,7 +133,7 @@ class Deploy extends Command
             }
 
             $this->client->deleteObject([
-                'Bucket' => getenv('DEPLOY_BUCKET'),
+                'Bucket' => getenv('CLOUD_STORAGE_BUCKET'),
                 'Key' => $path,
             ]);
 
@@ -234,7 +234,7 @@ class Deploy extends Command
         }
 
         $this->client->putObject([
-            'Bucket' => getenv('DEPLOY_BUCKET'),
+            'Bucket' => getenv('CLOUD_STORAGE_BUCKET'),
             'Key' => $file->getRelativePathname(),
             'SourceFile' => $file->getRealPath(),
             'ACL' => 'public-read',
@@ -263,12 +263,12 @@ class Deploy extends Command
         }
 
         $this->client->deleteObject([
-            'Bucket' => getenv('DEPLOY_BUCKET'),
+            'Bucket' => getenv('CLOUD_STORAGE_BUCKET'),
             'Key' => $file->getRelativePathname(),
         ]);
 
         $this->client->putObject([
-            'Bucket' => getenv('DEPLOY_BUCKET'),
+            'Bucket' => getenv('CLOUD_STORAGE_BUCKET'),
             'Key' => $file->getRelativePathname(),
             'SourceFile' => $file->getRealPath(),
             'ACL' => 'public-read',
