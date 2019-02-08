@@ -135,7 +135,7 @@ function getCustomCss(path: string): {[FileType | 'pdf' | 'ebook' | 'all']: Css}
   }, {});
 }
 
-const ROOT: string = ((process.env.DOCS_REPOS_ROOT: any): string);
+const ROOT: string = ((process.env.KITE_DOCS_REPOS_ROOT: any): string);
 
 function resolveDocument(lang: Lang, friend: string, document: string) {
   const editions = glob(`${ROOT}/${lang}/${friend}/${document}/*`).filter(nonDirs);

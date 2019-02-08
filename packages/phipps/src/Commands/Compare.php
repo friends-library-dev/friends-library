@@ -209,7 +209,7 @@ class Compare extends Command
      */
     protected function absPath(?string $append = null): string
     {
-        return getenv('LOCAL_ASSETS_DIR') . '/' . $this->relPath($append);
+        return getenv('PHIPPS_LOCAL_ASSETS_DIR') . '/' . $this->relPath($append);
     }
 
     /**

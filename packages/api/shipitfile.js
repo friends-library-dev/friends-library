@@ -24,7 +24,7 @@ module.exports = (shipit) => {
       deployTo: API_DEPLOY_PATH,
       shared: {
         overwrite: true,
-        files: ['packages/api/.env'],
+        files: ['.env'],
       },
     },
     production: {

@@ -24,6 +24,7 @@
   },
   "scripts": {
     "develop": "yarn start",
+    "prestart": "rm -rf ./.env && cp ../../.env .",
     "start": "SKIP_PREFLIGHT_CHECK=true PORT=8888 react-scripts start",
     "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "react-scripts test",

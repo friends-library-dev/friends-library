@@ -5,10 +5,10 @@ import fs from 'fs-extra';
 import type { Url } from '../../../../type';
 
 const { env: {
-  S3_ENDPOINT,
-  S3_KEY,
-  S3_SECRET,
-  S3_BUCKET_URL,
+  CLOUD_STORAGE_ENDPOINT,
+  CLOUD_STORAGE_KEY,
+  CLOUD_STORAGE_SECRET,
+  CLOUD_STORAGE_BUCKET_URL,
 } } = process;
 
 type LocalFilePath = string;
@@ -16,10 +16,10 @@ type CloudFilePath = string;
 
 function getClient() {
   return new AWS.S3({
-    endpoint: new AWS.Endpoint(S3_ENDPOINT),
+    endpoint: new AWS.Endpoint(CLOUD_STORAGE_ENDPOINT),
     credentials: new AWS.Credentials({
-      accessKeyId: S3_KEY,
-      secretAccessKey: S3_SECRET,
+      accessKeyId: CLOUD_STORAGE_KEY,
+      secretAccessKey: CLOUD_STORAGE_SECRET,
     }),
   });
 }
@@ -85,6 +85,6 @@ export async function uploadFiles(
   return Promise.all(promises)
     .then(() => {
       return [...files.keys()]
-        .map(Key => `${S3_BUCKET_URL || ''}/${Key}`);
+        .map(Key => `${CLOUD_STORAGE_BUCKET_URL || ''}/${Key}`);
     });
 }

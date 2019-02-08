@@ -11,7 +11,7 @@ $container = new Container();
 
 $container->bind(Finder::CLASS, function () {
     return Finder::create()
-        ->in(getenv('LOCAL_ASSETS_DIR'))
+        ->in(getenv('PHIPPS_LOCAL_ASSETS_DIR'))
         ->exclude('Sync.Cache')
         ->name('/\.(mobi|epub|pdf|mp3)$/');
 });
@@ -19,11 +19,11 @@ $container->bind(Finder::CLASS, function () {
 $container->singleton(Sdk::CLASS, function () {
     return new Aws\Sdk([
         'version' => 'latest',
-        'region'  => getenv('DEPLOY_REGION'),
-        'endpoint' => getenv('DEPLOY_ENDPOINT'),
+        'region'  => getenv('CLOUD_STORAGE_REGION'),
+        'endpoint' => getenv('CLOUD_STORAGE_ENDPOINT'),
         'credentials' => [
-            'key' => getenv('DEPLOY_KEY'),
-            'secret' => getenv('DEPLOY_SECRET'),
+            'key' => getenv('CLOUD_STORAGE_KEY'),
+            'secret' => getenv('CLOUD_STORAGE_SECRET'),
         ],
     ]);
 });

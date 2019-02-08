@@ -10,7 +10,7 @@ use Symfony\Component\Console\Application;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$dotenv = new Dotenv(__DIR__);
+$dotenv = new Dotenv(dirname(dirname(__DIR__)));
 $dotenv->load();
 
 $container = require __DIR__ . '/src/services.php';

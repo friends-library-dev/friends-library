@@ -1,10 +1,10 @@
 // @flow
 import Octokit from '@octokit/rest';
 
-const { env: { GITHUB_API_TOKEN } } = process;
+const { env: { FELL_GITHUB_TOKEN } } = process;
 
 const gh = new Octokit({
-  auth: `token ${GITHUB_API_TOKEN || ''}`,
+  auth: `token ${FELL_GITHUB_TOKEN || ''}`,
 });
 
 export async function openPullRequest(

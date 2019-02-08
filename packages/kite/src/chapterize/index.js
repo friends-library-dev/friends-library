@@ -4,7 +4,7 @@ import leftPad from 'left-pad';
 import path from 'path';
 import { red } from '@friends-library/cli/color';
 
-const { env: { DOCS_REPOS_ROOT } } = process;
+const { env: { KITE_DOCS_REPOS_ROOT } } = process;
 
 const fm = ['preface', 'forward', 'introduction'];
 
@@ -14,7 +14,7 @@ export default function chapterize(file: string, dest: string, chStart: number =
     process.exit(1);
   }
 
-  const destPath = path.resolve(DOCS_REPOS_ROOT || '', dest);
+  const destPath = path.resolve(KITE_DOCS_REPOS_ROOT || '', dest);
   fs.ensureDirSync(destPath);
 
   const adoc = fs.readFileSync(file).toString().trim();
