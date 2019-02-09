@@ -20,6 +20,8 @@
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
+    "@babel/register": "^7.0.0",
+    "js-base64": "^2.5.1",
     "probot": "^7.2.0"
   },
   "devDependencies": {
