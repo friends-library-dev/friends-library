@@ -1,6 +1,7 @@
 // @flow
 import { configureStore } from 'redux-starter-kit';
 import { combineReducers } from 'redux';
+import localForage from 'localforage';
 import type { State } from './type';
 import { defaultState as prefsDefaultState } from './reducers/prefs-reducer';
 import { defaultState as defaultSearchState } from './reducers/search-reducer';
@@ -19,13 +20,10 @@ const defaultState: State = {
   network: [],
 };
 
-const loadState = () => {
+async function loadState() {
   try {
-    const serializedState = localStorage.getItem('jones');
-    if (serializedState == null) {
-      return {};
-    }
-    const state = JSON.parse(serializedState);
+    let state = await localForage.getItem('jones');
+    state = state || getLegacyState() || {};
     return {
       ...state,
       tasks: {
@@ -41,8 +39,7 @@ const loadState = () => {
 
 const saveState = (state) => {
   try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem('jones', serializedState);
+    localForage.setItem('jones', state);
   } catch (err) {
     // ¯\_(ツ)_/¯
   }
@@ -52,7 +49,7 @@ const sliceReducer = combineReducers(rootReducer);
 
 const reducer = (state: State = defaultState, action) => {
   if (action.type === 'HARD_RESET') {
-    localStorage.removeItem('jones');
+    localForage.removeItem('jones');
     return {
       ...defaultState,
       github: state.github,
@@ -62,13 +59,13 @@ const reducer = (state: State = defaultState, action) => {
   return sliceReducer(state, action);
 }
 
-export default function () {
-
+export default async function () {
+  const savedState = await loadState();
   const store = configureStore({
     reducer,
     preloadedState: {
       ...defaultState,
-      ...loadState(),
+      ...savedState,
       ...{ network: [] },
     },
   });
@@ -91,4 +88,26 @@ export default function () {
   }
 
   return store;
+}
+
+function getLegacyState(): Object | null {
+  const serialized = localStorage.getItem('jones');
+  if (serialized == null) {
+    return null;
+  }
+  const state = JSON.parse(serialized);
+
+  // we already did the conversion once, so act like the legacy data
+  // isn't there -- because I don't want to delete legacy data (for now)
+  // so I can recover work in case I made a horrible mistake
+  if (!state || state.convertedToIndexedDB === true) {
+    return null;
+  }
+
+  localStorage.setItem('jones', JSON.stringify({
+    ...state,
+    convertedToIndexedDB: true,
+  }));
+
+  return state;
 }

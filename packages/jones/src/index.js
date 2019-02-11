@@ -6,10 +6,12 @@ import store from './store';
 import App from './App';
 import './index.css';
 
-render(
-  <Provider store={store()}>
-    <App />
-  </Provider>,
-  // $FlowFixMe
-  document.getElementById('root'),
-);
+store().then(store => {
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    // $FlowFixMe
+    document.getElementById('root'),
+  );
+})

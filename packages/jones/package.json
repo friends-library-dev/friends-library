@@ -9,6 +9,7 @@
     "escape-string-regexp": "^1.0.5",
     "js-base64": "^2.5.0",
     "js-yaml": "^3.12.1",
+    "localforage": "^1.7.3",
     "re-resizable": "^4.11.0",
     "react": "^16.7.0",
     "react-ace": "^6.3.2",
