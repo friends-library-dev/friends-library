@@ -81,7 +81,7 @@ describe('My Probot app', () => {
       .reply(200, [{
         filename: file,
         contents_url: `https://api.github.com${repo}/contents/${file}?ref=${sha}`,
-      }]);
+      Zm9v
 
     // fetch content of modified files for linting
     github

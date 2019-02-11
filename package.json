@@ -47,7 +47,7 @@
     "eslint-plugin-no-only-tests": "^2.0.1",
     "eslint-plugin-react": "^7.11.1",
     "flow-bin": "^0.92.0",
-    "jest": "^24.0.0",
+    "jest": "^24.1.0",
     "lerna": "^3.1.4",
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0"
@@ -67,6 +67,7 @@
     "packages/bot"
   ],
   "jest": {
+    "clearMocks": true,
     "errorOnDeprecated": true,
     "testEnvironment": "node",
     "testRegex": "__tests__/.*tests?\\.js",

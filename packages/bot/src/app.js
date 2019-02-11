@@ -6,17 +6,8 @@ export type Context = {|
   payload: Object,
   github: Octokit,
   event: string,
-  repo: ({ [string]: mixed }) => {
-    owner: string,
-    repo: string,
-    [string]: mixed,
-  },
-  issue: ({ [string]: mixed }) => {
-    owner: string,
-    repo: string,
-    number: number,
-    [string]: mixed,
-  },
+  repo: <T>(object?: T) => T,
+  issue: <T>(object?: T) => T,
 |};
 
 type Application = {|
