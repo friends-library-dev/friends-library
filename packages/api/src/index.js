@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 import { redirAndLog } from './download';
 import { handleGithubWebhook } from './github-webhook';
+import legacy from './legacy';
 
 const { env: {
   API_PORT,
@@ -21,6 +22,9 @@ app.use(bodyParser.json());
 app.get('/', (req: $Request, res: $Response) => res.send('Beep ༼ つ ◕_◕ ༽つ Boop!'));
 
 app.post('/github-webhook', handleGithubWebhook);
+
+app.use('/legacy', legacy);
+
 
 app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $Response) => {
   const { params: { friend, document, edition, filename } } = req;
