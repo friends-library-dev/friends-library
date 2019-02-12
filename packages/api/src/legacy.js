@@ -60,6 +60,7 @@ async function handleBookRequest(
     const sendEmail = makeSend({
       user: API_ZOE_BOOK_REQUEST_EMAIL_USER,
       pass: API_ZOE_BOOK_REQUEST_EMAIL_PASS,
+      replyTo: params.email,
     });
     const html = Object.entries(params).reduce((acc, [key, val]) => {
       if (key === 'g-recaptcha-response' || String(val).trim() === '') {
