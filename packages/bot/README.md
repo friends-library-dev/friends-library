@@ -2,22 +2,22 @@
 
 > A GitHub App built with [Probot](https://github.com/probot/probot) that A Probot app
 
-## Setup
+## Development
 
-```sh
-# Install dependencies
-npm install
+Run the bot server
 
-# Run the bot
-npm start
+```SHELL
+$ yarn bot:develop # from monorepo root
 ```
 
-## Contributing
+## Simulate Test Events
 
-If you have suggestions for how friends-library-bot could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
+Use `yarn bot:receive` and pass the slug of a payload fixture located in `packages/bot/__tests__/fixtures`.
+The fixture file _must_ have a special top-level property `__github_event__` to help the simulation
+script correctly emulate a GitHub webhook event.
 
-For more, check out the [Contributing Guide](CONTRIBUTING.md).
+__Note: the bot dev server needs to be running for this to work.__
 
-## License
-
-[ISC](LICENSE) © 2019 Jared Henderson <jared@netrivet.com>
+```SHELL
+$ yarn bot:receive pull_request.opened
+```

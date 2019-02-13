@@ -12,6 +12,11 @@ export function prTestSetup() {
     },
     repos: {
       getContents: jest.fn(),
+      getCommit: jest.fn(),
+    },
+    gitdata: {
+      getTree: jest.fn(),
+      getBlob: jest.fn(),
     },
   };
   const payload = {

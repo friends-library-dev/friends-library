@@ -10,7 +10,7 @@ export default async function(context: Context) {
   }
 
   if (['opened', 'synchronize'].includes(context.payload.action)) {
-    const files = await getFiles(context);
+    const files = await getModifiedFiles(context);
     return Promise.all([
       kiteCheck(context, files),
       lintCheck(context, files),
@@ -18,7 +18,7 @@ export default async function(context: Context) {
   }
 }
 
-async function getFiles(context: Context): Promise<Array<ModifiedAsciidocFile>> {
+async function getModifiedFiles(context: Context): Promise<Array<ModifiedAsciidocFile>> {
   const { github, issue, repo, payload: { pull_request: { head: { sha } } } } = context;
   const { data: modifiedFiles } = await github.pullRequests.listFiles(issue());
   return await Promise.all(modifiedFiles.map(mf => {

@@ -1,4 +1,5 @@
 {
+  "__github_event__": "pull_request",
   "action": "opened",
   "number": 14,
   "pull_request": {

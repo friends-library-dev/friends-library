@@ -1,8 +1,10 @@
-import pullRequest from '../pull-request';
-import getLintAnnotations from '../lint-adoc';
+import kiteCheck from '../check/kite';
+import lintCheck from '../check/lint';
 import { prTestSetup } from './helpers';
+import pullRequest from '../pull-request';
 
-jest.mock('../lint-adoc');
+jest.mock('../check/kite');
+jest.mock('../check/lint');
 
 describe('pullRequest()', () => {
   let payload;
@@ -11,33 +13,14 @@ describe('pullRequest()', () => {
 
   beforeEach(() => {
     [context, payload, github] = prTestSetup();
-    getLintAnnotations.mockReturnValue([]);
   });
 
   it('ignores PR opened on monorepo', async () => {
     payload.repository.name = 'friends-library';
     await pullRequest(context);
     expect(github.checks.create).not.toHaveBeenCalled();
-  });
-
-  it('creates a queued check for kite-ing', async () => {
-    await pullRequest(context);
-    expect(github.checks.create.mock.calls[0][0]).toMatchObject({
-      status: 'queued',
-      name: 'fl-bot/kite',
-      repo: 'jane-doe',
-      owner: 'friends-library-sandbox',
-    });
-  });
-
-  it('creates an in_progress check for linting', async () => {
-    await pullRequest(context);
-    expect(github.checks.create.mock.calls[1][0]).toMatchObject({
-      status: 'in_progress',
-      name: 'fl-bot/lint-asciidoc',
-      repo: 'jane-doe',
-      owner: 'friends-library-sandbox',
-    });
+    expect(kiteCheck).not.toHaveBeenCalled();
+    expect(lintCheck).not.toHaveBeenCalled();
   });
 
   it('requests modified files for PR', async () => {
@@ -59,34 +42,10 @@ describe('pullRequest()', () => {
     })
   });
 
-  it('passes modified files off to linter', async () => {
+  it('passes fetched files to lint and kite checks', async () => {
+    const files = [{ path: '01.adoc', adoc: '== Ch 1'}];
     await pullRequest(context);
-    expect(getLintAnnotations).toHaveBeenCalledWith([{
-      path: '01.adoc',
-      adoc: '== Ch 1',
-    }])
-  });
-
-  it('passes the check if no lint annotations', async () => {
-    getLintAnnotations.mockReturnValueOnce([]);
-    await pullRequest(context);
-    expect(github.checks.update.mock.calls[0][0]).toMatchObject({
-      check_run_id: 2,
-      status: 'completed',
-      conclusion: 'success',
-    });
-  });
-
-  it('fails the check if lint annotations', async () => {
-    getLintAnnotations.mockReturnValueOnce(['foo']);
-    await pullRequest(context);
-    expect(github.checks.update.mock.calls[0][0]).toMatchObject({
-      check_run_id: 2,
-      status: 'completed',
-      conclusion: 'failure',
-      output: {
-        annotations: ['foo'],
-      }
-    });
+    expect(lintCheck).toHaveBeenCalledWith(context, files);
+    expect(kiteCheck).toHaveBeenCalledWith(context, files);
   });
 });

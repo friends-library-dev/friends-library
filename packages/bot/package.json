@@ -17,6 +17,7 @@
     "start": "probot run ./index.js",
     "lint": "standard --fix",
     "test": "jest && standard",
+    "receive": "node ./scripts/receive",
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "probot": "^7.2.0"
   },
   "devDependencies": {
+    "crypto-js": "^3.1.9-1",
     "jest": "^22.4.3",
     "nock": "^10.0.0",
     "nodemon": "^1.17.2",
