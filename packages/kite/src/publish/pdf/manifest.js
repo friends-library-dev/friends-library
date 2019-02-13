@@ -19,7 +19,7 @@ export function getPdfManifest(job: Job): FileManifest {
 }
 
 export function getCss(job: Job): Css {
-  const { target, spec: { notes, customCss }, cmd: { condense } } = job;
+  const { target, spec: { notes, customCss }, meta: { condense } } = job;
   const vars = getSassVars(job);
   return [
     'sass/common.scss',
@@ -65,8 +65,8 @@ export function printDims(job: Job): { [string]: string } {
   }, v => `${v}in`);
 }
 
-function getTrim({ cmd }: Job): PrintSize {
-  return getBookSize(cmd.printSize || 'm');
+function getTrim({ meta }: Job): PrintSize {
+  return getBookSize(meta.printSize || 'm');
 }
 
 export function getHtml(job: Job): Html {

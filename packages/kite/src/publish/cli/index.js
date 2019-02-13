@@ -2,14 +2,18 @@
 /* istanbul ignore file */
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
-import type { Command, Job, SourceSpec, FileType, SourcePrecursor } from '../type';
-import { makeEpub } from './epub/make';
-import { makeMobi } from './mobi/make';
-import { makePdf } from './pdf/make';
-import { prepare } from './prepare';
+import type { JobMeta, Job, SourceSpec, FileType, SourcePrecursor } from '../../type';
+import { makeEpub } from '../epub/make';
+import { makeMobi } from '../mobi/make';
+import { makePdf } from '../pdf/make';
+import { prepare } from '../prepare';
 import { getPrecursors } from './precursors';
-import { send } from './send';
-import { PUBLISH_DIR } from './file';
+import { send } from '../send';
+import { PUBLISH_DIR } from '../file';
+
+type Command = JobMeta & {|
+  targets: Array<FileType>,
+|};
 
 export default function publish(argv: Object): Promise<*> {
   const cmd = createCommand(argv);
@@ -33,12 +37,12 @@ export function publishPrecursors(
   return complete;
 }
 
-export function resetPublishDir(): void {
+function resetPublishDir(): void {
   fs.removeSync(PUBLISH_DIR);
   fs.ensureDir(PUBLISH_DIR);
 }
 
-export function take(job: Job): Promise<*> {
+function take(job: Job): Promise<*> {
   const { target } = job;
 
   switch (target) {
@@ -102,13 +106,13 @@ export function createCommand(argv: Object): Command {
   return cmd;
 }
 
-export function reduceSpecsToJobs(cmd: Command): * {
+function reduceSpecsToJobs(cmd: Command): * {
   return (jobs: Array<Job>, spec: SourceSpec): Array<Job> => {
     cmd.targets.forEach(target => jobs.push({
       id: `${target}/${spec.id}`,
       spec,
       target,
-      cmd,
+      meta: cmd,
       filename: jobFilename(target, spec, cmd),
     }));
     return jobs;

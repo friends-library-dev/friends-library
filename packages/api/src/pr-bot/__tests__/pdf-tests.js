@@ -56,8 +56,8 @@ describe('pdf()', () => {
 
     expect(chapter.target).toBe('pdf-print');
     expect(edition.target).toBe('pdf-print');
-    expect(chapter.cmd.frontmatter).toBe(false);
-    expect(edition.cmd.frontmatter).toBe(true);
+    expect(chapter.meta.frontmatter).toBe(false);
+    expect(edition.meta.frontmatter).toBe(true);
   });
 
   test('job spec property is correctly formed', () => {

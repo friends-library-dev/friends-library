@@ -1,6 +1,6 @@
-import { Base64 } from 'js-base64';
 import pullRequest from '../pull-request';
 import getLintAnnotations from '../lint-adoc';
+import { prTestSetup } from './helpers';
 
 jest.mock('../lint-adoc');
 
@@ -10,60 +10,7 @@ describe('pullRequest()', () => {
   let context;
 
   beforeEach(() => {
-    let id = 1;
-    github = {
-      checks: {
-        create: jest.fn(),
-        update: jest.fn(),
-      },
-      pullRequests: {
-        listFiles: jest.fn(),
-      },
-      repos: {
-        getContents: jest.fn(),
-      },
-    };
-    payload = {
-      action: 'opened',
-      number: 11,
-      pull_request: {
-        head: {
-          sha: '2d306bb70578e6c019e3579c02d4f78f17bf915e'
-        },
-      },
-      repository: {
-        name: 'jane-doe',
-      }
-    };
-    context = {
-      payload,
-      github,
-      repo: obj => ({
-        ...obj,
-        owner: 'friends-library-sandbox',
-        repo: 'jane-doe',
-      }),
-      issue: (obj = {})=> ({
-        ...obj,
-        owner: 'friends-library-sandbox',
-        repo: 'jane-doe',
-        number: 11,
-      }),
-    };
-
-    github.checks.create
-      .mockResolvedValueOnce({ data: { id: 1 }})
-      .mockResolvedValueOnce({ data: { id: 2 }});
-
-    github.pullRequests.listFiles
-      .mockResolvedValue({ data: [] });
-
-    github.pullRequests.listFiles
-      .mockResolvedValueOnce({ data: [{ filename: '01.adoc' }] });
-
-    github.repos.getContents
-      .mockResolvedValueOnce({ data: { content: Base64.encode('== Ch 1') }});
-
+    [context, payload, github] = prTestSetup();
     getLintAnnotations.mockReturnValue([]);
   });
 

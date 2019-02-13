@@ -5,7 +5,7 @@ import { copyright as commonCopyright, halfTitle as commonHalfTitle, epigraph } 
 import { navText } from '../headings';
 
 export function frontmatter(job: Job): Html {
-  if (!job.cmd.frontmatter) {
+  if (!job.meta.frontmatter) {
     return '';
   }
 

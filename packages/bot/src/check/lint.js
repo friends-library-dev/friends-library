@@ -1,10 +1,13 @@
 // @flow
-import { Base64 } from 'js-base64';
 import type { Asciidoc, FilePath } from '../../../../type';
-import type { Context } from '../app';
+import type { ModifiedAsciidocFile } from '../type';
+import type { Context } from '../type';
 import getLintAnnotations from '../lint-adoc';
 
-export default async function lintCheck(context: Context): Promise<void> {
+export default async function lintCheck(
+  context: Context,
+  files: Array<ModifiedAsciidocFile>,
+): Promise<void> {
   const { payload, github, repo, issue } = context;
   const { data: { id } } = await github.checks.create(repo({
     name: 'fl-bot/lint-asciidoc',
@@ -13,7 +16,6 @@ export default async function lintCheck(context: Context): Promise<void> {
     started_at: new Date(),
   }));
 
-  const files = await getFiles(context);
   const annotations = getLintAnnotations(files);
 
   const update = {
@@ -39,23 +41,4 @@ export default async function lintCheck(context: Context): Promise<void> {
       annotations,
     }
   }))
-}
-
-type File = {|
-  path: FilePath,
-  adoc: Asciidoc,
-|};
-
-async function getFiles(context: Context): Promise<Array<File>> {
-  const { github, issue, repo, payload: { pull_request: { head: { sha } } } } = context;
-  const { data: modifiedFiles } = await github.pullRequests.listFiles(issue());
-  return await Promise.all(modifiedFiles.map(mf => {
-    return github.repos.getContents(repo({
-      path: mf.filename,
-      ref: sha,
-    })).then(res => ({
-      path: mf.filename,
-      adoc: Base64.decode(res.data.content),
-    }));
-  }));
 }

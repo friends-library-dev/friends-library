@@ -75,8 +75,7 @@ function getJob(
       meta: getDocumentMeta(edition),
       adoc,
     }),
-    cmd: {
-      targets: [],
+    meta: {
       check: false,
       perform: false,
       open: false,
