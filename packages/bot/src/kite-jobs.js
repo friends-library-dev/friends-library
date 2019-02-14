@@ -1,9 +1,12 @@
 // @flow
 import EventEmitter from 'events';
+import fetch from 'node-fetch';
 import { Friend } from '@friends-library/friends';
 import type { FilePath, Asciidoc, Sha, Uuid } from '../../../type';
 import type { Context, ModifiedAsciidocFile } from './type';
 import type { Job } from '../../kite/src/type';
+
+const { env: { BOT_API_URL } } = process;
 
 export function fromPR(
   friend: Friend,
@@ -15,7 +18,7 @@ export function fromPR(
 }
 
 export async function submit(job: Job): Promise<Uuid> {
-  return 'foo';
+  return BOT_API_URL;
 }
 
 
