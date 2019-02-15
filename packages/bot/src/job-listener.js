@@ -1,13 +1,26 @@
 // @flow
 import EventEmitter from 'events';
 import fetch from 'node-fetch';
+import type { Uuid, Url } from '../../../type';
 
 const { env: { BOT_API_URL } } = process;
+if (typeof BOT_API_URL !== 'string') {
+  throw new Error('BOT_API_URL env var must be defined.');
+}
+
+type JobState = {|
+  status: 'queued' | 'in_progress' | 'awaiting_retry' | 'failed' | 'succeeded',
+  url:? Url,
+|};
 
 export default class JobListener extends EventEmitter {
 
   static POLL_INTERVAL = 10 * 1000; // 10 seconds
   static TIMEOUT = 15 * 60 * 1000;  // 15 minutes
+
+  ids: Array<Uuid>
+  timeouts: {[string]: TimeoutID}
+  jobs: {[Uuid]: JobState}
 
   constructor(ids: Array<Uuid>) {
     super();
@@ -21,13 +34,13 @@ export default class JobListener extends EventEmitter {
     this.startTimeout();
   }
 
-  fetchState(id) {
+  fetchState(id: Uuid) {
     fetch(`${BOT_API_URL}/kite-jobs/${id}`)
       .then(res => res.json())
       .then(state => this.processUpdate(id, state));
   }
 
-  stateChanged(id, newState) {
+  stateChanged(id: Uuid, newState: JobState) {
     const current = this.jobs[id];
     if (current === null && newState) {
       return true;
@@ -35,7 +48,7 @@ export default class JobListener extends EventEmitter {
     return JSON.stringify(current) !== JSON.stringify(newState);
   }
 
-  processUpdate(id, state) {
+  processUpdate(id: Uuid, state: JobState) {
     this.emit('update', state);
 
     if (this.stateChanged(id, state)) {
@@ -51,7 +64,7 @@ export default class JobListener extends EventEmitter {
       return;
     }
 
-    const jobs = Object.values(this.jobs);
+    const jobs = values(this.jobs);
     if (jobs.every(job => isDone(job.status))) {
       this.clearAllTimeouts();
       this.emit('complete', {
@@ -74,10 +87,14 @@ export default class JobListener extends EventEmitter {
   }
 
   clearAllTimeouts() {
-    Object.values(this.timeouts).forEach(clearTimeout);
+    values(this.timeouts).forEach(clearTimeout);
   }
 }
 
-function isDone(status): boolean {
+function isDone(status: string): boolean {
   return ['succeeded', 'failed'].includes(status);
+}
+
+function values<T>(obj: { [string]: T }): Array<T> {
+  return Object.keys(obj).map(k => obj[k]);
 }

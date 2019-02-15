@@ -1,42 +1,101 @@
 // @flow
 import EventEmitter from 'events';
 import fetch from 'node-fetch';
-import { Friend } from '@friends-library/friends';
+import { createJob, createSpec, createPrecursor, getDocumentMeta } from '@friends-library/kite';
+import { Friend, Edition } from '@friends-library/friends';
 import type { FilePath, Asciidoc, Sha, Uuid } from '../../../type';
 import type { Context, ModifiedAsciidocFile } from './type';
 import type { Job } from '../../kite/src/type';
 import JobListener from './job-listener';
+import { basename } from 'path';
 
 const { env: { BOT_API_URL } } = process;
 
-export function fromPR(
-  friend: Friend,
-  modifiedFiles: Array<ModifiedAsciidocFile>,
-  prFiles: {[FilePath]: Asciidoc},
-  sha: Sha,
-): Array<Job> {
-  return [];
-}
-
 export async function submit(job: Job): Promise<Uuid | false> {
-  return await fetch(`${BOT_API_URL}/kite-jobs`, json({ job }))
-    .then(res => res.json())
-    .then(({ id }) => id)
-    .catch(() => false);
-}
-
-
-export function listenAll(ids: Array<Uuid>): EventEmitter {
-  return new JobListener(ids);
-}
-
-function json(body: Object | string | array): Object {
-  return {
+  return await fetch(`${BOT_API_URL || ''}/kite-jobs`, {
     method: 'post',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body),
-  }
+    body: JSON.stringify({ job }),
+  })
+    .then(res => res.json())
+    .then(({ id }) => id)
+    .catch(() => false);
+}
+
+export function listenAll(ids: Array<Uuid>): EventEmitter {
+  return new JobListener(ids);
+}
+
+export function fromPR(
+  friend: Friend,
+  modifiedFiles: Array<ModifiedAsciidocFile>,
+  prFiles: Map<FilePath, Asciidoc>,
+  sha: Sha,
+  chapters: boolean = false,
+): Array<Job> {
+  return [...modifiedFiles.reduce((jobs, file) => {
+    const [docSlug, editionType] = file.path.split('/');
+    const document = friend.documents.find(doc => doc.slug === docSlug);
+    const edition = document.editions.find(ed => ed.type === editionType);
+
+    if (chapters) {
+      const chFilename = [
+        document.slug,
+        edition.type,
+        `${basename(file.path, '.adoc')}.pdf`,
+      ].join('--');
+      const chapterJob = getJob(chFilename, edition, prFiles.get(file.path) || '', sha);
+      jobs.set(file, chapterJob);
+    }
+
+    if (!jobs.has(edition.type)) {
+      const editionFilename = `${document.slug}--${edition.type}.pdf`;
+      const relevantFiles = getRelevantFiles(prFiles, edition);
+      const adoc = joinAdoc(relevantFiles);
+      jobs.set(edition.type, getJob(editionFilename, edition, adoc, sha));
+    }
+
+    return jobs;
+  }, new Map()).values()];
+}
+
+function joinAdoc(files: Array<ModifiedAsciidocFile>): Asciidoc {
+  return files
+    .sort((a, b) => a.path < b.path ? -1 : 1)
+    .map(({ adoc }) => adoc)
+    .join('\n');
+}
+
+function getRelevantFiles(
+  prFiles: Map<FilePath, Asciidoc>,
+  edition: Edition,
+): Array<ModifiedAsciidocFile> {
+  return [...prFiles].filter(([path]) => {
+    return path.indexOf(`${edition.document.slug}/${edition.type}`) === 0;
+  }).map(([path, adoc]) => ({ path, adoc }));
+}
+
+function getJob(
+  filenameBase: string,
+  edition: Edition,
+  adoc: Asciidoc,
+  sha: Sha,
+): Job {
+  const shortSha = sha.substring(0, 7);
+  const filename = `${shortSha}--${filenameBase}`;
+  return createJob({
+    filename,
+    target: 'pdf-print',
+    spec: createSpec(createPrecursor({
+      id: filename,
+      filename: basename(filename, '.pdf'),
+      revision: { sha: shortSha },
+      meta: getDocumentMeta(edition),
+      adoc,
+    })),
+    meta: { frontmatter: filename.split('--').length < 4 },
+  });
 }

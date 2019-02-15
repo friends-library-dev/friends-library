@@ -49,7 +49,9 @@ async function submitKiteJobs(friend, modifiedFiles, prFiles, sha) {
   const jobMap = {};
   await Promise.all(jobs.map(job => {
     return kiteJobs.submit(job).then(id => {
-      jobMap[id] = job;
+      if (id) {
+        jobMap[id] = job;
+      }
     });
   }));
 
@@ -71,7 +73,7 @@ function makeUpdateCheck(context: Context, checkRunId: number) {
   };
 }
 
-async function getAllPrFiles(context: Context): Promise<{[FilePath]: Asciidoc}> {
+async function getAllPrFiles(context: Context): Promise<Map<FilePath, Asciidoc>> {
   const { github, repo, payload } = context;
 
   // get tree sha for the PR commit
@@ -86,12 +88,12 @@ async function getAllPrFiles(context: Context): Promise<{[FilePath]: Asciidoc}> 
   }));
 
   // get file content for all non-dir tree nodes
-  const files = {};
+  const files = new Map();
   const promises = tree.filter(node => node.type === 'blob').map(file => {
     return github.gitdata.getBlob(repo({
       file_sha: file.sha,
     })).then(json => {
-      files[file.path] = Base64.decode(json.data.content);
+      files.set(file.path, Base64.decode(json.data.content));
     });
   });
 
