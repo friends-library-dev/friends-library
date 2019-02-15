@@ -2,6 +2,7 @@
 import EventEmitter from 'events';
 import fetch from 'node-fetch';
 import type { Uuid, Url } from '../../../type';
+import { values } from '../../../flow-utils';
 
 const { env: { BOT_API_URL } } = process;
 if (typeof BOT_API_URL !== 'string') {
@@ -32,6 +33,9 @@ export default class JobListener extends EventEmitter {
   listen() {
     this.ids.forEach(id => this.fetchState(id));
     this.startTimeout();
+    return new Promise<*>(resolve => {
+      this.on('shutdown', resolve);
+    });
   }
 
   fetchState(id: Uuid) {
@@ -71,6 +75,7 @@ export default class JobListener extends EventEmitter {
         success: jobs.every(job => job.status === 'succeeded'),
         jobs: this.jobs,
       });
+      this.emit('shutdown');
     }
   }
 
@@ -84,6 +89,7 @@ export default class JobListener extends EventEmitter {
   onTimeout() {
     this.emit('timeout');
     this.clearAllTimeouts();
+    this.emit('shutdown');
   }
 
   clearAllTimeouts() {
@@ -93,8 +99,4 @@ export default class JobListener extends EventEmitter {
 
 function isDone(status: string): boolean {
   return ['succeeded', 'failed'].includes(status);
-}
-
-function values<T>(obj: { [string]: T }): Array<T> {
-  return Object.keys(obj).map(k => obj[k]);
 }

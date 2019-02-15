@@ -48,8 +48,12 @@ describe('kiteCheck()', () => {
     kiteJobs.fromPR.mockReturnValue(['job-1', 'job-2']);
     kiteJobs.submit.mockResolvedValueOnce('job-1-id');
     kiteJobs.submit.mockResolvedValueOnce('job-2-id');
-    listener = new EventEmitter();
+    listener = new TestListener();
     kiteJobs.listenAll.mockReturnValue(listener);
+  });
+
+  afterEach(() => {
+    listener.emit('timeout');
   });
 
   it('creates a queued check run', async () => {
@@ -95,15 +99,21 @@ describe('kiteCheck()', () => {
     expect(kiteJobs.fromPR).toHaveBeenCalledWith(
       'FakeFriend',
       files,
-      { '01.adoc': 'Foobar.' },
+      new Map([['01.adoc', 'Foobar.']]),
       '2d306bb70578e6c019e3579c02d4f78f17bf915e',
     );
   });
 
   it('submits created jobs', async () => {
     await kiteCheck(context, files);
-    expect(kiteJobs.submit).toHaveBeenCalledWith('job-1');
-    expect(kiteJobs.submit).toHaveBeenCalledWith('job-2');
+    expect(kiteJobs.submit).toHaveBeenCalledWith({
+      uploadPath: 'pull-request/jane-doe/11',
+      job: 'job-1',
+    });
+    expect(kiteJobs.submit).toHaveBeenCalledWith({
+      uploadPath: 'pull-request/jane-doe/11',
+      job: 'job-2',
+    });
   });
 
   it('creates listener with submitted job ids', async () => {
@@ -167,3 +177,9 @@ describe('kiteCheck()', () => {
     });
   });
 });
+
+class TestListener extends EventEmitter {
+  listen() {
+    return Promise.resolve();
+  }
+}

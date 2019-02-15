@@ -27,28 +27,33 @@ exports.up = (db) => {
       type: STRING,
       length: 16,
       notNull: true,
-      defaultVal: 'queued',
+      defaultValue: 'queued',
     },
     attempts: {
       type: SMALL_INTEGER,
       notNull: true,
-      defaultVal: 0,
+      defaultValue: 0,
     },
-    notify: {
+    upload_path: {
       type: TEXT,
+    },
+    url: {
+      type: STRING,
+      length: 255,
     },
     job: {
       type: TEXT,
+      notNull: true,
     },
     created_at: {
       type: TIMESTAMP,
       notNull: true,
-      defaultVal: String('current_timestamp()'),
+      defaultValue: new String('current_timestamp()'),
     },
     updated_at: {
       type: TIMESTAMP,
       notNull: true,
-      defaultVal: String('current_timestamp()'),
+      defaultValue: new String('current_timestamp()'),
     },
   });
 };

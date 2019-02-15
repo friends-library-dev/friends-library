@@ -11,21 +11,21 @@ import { basename } from 'path';
 
 const { env: { BOT_API_URL } } = process;
 
-export async function submit(job: Job): Promise<Uuid | false> {
+export async function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid | false> {
   return await fetch(`${BOT_API_URL || ''}/kite-jobs`, {
     method: 'post',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ job }),
+    body: JSON.stringify(body),
   })
     .then(res => res.json())
     .then(({ id }) => id)
     .catch(() => false);
 }
 
-export function listenAll(ids: Array<Uuid>): EventEmitter {
+export function listenAll(ids: Array<Uuid>): JobListener {
   return new JobListener(ids);
 }
 

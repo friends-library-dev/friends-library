@@ -20,8 +20,15 @@ export default async function kiteCheck(
 
   const updateCheck = makeUpdateCheck(context, id);
   const prFiles = await getAllPrFiles(context);
-  const friend = getFriend(payload.repository.name);
-  const [jobs, listener] = await submitKiteJobs(friend, modifiedFiles, prFiles, sha);
+  const repoName = payload.repository.name;
+  const friend = getFriend(repoName);
+  const [jobs, listener] = await submitKiteJobs(
+    friend,
+    modifiedFiles,
+    prFiles,
+    sha,
+    `pull-request/${repoName}/${payload.number}`,
+  );
 
   let statusUpdated = false;
   listener.on('update', ({ status }) => {
@@ -31,24 +38,22 @@ export default async function kiteCheck(
     }
   });
 
-  listener.on('timeout', () => updateCheck('completed', 'timed_out'));
-
-  listener.on('complete', result => {
-    if (!result.success) {
-      updateCheck('completed', 'failure');
-      return;
-    }
-
-    updateCheck('completed', 'success');
+  listener.on('timeout', () => {
+    updateCheck('completed', 'timed_out');
   });
+
+  listener.on('complete', ({ success }) => {
+    updateCheck('completed', success ? 'success' : 'failure');
+  });
+
+  await listener.listen();
 }
 
-async function submitKiteJobs(friend, modifiedFiles, prFiles, sha) {
+async function submitKiteJobs(friend, modifiedFiles, prFiles, sha, uploadPath) {
   const jobs = kiteJobs.fromPR(friend, modifiedFiles, prFiles, sha);
-
   const jobMap = {};
   await Promise.all(jobs.map(job => {
-    return kiteJobs.submit(job).then(id => {
+    return kiteJobs.submit({ job, uploadPath }).then(id => {
       if (id) {
         jobMap[id] = job;
       }

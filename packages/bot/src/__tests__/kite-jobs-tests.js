@@ -85,15 +85,15 @@ describe('kiteJobs.fromPR()', () => {
 describe('kiteJobs.submit()', () => {
   it('posts data to api', async () => {
     nock('https://test-api.friendslibrary.com')
-      .post('/kite-jobs', { job: 'job' })
+      .post('/kite-jobs', { job: 'job', uploadPath: 'foo' })
       .reply(201, { id: 'job-id' });
-    expect(await kiteJobs.submit('job')).toBe('job-id');
+    expect(await kiteJobs.submit({ job: 'job', uploadPath: 'foo' })).toBe('job-id');
   });
 
   it('returns false if API errors', async () => {
     nock('https://test-api.friendslibrary.com')
-      .post('/kite-jobs', { job: 'job' })
+      .post('/kite-jobs', { job: 'job', uploadPath: 'foo' })
       .reply(400);
-    expect(await kiteJobs.submit('job')).toBe(false);
+    expect(await kiteJobs.submit({ job: 'job', uploadPath: 'foo' })).toBe(false);
   });
 });

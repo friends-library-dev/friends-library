@@ -5,7 +5,7 @@ import styled from '@emotion/styled/macro';
 import moment from 'moment';
 import smalltalk from 'smalltalk';
 import * as actions from '../actions';
-import { values } from '../lib/utils';
+import { values } from '../../../../flow-utils';
 import type { Task as TaskType, Dispatch, Repo } from '../type';
 import Button from './Button';
 import { ORG } from '../lib/github-api';

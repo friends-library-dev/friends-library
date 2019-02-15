@@ -8,7 +8,7 @@
     "start": "NODE_ENV=development nodemon ./index.js",
     "stop": "pm2 delete all",
     "serve": "NODE_ENV=production pm2 start ./index.js",
-    "migrate": "node -r dotenv/config ./node_modules/.bin/db-migrate up dotenv_config_path=\"../../\"",
+    "migrate": "yarn db-migrate up",
     "reset": "yarn db-migrate reset && yarn migrate",
     "deploy": "yarn shipit production deploy"
   },
@@ -31,6 +31,7 @@
     "mysql": "^2.15.0",
     "node-fetch": "^2.3.0",
     "pkg-conf": "^2.1.0",
+    "promise-mysql": "^3.3.1",
     "semver": "^5.6.0",
     "strip-indent": "^2.0.0",
     "uuid": "^3.2.1"
