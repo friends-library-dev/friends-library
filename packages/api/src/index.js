@@ -27,6 +27,7 @@ app.post('/github-webhook', handleGithubWebhook);
 app.use('/legacy', legacy);
 
 app.post('/kite-jobs', kiteJob.create);
+app.get('/kite-jobs/take', kiteJob.take);
 app.get('/kite-jobs/:id', kiteJob.get);
 
 app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $Response) => {
