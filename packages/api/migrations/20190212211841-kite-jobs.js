@@ -23,7 +23,7 @@ exports.up = (db) => {
       notNull: true,
       unique: true,
     },
-    status: {
+    status: { // queued | in_progress | awaiting_retry | failed | succeeded
       type: STRING,
       length: 16,
       notNull: true,

@@ -1,14 +1,18 @@
-import fetch from 'node-fetch';
+import nock from 'nock';
 import * as kiteJobs from '../kite-jobs';
 
-jest.mock('node-fetch');
-process.env.BOT_API_URL = '/api';
-
 describe('submit()', () => {
-  beforeEach(() => {
+  it('posts data to api', async () => {
+    nock('https://test-api.friendslibrary.com')
+      .post('/kite-jobs', { job: 'job' })
+      .reply(201, { id: 'job-id' });
+    expect(await kiteJobs.submit('job')).toBe('job-id');
   });
 
-  it('posts data to api', async () => {
-    expect(await kiteJobs.submit()).toBe(false);
+  it('returns false if API errors', async () => {
+    nock('https://test-api.friendslibrary.com')
+      .post('/kite-jobs', { job: 'job' })
+      .reply(400);
+    expect(await kiteJobs.submit('job')).toBe(false);
   });
 });

@@ -62,28 +62,7 @@
     "packages/fell",
     "packages/styleguide",
     "packages/mod",
-    "packages/jones"
-  ],
-  "jest": {
-    "errorOnDeprecated": true,
-    "testEnvironment": "node",
-    "testRegex": "__tests__/.*tests?\\.js",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/packages/jones/build",
-      "<rootDir>/packages/evans/public"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/packages/cli",
-      "<rootDir>/packages/mod"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 94,
-        "branches": 85,
-        "functions": 94,
-        "lines": 94
-      }
-    }
-  }
+    "packages/jones",
+    "packages/bot"
+  ]
 }

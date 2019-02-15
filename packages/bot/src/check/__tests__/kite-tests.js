@@ -130,8 +130,8 @@ describe('kiteCheck()', () => {
     listener.emit('complete', {
       success: false,
       jobs: {
-        'job-id-1': { success: true },
-        'job-id-2': { success: false },
+        'job-id-1': { status: 'succeeded' },
+        'job-id-2': { status: 'failed' },
       }
     });
     expect(github.checks.update.mock.calls[0][0]).toMatchObject({
@@ -146,8 +146,8 @@ describe('kiteCheck()', () => {
     listener.emit('complete', {
       success: true,
       jobs: {
-        'job-id-1': { success: true },
-        'job-id-2': { success: true },
+        'job-id-1': { status: 'succeeded' },
+        'job-id-2': { status: 'succeeded' },
       }
     });
     expect(github.checks.update.mock.calls[0][0]).toMatchObject({
