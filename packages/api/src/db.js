@@ -17,8 +17,12 @@ export async function select(sql: string, params: Array<mixed> = []) {
 
 
 export async function insert(table: string, row: Object) {
+  return  await query(`INSERT INTO \`${table}\` SET ?`, row);
+}
+
+export async function query(sql: string, data: mixed = []) {
   const connection = await getConnection();
-  const result = await connection.query(`INSERT INTO \`${table}\` SET ?`, row);
+  const result = await connection.query(sql, data);
   connection.end();
   return result;
 }

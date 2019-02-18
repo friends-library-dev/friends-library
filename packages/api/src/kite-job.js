@@ -1,5 +1,6 @@
 // @flow
 import uuid from 'uuid/v4';
+import moment from 'moment';
 import type { $Request, $Response } from 'express';
 import * as db from './db';
 
@@ -34,23 +35,72 @@ export async function get(req: $Request, res: $Response) {
 
 
 export async function take(req: $Request, res: $Response) {
+  const jobs = await db.select('SELECT id, attempts, status, job, created_at, updated_at FROM kite_jobs');
+  convertTimestamps(jobs);
+  failHopelessJobs(jobs);
 
-  // ~~ 1 ~~ abandon hopeless stale jobs
-  // fetch all `in_progress` jobs
-  // if any have been attempted 3 times, and are older than STALE_TIME, update them to `failed`
+  const inProgress = jobs
+    .filter(({ status }) => status === 'in_progress')
+    .filter(({ attempts }) => attempts < 3)
+    .filter(notStale)
 
-  // ~~ 2 ~~ don't give job if we're working on one
-  // if we have one less than STALE_TIME, then return EMPTY -- system is working on one. - QUIT
+  if (inProgress.length) {
+    res.status(204).end();
+    return;
+  }
 
-  // ~~ 3 ~~ give oldest `queued` job (prioritize new jobs over re-trying stale ones)
-  // select all the `queued` jobs, if we have some, give the oldest and QUIT
+  let give = jobs
+    .filter(({ status }) => status === 'queued')
+    .sort(oldestFirst)[0];
 
-  // ~~ 4 ~~ retry stale (but not hopeless) jobs
-  // using fetched stale jobs from step 1
-  // if we have some older than STALE_TIME and less than 3 attempts, return oldest by `created_at`- QUIT
+  give = give || jobs
+    .filter(({ status }) => status === 'in_progress')
+    .filter(({ attempts }) => attempts < 3)
+    .filter(isStale)
+    .sort(oldestFirst)[0];
 
-  // ~~ 5 ~~ nothing to see here, move right along
-  // QUIT
+  if (!give) {
+    res.status(204).end();
+    return;
+  }
 
-  res.json(['take!']);
+  await db.query(
+    'UPDATE kite_jobs SET status = ?, attempts = ?, updated_at = ? WHERE id = ?',
+    ['in_progress', give.attempts + 1, new Date(), give.id],
+  );
+
+  res.json({
+    id: give.id,
+    job: give.job,
+  });
+}
+
+function failHopelessJobs(jobs) {
+  jobs
+    .filter(({ status }) => status === 'in_progress')
+    .filter(isStale)
+    .filter(({ attempts }) => attempts > 2)
+    .forEach(job => {
+      db.query('UPDATE `kite_jobs` SET `status` = ? WHERE `id` = ?', ['failed', job.id]);
+      job.status = 'failed';
+    });
+}
+
+function convertTimestamps(jobs) {
+  jobs.forEach(job => {
+    job.created_at = moment(job.created_at);
+    job.updated_at = moment(job.updated_at);
+  });
+}
+
+function notStale({ updated_at }) {
+  return updated_at.isAfter(moment().subtract(7, 'minutes'));
+}
+
+function isStale({ updated_at }) {
+  return updated_at.isBefore(moment().subtract(7, 'minutes'));
+}
+
+function oldestFirst(a, b) {
+  return a.created_at.isBefore(b.created_at) ? -1 : 1;
 }
