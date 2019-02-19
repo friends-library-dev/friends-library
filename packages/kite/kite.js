@@ -4,7 +4,8 @@ require('dotenv').config({ path: `${__dirname}/../../.env` });
 const yargs = require('yargs');
 const { omit } = require('lodash');
 const { prettifyErrors, catchify } = require('@friends-library/cli/error');
-const publish = require('./src/publish').default;
+const takeApi = require('./src/publish/cli/take-api').default;
+const publish = require('./src/publish/cli').default;
 const publishRef = require('./src/publish/ref').default;
 const convert = require('./src/convert').default;
 const chapterize = require('./src/chapterize').default;
@@ -32,6 +33,11 @@ yargs
       describe: 'absolute filepath to root dir containing doc repos',
     }),
     timed(catchify(publish)),
+  )
+  .command(
+    'take:api',
+    'take a job from the API',
+    takeApi,
   )
   .command(
     ['convert <file>'],

@@ -42,7 +42,7 @@ function resetPublishDir(): void {
   fs.ensureDir(PUBLISH_DIR);
 }
 
-function take(job: Job): Promise<*> {
+export function take(job: Job): Promise<*> {
   const { target } = job;
 
   switch (target) {

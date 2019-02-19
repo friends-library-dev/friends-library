@@ -4,9 +4,9 @@ import fetch from 'node-fetch';
 import type { Uuid, Url } from '../../../type';
 import { values } from '../../../flow-utils';
 
-const { env: { BOT_API_URL } } = process;
-if (typeof BOT_API_URL !== 'string') {
-  throw new Error('BOT_API_URL env var must be defined.');
+const { env: { API_URL } } = process;
+if (typeof API_URL !== 'string') {
+  throw new Error('API_URL env var must be defined.');
 }
 
 type JobState = {|
@@ -39,7 +39,7 @@ export default class JobListener extends EventEmitter {
   }
 
   fetchState(id: Uuid) {
-    fetch(`${BOT_API_URL}/kite-jobs/${id}`)
+    fetch(`${API_URL}/kite-jobs/${id}`)
       .then(res => res.json())
       .then(state => this.processUpdate(id, state));
   }

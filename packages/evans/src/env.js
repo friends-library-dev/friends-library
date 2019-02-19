@@ -20,8 +20,8 @@ export const LANG: Lang = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
  *
  * @type {Url}
  */
-export const API_URL: Url = typeof process.env.EVANS_API_URL === 'string'
-  ? process.env.EVANS_API_URL
+export const API_URL: Url = typeof process.env.API_URL === 'string'
+  ? process.env.API_URL
   : '';
 
 /**

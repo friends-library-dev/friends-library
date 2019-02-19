@@ -9,10 +9,10 @@ import type { Job } from '../../kite/src/type';
 import JobListener from './job-listener';
 import { basename } from 'path';
 
-const { env: { BOT_API_URL } } = process;
+const { env: { API_URL } } = process;
 
 export async function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid | false> {
-  return await fetch(`${BOT_API_URL || ''}/kite-jobs`, {
+  return await fetch(`${API_URL || ''}/kite-jobs`, {
     method: 'post',
     headers: {
       Accept: 'application/json',

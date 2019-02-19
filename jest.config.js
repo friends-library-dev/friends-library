@@ -1,4 +1,4 @@
-process.env.BOT_API_URL = 'https://test-api.friendslibrary.com';
+process.env.API_URL = 'https://test-api.friendslibrary.com';
 
 module.exports = {
   errorOnDeprecated: true,
