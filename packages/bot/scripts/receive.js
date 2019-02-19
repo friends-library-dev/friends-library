@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env' )});
+require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '..', '.env' )});
 const fetch = require('node-fetch');
 const fs = require('fs');
 const uuid = require('uuid/v4');

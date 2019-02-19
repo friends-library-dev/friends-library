@@ -44,6 +44,6 @@
     "shipit-yarn": "^0.2.0"
   },
   "db-migrate": {
-    "dotenv-custom-path": "../../.env"
+    "dotenvCustomPath": "../../.env"
   }
 }
