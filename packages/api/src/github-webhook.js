@@ -3,7 +3,6 @@ import type { $Request, $Response } from 'express';
 import get from 'lodash/get';
 import type { WebhookPayload } from './type';
 import * as slack from './slack';
-import * as prBot from './pr-bot';
 
 export async function handleGithubWebhook(
   req: $Request,
@@ -14,16 +13,13 @@ export async function handleGithubWebhook(
 
   const event = req.header('X-Github-Event') || '';
   const payload = ((req.body: any): WebhookPayload);
-  console.log({ payload });
-  await prBot.handle(event, payload);
-
   if (process.env.NODE_ENV === 'production') {
     await logToSlack(event, payload);
   }
 }
 
 async function logToSlack(event: string, payload: WebhookPayload) {
-  let msg = `Webhook, event: \`${event}\``;
+  let msg = `(api) Webhook, event: \`${event}\``;
   if (payload.action) {
     msg += `, action: \`${payload.action}\``;
   }
