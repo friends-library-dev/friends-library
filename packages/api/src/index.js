@@ -29,6 +29,7 @@ app.use('/legacy', legacy);
 app.post('/kite-jobs', kiteJob.create);
 app.get('/kite-jobs/take', kiteJob.take);
 app.get('/kite-jobs/:id', kiteJob.get);
+app.patch('/kite-jobs/:id', kiteJob.update);
 
 app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $Response) => {
   const { params: { friend, document, edition, filename } } = req;

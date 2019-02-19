@@ -1,0 +1,14 @@
+{
+  "name": "@friends-library/client",
+  "version": "1.0.0",
+  "description": "clients for doing things",
+  "main": "index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/register": "^7.0.0",
+    "aws-sdk": "^2.405.0",
+    "dotenv": "^6.2.0",
+    "fs-extra": "^7.0.1"
+  }
+}

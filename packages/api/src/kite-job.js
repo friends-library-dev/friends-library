@@ -25,7 +25,7 @@ export async function create(req: $Request, res: $Response) {
 
 export async function get(req: $Request, res: $Response) {
   const { params: { id } } = req;
-  const results = await db.select('SELECT id, status, url from `kite_jobs` where id = ?', [id]);
+  const results = await db.select('SELECT id, status, url from `kite_jobs` WHERE id = ?', [id]);
   if (!results.length) {
     res.status(404).send();
     return;
@@ -33,9 +33,46 @@ export async function get(req: $Request, res: $Response) {
   res.send(results[0]);
 }
 
+export async function update(req: $Request, res: $Response) {
+  const { params: { id } } = req;
+  const results = await db.select('SELECT id FROM `kite_jobs` WHERE id = ?', [id]);
+  if (!results.length) {
+    res.status(404).send();
+    return;
+  }
+
+  const body = ((req.body: any): Object);
+  const fillable = ['status', 'url'];
+  let sets = ['`updated_at` = ?'];
+  let params = [new Date()];
+  fillable.forEach(column => {
+    if (body[column]) {
+      sets.push(`\`${column}\` = ?`);
+      params.push(body[column]);
+    }
+  });
+
+  await db.query(
+    `UPDATE kite_jobs SET ${sets.join(', ')} WHERE id = ?`,
+    [...params, id],
+  );
+
+  res.json({ id });
+}
+
 
 export async function take(req: $Request, res: $Response) {
-  const jobs = await db.select('SELECT id, attempts, status, job, created_at, updated_at FROM kite_jobs');
+  const cols = [
+    'id',
+    'attempts',
+    'upload_path',
+    'status',
+    'job',
+    'created_at',
+    'updated_at',
+  ];
+
+  const jobs = await db.select(`SELECT ${cols.join(', ')} FROM kite_jobs`);
   convertTimestamps(jobs);
   failHopelessJobs(jobs);
 
@@ -64,13 +101,14 @@ export async function take(req: $Request, res: $Response) {
     return;
   }
 
-  await db.query(
-    'UPDATE kite_jobs SET status = ?, attempts = ?, updated_at = ? WHERE id = ?',
-    ['in_progress', give.attempts + 1, new Date(), give.id],
-  );
+  // await db.query(
+  //   'UPDATE kite_jobs SET status = ?, attempts = ?, updated_at = ? WHERE id = ?',
+  //   ['in_progress', give.attempts + 1, new Date(), give.id],
+  // );
 
   res.json({
     id: give.id,
+    upload_path: give.upload_path,
     job: give.job,
   });
 }
@@ -81,7 +119,10 @@ function failHopelessJobs(jobs) {
     .filter(isStale)
     .filter(({ attempts }) => attempts > 2)
     .forEach(job => {
-      db.query('UPDATE `kite_jobs` SET `status` = ? WHERE `id` = ?', ['failed', job.id]);
+      db.query(
+        'UPDATE `kite_jobs` SET `status` = ?, `updated_at` = ? WHERE `id` = ?',
+        ['failed', new Date(), job.id],
+      );
       job.status = 'failed';
     });
 }

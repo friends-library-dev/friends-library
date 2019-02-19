@@ -37,7 +37,9 @@ yargs
   .command(
     'take:api',
     'take a job from the API',
-    takeApi,
+    () => {
+      takeApi();
+    },
   )
   .command(
     ['convert <file>'],

@@ -65,6 +65,7 @@
     "packages/styleguide",
     "packages/mod",
     "packages/jones",
-    "packages/bot"
+    "packages/bot",
+    "packages/client"
   ]
 }

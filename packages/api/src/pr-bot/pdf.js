@@ -95,8 +95,8 @@ export async function makePdfs(
   for (let i = 0; i < jobs.length; i++) {
     // we do these serially to avoid running out of memory
     // eslint-disable-next-line no-await-in-loop
-    const { pdf: pdfPath, srcDir } = await pdf.make(jobs[i]);
-    paths.push(pdfPath);
+    const { filePath, srcDir } = await pdf.make(jobs[i]);
+    paths.push(filePath);
     fs.removeSync(dirname(srcDir));
   }
   return Promise.resolve(paths);
