@@ -1,6 +1,6 @@
 // @flow
 import type { State, Task, File } from './type';
-import { values } from '../../../flow-utils';
+import { values } from './flow-utils';
 
 export function currentTask(state: State): ?Task {
   if (!state.currentTask) {

@@ -51,7 +51,7 @@ export function createPrecursor(data: Object = {}): SourcePrecursor {
         nameSort: get(data, 'meta.author.nameSort', 'Author, Unknown'),
       },
       ...data.meta ? pick(data.meta, metaProps) : {},
-    }
+    },
   };
 }
 

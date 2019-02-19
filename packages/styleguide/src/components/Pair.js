@@ -8,9 +8,15 @@ type Props = {
   emphasize?: Array<number>,
 };
 
-export default ({ id, emphasize }: Props) => (
+const Pair = ({ id, emphasize }: Props) => (
   <>
     <Asciidoc id={id} emphasize={emphasize} />
     <Html id={id} />
   </>
 );
+
+Pair.defaultProps = {
+  emphasize: [],
+};
+
+export default Pair;

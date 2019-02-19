@@ -1,22 +1,21 @@
 // @flow
-import EventEmitter from 'events';
 import fetch from 'node-fetch';
 import { createJob, createSpec, createPrecursor, getDocumentMeta } from '@friends-library/kite';
 import { Friend, Edition } from '@friends-library/friends';
+import { basename } from 'path';
 import type { FilePath, Asciidoc, Sha, Uuid } from '../../../type';
-import type { Context, ModifiedAsciidocFile } from './type';
+import type { ModifiedAsciidocFile } from './type';
 import type { Job } from '../../kite/src/type';
 import JobListener from './job-listener';
-import { basename } from 'path';
 
 const { env: { API_URL } } = process;
 
-export async function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid | false> {
-  return await fetch(`${API_URL || ''}/kite-jobs`, {
+export function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid | false> {
+  return fetch(`${API_URL || ''}/kite-jobs`, {
     method: 'post',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
   })

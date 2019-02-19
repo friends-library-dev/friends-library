@@ -24,8 +24,8 @@ export function stringifyJob(job: Job): string {
     spec: {
       ...job.spec,
       notes: [...job.spec.notes],
-    }
-  })
+    },
+  });
 }
 
 export function unstringifyJob(str: string): Job {

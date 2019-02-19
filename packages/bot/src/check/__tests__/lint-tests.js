@@ -5,13 +5,12 @@ import { prTestSetup } from '../../__tests__/helpers';
 jest.mock('../../lint-adoc');
 
 describe('lintCheck()', () => {
-  let payload;
   let github;
   let context;
   let files;
 
   beforeEach(() => {
-    [context, payload, github] = prTestSetup();
+    [context, github] = prTestSetup();
     files = [{
       path: '01.adoc',
       adoc: '== Ch 1',
@@ -34,7 +33,7 @@ describe('lintCheck()', () => {
     expect(getLintAnnotations).toHaveBeenCalledWith([{
       path: '01.adoc',
       adoc: '== Ch 1',
-    }])
+    }]);
   });
 
   it('passes the check if no lint annotations', async () => {
@@ -56,7 +55,7 @@ describe('lintCheck()', () => {
       conclusion: 'failure',
       output: {
         annotations: ['foo'],
-      }
+      },
     });
   });
 });

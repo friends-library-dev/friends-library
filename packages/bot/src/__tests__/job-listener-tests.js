@@ -7,13 +7,12 @@ jest.useFakeTimers();
 
 describe('JobListener', () => {
   it('polls status endpoint and emits `update` events', () => {
-
     mockJobStatus({
       'job-id-1': [
         { status: 'queued' },
         { status: 'in_progress' },
         { status: 'completed' },
-      ]
+      ],
     });
 
     const listener = new JobListener(['job-id-1']);
@@ -40,7 +39,7 @@ describe('JobListener', () => {
       'job-id-1': [
         { status: 'queued' },
         { status: 'succeeded', url: '/uploaded.pdf' },
-      ]
+      ],
     });
 
     const listener = new JobListener(['job-id-1']);
@@ -55,7 +54,7 @@ describe('JobListener', () => {
       success: true,
       jobs: {
         'job-id-1': { status: 'succeeded', url: '/uploaded.pdf' },
-      }
+      },
     });
   });
 
@@ -68,7 +67,7 @@ describe('JobListener', () => {
       'job-id-2': [
         { status: 'queued' },
         { status: 'failed' },
-      ]
+      ],
     });
 
     const listener = new JobListener(['job-id-1', 'job-id-2']);
@@ -82,7 +81,7 @@ describe('JobListener', () => {
       jobs: {
         'job-id-1': { status: 'succeeded', url: '/uploaded.pdf' },
         'job-id-2': { status: 'failed' },
-      }
+      },
     });
   });
 
@@ -90,7 +89,7 @@ describe('JobListener', () => {
     mockJobStatus({
       'job-id-1': [
         { status: 'queued' }, // will repeat forever
-      ]
+      ],
     });
 
     const listener = new JobListener(['job-id-1']);
@@ -112,7 +111,7 @@ describe('JobListener', () => {
         { status: 'in_progress' },
         { status: 'awaiting_retry' },
         { status: 'in_progress' }, // last one keeps repeating
-      ]
+      ],
     });
 
     const listener = new JobListener(['job-id-1']);
@@ -144,9 +143,9 @@ function mockJobStatus(map) {
         return {
           then(fn) {
             fn(map[jobId].length > 1 ? map[jobId].shift() : map[jobId][0]);
-          }
-        }
-      }
-    }
+          },
+        };
+      },
+    };
   });
 }

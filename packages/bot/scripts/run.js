@@ -1,6 +1,6 @@
 const path = require('path');
 const { createProbot } = require('probot');
-require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '..', '.env' )});
+require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '..', '.env') });
 
 const { env: {
   BOT_WEBHOOK_PROXY_URL,

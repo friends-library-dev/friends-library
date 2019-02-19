@@ -12,7 +12,7 @@ describe('pullRequest()', () => {
   let context;
 
   beforeEach(() => {
-    [context, payload, github] = prTestSetup();
+    [context, github, payload] = prTestSetup();
   });
 
   it('ignores PR opened on monorepo', async () => {
@@ -29,7 +29,7 @@ describe('pullRequest()', () => {
       owner: 'friends-library-sandbox',
       repo: 'jane-doe',
       number: 11,
-    })
+    });
   });
 
   it('fetches file content for PR modified files', async () => {
@@ -39,11 +39,11 @@ describe('pullRequest()', () => {
       repo: 'jane-doe',
       path: '01.adoc',
       ref: '2d306bb70578e6c019e3579c02d4f78f17bf915e',
-    })
+    });
   });
 
   it('passes fetched files to lint and kite checks', async () => {
-    const files = [{ path: '01.adoc', adoc: '== Ch 1'}];
+    const files = [{ path: '01.adoc', adoc: '== Ch 1' }];
     await pullRequest(context);
     expect(lintCheck).toHaveBeenCalledWith(context, files);
     expect(kiteCheck).toHaveBeenCalledWith(context, files);

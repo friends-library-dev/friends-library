@@ -10,7 +10,7 @@ export default async function kiteCheck(
   modifiedFiles: Array<ModifiedAsciidocFile>,
 ): Promise<void> {
   const { payload, github, repo } = context;
-  const sha = payload.pull_request.head.sha;
+  const { pull_request: { head: { sha } } } = payload;
   const { data: { id } } = await github.checks.create(repo({
     name: 'fl-bot/kite',
     head_sha: sha,
@@ -22,7 +22,7 @@ export default async function kiteCheck(
   const prFiles = await getAllPrFiles(context);
   const repoName = payload.repository.name;
   const friend = getFriend(repoName);
-  const [jobs, listener] = await submitKiteJobs(
+  const [, listener] = await submitKiteJobs(
     friend,
     modifiedFiles,
     prFiles,

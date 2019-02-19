@@ -6,19 +6,19 @@ module.exports = {
   testRegex: '__tests__/.*tests?\\.js',
   modulePathIgnorePatterns: [
     '<rootDir>/packages/jones/build',
-    '<rootDir>/packages/evans/public'
+    '<rootDir>/packages/evans/public',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/cli',
-    '<rootDir>/packages/mod'
+    '<rootDir>/packages/mod',
   ],
   coverageThreshold: {
     global: {
       statements: 94,
       branches: 85,
       functions: 94,
-      lines: 94
-    }
-  }
+      lines: 94,
+    },
+  },
 };

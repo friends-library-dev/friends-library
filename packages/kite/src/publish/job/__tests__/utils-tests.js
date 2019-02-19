@@ -1,5 +1,5 @@
 import { stringifyJob, unstringifyJob } from '../utils';
-import { createPrecursor, createSpec, createJob } from '../';
+import { createPrecursor, createSpec, createJob } from '..';
 
 jest.mock('uuid/v4', () => {
   return jest.fn(() => 'uuid');

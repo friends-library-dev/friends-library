@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { dirname } from 'path';
 import fetch from 'node-fetch';
 import { unstringifyJob } from '../job/utils';
-import { take } from './';
+import { take } from '.';
 
 const { env: { API_URL } } = process;
 
@@ -39,7 +39,7 @@ function updateJob(id, body) {
     method: 'patch',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
   });

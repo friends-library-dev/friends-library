@@ -5,7 +5,6 @@ import * as db from '../db';
 jest.mock('../db');
 
 
-
 describe('take()', () => {
   let now;
 
@@ -22,14 +21,14 @@ describe('take()', () => {
         status: 'in_progress',
         updated_at: now.subtract(2, 'hours').toDate(),
         created_at: now.subtract(4, 'hours').toDate(),
-      }
+      },
     ]);
 
     await getTakeResponse();
 
     expect(db.query).toHaveBeenCalledWith(
-      'UPDATE `kite_jobs` SET `status` = ? WHERE `id` = ?',
-      ['failed', 'job-1'],
+      'UPDATE `kite_jobs` SET `status` = ?, `updated_at` = ? WHERE `id` = ?',
+      ['failed', expect.anything(), 'job-1'],
     );
   });
 
@@ -94,7 +93,7 @@ describe('take()', () => {
         status: 'queued',
         updated_at: now.subtract(10, 'seconds').toDate(),
         created_at: now.subtract(10, 'seconds').toDate(),
-      }
+      },
     ]);
     const { json } = await getTakeResponse();
     expect(json.id).toBe('job-1');
@@ -123,7 +122,7 @@ describe('take()', () => {
         status: 'in_progress',
         updated_at: now.subtract(10, 'minutes').toDate(),
         created_at: now.subtract(11, 'minutes').toDate(),
-      }
+      },
     ]);
 
     const { json } = await getTakeResponse();

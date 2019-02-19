@@ -43,8 +43,8 @@ export async function update(req: $Request, res: $Response) {
 
   const body = ((req.body: any): Object);
   const fillable = ['status', 'url'];
-  let sets = ['`updated_at` = ?'];
-  let params = [new Date()];
+  const sets = ['`updated_at` = ?'];
+  const params = [new Date()];
   fillable.forEach(column => {
     if (body[column]) {
       sets.push(`\`${column}\` = ?`);
@@ -79,7 +79,7 @@ export async function take(req: $Request, res: $Response) {
   const inProgress = jobs
     .filter(({ status }) => status === 'in_progress')
     .filter(({ attempts }) => attempts < 3)
-    .filter(notStale)
+    .filter(notStale);
 
   if (inProgress.length) {
     res.status(204).end();
@@ -101,10 +101,10 @@ export async function take(req: $Request, res: $Response) {
     return;
   }
 
-  // await db.query(
-  //   'UPDATE kite_jobs SET status = ?, attempts = ?, updated_at = ? WHERE id = ?',
-  //   ['in_progress', give.attempts + 1, new Date(), give.id],
-  // );
+  await db.query(
+    'UPDATE kite_jobs SET status = ?, attempts = ?, updated_at = ? WHERE id = ?',
+    ['in_progress', give.attempts + 1, new Date(), give.id],
+  );
 
   res.json({
     id: give.id,

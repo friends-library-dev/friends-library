@@ -1,4 +1,4 @@
-
+/* eslint-disable no-new-wrappers */
 
 let dbm;
 let type;

@@ -9,21 +9,20 @@ jest.mock('@friends-library/friends');
 jest.mock('../../kite-jobs');
 
 describe('kiteCheck()', () => {
-  let payload;
   let github;
   let context;
   let files;
   let listener;
 
   beforeEach(() => {
-    [context, payload, github] = prTestSetup();
+    [context, github] = prTestSetup();
     files = [{
       path: '01.adoc',
       adoc: '== Ch 1',
     }];
 
     github.repos.getCommit.mockResolvedValue({
-      data: { commit: { tree: { sha: 'tree-sha' } } }
+      data: { commit: { tree: { sha: 'tree-sha' } } },
     });
 
     github.gitdata.getTree.mockResolvedValue({
@@ -33,15 +32,15 @@ describe('kiteCheck()', () => {
             path: '01.adoc',
             type: 'blob',
             sha: 'blob-sha',
-          }
-        ]
-      }
+          },
+        ],
+      },
     });
 
     github.gitdata.getBlob.mockResolvedValue({
       data: {
         content: Base64.encode('Foobar.'),
-      }
+      },
     });
 
     getFriend.mockReturnValue('FakeFriend');
@@ -142,7 +141,7 @@ describe('kiteCheck()', () => {
       jobs: {
         'job-id-1': { status: 'succeeded' },
         'job-id-2': { status: 'failed' },
-      }
+      },
     });
     expect(github.checks.update.mock.calls[0][0]).toMatchObject({
       check_run_id: 1,
@@ -158,7 +157,7 @@ describe('kiteCheck()', () => {
       jobs: {
         'job-id-1': { status: 'succeeded' },
         'job-id-2': { status: 'succeeded' },
-      }
+      },
     });
     expect(github.checks.update.mock.calls[0][0]).toMatchObject({
       check_run_id: 1,
@@ -180,6 +179,6 @@ describe('kiteCheck()', () => {
 
 class TestListener extends EventEmitter {
   listen() {
-    return Promise.resolve();
+    return Promise.resolve(this);
   }
 }

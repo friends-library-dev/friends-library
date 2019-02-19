@@ -1,4 +1,4 @@
-import { createPrecursor, createJob } from '../';
+import { createPrecursor, createJob } from '..';
 
 jest.mock('uuid/v4', () => {
   return jest.fn(() => 'UUID');
@@ -19,7 +19,7 @@ describe('createJob()', () => {
         debugPrintMargins: false,
         condense: false,
         frontmatter: true,
-      }
+      },
     });
   });
 
@@ -44,7 +44,7 @@ describe('createJob()', () => {
       condense: true,
       frontmatter: false,
     };
-    const job = createJob({ meta: { ...meta, nope: 'bad' }});
+    const job = createJob({ meta: { ...meta, nope: 'bad' } });
     expect(job.meta).toEqual(meta);
   });
 });
@@ -69,7 +69,7 @@ describe('createPrecursor()', () => {
           name: 'Unknown Author',
           nameSort: 'Author, Unknown',
         },
-      }
+      },
     });
   });
 
@@ -108,7 +108,7 @@ describe('createPrecursor()', () => {
       author: {
         name: 'George Fox',
         nameSort: 'Fox, George',
-      }
+      },
     };
     const precursor = createPrecursor({ meta });
     expect(precursor.meta).toEqual(meta);

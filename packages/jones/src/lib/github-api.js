@@ -3,7 +3,7 @@ import Octokit from '@octokit/rest';
 import { Base64 } from 'js-base64';
 import type { Slug } from '../../../../type';
 import type { Task, File } from '../type';
-import { values } from '../../../../flow-utils';
+import { values } from '../flow-utils';
 
 const isDev = process.env.NODE_ENV === 'development';
 

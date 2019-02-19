@@ -1,7 +1,5 @@
 // @flow
-import type { Asciidoc, FilePath } from '../../../../type';
-import type { ModifiedAsciidocFile } from '../type';
-import type { Context } from '../type';
+import type { ModifiedAsciidocFile, Context } from '../type';
 import getLintAnnotations from '../lint-adoc';
 
 export default async function lintCheck(
@@ -39,6 +37,6 @@ export default async function lintCheck(
       title: 'Asciidoc lint failure',
       summary: `Found ${annotations.length} problems`,
       annotations,
-    }
-  }))
+    },
+  }));
 }

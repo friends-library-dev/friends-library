@@ -11,13 +11,12 @@ if (typeof API_URL !== 'string') {
 
 type JobState = {|
   status: 'queued' | 'in_progress' | 'awaiting_retry' | 'failed' | 'succeeded',
-  url:? Url,
+  url: ? Url,
 |};
 
 export default class JobListener extends EventEmitter {
-
   static POLL_INTERVAL = 10 * 1000; // 10 seconds
-  static TIMEOUT = 15 * 60 * 1000;  // 15 minutes
+  static TIMEOUT = 15 * 60 * 1000; // 15 minutes
 
   ids: Array<Uuid>
   timeouts: {[string]: TimeoutID}
@@ -30,10 +29,10 @@ export default class JobListener extends EventEmitter {
     this.jobs = {};
   }
 
-  listen() {
+  listen(): Promise<*> {
     this.ids.forEach(id => this.fetchState(id));
     this.startTimeout();
-    return new Promise<*>(resolve => {
+    return new Promise(resolve => {
       this.on('shutdown', resolve);
     });
   }
@@ -80,10 +79,10 @@ export default class JobListener extends EventEmitter {
   }
 
   startTimeout() {
-    if (this.timeouts.__timeout__) {
-      clearTimeout(this.timeouts.__timeout__);
+    if (this.timeouts.timeout) {
+      clearTimeout(this.timeouts.timeout);
     }
-    this.timeouts.__timeout__ = setTimeout(() => this.onTimeout(), JobListener.TIMEOUT);
+    this.timeouts.timeout = setTimeout(() => this.onTimeout(), JobListener.TIMEOUT);
   }
 
   onTimeout() {

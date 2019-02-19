@@ -1,4 +1,5 @@
 // @flow
+/* istanbul ignore file */
 import mysql from 'promise-mysql';
 
 const { env: {
@@ -15,9 +16,8 @@ export async function select(sql: string, params: Array<mixed> = []) {
   return results;
 }
 
-
-export async function insert(table: string, row: Object) {
-  return  await query(`INSERT INTO \`${table}\` SET ?`, row);
+export function insert(table: string, row: Object) {
+  return query(`INSERT INTO \`${table}\` SET ?`, row);
 }
 
 export async function query(sql: string, data: mixed = []) {
@@ -27,8 +27,8 @@ export async function query(sql: string, data: mixed = []) {
   return result;
 }
 
-async function getConnection() {
-  return await mysql.createConnection({
+function getConnection() {
+  return mysql.createConnection({
     host: API_DB_HOST,
     user: API_DB_USER,
     password: API_DB_PASS,
