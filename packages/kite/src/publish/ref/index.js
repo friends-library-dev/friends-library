@@ -2,7 +2,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import type { SourcePrecursor } from '../../type';
-import { createCommand, publishPrecursors } from '..';
+import { createCommand, publishPrecursors } from '../cli';
 
 export default function publishRef(argv: Object): Promise<*> {
   const cmd = createCommand(argv);

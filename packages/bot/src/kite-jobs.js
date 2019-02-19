@@ -1,0 +1,100 @@
+// @flow
+import fetch from 'node-fetch';
+import { createJob, createSpec, createPrecursor, getDocumentMeta } from '@friends-library/kite';
+import { Friend, Edition } from '@friends-library/friends';
+import { basename } from 'path';
+import type { FilePath, Asciidoc, Sha, Uuid } from '../../../type';
+import type { ModifiedAsciidocFile } from './type';
+import type { Job } from '../../kite/src/type';
+import JobListener from './job-listener';
+
+const { env: { API_URL } } = process;
+
+export function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid | false> {
+  return fetch(`${API_URL || ''}/kite-jobs`, {
+    method: 'post',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+    .then(res => res.json())
+    .then(({ id }) => id)
+    .catch(() => false);
+}
+
+export function listenAll(ids: Array<Uuid>): JobListener {
+  return new JobListener(ids);
+}
+
+export function fromPR(
+  friend: Friend,
+  modifiedFiles: Array<ModifiedAsciidocFile>,
+  prFiles: Map<FilePath, Asciidoc>,
+  sha: Sha,
+  chapters: boolean = false,
+): Array<Job> {
+  return [...modifiedFiles.reduce((jobs, file) => {
+    const [docSlug, editionType] = file.path.split('/');
+    const document = friend.documents.find(doc => doc.slug === docSlug);
+    const edition = document.editions.find(ed => ed.type === editionType);
+
+    if (chapters) {
+      const chFilename = [
+        document.slug,
+        edition.type,
+        `${basename(file.path, '.adoc')}.pdf`,
+      ].join('--');
+      const chapterJob = getJob(chFilename, edition, prFiles.get(file.path) || '', sha);
+      jobs.set(file, chapterJob);
+    }
+
+    if (!jobs.has(edition.type)) {
+      const editionFilename = `${document.slug}--${edition.type}.pdf`;
+      const relevantFiles = getRelevantFiles(prFiles, edition);
+      const adoc = joinAdoc(relevantFiles);
+      jobs.set(edition.type, getJob(editionFilename, edition, adoc, sha));
+    }
+
+    return jobs;
+  }, new Map()).values()];
+}
+
+function joinAdoc(files: Array<ModifiedAsciidocFile>): Asciidoc {
+  return files
+    .sort((a, b) => a.path < b.path ? -1 : 1)
+    .map(({ adoc }) => adoc)
+    .join('\n');
+}
+
+function getRelevantFiles(
+  prFiles: Map<FilePath, Asciidoc>,
+  edition: Edition,
+): Array<ModifiedAsciidocFile> {
+  return [...prFiles].filter(([path]) => {
+    return path.indexOf(`${edition.document.slug}/${edition.type}`) === 0;
+  }).map(([path, adoc]) => ({ path, adoc }));
+}
+
+function getJob(
+  filenameBase: string,
+  edition: Edition,
+  adoc: Asciidoc,
+  sha: Sha,
+): Job {
+  const shortSha = sha.substring(0, 7);
+  const filename = `${shortSha}--${filenameBase}`;
+  return createJob({
+    filename,
+    target: 'pdf-print',
+    spec: createSpec(createPrecursor({
+      id: filename,
+      filename: basename(filename, '.pdf'),
+      revision: { sha: shortSha },
+      meta: getDocumentMeta(edition),
+      adoc,
+    })),
+    meta: { frontmatter: filename.split('--').length < 4 },
+  });
+}

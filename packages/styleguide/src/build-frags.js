@@ -34,7 +34,7 @@ function regen() {
     const job = {
       id,
       spec,
-      cmd,
+      meta: cmd,
       target: 'pdf-print',
       filename: '_',
     };

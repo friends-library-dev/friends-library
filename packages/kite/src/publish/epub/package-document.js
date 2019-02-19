@@ -5,7 +5,7 @@ import type { Job } from '../../type';
 import { frontmatter } from './frontmatter';
 
 export function packageDocument(job: Job): Xml {
-  const { id: jobId, spec, cmd: { perform } } = job;
+  const { id: jobId, spec, meta: { perform } } = job;
   const { meta, revision: { timestamp } } = spec;
   const { author: { name, nameSort }, title } = meta;
   const modified = moment.utc(moment.unix(timestamp)).format('YYYY-MM-DDThh:mm:ss[Z]');

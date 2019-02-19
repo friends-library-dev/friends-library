@@ -21,7 +21,7 @@
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "cors": "^2.8.5",
-    "db-migrate": "^0.10.2",
+    "db-migrate": "jaredh159/node-db-migrate#custom-dotenv-path",
     "db-migrate-mysql": "^1.1.10",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
@@ -30,6 +30,8 @@
     "js-base64": "^2.5.1",
     "mysql": "^2.15.0",
     "node-fetch": "^2.3.0",
+    "pkg-conf": "^2.1.0",
+    "promise-mysql": "^3.3.1",
     "semver": "^5.6.0",
     "strip-indent": "^2.0.0",
     "uuid": "^3.2.1"
@@ -40,5 +42,8 @@
     "shipit-deploy": "^2.5.1",
     "shipit-shared": "^4.4.2",
     "shipit-yarn": "^0.2.0"
+  },
+  "dbMigrate": {
+    "dotenvCustomPath": "../../.env"
   }
 }

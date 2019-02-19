@@ -2,8 +2,8 @@
   "defaultEnv": "production",
   "production": {
     "driver": "mysql",
-    "database": {"ENV": "DB_NAME"},
-    "user": {"ENV": "DB_USER"},
-    "password": {"ENV": "DB_PASS"}
+    "database": {"ENV": "API_DB_NAME"},
+    "user": {"ENV": "API_DB_USER"},
+    "password": {"ENV": "API_DB_PASS"}
   }
 }

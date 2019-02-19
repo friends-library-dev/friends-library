@@ -2,7 +2,7 @@
 import type { Asciidoc } from '../../../../type';
 import type { Job, SourcePrecursor } from '../type';
 import { prepare } from './prepare';
-import { createCommand } from '.';
+import { createCommand } from './cli';
 
 
 export function testJob(adoc: ?Asciidoc = null): Job {
@@ -11,7 +11,7 @@ export function testJob(adoc: ?Asciidoc = null): Job {
     spec: prepare(testPrecursor(adoc)),
     target: 'epub',
     filename: 'test.epub',
-    cmd: createCommand({
+    meta: createCommand({
       perform: true,
     }),
   };

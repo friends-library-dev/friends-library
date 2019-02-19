@@ -76,7 +76,7 @@ function originalTitle({ spec: { meta } }: Job): Html {
 export function copyright(job: Job): Html {
   const { spec: { revision: { timestamp, sha, url }, meta: { published, isbn } } } = job;
   let marginData = '';
-  if (job.cmd.debugPrintMargins) {
+  if (job.meta.debugPrintMargins) {
     const dims = printDims(job);
     marginData = Object.keys(dims).map(k => {
       if (!k.match(/-margin/)) {

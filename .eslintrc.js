@@ -8,6 +8,7 @@ module.exports = {
     it: false,
     describe: false,
     beforeEach: false,
+    afterEach: false,
     document: false,
     test: false,
     jest: false,

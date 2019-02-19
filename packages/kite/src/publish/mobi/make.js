@@ -19,7 +19,7 @@ export function makeMobi(job: Job): Promise<string> {
       process.exit();
     })
     .then(() => {
-      if (job.cmd.open) {
+      if (job.meta.open) {
         exec(`open -a "/Applications/Kindle.app" ${PUBLISH_DIR}/${job.filename}`);
       }
     })

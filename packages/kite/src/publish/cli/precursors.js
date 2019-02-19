@@ -6,8 +6,9 @@ import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
 import { query, Friend, Document, Edition } from '@friends-library/friends';
-import type { Lang, Asciidoc, Css } from '../../../../type';
-import type { SourcePrecursor, FileType, DocumentMeta } from '../type';
+import type { Lang, Asciidoc, Css } from '../../../../../type';
+import type { SourcePrecursor, FileType } from '../../type';
+import { getDocumentMeta } from '../job/utils';
 
 export function getPrecursors(path: string): Array<SourcePrecursor> {
   const [lang, friend, document, edition] = path
@@ -87,21 +88,6 @@ function buildPrecursor(
   };
 }
 
-export function getDocumentMeta(edition: Edition): DocumentMeta {
-  const { document } = edition;
-  const { friend } = document;
-  return {
-    title: document.title,
-    author: {
-      name: friend.name,
-      nameSort: friend.alphabeticalName(),
-    },
-    ...document.originalTitle ? { originalTitle: document.originalTitle } : {},
-    ...document.published ? { published: document.published } : {},
-    ...edition.isbn ? { isbn: edition.isbn } : {},
-    ...edition.editor ? { editor: edition.editor } : {},
-  };
-}
 
 function validateQueried(friend: Friend, document: Document, edition: Edition, path: string): void {
   if (friend.name === '') {

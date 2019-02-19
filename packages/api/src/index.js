@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 import { redirAndLog } from './download';
 import { handleGithubWebhook } from './github-webhook';
+import * as kiteJob from './kite-job';
 import legacy from './legacy';
 
 const { env: {
@@ -25,6 +26,10 @@ app.post('/github-webhook', handleGithubWebhook);
 
 app.use('/legacy', legacy);
 
+app.post('/kite-jobs', kiteJob.create);
+app.get('/kite-jobs/take', kiteJob.take);
+app.get('/kite-jobs/:id', kiteJob.get);
+app.patch('/kite-jobs/:id', kiteJob.update);
 
 app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $Response) => {
   const { params: { friend, document, edition, filename } } = req;
