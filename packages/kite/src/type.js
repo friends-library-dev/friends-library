@@ -6,7 +6,7 @@ export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type Job = {|
   +id: string,
   +spec: SourceSpec,
-  +cmd: Command,
+  +meta: JobMeta,
   +target: FileType,
   +filename: string,
 |};
@@ -49,8 +49,7 @@ export type CustomCss = {
   [FileType | 'pdf' | 'ebook' | 'all']: Css,
 };
 
-export type Command = {|
-  +targets: Array<FileType>,
+export type JobMeta = {|
   +perform: boolean,
   +check: boolean,
   +open: boolean,

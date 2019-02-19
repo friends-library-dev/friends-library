@@ -1,0 +1,60 @@
+// @flow
+import uuid from 'uuid/v4';
+import pick from 'lodash/pick';
+import get from 'lodash/get';
+import type { SourcePrecursor, SourceSpec, Job } from '../../type';
+import { prepare } from '../prepare';
+
+export function createJob(data: Object = {}): Job {
+  const defaultMeta = {
+    check: false,
+    perform: false,
+    open: false,
+    send: false,
+    debugPrintMargins: false,
+    condense: false,
+    frontmatter: true,
+  };
+  return {
+    id: uuid(),
+    filename: 'document--(print).pdf',
+    target: 'pdf-print',
+    spec: data.spec || createSpec(createPrecursor()),
+    meta: {
+      ...defaultMeta,
+      ...pick(get(data, 'meta', {}), Object.keys(defaultMeta)),
+    },
+    ...pick(data, ['id', 'filename', 'target']),
+  };
+}
+
+export function createPrecursor(data: Object = {}): SourcePrecursor {
+  const metaProps = ['title', 'isbn', 'originalTitle', 'published', 'editor'];
+  const revisionProps = ['timestamp', 'sha', 'url'];
+  return {
+    id: data.id || uuid(),
+    config: data.config || {},
+    customCss: data.customCss || {},
+    filename: data.filename || 'document',
+    revision: {
+      timestamp: Math.floor(Date.now() / 1000),
+      sha: '<UNKNOWN>',
+      url: '#',
+      ...data.revision ? pick(data.revision, revisionProps) : {},
+    },
+    lang: data.lang || 'en',
+    adoc: data.adoc || '',
+    meta: {
+      title: 'Unknown Document',
+      author: {
+        name: get(data, 'meta.author.name', 'Unknown Author'),
+        nameSort: get(data, 'meta.author.nameSort', 'Author, Unknown'),
+      },
+      ...data.meta ? pick(data.meta, metaProps) : {},
+    },
+  };
+}
+
+export function createSpec(precursor: SourcePrecursor): SourceSpec {
+  return prepare(precursor);
+}

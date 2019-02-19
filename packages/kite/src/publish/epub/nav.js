@@ -49,7 +49,7 @@ export function tocItems({ spec: { sections } }: Job): Array<Object> {
 }
 
 
-export function landmarks({ target, cmd }: Job): Array<Object> {
+export function landmarks({ target, meta: { frontmatter } }: Job): Array<Object> {
   const landmarkItems = [];
 
   landmarkItems.push({
@@ -68,7 +68,7 @@ export function landmarks({ target, cmd }: Job): Array<Object> {
 
   landmarkItems.push({
     type: 'bodymatter',
-    href: cmd.frontmatter ? 'half-title.xhtml' : 'section1.xhtml',
+    href: frontmatter ? 'half-title.xhtml' : 'section1.xhtml',
     text: 'Beginning',
   });
 

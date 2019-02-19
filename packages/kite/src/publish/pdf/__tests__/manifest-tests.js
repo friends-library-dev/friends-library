@@ -115,7 +115,7 @@ describe('getPdfManifest()', () => {
 
   test('book trim size added to body class', () => {
     job.target = 'pdf-print';
-    job.cmd.printSize = 'xl';
+    job.meta.printSize = 'xl';
 
     const manifest = getPdfManifest(job);
 
@@ -123,7 +123,7 @@ describe('getPdfManifest()', () => {
   });
 
   test('frontmatter omitted if specified in command', () => {
-    job.cmd.frontmatter = false;
+    job.meta.frontmatter = false;
 
     const manifest = getPdfManifest(job);
 

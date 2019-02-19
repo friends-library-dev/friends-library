@@ -12,13 +12,13 @@ import { PUBLISH_DIR } from '../file';
 export function makeEpub(job: Job): Promise<string> {
   const manifest = getEpubManifest(job);
   return writeEbookManifest(manifest, job)
-    .then(() => (job.cmd.check ? check(job.spec.filename) : null))
+    .then(() => (job.meta.check ? check(job.spec.filename) : null))
     .catch(messages => {
       logEpubCheckFail(job.filename, messages);
       process.exit(1);
     })
     .then(() => {
-      if (job.cmd.open) {
+      if (job.meta.open) {
         exec(`open -a "iBooks" ${PUBLISH_DIR}/${job.filename}`);
       }
     })

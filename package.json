@@ -25,6 +25,8 @@
     "evans:develop:es": "cd packages/evans && yarn develop:es",
     "jones:develop": "cd packages/jones && yarn develop",
     "jones:build": "cd packages/jones && yarn build",
+    "bot:develop": "yarn nodemon --watch .env --watch ./packages/bot ./packages/bot/scripts/run.js",
+    "bot:receive": "cd packages/bot && yarn receive",
     "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
   },
   "devDependencies": {
@@ -48,6 +50,7 @@
     "flow-bin": "^0.92.0",
     "jest": "^24.0.0",
     "lerna": "^3.1.4",
+    "pngquant-bin": "atma/pngquant-bin#fix/bin-domain",
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0"
   },
@@ -62,28 +65,8 @@
     "packages/fell",
     "packages/styleguide",
     "packages/mod",
-    "packages/jones"
-  ],
-  "jest": {
-    "errorOnDeprecated": true,
-    "testEnvironment": "node",
-    "testRegex": "__tests__/.*tests?\\.js",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/packages/jones/build",
-      "<rootDir>/packages/evans/public"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "<rootDir>/packages/cli",
-      "<rootDir>/packages/mod"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 94,
-        "branches": 85,
-        "functions": 94,
-        "lines": 94
-      }
-    }
-  }
+    "packages/jones",
+    "packages/bot",
+    "packages/client"
+  ]
 }

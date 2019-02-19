@@ -1,6 +1,6 @@
 // @flow
 import { createReducer } from 'redux-starter-kit';
-import { values } from '../lib/utils';
+import { values } from '../flow-utils';
 
 function fastForward(task, commit) {
   task.parentCommit = commit;

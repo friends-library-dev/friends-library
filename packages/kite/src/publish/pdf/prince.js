@@ -13,7 +13,7 @@ type Options = {
 };
 
 type Artifacts = {|
-  pdf: FilePath,
+  filePath: FilePath,
   srcDir: FilePath,
 |};
 
@@ -66,7 +66,7 @@ export function prince(
         exec(`open "${PUBLISH_DIR}/${filename}"`);
       }
       return {
-        pdf: `${PUBLISH_DIR}/${filename}`,
+        filePath: `${PUBLISH_DIR}/${filename}`,
         srcDir: dir,
       };
     });
