@@ -42,7 +42,7 @@ export function getPrecursors(path: string): Array<SourcePrecursor> {
 function gitRevision(path: string) {
   const cmd = 'git log --max-count=1 --pretty="%h|%ct" -- .';
   const [sha, timestamp] = execSync(cmd, {
-    cwd: pathResolve(__dirname, '../../../../', path),
+    cwd: pathResolve(process.env.KITE_DOCS_REPOS_ROOT || '', path),
   }).toString().split('|');
   if (!sha || !timestamp) {
     console.log(chalk.red(`Could not determine git revision info for path: ${path}`));
@@ -98,7 +98,7 @@ function validateQueried(friend: Friend, document: Document, edition: Edition, p
     console.log(chalk.red(`Failed to query Document at path: ${path}`));
     process.exit(1);
   }
-  if (edition.type === '') {
+  if (!edition.document) {
     console.log(chalk.red(`Failed to query Edition at path: ${path}`));
     process.exit(1);
   }
