@@ -45,7 +45,7 @@ describe('pullRequest()', () => {
   it('passes fetched files to lint and kite checks', async () => {
     const files = [{ path: '01.adoc', adoc: '== Ch 1' }];
     await pullRequest(context);
-    expect(lintCheck).toHaveBeenCalledWith(context, files);
-    expect(kiteCheck).toHaveBeenCalledWith(context, files);
+    expect(lintCheck).toHaveBeenCalledWith(expect.anything(), files);
+    expect(kiteCheck).toHaveBeenCalledWith(expect.anything(), files);
   });
 });

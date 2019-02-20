@@ -15,6 +15,16 @@ describe('stringifyJob()', () => {
 
     expect(parsed.spec.notes).toEqual([['uuid', 'bar']]);
   });
+
+  it('stringifies empty notes to empty array', () => {
+    const adoc = '== Ch 1';
+    const precursor = createPrecursor({ adoc });
+    const job = createJob({ spec: createSpec(precursor) });
+    const json = stringifyJob(job);
+    const parsed = JSON.parse(json);
+
+    expect(parsed.spec.notes).toEqual([]);
+  });
 });
 
 
@@ -29,5 +39,17 @@ describe('unstringifyJob', () => {
     const job = unstringifyJob(str);
 
     expect(job.spec.notes).toEqual(new Map([['uuid', 'bar']]));
+  });
+
+  it('converts empty notes back to empty Map', () => {
+    const str = JSON.stringify({
+      spec: {
+        notes: [],
+      },
+    });
+
+    const job = unstringifyJob(str);
+
+    expect(job.spec.notes).toEqual(new Map());
   });
 });
