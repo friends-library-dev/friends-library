@@ -7,7 +7,7 @@ const fs = require('fs');
 const uuid = require('uuid/v4');
 const CryptoJS = require('crypto-js');
 
-const { env: { WEBHOOK_SECRET, WEBHOOK_PROXY_URL }, argv: [,, fixture] } = process;
+const { env: { BOT_WEBHOOK_SECRET, BOT_WEBHOOK_PROXY_URL }, argv: [,, fixture] } = process;
 
 try {
   const filepath = path.resolve(__dirname, '..', '__tests__', 'fixtures', `${fixture}.json`);
@@ -23,7 +23,7 @@ try {
   const event = payload.__github_event__;
   delete payload.event;
 
-  fetch(WEBHOOK_PROXY_URL, {
+  fetch(BOT_WEBHOOK_PROXY_URL, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -39,6 +39,6 @@ try {
 
 // @see https://stackoverflow.com/questions/44850789
 function getSignature(payload) {
-  const sha = CryptoJS.HmacSHA1(JSON.stringify(payload), WEBHOOK_SECRET);
+  const sha = CryptoJS.HmacSHA1(JSON.stringify(payload), BOT_WEBHOOK_SECRET);
   return `sha1=${sha.toString(CryptoJS.enc.Hex)}`;
 }

@@ -25,7 +25,11 @@ module.exports = (shipit) => {
       deployTo: API_DEPLOY_PATH,
       shared: {
         overwrite: true,
-        files: ['.env'],
+        files: [
+          '.env',
+          'packages/friends/yml/en/jane-doe.yml', // sandbox friend
+          'packages/friends/yml/en/john-doe.yml', // sandbox friend
+        ],
       },
     },
     production: {

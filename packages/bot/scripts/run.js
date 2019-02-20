@@ -1,6 +1,8 @@
 const path = require('path');
 const { createProbot } = require('probot');
 require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '..', '.env') });
+require('@babel/register');
+const appFn = require('../src/app').default;
 
 const { env: {
   BOT_WEBHOOK_PROXY_URL,
@@ -19,4 +21,5 @@ const probot = createProbot({
   webhookProxy: BOT_WEBHOOK_PROXY_URL,
 });
 
+probot.setup([appFn]);
 probot.start();

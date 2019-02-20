@@ -10,11 +10,10 @@ export default async function (context: Context) {
   }
 
   if (['opened', 'synchronize'].includes(context.payload.action)) {
-    const files = await getModifiedFiles(context);
-    return Promise.all([
-      kiteCheck(context, files),
-      lintCheck(context, files),
-    ]);
+    getModifiedFiles(context).then(files => {
+      kiteCheck(context, files);
+      lintCheck(context, files);
+    });
   }
 
   return Promise.resolve();
