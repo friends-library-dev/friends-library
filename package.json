@@ -50,7 +50,6 @@
     "flow-bin": "^0.92.0",
     "jest": "^24.0.0",
     "lerna": "^3.1.4",
-    "pngquant-bin": "atma/pngquant-bin#fix/bin-domain",
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0"
   },
