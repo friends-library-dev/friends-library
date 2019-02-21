@@ -164,8 +164,8 @@ describe('kiteCheck()', () => {
     const summary = stripIndent(`
       We were able to simulate creating published PDF books with the edited files from this PR:
 
-      * [2d306bb--orig.pdf](/path/2d306bb--orig.pdf)
-      * [2d306bb--mod.pdf](/path/2d306bb--mod.pdf)
+      - [2d306bb--orig.pdf](/path/2d306bb--orig.pdf)
+      - [2d306bb--mod.pdf](/path/2d306bb--mod.pdf)
     `).trim();
 
     expect(github.checks.update.mock.calls[0][0]).toMatchObject({
@@ -186,6 +186,52 @@ describe('kiteCheck()', () => {
       check_run_id: 1,
       status: 'completed',
       conclusion: 'timed_out',
+    });
+  });
+
+  describe('comment create/update on success:', () => {
+    const complete = async () => {
+      await kiteCheck(context, files);
+      listener.emit('complete', {
+        success: true,
+        jobs: {
+          'job-id-1': { status: 'succeeded', url: '/path/2d306bb--orig.pdf' },
+        },
+      });
+    };
+
+    it('creates a new comment if no comment exists', async () => {
+      github.issues.listComments.mockResolvedValue({ data: [] });
+      await complete();
+
+      const body = stripIndent(`
+        PDF previews (commit 2d306bb70578e6c019e3579c02d4f78f17bf915e):
+
+        - [2d306bb--orig.pdf](/path/2d306bb--orig.pdf)
+        <!-- check:kite -->
+      `).trim();
+
+      expect(github.issues.createComment).toHaveBeenCalledWith({
+        repo: 'jane-doe',
+        owner: 'friends-library-sandbox',
+        number: 11,
+        body,
+      });
+    });
+
+    it('updates existing comment if comment exists', async () => {
+      github.issues.listComments.mockResolvedValue({ data: [{
+        id: 12345,
+        body: '<!-- check:kite -->',
+      }] });
+      await complete();
+
+      expect(github.issues.updateComment).toHaveBeenCalledWith({
+        repo: 'jane-doe',
+        owner: 'friends-library-sandbox',
+        comment_id: 12345,
+        body: expect.any(String),
+      });
     });
   });
 });

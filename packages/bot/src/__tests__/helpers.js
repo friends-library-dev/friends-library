@@ -17,6 +17,11 @@ export function prTestSetup() {
       getTree: jest.fn(),
       getBlob: jest.fn(),
     },
+    issues: {
+      listComments: jest.fn(),
+      createComment: jest.fn(),
+      updateComment: jest.fn(),
+    },
   };
   const payload = {
     action: 'opened',
@@ -59,6 +64,9 @@ export function prTestSetup() {
 
   github.repos.getContents
     .mockResolvedValueOnce({ data: { content: Base64.encode('== Ch 1') } });
+
+  github.issues.listComments
+    .mockResolvedValue({ data: [] });
 
   return [context, github, payload];
 }
