@@ -111,8 +111,8 @@ describe('kiteJobs.submit()', () => {
       })
       .reply(201, { id: 'job-id' });
 
-      await kiteJobs.submit({ job, uploadPath: 'foo' });
-      expect(bodyCorrect).toBe(true);
+    await kiteJobs.submit({ job, uploadPath: 'foo' });
+    expect(bodyCorrect).toBe(true);
   });
 
   it('correctly stringifies empty job notes', async () => {
@@ -125,8 +125,8 @@ describe('kiteJobs.submit()', () => {
       })
       .reply(201, { id: 'job-id' });
 
-      await kiteJobs.submit({ job, uploadPath: 'foo' });
-      expect(bodyCorrect).toBe(true);
+    await kiteJobs.submit({ job, uploadPath: 'foo' });
+    expect(bodyCorrect).toBe(true);
   });
 
   it('returns false if API errors', async () => {

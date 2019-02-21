@@ -40,7 +40,10 @@ export default class JobListener extends EventEmitter {
   fetchState(id: Uuid) {
     fetch(`${API_URL}/kite-jobs/${id}`)
       .then(res => res.json())
-      .then(state => this.processUpdate(id, state));
+      .then(json => this.processUpdate(id, {
+        status: json.status,
+        url: json.url,
+      }));
   }
 
   stateChanged(id: Uuid, newState: JobState) {

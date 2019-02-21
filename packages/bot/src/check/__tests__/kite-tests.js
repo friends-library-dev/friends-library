@@ -1,5 +1,6 @@
 import EventEmitter from 'events';
 import { Base64 } from 'js-base64';
+import stripIndent from 'strip-indent';
 import { getFriend } from '@friends-library/friends';
 import kiteCheck from '../kite';
 import * as kiteJobs from '../../kite-jobs';
@@ -155,14 +156,26 @@ describe('kiteCheck()', () => {
     listener.emit('complete', {
       success: true,
       jobs: {
-        'job-id-1': { status: 'succeeded' },
-        'job-id-2': { status: 'succeeded' },
+        'job-id-1': { status: 'succeeded', url: '/path/2d306bb--orig.pdf' },
+        'job-id-2': { status: 'succeeded', url: '/path/2d306bb--mod.pdf' },
       },
     });
+
+    const summary = stripIndent(`
+      We were able to simulate creating published PDF books with the edited files from this PR:
+
+      * [2d306bb--orig.pdf](/path/2d306bb--orig.pdf)
+      * [2d306bb--mod.pdf](/path/2d306bb--mod.pdf)
+    `).trim();
+
     expect(github.checks.update.mock.calls[0][0]).toMatchObject({
       check_run_id: 1,
       status: 'completed',
       conclusion: 'success',
+      output: {
+        title: 'PDF Creation Successful!',
+        summary,
+      },
     });
   });
 
