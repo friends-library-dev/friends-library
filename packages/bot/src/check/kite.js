@@ -1,4 +1,5 @@
 // @flow
+import path from 'path';
 import { Base64 } from 'js-base64';
 import { getFriend } from '@friends-library/friends';
 import type { FilePath, Asciidoc } from '../../../../type';
@@ -42,11 +43,30 @@ export default async function kiteCheck(
     updateCheck('completed', 'timed_out');
   });
 
-  listener.on('complete', ({ success }) => {
-    updateCheck('completed', success ? 'success' : 'failure');
+  listener.on('complete', ({ success, jobs }) => {
+    if (!success) {
+      updateCheck('completed', 'failure');
+      return;
+    }
+    updateCheck('completed', 'success', {
+      output: {
+        title: 'PDF Creation Successful!',
+        summary: getSummary(Object.values(jobs)),
+      },
+    });
   });
 
   await listener.listen();
+}
+
+function getSummary(jobs: Array<Object>): string {
+  const text = 'We were able to simulate creating published PDF books with the edited files from this PR:';
+
+  const links = jobs.map(({ url }) => {
+    return `* [${path.basename(url)}](${url})`;
+  }).join('\n');
+
+  return `${text}\n\n${links}`;
 }
 
 async function submitKiteJobs(friend, modifiedFiles, prFiles, sha, uploadPath) {
