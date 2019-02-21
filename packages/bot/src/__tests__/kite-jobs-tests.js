@@ -1,5 +1,6 @@
 import nock from 'nock';
 import { friendFromJS } from '@friends-library/friends';
+import { jobToJson } from '@friends-library/kite';
 import * as kiteJobs from '../kite-jobs';
 
 describe('kiteJobs.fromPR()', () => {
@@ -83,17 +84,55 @@ describe('kiteJobs.fromPR()', () => {
 });
 
 describe('kiteJobs.submit()', () => {
+  let job;
+
+  beforeEach(() => {
+    job = {
+      id: 'job-id',
+      spec: {
+        notes: new Map([['uuid', 'foobar']]),
+      },
+    };
+  });
+
   it('posts data to api', async () => {
     nock('https://test-api.friendslibrary.com')
-      .post('/kite-jobs', { job: 'job', uploadPath: 'foo' })
+      .post('/kite-jobs', { job: jobToJson(job), uploadPath: 'foo' })
       .reply(201, { id: 'job-id' });
-    expect(await kiteJobs.submit({ job: 'job', uploadPath: 'foo' })).toBe('job-id');
+    expect(await kiteJobs.submit({ job, uploadPath: 'foo' })).toBe('job-id');
+  });
+
+  it('correctly stringifies non-empty job notes', async () => {
+    let bodyCorrect;
+    nock('https://test-api.friendslibrary.com')
+      .post('/kite-jobs', body => {
+        bodyCorrect = JSON.stringify(body.job.spec.notes) === '[["uuid","foobar"]]';
+        return true;
+      })
+      .reply(201, { id: 'job-id' });
+
+      await kiteJobs.submit({ job, uploadPath: 'foo' });
+      expect(bodyCorrect).toBe(true);
+  });
+
+  it('correctly stringifies empty job notes', async () => {
+    job.spec.notes = new Map();
+    let bodyCorrect;
+    nock('https://test-api.friendslibrary.com')
+      .post('/kite-jobs', body => {
+        bodyCorrect = JSON.stringify(body.job.spec.notes) === '[]';
+        return true;
+      })
+      .reply(201, { id: 'job-id' });
+
+      await kiteJobs.submit({ job, uploadPath: 'foo' });
+      expect(bodyCorrect).toBe(true);
   });
 
   it('returns false if API errors', async () => {
     nock('https://test-api.friendslibrary.com')
-      .post('/kite-jobs', { job: 'job', uploadPath: 'foo' })
+      .post('/kite-jobs', { job: jobToJson(job), uploadPath: 'foo' })
       .reply(400);
-    expect(await kiteJobs.submit({ job: 'job', uploadPath: 'foo' })).toBe(false);
+    expect(await kiteJobs.submit({ job, uploadPath: 'foo' })).toBe(false);
   });
 });

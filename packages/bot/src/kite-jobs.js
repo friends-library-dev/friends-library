@@ -1,6 +1,12 @@
 // @flow
 import fetch from 'node-fetch';
-import { createJob, createSpec, createPrecursor, getDocumentMeta } from '@friends-library/kite';
+import {
+  createJob,
+  createSpec,
+  createPrecursor,
+  getDocumentMeta,
+  jobToJson,
+} from '@friends-library/kite';
 import { Friend, Edition } from '@friends-library/friends';
 import { basename } from 'path';
 import type { FilePath, Asciidoc, Sha, Uuid } from '../../../type';
@@ -17,7 +23,10 @@ export function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid |
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify({
+      uploadPath: body.uploadPath,
+      job: jobToJson(body.job),
+    }),
   })
     .then(res => res.json())
     .then(({ id }) => id)
