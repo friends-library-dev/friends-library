@@ -1,29 +1,27 @@
-import { stringifyJob, unstringifyJob } from '../utils';
+import { jobToJson, unstringifyJob } from '../utils';
 import { createPrecursor, createSpec, createJob } from '..';
 
 jest.mock('uuid/v4', () => {
   return jest.fn(() => 'uuid');
 });
 
-describe('stringifyJob()', () => {
-  it('can handle stringifying note maps', () => {
+describe('jobToJson()', () => {
+  it('turns note maps into array for stringification', () => {
     const adoc = '== Ch 1\n\nFoo.footnote:[bar]';
     const precursor = createPrecursor({ adoc });
     const job = createJob({ spec: createSpec(precursor) });
-    const json = stringifyJob(job);
-    const parsed = JSON.parse(json);
+    const json = jobToJson(job);
 
-    expect(parsed.spec.notes).toEqual([['uuid', 'bar']]);
+    expect(json.spec.notes).toEqual([['uuid', 'bar']]);
   });
 
-  it('stringifies empty notes to empty array', () => {
+  it('turns empty notes into empty array', () => {
     const adoc = '== Ch 1';
     const precursor = createPrecursor({ adoc });
     const job = createJob({ spec: createSpec(precursor) });
-    const json = stringifyJob(job);
-    const parsed = JSON.parse(json);
+    const json = jobToJson(job);
 
-    expect(parsed.spec.notes).toEqual([]);
+    expect(json.spec.notes).toEqual([]);
   });
 });
 

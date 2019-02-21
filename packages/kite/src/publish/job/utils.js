@@ -18,14 +18,14 @@ export function getDocumentMeta(edition: Edition): DocumentMeta {
   };
 }
 
-export function stringifyJob(job: Job): string {
-  return JSON.stringify({
+export function jobToJson(job: Job): Object {
+  return {
     ...job,
     spec: {
       ...job.spec,
       notes: [...job.spec.notes],
     },
-  });
+  };
 }
 
 export function unstringifyJob(str: string): Job {
