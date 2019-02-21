@@ -2,9 +2,15 @@
 import path from 'path';
 import { Base64 } from 'js-base64';
 import { getFriend } from '@friends-library/friends';
-import type { FilePath, Asciidoc } from '../../../../type';
+import type { FilePath, Asciidoc, Sha, Url } from '../../../../type';
+import { values } from '../../../../flow-utils';
 import type { Context, ModifiedAsciidocFile } from '../type';
 import * as kiteJobs from '../kite-jobs';
+
+type JobResult = {|
+  url: Url,
+  status: string,
+|};
 
 export default async function kiteCheck(
   context: Context,
@@ -51,22 +57,46 @@ export default async function kiteCheck(
     updateCheck('completed', 'success', {
       output: {
         title: 'PDF Creation Successful!',
-        summary: getSummary(Object.values(jobs)),
+        summary: getSummary(jobs),
       },
     });
+    pdfComment(context, jobs);
   });
 
   await listener.listen();
 }
 
-function getSummary(jobs: Array<Object>): string {
+async function pdfComment(
+  context: Context,
+  jobs: { [string]: JobResult },
+): Promise<void> {
+  const { github, issue, repo, payload } = context;
+  const { pull_request: { head: { sha } } } = payload;
+  const { data: comments } = await github.issues.listComments(issue({ per_page: 100 }));
+  const existing = comments.find(comment => comment.body.includes('<!-- check:kite'));
+  const body = getCommentBody(sha, jobs);
+  if (existing) {
+    return github.issues.updateComment(repo({ body, comment_id: existing.id }));
+  }
+  return github.issues.createComment(issue({ body }));
+}
+
+function getCommentBody(
+  sha: Sha,
+  jobs: { [string]: JobResult },
+): string {
+  return `PDF previews (commit ${sha}):\n\n${pdfLinks(jobs)}\n<!-- check:kite -->`;
+}
+
+function getSummary(jobs: { [string]: JobResult }): string {
   const text = 'We were able to simulate creating published PDF books with the edited files from this PR:';
+  return `${text}\n\n${pdfLinks(jobs)}`;
+}
 
-  const links = jobs.map(({ url }) => {
-    return `* [${path.basename(url)}](${url})`;
+function pdfLinks(jobs: { [string]: JobResult }): string {
+  return values(jobs).map(({ url }) => {
+    return `- [${path.basename(url)}](${url})`;
   }).join('\n');
-
-  return `${text}\n\n${links}`;
 }
 
 async function submitKiteJobs(friend, modifiedFiles, prFiles, sha, uploadPath) {
