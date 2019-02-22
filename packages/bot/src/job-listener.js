@@ -55,7 +55,7 @@ export default class JobListener extends EventEmitter {
   }
 
   processUpdate(id: Uuid, state: JobState) {
-    this.emit('update', state);
+    this.emit('update', { id, ...state });
 
     if (this.stateChanged(id, state)) {
       this.jobs[id] = state;
@@ -77,7 +77,7 @@ export default class JobListener extends EventEmitter {
         success: jobs.every(job => job.status === 'succeeded'),
         jobs: this.jobs,
       });
-      this.emit('shutdown');
+      this.emit('shutdown', this.jobs);
     }
   }
 
@@ -91,7 +91,7 @@ export default class JobListener extends EventEmitter {
   onTimeout() {
     this.emit('timeout');
     this.clearAllTimeouts();
-    this.emit('shutdown');
+    this.emit('shutdown', this.jobs);
   }
 
   clearAllTimeouts() {

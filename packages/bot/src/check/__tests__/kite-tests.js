@@ -135,6 +135,21 @@ describe('kiteCheck()', () => {
     expect(github.checks.update).toHaveBeenCalledTimes(1);
   });
 
+  it('deletes jobs as they finish, and deletes remaining at the end', async () => {
+    await kiteCheck(context, files);
+
+    // as soon as a job completes, we delete it
+    expect(kiteJobs.destroy).toHaveBeenCalledTimes(0);
+    listener.emit('update', { id: 'job-1-id', status: 'succeeded' });
+    expect(kiteJobs.destroy).toHaveBeenCalledWith('job-1-id');
+    expect(kiteJobs.destroy).toHaveBeenCalledTimes(1);
+
+    // also clean up all remaining jobs when the listener shuts down
+    listener.emit('shutdown');
+    expect(kiteJobs.destroy).toHaveBeenCalledWith('job-2-id');
+    expect(kiteJobs.destroy).toHaveBeenCalledTimes(2);
+  });
+
   it('fails the check run when one job fails', async () => {
     await kiteCheck(context, files);
     listener.emit('complete', {

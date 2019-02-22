@@ -33,6 +33,12 @@ export function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid |
     .catch(() => false);
 }
 
+export function destroy(id: Uuid): Promise<*> {
+  return fetch(`${API_URL || ''}/kite-jobs/${id}`, {
+    method: 'delete',
+  });
+}
+
 export function listenAll(ids: Array<Uuid>): JobListener {
   return new JobListener(ids);
 }

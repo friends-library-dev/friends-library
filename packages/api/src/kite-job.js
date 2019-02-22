@@ -33,6 +33,16 @@ export async function get(req: $Request, res: $Response) {
   res.send(results[0]);
 }
 
+export async function destroy(req: $Request, res: $Response) {
+  const { params: { id } } = req;
+  const result = await db.query('DELETE FROM `kite_jobs` WHERE `id` = ?', [id]);
+  if (result.affectedRows !== 1) {
+    res.status(404).end();
+    return;
+  }
+  res.status(204).end();
+}
+
 export async function update(req: $Request, res: $Response) {
   const { params: { id } } = req;
   const results = await db.select('SELECT id FROM `kite_jobs` WHERE id = ?', [id]);

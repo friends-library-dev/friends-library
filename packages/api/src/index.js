@@ -30,6 +30,7 @@ app.post('/kite-jobs', kiteJob.create);
 app.get('/kite-jobs/take', kiteJob.take);
 app.get('/kite-jobs/:id', kiteJob.get);
 app.patch('/kite-jobs/:id', kiteJob.update);
+app.delete('/kite-jobs/:id', kiteJob.destroy);
 
 app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $Response) => {
   const { params: { friend, document, edition, filename } } = req;

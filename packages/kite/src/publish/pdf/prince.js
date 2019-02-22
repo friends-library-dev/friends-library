@@ -7,6 +7,8 @@ import type { FilePath } from '../../../../../type';
 import type { FileManifest } from '../../type';
 import { PUBLISH_DIR } from '../file';
 
+const { env: { KITE_PRINCE_BIN } } = process;
+
 type Options = {
   open?: boolean,
   formatOutput?: (line: string) => string,
@@ -34,7 +36,7 @@ export function prince(
   return writeFiles
     .then(() => {
       const src = `${dir}/doc.html`;
-      const stream = spawn('prince-books', [src]);
+      const stream = spawn(KITE_PRINCE_BIN || '/usr/local/bin/prince-books', [src]);
       let output = '';
 
       return new Promise((resolve, reject) => {
