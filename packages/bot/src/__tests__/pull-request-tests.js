@@ -1,8 +1,10 @@
+import { cloud } from '@friends-library/client';
 import kiteCheck from '../check/kite';
 import lintCheck from '../check/lint';
 import { prTestSetup } from './helpers';
 import pullRequest from '../pull-request';
 
+jest.mock('@friends-library/client');
 jest.mock('../check/kite');
 jest.mock('../check/lint');
 
@@ -47,5 +49,11 @@ describe('pullRequest()', () => {
     await pullRequest(context);
     expect(lintCheck).toHaveBeenCalledWith(expect.anything(), files);
     expect(kiteCheck).toHaveBeenCalledWith(expect.anything(), files);
+  });
+
+  it('deletes cloud PR preview files on PR close', async () => {
+    payload.action = 'closed';
+    await pullRequest(context);
+    expect(cloud.rimraf).toHaveBeenCalledWith('pull-request/jane-doe/11');
   });
 });
