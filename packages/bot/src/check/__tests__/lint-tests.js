@@ -1,5 +1,5 @@
 import lintCheck from '../lint';
-import getLintAnnotations from '../../lint-adoc';
+import { getLintAnnotations } from '../../lint-adoc';
 import { prTestSetup } from '../../__tests__/helpers';
 
 jest.mock('../../lint-adoc');

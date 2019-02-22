@@ -1,0 +1,10 @@
+{
+  "name": "@friends-library/asciidoc",
+  "version": "1.0.0",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/register": "^7.0.0"
+  },
+  "devDependencies": {}
+}

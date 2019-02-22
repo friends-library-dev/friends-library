@@ -66,6 +66,7 @@
     "packages/mod",
     "packages/jones",
     "packages/bot",
-    "packages/client"
+    "packages/client",
+    "packages/asciidoc"
   ]
 }

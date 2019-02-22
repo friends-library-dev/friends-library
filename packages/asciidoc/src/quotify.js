@@ -1,12 +1,12 @@
 // @flow
 /* eslint-disable no-continue */
-import type { Asciidoc } from '../../../../type';
+import type { Asciidoc } from '../../../type';
 
-export default function quotify(adoc: Asciidoc): Asciidoc {
+export function quotify(adoc: Asciidoc): Asciidoc {
   return adoc.split('\n').map(quotifyLine).join('\n');
 }
 
-function quotifyLine(line: Asciidoc): Asciidoc {
+export function quotifyLine(line: Asciidoc): Asciidoc {
   if (line === "'''") {
     return line;
   }
