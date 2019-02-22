@@ -4,6 +4,113 @@ import * as db from '../db';
 
 jest.mock('../db');
 
+describe('create()', () => {
+  let res;
+
+  beforeEach(() => {
+    res = getSpyResponse();
+  });
+
+  it('sends a 400 if missing required body props', async () => {
+    const body = { bad: 'data 😬' };
+    await kiteJob.create({ body }, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+  });
+
+  it('sends 201 and job id if inserted succesfully', async () => {
+    const body = { job: {}, uploadPath: '/foo' };
+    await kiteJob.create({ body }, res);
+    expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.send).toHaveBeenCalledWith({ id: expect.any(String) });
+  });
+
+  it('sends 500 of db insert throws', async () => {
+    db.insert.mockImplementation(() => {
+      throw new Error('');
+    });
+    const body = { job: {}, uploadPath: '/foo' };
+    await kiteJob.create({ body }, res);
+    expect(res.status).toHaveBeenCalledWith(500);
+  });
+});
+
+describe('get()', () => {
+  let res;
+
+  beforeEach(() => {
+    res = getSpyResponse();
+  });
+
+  it('sends 404 if no results', async () => {
+    db.select.mockResolvedValue([]);
+    await kiteJob.get({ params: { id: 'foo' } }, res);
+    expect(res.status).toHaveBeenCalledWith(404);
+  });
+
+  it('sends job if found', async () => {
+    db.select.mockResolvedValue(['job']);
+    await kiteJob.get({ params: { id: 'foo' } }, res);
+    expect(res.json).toHaveBeenCalledWith('job');
+  });
+});
+
+describe('destroy()', () => {
+  let res;
+
+  beforeEach(() => {
+    res = getSpyResponse();
+  });
+
+  it('returns 404 if nothing deleted', async () => {
+    db.query.mockResolvedValue({ affectedRows: 0 });
+    await kiteJob.destroy({ params: { id: 'foo' } }, res);
+    expect(res.status).toHaveBeenCalledWith(404);
+  });
+
+  it('sends 204 if found and deleted', async () => {
+    db.query.mockResolvedValue({ affectedRows: 1 });
+    await kiteJob.destroy({ params: { id: 'foo' } }, res);
+    expect(res.status).toHaveBeenCalledWith(204);
+    expect(db.query).toHaveBeenCalledWith(
+      'DELETE FROM `kite_jobs` WHERE `id` = ?',
+      ['foo'],
+    );
+  });
+});
+
+describe('update', () => {
+  let res;
+
+  beforeEach(() => {
+    res = getSpyResponse();
+  });
+
+  it('sends 404 if job not found', async () => {
+    db.select.mockResolvedValue([]);
+    await kiteJob.update({ params: { id: 'foo' } }, res);
+    expect(res.status).toHaveBeenCalledWith(404);
+  });
+
+  it('updates record and sends id back', async () => {
+    db.select.mockResolvedValue(['job']);
+    const body = { status: 'succeeded', url: '/foo' };
+    await kiteJob.update({ params: { id: 'foo' }, body }, res);
+    expect(db.query).toHaveBeenCalledWith(
+      expect.any(String),
+      [expect.any(Date), 'succeeded', '/foo', 'foo'],
+    );
+  });
+});
+
+function getSpyResponse() {
+  const res = {
+    status: jest.fn(() => res),
+    send: jest.fn(),
+    end: jest.fn(),
+    json: jest.fn(),
+  };
+  return res;
+}
 
 describe('take()', () => {
   let now;

@@ -30,7 +30,7 @@ export async function get(req: $Request, res: $Response) {
     res.status(404).send();
     return;
   }
-  res.send(results[0]);
+  res.json(results[0]);
 }
 
 export async function destroy(req: $Request, res: $Response) {
