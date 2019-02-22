@@ -1,6 +1,6 @@
 // @flow
 import type { ModifiedAsciidocFile, Context } from '../type';
-import getLintAnnotations from '../lint-adoc';
+import { getLintAnnotations } from '../lint-adoc';
 
 export default async function lintCheck(
   context: Context,

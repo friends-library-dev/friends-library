@@ -1,6 +1,6 @@
 import fs from 'fs';
 import stripIndent from 'strip-indent';
-import quotify from '../quotify';
+import { quotify } from '../quotify';
 
 const multilineCases = [
   [

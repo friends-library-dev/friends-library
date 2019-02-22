@@ -1,7 +1,7 @@
 // @flow
+import { quotify } from '@friends-library/asciidoc';
 import { sync as glob } from 'glob';
 import fs from 'fs-extra';
-import quotify from './quotify';
 
 export default function quotifyDir(path: string) {
   const fullpath = `${process.cwd()}/${path}`;

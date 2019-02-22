@@ -14,6 +14,7 @@
     "@friends-library/client": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/hilkiah": "1.0.0",
+    "@friends-library/asciidoc": "1.0.0",
     "asciidoctor.js": "^1.5.7-rc.1",
     "chalk": "^2.4.1",
     "dotenv": "^6.0.0",

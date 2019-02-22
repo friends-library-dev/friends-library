@@ -18,8 +18,8 @@ export default function (context: Context) {
 
   if (['opened', 'synchronize'].includes(action)) {
     getModifiedFiles(context).then(files => {
-      kiteCheck(context, files);
       lintCheck(context, files);
+      kiteCheck(context, files);
     });
   }
 
