@@ -1,19 +1,25 @@
 // @flow
 import { Base64 } from 'js-base64';
+import { cloud } from '@friends-library/client';
 import type { Context, ModifiedAsciidocFile } from './type';
 import kiteCheck from './check/kite';
 import lintCheck from './check/lint';
 
 export default async function (context: Context) {
-  if (context.payload.repository.name === 'friends-library') {
+  const { payload: { repository, action, number } } = context;
+  if (repository.name === 'friends-library') {
     return Promise.resolve();
   }
 
-  if (['opened', 'synchronize'].includes(context.payload.action)) {
+  if (['opened', 'synchronize'].includes(action)) {
     getModifiedFiles(context).then(files => {
       kiteCheck(context, files);
       lintCheck(context, files);
     });
+  }
+
+  if (action === 'closed') {
+    cloud.rimraf(`pull-request/${repository.name}/${number}`);
   }
 
   return Promise.resolve();
