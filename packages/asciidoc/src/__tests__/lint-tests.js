@@ -5,7 +5,7 @@ describe('lint()', () => {
     const results = lint("Ah! '`Tis thou!");
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
-      line: 0,
+      line: 1,
       column: 4,
       type: 'error',
       rule: 'smart-quotes',

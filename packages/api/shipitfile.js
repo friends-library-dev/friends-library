@@ -1,6 +1,5 @@
 /* eslint-disable global-require */
 require('dotenv').config({ path: '../../.env' });
-const chalk = require('chalk');
 
 const {
   env: {
