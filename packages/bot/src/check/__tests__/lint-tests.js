@@ -1,8 +1,5 @@
 import lintCheck from '../lint';
-import { getLintAnnotations } from '../../lint-adoc';
 import { prTestSetup } from '../../__tests__/helpers';
-
-jest.mock('../../lint-adoc');
 
 describe('lintCheck()', () => {
   let github;
@@ -15,7 +12,6 @@ describe('lintCheck()', () => {
       path: '01.adoc',
       adoc: '== Ch 1',
     }];
-    getLintAnnotations.mockReturnValue([]);
   });
 
   it('creates an in_progress check for linting', async () => {
@@ -28,16 +24,7 @@ describe('lintCheck()', () => {
     });
   });
 
-  it('passes modified files off to linter', async () => {
-    await lintCheck(context, files);
-    expect(getLintAnnotations).toHaveBeenCalledWith([{
-      path: '01.adoc',
-      adoc: '== Ch 1',
-    }]);
-  });
-
   it('passes the check if no lint annotations', async () => {
-    getLintAnnotations.mockReturnValueOnce([]);
     await lintCheck(context, files);
     expect(github.checks.update.mock.calls[0][0]).toMatchObject({
       check_run_id: 1,
@@ -47,15 +34,17 @@ describe('lintCheck()', () => {
   });
 
   it('fails the check if lint annotations', async () => {
-    getLintAnnotations.mockReturnValueOnce(['foo']);
+    files[0].adoc = "== Ch 1\n\n'`Tis thou!"; // bad asciidoc, will be linted
     await lintCheck(context, files);
-    expect(github.checks.update.mock.calls[0][0]).toMatchObject({
+    const update = github.checks.update.mock.calls[0][0];
+    expect(update).toMatchObject({
       check_run_id: 1,
       status: 'completed',
       conclusion: 'failure',
       output: {
-        annotations: ['foo'],
+        annotations: expect.any(Array),
       },
     });
+    expect(update.output.annotations).toHaveLength(1);
   });
 });
