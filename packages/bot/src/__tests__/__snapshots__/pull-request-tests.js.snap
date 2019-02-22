@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pullRequest() adds netlify comment for monorepo PRs 1`] = `
+"Deploy previews:
+
+- [Website (English)](https://deploy-preview-11--en-evans.netlify.com)
+- [Website (Spanish)](https://deploy-preview-11--es-evans.netlify.com)
+- [Online Editor](https://deploy-preview-11--flp-editor.netlify.com)
+- [Styleguide](https://deploy-preview-11--flp-styleguide.netlify.com)"
+`;

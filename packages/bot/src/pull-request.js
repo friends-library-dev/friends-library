@@ -1,14 +1,19 @@
 // @flow
 import { Base64 } from 'js-base64';
+import stripIndent from 'strip-indent';
 import { cloud } from '@friends-library/client';
 import type { Context, ModifiedAsciidocFile } from './type';
 import kiteCheck from './check/kite';
 import lintCheck from './check/lint';
 
-export default async function (context: Context) {
-  const { payload: { repository, action, number } } = context;
+export default function (context: Context) {
+  const { payload: { repository, action, number }, github, issue } = context;
   if (repository.name === 'friends-library') {
-    return Promise.resolve();
+    if (action === 'opened') {
+      const body = getNetlifyPreviewComment(number);
+      github.issues.createComment(issue({ body }));
+    }
+    return;
   }
 
   if (['opened', 'synchronize'].includes(action)) {
@@ -21,8 +26,6 @@ export default async function (context: Context) {
   if (action === 'closed') {
     cloud.rimraf(`pull-request/${repository.name}/${number}`);
   }
-
-  return Promise.resolve();
 }
 
 async function getModifiedFiles(context: Context): Promise<Array<ModifiedAsciidocFile>> {
@@ -37,4 +40,15 @@ async function getModifiedFiles(context: Context): Promise<Array<ModifiedAsciido
       adoc: Base64.decode(res.data.content),
     }));
   }));
+}
+
+function getNetlifyPreviewComment(prNumber: number): string {
+  return stripIndent(`
+    Deploy previews:
+
+    - [Website (English)](https://deploy-preview-${prNumber}--en-evans.netlify.com)
+    - [Website (Spanish)](https://deploy-preview-${prNumber}--es-evans.netlify.com)
+    - [Online Editor](https://deploy-preview-${prNumber}--flp-editor.netlify.com)
+    - [Styleguide](https://deploy-preview-${prNumber}--flp-styleguide.netlify.com)
+  `).trim();
 }
