@@ -42,12 +42,12 @@ export function prTestSetup() {
     repo: obj => ({
       ...obj,
       owner: 'friends-library-sandbox',
-      repo: 'jane-doe',
+      repo: payload.repository.name,
     }),
     issue: (obj = {}) => ({
       ...obj,
       owner: 'friends-library-sandbox',
-      repo: 'jane-doe',
+      repo: payload.repository.name,
       number: 11,
     }),
   };

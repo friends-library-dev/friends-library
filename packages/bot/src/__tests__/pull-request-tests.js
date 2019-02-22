@@ -17,16 +17,36 @@ describe('pullRequest()', () => {
     [context, github, payload] = prTestSetup();
   });
 
-  it('ignores PR opened on monorepo', async () => {
+  it('does not do asciidoc checks for monorepo', () => {
     payload.repository.name = 'friends-library';
-    await pullRequest(context);
+    pullRequest(context);
     expect(github.checks.create).not.toHaveBeenCalled();
     expect(kiteCheck).not.toHaveBeenCalled();
     expect(lintCheck).not.toHaveBeenCalled();
   });
 
-  it('requests modified files for PR', async () => {
-    await pullRequest(context);
+  it('adds netlify comment for monorepo PRs', () => {
+    payload.repository.name = 'friends-library';
+    payload.action = 'opened';
+    pullRequest(context);
+    expect(github.issues.createComment).toHaveBeenCalledWith({
+      number: 11,
+      owner: 'friends-library-sandbox',
+      repo: 'friends-library',
+      body: expect.any(String),
+    });
+    expect(github.issues.createComment.mock.calls[0][0].body).toMatchSnapshot();
+  });
+
+  it('does not add netlify comment when monorepo PR not opened', () => {
+    payload.repository.name = 'friends-library';
+    payload.action = 'synchronize';
+    pullRequest(context);
+    expect(github.issues.createComment).not.toHaveBeenCalled();
+  });
+
+  it('requests modified files for PR', () => {
+    pullRequest(context);
     expect(github.pullRequests.listFiles).toHaveBeenCalledWith({
       owner: 'friends-library-sandbox',
       repo: 'jane-doe',
@@ -51,9 +71,9 @@ describe('pullRequest()', () => {
     expect(kiteCheck).toHaveBeenCalledWith(expect.anything(), files);
   });
 
-  it('deletes cloud PR preview files on PR close', async () => {
+  it('deletes cloud PR preview files on PR close', () => {
     payload.action = 'closed';
-    await pullRequest(context);
+    pullRequest(context);
     expect(cloud.rimraf).toHaveBeenCalledWith('pull-request/jane-doe/11');
   });
 });

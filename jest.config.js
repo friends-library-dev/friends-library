@@ -3,7 +3,7 @@ process.env.API_URL = 'https://test-api.friendslibrary.com';
 module.exports = {
   errorOnDeprecated: true,
   testEnvironment: 'node',
-  testRegex: '__tests__/.*tests?\\.js',
+  testRegex: '__tests__/.*tests?\\.js$',
   modulePathIgnorePatterns: [
     '<rootDir>/packages/jones/build',
     '<rootDir>/packages/evans/public',
