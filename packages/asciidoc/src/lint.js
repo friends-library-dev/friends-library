@@ -6,10 +6,10 @@ import { quotifyLine } from './quotify';
 export default function lint(adoc: Asciidoc): Array<LintResult> {
   const rules = [smartQuotes];
   const lines = adoc.split('\n');
-  return lines.reduce((acc, line, number) => {
+  return lines.reduce((acc, line, index) => {
     let lineResults = [];
     rules.forEach(rule => {
-      lineResults = [...lineResults, ...rule(line, lines, number)];
+      lineResults = [...lineResults, ...rule(line, lines, index + 1)];
     });
     return acc.concat(acc, lineResults);
   }, []);
