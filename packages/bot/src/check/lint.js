@@ -8,7 +8,7 @@ export default async function lintCheck(
 ): Promise<void> {
   const { payload, github, repo } = context;
   const { data: { id } } = await github.checks.create(repo({
-    name: 'fl-bot/lint-asciidoc',
+    name: 'lint-asciidoc',
     head_sha: payload.pull_request.head.sha,
     status: 'in_progress',
     started_at: new Date(),

@@ -22,7 +22,7 @@ describe('lintCheck()', () => {
     await lintCheck(context, files);
     expect(github.checks.create.mock.calls[0][0]).toMatchObject({
       status: 'in_progress',
-      name: 'fl-bot/lint-asciidoc',
+      name: 'lint-asciidoc',
       repo: 'jane-doe',
       owner: 'friends-library-sandbox',
     });
