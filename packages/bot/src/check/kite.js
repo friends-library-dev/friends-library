@@ -18,18 +18,18 @@ export default async function kiteCheck(
 ): Promise<void> {
   const { payload, github, repo } = context;
   const { pull_request: { head: { sha } } } = payload;
-  const { data: { id } } = await github.checks.create(repo({
+  const { data: { id: checkId } } = await github.checks.create(repo({
     name: 'fl-bot/kite',
     head_sha: sha,
     status: 'queued',
     started_at: new Date(),
   }));
 
-  const updateCheck = makeUpdateCheck(context, id);
+  const updateCheck = makeUpdateCheck(context, checkId);
   const prFiles = await getAllPrFiles(context);
   const repoName = payload.repository.name;
   const friend = getFriend(repoName);
-  const [, listener] = await submitKiteJobs(
+  const [listener, jobIds] = await submitKiteJobs(
     friend,
     modifiedFiles,
     prFiles,
@@ -38,10 +38,14 @@ export default async function kiteCheck(
   );
 
   let statusUpdated = false;
-  listener.on('update', ({ status }) => {
+  listener.on('update', ({ id, status }) => {
     if (status === 'in_progress' && !statusUpdated) {
       updateCheck('in_progress');
       statusUpdated = true;
+    }
+    if (status === 'succeeded' || status === 'failed') {
+      kiteJobs.destroy(id);
+      jobIds.delete(id);
     }
   });
 
@@ -61,6 +65,10 @@ export default async function kiteCheck(
       },
     });
     pdfComment(context, jobs);
+  });
+
+  listener.on('shutdown', () => {
+    [...jobIds].forEach(id => kiteJobs.destroy(id));
   });
 
   await listener.listen();
@@ -112,7 +120,7 @@ async function submitKiteJobs(friend, modifiedFiles, prFiles, sha, uploadPath) {
 
   const jobIds = Object.keys(jobMap);
   const jobListener = kiteJobs.listenAll(jobIds);
-  return [jobMap, jobListener];
+  return [jobListener, new Set(Object.keys(jobMap)), jobMap];
 }
 
 function makeUpdateCheck(context: Context, checkRunId: number) {
