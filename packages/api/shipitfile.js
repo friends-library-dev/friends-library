@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
-require('dotenv').config();
+require('dotenv').config({ path: '../../.env' });
+const chalk = require('chalk');
 
 const {
   env: {
@@ -30,6 +31,10 @@ module.exports = (shipit) => {
           'packages/friends/yml/en/jane-doe.yml', // sandbox friend
           'packages/friends/yml/en/john-doe.yml', // sandbox friend
         ],
+      },
+      yarn: {
+        remote: true,
+        installArgs: ['--production; npm rebuild node-sass'],
       },
     },
     production: {
