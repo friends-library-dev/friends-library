@@ -15,6 +15,8 @@ export default async function lintCheck(
   }));
 
   const annotations = getLintAnnotations(files);
+  context.log.warn(`Generated ${annotations.length} annotations`);
+  context.log.debug({ annotations }, 'annotations');
 
   const update = {
     check_run_id: id,
