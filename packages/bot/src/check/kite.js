@@ -24,16 +24,16 @@ export default async function kiteCheck(
     status: 'queued',
     started_at: new Date(),
   }));
-  context.log.warn('Created kite check');
+  context.log.info('Created kite check');
 
   const updateCheck = makeUpdateCheck(context, checkId);
   const prFiles = await getAllPrFiles(context);
-  context.log.warn('Got PR files');
+  context.log.info('Got PR files');
   context.log.debug({ prFiles }, 'PR files');
 
   const repoName = payload.repository.name;
   const friend = getFriend(repoName);
-  context.log.warn(`Got friend: ${repoName}`);
+  context.log.info(`Got friend: ${repoName}`);
   context.log.debug({ friend }, 'Queried friend');
 
   const [listener, jobIds] = await submitKiteJobs(
@@ -44,12 +44,12 @@ export default async function kiteCheck(
     `pull-request/${repoName}/${payload.number}`,
   );
 
-  context.log.warn('Submitted kite jobs');
+  context.log.info('Submitted kite jobs');
   context.log.debug({ jobIds: [...jobIds] }, 'Job ids');
 
   let statusUpdated = false;
   listener.on('update', ({ id, status }) => {
-    context.log.warn(`Got job updated from id: ${id} with status: ${status}`);
+    context.log.info(`Got job updated from id: ${id} with status: ${status}`);
     if (status === 'in_progress' && !statusUpdated) {
       updateCheck('in_progress');
       statusUpdated = true;
@@ -61,12 +61,12 @@ export default async function kiteCheck(
   });
 
   listener.on('timeout', () => {
-    context.log.warn('Listener timeout');
+    context.log.info('Listener timeout');
     updateCheck('completed', 'timed_out');
   });
 
   listener.on('complete', ({ success, jobs }) => {
-    context.log.warn(`Listener complete, success: ${success ? 'true' : 'false'}`);
+    context.log.info(`Listener complete, success: ${success ? 'true' : 'false'}`);
     context.log.debug({ jobs }, 'Listener complete jobs data');
     if (!success) {
       updateCheck('completed', 'failure');
@@ -171,7 +171,7 @@ async function getAllPrFiles(context: Context): Promise<Map<FilePath, Asciidoc>>
     return github.gitdata.getBlob(repo({
       file_sha: file.sha,
     })).then(json => {
-      context.log.warn(`Received PR file at path: ${file.path}`);
+      context.log.info(`Received PR file at path: ${file.path}`);
       files.set(file.path, Base64.decode(json.data.content));
     });
   });

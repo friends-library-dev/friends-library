@@ -53,7 +53,19 @@ export function fromPR(
   return [...modifiedFiles.reduce((jobs, file) => {
     const [docSlug, editionType] = file.path.split('/');
     const document = friend.documents.find(doc => doc.slug === docSlug);
+    if (!document) {
+      throw new Error(`Unable to find document with slug ${docSlug}`);
+    }
+
     const edition = document.editions.find(ed => ed.type === editionType);
+    if (!edition) {
+      throw new Error(`Unable to find edition with type ${editionType}`);
+    }
+
+    // logging the friend deletes these references ¯\_(ツ)_/¯
+    // @see https://github.com/friends-library/friends-library/issues/167
+    document.friend = friend;
+    edition.document = document;
 
     if (chapters) {
       const chFilename = [
