@@ -37,12 +37,12 @@ export function prTestSetup() {
   };
 
   const log = () => {};
+  log.trace = () => {};
+  log.debug = () => {};
+  log.info = () => {};
   log.warn = () => {};
   log.error = () => {};
   log.fatal = () => {};
-  log.info = () => {};
-  log.trace = () => {};
-  log.debug = () => {};
 
   const context = {
     payload,

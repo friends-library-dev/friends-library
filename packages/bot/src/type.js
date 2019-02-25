@@ -18,4 +18,5 @@ export type Context = {|
 
 export type ProbotApplication = {|
   on: (string, (Context) => mixed) => void,
+  log: any,
 |};
