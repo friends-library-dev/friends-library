@@ -13,6 +13,7 @@ export type Context = {|
   event: string,
   repo: <T>(object?: T) => T,
   issue: <T>(object?: T) => T,
+  log: any,
 |};
 
 export type ProbotApplication = {|

@@ -36,6 +36,14 @@ export function prTestSetup() {
     },
   };
 
+  const log = () => {};
+  log.warn = () => {};
+  log.error = () => {};
+  log.fatal = () => {};
+  log.info = () => {};
+  log.trace = () => {};
+  log.debug = () => {};
+
   const context = {
     payload,
     github,
@@ -50,6 +58,7 @@ export function prTestSetup() {
       repo: payload.repository.name,
       number: 11,
     }),
+    log,
   };
 
   github.checks.create

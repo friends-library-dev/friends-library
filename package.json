@@ -25,7 +25,7 @@
     "evans:develop:es": "cd packages/evans && yarn develop:es",
     "jones:develop": "cd packages/jones && yarn develop",
     "jones:build": "cd packages/jones && yarn build",
-    "bot:develop": "yarn nodemon --watch .env --watch ./packages/bot ./packages/bot/scripts/run.js",
+    "bot:develop": "node ./packages/bot/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
     "preflight": "yarn lint && yarn test && yarn flow && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
   },
