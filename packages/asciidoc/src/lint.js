@@ -7,11 +7,11 @@ export default function lint(adoc: Asciidoc): Array<LintResult> {
   const rules = [smartQuotes];
   const lines = adoc.split('\n');
   return lines.reduce((acc, line, index) => {
-    let lineResults = [];
     rules.forEach(rule => {
-      lineResults = [...lineResults, ...rule(line, lines, index + 1)];
+      const ruleResults = rule(line, lines, index + 1);
+      ruleResults.forEach(result => acc.push(result));
     });
-    return acc.concat(acc, lineResults);
+    return acc;
   }, []);
 }
 

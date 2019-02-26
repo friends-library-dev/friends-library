@@ -13,4 +13,10 @@ describe('lint()', () => {
       recommendation: "Ah! `'Tis thou!",
     });
   });
+
+  it('new lines do not cause duplicate results', () => {
+    const adoc = '== Ch 1\n\n\'`Tis so rad!!\n';
+    const results = lint(adoc);
+    expect(results).toHaveLength(1);
+  });
 });

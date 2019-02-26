@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable no-unused-expressions */
 import uuid from 'uuid/v4';
 import moment from 'moment';
 import type { $Request, $Response } from 'express';

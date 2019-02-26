@@ -29,6 +29,12 @@ module.exports = {
     'react/sort-comp': 0,
     'react/jsx-filename-extension': [0],
     'no-cond-assign': 0,
+    'no-unused-expressions': [
+      'error',
+      {
+        allowShortCircuit: true
+      },
+    ],
     'no-unused-vars': [
       'error',
       {
