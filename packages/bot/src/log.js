@@ -1,19 +1,20 @@
 // @flow
+/* eslint-disable no-unused-vars */
+/* istanbul ignore file */
 import bunyan from 'bunyan';
 
 const { env: { BOT_LOGFILE_PATH } } = process;
 
 const logger = {
-  trace: () => {},
-  debug: () => {},
-  info: () => {},
-  warn: () => {},
-  error: () => {},
-  fatal: () => {},
+  trace: (dataOrMsg: string | Object, msg?: string) => {},
+  debug: (dataOrMsg: string | Object, msg?: string) => {},
+  info: (dataOrMsg: string | Object, msg?: string) => {},
+  warn: (dataOrMsg: string | Object, msg?: string) => {},
+  error: (dataOrMsg: string | Object, msg?: string) => {},
+  fatal: (dataOrMsg: string | Object, msg?: string) => {},
 };
 
 export default logger;
-
 
 export function proxyLog(log: any): void {
   ['trace', 'debug', 'info', 'warn', 'error', 'fatal'].forEach(level => {

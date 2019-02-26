@@ -13,6 +13,7 @@ import type { FilePath, Asciidoc, Sha, Uuid } from '../../../type';
 import type { ModifiedAsciidocFile } from './type';
 import type { Job } from '../../kite/src/type';
 import JobListener from './job-listener';
+import logger from './log';
 
 const { env: { API_URL } } = process;
 
@@ -30,7 +31,10 @@ export function submit(body: {| job: Job, uploadPath: string |}): Promise<Uuid |
   })
     .then(res => res.json())
     .then(({ id }) => id)
-    .catch(() => false);
+    .catch(e => {
+      logger.error(e, 'POST /kite-jobs error');
+      return false;
+    });
 }
 
 export function destroy(id: Uuid): Promise<*> {
@@ -100,6 +104,9 @@ function getRelevantFiles(
   edition: Edition,
 ): Array<ModifiedAsciidocFile> {
   return [...prFiles].filter(([path]) => {
+    if (!path.match(/\.adoc$/)) {
+      return false;
+    }
     return path.indexOf(`${edition.document.slug}/${edition.type}`) === 0;
   }).map(([path, adoc]) => ({ path, adoc }));
 }

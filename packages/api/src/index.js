@@ -18,7 +18,7 @@ const { env: {
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 
 app.get('/', (req: $Request, res: $Response) => res.send('Beep ༼ つ ◕_◕ ༽つ Boop!'));
 

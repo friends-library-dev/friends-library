@@ -43,6 +43,20 @@ describe('kiteJobs.fromPR()', () => {
     expect(job.spec.sections[1].heading.text).toBe('Ch 2');
   });
 
+  it('does not include non-asciidoc files in asciidoc', () => {
+    prFiles = new Map([
+      ['.gitignore', 'node_modules'],
+      ['journal/updated/pdf-print.css', 'SOME_CSS_HERE'],
+      ['journal/updated/01.adoc', '== Ch 1'],
+      ['journal/updated/02.adoc', '== Ch 2'],
+    ]);
+    const [job] = kiteJobs.fromPR(friend, modifiedFiles, prFiles, sha);
+    job.spec.sections.forEach(({ html }) => {
+      expect(html).not.toContain('SOME_CSS_HERE');
+      expect(html).not.toContain('node_modules');
+    });
+  });
+
   test('does not make chapter files when flag is false', () => {
     const jobs = kiteJobs.fromPR(friend, modifiedFiles, prFiles, sha, false);
     expect(jobs).toHaveLength(1);
