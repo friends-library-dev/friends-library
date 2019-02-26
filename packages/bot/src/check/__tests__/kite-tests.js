@@ -60,7 +60,7 @@ describe('kiteCheck()', () => {
     await kiteCheck(context, files);
     expect(github.checks.create.mock.calls[0][0]).toMatchObject({
       status: 'queued',
-      name: 'fl-bot/kite',
+      name: 'create-pdf',
       repo: 'jane-doe',
       owner: 'friends-library-sandbox',
     });

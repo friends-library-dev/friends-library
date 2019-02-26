@@ -19,7 +19,7 @@ export default async function kiteCheck(
   const { payload, github, repo } = context;
   const { pull_request: { head: { sha } } } = payload;
   const { data: { id: checkId } } = await github.checks.create(repo({
-    name: 'fl-bot/kite',
+    name: 'create-pdf',
     head_sha: sha,
     status: 'queued',
     started_at: new Date(),
@@ -27,25 +27,64 @@ export default async function kiteCheck(
   context.log.info('Created kite check');
 
   const updateCheck = makeUpdateCheck(context, checkId);
-  const prFiles = await getAllPrFiles(context);
-  context.log.info('Got PR files');
-  context.log.debug({ prFiles }, 'PR files');
+
+  let prFiles;
+  try {
+    prFiles = await getAllPrFiles(context);
+    context.log.info('Got PR files');
+    context.log.debug({ prFiles }, 'PR files');
+  } catch (e) {
+    context.log.error(e, 'Get PR files failure');
+    updateCheck('completed', 'failure', {
+      output: {
+        title: 'Failed fetching PR files from GitHub',
+        summary: e.message,
+      },
+    });
+    return;
+  }
+
 
   const repoName = payload.repository.name;
-  const friend = getFriend(repoName);
-  context.log.info(`Got friend: ${repoName}`);
-  context.log.debug({ friend }, 'Queried friend');
+  let friend;
+  try {
+    friend = getFriend(repoName);
+    context.log.info(`Got friend: ${repoName}`);
+    context.log.debug({ friend }, 'Queried friend');
+  } catch (e) {
+    context.log.error(e, 'Get friend error');
+    updateCheck('completed', 'failure', {
+      output: {
+        title: `Failure querying friend: ${repoName} from .yml`,
+        summary: e.message,
+      },
+    });
+    return;
+  }
 
-  const [listener, jobIds] = await submitKiteJobs(
-    friend,
-    modifiedFiles,
-    prFiles,
-    sha,
-    `pull-request/${repoName}/${payload.number}`,
-  );
 
-  context.log.info('Submitted kite jobs');
-  context.log.debug({ jobIds: [...jobIds] }, 'Job ids');
+  let listener;
+  let jobIds;
+  try {
+    ([listener, jobIds] = await submitKiteJobs(
+      friend,
+      modifiedFiles,
+      prFiles,
+      sha,
+      `pull-request/${repoName}/${payload.number}`,
+    ));
+    context.log.info('Submitted kite jobs');
+    context.log.debug({ jobIds: [...jobIds] }, 'Job ids');
+  } catch (e) {
+    context.log.error(e, 'Submit kite jobs error');
+    updateCheck('completed', 'failure', {
+      output: {
+        title: 'Error submitting kite jobs to API',
+        summary: e.message,
+      },
+    });
+    return;
+  }
 
   let statusUpdated = false;
   listener.on('update', ({ id, status }) => {
@@ -85,7 +124,17 @@ export default async function kiteCheck(
     [...jobIds].forEach(id => kiteJobs.destroy(id));
   });
 
-  await listener.listen();
+  try {
+    await listener.listen();
+  } catch (e) {
+    context.log.error(e, 'Job listener error');
+    updateCheck('completed', 'failure', {
+      output: {
+        title: 'Error listening for kite jobs',
+        summary: e.message,
+      },
+    });
+  }
 }
 
 async function pdfComment(
