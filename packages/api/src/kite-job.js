@@ -1,12 +1,17 @@
 // @flow
+/* eslint-disable no-unused-expressions */
 import uuid from 'uuid/v4';
 import moment from 'moment';
 import type { $Request, $Response } from 'express';
 import * as db from './db';
 
+const { env: { NODE_ENV } } = process;
+const isProd = NODE_ENV === 'production';
+
 export async function create(req: $Request, res: $Response) {
   const body = ((req.body: any): {| job: Object, uploadPath: string |});
   if (typeof body.uploadPath !== 'string' || typeof body.job !== 'object') {
+    isProd && console.error('Invalid request body to POST /kite-jobs');
     res.status(400).send();
   }
 
@@ -19,6 +24,7 @@ export async function create(req: $Request, res: $Response) {
     });
     res.status(201).send({ id });
   } catch (e) {
+    isProd && console.error(`Db error creating kite job: ${e.message}`);
     res.status(500).send();
   }
 }
@@ -27,6 +33,7 @@ export async function get(req: $Request, res: $Response) {
   const { params: { id } } = req;
   const results = await db.select('SELECT id, status, url from `kite_jobs` WHERE id = ?', [id]);
   if (!results.length) {
+    isProd && console.error(`GET 404 /kite-jobs/${id}`);
     res.status(404).send();
     return;
   }
@@ -37,6 +44,7 @@ export async function destroy(req: $Request, res: $Response) {
   const { params: { id } } = req;
   const result = await db.query('DELETE FROM `kite_jobs` WHERE `id` = ?', [id]);
   if (result.affectedRows !== 1) {
+    isProd && console.error(`DELETE 404 /kite-jobs/${id}`);
     res.status(404).end();
     return;
   }
@@ -47,6 +55,7 @@ export async function update(req: $Request, res: $Response) {
   const { params: { id } } = req;
   const results = await db.select('SELECT id FROM `kite_jobs` WHERE id = ?', [id]);
   if (!results.length) {
+    isProd && console.error(`PATCH 404 /kite-jobs/${id}`);
     res.status(404).send();
     return;
   }

@@ -42,7 +42,7 @@ exports.up = (db) => {
       length: 255,
     },
     job: {
-      type: TEXT,
+      type: 'LONGTEXT',
       notNull: true,
     },
     created_at: {
