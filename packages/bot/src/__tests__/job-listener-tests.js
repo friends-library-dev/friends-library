@@ -7,7 +7,7 @@ jest.useFakeTimers();
 
 describe('JobListener', () => {
   it('polls status endpoint and emits `update` events', () => {
-    mockJobStatus({
+    mockApiResponses({
       'job-id-1': [
         { status: 'queued' },
         { status: 'in_progress' },
@@ -35,7 +35,7 @@ describe('JobListener', () => {
   });
 
   it('emits complete event when all jobs succeed', () => {
-    mockJobStatus({
+    mockApiResponses({
       'job-id-1': [
         { status: 'queued' },
         { status: 'succeeded', url: '/uploaded.pdf' },
@@ -59,7 +59,7 @@ describe('JobListener', () => {
   });
 
   it('emits complete event when all jobs succeed or fail', () => {
-    mockJobStatus({
+    mockApiResponses({
       'job-id-1': [
         { status: 'queued' },
         { status: 'succeeded', url: '/uploaded.pdf' },
@@ -86,7 +86,7 @@ describe('JobListener', () => {
   });
 
   it('emits `timeout` after waiting too long for unresolved job result', () => {
-    mockJobStatus({
+    mockApiResponses({
       'job-id-1': [
         { status: 'queued' }, // will repeat forever
       ],
@@ -105,7 +105,7 @@ describe('JobListener', () => {
   });
 
   test('receiving new data from API re-starts global timeout', () => {
-    mockJobStatus({
+    mockApiResponses({
       'job-id-1': [
         { status: 'queued' },
         { status: 'in_progress' },
@@ -129,23 +129,48 @@ describe('JobListener', () => {
     jest.advanceTimersByTime(1);
     expect(timeoutSpy).toHaveBeenCalled();
   });
+
+  test('listener will not timeout if api is working on a job', () => {
+    mockApiResponses(
+      { 'job-id-1': [{ status: 'queued' }] },
+      [[{ id: 'some-other-job-id' }]], // <-- server saying, "working on another job"
+    );
+
+    const listener = new JobListener(['job-id-1']);
+    const timeoutSpy = jest.fn();
+    listener.on('timeout', timeoutSpy);
+    listener.listen();
+
+    // no listener timeout because the API keeps saying "i'm working on a job"
+    jest.advanceTimersByTime(JobListener.TIMEOUT * 10);
+
+    expect(timeoutSpy).not.toHaveBeenCalled();
+  });
 });
 
-function mockJobStatus(map) {
+function mockApiResponses(jobs, working = [[]]) {
   fetch.mockImplementation(url => {
+    if (url.match(/\?filter=working$/)) {
+      return fakeFetchResponse(working);
+    }
+
     const jobId = url.split('/').pop();
-    if (!map[jobId]) {
+    if (!jobs[jobId]) {
       throw new Error(`Unknown job id: ${jobId}`);
     }
 
-    return {
-      then() {
-        return {
-          then(fn) {
-            fn(map[jobId].length > 1 ? map[jobId].shift() : map[jobId][0]);
-          },
-        };
-      },
-    };
+    return fakeFetchResponse(jobs[jobId]);
   });
+}
+
+function fakeFetchResponse(responseQueue) {
+  return {
+    then() {
+      return {
+        then(fn) {
+          fn(responseQueue.length > 1 ? responseQueue.shift() : responseQueue[0]);
+        },
+      };
+    },
+  };
 }

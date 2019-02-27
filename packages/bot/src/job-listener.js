@@ -17,6 +17,7 @@ type JobState = {|
 export default class JobListener extends EventEmitter {
   static POLL_INTERVAL = 10 * 1000; // 10 seconds
   static TIMEOUT = 15 * 60 * 1000; // 15 minutes
+  static KEEP_ALIVE_INTERVAL = 60 * 1000; // 1 minute
 
   ids: Array<Uuid>
   timeouts: {[string]: TimeoutID}
@@ -32,6 +33,7 @@ export default class JobListener extends EventEmitter {
   listen(): Promise<*> {
     this.ids.forEach(id => this.fetchState(id));
     this.startTimeout();
+    this.keepAlive();
     return new Promise(resolve => {
       this.on('shutdown', resolve);
     });
@@ -79,6 +81,22 @@ export default class JobListener extends EventEmitter {
       });
       this.emit('shutdown', this.jobs);
     }
+  }
+
+  keepAlive() {
+    if (this.timeouts.keepAlive) {
+      clearTimeout(this.timeouts.keepAlive);
+    }
+    this.timeouts.keepAlive = setTimeout(() => {
+      fetch(`${API_URL}/kite-jobs?filter=working`)
+        .then(res => res.json())
+        .then(json => {
+          this.keepAlive();
+          if (json.length > 0) {
+            this.startTimeout();
+          }
+        });
+    }, JobListener.KEEP_ALIVE_INTERVAL);
   }
 
   startTimeout() {

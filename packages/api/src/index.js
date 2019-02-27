@@ -27,6 +27,7 @@ app.post('/github-webhook', handleGithubWebhook);
 app.use('/legacy', legacy);
 
 app.post('/kite-jobs', kiteJob.create);
+app.get('/kite-jobs', kiteJob.list);
 app.get('/kite-jobs/take', kiteJob.take);
 app.get('/kite-jobs/:id', kiteJob.get);
 app.patch('/kite-jobs/:id', kiteJob.update);

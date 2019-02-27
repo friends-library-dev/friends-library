@@ -34,6 +34,41 @@ describe('create()', () => {
   });
 });
 
+describe('list()', () => {
+  let res;
+
+  beforeEach(() => {
+    res = getSpyResponse();
+  });
+
+  it('can return filtered=working results', async () => {
+    const now = moment();
+    db.select.mockResolvedValue([
+      { // this job should come back as "working"
+        id: 'job-1',
+        attempts: 1,
+        status: 'in_progress',
+        url: null,
+        updated_at: now.subtract(3, 'minutes').toDate(),
+        created_at: now.subtract(3, 'minutes').toDate(),
+      },
+      { // this job should not come back
+        id: 'job-2',
+        attempts: 0,
+        status: 'queued',
+        url: null,
+        updated_at: now.subtract(20, 'seconds').toDate(),
+        created_at: now.subtract(20, 'seconds').toDate(),
+      },
+    ]);
+
+    await kiteJob.list({ query: { filter: 'working' } }, res);
+    const json = res.json.mock.calls[0][0];
+    expect(json).toHaveLength(1);
+    expect(json[0].id).toBe('job-1');
+  });
+});
+
 describe('get()', () => {
   let res;
 

@@ -28,9 +28,18 @@ export async function create(req: $Request, res: $Response) {
   }
 }
 
+export async function list(req: $Request, res: $Response) {
+  let jobs = await db.select('SELECT id, status, attempts, url, created_at, updated_at FROM `kite_jobs`');
+  convertTimestamps(jobs);
+  if (req.query.filter === 'working') {
+    jobs = getWorking(jobs);
+  }
+  res.json(jobs);
+}
+
 export async function get(req: $Request, res: $Response) {
   const { params: { id } } = req;
-  const results = await db.select('SELECT id, status, url from `kite_jobs` WHERE id = ?', [id]);
+  const results = await db.select('SELECT id, status, url FROM `kite_jobs` WHERE id = ?', [id]);
   if (!results.length) {
     isProd && console.error(`GET 404 /kite-jobs/${id}`);
     res.status(404).send();
@@ -78,7 +87,6 @@ export async function update(req: $Request, res: $Response) {
   res.json({ id });
 }
 
-
 export async function take(req: $Request, res: $Response) {
   const cols = [
     'id',
@@ -94,12 +102,8 @@ export async function take(req: $Request, res: $Response) {
   convertTimestamps(jobs);
   failHopelessJobs(jobs);
 
-  const inProgress = jobs
-    .filter(({ status }) => status === 'in_progress')
-    .filter(({ attempts }) => attempts < 3)
-    .filter(notStale);
-
-  if (inProgress.length) {
+  const working = getWorking(jobs);
+  if (working.length) {
     res.status(204).end();
     return;
   }
@@ -129,6 +133,13 @@ export async function take(req: $Request, res: $Response) {
     upload_path: give.upload_path,
     job: give.job,
   });
+}
+
+function getWorking(jobs) {
+  return jobs
+    .filter(({ status }) => status === 'in_progress')
+    .filter(({ attempts }) => attempts < 3)
+    .filter(notStale);
 }
 
 function failHopelessJobs(jobs) {
