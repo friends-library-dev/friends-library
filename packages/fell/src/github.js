@@ -3,8 +3,12 @@ import Octokit from '@octokit/rest';
 
 const { env: { FELL_GITHUB_TOKEN } } = process;
 
+if (typeof FELL_GITHUB_TOKEN !== 'string') {
+  throw new Error('Env var FELL_GITHUB_TOKEN required.');
+}
+
 const gh = new Octokit({
-  auth: `token ${FELL_GITHUB_TOKEN || ''}`,
+  auth: `token ${FELL_GITHUB_TOKEN}`,
 });
 
 export async function openPullRequest(
