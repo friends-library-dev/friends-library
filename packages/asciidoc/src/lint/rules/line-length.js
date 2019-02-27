@@ -38,6 +38,10 @@ function lengthOk(line: Asciidoc): boolean {
     return true;
   }
 
+  if (line.includes('[.book-title]#')) {
+    return true;
+  }
+
   return false;
 }
 

@@ -33,6 +33,9 @@ describe('lineLength()', () => {
     [`[#foo.bar.baz.foo, short="${longLine}"]`], // not a text line
     [`// comment: ${longLine}`],
     [`* list item: ${longLine}`],
+
+    // inline spans (like .book-title) below, need to stay on one line
+    ['footnote:[[.book-title]#The History of the Rise, Increase, and Progress of that Christian People Called Quakers,# by William Sewel]'],
   ];
 
   test.each(allowedLongLines)('allows %s to exceed length', line => {
