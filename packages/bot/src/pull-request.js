@@ -16,7 +16,7 @@ export default function (context: Context) {
     return;
   }
 
-  if (['opened', 'synchronize'].includes(action)) {
+  if (['opened', 'synchronize', 'reopened'].includes(action)) {
     getModifiedFiles(context).then(files => {
       context.log.info('Received modified files, passing on to `lintCheck` and `kiteCheck`');
       context.log.debug({ files }, 'modified files');
