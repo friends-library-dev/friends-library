@@ -6,6 +6,7 @@ const { omit } = require('lodash');
 const { prettifyErrors, catchify } = require('@friends-library/cli/error');
 const takeApi = require('./src/publish/cli/take-api').default;
 const publish = require('./src/publish/cli').default;
+const lint = require('./src/lint').default;
 const publishRef = require('./src/publish/ref').default;
 const convert = require('./src/convert').default;
 const chapterize = require('./src/chapterize').default;
@@ -33,6 +34,15 @@ yargs
       describe: 'absolute filepath to root dir containing doc repos',
     }),
     timed(catchify(publish)),
+  )
+  .command(
+    'lint <path>',
+    'lint asciidoc documents at given path',
+    ({ positional }) => positional('path', {
+      type: 'string',
+      describe: 'filepath to dir containing .adoc files (or individual file)',
+    }),
+    ({ path }) => lint(path),
   )
   .command(
     'take:api',

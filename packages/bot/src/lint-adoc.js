@@ -34,11 +34,14 @@ function toAnnotation(
     path,
     start_line: result.line,
     end_line: result.line,
-    start_column: result.column,
-    end_column: result.column + 1,
     annotation_level: result.type === 'error' ? 'failure' : result.type,
     message: result.message,
   };
+
+  if (result.column !== false) {
+    annotation.start_column = result.column;
+    annotation.end_column = result.column + 1;
+  }
 
   if (result.recommendation) {
     const details = `Recommended fix:\n\n${result.recommendation}`;

@@ -1,9 +1,0 @@
-// #flow
-export type LintResult = {|
-  line: number,
-  column: number,
-  type: 'error' | 'warning' | 'notice',
-  rule: string,
-  message: string,
-  recommendation?: string,
-|};

@@ -2,7 +2,7 @@ import { getLintAnnotations } from '../lint-adoc';
 
 describe('getLintAnnotations()', () => {
   it('creates github check annotation from lint results', () => {
-    const files = [{ path: 'foo.adoc', adoc: "Ah! '`Tis thou!" }];
+    const files = [{ path: 'foo.adoc', adoc: "Ah! '`Tis thou!\n" }];
     const annotations = getLintAnnotations(files);
     expect(annotations).toHaveLength(1);
     expect(annotations[0]).toMatchObject({

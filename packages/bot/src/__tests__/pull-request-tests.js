@@ -51,6 +51,7 @@ describe('pullRequest()', () => {
       owner: 'friends-library-sandbox',
       repo: 'jane-doe',
       number: 11,
+      per_page: 100,
     });
   });
 

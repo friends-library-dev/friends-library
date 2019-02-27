@@ -1,22 +1,8 @@
 // @flow
-import type { Asciidoc } from '../../../type';
-import type { LintResult } from '../type.js.flow';
-import { quotifyLine } from './quotify';
+import type { Asciidoc, LintResult } from '../../../../../type';
+import { quotifyLine } from '../../quotify';
 
-export default function lint(adoc: Asciidoc): Array<LintResult> {
-  const rules = [smartQuotes];
-  const lines = adoc.split('\n');
-  return lines.reduce((acc, line, index) => {
-    rules.forEach(rule => {
-      const ruleResults = rule(line, lines, index + 1);
-      ruleResults.forEach(result => acc.push(result));
-    });
-    return acc;
-  }, []);
-}
-
-
-function smartQuotes(
+export default function (
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,

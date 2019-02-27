@@ -32,7 +32,9 @@ export default function (context: Context) {
 
 async function getModifiedFiles(context: Context): Promise<Array<ModifiedAsciidocFile>> {
   const { github, issue, repo, payload: { pull_request: { head: { sha } } } } = context;
-  const { data: modifiedFiles } = await github.pullRequests.listFiles(issue());
+  const { data: modifiedFiles } = await github.pullRequests.listFiles(issue({
+    per_page: 100,
+  }));
   return Promise.all(modifiedFiles.map(mf => {
     return github.repos.getContents(repo({
       path: mf.filename,
