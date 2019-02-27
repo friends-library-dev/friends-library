@@ -34,3 +34,12 @@ export type EditionType = 'original' | 'modernized' | 'updated';
 export type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
 
 export type NodeEnv = 'production' | 'development';
+
+export type LintResult = {|
+  line: number,
+  column: number | false,
+  type: 'error' | 'warning' | 'notice',
+  rule: string,
+  message: string,
+  recommendation?: string,
+|};

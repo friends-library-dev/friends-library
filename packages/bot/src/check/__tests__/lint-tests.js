@@ -10,7 +10,7 @@ describe('lintCheck()', () => {
     [context, github] = prTestSetup();
     files = [{
       path: '01.adoc',
-      adoc: '== Ch 1',
+      adoc: '== Ch 1\n',
     }];
   });
 
@@ -34,7 +34,7 @@ describe('lintCheck()', () => {
   });
 
   it('fails the check if lint annotations', async () => {
-    files[0].adoc = "== Ch 1\n\n'`Tis thou!"; // bad asciidoc, will be linted
+    files[0].adoc = "== Ch 1\n\n'`Tis thou!\n"; // bad asciidoc, will be linted
     await lintCheck(context, files);
     const update = github.checks.update.mock.calls[0][0];
     expect(update).toMatchObject({
