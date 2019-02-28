@@ -26,3 +26,17 @@ documents:
             title: An Account of the Convincement, Exercises, Services, and Travels of Richard Davies
           -
             title: Testimonies Concerning Richard Davies
+      -
+        type: original
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: An Account of the Convincement, Exercises, Services, and Travels of Richard Davies
+          -
+            title: Testimonies Concerning Richard Davies
