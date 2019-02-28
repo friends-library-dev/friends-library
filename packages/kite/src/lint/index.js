@@ -30,7 +30,7 @@ function printResult(result, path, lines) {
   console.log(`\n${chalk.cyan(result.rule)}: ${result.message}`);
   grey(`${path}:${result.line}${result.column === false ? '' : `:${result.column}`}`);
 
-  if (result.rule === 'eof-newline') {
+  if (['eof-newline', 'unterminated-open-block'].includes(result.rule)) {
     return;
   }
 
