@@ -28,3 +28,17 @@ documents:
             title: Preface
           -
             title: The Life and Letters of John Fothergill
+      -
+        type: original
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            title: The Life and Letters of John Fothergill

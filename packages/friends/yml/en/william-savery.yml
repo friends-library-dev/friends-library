@@ -1,0 +1,66 @@
+name: William Savery
+slug: william-savery
+gender: male
+description: TODO
+documents:
+  -
+    title: The Journal of William Savery
+    original_title: A Journal Of the Life, Travels and Religious Labours of William Savery, A Minister of the Gospel of Christ, In the Society of Friends, Late of Philadelphia Compiled From His Original Memoranda, by Jonathan Evans.
+    slug: journal
+    filename: Journal_of_William_Savery
+    description: TODO
+    tags:
+      - journal
+    editions:
+      -
+        type: modernized
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7
+      -
+        type: original
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: Preface
+          -
+            number: 1
+          -
+            number: 2
+          -
+            number: 3
+          -
+            number: 4
+          -
+            number: 5
+          -
+            number: 6
+          -
+            number: 7

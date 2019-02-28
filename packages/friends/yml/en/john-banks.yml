@@ -31,3 +31,21 @@ documents:
             title: Epistles and Papers
           -
             title: Testimonies Concerning John Banks
+      -
+        type: original
+        formats:
+          -
+            type: pdf
+          -
+            type: epub
+          -
+            type: mobi
+        chapters:
+          -
+            title: The Journal of John Banks
+          -
+            title: A Supplement to His Journal
+          -
+            title: Epistles and Papers
+          -
+            title: Testimonies Concerning John Banks
