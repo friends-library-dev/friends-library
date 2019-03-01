@@ -19051,6 +19051,11 @@ unherit@^1.0.4:
     inherits "^2.0.1"
     xtend "^4.0.1"
 
+unicharadata@^9.0.0-alpha.6:
+  version "9.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/unicharadata/-/unicharadata-9.0.0-alpha.6.tgz#754a15206db4fac7f66117d7e7cf5deecf13ff8b"
+  integrity sha1-dUoVIG20+sf2YRfX589d7s8T/4s=
+
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"

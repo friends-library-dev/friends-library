@@ -1,7 +1,8 @@
 // @flow
 import { lint } from '@friends-library/asciidoc';
-import { red, green, grey } from '@friends-library/cli/color';
+import { red, green, grey, yellow } from '@friends-library/cli/color';
 import chalk from 'chalk';
+import leftPad from 'left-pad';
 import fs from 'fs-extra';
 import { sync as glob } from 'glob';
 import type { Asciidoc, FilePath } from '../../../../type';
@@ -13,7 +14,7 @@ export default function (path: string): void {
 
   const numViolations = [...resultsMap].reduce((num, [, results]) => num + results.length, 0);
   if (numViolations === 0) {
-    green('0 lint violations found! 😊');
+    green('0 lint violations found! 😊 \n');
     process.exit(0);
   }
 
@@ -32,6 +33,10 @@ function printResult(result, path, lines) {
 
   if (['eof-newline', 'unterminated-open-block'].includes(result.rule)) {
     return;
+  }
+
+  if (result.column) {
+    yellow(leftPad('∨---', result.column + 3, ' '));
   }
 
   const line = lines[result.line - 1];
