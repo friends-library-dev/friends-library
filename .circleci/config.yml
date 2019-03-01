@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - yarn_cached_install
-      - run: yarn js:test
+      - run: yarn js:test -w=2
       - run: yarn evans:build:en
       - run: yarn evans:build:es
 
