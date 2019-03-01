@@ -42,4 +42,5 @@ export type LintResult = {|
   rule: string,
   message: string,
   recommendation?: string,
+  fixable?: boolean,
 |};

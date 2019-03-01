@@ -24,11 +24,15 @@ export default function (
   }];
 }
 
-function isFootnotePoetryLine(
+export function isFootnotePoetryLine(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   number: number,
 ): boolean {
+  if (line.match(/^` {4}/)) {
+    return true;
+  }
+
   if (!line.match(/^(\s){5}/)) {
     return false;
   }

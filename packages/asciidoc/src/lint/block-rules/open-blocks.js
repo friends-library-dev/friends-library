@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function(block: Asciidoc): Array<LintResult> {
+export default function (block: Asciidoc): Array<LintResult> {
   const lines = block.split('\n');
   const delimiter = lines.reduce((delims, line, index) => {
     if (line !== '--') {
@@ -21,12 +21,12 @@ export default function(block: Asciidoc): Array<LintResult> {
     const prev = delimiter[index - 1];
     if (current.type === 'start' && opened && prev) {
       current.flagged = true;
-      acc.push(unterminated(prev.line))
+      acc.push(unterminated(prev.line));
     }
 
     if (current.type === 'end' && !opened && (!prev || !prev.flagged)) {
       current.flagged = true;
-      acc.push(unlabeled(current.line))
+      acc.push(unlabeled(current.line));
     }
 
     opened = current.type === 'start';

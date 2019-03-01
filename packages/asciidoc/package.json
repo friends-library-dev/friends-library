@@ -4,7 +4,8 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/register": "^7.0.0"
+    "@babel/register": "^7.0.0",
+    "unicharadata": "^9.0.0-alpha.6"
   },
   "devDependencies": {}
 }
