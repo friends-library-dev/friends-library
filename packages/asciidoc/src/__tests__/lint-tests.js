@@ -46,6 +46,39 @@ describe('lint()', () => {
     const results = lint(adoc);
     expect(results).toHaveLength(1);
   });
+
+  it('produces no errors for a comment line containing lint declaration', () => {
+    const adoc = stripIndent(`
+      == Ch 1
+
+      // lint-disable invalid-character "bad" stuff' ••
+      More bad stuff ••
+
+      Foo.
+    `).trim();
+
+    const results = lint(`${adoc}\n`);
+    expect(results).toHaveLength(0);
+  });
+
+  it('produces warning for comment line containing no lint declaration', () => {
+    const adoc = stripIndent(`
+      == Ch 1
+
+      // I wasn't sure what todo about this line...
+      Jim jam, foo bar.
+    `).trim();
+
+    const results = lint(`${adoc}\n`);
+    expect(results).toHaveLength(1);
+    expect(results[0]).toMatchObject({
+      line: 3,
+      column: false,
+      type: 'warning',
+      rule: 'temporary-comments',
+      message: 'Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. `// lint-disable invalid-character`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with `--lint-ignore` to disable this lint warning)',
+    });
+  });
 });
 
 describe('line-rules export', () => {
