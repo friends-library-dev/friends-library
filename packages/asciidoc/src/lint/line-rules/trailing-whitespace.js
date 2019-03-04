@@ -17,5 +17,6 @@ export default function (
     type: 'error',
     message: 'Lines should not have trailing whitespace',
     recommendation: line.replace(/ +$/, ''),
+    fixable: true,
   }];
 }

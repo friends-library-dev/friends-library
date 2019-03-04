@@ -10,6 +10,7 @@ describe('trailingWhitespace()', () => {
       type: 'error',
       rule: 'trailing-whitespace',
       message: 'Lines should not have trailing whitespace',
+      fixable: true,
       recommendation: '== Chapter 1',
     });
   });

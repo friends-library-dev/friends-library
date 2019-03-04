@@ -21,6 +21,7 @@ export default function (
     type: 'error',
     message: 'Lines should not have leading whitespace',
     recommendation: line.replace(/^ +/, ''),
+    fixable: true,
   }];
 }
 
