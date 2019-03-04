@@ -10,6 +10,15 @@ describe('invalidHeading()', () => {
       type: 'error',
       rule: 'invalid-heading',
       message: 'Headings may only have 2-4 equal signs, and must be followed by a space and at least one character',
+      fixable: false,
+    });
+  });
+
+  test('extra spaces is fixable', () => {
+    const results = invalidHeading('==  No beuno', [], 1);
+    expect(results[0]).toMatchObject({
+      fixable: true,
+      recommendation: '== No beuno',
     });
   });
 

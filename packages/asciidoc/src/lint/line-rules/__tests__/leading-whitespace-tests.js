@@ -12,6 +12,7 @@ describe('leadingWhitespace()', () => {
       rule: 'leading-whitespace',
       message: 'Lines should not have leading whitespace',
       recommendation: 'Foo bar!',
+      fixable: true,
     });
   });
 

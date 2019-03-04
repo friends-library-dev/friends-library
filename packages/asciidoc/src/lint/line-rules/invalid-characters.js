@@ -15,26 +15,77 @@ export default function (
     return [];
   }
 
+  let escapeStart;
+  let escapeEnd;
+  const hasEscape = line.includes('+++');
+  if (hasEscape) {
+    escapeStart = line.indexOf('+++') + 3;
+    escapeEnd = escapeStart + line.substring(escapeStart).indexOf('+++');
+  }
+
   const results = [];
   line.split('').forEach((char, index) => {
+    if (hasEscape && (escapeStart <= index && escapeEnd > index)) {
+      return;
+    }
     if (!allowed[char]) {
-      results.push(getLint(char, lineNumber, index + 1));
+      const name = unicharadata.lookupname(char);
+      results.push(getLint(char, line, lineNumber, index + 1, name));
     }
   });
 
   return results;
 }
 
-function getLint(char, line, column) {
+function getLint(char, line, lineNumber, column, name) {
   const hex = char.codePointAt(0).toString(16);
   const unicode = `\\u${'0000'.substring(0, 4 - hex.length)}${hex}`;
+  const fixableReco = fixable(name, line, column);
   return {
-    line,
+    line: lineNumber,
     column,
     type: 'error',
     rule: 'invalid-character',
-    message: `Dissallowed character: \`${char}\`, code: \`${unicode}\` (${unicharadata.lookupname(char)})`,
+    message: `Dissallowed character: \`${char}\`, code: \`${unicode}\` (${name})`,
+    ...fixableReco !== false ? { fixable: true, recommendation: fixableReco } : {},
   };
+}
+
+function fixable(name, line, column): string | false {
+  switch (name) {
+    case 'EN DASH':
+      return line.replace(/–/g, '-');
+    case 'NO-BREAK SPACE':
+      return nbsp(line, column);
+    case 'CYRILLIC CAPITAL LETTER O':
+      return line.replace(/О/g, 'O');
+    case 'BULLET':
+    case 'SOFT HYPHEN':
+      return `${line.substring(0, column - 1)}${line.substring(column)}`;
+    case 'RIGHT SINGLE QUOTATION MARK':
+      return line.replace(/’/g, "`'");
+    case 'LEFT SINGLE QUOTATION MARK':
+      return line.replace(/‘/g, "'`");
+    case 'RIGHT DOUBLE QUOTATION MARK':
+      return line.replace(/”/g, '`"');
+    case 'LEFT DOUBLE QUOTATION MARK':
+      return line.replace(/“/g, '"`');
+    default:
+      return false;
+  }
+}
+
+function nbsp(line, column) {
+  if (column === 1) {
+    return line.replace(/^ +/, ''); // eslint-disable-line no-irregular-whitespace
+  }
+  if (line.substring(column - 11, column - 1) === 'footnote:[') {
+    return line.replace(/footnote:\[./, 'footnote:[');
+  }
+  if (line[column] === ' ' || line[column - 2] === ' ') {
+    return `${line.substring(0, column - 1)}${line.substring(column)}`;
+  }
+  return `${line.substring(0, column - 1)} ${line.substring(column)}`;
 }
 
 function isSuppressed(lines: Array<Asciidoc>, lineNumber: number): boolean {
