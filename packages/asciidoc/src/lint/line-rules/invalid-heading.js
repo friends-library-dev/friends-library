@@ -14,6 +14,10 @@ export default function (
     return [];
   }
 
+  if (line === '=======') {
+    return []; // will be flagged by `git-conflict-markers`
+  }
+
   const fixable = !!line.match(/^={2,4}  +/);
 
   return [{

@@ -14,3 +14,4 @@ export { default as invalidCharacters } from './invalid-characters';
 export { default as chapterSynopsisList } from './chapter-synopsis-list-item';
 export { default as doubledPunctuation } from './doubled-punctuation';
 export { default as consecutiveSpaces } from './consecutive-spaces';
+export { default as gitConflictMarkers } from './git-conflict-markers';

@@ -29,6 +29,7 @@ describe('invalidHeading()', () => {
     ['==Foo'],
     ['===Foo'],
     ['====Foo'],
+    ['========'],
     ['=='],
     ['=== '],
   ];
@@ -44,6 +45,7 @@ describe('invalidHeading()', () => {
     ['==== Foo'],
     ['=== Foo Bar'],
     ['==== 1 Thing'],
+    ['======='], // will be caught by `git-conflict-markers`
     ['// salad = yummy'],
   ];
 
