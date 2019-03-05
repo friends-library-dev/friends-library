@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (block: Asciidoc): Array<LintResult> {
+export default function rule(block: Asciidoc): Array<LintResult> {
   const lines = block.split('\n');
   const delimiter = lines.reduce((delims, line, index) => {
     if (line !== '--') {
@@ -45,7 +45,7 @@ function unterminated(line: number): LintResult {
     line,
     column: false,
     type: 'error',
-    rule: 'unterminated-open-block',
+    rule: rule.slug,
     message: 'This block was never terminated with a `--` line.',
   };
 }
@@ -55,7 +55,9 @@ function unlabeled(line: number): LintResult {
     line,
     column: false,
     type: 'error',
-    rule: 'unlabeled-open-block-delimiter',
+    rule: rule.slug,
     message: 'Open blocks must be started with a class designation, like `[.embedded-content-document.letter]`',
   };
 }
+
+rule.slug = 'open-block';

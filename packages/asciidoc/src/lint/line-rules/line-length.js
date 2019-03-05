@@ -5,7 +5,7 @@ import { makeSplitLines } from '../../split';
 
 const split = makeSplitLines(90, 45);
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -19,7 +19,7 @@ export default function (
   return [{
     line: lineNumber,
     column: false,
-    rule: 'line-length',
+    rule: rule.slug,
     type: 'error',
     message: 'Non-heading and non-list lines should not exceed 100 characters',
     ...recommendation ? { recommendation } : {},
@@ -67,3 +67,5 @@ function getRecommendation(line: Asciidoc): Asciidoc | false {
 
   return reco;
 }
+
+rule.slug = 'line-length';

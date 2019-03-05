@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -24,7 +24,7 @@ export default function (
         line: index + 1,
         column: 1,
         type: 'error',
-        rule: 'chapter-synopsis-list-item',
+        rule: rule.slug,
         message: 'Chapter synopsis list items must begin with exactly `* `',
         recommendation: nextLine.replace(/^\*+/, '').replace(/^ +/, '').replace(/^/, '* '),
         fixable: true,
@@ -36,3 +36,5 @@ export default function (
 
   return results;
 }
+
+rule.slug = 'chapter-synopsis-list-item';

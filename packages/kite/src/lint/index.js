@@ -1,35 +1,50 @@
 // @flow
+/* istanbul ignore file */
 import { lintPath } from '@friends-library/asciidoc';
 import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
 import chalk from 'chalk';
 import leftPad from 'left-pad';
 import fs from 'fs-extra';
 
-export default function (path: string): void {
-  const lints = lintPath(path);
+export default function (path: string, argv: Object): void {
+  const lints = lintPath(path, argv.rules || null, argv.exclude || null);
   if (lints.count() === 0) {
     green('0 lint violations found! 😊 \n');
     process.exit(0);
   }
 
-  const clean = printLints(lints, process.argv.includes('--fix'));
+  const clean = printLints(lints, argv.limit || false, argv.fix);
   process.exit(clean ? 0 : 1);
 }
 
-export function printLints(lints: any, doFix: boolean = false): boolean {
+export function printLints(
+  lints: any,
+  limit: false | number,
+  doFix: boolean = false,
+): boolean {
   const total: number = lints.count();
   let numFixed = 0;
 
+  let printed = 0;
   [...lints].forEach(([filepath, { lints: fileLints, adoc }]) => {
+    if (limit && printed >= limit) {
+      return;
+    }
     if (doFix) {
       fix(filepath, fileLints);
     }
     const lines = adoc.split('\n');
     fileLints.forEach(lint => {
+      if (limit && printed >= limit) {
+        return;
+      }
+
       if (lint.fixed === true) {
         numFixed++;
       }
+
       printResult(lint, filepath, lines);
+      printed++;
     });
   });
 
@@ -50,6 +65,17 @@ function fix(path, results) {
     }
 
     if (!Object.prototype.hasOwnProperty.call(result, 'recommendation')) {
+      return;
+    }
+
+    // multi-line fix
+    if (result.rule === 'trailing-hyphen' && !modifiedLines.has(result.line + 1)) {
+      const [first, second] = result.recommendation.split('\n');
+      lines[result.line - 1] = first;
+      lines[result.line] = second;
+      modifiedLines.add(result.line);
+      modifiedLines.add(result.line + 1);
+      result.fixed = true;
       return;
     }
 
@@ -78,6 +104,9 @@ function printResult(result, path, lines) {
   const line = lines[result.line - 1];
   if (line) {
     red(line);
+  }
+  if (line && result.rule === 'trailing-hyphen' && lines[result.line]) {
+    red(lines[result.line]);
   }
 
   if (result.recommendation) {

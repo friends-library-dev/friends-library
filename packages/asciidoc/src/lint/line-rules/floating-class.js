@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -18,7 +18,9 @@ export default function (
     line: lineNumber,
     column: false,
     type: 'error',
-    rule: 'floating-class',
+    rule: rule.slug,
     message: 'Class/id designations (like `[.something]`) may not be followed by an empty line',
   }];
 }
+
+rule.slug = 'floating-class';

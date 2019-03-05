@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -14,7 +14,9 @@ export default function (
     line: lineNumber,
     column: false,
     type: 'error',
-    rule: 'eof-newline',
+    rule: rule.slug,
     message: 'Files must end with a single blank line',
   }];
 }
+
+rule.slug = 'eof-newline';

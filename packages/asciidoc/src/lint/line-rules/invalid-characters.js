@@ -2,7 +2,7 @@
 import unicharadata from 'unicharadata';
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -45,7 +45,7 @@ function getLint(char, line, lineNumber, column, name) {
     line: lineNumber,
     column,
     type: 'error',
-    rule: 'invalid-character',
+    rule: rule.slug,
     message: `Dissallowed character: \`${char}\`, code: \`${unicode}\` (${name})`,
     ...fixableReco !== false ? { fixable: true, recommendation: fixableReco } : {},
   };
@@ -112,3 +112,5 @@ const allowed = [
   obj[char] = true;
   return obj;
 }, {});
+
+rule.slug = 'invalid-character';

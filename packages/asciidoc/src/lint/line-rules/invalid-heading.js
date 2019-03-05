@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -24,9 +24,11 @@ export default function (
     line: lineNumber,
     column: 1,
     type: 'error',
-    rule: 'invalid-heading',
+    rule: rule.slug,
     message: 'Headings may only have 2-4 equal signs, and must be followed by a space and at least one character',
     fixable,
     ...fixable ? { recommendation: line.replace(/  +/, ' ') } : {},
   }];
 }
+
+rule.slug = 'invalid-heading';

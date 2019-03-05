@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -13,9 +13,11 @@ export default function (
   return [{
     line: lineNumber,
     column: (line.match(/\./) || { index: -1 }).index + 1,
-    rule: 'unintentional-list-item',
+    rule: rule.slug,
     type: 'error',
     message: 'Periods near the beginning of the line sometimes need to be escaped to prevent errors converting to HTML.',
     recommendation: line.replace(/\./, '+++.+++'),
   }];
 }
+
+rule.slug = 'unintentional-list-item';

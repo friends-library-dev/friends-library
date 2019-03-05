@@ -22,6 +22,18 @@ describe('lint()', () => {
     });
   });
 
+  it('allows whitelisting rules', () => {
+    const results = lint('Don\'t •\n', ['smart-quotes']);
+    expect(results).toHaveLength(1);
+    expect(results[0].rule).toBe('smart-quotes');
+  });
+
+  it('allows black-listing rules', () => {
+    const results = lint('Don\'t •\n', null, ['smart-quotes']);
+    expect(results).toHaveLength(1);
+    expect(results[0].rule).toBe('invalid-character');
+  });
+
   it('aggregates multiple rule test results (block and line)', () => {
     const adoc = stripIndent(`
       == Ch 1
@@ -41,7 +53,7 @@ describe('lint()', () => {
     expect(results).toHaveLength(3);
     expect(results[0].rule).toBe('list-year');
     expect(results[1].rule).toBe('smart-quotes');
-    expect(results[2].rule).toBe('unterminated-open-block');
+    expect(results[2].rule).toBe('open-block');
   });
 
   it('new lines do not cause duplicate results', () => {
@@ -89,6 +101,20 @@ describe('line-rules export', () => {
     const files = glob.sync(path.resolve(__dirname, '../lint/line-rules/*.js'))
       .filter(file => !file.match(/index\.js$/));
     expect(Object.values(lineRules)).toHaveLength(files.length);
+  });
+});
+
+test('rule functions have slug property', () => {
+  const slugs = new Set();
+  const allRules = [lineRules, blockRules];
+  allRules.forEach(rules => {
+    Object.values(rules).forEach(rule => {
+      expect(typeof rule.slug).toBe('string');
+      if (slugs.has(rule.slug)) {
+        throw new Error(`Duplicate rule slug: ${rule.slug}`);
+      }
+      slugs.add(rule.slug);
+    });
   });
 });
 

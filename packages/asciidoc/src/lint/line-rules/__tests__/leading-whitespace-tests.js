@@ -21,6 +21,12 @@ describe('leadingWhitespace()', () => {
     expect(results).toHaveLength(0);
   });
 
+  it('only produces one lint for a chunk of leading whitespace', () => {
+    const results = leadingWhitespace('   Foo.', [], 1);
+    expect(results).toHaveLength(1);
+    expect(results[0].column).toBe(0);
+  });
+
   it('allows leading whitespace in footnote poetry', () => {
     const adoc = stripIndent(`
       Foobar.^

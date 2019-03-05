@@ -23,7 +23,7 @@ export default function publish(argv: Object): Promise<*> {
   if (!argv.skipLint) {
     const lints = lintPath(path);
     if (lints.count() > 0) {
-      const clean = printLints(lints, argv.fix === true);
+      const clean = printLints(lints, false, argv.fix === true);
       !clean && process.exit(1);
     }
   }
