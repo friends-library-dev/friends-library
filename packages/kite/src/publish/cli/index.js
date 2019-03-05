@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
+import { lintPath } from '@friends-library/asciidoc';
 import type { JobMeta, Job, SourceSpec, FileType, SourcePrecursor } from '../../type';
 import { makeEpub } from '../epub/make';
 import { makeMobi } from '../mobi/make';
@@ -9,6 +10,7 @@ import { makePdf } from '../pdf/make';
 import { prepare } from '../prepare';
 import { getPrecursors } from './precursors';
 import { send } from '../send';
+import { printLints } from '../../lint';
 import { PUBLISH_DIR } from '../file';
 
 type Command = JobMeta & {|
@@ -16,8 +18,18 @@ type Command = JobMeta & {|
 |};
 
 export default function publish(argv: Object): Promise<*> {
+  const { path } = argv;
+
+  if (!argv.skipLint) {
+    const lints = lintPath(path);
+    if (lints.count() > 0) {
+      const clean = printLints(lints, argv.fix === true);
+      !clean && process.exit(1);
+    }
+  }
+
   const cmd = createCommand(argv);
-  const precursors = getPrecursors(argv.path);
+  const precursors = getPrecursors(path);
   return publishPrecursors(precursors, cmd);
 }
 

@@ -1,9 +1,12 @@
 import stripIndent from 'strip-indent';
+import fs from 'fs-extra';
 import glob from 'glob';
 import path from 'path';
-import lint from '../lint';
+import { lint, lintPath } from '../lint';
 import * as lineRules from '../lint/line-rules';
 import * as blockRules from '../lint/block-rules';
+
+jest.mock('fs-extra');
 
 describe('lint()', () => {
   it('creates a well formed lint result', () => {
@@ -94,5 +97,46 @@ describe('block-rules export', () => {
     const files = glob.sync(path.resolve(__dirname, '../lint/block-rules/*.js'))
       .filter(file => !file.match(/index\.js$/));
     expect(Object.values(blockRules)).toHaveLength(files.length);
+  });
+});
+
+describe('lintPath()', () => {
+  beforeEach(() => {
+    glob.sync = jest.fn();
+  });
+
+  it('throws if you pass a non-existent full path', () => {
+    fs.existsSync.mockReturnValue(false);
+    expect(() => lintPath('/path/to/foo.adoc')).toThrowError(/does not exist/);
+  });
+
+  it('throws if the path contains no asciidoc files', () => {
+    fs.existsSync.mockReturnValue(true);
+    glob.sync.mockReturnValue([]); // <-- no files
+    expect(() => lintPath('/en/george-fox/')).toThrowError(/No files/);
+  });
+
+  it('lints the globbed paths and returns map of lint data', () => {
+    fs.existsSync.mockReturnValue(true);
+    glob.sync.mockReturnValue(['/foo.adoc']);
+    fs.readFileSync.mockReturnValue({ toString: () => '® bad char\n' });
+
+    const map = lintPath('/');
+
+    expect(map.count()).toBe(1);
+    expect(map.count(l => l.rule === 'invalid-character')).toBe(1);
+    expect(map.count(l => l.rule === 'leading-whitespace')).toBe(0);
+
+    expect(map).toEqual(new Map([['/foo.adoc', {
+      path: '/foo.adoc',
+      adoc: '® bad char\n',
+      lints: [{
+        type: 'error',
+        rule: 'invalid-character',
+        column: 1,
+        line: 1,
+        message: expect.any(String),
+      }],
+    }]]));
   });
 });

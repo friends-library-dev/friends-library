@@ -108,6 +108,13 @@ $ yarn kite en/george-fox --open
 # `--no-frontmatter` will eliminate frontmatter (title page, toc, etc) when possible
 $ yarn kite en/george-fox --no-frontmatter
 
+# `--skip-lint` will bypass the auto-linting of the files before publish
+# lint errors will prevent file creation unless you pass this flag
+$ yarn kite en/george-fox --skip-lint
+
+# `--fix` will attempt to fix as many lint failures as possible
+$ yarn kite en/george-fix --fix
+
 # `--send` will email a copy of the created files (requires configuration, see below)
 # this is especially useful for testing ebooks on phones and devices
 $ yarn kite en/george-fox --send

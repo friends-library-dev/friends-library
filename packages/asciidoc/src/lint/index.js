@@ -1,10 +1,12 @@
 // @flow
-import type { Asciidoc, LintResult } from '../../../../type';
+import fs from 'fs-extra';
+import { sync as glob } from 'glob';
+import type { Asciidoc, LintResult, FilePath } from '../../../../type';
 import { values } from '../../../../flow-utils';
 import * as lineLints from './line-rules';
 import * as blockLints from './block-rules';
 
-export default function lint(adoc: Asciidoc): Array<LintResult> {
+export function lint(adoc: Asciidoc): Array<LintResult> {
   const lineRules = values(lineLints);
   const lines = adoc.split('\n');
   const lineResults = lines.reduce((acc, line, index) => {
@@ -30,6 +32,56 @@ export default function lint(adoc: Asciidoc): Array<LintResult> {
   }, []);
 
   return [...lineResults, ...blockResults];
+}
+
+export function lintPath(path: FilePath): Map<FilePath, {|
+  lints: Array<LintResult>,
+  path: FilePath,
+  adoc: Asciidoc,
+|}> {
+  const files = getFiles(path);
+  const map = new Map();
+  files.forEach(file => map.set(file.path, {
+    lints: lint(file.adoc),
+    path: file.path,
+    adoc: file.adoc,
+  }));
+
+  // $FlowFixMe
+  map.count = countLints.bind(map);
+  return map;
+}
+
+function countLints(filter = () => true): number {
+  return [...this]
+    .reduce((lints, [, data]) => {
+      return lints.concat(...data.lints);
+    }, [])
+    .filter(filter)
+    .length;
+}
+
+function getFiles(path): Array<{|
+  path: FilePath,
+  adoc: Asciidoc,
+|}> {
+  let files;
+  if (path.match(/\.adoc$/)) {
+    if (!fs.existsSync(path)) {
+      throw new Error(`<path> ${path} does not exist.`);
+    }
+    files = [path];
+  } else {
+    files = glob(`${path}/**/*.adoc`);
+    if (files.length === 0) {
+      throw new Error(`No files globbed from <path>: ${path}`);
+    }
+  }
+
+  return files.map(file => ({
+    path: file,
+    adoc: fs.readFileSync(file).toString(),
+  }));
 }
 
 function isLintComment(line: Asciidoc): boolean {
