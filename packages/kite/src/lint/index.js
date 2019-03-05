@@ -1,45 +1,45 @@
 // @flow
-import { lint } from '@friends-library/asciidoc';
+import { lintPath } from '@friends-library/asciidoc';
 import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
 import chalk from 'chalk';
 import leftPad from 'left-pad';
 import fs from 'fs-extra';
-import { sync as glob } from 'glob';
-import type { Asciidoc, FilePath } from '../../../../type';
 
 export default function (path: string): void {
-  const files = getFiles(path);
-  const resultsMap = new Map();
-  files.forEach(file => resultsMap.set(file.path, lint(file.adoc)));
-
-  const numViolations = [...resultsMap].reduce((num, [, results]) => num + results.length, 0);
-  if (numViolations === 0) {
+  const lints = lintPath(path);
+  if (lints.count() === 0) {
     green('0 lint violations found! 😊 \n');
     process.exit(0);
   }
 
+  const clean = printLints(lints, process.argv.includes('--fix'));
+  process.exit(clean ? 0 : 1);
+}
+
+export function printLints(lints: any, doFix: boolean = false): boolean {
+  const total: number = lints.count();
   let numFixed = 0;
-  [...resultsMap].forEach(([filepath, results]) => {
-    if (process.argv.includes('--fix')) {
-      fix(filepath, results);
+
+  [...lints].forEach(([filepath, { lints: fileLints, adoc }]) => {
+    if (doFix) {
+      fix(filepath, fileLints);
     }
-    const lines = (files.find(f => f.path === filepath) || { adoc: '' }).adoc.split('\n');
-    results.forEach(result => {
-      if (result.fixed === true) {
+    const lines = adoc.split('\n');
+    fileLints.forEach(lint => {
+      if (lint.fixed === true) {
         numFixed++;
       }
-      printResult(result, filepath, lines);
+      printResult(lint, filepath, lines);
     });
   });
 
-  red(`\n\nFound ${numViolations} lint violation/s. 😬 `);
+  red(`\n\nFound ${total} lint violation/s. 😬 `);
   if (numFixed > 0) {
-    cyan(`Fixed ${numFixed} lint violation/s.  👍`);
+    cyan(`Fixed ${numFixed} lint violation/s. 👍`);
   }
   console.log('\n');
-  process.exit(numViolations - numFixed === 0 ? 0 : 1);
+  return total - numFixed === 0;
 }
-
 
 function fix(path, results) {
   const lines = fs.readFileSync(path).toString().split('\n');
@@ -71,7 +71,7 @@ function printResult(result, path, lines) {
     return;
   }
 
-  if (result.column) {
+  if (result.column !== false) {
     yellow(leftPad('∨---', result.column + 3, ' '));
   }
 
@@ -93,32 +93,4 @@ function printResult(result, path, lines) {
   if (line) {
     grey('[no recommendation]');
   }
-}
-
-type File = {|
-  path: FilePath,
-  adoc: Asciidoc,
-|};
-
-function getFiles(path): Array<File> {
-  let files;
-  if (path.match(/\.adoc$/)) {
-    if (!fs.existsSync(path)) {
-      throw new Error(`<path> ${path} does not exist.`);
-    }
-    files = [path];
-  } else {
-    files = glob(`${path}/**/*.adoc`);
-    if (files.length === 0) {
-      throw new Error(`No files globbed from <path>: ${path}`);
-    }
-  }
-
-  // temp
-  files = files.filter(file => file.indexOf('thomas-story') === -1);
-
-  return files.map(file => ({
-    path: file,
-    adoc: fs.readFileSync(file).toString(),
-  }));
 }
