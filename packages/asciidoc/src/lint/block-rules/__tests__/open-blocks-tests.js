@@ -20,7 +20,7 @@ describe('openBlocks() - unlabeled-open-block-delimiter', () => {
       line: 3,
       column: false,
       type: 'error',
-      rule: 'unlabeled-open-block-delimiter',
+      rule: 'open-block',
       message: 'Open blocks must be started with a class designation, like `[.embedded-content-document.letter]`',
     });
   });
@@ -49,7 +49,7 @@ describe('openBlocks() - unlabeled-open-block-delimiter', () => {
     const results = openBlocks(adoc);
     expect(results).toHaveLength(1);
     expect(results[0].line).toBe(13);
-    expect(results[0].rule).toBe('unlabeled-open-block-delimiter');
+    expect(results[0].message).toMatch(/must be started/);
   });
 });
 
@@ -70,7 +70,7 @@ describe('openBlocks() - unterminated-open-block', () => {
       line: 2,
       column: false,
       type: 'error',
-      rule: 'unterminated-open-block',
+      rule: 'open-block',
       message: 'This block was never terminated with a `--` line.',
     });
   });

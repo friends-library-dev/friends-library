@@ -38,11 +38,30 @@ yargs
   .command(
     'lint <path>',
     'lint asciidoc documents at given path',
-    ({ positional }) => positional('path', {
-      type: 'string',
-      describe: 'filepath to dir containing .adoc files (or individual file)',
-    }),
-    ({ path }) => lint(path),
+    ({ positional, option }) => {
+      positional('path', {
+        type: 'string',
+        describe: 'filepath to dir containing .adoc files (or individual file)',
+      });
+      option('rules', { // --rules smart-quotes --rules other-rule
+        type: 'array',
+        alias: 'r',
+      });
+      option('exclude', { // --exclude smart-quotes --exclude other-rule
+        type: 'array',
+        alias: 'x',
+      });
+      option('limit', {
+        type: 'integer',
+        alias: 'l',
+      });
+      option('fix', {
+        type: 'boolean',
+        default: false,
+        alias: 'f',
+      });
+    },
+    argv => lint(argv.path, argv),
   )
   .command(
     'take:api',

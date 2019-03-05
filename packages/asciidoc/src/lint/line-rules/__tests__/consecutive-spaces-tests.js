@@ -16,6 +16,18 @@ describe('consecutiveSpaces()', () => {
     });
   });
 
+  it('ignores leading/trailing consecutive spaces, caught by other lints', () => {
+    const results = consecutiveSpaces('   Foo   ', [], 1);
+    expect(results).toHaveLength(0);
+  });
+
+  it('flags multiple different violations in same line', () => {
+    const results = consecutiveSpaces('Foo  bar  baz', [], 1);
+    expect(results).toHaveLength(2);
+    expect(results[0].recommendation).toBe('Foo bar baz');
+    expect(results[1].recommendation).toBe('Foo bar baz');
+  });
+
   it('allows consecutive spaces in footnote poetry', () => {
     const adoc = stripIndent(`
       Foobar.^

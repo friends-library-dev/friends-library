@@ -6,7 +6,11 @@ import { values } from '../../../../flow-utils';
 import * as lineLints from './line-rules';
 import * as blockLints from './block-rules';
 
-export function lint(adoc: Asciidoc): Array<LintResult> {
+export function lint(
+  adoc: Asciidoc,
+  onlyRules: null | Array<string> = null,
+  excludeRules: null | Array<string> = null,
+): Array<LintResult> {
   const lineRules = values(lineLints);
   const lines = adoc.split('\n');
   const lineResults = lines.reduce((acc, line, index) => {
@@ -20,21 +24,46 @@ export function lint(adoc: Asciidoc): Array<LintResult> {
     }
 
     lineRules.forEach(rule => {
-      const ruleResults = rule(line, lines, index + 1);
-      ruleResults.forEach(result => acc.push(result));
+      if (runRule(rule, onlyRules, excludeRules)) {
+        const ruleResults = rule(line, lines, index + 1);
+        ruleResults.forEach(result => acc.push(result));
+      }
     });
     return acc;
   }, []);
 
   const blockRules = values(blockLints);
   const blockResults = blockRules.reduce((acc, rule) => {
+    if (!runRule(rule, onlyRules, excludeRules)) {
+      return acc;
+    }
     return acc.concat(...rule(adoc));
   }, []);
 
   return [...lineResults, ...blockResults];
 }
 
-export function lintPath(path: FilePath): Map<FilePath, {|
+function runRule(rule, onlyRules, excludeRules) {
+  if (onlyRules === null && excludeRules === null) {
+    return true;
+  }
+
+  if (onlyRules !== null && !onlyRules.includes(rule.slug)) {
+    return false;
+  }
+
+  if (excludeRules !== null && excludeRules.includes(rule.slug)) {
+    return false;
+  }
+
+  return true;
+}
+
+export function lintPath(
+  path: FilePath,
+  onlyRules: null | Array<string> = null,
+  excludeRules: null | Array<string> = null,
+): Map<FilePath, {|
   lints: Array<LintResult>,
   path: FilePath,
   adoc: Asciidoc,
@@ -42,7 +71,7 @@ export function lintPath(path: FilePath): Map<FilePath, {|
   const files = getFiles(path);
   const map = new Map();
   files.forEach(file => map.set(file.path, {
-    lints: lint(file.adoc),
+    lints: lint(file.adoc, onlyRules, excludeRules),
     path: file.path,
     adoc: file.adoc,
   }));

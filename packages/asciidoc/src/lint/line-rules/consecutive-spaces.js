@@ -2,7 +2,7 @@
 import type { Asciidoc, LintResult } from '../../../../../type';
 import { isFootnotePoetryLine } from './leading-whitespace';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -11,22 +11,33 @@ export default function (
     return [];
   }
 
-  const match = line.match(/ {2,100}/);
-  if (!match) {
-    return [];
-  }
-
   if (isFootnotePoetryLine(line, lines, lineNumber)) {
     return [];
   }
 
-  return [{
+  const expr = / {2,}/g;
+  let match;
+  const results = [];
+  while ((match = expr.exec(line))) {
+    const isLeading = match.index === 0;
+    const isTrailing = match.index + match[0].length === line.length;
+    if (!isLeading && !isTrailing) {
+      results.push(getLint(match, line, lineNumber));
+    }
+  }
+  return results;
+}
+
+function getLint(match, line, lineNumber) {
+  return {
     line: lineNumber,
     column: match.index + 2,
     type: 'error',
-    rule: 'consecutive-spaces',
+    rule: rule.slug,
     message: 'Consecutive spaces are not allowed',
-    recommendation: line.replace(/ {2,100}/g, ' '),
+    recommendation: line.replace(/ {2,}/g, ' '),
     fixable: true,
-  }];
+  };
 }
+
+rule.slug = 'consecutive-spaces';

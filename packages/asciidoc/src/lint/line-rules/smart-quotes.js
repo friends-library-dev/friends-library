@@ -2,7 +2,7 @@
 import type { Asciidoc, LintResult } from '../../../../../type';
 import { quotifyLine } from '../../quotify';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -23,8 +23,10 @@ export default function (
     line: lineNumber,
     type: 'error',
     column: column || 0,
-    rule: 'smart-quotes',
+    rule: rule.slug,
     message: 'Incorrect usage of smart quotes/apostrophes',
     recommendation: fixed,
   }];
 }
+
+rule.slug = 'smart-quotes';

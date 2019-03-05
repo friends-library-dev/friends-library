@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -17,7 +17,7 @@ export default function (
   return [{
     line: lineNumber,
     column: 0,
-    rule: 'leading-whitespace',
+    rule: rule.slug,
     type: 'error',
     message: 'Lines should not have leading whitespace',
     recommendation: line.replace(/^ +/, ''),
@@ -65,3 +65,5 @@ export function isFootnotePoetryLine(
 
   return false;
 }
+
+rule.slug = 'leading-whitespace';

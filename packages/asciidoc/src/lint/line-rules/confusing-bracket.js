@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -18,8 +18,10 @@ export default function (
     line: lineNumber,
     column: false,
     type: 'error',
-    rule: 'confusing-bracket',
+    rule: rule.slug,
     message: 'Line-ending bracket needs to be escaped because the line starts with a [.book-title]',
     recommendation: line.replace(/\]$/, '+++]+++'),
   }];
 }
+
+rule.slug = 'confusing-bracket';

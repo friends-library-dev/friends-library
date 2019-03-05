@@ -1,7 +1,7 @@
 // @flow
 import type { Asciidoc, LintResult } from '../../../../../type';
 
-export default function (
+export default function rule(
   line: Asciidoc,
   lines: Array<Asciidoc>,
   lineNumber: number,
@@ -22,7 +22,9 @@ export default function (
     line: lineNumber,
     column: line.length - 1,
     type: 'error',
-    rule: 'hanging-quotes',
+    rule: rule.slug,
     message: 'Invalid hanging quotation. Perhaps move it to the next line?',
   }];
 }
+
+rule.slug = 'hanging-quotes';
