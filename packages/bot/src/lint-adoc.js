@@ -1,5 +1,6 @@
 // @flow
-import { lint, type LintResult } from '@friends-library/asciidoc';
+import { lint } from '@friends-library/asciidoc';
+import type { LintResult } from '../../../type';
 import type { ModifiedAsciidocFile } from './type';
 
 type GithubCheckAnnotation = {
