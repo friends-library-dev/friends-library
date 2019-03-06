@@ -40,14 +40,14 @@ function renderEpigraph({ text, source }: Epigraph, index: number): Html {
 }
 
 export function halfTitle(job: Job): Html {
-  const { spec: { meta: { title, editor, author: { name } } } } = job;
+  const { spec: { lang, meta: { title, editor, author: { name } } } } = job;
   let markup = `<h1>${title}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
   if (!nameInTitle) {
-    markup = `${markup}\n<p class="byline">${br7}by ${name}</p>`;
+    markup = `${markup}\n<p class="byline">${br7}${lang === 'en' ? 'by' : 'por'} ${name}</p>`;
   }
 
-  if (editor) {
+  if (editor && lang === 'en') {
     markup += `\n<p class="editor">${br7}${br7}${br7}Edited by ${editor}</p>`;
   }
 
