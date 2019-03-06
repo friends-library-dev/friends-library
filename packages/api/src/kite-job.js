@@ -164,11 +164,11 @@ function convertTimestamps(jobs) {
 }
 
 function notStale({ updated_at }) {
-  return updated_at.isAfter(moment().subtract(7, 'minutes'));
+  return updated_at.isAfter(moment().subtract(10, 'minutes'));
 }
 
 function isStale({ updated_at }) {
-  return updated_at.isBefore(moment().subtract(7, 'minutes'));
+  return updated_at.isBefore(moment().subtract(10, 'minutes'));
 }
 
 function oldestFirst(a, b) {
