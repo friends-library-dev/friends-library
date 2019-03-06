@@ -255,15 +255,15 @@ describe('take()', () => {
         id: 'job-2',
         attempts: 1,
         status: 'in_progress',
-        updated_at: now.subtract(8, 'minutes').toDate(),
-        created_at: now.subtract(9, 'minutes').toDate(),
+        updated_at: now.subtract(11, 'minutes').toDate(),
+        created_at: now.subtract(12, 'minutes').toDate(),
       },
       {
         id: 'job-1',
         attempts: 1,
         status: 'in_progress',
-        updated_at: now.subtract(10, 'minutes').toDate(),
-        created_at: now.subtract(11, 'minutes').toDate(),
+        updated_at: now.subtract(14, 'minutes').toDate(),
+        created_at: now.subtract(15, 'minutes').toDate(),
       },
     ]);
 
