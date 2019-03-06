@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import striptags from 'striptags';
 import { toArabic } from 'roman-numerals';
 import { flow, memoize } from 'lodash';
-import { wrapper } from './text';
+import { wrapper, ucfirst } from './text';
 import { br7 } from './html';
 import { transformAsciidoc } from './transform-asciidoc';
 import { transformHtml } from './transform-html';
@@ -115,7 +115,7 @@ function extractHeading(section: Object, short: Map<string, string>) {
 }
 
 function parseHeading(text: string): Object {
-  const pattern = /(chapter|section) ((?:[1-9]+[0-9]*)|(?:[ivxlcdm]+))(?::|\.)?(?:\s+([^<]+))?/i;
+  const pattern = /(chapter|section|capítulo) ((?:[1-9]+[0-9]*)|(?:[ivxlcdm]+))(?::|\.)?(?:\s+([^<]+))?/i;
   const match = text.match(pattern);
 
   if (!match) {
@@ -126,7 +126,7 @@ function parseHeading(text: string): Object {
   return {
     text: (body || '').trim(),
     sequence: {
-      type: type.toLowerCase() === 'section' ? 'Section' : 'Chapter',
+      type: ucfirst(type),
       number: Number.isNaN(+number) ? toArabic(number) : +number,
     },
   };

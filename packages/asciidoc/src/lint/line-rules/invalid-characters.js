@@ -108,6 +108,9 @@ const allowed = [
   '£$',
   '[]#%^&*()-_=+\\/{}°',
   '\n ',
+  // 'íéóáúñü', // spanish only
+  // 'ÉÁÚ', // spanish only
+  // '¡¿', // spanish only
 ].join('').split('').reduce((obj, char) => {
   obj[char] = true;
   return obj;

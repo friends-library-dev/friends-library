@@ -18,13 +18,13 @@ export function frontmatter(job: Job): Html {
   `;
 }
 
-function toc({ spec: { sections } }: Job): Html {
+function toc({ spec: { lang, sections } }: Job): Html {
   if (sections.length === 1) {
     return '';
   }
   return `
     <div class="toc own-page">
-      <h1>Contents</h1>
+      <h1>${lang === 'en' ? 'Contents' : 'Índice'}</h1>
       ${sections.map(tocEntry).join('\n      ')}
     </div>
   `;

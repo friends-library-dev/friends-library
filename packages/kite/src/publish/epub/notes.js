@@ -1,5 +1,5 @@
 // @flow
-import type { Html } from '../../../../../type';
+import type { Html, Lang } from '../../../../../type';
 import type { Job, DocSection, Notes } from '../../type';
 
 const symbolMap = new Map([
@@ -39,9 +39,9 @@ export function callMarkup(id: string, ref: string | number, withId: boolean = t
 }
 
 export function notesMarkup(job: Job): Html {
-  const { spec: { notes, sections } } = job;
+  const { spec: { lang, notes, sections } } = job;
   const locations = getNoteLocations(sections);
-  const helperNote = getHelperNote(useSymbols(notes));
+  const helperNote = getHelperNote(useSymbols(notes), lang);
   const getRef = makeGetRef(job);
   return `
     <div id="footnotes">
@@ -75,6 +75,10 @@ function getNoteLocations(sections: Array<DocSection>): Map<string, string> {
   }, new Map());
 }
 
-function getHelperNote(symbols: boolean): string {
-  return `You made it to the notes area! To get back to where you just were, click the back arrow (\u23CE) at the end of the note, or the ${symbols ? 'symbol' : 'number'} at the beginning of the note, or use your e-reader’s “back to page...” feature.`;
+function getHelperNote(symbols: boolean, lang: Lang): string {
+  if (lang === 'en') {
+    return `You made it to the notes area! To get back to where you just were, click the back arrow (\u23CE) at the end of the note, or the ${symbols ? 'symbol' : 'number'} at the beginning of the note, or use your e-reader’s “back to page...” feature.`;
+  }
+  // TODO need spanish for "symbol" or "number"
+  return '¡Llegaste a la sección de notas! Para volver al lugar donde estabas leyendo, haz clic en la pequeña flecha (\u23CE) al final de la nota, o en el número al principio de la nota, o donde tu aplicación dice  “volver a la página.”';
 }
