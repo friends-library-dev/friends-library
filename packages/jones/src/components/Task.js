@@ -3,6 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import moment from 'moment';
+import uuid from 'uuid/v4';
 import smalltalk from 'smalltalk';
 import * as actions from '../actions';
 import { values } from '../flow-utils';
@@ -90,6 +91,7 @@ type Props = {|
   workOnTask: Dispatch,
   deleteTask: Dispatch,
   updateTask: Dispatch,
+  reInitTask: Dispatch,
 |};
 
 type State = {|
@@ -148,11 +150,24 @@ class Task extends React.Component<Props, State> {
 
   render() {
     const { submitting } = this.state;
-    const { task, repo, workOnTask, taskHasWork } = this.props;
+    const { task, repo, workOnTask, taskHasWork, reInitTask } = this.props;
     return (
       <Wrap>
         <h1>
-          <i className="fas fa-code-branch" /> {task.name}
+          <i
+            className="fas fa-code-branch"
+            onContextMenu={(e) => {
+              e.preventDefault();
+              smalltalk
+                .confirm(
+                  'Recover?',
+                  'Recover allows you to re-submit a task that has been worked on after the PR has been merged.',
+                  { buttons: { ok: 'Recover', cancel: 'Cancel' } },
+                )
+                .then(() => reInitTask({ id: task.id, newId: uuid() }))
+                .catch(() => {});
+            }}
+          /> {task.name}
         </h1>
         <p className="friend">Friend: <em>{repo.friendName}</em></p>
         <ul className="time">
@@ -225,6 +240,7 @@ const mapDispatch = {
   workOnTask: actions.workOnTask,
   updateTask: actions.updateTask,
   deleteTask: actions.deleteTask,
+  reInitTask: actions.reInitTask,
 };
 
 export default connect(mapState, mapDispatch)(Task);

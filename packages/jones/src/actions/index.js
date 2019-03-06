@@ -37,6 +37,7 @@ export const redoTasks = createAction('REDO_TASKS');
 export const toggleSearchCaseSensitive = createAction('TOGGLE_SEARCH_CASE_SENSITIVE');
 export const toggleSearchRegexp = createAction('TOGGLE_SEARCH_REGEXP');
 export const toggleSearchWords = createAction('TOGGLE_SEARCH_WORDS');
+export const reInitTask = createAction('REINIT_TASK');
 
 export function toggleSidebarOpen(adoc: Asciidoc): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {

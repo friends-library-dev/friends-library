@@ -26,7 +26,26 @@ describe('taskReducer()', () => {
     };
   });
 
-  test('TASK_RE_SUBMITTED updates parent commet', () => {
+  test('REINIT_TASK re-sets id and prNumber', () => {
+    action.type = 'REINIT_TASK';
+    action.payload = { id: 'id', newId: 'new-id' };
+    state.id.prNumber = 3;
+
+    const newState = taskReducer(state, action);
+
+    expect(newState).toEqual({
+      'new-id': {
+        id: 'new-id',
+        files: {
+          'path.adoc': {
+            content: 'Thou dost thou foo!',
+          },
+        },
+      },
+    });
+  });
+
+  test('TASK_RE_SUBMITTED updates parent commit', () => {
     action.type = 'TASK_RE_SUBMITTED';
     action.payload = { id: 'id', parentCommit: 'some-sha' };
     state.id.files['path.adoc'].editedContent = 'lol';

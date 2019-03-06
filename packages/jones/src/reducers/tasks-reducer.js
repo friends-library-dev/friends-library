@@ -54,6 +54,17 @@ export default createReducer({}, {
     }
   },
 
+  REINIT_TASK: (state, { payload: { id: oldId, newId }}) => {
+    const task = state[oldId];
+    if (!task) {
+      return;
+    }
+    delete state[oldId];
+    task.id = newId;
+    delete task.prNumber;
+    state[newId] = task;
+  },
+
   CREATE_TASK: (state, action) => {
     const { payload: { taskId } } = action;
     const time = (new Date()).toJSON();
