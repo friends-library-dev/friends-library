@@ -9,15 +9,14 @@ import { getBookSize } from '../publish/book-sizes';
 
 export default function cover(argv: Object): void {
   const pages = +argv.pages || 100;
-  const sizeName = argv.size || 'Digest';
-  const size = getBookSize(argv.size || 'm');
+  const size = getBookSize(argv.printSize || 'm');
   if (!size) {
-    throw new Error(`Invalid book size ${sizeName}`);
+    throw new Error('Invalid book size, use --print-size s | m | l | xl | xxl');
   }
 
   makeCover(
-    'The Work of Vital Religion in the Soul',
-    'Samuel Rundell',
+    'No Cruz, No Corona',
+    'William Penn',
     // 'The Original and Present State of Man',
     // 'Joseph Phipps',
     pages,
