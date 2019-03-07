@@ -14,6 +14,7 @@ export { default as invalidCharacters } from './invalid-characters';
 export { default as chapterSynopsisList } from './chapter-synopsis-list-item';
 export { default as doubledPunctuation } from './doubled-punctuation';
 export { default as consecutiveSpaces } from './consecutive-spaces';
+export { default as noLimes } from './no-limes';
 export { default as gitConflictMarkers } from './git-conflict-markers';
 export { default as hangingQuotes } from './hanging-quotes';
 export { default as trailingHyphen } from './trailing-hyphen';
