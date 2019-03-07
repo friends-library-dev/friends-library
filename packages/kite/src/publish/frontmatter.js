@@ -4,7 +4,7 @@ import { memoize, pickBy } from 'lodash';
 import type { Html } from '../../../../type';
 import type { Job, FileManifest, Epigraph } from '../type';
 import { printDims } from './pdf/manifest';
-import { capitalizeTitle } from './text';
+import { capitalizeTitle, ucfirst } from './text';
 import { br7 } from './html';
 
 export const frontmatter = memoize((job: Job): FileManifest => {
@@ -74,7 +74,7 @@ function originalTitle({ spec: { meta } }: Job): Html {
 }
 
 export function copyright(job: Job): Html {
-  const { spec: { revision: { timestamp, sha, url }, meta: { published, isbn } } } = job;
+  const { spec: { lang, revision: { timestamp, sha, url }, meta: { published, isbn } } } = job;
   let marginData = '';
   if (job.meta.debugPrintMargins) {
     const dims = printDims(job);
@@ -85,18 +85,47 @@ export function copyright(job: Job): Html {
       return `<li class="debug"><code>$${k}: ${dims[k]};</code></li>`;
     }).join('\n').concat('<li></li><li></li>');
   }
-  const time = moment.utc(moment.unix(timestamp)).format('MMMM Do, YYYY');
+
+  moment.locale(lang);
+  let time = moment
+    .utc(moment.unix(timestamp))
+    .format(lang === 'en' ? 'MMMM Do, YYYY' : 'D [de] MMMM, YYYY');
+
+  if (lang === 'es') {
+    time = time.split(' ').map(p => p === 'de' ? p : ucfirst(p)).join(' ');
+  }
+
+  let strings = {
+    publicDomain: 'Public domain in the USA',
+    publishedIn: 'Originally published in',
+    textRevision: 'Text revision',
+    createdBy: 'Ebook created and freely distributed by',
+    moreFreeBooks: 'Find more free books from early Quakers at',
+    contact: 'Contact the publishers at',
+  };
+
+  if (lang === 'es') {
+    strings = {
+      publicDomain: 'Dominio público en los Estados Unidos de América',
+      publishedIn: 'Publicado originalmente en',
+      textRevision: 'Revisión de texto',
+      createdBy: 'Creado y distribuido gratuitamente por',
+      moreFreeBooks: 'Encuentre más libros gratis de los primeros Cuáqueros en',
+      contact: 'Puede contactarnos en',
+    };
+  }
+
   return `
   <div class="copyright-page">
     <ul>
       ${marginData}
-      <li>Public domain in the USA</li>
-      ${published ? `<li>Originally published in ${published}</li>` : ''}
+      <li>${strings.publicDomain}</li>
+      ${published ? `<li>${strings.publishedIn} ${published}</li>` : ''}
       ${isbn ? `<li id="isbn">ISBN: <code>${isbn}</code></li>` : ''}
-      <li>Text revision <code><a href="${url}">${sha}</a></code> — ${time}</li>
-      <li>Ebook created and freely distributed by <a href="https://friendslibrary.com">Friends Library Publishing</a></li>
-      <li>Find more free books from early Quakers at <a href="https://friendslibrary.com">friendslibrary.com</a></li>
-      <li>Contact the publishers at <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
+      <li>${strings.textRevision} <code><a href="${url}">${sha}</a></code> — ${time}</li>
+      <li>${strings.createdBy} <a href="https://friendslibrary.com">Friends Library Publishing</a></li>
+      <li>${strings.moreFreeBooks} <a href="https://friendslibrary.com">friendslibrary.com</a></li>
+      <li>${strings.contact} <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
     </ul>
   </div>
   `;

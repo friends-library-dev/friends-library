@@ -22,6 +22,23 @@ describe('frontmatter()', () => {
     expect(files['original-title']).toContain('Original Title &c.');
   });
 
+  test('strings switch to spanish if spec.lang = es', () => {
+    job.spec.lang = 'es';
+
+    const files = frontmatter(job);
+
+    expect(files.copyright).toContain('Dominio público');
+  });
+
+  test('copyright text revision date is localized to spanish', () => {
+    job.spec.lang = 'es';
+    job.spec.revision.timestamp = 1551978091;
+
+    const files = frontmatter(job);
+
+    expect(files.copyright).toContain('7 de Marzo, 2019');
+  });
+
   test('copyright has published date if data exists on spec', () => {
     job.spec.meta.published = 1834;
 
