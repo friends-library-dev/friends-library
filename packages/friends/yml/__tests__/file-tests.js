@@ -7,6 +7,10 @@ import { yamlGlob, tags, editions, formats, chapters, hasProp, isSlug } from '..
 const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
 const filenames = [];
 
+const isbnPath = path.resolve(__dirname, '../../../kite/src/isbn/suffixes.txt');
+const isbnPool = readFileSync(isbnPath).toString().trim().split('\n');
+const isbns = [];
+
 describe('all files', () => {
   test('files is not empty', () => {
     expect(files.length).not.toBe(0);
@@ -163,6 +167,34 @@ files.forEach((file) => {
         if (edition.type === 'updated' && file.path.indexOf('/es/') === -1) {
           expect(hasProp(edition, 'editor')).toBe(true);
           expect(typeof edition.editor).toBe('string');
+        }
+      });
+    });
+
+    test('edition isbns are correctly formatted', () => {
+      editions(friend).forEach(edition => {
+        if (hasProp(edition, 'isbn')) {
+          const { isbn } = edition;
+          expect(isbn).toMatch(/^978-1-64476-\d\d\d-\d$/);
+        }
+      });
+    });
+
+    test('edition isbns are one of ours', () => {
+      editions(friend).forEach(edition => {
+        if (hasProp(edition, 'isbn')) {
+          const suffix = edition.isbn.replace(/^978-1-64476-/, '');
+          expect(isbnPool.includes(suffix)).toBe(true);
+        }
+      });
+    });
+
+    test('edition isbns are unique', () => {
+      editions(friend).forEach(edition => {
+        if (hasProp(edition, 'isbn')) {
+          const { isbn } = edition;
+          expect(isbns.includes(isbn)).toBe(false);
+          isbns.push(isbn);
         }
       });
     });

@@ -15,6 +15,7 @@ documents:
     editions:
       -
         type: updated
+        isbn: 978-1-64476-002-4
         formats:
           -
             type: pdf
