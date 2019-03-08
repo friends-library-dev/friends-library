@@ -1,4 +1,5 @@
 // @flow
+import chunk from 'lodash/chunk';
 import type { ModifiedAsciidocFile, Context } from '../type';
 import { getLintAnnotations } from '../lint-adoc';
 
@@ -25,20 +26,25 @@ export default async function lintCheck(
   };
 
   if (annotations.length === 0) {
-    await github.checks.update(repo({
+    github.checks.update(repo({
       ...update,
       conclusion: 'success',
     }));
     return;
   }
 
-  await github.checks.update(repo({
-    ...update,
-    conclusion: 'failure',
-    output: {
-      title: 'Asciidoc lint failure',
-      summary: `Found ${annotations.length} problems`,
-      annotations,
-    },
-  }));
+  // github limits to max 50 annotations per request
+  const pages = chunk(annotations, 50);
+
+  pages.forEach(async page => {
+    await github.checks.update(repo({
+      ...update,
+      conclusion: 'failure',
+      output: {
+        title: 'Asciidoc lint failure',
+        summary: `Found ${annotations.length} problems`,
+        annotations: page,
+      },
+    }));
+  });
 }
