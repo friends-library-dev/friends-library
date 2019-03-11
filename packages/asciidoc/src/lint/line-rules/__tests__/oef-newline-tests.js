@@ -11,7 +11,9 @@ describe('eofNewline()', () => {
       column: false,
       type: 'error',
       rule: 'eof-newline',
+      fixable: true,
       message: 'Files must end with a single blank line',
+      recommendation: '--> add a new line to the end of the file',
     });
   });
 

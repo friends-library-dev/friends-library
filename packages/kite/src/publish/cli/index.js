@@ -2,7 +2,8 @@
 /* istanbul ignore file */
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
-import { lintPath } from '@friends-library/asciidoc';
+import { lintDir, lintFixDir } from '@friends-library/asciidoc';
+import { red } from '@friends-library/cli/color';
 import type { JobMeta, Job, SourceSpec, FileType, SourcePrecursor } from '../../type';
 import { makeEpub } from '../epub/make';
 import { makeMobi } from '../mobi/make';
@@ -21,11 +22,7 @@ export default function publish(argv: Object): Promise<*> {
   const { path } = argv;
 
   if (!argv.skipLint) {
-    const lints = lintPath(path);
-    if (lints.count() > 0) {
-      const clean = printLints(lints, false, argv.fix === true);
-      !clean && process.exit(1);
-    }
+    lint(path, !!argv.fix);
   }
 
   const cmd = createCommand(argv);
@@ -47,6 +44,24 @@ export function publishPrecursors(
   }
 
   return complete;
+}
+
+function lint(path: string, fix: boolean): void {
+  if (fix === true) {
+    const { unfixable, numFixed } = lintFixDir(path);
+    if (unfixable.count() > 0) {
+      printLints(unfixable);
+      red(`\n\nERROR: ${unfixable.count()} remaining lint errors (fixed ${numFixed}). 😬 `);
+      process.exit(1);
+    }
+  }
+
+  const lints = lintDir(path);
+  if (lints.count() > 0) {
+    printLints(lints);
+    red(`\n\nERROR: ${lints.count()} lint errors must be fixed. 😬 `);
+    process.exit(1);
+  }
 }
 
 function resetPublishDir(): void {

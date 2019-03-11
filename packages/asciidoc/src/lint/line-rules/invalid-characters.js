@@ -1,6 +1,7 @@
 // @flow
 import unicharadata from 'unicharadata';
 import type { Asciidoc, LintResult } from '../../../../../type';
+import gitConflictMarkers from './git-conflict-markers';
 
 export default function rule(
   line: Asciidoc,
@@ -12,6 +13,10 @@ export default function rule(
   }
 
   if (isSuppressed(lines, lineNumber)) {
+    return [];
+  }
+
+  if (gitConflictMarkers(line, lines, lineNumber).length) {
     return [];
   }
 

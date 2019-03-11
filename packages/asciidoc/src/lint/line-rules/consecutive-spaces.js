@@ -21,9 +21,16 @@ export default function rule(
   while ((match = expr.exec(line))) {
     const isLeading = match.index === 0;
     const isTrailing = match.index + match[0].length === line.length;
-    if (!isLeading && !isTrailing) {
-      results.push(getLint(match, line, lineNumber));
+    if (isLeading || isTrailing) {
+      continue;
     }
+
+    // will be caught by `invalid-heading` rule
+    if (results.length === 0 && line.substring(0, match.index + 1).match(/^===?=? $/)) {
+      continue;
+    }
+
+    results.push(getLint(match, line, lineNumber));
   }
   return results;
 }

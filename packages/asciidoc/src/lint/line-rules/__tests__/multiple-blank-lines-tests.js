@@ -18,6 +18,8 @@ describe('multipleBlankLines()', () => {
       type: 'error',
       rule: 'multiple-blank-lines',
       message: 'Multiple blank lines are not allowed',
+      fixable: true,
+      recommendation: '--> remove preceding line/s: (2)',
     });
   });
 
@@ -35,6 +37,7 @@ describe('multipleBlankLines()', () => {
       const results = multipleBlankLines(line, lines, index + 1);
       if (index === 4) {
         expect(results).toHaveLength(1);
+        expect(results[0].recommendation).toBe('--> remove preceding line/s: (2,3,4)');
       } else {
         expect(results).toHaveLength(0);
       }
