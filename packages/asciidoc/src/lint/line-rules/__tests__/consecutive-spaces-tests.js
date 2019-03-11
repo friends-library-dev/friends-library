@@ -21,6 +21,11 @@ describe('consecutiveSpaces()', () => {
     expect(results).toHaveLength(0);
   });
 
+  it('ignores extra spacing in heading, caught by `invalid-heading`', () => {
+    const results = consecutiveSpaces('==  Chapter 1', [], 1);
+    expect(results).toHaveLength(0);
+  });
+
   it('flags multiple different violations in same line', () => {
     const results = consecutiveSpaces('Foo  bar  baz', [], 1);
     expect(results).toHaveLength(2);

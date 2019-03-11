@@ -26,6 +26,7 @@ export default function rule(
     rule: rule.slug,
     message: 'Incorrect usage of smart quotes/apostrophes',
     recommendation: fixed,
+    fixable: true,
   }];
 }
 

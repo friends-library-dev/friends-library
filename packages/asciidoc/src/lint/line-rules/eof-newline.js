@@ -16,6 +16,8 @@ export default function rule(
     type: 'error',
     rule: rule.slug,
     message: 'Files must end with a single blank line',
+    fixable: true,
+    recommendation: '--> add a new line to the end of the file',
   }];
 }
 

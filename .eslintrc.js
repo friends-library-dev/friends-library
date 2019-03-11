@@ -14,6 +14,7 @@ module.exports = {
     jest: false,
   },
   rules: {
+    'no-continue': 0,
     'react/no-danger': 0,
     'no-only-tests/no-only-tests': 2,
     'arrow-body-style': 0,

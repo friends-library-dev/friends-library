@@ -38,6 +38,8 @@ describe('invalidCharacters()', () => {
   const allowed = [
     ['Jim jam.'],
     ['// lint-disable invalid-character\n• foo'],
+    ['<<<<<<<'], // caught by `git-conflict-marker`
+    ['>>>>>>>'], // caught by `git-conflict-marker`
   ];
 
   test.each(allowed)('%s should not be linted', adoc => {

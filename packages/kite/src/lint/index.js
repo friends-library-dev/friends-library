@@ -1,37 +1,56 @@
 // @flow
 /* istanbul ignore file */
-import { lintPath } from '@friends-library/asciidoc';
+import { lintFixDir, lintDir, DirLints } from '@friends-library/asciidoc';
 import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
 import chalk from 'chalk';
 import leftPad from 'left-pad';
-import fs from 'fs-extra';
 
 export default function (path: string, argv: Object): void {
-  const lints = lintPath(path, argv.rules || null, argv.exclude || null);
+  const options = {
+    lang: 'en',
+    ...argv.rules ? { include: argv.rules } : {},
+    ...argv.exclude ? { exclude: argv.exclude } : {},
+  };
+
+  if (argv.fix) {
+    const { unfixable, numFixed } = lintFixDir(path, options);
+    if (unfixable.count() === 0) {
+      green(`${numFixed}/${numFixed} lint violations fixed! 😊 \n`);
+      process.exit(0);
+      return;
+    }
+
+    printLints(unfixable, argv.limit || false);
+    if (numFixed > 0) {
+      cyan(`\n\nFixed ${numFixed} lint violation/s. 👍`);
+    }
+    red(`Found ${unfixable.count()} un-fixable lint violation/s. 😬 `);
+    process.exit(1);
+  }
+
+  const lints = lintDir(path, options);
   if (lints.count() === 0) {
     green('0 lint violations found! 😊 \n');
     process.exit(0);
   }
 
-  const clean = printLints(lints, argv.limit || false, argv.fix);
-  process.exit(clean ? 0 : 1);
+  printLints(lints, argv.limit || false);
+  const numFixable = lints.numFixable();
+  red(`\n\nFound ${lints.count()} lint violation/s. 😬 `);
+  if (numFixable > 0) {
+    red(`${numFixable} are fixable with --fix. 👍`);
+  }
+  process.exit(1);
 }
 
 export function printLints(
-  lints: any,
-  limit: false | number,
-  doFix: boolean = false,
-): boolean {
-  const total: number = lints.count();
-  let numFixed = 0;
-
+  lints: DirLints,
+  limit: false | number = false,
+): void {
   let printed = 0;
-  [...lints].forEach(([filepath, { lints: fileLints, adoc }]) => {
+  lints.toArray().forEach(([filepath, { lints: fileLints, adoc }]) => {
     if (limit && printed >= limit) {
       return;
-    }
-    if (doFix) {
-      fix(filepath, fileLints);
     }
     const lines = adoc.split('\n');
     fileLints.forEach(lint => {
@@ -39,54 +58,10 @@ export function printLints(
         return;
       }
 
-      if (lint.fixed === true) {
-        numFixed++;
-      }
-
       printResult(lint, filepath, lines);
       printed++;
     });
   });
-
-  red(`\n\nFound ${total} lint violation/s. 😬 `);
-  if (numFixed > 0) {
-    cyan(`Fixed ${numFixed} lint violation/s. 👍`);
-  }
-  console.log('\n');
-  return total - numFixed === 0;
-}
-
-function fix(path, results) {
-  const lines = fs.readFileSync(path).toString().split('\n');
-  const modifiedLines = new Set();
-  results.forEach(result => {
-    if (!result.fixable || modifiedLines.has(result.line)) {
-      return;
-    }
-
-    if (!Object.prototype.hasOwnProperty.call(result, 'recommendation')) {
-      return;
-    }
-
-    // multi-line fix
-    if (result.rule === 'trailing-hyphen' && !modifiedLines.has(result.line + 1)) {
-      const [first, second] = result.recommendation.split('\n');
-      lines[result.line - 1] = first;
-      lines[result.line] = second;
-      modifiedLines.add(result.line);
-      modifiedLines.add(result.line + 1);
-      result.fixed = true;
-      return;
-    }
-
-    lines[result.line - 1] = result.recommendation;
-    modifiedLines.add(result.line);
-    result.fixed = true;
-  });
-
-  if (modifiedLines.size > 0) {
-    fs.writeFileSync(path, lines.join('\n'));
-  }
 }
 
 function printResult(result, path, lines) {
@@ -111,9 +86,7 @@ function printResult(result, path, lines) {
 
   if (result.recommendation) {
     green(result.recommendation);
-    if (result.fixed) {
-      cyan('FIXED. 👍');
-    } else if (result.fixable) {
+    if (result.fixable) {
       console.log(chalk.dim.cyan('Use `--fix` to automatically fix'));
     }
     return;

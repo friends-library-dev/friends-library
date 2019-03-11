@@ -44,3 +44,10 @@ export type LintResult = {|
   recommendation?: string,
   fixable?: boolean,
 |};
+
+export type LintOptions = {|
+  lang: Lang,
+  editionType?: EditionType,
+  include?: Array<string>,
+  exclude?: Array<string>,
+|};
