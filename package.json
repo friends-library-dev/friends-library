@@ -15,6 +15,7 @@
     "lint": "yarn js:lint && yarn sass:lint",
     "js:lint": "yarn eslint .",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
+    "asciidoc:scaffold:lint": "cd ./packages/asciidoc && yarn scaffold:lint",
     "api:develop": "cd ./packages/api && yarn start",
     "api:deploy": "cd ./packages/api && yarn deploy",
     "styleguide:develop": "cd ./packages/styleguide && yarn start",
