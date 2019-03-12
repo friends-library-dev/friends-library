@@ -56,7 +56,7 @@ const ToggleEl = styled.div`
 `;
 
 const Closed = styled.div`
-  width: 25px;
+  width: 15px;
   background: transparent;
   position: absolute;
   height: calc(100vh - 50px);
