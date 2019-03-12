@@ -2,6 +2,7 @@
 import smalltalk from 'smalltalk';
 import { Base64 } from 'js-base64';
 import * as gh from '../lib/github-api';
+import * as api from '../lib/api';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import type { Slug, Url } from '../../../../type';
 import type { Task, ReduxThunk, Dispatch, State } from '../type';
@@ -35,27 +36,20 @@ function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Promise
     if (typeof file.editedContent === "undefined" || file.editedContent === file.content) {
       return;
     }
-    const promise = fetch(`${process.env.REACT_APP_API_URL || ''}/lint/fix`, {
-      method: 'post',
-      mode: 'cors',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        encoded: Base64.encode(file.editedContent),
-      }),
-    })
+
+    const promise = api.postEncodedAsciidoc('/lint/fix', file.editedContent)
       .then(res => res.json())
       .then(({ encoded }) => {
-        if (encoded !== null) {
-          dispatch({
-            type: 'UPDATE_FILE',
-            payload: { id: task.id, path, adoc: Base64.decode(encoded) },
-          });
+        if (encoded === null) {
+          return;
         }
+        dispatch({
+          type: 'UPDATE_FILE',
+          payload: { id: task.id, path, adoc: Base64.decode(encoded) },
+        });
       })
       .catch(() => {});
+
     promises.push(promise);
   });
 

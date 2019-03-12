@@ -16,7 +16,7 @@ describe('lintFixDir()', () => {
     `).trim();
 
     const dir = `${__dirname}/__testdir__`;
-    fs.mkdirp(dir);
+    fs.mkdirpSync(dir);
     fs.writeFileSync(`${dir}/test.adoc`, `${adoc} `);
 
     const { unfixable, numFixed } = lintFixDir(dir);
@@ -41,6 +41,6 @@ describe('lintFixDir()', () => {
       rule: 'git-conflict-markers',
     });
 
-    fs.remove(dir);
+    fs.removeSync(dir);
   });
 });

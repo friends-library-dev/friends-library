@@ -11,6 +11,7 @@ import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
 import { italicize } from '../lib/format';
+import * as api from '../lib/api';
 import './adoc-mode';
 import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
@@ -60,6 +61,8 @@ class Editor extends React.Component<Props> {
     this.addKeyCommands();
     this.editor().focus();
     this.editor().gotoLine(0);
+    this.editor().setPrintMarginColumn(90);
+    this.checkLint(this.editor().getValue());
   }
 
   componentDidUpdate(prev) {
@@ -76,6 +79,30 @@ class Editor extends React.Component<Props> {
     if (!this.editor().commands.commands.increaseFontSize) {
       this.addKeyCommands();
     }
+  }
+
+  checkLint(adoc) {
+    api.postEncodedAsciidoc('/lint/check', adoc)
+      .then(res => res.json())
+      .then(lints => lints.filter(l => l.fixable !== true))
+      .then(lints => lints.filter(l => l.rule !== 'temporary-comments'))
+      .then(lints => this.annotateLintErrors(lints))
+      .catch(() => {});
+  }
+
+  annotateLintErrors(lints) {
+    this.editor().getSession().setAnnotations(lints.map(lint => {
+      let text = lint.message;
+      if (lint.recommendation) {
+        text += `\n\nRecommended fix:\n\n${lint.recommendation}`;
+      }
+      return {
+        row: lint.line - 1,
+        column: lint.column,
+        text,
+        type: 'warning',
+      }
+    }));
   }
 
   addKeyCommands() {
@@ -155,7 +182,10 @@ class Editor extends React.Component<Props> {
         ref={this.aceRef}
         mode="adoc"
         theme="tomorrow_night"
-        onChange={debounce(updateFile, 500)}
+        onChange={debounce((adoc) => {
+          updateFile(adoc);
+          this.checkLint(adoc);
+        }, 500)}
         value={adoc || ''}
         editorProps={{ $blockScrolling: true }}
         setOptions={{

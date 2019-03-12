@@ -10,6 +10,15 @@ export default styled.div`
   width: 100%;
   height: ${p => p.searching ? minusSearch : '100%'};
 
+  .ace_print-margin {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .ace_gutter-cell.ace_warning {
+    color: #4c390c;
+    background-color: #846a3b;
+  }
+
   .ace_gutter {
     background: #282c34;
     color: #555 !important;
