@@ -36,11 +36,15 @@ const Results = styled.div`
   overflow: auto;
 `;
 
-const initialState = {
-  searchComplete: false,
-  searchTerm: '',
-  replaceTerm: '',
-  results: [],
+let keepSearchTerm = '';
+
+function initialState() {
+  return {
+    searchComplete: false,
+    searchTerm: keepSearchTerm,
+    replaceTerm: '',
+    results: [],
+  }
 };
 
 
@@ -62,12 +66,12 @@ type State = {|
 |};
 
 class Search extends React.Component<Props, State> {
-  state = initialState
+  state = initialState()
 
   componentDidUpdate(prev) {
     const { files, regexp, words, caseSensitive } = this.props;
     if (files.length !== prev.files.length) {
-      this.setState(initialState);
+      this.setState(initialState());
       return;
     }
     if (
@@ -80,6 +84,7 @@ class Search extends React.Component<Props, State> {
   }
 
   changeSearchTerm = searchTerm => {
+    keepSearchTerm = searchTerm;
     this.setState({
       searchTerm,
       searchComplete: false,
@@ -96,16 +101,23 @@ class Search extends React.Component<Props, State> {
   search = () => {
     const { searchTerm } = this.state;
     const { files, regexp, caseSensitive, words } = this.props;
-    if (searchTerm.trim()) {
-      const results = searchFiles(
-        searchTerm,
-        files,
-        words,
-        caseSensitive,
-        regexp,
-      );
-      this.setState({ results, searchComplete: true });
+    const termLength = searchTerm.trim().length;
+    if (termLength < 3) {
+      return;
     }
+
+    if (regexp && termLength < 5) {
+      return;
+    }
+
+    const results = searchFiles(
+      searchTerm,
+      files,
+      words,
+      caseSensitive,
+      regexp,
+    );
+    this.setState({ results, searchComplete: true });
   }
 
   cancelSearch = () => {
