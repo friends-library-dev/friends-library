@@ -54,7 +54,8 @@ function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Promise
             payload: { id: task.id, path, adoc: Base64.decode(encoded) },
           });
         }
-      });
+      })
+      .catch(() => {});
     promises.push(promise);
   });
 
