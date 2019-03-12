@@ -82,6 +82,10 @@ class Editor extends React.Component<Props> {
   }
 
   checkLint(adoc) {
+    if (typeof adoc !== 'string') {
+      return;
+    }
+
     api.postEncodedAsciidoc('/lint/check', adoc)
       .then(res => res.json())
       .then(lints => lints.filter(l => l.fixable !== true))
