@@ -1,5 +1,6 @@
 // @flow
 import smalltalk from 'smalltalk';
+import { Base64 } from 'js-base64';
 import * as gh from '../lib/github-api';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import type { Slug, Url } from '../../../../type';
@@ -11,9 +12,11 @@ export function submitTask(task: Task): ReduxThunk {
     if (!user) {
       return;
     }
+
+    const fixedTask = await lintFix(task, dispatch, getState);
     dispatch({ type: 'SUBMITTING_TASK' });
     const pr = await tryGithub(async () => {
-      return await gh.createNewPullRequest(task, user)
+      return await gh.createNewPullRequest(fixedTask, user)
     }, 'SUBMIT_TASK', dispatch);
     if (pr) {
       dispatch({ type: 'TASK_SUBMITTED', payload: {
@@ -25,15 +28,49 @@ export function submitTask(task: Task): ReduxThunk {
   };
 }
 
+function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Promise<Task> {
+  const promises = [];
+  Object.keys(task.files).forEach(path => {
+    const file = task.files[path];
+    if (typeof file.editedContent === "undefined" || file.editedContent === file.content) {
+      return;
+    }
+    const promise = fetch(`${process.env.REACT_APP_API_URL || ''}/lint/fix`, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        encoded: Base64.encode(file.editedContent),
+      }),
+    })
+      .then(res => res.json())
+      .then(({ encoded }) => {
+        if (encoded !== null) {
+          dispatch({
+            type: 'UPDATE_FILE',
+            payload: { id: task.id, path, adoc: Base64.decode(encoded) },
+          });
+        }
+      });
+    promises.push(promise);
+  });
+
+  return Promise.all(promises).then(() => getState().tasks.present[task.id]);
+}
+
 export function resubmitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const { github: { user } } = getState();
     if (!user) {
       return;
     }
+    const fixedTask = await lintFix(task, dispatch, getState);
     dispatch({ type: 'RE_SUBMITTING_TASK' });
     const sha = await tryGithub(async () => {
-      return await gh.addCommit(task, user);
+      return await gh.addCommit(fixedTask, user);
     }, 'SUBMIT_TASK', dispatch);
     if (sha) {
       dispatch({

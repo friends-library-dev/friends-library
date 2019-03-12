@@ -24,12 +24,11 @@ type GitFile = {|
   content: string,
 |};
 
-const gh = new Octokit();
+let gh = new Octokit();
 
 export function authenticate(token: string): void {
-  gh.authenticate({
-    type: 'oauth',
-    token,
+  gh = new Octokit({
+    auth: `token ${token}`,
   });
 }
 
