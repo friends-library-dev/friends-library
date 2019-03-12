@@ -210,4 +210,30 @@ describe('taskReducer()', () => {
       expect(newState.id.files['path.adoc'].editedContent).toBeNull();
     });
   });
+
+  describe('UPDATE_FILE', () => {
+    beforeEach(() => {
+      action.type = 'UPDATE_FILE';
+      action.payload = { id: 'id', path: 'path.adoc', adoc: 'new adoc' };
+    });
+
+    test('task not found returns state', () => {
+      action.payload.id = 'unknown';
+      const newState = taskReducer(state, action);
+      expect(newState).toBe(state);
+    });
+
+    test('sets file.editedContent for changed adoc', () => {
+      const newState = taskReducer(state, action);
+      expect(newState.id.files['path.adoc'].editedContent).toBe('new adoc');
+    });
+
+    test('reverts editedContent to null if matches content', () => {
+      state.id.files['path.adoc'].content = 'original';
+      state.id.files['path.adoc'].editedContent = 'changed';
+      action.payload.adoc = 'original';
+      const newState = taskReducer(state, action);
+      expect(newState.id.files['path.adoc'].editedContent).toBeNull();
+    });
+  });
 });

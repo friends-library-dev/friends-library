@@ -3,9 +3,11 @@ import express, { type $Request, type $Response } from 'express';
 import path from 'path';
 import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import { redirAndLog } from './download';
 import { handleGithubWebhook } from './github-webhook';
 import * as kiteJob from './kite-job';
+import * as lint from './lint';
 import legacy from './legacy';
 
 const { env: {
@@ -32,6 +34,15 @@ app.get('/kite-jobs/take', kiteJob.take);
 app.get('/kite-jobs/:id', kiteJob.get);
 app.patch('/kite-jobs/:id', kiteJob.update);
 app.delete('/kite-jobs/:id', kiteJob.destroy);
+
+app.post('/lint/fix', cors(), lint.fix);
+app.post('/lint/check', cors(), lint.check);
+app.options('/lint/fix', cors(), (req: $Request, res: $Response) => {
+  res.sendStatus(204);
+});
+app.options('/lint/check', cors(), (req: $Request, res: $Response) => {
+  res.sendStatus(204);
+});
 
 app.get('/download/:friend/:document/:edition/:filename', (req: $Request, res: $Response) => {
   const { params: { friend, document, edition, filename } } = req;
