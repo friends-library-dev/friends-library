@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
+  "scripts": {
+    "scaffold:lint": "node ./scripts/scaffold-lint.js"
+  },
   "dependencies": {
     "@babel/register": "^7.0.0",
     "unicharadata": "^9.0.0-alpha.6"

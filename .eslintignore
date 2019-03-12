@@ -6,3 +6,4 @@ packages/styleguide/dist/*
 packages/evans/public/*
 packages/evans/.cache/*
 packages/jones/build/*
+packages/asciidoc/scripts/*
