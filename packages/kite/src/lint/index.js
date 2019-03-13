@@ -15,7 +15,11 @@ export default function (path: string, argv: Object): void {
   if (argv.fix) {
     const { unfixable, numFixed } = lintFixDir(path, options);
     if (unfixable.count() === 0) {
-      green(`${numFixed}/${numFixed} lint violations fixed! 😊 \n`);
+      if (numFixed === 0) {
+        green('0 lint violations found! 😊 \n');
+      } else {
+        green(`${numFixed}/${numFixed} lint violations fixed! 😊 \n`);
+      }
       process.exit(0);
       return;
     }
