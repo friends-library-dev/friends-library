@@ -54,6 +54,11 @@ describe('quotify()', () => {
     expect(quotify(adoc)).toBe(adoc);
   });
 
+  test('possesive curly double-quote fixed', () => {
+    expect(quotify('Jared`"s')).toBe("Jared`'s");
+    expect(quotify('great name`"s sake')).toBe("great name`'s sake");
+  });
+
   test('bracket quotes not quotified', () => {
     const adoc = strip(`
       [#ch1.style-blurb, short="foobar"]
