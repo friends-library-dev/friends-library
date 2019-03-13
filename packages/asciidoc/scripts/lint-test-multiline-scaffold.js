@@ -1,0 +1,44 @@
+import myRule from '../my-slug';
+
+describe('myRule()', () => {
+  it('creates a lint for violation of `my-slug` rule', () => {
+    const adoc = 'Multiline\nasciidoc';
+    const lines = adoc.split('\n');
+    const results = myRule(lines[0], lines, 1);
+    expect(results).toHaveLength(1);
+    expect(results[0]).toEqual({
+      line: 1,
+      column: 1,
+      type: 'error',
+      rule: 'my-slug',
+      message: 'your message here',
+    });
+  });
+
+  const violations = [
+    // ['Violation', 'Fixed'],
+  ];
+
+  xtest.each(violations)('multiline adoc should have lint error', (adoc, fixed) => {
+    const lines = adoc.split('\n');
+    let results = [];
+    lines.forEach((line, i) => {
+      results = results.concat(myRule(line, lines, i + 1));
+    });
+    expect(results).toHaveLength(1);
+    expect(results[0].recommendation).toBe(fixed);
+  });
+
+  const allowed = [
+    // ['Not a violation'],
+  ];
+
+  xtest.each(allowed)('multiline adoc should not have lint error', adoc => {
+    const lines = adoc.split('\n');
+    let results = [];
+    lines.forEach((line, i) => {
+      results = results.concat(myRule(line, lines, i + 1));
+    });
+    expect(results).toHaveLength(0);
+  });
+});

@@ -3,17 +3,22 @@ const fs = require('fs');
 const camelCase = require('lodash/camelcase');
 const kebabCase = require('lodash/kebabcase');
 
-const usage = 'yarn asciidoc:scaffold:lint my-new-rule-slug';
+const usage = 'yarn asciidoc:scaffold:lint my-new-rule-slug [--multiline]';
 
 try {
   if (process.argv.length < 3) {
     throw new Error(`Must pass lint slug, e.g.: \`${usage}\``);
   }
 
-  if (process.argv.length > 3) {
+  if (process.argv.length > 4) {
     throw new Error(`Too many args, try: \`${usage}\``);
   }
 
+  if (process.argv.length === 4 && process.argv[3] !== '--multiline') {
+    throw new Error(`Bad second arg, use \`--multiline\` like: \`${usage}\``);
+  }
+
+  const multi = process.argv.length === 4 ? 'multiline-' : '';
   const slug = process.argv[2];
   const camel = camelCase(slug);
 
@@ -28,7 +33,7 @@ try {
   fs.writeFileSync(`${src}/lint/line-rules/index.js`, lines.join('\n'));
 
   let rule = fs.readFileSync(`${__dirname}/lint-rule-scaffold.js`).toString();
-  let test = fs.readFileSync(`${__dirname}/lint-test-scaffold.js`).toString();
+  let test = fs.readFileSync(`${__dirname}/lint-test-${multi}scaffold.js`).toString();
   rule = replaceStrings(rule, slug, camel);
   test = replaceStrings(test, slug, camel);
   fs.writeFileSync(`${src}/lint/line-rules/${slug}.js`, rule);
