@@ -43,6 +43,7 @@ export type LintResult = {|
   message: string,
   recommendation?: string,
   fixable?: boolean,
+  info?: string,
 |};
 
 export type LintOptions = {|
