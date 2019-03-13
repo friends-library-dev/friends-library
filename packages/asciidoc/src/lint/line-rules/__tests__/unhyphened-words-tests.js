@@ -20,6 +20,8 @@ describe('unhyphenedWords()', () => {
     ['To-morrow foo', 'Tomorrow foo'],
     ['To-day bar', 'Today bar'],
     ['Foo to-day', 'Foo today'],
+    ['Bed-side foo', 'Bedside foo'],
+    ['Foo bed-side', 'Foo bedside'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {

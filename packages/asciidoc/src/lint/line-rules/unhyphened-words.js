@@ -10,7 +10,7 @@ export default function rule(
     return [];
   }
 
-  const match = line.match(/\b(to-day|to-morrow|sun-set)\b/i);
+  const match = line.match(/\b(to-day|to-morrow|sun-set|bed-side)\b/i);
   if (!match) {
     return [];
   }
@@ -23,7 +23,8 @@ export default function rule(
     recommendation: line
       .replace(/(T|t)o-day/g, '$1oday')
       .replace(/(T|t)o-morrow/g, '$1omorrow')
-      .replace(/(S|s)un-set/g, '$1unset'),
+      .replace(/(S|s)un-set/g, '$1unset')
+      .replace(/(B|b)ed-side/g, '$1edside'),
     fixable: true,
   }];
 }
