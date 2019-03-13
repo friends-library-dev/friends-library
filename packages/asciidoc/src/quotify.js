@@ -44,7 +44,7 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
       && (charAfter && charAfter.match(/[a-z,;:.]/i))
     ) {
       // continue; // comment out to segregate possessive fixes
-      mod[index] = left(type);
+      mod[index] = left("'");
       continue;
     }
 
@@ -87,6 +87,7 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
     .replace(/([^` [])'`"/g, '$1`\'`"')
     .replace(/([^` [])"`'/g, '$1`"`\'')
     .replace(/(^|\b| |`|-)'`(\d\d)(\b|$| )/g, '$1`\'$2$3')
+    .replace(/([a-z])`"([a-z])/i, '$1`\'$2')
     .replace(
       /(^|\b| |`|-)'`(')?(T|t)is(\b|$| )/g,
       (_, a, b, c, d) => {
