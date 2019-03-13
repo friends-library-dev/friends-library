@@ -17,6 +17,15 @@ export default function rule(
     ['behove', 'behoove', true],
     ['behoves', 'behooves', true],
     ['staid', 'stayed', true],
+
+    // @see https://books.google.com/ngrams for data backing up below choices
+    ['hardheartedness', 'hard-heartedness', true],
+    ['fellow-creatures', 'fellow creatures', true],
+    ['fellow-travellers', 'fellow travellers', true],
+    ['fellow-traveller', 'fellow traveller', true],
+    ['fellow-servants', 'fellow servants', true],
+    ['fellow-servant', 'fellow servant', true],
+    ['heavy-laden', 'heavy laden', true],
   ];
 
   const results = [];
@@ -65,7 +74,7 @@ function getLint(
     column,
     type: 'error',
     rule: 'obsolete-spellings',
-    message: 'Obsolete spellings should be replaced in all editions',
+    message: `"${obsolete}" should be replaced with "${corrected}" in all editions`,
     fixable,
     recommendation: line.replace(search, `$1${replace}`),
     ...info !== '' ? { info } : {},

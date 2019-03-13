@@ -144,4 +144,20 @@ describe('singlePassFix()', () => {
     expect(fixed).toBe('Foo\n\n[.foo]\nBar\n');
     expect(unfixed).toBe(0);
   });
+
+  it('it correctly handles multi-line fix of `join-words` rule', () => {
+    const adoc = 'Foo bar every\nwhere\n';
+    const lints = lint(adoc);
+    const [fixed, unfixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe('Foo bar\neverywhere\n');
+    expect(unfixed).toBe(0);
+  });
+
+  it('it correctly handles single-line fix of `join-words` rule', () => {
+    const adoc = 'Foo bar every where\n';
+    const lints = lint(adoc);
+    const [fixed, unfixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe('Foo bar everywhere\n');
+    expect(unfixed).toBe(0);
+  });
 });

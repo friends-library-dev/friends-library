@@ -41,7 +41,8 @@ export default function fix(
       return;
     }
 
-    if (lint.rule === 'trailing-hyphen') {
+    // $FlowFixMe
+    if (lint.rule === 'trailing-hyphen' || (lint.rule === 'join-words' && lint.recommendation.indexOf('\n') !== -1)) {
       if (modifiedLines.has(lint.line + 1)) {
         numUnfixedFixables++;
       } else {
