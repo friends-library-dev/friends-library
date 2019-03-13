@@ -136,4 +136,12 @@ describe('singlePassFix()', () => {
     expect(fixed).toBe('Foo\n');
     expect(unfixed).toBe(0);
   });
+
+  test('it can add extra line for `unspaced-class` lint', () => {
+    const adoc = 'Foo\n[.foo]\nBar\n';
+    const lints = lint(adoc);
+    const [fixed, unfixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe('Foo\n\n[.foo]\nBar\n');
+    expect(unfixed).toBe(0);
+  });
 });

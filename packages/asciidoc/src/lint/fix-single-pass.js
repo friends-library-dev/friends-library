@@ -20,6 +20,12 @@ export default function fix(
       return;
     }
 
+    if (lint.rule === 'unspaced-class') {
+      lines[lint.line - 1] = `\n${lines[lint.line - 1] || ''}`;
+      modifiedLines.add(lint.line);
+      return;
+    }
+
     if (lint.rule === 'multiple-blank-lines') {
       const remove = recommendation
         .replace(/[^\d,]/g, '')
