@@ -1,6 +1,5 @@
 // @flow
 import memoize from 'lodash/memoize';
-import stripIndent from 'strip-indent';
 import type { Asciidoc, LintResult } from '../../../../../type';
 
 export default function rule(
