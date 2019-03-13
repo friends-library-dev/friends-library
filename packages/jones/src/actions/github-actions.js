@@ -33,7 +33,7 @@ function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Promise
   const promises = [];
   Object.keys(task.files).forEach(path => {
     const file = task.files[path];
-    if (typeof file.editedContent === "undefined" || file.editedContent === file.content) {
+    if (typeof file.editedContent !== "string" || file.editedContent === file.content) {
       return;
     }
 
@@ -43,9 +43,21 @@ function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Promise
         if (encoded === null) {
           return;
         }
+
+        let adoc = '';
+        try {
+          adoc = Base64.decode(encoded);
+        } catch (e) {
+          return;
+        }
+
+        if (!adoc || adoc === 'null' || typeof adoc !== "string" || adoc.length < 8) {
+          return;
+        }
+
         dispatch({
           type: 'UPDATE_FILE',
-          payload: { id: task.id, path, adoc: Base64.decode(encoded) },
+          payload: { id: task.id, path, adoc },
         });
       })
       .catch(() => {});

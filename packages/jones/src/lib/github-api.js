@@ -234,7 +234,7 @@ async function createTree(
       repo,
       owner,
       base_tree: baseTreeSha,
-      tree: values(files).filter(f => f.editedContent).map(f => ({
+      tree: values(files).filter(validContent).map(f => ({
         path: f.path,
         mode: '100644',
         type: 'blob',
@@ -242,6 +242,16 @@ async function createTree(
       })),
     });
     return sha;
+}
+
+function validContent(file: File): boolean {
+  if (!file.editedContent) {
+    return false;
+  }
+  if (file.editedContent === 'null') {
+    return false;
+  }
+  return true;
 }
 
 export async function createBranch(
