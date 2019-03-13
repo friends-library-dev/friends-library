@@ -17,7 +17,7 @@ describe('myRule()', () => {
     // ['Violation', 'Fixed'],
   ];
 
-  test.each(violations)('`%s` should become "%s"', (line, reco) => {
+  xtest.each(violations)('`%s` should become "%s"', (line, reco) => {
     const results = myRule(line, [], 1);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
@@ -27,7 +27,7 @@ describe('myRule()', () => {
     // ['Not a violation'],
   ];
 
-  test.each(allowed)('%s is not a lint violation', line => {
+  xtest.each(allowed)('%s is not a lint violation', line => {
     expect(myRule(line, [], 1)).toHaveLength(0);
   });
 });
