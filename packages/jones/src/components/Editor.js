@@ -98,7 +98,10 @@ class Editor extends React.Component<Props> {
     this.editor().getSession().setAnnotations(lints.map(lint => {
       let text = lint.message;
       if (lint.recommendation) {
-        text += `\n\nRecommended fix:\n\n${lint.recommendation}`;
+        text += `\n\n>> Recommended fix:\n\n${lint.recommendation}`;
+      }
+      if (lint.info) {
+        text += `\n\n>> More info:\n\n${lint.info}`;
       }
       return {
         row: lint.line - 1,
