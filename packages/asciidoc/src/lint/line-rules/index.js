@@ -20,3 +20,4 @@ export { default as hangingQuotes } from './hanging-quotes';
 export { default as trailingHyphen } from './trailing-hyphen';
 export { default as unhyphenedWords } from './unhyphened-words';
 export { default as obsoleteSpellings } from './obsolete-spellings';
+export { default as capitalize } from './capitalize';
