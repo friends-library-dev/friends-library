@@ -22,6 +22,8 @@ describe('obsoleteSpellings()', () => {
     ['We staid the night', 'We stayed the night', true],
     ['Staid till first day', 'Stayed till first day', true],
     ['"`Staid`" foo', '"`Stayed`" foo', true],
+    ['Does it not behove me to study', 'Does it not behoove me to study', true],
+    ['It behoves me', 'It behooves me', true],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco, fixable) => {

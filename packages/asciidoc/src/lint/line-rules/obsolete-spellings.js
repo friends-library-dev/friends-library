@@ -14,6 +14,8 @@ export default function rule(
   const words = [
     ['connexion', 'connection', true],
     ['connexions', 'connections', true],
+    ['behove', 'behoove', true],
+    ['behoves', 'behooves', true],
     ['staid', 'stayed', true],
   ];
 
