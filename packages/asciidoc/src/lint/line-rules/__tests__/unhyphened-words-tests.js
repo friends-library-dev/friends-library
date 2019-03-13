@@ -6,7 +6,7 @@ describe('unhyphenedWords()', () => {
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
-      column: 3,
+      column: 1,
       type: 'error',
       rule: 'unhyphened-words',
       message: 'Archaic hyphenations (like to-day and to-morrow) should be replaced with modern spelling.',
@@ -22,6 +22,8 @@ describe('unhyphenedWords()', () => {
     ['Foo to-day', 'Foo today'],
     ['Bed-side foo', 'Bedside foo'],
     ['Foo bed-side', 'Foo bedside'],
+    ['Slave-holder foo', 'Slaveholder foo'],
+    ['The slave-holders bar', 'The slaveholders bar'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
