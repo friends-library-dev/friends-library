@@ -31,6 +31,12 @@ export default function rule(
       'be',
     ],
     [
+      /( |^)(T|t) /i,
+      '$1I ',
+      'T/t',
+      'I',
+    ],
+    [
       /\b(r)ay\b/,
       'my',
       'ray',

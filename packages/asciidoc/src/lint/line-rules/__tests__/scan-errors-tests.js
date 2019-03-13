@@ -38,11 +38,16 @@ describe('scanErrors()', () => {
     ['extremity, arid times never', 'extremity, and times never'],
     ['Arid in turning any other', 'And in turning any other'],
 
-    // ** bo > be **
+    // *** bo > be ***
     ['female should bo just and', 'female should be just and'],
 
     // *** ray > my ***
     ['ray strength and help', 'my strength and help'],
+
+    // *** T > I ***
+    ['Then T went', 'Then I went'],
+    ['Then t went', 'Then I went'],
+    ['T began to', 'I began to'],
   ];
 
   test.each(violations)('`%s` should be a lint violation', (line, reco) => {
@@ -72,6 +77,9 @@ describe('scanErrors()', () => {
     'that John Ray was',
     'comfortable ray of light',
     "And thro`' the gloom a ray obedient broke.",
+
+    // T > I
+    'Then T. Scattergood came',
   ];
 
   test.each(allowed)('`%s` is not a lint violation', line => {
