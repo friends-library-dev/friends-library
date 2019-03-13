@@ -9,7 +9,7 @@ describe('obsoleteSpellings()', () => {
       column: 1,
       type: 'error',
       rule: 'obsolete-spellings',
-      message: 'Obsolete spellings should be replaced in all editions',
+      message: '"staid" should be replaced with "stayed" in all editions',
       fixable: true,
       recommendation: 'Stayed the night',
     });
@@ -24,6 +24,9 @@ describe('obsoleteSpellings()', () => {
     ['"`Staid`" foo', '"`Stayed`" foo', true],
     ['Does it not behove me to study', 'Does it not behoove me to study', true],
     ['It behoves me', 'It behooves me', true],
+    ['The hardheartedness was', 'The hard-heartedness was', true],
+    ['My fellow-creatures', 'My fellow creatures', true],
+    ['Fellow-creatures are', 'Fellow creatures are', true],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco, fixable) => {

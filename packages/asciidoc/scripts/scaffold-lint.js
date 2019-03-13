@@ -29,7 +29,7 @@ try {
   const src = `${__dirname}/../src`;
   const index = fs.readFileSync(`${src}/lint/line-rules/index.js`).toString();
   const lines = index.trim().split('\n');
-  lines.push(`export { default as ${camel} } from './${slug}'\n`)
+  lines.push(`export { default as ${camel} } from './${slug}';\n`);
   fs.writeFileSync(`${src}/lint/line-rules/index.js`, lines.join('\n'));
 
   let rule = fs.readFileSync(`${__dirname}/lint-rule-scaffold.js`).toString();
