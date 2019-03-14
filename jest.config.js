@@ -11,6 +11,7 @@ module.exports = {
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/packages/cli',
+    '<rootDir>/packages/hilkiah/dist',
     '<rootDir>/packages/mod',
   ],
   coverageThreshold: {

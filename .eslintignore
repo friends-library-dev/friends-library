@@ -3,7 +3,9 @@ flow-typed
 coverage
 packages/phipps/vendor
 packages/styleguide/dist/*
+packages/hilkiah/*
 packages/evans/public/*
 packages/evans/.cache/*
 packages/jones/build/*
 packages/asciidoc/scripts/*
+prettier.config.js
