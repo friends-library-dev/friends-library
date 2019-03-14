@@ -1,16 +1,23 @@
-const { toNumber } = require('./convert');
+import { Ref } from './find';
+import { toNumber } from './convert';
 
 // @TODO duplication...
 const ARAB = '[\\d]{1,3}';
 const ADD = `(?:, ?(${ARAB}))?`;
 const CSV = `${ADD}${ADD}${ADD}${ADD}${ADD}${ADD}`;
 
-function exec(str, pattern) {
+function exec(str: string, pattern: string) {
   const exp = new RegExp(pattern);
   return exp.exec(str);
 }
 
-function singleOrRange(pattern, start, context, ref, chapter) {
+function singleOrRange(
+  pattern: string,
+  start: number,
+  context: string,
+  ref: Ref,
+  chapter: number,
+) {
   const match = exec(context, pattern);
   if (!match) {
     return ref;
@@ -35,7 +42,13 @@ function singleOrRange(pattern, start, context, ref, chapter) {
   return ref;
 }
 
-function comma(pattern, start, context, ref, chapter) {
+function comma(
+  pattern: string,
+  start: number,
+  context: string,
+  ref: Ref,
+  chapter: number,
+) {
   const match = exec(context, pattern);
   if (!match) {
     return ref;
@@ -49,7 +62,7 @@ function comma(pattern, start, context, ref, chapter) {
 
   ref.position.end = start + match[0].length;
 
-  let last;
+  let last = 0;
   verseNumbers.forEach(current => {
     if (last && current - last > 1) {
       ref.contiguous = false;
@@ -66,32 +79,35 @@ function comma(pattern, start, context, ref, chapter) {
 }
 
 // 1 Cor. 1. 24 | 1 Cor. 1. 24--27
-function romanSingleOrRange(...args) {
+export function romanSingleOrRange(
+  start: number,
+  context: string,
+  ref: Ref,
+  chapter: number,
+) {
   const pattern = `^\\. (${ARAB})(?:-+(${ARAB}))?`;
-  return singleOrRange(pattern, ...args);
+  return singleOrRange(pattern, start, context, ref, chapter);
 }
 
 // 1 Cor. 1. 24, 25
-function romanComma(...args) {
+export function romanComma(start: number, context: string, ref: Ref, chapter: number) {
   const pattern = `^\\. (${ARAB}),(?: )?(${ARAB})${CSV}`;
-  return comma(pattern, ...args);
+  return comma(pattern, start, context, ref, chapter);
 }
 
 // 1 Cor. 1:24,27
-function colonComma(...args) {
+export function colonComma(start: number, context: string, ref: Ref, chapter: number) {
   const pattern = `^:(${ARAB}),(?: )?(${ARAB})${CSV}`;
-  return comma(pattern, ...args);
+  return comma(pattern, start, context, ref, chapter);
 }
 
 // 1 Cor. 1:24 | 1 Cor. 1:24-29
-function colonSingleOrRange(...args) {
+export function colonSingleOrRange(
+  start: number,
+  context: string,
+  ref: Ref,
+  chapter: number,
+) {
   const pattern = `^:(${ARAB})(?:-+(${ARAB}))?`;
-  return singleOrRange(pattern, ...args);
+  return singleOrRange(pattern, start, context, ref, chapter);
 }
-
-module.exports = {
-  romanSingleOrRange,
-  romanComma,
-  colonSingleOrRange,
-  colonComma,
-};

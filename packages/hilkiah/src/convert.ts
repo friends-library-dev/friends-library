@@ -1,4 +1,4 @@
-const ROMAN_NUMERAL_MAP = {
+const ROMAN_NUMERAL_MAP: { [key: string]: number } = {
   I: 1,
   V: 5,
   X: 10,
@@ -8,16 +8,16 @@ const ROMAN_NUMERAL_MAP = {
   M: 1000,
 };
 
-function romanToArabic(input) {
+export function romanToArabic(input: string): number {
   const roman = input.toUpperCase();
   const letters = roman.split('');
   let arabic = 0;
 
   letters.forEach((letter, i) => {
-    const letterValue = ROMAN_NUMERAL_MAP[letter];
+    const letterValue = ROMAN_NUMERAL_MAP[letter] || 0;
     const prevValue = ROMAN_NUMERAL_MAP[letters[i - 1]] || null;
     if (prevValue !== null && prevValue < letterValue) {
-      arabic -= (2 * prevValue);
+      arabic -= 2 * prevValue;
     }
     arabic += letterValue;
   });
@@ -25,13 +25,11 @@ function romanToArabic(input) {
   return arabic;
 }
 
-function toNumber(input) {
-  const parsed = parseInt(input, 10);
+export function toNumber(input: string | number): number {
+  const parsed = parseInt(String(input), 10);
   if (!Number.isNaN(parsed)) {
     return parsed;
   }
 
-  return romanToArabic(input);
+  return romanToArabic(String(input));
 }
-
-module.exports = { romanToArabic, toNumber };

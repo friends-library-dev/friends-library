@@ -1,4 +1,4 @@
-const { find } = require('../');
+const { find } = require('..');
 
 describe('find()', () => {
   it('returns empty array if no refs found', () => {
@@ -9,7 +9,6 @@ describe('find()', () => {
 
   it('does not find Song of Solomon ref inside of Thessalonians ref', () => {
     const found = find('Blah blahh, 1 Thess. 5:2.');
-
     expect(found[0].book).toBe('1 Thessalonians');
     expect(found).toHaveLength(1);
   });

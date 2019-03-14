@@ -1,4 +1,6 @@
-function incorrectJohannine({ book, position: { start } }, input) {
+import { Ref } from './find';
+
+function incorrectJohannine({ book, position: { start } }: Ref, input: string) {
   if (book !== 'John') {
     return false;
   }
@@ -41,8 +43,8 @@ function incorrectJohannine({ book, position: { start } }, input) {
   return bool;
 }
 
-function incorrect(wrongBook, wrongMatch, prev) {
-  return ({ book, match, position: { start } }, input) => {
+function incorrect(wrongBook: string, wrongMatch: RegExp, prev: string) {
+  return ({ book, match, position: { start } }: Ref, input: string) => {
     if (book !== wrongBook) {
       return false;
     }
@@ -59,7 +61,7 @@ function incorrect(wrongBook, wrongMatch, prev) {
   };
 }
 
-function incorrectAmbiguous(ref, input) {
+export function incorrectAmbiguous(ref: Ref, input: string) {
   return [
     incorrectJohannine,
     incorrect('Song of Solomon', /^ss\./, ' the'),
@@ -76,5 +78,3 @@ function incorrectAmbiguous(ref, input) {
     incorrect('Romans', /^rom /, 'f'),
   ].reduce((result, fn) => result || fn(ref, input), false);
 }
-
-module.exports = { incorrectAmbiguous };

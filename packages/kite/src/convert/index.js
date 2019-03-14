@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 import { flow } from 'lodash';
 import { red, green } from '@friends-library/cli/color';
 import { splitLines, refMutate, refUnmutate } from '@friends-library/asciidoc';
-import hilkiah from '@friends-library/hilkiah';
+import * as hilkiah from '@friends-library/hilkiah';
 import { combineLines } from './combine';
 import { processAsciidoc } from './process';
 

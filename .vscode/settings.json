@@ -1,6 +1,7 @@
 {
     "files.exclude": {
         "en/": true,
+        "es/": true,
         "**/_publish": true
     }
 }
