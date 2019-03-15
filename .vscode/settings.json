@@ -1,7 +1,10 @@
 {
-    "files.exclude": {
-        "en/": true,
-        "es/": true,
-        "**/_publish": true
-    }
+  "files.exclude": {
+    "**/node_modules": true,
+    "en/": true,
+    "es/": true,
+    "**/_publish": true,
+    "**/dist": true,
+    "**/*.log": true
+  }
 }

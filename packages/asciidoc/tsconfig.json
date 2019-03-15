@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "downlevelIteration": true,
+    "paths": { "*": ["types/*"] },
+    "allowJs": true,
+    "outDir": "./dist"
+  },
+  "include": ["./src"]
+}

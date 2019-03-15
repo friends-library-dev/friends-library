@@ -12,6 +12,7 @@ module.exports = {
     '/node_modules/',
     '<rootDir>/packages/cli',
     '<rootDir>/packages/hilkiah/dist',
+    '<rootDir>/packages/asciidoc/dist',
     '<rootDir>/packages/mod',
   ],
   coverageThreshold: {
