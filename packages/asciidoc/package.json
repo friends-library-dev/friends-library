@@ -4,6 +4,12 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "main": "dist/index.js",
+  "browser": {
+    "./dist/lint/lint-dir.js": false,
+    "./dist/lint/dir-lints.js": false,
+    "./dist/lint/lint-fix-dir.js": false,
+    "./dist/lint/character-name.js": "./dist/lint/character-name.browser.js"
+  },
   "scripts": {
     "scaffold:lint": "node ./scripts/scaffold-lint.js",
     "build": "yarn run clean && yarn tsc -p .",

@@ -31,6 +31,9 @@ describe('joinWords()', () => {
     ['He was a hard\nhearted man', 'He was a\nhard-hearted man'],
     ['A honest hearted man', 'A honest-hearted man'],
     ['He was a honest\nhearted man', 'He was a\nhonest-hearted man'],
+    ['faint hearted', 'fainthearted'],
+    ['broken hearted', 'brokenhearted'],
+    ['light hearted', 'lighthearted'],
   ];
 
   test.each(violations)('"%s" adoc should become "%s"', (adoc, fixed) => {
@@ -43,9 +46,7 @@ describe('joinWords()', () => {
     expect(results[0].recommendation).toBe(fixed);
   });
 
-  const allowed = [
-    ['Foo every\nWhere'],
-  ];
+  const allowed = [['Foo every\nWhere']];
 
   test.each(allowed)('multiline adoc should not have lint error', adoc => {
     const lines = adoc.split('\n');

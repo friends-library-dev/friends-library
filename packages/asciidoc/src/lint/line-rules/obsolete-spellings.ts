@@ -25,6 +25,9 @@ export default function rule(
     ['fellow-servants', 'fellow servants', true],
     ['fellow-servant', 'fellow servant', true],
     ['heavy-laden', 'heavy laden', true],
+    ['faint-hearted', 'fainthearted', true],
+    ['broken-hearted', 'brokenhearted', true],
+    ['light-hearted', 'lighthearted', true],
   ];
 
   const results: LintResult[] = [];

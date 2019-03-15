@@ -27,6 +27,9 @@ describe('obsoleteSpellings()', () => {
     ['The hardheartedness was', 'The hard-heartedness was', true],
     ['My fellow-creatures', 'My fellow creatures', true],
     ['Fellow-creatures are', 'Fellow creatures are', true],
+    ['faint-hearted foo', 'fainthearted foo', true],
+    ['broken-hearted foo', 'brokenhearted foo', true],
+    ['light-hearted foo', 'lighthearted foo', true],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco, fixable) => {
@@ -36,9 +39,7 @@ describe('obsoleteSpellings()', () => {
     expect(results[0].fixable).toBe(fixable);
   });
 
-  const allowed = [
-    ['fooconnexion bar'],
-  ];
+  const allowed = [['fooconnexion bar']];
 
   test.each(allowed)('%s is not a lint violation', line => {
     expect(obsoleteSpellings(line, [], 1)).toHaveLength(0);
