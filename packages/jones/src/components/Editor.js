@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
 import debounce from 'lodash/debounce';
+import { lint } from '@friends-library/asciidoc';
 import type { Asciidoc } from '../../../../type';
 import type { Dispatch } from '../type';
 import { currentTask } from '../select';
@@ -11,7 +12,6 @@ import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
 import { italicize } from '../lib/format';
-import * as api from '../lib/api';
 import './adoc-mode';
 import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
@@ -86,12 +86,11 @@ class Editor extends React.Component<Props> {
       return;
     }
 
-    api.postEncodedAsciidoc('/lint/check', adoc)
-      .then(res => res.json())
-      .then(lints => lints.filter(l => l.fixable !== true))
-      .then(lints => lints.filter(l => l.rule !== 'temporary-comments'))
-      .then(lints => this.annotateLintErrors(lints))
-      .catch(() => {});
+    const lints = lint(adoc)
+      .filter(l => l.fixable !== true || ['join-words', 'obsolete-spellings'].includes(l.rule))
+      .filter(l => l.rule !== 'temporary-comments');
+
+    this.annotateLintErrors(lints);
   }
 
   annotateLintErrors(lints) {

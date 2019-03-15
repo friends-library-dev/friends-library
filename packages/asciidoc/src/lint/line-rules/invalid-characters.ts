@@ -1,6 +1,6 @@
-import unicharadata from 'unicharadata';
 import { Asciidoc, LintResult } from '@friends-library/types';
 import gitConflictMarkers from './git-conflict-markers';
+import characterName from '../character-name';
 
 export default function rule(
   line: Asciidoc,
@@ -33,7 +33,7 @@ export default function rule(
       return;
     }
     if (!allowed[char]) {
-      const name = unicharadata.lookupname(char);
+      const name = characterName(char);
       results.push(getLint(char, line, lineNumber, index + 1, name));
     }
   });

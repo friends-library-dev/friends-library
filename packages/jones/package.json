@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@octokit/rest": "^16.8.1",
+    "@friends-library/asciidoc": "1.0.0",
     "classnames": "^2.2.6",
     "emotion": "^10.0.6",
     "escape-string-regexp": "^1.0.5",

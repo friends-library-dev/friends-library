@@ -1,8 +1,7 @@
 // @flow
 import smalltalk from 'smalltalk';
-import { Base64 } from 'js-base64';
+import { lintFix as fixLints } from '@friends-library/asciidoc';
 import * as gh from '../lib/github-api';
-import * as api from '../lib/api';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import type { Slug, Url } from '../../../../type';
 import type { Task, ReduxThunk, Dispatch, State } from '../type';
@@ -14,7 +13,7 @@ export function submitTask(task: Task): ReduxThunk {
       return;
     }
 
-    const fixedTask = await lintFix(task, dispatch, getState);
+    const fixedTask = lintFix(task, dispatch, getState);
     dispatch({ type: 'SUBMITTING_TASK' });
     const pr = await tryGithub(async () => {
       return await gh.createNewPullRequest(fixedTask, user)
@@ -29,43 +28,25 @@ export function submitTask(task: Task): ReduxThunk {
   };
 }
 
-function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Promise<Task> {
-  const promises = [];
+function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Task {
   Object.keys(task.files).forEach(path => {
     const file = task.files[path];
     if (typeof file.editedContent !== "string" || file.editedContent === file.content) {
       return;
     }
 
-    const promise = api.postEncodedAsciidoc('/lint/fix', file.editedContent)
-      .then(res => res.json())
-      .then(({ encoded }) => {
-        if (encoded === null) {
-          return;
-        }
+    const { fixed } = fixLints(file.editedContent);
+    if (!fixed || typeof fixed !== "string" || fixed.length < 8 || fixed === file.editedContent) {
+      return;
+    }
 
-        let adoc = '';
-        try {
-          adoc = Base64.decode(encoded);
-        } catch (e) {
-          return;
-        }
-
-        if (!adoc || adoc === 'null' || typeof adoc !== "string" || adoc.length < 8) {
-          return;
-        }
-
-        dispatch({
-          type: 'UPDATE_FILE',
-          payload: { id: task.id, path, adoc },
-        });
-      })
-      .catch(() => {});
-
-    promises.push(promise);
+    dispatch({
+      type: 'UPDATE_FILE',
+      payload: { id: task.id, path, adoc: fixed },
+    });
   });
 
-  return Promise.all(promises).then(() => getState().tasks.present[task.id]);
+  return getState().tasks.present[task.id];
 }
 
 export function resubmitTask(task: Task): ReduxThunk {
@@ -74,7 +55,7 @@ export function resubmitTask(task: Task): ReduxThunk {
     if (!user) {
       return;
     }
-    const fixedTask = await lintFix(task, dispatch, getState);
+    const fixedTask = lintFix(task, dispatch, getState);
     dispatch({ type: 'RE_SUBMITTING_TASK' });
     const sha = await tryGithub(async () => {
       return await gh.addCommit(fixedTask, user);
