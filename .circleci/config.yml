@@ -1,7 +1,6 @@
-version: "2.1"
+version: '2.1'
 
 jobs:
-
   node:
     docker:
       - image: circleci/node:8.14.1
@@ -12,6 +11,7 @@ jobs:
       - run: yarn js:test -w=2
       - run: yarn evans:build:en
       - run: yarn evans:build:es
+      - run: yarn asciidoc:build
 
   php:
     docker:
@@ -36,7 +36,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "ce:27:a7:ac:8c:5d:4f:2b:0b:7c:f6:b8:8f:bb:e5:8b"
+            - 'ce:27:a7:ac:8c:5d:4f:2b:0b:7c:f6:b8:8f:bb:e5:8b'
       - run:
           name: Add to Known Hosts
           command: ssh-keyscan -H api.friendslibrary.com >> ~/.ssh/known_hosts
@@ -45,7 +45,7 @@ jobs:
       - run: yarn api:deploy
 
 workflows:
-  version: "2.1"
+  version: '2.1'
   test_node_and_php:
     jobs:
       - node
@@ -59,7 +59,6 @@ workflows:
                 - master
 
 commands:
-
   yarn_cached_install:
     steps:
       - restore_cache:

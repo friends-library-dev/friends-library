@@ -184,11 +184,8 @@ async function openPullRequest(
 }
 
 function getPrBody(user: string): string {
-  if (isDev || ORG !== 'friends-library' || user === 'jaredh159') {
+  if (isDev || ORG !== 'friends-library' || user === 'jaredh159' || user === 'Henderjay') {
     return '';
-  }
-  if (user === 'Henderjay') {
-    return '@jaredh159';
   }
   return '@jaredh159 @Henderjay';
 }

@@ -27,26 +27,22 @@ try {
   }
 
   const src = `${__dirname}/../src`;
-  const index = fs.readFileSync(`${src}/lint/line-rules/index.js`).toString();
+  const index = fs.readFileSync(`${src}/lint/line-rules/index.ts`).toString();
   const lines = index.trim().split('\n');
   lines.push(`export { default as ${camel} } from './${slug}';\n`);
-  fs.writeFileSync(`${src}/lint/line-rules/index.js`, lines.join('\n'));
+  fs.writeFileSync(`${src}/lint/line-rules/index.ts`, lines.join('\n'));
 
-  let rule = fs.readFileSync(`${__dirname}/lint-rule-scaffold.js`).toString();
+  let rule = fs.readFileSync(`${__dirname}/lint-rule-scaffold.ts`).toString();
   let test = fs.readFileSync(`${__dirname}/lint-test-${multi}scaffold.js`).toString();
   rule = replaceStrings(rule, slug, camel);
   test = replaceStrings(test, slug, camel);
-  fs.writeFileSync(`${src}/lint/line-rules/${slug}.js`, rule);
-  fs.writeFileSync(`${src}/lint/line-rules/__tests__/${slug}-tests.js`, test);
-
+  fs.writeFileSync(`${src}/lint/line-rules/${slug}.ts`, rule);
+  fs.writeFileSync(`${src}/lint/line-rules/__tests__/${slug}.spec.js`, test);
 } catch (e) {
   console.log(chalk.red(e.message));
   process.exit(1);
 }
 
 function replaceStrings(file, slug, camel) {
-  return file
-    .replace(/\.\.\/\.\.\/\.\.\//m, '../../../../../')
-    .replace(/myRule/g, camel)
-    .replace(/my-slug/g, slug);
+  return file.replace(/myRule/g, camel).replace(/my-slug/g, slug);
 }

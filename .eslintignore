@@ -4,6 +4,7 @@ coverage
 packages/phipps/vendor
 packages/styleguide/dist/*
 packages/hilkiah/*
+packages/asciidoc/*
 packages/evans/public/*
 packages/evans/.cache/*
 packages/jones/build/*

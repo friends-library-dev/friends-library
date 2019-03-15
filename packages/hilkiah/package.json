@@ -6,14 +6,14 @@
   "author": "jared@netrivet.com",
   "license": "MIT",
   "scripts": {
-    "install": "yarn build",
     "build": "yarn run clean && yarn tsc -p .",
     "clean": "rm -rf ./dist"
   },
-  "dependencies": {},
+  "dependencies": {
+    "typescript": "^3.3.3333"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.11",
-    "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333"
+    "ts-jest": "^24.0.0"
   }
 }

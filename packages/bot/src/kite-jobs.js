@@ -127,6 +127,7 @@ function getJob(
       filename: basename(filename, '.pdf'),
       revision: { sha: shortSha },
       meta: getDocumentMeta(edition),
+      customCss: { 'pdf-print': '.embedded-content-document { background: pink; }' },
       adoc,
     })),
     meta: { frontmatter: filename.split('--').length < 4 },

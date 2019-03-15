@@ -3,13 +3,14 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "postinstall": "yarn hilkiah:build && yarn asciidoc:build",
     "kite": "node ./packages/kite/kite.js",
     "fell": "node ./packages/fell/fell.js",
     "mod": "node ./packages/mod/mod.js",
     "phipps": "php ./packages/phipps/phipps",
     "test": "yarn js:test && yarn ts:test && yarn php:test",
-    "js:test": "yarn jest --coverage",
-    "ts:test": "cd ./packages/hilkiah && ../../node_modules/.bin/jest",
+    "js:test": "yarn jest",
+    "ts:test": "cd ./packages/hilkiah && ../../node_modules/.bin/jest -w=2 && cd ../asciidoc && ../../node_modules/.bin/jest -w=2",
     "php:test": "yarn phipps:test",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
@@ -17,6 +18,7 @@
     "js:lint": "yarn eslint .",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
     "asciidoc:scaffold:lint": "cd ./packages/asciidoc && yarn scaffold:lint",
+    "asciidoc:build": "cd ./packages/asciidoc && yarn build",
     "api:develop": "cd ./packages/api && yarn start",
     "api:deploy": "cd ./packages/api && yarn deploy",
     "styleguide:develop": "cd ./packages/styleguide && yarn start",
@@ -30,7 +32,7 @@
     "jones:build": "cd packages/jones && yarn build",
     "bot:develop": "node ./packages/bot/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
-    "preflight": "yarn lint && yarn test && yarn flow && yarn hilkiah:build && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
+    "preflight": "yarn lint && yarn test && yarn flow && yarn hilkiah:build && yarn asciidoc:build && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -57,8 +59,10 @@
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0",
     "ts-jest": "^24.0.0",
-    "typescript": "^3.3.3333",
     "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "typescript": "^3.3.3333"
   },
   "workspaces": [
     "packages/evans",
@@ -74,6 +78,7 @@
     "packages/jones",
     "packages/bot",
     "packages/client",
-    "packages/asciidoc"
+    "packages/asciidoc",
+    "packages/types"
   ]
 }
