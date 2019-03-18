@@ -53,14 +53,9 @@ ace.define(
             push: 'main__1',
           },
           {
-            token: 'meta.separator',
-            regex: '(\\+\\+\\+)',
-            push: 'main__2',
-          },
-          {
             token: 'markup.quote',
             regex: '(^____$)',
-            push: 'main__3',
+            push: 'main__2',
           },
           {
             token: 'markup.italic',
@@ -73,7 +68,7 @@ ace.define(
           {
             token: 'markup.raw.inline',
             regex: '(footnote(?=:\\[))',
-            push: 'main__4',
+            push: 'main__3',
           },
           {
             token: 'meta.require',
@@ -81,9 +76,14 @@ ace.define(
             push: 'main__5',
           },
           {
+            token: 'meta.separator',
+            regex: '(\\+\\+\\+)',
+            push: 'main__6',
+          },
+          {
             token: 'punctuation.definition.comment',
             regex: '(^\\[)',
-            push: 'main__6',
+            push: 'main__7',
           },
           {
             defaultToken: 'text',
@@ -101,16 +101,6 @@ ace.define(
         ],
         main__2: [
           {
-            token: 'meta.separator',
-            regex: '(\\+\\+\\+)',
-            next: 'pop',
-          },
-          {
-            defaultToken: 'keyword.other.unit',
-          },
-        ],
-        main__3: [
-          {
             token: 'markup.quote',
             regex: '(^____$)',
             next: 'pop',
@@ -119,11 +109,16 @@ ace.define(
             defaultToken: 'markup.quote',
           },
         ],
-        main__4: [
+        main__3: [
           {
             token: 'meta.diff',
-            regex: '(\\])',
+            regex: '(([^\\+]\\]|\\]$))',
             next: 'pop',
+          },
+          {
+            token: 'meta.separator',
+            regex: '(\\+\\+\\+)',
+            push: 'main__4',
           },
           {
             token: 'meta.diff',
@@ -135,10 +130,20 @@ ace.define(
           },
           {
             token: 'meta.diff.index',
-            regex: '([^\\]]+)',
+            regex: '(([^\\]\\+]+)|(\\+(?!\\+\\+)))',
           },
           {
             defaultToken: 'text',
+          },
+        ],
+        main__4: [
+          {
+            token: 'meta.separator',
+            regex: '((\\+\\+\\+|$))',
+            next: 'pop',
+          },
+          {
+            defaultToken: 'keyword.other.unit',
           },
         ],
         main__5: [
@@ -164,6 +169,16 @@ ace.define(
           },
         ],
         main__6: [
+          {
+            token: 'meta.separator',
+            regex: '((\\+\\+\\+|$))',
+            next: 'pop',
+          },
+          {
+            defaultToken: 'keyword.other.unit',
+          },
+        ],
+        main__7: [
           {
             token: 'punctuation.definition.comment',
             regex: '(\\]$)',
