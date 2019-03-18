@@ -69,13 +69,6 @@ class Editor extends React.Component<Props> {
       this.editor().resize();
     }
 
-    if (editingFile !== prev.editingFile) {
-      this.editor()
-        .getSession()
-        // @ts-ignore
-        .setUndoManager(new window.ace.UndoManager());
-    }
-
     // ace seems to sometimes lose commands ¯\_(ツ)_/¯
     if (!this.editor().commands.commands.increaseFontSize) {
       this.addKeyCommands();
