@@ -1,4 +1,5 @@
 ## plugin this data at https://eeyo.io/iro/ to generate ace grammar 👍
+## docs at https://eeyo.io/iro/documentation/index.html
 
 name = adoc
 file_extensions [] = adoc;
@@ -38,15 +39,6 @@ contexts[] {
       : eol_pop {}
     }
     : inline_push {
-      regex \= (\+\+\+)
-      styles[] = .escaper;
-      default_style = .escaped
-      : pop {
-         regex \= (\+\+\+)
-         styles[] = .escaper;
-      }
-    }
-    : inline_push {
       regex \= (^____$)
       styles[] = .quote;
       default_style = .quote
@@ -67,8 +59,17 @@ contexts[] {
       regex \= (footnote(?=:\[))
       styles[] = .footnote;
       : pop {
-         regex \= (\])
+         regex \= (([^\+]\]|\]$))
          styles[] = .fn_delimit;
+      }
+      : inline_push {
+         regex \= (\+\+\+)
+         styles[] = .escaper;
+         default_style = .escaped
+         : pop {
+            regex \= ((\+\+\+|$))
+            styles[] = .escaper;  
+         }
       }
       : pattern {
          regex \= (:\[)
@@ -79,7 +80,7 @@ contexts[] {
          styles[] = .multi_fn_split;
       }
       : pattern {
-         regex \= ([^\]]+)
+         regex \= (([^\]\+]+)|(\+(?!\+\+)))
          styles[] = .footnote_content;
       }
     }
@@ -101,6 +102,15 @@ contexts[] {
       : pattern {
          regex \= ([^\],\.]+)
          styles[] = .quote_head_subtle;
+      }
+    }
+    : inline_push {
+      regex \= (\+\+\+)
+      styles[] = .escaper;
+      default_style = .escaped
+      : pop {
+         regex \= ((\+\+\+|$))
+         styles[] = .escaper;  
       }
     }
     : inline_push {
