@@ -5,6 +5,7 @@
     "es/": true,
     "**/_publish": true,
     "**/dist": true,
-    "**/*.log": true
+    "**/*.log": true,
+    "packages/jones/build": true
   }
 }

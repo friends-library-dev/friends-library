@@ -34,6 +34,8 @@ export type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
 
 export type NodeEnv = 'production' | 'development';
 
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 export type LintResult = {
   line: number;
   column: number | false;

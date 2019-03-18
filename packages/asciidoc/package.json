@@ -13,7 +13,8 @@
   "scripts": {
     "scaffold:lint": "node ./scripts/scaffold-lint.js",
     "build": "yarn run clean && yarn tsc -p .",
-    "clean": "rm -rf ./dist"
+    "clean": "rm -rf ./dist",
+    "test": "../../node_modules/.bin/jest"
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",
