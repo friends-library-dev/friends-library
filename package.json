@@ -10,7 +10,7 @@
     "phipps": "php ./packages/phipps/phipps",
     "test": "yarn js:test && yarn ts:test && yarn php:test",
     "js:test": "yarn jest",
-    "ts:test": "cd ./packages/hilkiah && ../../node_modules/.bin/jest -w=2 && cd ../asciidoc && ../../node_modules/.bin/jest -w=2",
+    "ts:test": "cd ./packages/hilkiah && yarn test -w=2 && cd ../asciidoc && yarn test -w=2 && cd ../jones && yarn test -w=2",
     "php:test": "yarn phipps:test",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
