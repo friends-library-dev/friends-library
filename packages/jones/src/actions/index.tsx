@@ -6,9 +6,11 @@ import { currentTask } from '../select';
 export {
   submitTask,
   resubmitTask,
+  deleteTask,
   checkout,
   fetchFriendRepos,
   requestGitHubUser,
+  syncPullRequestStatus,
 } from './github-actions';
 
 export {
@@ -22,7 +24,6 @@ export const receiveAccessToken = createAction('RECEIVE_ACCESS_TOKEN');
 export const hardReset = createAction('HARD_RESET');
 export const changeScreen = createAction('CHANGE_SCREEN');
 export const createTask = createAction('CREATE_TASK');
-export const deleteTask = createAction('DELETE_TASK');
 export const updateTask = createAction('UPDATE_TASK');
 export const workOnTask = createAction('WORK_ON_TASK');
 export const collapseTask = createAction('COLLAPSE_TASK');
@@ -36,7 +37,7 @@ export const redoTasks = createAction('REDO_TASKS');
 export const toggleSearchCaseSensitive = createAction('TOGGLE_SEARCH_CASE_SENSITIVE');
 export const toggleSearchRegexp = createAction('TOGGLE_SEARCH_REGEXP');
 export const toggleSearchWords = createAction('TOGGLE_SEARCH_WORDS');
-export const reInitTask = createAction('REINIT_TASK');
+export const reopenTask = createAction('REOPEN_TASK');
 
 export function toggleSidebarOpen(adoc: Asciidoc): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {

@@ -64,7 +64,7 @@ class Editor extends React.Component<Props> {
   }
 
   componentDidUpdate(prev: Props) {
-    const { size, searching, editingFile } = this.props;
+    const { size, searching } = this.props;
     if (size.width !== prev.size.width || searching !== prev.searching) {
       this.editor().resize();
     }

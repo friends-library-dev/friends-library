@@ -2,8 +2,61 @@ import smalltalk from 'smalltalk';
 import { lintFix as fixLints } from '@friends-library/asciidoc';
 import * as gh from '../lib/github-api';
 import { safeLoad as ymlToJs } from 'js-yaml';
-import { Slug, Url } from '@friends-library/types';
+import { Slug, Url, Uuid } from '@friends-library/types';
 import { Task, ReduxThunk, Dispatch, State } from '../type';
+
+export function deleteTask(id: Uuid): ReduxThunk {
+  return async (dispatch: Dispatch, getState: () => State) => {
+    dispatch({
+      type: 'DELETE_TASK',
+      payload: id,
+    });
+
+    const { tasks, repos, github } = getState();
+    const task = tasks.present[id];
+    if (!task || !github.token) {
+      return;
+    }
+
+    const repo = repos.find(r => r.id === task.repoId);
+    if (!repo) {
+      return;
+    }
+
+    try {
+      gh.deleteBranch(github.user, repo.slug, `task-${id}`);
+    } catch {
+      // ¯\_(ツ)_/¯
+    }
+  };
+}
+
+export function syncPullRequestStatus(task: Task): ReduxThunk {
+  return async (dispatch: Dispatch, getState: () => State) => {
+    if (!task.pullRequest) {
+      return;
+    }
+
+    const state = getState();
+    const repo = state.repos.find(r => r.id === task.repoId);
+    if (!repo) {
+      return;
+    }
+
+    try {
+      const status = await gh.pullRequestStatus(repo.slug, task.pullRequest.number);
+      dispatch({
+        type: 'UPDATE_PULL_REQUEST_STATUS',
+        payload: {
+          id: task.id,
+          status,
+        },
+      });
+    } catch {
+      // ¯\_(ツ)_/¯
+    }
+  };
+}
 
 export function submitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {

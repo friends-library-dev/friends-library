@@ -5,7 +5,7 @@ function result(start, end, path = 'path.adoc') {
     path,
     start: { line: start[0], column: start[1] },
     end: { line: end[0], column: end[1] },
-  }
+  };
 }
 
 describe('taskReducer()', () => {
@@ -26,10 +26,10 @@ describe('taskReducer()', () => {
     };
   });
 
-  test('REINIT_TASK re-sets id and prNumber', () => {
-    action.type = 'REINIT_TASK';
+  test('REOPEN_TASK re-sets id and prNumber', () => {
+    action.type = 'REOPEN_TASK';
     action.payload = { id: 'id', newId: 'new-id' };
-    state.id.prNumber = 3;
+    state.id.pullRequest = { number: 3, status: 'open' };
 
     const newState = taskReducer(state, action);
 
@@ -43,6 +43,16 @@ describe('taskReducer()', () => {
         },
       },
     });
+  });
+
+  test('UPDATE_PULL_REQUEST_STATUS adds pr status', () => {
+    state.id.pullRequest = { number: 4 };
+    action.type = 'UPDATE_PULL_REQUEST_STATUS';
+    action.payload = { id: 'id', status: 'open' };
+
+    const newState = taskReducer(state, action);
+
+    expect(newState.id.pullRequest).toEqual({ number: 4, status: 'open' });
   });
 
   test('TASK_RE_SUBMITTED updates parent commit', () => {
@@ -116,14 +126,14 @@ describe('taskReducer()', () => {
     expect(newState.id.updated).not.toBe('old');
   });
 
-  test('TASK_SUBMITTED sets prNumber and resets file content', () => {
+  test('TASK_SUBMITTED sets task.pullRequest and resets file content', () => {
     action.type = 'TASK_SUBMITTED';
     action.payload = { id: 'id', prNumber: 54, parentCommit: 'some-sha' };
     state.id.files['path.adoc'].editedContent = 'lol';
 
     const newState = taskReducer(state, action);
 
-    expect(newState.id.prNumber).toBe(54);
+    expect(newState.id.pullRequest).toEqual({ number: 54 });
     expect(newState.id.parentCommit).toBe('some-sha');
     expect(newState.id.files['path.adoc']).toEqual({
       content: 'lol',
@@ -141,7 +151,7 @@ describe('taskReducer()', () => {
         taskId: 'id',
         result: result([1, 0], [1, 4]),
         replace: 'LOL',
-      }
+      };
 
       const newState = taskReducer(state, action);
 
@@ -155,16 +165,13 @@ describe('taskReducer()', () => {
     });
 
     it('accounts for line length changing when mutating line twice', () => {
-      const results = [
-        result([1, 0], [1, 4]),
-        result([1, 10], [1, 14]),
-      ];
+      const results = [result([1, 0], [1, 4]), result([1, 10], [1, 14])];
 
       action.payload = {
         taskId: 'id',
         results,
         replace: 'You',
-      }
+      };
 
       const newState = taskReducer(state, action);
 
@@ -176,7 +183,7 @@ describe('taskReducer()', () => {
         taskId: 'id',
         results: [result([1, 5], [1, 9])],
         replace: 'does',
-      }
+      };
 
       const newState = taskReducer(state, action);
 

@@ -1,5 +1,4 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
-import { match } from 'minimatch';
 
 export default function rule(
   line: Asciidoc,

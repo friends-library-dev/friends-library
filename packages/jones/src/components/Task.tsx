@@ -18,11 +18,10 @@ const Wrap = styled.li`
   list-style: none;
   margin-bottom: 35px;
   padding: 14px 21px;
-  cursor: pointer;
 
   & h1 {
     font-size: 20px;
-    background: #121212;
+    background: ${(p: any) => (p.locked ? '#5d0303' : '#121212')};
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     color: #ddd;
@@ -48,8 +47,13 @@ const Wrap = styled.li`
       margin-left: 50px;
     }
 
-    & .delete {
+    .reopen {
       color: red;
+    }
+
+    & .delete {
+      color: ${(p: any) => (p.locked ? 'white' : 'red')};
+      background: ${(p: any) => (p.locked ? 'var(--accent)' : '#eaeaea')};
     }
 
     & > * {
@@ -81,8 +85,11 @@ const Wrap = styled.li`
   }
 `;
 
-type Props = {
+type OwnProps = {
   task: TaskType;
+};
+
+type Props = OwnProps & {
   repo: Repo;
   taskHasWork: boolean;
   resubmit: Dispatch;
@@ -90,7 +97,8 @@ type Props = {
   workOnTask: Dispatch;
   deleteTask: Dispatch;
   updateTask: Dispatch;
-  reInitTask: Dispatch;
+  reopenTask: Dispatch;
+  syncStatus: Dispatch;
 };
 
 type State = {
@@ -102,16 +110,22 @@ class Task extends React.Component<Props, State> {
     submitting: false,
   };
 
-  confirmDelete = () => {
+  public async componentDidMount() {
+    const { task, syncStatus } = this.props;
+    task.pullRequest && syncStatus(task);
+  }
+
+  protected confirmDelete = () => {
     if (process.env.NODE_ENV === 'development') {
       this.deleteTask();
       return;
     }
 
-    const msg =
-      'You will lose any work and there is no undo.\nPlease type "Hubberthorne" to confirm:\n\n';
     smalltalk
-      .prompt('Delete Task?', msg)
+      .prompt(
+        'Delete Task?',
+        'You will lose any work and there is no undo.\nPlease type "Hubberthorne" to confirm:\n\n',
+      )
       .then((value: string) => {
         if (value === 'Hubberthorne') {
           this.deleteTask();
@@ -120,79 +134,88 @@ class Task extends React.Component<Props, State> {
       .catch(() => {});
   };
 
-  deleteTask() {
+  protected deleteTask = () => {
     const { task, deleteTask } = this.props;
     deleteTask(task.id);
-  }
+  };
 
-  submit = async () => {
+  protected submit = async () => {
     const { task, submit } = this.props;
     this.setState({ submitting: true });
     await submit(task);
     this.setState({ submitting: false });
   };
 
-  resubmit = async () => {
+  protected resubmit = async () => {
     const { task, resubmit } = this.props;
     this.setState({ submitting: true });
     await resubmit(task);
     this.setState({ submitting: false });
   };
 
-  submitText() {
+  protected reopen = () => {
+    const { task, reopenTask } = this.props;
+    smalltalk
+      .confirm(
+        'Reopen?',
+        'Reopening should only be done when you need to re-submit a task that has accidentally been worked on after the PR has been merged.',
+        { buttons: { ok: 'Recover', cancel: 'Cancel' } },
+      )
+      .then(() => reopenTask({ id: task.id, newId: uuid() }))
+      .catch(() => {});
+  };
+
+  protected submitText() {
     const {
-      task: { prNumber },
+      task: { pullRequest },
     } = this.props;
     const { submitting } = this.state;
     if (submitting) {
       return 'Submitting...';
     }
-    return prNumber ? 'Re-submit' : 'Submit';
+    return pullRequest ? 'Re-submit' : 'Submit';
   }
 
-  render() {
+  public render() {
     const { submitting } = this.state;
-    const { task, repo, workOnTask, taskHasWork, reInitTask } = this.props;
+    const { task, repo, workOnTask, taskHasWork } = this.props;
+    let status = 'open';
+    if (task.pullRequest && task.pullRequest.status) {
+      status = task.pullRequest.status;
+    }
+    const isLocked = status !== 'open';
     return (
-      <Wrap>
+      <Wrap locked={isLocked}>
         <h1>
-          <i
-            className="fas fa-code-branch"
-            onContextMenu={e => {
-              e.preventDefault();
-              smalltalk
-                .confirm(
-                  'Recover?',
-                  'Recover allows you to re-submit a task that has been worked on after the PR has been merged.',
-                  { buttons: { ok: 'Recover', cancel: 'Cancel' } },
-                )
-                .then(() => reInitTask({ id: task.id, newId: uuid() }))
-                .catch(() => {});
-            }}
-          />{' '}
+          <i className={`fas fa-${isLocked ? 'lock' : 'code-branch'}`} />{' '}
+          {isLocked ? `${status.toUpperCase()}: ` : ''}
           {task.name}
         </h1>
         <p className="friend">
           Friend: <em>{repo.friendName}</em>
         </p>
-        <ul className="time">
-          <li>
-            <i className="far fa-calendar" />
-            <i>Created:</i>
-            {moment(task.created).format('M/D/YY [at] h:mm:ssa')}
-          </li>
-          <li>
-            <i className="far fa-calendar" />
-            <i>Last updated:</i>
-            {moment(task.updated).from(moment())}
-          </li>
-        </ul>
+        {!isLocked && (
+          <ul className="time">
+            <li>
+              <i className="far fa-calendar" />
+              <i>Created:</i>
+              {moment(task.created).format('M/D/YY [at] h:mm:ssa')}
+            </li>
+            <li>
+              <i className="far fa-calendar" />
+              <i>Last updated:</i>
+              {moment(task.updated).from(moment())}
+            </li>
+          </ul>
+        )}
         <div className="actions">
-          {task.prNumber ? (
+          {task.pullRequest ? (
             <Button
               secondary
               target="_blank"
-              href={`https://github.com/${ORG}/${repo.slug}/pull/${task.prNumber}`}
+              href={`https://github.com/${ORG}/${repo.slug}/pull/${
+                task.pullRequest.number
+              }`}
               className="pr"
             >
               <i className="fas fa-code-branch" />
@@ -201,30 +224,44 @@ class Task extends React.Component<Props, State> {
           ) : (
             <Button className="invisible">¯\_(ツ)_/¯</Button>
           )}
-          <Button secondary className="delete" onClick={this.confirmDelete}>
+          <Button
+            secondary={!isLocked}
+            className="delete"
+            onClick={isLocked ? this.deleteTask : this.confirmDelete}
+          >
             <i className="far fa-trash-alt" />
             Delete
           </Button>
-          <Button
-            secondary
-            disabled={!taskHasWork || submitting}
-            className="submit"
-            onClick={task.prNumber ? this.resubmit : this.submit}
-          >
-            <i className="fas fa-cloud-upload-alt" />
-            {this.submitText()}
-          </Button>
-          <Button className="work" onClick={() => workOnTask(task.id)}>
-            <i className="fas fa-pencil-alt" />
-            Work
-          </Button>
+          {!isLocked && (
+            <Button
+              secondary
+              disabled={!taskHasWork || submitting}
+              className="submit"
+              onClick={task.pullRequest ? this.resubmit : this.submit}
+            >
+              <i className="fas fa-cloud-upload-alt" />
+              {this.submitText()}
+            </Button>
+          )}
+          {isLocked && (
+            <Button secondary className="reopen" onClick={this.reopen}>
+              <i className="fas fa-redo-alt" />
+              Reopen
+            </Button>
+          )}
+          {!isLocked && (
+            <Button className="work" onClick={() => workOnTask(task.id)}>
+              <i className="fas fa-pencil-alt" />
+              Work
+            </Button>
+          )}
         </div>
       </Wrap>
     );
   }
 }
 
-const mapState = (state: AppState, { task }: Props) => {
+const mapState = (state: AppState, { task }: OwnProps) => {
   const repo = state.repos.find(r => r.id === task.repoId);
   if (!repo) {
     throw new Error(`Could not find repo with id ${task.repoId}`);
@@ -242,7 +279,8 @@ const mapDispatch = {
   workOnTask: actions.workOnTask,
   updateTask: actions.updateTask,
   deleteTask: actions.deleteTask,
-  reInitTask: actions.reInitTask,
+  reopenTask: actions.reopenTask,
+  syncStatus: actions.syncPullRequestStatus,
 };
 
 export default connect(

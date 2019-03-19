@@ -1,10 +1,9 @@
-import { any } from 'bluebird';
-
 /*
  * To try in Ace editor, copy and paste into the mode creator
  * here : http://ace.c9.io/tool/mode_creator.html
  */
 
+// @ts-ignore
 const ace = (window as any).ace;
 
 ace.define(
