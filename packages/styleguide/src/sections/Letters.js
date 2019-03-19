@@ -8,14 +8,11 @@ const EmbeddedTypes = styled.ul`
     position: relative;
   }
   span {
-    position: absolute;
     font-size: 0.65em;
-    left: 8em;
-    top: 1px;
   }
   span:before {
     content: '--';
-    padding-right: 1em;
+    padding-right: 0.25em;
   }
 `;
 
@@ -122,8 +119,8 @@ export default () => (
       <li>
         <Code>address</Code>{' '}
         <span>
-          a writing addressed generally to non-Friends (like "all magistrates",
-          "parlaiment", "priests and professors")
+          a writing directed generally to non-Friends (like all magistrates, parlaiment,
+          priests)
         </span>
       </li>
       <li>
@@ -132,8 +129,8 @@ export default () => (
       <li>
         <Code>paper</Code>{' '}
         <span>
-          use if the context explicitly indicates it is a paper (e. g. "...I was moved to
-          give forth this <i>paper"</i>)
+          use if the context explicitly indicates it is a paper (e. g. "...I then gave
+          forth this <i>paper"</i>)
         </span>
       </li>
       <li>
@@ -142,6 +139,9 @@ export default () => (
           legal documents (mittimus, warrant, court order, prisoner transfer instructions,
           etc.)
         </span>
+      </li>
+      <li>
+        <Code>prayer</Code> <span>a written prayer embedded in a document (rare)</span>
       </li>
       <li>
         <Code>treatise</Code>{' '}
