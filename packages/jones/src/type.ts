@@ -68,7 +68,10 @@ export type Task = {
   updated: DateString;
   repoId: number;
   isNew: boolean;
-  prNumber?: number;
+  pullRequest?: {
+    number: number;
+    status?: 'open' | 'merged' | 'closed';
+  };
   collapsed: { [key: string]: boolean };
   sidebarOpen: boolean;
   sidebarWidth: number;
@@ -104,7 +107,7 @@ export type Undoable<T> = {
 
 export type UndoableTasks = Undoable<Tasks>;
 
-export type State = {
+export type BaseState = {
   version: number;
   prefs: {
     editorFontSize: number;
@@ -112,10 +115,17 @@ export type State = {
   github: GitHub;
   screen: string;
   currentTask?: Uuid;
-  tasks: UndoableTasks;
   repos: Repo[];
   search: Search;
   network: string[];
+};
+
+export type State = BaseState & {
+  tasks: UndoableTasks;
+};
+
+export type SavedState = BaseState & {
+  tasks: Tasks;
 };
 
 export type ReduxThunk = (dispatch: Dispatch, getState: () => State) => any;

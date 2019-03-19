@@ -1,11 +1,12 @@
 import { configureStore } from 'redux-starter-kit';
 import { combineReducers } from 'redux';
 import localForage from 'localforage';
-import { State, Action } from './type';
+import { State, SavedState, Action } from './type';
 import { defaultState as prefsDefaultState } from './reducers/prefs-reducer';
 import { defaultState as defaultSearchState } from './reducers/search-reducer';
 import { emptyUndoable } from './reducers/undoable';
 import rootReducer from './reducers';
+import migrate from './migrations';
 
 const defaultState: State = {
   version: 1,
@@ -21,8 +22,9 @@ const defaultState: State = {
 
 async function loadState() {
   try {
-    let state = (await localForage.getItem('jones')) as State;
+    let state = (await localForage.getItem('jones')) as SavedState;
     state = state || getLegacyState() || {};
+    state = migrate(state);
     return {
       ...state,
       tasks: {

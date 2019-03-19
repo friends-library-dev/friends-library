@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import get from 'lodash/get';
 import styled from '@emotion/styled/macro';
 import KeyEvent from 'react-keyboard-event-handler';
 import { Task, Dispatch, State as AppState } from '../type';
@@ -38,14 +39,24 @@ type Props = {
   increaseFontSize: Dispatch;
   decreaseFontSize: Dispatch;
   toggleSidebarOpen: Dispatch;
+  syncTask: Dispatch;
 };
 
 class Work extends React.Component<Props> {
+  private statusInterval: any = -1;
+
   componentDidMount() {
-    const { task, checkout } = this.props;
+    const { task, checkout, syncTask } = this.props;
     if (!task.parentCommit) {
       checkout(task);
     }
+    if (task.pullRequest) {
+      this.statusInterval = setInterval(() => syncTask(task), 1000 * 60 * 2);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.statusInterval);
   }
 
   render() {
@@ -58,6 +69,21 @@ class Work extends React.Component<Props> {
       redo,
       find,
     } = this.props;
+    const status = get(task, 'pullRequest.status', 'open');
+    if (status !== 'open') {
+      return (
+        <div style={{ color: 'red', padding: '1em 3em' }}>
+          <h1>😬 Pull Request was {status}!</h1>
+          <p style={{ lineHeight: '160%', color: 'white' }}>
+            Whoops, looks like there was some sort of a coordination problem. Don't worry,
+            none of your work is lost, you can reopen the task if necessary. But for now
+            you'll need to go back to the "Tasks" screen, and you'll probably want to
+            contact Jared or Jason, or leave a slack in the <code>#asciidoc</code>{' '}
+            channel.
+          </p>
+        </div>
+      );
+    }
 
     if (!task.parentCommit) {
       return <Loading />;
@@ -106,6 +132,7 @@ const mapDispatch = {
   toggleSidebarOpen: actions.toggleSidebarOpen,
   increaseFontSize: actions.increaseEditorFontSize,
   decreaseFontSize: actions.decreaseEditorFontSize,
+  syncTask: actions.syncPullRequestStatus,
 };
 
 export default connect(

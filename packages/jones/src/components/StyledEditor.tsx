@@ -2,8 +2,6 @@ import styled from '@emotion/styled/macro';
 
 const minusSearch = 'calc(30vh - 50px)';
 
-type Props = {};
-
 export default styled.div`
   position: relative;
   z-index: 1;

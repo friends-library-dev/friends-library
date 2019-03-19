@@ -1,6 +1,6 @@
 import Octokit from '@octokit/rest';
 import { Base64 } from 'js-base64';
-import { Slug } from '@friends-library/types';
+import { Slug, Sha } from '@friends-library/types';
 import { Task, File } from '../type';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -13,9 +13,9 @@ if (process.env.GITHUB_ORG) {
 }
 export const ORG = GITHUB_ORG;
 
-type Sha = string;
 type RepoSlug = string;
 type BranchName = string;
+
 type GitFile = {
   path: string;
   sha: Sha;
@@ -28,6 +28,24 @@ export function authenticate(token: string): void {
   gh = new Octokit({
     auth: `token ${token}`,
   });
+}
+
+export function deleteBranch(user: string, repo: RepoSlug, branch: BranchName) {
+  gh.git.deleteRef({ owner: user, repo, ref: `heads/${branch}` });
+}
+
+export async function pullRequestStatus(
+  repo: RepoSlug,
+  number: number,
+): Promise<'open' | 'merged' | 'closed'> {
+  const res = await gh.pulls.get({ owner: ORG, repo, number });
+  if (res.data.merged_at !== null) {
+    return 'merged';
+  }
+  if (res.data.closed_at !== null) {
+    return 'closed';
+  }
+  return 'open';
 }
 
 export async function getFriendRepos(): Promise<Object[]> {

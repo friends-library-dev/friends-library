@@ -83,7 +83,7 @@ export default createReducer(
       }
     },
 
-    REINIT_TASK: (
+    REOPEN_TASK: (
       state: Tasks,
       { payload: { id: oldId, newId } }: { payload: { id: Uuid; newId: Uuid } },
     ) => {
@@ -93,7 +93,7 @@ export default createReducer(
       }
       delete state[oldId];
       task.id = newId;
-      delete task.prNumber;
+      delete task.pullRequest;
       state[newId] = task;
     },
 
@@ -130,7 +130,7 @@ export default createReducer(
     ) => {
       const task = state[id];
       if (task) {
-        task.prNumber = prNumber;
+        task.pullRequest = { number: prNumber };
         fastForward(task, parentCommit);
       }
     },
@@ -216,6 +216,13 @@ export default createReducer(
       const task = state[taskId];
       if (task) {
         task.collapsed[key] = !isCollapsed;
+      }
+    },
+
+    UPDATE_PULL_REQUEST_STATUS: (state: Tasks, { payload: { id, status } }: Action) => {
+      const task = state[id];
+      if (task && task.pullRequest) {
+        task.pullRequest.status = status;
       }
     },
 

@@ -25,7 +25,6 @@ const TaskList = ({ tasks }: Props) => {
   return (
     <List>
       {tasks.map(task => (
-        // @ts-ignore
         <Task key={task.id} task={task} />
       ))}
     </List>
