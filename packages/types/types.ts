@@ -132,7 +132,7 @@ export type Heading = {
   text: string;
   shortText?: string;
   sequence?: {
-    type: 'Chapter' | 'Section';
+    type: string;
     number: number;
   };
 };

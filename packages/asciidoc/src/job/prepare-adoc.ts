@@ -1,9 +1,6 @@
 import { flow, memoize } from 'lodash';
 import { Asciidoc } from '@friends-library/types';
-// import { br7 } from './html';
-
-// temp
-const br7: string = '<br class="m7"/>';
+import { br7 } from './helpers';
 
 export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
   flow([
