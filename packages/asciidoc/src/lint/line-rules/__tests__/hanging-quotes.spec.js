@@ -15,4 +15,15 @@ describe('hangingQuotes()', () => {
       message: 'Invalid hanging quotation. Perhaps move it to the next line?',
     });
   });
+
+  const violations = ['== Ch\n\nFoo bar "`\njim jam.`"'];
+
+  test.each(violations)('multiline adoc should have lint error', adoc => {
+    const lines = adoc.split('\n');
+    let results = [];
+    lines.forEach((line, i) => {
+      results = results.concat(hangingQuotes(line, lines, i + 1));
+    });
+    expect(results).toHaveLength(1);
+  });
 });
