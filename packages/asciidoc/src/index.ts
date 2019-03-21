@@ -5,4 +5,5 @@ export { createJob, createPrecursor } from './job/index';
 export { default as createSourceSpec } from './job/source-spec';
 export { pdfHtml, embeddablePdfHtml, getTrim } from './job/pdf-html';
 export { navText, replaceHeadings } from './job/headings';
-export { frontmatter } from './job/frontmatter';
+export { frontmatter, epigraph } from './job/frontmatter';
+export { getBookSize } from './job/book-size';

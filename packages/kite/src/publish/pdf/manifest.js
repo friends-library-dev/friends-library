@@ -9,7 +9,8 @@ import { removeMobi7Tags } from '../html';
 
 export function getPdfManifest(job: Job): FileManifest {
   return {
-    'doc.html': pdfHtml(job),
+    'doc.html': pdfHtml(job)
+      .replace('</head>', '<link href="doc.css" rel="stylesheet" type="text/css"></head>'),
     'doc.css': getCss(job),
     'line.svg': file('pdf/line.svg'),
   };

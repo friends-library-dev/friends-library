@@ -35,6 +35,7 @@ export function publishPrecursors(
 ): Promise<*> {
   resetPublishDir();
   const specs = precursors.map(createSourceSpec);
+  // $FlowFixMe
   const jobs = specs.reduce(reduceSpecsToJobs(cmd), []);
   const complete = Promise.all(jobs.map(take));
 
