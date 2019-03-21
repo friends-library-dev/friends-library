@@ -7,6 +7,7 @@ import {
   Notes,
   Html,
   Omit,
+  AsciidocConversionLog,
 } from '@friends-library/types';
 import { extractShortHeadings } from './headings';
 import { extractEpigraphs } from './epigraphs';
@@ -15,7 +16,7 @@ import { extractNotes } from './notes';
 import { toArabic } from 'roman-numerals';
 
 export default function createSourceSpec(precursor: SourcePrecursor): SourceSpec {
-  const { epigraphs, sections, notes } = processAdoc(precursor.adoc);
+  const { epigraphs, sections, notes, logs } = processAdoc(precursor.adoc);
   return {
     id: precursor.id,
     size: precursor.adoc.length,
@@ -25,6 +26,7 @@ export default function createSourceSpec(precursor: SourcePrecursor): SourceSpec
     revision: precursor.revision,
     config: precursor.config,
     customCss: precursor.customCss,
+    conversionLogs: logs,
     epigraphs,
     sections,
     notes,
@@ -37,15 +39,17 @@ function processAdoc(
   epigraphs: Epigraph[];
   sections: DocSection[];
   notes: Notes;
+  logs: AsciidocConversionLog[];
 } {
   const shortHeadings = extractShortHeadings(adoc);
   const [epigraphs, adocSansEpigraphs] = extractEpigraphs(adoc);
-  const completeHtml = adocToHtml(adocSansEpigraphs);
+  const [completeHtml, logs] = adocToHtml(adocSansEpigraphs);
   const [notes, htmlSansNotes] = extractNotes(completeHtml);
   return {
     notes,
     epigraphs,
     sections: htmlToSections(htmlSansNotes, shortHeadings),
+    logs,
   };
 }
 

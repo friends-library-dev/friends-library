@@ -1,4 +1,4 @@
-import { PrintSize } from '@friends-library/types';
+import { PrintSize, PrintSizeName } from '@friends-library/types';
 
 const defaultMargins = {
   top: 0.85,
@@ -8,7 +8,7 @@ const defaultMargins = {
   runningHeadTop: 0.35,
 };
 
-export const sizes: { [key: string]: PrintSize } = {
+export const sizes: { [K in PrintSizeName]: PrintSize } = {
   'Pocket Book': {
     name: 'Pocket Book',
     abbrev: 's',

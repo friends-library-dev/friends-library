@@ -96,6 +96,7 @@ export type SourceSpec = {
   revision: DocumentRevision;
   sections: DocSection[];
   notes: Notes;
+  conversionLogs: AsciidocConversionLog[];
 };
 
 export type CustomCss = { [K in FileType | 'pdf' | 'all' | 'ebook']?: Css };
@@ -111,6 +112,12 @@ export type JobMeta = {
   condense: boolean;
   email?: string;
 };
+
+export interface AsciidocConversionLog {
+  getText(): string;
+  getSeverity(): string;
+  getSourceLocation(): { getLineNumber(): number } | undefined;
+}
 
 export type Epigraph = {
   text: string;

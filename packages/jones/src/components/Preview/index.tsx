@@ -118,6 +118,15 @@ class Component extends React.Component<Props, State> {
 
 const mapState = (state: AppState, { taskId, file }: OwnProps): Props => {
   const job = chapterJob(state, taskId, file);
+  job.spec.conversionLogs.forEach(log => {
+    console.warn(
+      `${log.getSeverity()}: ${log.getText()}${
+        log.getSourceLocation()
+          ? ` (near line ${(log.getSourceLocation() as any).getLineNumber()})`
+          : ''
+      }`,
+    );
+  });
   const html = embeddablePdfHtml(job);
   return {
     taskId,

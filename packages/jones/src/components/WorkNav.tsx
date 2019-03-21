@@ -30,15 +30,15 @@ const Wrap = styled.nav`
 
 const PreviewLink = styled.a`
   opacity: 0.85;
-  background: rgba(97, 175, 239, 0.85);
+  background: rgba(97, 175, 239, 0.55);
   color: white;
-  /* padding: 0 1.25em 0 0.9em; */
   width: 56px;
   text-align: center;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 
   &:hover {
+    background: rgba(97, 175, 239, 0.75);
     opacity: 1;
   }
 
