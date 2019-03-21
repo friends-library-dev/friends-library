@@ -1,5 +1,4 @@
-// @flow
-import type { PrintSizeName, PrintSize } from '../type';
+import { PrintSize, PrintSizeName } from '@friends-library/types';
 
 const defaultMargins = {
   top: 0.85,
@@ -9,7 +8,7 @@ const defaultMargins = {
   runningHeadTop: 0.35,
 };
 
-export const sizes: { [PrintSizeName]: PrintSize } = {
+export const sizes: { [K in PrintSizeName]: PrintSize } = {
   'Pocket Book': {
     name: 'Pocket Book',
     abbrev: 's',
@@ -62,7 +61,6 @@ export const sizes: { [PrintSizeName]: PrintSize } = {
     },
   },
 };
-
 
 export function getBookSize(id: string): PrintSize {
   let size;

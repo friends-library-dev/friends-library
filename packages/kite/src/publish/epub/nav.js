@@ -1,7 +1,7 @@
 // @flow
+import { navText } from '@friends-library/asciidoc';
 import type { Html } from '../../../../../type';
 import type { Job } from '../../type';
-import { navText } from '../headings';
 
 export function nav(job: Job): Html {
   if (job.spec.sections.length === 1) {

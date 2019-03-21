@@ -1,5 +1,19 @@
-import { replaceHeadings, navText } from '../headings';
-import { testJob } from '../test-helpers';
+import { extractShortHeadings, replaceHeadings, navText } from '../headings';
+import { jobFromAdoc } from './test-helpers';
+
+describe('extractShortHeadings()', () => {
+  it('extracts heading short text from adoc', () => {
+    const adoc = '[#intro, short="Intro"]\n== Introduction\n\nPara.';
+    const short = extractShortHeadings(adoc);
+    expect(short).toEqual(new Map([['intro', 'Intro']]));
+  });
+
+  it('extracts short heading from adoc when id also has class', () => {
+    const adoc = '[#intro.style-foo, short="Intro"]\n== Introduction\n\nPara.';
+    const short = extractShortHeadings(adoc);
+    expect(short).toEqual(new Map([['intro', 'Intro']]));
+  });
+});
 
 describe('replaceHeadings()', () => {
   let html;
@@ -9,7 +23,7 @@ describe('replaceHeadings()', () => {
   beforeEach(() => {
     html = '{% chapter-heading %}';
     heading = { id: '_', text: 'Foobar' };
-    job = testJob();
+    job = jobFromAdoc();
   });
 
   it('replaces simple heading with wrapped h2', () => {

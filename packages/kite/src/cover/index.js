@@ -1,10 +1,10 @@
 // @flow
 import fs from 'fs-extra';
 import path from 'path';
+import { getBookSize } from '@friends-library/asciidoc';
 import type { PrintSize } from '../type';
 import { PUBLISH_DIR, toCss } from '../publish/file';
 import { prince } from '../publish/pdf/prince';
-import { getBookSize } from '../publish/book-sizes';
 
 
 export default function cover(argv: Object): void {

@@ -2,8 +2,10 @@
 import fetch from 'node-fetch';
 import {
   createJob,
-  createSpec,
+  createSourceSpec,
   createPrecursor,
+} from '@friends-library/asciidoc';
+import {
   getDocumentMeta,
   jobToJson,
 } from '@friends-library/kite';
@@ -122,7 +124,7 @@ function getJob(
   return createJob({
     filename,
     target: 'pdf-print',
-    spec: createSpec(createPrecursor({
+    spec: createSourceSpec(createPrecursor({
       id: filename,
       filename: basename(filename, '.pdf'),
       revision: { sha: shortSha },

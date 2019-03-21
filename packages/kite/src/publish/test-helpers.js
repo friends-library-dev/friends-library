@@ -1,14 +1,13 @@
 // @flow
+import { createSourceSpec } from '@friends-library/asciidoc';
 import type { Asciidoc } from '../../../../type';
 import type { Job, SourcePrecursor } from '../type';
-import { prepare } from './prepare';
 import { createCommand } from './cli';
-
 
 export function testJob(adoc: ?Asciidoc = null): Job {
   return {
     id: 'test-job',
-    spec: prepare(testPrecursor(adoc)),
+    spec: createSourceSpec(testPrecursor(adoc)),
     target: 'epub',
     filename: 'test.epub',
     meta: createCommand({

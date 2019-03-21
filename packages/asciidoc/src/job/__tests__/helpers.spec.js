@@ -1,4 +1,4 @@
-import { capitalizeTitle, wrapper, trimTrailingPunctuation } from '../text';
+import { capitalizeTitle, makeReduceWrapper, trimTrailingPunctuation } from '../helpers';
 
 describe('capitalizeTitle()', () => {
   const pairs = [
@@ -14,20 +14,16 @@ describe('capitalizeTitle()', () => {
   });
 });
 
-
-describe('wrapper()', () => {
+describe('makeReduceWrapper()', () => {
   it('returns a reducer function that wraps arrays of strings', () => {
-    const wrapped = ['Thomas'].reduce(wrapper('Jared', 'Henderson'), []);
+    const wrapped = ['Thomas'].reduce(makeReduceWrapper('Jared', 'Henderson'), []);
 
     expect(wrapped).toEqual(['Jared', 'Thomas', 'Henderson']);
   });
 });
 
 describe('trimTrailingPunctuation()', () => {
-  const pairs = [
-    ['Foo bar.', 'Foo bar'],
-    ['Foo bar, etc.', 'Foo bar, etc.'],
-  ];
+  const pairs = [['Foo bar.', 'Foo bar'], ['Foo bar, etc.', 'Foo bar, etc.']];
 
   test.each(pairs)('it transforms %s to %s', (input, expected) => {
     expect(trimTrailingPunctuation(input)).toBe(expected);

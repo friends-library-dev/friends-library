@@ -17,6 +17,7 @@
     "receive": "node ./scripts/receive"
   },
   "dependencies": {
+    "@friends-library/asciidoc": "1.0.0",
     "@babel/register": "^7.0.0",
     "bunyan": "^1.8.12",
     "js-base64": "^2.5.1",

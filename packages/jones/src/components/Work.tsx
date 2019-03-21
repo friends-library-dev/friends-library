@@ -71,18 +71,7 @@ class Work extends React.Component<Props> {
     } = this.props;
     const status = get(task, 'pullRequest.status', 'open');
     if (status !== 'open') {
-      return (
-        <div style={{ color: 'red', padding: '1em 3em' }}>
-          <h1>😬 Pull Request was {status}!</h1>
-          <p style={{ lineHeight: '160%', color: 'white' }}>
-            Whoops, looks like there was some sort of a coordination problem. Don't worry,
-            none of your work is lost, you can reopen the task if necessary. But for now
-            you'll need to go back to the "Tasks" screen, and you'll probably want to
-            contact Jared or Jason, or leave a slack in the <code>#asciidoc</code>{' '}
-            channel.
-          </p>
-        </div>
-      );
+      return <ClosedWarning status={status} />;
     }
 
     if (!task.parentCommit) {
@@ -139,3 +128,15 @@ export default connect(
   mapState,
   mapDispatch,
 )(Work);
+
+const ClosedWarning: React.SFC<{ status: 'closed' | 'merged' }> = ({ status }) => (
+  <div style={{ color: 'red', padding: '1em 3em' }}>
+    <h1>😬 Pull Request was {status}!</h1>
+    <p style={{ lineHeight: '160%', color: 'white' }}>
+      Whoops, looks like there was some sort of a coordination problem. Don't worry, none
+      of your work is lost, you can reopen the task if necessary. But for now you'll need
+      to go back to the "Tasks" screen, and you'll probably want to contact Jared or
+      Jason, or leave a slack in the <code>#asciidoc</code> channel.
+    </p>
+  </div>
+);

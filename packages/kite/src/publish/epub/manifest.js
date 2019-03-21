@@ -1,9 +1,9 @@
 // @flow
+import { replaceHeadings } from '@friends-library/asciidoc';
 import { flow, mapValues } from 'lodash';
 import type { Xml, Css, Html } from '../../../../../type';
 import type { Job, FileManifest } from '../../type';
 import { toCss } from '../file';
-import { replaceHeadings } from '../headings';
 import { wrapHtml, removeMobi7Tags } from '../html';
 import { packageDocument } from './package-document';
 import { makeFootnoteCallReplacer, notesMarkup } from './notes';

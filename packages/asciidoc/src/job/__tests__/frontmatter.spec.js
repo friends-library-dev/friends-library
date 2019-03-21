@@ -1,11 +1,12 @@
+import stripIndent from 'strip-indent';
 import { frontmatter, halfTitle } from '../frontmatter';
-import { testJob } from '../test-helpers';
+import { jobFromAdoc } from './test-helpers';
 
 describe('frontmatter()', () => {
   let job;
 
   beforeEach(() => {
-    job = testJob();
+    job = jobFromAdoc('== C1\n');
   });
 
   it('does not include original title page if no orig title', () => {
@@ -54,16 +55,16 @@ describe('frontmatter()', () => {
   });
 
   it('includes epigraphs if necessary', () => {
-    const adoc = `
-[quote.epigraph, , citation]
-____
-Quote text.
-____
+    const adoc = stripIndent(`
+      [quote.epigraph, , citation]
+      ____
+      Quote text.
+      ____
 
-== Chapter 1
-    `.trim();
+      == Chapter 1
+    `).trim();
 
-    const files = frontmatter(testJob(adoc));
+    const files = frontmatter(jobFromAdoc(adoc));
 
     expect(files.epigraph).toContain('Quote text.');
   });
@@ -71,7 +72,7 @@ ____
 
 describe('halfTitle()', () => {
   it('omits byline if author name in author title', () => {
-    const job = testJob();
+    const job = jobFromAdoc();
     job.spec.meta.author.name = 'Ambrose Rigge';
     job.spec.meta.title = 'Journal of Ambrose Rigge';
 
@@ -81,7 +82,7 @@ describe('halfTitle()', () => {
   });
 
   it('keeps byline if author name not in author title', () => {
-    const job = testJob();
+    const job = jobFromAdoc();
     job.spec.meta.author.name = 'Ambrose Rigge';
     job.spec.meta.title = 'Journal &c.';
 
