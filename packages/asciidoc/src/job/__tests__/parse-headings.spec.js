@@ -1,9 +1,11 @@
-import { prepare } from '../prepare';
-import { testPrecursor as precursor } from '../test-helpers';
-
+import { jobFromAdoc } from './test-helpers';
 
 function parse(adoc) {
-  const { sections: [section] } = prepare(precursor(adoc));
+  const {
+    spec: {
+      sections: [section],
+    },
+  } = jobFromAdoc(adoc);
   return section.heading;
 }
 

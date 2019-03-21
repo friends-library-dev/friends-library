@@ -8,6 +8,7 @@ import TopNav from './components/TopNav';
 import Tasks from './components/Tasks';
 import EditTask from './components/EditTask';
 import Work from './components/Work';
+import Preview from './components/Preview';
 import { State, Dispatch } from './type';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -25,7 +26,8 @@ class App extends React.Component<Props> {
     const query = new URLSearchParams(window.location.search);
     if (query.has('access_token')) {
       receiveAccessToken(query.get('access_token'));
-      window.location.replace('/');
+      // wait for indexeddb to store query token before refreshing
+      Promise.resolve().then(() => window.location.replace('/'));
     }
   }
 
@@ -48,6 +50,13 @@ class App extends React.Component<Props> {
     const { loggedIn, hardReset } = this.props;
     if (!loggedIn) {
       return <Login />;
+    }
+
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('preview') && query.get('task') && query.get('file')) {
+      const taskId = query.get('task') as string;
+      const file = query.get('file') as string;
+      return <Preview taskId={taskId} file={file} />;
     }
 
     return (

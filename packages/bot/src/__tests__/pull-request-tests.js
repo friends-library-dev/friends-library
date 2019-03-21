@@ -5,6 +5,7 @@ import { prTestSetup } from './helpers';
 import pullRequest from '../pull-request';
 
 jest.mock('@friends-library/client');
+jest.mock('@friends-library/asciidoc');
 jest.mock('../check/kite');
 jest.mock('../check/lint');
 

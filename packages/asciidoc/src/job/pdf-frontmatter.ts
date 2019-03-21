@@ -1,10 +1,13 @@
 // @flow
-import type { Html } from '../../../../../type';
-import type { Job, DocSection } from '../../type';
-import { copyright as commonCopyright, halfTitle as commonHalfTitle, epigraph } from '../frontmatter';
-import { navText } from '../headings';
+import {
+  copyright as commonCopyright,
+  halfTitle as commonHalfTitle,
+  epigraph,
+} from './frontmatter';
+import { navText } from './headings';
+import { Job, Html, DocSection } from '@friends-library/types';
 
-export function frontmatter(job: Job): Html {
+export function pdfFrontmatter(job: Job): Html {
   if (!job.meta.frontmatter) {
     return '';
   }
@@ -56,7 +59,6 @@ function halfTitle(job: Job): Html {
     </div>
   `;
 }
-
 
 function originalTitle({ spec: { meta } }: Job): Html {
   if (!meta.originalTitle) {

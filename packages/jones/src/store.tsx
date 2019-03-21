@@ -9,7 +9,7 @@ import rootReducer from './reducers';
 import migrate from './migrations';
 
 const defaultState: State = {
-  version: 1,
+  version: 2,
   screen: 'TASKS',
   currentTask: undefined,
   tasks: emptyUndoable(),

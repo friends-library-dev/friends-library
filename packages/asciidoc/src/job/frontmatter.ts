@@ -1,21 +1,20 @@
-// @flow
 import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
-import type { Html } from '../../../../type';
-import type { Job, FileManifest, Epigraph } from '../type';
-import { printDims } from './pdf/manifest';
-import { capitalizeTitle, ucfirst } from './text';
-import { br7 } from './html';
+import { Html, Job, FileManifest, Epigraph } from '@friends-library/types';
+import { capitalizeTitle, ucfirst, br7 } from './helpers';
+// import { printDims } from './pdf/manifest';
 
-export const frontmatter = memoize((job: Job): FileManifest => {
-  const files = {
-    'half-title': halfTitle(job),
-    'original-title': originalTitle(job),
-    copyright: copyright(job),
-    epigraph: epigraph(job),
-  };
-  return pickBy(files, html => html !== '');
-});
+export const frontmatter = memoize(
+  (job: Job): FileManifest => {
+    const files = {
+      'half-title': halfTitle(job),
+      'original-title': originalTitle(job),
+      copyright: copyright(job),
+      epigraph: epigraph(job),
+    };
+    return pickBy(files, html => html !== '');
+  },
+);
 
 export function epigraph({ spec: { epigraphs } }: Job): Html {
   if (!epigraphs.length) {
@@ -40,11 +39,22 @@ function renderEpigraph({ text, source }: Epigraph, index: number): Html {
 }
 
 export function halfTitle(job: Job): Html {
-  const { spec: { lang, meta: { title, editor, author: { name } } } } = job;
+  const {
+    spec: {
+      lang,
+      meta: {
+        title,
+        editor,
+        author: { name },
+      },
+    },
+  } = job;
   let markup = `<h1>${title}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
   if (!nameInTitle) {
-    markup = `${markup}\n<p class="byline">${br7}${lang === 'en' ? 'by' : 'por'} ${name}</p>`;
+    markup = `${markup}\n<p class="byline">${br7}${
+      lang === 'en' ? 'by' : 'por'
+    } ${name}</p>`;
   }
 
   if (editor && lang === 'en') {
@@ -74,17 +84,27 @@ function originalTitle({ spec: { meta } }: Job): Html {
 }
 
 export function copyright(job: Job): Html {
-  const { spec: { lang, revision: { timestamp, sha, url }, meta: { published, isbn } } } = job;
+  const {
+    spec: {
+      lang,
+      revision: { timestamp, sha, url },
+      meta: { published, isbn },
+    },
+  } = job;
   let marginData = '';
-  if (job.meta.debugPrintMargins) {
-    const dims = printDims(job);
-    marginData = Object.keys(dims).map(k => {
-      if (!k.match(/-margin/)) {
-        return '';
-      }
-      return `<li class="debug"><code>$${k}: ${dims[k]};</code></li>`;
-    }).join('\n').concat('<li></li><li></li>');
-  }
+
+  // if (job.meta.debugPrintMargins) {
+  //   const dims = printDims(job);
+  //   marginData = Object.keys(dims)
+  //     .map(k => {
+  //       if (!k.match(/-margin/)) {
+  //         return '';
+  //       }
+  //       return `<li class="debug"><code>$${k}: ${dims[k]};</code></li>`;
+  //     })
+  //     .join('\n')
+  //     .concat('<li></li><li></li>');
+  // }
 
   moment.locale(lang);
   let time = moment
@@ -92,7 +112,10 @@ export function copyright(job: Job): Html {
     .format(lang === 'en' ? 'MMMM Do, YYYY' : 'D [de] MMMM, YYYY');
 
   if (lang === 'es') {
-    time = time.split(' ').map(p => p === 'de' ? p : ucfirst(p)).join(' ');
+    time = time
+      .split(' ')
+      .map(p => (p === 'de' ? p : ucfirst(p)))
+      .join(' ');
   }
 
   let strings = {
@@ -123,9 +146,15 @@ export function copyright(job: Job): Html {
       ${published ? `<li>${strings.publishedIn} ${published}</li>` : ''}
       ${isbn ? `<li id="isbn">ISBN: <code>${isbn}</code></li>` : ''}
       <li>${strings.textRevision} <code><a href="${url}">${sha}</a></code> — ${time}</li>
-      <li>${strings.createdBy} <a href="https://friendslibrary.com">Friends Library Publishing</a></li>
-      <li>${strings.moreFreeBooks} <a href="https://friendslibrary.com">friendslibrary.com</a></li>
-      <li>${strings.contact} <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
+      <li>${
+        strings.createdBy
+      } <a href="https://friendslibrary.com">Friends Library Publishing</a></li>
+      <li>${
+        strings.moreFreeBooks
+      } <a href="https://friendslibrary.com">friendslibrary.com</a></li>
+      <li>${
+        strings.contact
+      } <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
     </ul>
   </div>
   `;

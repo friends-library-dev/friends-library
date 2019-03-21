@@ -8,7 +8,8 @@
     "./dist/lint/lint-dir.js": false,
     "./dist/lint/dir-lints.js": false,
     "./dist/lint/lint-fix-dir.js": false,
-    "./dist/lint/character-name.js": "./dist/lint/character-name.browser.js"
+    "./dist/lint/character-name.js": "./dist/lint/character-name.browser.js",
+    "./dist/job/asciidoctor.js": "./dist/job/asciidoctor.browser.js"
   },
   "scripts": {
     "scaffold:lint": "node ./scripts/scaffold-lint.js",
@@ -18,8 +19,9 @@
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",
-    "unicharadata": "^9.0.0-alpha.6",
-    "typescript": "^3.3.3333"
+    "@types/strip-indent": "^2.0.0",
+    "typescript": "^3.3.3333",
+    "unicharadata": "^9.0.0-alpha.6"
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.5",

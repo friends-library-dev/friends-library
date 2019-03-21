@@ -12,6 +12,7 @@
     "build": "yarn build:frags && webpack --mode production --display=minimal"
   },
   "dependencies": {
+    "@friends-library/asciidoc": "1.0.0",
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
     "@babel/register": "^7.0.0",

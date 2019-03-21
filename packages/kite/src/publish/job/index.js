@@ -1,9 +1,9 @@
 // @flow
+import { createSourceSpec } from '@friends-library/asciidoc';
 import uuid from 'uuid/v4';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
 import type { SourcePrecursor, SourceSpec, Job } from '../../type';
-import { prepare } from '../prepare';
 
 export function createJob(data: Object = {}): Job {
   const defaultMeta = {
@@ -56,5 +56,5 @@ export function createPrecursor(data: Object = {}): SourcePrecursor {
 }
 
 export function createSpec(precursor: SourcePrecursor): SourceSpec {
-  return prepare(precursor);
+  return createSourceSpec(precursor);
 }
