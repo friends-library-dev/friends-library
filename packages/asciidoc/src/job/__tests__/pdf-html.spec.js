@@ -9,6 +9,12 @@ describe('pdfHtml()', () => {
     expect(html).toContain('C2');
   });
 
+  it('html wrapped in full document', () => {
+    const job = jobFromAdoc('== C1\n\n== C2');
+    const html = pdfHtml(job);
+    expect(html).toContain('<!DOCTYPE html>');
+  });
+
   test('adds first chapter class to first chapter', () => {
     const job = jobFromAdoc('== C1\n\n== C2');
     const html = pdfHtml(job);
