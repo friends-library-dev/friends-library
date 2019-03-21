@@ -1,6 +1,7 @@
 // @flow
 /* istanbul ignore file */
 import fs from 'fs-extra';
+import chalk from 'chalk';
 import { defaults, omit } from 'lodash';
 import { lintDir, lintFixDir, createSourceSpec } from '@friends-library/asciidoc';
 import { red } from '@friends-library/cli/color';
@@ -70,6 +71,19 @@ function resetPublishDir(): void {
 }
 
 export function take(job: Job): Promise<*> {
+  // $FlowFixMe
+  const logs = job.spec.conversionLogs.map(log => {
+    const msg = log.getText();
+    if (msg === 'unterminated open block') {
+      return `${msg}: you probably forgot to close out an [.embedded-content-document]`;
+    }
+    return `${log.getSeverity()} ${msg}`;
+  });
+
+  if (logs.length) {
+    throw new Error(chalk.red(logs.join('\n')));
+  }
+
   const { target } = job;
 
   switch (target) {
