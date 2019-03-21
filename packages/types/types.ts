@@ -98,15 +98,7 @@ export type SourceSpec = {
   notes: Notes;
 };
 
-export type CustomCss = {
-  epub?: Css;
-  mobi?: Css;
-  ebook?: Css;
-  pdf?: Css;
-  all?: Css;
-  'pdf-print'?: Css;
-  'pdf-web'?: Css;
-};
+export type CustomCss = { [K in FileType | 'pdf' | 'all' | 'ebook']?: Css };
 
 export type JobMeta = {
   perform: boolean;
@@ -148,7 +140,7 @@ export type SourcePrecursor = {
   id: string;
   lang: Lang;
   adoc: Asciidoc;
-  config: Object;
+  config: { [key: string]: any };
   customCss: CustomCss;
   revision: DocumentRevision;
   meta: DocumentMeta;

@@ -1,7 +1,8 @@
-import { SourcePrecursor } from '@friends-library/types';
+import { SourcePrecursor, Job } from '@friends-library/types';
 import uuid from 'uuid/v4';
 import pick from 'lodash/pick';
 import get from 'lodash/get';
+import createSourceSpec from './source-spec';
 
 export function createPrecursor(data: Partial<SourcePrecursor> = {}): SourcePrecursor {
   const metaProps = ['title', 'isbn', 'originalTitle', 'published', 'editor'];
@@ -28,5 +29,28 @@ export function createPrecursor(data: Partial<SourcePrecursor> = {}): SourcePrec
       },
       ...(data.meta ? pick(data.meta, metaProps) : {}),
     },
+  };
+}
+
+export function createJob(data: Partial<Job> = {}): Job {
+  const defaultMeta = {
+    check: false,
+    perform: false,
+    open: false,
+    send: false,
+    debugPrintMargins: false,
+    condense: false,
+    frontmatter: true,
+  };
+  return {
+    id: uuid(),
+    filename: 'document--(print).pdf',
+    target: 'pdf-print',
+    spec: data.spec || createSourceSpec(createPrecursor()),
+    meta: {
+      ...defaultMeta,
+      ...pick(get(data, 'meta', {}), Object.keys(defaultMeta)),
+    },
+    ...pick(data, ['id', 'filename', 'target']),
   };
 }

@@ -4,7 +4,7 @@ jest.mock('uuid/v4', () => {
   return jest.fn(() => 'UUID');
 });
 
-xdescribe('createJob()', () => {
+describe('createJob()', () => {
   it('returns a valid job with no data passed', () => {
     const job = createJob();
     expect(job).toMatchObject({

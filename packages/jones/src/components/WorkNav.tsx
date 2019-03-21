@@ -28,6 +28,27 @@ const Wrap = styled.nav`
   }
 `;
 
+const PreviewLink = styled.a`
+  opacity: 0.85;
+  background: rgba(97, 175, 239, 0.85);
+  color: white;
+  /* padding: 0 1.25em 0 0.9em; */
+  width: 56px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  i {
+    margin-left: -5px;
+    transform: scale(1.2);
+    color: white !important;
+  }
+`;
+
 type Props = {
   task: Task;
   goToTasks: Dispatch;
@@ -46,6 +67,14 @@ const WorkNav = ({ task, goToTasks, friendName }: Props) => (
         <i>{task.name}</i>
       </span>
     </div>
+    {task.editingFile && (
+      <PreviewLink
+        href={`/?preview=true&task=${task.id}&file=${task.editingFile}`}
+        target="_blank"
+      >
+        <i className="fas fa-book-open" />
+      </PreviewLink>
+    )}
   </Wrap>
 );
 

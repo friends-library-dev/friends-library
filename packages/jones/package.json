@@ -37,9 +37,10 @@
   },
   "scripts": {
     "develop": "yarn start",
-    "prestart": "rm -rf ./.env && cp ../../.env .",
+    "asciidoctorjs": "rm -f ./public/asciidoctor.min.js && cp ../../node_modules/asciidoctor.js/dist/asciidoctor.min.js ./public",
+    "prestart": "rm -rf ./.env && cp ../../.env . && yarn asciidoctorjs",
     "start": "SKIP_PREFLIGHT_CHECK=true PORT=8888 react-scripts start",
-    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "build": "yarn asciidoctorjs && SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "SKIP_PREFLIGHT_CHECK=true react-scripts test --no-watch",
     "test:watch": "SKIP_PREFLIGHT_CHECK=true react-scripts test",
     "eject": "react-scripts eject"

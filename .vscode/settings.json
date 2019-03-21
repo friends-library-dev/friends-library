@@ -6,6 +6,7 @@
     "**/_publish": true,
     "**/dist": true,
     "**/*.log": true,
-    "packages/jones/build": true
+    "packages/jones/build": true,
+    "packages/jones/public/asciidoctor.min.js": true
   }
 }

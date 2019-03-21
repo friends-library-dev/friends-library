@@ -2,6 +2,7 @@ import omit from 'lodash/omit';
 import stripIndent from 'strip-indent';
 import { createPrecursor } from '../';
 import createSourceSpec from '../source-spec';
+import { specFromAdoc } from './test-helpers';
 
 let mockCounter = 0;
 
@@ -397,30 +398,3 @@ End of footnote here.]
     expect(notes.get('uuid1')).toContain(`bar. ${splitMarkup} Hash`);
   });
 });
-
-function specFromAdoc(adoc) {
-  return createSourceSpec(precursor(adoc));
-}
-
-function precursor(adoc = null) {
-  return {
-    id: 'test/doc',
-    lang: 'en',
-    filename: 'test-filename',
-    config: {},
-    customCss: {},
-    adoc: adoc || '== C1\n\nPara.\n\n== C2\n\nPara.footnote:[A note.]',
-    meta: {
-      title: 'Test Doc',
-      author: {
-        name: 'George Fox',
-        nameSort: 'Fox, George',
-      },
-    },
-    revision: {
-      timestamp: Math.floor(Date.now() / 1000),
-      sha: 'fb0c71b',
-      url: 'https://github.com/friends-library/test/tree/fb0c71b/doc/edition',
-    },
-  };
-}

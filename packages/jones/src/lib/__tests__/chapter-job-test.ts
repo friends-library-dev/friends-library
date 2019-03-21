@@ -9,10 +9,13 @@ describe('chapterJob', () => {
     state = {
       repos: [],
       tasks: {
-        id: {
-          files: {
-            'journal/updated/01.adoc': {
-              content: '== Ch 1\n',
+        present: {
+          id: {
+            repoId: 1,
+            files: {
+              'journal/updated/01.adoc': {
+                content: '== Ch 1\n\n_Foo_.\n',
+              },
             },
           },
         },
@@ -20,8 +23,9 @@ describe('chapterJob', () => {
     };
   });
 
-  it('returns a job, i guess', () => {
+  it('returns a job with html from the asciidoc', () => {
     const job = chapterJob(state, 'id', path);
     expect(job.target).toBe('pdf-print');
+    expect(job.spec.sections[0].html).toContain('<em>Foo</em>');
   });
 });
