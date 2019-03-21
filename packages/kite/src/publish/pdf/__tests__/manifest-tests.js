@@ -62,18 +62,12 @@ describe('getPdfManifest()', () => {
     expect(manifest['doc.css']).toContain('counter(footnote, symbols(');
   });
 
-  test.only('doc with more than 4 footnotes do not use symbols', () => {
+  test('doc with more than 4 footnotes do not use symbols', () => {
     const adoc = '== T\n\nafootnote:[a]bfootnote:[b]cfootnote:[c]dfootnote:[d]efootnote:[e]';
     const myJob = testJob(adoc);
 
     const manifest = getPdfManifest(myJob);
 
-    // expect(true).toBe(false);
-    // if (manifest['doc.css'].contains('counter(footnote, symbols(')) {
-    //   throw new Error('has it!');
-    // } else {
-    //   expect(true).toBe(true);
-    // }
     expect(manifest['doc.css']).not.toContain('counter(footnote, symbols(');
   });
 

@@ -1,8 +1,8 @@
 // @flow
 import { memoize } from 'lodash';
+import { navText, frontmatter as commonFrontmatter } from '@friends-library/asciidoc';
 import type { Html } from '../../../../../type';
 import type { Job } from '../../type';
-import { navText, frontmatter as commonFrontmatter } from '@friends-library/asciidoc';
 import { callMarkup, useSymbols } from './notes';
 
 export const frontmatter = memoize((job: Job): { [string]: Html } => {

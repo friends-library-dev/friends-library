@@ -1,11 +1,9 @@
 // @flow
 import { pdfHtml, getTrim } from '@friends-library/asciidoc';
-import { flow, mapValues } from 'lodash';
-import { toRoman } from 'roman-numerals';
-import type { Css, Html } from '../../../../../type';
-import type { Job, FileManifest, Heading, PrintSize } from '../../type';
+import { mapValues } from 'lodash';
+import type { Css } from '../../../../../type';
+import type { Job, FileManifest } from '../../type';
 import { file, toCss } from '../file';
-import { removeMobi7Tags } from '../html';
 
 export function getPdfManifest(job: Job): FileManifest {
   return {

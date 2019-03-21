@@ -1,8 +1,8 @@
 // @flow
+import { createSourceSpec } from '@friends-library/asciidoc';
 import type { Asciidoc } from '../../../../type';
 import type { Job, SourcePrecursor } from '../type';
 import { createCommand } from './cli';
-import { createSourceSpec } from '@friends-library/asciidoc';
 
 export function testJob(adoc: ?Asciidoc = null): Job {
   return {
