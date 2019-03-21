@@ -76,7 +76,7 @@ function addBodyClasses([html, job]: [Html, Job]): [Html, Job] {
   return [html.replace('<body>', `<body class="body trim--${abbrev}">`), job];
 }
 
-function getTrim({ meta }: Job): PrintSize {
+export function getTrim({ meta }: Job): PrintSize {
   return getBookSize(meta.printSize || 'm');
 }
 

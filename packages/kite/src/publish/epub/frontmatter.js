@@ -2,8 +2,7 @@
 import { memoize } from 'lodash';
 import type { Html } from '../../../../../type';
 import type { Job } from '../../type';
-import { frontmatter as commonFrontmatter } from '../frontmatter';
-import { navText } from '../headings';
+import { navText, frontmatter as commonFrontmatter } from '@friends-library/asciidoc';
 import { callMarkup, useSymbols } from './notes';
 
 export const frontmatter = memoize((job: Job): { [string]: Html } => {

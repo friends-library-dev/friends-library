@@ -2,13 +2,12 @@
 /* istanbul ignore file */
 import fs from 'fs-extra';
 import { defaults, omit } from 'lodash';
-import { lintDir, lintFixDir } from '@friends-library/asciidoc';
+import { lintDir, lintFixDir, createSourceSpec } from '@friends-library/asciidoc';
 import { red } from '@friends-library/cli/color';
 import type { JobMeta, Job, SourceSpec, FileType, SourcePrecursor } from '../../type';
 import { makeEpub } from '../epub/make';
 import { makeMobi } from '../mobi/make';
 import { makePdf } from '../pdf/make';
-import { prepare } from '../prepare';
 import { getPrecursors } from './precursors';
 import { send } from '../send';
 import { printLints } from '../../lint';
@@ -35,7 +34,7 @@ export function publishPrecursors(
   cmd: Command,
 ): Promise<*> {
   resetPublishDir();
-  const specs = precursors.map(prepare);
+  const specs = precursors.map(createSourceSpec);
   const jobs = specs.reduce(reduceSpecsToJobs(cmd), []);
   const complete = Promise.all(jobs.map(take));
 

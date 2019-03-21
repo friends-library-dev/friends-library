@@ -1,5 +1,5 @@
+import { createPrecursor, createSourceSpec, createJob } from '@friends-library/asciidoc';
 import { jobToJson, unstringifyJob } from '../utils';
-import { createPrecursor, createSpec, createJob } from '..';
 
 jest.mock('uuid/v4', () => {
   return jest.fn(() => 'uuid');
@@ -9,7 +9,7 @@ describe('jobToJson()', () => {
   it('turns note maps into array for stringification', () => {
     const adoc = '== Ch 1\n\nFoo.footnote:[bar]';
     const precursor = createPrecursor({ adoc });
-    const job = createJob({ spec: createSpec(precursor) });
+    const job = createJob({ spec: createSourceSpec(precursor) });
     const json = jobToJson(job);
 
     expect(json.spec.notes).toEqual([['uuid', 'bar']]);
@@ -18,7 +18,7 @@ describe('jobToJson()', () => {
   it('turns empty notes into empty array', () => {
     const adoc = '== Ch 1';
     const precursor = createPrecursor({ adoc });
-    const job = createJob({ spec: createSpec(precursor) });
+    const job = createJob({ spec: createSourceSpec(precursor) });
     const json = jobToJson(job);
 
     expect(json.spec.notes).toEqual([]);

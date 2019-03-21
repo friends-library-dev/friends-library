@@ -1,6 +1,9 @@
 // @flow
 import type { MatchLocation, Finder } from './type';
-import { ucfirst } from '../../kite/src/publish/text';
+
+function ucfirst(lower: string): string {
+  return lower.replace(/^\w/, c => c.toUpperCase());
+}
 
 export default {
   hath: replace('hath', 'has'),
