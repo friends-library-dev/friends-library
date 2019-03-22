@@ -24,5 +24,6 @@ export default () => (
     <sections.Poetry />
     <sections.Styling />
     <sections.Gotchas />
+    <sections.Videos />
   </StyledContent>
 );

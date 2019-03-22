@@ -12,3 +12,4 @@ export { default as Footnotes } from './Footnotes';
 export { default as Gotchas } from './Gotchas';
 export { default as Letters } from './Letters';
 export { default as SubHeadings } from './SubHeadings';
+export { default as Videos } from './Videos';
