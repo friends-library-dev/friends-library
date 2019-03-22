@@ -28,7 +28,7 @@ const StyledSidebar = styled.section`
       text-decoration: none;
 
       &::before {
-        content: "¶ ";
+        content: '¶ ';
         color: rgba(0, 0, 0, 0.3);
         padding-right: 4px;
       }
@@ -36,11 +36,10 @@ const StyledSidebar = styled.section`
   }
 `;
 
-
 type ItemProps = {
   text: string,
   href?: string,
-}
+};
 
 const Item = ({ text, href }: ItemProps) => {
   return (
@@ -74,9 +73,9 @@ export default () => (
     >
       Friends
       <br />
-Library
+      Library
       <br />
-Publishing
+      Publishing
       <br />
       <i style={{ color: '#d62529' }}>Styleguide</i>
     </h1>
@@ -94,6 +93,7 @@ Publishing
       <Item text="Poetry" />
       <Item text="Misc. Styling" href="styling" />
       <Item text="Gotchas!" href="gotchas" />
+      <Item text="Videos" href="videos" />
     </ul>
   </StyledSidebar>
 );

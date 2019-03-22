@@ -135,7 +135,6 @@ class Component extends React.Component<Props, State> {
 }
 
 const mapState = (state: AppState, { taskId, file }: OwnProps): Props => {
-  console.log(file);
   const getHtml = (): Html => {
     const job = chapterJob(state, taskId, file);
     job.spec.conversionLogs.forEach(log => {
