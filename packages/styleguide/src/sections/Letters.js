@@ -141,6 +141,12 @@ export default () => (
         </span>
       </li>
       <li>
+        <Code>minute</Code>{' '}
+        <span>
+          an official <em>minute</em> from a Friends meeting
+        </span>
+      </li>
+      <li>
         <Code>prayer</Code> <span>a written prayer embedded in a document (rare)</span>
       </li>
       <li>
