@@ -16,7 +16,14 @@ export function searchFiles(
       if (words) {
         pattern = `\\b${pattern}\\b`;
       }
-      const exp = new RegExp(pattern, `g${caseSensitive ? '' : 'i'}`);
+
+      let exp: RegExp;
+      try {
+        exp = new RegExp(pattern, `g${caseSensitive ? '' : 'i'}`);
+      } catch {
+        return [];
+      }
+
       lines.forEach((line, index) => {
         let match;
         while ((match = exp.exec(line))) {
