@@ -56,34 +56,48 @@ type OwnProps = {
 };
 
 type Props = OwnProps & {
-  html: Html;
+  getHtml: () => Html;
 };
 
 type State = {
   cssLoaded: boolean;
+  html: Html;
 };
 
 class Component extends React.Component<Props, State> {
-  state: State = { cssLoaded: false };
+  state: State = { cssLoaded: false, html: '' };
 
   componentDidMount() {
     const link = document.createElement('link');
-    link.onload = () => {
-      this.setState({ cssLoaded: true });
-      const restoreScroll = sessionStorage.getItem(this.scrollKey());
-      if (restoreScroll) {
-        window.scrollTo(0, Number(restoreScroll));
-      }
-    };
     link.setAttribute('rel', 'stylesheet');
     link.type = 'text/css';
     link.href = 'https://flp-styleguide.netlify.com/pdf.css';
     document.head.appendChild(link);
     window.addEventListener('scroll', this.watchScroll);
+
+    link.onload = () => {
+      this.setState({ cssLoaded: true });
+      this.restoreScroll();
+    };
+
+    // prepping HTML for a big file can take 1-5 SECONDS
+    // so defer so that we can show the throbber while waiting
+    const { getHtml } = this.props;
+    setTimeout(() => {
+      this.setState({ html: getHtml() });
+      this.restoreScroll();
+    }, 100);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.watchScroll);
+  }
+
+  restoreScroll() {
+    const savedScroll = sessionStorage.getItem(this.scrollKey());
+    if (savedScroll) {
+      window.scrollTo(0, Number(savedScroll));
+    }
   }
 
   scrollKey() {
@@ -96,13 +110,13 @@ class Component extends React.Component<Props, State> {
   }, 200);
 
   render() {
-    const { props, state } = this;
+    const { cssLoaded, html } = this.state;
     return (
       <Rendered className="body">
         <Global styles={globalStyles} />
         <div className="page">
-          {state.cssLoaded ? (
-            <div className="inner" dangerouslySetInnerHTML={{ __html: props.html }} />
+          {cssLoaded && html ? (
+            <div className="inner" dangerouslySetInnerHTML={{ __html: html }} />
           ) : (
             <Centered>
               <h1 style={{ height: '100vh', opacity: 0.8, lineHeight: '100vh' }}>
@@ -117,21 +131,24 @@ class Component extends React.Component<Props, State> {
 }
 
 const mapState = (state: AppState, { taskId, file }: OwnProps): Props => {
-  const job = chapterJob(state, taskId, file);
-  job.spec.conversionLogs.forEach(log => {
-    console.warn(
-      `${log.getSeverity()}: ${log.getText()}${
-        log.getSourceLocation()
-          ? ` (near line ${(log.getSourceLocation() as any).getLineNumber()})`
-          : ''
-      }`,
-    );
-  });
-  const html = embeddablePdfHtml(job);
+  console.log(file);
+  const getHtml = (): Html => {
+    const job = chapterJob(state, taskId, file);
+    job.spec.conversionLogs.forEach(log => {
+      console.warn(
+        `${log.getSeverity()}: ${log.getText()}${
+          log.getSourceLocation()
+            ? ` (near line ${(log.getSourceLocation() as any).getLineNumber()})`
+            : ''
+        }`,
+      );
+    });
+    return embeddablePdfHtml(job);
+  };
   return {
     taskId,
     file,
-    html,
+    getHtml,
   };
 };
 
