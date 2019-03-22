@@ -25,6 +25,10 @@ const Rendered = styled.div`
 `;
 
 const globalStyles = css`
+  * {
+    user-select: auto !important;
+  }
+
   html {
     font-size: 12.5pt !important;
     background: #eaeaea;
