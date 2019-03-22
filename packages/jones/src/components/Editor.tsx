@@ -10,7 +10,7 @@ import { requireCurrentTask } from '../select';
 import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
-import { italicize } from '../lib/format';
+import { addKeyCommands } from './editor-key-commands';
 import './adoc-mode';
 import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
@@ -37,9 +37,10 @@ const ChooseAFile = () => (
   </Centered>
 );
 
-type Props = {
+export type Props = {
   fontSize: number;
   adoc?: Asciidoc;
+  githubUser: string;
   updateFile: Dispatch;
   undo: Dispatch;
   redo: Dispatch;
@@ -56,11 +57,12 @@ class Editor extends React.Component<Props> {
   private aceRef = React.createRef<any>();
 
   componentDidMount() {
-    this.addKeyCommands();
-    this.editor().focus();
-    this.editor().gotoLine(0);
-    this.editor().setPrintMarginColumn(90);
-    this.checkLint(this.editor().getValue());
+    const editor = this.editor();
+    addKeyCommands(editor, this.props);
+    editor.focus();
+    editor.gotoLine(0);
+    editor.setPrintMarginColumn(90);
+    this.checkLint(editor.getValue());
   }
 
   componentDidUpdate(prev: Props) {
@@ -71,7 +73,7 @@ class Editor extends React.Component<Props> {
 
     // ace seems to sometimes lose commands ¯\_(ツ)_/¯
     if (!this.editor().commands.commands.increaseFontSize) {
-      this.addKeyCommands();
+      addKeyCommands(this.editor(), this.props);
     }
   }
 
@@ -109,68 +111,6 @@ class Editor extends React.Component<Props> {
           };
         }),
       );
-  }
-
-  addKeyCommands() {
-    const {
-      increaseFontSize,
-      decreaseFontSize,
-      toggleSidebarOpen,
-      undo,
-      redo,
-      find,
-    } = this.props;
-
-    const editor = this.editor();
-
-    editor.commands.addCommand({
-      name: 'increaseFontSize',
-      bindKey: { mac: 'Command-Up', win: 'Ctrl-Up' },
-      exec: () => increaseFontSize(),
-    });
-
-    editor.commands.addCommand({
-      name: 'decreaseFontSize',
-      bindKey: { mac: 'Command-Down', win: 'Ctrl-Down' },
-      exec: () => decreaseFontSize(),
-    });
-
-    editor.commands.addCommand({
-      name: 'toggleSidebarOpen',
-      bindKey: { mac: 'Command-Ctrl-7', win: 'Alt-Ctrl-7' },
-      exec: () => toggleSidebarOpen(),
-    });
-
-    editor.commands.addCommand({
-      name: 'find',
-      bindKey: { mac: 'Command-F', win: 'Ctrl-F' },
-      exec: () => find(),
-    });
-
-    editor.commands.addCommand({
-      name: 'undo',
-      bindKey: { mac: 'Command-Z', win: 'Ctrl-Z' },
-      exec: () => undo(),
-    });
-
-    editor.commands.addCommand({
-      name: 'redo',
-      bindKey: { mac: 'Command-Shift-Z', win: 'Alt-Shift-Z' },
-      exec: () => redo(),
-    });
-
-    editor.commands.addCommand({
-      name: 'italicize',
-      bindKey: { mac: 'Command-I', win: 'Ctrl-I' },
-      exec: () => {
-        const selected = editor.getSelectedText();
-        const range = editor.getSelectionRange();
-        const firstLine = editor.session.getLine(range.start.row);
-        const lastLine = editor.session.getLine(range.end.row);
-        const replacement = italicize(selected, firstLine, lastLine, range);
-        editor.session.replace(range, replacement);
-      },
-    });
   }
 
   editor() {
@@ -217,6 +157,7 @@ const mapState = (state: State) => {
   const task = requireCurrentTask(state);
   const file = task.files[task.editingFile || ''];
   return {
+    githubUser: state.github.token ? state.github.user : '',
     editingFile: task.editingFile,
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
