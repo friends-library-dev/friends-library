@@ -77,7 +77,7 @@ function extractHeading(
   short: Map<string, string>,
 ): DocSection {
   let heading: DocSection['heading'] = { id: '', text: '' };
-  section.html = section.html.replace(
+  const html = section.html.replace(
     /(<div class="sect1([^"]+?)?">\n)<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/,
     (_, start, kls, id, inner) => {
       heading = {
@@ -97,7 +97,7 @@ function extractHeading(
     );
   }
 
-  return { ...section, heading };
+  return { ...section, html, heading };
 }
 
 function parseHeading(text: string): Pick<DocSection['heading'], 'text' | 'sequence'> {

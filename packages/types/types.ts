@@ -84,7 +84,7 @@ export type PrintSize = {
   };
 };
 
-export type SourceSpec = {
+export type SourceSpec = Readonly<{
   id: string;
   lang: Lang;
   size: number;
@@ -97,11 +97,11 @@ export type SourceSpec = {
   sections: DocSection[];
   notes: Notes;
   conversionLogs: AsciidocConversionLog[];
-};
+}>;
 
 export type CustomCss = { [K in FileType | 'pdf' | 'all' | 'ebook']?: Css };
 
-export type JobMeta = {
+export type JobMeta = Readonly<{
   perform: boolean;
   check: boolean;
   open: boolean;
@@ -111,7 +111,7 @@ export type JobMeta = {
   debugPrintMargins: boolean;
   condense: boolean;
   email?: string;
-};
+}>;
 
 export interface AsciidocConversionLog {
   getText(): string;
@@ -136,14 +136,14 @@ export type Heading = {
   };
 };
 
-export type DocSection = {
+export type DocSection = Readonly<{
   id: string;
   index: number;
   heading: Heading;
   html: Html;
-};
+}>;
 
-export type SourcePrecursor = {
+export type SourcePrecursor = Readonly<{
   id: string;
   lang: Lang;
   adoc: Asciidoc;
@@ -152,15 +152,15 @@ export type SourcePrecursor = {
   revision: DocumentRevision;
   meta: DocumentMeta;
   filename: string;
-};
+}>;
 
-export type DocumentRevision = {
+export type DocumentRevision = Readonly<{
   timestamp: number;
   sha: string;
   url: Url;
-};
+}>;
 
-export type DocumentMeta = {
+export type DocumentMeta = Readonly<{
   title: string;
   originalTitle?: string;
   published?: number;
@@ -170,7 +170,7 @@ export type DocumentMeta = {
     name: string;
     nameSort: string;
   };
-};
+}>;
 
 export type FileManifest = {
   [key: string]: string;
