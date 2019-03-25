@@ -3,10 +3,10 @@ import lint from '../lint';
 
 describe('lint()', () => {
   it('creates a well formed lint result', () => {
-    const results = lint("Ah! '`Tis thou!\n");
+    const results = lint("== C1\n\nAh! '`Tis thou!\n");
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
-      line: 1,
+      line: 3,
       column: 4,
       type: 'error',
       rule: 'smart-quotes',
@@ -17,13 +17,13 @@ describe('lint()', () => {
   });
 
   it('allows whitelisting rules', () => {
-    const results = lint('Don\'t •\n', { include: ['smart-quotes'] });
+    const results = lint("Don't •\n", { include: ['smart-quotes'] });
     expect(results).toHaveLength(1);
     expect(results[0].rule).toBe('smart-quotes');
   });
 
   it('allows black-listing rules', () => {
-    const results = lint('Don\'t •\n', { exclude: ['smart-quotes'] });
+    const results = lint("Don't •\n", { exclude: ['smart-quotes', 'chapter-heading'] });
     expect(results).toHaveLength(1);
     expect(results[0].rule).toBe('invalid-character');
   });
@@ -51,7 +51,7 @@ describe('lint()', () => {
   });
 
   it('new lines do not cause duplicate results', () => {
-    const adoc = '== Ch 1\n\n\'`Tis so rad!!\n';
+    const adoc = "== Ch 1\n\n'`Tis so rad!!\n";
     const results = lint(adoc);
     expect(results).toHaveLength(1);
   });
@@ -85,7 +85,8 @@ describe('lint()', () => {
       column: false,
       type: 'warning',
       rule: 'temporary-comments',
-      message: 'Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. `// lint-disable invalid-character`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with `--lint-ignore` to disable this lint warning)',
+      message:
+        'Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. `// lint-disable invalid-character`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with `--lint-ignore` to disable this lint warning)',
     });
   });
 });

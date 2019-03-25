@@ -23,7 +23,7 @@ describe('lintDir()', () => {
   it('lints the globbed paths and returns map of lint data', () => {
     fs.existsSync.mockReturnValue(true);
     glob.sync.mockReturnValue(['/foo.adoc']);
-    fs.readFileSync.mockReturnValue({ toString: () => '® bad char\n' });
+    fs.readFileSync.mockReturnValue({ toString: () => '== C1\n\n® bad char\n' });
 
     const lints = lintDir('/');
 
@@ -34,13 +34,13 @@ describe('lintDir()', () => {
         '/foo.adoc',
         {
           path: '/foo.adoc',
-          adoc: '® bad char\n',
+          adoc: '== C1\n\n® bad char\n',
           lints: [
             {
               type: 'error',
               rule: 'invalid-character',
               column: 1,
-              line: 1,
+              line: 3,
               message: expect.any(String),
             },
           ],
