@@ -11,14 +11,12 @@ describe('floatingClass()', () => {
       column: false,
       type: 'error',
       rule: 'floating-class',
-      message: 'Class/id designations (like `[.something]`) may not be followed by an empty line',
+      message:
+        'Class/id designations (like `[.something]`) may not be followed by an empty line',
     });
   });
 
-  const violations = [
-    ['== Ch1\n\n[#foo]\n\nbar.'],
-    ['[.bar]\n'],
-  ];
+  const violations = [['== Ch1\n\n[#foo]\n\nbar.'], ['[.bar]\n']];
 
   test.each(violations)('%s should be linted', adoc => {
     const lines = adoc.split('\n');
@@ -33,6 +31,7 @@ describe('floatingClass()', () => {
   const allowed = [
     ['[.foo]\n== Ch 1'],
     ['== Ch 1\n\n[.foobar]\nFoo.'],
+    ['[.book-title]#Collection of Writings,# 1704, p. 29.]\n\nFoo.'],
   ];
 
   test.each(allowed)('%s should not be linted', adoc => {

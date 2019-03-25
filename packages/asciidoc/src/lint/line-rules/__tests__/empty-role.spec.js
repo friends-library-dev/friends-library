@@ -9,7 +9,7 @@ describe('emptyRole()', () => {
       column: 9,
       type: 'error',
       rule: 'empty-role',
-      message: 'empty (periods must be followed by something or omitted)',
+      message: 'empty classname (periods must be followed by something or omitted)',
       fixable: false,
       recommendation: '[.foobar]',
     });
