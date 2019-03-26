@@ -12,7 +12,8 @@ describe('unspacedClass()', () => {
       column: false,
       type: 'error',
       rule: 'unspaced-class',
-      message: 'Class/id designations (like `[.something]`) must be preceded by an empty line',
+      message:
+        'Class/id designations (like `[.something]`) must be preceded by an empty line',
       fixable: true,
       recommendation: '--> add an empty line before line 2',
     });
@@ -44,6 +45,7 @@ describe('unspacedClass()', () => {
 
   const allowed = [
     ['[#ch1, short="My title"]\n== Chapter 1'],
+    ['Foo\n[.book-title]#Collection of Writings,# 1704, p. 29.]'],
   ];
 
   test.each(allowed)('multiline adoc should not have lint error', adoc => {

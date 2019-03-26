@@ -14,6 +14,10 @@ export default function rule(
     return [];
   }
 
+  if (line.indexOf(']') !== line.length - 1) {
+    return [];
+  }
+
   if (lines[lineNumber - 2] === '') {
     return [];
   }
