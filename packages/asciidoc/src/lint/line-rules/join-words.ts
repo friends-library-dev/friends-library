@@ -37,6 +37,8 @@ export default function rule(
     ['fellow', 'laborer', '-'],
     ['fellow', 'labourer', '-'],
     ['fore', 'part', ''],
+    ['for', 'ever', ''],
+    ['for', 'evermore', ''],
   ];
 
   const results: LintResult[] = [];
