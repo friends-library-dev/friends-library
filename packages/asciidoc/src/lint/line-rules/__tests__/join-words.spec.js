@@ -34,6 +34,12 @@ describe('joinWords()', () => {
     ['faint hearted', 'fainthearted'],
     ['broken hearted', 'brokenhearted'],
     ['light hearted', 'lighthearted'],
+
+    ['to his Name for ever!', 'to his Name forever!'],
+    ['Glory to his Name for\never and ever!', 'Glory to his Name\nforever and ever!'],
+    ['be praised for ever--the great', 'be praised forever--the great'],
+
+    ['hope I shall for evermore.', 'hope I shall forevermore.'],
   ];
 
   test.each(violations)('"%s" adoc should become "%s"', (adoc, fixed) => {
@@ -46,7 +52,11 @@ describe('joinWords()', () => {
     expect(results[0].recommendation).toBe(fixed);
   });
 
-  const allowed = [['Foo every\nWhere']];
+  // prettier-ignore
+  const allowed = [
+    ['Foo every\nWhere'],
+    ['For every good gift'],
+  ];
 
   test.each(allowed)('multiline adoc should not have lint error', adoc => {
     const lines = adoc.split('\n');
