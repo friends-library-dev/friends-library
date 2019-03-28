@@ -16,6 +16,9 @@ export default function rule(
     ['behove', 'behoove', true],
     ['behoves', 'behooves', true],
     ['staid', 'stayed', true],
+    ['Melchisedec', 'Melchizedek', true],
+    ['Melchizedeck', 'Melchizedek', true],
+    ['Melchisedek', 'Melchizedek', true],
 
     // @see https://books.google.com/ngrams for data backing up below choices
     ['hardheartedness', 'hard-heartedness', true],
@@ -76,7 +79,7 @@ function getLint(
     line: lineNumber,
     column,
     type: 'error',
-    rule: 'obsolete-spellings',
+    rule: rule.slug,
     message: `"${obsolete}" should be replaced with "${corrected}" in all editions`,
     fixable,
     recommendation: line.replace(search, `$1${replace}`),
