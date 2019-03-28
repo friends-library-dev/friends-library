@@ -1,5 +1,6 @@
 import memoize from 'lodash/memoize';
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { ucfirst } from '../../job/helpers';
 
 export default function rule(
   line: Asciidoc,
@@ -19,6 +20,17 @@ export default function rule(
     ['Melchisedec', 'Melchizedek', true],
     ['Melchizedeck', 'Melchizedek', true],
     ['Melchisedek', 'Melchizedek', true],
+    ['vail', 'veil', false],
+    ['vails', 'veils', false],
+    ['vailed', 'veiled', false],
+    ['gaol', 'jail', true],
+    ['gaoler', 'jailer', true],
+    ['burthen', 'burden', true],
+    ['burthens', 'burdens', true],
+    ['burthensome', 'burdensome', true],
+    ['burthened', 'burdened', true],
+    ['stopt', 'stopped', true],
+    ['Corah', 'Korah', false],
 
     // @see https://books.google.com/ngrams for data backing up below choices
     ['hardheartedness', 'hard-heartedness', true],
@@ -31,38 +43,45 @@ export default function rule(
     ['faint-hearted', 'fainthearted', true],
     ['broken-hearted', 'brokenhearted', true],
     ['light-hearted', 'lighthearted', true],
+    ['judgment-seat', 'judgment seat', true],
+    ['holy-days', 'holy days', true],
+    ['worship-house', 'worship house', true],
+    ['worship-houses', 'worship houses', true],
   ];
 
   const results: LintResult[] = [];
-  words.forEach(([obsolete, corrected, fixable]) => {
-    const find = new RegExp(`\\b${obsolete}\\b`, 'i');
+  words.forEach(([obsolete, corrected, caseInsensitive]) => {
+    const find = new RegExp(`\\b${obsolete}\\b`, caseInsensitive ? 'i' : '');
     const match = line.match(find);
     if (match && match.index !== undefined) {
-      results.push(
-        getLint(line, lineNumber, match.index + 1, obsolete, corrected, fixable),
-      );
+      const column = match.index + 1 + getColumnOffset(obsolete, corrected);
+      results.push(getLint(line, lineNumber, column, obsolete, corrected));
     }
   });
 
   return results;
 }
 
-const getSearchReplace = memoize(
-  (obsolete: string, corrected: string): [RegExp, string] => {
+const getSearch = memoize(
+  (obsolete: string): RegExp => {
     const letters = obsolete.split('');
     const first = letters.shift() || '';
     const rest = letters.join('');
-    const search = new RegExp(
+    return new RegExp(
       `\\b(${first.toUpperCase()}|${first.toLowerCase()})${rest}\\b`,
       'g',
     );
-    const replace = corrected
-      .split('')
-      .filter((l, i) => i !== 0)
-      .join('');
-    return [search, replace];
   },
 );
+
+function getColumnOffset(obsolete: string, corrected: string): number {
+  for (let i = 0; i < obsolete.length; i++) {
+    if (corrected[i] !== obsolete[i]) {
+      return i;
+    }
+  }
+  return obsolete.length;
+}
 
 rule.slug = 'obsolete-spellings';
 
@@ -72,16 +91,20 @@ function getLint(
   column: number,
   obsolete: string,
   corrected: string,
-  fixable: boolean,
 ): LintResult {
-  const [search, replace] = getSearchReplace(obsolete, corrected);
+  const search = getSearch(obsolete);
   return {
     line: lineNumber,
     column,
     type: 'error',
     rule: rule.slug,
     message: `"${obsolete}" should be replaced with "${corrected}" in all editions`,
-    fixable,
-    recommendation: line.replace(search, `$1${replace}`),
+    fixable: true,
+    recommendation: line.replace(search, match => {
+      if (match[0].match(/[A-Z]/)) {
+        return ucfirst(corrected);
+      }
+      return corrected;
+    }),
   };
 }
