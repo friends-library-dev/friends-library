@@ -17,14 +17,8 @@ describe('scanErrors()', () => {
 
   const violations = [
     // *** lime > time ***
-    [
-      'The next, and last lime of Rebecca',
-      'The next, and last time of Rebecca',
-    ],
-    [
-      'principles in England in limes of suffering',
-      'principles in England in times of suffering',
-    ],
+    ['The next, and last lime of Rebecca', 'The next, and last time of Rebecca'],
+    ['in England in limes of suffering', 'in England in times of suffering'],
 
     // *** Wc > We ***
     ['Wc went', 'We went'],
@@ -48,6 +42,9 @@ describe('scanErrors()', () => {
     ['Then T went', 'Then I went'],
     ['Then t went', 'Then I went'],
     ['T began to', 'I began to'],
+
+    // *** Fie > He ***
+    ['Fie told me', 'He told me'],
   ];
 
   test.each(violations)('`%s` should be a lint violation', (line, reco) => {

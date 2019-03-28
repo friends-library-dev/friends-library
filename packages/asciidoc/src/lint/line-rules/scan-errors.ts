@@ -57,6 +57,18 @@ export default function rule(
       'are',
       /joan|jeanne/i,
     ],
+    [
+      /\bfife\b/,
+      'life',
+      'fife',
+      'life',
+    ],
+    [
+      /\bFie\b/,
+      'He',
+      'Fie',
+      'He',
+    ],
   ];
 
   const results: LintResult[] = [];
