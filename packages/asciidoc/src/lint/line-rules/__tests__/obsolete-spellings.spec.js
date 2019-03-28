@@ -30,6 +30,7 @@ describe('obsoleteSpellings()', () => {
     ['faint-hearted foo', 'fainthearted foo', true],
     ['broken-hearted foo', 'brokenhearted foo', true],
     ['light-hearted foo', 'lighthearted foo', true],
+    ['Aaron, but of Melchisedec;', 'Aaron, but of Melchizedek;', true],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco, fixable) => {
