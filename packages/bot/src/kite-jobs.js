@@ -55,6 +55,7 @@ export function fromPR(
   prFiles: Map<FilePath, Asciidoc>,
   sha: Sha,
   chapters: boolean = false,
+  books: boolean = true,
 ): Array<Job> {
   return [...modifiedFiles.reduce((jobs, file) => {
     const [docSlug, editionType] = file.path.split('/');
@@ -83,7 +84,7 @@ export function fromPR(
       jobs.set(file, chapterJob);
     }
 
-    if (!jobs.has(edition.type)) {
+    if (books && !jobs.has(edition.type)) {
       const editionFilename = `${document.slug}--${edition.type}.pdf`;
       const relevantFiles = getRelevantFiles(prFiles, edition);
       const adoc = joinAdoc(relevantFiles);
