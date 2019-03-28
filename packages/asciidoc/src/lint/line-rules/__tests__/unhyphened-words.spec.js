@@ -9,7 +9,8 @@ describe('unhyphenedWords()', () => {
       column: 1,
       type: 'error',
       rule: 'unhyphened-words',
-      message: 'Archaic hyphenations (like to-day and to-morrow) should be replaced with modern spelling.',
+      message:
+        'Archaic hyphenations (like to-day and to-morrow) should be replaced with modern spelling.',
       fixable: true,
       recommendation: 'Today foo',
     });
@@ -32,10 +33,7 @@ describe('unhyphenedWords()', () => {
     expect(results[0].recommendation).toBe(reco);
   });
 
-  const allowed = [
-    ['To-dayfoo'],
-    ['toto-daybar'],
-  ];
+  const allowed = [['To-dayfoo'], ['toto-daybar']];
 
   test.each(allowed)('%s is not a lint violation', line => {
     expect(unhyphenedWords(line, [], 1)).toHaveLength(0);
