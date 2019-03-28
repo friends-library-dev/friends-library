@@ -101,6 +101,8 @@ describe('kiteCheck()', () => {
       files,
       new Map([['01.adoc', 'Foobar.']]),
       '2d306bb70578e6c019e3579c02d4f78f17bf915e',
+      true,
+      false,
     );
   });
 

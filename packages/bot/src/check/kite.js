@@ -171,7 +171,7 @@ function pdfLinks(jobs: { [string]: JobResult }): string {
 }
 
 async function submitKiteJobs(friend, modifiedFiles, prFiles, sha, uploadPath) {
-  const jobs = kiteJobs.fromPR(friend, modifiedFiles, prFiles, sha);
+  const jobs = kiteJobs.fromPR(friend, modifiedFiles, prFiles, sha, true, false);
   const jobMap = {};
   await Promise.all(jobs.map(job => {
     return kiteJobs.submit({ job, uploadPath }).then(id => {
