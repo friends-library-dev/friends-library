@@ -6,6 +6,7 @@ packages/styleguide/dist/*
 packages/hilkiah/*
 packages/asciidoc/*
 packages/jones/*
+packages/friends/*
 packages/evans/public/*
 packages/evans/.cache/*
 packages/jones/build/*

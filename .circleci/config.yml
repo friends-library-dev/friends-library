@@ -11,7 +11,7 @@ jobs:
       - run: yarn js:test -w=2
       - run: yarn evans:build:en
       - run: yarn evans:build:es
-      - run: yarn asciidoc:build
+      - run: yarn ts:compile
 
   php:
     docker:
@@ -26,7 +26,6 @@ jobs:
       - run: yarn ts:test
       - run: yarn sass:lint
       - run: yarn flow
-      - run: yarn hilkiah:build
       - run: yarn styleguide:build
       - run: yarn jones:build
 

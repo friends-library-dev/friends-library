@@ -1,9 +1,8 @@
-// @flow
+import { Slug, Lang } from '@friends-library/types';
 import { basename, resolve } from 'path';
 import { sync as glob } from 'glob';
 import { readFileSync } from 'fs';
 import { safeLoad } from 'js-yaml';
-import type { Slug, Lang } from './type';
 import Friend from './Friend';
 import Document from './Document';
 import Edition from './Edition';
@@ -12,7 +11,7 @@ import friendFromJS from './map';
 export function getFriend(slug: Slug, lang: Lang = 'en'): Friend {
   const path = resolve(__dirname, `../yml/${lang}/${slug}.yml`);
   const file = readFileSync(path);
-  const data: Object = safeLoad(file);
+  const data = safeLoad(file.toString());
   return friendFromJS({ lang, ...data });
 }
 
@@ -25,13 +24,13 @@ export function getAllFriends(lang: Lang = 'en'): Array<Friend> {
 export function query(
   lang: Lang,
   friendSlug: Slug,
-  docSlug: ?Slug = null,
-  editionType: ?Slug = null,
-): {|
+  docSlug?: Slug,
+  editionType?: Slug,
+): {
   friend: Friend,
   document: Document,
   edition: Edition,
-|} {
+} {
   const friend = getFriend(friendSlug, lang);
   const result = {
     friend,

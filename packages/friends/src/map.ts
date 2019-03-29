@@ -1,5 +1,3 @@
-// @flow
-/* eslint-disable no-param-reassign, no-return-assign */
 import Friend from './Friend';
 import Document from './Document';
 import Edition from './Edition';
@@ -8,32 +6,32 @@ import Chapter from './Chapter';
 import Audio from './Audio';
 import AudioPart from './AudioPart';
 
-export default function friendFromJS(js: Object): Friend {
+export default function friendFromJS(js: any): Friend {
   const friend = new Friend(
     js.lang,
     js.name,
     js.slug,
     js.gender,
     js.description,
-    (js.documents || []).map(document => new Document(
+    (js.documents || []).map((document: any) => new Document(
       document.title,
       document.original_title || '',
       document.slug,
       document.description,
       document.filename,
-      document.published || null,
+      document.published || undefined,
       document.tags,
-      (document.editions || []).map(edition => new Edition(
+      (document.editions || []).map((edition: any) => new Edition(
         edition.type,
         edition.pages,
-        (edition.formats || []).map(format => new Format(format.type)),
-        (edition.chapters || []).map(chapter => new Chapter(chapter.title)),
-        edition.description || null,
-        edition.editor || null,
-        edition.isbn || null,
+        (edition.formats || []).map((format: any) => new Format(format.type)),
+        (edition.chapters || []).map((chapter: any) => new Chapter(chapter)),
+        edition.description || undefined,
+        edition.editor || undefined,
+        edition.isbn || undefined,
         edition.audio ? new Audio(
           edition.audio.reader,
-          edition.audio.parts.map(part => new AudioPart(
+          edition.audio.parts.map((part: any) => new AudioPart(
             part.seconds,
             part.filesize_hq || part.filesizeHq,
             part.filesize_lq || part.filesizeLq,
@@ -42,7 +40,7 @@ export default function friendFromJS(js: Object): Friend {
             part.title || '',
             part.chapters || [],
           )),
-        ) : null,
+        ) : undefined,
       )),
     )),
   );

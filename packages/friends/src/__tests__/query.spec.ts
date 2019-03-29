@@ -22,7 +22,7 @@ describe('getAllFriends()', () => {
     });
   });
 
-  it('does note return the "compilations" pseudo friend', () => {
+  it('does not return the "compilations" pseudo friend', () => {
     const friends = getAllFriends();
 
     friends.forEach(friend => {
@@ -47,7 +47,7 @@ describe('query', () => {
   it('resolves all of the audio relationships', () => {
     const { edition } = query('en', 'isaac-penington', 'writings-volume-1', 'updated');
 
-    expect(edition.audio).not.toBeNull();
-    expect(edition.audio.url()).toBe('/isaac-penington/writings-volume-1/updated/podcast.rss');
+    expect(edition.audio).not.toBeUndefined();
+    expect(edition.audio!.url()).toBe('/isaac-penington/writings-volume-1/updated/podcast.rss');
   });
 });

@@ -6,6 +6,9 @@
     "**/_publish": true,
     "**/dist": true,
     "**/*.log": true,
+    "coverage": true,
+    "packages/evans/.cache": true,
+    "packages/evans/public": true,
     "packages/jones/build": true,
     "packages/jones/public/asciidoctor.min.js": true
   }

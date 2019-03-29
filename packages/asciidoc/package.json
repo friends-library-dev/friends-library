@@ -13,8 +13,7 @@
   },
   "scripts": {
     "scaffold:lint": "node ./scripts/scaffold-lint.js",
-    "build": "yarn run clean && yarn tsc -p .",
-    "clean": "rm -rf ./dist",
+    "compile": "yarn tsc -p .",
     "test": "../../node_modules/.bin/jest"
   },
   "dependencies": {

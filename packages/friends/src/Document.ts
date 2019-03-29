@@ -1,37 +1,22 @@
 // @flow
+import { Title, Slug, Description, Url } from '@friends-library/types';
 import Edition from './Edition';
 import Friend from './Friend';
-import type { Title, Slug, Description, Url } from '../../../type';
 
 export default class Document {
-  title: Title = '';
-  originalTitle: Title = '';
-  published: ?number = null;
-  slug: Slug = '';
-  description: Description = '';
-  filename: string = '';
-  tags: Array<string> = [];
-  editions: Array<Edition> = [];
   friend: Friend;
 
   constructor(
-    title: Title = '',
-    originalTitle: Title = '',
-    slug: Slug = '',
-    description: Description = '',
-    filename: string = '',
-    published: ?number = null,
-    tags: Array<string> = [],
-    editions: Array<Edition> = [],
+    public title: Title = '',
+    public originalTitle: Title = '',
+    public slug: Slug = '',
+    public description: Description = '',
+    public filename: string = '',
+    public published?: number,
+    public tags: Array<string> = [],
+    public editions: Array<Edition> = [],
   ) {
-    this.title = title;
-    this.originalTitle = originalTitle;
-    this.slug = slug;
-    this.description = description;
-    this.filename = filename;
-    this.published = published;
-    this.tags = tags;
-    this.editions = editions;
+    this.friend = new Friend();
   }
 
   id(): string {
@@ -56,14 +41,14 @@ export default class Document {
     return this.editions.reduce((docHasAudio, edition) => {
       return docHasAudio || edition.formats.reduce((editionHasAudio, format) => {
         return editionHasAudio || format.type === 'audio';
-      }, false);
-    }, false);
+      }, false as boolean);
+    }, false as boolean);
   }
 
   hasUpdatedEdition(): boolean {
     return this.editions.reduce((hasUpdated, edition) => {
       return hasUpdated || edition.type === 'updated';
-    }, false);
+    }, false as boolean);
   }
 
   toJSON(): Document {

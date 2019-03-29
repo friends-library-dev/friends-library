@@ -25,11 +25,11 @@ files.forEach((file) => {
         if (!hasProp(edition, 'audio')) {
           return;
         }
-        expect(Object.keys(edition.audio)).toEqual(['reader', 'parts']);
-        expect(typeof edition.audio.reader).toBe('string');
-        expect(edition.audio.reader).not.toBe('');
-        expect(Array.isArray(edition.audio.parts)).toBe(true);
-        expect(edition.audio.parts.length > 0).toBe(true);
+        expect(Object.keys(edition.audio!)).toEqual(['reader', 'parts']);
+        expect(typeof edition.audio!.reader).toBe('string');
+        expect(edition.audio!.reader).not.toBe('');
+        expect(Array.isArray(edition.audio!.parts)).toBe(true);
+        expect(edition.audio!.parts.length > 0).toBe(true);
       });
     });
 
@@ -45,26 +45,26 @@ files.forEach((file) => {
 
     test('audio parts have external ids', () => {
       audioParts(friend).forEach((part) => {
-        expect(typeof part.external_id_hq).toBe('number');
-        if (part.external_id_lq) {
-          expect(typeof part.external_id_lq).toBe('number');
+        expect(typeof part.externalIdHq).toBe('number');
+        if (part.externalIdLq) {
+          expect(typeof part.externalIdLq).toBe('number');
         }
       });
     });
 
     test('audio parts have filesizes', () => {
       audioParts(friend).forEach((part) => {
-        expect(typeof part.filesize_hq).toBe('number');
-        if (part.filesize_lq) {
-          expect(typeof part.filesize_lq).toBe('number');
+        expect(typeof part.filesizeHq).toBe('number');
+        if (part.filesizeLq) {
+          expect(typeof part.filesizeLq).toBe('number');
         }
       });
     });
 
     test('audio parts hq filesize is larger than lq', () => {
       audioParts(friend).forEach((part) => {
-        if (part.filesize_lq) {
-          expect(part.filesize_hq).toBeGreaterThan(part.filesize_lq);
+        if (part.filesizeLq) {
+          expect(part.filesizeHq).toBeGreaterThan(part.filesizeLq);
         }
       });
     });

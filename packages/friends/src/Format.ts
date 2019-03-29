@@ -1,13 +1,11 @@
-// @flow
+import { Url, FormatType } from '@friends-library/types';
 import Edition from './Edition';
-import type { Url, FormatType } from '../../../type';
 
 export default class Format {
-  type: FormatType = 'pdf';
   edition: Edition;
 
-  constructor(type: FormatType = 'pdf') {
-    this.type = type;
+  constructor(public type: FormatType = 'pdf') {
+    this.edition = new Edition();
   }
 
   url(): Url {
