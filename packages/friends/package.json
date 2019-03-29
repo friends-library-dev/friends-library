@@ -1,12 +1,20 @@
 {
   "name": "@friends-library/friends",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
+  "scripts": {
+    "compile": "yarn tsc -p .",
+    "test": "../../node_modules/.bin/jest"
+  },
   "dependencies": {
     "chalk": "^2.4.1",
     "glob": "^7.1.2",
     "js-yaml": "^3.12.0",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "typescript": "^3.4.1"
+  },
+  "devDependencies": {
+    "ts-jest": "^24.0.0"
   }
 }

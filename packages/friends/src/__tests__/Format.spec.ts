@@ -4,10 +4,10 @@ import Format from '../Format';
 import Friend from '../Friend';
 
 describe('Format', () => {
-  let format;
-  let edition;
-  let document;
-  let friend;
+  let format: Format;
+  let edition: Edition;
+  let document: Document;
+  let friend: Friend;
 
   beforeEach(() => {
     format = new Format();

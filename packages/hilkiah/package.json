@@ -6,8 +6,7 @@
   "author": "jared@netrivet.com",
   "license": "MIT",
   "scripts": {
-    "build": "yarn run clean && yarn tsc -p .",
-    "clean": "rm -rf ./dist",
+    "compile": "yarn tsc -p .",
     "test": "../../node_modules/.bin/jest"
   },
   "dependencies": {

@@ -4,10 +4,10 @@ import Friend from '../Friend';
 import Audio from '../Audio';
 
 describe('Audio', () => {
-  let edition;
-  let document;
-  let friend;
-  let audio;
+  let edition: Edition;
+  let document: Document;
+  let friend: Friend;
+  let audio: Audio;
 
   beforeEach(() => {
     audio = new Audio();

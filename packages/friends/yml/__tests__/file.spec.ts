@@ -3,13 +3,14 @@ import { kebabCase, without } from 'lodash';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 import { yamlGlob, tags, editions, formats, chapters, hasProp, isSlug } from '../test-helpers';
+import { Friend, Document } from '../../src';
 
 const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
-const filenames = [];
+const filenames: string[] = [];
 
 const isbnPath = path.resolve(__dirname, '../../../kite/src/isbn/suffixes.txt');
 const isbnPool = readFileSync(isbnPath).toString().trim().split('\n');
-const isbns = [];
+const isbns: string[] = [];
 
 describe('all files', () => {
   test('files is not empty', () => {
@@ -28,9 +29,9 @@ describe('all files', () => {
 
 files.forEach((file) => {
   describe(`${file.short}`, () => {
-    let friend;
-    let documents;
-    let fileContents;
+    let friend: Friend;
+    let documents: Document[];
+    let fileContents: string;
 
     try {
       fileContents = readFileSync(file.path, 'utf8');
@@ -52,8 +53,9 @@ files.forEach((file) => {
     });
 
     test('friend props are correct type', () => {
-      ['name', 'slug', 'description']
-        .forEach(key => expect(typeof friend[key]).toBe('string'));
+      expect(typeof friend.name).toBe('string');
+      expect(typeof friend.slug).toBe('string');
+      expect(typeof friend.description).toBe('string');
 
       expect(Array.isArray(friend.documents)).toBe(true);
     });
@@ -89,8 +91,8 @@ files.forEach((file) => {
     });
 
     test('document slugs are unique', () => {
-      const slugs = [];
-      documents.forEach((doc) => {
+      const slugs: string[] = [];
+      documents.forEach((doc: Document) => {
         expect(slugs.indexOf(doc.slug)).toBe(-1);
         slugs.push(doc.slug);
       });
@@ -109,11 +111,13 @@ files.forEach((file) => {
 
     test('document props are correct type', () => {
       documents.forEach((document) => {
-        ['title', 'slug', 'description', 'filename']
-          .forEach(key => expect(typeof document[key]).toBe('string'));
+        expect(typeof document.title).toBe('string');
+        expect(typeof document.slug).toBe('string');
+        expect(typeof document.description).toBe('string');
+        expect(typeof document.filename).toBe('string');
 
-        ['tags', 'editions']
-          .forEach(key => expect(Array.isArray(document[key])).toBe(true));
+        expect(Array.isArray(document.tags)).toBe(true);
+        expect(Array.isArray(document.editions)).toBe(true);
       });
     });
 
@@ -143,7 +147,7 @@ files.forEach((file) => {
           return;
         }
         expect(typeof edition.pages).toBe('number');
-        expect(parseInt(edition.pages, 10)).toBe(edition.pages);
+        expect(parseInt(String(edition.pages), 10)).toBe(edition.pages);
       });
     });
 
@@ -183,7 +187,7 @@ files.forEach((file) => {
     test('edition isbns are one of ours', () => {
       editions(friend).forEach(edition => {
         if (hasProp(edition, 'isbn')) {
-          const suffix = edition.isbn.replace(/^978-1-64476-/, '');
+          const suffix = edition.isbn!.replace(/^978-1-64476-/, '');
           expect(isbnPool.includes(suffix)).toBe(true);
         }
       });
@@ -192,9 +196,8 @@ files.forEach((file) => {
     test('edition isbns are unique', () => {
       editions(friend).forEach(edition => {
         if (hasProp(edition, 'isbn')) {
-          const { isbn } = edition;
-          expect(isbns.includes(isbn)).toBe(false);
-          isbns.push(isbn);
+          expect(isbns.includes(edition.isbn!)).toBe(false);
+          isbns.push(edition.isbn!);
         }
       });
     });
@@ -241,7 +244,7 @@ files.forEach((file) => {
           expect(chapter.title).toBeTruthy();
         } else {
           expect(typeof chapter.number).toBe('number');
-          expect(parseInt(chapter.number, 10)).toBe(chapter.number);
+          expect(parseInt(String(chapter.number), 10)).toBe(chapter.number);
         }
       });
     });

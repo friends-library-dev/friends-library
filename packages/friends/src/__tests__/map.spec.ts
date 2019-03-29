@@ -8,7 +8,7 @@ import Chapter from '../Chapter';
 import Audio from '../Audio';
 
 describe('friendFromJS()', () => {
-  let js;
+  let js: { [key: string]: any };
 
   beforeEach(() => {
     js = {
@@ -68,7 +68,7 @@ describe('friendFromJS()', () => {
     expect(document.friend).toBe(friend);
     expect(edition.document).toBe(document);
     expect(format.edition).toBe(edition);
-    expect(edition.audio.edition).toBe(edition);
+    expect(edition.audio!.edition).toBe(edition);
   });
 
   it('should map the basic props', () => {
@@ -122,14 +122,14 @@ describe('friendFromJS()', () => {
   });
 
   it('maps document edition audio', () => {
-    const audio = friendFromJS(js).documents[0].editions[0].audio;
+    const audio = friendFromJS(js).documents[0].editions[0].audio!;
 
     expect(audio).toBeInstanceOf(Audio);
     expect(audio.reader).toBe('Harriet Henderson');
   });
 
   it('maps the document edition audio parts', () => {
-    const part = friendFromJS(js).documents[0].editions[0].audio.parts[0];
+    const part = friendFromJS(js).documents[0].editions[0].audio!.parts[0];
 
     expect(part.title).toBe('Part 1');
     expect(part.seconds).toBe(33);

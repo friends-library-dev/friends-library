@@ -13,7 +13,8 @@
         {
           "name": "@babel/plugin-transform-react-jsx",
           "options": {
-            "pragma": "___EmotionJSX"
+            "pragma": "___EmotionJSX",
+            "pragmaFrag": "React.Fragment"
           }
         },
         {
@@ -50,7 +51,8 @@
         {
           "name": "@babel/plugin-transform-react-jsx",
           "options": {
-            "pragma": "___EmotionJSX"
+            "pragma": "___EmotionJSX",
+            "pragmaFrag": "React.Fragment"
           }
         },
         {
@@ -87,7 +89,8 @@
         {
           "name": "@babel/plugin-transform-react-jsx",
           "options": {
-            "pragma": "___EmotionJSX"
+            "pragma": "___EmotionJSX",
+            "pragmaFrag": "React.Fragment"
           }
         },
         {
@@ -124,7 +127,8 @@
         {
           "name": "@babel/plugin-transform-react-jsx",
           "options": {
-            "pragma": "___EmotionJSX"
+            "pragma": "___EmotionJSX",
+            "pragmaFrag": "React.Fragment"
           }
         },
         {

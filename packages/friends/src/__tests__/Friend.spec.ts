@@ -2,7 +2,7 @@ import Document from '../Document';
 import Friend from '../Friend';
 
 describe('Friend', () => {
-  let friend;
+  let friend: Friend;
 
   beforeEach(() => {
     friend = new Friend();

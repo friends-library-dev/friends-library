@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 require('@babel/register')({
   only: [
-    /packages\/friends/,
     /packages\/evans/,
   ],
 });

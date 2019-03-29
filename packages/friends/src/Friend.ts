@@ -1,6 +1,5 @@
-// @flow
+import { Gender, Lang, Slug, Name, Description, Url } from '@friends-library/types';
 import Document from './Document';
-import type { Gender, Lang, Slug, Name, Description, Url } from '../../../type';
 
 export default class Friend {
   lang: Lang = 'en';

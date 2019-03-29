@@ -1,16 +1,12 @@
-// @flow
-import type { Name, Url } from '../../../type';
+import { Name, Url } from '@friends-library/types';
 import Edition from './Edition';
 import AudioPart from './AudioPart';
 
 export default class Audio {
-  reader: Name = '';
-  parts: Array<AudioPart> = [];
   edition: Edition;
 
-  constructor(reader: Name = '', parts: Array<AudioPart> = []) {
-    this.reader = reader;
-    this.parts = parts;
+  constructor(public reader: Name = '', public parts: AudioPart[] = []) {
+    this.edition = new Edition();
   }
 
   url(): Url {
