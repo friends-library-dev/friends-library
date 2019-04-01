@@ -18,7 +18,7 @@ export default function rule(
 
   const results: LintResult[] = [];
   while (nextLine) {
-    if (!nextLine.match(/^\* [^ ]/)) {
+    if (!nextLine.match(/^\* [^ ]/) && !nextLine.match(/^\/\//)) {
       results.push({
         line: index + 1,
         column: 1,
@@ -29,7 +29,7 @@ export default function rule(
           .replace(/^\*+/, '')
           .replace(/^ +/, '')
           .replace(/^/, '* '),
-        fixable: true,
+        fixable: false,
       });
     }
     index++;
