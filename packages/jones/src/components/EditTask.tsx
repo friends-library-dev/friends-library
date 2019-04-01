@@ -10,26 +10,19 @@ import Heading from './Heading';
 import Loading from './Loading';
 
 const FriendList = styled.ul`
-  margin: 0 0 50px 0;
+  margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  max-height: calc(100vh - 400px);
-  align-content: flex-start;
-  overflow: auto;
-  min-height: 0;
+  column-width: 140px;
+  column-gap: 7px;
 
   & li {
     list-style-type: none;
-    flex-shrink: 0;
-    min-width: 120px;
-    height: 32px;
+    break-inside: avoid-column;
     background: gray;
-    margin: 5px;
-    padding: 7px;
+    margin-bottom: 7px;
+    padding: 5px 7px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
 
     &:hover {
       background: #444;
@@ -44,13 +37,9 @@ const FriendList = styled.ul`
 `;
 
 const Btns = styled.div`
-  position: fixed;
   height: 100px;
   display: flex;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  padding-left: 35px;
   align-items: center;
 
   > * {
