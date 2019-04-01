@@ -47,6 +47,14 @@ export default function rule(
     ['holy-days', 'holy days', true],
     ['worship-house', 'worship house', true],
     ['worship-houses', 'worship houses', true],
+    ['dining-room', 'dining room', true],
+    ['inn-keeper', 'innkeeper', true],
+    ['inn-keepers', 'innkeepers', true],
+    ["inn-keeper`'s", "innkeeper`'s", true],
+    ['re-establish', 'reestablish', true],
+    ['re-established', 'reestablished', true],
+    ['re-establishment', 'reestablishment', true],
+    ['re-establishing', 'reestablishing', true],
   ];
 
   const results: LintResult[] = [];
