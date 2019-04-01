@@ -21,7 +21,7 @@ describe('chapterSynopsisListItem()', () => {
       rule: 'chapter-synopsis-list-item',
       message: 'Chapter synopsis list items must begin with exactly `* `',
       recommendation: '* Went to Nantucket',
-      fixable: true,
+      fixable: false,
     });
   });
 
@@ -34,6 +34,7 @@ describe('chapterSynopsisListItem()', () => {
       Foo bar (BAD!)
       * This line is OK
       ** Also BAD!
+      // a comment (should not be linted)
 
       Foobar.
     `).trim();

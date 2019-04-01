@@ -107,6 +107,7 @@ function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
     const joined = inner
       .trim()
       .split('\n')
+      .filter((line: Asciidoc) => !line.match(/^\/\//))
       .map((line: Asciidoc) => line.trim())
       .map((line: Asciidoc) => line.replace(/^\* /, ''))
       .join('&#8212;');

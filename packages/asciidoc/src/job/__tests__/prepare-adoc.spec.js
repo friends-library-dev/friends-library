@@ -43,6 +43,22 @@ describe('prepareAsciidoc()', () => {
     expect(prepared).not.toContain('*');
   });
 
+  it('removes comments from chapter-synopsis', () => {
+    const adoc = stripIndent(`
+      == Chapter 1
+
+      [.chapter-synopsis]
+      * foo
+      // bar
+      * baz
+
+      Para.
+    `).trim();
+
+    const prepared = prepareAsciidoc(adoc);
+    expect(prepared).toContain(`foo&#8212;baz`);
+  });
+
   it('changes markup for chapter-subtitle--blurb', () => {
     const adoc = stripIndent(`
       == Chapter 1
