@@ -58,6 +58,9 @@ describe('pullRequest()', () => {
 
   it('fetches file content for PR modified files', async () => {
     await pullRequest(context);
+    await Promise.resolve();
+    await Promise.resolve();
+
     expect(github.repos.getContents).toHaveBeenCalledWith({
       owner: 'friends-library-sandbox',
       repo: 'jane-doe',

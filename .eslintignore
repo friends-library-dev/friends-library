@@ -3,12 +3,12 @@ flow-typed
 coverage
 packages/phipps/vendor
 packages/styleguide/dist/*
+packages/types/*
 packages/hilkiah/*
 packages/asciidoc/*
 packages/jones/*
 packages/friends/*
-packages/evans/public/*
-packages/evans/.cache/*
-packages/jones/build/*
+packages/friends/*
+packages/evans/*
 packages/asciidoc/scripts/*
 prettier.config.js

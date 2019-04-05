@@ -9,7 +9,13 @@ describe('find.thou()', () => {
   ];
 
   test.each(thous)('it finds `thou`s in "%s"', (line, short) => {
-    const locs = short.map(([start, end, match, replace]) => ({ start, end, match, replace, prompt: true }));
+    const locs = short.map(([start, end, match, replace]) => ({
+      start,
+      end,
+      match,
+      replace,
+      prompt: true,
+    }));
     expect(find.thou(line)).toEqual(locs);
   });
 });

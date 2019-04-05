@@ -215,6 +215,10 @@ describe('kiteCheck()', () => {
           'job-id-1': { status: 'succeeded', url: '/path/2d306bb--orig.pdf' },
         },
       });
+
+      // drain the promise queue
+      await Promise.resolve();
+      await Promise.resolve();
     };
 
     it('creates a new comment if no comment exists', async () => {
