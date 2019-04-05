@@ -11,6 +11,7 @@ jobs:
       - run: yarn js:test -w=2
       - run: yarn evans:build:en
       - run: yarn evans:build:es
+      - run: yarn evans:ts:check
       - run: yarn ts:compile
 
   php:

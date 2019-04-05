@@ -1,9 +1,12 @@
 {
   "name": "@friends-library/types",
   "version": "1.0.0",
-  "main": "types.ts",
-  "types": "types.ts",
+  "main": "./dist/types.js",
+  "types": "./dist/types.d.ts",
   "license": "MIT",
+  "scripts": {
+    "compile": "yarn tsc -p ."
+  },
   "dependencies": {
     "typescript": "^3.3.3333"
   }

@@ -1,46 +1,6 @@
-const path = require('path');
+require('ts-node').register();
 
-const FriendPage = path.resolve('src/templates/FriendPage.js');
-const DocumentPage = path.resolve('src/templates/DocumentPage.js');
-const AudioPage = path.resolve('src/templates/AudioPage.js');
-
-exports.onCreateNode = ({ node, actions: { createPage } }) => {
-  if (node.internal.type !== 'Friend') {
-    return;
-  }
-
-  createPage({
-    path: node.url,
-    component: FriendPage,
-    context: {
-      slug: node.slug,
-    },
-  });
-
-  node.documents.forEach(document => {
-    createPage({
-      path: document.url,
-      component: DocumentPage,
-      context: {
-        friendSlug: node.slug,
-        documentSlug: document.slug,
-      },
-    });
-
-    document.editions.forEach(edition => {
-      edition.formats.forEach(format => {
-        if (format.type === 'audio') {
-          createPage({
-            path: format.url,
-            component: AudioPage,
-            context: {
-              friendSlug: node.slug,
-              documentSlug: document.slug,
-              editionType: edition.type,
-            },
-          });
-        }
-      });
-    });
-  });
-};
+exports.sourceNodes = require('./src/build/source-nodes').default;
+exports.onCreateNode = require('./src/build/on-create-node').default;
+exports.onCreateDevServer = require('./src/build/on-create-dev-server').default;
+exports.onPostBuild = require('./src/build/on-post-build').default;

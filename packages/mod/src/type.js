@@ -21,6 +21,10 @@ export type LineMutation = {|
   replace: string,
 |};
 
-export type MutationResolver = (Line, Array<MatchLocation>, LineContext) => Promise<Array<LineMutation>>;
+export type MutationResolver = (
+  Line,
+  Array<MatchLocation>,
+  LineContext,
+) => Promise<Array<LineMutation>>;
 
 export type Finder = (Line: string) => Array<MatchLocation>;
