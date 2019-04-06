@@ -64,9 +64,9 @@ export async function getHeadSha(
   repo: RepoSlug,
   branch: BranchName = 'master',
 ): Promise<Sha> {
-  const response = await req('/repos/:owner/:repo/git/refs/heads/:branch', {
+  const response = await req('/repos/:owner/:repo/git/refs/:ref', {
     repo,
-    branch,
+    ref: `heads/${branch}`,
   });
   const {
     data: {
@@ -142,14 +142,16 @@ async function hasFork(repo: RepoSlug, user: string): Promise<boolean> {
 }
 
 async function syncFork(repo: RepoSlug, user: string): Promise<void> {
-  const upstream = await req('/repos/:owner/:repo/git/refs/heads/master', {
+  const upstream = await req('/repos/:owner/:repo/git/refs/:ref', {
     repo,
+    ref: 'heads/master',
   });
 
-  await req('PATCH /repos/:owner/:repo/git/refs/heads/master', {
+  await req('PATCH /repos/:owner/:repo/git/refs/:ref', {
     sha: upstream.data.object.sha,
     owner: user,
     repo,
+    ref: 'heads/master',
   });
 }
 
@@ -238,10 +240,10 @@ async function updateHead(
   sha: Sha,
   owner: string = ORG,
 ): Promise<void> {
-  await req('PATCH /repos/:owner/:repo/git/refs/heads/:branch', {
+  await req('PATCH /repos/:owner/:repo/git/refs/:ref', {
     repo,
     owner,
-    branch,
+    ref: `heads/${branch}`,
     sha,
   });
 }
