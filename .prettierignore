@@ -1,8 +1,5 @@
 /packages/kite
 /packages/client
-/packages/friends
-/packages/fell
 /packages/bot
 /packages/api
-/packages/cli
 tsconfig.json

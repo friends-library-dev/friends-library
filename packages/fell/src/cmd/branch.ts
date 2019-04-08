@@ -1,7 +1,6 @@
-// @flow
 import { log } from '@friends-library/cli/color';
 import chalk from 'chalk';
-import type { Argv } from '../type';
+import { Argv } from '../type';
 import { getRepos, getBranchMap } from '../repos';
 import { excludable, relPath } from './helpers';
 

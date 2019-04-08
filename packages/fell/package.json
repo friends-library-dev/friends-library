@@ -8,6 +8,9 @@
   "main": "fell.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "../../node_modules/.bin/jest"
+  },
   "dependencies": {
     "@babel/register": "^7.0.0",
     "@friends-library/cli": "1.0.0",
@@ -22,6 +25,11 @@
     "prompt": "^1.0.0",
     "prompt-sync": "^4.1.6",
     "prompt-sync-history": "^1.0.1",
+    "ts-node": "^8.0.3",
     "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "@types/nodegit": "^0.24.6",
+    "@types/yargs": "^12.0.11"
   }
 }

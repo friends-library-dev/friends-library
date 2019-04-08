@@ -1,5 +1,9 @@
 #!/usr/bin/env node
-require('@babel/register');
+require('ts-node').register({
+  compilerOptions: {
+    downlevelIteration: true,
+  },
+});
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '..', '..', '.env') });
 const { prettifyErrors } = require('@friends-library/cli/error');
@@ -26,5 +30,4 @@ yargs
   .command(sync)
   .command(clone)
   .command(dlete)
-  .help()
-  .argv;
+  .help().argv;

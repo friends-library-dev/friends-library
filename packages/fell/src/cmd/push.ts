@@ -1,25 +1,30 @@
-// @flow
-/* eslint-disable no-restricted-syntax, no-await-in-loop */
+import { CommandBuilder } from 'yargs';
 import path from 'path';
 import { red, green } from '@friends-library/cli/color';
-import type { Argv as BaseArgv } from '../type';
+import { Argv as BaseArgv } from '../type';
 import { getRepos } from '../repos';
 import { excludable, forceable } from './helpers';
 import * as git from '../git';
 import { openPullRequest } from '../github';
 
-type Argv = BaseArgv & {|
-  branch: string,
-  force: boolean,
-  openPr: boolean,
-  prTitle?: string,
-  prBody?: string,
-  delay: number,
-|};
+type Argv = BaseArgv & {
+  branch: string;
+  force: boolean;
+  openPr: boolean;
+  prTitle?: string;
+  prBody?: string;
+  delay: number;
+};
 
-export async function handler(
-  { exclude, branch, force, openPr, prTitle, prBody, delay }: Argv,
-): Promise<*> {
+export async function handler({
+  exclude,
+  branch,
+  force,
+  openPr,
+  prTitle,
+  prBody,
+  delay,
+}: Argv): Promise<void> {
   let repos = await getRepos(exclude, branch);
   if (repos.some(repo => repo.includes('/es/'))) {
     throw new Error('Pushing to spanish repos not supported.');
@@ -38,7 +43,7 @@ export async function handler(
   // mass opening PRs quickly trips github's abuse limits, so we both
   // synchronously work through creating PRs, and delay between them
   for (const repo of repos) {
-    const title = prTitle || await git.getHeadCommitMessage(repo);
+    const title = prTitle || (await git.getHeadCommitMessage(repo));
     const num = await openPullRequest(path.basename(repo), branch, title, prBody || '');
     if (num) {
       green(`PR#${num} opened for repo: ${repo}`);
@@ -52,10 +57,9 @@ export async function handler(
 
 export const command = 'push <branch>';
 
-
 export const describe = 'push a branch from all selected repos';
 
-export function builder(yargs: *) {
+export const builder: CommandBuilder = function(yargs) {
   return yargs
     .positional('branch', {
       type: 'string',
@@ -77,4 +81,4 @@ export function builder(yargs: *) {
       type: 'number',
       default: 5,
     });
-}
+};

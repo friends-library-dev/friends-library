@@ -1,7 +1,6 @@
-// @flow
 import { red, green } from '@friends-library/cli/color';
 import chalk from 'chalk';
-import type { Argv } from '../type';
+import { Argv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
 import { excludable, scopeable, relPath } from './helpers';
 

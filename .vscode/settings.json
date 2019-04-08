@@ -10,6 +10,9 @@
     "packages/evans/.cache": true,
     "packages/evans/public": true,
     "packages/jones/build": true,
-    "packages/jones/public/asciidoctor.min.js": true
+    "packages/jones/public/asciidoctor.min.js": true,
+    "**/tsconfig.tsbuildinfo": true,
+    "packages/cli/*.d.ts": true,
+    "packages/cli/*.js": true
   }
 }

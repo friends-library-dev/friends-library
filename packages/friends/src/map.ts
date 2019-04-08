@@ -13,43 +13,54 @@ export default function friendFromJS(js: any): Friend {
     js.slug,
     js.gender,
     js.description,
-    (js.documents || []).map((document: any) => new Document(
-      document.title,
-      document.original_title || '',
-      document.slug,
-      document.description,
-      document.filename,
-      document.published || undefined,
-      document.tags,
-      (document.editions || []).map((edition: any) => new Edition(
-        edition.type,
-        edition.pages,
-        (edition.formats || []).map((format: any) => new Format(format.type)),
-        (edition.chapters || []).map((chapter: any) => new Chapter(chapter)),
-        edition.description || undefined,
-        edition.editor || undefined,
-        edition.isbn || undefined,
-        edition.audio ? new Audio(
-          edition.audio.reader,
-          edition.audio.parts.map((part: any) => new AudioPart(
-            part.seconds,
-            part.filesize_hq || part.filesizeHq,
-            part.filesize_lq || part.filesizeLq,
-            part.external_id_hq || part.externalIdHq,
-            part.external_id_lq || part.externalIdLq,
-            part.title || '',
-            part.chapters || [],
-          )),
-        ) : undefined,
-      )),
-    )),
+    (js.documents || []).map(
+      (document: any) =>
+        new Document(
+          document.title,
+          document.original_title || '',
+          document.slug,
+          document.description,
+          document.filename,
+          document.published || undefined,
+          document.tags,
+          (document.editions || []).map(
+            (edition: any) =>
+              new Edition(
+                edition.type,
+                edition.pages,
+                (edition.formats || []).map((format: any) => new Format(format.type)),
+                (edition.chapters || []).map((chapter: any) => new Chapter(chapter)),
+                edition.description || undefined,
+                edition.editor || undefined,
+                edition.isbn || undefined,
+                edition.audio
+                  ? new Audio(
+                      edition.audio.reader,
+                      edition.audio.parts.map(
+                        (part: any) =>
+                          new AudioPart(
+                            part.seconds,
+                            part.filesize_hq || part.filesizeHq,
+                            part.filesize_lq || part.filesizeLq,
+                            part.external_id_hq || part.externalIdHq,
+                            part.external_id_lq || part.externalIdLq,
+                            part.title || '',
+                            part.chapters || [],
+                          ),
+                      ),
+                    )
+                  : undefined,
+              ),
+          ),
+        ),
+    ),
   );
 
-  friend.documents.forEach((document) => {
+  friend.documents.forEach(document => {
     document.friend = friend;
-    document.editions.forEach((edition) => {
+    document.editions.forEach(edition => {
       edition.document = document;
-      edition.formats.forEach(format => format.edition = edition);
+      edition.formats.forEach(format => (format.edition = edition));
       if (edition.audio) {
         edition.audio.edition = edition;
       }

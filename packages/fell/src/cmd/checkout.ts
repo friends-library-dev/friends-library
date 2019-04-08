@@ -1,14 +1,13 @@
-// @flow
 import { green } from '@friends-library/cli/color';
-import type { Argv as BaseArgv } from '../type';
+import { Argv as BaseArgv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
 import { excludable, scopeable } from './helpers';
 import * as git from '../git';
 
-type Argv = BaseArgv & {|
+type Argv = BaseArgv & {
   createBranch: boolean,
   branchName: string,
-|};
+};
 
 export async function handler(
   { exclude, scope, createBranch, branchName: branch }: Argv,
