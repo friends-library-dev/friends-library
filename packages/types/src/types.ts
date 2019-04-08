@@ -40,6 +40,10 @@ export function isDefined<T>(x: T | undefined): x is T {
   return typeof x !== 'undefined';
 }
 
+export function isNotFalse<T>(x: T | false): x is T {
+  return x !== false;
+}
+
 export type LintResult = {
   line: number;
   column: number | false;

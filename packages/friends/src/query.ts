@@ -27,9 +27,9 @@ export function query(
   docSlug?: Slug,
   editionType?: Slug,
 ): {
-  friend: Friend,
-  document: Document,
-  edition: Edition,
+  friend: Friend;
+  document: Document;
+  edition: Edition;
 } {
   const friend = getFriend(friendSlug, lang);
   const result = {
@@ -45,7 +45,9 @@ export function query(
   }
 
   if (editionType && result.document) {
-    const { document: { editions } } = result;
+    const {
+      document: { editions },
+    } = result;
     const edition: Edition = editions.find(e => e.type === editionType) || new Edition();
     result.edition = edition;
   }

@@ -1,7 +1,5 @@
-// @flow
-/* istanbul ignore file */
 import NodeGit from 'nodegit';
-import type { Repo } from './type';
+import { Repo } from './type';
 
 export async function getCurrentBranch(repoPath: Repo): Promise<string> {
   const repo = await getRepo(repoPath);
@@ -15,10 +13,7 @@ export async function isStatusClean(repoPath: Repo): Promise<boolean> {
   return statusFiles.length === 0;
 }
 
-export async function hasBranch(
-  repoPath: Repo,
-  branchName: string,
-): Promise<boolean> {
+export async function hasBranch(repoPath: Repo, branchName: string): Promise<boolean> {
   const repo = await getRepo(repoPath);
   try {
     await repo.getBranch(branchName);
@@ -28,10 +23,7 @@ export async function hasBranch(
   }
 }
 
-export async function deleteBranch(
-  repoPath: Repo,
-  branch: string,
-): Promise<boolean> {
+export async function deleteBranch(repoPath: Repo, branch: string): Promise<boolean> {
   const repo = await getRepo(repoPath);
   const ref = await repo.getBranch(branch);
   const res = await NodeGit.Branch.delete(ref);
@@ -50,19 +42,13 @@ export async function sync(repoPath: Repo): Promise<void> {
   );
 }
 
-export async function clone(
-  repoPath: Repo,
-  url: string,
-): Promise<NodeGit.Repository> {
+export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Repository> {
   const opts = { fetchOpts: remoteCallbacks };
-  return NodeGit.Clone(url, repoPath, opts);
+  return NodeGit.Clone.clone(url, repoPath, opts);
 }
 
 // like `git add . && git commit -am <message>`
-export async function commitAll(
-  repoPath: Repo,
-  message: string,
-): Promise<void> {
+export async function commitAll(repoPath: Repo, message: string): Promise<void> {
   const repo = await getRepo(repoPath);
   // @see https://github.com/nodegit/nodegit/blob/master/examples/add-and-commit.js
   const signature = repo.defaultSignature();
@@ -72,21 +58,15 @@ export async function commitAll(
   const oid = await index.writeTree();
   const head = await NodeGit.Reference.nameToId(repo, 'HEAD');
   const parent = await repo.getCommit(head);
-  return repo.createCommit(
-    'HEAD',
-    signature,
-    signature,
-    message,
-    oid,
-    [parent],
-  );
+  // @ts-ignore
+  return repo.createCommit('HEAD', signature, signature, message, oid, [parent]);
 }
 
 export async function push(
   repoPath: Repo,
   branch: string,
-  force?: boolean = false,
-  remoteName?: string = 'origin',
+  force: boolean = false,
+  remoteName: string = 'origin',
 ): Promise<void> {
   const repo = await getRepo(repoPath);
   const remote = await repo.getRemote(remoteName);
@@ -101,15 +81,13 @@ const remoteCallbacks = {
     certificateCheck() {
       return 0;
     },
-    credentials(url, userName) {
+    credentials(url: string, userName: string) {
       return NodeGit.Cred.sshKeyFromAgent(userName);
     },
   },
 };
 
-export async function isAheadOfMaster(
-  repoPath: Repo,
-): Promise<boolean> {
+export async function isAheadOfMaster(repoPath: Repo): Promise<boolean> {
   const repo = await getRepo(repoPath);
   const headCommit = await repo.getHeadCommit();
   const masterCommit = await repo.getMasterCommit();
@@ -117,27 +95,24 @@ export async function isAheadOfMaster(
     return false;
   }
 
-  const priorShas = await new Promise(resolve => {
+  const priorShas: string[] = await new Promise(resolve => {
     const stream = masterCommit.history();
-    stream.on('end', commits => resolve(commits.map(commit => commit.sha())));
+    stream.on('end', (commits: (NodeGit.Commit)[]) =>
+      resolve(commits.map((commit: NodeGit.Commit) => commit.sha())),
+    );
     stream.start();
   });
 
   return priorShas.includes(masterCommit.sha());
 }
 
-export async function getHeadCommitMessage(
-  repoPath: Repo,
-): Promise<string> {
+export async function getHeadCommitMessage(repoPath: Repo): Promise<string> {
   const repo = await getRepo(repoPath);
   const headCommit = await repo.getHeadCommit();
   return headCommit.message();
 }
 
-export async function checkoutBranch(
-  repoPath: Repo,
-  branchName: string,
-): Promise<void> {
+export async function checkoutBranch(repoPath: Repo, branchName: string): Promise<void> {
   const repo = await getRepo(repoPath);
   await repo.checkoutBranch(branchName);
 }
@@ -151,7 +126,6 @@ export async function checkoutNewBranch(
   await repo.createBranch(branchName, commit, false);
   await repo.checkoutBranch(branchName);
 }
-
 
 async function getRepo(repoPath: Repo) {
   return NodeGit.Repository.open(repoPath);

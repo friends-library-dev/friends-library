@@ -11,7 +11,7 @@ describe('getBranchMap()', () => {
   });
 
   it('returns correct map when all on master', async () => {
-    git.getCurrentBranch.mockResolvedValue('master');
+    (<jest.Mock>git.getCurrentBranch).mockResolvedValue('master');
     const map = await getBranchMap(['repo1', 'repo2']);
     expect(map.size).toBe(1);
     expect(map.get('master')).toEqual(['repo1', 'repo2']);
@@ -21,8 +21,8 @@ describe('getBranchMap()', () => {
 describe('getRepos()', () => {
   beforeEach(() => {
     jest.resetAllMocks();
-    glob.sync.mockReturnValueOnce(['en/repo-1', 'en/repo-2']);
-    glob.sync.mockReturnValueOnce(['es/repo-3']);
+    (<jest.Mock>glob.sync).mockReturnValueOnce(['en/repo-1', 'en/repo-2']);
+    (<jest.Mock>glob.sync).mockReturnValueOnce(['es/repo-3']);
   });
 
   it('returns all dirs when no exclude', async () => {
@@ -51,20 +51,19 @@ describe('getRepos()', () => {
   });
 
   it('returns only repos on branch specified', async () => {
-    git.getCurrentBranch.mockResolvedValueOnce('master');
-    git.getCurrentBranch.mockResolvedValueOnce('master');
-    git.getCurrentBranch.mockResolvedValueOnce('feature-x');
+    (<jest.Mock>git.getCurrentBranch).mockResolvedValueOnce('master');
+    (<jest.Mock>git.getCurrentBranch).mockResolvedValueOnce('master');
+    (<jest.Mock>git.getCurrentBranch).mockResolvedValueOnce('feature-x');
     const repos = await getRepos([], 'master');
     expect(repos).toEqual(['en/repo-1', 'en/repo-2']);
   });
 });
 
-
 describe('getStatusGroups()', () => {
   it('separates repos into clean and dirty', async () => {
-    git.isStatusClean.mockResolvedValueOnce(true);
-    git.isStatusClean.mockResolvedValueOnce(false);
-    git.isStatusClean.mockResolvedValueOnce(true);
+    (<jest.Mock>git.isStatusClean).mockResolvedValueOnce(true);
+    (<jest.Mock>git.isStatusClean).mockResolvedValueOnce(false);
+    (<jest.Mock>git.isStatusClean).mockResolvedValueOnce(true);
     const { clean, dirty } = await getStatusGroups(['1', '2', '3']);
     expect(clean).toEqual(['1', '3']);
     expect(dirty).toEqual(['2']);

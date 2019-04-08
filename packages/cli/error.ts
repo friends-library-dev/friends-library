@@ -1,5 +1,4 @@
-// @flow
-const PrettyError = require('pretty-error');
+import PrettyError from 'pretty-error';
 
 export function prettifyErrors(): void {
   if (process.argv.includes('--ugly-error')) {
@@ -26,9 +25,7 @@ export function prettifyErrors(): void {
   pe.start();
 }
 
-
-export function catchify(fn: () => mixed): () => mixed {
-  // eslint-disable-next-line consistent-return
+export function catchify<T>(fn: () => T): () => T | undefined {
   return (...args) => {
     try {
       return fn(...args);

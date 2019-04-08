@@ -2,7 +2,7 @@ type ChapterData = {
   title?: string;
   subtitle?: string;
   number?: number;
-}
+};
 
 export default class Chapter {
   public title?: string;
@@ -17,7 +17,7 @@ export default class Chapter {
     if (data.title === undefined && data.number === undefined) {
       throw new Error('Chapter must have either a title or a number');
     }
-    
+
     if (data.title !== undefined) {
       this.title = data.title;
     }

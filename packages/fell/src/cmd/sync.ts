@@ -1,6 +1,5 @@
-// @flow
 import { green } from '@friends-library/cli/color';
-import type { Argv } from '../type';
+import { Argv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
 import { excludable, scopeable } from './helpers';
 import * as git from '../git';

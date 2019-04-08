@@ -38,17 +38,29 @@ export default class Document {
   }
 
   hasAudio(): boolean {
-    return this.editions.reduce((docHasAudio, edition) => {
-      return docHasAudio || edition.formats.reduce((editionHasAudio, format) => {
-        return editionHasAudio || format.type === 'audio';
-      }, false as boolean);
-    }, false as boolean);
+    return this.editions.reduce(
+      (docHasAudio, edition) => {
+        return (
+          docHasAudio ||
+          edition.formats.reduce(
+            (editionHasAudio, format) => {
+              return editionHasAudio || format.type === 'audio';
+            },
+            false as boolean,
+          )
+        );
+      },
+      false as boolean,
+    );
   }
 
   hasUpdatedEdition(): boolean {
-    return this.editions.reduce((hasUpdated, edition) => {
-      return hasUpdated || edition.type === 'updated';
-    }, false as boolean);
+    return this.editions.reduce(
+      (hasUpdated, edition) => {
+        return hasUpdated || edition.type === 'updated';
+      },
+      false as boolean,
+    );
   }
 
   toJSON(): Document {

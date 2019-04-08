@@ -1,17 +1,14 @@
-// @flow
 import { green } from '@friends-library/cli/color';
-import type { Argv as BaseArgv } from '../type';
+import { Argv as BaseArgv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
 import { excludable, scopeable } from './helpers';
 import * as git from '../git';
 
-type Argv = BaseArgv & {|
-  message: string,
-|};
+type Argv = BaseArgv & {
+  message: string;
+};
 
-export async function handler(
-  { exclude, scope, message }: Argv,
-): Promise<void> {
+export async function handler({ exclude, scope, message }: Argv): Promise<void> {
   const repos = await getRepos(exclude, scope);
   const { dirty } = await getStatusGroups(repos);
   await Promise.all(dirty.map(repo => git.commitAll(repo, message)));

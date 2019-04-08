@@ -1,7 +1,8 @@
-// @flow
 import Octokit from '@octokit/rest';
 
-const { env: { FELL_GITHUB_TOKEN } } = process;
+const {
+  env: { FELL_GITHUB_TOKEN },
+} = process;
 
 if (typeof FELL_GITHUB_TOKEN !== 'string') {
   throw new Error('Env var FELL_GITHUB_TOKEN required.');
@@ -18,7 +19,9 @@ export async function openPullRequest(
   body: string = '',
 ): Promise<number | false> {
   try {
-    const { data: { number } } = await gh.request('POST /repos/:owner/:repo/pulls', {
+    const {
+      data: { number },
+    } = await gh.request('POST /repos/:owner/:repo/pulls', {
       repo,
       title,
       owner: 'friends-library',
@@ -33,7 +36,9 @@ export async function openPullRequest(
   }
 }
 
-export async function getFriendRepos(): Promise<Array<Object>> {
+export async function getFriendRepos(): Promise<
+  Array<{ name: string; ssh_url: string }>
+> {
   const repos = await gh.paginate('/orgs/friends-library/repos');
   return repos.filter(repo => repo.name !== 'friends-library');
 }
