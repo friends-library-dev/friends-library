@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "yarn ts:compile",
     "ts:compile": "yarn types:compile && yarn friends:compile && yarn hilkiah:compile && yarn asciidoc:compile && yarn cli:compile",
+    "ts:recompile": "cd packages && find . -name \"*.tsbuildinfo\" -type f -delete && cd ../ && yarn ts:compile",
     "ts:watch": "yarn types:compile --watch & yarn friends:compile --watch & yarn hilkiah:compile --watch & yarn asciidoc:compile --watch && yarn cli:compile --watch",
     "kite": "node ./packages/kite/kite.js",
     "fell": "node ./packages/fell/fell.js",
