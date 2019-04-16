@@ -8,6 +8,6 @@
     "compile": "yarn tsc -p ."
   },
   "dependencies": {
-    "typescript": "^3.3.3333"
+    "typescript": "3.4.3"
   }
 }

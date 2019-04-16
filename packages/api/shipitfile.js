@@ -33,7 +33,7 @@ module.exports = (shipit) => {
       },
       yarn: {
         remote: true,
-        installArgs: ['--production; npm rebuild node-sass'],
+        installArgs: ['; npm rebuild node-sass'],
       },
     },
     production: {

@@ -32,7 +32,7 @@
     "redux": "^4.0.1",
     "redux-starter-kit": "^0.3.3",
     "smalltalk": "^3.2.2",
-    "typescript": "^3.3.3333",
+    "typescript": "3.4.3",
     "uuid": "^3.3.2"
   },
   "scripts": {
