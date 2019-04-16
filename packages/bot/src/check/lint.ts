@@ -15,7 +15,7 @@ export default async function lintCheck(
       name: 'lint-asciidoc',
       head_sha: payload.pull_request.head.sha,
       status: 'in_progress',
-      started_at: new Date().toString(),
+      started_at: new Date().toISOString(),
     }),
   );
 
@@ -26,7 +26,7 @@ export default async function lintCheck(
   const update = {
     check_run_id: id,
     status: 'completed',
-    completed_at: new Date().toString(),
+    completed_at: new Date().toISOString(),
   } as const;
 
   if (annotations.length === 0) {

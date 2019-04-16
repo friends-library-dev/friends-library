@@ -19,7 +19,7 @@
   "dependencies": {
     "@friends-library/types": "1.0.0",
     "@types/strip-indent": "^2.0.0",
-    "typescript": "^3.3.3333",
+    "typescript": "3.4.3",
     "unicharadata": "^9.0.0-alpha.6"
   },
   "devDependencies": {
