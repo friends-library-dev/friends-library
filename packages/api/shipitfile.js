@@ -45,6 +45,6 @@ module.exports = (shipit) => {
     shipit.remote(`cd ${API_DEPLOY_PATH}/current/packages/api && yarn migrate`);
     shipit.remote('pm2 delete all');
     shipit.remote(`cd ${API_DEPLOY_PATH}/current && NODE_ENV=production pm2 start packages/api/index.js`);
-    shipit.remote(`cd ${API_DEPLOY_PATH}/current && NODE_PORT=${BOT_PORT} pm2 start packages/bot/scripts/run.js`);
+    shipit.remote(`cd ${API_DEPLOY_PATH}/current && NODE_PORT=${BOT_PORT} pm2 start packages/bot/dist/scripts/run.js`);
   });
 };

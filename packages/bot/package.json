@@ -3,38 +3,35 @@
   "version": "1.0.0",
   "description": "Friends Library GitHub Probot App",
   "author": "Jared Henderson <jared@netrivet.com>",
-  "license": "ISC",
-  "repository": "https://github.com//github-app.git",
-  "homepage": "https://github.com//github-app",
-  "bugs": "https://github.com//github-app/issues",
-  "keywords": [
-    "probot",
-    "github",
-    "probot-app"
-  ],
+  "license": "MIT",
   "scripts": {
+    "compile": "yarn tsc -p .",
+    "test": "../../node_modules/.bin/jest",
     "start": "echo \"USE `yarn bot:develop` from monorepo root!\"",
     "receive": "node ./scripts/receive"
   },
   "dependencies": {
     "@friends-library/asciidoc": "1.0.0",
-    "@babel/register": "^7.0.0",
+    "@friends-library/client": "1.0.0",
     "bunyan": "^1.8.12",
     "js-base64": "^2.5.1",
     "probot": "^7.2.0",
-    "strip-indent": "^2.0.0"
+    "strip-indent": "^2.0.0",
+    "typescript": "^3.4.2"
   },
   "devDependencies": {
+    "@types/bunyan": "^1.8.6",
+    "@types/crypto-js": "^3.1.43",
+    "@types/dotenv": "^6.1.1",
+    "@types/nock": "^9.3.1",
+    "@types/node-fetch": "^2.3.0",
     "crypto-js": "^3.1.9-1",
-    "jest": "^22.4.3",
     "nock": "^10.0.6",
     "nodemon": "^1.17.2",
-    "smee-client": "^1.0.2"
+    "smee-client": "^1.0.2",
+    "ts-jest": "^24.0.2"
   },
   "engines": {
     "node": ">= 8.3.0"
-  },
-  "jest": {
-    "testEnvironment": "node"
   }
 }

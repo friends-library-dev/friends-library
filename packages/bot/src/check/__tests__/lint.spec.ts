@@ -1,17 +1,20 @@
 import lintCheck from '../lint';
 import { prTestSetup } from '../../__tests__/helpers';
+import { ModifiedAsciidocFile } from '../../type';
 
 describe('lintCheck()', () => {
-  let github;
-  let context;
-  let files;
+  let github: any;
+  let context: any;
+  let files: ModifiedAsciidocFile[];
 
   beforeEach(() => {
     [context, github] = prTestSetup();
-    files = [{
-      path: '01.adoc',
-      adoc: '== Ch 1\n',
-    }];
+    files = [
+      {
+        path: '01.adoc',
+        adoc: '== Ch 1\n',
+      },
+    ];
   });
 
   it('creates an in_progress check for linting', async () => {

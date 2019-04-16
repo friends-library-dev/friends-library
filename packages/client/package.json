@@ -2,13 +2,19 @@
   "name": "@friends-library/client",
   "version": "1.0.0",
   "description": "clients for doing things",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
+  "scripts": {
+    "compile": "yarn tsc -p ."
+  },
   "dependencies": {
-    "@babel/register": "^7.0.0",
     "aws-sdk": "^2.405.0",
     "dotenv": "^6.2.0",
-    "fs-extra": "^7.0.1"
+    "fs-extra": "^7.0.1",
+    "typescript": "^3.4.2"
+  },
+  "devDependencies": {
+    "@types/aws-sdk": "^2.7.0"
   }
 }

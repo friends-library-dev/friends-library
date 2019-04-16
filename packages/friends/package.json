@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "compile": "yarn tsc -p .",
-    "test": "../../node_modules/.bin/jest"
+    "test": "../../node_modules/.bin/jest ."
   },
   "dependencies": {
     "chalk": "^2.4.1",

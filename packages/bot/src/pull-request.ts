@@ -1,13 +1,17 @@
-// @flow
 import { Base64 } from 'js-base64';
+import { Context } from 'probot';
 import stripIndent from 'strip-indent';
 import { cloud } from '@friends-library/client';
-import type { Context, ModifiedAsciidocFile } from './type';
+import { ModifiedAsciidocFile } from './type';
 import kiteCheck from './check/kite';
 import lintCheck from './check/lint';
 
-export default function (context: Context) {
-  const { payload: { repository, action, number }, github, issue } = context;
+export default async function(context: Context) {
+  const {
+    payload: { repository, action, number },
+    github,
+    issue,
+  } = context;
   if (repository.name === 'friends-library') {
     if (action === 'opened') {
       const body = getNetlifyPreviewComment(number);
@@ -18,7 +22,9 @@ export default function (context: Context) {
 
   if (['opened', 'synchronize', 'reopened'].includes(action)) {
     getModifiedFiles(context).then(files => {
-      context.log.info('Received modified files, passing on to `lintCheck` and `kiteCheck`');
+      context.log.info(
+        'Received modified files, passing on to `lintCheck` and `kiteCheck`',
+      );
       context.log.debug({ files }, 'modified files');
       lintCheck(context, files);
       kiteCheck(context, files);
@@ -30,20 +36,37 @@ export default function (context: Context) {
   }
 }
 
-async function getModifiedFiles(context: Context): Promise<Array<ModifiedAsciidocFile>> {
-  const { github, issue, repo, payload: { pull_request: { head: { sha } } } } = context;
-  const { data: modifiedFiles } = await github.pullRequests.listFiles(issue({
-    per_page: 100,
-  }));
-  return Promise.all(modifiedFiles.map(mf => {
-    return github.repos.getContents(repo({
-      path: mf.filename,
-      ref: sha,
-    })).then(res => ({
-      path: mf.filename,
-      adoc: Base64.decode(res.data.content),
-    }));
-  }));
+async function getModifiedFiles(context: Context): Promise<ModifiedAsciidocFile[]> {
+  const {
+    github,
+    issue,
+    repo,
+    payload: {
+      pull_request: {
+        head: { sha },
+      },
+    },
+  } = context;
+  const { data: modifiedFiles } = await github.pullRequests.listFiles(
+    issue({
+      per_page: 100,
+    }),
+  );
+  return Promise.all(
+    modifiedFiles.map(mf => {
+      return github.repos
+        .getContents(
+          repo({
+            path: mf.filename,
+            ref: sha,
+          }),
+        )
+        .then(res => ({
+          path: mf.filename,
+          adoc: Base64.decode(res.data.content),
+        }));
+    }),
+  );
 }
 
 function getNetlifyPreviewComment(prNumber: number): string {

@@ -4,7 +4,6 @@ import JobListener from '../job-listener';
 jest.mock('node-fetch');
 jest.useFakeTimers();
 
-
 describe('JobListener', () => {
   it('polls status endpoint and emits `update` events', () => {
     mockApiResponses({
@@ -36,10 +35,7 @@ describe('JobListener', () => {
 
   it('emits complete event when all jobs succeed', () => {
     mockApiResponses({
-      'job-id-1': [
-        { status: 'queued' },
-        { status: 'succeeded', url: '/uploaded.pdf' },
-      ],
+      'job-id-1': [{ status: 'queued' }, { status: 'succeeded', url: '/uploaded.pdf' }],
     });
 
     const listener = new JobListener(['job-id-1']);
@@ -60,14 +56,8 @@ describe('JobListener', () => {
 
   it('emits complete event when all jobs succeed or fail', () => {
     mockApiResponses({
-      'job-id-1': [
-        { status: 'queued' },
-        { status: 'succeeded', url: '/uploaded.pdf' },
-      ],
-      'job-id-2': [
-        { status: 'queued' },
-        { status: 'failed' },
-      ],
+      'job-id-1': [{ status: 'queued' }, { status: 'succeeded', url: '/uploaded.pdf' }],
+      'job-id-2': [{ status: 'queued' }, { status: 'failed' }],
     });
 
     const listener = new JobListener(['job-id-1', 'job-id-2']);
@@ -121,7 +111,7 @@ describe('JobListener', () => {
 
     // multiply POLL_INTERVAL by 3 to represent RE-STARTING the
     // global timeout whenever we get novel data from the API
-    const advance = JobListener.TIMEOUT + (JobListener.POLL_INTERVAL * 3) - 1;
+    const advance = JobListener.TIMEOUT + JobListener.POLL_INTERVAL * 3 - 1;
 
     jest.advanceTimersByTime(advance);
     expect(timeoutSpy).not.toHaveBeenCalled();
@@ -148,14 +138,17 @@ describe('JobListener', () => {
   });
 });
 
-function mockApiResponses(jobs, working = [[]]) {
-  fetch.mockImplementation(url => {
+function mockApiResponses(
+  jobs: { [k: string]: ({ status: string; url?: string })[] },
+  working: Array<Array<{ id: string }>> = [[]],
+) {
+  (fetch as any).mockImplementation((url: string) => {
     if (url.match(/\?filter=working$/)) {
       return fakeFetchResponse(working);
     }
 
     const jobId = url.split('/').pop();
-    if (!jobs[jobId]) {
+    if (!jobId || !jobs[jobId]) {
       throw new Error(`Unknown job id: ${jobId}`);
     }
 
@@ -163,11 +156,11 @@ function mockApiResponses(jobs, working = [[]]) {
   });
 }
 
-function fakeFetchResponse(responseQueue) {
+function fakeFetchResponse(responseQueue: any[]) {
   return {
     then() {
       return {
-        then(fn) {
+        then(fn: (arg: any) => void) {
           fn(responseQueue.length > 1 ? responseQueue.shift() : responseQueue[0]);
         },
       };

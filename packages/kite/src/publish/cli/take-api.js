@@ -1,9 +1,9 @@
 // @flow
 import { cloud } from '@friends-library/client';
+import { unstringifyJob } from '@friends-library/asciidoc';
 import fs from 'fs-extra';
 import { dirname } from 'path';
 import fetch from 'node-fetch';
-import { unstringifyJob } from '../job/utils';
 import { take } from '.';
 
 const { env: { API_URL } } = process;

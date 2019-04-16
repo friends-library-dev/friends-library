@@ -5,22 +5,25 @@ import { getFriend } from '@friends-library/friends';
 import kiteCheck from '../kite';
 import * as kiteJobs from '../../kite-jobs';
 import { prTestSetup } from '../../__tests__/helpers';
+import { ModifiedAsciidocFile } from '../../type';
 
 jest.mock('@friends-library/friends');
 jest.mock('../../kite-jobs');
 
 describe('kiteCheck()', () => {
-  let github;
-  let context;
-  let files;
-  let listener;
+  let github: any;
+  let context: any;
+  let files: ModifiedAsciidocFile[];
+  let listener: EventEmitter;
 
   beforeEach(() => {
     [context, github] = prTestSetup();
-    files = [{
-      path: '01.adoc',
-      adoc: '== Ch 1',
-    }];
+    files = [
+      {
+        path: '01.adoc',
+        adoc: '== Ch 1',
+      },
+    ];
 
     github.repos.getCommit.mockResolvedValue({
       data: { commit: { tree: { sha: 'tree-sha' } } },
@@ -44,12 +47,12 @@ describe('kiteCheck()', () => {
       },
     });
 
-    getFriend.mockReturnValue('FakeFriend');
-    kiteJobs.fromPR.mockReturnValue(['job-1', 'job-2']);
-    kiteJobs.submit.mockResolvedValueOnce('job-1-id');
-    kiteJobs.submit.mockResolvedValueOnce('job-2-id');
+    (<jest.Mock>getFriend).mockReturnValue('FakeFriend');
+    (<jest.Mock>kiteJobs.fromPR).mockReturnValue(['job-1', 'job-2']);
+    (<jest.Mock>kiteJobs.submit).mockResolvedValueOnce('job-1-id');
+    (<jest.Mock>kiteJobs.submit).mockResolvedValueOnce('job-2-id');
     listener = new TestListener();
-    kiteJobs.listenAll.mockReturnValue(listener);
+    (<jest.Mock>kiteJobs.listenAll).mockReturnValue(listener);
   });
 
   afterEach(() => {
@@ -241,10 +244,14 @@ describe('kiteCheck()', () => {
     });
 
     it('updates existing comment if comment exists', async () => {
-      github.issues.listComments.mockResolvedValue({ data: [{
-        id: 12345,
-        body: '<!-- check:kite -->',
-      }] });
+      github.issues.listComments.mockResolvedValue({
+        data: [
+          {
+            id: 12345,
+            body: '<!-- check:kite -->',
+          },
+        ],
+      });
       await complete();
 
       expect(github.issues.updateComment).toHaveBeenCalledWith({

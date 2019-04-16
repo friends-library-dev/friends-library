@@ -4,7 +4,9 @@ import pick from 'lodash/pick';
 import get from 'lodash/get';
 import createSourceSpec from './source-spec';
 
-export function createPrecursor(data: Partial<SourcePrecursor> = {}): SourcePrecursor {
+export function createPrecursor(
+  data: { [k in keyof SourcePrecursor]?: any } = {},
+): SourcePrecursor {
   const metaProps = ['title', 'isbn', 'originalTitle', 'published', 'editor'];
   const revisionProps = ['timestamp', 'sha', 'url'];
   return {
@@ -22,7 +24,6 @@ export function createPrecursor(data: Partial<SourcePrecursor> = {}): SourcePrec
     adoc: data.adoc || '',
     meta: {
       title: 'Unknown Document',
-      // @ts-ignore
       author: {
         name: get(data, 'meta.author.name', 'Unknown Author'),
         nameSort: get(data, 'meta.author.nameSort', 'Author, Unknown'),
@@ -32,7 +33,7 @@ export function createPrecursor(data: Partial<SourcePrecursor> = {}): SourcePrec
   };
 }
 
-export function createJob(data: Partial<Job> = {}): Job {
+export function createJob(data: { [k in keyof Job]?: any } = {}): Job {
   const defaultMeta = {
     check: false,
     perform: false,

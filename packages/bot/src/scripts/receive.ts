@@ -1,16 +1,29 @@
-/* eslint-disable no-underscore-dangle, no-console */
-const chalk = require('chalk');
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '..', '.env') });
-const fetch = require('node-fetch');
-const fs = require('fs');
-const uuid = require('uuid/v4');
-const CryptoJS = require('crypto-js');
+import '@friends-library/client/load-env';
+import { requireEnv } from '@friends-library/types';
+import chalk from 'chalk';
+import path from 'path';
+import nodeFetch from 'node-fetch';
+import fs from 'fs';
+import uuid from 'uuid/v4';
+import CryptoJS from 'crypto-js';
 
-const { env: { BOT_WEBHOOK_SECRET, BOT_WEBHOOK_PROXY_URL }, argv: [,, fixture] } = process;
+const { BOT_WEBHOOK_PROXY_URL, BOT_WEBHOOK_SECRET } = requireEnv(
+  'BOT_WEBHOOK_SECRET',
+  'BOT_WEBHOOK_PROXY_URL',
+);
+
+const {
+  argv: [, , fixture],
+} = process;
 
 try {
-  const filepath = path.resolve(__dirname, '..', '__tests__', 'fixtures', `${fixture}.json`);
+  const filepath = path.resolve(
+    __dirname,
+    '..',
+    '__tests__',
+    'fixtures',
+    `${fixture}.json`,
+  );
   if (!fs.existsSync(filepath)) {
     throw new Error(`Filepath ${filepath} for fixture ${fixture} does not exist.`);
   }
@@ -23,7 +36,7 @@ try {
   const event = payload.__github_event__;
   delete payload.event;
 
-  fetch(BOT_WEBHOOK_PROXY_URL, {
+  nodeFetch(BOT_WEBHOOK_PROXY_URL, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +51,7 @@ try {
 }
 
 // @see https://stackoverflow.com/questions/44850789
-function getSignature(payload) {
+function getSignature(payload: Object) {
   const sha = CryptoJS.HmacSHA1(JSON.stringify(payload), BOT_WEBHOOK_SECRET);
   return `sha1=${sha.toString(CryptoJS.enc.Hex)}`;
 }
