@@ -47,7 +47,7 @@ export function prTestSetup() {
   const context = {
     payload,
     github,
-    repo: obj => ({
+    repo: (obj: any) => ({
       ...obj,
       owner: 'friends-library-sandbox',
       repo: payload.repository.name,
@@ -65,17 +65,17 @@ export function prTestSetup() {
     .mockResolvedValueOnce({ data: { id: 1 } })
     .mockResolvedValueOnce({ data: { id: 2 } });
 
-  github.pullRequests.listFiles
-    .mockResolvedValue({ data: [] });
+  github.pullRequests.listFiles.mockResolvedValue({ data: [] });
 
-  github.pullRequests.listFiles
-    .mockResolvedValueOnce({ data: [{ filename: '01.adoc' }] });
+  github.pullRequests.listFiles.mockResolvedValueOnce({
+    data: [{ filename: '01.adoc' }],
+  });
 
-  github.repos.getContents
-    .mockResolvedValueOnce({ data: { content: Base64.encode('== Ch 1') } });
+  github.repos.getContents.mockResolvedValueOnce({
+    data: { content: Base64.encode('== Ch 1') },
+  });
 
-  github.issues.listComments
-    .mockResolvedValue({ data: [] });
+  github.issues.listComments.mockResolvedValue({ data: [] });
 
   return [context, github, payload];
 }

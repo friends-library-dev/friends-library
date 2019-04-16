@@ -6,9 +6,9 @@ import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { basename, resolve as pathResolve } from 'path';
 import { query, Friend, Document, Edition } from '@friends-library/friends';
+import { getDocumentMeta } from '@friends-library/asciidoc';
 import type { Lang, Asciidoc, Css } from '../../../../../type';
 import type { SourcePrecursor, FileType } from '../../type';
-import { getDocumentMeta } from '../job/utils';
 
 export function getPrecursors(path: string): Array<SourcePrecursor> {
   const [lang, friend, document, edition] = path

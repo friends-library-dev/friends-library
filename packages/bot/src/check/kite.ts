@@ -1,29 +1,39 @@
-// @flow
 import path from 'path';
+import { FilePath, Asciidoc, Sha, Url, Job } from '@friends-library/types';
+import { Friend, getFriend } from '@friends-library/friends';
 import { Base64 } from 'js-base64';
-import { getFriend } from '@friends-library/friends';
-import type { FilePath, Asciidoc, Sha, Url } from '../../../../type';
-import { values } from '../../../../flow-utils';
-import type { Context, ModifiedAsciidocFile } from '../type';
+import { Context } from 'probot';
+import { ModifiedAsciidocFile } from '../type';
 import * as kiteJobs from '../kite-jobs';
+import JobListener from '../job-listener';
 
-type JobResult = {|
-  url: Url,
-  status: string,
-|};
+type JobResults = {
+  [k: string]: {
+    url: Url;
+    status: string;
+  };
+};
 
 export default async function kiteCheck(
   context: Context,
-  modifiedFiles: Array<ModifiedAsciidocFile>,
+  modifiedFiles: ModifiedAsciidocFile[],
 ): Promise<void> {
   const { payload, github, repo } = context;
-  const { pull_request: { head: { sha } } } = payload;
-  const { data: { id: checkId } } = await github.checks.create(repo({
-    name: 'create-pdf',
-    head_sha: sha,
-    status: 'queued',
-    started_at: new Date(),
-  }));
+  const {
+    pull_request: {
+      head: { sha },
+    },
+  } = payload;
+  const {
+    data: { id: checkId },
+  } = await github.checks.create(
+    repo({
+      name: 'create-pdf',
+      head_sha: sha,
+      status: 'queued',
+      started_at: new Date().toString(),
+    }),
+  );
   context.log.info('Created kite check');
 
   const updateCheck = makeUpdateCheck(context, checkId);
@@ -44,7 +54,6 @@ export default async function kiteCheck(
     return;
   }
 
-
   const repoName = payload.repository.name;
   let friend;
   try {
@@ -62,17 +71,16 @@ export default async function kiteCheck(
     return;
   }
 
-
-  let listener;
-  let jobIds;
+  let listener: JobListener;
+  let jobIds: Set<string>;
   try {
-    ([listener, jobIds] = await submitKiteJobs(
+    [listener, jobIds] = await submitKiteJobs(
       friend,
       modifiedFiles,
       prFiles,
       sha,
       `pull-request/${repoName}/${payload.number}`,
-    ));
+    );
     context.log.info('Submitted kite jobs');
     context.log.debug({ jobIds: [...jobIds] }, 'Job ids');
   } catch (e) {
@@ -104,7 +112,7 @@ export default async function kiteCheck(
     updateCheck('completed', 'timed_out');
   });
 
-  listener.on('complete', ({ success, jobs }) => {
+  listener.on('complete', ({ success, jobs }: { success: boolean; jobs: JobResults }) => {
     context.log.info(`Listener complete, success: ${success ? 'true' : 'false'}`);
     context.log.debug({ jobs }, 'Listener complete jobs data');
     if (!success) {
@@ -137,50 +145,60 @@ export default async function kiteCheck(
   }
 }
 
-async function pdfComment(
-  context: Context,
-  jobs: { [string]: JobResult },
-): Promise<void> {
+async function pdfComment(context: Context, jobs: JobResults): Promise<void> {
   const { github, issue, repo, payload } = context;
-  const { pull_request: { head: { sha } } } = payload;
+  const {
+    pull_request: {
+      head: { sha },
+    },
+  } = payload;
   const { data: comments } = await github.issues.listComments(issue({ per_page: 100 }));
   const existing = comments.find(comment => comment.body.includes('<!-- check:kite'));
   const body = getCommentBody(sha, jobs);
   if (existing) {
-    return github.issues.updateComment(repo({ body, comment_id: existing.id }));
+    github.issues.updateComment(repo({ body, comment_id: existing.id }));
+    return;
   }
-  return github.issues.createComment(issue({ body }));
+  github.issues.createComment(issue({ body }));
 }
 
-function getCommentBody(
-  sha: Sha,
-  jobs: { [string]: JobResult },
-): string {
+function getCommentBody(sha: Sha, jobs: JobResults): string {
   return `PDF previews (commit ${sha}):\n\n${pdfLinks(jobs)}\n<!-- check:kite -->`;
 }
 
-function getSummary(jobs: { [string]: JobResult }): string {
-  const text = 'We were able to simulate creating published PDF books with the edited files from this PR:';
+function getSummary(jobs: JobResults): string {
+  const text =
+    'We were able to simulate creating published PDF books with the edited files from this PR:';
   return `${text}\n\n${pdfLinks(jobs)}`;
 }
 
-function pdfLinks(jobs: { [string]: JobResult }): string {
-  return values(jobs).map(({ url }) => {
-    return `- [${path.basename(url)}](${url})`;
-  }).join('\n');
+function pdfLinks(jobs: JobResults): string {
+  return Object.values(jobs)
+    .map(({ url }) => {
+      return `- [${path.basename(url)}](${url})`;
+    })
+    .join('\n');
 }
 
-async function submitKiteJobs(friend, modifiedFiles, prFiles, sha, uploadPath) {
+async function submitKiteJobs(
+  friend: Friend,
+  modifiedFiles: ModifiedAsciidocFile[],
+  prFiles: Map<string, string>,
+  sha: string,
+  uploadPath: string,
+): Promise<[JobListener, Set<string>, { [k: string]: Job }]> {
   const jobs = kiteJobs.fromPR(friend, modifiedFiles, prFiles, sha, true, false);
-  const jobMap = {};
-  await Promise.all(jobs.map(job => {
-    return kiteJobs.submit({ job, uploadPath }).then(id => {
-      if (!id) {
-        throw new Error('Failed to submit kite job to API!');
-      }
-      jobMap[id] = job;
-    });
-  }));
+  const jobMap: { [k: string]: Job } = {};
+  await Promise.all(
+    jobs.map(job => {
+      return kiteJobs.submit({ job, uploadPath }).then(id => {
+        if (!id) {
+          throw new Error('Failed to submit kite job to API!');
+        }
+        jobMap[id] = job;
+      });
+    }),
+  );
 
   const jobIds = Object.keys(jobMap);
   const jobListener = kiteJobs.listenAll(jobIds);
@@ -189,14 +207,20 @@ async function submitKiteJobs(friend, modifiedFiles, prFiles, sha, uploadPath) {
 
 function makeUpdateCheck(context: Context, checkRunId: number) {
   const { github, repo } = context;
-  return function updateCheck(status, conclusion = null, data = {}) {
-    return github.checks.update(repo({
-      check_run_id: checkRunId,
-      status,
-      ...data,
-      ...conclusion ? { conclusion } : {},
-      ...status === 'completed' ? { completed_at: new Date() } : {},
-    }));
+  return function updateCheck(
+    status: 'completed' | 'in_progress',
+    conclusion?: 'timed_out' | 'failure' | 'success',
+    data = {},
+  ) {
+    return github.checks.update(
+      repo({
+        check_run_id: checkRunId,
+        status,
+        ...data,
+        ...(conclusion ? { conclusion } : {}),
+        ...(status === 'completed' ? { completed_at: new Date().toString() } : {}),
+      }),
+    );
   };
 }
 
@@ -204,26 +228,46 @@ async function getAllPrFiles(context: Context): Promise<Map<FilePath, Asciidoc>>
   const { github, repo, payload } = context;
 
   // get tree sha for the PR commit
-  const treeSha = await github.repos.getCommit(repo({
-    sha: payload.pull_request.head.sha,
-  })).then(res => res.data.commit.tree.sha);
+  const treeSha = await github.repos
+    .getCommit(
+      repo({
+        sha: payload.pull_request.head.sha,
+      }),
+    )
+    .then(res => res.data.commit.tree.sha);
 
   // get array of tree nodes for the tree sha
-  const { data: { tree } } = await github.gitdata.getTree(repo({
-    tree_sha: treeSha,
-    recursive: 1,
-  }));
+  const {
+    data: { tree },
+  } = await github.gitdata.getTree(
+    repo({
+      tree_sha: treeSha,
+      recursive: 1,
+    }),
+  );
+
+  type TreeNode = {
+    type: string;
+    sha: Sha;
+    path: string;
+  };
 
   // get file content for all non-dir tree nodes
   const files = new Map();
-  const promises = tree.filter(node => node.type === 'blob').map(file => {
-    return github.gitdata.getBlob(repo({
-      file_sha: file.sha,
-    })).then(json => {
-      context.log.info(`Received PR file at path: ${file.path}`);
-      files.set(file.path, Base64.decode(json.data.content));
+  const promises = tree
+    .filter((node: TreeNode) => node.type === 'blob')
+    .map((file: TreeNode) => {
+      return github.gitdata
+        .getBlob(
+          repo({
+            file_sha: file.sha,
+          }),
+        )
+        .then(json => {
+          context.log.info(`Received PR file at path: ${file.path}`);
+          files.set(file.path, Base64.decode(json.data.content));
+        });
     });
-  });
 
   await Promise.all(promises);
   return files;

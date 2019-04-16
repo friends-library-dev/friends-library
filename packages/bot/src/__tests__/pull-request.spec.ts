@@ -10,9 +10,9 @@ jest.mock('../check/kite');
 jest.mock('../check/lint');
 
 describe('pullRequest()', () => {
-  let payload;
-  let github;
-  let context;
+  let payload: any;
+  let github: any;
+  let context: any;
 
   beforeEach(() => {
     [context, github, payload] = prTestSetup();

@@ -1,6 +1,5 @@
-// @flow
 import { Edition } from '@friends-library/friends';
-import type { DocumentMeta, Job } from '../../type';
+import { DocumentMeta, Job } from '@friends-library/types';
 
 export function getDocumentMeta(edition: Edition): DocumentMeta {
   const { document } = edition;
@@ -11,10 +10,10 @@ export function getDocumentMeta(edition: Edition): DocumentMeta {
       name: friend.name,
       nameSort: friend.alphabeticalName(),
     },
-    ...document.originalTitle ? { originalTitle: document.originalTitle } : {},
-    ...document.published ? { published: document.published } : {},
-    ...edition.isbn ? { isbn: edition.isbn } : {},
-    ...edition.editor ? { editor: edition.editor } : {},
+    ...(document.originalTitle ? { originalTitle: document.originalTitle } : {}),
+    ...(document.published ? { published: document.published } : {}),
+    ...(edition.isbn ? { isbn: edition.isbn } : {}),
+    ...(edition.editor ? { editor: edition.editor } : {}),
   };
 }
 

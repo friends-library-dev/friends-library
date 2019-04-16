@@ -1,13 +1,14 @@
 import nock from 'nock';
-import { friendFromJS } from '@friends-library/friends';
-import { jobToJson } from '@friends-library/kite';
+import { friendFromJS, Friend } from '@friends-library/friends';
+import { jobToJson } from '@friends-library/asciidoc';
 import * as kiteJobs from '../kite-jobs';
+import { ModifiedAsciidocFile } from '../type';
 
 describe('kiteJobs.fromPR()', () => {
-  let friend;
-  let modifiedFiles;
-  let prFiles;
-  let sha;
+  let friend: Friend;
+  let modifiedFiles: ModifiedAsciidocFile[];
+  let prFiles: Map<string, string>;
+  let sha: string;
 
   beforeEach(() => {
     sha = '2d306bb70578e6c019e3579c02d4f78f17bf915e';
@@ -15,10 +16,12 @@ describe('kiteJobs.fromPR()', () => {
       ['journal/updated/01.adoc', '== Ch 1'],
       ['journal/updated/02.adoc', '== Ch 2'],
     ]);
-    modifiedFiles = [{
-      path: 'journal/updated/01.adoc',
-      adoc: '== Ch 1 Foo',
-    }];
+    modifiedFiles = [
+      {
+        path: 'journal/updated/01.adoc',
+        adoc: '== Ch 1 Foo',
+      },
+    ];
     friend = friendFromJS({
       documents: [
         {
@@ -98,7 +101,7 @@ describe('kiteJobs.fromPR()', () => {
 });
 
 describe('kiteJobs.submit()', () => {
-  let job;
+  let job: any;
 
   beforeEach(() => {
     job = {
@@ -119,7 +122,7 @@ describe('kiteJobs.submit()', () => {
   it('correctly stringifies non-empty job notes', async () => {
     let bodyCorrect;
     nock('https://test-api.friendslibrary.com')
-      .post('/kite-jobs', body => {
+      .post('/kite-jobs', (body: any) => {
         bodyCorrect = JSON.stringify(body.job.spec.notes) === '[["uuid","foobar"]]';
         return true;
       })
@@ -133,7 +136,7 @@ describe('kiteJobs.submit()', () => {
     job.spec.notes = new Map();
     let bodyCorrect;
     nock('https://test-api.friendslibrary.com')
-      .post('/kite-jobs', body => {
+      .post('/kite-jobs', (body: any) => {
         bodyCorrect = JSON.stringify(body.job.spec.notes) === '[]';
         return true;
       })

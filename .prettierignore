@@ -1,5 +1,3 @@
 /packages/kite
-/packages/client
-/packages/bot
 /packages/api
 tsconfig.json

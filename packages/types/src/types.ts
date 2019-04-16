@@ -44,6 +44,18 @@ export function isNotFalse<T>(x: T | false): x is T {
   return x !== false;
 }
 
+export function requireEnv<T extends string>(...keys: T[]): { [k in T]: string } {
+  const obj = {} as { [k in T]: string };
+  keys.forEach(key => {
+    const val = process.env[key];
+    if (typeof val !== 'string') {
+      throw new Error(`Env var \`${key}\` is required.`);
+    }
+    obj[key] = val;
+  });
+  return obj;
+}
+
 export type LintResult = {
   line: number;
   column: number | false;
@@ -58,8 +70,8 @@ export type LintResult = {
 export type LintOptions = {
   lang: Lang;
   editionType?: EditionType;
-  include?: Array<string>;
-  exclude?: Array<string>;
+  include?: string[];
+  exclude?: string[];
 };
 
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';

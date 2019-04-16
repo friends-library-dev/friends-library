@@ -25,7 +25,6 @@ describe('jobToJson()', () => {
   });
 });
 
-
 describe('unstringifyJob', () => {
   it('converts notes back to maps', () => {
     const str = JSON.stringify({

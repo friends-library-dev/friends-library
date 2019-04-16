@@ -10,7 +10,8 @@ packages/jones/*
 packages/fell/*
 packages/cli/*
 packages/friends/*
-packages/friends/*
+packages/client/*
+packages/bot/*
 packages/evans/*
 packages/asciidoc/scripts/*
 prettier.config.js
