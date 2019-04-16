@@ -31,7 +31,7 @@ export default async function kiteCheck(
       name: 'create-pdf',
       head_sha: sha,
       status: 'queued',
-      started_at: new Date().toString(),
+      started_at: new Date().toISOString(),
     }),
   );
   context.log.info('Created kite check');
@@ -218,7 +218,7 @@ function makeUpdateCheck(context: Context, checkRunId: number) {
         status,
         ...data,
         ...(conclusion ? { conclusion } : {}),
-        ...(status === 'completed' ? { completed_at: new Date().toString() } : {}),
+        ...(status === 'completed' ? { completed_at: new Date().toISOString() } : {}),
       }),
     );
   };

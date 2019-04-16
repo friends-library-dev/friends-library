@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "yarn ts:compile",
-    "ts:compile": "yarn types:compile && yarn client:compile && yarn friends:compile && yarn hilkiah:compile && yarn asciidoc:compile && yarn cli:compile && yarn bot:compile",
+    "ts:compile": "yarn types:compile; yarn client:compile; yarn friends:compile; yarn hilkiah:compile; yarn asciidoc:compile; yarn cli:compile; yarn bot:compile",
     "ts:recompile": "cd packages && find . -name \"*.tsbuildinfo\" -type f -delete && cd ../ && yarn ts:compile",
     "ts:watch": "yarn types:compile -w & yarn client:compile -w & yarn friends:compile -w & yarn hilkiah:compile -w & yarn asciidoc:compile -w & yarn cli:compile -w & yarn bot:compile -w",
     "kite": "node ./packages/kite/kite.js",
