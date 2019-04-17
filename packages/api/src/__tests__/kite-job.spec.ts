@@ -1,3 +1,4 @@
+import { Request, Response } from 'express';
 import moment from 'moment';
 import * as kiteJob from '../kite-job';
 import * as db from '../db';
@@ -5,7 +6,7 @@ import * as db from '../db';
 jest.mock('../db');
 
 describe('create()', () => {
-  let res;
+  let res: Response;
 
   beforeEach(() => {
     res = getSpyResponse();
@@ -13,29 +14,29 @@ describe('create()', () => {
 
   it('sends a 400 if missing required body props', async () => {
     const body = { bad: 'data 😬' };
-    await kiteJob.create({ body }, res);
+    await kiteJob.create(req({ body }), res);
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
   it('sends 201 and job id if inserted succesfully', async () => {
     const body = { job: {}, uploadPath: '/foo' };
-    await kiteJob.create({ body }, res);
+    await kiteJob.create(req({ body }), res);
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.send).toHaveBeenCalledWith({ id: expect.any(String) });
   });
 
   it('sends 500 of db insert throws', async () => {
-    db.insert.mockImplementation(() => {
+    (<jest.Mock>db.insert).mockImplementation(() => {
       throw new Error('');
     });
     const body = { job: {}, uploadPath: '/foo' };
-    await kiteJob.create({ body }, res);
+    await kiteJob.create(req({ body }), res);
     expect(res.status).toHaveBeenCalledWith(500);
   });
 });
 
 describe('list()', () => {
-  let res;
+  let res: Response;
 
   beforeEach(() => {
     res = getSpyResponse();
@@ -43,8 +44,9 @@ describe('list()', () => {
 
   it('can return filtered=working results', async () => {
     const now = moment();
-    db.select.mockResolvedValue([
-      { // this job should come back as "working"
+    (<jest.Mock>db.select).mockResolvedValue([
+      {
+        // this job should come back as "working"
         id: 'job-1',
         attempts: 1,
         status: 'in_progress',
@@ -52,7 +54,8 @@ describe('list()', () => {
         updated_at: now.subtract(3, 'minutes').toDate(),
         created_at: now.subtract(3, 'minutes').toDate(),
       },
-      { // this job should not come back
+      {
+        // this job should not come back
         id: 'job-2',
         attempts: 0,
         status: 'queued',
@@ -62,93 +65,94 @@ describe('list()', () => {
       },
     ]);
 
-    await kiteJob.list({ query: { filter: 'working' } }, res);
-    const json = res.json.mock.calls[0][0];
+    await kiteJob.list(req({ query: { filter: 'working' } }), res);
+    const json = (<jest.Mock>res.json).mock.calls[0][0];
     expect(json).toHaveLength(1);
     expect(json[0].id).toBe('job-1');
   });
 });
 
 describe('get()', () => {
-  let res;
+  let res: Response;
 
   beforeEach(() => {
     res = getSpyResponse();
   });
 
   it('sends 404 if no results', async () => {
-    db.select.mockResolvedValue([]);
-    await kiteJob.get({ params: { id: 'foo' } }, res);
+    (<jest.Mock>db.select).mockResolvedValue([]);
+    await kiteJob.get(req({ params: { id: 'foo' } }), res);
     expect(res.status).toHaveBeenCalledWith(404);
   });
 
   it('sends job if found', async () => {
-    db.select.mockResolvedValue(['job']);
-    await kiteJob.get({ params: { id: 'foo' } }, res);
+    (<jest.Mock>db.select).mockResolvedValue(['job']);
+    await kiteJob.get(req({ params: { id: 'foo' } }), res);
     expect(res.json).toHaveBeenCalledWith('job');
   });
 });
 
 describe('destroy()', () => {
-  let res;
+  let res: Response;
 
   beforeEach(() => {
     res = getSpyResponse();
   });
 
   it('returns 404 if nothing deleted', async () => {
-    db.query.mockResolvedValue({ affectedRows: 0 });
-    await kiteJob.destroy({ params: { id: 'foo' } }, res);
+    (<jest.Mock>db.query).mockResolvedValue({ affectedRows: 0 });
+    await kiteJob.destroy(req({ params: { id: 'foo' } }), res);
     expect(res.status).toHaveBeenCalledWith(404);
   });
 
   it('sends 204 if found and deleted', async () => {
-    db.query.mockResolvedValue({ affectedRows: 1 });
-    await kiteJob.destroy({ params: { id: 'foo' } }, res);
+    (<jest.Mock>db.query).mockResolvedValue({ affectedRows: 1 });
+    await kiteJob.destroy(req({ params: { id: 'foo' } }), res);
     expect(res.status).toHaveBeenCalledWith(204);
-    expect(db.query).toHaveBeenCalledWith(
-      'DELETE FROM `kite_jobs` WHERE `id` = ?',
-      ['foo'],
-    );
+    expect(db.query).toHaveBeenCalledWith('DELETE FROM `kite_jobs` WHERE `id` = ?', [
+      'foo',
+    ]);
   });
 });
 
 describe('update', () => {
-  let res;
+  let res: Response;
 
   beforeEach(() => {
     res = getSpyResponse();
   });
 
   it('sends 404 if job not found', async () => {
-    db.select.mockResolvedValue([]);
-    await kiteJob.update({ params: { id: 'foo' } }, res);
+    (<jest.Mock>db.select).mockResolvedValue([]);
+    await kiteJob.update(req({ params: { id: 'foo' } }), res);
     expect(res.status).toHaveBeenCalledWith(404);
   });
 
   it('updates record and sends id back', async () => {
-    db.select.mockResolvedValue(['job']);
+    (<jest.Mock>db.select).mockResolvedValue(['job']);
     const body = { status: 'succeeded', url: '/foo' };
-    await kiteJob.update({ params: { id: 'foo' }, body }, res);
-    expect(db.query).toHaveBeenCalledWith(
-      expect.any(String),
-      [expect.any(Date), 'succeeded', '/foo', 'foo'],
-    );
+    await kiteJob.update(req({ params: { id: 'foo' }, body }), res);
+    expect(db.query).toHaveBeenCalledWith(expect.any(String), [
+      expect.any(Date),
+      'succeeded',
+      '/foo',
+      'foo',
+    ]);
   });
 });
 
-function getSpyResponse() {
-  const res = {
+function getSpyResponse(): Response {
+  const res: any = {
     status: jest.fn(() => res),
     send: jest.fn(),
     end: jest.fn(),
     json: jest.fn(),
   };
-  return res;
+  return res as Response;
 }
 
 describe('take()', () => {
-  let now;
+  let now: moment.Moment;
 
   beforeEach(() => {
     now = moment();
@@ -156,7 +160,7 @@ describe('take()', () => {
   });
 
   it('fails hopeless stale jobs', async () => {
-    db.select.mockResolvedValue([
+    (<jest.Mock>db.select).mockResolvedValue([
       {
         id: 'job-1',
         attempts: 3,
@@ -175,7 +179,7 @@ describe('take()', () => {
   });
 
   it('returns no job if the system is working on one', async () => {
-    db.select.mockResolvedValue([
+    (<jest.Mock>db.select).mockResolvedValue([
       {
         id: 'job-1',
         attempts: 1,
@@ -199,22 +203,25 @@ describe('take()', () => {
   });
 
   it('prioritizes new jobs over re-trying stale ones', async () => {
-    db.select.mockResolvedValue([
-      { // stale job, should be retried
+    (<jest.Mock>db.select).mockResolvedValue([
+      {
+        // stale job, should be retried
         id: 'job-1',
         attempts: 1,
         status: 'in_progress',
         updated_at: now.subtract(10, 'minutes').toDate(),
         created_at: now.subtract(10, 'minutes').toDate(),
       },
-      { // this untried job is newer, so must wait it's turn
+      {
+        // this untried job is newer, so must wait it's turn
         id: 'job-2',
         attempts: 0,
         status: 'queued',
         updated_at: now.subtract(20, 'seconds').toDate(),
         created_at: now.subtract(20, 'seconds').toDate(),
       },
-      { // this oldest, untried job gets priority
+      {
+        // this oldest, untried job gets priority
         id: 'job-3',
         attempts: 0,
         status: 'queued',
@@ -228,7 +235,7 @@ describe('take()', () => {
   });
 
   it('updates taken job status, attempts, updated_at', async () => {
-    db.select.mockResolvedValue([
+    (<jest.Mock>db.select).mockResolvedValue([
       {
         id: 'job-1',
         attempts: 0,
@@ -237,20 +244,23 @@ describe('take()', () => {
         created_at: now.subtract(10, 'seconds').toDate(),
       },
     ]);
+
     const { json } = await getTakeResponse();
+
+    const calls = (<jest.Mock>db.query).mock.calls;
     expect(json.id).toBe('job-1');
-    expect(db.query.mock.calls[0][0]).toBe(
+    expect(calls[0][0]).toBe(
       'UPDATE kite_jobs SET status = ?, attempts = ?, updated_at = ? WHERE id = ?',
     );
-    expect(db.query.mock.calls[0][1][0]).toBe('in_progress');
-    expect(db.query.mock.calls[0][1][1]).toBe(1);
-    expect(db.query.mock.calls[0][1][2]).toBeTruthy();
-    expect(db.query.mock.calls[0][1][2]).not.toBe('2019-02-15T20:10:18.000Z');
-    expect(db.query.mock.calls[0][1][3]).toBe('job-1');
+    expect(calls[0][1][0]).toBe('in_progress');
+    expect(calls[0][1][1]).toBe(1);
+    expect(calls[0][1][2]).toBeTruthy();
+    expect(calls[0][1][2]).not.toBe('2019-02-15T20:10:18.000Z');
+    expect(calls[0][1][3]).toBe('job-1');
   });
 
   it('retries oldest stale job if no new jobs to give', async () => {
-    db.select.mockResolvedValue([
+    (<jest.Mock>db.select).mockResolvedValue([
       {
         id: 'job-2',
         attempts: 1,
@@ -274,17 +284,21 @@ describe('take()', () => {
 });
 
 async function getTakeResponse() {
-  let json;
-  let status;
+  let json: any = undefined;
+  let status: number = 0;
   const res = {
-    status(st) {
+    status(st: number) {
       status = st;
       return { end: () => {} };
     },
-    json(js) {
+    json(js: any) {
       json = js;
     },
   };
-  await kiteJob.take(null, res);
+  await kiteJob.take({} as Request, res as Response);
   return { json, status };
+}
+
+function req(mock: any): Request {
+  return mock as Request;
 }

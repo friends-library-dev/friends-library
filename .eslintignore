@@ -13,5 +13,6 @@ packages/friends/*
 packages/client/*
 packages/bot/*
 packages/evans/*
+packages/api/*
 packages/asciidoc/scripts/*
 prettier.config.js

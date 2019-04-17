@@ -1,33 +1,34 @@
-// @flow
-import express, { type $Request, type $Response } from 'express';
+import { requireEnv } from '@friends-library/types';
+import express, { Request, Response } from 'express';
 import { URLSearchParams } from 'url';
 import makeSend from 'gmail-send';
 import moment from 'moment';
 import fetch from 'node-fetch';
 import cors from 'cors';
 
-const { env: {
+const {
   API_ZOE_BOOK_REQUEST_EMAIL_USER,
   API_ZOE_BOOK_REQUEST_EMAIL_PASS,
   API_ZOE_BOOK_REQUEST_EMAIL_RECIPIENT,
   API_ZOE_BOOK_REQUEST_RECAPTCHA_SECRET,
-} } = process;
+} = requireEnv(
+  'API_ZOE_BOOK_REQUEST_EMAIL_USER',
+  'API_ZOE_BOOK_REQUEST_EMAIL_PASS',
+  'API_ZOE_BOOK_REQUEST_EMAIL_RECIPIENT',
+  'API_ZOE_BOOK_REQUEST_RECAPTCHA_SECRET',
+);
 
 const app = express();
 export default app;
 
-app.options('/zoe-book-request', cors(), (req: $Request, res: $Response) => {
+app.options('/zoe-book-request', cors(), (req: Request, res: Response) => {
   res.sendStatus(204);
 });
 
 app.post('/zoe-book-request', cors(), handleBookRequest);
 
-
-async function handleBookRequest(
-  req: $Request,
-  res: $Response,
-) {
-  const params = ((req.body: any): Object);
+async function handleBookRequest(req: Request, res: Response) {
+  const params = <{ [k: string]: any }>req.body;
   if (!params['g-recaptcha-response']) {
     res.json({
       success: false,
@@ -55,13 +56,13 @@ async function handleBookRequest(
   }
 
   let sendSuccess;
-  await new Promise((resolve) => {
-    const time = moment().format('M/D/YY h:mm:ssa');
+  await new Promise(resolve => {
     const sendEmail = makeSend({
       user: API_ZOE_BOOK_REQUEST_EMAIL_USER,
       pass: API_ZOE_BOOK_REQUEST_EMAIL_PASS,
       replyTo: params.email,
     });
+
     const html = Object.entries(params).reduce((acc, [key, val]) => {
       if (key === 'g-recaptcha-response' || String(val).trim() === '') {
         return acc;
@@ -73,14 +74,18 @@ async function handleBookRequest(
           <dd>${String(val)}</dd>
         </dl>`;
     }, '');
-    sendEmail({
-      subject: `Pedido de Libro -- ${time}`,
-      html,
-      to: API_ZOE_BOOK_REQUEST_EMAIL_RECIPIENT,
-    }, (err) => {
-      sendSuccess = !err;
-      resolve();
-    });
+
+    sendEmail(
+      {
+        subject: `Pedido de Libro -- ${moment().format('M/D/YY h:mm:ssa')}`,
+        html,
+        to: API_ZOE_BOOK_REQUEST_EMAIL_RECIPIENT,
+      },
+      (err: any) => {
+        sendSuccess = !err;
+        resolve();
+      },
+    );
   });
   res.json({ success: sendSuccess });
   res.end();
