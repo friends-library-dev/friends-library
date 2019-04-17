@@ -73,15 +73,18 @@ commands:
           paths:
             - node_modules
             - packages/api/node_modules
+            - packages/asciidoc/node_modules
+            - packages/bot/node_modules
             - packages/cli/node_modules
+            - packages/client/node_modules
             - packages/evans/node_modules
             - packages/fell/node_modules
             - packages/friends/node_modules
             - packages/hilkiah/node_modules
             - packages/jones/node_modules
             - packages/kite/node_modules
-            - packages/mod/node_modules
             - packages/styleguide/node_modules
+            - packages/types/node_modules
           key: v1-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
 
   composer_cached_install:
