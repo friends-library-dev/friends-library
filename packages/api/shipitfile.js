@@ -2,14 +2,10 @@
 require('dotenv').config({ path: '../../.env' });
 
 const {
-  env: {
-    API_PRODUCTION_SERVER,
-    API_DEPLOY_PATH,
-    BOT_PORT,
-  },
+  env: { API_PRODUCTION_SERVER, API_DEPLOY_PATH, BOT_PORT },
 } = process;
 
-module.exports = (shipit) => {
+module.exports = shipit => {
   require('shipit-deploy')(shipit);
   require('shipit-yarn')(shipit);
   require('shipit-shared')(shipit);
@@ -44,7 +40,11 @@ module.exports = (shipit) => {
   shipit.on('published', () => {
     shipit.remote(`cd ${API_DEPLOY_PATH}/current/packages/api && yarn migrate`);
     shipit.remote('pm2 delete all');
-    shipit.remote(`cd ${API_DEPLOY_PATH}/current && NODE_ENV=production pm2 start packages/api/index.js`);
-    shipit.remote(`cd ${API_DEPLOY_PATH}/current && NODE_PORT=${BOT_PORT} pm2 start packages/bot/dist/scripts/run.js`);
+    shipit.remote(
+      `cd ${API_DEPLOY_PATH}/current && NODE_ENV=production pm2 start packages/api/dist/index.js`,
+    );
+    shipit.remote(
+      `cd ${API_DEPLOY_PATH}/current && NODE_PORT=${BOT_PORT} pm2 start packages/bot/dist/scripts/run.js`,
+    );
   });
 };

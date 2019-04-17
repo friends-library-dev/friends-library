@@ -1,17 +1,19 @@
-const uuid = require('uuid');
-const useragent = require('express-useragent');
-const mysql = require('mysql');
+import { requireEnv } from '@friends-library/types';
+import { Request, Response } from 'express';
+import uuid from 'uuid';
+import useragent from 'express-useragent';
+import mysql from 'mysql';
 
-const { env: {
-  NODE_ENV,
-  API_DB_HOST,
-  API_DB_USER,
-  API_DB_PASS,
-  API_DB_NAME,
-} } = process;
+const { NODE_ENV, API_DB_HOST, API_DB_USER, API_DB_PASS, API_DB_NAME } = requireEnv(
+  'NODE_ENV',
+  'API_DB_HOST',
+  'API_DB_USER',
+  'API_DB_PASS',
+  'API_DB_NAME',
+);
 
-function getRow(req, data) {
-  const ua = useragent.parse(req.headers['user-agent']);
+function getRow(req: Request, data: { [key: string]: string | number }) {
+  const ua = useragent.parse(req.headers['user-agent'] || '');
   if (ua.isBot) {
     return null;
   }
@@ -28,8 +30,12 @@ function getRow(req, data) {
   };
 }
 
-
-function redirAndLog(req, res, uri, data) {
+export function redirAndLog(
+  req: Request,
+  res: Response,
+  uri: string,
+  data: { [key: string]: string | number },
+) {
   if (NODE_ENV !== 'development') {
     res.redirect(uri);
   } else {
@@ -48,7 +54,7 @@ function redirAndLog(req, res, uri, data) {
     database: API_DB_NAME,
   });
 
-  connection.connect((connectError) => {
+  connection.connect(connectError => {
     if (connectError) {
       // @TODO handle error (maybe send a slack?)
       console.error(connectError);
@@ -64,6 +70,3 @@ function redirAndLog(req, res, uri, data) {
     });
   });
 }
-
-
-module.exports = { redirAndLog };

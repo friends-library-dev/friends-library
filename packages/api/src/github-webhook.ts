@@ -1,18 +1,15 @@
-// @flow
-import type { $Request, $Response } from 'express';
+import { Request, Response } from 'express';
 import get from 'lodash/get';
-import type { WebhookPayload } from './type';
 import * as slack from './slack';
 
-export async function handleGithubWebhook(
-  req: $Request,
-  res: $Response,
-) {
+type WebhookPayload = { [key: string]: any };
+
+export async function handleGithubWebhook(req: Request, res: Response) {
   res.sendStatus(202);
   res.end();
 
   const event = req.header('X-Github-Event') || '';
-  const payload = ((req.body: any): WebhookPayload);
+  const payload = <WebhookPayload>req.body;
   if (process.env.NODE_ENV === 'production') {
     await logToSlack(event, payload);
   }
