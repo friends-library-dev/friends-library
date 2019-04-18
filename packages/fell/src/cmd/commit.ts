@@ -1,3 +1,4 @@
+import { Options } from 'yargs';
 import { green } from '@friends-library/cli/color';
 import { Argv as BaseArgv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
@@ -19,12 +20,12 @@ export const command = 'commit';
 
 export const describe = 'commit to all repos';
 
-export const builder = {
+export const builder: { [key: string]: Options } = {
   ...excludable,
   ...scopeable,
   message: {
     alias: 'm',
     required: true,
-    type: 'string',
+    type: 'string' as const,
   },
 };

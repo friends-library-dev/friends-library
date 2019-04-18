@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "downlevelIteration": true,
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2017",
+    "paths": {
+      "node-zip": ["*", "./types.d.ts"]
+    }
+  }
+}

@@ -6,6 +6,7 @@ import * as db from './db';
 const {
   env: { NODE_ENV },
 } = process;
+
 const isProd = NODE_ENV === 'production';
 
 export async function create(req: Request, res: Response) {
@@ -127,6 +128,7 @@ export async function take(req: Request, res: Response) {
       .filter(statusIs('in_progress'))
       .filter(({ attempts }) => attempts < 3)
       .filter(isStale)
+      .filter(notOld)
       .sort(oldestFirst)[0];
 
   if (!give) {
@@ -199,6 +201,10 @@ function isStale({ updated_at }: JobRow) {
 
 function isOld({ updated_at }: JobRow) {
   return updated_at.isBefore(moment().subtract(1.5, 'hours'));
+}
+
+function notOld({ updated_at }: JobRow) {
+  return updated_at.isAfter(moment().subtract(1.5, 'hours'));
 }
 
 function oldestFirst(a: JobRow, b: JobRow) {

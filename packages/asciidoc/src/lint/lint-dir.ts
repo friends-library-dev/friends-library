@@ -32,7 +32,7 @@ function getFiles(
     }
     files = [path];
   } else {
-    files = glob(`${path}/**/*.adoc`);
+    files = glob(`${path.replace(/\/$/, '')}/**/*.adoc`);
     if (files.length === 0) {
       throw new Error(`No files globbed from <path>: ${path}`);
     }

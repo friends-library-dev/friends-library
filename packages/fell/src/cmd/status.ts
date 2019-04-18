@@ -1,3 +1,4 @@
+import { Options } from 'yargs';
 import { red, green } from '@friends-library/cli/color';
 import chalk from 'chalk';
 import { Argv } from '../type';
@@ -22,7 +23,7 @@ export const command = 'status';
 
 export const describe = 'Reports the current status for all repos';
 
-export const builder = {
+export const builder: { [key: string]: Options } = {
   ...excludable,
   ...scopeable,
 };

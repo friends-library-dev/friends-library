@@ -1,4 +1,5 @@
 import { log } from '@friends-library/cli/color';
+import { Options } from 'yargs';
 import chalk from 'chalk';
 import { Argv } from '../type';
 import { getRepos, getBranchMap } from '../repos';
@@ -21,4 +22,4 @@ export const command = 'branch';
 
 export const describe = 'Reports the current <HEAD> branch for all repos';
 
-export const builder = excludable;
+export const builder: { [key: string]: Options } = excludable;

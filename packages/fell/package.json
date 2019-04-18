@@ -12,8 +12,8 @@
     "test": "../../node_modules/.bin/jest"
   },
   "dependencies": {
-    "@babel/register": "^7.0.0",
     "@friends-library/cli": "1.0.0",
+    "@friends-library/types": "1.0.0",
     "@octokit/rest": "^16.15.0",
     "chalk": "^2.4.1",
     "dotenv": "^6.2.0",

@@ -1,17 +1,21 @@
 import { green } from '@friends-library/cli/color';
+import { Options } from 'yargs';
 import { Argv as BaseArgv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
 import { excludable, scopeable } from './helpers';
 import * as git from '../git';
 
 type Argv = BaseArgv & {
-  createBranch: boolean,
-  branchName: string,
+  createBranch: boolean;
+  branchName: string;
 };
 
-export async function handler(
-  { exclude, scope, createBranch, branchName: branch }: Argv,
-): Promise<void> {
+export async function handler({
+  exclude,
+  scope,
+  createBranch,
+  branchName: branch,
+}: Argv) {
   const repos = await getRepos(exclude, scope);
   const { clean } = await getStatusGroups(repos);
   const exists = await Promise.all(clean.map(repo => git.hasBranch(repo, branch)));
@@ -34,21 +38,20 @@ export async function handler(
   green(`${clean.length} branches checked out new branch: ${branch}`);
 }
 
-
 export const command = 'checkout <branchName>';
 
 export const describe = 'Checkout a branch for all repos';
 
-export const builder = {
+export const builder: { [key: string]: Options } = {
   ...excludable,
   ...scopeable,
   branchName: {
-    type: 'string',
+    type: 'string' as const,
     required: true,
   },
   createBranch: {
     alias: 'b',
     default: false,
-    type: 'boolean',
+    type: 'boolean' as const,
   },
 };

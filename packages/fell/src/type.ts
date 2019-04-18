@@ -1,6 +1,8 @@
+import { Arguments } from 'yargs';
+
 export type Repo = string;
 
-export type Argv = {
-  scope: string | undefined;
+export type Argv = Arguments<{
+  scope?: string;
   exclude: string[];
-};
+}>;

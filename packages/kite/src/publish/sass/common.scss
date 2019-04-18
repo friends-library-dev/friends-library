@@ -1,4 +1,7 @@
-h2, h3, h4, h5 {
+h2,
+h3,
+h4,
+h5 {
   line-height: 1.5em;
 }
 
@@ -30,7 +33,6 @@ h2 span.line,
 }
 
 .chapter-heading--blurb {
-
   h2 {
     font-weight: normal;
     font-style: italic;
@@ -64,18 +66,18 @@ h3 + h4 {
     white-space: nowrap;
 
     &::before {
-      content: "(";
+      content: '(';
     }
 
     &::after {
-      content: ")";
+      content: ')';
     }
   }
 
-  // using sibling selecter doesn't work because of <br class="m7"/> added for mobi
+  // using sibling selector doesn't work because of <br class="m7"/> added for mobi
   &--not-first {
     &::before {
-      content: "*\00a0\00a0\00a0\00a0\00a0*\00a0\00a0\00a0\00a0\00a0*";
+      content: '*\00a0\00a0\00a0\00a0\00a0*\00a0\00a0\00a0\00a0\00a0*';
       margin-top: 2.5em;
       padding-bottom: 2em;
       display: block;
@@ -85,8 +87,8 @@ h3 + h4 {
 
 .verse {
   display: block;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
   font-style: italic;
   text-align: center;
 
@@ -102,14 +104,14 @@ h3 + h4 {
 }
 
 .signed-section-context-open {
-   p {
-     margin-top: 2em;
-     margin-bottom: 0;
-   }
+  p {
+    margin-top: 2em;
+    margin-bottom: 0;
+  }
 
-   & + .paragraph {
+  & + .paragraph {
     margin-top: 0.75em;
-   }
+  }
 }
 
 .signed-section-context-open,
@@ -165,7 +167,6 @@ h3 + h4 {
 
 .signed-section-signature,
 .signed-section-context-close {
-
   p {
     text-align: right;
     text-indent: 0;
@@ -173,7 +174,6 @@ h3 + h4 {
 }
 
 .salutation {
-
   p {
     margin-bottom: 0.5em;
   }
@@ -246,14 +246,12 @@ h4.blurb {
 
 .offset,
 .numbered {
-
   p {
     text-align: justify;
   }
 }
 
 .discourse-part {
-
   p {
     margin-bottom: 0;
     text-align: justify;
@@ -278,7 +276,6 @@ h4.blurb {
   }
 }
 
-
 h3.old-style {
   margin-top: 2.75em;
   text-align: center;
@@ -299,7 +296,6 @@ h3.old-style {
 }
 
 h3.old-style.bold {
-
   span + span {
     font-weight: 700;
     font-style: normal;
@@ -346,7 +342,6 @@ dt {
   margin: 1.35em 0 1.35em;
 }
 
-
 .half-title-page .editor {
   font-style: italic;
   text-align: center;
@@ -362,7 +357,6 @@ dt {
 }
 
 .syllogism {
-
   ul {
     padding-left: 0;
     margin-left: 2.5em;

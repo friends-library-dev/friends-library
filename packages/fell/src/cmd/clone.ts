@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+import { Options } from 'yargs';
 import { green, magenta } from '@friends-library/cli/color';
 import { excludable, scopeable } from './helpers';
 import { getFriendRepos } from '../github';
@@ -27,7 +28,7 @@ export const command = 'clone';
 
 export const describe = 'Clones down all doc repos';
 
-export const builder = {
+export const builder: { [key: string]: Options } = {
   ...excludable,
   ...scopeable,
 };
