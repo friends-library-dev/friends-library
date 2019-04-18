@@ -1,13 +1,22 @@
 const fs = require('fs-extra');
-const { pdf } = require('@friends-library/kite');
-const { createJob, createSourceSpec, createPrecursor, embeddablePdfHtml, epigraph } = require('@friends-library/asciidoc');
+const {
+  createJob,
+  createSourceSpec,
+  createPrecursor,
+  embeddablePdfHtml,
+  epigraph,
+} = require('@friends-library/asciidoc');
 const chalk = require('chalk');
 const { sync: glob } = require('glob');
 const path = require('path');
 const chokidar = require('chokidar');
 const { throttle } = require('lodash');
 
-const notify = throttle(() => console.log(chalk.magenta('🚁  styleguide fragments regenerated')), 5000);
+const notify = throttle(
+  /* eslint-disable no-console */
+  () => console.log(chalk.magenta('🚁  styleguide fragments regenerated')),
+  5000,
+);
 const adocGlob = path.resolve(__dirname, 'adoc/*.adoc');
 
 fs.ensureDir(path.resolve(__dirname, '..', 'dist/'));
@@ -24,7 +33,6 @@ if (process.argv.includes('--watch')) {
 function regen() {
   const files = glob(adocGlob);
   const frags = {};
-  let css;
 
   files.forEach(file => {
     const adoc = normalizeAdoc(fs.readFileSync(file).toString());
@@ -40,17 +48,11 @@ function regen() {
       target: 'pdf-print',
     });
 
-    if (!css) {
-      css = pdf.getCss(job);
-    }
-
     frags[id] = {
       html: innerHtml(job),
       adoc,
     };
   });
-
-  fs.writeFileSync(path.resolve(__dirname, '..', 'dist/pdf.css'), css);
 
   fs.writeFileSync(
     path.resolve(__dirname, '..', 'dist/frags.json'),
@@ -58,7 +60,6 @@ function regen() {
   );
   notify();
 }
-
 
 function normalizeAdoc(adoc) {
   if (adoc.match(/(^|\n)== /)) {

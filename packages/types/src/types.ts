@@ -75,6 +75,7 @@ export type LintOptions = {
 };
 
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
+export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
 
 export type Job = {
   id: string;
@@ -87,6 +88,11 @@ export type Job = {
 export type PrintSizeName = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
 
 export type PrintSizeAbbrev = 's' | 'm' | 'l' | 'xl' | 'xxl';
+
+export type DocumentArtifacts = {
+  filePath: FilePath;
+  srcDir: FilePath;
+};
 
 export type PrintSize = {
   name: PrintSizeName;
@@ -110,7 +116,7 @@ export type SourceSpec = Readonly<{
   size: number;
   filename: string;
   epigraphs: Epigraph[];
-  config: Object;
+  config: { [key: string]: any };
   customCss: CustomCss;
   meta: DocumentMeta;
   revision: DocumentRevision;
@@ -119,18 +125,14 @@ export type SourceSpec = Readonly<{
   conversionLogs: AsciidocConversionLog[];
 }>;
 
-export type CustomCss = { [K in FileType | 'pdf' | 'all' | 'ebook']?: Css };
+export type CustomCss = { [K in FileTypeWithShortcuts]?: Css };
 
 export type JobMeta = Readonly<{
   perform: boolean;
   check: boolean;
-  open: boolean;
-  send: boolean;
   frontmatter: boolean;
   printSize?: PrintSizeAbbrev;
-  debugPrintMargins: boolean;
   condense: boolean;
-  email?: string;
 }>;
 
 export interface AsciidocConversionLog {

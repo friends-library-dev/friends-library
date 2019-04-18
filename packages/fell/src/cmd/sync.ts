@@ -1,3 +1,4 @@
+import { Options } from 'yargs';
 import { green } from '@friends-library/cli/color';
 import { Argv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
@@ -15,7 +16,7 @@ export const command = 'sync';
 
 export const describe = 'like git pull --rebase';
 
-export const builder = {
+export const builder: { [key: string]: Options } = {
   ...excludable,
   ...scopeable,
 };
