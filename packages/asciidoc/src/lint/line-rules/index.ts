@@ -23,3 +23,4 @@ export { default as capitalize } from './capitalize';
 export { default as unspacedClass } from './unspaced-class';
 export { default as joinWords } from './join-words';
 export { default as emptyRole } from './empty-role';
+export { default as noUndefined } from './no-undefined';
