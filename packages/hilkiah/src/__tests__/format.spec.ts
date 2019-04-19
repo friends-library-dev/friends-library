@@ -1,7 +1,8 @@
-const { format } = require('../format');
+import { format } from '../format';
+import { Ref } from '../find';
 
 describe('format', () => {
-  let ref;
+  let ref: Ref;
 
   beforeEach(() => {
     ref = {
@@ -9,7 +10,7 @@ describe('format', () => {
       contiguous: true,
       verses: [{ chapter: 1, verse: 1 }],
       match: 'Gal. i. 1',
-    };
+    } as Ref;
   });
 
   it('should format a single verse so good', () => {

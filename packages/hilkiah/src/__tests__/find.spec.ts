@@ -1,4 +1,4 @@
-const { find } = require('..');
+import { find } from '..';
 
 describe('find()', () => {
   it('returns empty array if no refs found', () => {
@@ -94,7 +94,7 @@ describe('find()', () => {
     expect(found).toHaveLength(1);
   });
 
-  const individualVerses = [
+  const individualVerses: [string, number, number, string][] = [
     ['Matthew', 17, 20, 'Matt. xvii. 20'],
     ['1 Corinthians', 1, 24, '1 Cor. i. 24.'],
     ['Matthew', 11, 29, 'ls,`" (Matt. xi. 29) the'],
@@ -169,7 +169,7 @@ describe('find()', () => {
     expect(ref.verses[0].verse).toBe(vs);
   });
 
-  const multiRefs = [
+  const multiRefs: [string, [string, string, number, number][]][] = [
     [
       'included; (see Hosea, xii. 6; Isai. xl. 31; Psalm xl. 1;) a duty',
       [
@@ -180,17 +180,11 @@ describe('find()', () => {
     ],
     [
       'with John viii. 12, and 1 John i. 7.\n',
-      [
-        ['John viii. 12', 'John', 8, 12],
-        ['1 John i. 7', '1 John', 1, 7],
-      ],
+      [['John viii. 12', 'John', 8, 12], ['1 John i. 7', '1 John', 1, 7]],
     ],
     [
       'im,`" (2 Pet. i. 17. Matt. xvii. 5;) --He',
-      [
-        ['Matt. xvii. 5;', 'Matthew', 17, 5],
-        ['2 Pet. i. 17', '2 Peter', 1, 17],
-      ],
+      [['Matt. xvii. 5;', 'Matthew', 17, 5], ['2 Pet. i. 17', '2 Peter', 1, 17]],
     ],
     [
       '(Ezek. xxxiii. 18. 1 Cor. ix. 27.) So also',
@@ -201,10 +195,7 @@ describe('find()', () => {
     ],
     [
       'blah Jn 3:16 blah blah Joh 14:6',
-      [
-        ['Jn 3:16', 'John', 3, 16],
-        ['Joh 14:6', 'John', 14, 6],
-      ],
+      [['Jn 3:16', 'John', 3, 16], ['Joh 14:6', 'John', 14, 6]],
     ],
   ];
 
@@ -219,7 +210,7 @@ describe('find()', () => {
     }
   });
 
-  const multiVerses = [
+  const multiVerses: [string, { [k: string]: any }][] = [
     [
       'nd I in them.” (John xvii. 20, 21, 23, 26.) Foobar',
       {
@@ -238,10 +229,7 @@ describe('find()', () => {
       {
         book: 'Galatians',
         contiguous: true,
-        verses: [
-          { chapter: 5, verse: 16 },
-          { chapter: 5, verse: 17 },
-        ],
+        verses: [{ chapter: 5, verse: 16 }, { chapter: 5, verse: 17 }],
       },
     ],
     [
@@ -249,10 +237,7 @@ describe('find()', () => {
       {
         book: 'Philippians',
         contiguous: true,
-        verses: [
-          { chapter: 2, verse: 10 },
-          { chapter: 2, verse: 11 },
-        ],
+        verses: [{ chapter: 2, verse: 10 }, { chapter: 2, verse: 11 }],
       },
     ],
     [
@@ -260,10 +245,7 @@ describe('find()', () => {
       {
         book: '2 Corinthians',
         contiguous: true,
-        verses: [
-          { chapter: 5, verse: 17 },
-          { chapter: 5, verse: 18 },
-        ],
+        verses: [{ chapter: 5, verse: 17 }, { chapter: 5, verse: 18 }],
       },
     ],
     [
@@ -271,10 +253,7 @@ describe('find()', () => {
       {
         book: 'John',
         contiguous: true,
-        verses: [
-          { chapter: 5, verse: 39 },
-          { chapter: 5, verse: 40 },
-        ],
+        verses: [{ chapter: 5, verse: 39 }, { chapter: 5, verse: 40 }],
       },
     ],
     [
@@ -282,10 +261,7 @@ describe('find()', () => {
       {
         book: 'John',
         contiguous: true,
-        verses: [
-          { chapter: 4, verse: 23 },
-          { chapter: 4, verse: 24 },
-        ],
+        verses: [{ chapter: 4, verse: 23 }, { chapter: 4, verse: 24 }],
       },
     ],
     [
@@ -293,10 +269,7 @@ describe('find()', () => {
       {
         book: 'Galatians',
         contiguous: true,
-        verses: [
-          { chapter: 5, verse: 22 },
-          { chapter: 5, verse: 23 },
-        ],
+        verses: [{ chapter: 5, verse: 22 }, { chapter: 5, verse: 23 }],
       },
     ],
     [
@@ -304,10 +277,7 @@ describe('find()', () => {
       {
         book: '2 Corinthians',
         contiguous: true,
-        verses: [
-          { chapter: 3, verse: 15 },
-          { chapter: 3, verse: 16 },
-        ],
+        verses: [{ chapter: 3, verse: 15 }, { chapter: 3, verse: 16 }],
       },
     ],
     [
@@ -339,10 +309,7 @@ describe('find()', () => {
       {
         book: 'Hebrews',
         contiguous: true,
-        verses: [
-          { chapter: 4, verse: 12 },
-          { chapter: 4, verse: 13 },
-        ],
+        verses: [{ chapter: 4, verse: 12 }, { chapter: 4, verse: 13 }],
       },
     ],
     [
@@ -362,10 +329,7 @@ describe('find()', () => {
       {
         book: 'John',
         contiguous: true,
-        verses: [
-          { chapter: 4, verse: 23 },
-          { chapter: 4, verse: 24 },
-        ],
+        verses: [{ chapter: 4, verse: 23 }, { chapter: 4, verse: 24 }],
       },
     ],
     [
@@ -373,10 +337,7 @@ describe('find()', () => {
       {
         book: 'John',
         contiguous: false,
-        verses: [
-          { chapter: 4, verse: 23 },
-          { chapter: 4, verse: 27 },
-        ],
+        verses: [{ chapter: 4, verse: 23 }, { chapter: 4, verse: 27 }],
       },
     ],
     [
@@ -384,10 +345,7 @@ describe('find()', () => {
       {
         book: 'John',
         contiguous: true,
-        verses: [
-          { chapter: 12, verse: 35 },
-          { chapter: 12, verse: 36 },
-        ],
+        verses: [{ chapter: 12, verse: 35 }, { chapter: 12, verse: 36 }],
       },
     ],
     [
@@ -395,10 +353,7 @@ describe('find()', () => {
       {
         book: 'Titus',
         contiguous: true,
-        verses: [
-          { chapter: 2, verse: 11 },
-          { chapter: 2, verse: 12 },
-        ],
+        verses: [{ chapter: 2, verse: 11 }, { chapter: 2, verse: 12 }],
       },
     ],
     [
@@ -418,10 +373,7 @@ describe('find()', () => {
       {
         book: '2 Corinthians',
         contiguous: true,
-        verses: [
-          { chapter: 4, verse: 6 },
-          { chapter: 4, verse: 7 },
-        ],
+        verses: [{ chapter: 4, verse: 6 }, { chapter: 4, verse: 7 }],
       },
     ],
 
@@ -442,6 +394,7 @@ describe('find()', () => {
   test.each(multiVerses)('finds all verses from "%s"', (input, expected) => {
     const [ref] = find(input);
     Object.keys(expected).forEach(key => {
+      // @ts-ignore
       expect(ref[key]).toEqual(expected[key]);
     });
   });
@@ -464,7 +417,9 @@ describe('find()', () => {
 
   test.each(trailing)('properly captures trailing junk for "%s"', (input, match, rpl) => {
     const [ref] = find(input);
-    const { position: { start, end } } = ref;
+    const {
+      position: { start, end },
+    } = ref;
 
     const result = `${input.substr(0, start)}--${input.substr(end)}`;
 

@@ -9,7 +9,7 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "test": "../../node_modules/.bin/jest"
+    "test": "cd ../../ && yarn jest packages/fell"
   },
   "dependencies": {
     "@friends-library/cli": "1.0.0",

@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "compile": "yarn tsc -p .",
-    "test": "../../node_modules/.bin/jest",
+    "test": "cd ../../ && yarn jest packages/bot",
     "start": "echo \"USE `yarn bot:develop` from monorepo root!\"",
     "receive": "node ./scripts/receive"
   },
@@ -27,8 +27,7 @@
     "crypto-js": "^3.1.9-1",
     "nock": "^10.0.6",
     "nodemon": "^1.17.2",
-    "smee-client": "^1.0.2",
-    "ts-jest": "^24.0.2"
+    "smee-client": "^1.0.2"
   },
   "engines": {
     "node": ">= 8.3.0"

@@ -6,7 +6,7 @@
     "kite": "./kite.js"
   },
   "scripts": {
-    "test": "../../node_modules/.bin/jest"
+    "test": "cd ../../ && yarn jest packages/kite"
   },
   "main": "index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@types/yargs": "^13.0.0",
-    "strip-indent": "^2.0.0",
-    "ts-jest": "^24.0.2"
+    "strip-indent": "^2.0.0"
   }
 }

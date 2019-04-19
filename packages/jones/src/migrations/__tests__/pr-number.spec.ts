@@ -1,7 +1,7 @@
 import migrate from '../pr-number-to-pull-request-object';
 
 describe('migrate()', () => {
-  let state;
+  let state: any;
 
   beforeEach(() => {
     state = {
