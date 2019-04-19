@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development yarn ts-node-dev --respawn --transpileOnly --no-notify ./src/index.ts",
-    "compile": "yarn tsc -p .",
+    "compile": "../../node_modules/.bin/tsc -p .",
     "test": "cd ../../ && yarn jest packages/api",
     "migrate": "yarn db-migrate up",
     "reset": "yarn db-migrate reset && yarn migrate",

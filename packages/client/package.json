@@ -6,7 +6,7 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "compile": "yarn tsc -p ."
+    "compile": "../../node_modules/.bin/tsc -p ."
   },
   "dependencies": {
     "aws-sdk": "^2.405.0",

@@ -45,7 +45,7 @@
   "license": "MIT",
   "scripts": {
     "test": "cd ../../ && yarn jest packages/evans",
-    "ts:check": "yarn tsc --noEmit",
+    "ts:check": "../../node_modules/.bin/tsc --noEmit -p .",
     "build:en": "GATSBY_LANG=en yarn gatsby build",
     "build:es": "GATSBY_LANG=es yarn gatsby build",
     "develop:en": "GATSBY_LANG=en GATSBY_PORT=9222 gatsby develop --port 9222",

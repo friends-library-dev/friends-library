@@ -5,7 +5,7 @@
   "types": "./dist/types.d.ts",
   "license": "MIT",
   "scripts": {
-    "compile": "yarn tsc -p ."
+    "compile": "../../node_modules/.bin/tsc -p ."
   },
   "dependencies": {
     "typescript": "3.4.4"
