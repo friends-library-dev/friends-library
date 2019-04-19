@@ -11,8 +11,7 @@
   "dependencies": {
     "aws-sdk": "^2.405.0",
     "dotenv": "^6.2.0",
-    "fs-extra": "^7.0.1",
-    "typescript": "3.4.4"
+    "fs-extra": "^7.0.1"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",

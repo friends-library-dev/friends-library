@@ -41,8 +41,7 @@
     "react-helmet": "^5.2.0",
     "ts-node": "^8.0.3",
     "ttag": "^1.4.2",
-    "ttag-cli": "^1.4.2",
-    "typescript": "3.4.4"
+    "ttag-cli": "^1.4.2"
   },
   "license": "MIT",
   "scripts": {

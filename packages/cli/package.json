@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "pretty-error": "^2.1.1",
-    "typescript": "3.4.4"
+    "pretty-error": "^2.1.1"
   }
 }
