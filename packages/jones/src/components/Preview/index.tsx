@@ -75,7 +75,7 @@ class Component extends React.Component<Props, State> {
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.type = 'text/css';
-    link.href = 'https://flp-styleguide.netlify.com/pdf.css';
+    link.href = 'https://deploy-preview-235--flp-styleguide.netlify.com/pdf.css';
     document.head.appendChild(link);
     window.addEventListener('scroll', this.watchScroll);
 
