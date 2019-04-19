@@ -20,7 +20,7 @@ describe('hangingQuotes()', () => {
 
   test.each(violations)('multiline adoc should have lint error', adoc => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(hangingQuotes(line, lines, i + 1));
     });

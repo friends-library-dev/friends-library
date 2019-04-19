@@ -20,14 +20,11 @@ describe('invalidCharacters()', () => {
     expect(results).toHaveLength(0);
   });
 
-  const violations = [
-    ['Foo | bar.'],
-    ['@jared'],
-  ];
+  const violations = [['Foo | bar.'], ['@jared']];
 
   test.each(violations)('%s should be linted', adoc => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, index) => {
       const lineResults = invalidCharacters(line, lines, index + 1);
       results = results.concat(...lineResults);
@@ -44,7 +41,7 @@ describe('invalidCharacters()', () => {
 
   test.each(allowed)('%s should not be linted', adoc => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, index) => {
       const lineResults = invalidCharacters(line, lines, index + 1);
       results = results.concat(...lineResults);
@@ -94,7 +91,10 @@ describe('invalidCharacters()', () => {
       ['_', ''],
       ['_1771, Foo', '1771, Foo'],
       ['wills, _or of', 'wills, or of'],
-      ['footnote:[lib. 3._Reg. cap. 9. ver. 4.]', 'footnote:[lib. 3. Reg. cap. 9. ver. 4.]'],
+      [
+        'footnote:[lib. 3._Reg. cap. 9. ver. 4.]',
+        'footnote:[lib. 3. Reg. cap. 9. ver. 4.]',
+      ],
       ['Savior,_that', 'Savior, that'],
       [' George Dillwyn`" _', ' George Dillwyn`" '],
       ['______Foo', 'Foo'],

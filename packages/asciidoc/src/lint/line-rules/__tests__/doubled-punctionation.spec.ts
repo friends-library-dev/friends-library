@@ -1,4 +1,5 @@
 import doubledPunctuation from '../doubled-punctuation';
+import { Asciidoc } from '@friends-library/types';
 
 describe('doubledPunctuation()', () => {
   it('creates a lint violation result for a line with doubled punctuation', () => {
@@ -15,7 +16,7 @@ describe('doubledPunctuation()', () => {
     });
   });
 
-  const violations = [
+  const violations: [Asciidoc, Asciidoc?, boolean?][] = [
     ["Foo`'`'", "Foo`'", false],
     ['Foo;;', 'Foo;', true],
     ['Foo., bar', undefined, undefined],

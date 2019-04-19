@@ -22,12 +22,3 @@ describe('characterName()', () => {
     expect(characterName('be­stowed'[2])).toBe('SOFT HYPHEN');
   });
 });
-
-const replaceables = [
-  ['Foo – Bar', 'Foo - Bar'], // EN DASH > regular dash
-  ['Bob’s', "Bob`'s"],
-  ['‘Hello', "'`Hello"],
-  ['“Foo', '"`Foo'],
-  ['Bar”', 'Bar`"'],
-  ['О Lord.', 'O Lord.'], // first is CYRILLIC CAPITAL O
-];

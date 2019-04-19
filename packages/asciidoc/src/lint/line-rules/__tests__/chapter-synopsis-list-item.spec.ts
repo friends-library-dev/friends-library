@@ -39,7 +39,7 @@ describe('chapterSynopsisListItem()', () => {
       Foobar.
     `).trim();
 
-    let results = [];
+    let results: any[] = [];
     const lines = adoc.split('\n');
     lines.forEach((line, index) => {
       const lineResults = chapterSynopsisListItem(line, lines, index + 1);

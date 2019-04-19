@@ -12,7 +12,7 @@ describe('gitConflictMarkers()', () => {
     `).trim();
 
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, index) => {
       const lineResults = gitConflictMarkers(line, lines, index + 1);
       results = results.concat(...lineResults);

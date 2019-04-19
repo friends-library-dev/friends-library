@@ -17,13 +17,16 @@ describe('lint()', () => {
   });
 
   it('allows whitelisting rules', () => {
-    const results = lint("Don't •\n", { include: ['smart-quotes'] });
+    const results = lint("Don't •\n", { include: ['smart-quotes'], lang: 'en' });
     expect(results).toHaveLength(1);
     expect(results[0].rule).toBe('smart-quotes');
   });
 
   it('allows black-listing rules', () => {
-    const results = lint("Don't •\n", { exclude: ['smart-quotes', 'chapter-heading'] });
+    const results = lint("Don't •\n", {
+      exclude: ['smart-quotes', 'chapter-heading'],
+      lang: 'en',
+    });
     expect(results).toHaveLength(1);
     expect(results[0].rule).toBe('invalid-character');
   });

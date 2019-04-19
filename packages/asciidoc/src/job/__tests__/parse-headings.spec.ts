@@ -1,6 +1,7 @@
+import { Asciidoc, Heading } from '@friends-library/types';
 import { jobFromAdoc } from './test-helpers';
 
-function parse(adoc) {
+function parse(adoc: Asciidoc) {
   const {
     spec: {
       sections: [section],
@@ -10,7 +11,7 @@ function parse(adoc) {
 }
 
 describe('parsing headings', () => {
-  const cases = [
+  const cases: Array<[Asciidoc, Partial<Heading>]> = [
     [
       '== Forward',
       {
@@ -34,6 +35,7 @@ describe('parsing headings', () => {
       '== Chapter x',
       {
         sequence: {
+          type: 'Chapter',
           number: 10,
         },
       },
@@ -51,7 +53,10 @@ describe('parsing headings', () => {
     ],
   ];
 
-  test.each(cases)('parses heading from %s', (adoc, heading) => {
-    expect(parse(adoc)).toMatchObject(heading);
-  });
+  test.each(cases)(
+    'parses heading from %s',
+    (adoc: Asciidoc, heading: Partial<Heading>) => {
+      expect(parse(adoc)).toMatchObject(heading);
+    },
+  );
 });

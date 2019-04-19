@@ -25,8 +25,8 @@ const multilineCases = [
   ],
 ];
 
-
-const fixtureCases = fs.readFileSync(`${__dirname}/fixture.adoc`)
+const fixtureCases = fs
+  .readFileSync(`${__dirname}/fixture.adoc`)
   .toString()
   .trim()
   .split('\n\n')
@@ -85,7 +85,6 @@ describe('quotify()', () => {
   });
 });
 
-
-function strip(str) {
+function strip(str: string) {
   return stripIndent(str).trim();
 }

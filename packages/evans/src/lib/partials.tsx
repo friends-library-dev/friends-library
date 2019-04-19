@@ -5,7 +5,7 @@ import { readFileSync, existsSync } from 'fs-extra';
 import { sync as glob } from 'glob';
 import { renderToStaticMarkup } from 'react-dom/server';
 // @ts-ignore
-import Asciidoctor from 'asciidoctor.js';
+import Asciidoctor from '@asciidoctor/core';
 import { Html } from '@friends-library/types';
 import Divider from '../components/Divider';
 import EmbeddedAudio from '../components/EmbeddedAudio';

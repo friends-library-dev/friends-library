@@ -19,7 +19,7 @@ describe('unspacedClass()', () => {
     });
   });
 
-  const violations = [
+  const violations: [string, number][] = [
     [
       stripIndent(`
         == Ch 1
@@ -35,7 +35,7 @@ describe('unspacedClass()', () => {
 
   test.each(violations)('multiline adoc should have lint error', (adoc, lineNum) => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(unspacedClass(line, lines, i + 1));
     });
@@ -50,7 +50,7 @@ describe('unspacedClass()', () => {
 
   test.each(allowed)('multiline adoc should not have lint error', adoc => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(unspacedClass(line, lines, i + 1));
     });

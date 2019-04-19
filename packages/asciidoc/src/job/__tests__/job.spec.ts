@@ -1,4 +1,5 @@
 import { createPrecursor, createJob } from '..';
+import { SourcePrecursor } from '@friends-library/types';
 
 jest.mock('uuid/v4', () => {
   return jest.fn(() => 'UUID');
@@ -74,7 +75,7 @@ describe('createPrecursor()', () => {
   });
 
   it('allows overriding top level props', () => {
-    const data = {
+    const data: { [k in keyof SourcePrecursor]?: any } = {
       id: 'foo',
       config: 'myconfig',
       customCss: 'myCss',
@@ -84,6 +85,7 @@ describe('createPrecursor()', () => {
     };
     const precursor = createPrecursor(data);
     Object.entries(data).forEach(([key, value]) => {
+      // @ts-ignore
       expect(precursor[key]).toBe(value);
     });
   });
