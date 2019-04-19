@@ -19,13 +19,13 @@ jobs:
     working_directory: ~/fl-php
     steps:
       - checkout
-      - composer_cached_install
-      - run: cd packages/phipps && vendor/bin/phpunit
       - yarn_cached_install
-      - run: yarn ts:test
+      - run: yarn ts:test -w=2
       - run: yarn sass:lint
       - run: yarn styleguide:build
       - run: yarn jones:build
+      - composer_cached_install
+      - run: cd packages/phipps && vendor/bin/phpunit
 
   deploy_api:
     docker:
