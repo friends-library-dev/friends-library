@@ -10,20 +10,22 @@ describe('lintDir()', () => {
   });
 
   it('throws if you pass a non-existent full path', () => {
-    fs.existsSync.mockReturnValue(false);
+    (<jest.Mock>fs.existsSync).mockReturnValue(false);
     expect(() => lintDir('/path/to/foo.adoc')).toThrowError(/does not exist/);
   });
 
   it('throws if the path contains no asciidoc files', () => {
-    fs.existsSync.mockReturnValue(true);
-    glob.sync.mockReturnValue([]); // <-- no files
+    (<jest.Mock>fs.existsSync).mockReturnValue(true);
+    (<jest.Mock>glob.sync).mockReturnValue([]); // <-- no files
     expect(() => lintDir('/en/george-fox/')).toThrowError(/No files/);
   });
 
   it('lints the globbed paths and returns map of lint data', () => {
-    fs.existsSync.mockReturnValue(true);
-    glob.sync.mockReturnValue(['/foo.adoc']);
-    fs.readFileSync.mockReturnValue({ toString: () => '== C1\n\n® bad char\n' });
+    (<jest.Mock>fs.existsSync).mockReturnValue(true);
+    (<jest.Mock>glob.sync).mockReturnValue(['/foo.adoc']);
+    (<jest.Mock>fs.readFileSync).mockReturnValue({
+      toString: () => '== C1\n\n® bad char\n',
+    });
 
     const lints = lintDir('/');
 

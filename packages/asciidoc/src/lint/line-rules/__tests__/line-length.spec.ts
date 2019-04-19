@@ -22,7 +22,7 @@ describe('lineLength()', () => {
 
   it('gives good recommendations for lines with scripture references', () => {
     const ref = '(2 Cor. 3:15-16)';
-    const [result] = lineLength(`${longLine} ${ref}`);
+    const [result] = lineLength(`${longLine} ${ref}`, [], 1);
     expect(result.recommendation).toBe(`${longLineParts.join('\n')} ${ref}`);
   });
 
@@ -35,7 +35,9 @@ describe('lineLength()', () => {
     [`* list item: ${longLine}`],
 
     // inline spans (like .book-title) below, need to stay on one line
-    ['footnote:[[.book-title]#The History of the Rise, Increase, and Progress of that Christian People Called Quakers,# by William Sewel]'],
+    [
+      'footnote:[[.book-title]#The History of the Rise, Increase, and Progress of that Christian People Called Quakers,# by William Sewel]',
+    ],
   ];
 
   test.each(allowedLongLines)('allows %s to exceed length', line => {

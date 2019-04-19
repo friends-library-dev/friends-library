@@ -1,13 +1,16 @@
 import singlePassFix from '../fix-single-pass';
 import lint from '../lint';
+import { LintResult } from '@friends-library/types';
 
 describe('singlePassFix()', () => {
   it('can fix a single line', () => {
-    const lints = [{
-      line: 1,
-      fixable: true,
-      recommendation: 'Foo bar.',
-    }];
+    const lints = [
+      {
+        line: 1,
+        fixable: true,
+        recommendation: 'Foo bar.',
+      },
+    ] as LintResult[];
 
     const adoc = 'Foo  bar.';
 
@@ -17,15 +20,18 @@ describe('singlePassFix()', () => {
   });
 
   it('can fix multiple lines', () => {
-    const lints = [{
-      line: 1,
-      fixable: true,
-      recommendation: 'Foo bar.',
-    }, {
-      line: 2,
-      fixable: true,
-      recommendation: 'Hash baz.',
-    }];
+    const lints = [
+      {
+        line: 1,
+        fixable: true,
+        recommendation: 'Foo bar.',
+      },
+      {
+        line: 2,
+        fixable: true,
+        recommendation: 'Hash baz.',
+      },
+    ] as LintResult[];
 
     const adoc = 'Foo  bar.\n  Hash baz.';
 
@@ -35,15 +41,18 @@ describe('singlePassFix()', () => {
   });
 
   it('does not fix unfixable lints', () => {
-    const lints = [{
-      line: 1,
-      fixable: false,
-      recommendation: 'Foo bar.',
-    }, {
-      line: 2,
-      fixable: true,
-      // missing recommendation
-    }];
+    const lints = [
+      {
+        line: 1,
+        fixable: false,
+        recommendation: 'Foo bar.',
+      },
+      {
+        line: 2,
+        fixable: true,
+        // missing recommendation
+      },
+    ] as LintResult[];
 
     const adoc = 'Foo  bar.\n  Hash baz.';
 
@@ -53,15 +62,18 @@ describe('singlePassFix()', () => {
   });
 
   it('only fixes one recommendation per line', () => {
-    const lints = [{
-      line: 1,
-      fixable: true,
-      recommendation: 'Foo •bar',
-    }, {
-      line: 1,
-      fixable: true,
-      recommendation: ' Foo bar',
-    }];
+    const lints = [
+      {
+        line: 1,
+        fixable: true,
+        recommendation: 'Foo •bar',
+      },
+      {
+        line: 1,
+        fixable: true,
+        recommendation: ' Foo bar',
+      },
+    ] as LintResult[];
 
     const adoc = ' Foo •bar';
 
@@ -90,17 +102,20 @@ describe('singlePassFix()', () => {
   });
 
   test('trailing hyphen fix will go unfixed if next line already modified', () => {
-    const lints = [{
-      line: 2,
-      fixable: true,
-      rule: 'trailing-whitespace',
-      recommendation: 'bar.',
-    }, {
-      line: 1,
-      fixable: true,
-      rule: 'trailing-hyphen',
-      recommendation: 'Hello\nfoo-bar. ',
-    }];
+    const lints = [
+      {
+        line: 2,
+        fixable: true,
+        rule: 'trailing-whitespace',
+        recommendation: 'bar.',
+      },
+      {
+        line: 1,
+        fixable: true,
+        rule: 'trailing-hyphen',
+        recommendation: 'Hello\nfoo-bar. ',
+      },
+    ] as LintResult[];
     const adoc = 'Hello foo-\nbar. ';
 
     const [fixed, unfixed] = singlePassFix(adoc, lints);
@@ -110,17 +125,20 @@ describe('singlePassFix()', () => {
   });
 
   test('trailing-hyphen multi-line fix prevents next line from being fixed', () => {
-    const lints = [{
-      line: 1,
-      fixable: true,
-      rule: 'trailing-hyphen',
-      recommendation: 'Hello\nfoo-bar. ',
-    }, {
-      line: 2,
-      fixable: true,
-      rule: 'trailing-whitepsace',
-      recommendation: 'bar.',
-    }];
+    const lints = [
+      {
+        line: 1,
+        fixable: true,
+        rule: 'trailing-hyphen',
+        recommendation: 'Hello\nfoo-bar. ',
+      },
+      {
+        line: 2,
+        fixable: true,
+        rule: 'trailing-whitepsace',
+        recommendation: 'bar.',
+      },
+    ] as LintResult[];
     const adoc = 'Hello foo-\nbar. ';
 
     const [fixed, unfixed] = singlePassFix(adoc, lints);

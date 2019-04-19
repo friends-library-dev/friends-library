@@ -35,8 +35,8 @@ describe('lintFixDir()', () => {
     expect(fixed).toBe(`${expected}\n`);
     expect(numFixed).toBe(10);
 
-    expect(unfixable.get(`${dir}/test.adoc`).lints).toHaveLength(1);
-    expect(unfixable.get(`${dir}/test.adoc`).lints[0]).toMatchObject({
+    expect(unfixable.get(`${dir}/test.adoc`)!.lints).toHaveLength(1);
+    expect(unfixable.get(`${dir}/test.adoc`)!.lints![0]).toMatchObject({
       line: 5,
       rule: 'git-conflict-markers',
     });

@@ -1,9 +1,10 @@
+import { Job } from '@friends-library/types';
 import stripIndent from 'strip-indent';
 import { frontmatter, halfTitle } from '../frontmatter';
 import { jobFromAdoc } from './test-helpers';
 
 describe('frontmatter()', () => {
-  let job;
+  let job: Job;
 
   beforeEach(() => {
     job = jobFromAdoc('== C1\n');
@@ -16,6 +17,7 @@ describe('frontmatter()', () => {
   });
 
   it('includes original title if document has original title', () => {
+    // @ts-ignore
     job.spec.meta.originalTitle = 'Original Title &c.';
 
     const files = frontmatter(job);
@@ -24,6 +26,7 @@ describe('frontmatter()', () => {
   });
 
   test('strings switch to spanish if spec.lang = es', () => {
+    // @ts-ignore
     job.spec.lang = 'es';
 
     const files = frontmatter(job);
@@ -32,7 +35,9 @@ describe('frontmatter()', () => {
   });
 
   test('copyright text revision date is localized to spanish', () => {
+    // @ts-ignore
     job.spec.lang = 'es';
+    // @ts-ignore
     job.spec.revision.timestamp = 1551978091;
 
     const files = frontmatter(job);
@@ -41,6 +46,7 @@ describe('frontmatter()', () => {
   });
 
   test('copyright has published date if data exists on spec', () => {
+    // @ts-ignore
     job.spec.meta.published = 1834;
 
     const files = frontmatter(job);
@@ -74,6 +80,7 @@ describe('halfTitle()', () => {
   it('omits byline if author name in author title', () => {
     const job = jobFromAdoc();
     job.spec.meta.author.name = 'Ambrose Rigge';
+    // @ts-ignore
     job.spec.meta.title = 'Journal of Ambrose Rigge';
 
     const ht = halfTitle(job);
@@ -84,6 +91,7 @@ describe('halfTitle()', () => {
   it('keeps byline if author name not in author title', () => {
     const job = jobFromAdoc();
     job.spec.meta.author.name = 'Ambrose Rigge';
+    // @ts-ignore
     job.spec.meta.title = 'Journal &c.';
 
     const ht = halfTitle(job);

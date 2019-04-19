@@ -4,15 +4,14 @@
   "version": "1.0.0",
   "author": "Jared Henderson <jared@netrivet.com>",
   "dependencies": {
+    "@asciidoctor/core": "^2.0.0",
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.6",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/register": "^7.0.0",
     "@emotion/core": "^10.0.2",
     "@emotion/styled": "^10.0.2",
     "@friends-library/friends": "1.0.0",
     "@types/jest": "^24.0.11",
-    "asciidoctor.js": "^1.5.9",
     "babel-plugin-ttag": "^1.4.2",
     "babel-preset-gatsby": "^0.1.6",
     "babel-preset-gatsby-package": "^0.1.3",
@@ -61,6 +60,7 @@
     "@types/react": "^16.8.10",
     "@types/react-dom": "^16.8.3",
     "@types/react-helmet": "^5.0.8",
+    "eslint-config-react-app": "^3.0.8",
     "ts-jest": "^24.0.2"
   }
 }

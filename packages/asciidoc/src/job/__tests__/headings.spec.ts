@@ -1,5 +1,6 @@
 import { extractShortHeadings, replaceHeadings, navText } from '../headings';
 import { jobFromAdoc } from './test-helpers';
+import { Html, Heading, Job } from '@friends-library/types';
 
 describe('extractShortHeadings()', () => {
   it('extracts heading short text from adoc', () => {
@@ -16,9 +17,9 @@ describe('extractShortHeadings()', () => {
 });
 
 describe('replaceHeadings()', () => {
-  let html;
-  let heading;
-  let job;
+  let html: Html;
+  let heading: Heading;
+  let job: Job;
 
   beforeEach(() => {
     html = '{% chapter-heading %}';
@@ -93,7 +94,7 @@ describe('replaceHeadings()', () => {
 
 describe('navText()', () => {
   it('trims trailing period', () => {
-    const heading = { text: 'Foobar.' };
+    const heading = { id: 'id', text: 'Foobar.' };
 
     const replaced = navText(heading);
 
@@ -101,7 +102,7 @@ describe('navText()', () => {
   });
 
   it('does not trim period after etc.', () => {
-    const heading = { text: 'Foobar, etc.' };
+    const heading = { id: 'id', text: 'Foobar, etc.' };
 
     const replaced = navText(heading);
 
@@ -109,7 +110,7 @@ describe('navText()', () => {
   });
 
   it('trims trailing comma', () => {
-    const heading = { text: 'Foobar,' };
+    const heading = { id: 'id', text: 'Foobar,' };
 
     const replaced = navText(heading);
 
@@ -117,14 +118,14 @@ describe('navText()', () => {
   });
 
   it('returns heading.text if no short text and not sequence', () => {
-    const heading = { text: 'Foobar' };
+    const heading = { id: 'id', text: 'Foobar' };
     const text = navText(heading);
 
     expect(text).toBe('Foobar');
   });
 
   it('returns heading.shortText if set and not sequence', () => {
-    const heading = { text: 'Foobar', shortText: 'Foo' };
+    const heading = { id: 'id', text: 'Foobar', shortText: 'Foo' };
     const text = navText(heading);
 
     expect(text).toBe('Foo');
@@ -132,6 +133,7 @@ describe('navText()', () => {
 
   it('returns chapter and short text when available for sequence', () => {
     const heading = {
+      id: 'id',
       text: 'Foobar',
       shortText: 'Foo',
       sequence: {
@@ -147,6 +149,7 @@ describe('navText()', () => {
 
   it('returns chapter and text (when no short text) for sequence', () => {
     const heading = {
+      id: 'id',
       text: 'Foobar',
       sequence: {
         type: 'Chapter',
@@ -161,6 +164,7 @@ describe('navText()', () => {
 
   it('does not include trailing emdash if sequence and no text', () => {
     const heading = {
+      id: 'id',
       text: '',
       sequence: {
         type: 'Chapter',
@@ -175,6 +179,7 @@ describe('navText()', () => {
 
   it('does not include trailing lines if multi-line text', () => {
     const heading = {
+      id: 'id',
       text: 'Foobar / Hashbaz',
       sequence: {
         type: 'Chapter',

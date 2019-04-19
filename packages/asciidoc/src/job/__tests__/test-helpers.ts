@@ -2,11 +2,11 @@ import createSourceSpec from '../source-spec';
 import { Asciidoc, SourceSpec, SourcePrecursor, Job } from '@friends-library/types';
 import { createJob } from '..';
 
-export function jobFromAdoc(adoc: Asciidoc): Job {
+export function jobFromAdoc(adoc?: Asciidoc): Job {
   return createJob({ spec: specFromAdoc(adoc) });
 }
 
-export function specFromAdoc(adoc: Asciidoc): SourceSpec {
+export function specFromAdoc(adoc?: Asciidoc): SourceSpec {
   return createSourceSpec(precursor(adoc));
 }
 

@@ -17,7 +17,7 @@ export function getDocumentMeta(edition: Edition): DocumentMeta {
   };
 }
 
-export function jobToJson(job: Job): Object {
+export function jobToJson(job: Job): { [k in keyof Job]?: any } {
   return {
     ...job,
     spec: {

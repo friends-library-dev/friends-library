@@ -43,7 +43,7 @@ describe('consecutiveSpaces()', () => {
     `).trim();
     const lines = adoc.split('\n');
 
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, index) => {
       results = results.concat(...consecutiveSpaces(line, lines, index + 1));
     });

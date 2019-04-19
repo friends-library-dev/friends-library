@@ -12,7 +12,6 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "dependencies": {
-    "@babel/register": "^7.0.0",
     "@friends-library/asciidoc": "1.0.0",
     "@friends-library/cli": "1.0.0",
     "@friends-library/client": "1.0.0",

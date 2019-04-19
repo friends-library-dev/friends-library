@@ -44,7 +44,7 @@ describe('joinWords()', () => {
 
   test.each(violations)('"%s" adoc should become "%s"', (adoc, fixed) => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(joinWords(line, lines, i + 1));
     });
@@ -60,7 +60,7 @@ describe('joinWords()', () => {
 
   test.each(allowed)('multiline adoc should not have lint error', adoc => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(joinWords(line, lines, i + 1));
     });

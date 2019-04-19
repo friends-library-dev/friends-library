@@ -1,7 +1,7 @@
 import DirLints from '../dir-lints';
 
 describe('DirLints', () => {
-  let lints;
+  let lints: any;
 
   beforeEach(() => {
     lints = new DirLints();
@@ -55,6 +55,7 @@ describe('DirLints', () => {
       ],
     ];
 
+    // @ts-ignore
     expect([...myLints]).toEqual(expected);
     expect(myLints.toArray()).toEqual(expected);
   });
