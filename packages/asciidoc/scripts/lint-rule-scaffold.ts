@@ -2,9 +2,9 @@ import { Asciidoc, LintResult } from '@friends-library/types';
 
 export default function rule(
   line: Asciidoc,
-  lines: Array<Asciidoc>,
+  lines: Asciidoc[],
   lineNumber: number,
-): Array<LintResult> {
+): LintResult[] {
   if (line === '') {
     return [];
   }

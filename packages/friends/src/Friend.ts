@@ -7,7 +7,7 @@ export default class Friend {
   slug: Slug = '';
   gender: Gender = 'male';
   description: Description = '';
-  documents: Array<Document> = [];
+  documents: Document[] = [];
 
   constructor(
     lang: Lang = 'en',
@@ -15,7 +15,7 @@ export default class Friend {
     slug: Slug = '',
     gender: Gender = 'male',
     description: Description = '',
-    documents: Array<Document> = [],
+    documents: Document[] = [],
   ) {
     this.lang = lang;
     this.name = name;

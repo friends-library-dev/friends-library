@@ -54,7 +54,7 @@ export function fromPR(
   sha: Sha,
   chapters: boolean = false,
   books: boolean = true,
-): Array<Job> {
+): Job[] {
   return [
     ...modifiedFiles
       .reduce((jobs, file) => {

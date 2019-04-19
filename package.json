@@ -40,7 +40,7 @@
     "api:compile": "cd packages/api && yarn compile",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
-    "preflight": "yarn lint && yarn test && yarn flow && yarn evans:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
+    "preflight": "yarn lint && yarn test && yarn evans:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -70,7 +70,7 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "typescript": "3.4.3"
+    "typescript": "3.4.4"
   },
   "workspaces": [
     "packages/api",

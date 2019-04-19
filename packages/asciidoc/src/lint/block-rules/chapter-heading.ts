@@ -1,6 +1,6 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
 
-export default function rule(block: Asciidoc): Array<LintResult> {
+export default function rule(block: Asciidoc): LintResult[] {
   const lines = block.split('\n');
   const chapterHeadings: number[] = lines.reduce(
     (acc, line, index) => {

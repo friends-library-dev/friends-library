@@ -25,7 +25,6 @@ jobs:
       - run: yarn js:lint
       - run: yarn ts:test
       - run: yarn sass:lint
-      - run: yarn flow
       - run: yarn styleguide:build
       - run: yarn jones:build
 

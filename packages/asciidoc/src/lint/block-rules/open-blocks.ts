@@ -6,7 +6,7 @@ type Delimiter = {
   flagged: boolean;
 };
 
-export default function rule(block: Asciidoc): Array<LintResult> {
+export default function rule(block: Asciidoc): LintResult[] {
   const lines = block.split('\n');
   const delimiters = lines.reduce(
     (delims, line, index) => {

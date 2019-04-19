@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react"
+  },
+  "include": ["./src"]
+}

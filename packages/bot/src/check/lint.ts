@@ -5,7 +5,7 @@ import { getLintAnnotations } from '../lint-adoc';
 
 export default async function lintCheck(
   context: Context,
-  files: Array<ModifiedAsciidocFile>,
+  files: ModifiedAsciidocFile[],
 ): Promise<void> {
   const { payload, github, repo } = context;
   const {

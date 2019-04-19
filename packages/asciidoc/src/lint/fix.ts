@@ -8,7 +8,7 @@ export default function fix(
 ): {
   fixed: Asciidoc;
   numFixed: number;
-  unfixable: Array<LintResult>;
+  unfixable: LintResult[];
 } {
   const lints = lint(adoc, options);
   const fixable = lints.filter(l => l.fixable === true);

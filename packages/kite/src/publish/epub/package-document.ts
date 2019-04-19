@@ -104,7 +104,7 @@ export function manifestItems(job: Job): Map<string, Object> {
   return items;
 }
 
-export function spineItems(job: Job): Array<string> {
+export function spineItems(job: Job): string[] {
   const {
     spec: { sections, notes },
   } = job;

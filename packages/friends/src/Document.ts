@@ -13,8 +13,8 @@ export default class Document {
     public description: Description = '',
     public filename: string = '',
     public published?: number,
-    public tags: Array<string> = [],
-    public editions: Array<Edition> = [],
+    public tags: string[] = [],
+    public editions: Edition[] = [],
   ) {
     this.friend = new Friend();
   }

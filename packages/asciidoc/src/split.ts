@@ -18,7 +18,7 @@ const splitByPunctuation = (maxLen: number) => {
   };
 };
 
-function scoreForceSplit(arr: Array<string>, minLen: number, maxLen: number): number {
+function scoreForceSplit(arr: string[], minLen: number, maxLen: number): number {
   let score = 0;
   let prev: string;
   arr.forEach(part => {
@@ -61,7 +61,7 @@ function scoreForceSplit(arr: Array<string>, minLen: number, maxLen: number): nu
 }
 
 function forceSplit(maxLen: number, minLen: number): any {
-  return (acc: Array<string>, part: string): any => {
+  return (acc: string[], part: string): any => {
     if (part.length < maxLen) {
       return acc.concat([part]);
     }
@@ -91,7 +91,7 @@ function forceSplit(maxLen: number, minLen: number): any {
   };
 }
 
-function cleanup(lines: Array<string>, line: string, index: number): Array<string> {
+function cleanup(lines: string[], line: string, index: number): string[] {
   // this fixes lines like ^Oh,$
   if (lines[index - 1] && lines[index - 1].match(/^[A-Z][a-z]{1,3},$/)) {
     lines[index - 1] = `${lines[index - 1]} ${line}`;
