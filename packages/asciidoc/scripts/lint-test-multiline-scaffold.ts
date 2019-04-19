@@ -1,3 +1,4 @@
+// @ts-ignore
 import myRule from '../my-slug';
 
 describe('myRule()', () => {
@@ -15,13 +16,13 @@ describe('myRule()', () => {
     });
   });
 
-  const violations = [
+  const violations: [string, string][] = [
     // ['Violation', 'Fixed'],
   ];
 
   xtest.each(violations)('multiline adoc should have lint error', (adoc, fixed) => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(myRule(line, lines, i + 1));
     });
@@ -29,7 +30,7 @@ describe('myRule()', () => {
     expect(results[0].recommendation).toBe(fixed);
   });
 
-  const allowed = [
+  const allowed: [string][] = [
     // ['Not a violation'],
   ];
 

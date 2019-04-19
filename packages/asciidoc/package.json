@@ -12,7 +12,7 @@
     "./dist/job/asciidoctor.js": "./dist/job/asciidoctor.browser.js"
   },
   "scripts": {
-    "scaffold:lint": "node ./scripts/scaffold-lint.js",
+    "scaffold:lint": "yarn ts-node ./scripts/scaffold-lint.ts",
     "compile": "yarn tsc -p .",
     "test": "cd ../../ && yarn jest packages/asciidoc"
   },

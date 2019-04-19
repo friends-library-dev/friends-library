@@ -1,3 +1,4 @@
+// @ts-ignore
 import myRule from '../my-slug';
 
 describe('myRule()', () => {
@@ -13,7 +14,7 @@ describe('myRule()', () => {
     });
   });
 
-  const violations = [
+  const violations: [string, string][] = [
     // ['Violation', 'Fixed'],
   ];
 
@@ -23,7 +24,7 @@ describe('myRule()', () => {
     expect(results[0].recommendation).toBe(reco);
   });
 
-  const allowed = [
+  const allowed: [string][] = [
     // ['Not a violation'],
   ];
 
