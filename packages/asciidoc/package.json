@@ -14,7 +14,7 @@
   "scripts": {
     "scaffold:lint": "node ./scripts/scaffold-lint.js",
     "compile": "yarn tsc -p .",
-    "test": "../../node_modules/.bin/jest"
+    "test": "cd ../../ && yarn jest packages/asciidoc"
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",
@@ -26,9 +26,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^5.0.5",
-    "@types/jest": "^24.0.11",
     "@types/lodash": "^4.14.123",
-    "@types/roman-numerals": "^0.3.0",
-    "ts-jest": "^24.0.0"
+    "@types/roman-numerals": "^0.3.0"
   }
 }

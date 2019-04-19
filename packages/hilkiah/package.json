@@ -7,13 +7,9 @@
   "license": "MIT",
   "scripts": {
     "compile": "yarn tsc -p .",
-    "test": "../../node_modules/.bin/jest"
+    "test": "cd ../../ && yarn jest packages/hilkiah"
   },
   "dependencies": {
     "typescript": "3.4.4"
-  },
-  "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "ts-jest": "^24.0.0"
   }
 }
