@@ -36,7 +36,7 @@ describe('myRule()', () => {
 
   xtest.each(allowed)('multiline adoc should not have lint error', adoc => {
     const lines = adoc.split('\n');
-    let results = [];
+    let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(myRule(line, lines, i + 1));
     });

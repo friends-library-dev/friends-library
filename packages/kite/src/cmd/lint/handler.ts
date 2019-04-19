@@ -89,7 +89,12 @@ function printResult(result: LintResult, path: string, lines: string[]) {
   if (line) {
     red(line);
   }
-  if (line && result.rule === 'trailing-hyphen' && lines[result.line]) {
+
+  if (
+    line &&
+    lines[result.line] &&
+    ['trailing-hyphen', 'dangling-possessive'].includes(result.rule)
+  ) {
     red(lines[result.line]);
   }
 
