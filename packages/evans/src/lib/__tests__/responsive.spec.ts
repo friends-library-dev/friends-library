@@ -1,8 +1,7 @@
 import responsiveDocumentTitle from '../responsive';
 
-const expand = str => str
-  .replace('{', '<span class="d-none d-sm-inline">')
-  .replace('}', '</span>');
+const expand = (str: string) =>
+  str.replace('{', '<span class="d-none d-sm-inline">').replace('}', '</span>');
 
 describe('responsiveDocumentTitle()', () => {
   it('wraps the leading "The"', () => {

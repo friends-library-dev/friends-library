@@ -1,5 +1,3 @@
-// @flow
-/* eslint-disable prefer-destructuring */
 import friendFromJS from '../map';
 import Document from '../Document';
 import Format from '../Format';
@@ -29,15 +27,8 @@ describe('friendFromJS()', () => {
               description: 'edition description',
               isbn: '978-1-64476-000-0',
               pages: 261,
-              formats: [
-                { type: 'pdf' },
-                { type: 'epub' },
-                { type: 'mobi' },
-              ],
-              chapters: [
-                { title: 'Chapter 1' },
-                { title: 'Chapter 2' },
-              ],
+              formats: [{ type: 'pdf' }, { type: 'epub' }, { type: 'mobi' }],
+              chapters: [{ title: 'Chapter 1' }, { title: 'Chapter 2' }],
               audio: {
                 reader: 'Harriet Henderson',
                 parts: [

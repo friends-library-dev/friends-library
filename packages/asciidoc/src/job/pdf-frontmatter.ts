@@ -1,4 +1,3 @@
-// @flow
 import {
   copyright as commonCopyright,
   halfTitle as commonHalfTitle,

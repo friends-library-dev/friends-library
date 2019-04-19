@@ -22,7 +22,6 @@ jobs:
       - composer_cached_install
       - run: cd packages/phipps && vendor/bin/phpunit
       - yarn_cached_install
-      - run: yarn js:lint
       - run: yarn ts:test
       - run: yarn sass:lint
       - run: yarn styleguide:build

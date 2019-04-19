@@ -1,4 +1,3 @@
-// @flow
 import { Title, Slug, Description, Url } from '@friends-library/types';
 import Edition from './Edition';
 import Friend from './Friend';
