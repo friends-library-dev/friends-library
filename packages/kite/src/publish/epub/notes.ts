@@ -69,7 +69,7 @@ export function notesMarkup(job: Job): Html {
 `.trim();
 }
 
-function getNoteLocations(sections: Array<DocSection>): Map<string, string> {
+function getNoteLocations(sections: DocSection[]): Map<string, string> {
   return sections.reduce((locations, section) => {
     let match;
     const regex = /{% note: ([a-z0-9-]+) %}/gim;

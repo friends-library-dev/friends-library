@@ -1,3 +1,5 @@
 module.exports = {
-  testPathIgnorePatterns: ['node_modules', '.cache'],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  testRegex: '__tests__/.*spec\\.ts$',
 };

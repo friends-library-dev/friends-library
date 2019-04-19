@@ -7,17 +7,20 @@
   "license": "MIT",
   "scripts": {
     "start": "yarn webpack-dev-server --mode development --watch --hot & yarn watch:frags",
-    "watch:frags": "cd ../../ && node ./packages/styleguide/src/build-frags.js --watch",
-    "build:frags": "cd ../../ && node ./packages/styleguide/src/build-frags.js && cd ./packages/styleguide",
+    "watch:frags": "cd ../../ && yarn ts-node ./packages/styleguide/src/build-frags.ts --watch",
+    "build:frags": "cd ../../ && yarn ts-node ./packages/styleguide/src/build-frags.ts && cd ./packages/styleguide",
     "build": "yarn build:frags && webpack --mode production --display=minimal"
   },
   "dependencies": {
-    "@friends-library/asciidoc": "1.0.0",
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@friends-library/asciidoc": "1.0.0",
     "@friends-library/cli": "1.0.0",
     "@friends-library/kite": "1.0.0",
+    "@types/left-pad": "^1.2.0",
+    "@types/react-hot-loader": "^4.1.0",
+    "@types/styled-components": "4.1.8",
     "chalk": "^2.4.1",
     "chokidar": "^2.0.4",
     "fs-extra": "^7.0.0",
@@ -28,6 +31,8 @@
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",
     "styled-components": "^4.0.2",
+    "ts-node": "^8.1.0",
+    "typescript": "3.4.4",
     "webpack": "^4.22.0"
   },
   "devDependencies": {
@@ -37,6 +42,7 @@
     "babel-plugin-styled-components": "^1.8.0",
     "babel-preset-env": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^5.3.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.10"
   }

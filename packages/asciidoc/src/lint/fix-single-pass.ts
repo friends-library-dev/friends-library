@@ -1,9 +1,6 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
 
-export default function fix(
-  adoc: Asciidoc,
-  lints: Array<LintResult>,
-): [Asciidoc, number] {
+export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, number] {
   let numUnfixedFixables = 0;
   const modifiedLines = new Set();
   const lines = adoc.split('\n') as Array<string | null>;

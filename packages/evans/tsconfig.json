@@ -4,8 +4,8 @@
     "target": "es5",
     "module": "commonjs",
     "jsx": "react",
-    "types": ["node", "@emotion/core"],
-    "esModuleInterop": true,
+    "types": ["node", "@emotion/core", "jest"],
+    "esModuleInterop": true
   },
   "include": ["./src"]
 }

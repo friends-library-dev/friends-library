@@ -15,8 +15,7 @@
     "php:test": "yarn phipps:test",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
-    "lint": "yarn js:lint && yarn sass:lint",
-    "js:lint": "yarn eslint .",
+    "lint": "yarn sass:lint",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
     "asciidoc:scaffold:lint": "cd ./packages/asciidoc && yarn scaffold:lint",
     "api:develop": "cd ./packages/api && yarn start",
@@ -40,27 +39,17 @@
     "api:compile": "cd packages/api && yarn compile",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
-    "preflight": "yarn lint && yarn test && yarn flow && yarn evans:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
+    "preflight": "yarn lint && yarn test && yarn evans:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
-    "@babel/preset-flow": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-react-app": "^3.0.6",
-    "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-no-only-tests": "^2.0.1",
-    "eslint-plugin-react": "^7.11.1",
-    "flow-bin": "^0.92.0",
     "jest": "^24.0.0",
     "lerna": "^3.1.4",
     "prettier": "^1.16.4",
@@ -70,7 +59,7 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "typescript": "3.4.3"
+    "typescript": "3.4.4"
   },
   "workspaces": [
     "packages/api",

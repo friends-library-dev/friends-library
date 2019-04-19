@@ -17,7 +17,7 @@
     "js-base64": "^2.5.1",
     "probot": "^7.2.0",
     "strip-indent": "^2.0.0",
-    "typescript": "3.4.3"
+    "typescript": "3.4.4"
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.6",

@@ -1,4 +1,3 @@
-// @flow
 import { Title, Slug, Description, Url } from '@friends-library/types';
 import Edition from './Edition';
 import Friend from './Friend';
@@ -13,8 +12,8 @@ export default class Document {
     public description: Description = '',
     public filename: string = '',
     public published?: number,
-    public tags: Array<string> = [],
-    public editions: Array<Edition> = [],
+    public tags: string[] = [],
+    public editions: Edition[] = [],
   ) {
     this.friend = new Friend();
   }
