@@ -1,6 +1,7 @@
+import { LintResult, Asciidoc } from '@friends-library/types';
 import singlePassFix from '../fix-single-pass';
+import stripIndent from 'strip-indent';
 import lint from '../lint';
-import { LintResult } from '@friends-library/types';
 
 describe('singlePassFix()', () => {
   it('can fix a single line', () => {
@@ -176,6 +177,63 @@ describe('singlePassFix()', () => {
     const lints = lint(adoc);
     const [fixed, unfixed] = singlePassFix(adoc, lints);
     expect(fixed).toBe('Foo bar everywhere\n');
+    expect(unfixed).toBe(0);
+  });
+
+  const unspacedOpenBlocks: [Asciidoc][] = [
+    [
+      stripIndent(`
+        [.embedded-content-document.letter]
+        --
+        Foo
+
+        --
+
+        Bar
+      `).trim() + '\n',
+    ],
+
+    [
+      stripIndent(`
+        [.embedded-content-document.letter]
+        --
+        
+        Foo
+        --
+
+        Bar
+      `).trim() + '\n',
+    ],
+
+    [
+      stripIndent(`
+        [.embedded-content-document.letter]
+        --
+        
+        Foo
+        
+        --
+        Bar
+      `).trim() + '\n',
+    ],
+  ];
+
+  const correctlySpacedOpenBlock =
+    stripIndent(`
+    [.embedded-content-document.letter]
+    --
+    
+    Foo
+
+    --
+
+    Bar
+  `).trim() + '\n';
+
+  test.each(unspacedOpenBlocks)('should fix unspaced open block', adoc => {
+    const lints = lint(adoc);
+    const [fixed, unfixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe(correctlySpacedOpenBlock);
     expect(unfixed).toBe(0);
   });
 });

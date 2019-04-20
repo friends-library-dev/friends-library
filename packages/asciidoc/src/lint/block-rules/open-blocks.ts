@@ -28,14 +28,24 @@ export default function rule(block: Asciidoc): LintResult[] {
   const lints = delimiters.reduce(
     (acc, current, index) => {
       const prev = delimiters[index - 1];
-      if (current.type === 'start' && opened && prev) {
-        current.flagged = true;
-        acc.push(unterminated(prev.line));
+      if (current.type === 'start') {
+        if (opened && prev) {
+          current.flagged = true;
+          acc.push(unterminated(prev.line));
+        } else if (lines[current.line] && lines[current.line] !== '') {
+          acc.push(missingSurroundingSpace(current.line + 1));
+        }
       }
 
-      if (current.type === 'end' && !opened && (!prev || !prev.flagged)) {
-        current.flagged = true;
-        acc.push(unlabeled(current.line));
+      if (current.type === 'end') {
+        if (!opened && (!prev || !prev.flagged)) {
+          current.flagged = true;
+          acc.push(unlabeled(current.line));
+        } else if (lines[current.line - 2] !== '') {
+          acc.push(missingSurroundingSpace(current.line));
+        } else if (lines[current.line] && lines[current.line] !== '') {
+          acc.push(missingSurroundingSpace(current.line + 1));
+        }
       }
 
       opened = current.type === 'start';
@@ -70,6 +80,18 @@ function unlabeled(line: number): LintResult {
     rule: rule.slug,
     message:
       'Open blocks must be started with a class designation, like `[.embedded-content-document.letter]`',
+  };
+}
+
+function missingSurroundingSpace(line: number): LintResult {
+  return {
+    line,
+    column: false,
+    type: 'error',
+    fixable: true,
+    rule: rule.slug,
+    message: 'Open block delimiters should be surrounded by empty lines',
+    recommendation: `--> add an empty line before line ${line}`,
   };
 }
 

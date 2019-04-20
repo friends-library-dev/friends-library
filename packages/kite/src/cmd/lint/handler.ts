@@ -77,7 +77,10 @@ function printResult(result: LintResult, path: string, lines: string[]) {
   console.log(`\n\n${chalk.cyan(result.rule)}: ${result.message}`);
   grey(`${path}:${result.line}${result.column === false ? '' : `:${result.column}`}`);
 
-  if (['eof-newline', 'unterminated-open-block'].includes(result.rule)) {
+  if (['eof-newline', 'open-block'].includes(result.rule)) {
+    if (result.fixable) {
+      printIsFixable();
+    }
     return;
   }
 
@@ -101,7 +104,7 @@ function printResult(result: LintResult, path: string, lines: string[]) {
   if (result.recommendation) {
     green(result.recommendation);
     if (result.fixable) {
-      console.log(chalk.dim.cyan('Use `--fix` to automatically fix'));
+      printIsFixable();
     }
     return;
   }
@@ -109,4 +112,8 @@ function printResult(result: LintResult, path: string, lines: string[]) {
   if (line) {
     grey('[no recommendation]');
   }
+}
+
+function printIsFixable() {
+  console.log(chalk.dim.cyan('Use `--fix` to automatically fix'));
 }

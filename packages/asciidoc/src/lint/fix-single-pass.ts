@@ -16,6 +16,12 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
       return;
     }
 
+    if (rule === 'open-block') {
+      lines[lint.line - 1] = `\n${lines[lint.line - 1]}`;
+      modifiedLines.add(lint.line);
+      return;
+    }
+
     if (rule === 'unspaced-class') {
       lines[lint.line - 1] = `\n${lines[lint.line - 1] || ''}`;
       modifiedLines.add(lint.line);
