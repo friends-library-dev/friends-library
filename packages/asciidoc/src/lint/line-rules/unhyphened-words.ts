@@ -9,7 +9,9 @@ export default function rule(
     return [];
   }
 
-  const match = line.match(/\b(to-day|to-morrow|sun-set|bed-side|slave-holders?)\b/i);
+  const match = line.match(
+    /\b(to-day|to-morrow|sun-set|bed-side|day-time|death-bed|road-side|slave-holders?)\b/i,
+  );
   if (!match || match.index === undefined) {
     return [];
   }
@@ -25,6 +27,9 @@ export default function rule(
         .replace(/(T|t)o-day/g, '$1oday')
         .replace(/(T|t)o-morrow/g, '$1omorrow')
         .replace(/(S|s)un-set/g, '$1unset')
+        .replace(/(R|r)oad-side/g, '$1oadside')
+        .replace(/(D|d)ay-time/g, '$1aytime')
+        .replace(/(D|d)eath-bed/g, '$1eathbed')
         .replace(/(S|s)lave-holder(s)?/g, '$1laveholder$2')
         .replace(/(B|b)ed-side/g, '$1edside'),
       fixable: true,

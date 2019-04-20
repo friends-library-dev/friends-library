@@ -25,6 +25,9 @@ describe('unhyphenedWords()', () => {
     ['Foo bed-side', 'Foo bedside'],
     ['Slave-holder foo', 'Slaveholder foo'],
     ['The slave-holders bar', 'The slaveholders bar'],
+    ['By the road-side we', 'By the roadside we'],
+    ['his death-bed was', 'his deathbed was'],
+    ['in the day-time she', 'in the daytime she'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {

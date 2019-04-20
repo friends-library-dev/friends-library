@@ -11,7 +11,7 @@ export default function rule(
     return [];
   }
 
-  const words: Array<[string, string, boolean]> = [
+  const words: [string, string, boolean][] = [
     ['connexion', 'connection', true],
     ['connexions', 'connections', true],
     ['behove', 'behoove', true],
@@ -31,6 +31,7 @@ export default function rule(
     ['burthened', 'burdened', true],
     ['stopt', 'stopped', true],
     ['Corah', 'Korah', false],
+    ['Barbadoes', 'Barbados', true],
 
     // @see https://books.google.com/ngrams for data backing up below choices
     ['hardheartedness', 'hard-heartedness', true],
