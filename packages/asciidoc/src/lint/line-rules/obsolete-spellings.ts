@@ -61,6 +61,7 @@ const words: [string, string, boolean][] = [
   ['re-establishing', 'reestablishing', true],
   ['spiritually-minded', 'spiritually minded', true],
   ['religiously-minded', 'religiously minded', true],
+  ['wo', 'woe', true],
 ];
 
 const test = new RegExp(
