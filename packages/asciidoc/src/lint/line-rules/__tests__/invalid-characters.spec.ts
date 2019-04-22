@@ -9,7 +9,7 @@ describe('invalidCharacters()', () => {
       line: 1,
       column: 1,
       type: 'error',
-      rule: 'invalid-character',
+      rule: 'invalid-characters',
       message: 'Dissallowed character: `•`, code: `\\u2022` (BULLET)',
     });
   });
@@ -34,7 +34,7 @@ describe('invalidCharacters()', () => {
 
   const allowed = [
     ['Jim jam.'],
-    ['// lint-disable invalid-character\n• foo'],
+    ['// lint-disable invalid-characters\n• foo'],
     ['<<<<<<<'], // caught by `git-conflict-marker`
     ['>>>>>>>'], // caught by `git-conflict-marker`
   ];

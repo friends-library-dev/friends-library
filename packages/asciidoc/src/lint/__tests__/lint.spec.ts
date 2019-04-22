@@ -28,7 +28,7 @@ describe('lint()', () => {
       lang: 'en',
     });
     expect(results).toHaveLength(1);
-    expect(results[0].rule).toBe('invalid-character');
+    expect(results[0].rule).toBe('invalid-characters');
   });
 
   it('aggregates multiple rule test results (block and line)', () => {
@@ -63,7 +63,7 @@ describe('lint()', () => {
     const adoc = stripIndent(`
       == Ch 1
 
-      // lint-disable invalid-character "bad" stuff' ••
+      // lint-disable invalid-characters "bad" stuff' ••
       More bad stuff ••
 
       Foo.
@@ -89,7 +89,7 @@ describe('lint()', () => {
       type: 'warning',
       rule: 'temporary-comments',
       message:
-        'Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. `// lint-disable invalid-character`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with `--lint-ignore` to disable this lint warning)',
+        'Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. `// lint-disable invalid-characters`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with `--lint-ignore` to disable this lint warning)',
     });
   });
 });

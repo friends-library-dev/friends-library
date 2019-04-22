@@ -40,7 +40,7 @@ describe('lintDir()', () => {
           lints: [
             {
               type: 'error',
-              rule: 'invalid-character',
+              rule: 'invalid-characters',
               column: 1,
               line: 3,
               message: expect.any(String),
