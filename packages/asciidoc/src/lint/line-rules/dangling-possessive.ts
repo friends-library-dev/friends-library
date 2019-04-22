@@ -11,7 +11,7 @@ export default function rule(
 
   const nextLine = lines[lineNumber];
 
-  if (!nextLine || !line.match(/`'$/) || nextLine[0] !== 's') {
+  if (!nextLine || nextLine[0] !== 's' || !line.match(/`'$/)) {
     return [];
   }
 
