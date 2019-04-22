@@ -103,7 +103,7 @@ function isSuppressed(lines: Asciidoc[], lineNumber: number): boolean {
   if (!prevLine || prevLine[0] !== '/') {
     return false;
   }
-  return !!prevLine.match(/^\/\/ lint-disable .*invalid-character/);
+  return !!prevLine.match(/^\/\/ lint-disable .*invalid-characters/);
 }
 
 // performance sort of matters here, because we're checking every character
@@ -130,4 +130,4 @@ const allowed = [
     return obj;
   }, lookup);
 
-rule.slug = 'invalid-character';
+rule.slug = 'invalid-characters';
