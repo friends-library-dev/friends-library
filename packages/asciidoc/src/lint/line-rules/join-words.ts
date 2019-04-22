@@ -1,4 +1,65 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import escape from 'escape-string-regexp';
+
+// @see https://books.google.com/ngrams for data backing up choices
+const sets = [
+  ['every', 'where', ''],
+  ['every', 'thing', ''],
+  ['tender', 'spirited', '-'],
+  ['hard', 'hearted', '-'],
+  ['hard', 'heartedness', '-'],
+  ['honest', 'hearted', '-'],
+  ['simple', 'hearted', '-'],
+  ['faint', 'hearted', ''],
+  ['upright', 'hearted', '-'],
+  ['sincere', 'hearted', '-'],
+  ['tender', 'hearted', '-'],
+  ['tender', 'heartedness', '-'],
+  ['stout', 'hearted', '-'],
+  ['broken', 'hearted', ''],
+  ['humble', 'hearted', '-'],
+  ['true', 'hearted', '-'],
+  ['heavy', 'hearted', '-'],
+  ['dead', 'hearted', '-'],
+  ['open', 'hearted', '-'],
+  ['single', 'hearted', '-'],
+  ['light', 'hearted', ''],
+  ['fellow', 'laborers', '-'],
+  ['fellow', 'labourers', '-'],
+  ['fellow', 'laborer', '-'],
+  ['fellow', 'labourer', '-'],
+  ['fore', 'part', ''],
+  ['for', 'ever', ''],
+  ['for', 'evermore', ''],
+  ['like', 'minded', '-'],
+  ['feeble', 'minded', '-'],
+  ['high', 'minded', '-'],
+  ['honest', 'minded', '-'],
+  ['humble', 'minded', '-'],
+  ['tender', 'minded', '-'],
+  ['well', 'minded', '-'],
+  ['right', 'minded', '-'],
+  ['carnal', 'minded', '-'],
+  ['heavenly', 'minded', '-'],
+  ['earthly', 'minded', '-'],
+  ['lowly', 'minded', '-'],
+  ['simple', 'minded', '-'],
+  ['better', 'minded', '-'],
+  ['religious', 'minded', '-'],
+  ['upright', 'minded', '-'],
+  ['liberal', 'minded', '-'],
+  ['sober', 'minded', '-'],
+  ['evil', 'minded', '-'],
+  ['worldly', 'minded', '-'],
+  ['noble', 'minded', '-'],
+  ['single', 'minded', '-'],
+  ['open', 'minded', '-'],
+];
+
+const firstParts = new RegExp(
+  `\\b${sets.map(([first]) => escape(first)).join('|')}\\b`,
+  'i',
+);
 
 export default function rule(
   line: Asciidoc,
@@ -9,37 +70,9 @@ export default function rule(
     return [];
   }
 
-  // @see https://books.google.com/ngrams for data backing up choices
-  const sets = [
-    ['every', 'where', ''],
-    ['every', 'thing', ''],
-    ['tender', 'spirited', '-'],
-    ['hard', 'hearted', '-'],
-    ['hard', 'heartedness', '-'],
-    ['honest', 'hearted', '-'],
-    ['simple', 'hearted', '-'],
-    ['faint', 'hearted', ''],
-    ['upright', 'hearted', '-'],
-    ['sincere', 'hearted', '-'],
-    ['tender', 'hearted', '-'],
-    ['tender', 'heartedness', '-'],
-    ['stout', 'hearted', '-'],
-    ['broken', 'hearted', ''],
-    ['humble', 'hearted', '-'],
-    ['true', 'hearted', '-'],
-    ['heavy', 'hearted', '-'],
-    ['dead', 'hearted', '-'],
-    ['open', 'hearted', '-'],
-    ['single', 'hearted', '-'],
-    ['light', 'hearted', ''],
-    ['fellow', 'laborers', '-'],
-    ['fellow', 'labourers', '-'],
-    ['fellow', 'laborer', '-'],
-    ['fellow', 'labourer', '-'],
-    ['fore', 'part', ''],
-    ['for', 'ever', ''],
-    ['for', 'evermore', ''],
-  ];
+  if (!line.match(firstParts)) {
+    return [];
+  }
 
   const results: LintResult[] = [];
   sets.forEach(([first, second, joiner]) => {

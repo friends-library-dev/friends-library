@@ -10,7 +10,7 @@ export default function rule(
   }
 
   const match = line.match(
-    /\b(to-day|to-morrow|sun-sets?|bed-sides?|day-times?|death-beds?|road-sides?|slave-holders?|pre-eminen(ce|t|tly)|re-enter(s|ed)?|re-establish(ing|ed|ment|es)?|re-examin(ing|ed|e|ation|es)|re-embark(s|ed|ing|ation)?|co-operat(e|ing|ed|ion|es))\b/i,
+    /\b(to-day|to-morrow|sun-sets?|bed-sides?|day-times?|death-beds?|road-sides?|slave-holders?|pre-eminen(ce|t|tly)|re-enter(s|ed)?|re-establish(ing|ed|ment|es)?|re-examin(ing|ed|e|ation|es)|re-embark(s|ed|ing|ation)?|co-operat(e|ing|ed|ion|es)|anti-christ)\b/i,
   );
 
   if (!match || match.index === undefined) {
@@ -32,6 +32,7 @@ export default function rule(
         .replace(/(R|r)oad-side(s)?/g, '$1oadside$2')
         .replace(/(D|d)ay-time(s)?/g, '$1aytime$2')
         .replace(/(D|d)eath-bed(s)?/g, '$1eathbed$2')
+        .replace(/(A|a)nti-(C|c)hrist/g, '$1ntichrist')
         .replace(/(R|r)e-enter(s|ed)?/g, '$1eenter$2')
         .replace(/(R|r)e-establish(ing|ed|ment)?/g, '$1eestablish$2')
         .replace(/(R|r)e-examin(ing|ed|e|ation)/g, '$1eexamin$2')

@@ -38,6 +38,9 @@ describe('unhyphenedWords()', () => {
     ['I have been re-examining', 'I have been reexamining'],
     ['She co-operated', 'She cooperated'],
     ['Co-operation was improved', 'Cooperation was improved'],
+    ['foo anti-christ bar', 'foo antichrist bar'],
+    ['foo anti-Christ bar', 'foo antichrist bar'],
+    ['Anti-christ foo', 'Antichrist foo'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
