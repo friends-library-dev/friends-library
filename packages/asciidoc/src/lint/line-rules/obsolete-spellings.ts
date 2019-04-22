@@ -31,7 +31,18 @@ export default function rule(
     ['burthened', 'burdened', true],
     ['stopt', 'stopped', true],
     ['Corah', 'Korah', false],
-    ['Barbadoes', 'Barbados', true],
+    ['Barbadoes', 'Barbados', false],
+    ['skilful', 'skillful', true],
+    ['unskilful', 'unskillful', true],
+    ['skilfully', 'skillfully', true],
+    ['unskilfully', 'unskillfully', true],
+    ['wilful', 'willful', true],
+    ['wilfully', 'willfully', true],
+    ['wilfulness', 'willfulness', true],
+    ['subtil', 'subtle', true],
+    ['subtilty', 'subtlety', true],
+    ['subtilly', 'subtly', true],
+    ['fulfil', 'fulfill', true],
 
     // @see https://books.google.com/ngrams for data backing up below choices
     ['hardheartedness', 'hard-heartedness', true],
@@ -60,7 +71,7 @@ export default function rule(
 
   const results: LintResult[] = [];
   words.forEach(([obsolete, corrected, caseInsensitive]) => {
-    const find = new RegExp(`\\b${obsolete}\\b`, caseInsensitive ? 'i' : '');
+    const find = getFind(obsolete, caseInsensitive);
     const match = line.match(find);
     if (match && match.index !== undefined) {
       const column = match.index + 1 + getColumnOffset(obsolete, corrected);
@@ -70,6 +81,15 @@ export default function rule(
 
   return results;
 }
+
+const getFind = memoize(
+  (obsolete: string, caseInsensitive: boolean): RegExp => {
+    return new RegExp(`\\b${obsolete}\\b`, caseInsensitive ? 'i' : '');
+  },
+  (obsolete: string, caseInsensitive: boolean) => {
+    return `${obsolete}  ${caseInsensitive}`;
+  },
+);
 
 const getSearch = memoize(
   (obsolete: string): RegExp => {
