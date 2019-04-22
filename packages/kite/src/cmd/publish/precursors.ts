@@ -171,6 +171,9 @@ function nonDirs(path: string): boolean {
 
 function getPattern(): string {
   const { argv } = process;
-  const index = argv.indexOf('--glob');
-  return index === -1 ? '*' : argv[index + 1];
+  let index = argv.indexOf('--glob');
+  if (index !== -1) return argv[index + 1];
+  index = argv.indexOf('-g');
+  if (index !== -1) return argv[index + 1];
+  return '*';
 }
