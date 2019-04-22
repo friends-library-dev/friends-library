@@ -10,11 +10,13 @@ export default function rule(
   }
 
   const match = line.match(
-    /\b(to-day|to-morrow|sun-set|bed-side|day-time|death-bed|road-side|slave-holders?)\b/i,
+    /\b(to-day|to-morrow|sun-set|bed-side|day-time|death-bed|road-side|slave-holders?|pre-eminen(ce|t|tly)|re-enter(s|ed)?)\b/i,
   );
+
   if (!match || match.index === undefined) {
     return [];
   }
+
   return [
     {
       line: lineNumber,
@@ -30,6 +32,8 @@ export default function rule(
         .replace(/(R|r)oad-side/g, '$1oadside')
         .replace(/(D|d)ay-time/g, '$1aytime')
         .replace(/(D|d)eath-bed/g, '$1eathbed')
+        .replace(/(R|r)e-enter(s|ed)?/g, '$1eenter$2')
+        .replace(/(P|p)re-eminen(ce|t|tly)/g, '$1reeminen$2')
         .replace(/(S|s)lave-holder(s)?/g, '$1laveholder$2')
         .replace(/(B|b)ed-side/g, '$1edside'),
       fixable: true,

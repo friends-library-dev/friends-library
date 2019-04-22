@@ -28,6 +28,12 @@ describe('unhyphenedWords()', () => {
     ['By the road-side we', 'By the roadside we'],
     ['his death-bed was', 'his deathbed was'],
     ['in the day-time she', 'in the daytime she'],
+    ['Have the pre-eminence', 'Have the preeminence'],
+    ['He was pre-eminent', 'He was preeminent'],
+    ['and reigned pre-eminently', 'and reigned preeminently'],
+    ['death to re-enter and', 'death to reenter and'],
+    ['He re-entered that nation', 'He reentered that nation'],
+    ['* Re-enters Wales', '* Reenters Wales'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
