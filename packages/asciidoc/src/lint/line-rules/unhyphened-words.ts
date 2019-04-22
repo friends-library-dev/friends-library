@@ -20,7 +20,7 @@ export default function rule(
   return [
     {
       line: lineNumber,
-      column: match.index + 1,
+      column: match.index + 1 + match[1].indexOf('-'),
       rule: rule.slug,
       type: 'error',
       message:

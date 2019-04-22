@@ -6,7 +6,7 @@ describe('unhyphenedWords()', () => {
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
-      column: 1,
+      column: 3,
       type: 'error',
       rule: 'unhyphened-words',
       message:
