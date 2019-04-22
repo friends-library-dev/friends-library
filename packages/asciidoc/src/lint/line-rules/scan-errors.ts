@@ -69,6 +69,24 @@ export default function rule(
       'Fie',
       'He',
     ],
+    [
+      /\bmc\b/,
+      'me',
+      'mc',
+      'me'
+    ],
+    [
+      /\b(A|a)ud\b/,
+      '$1nd',
+      'aud',
+      'and',
+    ],
+    [
+      /\b(s|S)ec(?!\.)\b/,
+      '$1ee',
+      'sec',
+      'see',
+    ]
   ];
 
   const results: LintResult[] = [];
