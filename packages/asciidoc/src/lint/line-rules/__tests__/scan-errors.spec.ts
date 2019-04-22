@@ -35,6 +35,16 @@ describe('scanErrors()', () => {
     // *** bo > be ***
     ['female should bo just and', 'female should be just and'],
 
+    // *** me > mc ***
+    ['he asked mc if I', 'he asked me if I'],
+
+    // *** aud > and ***
+    ['foo aud bar', 'foo and bar'],
+    ['Aud foo bar', 'And foo bar'],
+
+    // *** sec > see ***
+    ['I could sec that', 'I could see that'],
+
     // *** ray > my ***
     ['ray strength and help', 'my strength and help'],
 
@@ -77,6 +87,13 @@ describe('scanErrors()', () => {
 
     // T > I
     'Then T. Scattergood came',
+
+    // mc > me
+    'Joseph Mc Intire',
+
+    // sec > see
+    'Chapter 4, sec. 3',
+    'Sec. 5, ch. 5',
   ];
 
   test.each(allowed)('`%s` is not a lint violation', line => {
