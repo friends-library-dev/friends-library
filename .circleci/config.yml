@@ -12,6 +12,7 @@ jobs:
       - run: yarn evans:build:es
       - run: yarn evans:ts:check
       - run: yarn ts:compile
+      - run: yarn styleguide:build
 
   php:
     docker:
@@ -22,7 +23,6 @@ jobs:
       - yarn_cached_install
       - run: yarn ts:test -w=2
       - run: yarn sass:lint
-      - run: yarn styleguide:build
       - run: yarn jones:build
       - composer_cached_install
       - run: cd packages/phipps && vendor/bin/phpunit
