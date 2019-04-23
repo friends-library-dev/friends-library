@@ -37,9 +37,6 @@ export function createJob(data: { [k in keyof Job]?: any } = {}): Job {
   const defaultMeta = {
     check: false,
     perform: false,
-    open: false,
-    send: false,
-    debugPrintMargins: false,
     condense: false,
     frontmatter: true,
   };
