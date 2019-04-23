@@ -9,7 +9,7 @@ export default function rule(
     return [];
   }
 
-  if (line.indexOf('[.book-title]') !== 0) {
+  if (!line.startsWith('[.book-title]')) {
     return [];
   }
 

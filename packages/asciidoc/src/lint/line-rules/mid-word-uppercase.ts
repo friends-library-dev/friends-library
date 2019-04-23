@@ -1,11 +1,12 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { isAsciidocBracketLine } from '../utils';
 
 export default function rule(
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] {
-  if (line === '') {
+  if (line === '' || isAsciidocBracketLine(line)) {
     return [];
   }
 
@@ -22,7 +23,7 @@ export default function rule(
       column: match.index + 2,
       type: 'error',
       rule: rule.slug,
-      message: 'Unexpected mid-word uppercase letter - likely a scan error',
+      message: 'Unexpected mid-word uppercase letter (probably a scan error)',
     });
   }
 

@@ -9,7 +9,7 @@ describe('midWordUppercase()', () => {
       column: 7,
       type: 'error',
       rule: 'mid-word-uppercase',
-      message: 'Unexpected mid-word uppercase letter - likely a scan error',
+      message: 'Unexpected mid-word uppercase letter (probably a scan error)',
     });
   });
 
