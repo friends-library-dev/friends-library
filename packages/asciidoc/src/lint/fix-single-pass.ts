@@ -45,6 +45,7 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
 
     if (
       rule === 'trailing-hyphen' ||
+      rule === 'dangling-possessive' ||
       (rule === 'join-words' && recommendation.includes('\n'))
     ) {
       if (modifiedLines.has(lint.line + 1)) {

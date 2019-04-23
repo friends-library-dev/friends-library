@@ -164,6 +164,14 @@ describe('singlePassFix()', () => {
     expect(unfixed).toBe(0);
   });
 
+  test('it correctly handles multi-line fix of `dangling-possessive`', () => {
+    const adoc = "Went to Bob`'\ns house.\n";
+    const lints = lint(adoc);
+    const [fixed, unfixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe("Went to Bob`'s\nhouse.\n");
+    expect(unfixed).toBe(0);
+  });
+
   it('it correctly handles multi-line fix of `join-words` rule', () => {
     const adoc = 'Foo bar every\nwhere\n';
     const lints = lint(adoc);
