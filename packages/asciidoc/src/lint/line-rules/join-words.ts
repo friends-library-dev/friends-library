@@ -60,12 +60,13 @@ const firstParts = new RegExp(
   `\\b${sets.map(([first]) => escape(first)).join('|')}\\b`,
   'i',
 );
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '') {
     return [];
   }
@@ -127,9 +128,10 @@ export default function rule(
   });
 
   return results;
-}
+};
 
 rule.slug = 'join-words';
+export default rule;
 
 function getLint(
   line: number,

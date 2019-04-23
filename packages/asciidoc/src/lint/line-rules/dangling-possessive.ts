@@ -1,16 +1,16 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '') {
     return [];
   }
 
   const nextLine = lines[lineNumber];
-
   if (!nextLine || nextLine[0] !== 's' || !line.match(/`'$/)) {
     return [];
   }
@@ -30,6 +30,7 @@ export default function rule(
       fixable: true,
     },
   ];
-}
+};
 
 rule.slug = 'dangling-possessive';
+export default rule;

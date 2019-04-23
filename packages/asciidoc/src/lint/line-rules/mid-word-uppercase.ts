@@ -1,11 +1,12 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
 import { isAsciidocBracketLine } from '../utils';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '' || isAsciidocBracketLine(line)) {
     return [];
   }
@@ -28,9 +29,10 @@ export default function rule(
   }
 
   return results;
-}
+};
 
 rule.slug = 'mid-word-uppercase';
+export default rule;
 
 function isMc(match: RegExpExecArray, line: string) {
   if (match[0][0] !== 'c') {

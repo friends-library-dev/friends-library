@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line[0] !== '[' || line[1] !== '.' || line[line.length - 1] !== ']') {
     return [];
   }
@@ -37,6 +38,7 @@ export default function rule(
   }
 
   return results;
-}
+};
 
 rule.slug = 'chapter-synopsis-list-item';
+export default rule;

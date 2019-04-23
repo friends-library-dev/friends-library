@@ -3,12 +3,13 @@ import { Asciidoc, LintResult } from '@friends-library/types';
 import { makeSplitLines } from '../../split';
 
 const split = makeSplitLines(90, 45);
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (lengthOk(line)) {
     return [];
   }
@@ -25,7 +26,7 @@ export default function rule(
       ...(recommendation ? { recommendation } : {}),
     },
   ];
-}
+};
 
 function lengthOk(line: Asciidoc): boolean {
   if (line.length < 100) {
@@ -69,3 +70,4 @@ function getRecommendation(line: Asciidoc): Asciidoc | false {
 }
 
 rule.slug = 'line-length';
+export default rule;

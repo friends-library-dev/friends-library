@@ -1,4 +1,5 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { BlockRule } from '../types';
 
 type Delimiter = {
   line: number;
@@ -6,7 +7,7 @@ type Delimiter = {
   flagged: boolean;
 };
 
-export default function rule(block: Asciidoc): LintResult[] {
+const rule: BlockRule = (block: Asciidoc): LintResult[] => {
   const lines = block.split('\n');
   const delimiters = lines.reduce(
     (delims, line, index) => {
@@ -60,7 +61,7 @@ export default function rule(block: Asciidoc): LintResult[] {
   }
 
   return lints;
-}
+};
 
 function unterminated(line: number): LintResult {
   return {
@@ -96,3 +97,4 @@ function missingSurroundingSpace(line: number): LintResult {
 }
 
 rule.slug = 'open-block';
+export default rule;

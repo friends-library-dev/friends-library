@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '') {
     return [];
   }
@@ -23,6 +24,7 @@ export default function rule(
   }
 
   return results;
-}
+};
 
 rule.slug = 'unspaced-period';
+export default rule;

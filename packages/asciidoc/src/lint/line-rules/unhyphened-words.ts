@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line.length < 5 || line.indexOf('-') === -1) {
     return [];
   }
@@ -44,6 +45,7 @@ export default function rule(
       fixable: true,
     },
   ];
-}
+};
 
 rule.slug = 'unhyphened-words';
+export default rule;

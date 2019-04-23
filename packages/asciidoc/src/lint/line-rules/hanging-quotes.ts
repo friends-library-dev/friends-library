@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '' || line.length < 4) {
     return [];
   }
@@ -26,6 +27,7 @@ export default function rule(
       message: 'Invalid hanging quotation. Perhaps move it to the next line?',
     },
   ];
-}
+};
 
 rule.slug = 'hanging-quotes';
+export default rule;

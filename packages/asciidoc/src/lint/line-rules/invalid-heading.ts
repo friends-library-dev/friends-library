@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line[0] !== '=') {
     return [];
   }
@@ -31,6 +32,7 @@ export default function rule(
       ...(fixable ? { recommendation: line.replace(/  +/, ' ') } : {}),
     },
   ];
-}
+};
 
 rule.slug = 'invalid-heading';
+export default rule;
