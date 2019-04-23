@@ -102,7 +102,7 @@ export function find(str: string) {
       .map(abbrev => abbrev.replace('.', '\\.'))
       .join('|');
 
-    pattern = `(?:${pattern})(?:.)? (${ARAB}|${ROM})`;
+    pattern = `(?:${pattern})(?:\\.|,)? (${ARAB}|${ROM})`;
     const exp = new RegExp(pattern, 'gi');
     let match;
     while ((match = exp.exec(str))) {

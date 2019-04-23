@@ -13,6 +13,20 @@ describe('find()', () => {
     expect(found).toHaveLength(1);
   });
 
+  it('does not find Esther ref inside of Ecclesiastes ref', () => {
+    const found = find("man's heart, Eccles. 3:11, which");
+
+    expect(found[0].book).toBe('Ecclesiastes');
+    expect(found).toHaveLength(1);
+  });
+
+  it('does not find Esther ref inside of Ecclesiastes ref', () => {
+    const found = find('Ecclesiastes 5:1');
+
+    expect(found[0].book).toBe('Ecclesiastes');
+    expect(found).toHaveLength(1);
+  });
+
   it('does not find Song of Solomon ref inside of Micah ref', () => {
     const found = find('Blah blahh, Micah 6:8.');
 
@@ -25,6 +39,19 @@ describe('find()', () => {
 
     expect(found[0].book).toBe('James');
     expect(found).toHaveLength(1);
+  });
+
+  it('does not find Esther ref inside of James ref', () => {
+    const found = find('save their souls? (James, i. 21.) Is not that');
+
+    expect(found[0].book).toBe('James');
+    expect(found).toHaveLength(1);
+  });
+
+  it('does not find Revelation ref inside bad Hebrews ref', () => {
+    const found = find('against this. Hebrew 12:14, “Without holiness');
+
+    expect(found).toEqual([]);
   });
 
   it('does not find Revelation reference in "chap."', () => {
