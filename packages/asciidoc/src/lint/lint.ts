@@ -1,4 +1,5 @@
 import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
+import { LineRule, BlockRule } from './types';
 import * as lineLints from './line-rules';
 import * as blockLints from './block-rules';
 
@@ -6,7 +7,7 @@ export default function lint(
   adoc: Asciidoc,
   options: LintOptions = { lang: 'en' },
 ): LintResult[] {
-  const lineRules = Object.values(lineLints);
+  const lineRules: LineRule[] = Object.values(lineLints);
   const lines = adoc.split('\n');
   const lineResults = lines.reduce(
     (acc, line, index) => {
@@ -20,7 +21,7 @@ export default function lint(
       }
 
       lineRules.forEach(rule => {
-        if (runRule(rule.slug, options)) {
+        if (runRule(rule, options)) {
           const ruleResults = rule(line, lines, index + 1);
           ruleResults.forEach(result => acc.push(result));
         }
@@ -30,10 +31,10 @@ export default function lint(
     [] as LintResult[],
   );
 
-  const blockRules = Object.values(blockLints);
+  const blockRules: BlockRule[] = Object.values(blockLints);
   const blockResults = blockRules.reduce(
     (acc, rule) => {
-      if (!runRule(rule.slug, options)) {
+      if (!runRule(rule, options)) {
         return acc;
       }
       return acc.concat(...rule(adoc));
@@ -44,17 +45,22 @@ export default function lint(
   return [...lineResults, ...blockResults];
 }
 
-function runRule(ruleSlug: string, options: LintOptions): boolean {
+function runRule(rule: LineRule | BlockRule, options: LintOptions): boolean {
   const { include, exclude } = options;
+
+  if (rule.maybe) {
+    return false;
+  }
+
   if (include === undefined && exclude === undefined) {
     return true;
   }
 
-  if (include && !include.includes(ruleSlug)) {
+  if (include && !include.includes(rule.slug)) {
     return false;
   }
 
-  if (exclude && exclude.includes(ruleSlug)) {
+  if (exclude && exclude.includes(rule.slug)) {
     return false;
   }
 

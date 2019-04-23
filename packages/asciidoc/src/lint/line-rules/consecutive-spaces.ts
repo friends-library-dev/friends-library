@@ -1,11 +1,12 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
 import { isFootnotePoetryLine } from '../utils';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '' || line.indexOf('  ') === -1) {
     return [];
   }
@@ -32,7 +33,7 @@ export default function rule(
     results.push(getLint(match.index + 2, line, lineNumber));
   }
   return results;
-}
+};
 
 function getLint(column: number, line: Asciidoc, lineNumber: number): LintResult {
   return {
@@ -47,3 +48,4 @@ function getLint(column: number, line: Asciidoc, lineNumber: number): LintResult
 }
 
 rule.slug = 'consecutive-spaces';
+export default rule;

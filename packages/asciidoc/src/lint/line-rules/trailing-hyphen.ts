@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '' || line[line.length - 1] !== '-' || line[line.length - 2] === '-') {
     return [];
   }
@@ -26,7 +27,7 @@ export default function rule(
       ...(recommendation === false ? {} : { recommendation, fixable: true }),
     },
   ];
-}
+};
 
 function getRecommendation(line: Asciidoc, next: Asciidoc | null): string | false {
   if (!next) {
@@ -53,3 +54,4 @@ function getRecommendation(line: Asciidoc, next: Asciidoc | null): string | fals
 }
 
 rule.slug = 'trailing-hyphen';
+export default rule;

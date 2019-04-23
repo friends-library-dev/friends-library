@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line !== '') {
     return [];
   }
@@ -40,6 +41,7 @@ export default function rule(
       recommendation: `--> remove preceding line/s: (${remove.sort().join(',')})`,
     },
   ];
-}
+};
 
 rule.slug = 'multiple-blank-lines';
+export default rule;

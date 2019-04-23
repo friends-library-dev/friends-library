@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '') {
     return [];
   }
@@ -18,6 +19,7 @@ export default function rule(
       message: 'your message here',
     },
   ];
-}
+};
 
 rule.slug = 'my-slug';
+export default rule;

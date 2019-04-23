@@ -1,6 +1,7 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { BlockRule } from '../types';
 
-export default function rule(block: Asciidoc): LintResult[] {
+const rule: BlockRule = (block: Asciidoc): LintResult[] => {
   const lines = block.split('\n');
   const chapterHeadings: number[] = lines.reduce(
     (acc, line, index) => {
@@ -40,6 +41,7 @@ export default function rule(block: Asciidoc): LintResult[] {
         fixable: false,
       } as LintResult),
   );
-}
+};
 
 rule.slug = 'chapter-heading';
+export default rule;

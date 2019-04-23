@@ -1,12 +1,13 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
 import gitConflictMarkers from './git-conflict-markers';
 import characterName from '../character-name';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '') {
     return [];
   }
@@ -39,7 +40,7 @@ export default function rule(
   });
 
   return results;
-}
+};
 
 function getLint(
   char: string,
@@ -131,3 +132,4 @@ const allowed = [
   }, lookup);
 
 rule.slug = 'invalid-characters';
+export default rule;

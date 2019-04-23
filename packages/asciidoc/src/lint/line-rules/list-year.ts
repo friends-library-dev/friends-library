@@ -1,10 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   const match = line.match(/^\* \d+\. /);
   if (!match) {
     return [];
@@ -21,6 +22,7 @@ export default function rule(
       recommendation: line.replace('.', '+++.+++'),
     },
   ];
-}
+};
 
 rule.slug = 'list-year';
+export default rule;

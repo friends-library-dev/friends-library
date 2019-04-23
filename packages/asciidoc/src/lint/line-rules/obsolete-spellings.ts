@@ -68,12 +68,13 @@ const test = new RegExp(
   `\\b${words.map(([obsolete]) => escape(obsolete)).join('|')}\\b`,
   'i',
 );
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   if (line === '') {
     return [];
   }
@@ -93,7 +94,7 @@ export default function rule(
   });
 
   return results;
-}
+};
 
 const getSearch = memoize(
   (obsolete: string): RegExp => {
@@ -117,6 +118,7 @@ function getColumnOffset(obsolete: string, corrected: string): number {
 }
 
 rule.slug = 'obsolete-spellings';
+export default rule;
 
 function getLint(
   line: Asciidoc,

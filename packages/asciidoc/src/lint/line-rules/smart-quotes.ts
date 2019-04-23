@@ -1,11 +1,12 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
 import { quotifyLine } from '../../quotify';
+import { LineRule } from '../types';
 
-export default function rule(
+const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-): LintResult[] {
+): LintResult[] => {
   const fixed = quotifyLine(line);
   if (fixed === line) {
     return [];
@@ -29,6 +30,7 @@ export default function rule(
       fixable: true,
     },
   ];
-}
+};
 
 rule.slug = 'smart-quotes';
+export default rule;
