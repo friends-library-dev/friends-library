@@ -1,5 +1,5 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
-import { isFootnotePoetryLine } from './leading-whitespace';
+import { isFootnotePoetryLine } from '../utils';
 
 export default function rule(
   line: Asciidoc,
