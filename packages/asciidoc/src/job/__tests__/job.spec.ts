@@ -15,9 +15,6 @@ describe('createJob()', () => {
       meta: {
         check: false,
         perform: false,
-        open: false,
-        send: false,
-        debugPrintMargins: false,
         condense: false,
         frontmatter: true,
       },
@@ -39,9 +36,6 @@ describe('createJob()', () => {
     const meta = {
       check: true,
       perform: true,
-      open: true,
-      send: true,
-      debugPrintMargins: true,
       condense: true,
       frontmatter: false,
     };
