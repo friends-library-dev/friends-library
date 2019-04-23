@@ -1,0 +1,59 @@
+### list all kite jobs
+
+http://localhost:1111/kite-jobs
+
+### create a new kite-job
+
+POST http://localhost:1111/kite-jobs HTTP/1.1
+content-type: application/json
+
+{
+  "uploadPath": "pull-request/john-doe/12",
+  "job": {
+    "id": "5a49e176-8ab1-41bb-ab1f-20aaac92202f",
+    "filename": "document--(print).pdf",
+    "target": "pdf-print",
+    "spec": {
+      "id": "cebc0afe-d163-4cf1-9613-6c5c5b67ba95",
+      "size": 23,
+      "lang": "en",
+      "meta": {
+        "title": "Some Book",
+        "author": {
+          "name": "John Doe",
+          "nameSort": "Doe, John"
+        }
+      },
+      "filename": "document",
+      "revision": {
+        "timestamp": 1556027824,
+        "sha": "9c45b6a51e78890c01402a2e3221c3db3ca1be23",
+        "url": "#"
+      },
+      "config": {},
+      "customCss": {},
+      "conversionLogs": [],
+      "epigraphs": [],
+      "sections": [{
+        "index": 0,
+        "id": "section1",
+        "html": "<div class=\"sect1 chapter--no-signed-section\">\n{% chapter-heading %}\n<div class=\"sectionbody\">\n<div class=\"paragraph\">\n<p>Foo bar.</p>\n</div>\n</div>\n</div>",
+        "heading": {
+          "id": "_chapter_1",
+          "text": "",
+          "sequence": {
+            "type": "Chapter",
+            "number": 1
+          }
+        }
+      }],
+      "notes": []
+    },
+    "meta": {
+      "check": false,
+      "perform": false,
+      "condense": false,
+      "frontmatter": true
+    }
+  }
+}
