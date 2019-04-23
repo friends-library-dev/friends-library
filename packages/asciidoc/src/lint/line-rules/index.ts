@@ -26,3 +26,4 @@ export { default as emptyRole } from './empty-role';
 export { default as noUndefined } from './no-undefined';
 export { default as danglingPossessive } from './dangling-possessive';
 export { default as midWordUppercase } from './mid-word-uppercase';
+export { default as unspacedPeriod } from './unspaced-period';
