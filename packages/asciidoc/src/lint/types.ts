@@ -1,13 +1,18 @@
-import { Asciidoc, LintResult } from '@friends-library/types';
+import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 
 export interface LineRule {
-  (line: Asciidoc, lines: Asciidoc[], lineNumber: number): LintResult[];
+  (
+    line: Asciidoc,
+    lines: Asciidoc[],
+    lineNumber: number,
+    options: LintOptions,
+  ): LintResult[];
   slug: string;
   maybe?: boolean;
 }
 
 export interface BlockRule {
-  (block: Asciidoc): LintResult[];
+  (block: Asciidoc, options: LintOptions): LintResult[];
   slug: string;
   maybe?: boolean;
 }

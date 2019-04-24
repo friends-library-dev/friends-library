@@ -1,6 +1,8 @@
 import stripIndent from 'strip-indent';
 import gitConflictMarkers from '../git-conflict-markers';
 
+const opts = { lang: 'en' as const };
+
 describe('gitConflictMarkers()', () => {
   it('creates lint violations for git conflict markers', () => {
     const adoc = stripIndent(`
@@ -14,7 +16,7 @@ describe('gitConflictMarkers()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, index) => {
-      const lineResults = gitConflictMarkers(line, lines, index + 1);
+      const lineResults = gitConflictMarkers(line, lines, index + 1, opts);
       results = results.concat(...lineResults);
     });
 

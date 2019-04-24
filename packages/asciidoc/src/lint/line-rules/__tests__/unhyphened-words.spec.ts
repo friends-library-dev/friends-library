@@ -1,8 +1,10 @@
 import unhyphenedWords from '../unhyphened-words';
 
+const opts = { lang: 'en' as const };
+
 describe('unhyphenedWords()', () => {
   it('creates a lint violation for line containing "to-day"', () => {
-    const results = unhyphenedWords('To-day foo', [], 1);
+    const results = unhyphenedWords('To-day foo', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -44,7 +46,7 @@ describe('unhyphenedWords()', () => {
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
-    const results = unhyphenedWords(line, [], 1);
+    const results = unhyphenedWords(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
   });
@@ -52,6 +54,6 @@ describe('unhyphenedWords()', () => {
   const allowed = [['To-dayfoo'], ['toto-daybar']];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(unhyphenedWords(line, [], 1)).toHaveLength(0);
+    expect(unhyphenedWords(line, [], 1, opts)).toHaveLength(0);
   });
 });

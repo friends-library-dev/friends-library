@@ -1,9 +1,11 @@
 import invalidCharacters from '../invalid-characters';
 
+const opts = { lang: 'en' as const };
+
 describe('invalidCharacters()', () => {
   it('creates a lint violation result for a line with a bad character', () => {
     const line = '• is not allowed';
-    const results = invalidCharacters(line, [], 1);
+    const results = invalidCharacters(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toMatchObject({
       line: 1,
@@ -16,17 +18,21 @@ describe('invalidCharacters()', () => {
 
   test('characters in an inline passthrough are not violations', () => {
     const line = 'Foo +++<b>•|</b>+++ bar.';
-    const results = invalidCharacters(line, [], 1);
+    const results = invalidCharacters(line, [], 1, opts);
     expect(results).toHaveLength(0);
   });
 
-  const violations = [['Foo | bar.'], ['@jared']];
+  const violations = [
+    ['Foo | bar.'],
+    ['@jared'],
+    ['Josué Alvarado is not allowed in English versions'],
+  ];
 
   test.each(violations)('%s should be linted', adoc => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, index) => {
-      const lineResults = invalidCharacters(line, lines, index + 1);
+      const lineResults = invalidCharacters(line, lines, index + 1, opts);
       results = results.concat(...lineResults);
     });
     expect(results).toHaveLength(1);
@@ -43,7 +49,7 @@ describe('invalidCharacters()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, index) => {
-      const lineResults = invalidCharacters(line, lines, index + 1);
+      const lineResults = invalidCharacters(line, lines, index + 1, opts);
       results = results.concat(...lineResults);
     });
     expect(results).toHaveLength(0);
@@ -55,7 +61,7 @@ describe('invalidCharacters()', () => {
   ];
 
   test.each(deleteables)('%s is fixable by deleting', (adoc, fixed) => {
-    const results = invalidCharacters(adoc.replace(/_/g, ' '), [], 1);
+    const results = invalidCharacters(adoc.replace(/_/g, ' '), [], 1, opts);
     expect(results[0]).toMatchObject({
       fixable: true,
       recommendation: fixed,
@@ -72,7 +78,7 @@ describe('invalidCharacters()', () => {
   ];
 
   test.each(replaceables)('%s is fixable by replacing', (adoc, fixed) => {
-    const results = invalidCharacters(adoc.replace(/_/g, ' '), [], 1);
+    const results = invalidCharacters(adoc.replace(/_/g, ' '), [], 1, opts);
     expect(results[0]).toMatchObject({
       fixable: true,
       recommendation: fixed,
@@ -102,11 +108,19 @@ describe('invalidCharacters()', () => {
     ];
 
     test.each(fixable)('%s is fixable', (adoc, fixed) => {
-      const results = invalidCharacters(adoc.replace(/_/g, ' '), [], 1);
+      const results = invalidCharacters(adoc.replace(/_/g, ' '), [], 1, opts);
       expect(results[0]).toMatchObject({
         fixable: true,
         recommendation: fixed,
       });
+    });
+  });
+
+  describe('when language=es', () => {
+    const es = { lang: 'es' as const };
+    test('accented characters are allowed', () => {
+      const results = invalidCharacters('¡Josué esta cool!', [], 1, es);
+      expect(results).toHaveLength(0);
     });
   });
 });

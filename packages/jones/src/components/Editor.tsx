@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
 import debounce from 'lodash/debounce';
 import { lint } from '@friends-library/asciidoc';
-import { Asciidoc, LintResult, Omit } from '@friends-library/types';
+import { Asciidoc, LintResult, Omit, LintOptions } from '@friends-library/types';
 import { Dispatch, State } from '../type';
 import { requireCurrentTask } from '../select';
 import * as actions from '../actions';
@@ -14,6 +14,7 @@ import { addKeyCommands } from './editor-key-commands';
 import './adoc-mode';
 import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
+import { lintOptions } from '../lib/lint';
 
 const noopEditor = new Proxy(
   {},
@@ -43,6 +44,7 @@ interface StateProps {
   githubUser: string;
   size: { width: number; height: number };
   searching: boolean;
+  lintOptions: LintOptions;
 }
 
 interface DispatchProps {
@@ -151,7 +153,7 @@ class Editor extends React.Component<Props> {
     const { adoc, searching } = this.props;
     return (
       <StyledEditor searching={searching} className="Editor">
-        {adoc === null ? <ChooseAFile /> : this.renderAce()}
+        {adoc === undefined ? <ChooseAFile /> : this.renderAce()}
       </StyledEditor>
     );
   }
@@ -161,6 +163,7 @@ const mapState = (state: State): Omit<StateProps, 'size'> => {
   const task = requireCurrentTask(state);
   const file = task.files[task.editingFile || ''];
   return {
+    lintOptions: lintOptions(file ? file.path : ''),
     githubUser: state.github.token ? state.github.user : '',
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,

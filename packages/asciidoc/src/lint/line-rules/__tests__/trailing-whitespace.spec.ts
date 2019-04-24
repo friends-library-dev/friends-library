@@ -1,8 +1,10 @@
 import trailingWhitespace from '../trailing-whitespace';
 
+const opts = { lang: 'en' as const };
+
 describe('trailingWhitespace()', () => {
   it('creates a lint violation result for a line with trailing whitespace', () => {
-    const results = trailingWhitespace('== Chapter 1 ', [], 4);
+    const results = trailingWhitespace('== Chapter 1 ', [], 4, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 4,
@@ -16,7 +18,7 @@ describe('trailingWhitespace()', () => {
   });
 
   it('does not lint error empty lines', () => {
-    const results = trailingWhitespace('', [], 4);
+    const results = trailingWhitespace('', [], 4, opts);
     expect(results).toHaveLength(0);
   });
 });

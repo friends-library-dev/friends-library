@@ -1,5 +1,7 @@
 import lineLength from '../line-length';
 
+const opts = { lang: 'en' as const };
+
 describe('lineLength()', () => {
   const longLineParts = [
     'This line will be far too long and should be split at comma,',
@@ -8,7 +10,7 @@ describe('lineLength()', () => {
   const longLine = longLineParts.join(' ');
 
   it('errors on too long line', () => {
-    const results = lineLength(longLine, [], 4);
+    const results = lineLength(longLine, [], 4, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 4,
@@ -22,7 +24,7 @@ describe('lineLength()', () => {
 
   it('gives good recommendations for lines with scripture references', () => {
     const ref = '(2 Cor. 3:15-16)';
-    const [result] = lineLength(`${longLine} ${ref}`, [], 1);
+    const [result] = lineLength(`${longLine} ${ref}`, [], 1, opts);
     expect(result.recommendation).toBe(`${longLineParts.join('\n')} ${ref}`);
   });
 
@@ -41,7 +43,7 @@ describe('lineLength()', () => {
   ];
 
   test.each(allowedLongLines)('allows %s to exceed length', line => {
-    const results = lineLength(line, [], 4);
+    const results = lineLength(line, [], 4, opts);
     expect(results).toHaveLength(0);
   });
 });

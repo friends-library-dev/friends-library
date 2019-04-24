@@ -1,10 +1,12 @@
 import joinWords from '../join-words';
 
+const opts = { lang: 'en' as const };
+
 describe('joinWords()', () => {
   it('creates a lint for violation of `join-words` rule', () => {
     const adoc = 'I searched up and down and every\nwhere for her.';
     const lines = adoc.split('\n');
-    const results = joinWords(lines[0], lines, 1);
+    const results = joinWords(lines[0], lines, 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -46,7 +48,7 @@ describe('joinWords()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, i) => {
-      results = results.concat(joinWords(line, lines, i + 1));
+      results = results.concat(joinWords(line, lines, i + 1, opts));
     });
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(fixed);
@@ -62,7 +64,7 @@ describe('joinWords()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, i) => {
-      results = results.concat(joinWords(line, lines, i + 1));
+      results = results.concat(joinWords(line, lines, i + 1, opts));
     });
     expect(results).toHaveLength(0);
   });

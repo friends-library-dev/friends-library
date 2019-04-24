@@ -1,10 +1,12 @@
 import hangingQuotes from '../hanging-quotes';
 
+const opts = { lang: 'en' as const };
+
 describe('hangingQuotes()', () => {
   it('creates lint violations for git conflict markers', () => {
     const line = 'Foo bar "`';
 
-    const results = hangingQuotes(line, [], 1);
+    const results = hangingQuotes(line, [], 1, opts);
 
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
@@ -22,7 +24,7 @@ describe('hangingQuotes()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, i) => {
-      results = results.concat(hangingQuotes(line, lines, i + 1));
+      results = results.concat(hangingQuotes(line, lines, i + 1, opts));
     });
     expect(results).toHaveLength(1);
   });

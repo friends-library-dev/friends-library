@@ -26,6 +26,11 @@ export const builder: CommandBuilder = function(yargs) {
       type: 'boolean',
       default: false,
       alias: 'f',
+    })
+    .option('maybe', {
+      type: 'boolean',
+      default: false,
+      alias: 'm',
     });
 };
 

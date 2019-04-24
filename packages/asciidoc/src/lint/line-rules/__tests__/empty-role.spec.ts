@@ -1,8 +1,10 @@
 import emptyRole from '../empty-role';
 
+const opts = { lang: 'en' as const };
+
 describe('emptyRole()', () => {
   it('creates a lint for violation of `empty-role` rule', () => {
-    const results = emptyRole('[.foobar.]', [], 1);
+    const results = emptyRole('[.foobar.]', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -21,7 +23,7 @@ describe('emptyRole()', () => {
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
-    const results = emptyRole(line, [], 1);
+    const results = emptyRole(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
   });
@@ -32,6 +34,6 @@ describe('emptyRole()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(emptyRole(line, [], 1)).toHaveLength(0);
+    expect(emptyRole(line, [], 1, opts)).toHaveLength(0);
   });
 });

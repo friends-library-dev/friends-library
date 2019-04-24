@@ -1,8 +1,10 @@
 import scanErrors from '../scan-errors';
 
+const opts = { lang: 'en' as const };
+
 describe('scanErrors()', () => {
   it('creates a lint violation result for a line with suspect `lime`', () => {
-    const results = scanErrors('For a long lime I was sad', [], 1);
+    const results = scanErrors('For a long lime I was sad', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -58,7 +60,7 @@ describe('scanErrors()', () => {
   ];
 
   test.each(violations)('`%s` should be a lint violation', (line, reco) => {
-    const results = scanErrors(line, [], 1);
+    const results = scanErrors(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
   });
@@ -97,6 +99,6 @@ describe('scanErrors()', () => {
   ];
 
   test.each(allowed)('`%s` is not a lint violation', line => {
-    expect(scanErrors(line, [], 1)).toHaveLength(0);
+    expect(scanErrors(line, [], 1, opts)).toHaveLength(0);
   });
 });

@@ -73,6 +73,7 @@ export interface LintOptions {
   editionType?: EditionType;
   include?: string[];
   exclude?: string[];
+  maybe?: boolean;
 }
 
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';

@@ -4,6 +4,7 @@ import * as gh from '../lib/github-api';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import { Slug, Url, Uuid } from '@friends-library/types';
 import { Task, ReduxThunk, Dispatch, State } from '../type';
+import { lintOptions } from '../lib/lint';
 
 export function deleteTask(id: Uuid): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
@@ -92,7 +93,7 @@ function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Task {
       return;
     }
 
-    const { fixed } = fixLints(file.editedContent);
+    const { fixed } = fixLints(file.editedContent, lintOptions(file.path));
     if (
       !fixed ||
       typeof fixed !== 'string' ||

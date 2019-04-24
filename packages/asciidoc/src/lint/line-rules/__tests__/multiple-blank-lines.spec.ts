@@ -1,6 +1,8 @@
 import stripIndent from 'strip-indent';
 import multipleBlankLines from '../multiple-blank-lines';
 
+const opts = { lang: 'en' as const };
+
 describe('multipleBlankLines()', () => {
   it('creates a lint violation result for a line with multiple blank lines', () => {
     const adoc = stripIndent(`
@@ -10,7 +12,7 @@ describe('multipleBlankLines()', () => {
       Foobar.
     `).trim();
     const lines = adoc.split('\n');
-    const results = multipleBlankLines(lines[2], lines, 3);
+    const results = multipleBlankLines(lines[2], lines, 3, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 3,
@@ -34,7 +36,7 @@ describe('multipleBlankLines()', () => {
     `).trim();
     const lines = adoc.split('\n');
     lines.forEach((line, index) => {
-      const results = multipleBlankLines(line, lines, index + 1);
+      const results = multipleBlankLines(line, lines, index + 1, opts);
       if (index === 4) {
         expect(results).toHaveLength(1);
         expect(results[0].recommendation).toBe('--> remove preceding line/s: (2,3,4)');

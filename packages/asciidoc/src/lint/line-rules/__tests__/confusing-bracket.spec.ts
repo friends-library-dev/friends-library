@@ -1,9 +1,11 @@
 import confusingBracket from '../confusing-bracket';
 
+const opts = { lang: 'en' as const };
+
 describe('confusingBracket()', () => {
   it('lints invalid syntax caused by trailing bracket', () => {
     const adoc = '[.book-title]#Apology#, foo]';
-    const results = confusingBracket(adoc, [], 2);
+    const results = confusingBracket(adoc, [], 2, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 2,
@@ -21,7 +23,7 @@ describe('confusingBracket()', () => {
   ];
 
   test.each(violations)('%s should be %s', (line, reco) => {
-    const results = confusingBracket(line, [], 1);
+    const results = confusingBracket(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
   });
@@ -33,6 +35,6 @@ describe('confusingBracket()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(confusingBracket(line, [], 1)).toHaveLength(0);
+    expect(confusingBracket(line, [], 1, opts)).toHaveLength(0);
   });
 });

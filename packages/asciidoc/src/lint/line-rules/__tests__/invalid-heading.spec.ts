@@ -1,8 +1,10 @@
 import invalidHeading from '../invalid-heading';
 
+const opts = { lang: 'en' as const };
+
 describe('invalidHeading()', () => {
   it('creates a lint violation result for a line with invalid heading', () => {
-    const results = invalidHeading('= No beuno', [], 1);
+    const results = invalidHeading('= No beuno', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -16,7 +18,7 @@ describe('invalidHeading()', () => {
   });
 
   test('extra spaces is fixable', () => {
-    const results = invalidHeading('==  No beuno', [], 1);
+    const results = invalidHeading('==  No beuno', [], 1, opts);
     expect(results[0]).toMatchObject({
       fixable: true,
       recommendation: '== No beuno',
@@ -36,7 +38,7 @@ describe('invalidHeading()', () => {
   ];
 
   test.each(violations)('%s should be a lint violation', line => {
-    const results = invalidHeading(line, [], 1);
+    const results = invalidHeading(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
@@ -51,6 +53,6 @@ describe('invalidHeading()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(invalidHeading(line, [], 1)).toHaveLength(0);
+    expect(invalidHeading(line, [], 1, opts)).toHaveLength(0);
   });
 });

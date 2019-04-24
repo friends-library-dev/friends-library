@@ -1,8 +1,10 @@
 import unexpectedPeriod from '../unexpected-period';
 
+const opts = { lang: 'en' as const };
+
 describe('unexpectedPeriod()', () => {
   it('creates a lint for violation of `unexpected-period` rule', () => {
-    const results = unexpectedPeriod('Then we. went to meeting', [], 1);
+    const results = unexpectedPeriod('Then we. went to meeting', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -16,7 +18,7 @@ describe('unexpectedPeriod()', () => {
   const violations: [string][] = [['Let us. seek the Lord']];
 
   test.each(violations)('`%s` should become "%s"', line => {
-    const results = unexpectedPeriod(line, [], 1);
+    const results = unexpectedPeriod(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
@@ -46,6 +48,6 @@ describe('unexpectedPeriod()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(unexpectedPeriod(line, [], 1)).toHaveLength(0);
+    expect(unexpectedPeriod(line, [], 1, opts)).toHaveLength(0);
   });
 });

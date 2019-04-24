@@ -5,8 +5,9 @@ const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
+  { lang },
 ): LintResult[] => {
-  if (line === '' || line.length < 5) {
+  if (line === '' || line.length < 5 || lang === 'es') {
     return [];
   }
 

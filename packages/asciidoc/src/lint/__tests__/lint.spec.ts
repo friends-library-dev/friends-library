@@ -31,6 +31,21 @@ describe('lint()', () => {
     expect(results[0].rule).toBe('invalid-characters');
   });
 
+  test('maybe rule is run if maybe option true', () => {
+    const results = lint('== One\n\nThen we. went to\n', { maybe: true, lang: 'en' });
+    expect(results).toHaveLength(1);
+    expect(results[0].rule).toBe('unexpected-period');
+  });
+
+  test('maybe rule is run if specifically included', () => {
+    const results = lint('== One\n\nThen we. went to\n', {
+      include: ['unexpected-period'],
+      lang: 'en',
+    });
+    expect(results).toHaveLength(1);
+    expect(results[0].rule).toBe('unexpected-period');
+  });
+
   it('aggregates multiple rule test results (block and line)', () => {
     const adoc = stripIndent(`
       == Ch 1

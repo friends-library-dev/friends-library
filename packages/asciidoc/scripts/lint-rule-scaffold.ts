@@ -1,4 +1,5 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
+// @ts-ignore
 import { LineRule } from '../types';
 
 const rule: LineRule = (
