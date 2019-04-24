@@ -8,6 +8,7 @@ import * as takeApi from './cmd/take-api';
 import * as convert from './cmd/convert';
 import * as chapterize from './cmd/chapterize';
 import * as cover from './cmd/cover';
+import * as unusual from './cmd/unusual';
 
 prettifyErrors();
 
@@ -21,4 +22,5 @@ yargs
   .command(convert)
   .command(chapterize)
   .command(cover)
+  .command(unusual)
   .help().argv;

@@ -8,6 +8,7 @@
     "./dist/lint/lint-dir.js": false,
     "./dist/lint/dir-lints.js": false,
     "./dist/lint/lint-fix-dir.js": false,
+    "./dist/lint/files-from-path.js": false,
     "./dist/lint/character-name.js": "./dist/lint/character-name.browser.js",
     "./dist/job/asciidoctor.js": "./dist/job/asciidoctor.browser.js"
   },
