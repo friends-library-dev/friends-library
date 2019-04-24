@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Html, requireEnv } from '@friends-library/types';
 import { PUBLISH_DIR } from '../../publish/file';
 
-export function send(files: Html[], email?: string) {
+export function send(files: Html[], email?: string): void {
   const { KITE_GMAIL_USER, KITE_GMAIL_PASS } = requireEnv(
     'KITE_GMAIL_USER',
     'KITE_GMAIL_PASS',

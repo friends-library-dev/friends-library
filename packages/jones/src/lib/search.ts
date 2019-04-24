@@ -64,7 +64,10 @@ export function searchFiles(
   });
 }
 
-function getContext(result: Omit<SearchResult, 'context'>, lines: string[]) {
+function getContext(
+  result: Omit<SearchResult, 'context'>,
+  lines: string[],
+): { lineNumber: number; content: string }[] {
   const context = [];
   const { start, end } = result;
 

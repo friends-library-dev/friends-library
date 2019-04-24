@@ -2,6 +2,7 @@ import memoize from 'lodash/memoize';
 import escape from 'escape-string-regexp';
 import { Asciidoc, LintResult } from '@friends-library/types';
 import { ucfirst } from '../../job/helpers';
+import { LineRule } from '../types';
 
 const words: [string, string, boolean][] = [
   ['connexion', 'connection', true],
@@ -68,7 +69,6 @@ const test = new RegExp(
   `\\b${words.map(([obsolete]) => escape(obsolete)).join('|')}\\b`,
   'i',
 );
-import { LineRule } from '../types';
 
 const rule: LineRule = (
   line: Asciidoc,

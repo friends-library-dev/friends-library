@@ -1,9 +1,9 @@
 import Audio from './Audio';
 
 export default class AudioPart {
-  audio: Audio;
+  public audio: Audio;
 
-  constructor(
+  public constructor(
     public seconds: number,
     public filesizeHq: number,
     public filesizeLq: number,
@@ -15,7 +15,7 @@ export default class AudioPart {
     this.audio = new Audio();
   }
 
-  toJSON(): AudioPart {
+  public toJSON(): AudioPart {
     delete this.audio;
     return this;
   }

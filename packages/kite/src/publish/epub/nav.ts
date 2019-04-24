@@ -31,7 +31,11 @@ export function nav(job: Job): Html {
   `.trim();
 }
 
-type TocItem = { href: string; text: string; hidden?: true };
+interface TocItem {
+  href: string;
+  text: string;
+  hidden?: true;
+}
 
 export function tocItems({ spec: { sections } }: Job): TocItem[] {
   const items: TocItem[] = [];
@@ -52,11 +56,11 @@ export function tocItems({ spec: { sections } }: Job): TocItem[] {
   return items;
 }
 
-type Landmark = {
+interface Landmark {
   type: 'toc' | 'titlepage' | 'bodymatter';
   href: 'nav.xhtml' | 'half-title.xhtml' | 'section1.xhtml';
   text: string;
-};
+}
 
 export function landmarks({ target, meta: { frontmatter } }: Job): Landmark[] {
   const landmarkItems: Landmark[] = [];

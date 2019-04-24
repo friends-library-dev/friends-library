@@ -43,7 +43,7 @@ try {
   process.exit(1);
 }
 
-function replaceStrings(file: string, slug: string, camel: string) {
+function replaceStrings(file: string, slug: string, camel: string): string {
   return file
     .replace(/myRule/g, camel)
     .replace(/my-slug/g, slug)

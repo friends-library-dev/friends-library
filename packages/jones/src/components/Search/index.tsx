@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled/macro';
-import { connect } from 'react-redux';
+import { connect, Omit } from 'react-redux';
 import KeyEvent from 'react-keyboard-event-handler';
 import {
   Dispatch,
@@ -42,7 +42,7 @@ const Results = styled.div`
 
 let keepSearchTerm = '';
 
-function initialState() {
+function initialState(): State {
   return {
     searchComplete: false,
     searchTerm: keepSearchTerm,
@@ -51,7 +51,7 @@ function initialState() {
   };
 }
 
-type Props = {
+interface Props {
   files: File[];
   searching: boolean;
   regexp: boolean;
@@ -59,19 +59,19 @@ type Props = {
   caseSensitive: boolean;
   cancelSearch: Dispatch;
   replaceAll: Dispatch;
-};
+}
 
-type State = {
+interface State {
   searchTerm: string;
   replaceTerm: string;
   results: SearchResultType[];
   searchComplete: boolean;
-};
+}
 
 class Search extends React.Component<Props, State> {
-  state = initialState();
+  public state = initialState();
 
-  componentDidUpdate(prev: Props) {
+  public componentDidUpdate(prev: Props): void {
     const { files, regexp, words, caseSensitive } = this.props;
     if (files.length !== prev.files.length) {
       this.setState(initialState());
@@ -89,7 +89,7 @@ class Search extends React.Component<Props, State> {
     }
   }
 
-  changeSearchTerm = (searchTerm: string) => {
+  protected changeSearchTerm = (searchTerm: string) => {
     keepSearchTerm = searchTerm;
     this.setState({
       searchTerm,
@@ -98,13 +98,13 @@ class Search extends React.Component<Props, State> {
     });
   };
 
-  changeReplaceTerm = (replaceTerm: string) => {
+  protected changeReplaceTerm = (replaceTerm: string) => {
     this.setState({
       replaceTerm,
     });
   };
 
-  search = () => {
+  protected search = () => {
     const { searchTerm } = this.state;
     const { files, regexp, caseSensitive, words } = this.props;
     const termLength = searchTerm.trim().length;
@@ -120,19 +120,19 @@ class Search extends React.Component<Props, State> {
     this.setState({ results, searchComplete: true });
   };
 
-  cancelSearch = () => {
+  protected cancelSearch = () => {
     const { cancelSearch } = this.props;
     cancelSearch();
     this.setState({ searchTerm: '', results: [] });
   };
 
-  dismissResult(index: number) {
+  protected dismissResult(index: number): void {
     const { results } = this.state;
     results[index].dismissed = true;
     this.setState({ results });
   }
 
-  replaceAll = () => {
+  protected replaceAll = () => {
     const { replaceAll } = this.props;
     const { results, replaceTerm } = this.state;
     replaceAll({ results, replace: replaceTerm });
@@ -143,11 +143,11 @@ class Search extends React.Component<Props, State> {
     });
   };
 
-  render() {
+  public render(): JSX.Element {
     const { searchTerm, replaceTerm, results, searchComplete } = this.state;
     const { searching } = this.props;
     if (!searching) {
-      return null;
+      return <></>;
     }
 
     return (
@@ -181,7 +181,7 @@ class Search extends React.Component<Props, State> {
   }
 }
 
-const mapState = (state: AppState) => {
+const mapState = (state: AppState): Omit<Props, 'replaceAll' | 'cancelSearch'> => {
   const {
     search: { searching, regexp, caseSensitive, words },
   } = state;

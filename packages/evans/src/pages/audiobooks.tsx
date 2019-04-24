@@ -3,19 +3,19 @@ import { graphql, Link } from 'gatsby';
 import { Url, Title, Name } from '@friends-library/types';
 import { Layout, Block, PageTitle, Divider } from '../components';
 
-type Props = {
+interface Props {
   data: {
     allAudio: {
-      edges: Array<{
+      edges: {
         node: {
           url: Url;
           documentTitle: Title;
           friendName: Name;
         };
-      }>;
+      }[];
     };
   };
-};
+}
 
 export default ({
   data: {

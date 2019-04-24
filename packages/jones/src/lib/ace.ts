@@ -1,12 +1,12 @@
 import { SearchResult } from '../type';
 import defer from 'lodash/defer';
 
-type AceMarker = {
+interface AceMarker {
   id: number;
   clazz: string;
-};
+}
 
-function getEditor() {
+function getEditor(): any {
   const el = document.getElementById('brace-editor');
   if (!el) {
     return;

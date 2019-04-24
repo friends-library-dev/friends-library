@@ -16,11 +16,9 @@ const Button = styled(Link)`
   }
 `;
 
-type Props = {
-  url: string,
-  text: string,
-};
+interface Props {
+  url: string;
+  text: string;
+}
 
-export default ({ text, url }: Props) => (
-  <Button to={url}>{text}</Button>
-);
+export default ({ text, url }: Props) => <Button to={url}>{text}</Button>;

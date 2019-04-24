@@ -17,12 +17,8 @@ const Badge = styled.span`
   align-items: center;
 `;
 
-type Props = {
-  children: React.ReactNode,
-};
+interface Props {
+  children: React.ReactNode;
+}
 
-export default ({ children }: Props) => (
-  <Badge>
-    {children}
-  </Badge>
-);
+export default ({ children }: Props) => <Badge>{children}</Badge>;

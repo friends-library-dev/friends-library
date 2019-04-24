@@ -43,10 +43,7 @@ describe('Document', () => {
 
   describe('shortestEdition()', () => {
     it('returns the shortest edition', () => {
-      document.editions = [
-        new Edition('updated', 1),
-        new Edition('original', 100),
-      ];
+      document.editions = [new Edition('updated', 1), new Edition('original', 100)];
 
       const shortest = document.shortestEdition();
 
@@ -60,10 +57,7 @@ describe('Document', () => {
     });
 
     it('returns true if document has one edition with audio', () => {
-      document.editions[0].formats = [
-        new Format('audio'),
-        new Format('pdf'),
-      ];
+      document.editions[0].formats = [new Format('audio'), new Format('pdf')];
 
       const result = document.hasAudio();
 
@@ -71,10 +65,7 @@ describe('Document', () => {
     });
 
     it('returns false if document has no edition with audio', () => {
-      document.editions[0].formats = [
-        new Format('mobi'),
-        new Format('pdf'),
-      ];
+      document.editions[0].formats = [new Format('mobi'), new Format('pdf')];
 
       const result = document.hasAudio();
 
@@ -84,10 +75,7 @@ describe('Document', () => {
 
   describe('hasUpdatedEdition()', () => {
     it('returns false if document has no updated edition', () => {
-      document.editions = [
-        new Edition('original'),
-        new Edition('modernized'),
-      ];
+      document.editions = [new Edition('original'), new Edition('modernized')];
 
       const result = document.hasUpdatedEdition();
 

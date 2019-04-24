@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { SearchResult } from '../../type';
 
-type Props = {
+interface Props {
   results: SearchResult[];
-};
+}
 
 const SearchSummary: React.SFC<Props> = ({ results }) => {
   if (results.length === 0) {

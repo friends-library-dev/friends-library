@@ -3,17 +3,17 @@ import Edition from './Edition';
 import AudioPart from './AudioPart';
 
 export default class Audio {
-  edition: Edition;
+  public edition: Edition;
 
-  constructor(public reader: Name = '', public parts: AudioPart[] = []) {
+  public constructor(public reader: Name = '', public parts: AudioPart[] = []) {
     this.edition = new Edition();
   }
 
-  url(): Url {
+  public url(): Url {
     return `${this.edition.document.url()}/${this.edition.type}/podcast.rss`;
   }
 
-  toJSON(): Audio {
+  public toJSON(): Audio {
     delete this.edition;
     return this;
   }

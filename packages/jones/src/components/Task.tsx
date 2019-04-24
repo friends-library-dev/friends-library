@@ -85,9 +85,9 @@ const Wrap = styled.li`
   }
 `;
 
-type OwnProps = {
+interface OwnProps {
   task: TaskType;
-};
+}
 
 type Props = OwnProps & {
   repo: Repo;
@@ -101,16 +101,16 @@ type Props = OwnProps & {
   syncStatus: Dispatch;
 };
 
-type State = {
+interface State {
   submitting: boolean;
-};
+}
 
 class Task extends React.Component<Props, State> {
-  state = {
+  public state = {
     submitting: false,
   };
 
-  public async componentDidMount() {
+  public async componentDidMount(): Promise<void> {
     const { task, syncStatus } = this.props;
     task.pullRequest && syncStatus(task);
   }
@@ -165,7 +165,7 @@ class Task extends React.Component<Props, State> {
       .catch(() => {});
   };
 
-  protected submitText() {
+  protected submitText(): string {
     const {
       task: { pullRequest },
     } = this.props;
@@ -176,7 +176,7 @@ class Task extends React.Component<Props, State> {
     return pullRequest ? 'Re-submit' : 'Submit';
   }
 
-  public render() {
+  public render(): JSX.Element {
     const { submitting } = this.state;
     const { task, repo, workOnTask, taskHasWork } = this.props;
     let status = 'open';
@@ -261,7 +261,10 @@ class Task extends React.Component<Props, State> {
   }
 }
 
-const mapState = (state: AppState, { task }: OwnProps) => {
+const mapState = (
+  state: AppState,
+  { task }: OwnProps,
+): Pick<Props, 'task' | 'repo' | 'taskHasWork'> => {
   const repo = state.repos.find(r => r.id === task.repoId);
   if (!repo) {
     throw new Error(`Could not find repo with id ${task.repoId}`);

@@ -15,7 +15,7 @@ export async function handler({
   scope,
   createBranch,
   branchName: branch,
-}: Argv) {
+}: Argv): Promise<void> {
   const repos = await getRepos(exclude, scope);
   const { clean } = await getStatusGroups(repos);
   const exists = await Promise.all(clean.map(repo => git.hasBranch(repo, branch)));

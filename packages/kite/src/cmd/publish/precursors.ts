@@ -11,6 +11,7 @@ import {
   CustomCss,
   requireEnv,
   SourcePrecursor,
+  Sha,
 } from '@friends-library/types';
 
 export function getPrecursors(path: string): SourcePrecursor[] {
@@ -41,7 +42,7 @@ export function getPrecursors(path: string): SourcePrecursor[] {
   return [buildPrecursor(lang, friend, document, edition)];
 }
 
-function gitRevision(path: string) {
+function gitRevision(path: string): { timestamp: number; sha: Sha } {
   const cmd = 'git log --max-count=1 --pretty="%h|%ct" -- .';
   const [sha, timestamp] = execSync(cmd, {
     cwd: pathResolve(process.env.KITE_DOCS_REPOS_ROOT || '', path),
@@ -111,7 +112,7 @@ function validateQueried(
   }
 }
 
-function getConfig(path: string): Object {
+function getConfig(path: string): Record<string, any> {
   const configPath = `${path}/../config.json`;
   if (!fs.existsSync(configPath)) {
     return {};

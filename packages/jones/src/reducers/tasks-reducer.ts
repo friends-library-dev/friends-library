@@ -2,7 +2,7 @@ import { createReducer } from 'redux-starter-kit';
 import { Task, SearchResult, File, Tasks, Action } from '../type';
 import { Uuid } from '@friends-library/types';
 
-function fastForward(task: Task, commit: string) {
+function fastForward(task: Task, commit: string): void {
   task.parentCommit = commit;
   Object.values(task.files).forEach(file => {
     file.content = file.editedContent || file.content;
@@ -15,7 +15,7 @@ function replaceInResult(
   replace: string,
   files: { [key: string]: File },
   adjust: Map<string, number> = new Map(),
-) {
+): void {
   const { path, start, end } = result;
   const file = files[path];
   const content = file.editedContent || file.content;

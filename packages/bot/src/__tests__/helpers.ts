@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 
-export function prTestSetup() {
+export function prTestSetup(): [any, any, any] {
   const github = {
     checks: {
       create: jest.fn(),
@@ -36,7 +36,7 @@ export function prTestSetup() {
     },
   };
 
-  const log = () => {};
+  const log = (): void => {};
   log.trace = () => {};
   log.debug = () => {};
   log.info = () => {};

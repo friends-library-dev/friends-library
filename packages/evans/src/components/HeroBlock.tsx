@@ -9,7 +9,7 @@ const element = css`
   position: relative;
 
   :after {
-    content: "";
+    content: '';
     position: absolute;
     background: rgba(0, 0, 0, 0.45);
     top: 0;
@@ -41,12 +41,13 @@ const element = css`
 
 export default () => (
   <Block css={element}>
-    <h1>
-      Dedicated to the preservation and free distribution of early Quaker writings
-    </h1>
+    <h1>Dedicated to the preservation and free distribution of early Quaker writings</h1>
 
     <p>
-      This website exists to freely share the writings of early members of the Religious Society of Friends (Quakers) in digital, audio, and printed formats, believing them to contain a powerful testimony to the purity and simplicity of primitive, biblical Christianity.
+      This website exists to freely share the writings of early members of the Religious
+      Society of Friends (Quakers) in digital, audio, and printed formats, believing them
+      to contain a powerful testimony to the purity and simplicity of primitive, biblical
+      Christianity.
     </p>
   </Block>
 );

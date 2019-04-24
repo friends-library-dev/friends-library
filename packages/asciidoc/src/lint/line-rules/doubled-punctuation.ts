@@ -47,7 +47,7 @@ const rule: LineRule = (
   return lints;
 };
 
-function specialCase(double: string, line: string, column: number) {
+function specialCase(double: string, line: string, column: number): boolean {
   if (!['.,', '.:', '.;', '.!'].includes(double)) {
     return false;
   }

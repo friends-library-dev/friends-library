@@ -1,8 +1,8 @@
 import { createReducer } from 'redux-starter-kit';
 
-type Prefs = {
+interface Prefs {
   editorFontSize: number;
-};
+}
 
 export const defaultState = {
   editorFontSize: 15,

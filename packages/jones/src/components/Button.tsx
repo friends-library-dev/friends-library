@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled/macro';
 
-type Props = {
+interface Props {
   disabled?: boolean;
   secondary?: boolean;
   height?: number;
@@ -9,7 +9,7 @@ type Props = {
   onClick?: (event: any) => any;
   target?: '_blank' | '_self';
   className?: string;
-};
+}
 
 const Component: React.SFC<Props> = props => (
   <StyledSpan

@@ -86,7 +86,7 @@ function fixable(name: string, line: Asciidoc, column: number): string | false {
   }
 }
 
-function nbsp(line: Asciidoc, column: number) {
+function nbsp(line: Asciidoc, column: number): Asciidoc {
   if (column === 1) {
     return line.replace(/^ +/, ''); // eslint-disable-line no-irregular-whitespace
   }

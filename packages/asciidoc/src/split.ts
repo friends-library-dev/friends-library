@@ -3,8 +3,10 @@ import memoize from 'lodash/memoize';
 
 const NEWLINE = '__NEWLINE__';
 
-const splitByPunctuation = (maxLen: number) => {
-  return (acc: any, part: string): any => {
+const splitByPunctuation: (
+  maxLen: number,
+) => (acc: any, part: string) => any = maxLen => {
+  return (acc, part) => {
     const lastIndex = acc.length - 1;
     const lastLine = acc[lastIndex];
     if (lastLine === '') {

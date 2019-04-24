@@ -11,7 +11,7 @@ import {
 } from '@friends-library/types';
 import { Layout, Block, PageTitle, Divider, ByLine, Edition } from '../components';
 
-type Props = {
+interface Props {
   data: {
     friend: {
       name: Name;
@@ -22,17 +22,17 @@ type Props = {
       title: Title;
       description: Description;
       isCompilation: boolean;
-      editions: Array<{
+      editions: {
         type: EditionType;
         description: Description;
-        formats: Array<{
+        formats: {
           type: FormatType;
           url: Url;
-        }>;
-      }>;
+        }[];
+      }[];
     };
   };
-};
+}
 
 export default ({ data: { friend, document } }: Props) => {
   return (

@@ -59,11 +59,11 @@ const StyledDiv = styled.div`
 const logo =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/131px-Atom_editor_logo.svg.png';
 
-type Props = {
+interface Props {
   trigger: string;
   expansion: string;
   acronym?: string;
-};
+}
 
 const Snippet: React.SFC<Props> = ({ trigger, expansion, acronym }) => (
   <StyledDiv>

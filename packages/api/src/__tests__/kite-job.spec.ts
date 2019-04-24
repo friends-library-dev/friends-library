@@ -283,9 +283,9 @@ describe('take()', () => {
   });
 });
 
-async function getTakeResponse() {
+async function getTakeResponse(): Promise<{ json: any; status: number }> {
   let json: any = undefined;
-  let status: number = 0;
+  let status = 0;
   const res = {
     status(st: number) {
       status = st;

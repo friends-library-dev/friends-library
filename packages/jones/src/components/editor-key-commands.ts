@@ -1,7 +1,7 @@
 import { Props } from './Editor';
 import { italicize } from '../lib/format';
 
-export function addKeyCommands(editor: any, editorProps: Props) {
+export function addKeyCommands(editor: any, editorProps: Props): void {
   const {
     githubUser,
     increaseFontSize,

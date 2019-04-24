@@ -4,11 +4,11 @@ import { t } from 'ttag';
 import { Url, Name } from '@friends-library/types';
 import { h2 } from '../typography';
 
-type Props = {
+interface Props {
   isCompilation: boolean;
   friendUrl: Url;
   friendName: Name;
-};
+}
 
 export default ({ isCompilation, friendUrl, friendName }: Props) => {
   if (isCompilation) {

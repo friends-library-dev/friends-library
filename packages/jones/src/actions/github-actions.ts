@@ -138,7 +138,7 @@ export function resubmitTask(task: Task): ReduxThunk {
 }
 
 export function checkout(task: Task): ReduxThunk {
-  return async (dispatch: Dispatch, getState: () => State) => {
+  return async (dispatch: Dispatch) => {
     dispatch({ type: 'START_CHECKOUT' });
     const data = await tryGithub(
       async () => {
@@ -182,10 +182,12 @@ export function checkout(task: Task): ReduxThunk {
   };
 }
 
-type Named = { name: string };
+interface Named {
+  name: string;
+}
 
 export function fetchFriendRepos(): ReduxThunk {
-  return async (dispatch: Dispatch, getState: () => State) => {
+  return async (dispatch: Dispatch) => {
     dispatch({ type: 'REQUEST_FRIEND_REPOS' });
     let repos;
     try {
@@ -235,7 +237,7 @@ async function tryGithub(
   return result;
 }
 
-function alertGithubError(type: string) {
+function alertGithubError(type: string): void {
   smalltalk.alert('😬 <b style="color: red;">Network Error</b>', ghErrorMsgs[type]);
 }
 

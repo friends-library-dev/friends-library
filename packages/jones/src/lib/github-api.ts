@@ -16,11 +16,11 @@ export const ORG = GITHUB_ORG;
 type RepoSlug = string;
 type BranchName = string;
 
-type GitFile = {
+interface GitFile {
   path: string;
   sha: Sha;
   content: string;
-};
+}
 
 let gh = new Octokit();
 
@@ -30,7 +30,7 @@ export function authenticate(token: string): void {
   });
 }
 
-export function deleteBranch(user: string, repo: RepoSlug, branch: BranchName) {
+export function deleteBranch(user: string, repo: RepoSlug, branch: BranchName): void {
   gh.git.deleteRef({ owner: user, repo, ref: `heads/${branch}` });
 }
 
@@ -48,7 +48,7 @@ export async function pullRequestStatus(
   return 'open';
 }
 
-export async function getFriendRepos(): Promise<Object[]> {
+export async function getFriendRepos(): Promise<Record<string, any>[]> {
   const repos = await gh.paginate(`/orgs/${ORG}/repos`);
   return repos.filter(repo => repo.name !== ORG);
 }
@@ -99,11 +99,11 @@ export async function getTree(
   repo: RepoSlug,
   sha: Sha,
 ): Promise<
-  Array<{
+  {
     sha: Sha;
     path: string;
     type: string;
-  }>
+  }[]
 > {
   const {
     data: { tree },

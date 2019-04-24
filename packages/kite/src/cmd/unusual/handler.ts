@@ -3,14 +3,14 @@ import { FilePath } from '@friends-library/types';
 import { filesFromPath } from '@friends-library/asciidoc';
 import { green } from '@friends-library/cli/color';
 
-type Argv = {
+interface Argv {
   path: FilePath;
   compare?: FilePath;
   threshold: number;
   write: boolean;
-};
+}
 
-export default function handler(argv: Argv) {
+export default function handler(argv: Argv): void {
   const pathFiles = filesFromPath(argv.path);
   const map: Map<string, number> = new Map();
   pathFiles.forEach(({ adoc }) => {

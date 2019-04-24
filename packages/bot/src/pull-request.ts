@@ -6,7 +6,7 @@ import { ModifiedAsciidocFile } from './type';
 import kiteCheck from './check/kite';
 import lintCheck from './check/lint';
 
-export default async function(context: Context) {
+export default async function(context: Context): Promise<void> {
   const {
     payload: { repository, action, number },
     github,

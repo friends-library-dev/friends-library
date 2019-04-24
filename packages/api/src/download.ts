@@ -12,7 +12,11 @@ const { NODE_ENV, API_DB_HOST, API_DB_USER, API_DB_PASS, API_DB_NAME } = require
   'API_DB_NAME',
 );
 
-function getRow(req: Request, data: { [key: string]: string | number }) {
+interface Row {
+  [k: string]: string | number | boolean;
+}
+
+function getRow(req: Request, data: { [key: string]: string | number }): Row | null {
   const ua = useragent.parse(req.headers['user-agent'] || '');
   if (ua.isBot) {
     return null;
@@ -35,7 +39,7 @@ export function redirAndLog(
   res: Response,
   uri: string,
   data: { [key: string]: string | number },
-) {
+): void {
   if (NODE_ENV !== 'development') {
     res.redirect(uri);
   } else {

@@ -27,20 +27,20 @@ const html = css`
   }
 `;
 
-type Props = {
-  children: React.ReactNode,
-};
+interface Props {
+  children: React.ReactNode;
+}
 
-type State = {
-  navOpen: boolean,
-};
+interface State {
+  navOpen: boolean;
+}
 
 export default class Layout extends React.Component<Props, State> {
-  state = {
+  public state = {
     navOpen: false,
-  }
+  };
 
-  render() {
+  public render(): JSX.Element {
     const { navOpen } = this.state;
     const { children } = this.props;
     return (
@@ -50,7 +50,10 @@ export default class Layout extends React.Component<Props, State> {
           <html lang="en" />
           <title>Friends Library</title>
           <meta name="robots" content="noindex, nofollow" />
-          <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet prefetch" />
+          <link
+            href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
+            rel="stylesheet prefetch"
+          />
         </Helmet>
         <ThemeProvider theme={theme}>
           <Slideover isOpen={navOpen} close={() => this.setState({ navOpen: false })} />

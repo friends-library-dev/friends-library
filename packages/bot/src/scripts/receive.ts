@@ -51,7 +51,7 @@ try {
 }
 
 // @see https://stackoverflow.com/questions/44850789
-function getSignature(payload: Object) {
+function getSignature(payload: Record<string, any>): string {
   const sha = CryptoJS.HmacSHA1(JSON.stringify(payload), BOT_WEBHOOK_SECRET);
   return `sha1=${sha.toString(CryptoJS.enc.Hex)}`;
 }

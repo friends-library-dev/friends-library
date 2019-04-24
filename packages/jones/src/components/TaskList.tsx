@@ -17,11 +17,11 @@ const List = styled.ul`
   }
 `;
 
-type Props = {
+interface Props {
   tasks: TaskType[];
-};
+}
 
-const TaskList = ({ tasks }: Props) => {
+const TaskList: React.SFC<Props> = ({ tasks }) => {
   return (
     <List>
       {tasks.map(task => (
@@ -31,7 +31,7 @@ const TaskList = ({ tasks }: Props) => {
   );
 };
 
-const mapState = (state: State) => ({
+const mapState = (state: State): Props => ({
   tasks: Object.values(state.tasks.present),
 });
 

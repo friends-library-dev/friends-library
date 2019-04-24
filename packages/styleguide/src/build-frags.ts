@@ -27,7 +27,7 @@ if (process.argv.includes('--watch')) {
   regen();
 }
 
-function regen() {
+function regen(): void {
   const files = glob(adocGlob);
   const frags: { [k: string]: { html: Html; adoc: Asciidoc } } = {};
 
@@ -58,7 +58,7 @@ function regen() {
   notify();
 }
 
-function normalizeAdoc(adoc: Asciidoc) {
+function normalizeAdoc(adoc: Asciidoc): Asciidoc {
   if (adoc.match(/(^|\n)== /)) {
     return adoc;
   }
@@ -66,6 +66,6 @@ function normalizeAdoc(adoc: Asciidoc) {
   return `== Generated\n\n${adoc}`;
 }
 
-function innerHtml(job: Job) {
+function innerHtml(job: Job): Html {
   return `${epigraph(job)}${embeddablePdfHtml(job)}`;
 }

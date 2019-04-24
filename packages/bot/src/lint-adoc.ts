@@ -2,7 +2,7 @@ import { lint } from '@friends-library/asciidoc';
 import { LintResult } from '@friends-library/types';
 import { ModifiedAsciidocFile } from './type';
 
-type GithubCheckAnnotation = {
+interface GithubCheckAnnotation {
   path: string;
   start_line: number;
   end_line: number;
@@ -12,7 +12,7 @@ type GithubCheckAnnotation = {
   message: string;
   title?: string;
   raw_details?: string;
-};
+}
 
 export function getLintAnnotations(
   files: ModifiedAsciidocFile[],

@@ -20,4 +20,4 @@ export function removeMobi7Tags(file: string): string {
     .replace(/ *<span class="m7">.+?<\/span>\n?/gim, '');
 }
 
-export const br7: string = '<br class="m7"/>';
+export const br7 = '<br class="m7"/>';

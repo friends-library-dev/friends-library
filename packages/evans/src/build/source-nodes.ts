@@ -6,7 +6,7 @@ import { allFriends, eachFormat } from './helpers';
 export default function sourceNodes(
   { actions, createContentDigest }: any,
   configOptions: any,
-) {
+): void {
   const { createNode } = actions;
   delete configOptions.plugins;
 
@@ -57,11 +57,11 @@ export default function sourceNodes(
   });
 
   eachFormat(({ format, document, edition, friend }) => {
-    if (format.type === 'audio') {
+    if (format.type === 'audio' && edition.audio) {
       const props = {
-        id: `audio:${edition.audio!.url()}`,
+        id: `audio:${edition.audio.url()}`,
         url: format.url(),
-        podcastUrl: edition.audio!.url(),
+        podcastUrl: edition.audio.url(),
         friendName: friend.name,
         documentTitle: document.title,
       };
@@ -79,7 +79,7 @@ export default function sourceNodes(
   console.log('\n');
 }
 
-function friendNodeProps(friend: Friend) {
+function friendNodeProps(friend: Friend): Record<string, any> {
   return {
     name: friend.name,
     slug: friend.slug,
@@ -90,7 +90,7 @@ function friendNodeProps(friend: Friend) {
   };
 }
 
-function documentNodeProps(doc: Document) {
+function documentNodeProps(doc: Document): Record<string, any> {
   return {
     slug: doc.slug,
     title: doc.title,

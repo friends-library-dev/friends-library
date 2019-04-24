@@ -5,7 +5,7 @@ import { Name, Description } from '@friends-library/types';
 import { Layout, Block, Divider, PageTitle, Badge, DocumentTeaser } from '../components';
 import { h2 } from '../typography';
 
-type Props = {
+interface Props {
   data: {
     friend: {
       name: Name;
@@ -13,7 +13,7 @@ type Props = {
       documents: any[];
     };
   };
-};
+}
 
 const DocsHeader = styled.h2`
   compose: ${h2};

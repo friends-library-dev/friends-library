@@ -46,14 +46,14 @@ const ResultHeading = styled.p`
   padding: 1em 0;
 `;
 
-type Props = {
+interface Props {
   result: SearchResultType;
   replace: string;
   edit: Dispatch;
   number: number;
   replaceInResult: Dispatch;
   dismiss: () => void;
-};
+}
 
 const Component: React.SFC<Props> = ({
   result,

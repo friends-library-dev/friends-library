@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby';
 import { EditionType, Url, Title, Name } from '@friends-library/types';
 import { Layout, Divider, PageTitle, ByLine, Block, EmbeddedAudio } from '../components';
 
-type Props = {
+interface Props {
   pageContext: {
     editionType: EditionType;
   };
@@ -16,19 +16,19 @@ type Props = {
       url: Url;
       isCompilation: boolean;
       title: Title;
-      editions: Array<{
+      editions: {
         type: EditionType;
         audio: {
           reader: Name;
-          parts: Array<{
+          parts: {
             title: Title;
             externalIdHq: number;
-          }>;
+          }[];
         };
-      }>;
+      }[];
     };
   };
-};
+}
 
 export default ({ data: { document, friend }, pageContext: { editionType } }: Props) => {
   const edition = document.editions.find(e => e.type === editionType);

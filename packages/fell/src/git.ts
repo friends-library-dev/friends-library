@@ -127,6 +127,6 @@ export async function checkoutNewBranch(
   await repo.checkoutBranch(branchName);
 }
 
-async function getRepo(repoPath: Repo) {
+async function getRepo(repoPath: Repo): Promise<NodeGit.Repository> {
   return NodeGit.Repository.open(repoPath);
 }

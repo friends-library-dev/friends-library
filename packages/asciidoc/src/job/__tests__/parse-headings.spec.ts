@@ -1,7 +1,7 @@
 import { Asciidoc, Heading } from '@friends-library/types';
 import { jobFromAdoc } from './test-helpers';
 
-function parse(adoc: Asciidoc) {
+function parse(adoc: Asciidoc): Heading {
   const {
     spec: {
       sections: [section],
@@ -11,7 +11,7 @@ function parse(adoc: Asciidoc) {
 }
 
 describe('parsing headings', () => {
-  const cases: Array<[Asciidoc, Partial<Heading>]> = [
+  const cases: [Asciidoc, Partial<Heading>][] = [
     [
       '== Forward',
       {

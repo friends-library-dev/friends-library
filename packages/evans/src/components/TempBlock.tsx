@@ -2,12 +2,12 @@ import React from 'react';
 import { css } from '@emotion/core';
 import Block from './Block';
 
-type Props = {
-  alt?: boolean,
-  children: React.ReactNode,
-};
+interface Props {
+  alt?: boolean;
+  children: React.ReactNode;
+}
 
-const TempBlock = ({ children, alt }: Props) => {
+const TempBlock: React.SFC<Props> = ({ children, alt }) => {
   const element = css`
     background-color: ${alt ? '#ddd' : '#fff'};
 
@@ -20,11 +20,7 @@ const TempBlock = ({ children, alt }: Props) => {
     }
   `;
 
-  return (
-    <Block css={element}>
-      {children}
-    </Block>
-  );
+  return <Block css={element}>{children}</Block>;
 };
 
 TempBlock.defaultProps = {

@@ -3,13 +3,13 @@ import { graphql } from 'gatsby';
 import { Html } from '@friends-library/types';
 import { Layout, Block, PageTitle } from '../components';
 
-type Props = {
+interface Props {
   data: {
     partial: {
       html: Html;
     };
   };
-};
+}
 
 export default ({
   data: {

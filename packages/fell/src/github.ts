@@ -36,9 +36,7 @@ export async function openPullRequest(
   }
 }
 
-export async function getFriendRepos(): Promise<
-  Array<{ name: string; ssh_url: string }>
-> {
+export async function getFriendRepos(): Promise<{ name: string; ssh_url: string }[]> {
   const repos = await gh.paginate('/orgs/friends-library/repos');
   return repos.filter(repo => repo.name !== 'friends-library');
 }

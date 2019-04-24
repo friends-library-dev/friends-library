@@ -26,17 +26,17 @@ const SearchScope = styled.div`
   }
 `;
 
-type Props = {
+interface Props {
   documentTitle?: string;
   editionType: EditionType | undefined;
   filename?: string;
   numFiles?: number;
   numBooks?: number;
   friendName?: string;
-};
+}
 
 class Component extends React.Component<Props> {
-  renderSingleFile() {
+  protected renderSingleFile(): JSX.Element {
     const { filename } = this.props;
     return (
       <>
@@ -45,7 +45,7 @@ class Component extends React.Component<Props> {
     );
   }
 
-  renderEdition() {
+  protected renderEdition(): JSX.Element {
     const { editionType, documentTitle, numFiles } = this.props;
     return (
       <>
@@ -55,7 +55,7 @@ class Component extends React.Component<Props> {
     );
   }
 
-  renderDocument() {
+  protected renderDocument(): JSX.Element {
     const { documentTitle, numFiles } = this.props;
     return (
       <>
@@ -64,7 +64,7 @@ class Component extends React.Component<Props> {
     );
   }
 
-  renderFriend() {
+  protected renderFriend(): JSX.Element {
     const { friendName } = this.props;
     return (
       <>
@@ -73,7 +73,7 @@ class Component extends React.Component<Props> {
     );
   }
 
-  render() {
+  public render(): JSX.Element {
     const { filename, editionType, documentTitle } = this.props;
     let inner;
     if (filename) {
@@ -89,7 +89,7 @@ class Component extends React.Component<Props> {
   }
 }
 
-const mapState = (state: State) => {
+const mapState = (state: State): Props => {
   const task = requireCurrentTask(state);
   const { filename, documentSlug, editionType } = state.search;
 

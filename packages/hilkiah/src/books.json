@@ -2,13 +2,7 @@
   {
     "name": "Genesis",
     "short": "Gen",
-    "abbreviations": [
-      "Gen",
-      "Ge",
-      "Gene",
-      "Genes",
-      "Gn"
-    ],
+    "abbreviations": ["Gen", "Ge", "Gene", "Genes", "Gn"],
     "chapters": 50,
     "chapter": {
       "1": 31,
@@ -66,11 +60,7 @@
   {
     "name": "Exodus",
     "short": "Ex",
-    "abbreviations": [
-      "Exo",
-      "Exod",
-      "Ex"
-    ],
+    "abbreviations": ["Exo", "Exod", "Ex"],
     "chapters": 40,
     "chapter": {
       "1": 22,
@@ -118,10 +108,7 @@
   {
     "name": "Leviticus",
     "short": "Lev",
-    "abbreviations": [
-      "Lev",
-      "Levit"
-    ],
+    "abbreviations": ["Lev", "Levit"],
     "chapters": 27,
     "chapter": {
       "1": 17,
@@ -156,12 +143,7 @@
   {
     "name": "Numbers",
     "short": "Num",
-    "abbreviations": [
-      "Num",
-      "Numb",
-      "Nu",
-      "Nm"
-    ],
+    "abbreviations": ["Num", "Numb", "Nu", "Nm"],
     "chapters": 36,
     "chapter": {
       "1": 54,
@@ -205,12 +187,7 @@
   {
     "name": "Deuteronomy",
     "short": "Duet",
-    "abbreviations": [
-      "Deut",
-      "Deuter",
-      "Deu",
-      "Dt"
-    ],
+    "abbreviations": ["Deut", "Deuter", "Deu", "Dt"],
     "chapters": 34,
     "chapter": {
       "1": 46,
@@ -252,10 +229,7 @@
   {
     "name": "Joshua",
     "short": "Josh",
-    "abbreviations": [
-      "Josh",
-      "Jos"
-    ],
+    "abbreviations": ["Josh", "Jos"],
     "chapters": 34,
     "chapter": {
       "1": 18,
@@ -287,13 +261,7 @@
   {
     "name": "Judges",
     "short": "Judg",
-    "abbreviations": [
-      "Judg",
-      "Ju",
-      "Jdg",
-      "Jdj",
-      "Jd"
-    ],
+    "abbreviations": ["Judg", "Ju", "Jdg", "Jdj", "Jd"],
     "chapters": 21,
     "chapter": {
       "1": 36,
@@ -322,9 +290,7 @@
   {
     "name": "Ruth",
     "short": "Ruth",
-    "abbreviations": [
-      "Ru"
-    ],
+    "abbreviations": ["Ru"],
     "chapters": 4,
     "chapter": {
       "1": 22,
@@ -334,16 +300,9 @@
     }
   },
   {
-    "name":"1 Samuel",
+    "name": "1 Samuel",
     "short": "1 Sam",
-    "abbreviations": [
-      "1Sam",
-      "1 Sam",
-      "iSam",
-      "i Sam",
-      "1Sa",
-      "1 Sa"
-    ],
+    "abbreviations": ["1Sam", "1 Sam", "iSam", "i Sam", "1Sa", "1 Sa"],
     "chapters": 31,
     "chapter": {
       "1": 28,
@@ -380,16 +339,9 @@
     }
   },
   {
-    "name":"2 Samuel",
+    "name": "2 Samuel",
     "short": "2 Sam",
-    "abbreviations": [
-      "2Sam",
-      "2 Sam",
-      "iiSam",
-      "ii Sam",
-      "2Sa",
-      "2 Sa"
-    ],
+    "abbreviations": ["2Sam", "2 Sam", "iiSam", "ii Sam", "2Sa", "2 Sa"],
     "chapters": 24,
     "chapter": {
       "1": 27,
@@ -419,7 +371,7 @@
     }
   },
   {
-    "name":"1 Kings",
+    "name": "1 Kings",
     "short": "1 Kings",
     "abbreviations": [
       "1King",
@@ -460,7 +412,7 @@
     }
   },
   {
-    "name":"2 Kings",
+    "name": "2 Kings",
     "short": "2 Kings",
     "abbreviations": [
       "2King",
@@ -504,7 +456,7 @@
     }
   },
   {
-    "name":"1 Chronicles",
+    "name": "1 Chronicles",
     "short": "1 Chron",
     "abbreviations": [
       "1Chron",
@@ -552,7 +504,7 @@
     }
   },
   {
-    "name":"2 Chronicles",
+    "name": "2 Chronicles",
     "short": "2 Chron",
     "abbreviations": [
       "2Chron",
@@ -609,10 +561,7 @@
   {
     "name": "Ezra",
     "short": "Ezra",
-    "abbreviations": [
-      "Ezr",
-      "Ez"
-    ],
+    "abbreviations": ["Ezr", "Ez"],
     "chapters": 10,
     "chapter": {
       "1": 11,
@@ -630,11 +579,7 @@
   {
     "name": "Nehemiah",
     "short": "Neh",
-    "abbreviations": [
-      "Nehem",
-      "Neh",
-      "Ne"
-    ],
+    "abbreviations": ["Nehem", "Neh", "Ne"],
     "chapters": 13,
     "chapter": {
       "1": 11,
@@ -655,11 +600,7 @@
   {
     "name": "Esther",
     "short": "Est",
-    "abbreviations": [
-      "Esth",
-      "Est",
-      "Es"
-    ],
+    "abbreviations": ["Esth", "Est", "Es"],
     "chapters": 10,
     "chapter": {
       "1": 22,
@@ -727,12 +668,7 @@
   {
     "name": "Psalms",
     "short": "Ps",
-    "abbreviations": [
-      "Psalm",
-      "Psal",
-      "Psa",
-      "Ps"
-    ],
+    "abbreviations": ["Psalm", "Psal", "Psa", "Ps"],
     "chapters": 150,
     "chapter": {
       "1": 6,
@@ -890,11 +826,7 @@
   {
     "name": "Proverbs",
     "short": "Prov",
-    "abbreviations": [
-      "Prov",
-      "Pro",
-      "Pr"
-    ],
+    "abbreviations": ["Prov", "Pro", "Pr"],
     "chapters": 31,
     "chapter": {
       "1": 33,
@@ -933,12 +865,7 @@
   {
     "name": "Ecclesiastes",
     "short": "Ecc",
-    "abbreviations": [
-      "Eccles",
-      "Eccl",
-      "Ecc",
-      "Ec"
-    ],
+    "abbreviations": ["Eccles", "Eccl", "Ecc", "Ec"],
     "chapters": 12,
     "chapter": {
       "1": 18,
@@ -985,11 +912,7 @@
   {
     "name": "Isaiah",
     "short": "Isa",
-    "abbreviations": [
-      "Isai",
-      "Isa",
-      "Is"
-    ],
+    "abbreviations": ["Isai", "Isa", "Is"],
     "chapters": 66,
     "chapter": {
       "1": 31,
@@ -1063,12 +986,7 @@
   {
     "name": "Jeremiah",
     "short": "Jer",
-    "abbreviations": [
-      "Jerem",
-      "Jere",
-      "Jer",
-      "Je"
-    ],
+    "abbreviations": ["Jerem", "Jere", "Jer", "Je"],
     "chapters": 52,
     "chapter": {
       "1": 19,
@@ -1128,12 +1046,7 @@
   {
     "name": "Lamentations",
     "short": "Lam",
-    "abbreviations": [
-      "Lament",
-      "Lamen",
-      "Lam",
-      "La"
-    ],
+    "abbreviations": ["Lament", "Lamen", "Lam", "La"],
     "chapters": 5,
     "chapter": {
       "1": 22,
@@ -1146,12 +1059,7 @@
   {
     "name": "Ezekiel",
     "short": "Ezek",
-    "abbreviations": [
-      "Ezek",
-      "Eze",
-      "Ez",
-      "Ezechiel"
-    ],
+    "abbreviations": ["Ezek", "Eze", "Ez", "Ezechiel"],
     "chapters": 48,
     "chapter": {
       "1": 28,
@@ -1207,10 +1115,7 @@
   {
     "name": "Daniel",
     "short": "Dan",
-    "abbreviations": [
-      "Dan",
-      "Da"
-    ],
+    "abbreviations": ["Dan", "Da"],
     "chapters": 12,
     "chapter": {
       "1": 21,
@@ -1230,11 +1135,7 @@
   {
     "name": "Hosea",
     "short": "Hos",
-    "abbreviations": [
-      "Hos",
-      "Ho",
-      "Osee"
-    ],
+    "abbreviations": ["Hos", "Ho", "Osee"],
     "chapters": 14,
     "chapter": {
       "1": 11,
@@ -1256,9 +1157,7 @@
   {
     "name": "Joel",
     "short": "Joel",
-    "abbreviations": [
-      "Joe"
-    ],
+    "abbreviations": ["Joe"],
     "chapters": 3,
     "chapter": {
       "1": 20,
@@ -1269,9 +1168,7 @@
   {
     "name": "Amos",
     "short": "Amos",
-    "abbreviations": [
-      "Am"
-    ],
+    "abbreviations": ["Am"],
     "chapters": 9,
     "chapter": {
       "1": 15,
@@ -1288,11 +1185,7 @@
   {
     "name": "Obadiah",
     "short": "Obad",
-    "abbreviations": [
-      "Obad",
-      "Oba",
-      "Ob"
-    ],
+    "abbreviations": ["Obad", "Oba", "Ob"],
     "chapters": 1,
     "chapter": {
       "1": 21
@@ -1301,10 +1194,7 @@
   {
     "name": "Jonah",
     "short": "Jonah",
-    "abbreviations": [
-      "Jona",
-      "Jon"
-    ],
+    "abbreviations": ["Jona", "Jon"],
     "chapters": 4,
     "chapter": {
       "1": 17,
@@ -1316,11 +1206,7 @@
   {
     "name": "Micah",
     "short": "Mic",
-    "abbreviations": [
-      "Mich",
-      "Mic",
-      "Mi"
-    ],
+    "abbreviations": ["Mich", "Mic", "Mi"],
     "chapters": 7,
     "chapter": {
       "1": 16,
@@ -1335,10 +1221,7 @@
   {
     "name": "Nahum",
     "short": "Nah",
-    "abbreviations": [
-      "Nah",
-      "Na"
-    ],
+    "abbreviations": ["Nah", "Na"],
     "chapters": 3,
     "chapter": {
       "1": 15,
@@ -1349,11 +1232,7 @@
   {
     "name": "Habakkuk",
     "short": "Hab",
-    "abbreviations": [
-      "Habak",
-      "Hab",
-      "Ha"
-    ],
+    "abbreviations": ["Habak", "Hab", "Ha"],
     "chapters": 3,
     "chapter": {
       "1": 17,
@@ -1364,10 +1243,7 @@
   {
     "name": "Zephaniah",
     "short": "Zeph",
-    "abbreviations": [
-      "Zeph",
-      "Zep"
-    ],
+    "abbreviations": ["Zeph", "Zep"],
     "chapters": 3,
     "chapter": {
       "1": 18,
@@ -1378,11 +1254,7 @@
   {
     "name": "Haggai",
     "short": "Hag",
-    "abbreviations": [
-      "Hagg",
-      "Hag",
-      "Ha"
-    ],
+    "abbreviations": ["Hagg", "Hag", "Ha"],
     "chapters": 2,
     "chapter": {
       "1": 15,
@@ -1392,10 +1264,7 @@
   {
     "name": "Zechariah",
     "short": "Zech",
-    "abbreviations": [
-      "Zech",
-      "Zec"
-    ],
+    "abbreviations": ["Zech", "Zec"],
     "chapters": 14,
     "chapter": {
       "1": 21,
@@ -1417,12 +1286,7 @@
   {
     "name": "Malachi",
     "short": "Mal",
-    "abbreviations": [
-      "Malach",
-      "Malac",
-      "Mal",
-      "Mai"
-    ],
+    "abbreviations": ["Malach", "Malac", "Mal", "Mai"],
     "chapters": 4,
     "chapter": {
       "1": 14,
@@ -1434,12 +1298,7 @@
   {
     "name": "Matthew",
     "short": "Matt",
-    "abbreviations": [
-      "Matth",
-      "Matt",
-      "Mat",
-      "Mt"
-    ],
+    "abbreviations": ["Matth", "Matt", "Mat", "Mt"],
     "chapters": 28,
     "chapter": {
       "1": 25,
@@ -1475,10 +1334,7 @@
   {
     "name": "Mark",
     "short": "Mark",
-    "abbreviations": [
-      "Mk",
-      "Mr"
-    ],
+    "abbreviations": ["Mk", "Mr"],
     "chapters": 16,
     "chapter": {
       "1": 45,
@@ -1502,11 +1358,7 @@
   {
     "name": "Luke",
     "short": "Luke",
-    "abbreviations": [
-      "Luk",
-      "Lu",
-      "Lk"
-    ],
+    "abbreviations": ["Luk", "Lu", "Lk"],
     "chapters": 24,
     "chapter": {
       "1": 80,
@@ -1538,10 +1390,7 @@
   {
     "name": "John",
     "short": "John",
-    "abbreviations": [
-      "Joh",
-      "Jn"
-    ],
+    "abbreviations": ["Joh", "Jn"],
     "chapters": 21,
     "chapter": {
       "1": 51,
@@ -1569,10 +1418,7 @@
   },
   {
     "name": "Acts",
-    "abbreviations": [
-      "Act",
-      "Ac"
-    ],
+    "abbreviations": ["Act", "Ac"],
     "chapters": 28,
     "chapter": {
       "1": 26,
@@ -1608,10 +1454,7 @@
   {
     "name": "Romans",
     "short": "Rom",
-    "abbreviations": [
-      "Rom",
-      "Ro"
-    ],
+    "abbreviations": ["Rom", "Ro"],
     "chapters": 16,
     "chapter": {
       "1": 32,
@@ -1633,7 +1476,7 @@
     }
   },
   {
-    "name":"1 Corinthians",
+    "name": "1 Corinthians",
     "short": "1 Cor",
     "abbreviations": [
       "1Corinth",
@@ -1668,7 +1511,7 @@
     }
   },
   {
-    "name":"2 Corinthians",
+    "name": "2 Corinthians",
     "short": "2 Cor",
     "abbreviations": [
       "2Corinth",
@@ -1702,11 +1545,7 @@
   {
     "name": "Galatians",
     "short": "Gal",
-    "abbreviations": [
-      "Galat",
-      "Ga",
-      "Gal"
-    ],
+    "abbreviations": ["Galat", "Ga", "Gal"],
     "chapters": 6,
     "chapter": {
       "1": 24,
@@ -1720,10 +1559,7 @@
   {
     "name": "Ephesians",
     "short": "Eph",
-    "abbreviations": [
-      "Ephes",
-      "Eph"
-    ],
+    "abbreviations": ["Ephes", "Eph"],
     "chapters": 6,
     "chapter": {
       "1": 23,
@@ -1737,15 +1573,7 @@
   {
     "name": "Philippians",
     "short": "Phil",
-    "abbreviations": [
-      "Philipp",
-      "Philip",
-      "Phili",
-      "Phil",
-      "Phi",
-      "Php",
-      "Ph"
-    ],
+    "abbreviations": ["Philipp", "Philip", "Phili", "Phil", "Phi", "Php", "Ph"],
     "chapters": 4,
     "chapter": {
       "1": 30,
@@ -1757,13 +1585,7 @@
   {
     "name": "Colossians",
     "short": "Col",
-    "abbreviations": [
-      "Coloss",
-      "Colos",
-      "Colo",
-      "Col",
-      "Co"
-    ],
+    "abbreviations": ["Coloss", "Colos", "Colo", "Col", "Co"],
     "chapters": 4,
     "chapter": {
       "1": 29,
@@ -1773,7 +1595,7 @@
     }
   },
   {
-    "name":"1 Thessalonians",
+    "name": "1 Thessalonians",
     "short": "1 Thess",
     "abbreviations": [
       "1Thess",
@@ -1797,7 +1619,7 @@
     }
   },
   {
-    "name":"2 Thessalonians",
+    "name": "2 Thessalonians",
     "short": "2 Thess",
     "abbreviations": [
       "2Thess",
@@ -1819,16 +1641,9 @@
     }
   },
   {
-    "name":"1 Timothy",
+    "name": "1 Timothy",
     "short": "1 Tim",
-    "abbreviations": [
-      "1Tim",
-      "1 Tim",
-      "iTim",
-      "i Tim",
-      "1Ti",
-      "1 Ti"
-    ],
+    "abbreviations": ["1Tim", "1 Tim", "iTim", "i Tim", "1Ti", "1 Ti"],
     "chapters": 6,
     "chapter": {
       "1": 20,
@@ -1840,16 +1655,9 @@
     }
   },
   {
-    "name":"2 Timothy",
+    "name": "2 Timothy",
     "short": "2 Tim",
-    "abbreviations": [
-      "2Tim",
-      "2 Tim",
-      "iiTim",
-      "ii Tim",
-      "2Ti",
-      "2 Ti"
-    ],
+    "abbreviations": ["2Tim", "2 Tim", "iiTim", "ii Tim", "2Ti", "2 Ti"],
     "chapters": 4,
     "chapter": {
       "1": 18,
@@ -1861,10 +1669,7 @@
   {
     "name": "Titus",
     "short": "Tit",
-    "abbreviations": [
-      "Titu",
-      "Tit"
-    ],
+    "abbreviations": ["Titu", "Tit"],
     "chapters": 3,
     "chapter": {
       "1": 16,
@@ -1875,12 +1680,7 @@
   {
     "name": "Philemon",
     "short": "Philem",
-    "abbreviations": [
-      "Philem",
-      "Phile",
-      "Phlm",
-      "Phm"
-    ],
+    "abbreviations": ["Philem", "Phile", "Phlm", "Phm"],
     "chapters": 1,
     "chapter": {
       "1": 25
@@ -1889,10 +1689,7 @@
   {
     "name": "Hebrews",
     "short": "Heb",
-    "abbreviations": [
-      "Hebr",
-      "Heb"
-    ],
+    "abbreviations": ["Hebr", "Heb"],
     "chapters": 13,
     "chapter": {
       "1": 14,
@@ -1913,11 +1710,7 @@
   {
     "name": "James",
     "short": "James",
-    "abbreviations": [
-      "Jas",
-      "Jam",
-      "Ja"
-    ],
+    "abbreviations": ["Jas", "Jam", "Ja"],
     "chapters": 5,
     "chapter": {
       "1": 27,
@@ -1928,18 +1721,9 @@
     }
   },
   {
-    "name":"1 Peter",
+    "name": "1 Peter",
     "short": "1 Pet",
-    "abbreviations": [
-      "1Pet",
-      "1 Pet",
-      "iPet",
-      "i Pet",
-      "1Pe",
-      "1 Pe",
-      "iPe",
-      "i Pe"
-    ],
+    "abbreviations": ["1Pet", "1 Pet", "iPet", "i Pet", "1Pe", "1 Pe", "iPe", "i Pe"],
     "chapters": 5,
     "chapter": {
       "1": 25,
@@ -1950,18 +1734,9 @@
     }
   },
   {
-    "name":"2 Peter",
+    "name": "2 Peter",
     "short": "2 Pet",
-    "abbreviations": [
-      "iiPe",
-      "ii Pe",
-      "iiPet",
-      "ii Pet",
-      "2Pe",
-      "2 Pe",
-      "2Pet",
-      "2 Pet"
-    ],
+    "abbreviations": ["iiPe", "ii Pe", "iiPet", "ii Pet", "2Pe", "2 Pe", "2Pet", "2 Pet"],
     "chapters": 3,
     "chapter": {
       "1": 21,
@@ -1970,18 +1745,9 @@
     }
   },
   {
-    "name":"1 John",
+    "name": "1 John",
     "short": "1 John",
-    "abbreviations": [
-      "iJohn",
-      "i John",
-      "1Joh",
-      "1 Joh",
-      "1Jo",
-      "1 Jo",
-      "1Jn",
-      "1 Jn"
-    ],
+    "abbreviations": ["iJohn", "i John", "1Joh", "1 Joh", "1Jo", "1 Jo", "1Jn", "1 Jn"],
     "chapters": 5,
     "chapter": {
       "1": 10,
@@ -1992,25 +1758,16 @@
     }
   },
   {
-    "name":"2 John",
+    "name": "2 John",
     "short": "2 John",
-    "abbreviations": [
-      "iiJohn",
-      "ii John",
-      "2Joh",
-      "2 Joh",
-      "2Jo",
-      "2 Jo",
-      "2Jn",
-      "2 Jn"
-    ],
+    "abbreviations": ["iiJohn", "ii John", "2Joh", "2 Joh", "2Jo", "2 Jo", "2Jn", "2 Jn"],
     "chapters": 1,
     "chapter": {
       "1": 13
     }
   },
   {
-    "name":"3 John",
+    "name": "3 John",
     "short": "3 John",
     "abbreviations": [
       "iiiJohn",
@@ -2030,9 +1787,7 @@
   {
     "name": "Jude",
     "short": "Jude",
-    "abbreviations": [
-      "Ju"
-    ],
+    "abbreviations": ["Ju"],
     "chapters": 1,
     "chapter": {
       "1": 25
@@ -2041,14 +1796,7 @@
   {
     "name": "Revelation",
     "short": "Rev",
-    "abbreviations": [
-      "Revel",
-      "Rev",
-      "Re",
-      "Apocalypse",
-      "Apocal",
-      "Apoc"
-    ],
+    "abbreviations": ["Revel", "Rev", "Re", "Apocalypse", "Apocal", "Apoc"],
     "chapters": 22,
     "chapter": {
       "1": 20,

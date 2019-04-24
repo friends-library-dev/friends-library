@@ -74,7 +74,7 @@ const SearchBar = styled.div`
   }
 `;
 
-type Props = {
+interface Props {
   searchTerm: string;
   undo: Dispatch;
   redo: Dispatch;
@@ -89,41 +89,41 @@ type Props = {
   changeReplaceTerm: (term: string) => void;
   search: () => void;
   replaceAll: () => void;
-};
+}
 
-type State = {
+interface State {
   replaceTerm: string;
-};
+}
 
 class Component extends React.Component<Props, State> {
   private searchInput = React.createRef<HTMLInputElement>();
 
-  state = {
+  public state = {
     replaceTerm: '',
   };
 
-  componentDidMount() {
+  public componentDidMount(): void {
     if (this.searchInput.current) {
       this.searchInput.current.focus();
     }
   }
 
-  changeReplaceTerm = debounce(() => {
+  protected changeReplaceTerm = debounce(() => {
     const { replaceTerm } = this.state;
     const { changeReplaceTerm } = this.props;
     changeReplaceTerm(replaceTerm);
   }, 500);
 
-  handleReplaceTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  protected handleReplaceTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ replaceTerm: e.target.value }, this.changeReplaceTerm);
   };
 
-  replaceAll = () => {
+  protected replaceAll = () => {
     this.setState({ replaceTerm: '' });
     this.props.replaceAll();
   };
 
-  handleSpecialKeys = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  protected handleSpecialKeys = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const { undo, redo, cancelSearch } = this.props;
     if (event.key === 'z' && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
@@ -140,7 +140,7 @@ class Component extends React.Component<Props, State> {
     }
   };
 
-  render() {
+  public render(): JSX.Element {
     const { replaceTerm } = this.state;
     const {
       searchTerm,
@@ -209,7 +209,9 @@ class Component extends React.Component<Props, State> {
   }
 }
 
-const mapState = (state: AppState) => ({
+const mapState = (
+  state: AppState,
+): Pick<Props, 'words' | 'regexp' | 'caseSensitive'> => ({
   words: state.search.words,
   regexp: state.search.regexp,
   caseSensitive: state.search.caseSensitive,

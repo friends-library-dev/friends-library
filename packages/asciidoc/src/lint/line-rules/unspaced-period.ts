@@ -10,7 +10,7 @@ const rule: LineRule = (
     return [];
   }
 
-  const expr = /\.[A-Z][^\.]/g;
+  const expr = /\.[A-Z][^.]/g;
   let match;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {

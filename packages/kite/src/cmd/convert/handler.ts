@@ -7,12 +7,12 @@ import * as hilkiah from '@friends-library/hilkiah';
 import { combineLines } from './combine';
 import { processAsciidoc } from './process';
 
-type ConvertOptions = {
+interface ConvertOptions {
   file: string;
   noRefs: boolean;
-};
+}
 
-export default function convertHandler({ file, noRefs }: ConvertOptions) {
+export default function convertHandler({ file, noRefs }: ConvertOptions): void {
   const { src, target } = validate(file);
   prepMultiParagraphFootnotes(src);
   generateRawAsciiDoc(src, target);

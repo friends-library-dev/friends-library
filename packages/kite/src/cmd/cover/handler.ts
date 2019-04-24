@@ -3,18 +3,18 @@ import path from 'path';
 import { exec } from 'child_process';
 import { Arguments } from 'yargs';
 import { getBookSize } from '@friends-library/asciidoc';
-import { PrintSize } from '@friends-library/types';
+import { PrintSize, Css, Html } from '@friends-library/types';
 import { PUBLISH_DIR, toCss } from '../../publish/file';
 import { prince } from '../../publish/pdf/prince';
 
-type CoverOptions = {
+interface CoverOptions {
   pages: number;
   printSize: string;
   guides: boolean;
   open: boolean;
-};
+}
 
-export default function cover(opts: Arguments<CoverOptions>) {
+export default function cover(opts: Arguments<CoverOptions>): void {
   const size = getBookSize(opts.printSize);
 
   makeCover(
@@ -32,7 +32,7 @@ export async function makeCover(
   author: string,
   size: PrintSize,
   opts: CoverOptions,
-) {
+): Promise<void> {
   fs.removeSync(PUBLISH_DIR);
   fs.ensureDir(PUBLISH_DIR);
 
@@ -59,7 +59,7 @@ function getHtml(
   pages: number,
   size: PrintSize,
   withGuides: boolean,
-) {
+): Html {
   const dims = getDims(pages, size);
   return `
 <!DOCTYPE html>
@@ -92,7 +92,7 @@ function getHtml(
 </html>`.trim();
 }
 
-function getCss(pages: number, size: PrintSize) {
+function getCss(pages: number, size: PrintSize): Css {
   const css = toCss('../cmd/cover/cover.scss', getDims(pages, size));
   return css;
 }

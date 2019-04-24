@@ -17,7 +17,7 @@ export const builder: CommandBuilder = function(yargs) {
   });
 };
 
-export function handler(argv: Arguments<PublishOptions>) {
+export function handler(argv: Arguments<PublishOptions>): void {
   const precursor = getRefPrecursor(argv.path);
   publishPrecursors([precursor], argv);
 }

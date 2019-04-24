@@ -2,14 +2,25 @@ import path from 'path';
 import { kebabCase, without } from 'lodash';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
-import { yamlGlob, tags, editions, formats, chapters, hasProp, isSlug } from '../test-helpers';
+import {
+  yamlGlob,
+  tags,
+  editions,
+  formats,
+  chapters,
+  hasProp,
+  isSlug,
+} from '../test-helpers';
 import { Friend, Document } from '../../src';
 
 const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
 const filenames: string[] = [];
 
 const isbnPath = path.resolve(__dirname, '../../../kite/src/isbn/suffixes.txt');
-const isbnPool = readFileSync(isbnPath).toString().trim().split('\n');
+const isbnPool = readFileSync(isbnPath)
+  .toString()
+  .trim()
+  .split('\n');
 const isbns: string[] = [];
 
 describe('all files', () => {
@@ -27,7 +38,7 @@ describe('all files', () => {
   });
 });
 
-files.forEach((file) => {
+files.forEach(file => {
   describe(`${file.short}`, () => {
     let friend: Friend;
     let documents: Document[];
@@ -42,7 +53,8 @@ files.forEach((file) => {
     }
 
     // @TODO re-enable this test when things stabilize
-    xtest('no todo or lorem text', () => { // eslint-disable-line no-undef
+    xtest('no todo or lorem text', () => {
+      // eslint-disable-line no-undef
       expect(fileContents).not.toContain(': TODO');
       expect(fileContents).not.toContain('Lorem');
     });
@@ -78,15 +90,10 @@ files.forEach((file) => {
     });
 
     test('has correct document props', () => {
-      documents.forEach((document) => {
-        expect(without(Object.keys(document).sort(), 'original_title', 'published')).toEqual([
-          'description',
-          'editions',
-          'filename',
-          'slug',
-          'tags',
-          'title',
-        ]);
+      documents.forEach(document => {
+        expect(
+          without(Object.keys(document).sort(), 'original_title', 'published'),
+        ).toEqual(['description', 'editions', 'filename', 'slug', 'tags', 'title']);
       });
     });
 
@@ -103,14 +110,14 @@ files.forEach((file) => {
     });
 
     test('document filenames are globally unique', () => {
-      documents.forEach((doc) => {
+      documents.forEach(doc => {
         expect(filenames.indexOf(doc.filename)).toBe(-1);
         filenames.push(doc.filename);
       });
     });
 
     test('document props are correct type', () => {
-      documents.forEach((document) => {
+      documents.forEach(document => {
         expect(typeof document.title).toBe('string');
         expect(typeof document.slug).toBe('string');
         expect(typeof document.description).toBe('string');
@@ -122,27 +129,27 @@ files.forEach((file) => {
     });
 
     test('document tags are correct', () => {
-      tags(friend).forEach((tag) => {
+      tags(friend).forEach(tag => {
         expect(typeof tag).toBe('string');
         expect(tag).toBe(kebabCase(tag));
       });
     });
 
     test('document filenames may not have spaces', () => {
-      documents.forEach((document) => {
+      documents.forEach(document => {
         const hasSpace = document.filename.indexOf(' ') !== -1;
         expect(hasSpace).toBe(false);
       });
     });
 
     test('editions have correct type', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         expect(['updated', 'original', 'modernized'].indexOf(edition.type)).not.toBe(-1);
       });
     });
 
     test('edition pages is number if exists', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         if (!hasProp(edition, 'pages')) {
           return;
         }
@@ -152,13 +159,13 @@ files.forEach((file) => {
     });
 
     test('edition formats is array', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         expect(Array.isArray(edition.formats)).toBe(true);
       });
     });
 
     test('edition isbn is correct if exists', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         if (!hasProp(edition, 'isbn')) {
           return;
         }
@@ -167,7 +174,7 @@ files.forEach((file) => {
     });
 
     test('updated editions have editor', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         if (edition.type === 'updated' && file.path.indexOf('/es/') === -1) {
           expect(hasProp(edition, 'editor')).toBe(true);
           expect(typeof edition.editor).toBe('string');
@@ -204,14 +211,14 @@ files.forEach((file) => {
 
     test('formats have correct type', () => {
       const types = ['pdf', 'mobi', 'epub', 'paperback', 'audio'];
-      formats(friend).forEach((format) => {
+      formats(friend).forEach(format => {
         expect(types.indexOf(format.type)).not.toBe(-1);
       });
     });
 
     test('audio format requires audio data', () => {
-      editions(friend).forEach((edition) => {
-        edition.formats.forEach((format) => {
+      editions(friend).forEach(edition => {
+        edition.formats.forEach(format => {
           if (format.type !== 'audio') {
             return;
           }
@@ -221,7 +228,7 @@ files.forEach((file) => {
     });
 
     test('audio data requires corresponding edition format of audio', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         if (!hasProp(edition, 'audio')) {
           return;
         }
@@ -231,14 +238,14 @@ files.forEach((file) => {
     });
 
     test('editions have at least one chapter', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         expect(Array.isArray(edition.chapters)).toBe(true);
         expect(edition.chapters.length > 0).toBe(true);
       });
     });
 
     test('chapters have non-empty string titles or number', () => {
-      chapters(friend).forEach((chapter) => {
+      chapters(friend).forEach(chapter => {
         if (hasProp(chapter, 'title')) {
           expect(typeof chapter.title).toBe('string');
           expect(chapter.title).toBeTruthy();
@@ -250,7 +257,7 @@ files.forEach((file) => {
     });
 
     test('chapters may have optional non-empty subtitles', () => {
-      chapters(friend).forEach((chapter) => {
+      chapters(friend).forEach(chapter => {
         if (hasProp(chapter, 'subtitle')) {
           expect(typeof chapter.subtitle).toBe('string');
           expect(chapter.subtitle).toBeTruthy();

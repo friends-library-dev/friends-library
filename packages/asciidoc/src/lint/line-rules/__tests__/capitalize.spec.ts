@@ -15,9 +15,7 @@ describe('capitalize()', () => {
     });
   });
 
-  const violations = [
-    ['Foo satan,', 'Foo Satan,'],
-  ];
+  const violations = [['Foo satan,', 'Foo Satan,']];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
     const results = capitalize(line, [], 1);
@@ -25,9 +23,7 @@ describe('capitalize()', () => {
     expect(results[0].recommendation).toBe(reco);
   });
 
-  const allowed = [
-    ['Satan foo'],
-  ];
+  const allowed = [['Satan foo']];
 
   test.each(allowed)('%s is not a lint violation', line => {
     expect(capitalize(line, [], 1)).toHaveLength(0);

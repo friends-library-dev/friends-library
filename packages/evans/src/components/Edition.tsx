@@ -20,18 +20,18 @@ const EditionHeading = styled.h1`
   }
 `;
 
-type Props = {
+interface Props {
   edition: {
     description?: string;
     type: EditionType;
-    formats: Array<{
+    formats: {
       type: string;
       url: string;
-    }>;
+    }[];
   };
-};
+}
 
-const Edition = ({ edition }: Props) => {
+const Edition: React.SFC<Props> = ({ edition }) => {
   const description = edition.description || descriptions[edition.type];
   return (
     <section>

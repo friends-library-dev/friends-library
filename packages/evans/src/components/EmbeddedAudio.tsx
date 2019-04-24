@@ -19,10 +19,10 @@ function src(id: number): string {
   return `https://w.soundcloud.com/player/?${query}`;
 }
 
-type Props = {
-  title: string,
-  id: number,
-};
+interface Props {
+  title: string;
+  id: number;
+}
 
 export default ({ id, title }: Props) => (
   <iframe

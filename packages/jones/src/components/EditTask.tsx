@@ -66,23 +66,23 @@ const Input = styled.input`
 
 let friendsFetchedThisSession = false;
 
-type Props = {
-  friends: Array<{
+interface Props {
+  friends: {
     name: string;
     repoId: number;
     slug: string;
-  }>;
+  }[];
   task: Task;
   updateTask: Dispatch;
   goToTasks: Dispatch;
   deleteTask: Dispatch;
   fetchFriendRepos: Dispatch;
-};
+}
 
-type State = {
+interface State {
   name: string;
   repoId: number | null;
-};
+}
 
 class EditTask extends React.Component<Props, State> {
   private input = React.createRef<HTMLInputElement>();
@@ -95,7 +95,7 @@ class EditTask extends React.Component<Props, State> {
     };
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     const { fetchFriendRepos, friends } = this.props;
     // re-fetch friend repos once per session to add new friends
     if (!friendsFetchedThisSession || friends.length === 0) {
@@ -127,7 +127,7 @@ class EditTask extends React.Component<Props, State> {
     goToTasks();
   };
 
-  public render() {
+  public render(): JSX.Element {
     const { name, repoId } = this.state;
     const { task, friends } = this.props;
     return (
@@ -180,7 +180,7 @@ class EditTask extends React.Component<Props, State> {
   }
 }
 
-const mapState = (state: AppState) => ({
+const mapState = (state: AppState): Pick<Props, 'friends' | 'task'> => ({
   friends: state.repos.map(r => ({
     repoId: r.id,
     name: r.friendName,

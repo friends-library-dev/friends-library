@@ -1,6 +1,6 @@
 import { Asciidoc, FilePath } from '@friends-library/types';
 
-export type ModifiedAsciidocFile = {
+export interface ModifiedAsciidocFile {
   path: FilePath;
   adoc: Asciidoc;
-};
+}

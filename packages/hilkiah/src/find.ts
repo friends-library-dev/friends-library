@@ -1,29 +1,26 @@
-const books: Array<{
+import bookJson from './books.json';
+import { toNumber } from './convert';
+import { romanSingleOrRange, colonComma, colonSingleOrRange, romanComma } from './verses';
+import { incorrectAmbiguous } from './disambiguate';
+
+const books: {
   name: string;
   abbreviations: string[];
-}> = require('./books.json');
-const { toNumber } = require('./convert');
-const {
-  romanSingleOrRange,
-  colonComma,
-  colonSingleOrRange,
-  romanComma,
-} = require('./verses');
-const { incorrectAmbiguous } = require('./disambiguate');
+}[] = bookJson;
 
-export type Ref = {
+export interface Ref {
   book: string;
   contiguous: boolean;
-  verses: Array<{
+  verses: {
     chapter: number;
     verse: number;
-  }>;
+  }[];
   match: string;
   position: {
     start: number;
     end: number;
   };
-};
+}
 
 const ROM = '(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})';
 const ARAB = '[\\d]{1,3}';
@@ -50,7 +47,7 @@ function absorbRight(ref: Ref, input: string): Ref {
 }
 
 function extractRef(book: string, chapter: number, match: RegExpMatchArray): Ref | null {
-  if (match.index === undefined || match.input == undefined) {
+  if (match.index === undefined || match.input === undefined) {
     return null;
   }
   const start = match.index + match[0].length;
@@ -94,7 +91,7 @@ function extractRef(book: string, chapter: number, match: RegExpMatchArray): Ref
   return ref;
 }
 
-export function find(str: string) {
+export function find(str: string): Ref[] {
   const refs: Ref[] = [];
   books.forEach(book => {
     let pattern = book.abbreviations

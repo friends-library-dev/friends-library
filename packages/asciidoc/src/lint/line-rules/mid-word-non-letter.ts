@@ -15,7 +15,7 @@ const rule: LineRule = (
     return [];
   }
 
-  const expr = /[a-z][0-9&£$%*(={}°\\/\[\]](?!hellip;)([a-zA-Z ]|\b)/g;
+  const expr = /[a-z][0-9&£$%*(={}°\\/[\]](?!hellip;)([a-zA-Z ]|\b)/g;
   let match;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {

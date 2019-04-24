@@ -20,7 +20,7 @@ const defaultState: State = {
   network: [],
 };
 
-async function loadState() {
+async function loadState(): Promise<State | {}> {
   try {
     let state = (await localForage.getItem('jones')) as SavedState;
     state = state || getLegacyState() || {};
@@ -38,7 +38,7 @@ async function loadState() {
   }
 }
 
-const saveState = (state: State) => {
+const saveState = (state: State): void => {
   try {
     localForage.setItem('jones', state);
   } catch (err) {
@@ -46,9 +46,10 @@ const saveState = (state: State) => {
   }
 };
 
+// @ts-ignore
 const sliceReducer = combineReducers(rootReducer);
 
-const reducer = (state: any = defaultState, action: Action) => {
+const reducer = (state: any = defaultState, action: Action): any => {
   if (action.type === 'HARD_RESET') {
     localForage.removeItem('jones');
     return {
@@ -60,7 +61,7 @@ const reducer = (state: any = defaultState, action: Action) => {
   return sliceReducer(state, action);
 };
 
-export default async function() {
+export default async function(): Promise<any> {
   const savedState = await loadState();
   const store = configureStore({
     reducer,
@@ -92,7 +93,7 @@ export default async function() {
   return store;
 }
 
-function getLegacyState(): Object | null {
+function getLegacyState(): Record<string, any> | null {
   const serialized = localStorage.getItem('jones');
   if (serialized == null) {
     return null;
