@@ -1,6 +1,6 @@
-import { italicize } from '../format';
+import { italicize, Range } from '../format';
 
-const cases = [
+const cases: [string, string, string, Range, string][] = [
   [
     'Foo',
     'Foo bar',

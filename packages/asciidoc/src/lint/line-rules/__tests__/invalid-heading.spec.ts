@@ -9,7 +9,8 @@ describe('invalidHeading()', () => {
       column: 1,
       type: 'error',
       rule: 'invalid-heading',
-      message: 'Headings may only have 2-4 equal signs, and must be followed by a space and at least one character',
+      message:
+        'Headings may only have 2-4 equal signs, and must be followed by a space and at least one character',
       fixable: false,
     });
   });

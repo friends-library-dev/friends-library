@@ -10,7 +10,7 @@ const rule: LineRule = (
     return [];
   }
 
-  const match = line.match(/^\[[^ \[]+(\.)\]$/);
+  const match = line.match(/^\[[^ []+(\.)\]$/);
   if (!match) {
     return [];
   }

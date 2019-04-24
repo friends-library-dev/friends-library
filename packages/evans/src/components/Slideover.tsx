@@ -30,11 +30,10 @@ const Slideover = styled.div<{ isOpen: boolean }>`
   }
 `;
 
-type Props = {
-  isOpen: boolean,
-  close: () => void,
-};
-
+interface Props {
+  isOpen: boolean;
+  close: () => void;
+}
 
 export default ({ isOpen, close }: Props) => (
   <Slideover isOpen={isOpen}>

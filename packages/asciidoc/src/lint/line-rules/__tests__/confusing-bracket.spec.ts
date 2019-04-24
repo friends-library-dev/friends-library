@@ -10,7 +10,8 @@ describe('confusingBracket()', () => {
       column: false,
       type: 'error',
       rule: 'confusing-bracket',
-      message: 'Line-ending bracket needs to be escaped because the line starts with a [.book-title]',
+      message:
+        'Line-ending bracket needs to be escaped because the line starts with a [.book-title]',
       recommendation: '[.book-title]#Apology#, foo+++]+++',
     });
   });

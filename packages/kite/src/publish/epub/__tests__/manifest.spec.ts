@@ -7,7 +7,6 @@ jest.mock('uuid/v4', () => {
   return jest.fn(() => `uuid${++mockCounter}`);
 });
 
-
 describe('getEpubManifest()', () => {
   beforeEach(() => {
     mockCounter = 0;

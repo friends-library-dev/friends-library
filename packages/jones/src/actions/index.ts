@@ -39,7 +39,7 @@ export const toggleSearchRegexp = createAction('TOGGLE_SEARCH_REGEXP');
 export const toggleSearchWords = createAction('TOGGLE_SEARCH_WORDS');
 export const reopenTask = createAction('REOPEN_TASK');
 
-export function toggleSidebarOpen(adoc: Asciidoc): ReduxThunk {
+export function toggleSidebarOpen(): ReduxThunk {
   return (dispatch: Dispatch, getState: () => State) => {
     const task = currentTask(getState());
     if (!task) return;

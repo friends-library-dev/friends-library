@@ -6,11 +6,11 @@ import path from 'path';
 
 const { KITE_DOCS_REPOS_ROOT } = requireEnv('KITE_DOCS_REPOS_ROOT');
 
-type ChapterizeOptions = {
+interface ChapterizeOptions {
   file: string;
   dest: string;
   chStart: number;
-};
+}
 
 export default function chapterize({ file, dest, chStart }: ChapterizeOptions): void {
   if (!fs.existsSync(file)) {

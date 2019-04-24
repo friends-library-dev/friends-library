@@ -7,12 +7,8 @@ const PageTitle = styled.h1`
   margin: 10px 0 25px;
 `;
 
-type Props = {
-  children: React.ReactNode,
-};
+interface Props {
+  children: React.ReactNode;
+}
 
-export default ({ children }: Props) => (
-  <PageTitle>
-    {children}
-  </PageTitle>
-);
+export default ({ children }: Props) => <PageTitle>{children}</PageTitle>;

@@ -9,7 +9,8 @@ describe('unintentionalListItem()', () => {
       column: 2,
       type: 'error',
       rule: 'unintentional-list-item',
-      message: 'Periods near the beginning of the line sometimes need to be escaped to prevent errors converting to HTML.',
+      message:
+        'Periods near the beginning of the line sometimes need to be escaped to prevent errors converting to HTML.',
       recommendation: 'T+++.+++ Story came for lunch.',
     });
   });
@@ -27,10 +28,7 @@ describe('unintentionalListItem()', () => {
     expect(results[0].recommendation).toBe(reco);
   });
 
-  const allowed = [
-    ['Mr. Foo came'],
-    ['1772 was a good year'],
-  ];
+  const allowed = [['Mr. Foo came'], ['1772 was a good year']];
 
   test.each(allowed)('%s is not a lint violation', line => {
     expect(unintentionalListItem(line, [], 1)).toHaveLength(0);

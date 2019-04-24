@@ -1,15 +1,15 @@
-type ChapterData = {
+interface ChapterData {
   title?: string;
   subtitle?: string;
   number?: number;
-};
+}
 
 export default class Chapter {
   public title?: string;
   public number?: number;
   public subtitle?: string;
 
-  constructor(data: ChapterData) {
+  public constructor(data: ChapterData) {
     if (data.title && data.number) {
       throw new Error('Chapter may not have both a title and a number');
     }

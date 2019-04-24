@@ -1,11 +1,11 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
 import { BlockRule } from '../types';
 
-type Delimiter = {
+interface Delimiter {
   line: number;
   type: 'start' | 'end';
   flagged: boolean;
-};
+}
 
 const rule: BlockRule = (block: Asciidoc): LintResult[] => {
   const lines = block.split('\n');

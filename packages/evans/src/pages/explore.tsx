@@ -3,17 +3,17 @@ import { Link, graphql } from 'gatsby';
 import { Slug } from '@friends-library/types';
 import { Layout, Block, PageTitle, Divider, Button } from '../components';
 
-type Props = {
+interface Props {
   data: {
     allFriend: {
-      edges: Array<{
+      edges: {
         node: {
           slug: Slug;
         };
-      }>;
+      }[];
     };
   };
-};
+}
 
 export default ({
   data: {

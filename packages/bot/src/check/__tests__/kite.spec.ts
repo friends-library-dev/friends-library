@@ -265,7 +265,7 @@ describe('kiteCheck()', () => {
 });
 
 class TestListener extends EventEmitter {
-  listen() {
+  public listen() {
     return Promise.resolve(this);
   }
 }

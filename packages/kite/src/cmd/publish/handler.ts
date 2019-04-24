@@ -22,7 +22,7 @@ import {
   DocumentArtifacts,
 } from '@friends-library/types';
 
-export type PublishOptions = {
+export interface PublishOptions {
   path: string;
   noFrontmatter: boolean;
   perform: boolean;
@@ -36,9 +36,9 @@ export type PublishOptions = {
   fix: boolean;
   condense: boolean;
   printSize?: PrintSizeAbbrev;
-};
+}
 
-export default function handler(argv: Arguments<PublishOptions>) {
+export default function handler(argv: Arguments<PublishOptions>): void {
   if (argv.skipLint !== true) {
     lint(argv.path, argv.fix);
   }
@@ -46,7 +46,10 @@ export default function handler(argv: Arguments<PublishOptions>) {
   publishPrecursors(precursors, argv);
 }
 
-export function publishPrecursors(precursors: SourcePrecursor[], argv: PublishOptions) {
+export function publishPrecursors(
+  precursors: SourcePrecursor[],
+  argv: PublishOptions,
+): void {
   fs.removeSync(PUBLISH_DIR);
   fs.ensureDir(PUBLISH_DIR);
 
@@ -73,7 +76,11 @@ function extractMeta(argv: PublishOptions): JobMeta {
   };
 }
 
-function getJobs(precursors: SourcePrecursor[], meta: JobMeta, targets: FileType[]) {
+function getJobs(
+  precursors: SourcePrecursor[],
+  meta: JobMeta,
+  targets: FileType[],
+): Job[] {
   const specs = precursors.map(createSourceSpec);
 
   specs.forEach(spec => {

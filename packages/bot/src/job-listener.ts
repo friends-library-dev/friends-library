@@ -10,21 +10,21 @@ if (typeof API_URL !== 'string') {
   throw new Error('API_URL env var must be defined.');
 }
 
-type JobState = {
+interface JobState {
   status: 'queued' | 'in_progress' | 'failed' | 'succeeded';
   url?: Url;
-};
+}
 
 export default class JobListener extends EventEmitter {
-  static POLL_INTERVAL = 10 * 1000; // 10 seconds
-  static TIMEOUT = 15 * 60 * 1000; // 15 minutes
-  static KEEP_ALIVE_INTERVAL = 60 * 1000; // 1 minute
+  public static TIMEOUT = 15 * 60 * 1000; // 15 minutes
+  public static POLL_INTERVAL = 10 * 1000; // 10 seconds
+  public static KEEP_ALIVE_INTERVAL = 60 * 1000; // 1 minute
 
-  ids: Uuid[];
-  timeouts: { [k: string]: any };
-  jobs: { [k: string]: JobState };
+  protected ids: Uuid[];
+  protected timeouts: { [k: string]: any };
+  protected jobs: { [k: string]: JobState };
 
-  constructor(ids: Uuid[]) {
+  public constructor(ids: Uuid[]) {
     super();
     this.ids = ids;
     this.timeouts = {};
@@ -40,7 +40,7 @@ export default class JobListener extends EventEmitter {
     });
   }
 
-  protected fetchState(id: Uuid) {
+  protected fetchState(id: Uuid): void {
     fetch(`${API_URL}/kite-jobs/${id}`)
       .then(res => res.json())
       .then(json =>
@@ -51,7 +51,7 @@ export default class JobListener extends EventEmitter {
       );
   }
 
-  protected stateChanged(id: Uuid, newState: JobState) {
+  protected stateChanged(id: Uuid, newState: JobState): boolean {
     const current = this.jobs[id];
     if (current === null && newState) {
       return true;
@@ -59,7 +59,7 @@ export default class JobListener extends EventEmitter {
     return JSON.stringify(current) !== JSON.stringify(newState);
   }
 
-  protected processUpdate(id: Uuid, state: JobState) {
+  protected processUpdate(id: Uuid, state: JobState): void {
     this.emit('update', { id, ...state });
 
     if (this.stateChanged(id, state)) {
@@ -86,7 +86,7 @@ export default class JobListener extends EventEmitter {
     }
   }
 
-  protected keepAlive() {
+  protected keepAlive(): void {
     if (this.timeouts.keepAlive) {
       clearTimeout(this.timeouts.keepAlive);
     }
@@ -102,20 +102,20 @@ export default class JobListener extends EventEmitter {
     }, JobListener.KEEP_ALIVE_INTERVAL);
   }
 
-  protected startTimeout() {
+  protected startTimeout(): void {
     if (this.timeouts.timeout) {
       clearTimeout(this.timeouts.timeout);
     }
     this.timeouts.timeout = setTimeout(() => this.onTimeout(), JobListener.TIMEOUT);
   }
 
-  protected onTimeout() {
+  protected onTimeout(): void {
     this.emit('timeout');
     this.clearAllTimeouts();
     this.emit('shutdown', this.jobs);
   }
 
-  protected clearAllTimeouts() {
+  protected clearAllTimeouts(): void {
     Object.values(this.timeouts).forEach(clearTimeout);
   }
 }

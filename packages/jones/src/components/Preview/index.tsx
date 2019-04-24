@@ -54,24 +54,24 @@ const globalStyles = css`
   }
 `;
 
-type OwnProps = {
+interface OwnProps {
   taskId: Uuid;
   file: string;
-};
+}
 
 type Props = OwnProps & {
   getHtml: () => Html;
 };
 
-type State = {
+interface State {
   cssLoaded: boolean;
   html: Html;
-};
+}
 
 class Component extends React.Component<Props, State> {
-  state: State = { cssLoaded: false, html: '' };
+  public state: State = { cssLoaded: false, html: '' };
 
-  componentDidMount() {
+  public componentDidMount(): void {
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.type = 'text/css';
@@ -93,27 +93,27 @@ class Component extends React.Component<Props, State> {
     }, 100);
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount(): void {
     window.removeEventListener('scroll', this.watchScroll);
   }
 
-  restoreScroll() {
+  protected restoreScroll(): void {
     const savedScroll = sessionStorage.getItem(this.scrollKey());
     if (savedScroll) {
       window.scrollTo(0, Number(savedScroll));
     }
   }
 
-  scrollKey() {
+  protected scrollKey(): string {
     const { taskId, file } = this.props;
     return `scroll:${taskId}--${file}`;
   }
 
-  watchScroll = debounce(() => {
+  protected watchScroll = debounce(() => {
     sessionStorage.setItem(this.scrollKey(), String(window.scrollY));
   }, 200);
 
-  render() {
+  public render(): JSX.Element {
     const { cssLoaded, html } = this.state;
     return (
       <Rendered className="body">
@@ -124,7 +124,7 @@ class Component extends React.Component<Props, State> {
           ) : (
             <Centered>
               <h1 style={{ height: '100vh', opacity: 0.8, lineHeight: '100vh' }}>
-                <img src={throbber} style={{ height: 45 }} />
+                <img alt="" src={throbber} style={{ height: 45 }} />
               </h1>
             </Centered>
           )}

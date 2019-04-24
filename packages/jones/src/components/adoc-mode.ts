@@ -18,7 +18,7 @@ ace.define(
   (acequire: any, exports: any) => {
     const oop = acequire('ace/lib/oop');
     const { TextHighlightRules } = acequire('ace/mode/text_highlight_rules');
-    const AdocHighlightRules = function() {
+    const AdocHighlightRules = function(): void {
       // @ts-ignore
       this.$rules = {
         start: [
@@ -214,7 +214,7 @@ ace.define(
     const AdocHighlightRules = acequire('ace/mode/adoc_highlight_rules')
       .AdocHighlightRules;
 
-    const Mode = function() {
+    const Mode = function(): void {
       // @ts-ignore
       this.HighlightRules = AdocHighlightRules;
     };

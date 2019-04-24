@@ -1,6 +1,6 @@
 import taskReducer from '../tasks-reducer';
 
-function result(start, end, path = 'path.adoc') {
+function result(start, end, path = 'path.adoc'): any {
   return {
     path,
     start: { line: start[0], column: start[1] },

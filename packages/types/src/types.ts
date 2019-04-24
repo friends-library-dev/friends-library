@@ -45,6 +45,7 @@ export function isNotFalse<T>(x: T | false): x is T {
 }
 
 export function requireEnv<T extends string>(...keys: T[]): { [k in T]: string } {
+  /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
   const obj = {} as { [k in T]: string };
   keys.forEach(key => {
     const val = process.env[key];
@@ -56,7 +57,7 @@ export function requireEnv<T extends string>(...keys: T[]): { [k in T]: string }
   return obj;
 }
 
-export type LintResult = {
+export interface LintResult {
   line: number;
   column: number | false;
   type: 'error' | 'warning' | 'notice';
@@ -65,36 +66,36 @@ export type LintResult = {
   recommendation?: string;
   fixable?: boolean;
   info?: string;
-};
+}
 
-export type LintOptions = {
+export interface LintOptions {
   lang: Lang;
   editionType?: EditionType;
   include?: string[];
   exclude?: string[];
-};
+}
 
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
 
-export type Job = {
+export interface Job {
   id: string;
   spec: SourceSpec;
   meta: JobMeta;
   target: FileType;
   filename: string;
-};
+}
 
 export type PrintSizeName = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
 
 export type PrintSizeAbbrev = 's' | 'm' | 'l' | 'xl' | 'xxl';
 
-export type DocumentArtifacts = {
+export interface DocumentArtifacts {
   filePath: FilePath;
   srcDir: FilePath;
-};
+}
 
-export type PrintSize = {
+export interface PrintSize {
   name: PrintSizeName;
   abbrev: PrintSizeAbbrev;
   dims: {
@@ -108,7 +109,7 @@ export type PrintSize = {
     inner: number;
     runningHeadTop: number;
   };
-};
+}
 
 export type SourceSpec = Readonly<{
   id: string;
@@ -141,14 +142,14 @@ export interface AsciidocConversionLog {
   getSourceLocation(): { getLineNumber(): number } | undefined;
 }
 
-export type Epigraph = {
+export interface Epigraph {
   text: string;
   source?: string;
-};
+}
 
 export type Notes = Map<string, Html>;
 
-export type Heading = {
+export interface Heading {
   id: string;
   text: string;
   shortText?: string;
@@ -156,7 +157,7 @@ export type Heading = {
     type: string;
     number: number;
   };
-};
+}
 
 export type DocSection = Readonly<{
   id: string;
@@ -194,6 +195,6 @@ export type DocumentMeta = Readonly<{
   };
 }>;
 
-export type FileManifest = {
+export interface FileManifest {
   [key: string]: string;
-};
+}

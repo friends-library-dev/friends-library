@@ -12,6 +12,7 @@ import * as clone from './cmd/clone';
 
 prettifyErrors();
 
+// eslint-disable-next-line no-unused-expressions
 yargs
   .scriptName('yarn fell')
   .command(branch)

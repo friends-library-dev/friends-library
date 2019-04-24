@@ -33,15 +33,15 @@ const scrollCss = css`
   }
 `;
 
-type Props = {
+interface Props {
   loggedIn: boolean;
   screen: string;
   receiveAccessToken: Dispatch;
   hardReset: Dispatch;
-};
+}
 
 class App extends React.Component<Props> {
-  componentDidMount() {
+  public componentDidMount(): void {
     const { receiveAccessToken } = this.props;
     const query = new URLSearchParams(window.location.search);
     if (query.has('access_token')) {
@@ -51,7 +51,7 @@ class App extends React.Component<Props> {
     }
   }
 
-  renderScreen() {
+  protected renderScreen(): JSX.Element | null {
     const { screen } = this.props;
 
     switch (screen) {
@@ -66,7 +66,7 @@ class App extends React.Component<Props> {
     }
   }
 
-  render() {
+  public render(): JSX.Element {
     const { loggedIn, hardReset } = this.props;
     if (!loggedIn) {
       return <Login />;
@@ -90,7 +90,7 @@ class App extends React.Component<Props> {
   }
 }
 
-const mapState = (state: State) => ({
+const mapState = (state: State): Pick<Props, 'loggedIn' | 'screen'> => ({
   loggedIn: Boolean(state.github.token),
   screen: state.screen,
 });

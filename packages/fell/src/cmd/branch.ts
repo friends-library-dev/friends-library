@@ -5,7 +5,7 @@ import { Argv } from '../type';
 import { getRepos, getBranchMap } from '../repos';
 import { excludable, relPath } from './helpers';
 
-export async function handler({ exclude }: Argv) {
+export async function handler({ exclude }: Argv): Promise<void> {
   const repos = await getRepos(exclude);
   const branchMap = await getBranchMap(repos);
   [...branchMap].forEach(([branch, branchRepos]) => {

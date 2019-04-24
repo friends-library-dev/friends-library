@@ -7,12 +7,12 @@ import { ModifiedAsciidocFile } from '../type';
 import * as kiteJobs from '../kite-jobs';
 import JobListener from '../job-listener';
 
-type JobResults = {
+interface JobResults {
   [k: string]: {
     url: Url;
     status: string;
   };
-};
+}
 
 export default async function kiteCheck(
   context: Context,
@@ -205,13 +205,15 @@ async function submitKiteJobs(
   return [jobListener, new Set(Object.keys(jobMap)), jobMap];
 }
 
-function makeUpdateCheck(context: Context, checkRunId: number) {
+type CheckUpdater = (
+  status: 'completed' | 'in_progress',
+  conclusion?: 'timed_out' | 'failure' | 'success',
+  data?: Record<string, any>,
+) => Promise<any>;
+
+function makeUpdateCheck(context: Context, checkRunId: number): CheckUpdater {
   const { github, repo } = context;
-  return function updateCheck(
-    status: 'completed' | 'in_progress',
-    conclusion?: 'timed_out' | 'failure' | 'success',
-    data = {},
-  ) {
+  return function updateCheck(status, conclusion, data = {}) {
     return github.checks.update(
       repo({
         check_run_id: checkRunId,
@@ -246,11 +248,11 @@ async function getAllPrFiles(context: Context): Promise<Map<FilePath, Asciidoc>>
     }),
   );
 
-  type TreeNode = {
+  interface TreeNode {
     type: string;
     sha: Sha;
     path: string;
-  };
+  }
 
   // get file content for all non-dir tree nodes
   const files = new Map();

@@ -5,7 +5,7 @@ import { excludable, scopeable } from './helpers';
 import { getFriendRepos } from '../github';
 import * as git from '../git';
 
-export async function handler() {
+export async function handler(): Promise<void> {
   let alreadyCloned = 0;
   const cwd = process.cwd();
   const repos = await getFriendRepos();

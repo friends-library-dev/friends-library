@@ -35,12 +35,12 @@ const StyledSidebar = styled.section`
   }
 `;
 
-type ItemProps = {
+interface ItemProps {
   text: string;
   href?: string;
-};
+}
 
-const Item = ({ text, href }: ItemProps) => {
+const Item: React.SFC<ItemProps> = ({ text, href }) => {
   return (
     <li>
       <a href={`#${href || text.toLowerCase().replace(/ /g, '-')}`}>{text}</a>

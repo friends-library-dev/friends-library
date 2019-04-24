@@ -8,11 +8,11 @@ import Button from './Button';
 import Heading from './Heading';
 import TaskList from './TaskList';
 
-type Props = {
+interface Props {
   tasks: Task[];
   changeScreen: Dispatch;
   createTask: Dispatch;
-};
+}
 
 const Welcome: React.SFC<Props> = ({ tasks, changeScreen, createTask }) => (
   <div className="padded-wrap">
@@ -32,7 +32,7 @@ const Welcome: React.SFC<Props> = ({ tasks, changeScreen, createTask }) => (
   </div>
 );
 
-const mapState = (state: State) => ({
+const mapState = (state: State): Pick<Props, 'tasks'> => ({
   tasks: Object.values(state.tasks.present),
 });
 

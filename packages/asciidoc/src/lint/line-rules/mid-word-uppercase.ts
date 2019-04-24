@@ -34,16 +34,16 @@ const rule: LineRule = (
 rule.slug = 'mid-word-uppercase';
 export default rule;
 
-function isMc(match: RegExpExecArray, line: string) {
+function isMc(match: RegExpExecArray, line: string): boolean {
   if (match[0][0] !== 'c') {
     return false;
   }
-  return line.substr(match.index - 2, 2).match(/Ma?$/) !== null;
+  return !!line.substr(match.index - 2, 2).match(/Ma?$/);
 }
 
-function isLitV(match: RegExpExecArray, line: string) {
+function isLitV(match: RegExpExecArray, line: string): boolean {
   if (match[0] !== 'tV') {
     return false;
   }
-  return line.substr(match.index - 3, 3).match(/\bLi$/) !== null;
+  return !!line.substr(match.index - 3, 3).match(/\bLi$/);
 }

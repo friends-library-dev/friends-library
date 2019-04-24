@@ -21,7 +21,7 @@ type CloudFilePath = string;
 
 let clientInstance: AWS.S3;
 
-function getClient() {
+function getClient(): AWS.S3 {
   if (!clientInstance) {
     clientInstance = new AWS.S3({
       endpoint: new AWS.Endpoint(CLOUD_STORAGE_ENDPOINT).href,

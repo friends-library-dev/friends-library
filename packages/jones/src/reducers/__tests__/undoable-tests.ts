@@ -1,13 +1,13 @@
 import { undoable, emptyUndoable } from '../undoable';
 
-function incrementReducer(state = 0, { type }) {
+function incrementReducer(state = 0, { type }): number {
   if (type !== 'IGNORE') {
     return state + 1;
   }
   return state;
 }
 
-function action(type) {
+function action(type): { type: string } {
   return { type };
 }
 
@@ -21,7 +21,7 @@ describe('undoable()', () => {
       past: [],
       present: 0,
       future: [],
-    }
+    };
   });
 
   test('reset resets the history', () => {
@@ -29,7 +29,7 @@ describe('undoable()', () => {
       past: [0],
       present: 1,
       future: [],
-    }
+    };
     const newState = reducer(state, action('RESET_UNDO_TEST'));
     expect(newState).toEqual({
       past: [],
@@ -43,7 +43,7 @@ describe('undoable()', () => {
       past: [0],
       present: 1,
       future: [],
-    }
+    };
     const newState = reducer(state, action('UNDO_TEST'));
     expect(newState).toEqual({
       past: [],
@@ -57,7 +57,7 @@ describe('undoable()', () => {
       past: [],
       present: 0,
       future: [1],
-    }
+    };
     const newState = reducer(state, action('UNDO_TEST'));
     expect(newState).toBe(state);
   });
@@ -67,7 +67,7 @@ describe('undoable()', () => {
       past: [],
       present: 0,
       future: [1],
-    }
+    };
     const newState = reducer(state, action('REDO_TEST'));
     expect(newState).toEqual({
       past: [0],
@@ -81,7 +81,7 @@ describe('undoable()', () => {
       past: [0],
       present: 1,
       future: [],
-    }
+    };
     const newState = reducer(state, action('REDO_TEST'));
     expect(newState).toBe(state);
   });
@@ -96,7 +96,7 @@ describe('undoable()', () => {
       past: [0, 1, 2],
       present: 3,
       future: [],
-    }
+    };
     const newState = reducer(state, action('RESET_UNDO_TEST'));
     expect(newState).toEqual({
       past: [],
@@ -116,7 +116,7 @@ describe('undoable()', () => {
       past: [2, 3],
       present: 4,
       future: [],
-    })
+    });
   });
 });
 
@@ -125,5 +125,5 @@ test('emptyUndoable() returns empty undoable', () => {
     past: [],
     present: {},
     future: [],
-  })
+  });
 });

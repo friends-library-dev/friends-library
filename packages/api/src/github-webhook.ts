@@ -2,9 +2,11 @@ import { Request, Response } from 'express';
 import get from 'lodash/get';
 import * as slack from './slack';
 
-type WebhookPayload = { [key: string]: any };
+interface WebhookPayload {
+  [key: string]: any;
+}
 
-export async function handleGithubWebhook(req: Request, res: Response) {
+export async function handleGithubWebhook(req: Request, res: Response): Promise<void> {
   res.sendStatus(202);
   res.end();
 
@@ -15,7 +17,7 @@ export async function handleGithubWebhook(req: Request, res: Response) {
   }
 }
 
-async function logToSlack(event: string, payload: WebhookPayload) {
+async function logToSlack(event: string, payload: WebhookPayload): Promise<void> {
   let msg = `(api) Webhook, event: \`${event}\``;
   if (payload.action) {
     msg += `, action: \`${payload.action}\``;

@@ -30,13 +30,13 @@ const Div = styled.div`
   }
 `;
 
-type Props = {
+interface Props {
   data: {
     partial: {
       html: Html;
     };
   };
-};
+}
 
 export default ({
   data: {

@@ -27,7 +27,7 @@ app.options('/zoe-book-request', cors(), (req: Request, res: Response) => {
 
 app.post('/zoe-book-request', cors(), handleBookRequest);
 
-async function handleBookRequest(req: Request, res: Response) {
+async function handleBookRequest(req: Request, res: Response): Promise<void> {
   const params = <{ [k: string]: any }>req.body;
   if (!params['g-recaptcha-response']) {
     res.json({

@@ -51,7 +51,7 @@ export function packageDocument(job: Job): Xml {
 `.trim();
 }
 
-function attrs(data: Object): string {
+function attrs(data: Record<string, any>): string {
   return Object.entries(data)
     .reduce(
       (acc, [key, val]) => {
@@ -63,7 +63,7 @@ function attrs(data: Object): string {
     .join(' ');
 }
 
-export function manifestItems(job: Job): Map<string, Object> {
+export function manifestItems(job: Job): Map<string, Record<string, any>> {
   const {
     spec: { sections, notes },
   } = job;

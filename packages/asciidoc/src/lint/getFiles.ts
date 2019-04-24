@@ -2,7 +2,7 @@ import fs from 'fs';
 import { sync as glob } from 'glob';
 import { Asciidoc, FilePath } from '@friends-library/types';
 
-export default function filesFromPath(
+export function getFiles(
   path: FilePath,
 ): {
   path: FilePath;

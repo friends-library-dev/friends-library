@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import { spawn } from 'child_process';
 import { yellow } from '@friends-library/cli/color';
-import { FilePath } from '@friends-library/types';
+import { DocumentArtifacts } from '@friends-library/types';
 import { FileManifest } from '@friends-library/types';
 import { PUBLISH_DIR } from '../file';
 
@@ -9,21 +9,16 @@ const {
   env: { KITE_PRINCE_BIN },
 } = process;
 
-type Options = {
+interface Options {
   formatOutput?: (line: string) => string;
-};
-
-export type Artifacts = {
-  filePath: FilePath;
-  srcDir: FilePath;
-};
+}
 
 export function prince(
   manifest: FileManifest,
   srcDir: string,
   filename: string,
   opts: Options = {},
-): Promise<Artifacts> {
+): Promise<DocumentArtifacts> {
   if (srcDir.indexOf(`${PUBLISH_DIR}/_src_/`) === 0) {
     throw new Error(`srcDir param must be relative to ${PUBLISH_DIR}/_src_/`);
   }

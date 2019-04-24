@@ -24,7 +24,7 @@ export function makeMobi(job: Job): Promise<DocumentArtifacts> {
 
 function kindlegen(precursorPath: string, job: Job): Promise<void> {
   const bin = path.resolve(
-    path.dirname(require.main!.filename),
+    path.dirname(require.main!.filename), // eslint-disable-line @typescript-eslint/no-non-null-assertion
     '../../../node_modules/kindlegen/bin/kindlegen',
   );
 

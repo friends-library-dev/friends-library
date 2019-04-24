@@ -5,8 +5,8 @@ export function undoable<T>(
   undoKey: string,
   resetters: string[] = [],
   limit: number = 50,
-) {
-  return (state: Undoable<T> = emptyUndoable(), action: Action): Undoable<Object> => {
+): (state: Undoable<T>, action: Action) => Undoable<Record<string, any>> {
+  return (state = emptyUndoable(), action) => {
     if (action.type === `RESET_UNDO_${undoKey}` || resetters.includes(action.type)) {
       return {
         past: [],
@@ -51,5 +51,6 @@ export function undoable<T>(
 }
 
 export function emptyUndoable<T>(): Undoable<T> {
+  // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
   return { past: [], present: {} as T, future: [] };
 }

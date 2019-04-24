@@ -52,11 +52,11 @@ const Line = styled.div`
   }
 `;
 
-type Props = {
+interface Props {
   result: SearchResult;
   edit: Dispatch;
   replace: string;
-};
+}
 
 const Component: React.SFC<Props> = ({ result, edit, replace }) => {
   return (

@@ -134,7 +134,7 @@ const IconSearch = styled.i`
   }
 `;
 
-type Props = {
+interface Props {
   taskId: Uuid;
   collapsed: { [key: string]: boolean };
   editingFile: FilePath;
@@ -142,10 +142,10 @@ type Props = {
   collapseTask: Dispatch;
   updateSearch: Dispatch;
   documents: Document[];
-};
+}
 
 class FriendFiles extends React.Component<Props> {
-  search(path: string) {
+  protected search(path: string): void {
     const { updateSearch } = this.props;
     const [documentSlug, editionType] = path.split('/');
     updateSearch({
@@ -156,7 +156,7 @@ class FriendFiles extends React.Component<Props> {
     });
   }
 
-  isCollapsed(key: string): boolean {
+  protected isCollapsed(key: string): boolean {
     const { collapsed, editingFile } = this.props;
 
     // ensure editing file is always visible, because we can
@@ -168,7 +168,7 @@ class FriendFiles extends React.Component<Props> {
     return collapsed[key] || false;
   }
 
-  renderDoc = (doc: Document) => {
+  protected renderDoc = (doc: Document) => {
     const { collapseTask, taskId } = this.props;
     const key = doc.slug;
     const isCollapsed = this.isCollapsed(key);
@@ -185,7 +185,7 @@ class FriendFiles extends React.Component<Props> {
     );
   };
 
-  renderEdition = (ed: DocumentEdition, doc: Document) => {
+  protected renderEdition = (ed: DocumentEdition, doc: Document) => {
     const { collapseTask, taskId } = this.props;
     const key = [doc.slug, ed.type].join('/');
     const isCollapsed = this.isCollapsed(key);
@@ -200,12 +200,12 @@ class FriendFiles extends React.Component<Props> {
         />
         <IconSearch onClick={() => this.search(key)} isEdition />
         <span className="edition-type">{ed.type}</span> edition:
-        <ul>{ed.files.map(file => this.renderFile(file, ed, doc))}</ul>
+        <ul>{ed.files.map(file => this.renderFile(file))}</ul>
       </EditionLi>
     );
   };
 
-  renderFile = (file: DocumentFile, ed: DocumentEdition, doc: Document) => {
+  protected renderFile = (file: DocumentFile) => {
     const { editingFile, updateTask, taskId } = this.props;
     const editing = file.path === editingFile;
     return (
@@ -225,13 +225,15 @@ class FriendFiles extends React.Component<Props> {
     );
   };
 
-  render() {
+  public render(): JSX.Element {
     const { documents } = this.props;
     return <WrapUl>{documents.map(this.renderDoc)}</WrapUl>;
   }
 }
 
-const mapState = (state: AppState) => {
+const mapState = (
+  state: AppState,
+): Pick<Props, 'taskId' | 'documents' | 'editingFile' | 'collapsed'> => {
   const task = requireCurrentTask(state);
   return {
     taskId: task.id,

@@ -10,7 +10,7 @@ export const command = 'take:api';
 
 export const describe = 'take a job from the API';
 
-export async function handler() {
+export async function handler(): Promise<void> {
   const res = await fetch(`${API_URL || ''}/kite-jobs/take`);
   if (res.status === 204) {
     console.log('No jobs to process.');
@@ -35,7 +35,7 @@ export async function handler() {
   updateJob(id, { status: 'succeeded', url });
 }
 
-function updateJob(id: any, body: any) {
+function updateJob(id: any, body: any): void {
   fetch(`${API_URL || ''}/kite-jobs/${id}`, {
     method: 'patch',
     headers: {

@@ -1,12 +1,12 @@
 import data from './books.json';
 import { Ref } from './find';
 
-const books = data as Array<{
+const books = data as {
   name: string;
   short: string;
-}>;
+}[];
 
-export function format({ book, verses, contiguous, match }: Ref, opts = {}) {
+export function format({ book, verses, contiguous, match }: Ref, opts = {}): string {
   const options = {
     shortBookNames: true,
     preserveFull: true,

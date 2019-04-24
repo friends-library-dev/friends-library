@@ -5,7 +5,7 @@ import { getRepos, getStatusGroups } from '../repos';
 import { excludable, scopeable } from './helpers';
 import * as git from '../git';
 
-export async function handler({ exclude, scope }: Argv) {
+export async function handler({ exclude, scope }: Argv): Promise<void> {
   const repos = await getRepos(exclude, scope);
   const { clean } = await getStatusGroups(repos);
   await Promise.all(clean.map(git.sync));

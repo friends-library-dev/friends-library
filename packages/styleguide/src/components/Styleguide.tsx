@@ -6,7 +6,7 @@ import Content from './Content';
 
 const StyledApp = styled.div``;
 
-const App = () => (
+const App: React.SFC<{}> = () => (
   <StyledApp>
     <Sidebar />
     <Content />

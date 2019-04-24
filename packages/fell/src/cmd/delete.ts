@@ -9,7 +9,7 @@ type Argv = BaseArgv & {
   branch: string;
 };
 
-export async function handler({ exclude, branch, scope }: Argv) {
+export async function handler({ exclude, branch, scope }: Argv): Promise<void> {
   const repos = await getRepos(exclude, scope);
   repos.forEach(async repo => {
     const currentBranch = await git.getCurrentBranch(repo);

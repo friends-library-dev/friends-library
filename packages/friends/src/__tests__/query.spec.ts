@@ -31,10 +31,14 @@ describe('getAllFriends()', () => {
   });
 });
 
-
 describe('query', () => {
   it('can drill into a specific edition', () => {
-    const { friend, document, edition } = query('en', 'george-fox', 'journal', 'original');
+    const { friend, document, edition } = query(
+      'en',
+      'george-fox',
+      'journal',
+      'original',
+    );
 
     expect(friend).toBeInstanceOf(Friend);
     expect(friend.name).toBe('George Fox');
@@ -48,6 +52,8 @@ describe('query', () => {
     const { edition } = query('en', 'isaac-penington', 'writings-volume-1', 'updated');
 
     expect(edition.audio).not.toBeUndefined();
-    expect(edition.audio!.url()).toBe('/isaac-penington/writings-volume-1/updated/podcast.rss');
+    expect(edition.audio!.url()).toBe(
+      '/isaac-penington/writings-volume-1/updated/podcast.rss',
+    );
   });
 });

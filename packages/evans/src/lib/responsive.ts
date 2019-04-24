@@ -1,6 +1,6 @@
 import { Title, Name, Html } from '@friends-library/types';
 
-const REPLACE: string = '<span class="d-none d-sm-inline">$&</span>';
+const REPLACE = '<span class="d-none d-sm-inline">$&</span>';
 
 export default function responsiveDocumentTitle(
   originalTitle: Title,

@@ -16,12 +16,12 @@ describe('all files', () => {
   });
 });
 
-files.forEach((file) => {
+files.forEach(file => {
   describe(`${file.short}`, () => {
     const friend = safeLoad(readFileSync(file.path, 'utf8'));
 
     test('edition audio (when exists) has correct keys', () => {
-      editions(friend).forEach((edition) => {
+      editions(friend).forEach(edition => {
         if (!hasProp(edition, 'audio')) {
           return;
         }
@@ -34,7 +34,7 @@ files.forEach((file) => {
     });
 
     test('audio parts title is string if it exists', () => {
-      audioParts(friend).forEach((part) => {
+      audioParts(friend).forEach(part => {
         if (!hasProp(part, 'title')) {
           return;
         }
@@ -44,7 +44,7 @@ files.forEach((file) => {
     });
 
     test('audio parts have external ids', () => {
-      audioParts(friend).forEach((part) => {
+      audioParts(friend).forEach(part => {
         expect(typeof part.externalIdHq).toBe('number');
         if (part.externalIdLq) {
           expect(typeof part.externalIdLq).toBe('number');
@@ -53,7 +53,7 @@ files.forEach((file) => {
     });
 
     test('audio parts have filesizes', () => {
-      audioParts(friend).forEach((part) => {
+      audioParts(friend).forEach(part => {
         expect(typeof part.filesizeHq).toBe('number');
         if (part.filesizeLq) {
           expect(typeof part.filesizeLq).toBe('number');
@@ -62,7 +62,7 @@ files.forEach((file) => {
     });
 
     test('audio parts hq filesize is larger than lq', () => {
-      audioParts(friend).forEach((part) => {
+      audioParts(friend).forEach(part => {
         if (part.filesizeLq) {
           expect(part.filesizeHq).toBeGreaterThan(part.filesizeLq);
         }
@@ -70,7 +70,7 @@ files.forEach((file) => {
     });
 
     test('audio parts chapters are required and should be an array of numbers', () => {
-      audioParts(friend).forEach((part) => {
+      audioParts(friend).forEach(part => {
         expect(Array.isArray(part.chapters)).toBe(true);
         part.chapters.forEach(ch => expect(typeof ch).toBe('number'));
       });

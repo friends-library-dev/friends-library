@@ -2,12 +2,12 @@ import * as React from 'react';
 import Asciidoc from './Asciidoc';
 import Html from './Html';
 
-type Props = {
+interface Props {
   id: string;
   emphasize?: number[];
-};
+}
 
-const Pair = ({ id, emphasize }: Props) => (
+const Pair: React.SFC<Props> = ({ id, emphasize }) => (
   <>
     <Asciidoc id={id} emphasize={emphasize} />
     <Html id={id} />

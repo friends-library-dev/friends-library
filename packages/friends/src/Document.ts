@@ -3,9 +3,9 @@ import Edition from './Edition';
 import Friend from './Friend';
 
 export default class Document {
-  friend: Friend;
+  public friend: Friend;
 
-  constructor(
+  public constructor(
     public title: Title = '',
     public originalTitle: Title = '',
     public slug: Slug = '',
@@ -18,25 +18,25 @@ export default class Document {
     this.friend = new Friend();
   }
 
-  id(): string {
+  public id(): string {
     return `${this.friend.id()}/${this.slug}`;
   }
 
-  url(): Url {
+  public url(): Url {
     return `/${this.friend.slug}/${this.slug}`;
   }
 
-  isCompilation(): boolean {
+  public isCompilation(): boolean {
     return this.friend.slug === 'compilations';
   }
 
-  shortestEdition(): Edition {
+  public shortestEdition(): Edition {
     return this.editions.reduce((shortest, edition) => {
       return !shortest || edition.pages < shortest.pages ? edition : shortest;
     });
   }
 
-  hasAudio(): boolean {
+  public hasAudio(): boolean {
     return this.editions.reduce(
       (docHasAudio, edition) => {
         return (
@@ -53,7 +53,7 @@ export default class Document {
     );
   }
 
-  hasUpdatedEdition(): boolean {
+  public hasUpdatedEdition(): boolean {
     return this.editions.reduce(
       (hasUpdated, edition) => {
         return hasUpdated || edition.type === 'updated';
@@ -62,7 +62,7 @@ export default class Document {
     );
   }
 
-  toJSON(): Document {
+  public toJSON(): Document {
     delete this.friend;
     return this;
   }

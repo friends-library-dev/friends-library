@@ -16,10 +16,10 @@ export type Dispatch = ActionCreator<any>;
 
 export type DateString = string;
 
-export type Action = {
+export interface Action {
   type: string;
   payload?: any;
-};
+}
 
 export type GitHub =
   | {
@@ -32,12 +32,12 @@ export type GitHub =
       user: string;
     };
 
-export type SearchResultContext = {
+export interface SearchResultContext {
   lineNumber: number;
   content: Asciidoc;
-};
+}
 
-export type SearchResult = {
+export interface SearchResult {
   documentSlug: Slug;
   editionType: string;
   path: FilePath;
@@ -52,16 +52,16 @@ export type SearchResult = {
     column: number;
   };
   context: SearchResultContext[];
-};
+}
 
-export type File = {
+export interface File {
   sha: Sha;
   path: FilePath;
   content: Asciidoc;
   editedContent: Asciidoc | null;
-};
+}
 
-export type Task = {
+export interface Task {
   id: Uuid;
   name: string;
   created: DateString;
@@ -79,15 +79,15 @@ export type Task = {
   files: { [key: string]: File };
   editingFile?: FilePath;
   parentCommit?: Sha;
-};
+}
 
-export type Repo = {
+export interface Repo {
   id: number;
   slug: Slug;
   friendName: Name;
-};
+}
 
-export type Search = {
+export interface Search {
   searching: boolean;
   regexp: boolean;
   words: boolean;
@@ -95,19 +95,21 @@ export type Search = {
   documentSlug?: Slug;
   editionType?: EditionType;
   filename?: string;
-};
+}
 
-export type Tasks = { [key: string]: Task };
+export interface Tasks {
+  [key: string]: Task;
+}
 
-export type Undoable<T> = {
+export interface Undoable<T> {
   past: T[];
   present: T;
   future: T[];
-};
+}
 
 export type UndoableTasks = Undoable<Tasks>;
 
-export type BaseState = {
+export interface BaseState {
   version: number;
   prefs: {
     editorFontSize: number;
@@ -118,7 +120,7 @@ export type BaseState = {
   repos: Repo[];
   search: Search;
   network: string[];
-};
+}
 
 export type State = BaseState & {
   tasks: UndoableTasks;

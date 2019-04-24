@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Omit } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import * as actions from '../actions';
 import * as gh from '../lib/github-api';
@@ -57,7 +57,7 @@ const TopNav = styled.div`
   }
 `;
 
-type Props = {
+interface Props {
   token: string;
   requestGitHubUser: Dispatch;
   name?: string;
@@ -65,17 +65,17 @@ type Props = {
   user: string;
   throbbing: boolean;
   screen: string;
-};
+}
 
 class Component extends React.Component<Props> {
-  componentDidMount() {
+  public componentDidMount(): void {
     const { token, requestGitHubUser } = this.props;
     gh.authenticate(token);
     // always re-request the github user so we pull in new avatars, etc
     requestGitHubUser();
   }
 
-  render() {
+  public render(): JSX.Element {
     const { avatar, name, screen, user, throbbing } = this.props;
     return (
       <TopNav throbbing={throbbing}>
@@ -95,7 +95,7 @@ class Component extends React.Component<Props> {
   }
 }
 
-const mapState = (state: AppState) => {
+const mapState = (state: AppState): Omit<Props, 'requestGitHubUser'> => {
   if (state.github.token === null) {
     throw new Error('No github token found');
   }

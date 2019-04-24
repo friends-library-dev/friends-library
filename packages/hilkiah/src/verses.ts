@@ -6,7 +6,7 @@ const ARAB = '[\\d]{1,3}';
 const ADD = `(?:, ?(${ARAB}))?`;
 const CSV = `${ADD}${ADD}${ADD}${ADD}${ADD}${ADD}`;
 
-function exec(str: string, pattern: string) {
+function exec(str: string, pattern: string): RegExpExecArray | null {
   const exp = new RegExp(pattern);
   return exp.exec(str);
 }
@@ -17,7 +17,7 @@ function singleOrRange(
   context: string,
   ref: Ref,
   chapter: number,
-) {
+): Ref {
   const match = exec(context, pattern);
   if (!match) {
     return ref;
@@ -48,7 +48,7 @@ function comma(
   context: string,
   ref: Ref,
   chapter: number,
-) {
+): Ref {
   const match = exec(context, pattern);
   if (!match) {
     return ref;
@@ -84,19 +84,29 @@ export function romanSingleOrRange(
   context: string,
   ref: Ref,
   chapter: number,
-) {
+): Ref {
   const pattern = `^\\. (${ARAB})(?:-+(${ARAB}))?`;
   return singleOrRange(pattern, start, context, ref, chapter);
 }
 
 // 1 Cor. 1. 24, 25
-export function romanComma(start: number, context: string, ref: Ref, chapter: number) {
+export function romanComma(
+  start: number,
+  context: string,
+  ref: Ref,
+  chapter: number,
+): Ref {
   const pattern = `^\\. (${ARAB}),(?: )?(${ARAB})${CSV}`;
   return comma(pattern, start, context, ref, chapter);
 }
 
 // 1 Cor. 1:24,27
-export function colonComma(start: number, context: string, ref: Ref, chapter: number) {
+export function colonComma(
+  start: number,
+  context: string,
+  ref: Ref,
+  chapter: number,
+): Ref {
   const pattern = `^:(${ARAB}),(?: )?(${ARAB})${CSV}`;
   return comma(pattern, start, context, ref, chapter);
 }
@@ -107,7 +117,7 @@ export function colonSingleOrRange(
   context: string,
   ref: Ref,
   chapter: number,
-) {
+): Ref {
   const pattern = `^:(${ARAB})(?:-+(${ARAB}))?`;
   return singleOrRange(pattern, start, context, ref, chapter);
 }

@@ -51,7 +51,7 @@ export function audioParts(friend: Friend): AudioPart[] {
   );
 }
 
-export function hasProp(obj: Object, key: string): boolean {
+export function hasProp(obj: Record<string, any>, key: string): boolean {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 

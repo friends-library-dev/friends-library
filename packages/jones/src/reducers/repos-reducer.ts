@@ -1,11 +1,11 @@
 import { createReducer } from 'redux-starter-kit';
 import { Repo } from '../type';
 
-type GitHubRepo = {
+interface GitHubRepo {
   id: number;
   name: string;
   description: string;
-};
+}
 
 export default createReducer([], {
   RECEIVE_FRIEND_REPOS: (

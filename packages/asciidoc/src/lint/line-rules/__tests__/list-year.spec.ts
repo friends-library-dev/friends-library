@@ -9,7 +9,8 @@ describe('listYear()', () => {
       column: 7,
       type: 'error',
       rule: 'list-year',
-      message: 'The period after a year that comes first on a _list-item line_ (begins with `*`) must be escaped.',
+      message:
+        'The period after a year that comes first on a _list-item line_ (begins with `*`) must be escaped.',
       recommendation: '* 1703+++.+++ Moves to Warrington',
     });
   });

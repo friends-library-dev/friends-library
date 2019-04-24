@@ -85,6 +85,6 @@ describe('quotify()', () => {
   });
 });
 
-function strip(str: string) {
+function strip(str: string): string {
   return stripIndent(str).trim();
 }

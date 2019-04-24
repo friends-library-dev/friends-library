@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect, Omit } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import { State as AppState, Task, Dispatch } from '../type';
 import { requireCurrentTask, currentTaskFriendName } from '../select';
@@ -49,13 +49,13 @@ const PreviewLink = styled.a`
   }
 `;
 
-type Props = {
+interface Props {
   task: Task;
   goToTasks: Dispatch;
   friendName: string;
-};
+}
 
-const WorkNav = ({ task, goToTasks, friendName }: Props) => (
+const WorkNav: React.SFC<Props> = ({ task, goToTasks, friendName }) => (
   <Wrap>
     <Button secondary className="to-tasks" onClick={goToTasks}>
       &larr; Tasks
@@ -78,7 +78,7 @@ const WorkNav = ({ task, goToTasks, friendName }: Props) => (
   </Wrap>
 );
 
-const mapState = (state: AppState) => {
+const mapState = (state: AppState): Omit<Props, 'goToTasks'> => {
   const task = requireCurrentTask(state);
   return {
     task,

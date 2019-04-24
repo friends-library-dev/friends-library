@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
 import debounce from 'lodash/debounce';
 import { lint } from '@friends-library/asciidoc';
-import { Asciidoc, LintResult } from '@friends-library/types';
+import { Asciidoc, LintResult, Omit } from '@friends-library/types';
 import { Dispatch, State } from '../type';
 import { requireCurrentTask } from '../select';
 import * as actions from '../actions';
@@ -19,14 +19,14 @@ const noopEditor = new Proxy(
   {},
   {
     get(target, prop, receiver) {
-      const fn = () => receiver;
+      const fn = (): typeof receiver => receiver;
       Object.setPrototypeOf(fn, receiver);
       return fn;
     },
   },
 );
 
-const ChooseAFile = () => (
+const ChooseAFile: React.SFC<{}> = () => (
   <Centered>
     <p style={{ opacity: 0.5 }}>
       <span role="img" aria-label="left">
@@ -37,26 +37,30 @@ const ChooseAFile = () => (
   </Centered>
 );
 
-export type Props = {
+interface StateProps {
   fontSize: number;
   adoc?: Asciidoc;
   githubUser: string;
+  size: { width: number; height: number };
+  searching: boolean;
+}
+
+interface DispatchProps {
   updateFile: Dispatch;
   undo: Dispatch;
   redo: Dispatch;
   find: Dispatch;
-  searching: boolean;
-  editingFile: string;
   increaseFontSize: Dispatch;
   decreaseFontSize: Dispatch;
   toggleSidebarOpen: Dispatch;
-  size: { width: number; height: number };
-};
+}
+
+export type Props = StateProps & DispatchProps;
 
 class Editor extends React.Component<Props> {
   private aceRef = React.createRef<any>();
 
-  componentDidMount() {
+  public componentDidMount(): void {
     const editor = this.editor();
     addKeyCommands(editor, this.props);
     editor.focus();
@@ -65,7 +69,7 @@ class Editor extends React.Component<Props> {
     this.checkLint(editor.getValue());
   }
 
-  componentDidUpdate(prev: Props) {
+  public componentDidUpdate(prev: Props): void {
     const { size, searching } = this.props;
     if (size.width !== prev.size.width || searching !== prev.searching) {
       this.editor().resize();
@@ -77,7 +81,7 @@ class Editor extends React.Component<Props> {
     }
   }
 
-  checkLint(adoc: unknown) {
+  protected checkLint(adoc: unknown): void {
     if (typeof adoc !== 'string') {
       return;
     }
@@ -91,7 +95,7 @@ class Editor extends React.Component<Props> {
     this.annotateLintErrors(lints);
   }
 
-  annotateLintErrors(lints: LintResult[]) {
+  protected annotateLintErrors(lints: LintResult[]): void {
     this.editor()
       .getSession()
       .setAnnotations(
@@ -113,14 +117,14 @@ class Editor extends React.Component<Props> {
       );
   }
 
-  editor() {
+  protected editor(): any {
     if (this.aceRef.current && this.aceRef.current.editor) {
       return this.aceRef.current.editor;
     }
     return noopEditor;
   }
 
-  renderAce() {
+  protected renderAce(): JSX.Element {
     const { updateFile, adoc, fontSize } = this.props;
     return (
       <AceEditor
@@ -143,7 +147,7 @@ class Editor extends React.Component<Props> {
     );
   }
 
-  render() {
+  public render(): JSX.Element {
     const { adoc, searching } = this.props;
     return (
       <StyledEditor searching={searching} className="Editor">
@@ -153,15 +157,14 @@ class Editor extends React.Component<Props> {
   }
 }
 
-const mapState = (state: State) => {
+const mapState = (state: State): Omit<StateProps, 'size'> => {
   const task = requireCurrentTask(state);
   const file = task.files[task.editingFile || ''];
   return {
     githubUser: state.github.token ? state.github.user : '',
-    editingFile: task.editingFile,
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
-    adoc: file ? file.editedContent || file.content : null,
+    adoc: file ? file.editedContent || file.content : undefined,
   };
 };
 

@@ -9,9 +9,9 @@ import { makeFootnoteCallReplacer, notesMarkup } from './notes';
 import { nav } from './nav';
 import { frontmatter } from './frontmatter';
 
-type SubManifest<T> = {
+interface SubManifest<T> {
   [key: string]: T;
-};
+}
 
 export function getEpubManifest(job: Job): FileManifest {
   return mapValues(getEbookManifest(job), removeMobi7Tags);
@@ -45,14 +45,17 @@ function sectionFiles(job: Job): SubManifest<Html> {
     spec: { sections },
   } = job;
   const replaceFootnoteCalls = makeFootnoteCallReplacer(job);
-  return sections.reduce((files, section) => {
-    files[`OEBPS/${section.id}.xhtml`] = flow([
-      replaceFootnoteCalls,
-      html => replaceHeadings(html, section.heading, job),
-      wrapHtml,
-    ])(section.html);
-    return files;
-  }, {} as SubManifest<Html>);
+  return sections.reduce(
+    (files, section) => {
+      files[`OEBPS/${section.id}.xhtml`] = flow([
+        replaceFootnoteCalls,
+        html => replaceHeadings(html, section.heading, job),
+        wrapHtml,
+      ])(section.html);
+      return files;
+    },
+    {} as SubManifest<Html>,
+  );
 }
 
 function notesFile(job: Job): SubManifest<Html> {

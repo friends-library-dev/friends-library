@@ -27,11 +27,11 @@ const SearchResultActions = styled.div`
   }
 `;
 
-type Props = {
+interface Props {
   dismiss: () => void;
   goto: () => void;
   replace: () => void;
-};
+}
 
 const Component: React.SFC<Props> = ({ dismiss, goto, replace }) => (
   <SearchResultActions className="result-actions">

@@ -3,7 +3,6 @@ import moment from 'moment';
 import { Document, Edition } from '@friends-library/friends';
 import { LANG, APP_URL, API_URL } from '../env';
 
-
 export function podcast(document: Document, edition: Edition): string {
   const { friend } = document;
   const { audio } = edition;
@@ -25,7 +24,9 @@ export function podcast(document: Document, edition: Edition): string {
     />
     <title>${encode(document.title)}</title>
     <itunes:subtitle>
-      Audiobook of ${document.isCompilation() ? '' : `${friend.name}'s`} "${document.title}" from The Friends Library. Read by ${audio.reader}.
+      Audiobook of ${document.isCompilation() ? '' : `${friend.name}'s`} "${
+    document.title
+  }" from The Friends Library. Read by ${audio.reader}.
     </itunes:subtitle>
     <link>${APP_URL}${audio.url()}</link>
     <language>${LANG}</language>
@@ -48,13 +49,20 @@ export function podcast(document: Document, edition: Edition): string {
     <itunes:category text="Religion &amp; Spirituality">
       <itunes:category text="Christianity" />
     </itunes:category>
-    ${audio.parts.map((part, index, parts) => {
-      const num = index + 1;
-      const desc = `${part.title}. Part ${num} of ${parts.length} of the audiobook version of "${encode(document.title)}" by ${encode(friend.name)}.`;
-      return `<item>
+    ${audio.parts
+      .map((part, index, parts) => {
+        const num = index + 1;
+        const desc = `${part.title}. Part ${num} of ${
+          parts.length
+        } of the audiobook version of "${encode(document.title)}" by ${encode(
+          friend.name,
+        )}.`;
+        return `<item>
       <title>Part ${num}</title>
       <enclosure
-        url="${API_URL}/podcast-item/hq/${friend.slug}/${document.slug}/${edition.type}/${num}/${document.filename}--pt${num}.mp3"
+        url="${API_URL}/podcast-item/hq/${friend.slug}/${document.slug}/${
+          edition.type
+        }/${num}/${document.filename}--pt${num}.mp3"
         length="${part.filesizeHq}"
         type="audio/mpeg"
       />
@@ -69,7 +77,8 @@ export function podcast(document: Document, edition: Edition): string {
       <itunes:explicit>clean</itunes:explicit>
       <itunes:episodeType>full</itunes:episodeType>
     </item>`;
-    }).join('\n    ')}
+      })
+      .join('\n    ')}
   </channel>
 </rss>
 `;

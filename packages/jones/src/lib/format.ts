@@ -1,4 +1,4 @@
-type Range = {
+export interface Range {
   start: {
     row: number;
     column: number;
@@ -7,7 +7,7 @@ type Range = {
     row: number;
     column: number;
   };
-};
+}
 
 export function italicize(
   selection: string,

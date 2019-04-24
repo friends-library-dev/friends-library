@@ -53,23 +53,23 @@ export function searchedFiles(state: State): File[] {
   });
 }
 
-export type DocumentFile = {
+export interface DocumentFile {
   filename: string;
   path: FilePath;
   edited: boolean;
-};
+}
 
-export type DocumentEdition = {
+export interface DocumentEdition {
   type: EditionType;
   path: FilePath;
   files: DocumentFile[];
-};
+}
 
-export type Document = {
+export interface Document {
   slug: string;
   title: string;
   editions: DocumentEdition[];
-};
+}
 
 export function documentTree(task: Task): Document[] {
   let documents: Document[] = [];

@@ -59,15 +59,15 @@ const MetaUl = styled.ul`
   }
 `;
 
-type Props = {
+interface Props {
   title: Title;
   friendName: Name;
   hasAudio: boolean;
   hasUpdatedEdition: boolean;
   shortestEditionPages: number;
-  tags: Array<string>;
+  tags: string[];
   url: Url;
-};
+}
 
 export default ({
   title,

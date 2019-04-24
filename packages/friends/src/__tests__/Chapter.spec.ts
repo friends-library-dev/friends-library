@@ -17,7 +17,7 @@ describe('Chapter', () => {
 
   it('sets subtitle when passed one', () => {
     const chapter = new Chapter({ title: 'Foo', subtitle: 'Bar' });
-    expect(chapter.subtitle).toBe('Bar')
+    expect(chapter.subtitle).toBe('Bar');
   });
 
   it('should throw if passed title and number', () => {

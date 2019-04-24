@@ -37,10 +37,9 @@ const hamburger = css`
   font-size: 26px;
 `;
 
-
-type Props = {
-  onHamburgerClick: () => void,
-};
+interface Props {
+  onHamburgerClick: () => void;
+}
 
 export default ({ onHamburgerClick }: Props) => (
   <StickyNav>

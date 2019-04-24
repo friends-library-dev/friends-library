@@ -2,14 +2,14 @@ import { Gender, Lang, Slug, Name, Description, Url } from '@friends-library/typ
 import Document from './Document';
 
 export default class Friend {
-  lang: Lang = 'en';
-  name: Name = '';
-  slug: Slug = '';
-  gender: Gender = 'male';
-  description: Description = '';
-  documents: Document[] = [];
+  public lang: Lang = 'en';
+  public name: Name = '';
+  public slug: Slug = '';
+  public gender: Gender = 'male';
+  public description: Description = '';
+  public documents: Document[] = [];
 
-  constructor(
+  public constructor(
     lang: Lang = 'en',
     name: Name = '',
     slug: Slug = '',
@@ -25,11 +25,11 @@ export default class Friend {
     this.documents = documents;
   }
 
-  id(): string {
+  public id(): string {
     return `${this.lang}/${this.slug}`;
   }
 
-  url(): Url {
+  public url(): Url {
     if (this.slug === 'compilations') {
       return '/compilations';
     }
@@ -42,15 +42,15 @@ export default class Friend {
     return `/${pref}/${this.slug}`;
   }
 
-  isMale(): boolean {
+  public isMale(): boolean {
     return this.gender === 'male';
   }
 
-  isFemale(): boolean {
+  public isFemale(): boolean {
     return !this.isMale();
   }
 
-  alphabeticalName(): string {
+  public alphabeticalName(): string {
     const parts = this.name.split(' ');
     return `${parts.pop()}, ${parts.join(' ')}`;
   }

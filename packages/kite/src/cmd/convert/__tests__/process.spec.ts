@@ -18,7 +18,7 @@ describe('processAsciidoc()', () => {
   });
 
   const groups = [
-    ['hint of _______\'s inclination', 'hint of +++_______+++\'s inclination'],
+    ["hint of _______'s inclination", "hint of +++_______+++'s inclination"],
     ['of Friends of ________,', 'of Friends of +++________+++,'],
     ['=== To _______, who had', '=== To +++_______+++, who had'],
   ];
@@ -34,7 +34,7 @@ describe('processAsciidoc()', () => {
 
     const processed = processAsciidoc(adoc);
 
-    expect(processed).toBe('== C1\n\nPara.\n\n[.asterism]\n\'\'\'\n\nPara');
+    expect(processed).toBe("== C1\n\nPara.\n\n[.asterism]\n'''\n\nPara");
   });
 
   it('removes weird trailing number', () => {
@@ -66,7 +66,9 @@ describe('processAsciidoc()', () => {
 
     const processed = processAsciidoc(adoc);
 
-    expect(processed).toBe('== C1\n\nFoo bar\nW+++.+++ Evans came with T. Evans\nto lunch');
+    expect(processed).toBe(
+      '== C1\n\nFoo bar\nW+++.+++ Evans came with T. Evans\nto lunch',
+    );
   });
 
   it('escapes periods after single digit at beginning of line', () => {

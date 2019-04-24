@@ -34,15 +34,15 @@ const Line = styled.div`
   padding-right: 20px;
 `;
 
-type Props = {
+interface Props {
   id: string;
   emphasize?: number[];
-};
+}
 
 let inVerse: boolean;
 let inFootnote: boolean;
 
-const Asciidoc = ({ id, emphasize }: Props) => {
+const Asciidoc: React.SFC<Props> = ({ id, emphasize }) => {
   inVerse = false;
   inFootnote = false;
   const adoc = getAdoc(id)
@@ -131,7 +131,7 @@ function colorize(line: string): string {
     .replace(/{\/}/g, '</span>');
 }
 
-function cite(text?: string) {
+function cite(text?: string): string {
   if (!text) {
     return '';
   }

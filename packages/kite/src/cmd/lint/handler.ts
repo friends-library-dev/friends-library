@@ -5,15 +5,15 @@ import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
 import chalk from 'chalk';
 import leftPad from 'left-pad';
 
-type LintCommandOptions = {
+interface LintCommandOptions {
   path: string;
   rules?: string[];
   exclude?: string[];
   fix: boolean;
   limit?: number;
-};
+}
 
-export default function lintHandler(argv: Arguments<LintCommandOptions>) {
+export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
   const options = {
     lang: 'en' as const,
     ...(argv.rules ? { include: argv.rules } : {}),
@@ -73,7 +73,7 @@ export function printLints(lints: DirLints, limit: false | number = false): void
   });
 }
 
-function printResult(result: LintResult, path: string, lines: string[]) {
+function printResult(result: LintResult, path: string, lines: string[]): void {
   console.log(`\n\n${chalk.cyan(result.rule)}: ${result.message}`);
   grey(`${path}:${result.line}${result.column === false ? '' : `:${result.column}`}`);
 
@@ -114,6 +114,6 @@ function printResult(result: LintResult, path: string, lines: string[]) {
   }
 }
 
-function printIsFixable() {
+function printIsFixable(): void {
   console.log(chalk.dim.cyan('Use `--fix` to automatically fix'));
 }

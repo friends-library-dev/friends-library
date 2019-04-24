@@ -30,17 +30,14 @@ const rule: BlockRule = (block: Asciidoc): LintResult[] => {
     ];
   }
 
-  return chapterHeadings.slice(1).map(
-    line =>
-      ({
-        line,
-        column: false,
-        type: 'error',
-        rule: rule.slug,
-        message: `Duplicate chapter heading \`== \` -- see line ${chapterHeadings[0]}`,
-        fixable: false,
-      } as LintResult),
-  );
+  return chapterHeadings.slice(1).map(line => ({
+    line,
+    column: false,
+    type: 'error',
+    rule: rule.slug,
+    message: `Duplicate chapter heading \`== \` -- see line ${chapterHeadings[0]}`,
+    fixable: false,
+  }));
 };
 
 rule.slug = 'chapter-heading';

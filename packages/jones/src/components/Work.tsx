@@ -30,7 +30,7 @@ const EditorPane = styled.div`
   justify-content: flex-end;
 `;
 
-type Props = {
+interface Props {
   task: Task;
   checkout: Dispatch;
   undo: Dispatch;
@@ -40,12 +40,12 @@ type Props = {
   decreaseFontSize: Dispatch;
   toggleSidebarOpen: Dispatch;
   syncTask: Dispatch;
-};
+}
 
 class Work extends React.Component<Props> {
   private statusInterval: any = -1;
 
-  componentDidMount() {
+  public componentDidMount(): void {
     const { task, checkout, syncTask } = this.props;
     if (!task.parentCommit) {
       checkout(task);
@@ -55,11 +55,11 @@ class Work extends React.Component<Props> {
     }
   }
 
-  componentWillUnmount() {
+  public componentWillUnmount(): void {
     clearInterval(this.statusInterval);
   }
 
-  render() {
+  public render(): JSX.Element {
     const { task } = this.props;
     const {
       increaseFontSize,
@@ -107,7 +107,7 @@ class Work extends React.Component<Props> {
   }
 }
 
-const mapState = (state: AppState) => {
+const mapState = (state: AppState): Pick<Props, 'task'> => {
   return {
     task: requireCurrentTask(state),
   };

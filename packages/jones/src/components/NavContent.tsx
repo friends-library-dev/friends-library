@@ -1,9 +1,9 @@
 import * as React from 'react';
 import WorkNav from './WorkNav';
 
-type Props = {
+interface Props {
   screen: string;
-};
+}
 
 const Component: React.SFC<Props> = ({ screen }) => (
   <>

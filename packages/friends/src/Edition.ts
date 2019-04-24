@@ -5,9 +5,9 @@ import Document from './Document';
 import Audio from './Audio';
 
 export default class Edition {
-  document: Document;
+  public document: Document;
 
-  constructor(
+  public constructor(
     public type: EditionType = 'original',
     public pages: number = 0,
     public formats: Format[] = [],
@@ -20,7 +20,7 @@ export default class Edition {
     this.document = new Document();
   }
 
-  toJSON(): Edition {
+  public toJSON(): Edition {
     delete this.document;
     return this;
   }

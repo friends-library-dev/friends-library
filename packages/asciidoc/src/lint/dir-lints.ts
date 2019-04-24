@@ -1,60 +1,60 @@
 import { Asciidoc, LintResult, FilePath } from '@friends-library/types';
 
-type FileLintData = {
+interface FileLintData {
   lints: LintResult[];
   path: FilePath;
   adoc: Asciidoc;
-};
+}
 
 export default class DirLints {
-  map: Map<FilePath, FileLintData>;
+  protected map: Map<FilePath, FileLintData>;
 
-  constructor() {
+  public constructor() {
     this.map = new Map();
   }
 
-  set(path: FilePath, data: { adoc: Asciidoc; lints: LintResult[] }): void {
+  public set(path: FilePath, data: { adoc: Asciidoc; lints: LintResult[] }): void {
     this.map.set(path, { ...data, path });
   }
 
-  get(path: FilePath) {
+  public get(path: FilePath): FileLintData | undefined {
     return this.map.get(path);
   }
 
-  fixable(): LintResult[] {
+  public fixable(): LintResult[] {
     return this.all().filter(lint => lint.fixable === true);
   }
 
-  unfixable(): LintResult[] {
+  public unfixable(): LintResult[] {
     return this.all().filter(lint => lint.fixable !== true);
   }
 
-  all(): LintResult[] {
+  public all(): LintResult[] {
     return [...this.map].reduce(
-      (acc, [_, { lints }]) => {
+      (acc, [, { lints }]) => {
         return [...acc, ...lints];
       },
       [] as LintResult[],
     );
   }
 
-  count(): number {
+  public count(): number {
     return this.all().length;
   }
 
-  numFixable(): number {
+  public numFixable(): number {
     return this.fixable().length;
   }
 
-  numUnfixable(): number {
+  public numUnfixable(): number {
     return this.unfixable().length;
   }
 
-  toArray(): Array<[FilePath, FileLintData]> {
+  public toArray(): [FilePath, FileLintData][] {
     return [...this.map];
   }
 
-  [Symbol.iterator](): Array<[FilePath, FileLintData]> {
+  public [Symbol.iterator](): [FilePath, FileLintData][] {
     // @ts-ignore
     return this.map[Symbol.iterator]();
   }

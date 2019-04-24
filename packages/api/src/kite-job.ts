@@ -9,8 +9,8 @@ const {
 
 const isProd = NODE_ENV === 'production';
 
-export async function create(req: Request, res: Response) {
-  const body = <{ job: Object; uploadPath: string }>req.body;
+export async function create(req: Request, res: Response): Promise<void> {
+  const body = <{ job: Record<string, any>; uploadPath: string }>req.body;
   if (typeof body.uploadPath !== 'string' || typeof body.job !== 'object') {
     isProd && console.error('Invalid request body to POST /kite-jobs');
     res.status(400).send();
@@ -30,7 +30,7 @@ export async function create(req: Request, res: Response) {
   }
 }
 
-export async function list(req: Request, res: Response) {
+export async function list(req: Request, res: Response): Promise<void> {
   let jobs = await db.select(
     'SELECT id, status, attempts, url, created_at, updated_at FROM `kite_jobs`',
   );
@@ -41,7 +41,7 @@ export async function list(req: Request, res: Response) {
   res.json(jobs);
 }
 
-export async function get(req: Request, res: Response) {
+export async function get(req: Request, res: Response): Promise<void> {
   const {
     params: { id },
   } = req;
@@ -57,7 +57,7 @@ export async function get(req: Request, res: Response) {
   res.json(results[0]);
 }
 
-export async function destroy(req: Request, res: Response) {
+export async function destroy(req: Request, res: Response): Promise<void> {
   const {
     params: { id },
   } = req;
@@ -70,7 +70,7 @@ export async function destroy(req: Request, res: Response) {
   res.status(204).end();
 }
 
-export async function update(req: Request, res: Response) {
+export async function update(req: Request, res: Response): Promise<void> {
   const {
     params: { id },
   } = req;
@@ -97,16 +97,16 @@ export async function update(req: Request, res: Response) {
   res.json({ id });
 }
 
-type JobRow = {
+interface JobRow {
   id: string;
   attempts: number;
   upload_path: string;
   status: 'queued' | 'in_progress' | 'succeeded' | 'failed';
   created_at: Moment;
   updated_at: Moment;
-};
+}
 
-export async function take(req: Request, res: Response) {
+export async function take(req: Request, res: Response): Promise<void> {
   const cols = ['id', 'attempts', 'upload_path', 'status', 'created_at', 'updated_at'];
 
   const jobs: JobRow[] = await db.select(`SELECT ${cols.join(', ')} FROM kite_jobs`);
@@ -152,14 +152,14 @@ export async function take(req: Request, res: Response) {
   });
 }
 
-function getWorking(jobs: JobRow[]) {
+function getWorking(jobs: JobRow[]): JobRow[] {
   return jobs
     .filter(statusIs('in_progress'))
     .filter(({ attempts }) => attempts < 3)
     .filter(notStale);
 }
 
-function failHopelessJobs(jobs: JobRow[]) {
+function failHopelessJobs(jobs: JobRow[]): void {
   jobs
     .filter(statusIs('in_progress'))
     .filter(isStale)
@@ -174,13 +174,13 @@ function failHopelessJobs(jobs: JobRow[]) {
     });
 }
 
-function deleteOldJobs(jobs: JobRow[]) {
+function deleteOldJobs(jobs: JobRow[]): void {
   jobs.filter(isOld).forEach(({ id }) => {
     db.query('DELETE FROM kite_jobs where id = ?', id);
   });
 }
 
-function convertTimestamps(jobs: JobRow[]) {
+function convertTimestamps(jobs: JobRow[]): void {
   jobs.forEach(job => {
     job.created_at = moment(job.created_at);
     job.updated_at = moment(job.updated_at);
@@ -191,22 +191,22 @@ function statusIs(status: JobRow['status']): (job: JobRow) => boolean {
   return job => job.status === status;
 }
 
-function notStale({ updated_at }: JobRow) {
+function notStale({ updated_at }: JobRow): boolean {
   return updated_at.isAfter(moment().subtract(10, 'minutes'));
 }
 
-function isStale({ updated_at }: JobRow) {
+function isStale({ updated_at }: JobRow): boolean {
   return updated_at.isBefore(moment().subtract(10, 'minutes'));
 }
 
-function isOld({ updated_at }: JobRow) {
+function isOld({ updated_at }: JobRow): boolean {
   return updated_at.isBefore(moment().subtract(1.5, 'hours'));
 }
 
-function notOld({ updated_at }: JobRow) {
+function notOld({ updated_at }: JobRow): boolean {
   return updated_at.isAfter(moment().subtract(1.5, 'hours'));
 }
 
-function oldestFirst(a: JobRow, b: JobRow) {
+function oldestFirst(a: JobRow, b: JobRow): number {
   return a.created_at.isBefore(b.created_at) ? -1 : 1;
 }

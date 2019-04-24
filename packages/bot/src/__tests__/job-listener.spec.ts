@@ -140,8 +140,8 @@ describe('JobListener', () => {
 
 function mockApiResponses(
   jobs: { [k: string]: ({ status: string; url?: string })[] },
-  working: Array<Array<{ id: string }>> = [[]],
-) {
+  working: { id: string }[][] = [[]],
+): void {
   (fetch as any).mockImplementation((url: string) => {
     if (url.match(/\?filter=working$/)) {
       return fakeFetchResponse(working);
@@ -156,7 +156,7 @@ function mockApiResponses(
   });
 }
 
-function fakeFetchResponse(responseQueue: any[]) {
+function fakeFetchResponse(responseQueue: any[]): any {
   return {
     then() {
       return {

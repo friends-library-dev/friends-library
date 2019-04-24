@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-type Props = {
-  className?: string,
-  css?: any,
-  children: React.ReactNode,
-};
+interface Props {
+  className?: string;
+  css?: any;
+  children: React.ReactNode;
+}
 
 const BlockSection = styled.section`
   padding: 15px;
 `;
 
-const Block = ({ children, className, css }: Props) => (
+const Block: React.SFC<Props> = ({ children, className, css }) => (
   <BlockSection className={className} css={css}>
     {children}
   </BlockSection>

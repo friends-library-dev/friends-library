@@ -62,26 +62,26 @@ const Closed = styled.div`
   z-index: 2;
 `;
 
-type ToggleProps = {
+interface ToggleProps {
   onClick: () => any;
   isOpen: boolean;
-};
+}
 
-const Toggle = ({ onClick, isOpen }: ToggleProps) => (
+const Toggle: React.SFC<ToggleProps> = ({ onClick, isOpen }) => (
   <ToggleEl className="toggle" onClick={onClick} open={isOpen}>
     <i className={`fas fa-angle-${isOpen ? 'right' : 'left'}`} />
   </ToggleEl>
 );
 
-type Props = {
+interface Props {
   open: boolean;
   width: number;
   toggleOpen: Dispatch;
   updateWidth: Dispatch;
-};
+}
 
 class Sidebar extends React.Component<Props> {
-  render() {
+  public render(): JSX.Element {
     const { open, width, toggleOpen, updateWidth } = this.props;
     if (!open) {
       return (
@@ -116,7 +116,7 @@ class Sidebar extends React.Component<Props> {
   }
 }
 
-const mapState = (state: State) => {
+const mapState = (state: State): Pick<Props, 'open' | 'width'> => {
   const task = requireCurrentTask(state);
   return {
     open: task.sidebarOpen,

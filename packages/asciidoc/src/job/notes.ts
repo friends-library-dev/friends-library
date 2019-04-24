@@ -1,7 +1,7 @@
 import striptags from 'striptags';
 import { Html, Notes } from '@friends-library/types';
-import uuid = require('uuid');
 import { br7, makeReduceWrapper as makeWrap } from './helpers';
+import uuid = require('uuid');
 
 export function extractNotes(srcHtml: Html): [Notes, Html] {
   const map = new Map();

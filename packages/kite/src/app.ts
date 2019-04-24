@@ -12,6 +12,7 @@ import * as unusual from './cmd/unusual';
 
 prettifyErrors();
 
+/* eslint-disable no-unused-expressions */
 yargs
   .scriptName('yarn kite')
   // @ts-ignore
