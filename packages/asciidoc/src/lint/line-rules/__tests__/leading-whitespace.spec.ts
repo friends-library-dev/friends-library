@@ -1,9 +1,11 @@
 import stripIndent from 'strip-indent';
 import leadingWhitespace from '../leading-whitespace';
 
+const opts = { lang: 'en' as const };
+
 describe('leadingWhitespace()', () => {
   it('creates a lint violation result for a line with leading whitespace', () => {
-    const results = leadingWhitespace(' Foo bar!', [], 4);
+    const results = leadingWhitespace(' Foo bar!', [], 4, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 4,
@@ -17,12 +19,12 @@ describe('leadingWhitespace()', () => {
   });
 
   it('does not lint error empty lines', () => {
-    const results = leadingWhitespace('', [], 4);
+    const results = leadingWhitespace('', [], 4, opts);
     expect(results).toHaveLength(0);
   });
 
   it('only produces one lint for a chunk of leading whitespace', () => {
-    const results = leadingWhitespace('   Foo.', [], 1);
+    const results = leadingWhitespace('   Foo.', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].column).toBe(0);
   });
@@ -36,7 +38,7 @@ describe('leadingWhitespace()', () => {
       and now the poem is done.]
     `).trim();
     const lines = adoc.split('\n');
-    const results = leadingWhitespace(lines[3], lines, 4);
+    const results = leadingWhitespace(lines[3], lines, 4, opts);
     expect(results).toHaveLength(0);
   });
 
@@ -58,7 +60,7 @@ describe('leadingWhitespace()', () => {
 
     const lines = adoc.split('\n');
     lines.forEach((line, index) => {
-      const results = leadingWhitespace(lines[index], lines, index + 1);
+      const results = leadingWhitespace(lines[index], lines, index + 1, opts);
       expect(results).toHaveLength(0);
     });
   });

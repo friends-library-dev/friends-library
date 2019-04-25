@@ -1,8 +1,10 @@
 import unintentionalListItem from '../unintentional-list-item';
 
+const opts = { lang: 'en' as const };
+
 describe('unintentionalListItem()', () => {
   it('creates a lint violation result for a line with trailing whitespace', () => {
-    const results = unintentionalListItem('T. Story came for lunch.', [], 1);
+    const results = unintentionalListItem('T. Story came for lunch.', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -23,7 +25,7 @@ describe('unintentionalListItem()', () => {
   ];
 
   test.each(violations)('%s should be %s', (line, reco) => {
-    const results = unintentionalListItem(line, [], 1);
+    const results = unintentionalListItem(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
   });
@@ -31,6 +33,6 @@ describe('unintentionalListItem()', () => {
   const allowed = [['Mr. Foo came'], ['1772 was a good year']];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(unintentionalListItem(line, [], 1)).toHaveLength(0);
+    expect(unintentionalListItem(line, [], 1, opts)).toHaveLength(0);
   });
 });

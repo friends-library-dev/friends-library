@@ -1,8 +1,10 @@
 import midWordUppercase from '../mid-word-uppercase';
 
+const opts = { lang: 'en' as const };
+
 describe('midWordUppercase()', () => {
   it('creates a lint for violation of `mid-word-uppercase` rule', () => {
-    const results = midWordUppercase('the paTience and faith', [], 1);
+    const results = midWordUppercase('the paTience and faith', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -24,7 +26,7 @@ describe('midWordUppercase()', () => {
   ];
 
   test.each(violations)('`%s` should be a lint violation', line => {
-    const results = midWordUppercase(line, [], 1);
+    const results = midWordUppercase(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
@@ -38,6 +40,6 @@ describe('midWordUppercase()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(midWordUppercase(line, [], 1)).toHaveLength(0);
+    expect(midWordUppercase(line, [], 1, opts)).toHaveLength(0);
   });
 });

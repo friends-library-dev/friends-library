@@ -1,10 +1,12 @@
 import danglingPossessive from '../dangling-possessive';
 
+const opts = { lang: 'en' as const };
+
 describe('danglingPossessive()', () => {
   it('creates a lint for violation of `dangling-possessive` rule', () => {
     const adoc = "end of Christ`'\ns coming";
     const lines = adoc.split('\n');
-    const results = danglingPossessive(lines[0], lines, 1);
+    const results = danglingPossessive(lines[0], lines, 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -25,7 +27,7 @@ describe('danglingPossessive()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, i) => {
-      results = results.concat(danglingPossessive(line, lines, i + 1));
+      results = results.concat(danglingPossessive(line, lines, i + 1, opts));
     });
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(fixed);
@@ -37,7 +39,7 @@ describe('danglingPossessive()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, i) => {
-      results = results.concat(danglingPossessive(line, lines, i + 1));
+      results = results.concat(danglingPossessive(line, lines, i + 1, opts));
     });
     expect(results).toHaveLength(0);
   });

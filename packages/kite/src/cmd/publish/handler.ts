@@ -5,7 +5,7 @@ import { exec } from 'child_process';
 import { Arguments } from 'yargs';
 import { lintDir, lintFixDir, createSourceSpec } from '@friends-library/asciidoc';
 import { red } from '@friends-library/cli/color';
-import { printLints } from '../lint/handler';
+import { printLints, langFromPath, editionTypeFromPath } from '../lint/handler';
 import { getPrecursors } from './precursors';
 import { makeEpub } from '../../publish/epub/make';
 import { makeMobi } from '../../publish/mobi/make';
@@ -138,8 +138,13 @@ function jobFilename(
 }
 
 function lint(path: string, fix: boolean): void {
+  const opts = {
+    lang: langFromPath(path),
+    editionType: editionTypeFromPath(path),
+  };
+
   if (fix === true) {
-    const { unfixable, numFixed } = lintFixDir(path);
+    const { unfixable, numFixed } = lintFixDir(path, opts);
     if (unfixable.count() > 0) {
       printLints(unfixable);
       red(
@@ -149,7 +154,7 @@ function lint(path: string, fix: boolean): void {
     }
   }
 
-  const lints = lintDir(path);
+  const lints = lintDir(path, opts);
   if (lints.count() > 0) {
     printLints(lints);
     red(`\n\nERROR: ${lints.count()} lint errors must be fixed. 😬 `);

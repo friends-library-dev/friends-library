@@ -1,8 +1,10 @@
 import noUndefined from '../no-undefined';
 
+const opts = { lang: 'en' as const };
+
 describe('noUndefined()', () => {
   it('creates a lint for violation of `no-undefined` rule', () => {
-    const results = noUndefined('Foo undefined bar', [], 1);
+    const results = noUndefined('Foo undefined bar', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -21,13 +23,13 @@ describe('noUndefined()', () => {
   ];
 
   test.each(violations)('`%s` should be a lint violation', line => {
-    const results = noUndefined(line, [], 1);
+    const results = noUndefined(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
   const allowed: [string][] = [['Undefined foobar']];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(noUndefined(line, [], 1)).toHaveLength(0);
+    expect(noUndefined(line, [], 1, opts)).toHaveLength(0);
   });
 });

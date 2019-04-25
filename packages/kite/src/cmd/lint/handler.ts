@@ -1,5 +1,5 @@
 import { Arguments } from 'yargs';
-import { LintResult } from '@friends-library/types';
+import { LintResult, EditionType, Lang } from '@friends-library/types';
 import { lintFixDir, lintDir, DirLints } from '@friends-library/asciidoc';
 import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
 import chalk from 'chalk';
@@ -10,18 +10,23 @@ interface LintCommandOptions {
   rules?: string[];
   exclude?: string[];
   fix: boolean;
+  maybe: boolean;
   limit?: number;
 }
 
 export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
+  const { path, rules, exclude, fix, limit, maybe } = argv;
+
   const options = {
-    lang: 'en' as const,
-    ...(argv.rules ? { include: argv.rules } : {}),
-    ...(argv.exclude ? { exclude: argv.exclude } : {}),
+    maybe,
+    lang: langFromPath(path),
+    editionType: editionTypeFromPath(path),
+    ...(rules ? { include: rules } : {}),
+    ...(exclude ? { exclude } : {}),
   };
 
-  if (argv.fix) {
-    const { unfixable, numFixed } = lintFixDir(argv.path, options);
+  if (fix) {
+    const { unfixable, numFixed } = lintFixDir(path, options);
     if (unfixable.count() === 0) {
       if (numFixed === 0) {
         green('0 lint violations found! 😊 \n');
@@ -32,7 +37,7 @@ export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
       return;
     }
 
-    printLints(unfixable, argv.limit || false);
+    printLints(unfixable, limit || false);
     if (numFixed > 0) {
       cyan(`\n\nFixed ${numFixed} lint violation/s. 👍`);
     }
@@ -40,13 +45,13 @@ export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
     process.exit(1);
   }
 
-  const lints = lintDir(argv.path, options);
+  const lints = lintDir(path, options);
   if (lints.count() === 0) {
     green('0 lint violations found! 😊 \n');
     process.exit(0);
   }
 
-  printLints(lints, argv.limit || false);
+  printLints(lints, limit || false);
   const numFixable = lints.numFixable();
   red(`\n\nFound ${lints.count()} lint violation/s. 😬 `);
   if (numFixable > 0) {
@@ -116,4 +121,19 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
 
 function printIsFixable(): void {
   console.log(chalk.dim.cyan('Use `--fix` to automatically fix'));
+}
+
+export function editionTypeFromPath(path: string): EditionType | undefined {
+  if (path.includes('/original/')) {
+    return 'original';
+  } else if (path.includes('/modernized/')) {
+    return 'modernized';
+  } else if (path.includes('/updated/')) {
+    return 'updated';
+  }
+  return undefined;
+}
+
+export function langFromPath(path: string): Lang {
+  return path.includes('/es/') || path.indexOf('es/') === 0 ? 'es' : 'en';
 }

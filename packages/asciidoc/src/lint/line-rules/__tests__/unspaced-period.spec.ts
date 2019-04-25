@@ -1,8 +1,10 @@
 import unspacedPeriod from '../unspaced-period';
 
+const opts = { lang: 'en' as const };
+
 describe('unspacedPeriod()', () => {
   it('creates a lint for violation of `unspaced-period` rule', () => {
-    const results = unspacedPeriod('me a people.And they shall not', [], 1);
+    const results = unspacedPeriod('me a people.And they shall not', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -19,13 +21,13 @@ describe('unspacedPeriod()', () => {
   ];
 
   test.each(violations)('`%s` should become "%s"', line => {
-    const results = unspacedPeriod(line, [], 1);
+    const results = unspacedPeriod(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
   const allowed: [string][] = [['friend T.E. (the bearer of this letter)']];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(unspacedPeriod(line, [], 1)).toHaveLength(0);
+    expect(unspacedPeriod(line, [], 1, opts)).toHaveLength(0);
   });
 });

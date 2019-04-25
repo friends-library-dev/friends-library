@@ -1,8 +1,10 @@
 import obsoleteSpellings from '../obsolete-spellings';
 
+const opts = { lang: 'en' as const };
+
 describe('obsoleteSpellings()', () => {
   it('creates a lint for violation of `obsolete-spellings` rule', () => {
-    const results = obsoleteSpellings('Staid the night', [], 1);
+    const results = obsoleteSpellings('Staid the night', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toMatchObject({
       line: 1,
@@ -48,7 +50,7 @@ describe('obsoleteSpellings()', () => {
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
-    const results = obsoleteSpellings(line, [], 1);
+    const results = obsoleteSpellings(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
   });
@@ -60,6 +62,6 @@ describe('obsoleteSpellings()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(obsoleteSpellings(line, [], 1)).toHaveLength(0);
+    expect(obsoleteSpellings(line, [], 1, opts)).toHaveLength(0);
   });
 });

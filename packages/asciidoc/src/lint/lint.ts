@@ -22,7 +22,7 @@ export default function lint(
 
       lineRules.forEach(rule => {
         if (runRule(rule, options)) {
-          const ruleResults = rule(line, lines, index + 1);
+          const ruleResults = rule(line, lines, index + 1, options);
           ruleResults.forEach(result => acc.push(result));
         }
       });
@@ -37,7 +37,7 @@ export default function lint(
       if (!runRule(rule, options)) {
         return acc;
       }
-      return acc.concat(...rule(adoc));
+      return acc.concat(...rule(adoc, options));
     },
     [] as LintResult[],
   );
@@ -48,7 +48,7 @@ export default function lint(
 function runRule(rule: LineRule | BlockRule, options: LintOptions): boolean {
   const { include, exclude } = options;
 
-  if (rule.maybe) {
+  if (rule.maybe && !options.maybe && !(include || []).includes(rule.slug)) {
     return false;
   }
 

@@ -1,9 +1,11 @@
 import doubledPunctuation from '../doubled-punctuation';
 import { Asciidoc } from '@friends-library/types';
 
+const opts = { lang: 'en' as const };
+
 describe('doubledPunctuation()', () => {
   it('creates a lint violation result for a line with doubled punctuation', () => {
-    const results = doubledPunctuation('Foo,, bar', [], 1);
+    const results = doubledPunctuation('Foo,, bar', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -24,7 +26,7 @@ describe('doubledPunctuation()', () => {
   ];
 
   test.each(violations)('%s should be a violation', (line, reco, fixable) => {
-    const results = doubledPunctuation(line, [], 1);
+    const results = doubledPunctuation(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
     expect(results[0].fixable).toBe(fixable);
@@ -55,6 +57,6 @@ describe('doubledPunctuation()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(doubledPunctuation(line, [], 1)).toHaveLength(0);
+    expect(doubledPunctuation(line, [], 1, opts)).toHaveLength(0);
   });
 });

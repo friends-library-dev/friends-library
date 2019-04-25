@@ -1,6 +1,8 @@
 import stripIndent from 'strip-indent';
 import openBlocks from '../open-blocks';
 
+const opts = { lang: 'en' as const };
+
 describe('openBlocks() - missing-surrounding-space', () => {
   it('lints closing terminator without proper spacing before', () => {
     const adoc = stripIndent(`
@@ -16,7 +18,7 @@ describe('openBlocks() - missing-surrounding-space', () => {
       Foo
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 8,
@@ -43,7 +45,7 @@ describe('openBlocks() - missing-surrounding-space', () => {
       Foo
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 10,
@@ -70,7 +72,7 @@ describe('openBlocks() - missing-surrounding-space', () => {
       Foo
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 5,
@@ -97,7 +99,7 @@ describe('openBlocks() - unlabeled-open-block-delimiter', () => {
       --
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 3,
@@ -130,7 +132,7 @@ describe('openBlocks() - unlabeled-open-block-delimiter', () => {
       --
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0].line).toBe(13);
     expect(results[0].message).toMatch(/must be started/);
@@ -147,7 +149,7 @@ describe('openBlocks() - unterminated-open-block', () => {
       and baz.
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 2,
@@ -183,7 +185,7 @@ describe('openBlocks() - unterminated-open-block', () => {
       --
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0].line).toBe(10);
   });
@@ -203,7 +205,7 @@ describe('openBlocks() - unterminated-open-block', () => {
       and baz.
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(2);
     expect(results[0].line).toBe(2);
     expect(results[1].line).toBe(8);
@@ -220,7 +222,7 @@ describe('openBlocks() - unterminated-open-block', () => {
       --
     `).trim();
 
-    const results = openBlocks(adoc);
+    const results = openBlocks(adoc, opts);
     expect(results).toHaveLength(0);
   });
 });

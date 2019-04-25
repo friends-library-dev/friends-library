@@ -1,8 +1,10 @@
 import midWordNonLetter from '../mid-word-non-letter';
 
+const opts = { lang: 'en' as const };
+
 describe('midWordNonLetter()', () => {
   it('creates a lint for violation of `mid-word-non-letter` rule', () => {
-    const results = midWordNonLetter('She w&s sober-minded', [], 1);
+    const results = midWordNonLetter('She w&s sober-minded', [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -20,7 +22,7 @@ describe('midWordNonLetter()', () => {
   ];
 
   test.each(violations)('`%s` is a lint violation', line => {
-    const results = midWordNonLetter(line, [], 1);
+    const results = midWordNonLetter(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
@@ -34,6 +36,6 @@ describe('midWordNonLetter()', () => {
   ];
 
   test.each(allowed)('%s is not a lint violation', line => {
-    expect(midWordNonLetter(line, [], 1)).toHaveLength(0);
+    expect(midWordNonLetter(line, [], 1, opts)).toHaveLength(0);
   });
 });

@@ -1,6 +1,8 @@
 import stripIndent from 'strip-indent';
 import chapterSynopsisListItem from '../chapter-synopsis-list-item';
 
+const opts = { lang: 'en' as const };
+
 describe('chapterSynopsisListItem()', () => {
   it('creates a lint violation result for a line with no asterisks', () => {
     const adoc = stripIndent(`
@@ -12,7 +14,7 @@ describe('chapterSynopsisListItem()', () => {
       Foobar.
     `).trim();
     const lines = adoc.split('\n');
-    const results = chapterSynopsisListItem(lines[2], lines, 3);
+    const results = chapterSynopsisListItem(lines[2], lines, 3, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 4,
@@ -42,7 +44,7 @@ describe('chapterSynopsisListItem()', () => {
     let results: any[] = [];
     const lines = adoc.split('\n');
     lines.forEach((line, index) => {
-      const lineResults = chapterSynopsisListItem(line, lines, index + 1);
+      const lineResults = chapterSynopsisListItem(line, lines, index + 1, opts);
       results = results.concat([...lineResults]);
     });
     expect(results).toHaveLength(2);

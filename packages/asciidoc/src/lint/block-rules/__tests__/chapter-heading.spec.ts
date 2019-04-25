@@ -1,11 +1,13 @@
 import stripIndent from 'strip-indent';
 import chapterHeading from '../chapter-heading';
 
+const opts = { lang: 'en' as const };
+
 describe('chapterHeading()', () => {
   it('block with no chapter heading lints first line', () => {
     const adoc = 'Foo bar\n';
 
-    const results = chapterHeading(adoc);
+    const results = chapterHeading(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -28,7 +30,7 @@ describe('chapterHeading()', () => {
         === Subheading
       `).trim();
 
-    const results = chapterHeading(adoc);
+    const results = chapterHeading(adoc, opts);
     expect(results).toHaveLength(1);
     expect(results[0].line).toBe(5);
     expect(results[0].message).toBe('Duplicate chapter heading `== ` -- see line 1');
@@ -37,7 +39,7 @@ describe('chapterHeading()', () => {
   it('does not lint file if only problem is invalid heading format', () => {
     const adoc = '==  Ch 1\n'; // <-- too many spaces
 
-    const results = chapterHeading(adoc);
+    const results = chapterHeading(adoc, opts);
     expect(results).toHaveLength(0);
   });
 });

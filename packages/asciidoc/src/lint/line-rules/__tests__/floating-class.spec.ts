@@ -1,10 +1,12 @@
 import floatingClass from '../floating-class';
 
+const opts = { lang: 'en' as const };
+
 describe('floatingClass()', () => {
   it('creates a lint violation result for floating class line', () => {
     const adoc = '[.foobar]\n\nFoo.\n';
     const lines = adoc.split('\n');
-    const results = floatingClass(lines[0], lines, 1);
+    const results = floatingClass(lines[0], lines, 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
@@ -22,7 +24,7 @@ describe('floatingClass()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, index) => {
-      const lineResults = floatingClass(line, lines, index + 1);
+      const lineResults = floatingClass(line, lines, index + 1, opts);
       results = results.concat(...lineResults);
     });
     expect(results).toHaveLength(1);
@@ -38,7 +40,7 @@ describe('floatingClass()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, index) => {
-      const lineResults = floatingClass(line, lines, index + 1);
+      const lineResults = floatingClass(line, lines, index + 1, opts);
       results = results.concat(...lineResults);
     });
     expect(results).toHaveLength(0);

@@ -1,4 +1,4 @@
-import { Asciidoc, LintResult } from '@friends-library/types';
+import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import gitConflictMarkers from './git-conflict-markers';
 import characterName from '../character-name';
 import { LineRule } from '../types';
@@ -7,6 +7,7 @@ const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
+  options: LintOptions,
 ): LintResult[] => {
   if (line === '') {
     return [];
@@ -16,7 +17,7 @@ const rule: LineRule = (
     return [];
   }
 
-  if (gitConflictMarkers(line, lines, lineNumber).length) {
+  if (gitConflictMarkers(line, lines, lineNumber, options).length) {
     return [];
   }
 
@@ -28,6 +29,7 @@ const rule: LineRule = (
     escapeEnd = escapeStart + line.substring(escapeStart).indexOf('+++');
   }
 
+  const allowed = maps[options.lang];
   const results: LintResult[] = [];
   line.split('').forEach((char, index) => {
     if (hasEscape && (escapeStart <= index && escapeEnd > index)) {
@@ -110,8 +112,7 @@ function isSuppressed(lines: Asciidoc[], lineNumber: number): boolean {
 // performance sort of matters here, because we're checking every character
 // of sometimes every book -- using object property lookup was about 25%
 // faster than using Set.has(x), in my testing, and WAY faster than [].includes(x)
-const lookup: { [key: string]: true } = {};
-const allowed = [
+const allowedEn = [
   'abcdefghijklmnopqrstuvwxyz',
   'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   '01234567890',
@@ -120,16 +121,24 @@ const allowed = [
   '£$',
   '[]#%^&*()-_=+\\/{}°',
   '\n ',
-  // 'íéóáúñü', // spanish only
-  // 'ÉÁÚ', // spanish only
-  // '¡¿', // spanish only
-]
-  .join('')
-  .split('')
-  .reduce((obj, char) => {
-    obj[char] = true;
-    return obj;
-  }, lookup);
+];
+
+const allowedEs = allowedEn.concat(['íéóáúñü', 'ÉÁÚ', '¡¿']);
+const maps = {
+  es: toObject(allowedEs),
+  en: toObject(allowedEn),
+};
 
 rule.slug = 'invalid-characters';
 export default rule;
+
+function toObject(arr: string[]): Record<string, true> {
+  const lookup: Record<string, true> = {};
+  return arr
+    .join('')
+    .split('')
+    .reduce((obj, char) => {
+      obj[char] = true;
+      return obj;
+    }, lookup);
+}

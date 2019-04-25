@@ -1,11 +1,13 @@
 import stripIndent from 'strip-indent';
 import unspacedClass from '../unspaced-class';
 
+const opts = { lang: 'en' as const };
+
 describe('unspacedClass()', () => {
   it('creates a lint for violation of `unspaced-class` rule', () => {
     const adoc = 'Foo\n[.class]';
     const lines = adoc.split('\n');
-    const results = unspacedClass(lines[1], lines, 2);
+    const results = unspacedClass(lines[1], lines, 2, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 2,
@@ -37,7 +39,7 @@ describe('unspacedClass()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, i) => {
-      results = results.concat(unspacedClass(line, lines, i + 1));
+      results = results.concat(unspacedClass(line, lines, i + 1, opts));
     });
     expect(results).toHaveLength(1);
     expect(results[0].line).toBe(lineNum);
@@ -52,7 +54,7 @@ describe('unspacedClass()', () => {
     const lines = adoc.split('\n');
     let results: any[] = [];
     lines.forEach((line, i) => {
-      results = results.concat(unspacedClass(line, lines, i + 1));
+      results = results.concat(unspacedClass(line, lines, i + 1, opts));
     });
     expect(results).toHaveLength(0);
   });
