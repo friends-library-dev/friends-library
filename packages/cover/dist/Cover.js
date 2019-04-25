@@ -10,6 +10,6 @@ var Cover = function (_a) {
         react_1["default"].createElement("h1", null, title),
         react_1["default"].createElement("h2", null,
             author,
-            " author")));
+            " test 7")));
 };
 exports["default"] = Cover;

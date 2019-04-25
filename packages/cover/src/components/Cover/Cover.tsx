@@ -9,7 +9,7 @@ const Cover: React.FC<CoverProps> = ({ title, author }) => {
   return (
     <div>
       <h1>{title}</h1>
-      <h2>{author} author</h2>
+      <h2>{author} test 7</h2>
     </div>
   );
 };

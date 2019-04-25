@@ -17,6 +17,8 @@ function makePdf(props: any): void {
 
 const App: React.FC = () => {
   const [printSize, setPrintSize] = useState<PrintSizeAbbrev>('m');
+  const [title, setTitle] = useState<string>('The Journal of George Fox');
+  const [author, setAuthor] = useState<string>('George Fox');
   return (
     <div className="App">
       <select
@@ -32,8 +34,8 @@ const App: React.FC = () => {
       <p>
         The print size is <code>{printSize}</code>
       </p>
-      <Cover title="The Work of Vital Religion in the Soul" author="Samuel Rundell" />
-      <button onClick={() => makePdf({ printSize })}>MAKE PDF!</button>
+      <Cover title={title} author={author} />
+      <button onClick={() => makePdf({ printSize, title, author })}>MAKE PDF!</button>
     </div>
   );
 };
