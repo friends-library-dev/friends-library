@@ -3,11 +3,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-var react_1 = __importDefault(require("react"));
-var Cover = function (_a) {
-    var title = _a.title, author = _a.author;
-    return (react_1["default"].createElement("div", null,
-        react_1["default"].createElement("h1", null, title),
-        react_1["default"].createElement("h2", null, author)));
-};
-exports["default"] = Cover;
+var fs_1 = __importDefault(require("fs"));
+function coverCss() {
+    return fs_1["default"].readFileSync(__dirname + "/Cover.css", 'UTF-8');
+}
+exports.coverCss = coverCss;
+function coverAsset(path) {
+    var fullpath = __dirname + "/assets/" + path;
+    if (!fs_1["default"].existsSync(fullpath)) {
+        throw new Error(fullpath + " does not exist!");
+    }
+    return fs_1["default"].readFileSync(fullpath).toString();
+}
+exports.coverAsset = coverAsset;
+var Cover_1 = require("./Cover");
+exports.Cover = Cover_1["default"];

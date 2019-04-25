@@ -1,7 +1,3 @@
-import React from 'react';
-interface CoverProps {
-    title: string;
-    author: string;
-}
-declare const Cover: React.FC<CoverProps>;
-export default Cover;
+export declare function coverCss(): string;
+export declare function coverAsset(path: string): string;
+export { default as Cover } from './Cover';

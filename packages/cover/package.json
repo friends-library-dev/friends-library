@@ -15,9 +15,9 @@
     "typescript": "3.4.5"
   },
   "scripts": {
-    "compile": "../../node_modules/.bin/tsc -p ./src/components/Cover",
+    "compile": "rm -rf ./dist && mkdir ./dist && cp ./src/components/Cover/Cover.css ./dist/Cover.css && cp -r ./src/components/Cover/assets ./dist && ../../node_modules/.bin/tsc -p ./src/components/Cover",
     "listen:pdf": "node ./listen/listen-pdf.js",
-    "develop": "yarn start",
+    "develop": "concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"cd ../../ && yarn kite cover:watch\"",
     "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -38,5 +38,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  }
 }

@@ -2,10 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import { exec } from 'child_process';
 import { Arguments } from 'yargs';
-import { getBookSize } from '@friends-library/asciidoc';
-import { PrintSize, Css, Html } from '@friends-library/types';
-import Cover from '@friends-library/cover';
-import CoverCss from '@friends-library/cover/css';
+import { PrintSize, Css, Html, FilePath } from '@friends-library/types';
+import { Cover, coverCss, coverAsset } from '@friends-library/cover';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { PUBLISH_DIR, toCss } from '../../publish/file';
@@ -18,22 +16,25 @@ interface CoverOptions {
   open: boolean;
 }
 
-export default function cover(opts: Arguments<CoverOptions>): void {
-  const el = React.createElement(Cover, { title: 'Foo', author: 'bar' });
-  const str = ReactDOMServer.renderToStaticMarkup(el);
-  console.log(str);
-  console.log(CoverCss);
+export default async function cover(opts: Arguments<CoverOptions>): Promise<void> {
+  const props = { title: 'Foo', author: 'bar' };
+  const filePath = await coverFromProps(props);
+  exec(`open "${filePath}"`);
+}
 
-  const size = getBookSize(opts.printSize);
-
-  makeCover(
-    'No Cruz, No Corona',
-    'William Penn',
-    // 'The Original and Present State of Man',
-    // 'Joseph Phipps',
-    size,
-    opts,
+export async function coverFromProps(props: any): Promise<FilePath> {
+  const el = React.createElement(Cover, props);
+  const html = ReactDOMServer.renderToStaticMarkup(el);
+  const manifest = {
+    'doc.html': html,
+    'doc.css': coverCss(),
+  };
+  const { filePath } = await prince(
+    manifest,
+    '__cover__',
+    `cover-${new Date().getTime() / 1000}.pdf`,
   );
+  return filePath;
 }
 
 export async function makeCover(
@@ -54,12 +55,6 @@ export async function makeCover(
       .readFileSync(path.resolve(__dirname, '..', '..', `isbn/imgs/${isbn}.png`))
       .toString(),
   };
-
-  const dir = '__cover__';
-  const { filePath } = await prince(manifest, dir, 'cover.pdf');
-  if (opts.open) {
-    exec(`open "${filePath}"`);
-  }
 }
 
 function getHtml(
