@@ -1,0 +1,7 @@
+POST http://localhost:9988 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "The Work of Vital Religion in the Soul",
+  "author": "Samuel Rundell"
+}

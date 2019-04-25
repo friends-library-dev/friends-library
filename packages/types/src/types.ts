@@ -1,83 +1,12 @@
-export type ISBN = string;
-
-export type Uuid = string;
-
-export type Asciidoc = string;
-
-export type Xml = string;
-
-export type Html = string;
-
-export type Css = string;
-
-export type Url = string;
-
-export type Slug = string;
-
-export type Name = string;
-
-export type Title = string;
-
-export type Description = string;
-
-export type FilePath = string;
-
-export type Sha = string;
-
 export type Gender = 'male' | 'female';
-
 export type Lang = 'en' | 'es';
-
 export type EditionType = 'original' | 'modernized' | 'updated';
-
 export type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
-
 export type NodeEnv = 'production' | 'development';
-
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
-export function isDefined<T>(x: T | undefined): x is T {
-  return typeof x !== 'undefined';
-}
-
-export function isNotFalse<T>(x: T | false): x is T {
-  return x !== false;
-}
-
-export function requireEnv<T extends string>(...keys: T[]): { [k in T]: string } {
-  /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
-  const obj = {} as { [k in T]: string };
-  keys.forEach(key => {
-    const val = process.env[key];
-    if (typeof val !== 'string') {
-      throw new Error(`Env var \`${key}\` is required.`);
-    }
-    obj[key] = val;
-  });
-  return obj;
-}
-
-export interface LintResult {
-  line: number;
-  column: number | false;
-  type: 'error' | 'warning' | 'notice';
-  rule: string;
-  message: string;
-  recommendation?: string;
-  fixable?: boolean;
-  info?: string;
-}
-
-export interface LintOptions {
-  lang: Lang;
-  editionType?: EditionType;
-  include?: string[];
-  exclude?: string[];
-  maybe?: boolean;
-}
-
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
+export type PrintSizeName = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
+export type PrintSizeAbbrev = 's' | 'm' | 'l' | 'xl' | 'xxl';
 
 export interface Job {
   id: string;
@@ -86,10 +15,6 @@ export interface Job {
   target: FileType;
   filename: string;
 }
-
-export type PrintSizeName = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
-
-export type PrintSizeAbbrev = 's' | 'm' | 'l' | 'xl' | 'xxl';
 
 export interface DocumentArtifacts {
   filePath: FilePath;
@@ -198,4 +123,60 @@ export type DocumentMeta = Readonly<{
 
 export interface FileManifest {
   [key: string]: string;
+}
+
+export interface LintResult {
+  line: number;
+  column: number | false;
+  type: 'error' | 'warning' | 'notice';
+  rule: string;
+  message: string;
+  recommendation?: string;
+  fixable?: boolean;
+  info?: string;
+}
+
+export interface LintOptions {
+  lang: Lang;
+  editionType?: EditionType;
+  include?: string[];
+  exclude?: string[];
+  maybe?: boolean;
+}
+
+export type ISBN = string;
+export type Uuid = string;
+export type Asciidoc = string;
+export type Xml = string;
+export type Html = string;
+export type Css = string;
+export type Url = string;
+export type Slug = string;
+export type Name = string;
+export type Title = string;
+export type Description = string;
+export type FilePath = string;
+export type Sha = string;
+
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
+export function isDefined<T>(x: T | undefined): x is T {
+  return typeof x !== 'undefined';
+}
+
+export function isNotFalse<T>(x: T | false): x is T {
+  return x !== false;
+}
+
+export function requireEnv<T extends string>(...keys: T[]): { [k in T]: string } {
+  /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
+  const obj = {} as { [k in T]: string };
+  keys.forEach(key => {
+    const val = process.env[key];
+    if (typeof val !== 'string') {
+      throw new Error(`Env var \`${key}\` is required.`);
+    }
+    obj[key] = val;
+  });
+  return obj;
 }

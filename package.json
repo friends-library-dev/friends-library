@@ -30,6 +30,7 @@
     "evans:ts:check": "cd packages/evans && yarn ts:check",
     "jones:develop": "cd packages/jones && yarn develop",
     "jones:build": "cd packages/jones && yarn build",
+    "cover:develop": "cd packages/cover && yarn develop",
     "cli:compile": "cd packages/cli && yarn compile",
     "asciidoc:compile": "cd ./packages/asciidoc && yarn compile",
     "hilkiah:compile": "cd ./packages/hilkiah && yarn compile",
@@ -64,7 +65,7 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "typescript": "3.4.4"
+    "typescript": "3.4.5"
   },
   "workspaces": [
     "packages/api",
@@ -72,6 +73,7 @@
     "packages/bot",
     "packages/cli",
     "packages/client",
+    "packages/cover",
     "packages/evans",
     "packages/fell",
     "packages/friends",

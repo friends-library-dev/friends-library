@@ -4,6 +4,10 @@ import { exec } from 'child_process';
 import { Arguments } from 'yargs';
 import { getBookSize } from '@friends-library/asciidoc';
 import { PrintSize, Css, Html } from '@friends-library/types';
+import Cover from '@friends-library/cover';
+import CoverCss from '@friends-library/cover/css';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { PUBLISH_DIR, toCss } from '../../publish/file';
 import { prince } from '../../publish/pdf/prince';
 
@@ -15,6 +19,11 @@ interface CoverOptions {
 }
 
 export default function cover(opts: Arguments<CoverOptions>): void {
+  const el = React.createElement(Cover, { title: 'Foo', author: 'bar' });
+  const str = ReactDOMServer.renderToStaticMarkup(el);
+  console.log(str);
+  console.log(CoverCss);
+
   const size = getBookSize(opts.printSize);
 
   makeCover(
