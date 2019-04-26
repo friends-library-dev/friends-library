@@ -1,7 +1,4 @@
 import React from 'react';
-interface CoverProps {
-    title: string;
-    author: string;
-}
+import { CoverProps } from './types';
 declare const Cover: React.FC<CoverProps>;
 export default Cover;

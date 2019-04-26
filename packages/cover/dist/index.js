@@ -4,10 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 exports.__esModule = true;
 var fs_1 = __importDefault(require("fs"));
-function coverCss() {
-    return fs_1["default"].readFileSync(__dirname + "/Cover.css", 'UTF-8');
-}
-exports.coverCss = coverCss;
 function coverAsset(path) {
     var fullpath = __dirname + "/assets/" + path;
     if (!fs_1["default"].existsSync(fullpath)) {
@@ -16,5 +12,7 @@ function coverAsset(path) {
     return fs_1["default"].readFileSync(fullpath).toString();
 }
 exports.coverAsset = coverAsset;
+var css_1 = require("./css");
+exports.coverCss = css_1.coverCss;
 var Cover_1 = require("./Cover");
 exports.Cover = Cover_1["default"];

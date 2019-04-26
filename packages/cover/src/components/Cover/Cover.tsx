@@ -1,15 +1,12 @@
 import React from 'react';
+import { CoverProps } from './types';
 
-interface CoverProps {
-  title: string;
-  author: string;
-}
-
-const Cover: React.FC<CoverProps> = ({ title, author }) => {
+const Cover: React.FC<CoverProps> = props => {
+  const { title, author } = props;
   return (
-    <div>
+    <div className="cover">
       <h1>{title}</h1>
-      <h2>{author} test 7</h2>
+      <h2>{author}</h2>
     </div>
   );
 };

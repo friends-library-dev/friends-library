@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { exec } from 'child_process';
+import stripIndent from 'strip-indent';
 import { Arguments } from 'yargs';
 import { PrintSize, Css, Html, FilePath } from '@friends-library/types';
 import { Cover, coverCss, coverAsset } from '@friends-library/cover';
@@ -26,9 +27,10 @@ export async function coverFromProps(props: any): Promise<FilePath> {
   const el = React.createElement(Cover, props);
   const html = ReactDOMServer.renderToStaticMarkup(el);
   const manifest = {
-    'doc.html': html,
-    'doc.css': coverCss(),
+    'doc.html': wrapHtml(html, props),
+    'doc.css': coverCss(props),
   };
+  console.log(coverCss(props));
   const { filePath } = await prince(
     manifest,
     '__cover__',
@@ -55,6 +57,21 @@ export async function makeCover(
       .readFileSync(path.resolve(__dirname, '..', '..', `isbn/imgs/${isbn}.png`))
       .toString(),
   };
+}
+
+function wrapHtml(inner: Html, props: any): Html {
+  return stripIndent(`
+    <!DOCTYPE html>
+    <html lang="en" class="size--¯\_(ツ)_/¯">
+      <head>
+        <meta charset="UTF-8"/>
+        <link href="doc.css" rel="stylesheet" type="text/css"/>
+      </head>
+      <body>
+        ${inner}
+      </body>
+    </html>
+  `).trim();
 }
 
 function getHtml(
