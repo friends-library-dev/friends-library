@@ -1,62 +1,63 @@
 name: John Spalding
 slug: john-spalding
 gender: male
-description: Though raised in the Church of England, John Spalding's (1765-1795) pursuit of truth left him disstaisfied with the traditional worship of his day, concluding that, in many respects, it was neither pleasing to God nor effective towards the salvation of his soul. After at last finding the Pearl of great price, he composed a public letter to beloved friends and family attending St. Giles church in Reading, entitling it - "A Few Reasons for Leaving the National Established Mode of Worship, Addressed to the professors of religion in this day, by one who was long in the profession, but knew not the power, till it pleased the Lord, by the ministry and writings of the people called Quakers, to direct him to where alone the power is to be known, that is, within."
+description:
+  Though raised in the Church of England, John Spalding's (1765-1795) pursuit of truth
+  left him disstaisfied with the traditional worship of his day, concluding that, in many
+  respects, it was neither pleasing to God nor effective towards the salvation of his
+  soul. After at last finding the Pearl of great price, he composed a public letter to
+  beloved friends and family attending St. Giles church in Reading, entitling it - "A Few
+  Reasons for Leaving the National Established Mode of Worship, Addressed to the
+  professors of religion in this day, by one who was long in the profession, but knew not
+  the power, till it pleased the Lord, by the ministry and writings of the people called
+  Quakers, to direct him to where alone the power is to be known, that is, within."
 documents:
-  -
-    title: The Convincement and Religious Progress of John Spalding
+  - title: The Convincement and Religious Progress of John Spalding
     slug: convincement-religious-progress
     description: TODO
     filename: Convincement_and_Religious_Progress_of_John_Spalding
-    original_title: Some Account of the Convincement and Religious Progress, of John Spalding, Late of Reading. With His Reasons for Leaving the National Established Mode of Worship.
+    original_title:
+      Some Account of the Convincement and Religious Progress, of John Spalding, Late of
+      Reading. With His Reasons for Leaving the National Established Mode of Worship.
     published: 1808
     tags:
       - letters
       - journal
     editions:
-      -
-        type: original
+      - type: original
         formats:
-            -
-              type: pdf
-            -
-              type: epub
-            -
-              type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Address
-          -
-            title: Some Account, etc.
-          -
-            title: A Few Reasons for Leaving the Established Mode of Worship
-  -
-    title: A Few Reasons for Leaving the Established Mode of Worship
+          - title: Address
+          - title: Some Account, etc.
+          - title: A Few Reasons for Leaving the Established Mode of Worship
+  - title: A Few Reasons for Leaving the Established Mode of Worship
     slug: few-reasons-for-leaving
     filename: A_Few_Reasons_for_Leaving
-    description: A Few Reasons for Leaving the National Established Mode of Worship, Addressed to the professors of religion in this day, by one who was long in the profession, but knew not the power, till it pleased the Lord, by the ministry and writings of the people called Quakers, to direct him to where alone the power is to be known, that is, within.
+    description:
+      A Few Reasons for Leaving the National Established Mode of Worship, Addressed to the
+      professors of religion in this day, by one who was long in the profession, but knew
+      not the power, till it pleased the Lord, by the ministry and writings of the people
+      called Quakers, to direct him to where alone the power is to be known, that is,
+      within.
     tags:
       - letter
       - treatise
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 40
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
-          -
-            type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Part 1
+            - title: Part 1
               external_id_hq: 354378077
               external_id_lq: 354378092
               filesize_hq: 45003401
@@ -65,8 +66,7 @@ documents:
               chapters:
                 - 0
 
-            -
-              title: Part 2
+            - title: Part 2
               external_id_hq: 354370403
               external_id_lq: 354370415
               filesize_hq: 48852152
@@ -76,5 +76,4 @@ documents:
                 - 1
 
         chapters:
-          -
-            title: A Few Reasons for Leaving the National Established Mode of Worship
+          - title: A Few Reasons for Leaving the National Established Mode of Worship

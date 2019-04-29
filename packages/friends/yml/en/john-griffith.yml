@@ -1,36 +1,35 @@
 name: John Griffith
 slug: john-griffith
 gender: male
-description: John Griffith (1713-1776) was a powerful minister during a time when the light, life, and power of Christ was slowly declining among the Society of Friends. Together with a remnant of bright, shining lamps in his generation, Griffith warred against a sad degeneracy into formality, tradition, and lifeless words amongst a people once distinguished by their adherence to the inward power and purity of the Holy Spirit.
+description:
+  John Griffith (1713-1776) was a powerful minister during a time when the light, life,
+  and power of Christ was slowly declining among the Society of Friends. Together with a
+  remnant of bright, shining lamps in his generation, Griffith warred against a sad
+  degeneracy into formality, tradition, and lifeless words amongst a people once
+  distinguished by their adherence to the inward power and purity of the Holy Spirit.
 documents:
-  -
-    title: Selection from the Journal of John Griffith
+  - title: Selection from the Journal of John Griffith
     slug: journal-selection
     filename: Selection_Journal_of_John_Griffith
-    description: This instructive portion of his lengthy journal deals with his conversion, spiritual growth, and call to the ministry.
+    description:
+      This instructive portion of his lengthy journal deals with his conversion, spiritual
+      growth, and call to the ministry.
     tags:
       - journal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 26
         formats:
-          -
-            type: paperback
-          -
-            type: audio
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Selection from the Journal of John Griffith
+            - title: Selection from the Journal of John Griffith
               external_id_hq: 278743551
               external_id_lq: 278743565
               filesize_hq: 57467106
@@ -40,79 +39,68 @@ documents:
                 - 0
 
         chapters:
-          -
-            title: Selection from the Journal of John Griffith
-  -
-    title: The Journal of John Griffith
+          - title: Selection from the Journal of John Griffith
+  - title: The Journal of John Griffith
     slug: journal
-    original_title: A Journal of the Life, Travels, and Labours in the Work of the Ministry, of John Griffith
+    original_title:
+      A Journal of the Life, Travels, and Labours in the Work of the Ministry, of John
+      Griffith
     published: 1779
     filename: Journal_of_John_Griffith
-    description: This is the unabridged journal of John Griffith, with modernization of spellings and some archaic words.
+    description:
+      This is the unabridged journal of John Griffith, with modernization of spellings and
+      some archaic words.
     tags:
       - journal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 289
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            number: 8
-          -
-            number: 9
-          -
-            number: 10
-          -
-            title: A Testimony from the Monthly Meeting of Witham, in Essex, concerning John Griffith, deceased.
-  -
-    title: The Ancient Path
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - title:
+              A Testimony from the Monthly Meeting of Witham, in Essex, concerning John
+              Griffith, deceased.
+  - title: The Ancient Path
     slug: ancient-path
     filename: Ancient_Path
     published: 1764
-    original_title: Some Brief Remarks Upon Sundry Important Subjects, Necessary to be understood and attended to by all professing the Christian Religion. Principally Addressed to the People called Quakers
-    description: This treatise, written by John Griffith in 1762, contains weighty and helpful counsel on the subjects of parenting, the new birth, the nature of true worship, true and false ministry, and the nature and usefulness of Christian discipline.
+    original_title:
+      Some Brief Remarks Upon Sundry Important Subjects, Necessary to be understood and
+      attended to by all professing the Christian Religion. Principally Addressed to the
+      People called Quakers
+    description:
+      This treatise, written by John Griffith in 1762, contains weighty and helpful
+      counsel on the subjects of parenting, the new birth, the nature of true worship,
+      true and false ministry, and the nature and usefulness of Christian discipline.
     tags:
       - treatise
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 75
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
-          -
-            type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Section 1 - Tender Advice, Caution, and Counsel to Parents and Children
+            - title:
+                Section 1 - Tender Advice, Caution, and Counsel to Parents and Children
               external_id_hq: 407598861
               external_id_lq: 407598879
               filesize_hq: 32634686
@@ -120,8 +108,7 @@ documents:
               seconds: 1815
               chapters:
                 - 0
-            -
-              title: Section 2 - The Nature and Necessity of the New Birth
+            - title: Section 2 - The Nature and Necessity of the New Birth
               external_id_hq: 410213409
               external_id_lq: 410213439
               filesize_hq: 32305895
@@ -129,8 +116,7 @@ documents:
               seconds: 1807
               chapters:
                 - 1
-            -
-              title: Section 3 - The Nature of True Worship
+            - title: Section 3 - The Nature of True Worship
               external_id_hq: 414707667
               external_id_lq: 414707691
               filesize_hq: 33062456
@@ -138,8 +124,7 @@ documents:
               seconds: 1834
               chapters:
                 - 2
-            -
-              title: Section 4 - Remarks Upon the True and the False Ministry
+            - title: Section 4 - Remarks Upon the True and the False Ministry
               external_id_hq: 421957032
               external_id_lq: 421957044
               filesize_hq: 29475317
@@ -147,8 +132,7 @@ documents:
               seconds: 1691
               chapters:
                 - 3
-            -
-              title: Section 5 - The Nature and Usefulness of Christian Discipline
+            - title: Section 5 - The Nature and Usefulness of Christian Discipline
               external_id_hq: 428643531
               external_id_lq: 428643540
               filesize_hq: 49172349
@@ -158,13 +142,9 @@ documents:
                 - 4
 
         chapters:
-          -
-            title: Section 1 -- Tender Advice, Caution, and Counsel to Parents and Children
-          -
-            title: Section 2 -- The Nature and Necessity of the New Birth
-          -
-            title: Section 3 -- The Nature of True Worship
-          -
-            title: Section 4 -- Remarks Upon the True and the False Ministry
-          -
-            title: Section 5 -- The Nature and Usefulness of Christian Discipline
+          - title:
+              Section 1 -- Tender Advice, Caution, and Counsel to Parents and Children
+          - title: Section 2 -- The Nature and Necessity of the New Birth
+          - title: Section 3 -- The Nature of True Worship
+          - title: Section 4 -- Remarks Upon the True and the False Ministry
+          - title: Section 5 -- The Nature and Usefulness of Christian Discipline

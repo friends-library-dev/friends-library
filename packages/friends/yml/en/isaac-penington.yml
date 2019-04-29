@@ -1,38 +1,48 @@
 name: Isaac Penington
 slug: isaac-penington
 gender: male
-description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
+description:
+  Isaac Penington (1616-1679) was the son of a prominent English politician, and the
+  father-in-law of William Penn, founder of Pennsylvania. Though born into a family of
+  wealth and reputation, Penington's heart was set upon things above from his earliest
+  days. Even as a child, he recognized that the religion of his day stood in the will and
+  understanding of man, in outward practices, duties, and scriptural truths that were
+  professed but not truly possessed. Isaac Penington longed for more. Motivated by an
+  insatiable hunger for truth, he sought the Lord with all his heart and discovered a
+  Christianity that stood in, and flowed out from, the light and life of Jesus Christ
+  reigning in the inner man.
 documents:
-  -
-    title: The Writings of Isaac Penington - Volume 1
+  - title: The Writings of Isaac Penington - Volume 1
     slug: writings-volume-1
     filename: Writings_of_Isaac_Penington_vol_1
-    description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
+    description:
+      Isaac Penington (1616-1679) was the son of a prominent English politician, and the
+      father-in-law of William Penn, founder of Pennsylvania. Though born into a family of
+      wealth and reputation, Penington's heart was set upon things above from his earliest
+      days. Even as a child, he recognized that the religion of his day stood in the will
+      and understanding of man, in outward practices, duties, and scriptural truths that
+      were professed but not truly possessed. Isaac Penington longed for more. Motivated
+      by an insatiable hunger for truth, he sought the Lord with all his heart and
+      discovered a Christianity that stood in, and flowed out from, the light and life of
+      Jesus Christ reigning in the inner man.
     tags:
       - devotional
       - doctrinal
       - letters
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 391
         formats:
-          -
-            type: paperback
-          -
-            type: audio
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Chapter 1
+            - title: Chapter 1
               external_id_hq: 236087816
               external_id_lq: 236087828
               filesize_hq: 48529714
@@ -40,8 +50,7 @@ documents:
               seconds: 2893
               chapters:
                 - 0
-            -
-              title: Chapter 2
+            - title: Chapter 2
               external_id_hq: 236524198
               external_id_lq: 236524217
               filesize_hq: 75738836
@@ -49,8 +58,7 @@ documents:
               seconds: 4378
               chapters:
                 - 1
-            -
-              title: Chapter 3
+            - title: Chapter 3
               external_id_hq: 236683327
               external_id_lq: 236683342
               filesize_hq: 39053040
@@ -58,8 +66,7 @@ documents:
               seconds: 2270
               chapters:
                 - 2
-            -
-              title: Chapter 4
+            - title: Chapter 4
               external_id_hq: 237550758
               external_id_lq: 237550789
               filesize_hq: 59657453
@@ -67,8 +74,7 @@ documents:
               seconds: 3475
               chapters:
                 - 3
-            -
-              title: Chapter 5
+            - title: Chapter 5
               external_id_hq: 238137305
               external_id_lq: 238137322
               filesize_hq: 56478533
@@ -76,8 +82,7 @@ documents:
               seconds: 3302
               chapters:
                 - 4
-            -
-              title: Chapter 6
+            - title: Chapter 6
               external_id_hq: 239750518
               external_id_lq: 239750527
               filesize_hq: 29288690
@@ -85,8 +90,7 @@ documents:
               seconds: 1674
               chapters:
                 - 5
-            -
-              title: Chapter 7
+            - title: Chapter 7
               external_id_hq: 240543643
               external_id_lq: 240543651
               filesize_hq: 20944960
@@ -94,8 +98,7 @@ documents:
               seconds: 1205
               chapters:
                 - 6
-            -
-              title: Chapter 8
+            - title: Chapter 8
               external_id_hq: 241597674
               external_id_lq: 241597696
               filesize_hq: 37147519
@@ -103,8 +106,7 @@ documents:
               seconds: 2135
               chapters:
                 - 7
-            -
-              title: Chapter 9
+            - title: Chapter 9
               external_id_hq: 242604613
               external_id_lq: 242604639
               filesize_hq: 66885314
@@ -112,8 +114,7 @@ documents:
               seconds: 3828
               chapters:
                 - 8
-            -
-              title: Chapter 10
+            - title: Chapter 10
               external_id_hq: 243225597
               external_id_lq: 243225603
               filesize_hq: 40132402
@@ -121,8 +122,7 @@ documents:
               seconds: 2292
               chapters:
                 - 9
-            -
-              title: Chapter 11
+            - title: Chapter 11
               external_id_hq: 243893816
               external_id_lq: 243893833
               filesize_hq: 43985097
@@ -130,8 +130,7 @@ documents:
               seconds: 2554
               chapters:
                 - 10
-            -
-              title: Chapter 12
+            - title: Chapter 12
               external_id_hq: 244568244
               external_id_lq: 244568263
               filesize_hq: 78001236
@@ -139,8 +138,7 @@ documents:
               seconds: 4525
               chapters:
                 - 11
-            -
-              title: Chapter 13
+            - title: Chapter 13
               external_id_hq: 246068270
               external_id_lq: 246068288
               filesize_hq: 52201684
@@ -148,8 +146,7 @@ documents:
               seconds: 3035
               chapters:
                 - 12
-            -
-              title: Chapter 14
+            - title: Chapter 14
               external_id_hq: 246690863
               external_id_lq: 246690872
               filesize_hq: 52322221
@@ -157,8 +154,7 @@ documents:
               seconds: 3039
               chapters:
                 - 13
-            -
-              title: Chapter 15
+            - title: Chapter 15
               external_id_hq: 247512245
               external_id_lq: 247512254
               filesize_hq: 26640560
@@ -166,8 +162,7 @@ documents:
               seconds: 1539
               chapters:
                 - 14
-            -
-              title: Chapter 16a
+            - title: Chapter 16a
               external_id_hq: 248324309
               external_id_lq: 248324313
               filesize_hq: 42208697
@@ -175,8 +170,7 @@ documents:
               seconds: 2499
               chapters:
                 - 15
-            -
-              title: Chapter 16b
+            - title: Chapter 16b
               external_id_hq: 249040062
               external_id_lq: 249040091
               filesize_hq: 51711685
@@ -184,8 +178,7 @@ documents:
               seconds: 3054
               chapters:
                 - 16
-            -
-              title: Chapter 16c
+            - title: Chapter 16c
               external_id_hq: 249649399
               external_id_lq: 249649406
               filesize_hq: 54120845
@@ -193,8 +186,7 @@ documents:
               seconds: 3098
               chapters:
                 - 17
-            -
-              title: Chapter 16d
+            - title: Chapter 16d
               external_id_hq: 250650800
               external_id_lq: 250650827
               filesize_hq: 41260770
@@ -204,86 +196,75 @@ documents:
                 - 18
 
         chapters:
-          -
-            title: Forward
-          -
-            number: 1
+          - title: Forward
+          - number: 1
             subtitle: Memoir of Isaac Penington
-          -
-            number: 2
+          - number: 2
             subtitle: The Way of Life and Death Made Manifest and Set Before Men
-          -
-            number: 3
-            subtitle: Some Principles Guiding Out of the Apostasy and Into the True Christian Spirit and Life
-          -
-            number: 4
+          - number: 3
+            subtitle:
+              Some Principles Guiding Out of the Apostasy and Into the True Christian
+              Spirit and Life
+          - number: 4
             subtitle: The Axe Laid to the Root of the Old Corrupt Tree
-          -
-            number: 5
+          - number: 5
             subtitle: The Scattered Sheep Sought After
-          -
-            number: 6
+          - number: 6
             subtitle: 'Babylon the Great: The City of Confusion Where Antichrist Reigns'
-          -
-            number: 7
-            subtitle: 'The Holy Scriptures: Whether They Be the True Rule of Faith and Life'
-          -
-            number: 8
+          - number: 7
+            subtitle:
+              'The Holy Scriptures: Whether They Be the True Rule of Faith and Life'
+          - number: 8
             subtitle: The Authority and Government which Christ Excluded from His Church
-          -
-            number: 9
-            subtitle: The New Covenant of the Gospel Distinguished from the Old Covenant of the Law
-          -
-            number: 1
+          - number: 9
+            subtitle:
+              The New Covenant of the Gospel Distinguished from the Old Covenant of the
+              Law
+          - number: 1
             subtitle: The Prayer, Ministry, Wisdom and Kingdom which are Spiritual
-          -
-            number: 1
+          - number: 1
             subtitle: Some Directions to the Panting Soul
-          -
-            number: 1
+          - number: 1
             subtitle: Some Questions and Answers for the Opening of the Eyes
-          -
-            number: 1
+          - number: 1
             subtitle: The Sum and Substance of True Religion
-          -
-            number: 1
+          - number: 1
             subtitle: The Two Seeds
-          -
-            number: 1
+          - number: 1
             subtitle: How to Discern the Teachings of Christ
-          -
-            number: 1
+          - number: 1
             subtitle: Letters of Isaac Penington Written Between 1658 - 1671
-  -
-    title: The Writings of Isaac Penington - Volume 2
+  - title: The Writings of Isaac Penington - Volume 2
     slug: writings-volume-2
     filename: Writings_of_Isaac_Penington_vol_2
-    description: Isaac Penington (1616-1679) was the son of a prominent English politician, and the father-in-law of William Penn, founder of Pennsylvania. Though born into a family of wealth and reputation, Penington's heart was set upon things above from his earliest days. Even as a child, he recognized that the religion of his day stood in the will and understanding of man, in outward practices, duties, and scriptural truths that were professed but not truly possessed. Isaac Penington longed for more. Motivated by an insatiable hunger for truth, he sought the Lord with all his heart and discovered a Christianity that stood in, and flowed out from, the light and life of Jesus Christ reigning in the inner man.
+    description:
+      Isaac Penington (1616-1679) was the son of a prominent English politician, and the
+      father-in-law of William Penn, founder of Pennsylvania. Though born into a family of
+      wealth and reputation, Penington's heart was set upon things above from his earliest
+      days. Even as a child, he recognized that the religion of his day stood in the will
+      and understanding of man, in outward practices, duties, and scriptural truths that
+      were professed but not truly possessed. Isaac Penington longed for more. Motivated
+      by an insatiable hunger for truth, he sought the Lord with all his heart and
+      discovered a Christianity that stood in, and flowed out from, the light and life of
+      Jesus Christ reigning in the inner man.
     tags:
       - devotional
       - doctrinal
       - letters
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 393
         formats:
-          -
-            type: paperback
-          -
-            type: audio
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Chapter 1
+            - title: Chapter 1
               external_id_hq: 251385524
               external_id_lq: 251385543
               filesize_hq: 68549849
@@ -291,8 +272,7 @@ documents:
               seconds: 4031
               chapters:
                 - 0
-            -
-              title: Chapter 2
+            - title: Chapter 2
               external_id_hq: 252169466
               external_id_lq: 252169483
               filesize_hq: 69490872
@@ -300,8 +280,7 @@ documents:
               seconds: 3900
               chapters:
                 - 1
-            -
-              title: Chapter 3
+            - title: Chapter 3
               external_id_hq: 253775460
               external_id_lq: 253775477
               filesize_hq: 36272540
@@ -309,8 +288,7 @@ documents:
               seconds: 2110
               chapters:
                 - 2
-            -
-              title: Chapter 4
+            - title: Chapter 4
               external_id_hq: 254976811
               external_id_lq: 254976825
               filesize_hq: 64854789
@@ -318,8 +296,7 @@ documents:
               seconds: 3639
               chapters:
                 - 3
-            -
-              title: Chapter 5
+            - title: Chapter 5
               external_id_hq: 256197379
               external_id_lq: 256197408
               filesize_hq: 47881431
@@ -327,8 +304,7 @@ documents:
               seconds: 2676
               chapters:
                 - 4
-            -
-              title: Chapter 6
+            - title: Chapter 6
               external_id_hq: 257247718
               external_id_lq: 257247730
               filesize_hq: 42199417
@@ -336,8 +312,7 @@ documents:
               seconds: 2303
               chapters:
                 - 5
-            -
-              title: Chapter 7
+            - title: Chapter 7
               external_id_hq: 257825679
               external_id_lq: 257825711
               filesize_hq: 64802867
@@ -345,8 +320,7 @@ documents:
               seconds: 3704
               chapters:
                 - 6
-            -
-              title: Chapter 8
+            - title: Chapter 8
               external_id_hq: 259679039
               external_id_lq: 259679045
               filesize_hq: 79200982
@@ -354,8 +328,7 @@ documents:
               seconds: 4479
               chapters:
                 - 7
-            -
-              title: Chapter 9
+            - title: Chapter 9
               external_id_hq: 260388151
               external_id_lq: 260388168
               filesize_hq: 42717380
@@ -363,8 +336,7 @@ documents:
               seconds: 2493
               chapters:
                 - 8
-            -
-              title: Chapter 10
+            - title: Chapter 10
               external_id_hq: 261020211
               external_id_lq: 261020238
               filesize_hq: 24642581
@@ -372,8 +344,7 @@ documents:
               seconds: 1402
               chapters:
                 - 9
-            -
-              title: Chapter 11
+            - title: Chapter 11
               external_id_hq: 261962062
               external_id_lq: 261962086
               filesize_hq: 37462716
@@ -381,8 +352,7 @@ documents:
               seconds: 2121
               chapters:
                 - 10
-            -
-              title: Chapter 12
+            - title: Chapter 12
               external_id_hq: 244568244
               external_id_lq: 244568263
               filesize_hq: 78001236
@@ -390,8 +360,7 @@ documents:
               seconds: 4525
               chapters:
                 - 11
-            -
-              title: Chapter 13
+            - title: Chapter 13
               external_id_hq: 263417381
               external_id_lq: 263417401
               filesize_hq: 46093148
@@ -399,8 +368,7 @@ documents:
               seconds: 2582
               chapters:
                 - 12
-            -
-              title: Chapter 14
+            - title: Chapter 14
               external_id_hq: 263944914
               external_id_lq: 263944942
               filesize_hq: 53395073
@@ -408,8 +376,7 @@ documents:
               seconds: 2975
               chapters:
                 - 13
-            -
-              title: Chapter 15a
+            - title: Chapter 15a
               external_id_hq: 264398118
               external_id_lq: 264398147
               filesize_hq: 53264911
@@ -417,8 +384,7 @@ documents:
               seconds: 3063
               chapters:
                 - 14
-            -
-              title: Chapter 15b
+            - title: Chapter 15b
               external_id_hq: 266052656
               external_id_lq: 266052676
               filesize_hq: 55696036
@@ -426,8 +392,7 @@ documents:
               seconds: 3161
               chapters:
                 - 15
-            -
-              title: Chapter 15c
+            - title: Chapter 15c
               external_id_hq: 267146771
               external_id_lq: 267146794
               filesize_hq: 53200653
@@ -435,8 +400,7 @@ documents:
               seconds: 3054
               chapters:
                 - 16
-            -
-              title: Chapter 15d
+            - title: Chapter 15d
               external_id_hq: 267791450
               external_id_lq: 267791465
               filesize_hq: 50015739
@@ -446,288 +410,204 @@ documents:
                 - 17
 
         chapters:
-          -
-            number: 1
+          - number: 1
             subtitle: Spiritual Knowledge
-          -
-            number: 2
+          - number: 2
             subtitle: Some Stumbling Blocks Removed Out of the Way of the Simple-Hearted
-          -
-            number: 3
+          - number: 3
             subtitle: The Holy Truth and People Defended
-          -
-            number: 4
+          - number: 4
             subtitle: Naked Truth Given Forth by Way of Question and Answer
-          -
-            number: 5
+          - number: 5
             subtitle: The Experiences
-          -
-            number: 6
+          - number: 6
             subtitle: A Brief Account Concerning the People Called Quakers
-          -
-            number: 7
+          - number: 7
             subtitle: To the Jews According to the Flesh and According to the Spirit
-          -
-            number: 8
+          - number: 8
             subtitle: A Testimony to Truth
-          -
-            number: 9
+          - number: 9
             subtitle: Life and Immortality Brought to Light by the Gospel
-          -
-            number: 10
+          - number: 10
             subtitle: The Ministration of Spirit and Power
-          -
-            number: 11
+          - number: 11
             subtitle: Christ's Baptism
-          -
-            number: 12
+          - number: 12
             subtitle: A Further Testimony Concerning the Work of God Upon Our Hearts
-          -
-            number: 13
+          - number: 13
             subtitle: God's Teaching and Christ's Law
-          -
-            number: 14
+          - number: 14
             subtitle: The Seed of the Kingdom
-          -
-            number: 15
+          - number: 15
             subtitle: Letters of Isaac Penington Written Between 1666 - 1679
-  -
-    title: The Unabridged Works of Isaac Penington - Volume 1
+  - title: The Unabridged Works of Isaac Penington - Volume 1
     slug: unabridged-works-volume-1
     filename: Unabridged_Works_of_Isaac_Penington_vol_1
-    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
+    description:
+      Isaac Penington (1616-1679) was one of the most prolific and gifted writers among
+      the early Quakers. The four publications here are the unabridged works Isaac
+      Penington. These have not been edited, with the exception of some modernization of
+      archaic words and spellings.
     tags:
       - devotional
       - doctrinal
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 538
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: The Testimony of George Fox, concerning Isaac Penington
-          -
-            title: The Testimony of Thomas Ellwood, concerning Isaac Penington
-          -
-            title: The Way of Life and Death Made Manifest, and Set Before Men
-          -
-            title: The Scattered Sheep Sought After
-          -
-            title: Babylon the Great Described
-          -
-            title: 'The Jew Outward: Being a Glass for the Professors of this Age'
-          -
-            title: The Axe Laid to the Root of the Old Corrupt Tree
-          -
-            title: To the Parliament, the Army, and all the Well-affected in the Nation, who have been faithful to the Good Old Cause
-          -
-            title: A brief account of Some Reasons why the Quakers cannot do some things, and forbear doing some things; for which they suffer, etc.
-          -
-            title: Some Considerations Proposed to the City of London, etc.
-          -
-            title: Some Considerations Proposed to the Distracted Nation of England
-          -
-            title: To the Army
-          -
-            title: A Question proposed to the Rulers, Teachers, and People of England
-          -
-            title: An examination of the Grounds or Causes which are said to induce the Court of Boston, to make that Law of Banishment etc.
-          -
-            title: Some Considerations concerning the state of Things, etc.
-          -
-            title: A Warning of Love from the Bowels of Life to Professors
-          -
-            title: Where is the Wise, where is the Scribe? etc.
-          -
-            title: Letters of Isaac Penington
-          -
-            title: 'Appendix: Additional Testimonies for Isaac Penington'
-  -
-    title: The Unabridged Works of Isaac Penington - Volume 2
+          - title: The Testimony of George Fox, concerning Isaac Penington
+          - title: The Testimony of Thomas Ellwood, concerning Isaac Penington
+          - title: The Way of Life and Death Made Manifest, and Set Before Men
+          - title: The Scattered Sheep Sought After
+          - title: Babylon the Great Described
+          - title: 'The Jew Outward: Being a Glass for the Professors of this Age'
+          - title: The Axe Laid to the Root of the Old Corrupt Tree
+          - title:
+              To the Parliament, the Army, and all the Well-affected in the Nation, who
+              have been faithful to the Good Old Cause
+          - title:
+              A brief account of Some Reasons why the Quakers cannot do some things, and
+              forbear doing some things; for which they suffer, etc.
+          - title: Some Considerations Proposed to the City of London, etc.
+          - title: Some Considerations Proposed to the Distracted Nation of England
+          - title: To the Army
+          - title: A Question proposed to the Rulers, Teachers, and People of England
+          - title:
+              An examination of the Grounds or Causes which are said to induce the Court
+              of Boston, to make that Law of Banishment etc.
+          - title: Some Considerations concerning the state of Things, etc.
+          - title: A Warning of Love from the Bowels of Life to Professors
+          - title: Where is the Wise, where is the Scribe? etc.
+          - title: Letters of Isaac Penington
+          - title: 'Appendix: Additional Testimonies for Isaac Penington'
+  - title: The Unabridged Works of Isaac Penington - Volume 2
     slug: unabridged-works-volume-2
     filename: Unabridged_Works_of_Isaac_Penington_vol_2
-    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
+    description:
+      Isaac Penington (1616-1679) was one of the most prolific and gifted writers among
+      the early Quakers. The four publications here are the unabridged works Isaac
+      Penington. These have not been edited, with the exception of some modernization of
+      archaic words and spellings.
     tags:
       - devotional
       - doctrinal
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 508
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: The Root of Popery Struck At
-          -
-            title: An Epistle to Such as Observe the Seventh Day for a Sabbath
-          -
-            title: The New Covenant of the Gospel distinguished from the Old
-          -
-            title: Some Queries and Considerations Proposed to the Cavaliers
-          -
-            title: Some Queries Concerning the Work of God in the World
-          -
-            title: Consideration of a Position Concerning the Book of Common Prayer
-          -
-            title: An Answer to that Common Objection against the Quakers etc.
-          -
-            title: The Great Question concerning the Lawfulness or Unlawfulness of Swearing under the Gospel
-          -
-            title: Something spoken to a Weighty Question concerning the Magistrate's Protection of the Innocent
-          -
-            title: Concerning Persecution
-          -
-            title: Some Directions to the Panting Soul
-          -
-            title: Concerning the worship of the Living God, which He Teaches etc.
-          -
-            title: Some Questions and Answers for... the Jews Natural
-          -
-            title: Some Questions and Answers Showing Man his Duty
-          -
-            title: To all Such as Complain they Lack Power
-          -
-            title: Some Queries to the Professors of this Age
-          -
-            title: Some Observations on that Portion of Scripture, Rom. 14:20.
-          -
-            title: Three Queries Propounded to the King and Parliament
-          -
-            title: A Salutation of Love to the Commissioners of Peace, etc.
-          -
-            title: A Weighty Question Propounded to the King and Parliament
-          -
-            title: Some of the Mysteries of God's Kingdom Glanced At
-          -
-            title: Some Queries concerning the Order and Government of the Church
-          -
-            title: Some Deep Considerations Concerning the State of Israel
-          -
-            title: Concerning God's Seeking out His Israel
-          -
-            title: To Friends in England, Ireland, Scotland, Holland, etc.
-          -
-            title: One more Tender Visitation to the Men of this Generation
-          -
-            title: Concerning the Church, or Church State under the Gospel
-          -
-            title: Concerning the Substance of our Religion who are called Quakers
-          -
-            title: Letters of Isaac Penington
-  -
-    title: The Unabridged Works of Isaac Penington - Volume 3
+          - title: The Root of Popery Struck At
+          - title: An Epistle to Such as Observe the Seventh Day for a Sabbath
+          - title: The New Covenant of the Gospel distinguished from the Old
+          - title: Some Queries and Considerations Proposed to the Cavaliers
+          - title: Some Queries Concerning the Work of God in the World
+          - title: Consideration of a Position Concerning the Book of Common Prayer
+          - title: An Answer to that Common Objection against the Quakers etc.
+          - title:
+              The Great Question concerning the Lawfulness or Unlawfulness of Swearing
+              under the Gospel
+          - title:
+              Something spoken to a Weighty Question concerning the Magistrate's
+              Protection of the Innocent
+          - title: Concerning Persecution
+          - title: Some Directions to the Panting Soul
+          - title: Concerning the worship of the Living God, which He Teaches etc.
+          - title: Some Questions and Answers for... the Jews Natural
+          - title: Some Questions and Answers Showing Man his Duty
+          - title: To all Such as Complain they Lack Power
+          - title: Some Queries to the Professors of this Age
+          - title: Some Observations on that Portion of Scripture, Rom. 14:20.
+          - title: Three Queries Propounded to the King and Parliament
+          - title: A Salutation of Love to the Commissioners of Peace, etc.
+          - title: A Weighty Question Propounded to the King and Parliament
+          - title: Some of the Mysteries of God's Kingdom Glanced At
+          - title: Some Queries concerning the Order and Government of the Church
+          - title: Some Deep Considerations Concerning the State of Israel
+          - title: Concerning God's Seeking out His Israel
+          - title: To Friends in England, Ireland, Scotland, Holland, etc.
+          - title: One more Tender Visitation to the Men of this Generation
+          - title: Concerning the Church, or Church State under the Gospel
+          - title: Concerning the Substance of our Religion who are called Quakers
+          - title: Letters of Isaac Penington
+  - title: The Unabridged Works of Isaac Penington - Volume 3
     slug: unabridged-works-volume-3
     filename: Unabridged_Works_of_Isaac_Penington_vol_3
-    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
+    description:
+      Isaac Penington (1616-1679) was one of the most prolific and gifted writers among
+      the early Quakers. The four publications here are the unabridged works Isaac
+      Penington. These have not been edited, with the exception of some modernization of
+      archaic words and spellings.
     tags:
       - devotional
       - doctrinal
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 538
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-            -
-              title: Some things of great Weight and Concernment to All
-            -
-              title: A Question to the Professors of Christianity
-            -
-              title: To Such as are not Satisfied with a Profession, without the true Life
-            -
-              title: Observations on Some Passages of Lodowick Muggleton
-            -
-              title: Some Things relating to Religion, proposed to the Royal Society
-            -
-              title: Of the Church in its Pure, Declining, and Declined State, and Recovery
-            -
-              title: An Inquiry after Truth and Righteousness, and after the People, etc.
-            -
-              title: The Holy Truth and People Defended, in Answer to a Letter, etc.
-            -
-              title: The Ancient Principle of Truth, or the Light within, Asserted
-            -
-              title: Naked Truth, or truth nakedly Manifesting Itself
-            -
-              title: The Flesh and Blood of Christ in the Mystery, and in the Outward
-            -
-              title: To the Jews Natural, and to the Jews Spiritual
-            -
-              title: The Everlasting Gospel and its blessed Effects Testified To
-            -
-              title: The Letters of Isaac Penington
-  -
-    title: The Unabridged Works of Isaac Penington - Volume 4
+          - title: Some things of great Weight and Concernment to All
+          - title: A Question to the Professors of Christianity
+          - title: To Such as are not Satisfied with a Profession, without the true Life
+          - title: Observations on Some Passages of Lodowick Muggleton
+          - title: Some Things relating to Religion, proposed to the Royal Society
+          - title: Of the Church in its Pure, Declining, and Declined State, and Recovery
+          - title: An Inquiry after Truth and Righteousness, and after the People, etc.
+          - title: The Holy Truth and People Defended, in Answer to a Letter, etc.
+          - title: The Ancient Principle of Truth, or the Light within, Asserted
+          - title: Naked Truth, or truth nakedly Manifesting Itself
+          - title: The Flesh and Blood of Christ in the Mystery, and in the Outward
+          - title: To the Jews Natural, and to the Jews Spiritual
+          - title: The Everlasting Gospel and its blessed Effects Testified To
+          - title: The Letters of Isaac Penington
+  - title: The Unabridged Works of Isaac Penington - Volume 4
     slug: unabridged-works-volume-4
     filename: Unabridged_Works_of_Isaac_Penington_vol_4
-    description: Isaac Penington (1616-1679) was one of the most prolific and gifted writers among the early Quakers. The four publications here are the unabridged works Isaac Penington. These have not been edited, with the exception of some modernization of archaic words and spellings.
+    description:
+      Isaac Penington (1616-1679) was one of the most prolific and gifted writers among
+      the early Quakers. The four publications here are the unabridged works Isaac
+      Penington. These have not been edited, with the exception of some modernization of
+      archaic words and spellings.
     tags:
       - devotional
       - doctrinal
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 436
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: A Further Testimony to Truth, Revived out of the Ruins of the Apostasy
-          -
-            title: Life and Immortality brought to Light through the Gospel
-          -
-            title: A Reply to your Criticisms
-          -
-            title: Experiences concerning things relating to God's everlasting Kingdom
-          -
-            title: A Treatise concerning God's Teaching, and Christ's Law
-          -
-            title: A Question answered concerning Reading the Scriptures Aright
-          -
-            title: Something Relating to Church Government
-          -
-            title: Some Misrepresentations of me Concerning Church Government
-          -
-            title: The Seed of God, and of his Kingdom Treated and Testified of
-          -
-            title: An Epistle to all serious Professors of the Christian Religion
-          -
-            title: A Reply to an answer to Queries by I.P. concerning gospel Baptism
-          -
-            title: Some Queries concerning Compulsion in Religion
-          -
-            title: Concerning the Dispensation of the Gospel, or the Dispensation of the Son in Spirit, which is the Last Dispensation
-          -
-            title: Experiences Concerning God's Way, Truth, Church, and People
-          -
-            title: Concerning the Times and Seasons, Both Which Have Been, and Are Yet to Be
-          -
-            title: Letters of Isaac Penington
+          - title: A Further Testimony to Truth, Revived out of the Ruins of the Apostasy
+          - title: Life and Immortality brought to Light through the Gospel
+          - title: A Reply to your Criticisms
+          - title: Experiences concerning things relating to God's everlasting Kingdom
+          - title: A Treatise concerning God's Teaching, and Christ's Law
+          - title: A Question answered concerning Reading the Scriptures Aright
+          - title: Something Relating to Church Government
+          - title: Some Misrepresentations of me Concerning Church Government
+          - title: The Seed of God, and of his Kingdom Treated and Testified of
+          - title: An Epistle to all serious Professors of the Christian Religion
+          - title: A Reply to an answer to Queries by I.P. concerning gospel Baptism
+          - title: Some Queries concerning Compulsion in Religion
+          - title:
+              Concerning the Dispensation of the Gospel, or the Dispensation of the Son in
+              Spirit, which is the Last Dispensation
+          - title: Experiences Concerning God's Way, Truth, Church, and People
+          - title:
+              Concerning the Times and Seasons, Both Which Have Been, and Are Yet to Be
+          - title: Letters of Isaac Penington

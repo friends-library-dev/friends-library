@@ -1,30 +1,39 @@
 name: George Whitehead
 slug: george-whitehead
 gender: male
-description: George Whitehead (1636-1723) was one of the most influential of the early Quakers. He was convinced of the Truth when only 17 years old, and grew quickly in the life and power of the gospel. Though publicly whipped, imprisoned multiple times, frequently abused and persecuted, he kept close to the cross, and came to be a pillar and elder in the church of God, constantly laboring for the advancement of Truth and the welfare of the Society.
+description:
+  George Whitehead (1636-1723) was one of the most influential of the early Quakers. He
+  was convinced of the Truth when only 17 years old, and grew quickly in the life and
+  power of the gospel. Though publicly whipped, imprisoned multiple times, frequently
+  abused and persecuted, he kept close to the cross, and came to be a pillar and elder in
+  the church of God, constantly laboring for the advancement of Truth and the welfare of
+  the Society.
 documents:
-  -
-    title: The Christian Progress of George Whitehead
+  - title: The Christian Progress of George Whitehead
     published: 1725
-    original_title: The Christian Progress of that Ancient Servant and Minister of Jesus Christ, George Whitehead. Historically Relating His Experience, Ministry, Sufferings, Trials and Service, in Defence of the Truth, and God's Persecuted People, Commonly Called Quakers.
+    original_title:
+      The Christian Progress of that Ancient Servant and Minister of Jesus Christ, George
+      Whitehead. Historically Relating His Experience, Ministry, Sufferings, Trials and
+      Service, in Defence of the Truth, and God's Persecuted People, Commonly Called
+      Quakers.
     slug: journal
     filename: Christian_Progress_of_George_Whitehead
-    description: George Whitehead (1636-1723) was one of the most influential of the early Quakers. He was convinced of the Truth when only 17 years old, and grew quickly in the life and power of the gospel. Though publicly whipped, imprisoned multiple times, frequently abused and persecuted, he kept close to the cross, and came to be a pillar and elder in the church of God, constantly laboring for the advancement of Truth and the welfare of the Society.
+    description:
+      George Whitehead (1636-1723) was one of the most influential of the early Quakers.
+      He was convinced of the Truth when only 17 years old, and grew quickly in the life
+      and power of the gospel. Though publicly whipped, imprisoned multiple times,
+      frequently abused and persecuted, he kept close to the cross, and came to be a
+      pillar and elder in the church of God, constantly laboring for the advancement of
+      Truth and the welfare of the Society.
     tags:
       - journal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 292
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: A Brief Testimony of George Whitehead
-          -
-            title: The Christian Progress of George Whitehead
+          - title: A Brief Testimony of George Whitehead
+          - title: The Christian Progress of George Whitehead

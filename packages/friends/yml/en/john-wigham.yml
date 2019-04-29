@@ -3,67 +3,45 @@ slug: john-wigham
 gender: male
 description: TODO
 documents:
-  -
-    title: Journal of John Wigham
+  - title: Journal of John Wigham
     slug: journal
-    original_title: Memoirs of the Life, Gospel Labors, and Religious Experiences of John Wigham, Chiefly Written by Himself; To Which Are Added Some Concluding Remarks by His Son, Anthony Wigham.
+    original_title:
+      Memoirs of the Life, Gospel Labors, and Religious Experiences of John Wigham,
+      Chiefly Written by Himself; To Which Are Added Some Concluding Remarks by His Son,
+      Anthony Wigham.
     filename: Journal_of_John_Wigham
     description: TODO
     tags:
       - journal
     editions:
-      -
-        type: original
+      - type: original
         formats:
-            -
-              type: pdf
-            -
-              type: epub
-            -
-              type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
 
         chapters:
-          -
-            title: Preface
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            title: Testimony
-      
-      -
-        type: modernized
+          - title: Preface
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - title: Testimony
+
+      - type: modernized
         formats:
-            -
-              type: pdf
-            -
-              type: epub
-            -
-              type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
 
         chapters:
-          -
-            title: Preface
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            title: Testimony
+          - title: Preface
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - title: Testimony

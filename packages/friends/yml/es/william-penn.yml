@@ -3,8 +3,7 @@ slug: william-penn
 gender: male
 description: TODO
 documents:
-  -
-    title: No Cruz, No Corona
+  - title: No Cruz, No Corona
     slug: no-cruz-no-corona
     filename: No_Cruz_No_Corona
     published: 1669
@@ -13,37 +12,25 @@ documents:
       - treatise
       - exhortation
     editions:
-      -
-        type: updated
+      - type: updated
         isbn: 978-1-64476-002-4
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Prefacio de William Penn
-          -
-            number: 1
+          - title: Prefacio de William Penn
+          - number: 1
             subtitle: Un Cristianismo sin Cruz
-          -
-            number: 2
+          - number: 2
             subtitle: La Gran Apostasía
-          -
-            number: 3
+          - number: 3
             subtitle: La Cruz Diaria
-          -
-            number: 4
+          - number: 4
             subtitle: Negando el Yo Lícito
-          -
-            number: 5
+          - number: 5
             subtitle: Negando el Yo Ilícito
-          -
-            number: 6
+          - number: 6
             subtitle: La Adoración Espiritual
-          -
-            number: 7
+          - number: 7
             subtitle: El Pecado del Orgullo

@@ -1,102 +1,79 @@
 name: Joseph Edgerton
 slug: joseph-edgerton
 gender: male
-description: ​Joseph Edgerton (1797-1875) was one of the few faithful Friends in the 19th century that held fast to the Truth even as the long-favored Society of Friends crumbled to the earth on the right hand and on the left. He was acknowledged a minister of the gospel in 1833, and travelled extensively in that capaity a great part of the time during the subsequent years of his life. He was valiant for the Truth in his day, standing forth in unflinching support of the original doctrines and testimonies of the Society of Friends. The cleansing, purifying power of the Lord Jesus, in His inward and spiritual appearance in the heart, was frequently the subject of his preaching, and his greatest desire was that all would experience a growth in the true grace of God, and so be continually "taking root downward, and bringing forth fruit upward."
+description:
+  ​Joseph Edgerton (1797-1875) was one of the few faithful Friends in the 19th century
+  that held fast to the Truth even as the long-favored Society of Friends crumbled to the
+  earth on the right hand and on the left. He was acknowledged a minister of the gospel in
+  1833, and travelled extensively in that capaity a great part of the time during the
+  subsequent years of his life. He was valiant for the Truth in his day, standing forth in
+  unflinching support of the original doctrines and testimonies of the Society of Friends.
+  The cleansing, purifying power of the Lord Jesus, in His inward and spiritual appearance
+  in the heart, was frequently the subject of his preaching, and his greatest desire was
+  that all would experience a growth in the true grace of God, and so be continually
+  "taking root downward, and bringing forth fruit upward."
 
 documents:
-  -
-    title: The Journal of Joseph Edgerton
-    original_title: Some Account of the Life and Religious Services of Joseph Edgerton, a Minister of the Gospel in the Society of Friends. With Extracts from His Correspondence.
+  - title: The Journal of Joseph Edgerton
+    original_title:
+      Some Account of the Life and Religious Services of Joseph Edgerton, a Minister of
+      the Gospel in the Society of Friends. With Extracts from His Correspondence.
     slug: journal
     filename: Journal_of_Joseph_Edgerton
-    description: This journal was kept by Joseph Edgerton throughout the totality of his adult life, and describes many of his spiritual and ministerial experiences, his long travels, inward and outward trials, and frequent sorrows over the declining state of the Society of Friends (especially due to the spread of both Hicksite and Gurneyite innovations). The final chapter contains a weighty addres to the members of the Society of Friends, written by Edgerton in 1841.
+    description:
+      This journal was kept by Joseph Edgerton throughout the totality of his adult life,
+      and describes many of his spiritual and ministerial experiences, his long travels,
+      inward and outward trials, and frequent sorrows over the declining state of the
+      Society of Friends (especially due to the spread of both Hicksite and Gurneyite
+      innovations). The final chapter contains a weighty addres to the members of the
+      Society of Friends, written by Edgerton in 1841.
     tags:
       - journal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 208
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            number: 8
-          -
-            number: 9
-          -
-            number: 10
-          -
-            number: 11
-          -
-            number: 12
-          -
-            number: 13
-          -
-            number: 14
-          -
-            title: Testimony of Somerset Monthly Meeting
-          -
-            title: Address to the Members of the Society of Friends
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+          - number: 14
+          - title: Testimony of Somerset Monthly Meeting
+          - title: Address to the Members of the Society of Friends
 
-      -
-        type: original
+      - type: original
         pages: 208
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            number: 8
-          -
-            number: 9
-          -
-            number: 10
-          -
-            number: 11
-          -
-            number: 12
-          -
-            number: 13
-          -
-            number: 14
-          -
-            title: Testimony of Somerset Monthly Meeting
-          -
-            title: Address to the Members of the Society of Friends
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+          - number: 14
+          - title: Testimony of Somerset Monthly Meeting
+          - title: Address to the Members of the Society of Friends

@@ -1,101 +1,85 @@
 name: John Burnyeat
 slug: john-burnyeat
 gender: male
-description: John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of Friends, whose powerful ministry turned many thousands from darkness to light, and from the power of Satan to the power of God. He labored tirelessly and traveled extensively in the service of Truth, often suffering greatly for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully in his generation, putting his hand to the plow and never looking back.
+description:
+  John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of
+  Friends, whose powerful ministry turned many thousands from darkness to light, and from
+  the power of Satan to the power of God. He labored tirelessly and traveled extensively
+  in the service of Truth, often suffering greatly for His faithfulness to Jesus Christ.
+  Truly it can be said of John Burnyeat that he followed the Lord fully in his generation,
+  putting his hand to the plow and never looking back.
 documents:
-  -
-    title: Selection from the Journal of John Burnyeat
+  - title: Selection from the Journal of John Burnyeat
     slug: journal-selection
     filename: Selection_Journal_of_John_Burnyeat
-    description: John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of Friends, whose powerful ministry turned many thousands from darkness to light, and from the power of Satan to the power of God. He labored tirelessly and traveled extensively in the service of Truth, often suffering greatly for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully in his generation, putting his hand to the plow and never looking back.
+    description:
+      John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of
+      Friends, whose powerful ministry turned many thousands from darkness to light, and
+      from the power of Satan to the power of God. He labored tirelessly and traveled
+      extensively in the service of Truth, often suffering greatly for His faithfulness to
+      Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully
+      in his generation, putting his hand to the plow and never looking back.
     tags:
       - journal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 18
         formats:
-          -
-            type: paperback
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: The Journal of John Burnyeat
-  -
-    title: The Journal and Letters of John Burnyeat
+          - title: The Journal of John Burnyeat
+  - title: The Journal and Letters of John Burnyeat
     slug: journal-letters
     published: 1691
-    original_title: The Truth Exalted In the Writings of That Eminent and Faithful Servant of Christ, John Burnyeat.
+    original_title:
+      The Truth Exalted In the Writings of That Eminent and Faithful Servant of Christ,
+      John Burnyeat.
     filename: Unabridged_Journal_of_John_Burnyeat
-    description: John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of Friends, whose powerful ministry turned many thousands from darkness to light, and from the power of Satan to the power of God. He labored tirelessly and traveled extensively in the service of Truth, often suffering greatly for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully in his generation, putting his hand to the plow and never looking back.
+    description:
+      John Burnyeat (1631-1690) was one of the early elders and pillars in the Society of
+      Friends, whose powerful ministry turned many thousands from darkness to light, and
+      from the power of Satan to the power of God. He labored tirelessly and traveled
+      extensively in the service of Truth, often suffering greatly for His faithfulness to
+      Jesus Christ. Truly it can be said of John Burnyeat that he followed the Lord fully
+      in his generation, putting his hand to the plow and never looking back.
     tags:
       - journal
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 126
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Testimonies
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-      -
-        type: original
+          - title: Testimonies
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+      - type: original
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            title: Testimony of Friends in Cumberland
-          -
-            title: The Testimony of Women Friends in Cumberland
-          -
-            title: Testimony of Friends in Ireland
-          -
-            title: Testimony of George Fox
-          -
-            title: Testimony of Morning Meeting of Ministers and Elders
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - title: Testimony of Friends in Cumberland
+          - title: The Testimony of Women Friends in Cumberland
+          - title: Testimony of Friends in Ireland
+          - title: Testimony of George Fox
+          - title: Testimony of Morning Meeting of Ministers and Elders

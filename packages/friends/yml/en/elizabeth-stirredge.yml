@@ -1,36 +1,45 @@
 name: Elizabeth Stirredge
 slug: elizabeth-stirredge
 gender: female
-description: Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of Friends. She was a wife, a mother, and an extraordinary woman of God. This short but remarkable account of her life was written in the 56th year of her age for the benefit of her children and grandchildren. In it she describes her desperate search for the Lord in her younger days, her discovery of Truth, and some of the trials, persecutions, and joys she met with as she took up the daily cross and faithfully followed Christ.
+description:
+  Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of Friends.
+  She was a wife, a mother, and an extraordinary woman of God. This short but remarkable
+  account of her life was written in the 56th year of her age for the benefit of her
+  children and grandchildren. In it she describes her desperate search for the Lord in her
+  younger days, her discovery of Truth, and some of the trials, persecutions, and joys she
+  met with as she took up the daily cross and faithfully followed Christ.
 documents:
-  -
-    title: The Life of Elizabeth Stirredge
+  - title: The Life of Elizabeth Stirredge
     slug: life-selection
     published: 1711
-    original_title: The Life and Christian Testimony of That Faithful Servant of the Lord Elizabeth Stirredge Who Departed This Life, at Her House at Hemstead, in Hertfordshire, In the Seventy-Second Year of Her Age. Written by Her Own Hand.
+    original_title:
+      The Life and Christian Testimony of That Faithful Servant of the Lord Elizabeth
+      Stirredge Who Departed This Life, at Her House at Hemstead, in Hertfordshire, In the
+      Seventy-Second Year of Her Age. Written by Her Own Hand.
     filename: Selection_Life_of_Elizabeth_Stirredge
-    description: Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of Friends. She was a wife, a mother, and an extraordinary woman of God. This short but remarkable account of her life was written in the 56th year of her age for the benefit of her children and grandchildren. In it she describes her desperate search for the Lord in her younger days, her discovery of Truth, and some of the trials, persecutions, and joys she met with as she took up the daily cross and faithfully followed Christ.
+    description:
+      Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of
+      Friends. She was a wife, a mother, and an extraordinary woman of God. This short but
+      remarkable account of her life was written in the 56th year of her age for the
+      benefit of her children and grandchildren. In it she describes her desperate search
+      for the Lord in her younger days, her discovery of Truth, and some of the trials,
+      persecutions, and joys she met with as she took up the daily cross and faithfully
+      followed Christ.
     tags:
       - journal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 21
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
-          -
-            type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: The Life of Elizabeth Stirredge
+            - title: The Life of Elizabeth Stirredge
               external_id_hq: 279985715
               external_id_lq: 279985720
               filesize_hq: 42199677
@@ -40,31 +49,29 @@ documents:
                 - 0
 
         chapters:
-          -
-            title: The Life of Elizabeth Stirredge
+          - title: The Life of Elizabeth Stirredge
 
-  -
-    title: The Life of Elizabeth Stirredge
+  - title: The Life of Elizabeth Stirredge
     slug: life
     filename: Life_of_Elizabeth_Stirredge
-    description: Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of Friends. She was a wife, a mother, and an extraordinary woman of God. This short but remarkable account of her life was written in the 56th year of her age for the benefit of her children and grandchildren. In it she describes her desperate search for the Lord in her younger days, her discovery of Truth, and some of the trials, persecutions, and joys she met with as she took up the daily cross and faithfully followed Christ.
+    description:
+      Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of
+      Friends. She was a wife, a mother, and an extraordinary woman of God. This short but
+      remarkable account of her life was written in the 56th year of her age for the
+      benefit of her children and grandchildren. In it she describes her desperate search
+      for the Lord in her younger days, her discovery of Truth, and some of the trials,
+      persecutions, and joys she met with as she took up the daily cross and faithfully
+      followed Christ.
     tags:
       - journal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 80
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Preface
-          -
-            title: The Life of Elizabeth Stirredge
-          -
-            title: Testimonies Concerning Elizabeth Stirredge
+          - title: Preface
+          - title: The Life of Elizabeth Stirredge
+          - title: Testimonies Concerning Elizabeth Stirredge

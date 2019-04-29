@@ -1,95 +1,79 @@
 name: Catherine Payton
 slug: catherine-payton
 gender: female
-description: Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips) was a highly gifted minister in the Society of Friends, who traveled almost continually for forty years in the service of Truth throughout England, Ireland, and North America. Her journal and letters clearly demonstrate a life entirely surrendered to the cross of Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with love for God and for mankind.
+description:
+  Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips) was a
+  highly gifted minister in the Society of Friends, who traveled almost continually for
+  forty years in the service of Truth throughout England, Ireland, and North America. Her
+  journal and letters clearly demonstrate a life entirely surrendered to the cross of
+  Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with
+  love for God and for mankind.
 documents:
-  -
-    title: The Life and Letters of Catherine Payton
-    original_title: "Memoirs of the Life of Catherine Phillips: To Which are Added Some of Her Epistles"
+  - title: The Life and Letters of Catherine Payton
+    original_title:
+      'Memoirs of the Life of Catherine Phillips: To Which are Added Some of Her Epistles'
     published: 1797
     slug: life-and-letters
     filename: Life_and_Letters_of_Catherine_Payton
-    description: Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips) was a highly gifted minister in the Society of Friends, who traveled almost continually for forty years in the service of Truth throughout England, Ireland, and North America. Her journal and letters clearly demonstrate a life entirely surrendered to the cross of Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with love for God and for mankind.
+    description:
+      Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips)
+      was a highly gifted minister in the Society of Friends, who traveled almost
+      continually for forty years in the service of Truth throughout England, Ireland, and
+      North America. Her journal and letters clearly demonstrate a life entirely
+      surrendered to the cross of Christ, a mind supplied with wisdom and utterance from
+      on high, and a heart filled with love for God and for mankind.
     tags:
       - journal
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 267
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            number: 8
-          -
-            number: 9
-      -
-        type: original
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+      - type: original
         pages: 267
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            number: 8
-          -
-            number: 9
-  -
-    title: Letter to a Backslidden Brother
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+  - title: Letter to a Backslidden Brother
     slug: letter-to-brother
     filename: Letter_to_Backslidden_Brother
-    description: This letter was written by Catherine Phillips in 1753 to her brother Henry Payton, who had "strayed from the path of peace and safety, to seek satisfaction in the grasp of empty bubbles, which had assumed the form, in his sight, of something substantial."
+    description:
+      This letter was written by Catherine Phillips in 1753 to her brother Henry Payton,
+      who had "strayed from the path of peace and safety, to seek satisfaction in the
+      grasp of empty bubbles, which had assumed the form, in his sight, of something
+      substantial."
     tags:
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 6
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Letter to a Backslidden Brother
+          - title: Letter to a Backslidden Brother

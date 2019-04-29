@@ -1,36 +1,41 @@
 name: Robert Barclay
 slug: robert-barclay
 gender: male
-description: Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in the Society of Friends. His Apology for the True Christian Divinity is perhaps the most well-known of all Quaker writings, containing a thorough explanation and defense of most of their principles and doctrines.
+description:
+  Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in
+  the Society of Friends. His Apology for the True Christian Divinity is perhaps the most
+  well-known of all Quaker writings, containing a thorough explanation and defense of most
+  of their principles and doctrines.
 documents:
-  -
-    title: Waiting Upon the Lord
+  - title: Waiting Upon the Lord
     slug: waiting-upon-the-lord
     filename: Waiting_Upon_the_Lord
-    description: Robert Barclay writes, “All true and acceptable worship to God is offered in the inward and immediate moving and drawing of His own Spirit.” It is not hard to agree with such a statement, but who has indeed stood still to see the salvation of the Lord, and known the dawning of His inward Day? Have we waited upon our God to separate the precious from the vile within, to differentiate between the pure operation of His Spirit and the wild rovings of our own soul? Have we truly known and obeyed His inward stirrings and teachings, or does the Seed of God lay buried in Christian hearts beneath a mass of superstition, assumption, and fleshy, religious activity?
+    description:
+      Robert Barclay writes, “All true and acceptable worship to God is offered in the
+      inward and immediate moving and drawing of His own Spirit.” It is not hard to agree
+      with such a statement, but who has indeed stood still to see the salvation of the
+      Lord, and known the dawning of His inward Day? Have we waited upon our God to
+      separate the precious from the vile within, to differentiate between the pure
+      operation of His Spirit and the wild rovings of our own soul? Have we truly known
+      and obeyed His inward stirrings and teachings, or does the Seed of God lay buried in
+      Christian hearts beneath a mass of superstition, assumption, and fleshy, religious
+      activity?
     tags:
       - doctrinal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 54
         formats:
-          -
-            type: paperback
-          -
-            type: audio
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Part 1
+            - title: Part 1
               external_id_hq: 258518813
               external_id_lq: 258518845
               filesize_hq: 68297739
@@ -38,8 +43,7 @@ documents:
               seconds: 3850
               chapters:
                 - 0
-            -
-              title: Part 2
+            - title: Part 2
               external_id_hq: 258706441
               external_id_lq: 258706449
               filesize_hq: 53748619
@@ -49,36 +53,33 @@ documents:
                 - 1
 
         chapters:
-          -
-            title: Waiting Upon the Lord
-  -
-    title: Saved to the Uttermost
+          - title: Waiting Upon the Lord
+  - title: Saved to the Uttermost
     slug: saved-to-the-uttermost
     filename: Saved_to_the_Uttermost
-    description: Robert Barclay's "Apology for the True Christian Divinity" is perhaps the most well-known of all Friends' writings. "Saved to the Uttermost" (which is taken from propositions four through eight of the Apology) brilliantly expounds some of the most vital and misunderstood aspects of Christianity, plainly manifesting the true nature, experience, and extent of the salvation that God offers the soul through Jesus Christ.
+    description:
+      Robert Barclay's "Apology for the True Christian Divinity" is perhaps the most
+      well-known of all Friends' writings. "Saved to the Uttermost" (which is taken from
+      propositions four through eight of the Apology) brilliantly expounds some of the
+      most vital and misunderstood aspects of Christianity, plainly manifesting the true
+      nature, experience, and extent of the salvation that God offers the soul through
+      Jesus Christ.
     tags:
       - doctrinal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 124
         formats:
-          -
-            type: paperback
-          -
-            type: audio
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Chapter 1 - The Condition of Man in the Fall
+            - title: Chapter 1 - The Condition of Man in the Fall
               external_id_hq: 318326826
               external_id_lq: 318326834
               filesize_hq: 28230905
@@ -86,8 +87,7 @@ documents:
               seconds: 1552
               chapters:
                 - 0
-            -
-              title: Chapter 2 - The Universal Offer of Redemption
+            - title: Chapter 2 - The Universal Offer of Redemption
               external_id_hq: 318327801
               external_id_lq: 318327805
               filesize_hq: 27750889
@@ -95,8 +95,7 @@ documents:
               seconds: 1581
               chapters:
                 - 1
-            -
-              title: Chapter 3 - The Seed, Light, and Grace of God
+            - title: Chapter 3 - The Seed, Light, and Grace of God
               external_id_hq: 318328293
               external_id_lq: 318328297
               filesize_hq: 44605038
@@ -104,8 +103,7 @@ documents:
               seconds: 2506
               chapters:
                 - 2
-            -
-              title: Chapter 4 - The Proof of our Position
+            - title: Chapter 4 - The Proof of our Position
               external_id_hq: 318328737
               external_id_lq: 318328751
               filesize_hq: 86674413
@@ -113,8 +111,7 @@ documents:
               seconds: 4817
               chapters:
                 - 3
-            -
-              title: Chapter 5 - Concerning Justification
+            - title: Chapter 5 - Concerning Justification
               external_id_hq: 318329178
               external_id_lq: 318329182
               filesize_hq: 75060714
@@ -122,8 +119,7 @@ documents:
               seconds: 4296
               chapters:
                 - 4
-            -
-              title: Chapter 6 - Concerning Perfection
+            - title: Chapter 6 - Concerning Perfection
               external_id_hq: 318329462
               external_id_lq: 318329466
               filesize_hq: 40710812
@@ -133,123 +129,99 @@ documents:
                 - 5
 
         chapters:
-          -
-            title: Forward
-          -
-            number: 1
+          - title: Forward
+          - number: 1
             subtitle: The Condition of Man in the Fall
-          -
-            number: 2
+          - number: 2
             subtitle: A Universal Offer of Redemption
-          -
-            number: 3
+          - number: 3
             subtitle: The Seed, Light, and Grace of God
-          -
-            number: 4
+          - number: 4
             subtitle: The Proof of Our Position
-          -
-            number: 5
+          - number: 5
             subtitle: Concerning Justification
-          -
-            number: 6
+          - number: 6
             subtitle: Concerning Perfection
-  -
-    title: Apology for the True Christian Divinity
+  - title: Apology for the True Christian Divinity
     slug: apology
     filename: Apology
-    description: Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in the Society of Friends. His "Apology for the True Christian Divinity" is perhaps the most well-known of all Quaker writings, containing a thorough explanation and defense of most of their principles and doctrines. The eBook edition provided here is unabridged, but some archaic words and spellings have been modernized by Market Street Fellowship.
+    description:
+      Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent
+      writers in the Society of Friends. His "Apology for the True Christian Divinity" is
+      perhaps the most well-known of all Quaker writings, containing a thorough
+      explanation and defense of most of their principles and doctrines. The eBook edition
+      provided here is unabridged, but some archaic words and spellings have been
+      modernized by Market Street Fellowship.
 
     tags:
       - doctrinal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 557
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
 
         chapters:
-          -
-            title: 'Preface: Unto the Friendly Reader'
-          -
-            title: Theses Theologicae
-          -
-            title: The Fifteen Propositions Summarized
-          -
-            title: The First Proposition
+          - title: 'Preface: Unto the Friendly Reader'
+          - title: Theses Theologicae
+          - title: The Fifteen Propositions Summarized
+          - title: The First Proposition
             subtitle: Concerning the True Foundation of Knowledge
-          -
-            title: The Second Proposition
+          - title: The Second Proposition
             subtitle: Concerning Immediate Revelation
-          -
-            title: The Third Proposition
+          - title: The Third Proposition
             subtitle: Concerning the Scriptures
-          -
-            title: The Fourth Proposition
+          - title: The Fourth Proposition
             subtitle: Concerning the Condition of Man in the Fall
-          -
-            title: The Fifth and Sixth Propositions
-            subtitle: Concerning the Universal Redemption by Christ, and also the Saving and Spiritual Light wherewith every man is enlightened
-          -
-            title: The Seventh Proposition
+          - title: The Fifth and Sixth Propositions
+            subtitle:
+              Concerning the Universal Redemption by Christ, and also the Saving and
+              Spiritual Light wherewith every man is enlightened
+          - title: The Seventh Proposition
             subtitle: Concerning Justification
-          -
-            title: The Eighth Proposition
+          - title: The Eighth Proposition
             subtitle: Concerning Perfection
-          -
-            title: The Ninth Proposition
+          - title: The Ninth Proposition
             subtitle: Concerning Perseverance, and the Possibility of Falling from Grace
-          -
-            title: The Tenth Proposition
+          - title: The Tenth Proposition
             subtitle: Concerning the Ministry
-          -
-            title: The Eleventh Proposition
+          - title: The Eleventh Proposition
             subtitle: Concerning Worship
-          -
-            title: The Twelfth Proposition
+          - title: The Twelfth Proposition
             subtitle: Concerning Baptism
-          -
-            title: The Thirteenth Proposition
-            subtitle: Concerning the Communion, or participation of the Body and Blood of Christ
-          -
-            title: The Fourteenth Proposition
-            subtitle: Concerning the Power of the Civil Magistrate in Matters purely Religious and pertaining to the Conscience
-          -
-            title: The Fifteenth Proposition
+          - title: The Thirteenth Proposition
+            subtitle:
+              Concerning the Communion, or participation of the Body and Blood of Christ
+          - title: The Fourteenth Proposition
+            subtitle:
+              Concerning the Power of the Civil Magistrate in Matters purely Religious and
+              pertaining to the Conscience
+          - title: The Fifteenth Proposition
             subtitle: Concerning Salutations and Recreations, etc.
-          -
-            title: The Conclusion
-  -
-    title: Considerations upon Recreation and Entertainment
+          - title: The Conclusion
+  - title: Considerations upon Recreation and Entertainment
     slug: recreation-entertainment
     filename: Recreation_and_Entertainment
-    description: This is a short extract from the fifteenth proposition of Robert Barclay's "Apology for the True Christian Divinity" regarding entertainment and recreation.
+    description:
+      This is a short extract from the fifteenth proposition of Robert Barclay's "Apology
+      for the True Christian Divinity" regarding entertainment and recreation.
     tags:
       - doctrinal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 4
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
-          -
-            type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Part 1
+            - title: Part 1
               external_id_hq: 410125461
               external_id_lq: 410125467
               filesize_hq: 9821821
@@ -259,5 +231,4 @@ documents:
                 - 0
 
         chapters:
-          -
-            title: Considerations upon Recreation and Entertainment
+          - title: Considerations upon Recreation and Entertainment
