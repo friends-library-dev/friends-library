@@ -28,9 +28,9 @@ export async function coverFromProps(props: any): Promise<FilePath> {
   const html = ReactDOMServer.renderToStaticMarkup(el);
   const manifest = {
     'doc.html': wrapHtml(html, props),
-    'doc.css': coverCss(props),
+    'doc.css': coverCss(props, 'pdf'),
+    'images/logo-icon.png': coverAsset('images/logo-icon.png'),
   };
-  console.log(coverCss(props));
   const { filePath } = await prince(
     manifest,
     '__cover__',
@@ -62,13 +62,13 @@ export async function makeCover(
 function wrapHtml(inner: Html, props: any): Html {
   return stripIndent(`
     <!DOCTYPE html>
-    <html lang="en" class="size--¯\_(ツ)_/¯">
+    <html lang="en" class="pdf trim--${props.printSize}">
       <head>
         <meta charset="UTF-8"/>
         <link href="doc.css" rel="stylesheet" type="text/css"/>
       </head>
       <body>
-        ${inner}
+        ${inner.replace(/src="\/images\//g, 'src="images/')}
       </body>
     </html>
   `).trim();

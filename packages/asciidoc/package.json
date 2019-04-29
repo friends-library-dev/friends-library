@@ -18,6 +18,7 @@
     "test": "cd ../../ && yarn jest packages/asciidoc"
   },
   "dependencies": {
+    "@asciidoctor/core": "^2.0.2",
     "@friends-library/types": "1.0.0",
     "@types/strip-indent": "^2.0.0",
     "asciidoctor.js": "^1.5.9",

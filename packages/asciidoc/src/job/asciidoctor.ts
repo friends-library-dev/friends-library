@@ -1,5 +1,5 @@
 // @ts-ignore
-import Asciidoctor from 'asciidoctor.js';
+import Asciidoctor from '@asciidoctor/core';
 
 let instance: any;
 

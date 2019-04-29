@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@asciidoctor/core@^2.0.0":
+"@asciidoctor/core@^2.0.0", "@asciidoctor/core@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@asciidoctor/core/-/core-2.0.2.tgz#f212292914c8ba8e4a68128b681f6c7b1c567f1c"
   integrity sha512-CrD2J5XmkSp+wi2d+evPTchm6xp/f4vyDEIKgP6T2zx+UMIAeKw5zvK0kLlx5MMo/WhfXLhuTncDorDcfh/n9A==

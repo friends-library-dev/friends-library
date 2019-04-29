@@ -17,12 +17,12 @@ function makePdf(props: any): void {
 }
 
 const App: React.FC = () => {
-  const [printSize, setPrintSize] = useState<PrintSizeAbbrev>('m');
+  const [printSize, setPrintSize] = useState<PrintSizeAbbrev>('s');
   const [title] = useState<string>('The Journal of George Fox');
   const [author] = useState<string>('George Fox');
   const coverProps = { title, author, printSize, pages: 298 };
   return (
-    <div className="App">
+    <div className={`App web trim--${printSize}`}>
       <select
         value={printSize}
         onChange={e => setPrintSize(e.target.value as PrintSizeAbbrev)}
@@ -37,8 +37,8 @@ const App: React.FC = () => {
         The print size is <code>{printSize}</code>
       </p>
       <Cover {...coverProps} />
-      <style>{coverCss(coverProps)}</style>
-      <button onClick={() => makePdf({ printSize, title, author })}>MAKE PDF!</button>
+      <style>{coverCss(coverProps, 'web')}</style>
+      <button onClick={() => makePdf(coverProps)}>MAKE PDF!</button>
     </div>
   );
 };
