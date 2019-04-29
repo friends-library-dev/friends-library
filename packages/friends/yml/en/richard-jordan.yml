@@ -7,7 +7,9 @@ documents:
   - title: The Journal of Richard Jordan
     slug: journal
     filename: Journal_of_Richard_Jordan
-    original_title: A Journal of the Life and Religious Labours of Richard Jordan, A Minister of the Gospel in the Society of Friends, Late of Newton, In Gloucester County, New Jersey.
+    original_title:
+      A Journal of the Life and Religious Labours of Richard Jordan, A Minister of the
+      Gospel in the Society of Friends, Late of Newton, In Gloucester County, New Jersey.
     description: TODO
     tags:
       - journal

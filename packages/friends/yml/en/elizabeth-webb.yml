@@ -1,35 +1,42 @@
 name: Elizabeth Webb
 slug: elizabeth-webb
 gender: female
-description: Elizabeth Webb (1663-1726) was a respected minister in the Society of Friends who travelled extensively in her service for the gospel. In 1712 she went from Pennsylvania to Great Britain to visit Friends, and while in London became acquainted with Anthony William Boehm, who was then chaplain to Prince George of Denmark. At some point after their meeting, Elizabeth Webb felt constrained in the love of God to write to Boehm and present him with this remarkable letter as something of a summary of her spiritual pilgrimage.
+description:
+  Elizabeth Webb (1663-1726) was a respected minister in the Society of Friends who
+  travelled extensively in her service for the gospel. In 1712 she went from Pennsylvania
+  to Great Britain to visit Friends, and while in London became acquainted with Anthony
+  William Boehm, who was then chaplain to Prince George of Denmark. At some point after
+  their meeting, Elizabeth Webb felt constrained in the love of God to write to Boehm and
+  present him with this remarkable letter as something of a summary of her spiritual
+  pilgrimage.
 documents:
-  -
-    title: A Letter of Elizabeth Webb
+  - title: A Letter of Elizabeth Webb
     slug: letter
     filename: Letter_of_Elizabeth_Webb
-    description: Elizabeth Webb (1663-1726) was a respected minister in the Society of Friends who travelled extensively in her service for the gospel. In 1712 she went from Pennsylvania to Great Britain to visit Friends, and while in London became acquainted with Anthony William Boehm, who was then chaplain to Prince George of Denmark. At some point after their meeting, Elizabeth Webb felt constrained in the love of God to write to Boehm and present him with this remarkable letter as something of a summary of her spiritual pilgrimage.
+    description:
+      Elizabeth Webb (1663-1726) was a respected minister in the Society of Friends who
+      travelled extensively in her service for the gospel. In 1712 she went from
+      Pennsylvania to Great Britain to visit Friends, and while in London became
+      acquainted with Anthony William Boehm, who was then chaplain to Prince George of
+      Denmark. At some point after their meeting, Elizabeth Webb felt constrained in the
+      love of God to write to Boehm and present him with this remarkable letter as
+      something of a summary of her spiritual pilgrimage.
     tags:
       - journal
       - letter
     editions:
-      -
-        type: updated
+      - type: updated
         pages: 25
         editor: Jason R. Henderson
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
-          -
-            type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: The Life of Elizabeth Webb
+            - title: The Life of Elizabeth Webb
               external_id_hq: 277542991
               external_id_lq: 277543001
               filesize_hq: 50831853
@@ -39,5 +46,4 @@ documents:
                 - 0
 
         chapters:
-          -
-            title: A Letter of Elizabeth Webb
+          - title: A Letter of Elizabeth Webb

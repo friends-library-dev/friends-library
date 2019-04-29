@@ -1,147 +1,131 @@
 name: William Sewel
 slug: william-sewel
 gender: male
-description: William Sewel (1653-1720), being a Quaker himself, and an eye-witness to many of the events described in this history, is considered by all to be the foremost authority on the early history of the Society of Friends. This lengthy (but truly remarkable) work was first published in Dutch in 1717, and then translated by Sewel into English and printed in 1722. The original publication consisted of twelve volumes, but was reprinted (with slightly modernized spelling and punctuation) in 1832 in two large volumes. There are two versions of this publication on this website. One is an unabridged and unchanged 1832 edition, with all the archaic spellings and vocabulary. The other is also unabridged, but archaic spellings and vocabulary have been somewhat modernized to aid the modern reader.
+description:
+  William Sewel (1653-1720), being a Quaker himself, and an eye-witness to many of the
+  events described in this history, is considered by all to be the foremost authority on
+  the early history of the Society of Friends. This lengthy (but truly remarkable) work
+  was first published in Dutch in 1717, and then translated by Sewel into English and
+  printed in 1722. The original publication consisted of twelve volumes, but was reprinted
+  (with slightly modernized spelling and punctuation) in 1832 in two large volumes. There
+  are two versions of this publication on this website. One is an unabridged and unchanged
+  1832 edition, with all the archaic spellings and vocabulary. The other is also
+  unabridged, but archaic spellings and vocabulary have been somewhat modernized to aid
+  the modern reader.
 
 documents:
-  -
-    title: The History of the Christian People Called Quakers
+  - title: The History of the Christian People Called Quakers
     slug: history-of-quakers
     filename: History_of_Christian_People_Called_Quakers
-    description: William Sewel (1653-1720), being a Quaker himself, and an eye-witness to many of the events described in this history, is considered by all to be the foremost authority on the early history of the Society of Friends. This lengthy (but truly remarkable) work was first published in Dutch in 1717, and then translated by Sewel into English and printed in 1722. The original publication consisted of twelve volumes, but was reprinted (with slightly modernized spelling and punctuation) in 1832 in two large volumes. There are two versions of this publication on this website. One is an unabridged and unchanged 1832 edition, with all the archaic spellings and vocabulary. The other is also unabridged, but archaic spellings and vocabulary have been somewhat modernized to aid the modern reader. The full title of this book is The History of the Rise, Increase, and Progress of the Christian People called Quakers.
+    description:
+      William Sewel (1653-1720), being a Quaker himself, and an eye-witness to many of the
+      events described in this history, is considered by all to be the foremost authority
+      on the early history of the Society of Friends. This lengthy (but truly remarkable)
+      work was first published in Dutch in 1717, and then translated by Sewel into English
+      and printed in 1722. The original publication consisted of twelve volumes, but was
+      reprinted (with slightly modernized spelling and punctuation) in 1832 in two large
+      volumes. There are two versions of this publication on this website. One is an
+      unabridged and unchanged 1832 edition, with all the archaic spellings and
+      vocabulary. The other is also unabridged, but archaic spellings and vocabulary have
+      been somewhat modernized to aid the modern reader. The full title of this book is
+      The History of the Rise, Increase, and Progress of the Christian People called
+      Quakers.
     tags:
       - journal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 1413
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
 
         chapters:
-          -
-            title: Forward by Editor
-          -
-            title: Preface by William Shewen
-          -
-            number: 1
+          - title: Forward by Editor
+          - title: Preface by William Shewen
+          - number: 1
             subtitle: The First Book
-          -
-            number: 2
+          - number: 2
             subtitle: The Second Book
-          -
-            number: 3
+          - number: 3
             subtitle: The Third Book
-          -
-            number: 4
+          - number: 4
             subtitle: The Fourth book
-          -
-            number: 5
+          - number: 5
             subtitle: The Fifth Book
-          -
-            number: 6
+          - number: 6
             subtitle: The Sixth Book
-          -
-            number: 7
+          - number: 7
             subtitle: The Seventh Book
-          -
-            number: 8
+          - number: 8
             subtitle: The Eighth book
-          -
-            number: 9
+          - number: 9
             subtitle: The Ninth Book
-          -
-            number: 10
+          - number: 10
             subtitle: The Tenth Book
-          -
-            number: 11
+          - number: 11
             subtitle: The Eleventh Book
-          -
-            number: 12
+          - number: 12
             subtitle: The Twelfth book
-          -
-            title: Addenda - The Light Upon the Candlestick
-          -
-            title: Appendix - Account of the Sufferings of Richard Seller
-      -
-        type: original
+          - title: Addenda - The Light Upon the Candlestick
+          - title: Appendix - Account of the Sufferings of Richard Seller
+      - type: original
         pages: 1413
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Forward by Editor
-          -
-            title: Preface by William Shewen
-          -
-            number: 1
+          - title: Forward by Editor
+          - title: Preface by William Shewen
+          - number: 1
             subtitle: The First Book
-          -
-            number: 2
+          - number: 2
             subtitle: The Second Book
-          -
-            number: 3
+          - number: 3
             subtitle: The Third Book
-          -
-            number: 4
+          - number: 4
             subtitle: The Fourth book
-          -
-            number: 5
+          - number: 5
             subtitle: The Fifth Book
-          -
-            number: 6
+          - number: 6
             subtitle: The Sixth Book
-          -
-            number: 7
+          - number: 7
             subtitle: The Seventh Book
-          -
-            number: 8
+          - number: 8
             subtitle: The Eighth book
-          -
-            number: 9
+          - number: 9
             subtitle: The Ninth Book
-          -
-            number: 10
+          - number: 10
             subtitle: The Tenth Book
-          -
-            number: 11
+          - number: 11
             subtitle: The Eleventh Book
-          -
-            number: 12
+          - number: 12
             subtitle: The Twelfth book
-          -
-            title: Addenda - The Light Upon the Candlestick
-          -
-            title: Appendix - Account of the Sufferings of Richard Seller
-  -
-    title: The Sufferings of Catharine Evans and Sarah Cheevers
+          - title: Addenda - The Light Upon the Candlestick
+          - title: Appendix - Account of the Sufferings of Richard Seller
+  - title: The Sufferings of Catharine Evans and Sarah Cheevers
     slug: sufferings-of-catharine-evans-sarah-cheevers
     filename: Sufferings_of_Catharine_Evans_and_Sarah_Cheevers
-    description: Catherine Evans (1618-1692) & Sarah Cheevers (1608-1664) were early ministers in the Society of Friends who embarked together on a missionary journey, intending for Alexandria, Egypt. After enduring several storms, their ship stopped at Malta, an island then under the control of the Catholic Church. Evans and Cheevers were arrested on the island for preaching and handing out spiritual literature, and placed under house arrest. After three months, they were moved to a local prison where they endured nearly four years of cruel treatment at the hands of the Inquisition in attempting to force their conversion to Catholicism. This account was extracted from William Sewel's larger history.
+    description:
+      Catherine Evans (1618-1692) & Sarah Cheevers (1608-1664) were early ministers in the
+      Society of Friends who embarked together on a missionary journey, intending for
+      Alexandria, Egypt. After enduring several storms, their ship stopped at Malta, an
+      island then under the control of the Catholic Church. Evans and Cheevers were
+      arrested on the island for preaching and handing out spiritual literature, and
+      placed under house arrest. After three months, they were moved to a local prison
+      where they endured nearly four years of cruel treatment at the hands of the
+      Inquisition in attempting to force their conversion to Catholicism. This account was
+      extracted from William Sewel's larger history.
     tags:
       - history
       - letters
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 52
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: The Sufferings of Catharine Evans and Sarah Cheevers
+          - title: The Sufferings of Catharine Evans and Sarah Cheevers

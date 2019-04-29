@@ -1,42 +1,43 @@
 name: John Gratton
 slug: john-gratton
 gender: male
-description: John Gratton (1641-1711) was one of several early Quakers who were convinced of the truth directly by the Lord, apart from the preaching or writings of others in the Society. His desperate and agonizing pursuit of true Christianity (amongst the many sects and denominations of the day) finally brought him to dramatically experience the truth of Christ's promise—'Everyone who asks receives, and he who seeks finds, and to him who knocks it will be opened.'
+description:
+  John Gratton (1641-1711) was one of several early Quakers who were convinced of the
+  truth directly by the Lord, apart from the preaching or writings of others in the
+  Society. His desperate and agonizing pursuit of true Christianity (amongst the many
+  sects and denominations of the day) finally brought him to dramatically experience the
+  truth of Christ's promise—'Everyone who asks receives, and he who seeks finds, and to
+  him who knocks it will be opened.'
 documents:
-  -
-    title: The Journal of John Gratton
+  - title: The Journal of John Gratton
     slug: journal
     filename: Journal_of_John_Gratton
-    description: John Gratton (1641-1711) was one of several early Quakers who were convinced of the truth directly by the Lord, apart from the preaching or writings of others in the Society. His desperate and agonizing pursuit of true Christianity (amongst the many sects and denominations of the day) finally brought him to dramatically experience the truth of Christ's promise—'Everyone who asks receives, and he who seeks finds, and to him who knocks it will be opened.'
+    description:
+      John Gratton (1641-1711) was one of several early Quakers who were convinced of the
+      truth directly by the Lord, apart from the preaching or writings of others in the
+      Society. His desperate and agonizing pursuit of true Christianity (amongst the many
+      sects and denominations of the day) finally brought him to dramatically experience
+      the truth of Christ's promise—'Everyone who asks receives, and he who seeks finds,
+      and to him who knocks it will be opened.'
     tags:
       - journal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 131
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Forward by Editor
-          -
-            number: 1
+          - title: Forward by Editor
+          - number: 1
             subtitle: Seeking Truth
-          -
-            number: 2
+          - number: 2
             subtitle: Finding Truth
-          -
-            number: 3
+          - number: 3
             subtitle: Ministry Years
-          -
-            number: 4
+          - number: 4
             subtitle: Prison Years
-          -
-            number: 5
+          - number: 5
             subtitle: Return to Ministry

@@ -1,130 +1,95 @@
 name: Mary Ann Kelty
 slug: mary-ann-kelty
 gender: female
-description: Mary Ann Kelty (1789-1873) was a teacher and author in England who appears to have discovered the writings of early Friends later in her life. Though she plainly shows herself to be in perfect accord with the principles and practices of the primitive Quakers, she lived in a time of great declension form the original purity and power in the Society, and probably for that reason, never formally joined with them in membership (though she is said to have frequently attended the Friends' meeting house at Peckham). Her book "The Lives and Persecutions of the Primitive Quakers" is a very well-written, short history of the early Society of Friends, highlighting the most noteworthy figures and remarkable events of that time.
+description:
+  Mary Ann Kelty (1789-1873) was a teacher and author in England who appears to have
+  discovered the writings of early Friends later in her life. Though she plainly shows
+  herself to be in perfect accord with the principles and practices of the primitive
+  Quakers, she lived in a time of great declension form the original purity and power in
+  the Society, and probably for that reason, never formally joined with them in membership
+  (though she is said to have frequently attended the Friends' meeting house at Peckham).
+  Her book "The Lives and Persecutions of the Primitive Quakers" is a very well-written,
+  short history of the early Society of Friends, highlighting the most noteworthy figures
+  and remarkable events of that time.
 
 documents:
-  -
-    title: The Lives and Persecutions of the Primitive Quakers
-    original_title: Memoirs of the Lives and Persecutions of the Primitive Quakers, Exemplifying the Obedience of Faith in Some of the Early Members of the Society.
+  - title: The Lives and Persecutions of the Primitive Quakers
+    original_title:
+      Memoirs of the Lives and Persecutions of the Primitive Quakers, Exemplifying the
+      Obedience of Faith in Some of the Early Members of the Society.
     slug: lives-of-primitive-quakers
     filename: Lives_and_Persecutions_of_the_Primitive_Quakers
-    description: Mary Ann Kelty (1789-1873) was a teacher and author in England who appears to have discovered the writings of early Friends later in her life. Though she plainly shows herself to be in perfect accord with the principles and practices of the primitive Quakers, she lived in a time of great declension form the original purity and power in the Society, and probably for that reason, never formally joined with them in membership (though she is said to have frequently attended the Friends' meeting house at Peckham). Her book "The Lives and Persecutions of the Primitive Quakers" is a very well-written, short history of the early Society of Friends, highlighting the most noteworthy figures and remarkable events of that time.
+    description:
+      Mary Ann Kelty (1789-1873) was a teacher and author in England who appears to have
+      discovered the writings of early Friends later in her life. Though she plainly shows
+      herself to be in perfect accord with the principles and practices of the primitive
+      Quakers, she lived in a time of great declension form the original purity and power
+      in the Society, and probably for that reason, never formally joined with them in
+      membership (though she is said to have frequently attended the Friends' meeting
+      house at Peckham). Her book "The Lives and Persecutions of the Primitive Quakers" is
+      a very well-written, short history of the early Society of Friends, highlighting the
+      most noteworthy figures and remarkable events of that time.
     tags:
       - history
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 336
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Introductory Chapter
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            number: 8
-          -
-            number: 9
-          -
-            number: 10
-          -
-            number: 11
-          -
-            number: 12
-          -
-            number: 13
-          -
-            number: 14
-          -
-            number: 15
-          -
-            number: 16
-          -
-            number: 17
-          -
-            number: 18
-          -
-            number: 19
-          -
-            number: 20
-          -
-            number: 21
-          -
-            title: Concluding Address to the Society of Friends
+          - title: Introductory Chapter
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+          - number: 14
+          - number: 15
+          - number: 16
+          - number: 17
+          - number: 18
+          - number: 19
+          - number: 20
+          - number: 21
+          - title: Concluding Address to the Society of Friends
 
-      -
-        type: original
+      - type: original
         pages: 336
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Introductory Chapter
-          -
-            number: 1
-          -
-            number: 2
-          -
-            number: 3
-          -
-            number: 4
-          -
-            number: 5
-          -
-            number: 6
-          -
-            number: 7
-          -
-            number: 8
-          -
-            number: 9
-          -
-            number: 10
-          -
-            number: 11
-          -
-            number: 12
-          -
-            number: 13
-          -
-            number: 14
-          -
-            number: 15
-          -
-            number: 16
-          -
-            number: 17
-          -
-            number: 18
-          -
-            number: 19
-          -
-            number: 20
-          -
-            number: 21
-          -
-            title: Concluding Address to the Society of Friends
+          - title: Introductory Chapter
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+          - number: 14
+          - number: 15
+          - number: 16
+          - number: 17
+          - number: 18
+          - number: 19
+          - number: 20
+          - number: 21
+          - title: Concluding Address to the Society of Friends

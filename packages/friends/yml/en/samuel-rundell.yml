@@ -3,9 +3,11 @@ slug: samuel-rundell
 gender: male
 description: TODO
 documents:
-  -
-    title: The Work of Vital Religion in the Soul
-    original_title: Observations on the Commencement and Progress of the Work of Vital Religion in the Soul; on Divine Worship; and on the Partaking of the Flesh and Blood of Our Lord Jesus Christ
+  - title: The Work of Vital Religion in the Soul
+    original_title:
+      Observations on the Commencement and Progress of the Work of Vital Religion in the
+      Soul; on Divine Worship; and on the Partaking of the Flesh and Blood of Our Lord
+      Jesus Christ
     published: 1834
     slug: vital-religion
     filename: Work_of_Vital_Religion_in_the_Soul
@@ -14,39 +16,28 @@ documents:
       - treatise
       - exhortation
     editions:
-      -
-        type: updated
+      - type: updated
         isbn: 978-1-64476-001-7
         editor: Jared Henderson
         formats:
-            -
-              type: pdf
-            -
-              type: epub
-            -
-              type: mobi
-            -
-              type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
 
         chapters:
-          -
-            title: Introduction
-          -
-            number: 1
+          - title: Introduction
+          - number: 1
             subtitle: On Conversion and Regeneration
-          -
-            number: 2
+          - number: 2
             subtitle: The Worship Ordained of God
-          -
-            number: 3
+          - number: 3
             subtitle: Baptism, Worship, and Partaking of the Flesh and Blood
-          -
-            title: Concluding Observations
+          - title: Concluding Observations
         audio:
           reader: Jared Henderson
           parts:
-            -
-              title: Part 1
+            - title: Part 1
               external_id_hq: 545074938
               external_id_lq: 545074959
               filesize_hq: 46856872
@@ -55,8 +46,7 @@ documents:
               chapters:
                 - 0
                 - 1
-            -
-              title: Chapter 2
+            - title: Chapter 2
               external_id_hq: 545075766
               external_id_lq: 545075796
               filesize_hq: 59243041
@@ -65,8 +55,7 @@ documents:
               chapters:
                 - 2
                 - 3
-            -
-              title: Chapter 3
+            - title: Chapter 3
               external_id_hq: 545076069
               external_id_lq: 545076105
               filesize_hq: 24465878
@@ -74,51 +63,39 @@ documents:
               seconds: 1406
               chapters:
                 - 4
-      -
-        type: modernized
+      - type: modernized
         formats:
-            -
-              type: pdf
-            -
-              type: epub
-            -
-              type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
 
         chapters:
-          -
-            title: Introduction
-          -
-            number: 1
+          - title: Introduction
+          - number: 1
             subtitle: On Conversion, and Regeneration
-          -
-            number: 2
-            subtitle: The Worship Which, Under the Christian Dispensation, is Ordained of God
-          -
-            number: 3
-            subtitle: On Baptism.--Continuation of the Subject of Divine Worship, in Connection with Observations on the Partaking of the Flesh and Blood of Christ
-          -
-            title: Concluding Observations
-      -
-        type: original
+          - number: 2
+            subtitle:
+              The Worship Which, Under the Christian Dispensation, is Ordained of God
+          - number: 3
+            subtitle:
+              On Baptism.--Continuation of the Subject of Divine Worship, in Connection
+              with Observations on the Partaking of the Flesh and Blood of Christ
+          - title: Concluding Observations
+      - type: original
         formats:
-            -
-              type: pdf
-            -
-              type: epub
-            -
-              type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
 
         chapters:
-          -
-            title: Introduction
-          -
-            number: 1
+          - title: Introduction
+          - number: 1
             subtitle: On Conversion, and Regeneration
-          -
-            number: 2
-            subtitle: The Worship Which, Under the Christian Dispensation, is Ordained of God
-          -
-            number: 3
-            subtitle: On Baptism.--Continuation of the Subject of Divine Worship, in Connection with Observations on the Partaking of the Flesh and Blood of Christ
-          -
-            title: Concluding Observations
+          - number: 2
+            subtitle:
+              The Worship Which, Under the Christian Dispensation, is Ordained of God
+          - number: 3
+            subtitle:
+              On Baptism.--Continuation of the Subject of Divine Worship, in Connection
+              with Observations on the Partaking of the Flesh and Blood of Christ
+          - title: Concluding Observations

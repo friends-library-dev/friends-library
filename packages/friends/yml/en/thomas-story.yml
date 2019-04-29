@@ -1,36 +1,36 @@
 name: Thomas Story
 slug: thomas-story
 gender: male
-description: Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados, and the American colonies. He was known for both his spiritual depth and his intellectual genius, and his writings became very influential among Quakers.
+description:
+  Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society
+  of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados,
+  and the American colonies. He was known for both his spiritual depth and his
+  intellectual genius, and his writings became very influential among Quakers.
 documents:
-  -
-    title: Selection from the Journal of Thomas Story
+  - title: Selection from the Journal of Thomas Story
     slug: journal-selection
     filename: Selection_Journal_of_Thomas_Story
-    description: Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados, and the American colonies. He was known for both his spiritual depth and his intellectual genius, and his writings became very influential among Quakers.
+    description:
+      Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the
+      Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica,
+      Barbados, and the American colonies. He was known for both his spiritual depth and
+      his intellectual genius, and his writings became very influential among Quakers.
     tags:
       - journal
     editions:
-      -
-        type: updated
+      - type: updated
         editor: Jason R. Henderson
         pages: 31
         formats:
-          -
-            type: paperback
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
-          -
-            type: audio
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
         audio:
           reader: Jason Henderson
           parts:
-            -
-              title: Journal of Thomas Story
+            - title: Journal of Thomas Story
               external_id_hq: 281992929
               external_id_lq: 281992954
               filesize_hq: 67694765
@@ -39,66 +39,52 @@ documents:
               chapters:
                 - 0
         chapters:
-          -
-            title: Selection from the Journal of Thomas Story
-  -
-    title: Journal of Thomas Story
+          - title: Selection from the Journal of Thomas Story
+  - title: Journal of Thomas Story
     slug: journal
     filename: Journal_of_Thomas_Story
-    description: Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica, Barbados, and the American colonies. He was known for both his spiritual depth and his intellectual genius, and his writings became very influential among Quakers.
+    description:
+      Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the
+      Society of Friends, traveling all over England, Ireland, Scotland, Holland, Jamaica,
+      Barbados, and the American colonies. He was known for both his spiritual depth and
+      his intellectual genius, and his writings became very influential among Quakers.
     tags:
       - journal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 1010
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: The Journal of Thomas Story
+          - title: The Journal of Thomas Story
 
-      -
-        type: original
+      - type: original
         pages: 1010
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: The Journal of Thomas Story
-  -
-    title: Salvation By Christ
+          - title: The Journal of Thomas Story
+  - title: Salvation By Christ
     slug: salvation-by-christ
     filename: Salvation_by_Christ
-    description: An excerpt from the journal of Thomas Story concerning salvation by Christ.
+    description:
+      An excerpt from the journal of Thomas Story concerning salvation by Christ.
     tags:
       - doctrinal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 3
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Salvation By Christ
-  -
-    title: Letter to a Doubter
+          - title: Salvation By Christ
+  - title: Letter to a Doubter
     slug: letter-to-a-doubter
     filename: Letter_to_a_Doubter
     description: An excerpt from the journal of Thomas Story.
@@ -106,16 +92,11 @@ documents:
       - exhortation
       - doctrinal
     editions:
-      -
-        type: modernized
+      - type: modernized
         pages: 20
         formats:
-          -
-            type: pdf
-          -
-            type: epub
-          -
-            type: mobi
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
-          -
-            title: Letter to a Doubter
+          - title: Letter to a Doubter
