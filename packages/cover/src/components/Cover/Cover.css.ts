@@ -2,7 +2,7 @@ const css: string = /* css */ `
 
 .web .cover,
 .pdf body {
-  font-family: Georgia;
+  font-family: 'Baskerville', Arial;
   background: white;
   color: white;
 }
@@ -60,15 +60,57 @@ const css: string = /* css */ `
 }
 
 .title {
-  margin-top: 2in;
-  line-height: 175%;
-  font-size: 0.4in;
+  margin-top: 64%;
+  line-height: 200%;
+  font-size: 0.35in;
   font-weight: 400;
+  margin-left: 12%;
+  margin-right: 12%;
+  letter-spacing: 0.025in;
+}
+
+.first-initial {
+  top: 20%;
+}
+
+.last-initial {
+  top: 47%;
+}
+
+.initial {
+  position: absolute;
+  color: white;
+  opacity: 0.075;
+  font-size: 2.5in;
+  font-weight: 400;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .author {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 5%;
+  width: var(--pageWidth);
+}
+
+.author-line {
+  width: 40%;
+  height: 0.01in;
+  background: white;
+  opacity: 0.6;
+  margin: 0 auto 0 auto;
+}
+
+.author-name {
   font-weight: 400;
-  font-style: italic;
+  font-size: 0.17in;
+  opacity: 0.7;
+}
+
+.spine {
+  /* spine styles */
 }
 `;
 

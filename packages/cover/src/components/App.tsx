@@ -18,9 +18,9 @@ function makePdf(props: any): void {
 
 const App: React.FC = () => {
   const [printSize, setPrintSize] = useState<PrintSizeAbbrev>('s');
-  const [title] = useState<string>('The Journal of George Fox');
-  const [author] = useState<string>('George Fox');
-  const coverProps = { title, author, printSize, pages: 298 };
+  const [title] = useState<string>('The Life and Letters of Rebecca Jones');
+  const [author] = useState<string>('Rebecca Jones');
+  const coverProps = { title, author, printSize, pages: 598 };
   return (
     <div className={`App web trim--${printSize}`}>
       <select
