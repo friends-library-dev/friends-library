@@ -1,7 +1,7 @@
 import { Css } from '@friends-library/types';
 import { getBookSize } from '@friends-library/asciidoc';
 import { mapValues } from 'lodash';
-import cssString from './Cover.css';
+import cssString from './css/cover.css';
 import { CoverProps } from './types';
 
 export function cssVars(props: CoverProps): Record<string, string> {
@@ -18,10 +18,12 @@ export function cssVars(props: CoverProps): Record<string, string> {
       pageWidth: book.width,
       pageHeight: book.height,
       spineWidth: spineWidth,
+      spineDisplay: props.pages > 160 ? 'block' : 'none',
       edgeToSafe: trimBleed + safety,
       safeAreaWidth: book.width - safety * 2,
       safeAreaHeight: book.height - safety * 2,
       edgeToSpine: book.width + trimBleed,
+      edgeToSpineCenter: book.width + trimBleed + spineWidth / 2,
       coverHeight: book.height + safety,
       coverWidth: book.width * 2 + spineWidth + trimBleed * 2,
       guideSafetyWidth: book.width * 2 + spineWidth,

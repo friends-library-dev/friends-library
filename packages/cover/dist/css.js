@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var asciidoc_1 = require("@friends-library/asciidoc");
 var lodash_1 = require("lodash");
-var Cover_css_1 = __importDefault(require("./Cover.css"));
+var cover_css_1 = __importDefault(require("./css/cover.css"));
 function cssVars(props) {
     var book = asciidoc_1.getBookSize(props.printSize).dims;
     var safety = 0.25;
@@ -19,10 +19,12 @@ function cssVars(props) {
         pageWidth: book.width,
         pageHeight: book.height,
         spineWidth: spineWidth,
+        spineDisplay: props.pages > 160 ? 'block' : 'none',
         edgeToSafe: trimBleed + safety,
         safeAreaWidth: book.width - safety * 2,
         safeAreaHeight: book.height - safety * 2,
         edgeToSpine: book.width + trimBleed,
+        edgeToSpineCenter: book.width + trimBleed + spineWidth / 2,
         coverHeight: book.height + safety,
         coverWidth: book.width * 2 + spineWidth + trimBleed * 2,
         guideSafetyWidth: book.width * 2 + spineWidth,
@@ -37,7 +39,7 @@ function cssVars(props) {
 }
 exports.cssVars = cssVars;
 function coverCss(props, scaler) {
-    var css = Cover_css_1["default"];
+    var css = cover_css_1["default"];
     var vars = cssVars(props);
     Object.entries(vars).forEach(function (_a) {
         var key = _a[0], val = _a[1];
