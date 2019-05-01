@@ -1,23 +1,30 @@
 import React from 'react';
-import { CoverProps, FriendData } from './types';
-
-// @ts-ignore
-const friendData = window.Friends as FriendData;
+import { CoverProps } from './types';
+import LogoIcon from './LogoIcon';
 
 const Cover: React.FC<CoverProps> = props => {
-  const { title, author } = props;
+  const { title, author, isbn, edition, blurb } = props;
   const [firstInitial, lastInitial] = initials(author);
   return (
     <div className="cover">
       <div className="bg-block" />
-      <div className="back" />
+      <div className="back">
+        <div className="blurb">{blurb}</div>
+        {isbn && (
+          <img
+            className="isbn"
+            src={`${process.env.PUBLIC_URL || ''}/images/isbn/${isbn}.png`}
+            alt=""
+          />
+        )}
+      </div>
       <div className="spine" />
       <div className="front">
-        <img
-          className="logo"
-          src={`${process.env.PUBLIC_URL || ''}/images/logo-icon.png`}
-          alt=""
-        />
+        <div className="diamond-wrap">
+          <div className="diamond" />
+          <div className="edition-initial">{edition[0].toUpperCase()}</div>
+        </div>
+        <LogoIcon />
         <span className="first-initial initial">{firstInitial}</span>
         <span className="last-initial initial">{lastInitial}</span>
         <h1 className="title">{title}</h1>
@@ -26,6 +33,11 @@ const Cover: React.FC<CoverProps> = props => {
           <h2 className="author-name">{author}</h2>
         </div>
       </div>
+      <div className="guide guide--box guide--trim-bleed" />
+      <div className="guide guide--box guide--safety guide--safety-front" />
+      <div className="guide guide--box guide--safety guide--safety-back" />
+      <div className="guide guide--spine guide--vertical guide--spine-right" />
+      <div className="guide guide--spine guide--vertical guide--spine-left" />
     </div>
   );
 };

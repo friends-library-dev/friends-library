@@ -4,10 +4,12 @@
   "private": true,
   "main": "dist/index.js",
   "dependencies": {
+    "@friends-library/cli": "1.0.0",
+    "@friends-library/client": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/types": "1.0.0",
-    "@friends-library/client": "1.0.0",
-    "@friends-library/cli": "1.0.0",
+    "@material-ui/core": "^4.0.0-beta.0",
+    "@material-ui/icons": "^4.0.0-beta.0",
     "@types/jest": "24.0.11",
     "@types/node": "11.13.7",
     "@types/react": "16.8.14",
@@ -20,9 +22,9 @@
     "typescript": "3.4.5"
   },
   "scripts": {
-    "compile": "rm -rf ./dist && mkdir ./dist && cp -r ./src/components/Cover/isbn ./dist && cp -r ./public/images ./dist && ../../node_modules/.bin/tsc -p ./src/components/Cover",
+    "compile": "rm -rf ./dist && mkdir ./dist && cp -r ./public/images ./dist && ../../node_modules/.bin/tsc -p ./src/components/Cover",
     "listen:pdf": "node ./listen/listen-pdf.js",
-    "develop": "yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"cd ../../ && yarn kite cover:watch\"",
+    "develop": "yarn compile && yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"cd ../../ && yarn kite cover:watch\"",
     "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
     "friends": "yarn ts-node -T --skip-project ./src/scripts/friend-data.ts",
     "build": "yarn friends && SKIP_PREFLIGHT_CHECK=true react-scripts build",

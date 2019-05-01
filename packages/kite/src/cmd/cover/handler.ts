@@ -26,10 +26,11 @@ export default async function cover(opts: Arguments<CoverOptions>): Promise<void
 export async function coverFromProps(props: any): Promise<FilePath> {
   const el = React.createElement(Cover, props);
   const html = ReactDOMServer.renderToStaticMarkup(el);
+  const isbnPath = `images/isbn/${props.isbn}.png`;
   const manifest = {
     'doc.html': wrapHtml(html, props),
-    'doc.css': coverCss(props, 'pdf'),
-    'images/logo-icon.png': coverAsset('images/logo-icon.png'),
+    'doc.css': coverCss(props),
+    ...(props.isbn ? { [isbnPath]: coverAsset(isbnPath) } : {}),
   };
   const { filePath } = await prince(
     manifest,

@@ -1,9 +1,13 @@
-import { Name, PrintSizeAbbrev, Description, EditionType } from '@friends-library/types';
+import { Name, PrintSizeAbbrev, Description, EditionType, ISBN } from '@friends-library/types';
 export interface CoverProps {
     title: string;
     author: Name;
     printSize: PrintSizeAbbrev;
     pages: number;
+    edition: EditionType | 'spanish';
+    isbn?: ISBN;
+    blurb: string;
+    showGuides: boolean;
 }
 export declare type FriendData = {
     name: Name;
