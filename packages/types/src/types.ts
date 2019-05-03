@@ -144,6 +144,17 @@ export interface LintOptions {
   maybe?: boolean;
 }
 
+export interface CoverProps {
+  title: string;
+  author: Name;
+  printSize: PrintSizeAbbrev;
+  pages: number;
+  edition: EditionType | 'spanish';
+  isbn?: ISBN;
+  blurb: string;
+  showGuides: boolean;
+}
+
 export type ISBN = string;
 export type Uuid = string;
 export type Asciidoc = string;

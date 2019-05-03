@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
+import { CoverProps } from '@friends-library/types';
 import Cover from './Cover/Cover';
 import { coverCss } from './Cover/css';
 import FormControl from '@material-ui/core/FormControl';
-import { CoverProps } from './Cover/types';
 import { friendData, blurb, editions, documents, fitScaler } from './utils';
 import Select from './Select';
 import Toolbar from './Toolbar';

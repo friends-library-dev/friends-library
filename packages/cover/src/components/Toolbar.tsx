@@ -1,4 +1,5 @@
 import React from 'react';
+import { CoverProps } from '@friends-library/types';
 import MaterialUiToolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,7 +8,6 @@ import FitIcon from '@material-ui/icons/SettingsOverscan';
 import GuidesIcon from '@material-ui/icons/BorderClear';
 import MaskBleedIcon from '@material-ui/icons/BorderStyle';
 import ThreeDIcon from '@material-ui/icons/FilterNone';
-import { CoverProps } from './Cover/types';
 import { makePdf } from './utils';
 
 interface Props {

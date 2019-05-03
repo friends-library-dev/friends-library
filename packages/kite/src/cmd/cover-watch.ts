@@ -8,7 +8,7 @@ export const command = 'cover:watch';
 
 export const describe = 'watch for cover jobs';
 
-export async function handler({ exec }: { exec: boolean }) {
+export async function handler({ exec }: { exec: boolean }): Promise<void> {
   const path = `${process.cwd()}/packages/cover/listen/cover.json`;
 
   if (exec) {

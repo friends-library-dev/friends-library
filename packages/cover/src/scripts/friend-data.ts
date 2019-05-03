@@ -1,5 +1,5 @@
 import '@friends-library/client/load-env';
-import { red, green } from '@friends-library/cli/color';
+import { red } from '@friends-library/cli/color';
 import * as fs from 'fs';
 import { sync as glob } from 'glob';
 import { execSync } from 'child_process';
@@ -9,7 +9,7 @@ import { PrintSizeAbbrev, requireEnv } from '@friends-library/types';
 
 const { KITE_DOCS_REPOS_ROOT: ROOT } = requireEnv('KITE_DOCS_REPOS_ROOT');
 
-const data: FriendData = [];
+const data: FriendData[] = [];
 
 getAllFriends()
   .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))

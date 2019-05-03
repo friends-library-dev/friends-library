@@ -11,7 +11,7 @@ import * as cover from './cmd/cover';
 import * as coverWatch from './cmd/cover-watch';
 import * as unusual from './cmd/unusual';
 
-// prettifyErrors();
+prettifyErrors();
 
 /* eslint-disable no-unused-expressions */
 yargs

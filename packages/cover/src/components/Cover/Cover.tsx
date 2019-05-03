@@ -1,6 +1,6 @@
 import React from 'react';
+import { CoverProps } from '@friends-library/types';
 import { isBrowser } from 'browser-or-node';
-import { CoverProps } from './types';
 import LogoIcon from './LogoIcon';
 
 const publicUrl = process.env.PUBLIC_URL || '';

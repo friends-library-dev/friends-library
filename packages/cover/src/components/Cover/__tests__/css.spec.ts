@@ -1,11 +1,10 @@
-import { PrintSize } from '@friends-library/types';
+import { CoverProps } from '@friends-library/types';
 import { getBookSize } from '@friends-library/asciidoc';
 import { cssVars } from '../css';
-import { CoverProps } from '../types';
 
 describe('cssVars()', () => {
   let props: CoverProps;
-  let trim: PrintSize['dims'];
+  let trim: any;
 
   beforeEach(() => {
     props = {

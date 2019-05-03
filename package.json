@@ -15,7 +15,7 @@
     "php:test": "yarn phipps:test",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
-    "lint": "yarn sass:lint && yarn ts:lint",
+    "lint": "yarn ts:lint && yarn sass:lint",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
     "ts:lint": "yarn eslint 'packages/**/*.{ts,tsx}'",
     "asciidoc:scaffold:lint": "cd ./packages/asciidoc && yarn scaffold:lint",
@@ -32,6 +32,7 @@
     "jones:build": "cd packages/jones && yarn build",
     "cover:develop": "cd packages/cover && yarn develop",
     "cover:build": "cd packages/cover && yarn build",
+    "cover:ts:check": "cd packages/cover && yarn ts:check",
     "cli:compile": "cd packages/cli && yarn compile",
     "asciidoc:compile": "cd ./packages/asciidoc && yarn compile",
     "hilkiah:compile": "cd ./packages/hilkiah && yarn compile",
@@ -42,7 +43,7 @@
     "api:compile": "cd packages/api && yarn compile",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
-    "preflight": "yarn lint && yarn test && yarn evans:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
+    "preflight": "yarn lint && yarn test && yarn evans:ts:check && yarn cover:ts:check yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

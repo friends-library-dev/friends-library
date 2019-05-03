@@ -1,8 +1,7 @@
-import { Css } from '@friends-library/types';
+import { Css, CoverProps } from '@friends-library/types';
 import { getBookSize } from '@friends-library/asciidoc';
 import { mapValues } from 'lodash';
 import cssString from './css/cover.css';
-import { CoverProps } from './types';
 
 export function cssVars(props: CoverProps): Record<string, string> {
   const { dims: book } = getBookSize(props.printSize);

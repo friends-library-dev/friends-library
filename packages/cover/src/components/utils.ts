@@ -1,11 +1,8 @@
-import { CoverProps, FriendData } from './Cover/types';
+import { CoverProps } from '@friends-library/types';
+import { FriendData, DocumentData, EditionData } from './Cover/types';
 import { cssVars } from './Cover/css';
 
-type Friend = FriendData[0];
-type Document = Friend['documents'][0];
-type Edition = Document['editions'][0];
-
-const friendData = (window as any).Friends as FriendData;
+const friendData = (window as any).Friends as FriendData[];
 export { friendData };
 
 export function makePdf(props: CoverProps): void {
@@ -48,14 +45,14 @@ function inchToNum(val: string): number {
   return Number(val.replace(/in$/, ''));
 }
 
-export function documents(friendIndex: number): Document[] {
+export function documents(friendIndex: number): DocumentData[] {
   if (friendData[friendIndex]) {
     return friendData[friendIndex].documents;
   }
   return [];
 }
 
-export function editions(friendIndex: number, docIndex: number): Edition[] {
+export function editions(friendIndex: number, docIndex: number): EditionData[] {
   if (!friendData[friendIndex]) {
     return [];
   }
@@ -65,7 +62,7 @@ export function editions(friendIndex: number, docIndex: number): Edition[] {
   return friendData[friendIndex].documents[docIndex].editions;
 }
 
-export function blurb(doc: Document, friend: Friend): string {
+export function blurb(doc: DocumentData, friend: FriendData): string {
   let blurb = doc.description || friend.description;
   if (blurb !== 'TODO') return blurb;
   return `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`;

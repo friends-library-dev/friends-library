@@ -25,6 +25,7 @@
   },
   "scripts": {
     "compile": "rm -rf ./dist && mkdir ./dist && cp -r ./public/images ./dist && ../../node_modules/.bin/tsc -p ./src/components/Cover",
+    "ts:check": "../../node_modules/.bin/tsc --noEmit -p . && ../../node_modules/.bin/tsc --noEmit -p ./src/components/Cover",
     "listen:pdf": "node ./listen/listen-pdf.js",
     "develop": "yarn compile && yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"cd ../../ && yarn kite cover:watch\"",
     "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
@@ -32,9 +33,6 @@
     "build": "yarn friends && SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "cd ../../ && yarn jest packages/cover",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

@@ -1,32 +1,19 @@
-import {
-  Name,
-  PrintSizeAbbrev,
-  Description,
-  EditionType,
-  ISBN,
-} from '@friends-library/types';
+import { Name, PrintSizeAbbrev, Description, EditionType } from '@friends-library/types';
 
-export interface CoverProps {
-  title: string;
-  author: Name;
-  printSize: PrintSizeAbbrev;
-  pages: number;
-  edition: EditionType | 'spanish';
-  isbn?: ISBN;
-  blurb: string;
-  showGuides: boolean;
+export interface EditionData {
+  type: EditionType | 'spanish';
+  pages: Record<PrintSizeAbbrev, number>;
+  defaultSize: PrintSizeAbbrev;
 }
 
-export type FriendData = {
+export interface DocumentData {
+  title: string;
+  description: Description;
+  editions: EditionData[];
+}
+
+export interface FriendData {
   name: Name;
   description: Description;
-  documents: {
-    title: string;
-    description: Description;
-    editions: {
-      type: EditionType | 'spanish';
-      pages: Record<PrintSizeAbbrev, number>;
-      defaultSize: PrintSizeAbbrev;
-    }[];
-  }[];
-}[];
+  documents: DocumentData[];
+}
