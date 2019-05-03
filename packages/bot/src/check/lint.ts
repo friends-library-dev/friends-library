@@ -25,9 +25,9 @@ export default async function lintCheck(
 
   const update = {
     check_run_id: id,
-    status: 'completed',
+    status: 'completed' as const,
     completed_at: new Date().toISOString(),
-  } as const;
+  };
 
   if (annotations.length === 0) {
     github.checks.update(

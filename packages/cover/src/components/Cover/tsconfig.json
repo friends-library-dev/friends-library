@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "../../../dist",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["./__tests__/"]
+}

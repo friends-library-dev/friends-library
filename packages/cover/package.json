@@ -1,0 +1,52 @@
+{
+  "name": "@friends-library/cover",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "dependencies": {
+    "@friends-library/cli": "1.0.0",
+    "@friends-library/client": "1.0.0",
+    "@friends-library/friends": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "@material-ui/core": "^4.0.0-beta.0",
+    "@material-ui/icons": "^4.0.0-beta.0",
+    "@types/jest": "24.0.11",
+    "@types/node": "11.13.7",
+    "@types/react": "16.8.14",
+    "@types/react-dom": "16.8.4",
+    "browser-or-node": "^1.2.1",
+    "classnames": "^2.2.6",
+    "glob": "^7.1.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.0",
+    "ts-node": "^8.1.0",
+    "typescript": "3.4.5"
+  },
+  "scripts": {
+    "compile": "rm -rf ./dist && mkdir ./dist && cp -r ./public/images ./dist && ../../node_modules/.bin/tsc -p ./src/components/Cover",
+    "ts:check": "../../node_modules/.bin/tsc --noEmit -p . && ../../node_modules/.bin/tsc --noEmit -p ./src/components/Cover",
+    "listen:pdf": "node ./listen/listen-pdf.js",
+    "develop": "yarn compile && yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"cd ../../ && yarn kite cover:watch\"",
+    "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
+    "friends": "yarn ts-node -T --skip-project ./src/scripts/friend-data.ts",
+    "build": "yarn friends && SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "test": "cd ../../ && yarn jest packages/cover",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  }
+}

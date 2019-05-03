@@ -13,6 +13,7 @@
     "packages/jones/public/asciidoctor.min.js": true,
     "**/tsconfig.tsbuildinfo": true,
     "packages/cli/*.d.ts": true,
-    "packages/cli/*.js": true
+    "packages/cli/*.js": true,
+    "packages/cover/build": true
   }
 }

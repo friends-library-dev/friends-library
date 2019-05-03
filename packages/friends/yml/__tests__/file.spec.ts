@@ -16,7 +16,10 @@ import { Friend, Document } from '../../src';
 const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
 const filenames: string[] = [];
 
-const isbnPath = path.resolve(__dirname, '../../../kite/src/isbn/suffixes.txt');
+const isbnPath = path.resolve(
+  __dirname,
+  '../../../cover/public/images/isbn/_suffixes.txt',
+);
 const isbnPool = readFileSync(isbnPath)
   .toString()
   .trim()
