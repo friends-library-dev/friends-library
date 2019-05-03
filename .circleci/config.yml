@@ -11,6 +11,7 @@ jobs:
       - run: yarn evans:build:en
       - run: yarn evans:build:es
       - run: yarn evans:ts:check
+      - run: yarn cover:ts:check
       - run: yarn ts:compile
       - run: yarn styleguide:build
 
@@ -25,6 +26,7 @@ jobs:
       - run: yarn sass:lint
       - run: yarn ts:lint
       - run: yarn jones:build
+      - run: KITE_DOCS_REPOS_ROOT="" yarn cover:build
       - composer_cached_install
       - run: cd packages/phipps && vendor/bin/phpunit
 

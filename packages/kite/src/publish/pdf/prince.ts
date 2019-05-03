@@ -24,7 +24,13 @@ export function prince(
   }
   const dir = `${PUBLISH_DIR}/_src_/${srcDir}`;
   const writeFiles = Promise.all(
-    Object.keys(manifest).map(path => fs.outputFile(`${dir}/${path}`, manifest[path])),
+    Object.keys(manifest).map(path =>
+      fs.outputFile(
+        `${dir}/${path}`,
+        manifest[path],
+        path.endsWith('.png') ? 'binary' : undefined,
+      ),
+    ),
   );
 
   return writeFiles

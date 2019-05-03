@@ -1,0 +1,13 @@
+POST http://localhost:9988 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "The Work of Vital Religion in the Soul",
+  "author": "Samuel Rundell",
+  "printSize": "m",
+  "pages": 135,
+  "edition": "updated",
+  "blurb": "TODO",
+  "isbn": "978-1-64476-001-7",
+  "showGuides": false
+}

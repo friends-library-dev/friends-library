@@ -35,7 +35,7 @@
   },
   "scripts": {
     "develop": "yarn start",
-    "asciidoctorjs": "rm -f ./public/asciidoctor.min.js && cp ../../node_modules/asciidoctor.js/dist/asciidoctor.min.js ./public",
+    "asciidoctorjs": "rm -f ./public/asciidoctor.min.js && cp ../../node_modules/@asciidoctor/core/dist/browser/asciidoctor.min.js ./public",
     "prestart": "rm -rf ./.env && cp ../../.env . && yarn asciidoctorjs",
     "start": "SKIP_PREFLIGHT_CHECK=true PORT=8888 react-scripts start",
     "build": "yarn asciidoctorjs && SKIP_PREFLIGHT_CHECK=true react-scripts build",

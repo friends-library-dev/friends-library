@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "yarn ts:compile",
-    "ts:compile": "yarn types:compile && yarn client:compile && yarn friends:compile && yarn hilkiah:compile && yarn asciidoc:compile && yarn cli:compile && yarn bot:compile && yarn api:compile",
+    "ts:compile": "yarn types:compile && yarn client:compile && yarn friends:compile && yarn hilkiah:compile && yarn asciidoc:compile && yarn cli:compile && yarn bot:compile && yarn api:compile && yarn cover:compile",
     "ts:recompile": "cd packages && find . -name \"*.tsbuildinfo\" -type f -delete && cd ../ && yarn ts:compile",
     "ts:watch": "yarn types:compile -w & yarn client:compile -w & yarn friends:compile -w & yarn hilkiah:compile -w & yarn asciidoc:compile -w & yarn cli:compile -w & yarn bot:compile -w & yarn api:compile -w",
     "kite": "yarn ts-node --transpile-only --project ./packages/kite/tsconfig.json ./packages/kite/src/app.ts",
@@ -15,7 +15,7 @@
     "php:test": "yarn phipps:test",
     "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
     "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
-    "lint": "yarn sass:lint && yarn ts:lint",
+    "lint": "yarn ts:lint && yarn sass:lint",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
     "ts:lint": "yarn eslint 'packages/**/*.{ts,tsx}'",
     "asciidoc:scaffold:lint": "cd ./packages/asciidoc && yarn scaffold:lint",
@@ -30,6 +30,10 @@
     "evans:ts:check": "cd packages/evans && yarn ts:check",
     "jones:develop": "cd packages/jones && yarn develop",
     "jones:build": "cd packages/jones && yarn build",
+    "cover:develop": "cd packages/cover && yarn develop",
+    "cover:build": "cd packages/cover && yarn build",
+    "cover:compile": "cd packages/cover && yarn compile",
+    "cover:ts:check": "cd packages/cover && yarn ts:check",
     "cli:compile": "cd packages/cli && yarn compile",
     "asciidoc:compile": "cd ./packages/asciidoc && yarn compile",
     "hilkiah:compile": "cd ./packages/hilkiah && yarn compile",
@@ -40,7 +44,7 @@
     "api:compile": "cd packages/api && yarn compile",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
-    "preflight": "yarn lint && yarn test && yarn evans:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build"
+    "preflight": "yarn lint && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
@@ -57,14 +61,14 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.0.0",
     "lerna": "^3.1.4",
-    "prettier": "^1.16.4",
     "stylelint": "^9.5.0",
     "stylelint-config-recommended": "^2.1.0",
     "ts-jest": "^24.0.2",
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "typescript": "3.4.4"
+    "prettier": "^1.16.4",
+    "typescript": "3.4.5"
   },
   "workspaces": [
     "packages/api",
@@ -72,6 +76,7 @@
     "packages/bot",
     "packages/cli",
     "packages/client",
+    "packages/cover",
     "packages/evans",
     "packages/fell",
     "packages/friends",
