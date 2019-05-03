@@ -1,14 +1,14 @@
 const css: string = /* css */ `
 .spine {
-  display: var(--spineDisplay);
   width: var(--spineWidth);
-  height: var(--coverHeight);
+  height: var(--bookHeight);
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  top: var(--trimBleed);
+  left: var(--edgeToSpine);
 }
 
 .spine .logo-icon {
+  display: var(--spineDisplay);
   height: 3.5%;
   fill: white;
   position: absolute;
@@ -18,6 +18,7 @@ const css: string = /* css */ `
 }
 
 .spine__title {
+  display: var(--spineDisplay);
   left: 50%;
   transform: translateX(-50%);
   margin: 0;

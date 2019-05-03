@@ -18,16 +18,23 @@ export function cssVars(props: CoverProps): Record<string, string> {
       pageWidth: book.width,
       pageHeight: book.height,
       spineWidth: spineWidth,
+      halfSpineWidth: spineWidth / 2,
       spineDisplay: props.pages > 160 ? 'block' : 'none',
       edgeToSafe: trimBleed + safety,
       safeAreaWidth: book.width - safety * 2,
       safeAreaHeight: book.height - safety * 2,
       edgeToSpine: book.width + trimBleed,
       edgeToSpineCenter: book.width + trimBleed + spineWidth / 2,
-      coverHeight: book.height + safety,
+      bookWidth: book.width,
+      bookHeight: book.height,
+      halfBookWidth: book.width / 2,
+      halfBookHeight: book.height / 2,
+      coverHeight: book.height + trimBleed * 2,
       coverWidth: book.width * 2 + spineWidth + trimBleed * 2,
       guideSafetyWidth: book.width * 2 + spineWidth,
       guidesDisplay: props.showGuides ? 'block' : 'none',
+      threeDLeftOffset: (book.width - spineWidth) / 2,
+      threeDTopOffset: (book.height - spineWidth) / 2,
       bgColor: {
         updated: 'rgb(133, 75, 94)',
         modernized: 'rgb(126, 155, 171)',
@@ -48,7 +55,7 @@ export function coverCss(props: CoverProps, scaler?: number): Css {
   });
 
   if (scaler) {
-    css = css.replace(/(?<inches>\d*(?:\.\d+)?)in(?<after>;| )/g, (...args) => {
+    css = css.replace(/(?<inches>\d*(?:\.\d+)?)in(?<after>;| |\))/g, (...args) => {
       const { inches, after } = args[args.length - 1];
       return `${Number(inches) * scaler}in${after}`;
     });

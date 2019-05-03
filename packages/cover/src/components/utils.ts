@@ -20,20 +20,32 @@ export function makePdf(props: CoverProps): void {
   });
 }
 
-export function fitScaler(props: CoverProps, fit: boolean): number | undefined {
+export function fitScaler(
+  props: CoverProps,
+  fit: boolean,
+  threeD: boolean,
+): number | undefined {
   const webScaler = 1.1358;
   if (!fit) {
     return webScaler;
   }
 
+  const appChromeHeight = 175;
+  const vars = cssVars(props);
   const windowWidth = window.innerWidth / 96;
-  const coverWidth = Number(cssVars(props).coverWidth.replace(/in$/, '')) * webScaler;
-  if (coverWidth <= windowWidth) {
+  const windowHeight = (window.innerHeight - appChromeHeight) / 96;
+  const coverWidth = inchToNum(threeD ? vars.bookWidth : vars.coverWidth) * webScaler;
+  const coverHeight = inchToNum(vars.coverHeight) * webScaler;
+  if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
     return webScaler;
   }
 
-  const shrinker = windowWidth / coverWidth - 0.015;
-  return webScaler * shrinker;
+  const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
+  return webScaler * (scale - 0.015);
+}
+
+function inchToNum(val: string): number {
+  return Number(val.replace(/in$/, ''));
 }
 
 export function documents(friendIndex: number): Document[] {

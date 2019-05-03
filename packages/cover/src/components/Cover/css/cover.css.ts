@@ -1,9 +1,11 @@
+import { isBrowser } from 'browser-or-node';
 import guides from './guides.css';
 import spine from './spine.css';
 import initials from './initials.css';
 import author from './author.css';
 import diamond from './diamond.css';
 import blurb from './blurb.css';
+import threeD from './3d.css';
 
 const css: string = /* css */ `
 
@@ -16,7 +18,7 @@ const css: string = /* css */ `
 
 .web .cover-wrap {
   position: relative;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .web .cover,
@@ -28,15 +30,53 @@ const css: string = /* css */ `
 }
 
 .web .cover-mask {
+  height: var(--pageHeight);
+  width: var(--guideSafetyWidth);
   position: absolute;
-  margin: 0 auto;
-  top: 0 !important;
+  top: 0;
   left: 0 !important;
   border: var(--trimBleed) solid rgba(255, 0, 0, 0.4);
   border-color: #eaeaea;
+  xborder-color: yellow;
+  xbackground: rgba(255, 0, 0, 0.35);
+  z-index: 1;
 }
 
-.front .logo-icon {
+.front,
+.back {
+  position: absolute;
+  top: var(--trimBleed);
+  xbackground: red;
+  width: var(--bookWidth);
+  height: var(--bookHeight);
+}
+
+.front {
+  right: var(--trimBleed);
+}
+
+.back {
+  left: var(--trimBleed);
+}
+
+.front__safe,
+.back__safe {
+  position: absolute;
+  top: var(--safety);
+  left: var(--safety);
+  width: var(--safeAreaWidth);
+  height: var(--safeAreaHeight);
+}
+
+.front__safe {
+  text-align: center;
+}
+
+.back__safe {
+
+}
+
+.front__safe .logo-icon {
   height: 6.5%;
   fill: var(--bgColor);
   position: absolute;
@@ -51,23 +91,6 @@ const css: string = /* css */ `
   width: var(--coverWidth);
   height: 82%;
   background: var(--bgColor);
-}
-
-.front,
-.back {
-  position: absolute;
-  top: var(--edgeToSafe);
-  width: var(--safeAreaWidth);
-  height: var(--safeAreaHeight);
-}
-
-.front {
-  text-align: center;
-  right: var(--edgeToSafe);
-}
-
-.back {
-  left: var(--edgeToSafe);
 }
 
 @page {
@@ -100,6 +123,7 @@ ${author}
 ${initials}
 ${spine}
 ${guides}
+${isBrowser ? threeD : ''}
 `;
 
 export default css;

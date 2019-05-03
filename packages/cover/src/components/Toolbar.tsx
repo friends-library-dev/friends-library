@@ -6,6 +6,7 @@ import PdfIcon from '@material-ui/icons/PictureAsPdf';
 import FitIcon from '@material-ui/icons/SettingsOverscan';
 import GuidesIcon from '@material-ui/icons/BorderClear';
 import MaskBleedIcon from '@material-ui/icons/BorderStyle';
+import ThreeDIcon from '@material-ui/icons/FilterNone';
 import { CoverProps } from './Cover/types';
 import { makePdf } from './utils';
 
@@ -13,6 +14,8 @@ interface Props {
   fit: boolean;
   maskBleed: boolean;
   showGuides: boolean;
+  threeD: boolean;
+  toggleThreeD: () => void;
   toggleFit: () => void;
   toggleMaskBleed: () => void;
   toggleShowGuides: () => void;
@@ -27,13 +30,13 @@ const Toolbar: React.FC<Props> = ({
   toggleMaskBleed,
   toggleShowGuides,
   coverProps,
+  threeD,
+  toggleThreeD,
 }) => (
   <AppBar
     style={{
-      position: 'fixed',
-      bottom: 0,
-      top: 'auto',
       backgroundColor: 'white',
+      position: 'static',
     }}
   >
     <MaterialUiToolbar>
@@ -41,14 +44,22 @@ const Toolbar: React.FC<Props> = ({
         <FitIcon />
       </IconButton>
       &nbsp;&nbsp;
-      <IconButton style={maskBleed ? selected : {}} onClick={() => toggleMaskBleed()}>
+      <IconButton
+        disabled={threeD}
+        style={maskBleed && !threeD ? selected : {}}
+        onClick={() => toggleMaskBleed()}
+      >
         <MaskBleedIcon />
       </IconButton>
       &nbsp;&nbsp;
       <IconButton style={showGuides ? selected : {}} onClick={() => toggleShowGuides()}>
         <GuidesIcon />
       </IconButton>
-      {coverProps && (
+      &nbsp;&nbsp;
+      <IconButton style={threeD ? selected : {}} onClick={() => toggleThreeD()}>
+        <ThreeDIcon />
+      </IconButton>
+      {coverProps && process.env.NODE_ENV === 'development' && (
         <>
           <div style={{ flexGrow: 1 }} />
           <IconButton style={{ float: 'right' }} onClick={() => makePdf(coverProps)}>

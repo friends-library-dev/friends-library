@@ -13,6 +13,9 @@ describe('cssVars()', () => {
       author: 'George Fox',
       pages: 555,
       printSize: 'm',
+      edition: 'original',
+      blurb: 'TODO',
+      showGuides: false,
     };
     ({ dims: trim } = getBookSize(props.printSize));
   });

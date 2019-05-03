@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Cover from './Cover/Cover';
 import { coverCss } from './Cover/css';
 import FormControl from '@material-ui/core/FormControl';
@@ -8,6 +9,8 @@ import Select from './Select';
 import Toolbar from './Toolbar';
 import './App.css';
 
+type View = 'front' | 'spine' | 'back' | 'angle-front' | 'angle-back';
+
 interface State {
   friendIndex: number;
   docIndex: number;
@@ -15,6 +18,8 @@ interface State {
   fit: boolean;
   showGuides: boolean;
   maskBleed: boolean;
+  threeD: boolean;
+  threeDView: View;
 }
 
 export default class App extends React.Component<{}, State> {
@@ -25,6 +30,8 @@ export default class App extends React.Component<{}, State> {
     fit: true,
     showGuides: false,
     maskBleed: true,
+    threeD: true,
+    threeDView: 'angle-front' as View,
   };
 
   public componentDidMount(): void {
@@ -67,15 +74,37 @@ export default class App extends React.Component<{}, State> {
     };
   }
 
+  protected clickCover(): void {
+    const { threeD, threeDView } = this.state;
+    if (!threeD) return;
+    let newView: View = 'front';
+    if (threeDView === 'front') {
+      newView = 'angle-front';
+    } else if (threeDView === 'angle-front') {
+      newView = 'spine';
+    } else if (threeDView === 'spine') {
+      newView = 'angle-back';
+    } else if (threeDView === 'angle-back') {
+      newView = 'back';
+    }
+    this.setState({ threeDView: newView });
+  }
+
   public render(): JSX.Element {
-    const { friendIndex, docIndex, edIndex, fit, showGuides, maskBleed } = this.state;
+    const {
+      friendIndex,
+      docIndex,
+      edIndex,
+      fit,
+      showGuides,
+      maskBleed,
+      threeD,
+      threeDView,
+    } = this.state;
     const coverProps = this.coverProps();
     return (
       <div className={`App web trim--${coverProps ? coverProps.printSize : 'm'}`}>
-        <form
-          autoComplete="off"
-          style={{ padding: '1em', marginBottom: '2em', display: 'flex' }}
-        >
+        <form autoComplete="off" style={{ padding: '1em 1em 0 1em', display: 'flex' }}>
           <FormControl style={{ minWidth: 200, marginRight: '1em' }}>
             <Select
               label="Friend"
@@ -112,23 +141,42 @@ export default class App extends React.Component<{}, State> {
             />
           </FormControl>
         </form>
-
+        {!coverProps && <div style={{ flexGrow: 1 }} />}
         {coverProps && (
-          <div className="cover-wrap">
-            <Cover {...coverProps} />
-            <div className="cover-mask" />
-            <style>
-              {coverCss(coverProps, fitScaler(coverProps, fit))}
-              {maskBleed
-                ? '.guide--trim-bleed { opacity: 0 }'
-                : '.cover-mask { display: none }'}
-            </style>
-          </div>
+          <>
+            <div
+              className={classNames('cover-wrap', {
+                'cover--3d': threeD,
+                'cover--3d--front': threeD && threeDView === 'front',
+                'cover--3d--spine': threeD && threeDView === 'spine',
+                'cover--3d--back': threeD && threeDView === 'back',
+                'cover--3d--angle-front': threeD && threeDView === 'angle-front',
+                'cover--3d--angle-back': threeD && threeDView === 'angle-back',
+              })}
+              onClick={() => this.clickCover()}
+            >
+              <Cover {...coverProps} />
+              <style>
+                {coverCss(coverProps, fitScaler(coverProps, fit, threeD))}
+                {maskBleed
+                  ? '.guide--trim-bleed { opacity: 0 }'
+                  : '.cover-mask { display: none }'}
+              </style>
+            </div>
+          </>
         )}
         <Toolbar
           fit={fit}
           maskBleed={maskBleed}
           showGuides={showGuides}
+          threeD={threeD}
+          toggleThreeD={() => {
+            const newState = !threeD;
+            this.setState({
+              threeD: newState,
+              threeDView: newState === false ? 'front' : this.state.threeDView,
+            });
+          }}
           toggleFit={() => this.setState({ fit: !fit })}
           toggleShowGuides={() => this.setState({ showGuides: !showGuides })}
           toggleMaskBleed={() => this.setState({ maskBleed: !maskBleed })}

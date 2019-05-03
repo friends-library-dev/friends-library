@@ -21,8 +21,7 @@ const css: string = /* css */ `
   border-width:1px;
 }
 
-.guide--trim-bleed,
-.web .cover-mask {
+.guide--trim-bleed{
   height: var(--pageHeight);
   width: var(--guideSafetyWidth);
   left: var(--trimBleed);
@@ -44,7 +43,7 @@ const css: string = /* css */ `
 .guide--spine-center {
   border-color: magenta;
   opacity: 0.75;
-  left: var(--edgeToSpineCenter);
+  left: var(--halfSpineWidth);
 }
 
 .guide--safety {
@@ -60,6 +59,12 @@ const css: string = /* css */ `
 
 .guide--safety-back {
   left: var(--edgeToSafe);
+}
+
+.cover--show-guides .front__safe,
+.cover--show-guides .back__safe {
+  outline: 1px dashed orange;
+  outline-offset: -1px;
 }
 `;
 
