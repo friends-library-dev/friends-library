@@ -1,0 +1,35 @@
+name: Mary Ann Gilpin
+slug: mary-ann-gilpin
+gender: female
+description: TODO
+
+documents:
+  - title: Journal of Mary Ann Gilpin
+    original_title:
+      Memoir of Mary Ann Gilpin, of Bristol; consisting cheifly of extracts from her diary
+      and letters.
+    slug: journal
+    filename: Journal_of_Mary_Ann_Gilpin
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Memoir
+          - title: Extracts from Letters
+
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Memoir
+          - title: Extracts from Letters
