@@ -23,8 +23,7 @@ documents:
           - title: Preface
           - title: Memoir
           - title: Extracts from Letters
-
-      - type: original
+      - type: modernized
         formats:
           - type: pdf
           - type: epub

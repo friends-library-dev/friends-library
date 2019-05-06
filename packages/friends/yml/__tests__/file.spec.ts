@@ -151,6 +151,16 @@ files.forEach(file => {
       });
     });
 
+    test('no duplicate editions', () => {
+      documents.forEach(document => {
+        const seen: string[] = [];
+        document.editions.forEach(edition => {
+          expect(seen.includes(edition.type)).toBe(false);
+          seen.push(edition.type);
+        });
+      });
+    });
+
     test('edition pages is number if exists', () => {
       editions(friend).forEach(edition => {
         if (!hasProp(edition, 'pages')) {
