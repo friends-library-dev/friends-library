@@ -5,7 +5,7 @@ interface Props {
   screen: string;
 }
 
-const Component: React.SFC<Props> = ({ screen }) => (
+const Component: React.FC<Props> = ({ screen }) => (
   <>
     {screen !== 'WORK' ? (
       <>

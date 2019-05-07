@@ -65,7 +65,7 @@ interface Props {
   acronym?: string;
 }
 
-const Snippet: React.SFC<Props> = ({ trigger, expansion, acronym }) => (
+const Snippet: React.FC<Props> = ({ trigger, expansion, acronym }) => (
   <StyledDiv>
     <img src={logo} alt="" />
     <p>
@@ -79,7 +79,7 @@ Snippet.defaultProps = { acronym: '' };
 
 export default Snippet;
 
-const Expansion: React.SFC<{ expansion: string }> = ({ expansion }) => {
+const Expansion: React.FC<{ expansion: string }> = ({ expansion }) => {
   const html = expansion
     .split('\n')
     .map(part => `<span class="expansion">${part}</span>`)
@@ -87,7 +87,7 @@ const Expansion: React.SFC<{ expansion: string }> = ({ expansion }) => {
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
-const Acronym: React.SFC<{ text: string }> = ({ text }) => {
+const Acronym: React.FC<{ text: string }> = ({ text }) => {
   if (!text) {
     return <></>;
   }

@@ -7,7 +7,7 @@ interface Props {
   emphasize?: number[];
 }
 
-const Pair: React.SFC<Props> = ({ id, emphasize }) => (
+const Pair: React.FC<Props> = ({ id, emphasize }) => (
   <>
     <Asciidoc id={id} emphasize={emphasize} />
     <Html id={id} />

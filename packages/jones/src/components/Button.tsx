@@ -11,7 +11,7 @@ interface Props {
   className?: string;
 }
 
-const Component: React.SFC<Props> = props => (
+const Component: React.FC<Props> = props => (
   <StyledSpan
     {...props}
     {...(props.href && !props.disabled ? { as: 'a' } : {})}

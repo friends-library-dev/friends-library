@@ -5,7 +5,7 @@ interface Props {
   results: SearchResult[];
 }
 
-const SearchSummary: React.SFC<Props> = ({ results }) => {
+const SearchSummary: React.FC<Props> = ({ results }) => {
   if (results.length === 0) {
     return <p>Found no results. ¯\_(ツ)_/¯</p>;
   }

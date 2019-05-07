@@ -6,7 +6,7 @@ const H1 = styled.h1`
   opacity: 0.35;
 `;
 
-const Loading: React.SFC = () => (
+const Loading: React.FC = () => (
   <Centered>
     <H1>Loading...</H1>
   </Centered>

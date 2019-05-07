@@ -129,7 +129,7 @@ export default connect(
   mapDispatch,
 )(Work);
 
-const ClosedWarning: React.SFC<{ status: 'closed' | 'merged' }> = ({ status }) => (
+const ClosedWarning: React.FC<{ status: 'closed' | 'merged' }> = ({ status }) => (
   <div style={{ color: 'red', padding: '1em 3em' }}>
     <h1>😬 Pull Request was {status}!</h1>
     <p style={{ lineHeight: '160%', color: 'white' }}>

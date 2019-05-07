@@ -33,7 +33,7 @@ interface Props {
   replace: () => void;
 }
 
-const Component: React.SFC<Props> = ({ dismiss, goto, replace }) => (
+const Component: React.FC<Props> = ({ dismiss, goto, replace }) => (
   <SearchResultActions className="result-actions">
     <Button height={26} secondary onClick={dismiss}>
       <i className="fas fa-times-circle" />

@@ -14,7 +14,7 @@ interface Props {
   createTask: Dispatch;
 }
 
-const Welcome: React.SFC<Props> = ({ tasks, changeScreen, createTask }) => (
+const Welcome: React.FC<Props> = ({ tasks, changeScreen, createTask }) => (
   <div className="padded-wrap">
     <h1>Tasks</h1>
     <Heading>
