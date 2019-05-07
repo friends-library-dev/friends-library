@@ -1,10 +1,16 @@
+import { red } from '@friends-library/cli/color';
 import NodeGit from 'nodegit';
 import { Repo } from './type';
 
 export async function getCurrentBranch(repoPath: Repo): Promise<string> {
   const repo = await getRepo(repoPath);
-  const ref = await repo.getCurrentBranch();
-  return ref.shorthand();
+  try {
+    const ref = await repo.getCurrentBranch();
+    return ref.shorthand();
+  } catch (error) {
+    red(`Error: git.getCurrentBranch(${repoPath})`);
+    throw error;
+  }
 }
 
 export async function isStatusClean(repoPath: Repo): Promise<boolean> {
@@ -34,12 +40,17 @@ export async function sync(repoPath: Repo): Promise<void> {
   const branch = await getCurrentBranch(repoPath);
   const repo = await getRepo(repoPath);
   await repo.fetchAll({ ...remoteCallbacks });
-  await repo.mergeBranches(
-    branch,
-    'origin/master',
-    repo.defaultSignature(),
-    NodeGit.Merge.PREFERENCE.FASTFORWARD_ONLY,
-  );
+  try {
+    await repo.mergeBranches(
+      branch,
+      'origin/master',
+      repo.defaultSignature(),
+      NodeGit.Merge.PREFERENCE.FASTFORWARD_ONLY,
+    );
+  } catch (error) {
+    red(`Error: git.sync(${repoPath})`);
+    throw error;
+  }
 }
 
 export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Repository> {
