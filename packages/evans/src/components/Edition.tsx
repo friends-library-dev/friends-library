@@ -31,7 +31,7 @@ interface Props {
   };
 }
 
-const Edition: React.SFC<Props> = ({ edition }) => {
+const Edition: React.FC<Props> = ({ edition }) => {
   const description = edition.description || descriptions[edition.type];
   return (
     <section>

@@ -21,7 +21,7 @@ interface Props {
   tasks: TaskType[];
 }
 
-const TaskList: React.SFC<Props> = ({ tasks }) => {
+const TaskList: React.FC<Props> = ({ tasks }) => {
   return (
     <List>
       {tasks.map(task => (

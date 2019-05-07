@@ -67,7 +67,7 @@ interface ToggleProps {
   isOpen: boolean;
 }
 
-const Toggle: React.SFC<ToggleProps> = ({ onClick, isOpen }) => (
+const Toggle: React.FC<ToggleProps> = ({ onClick, isOpen }) => (
   <ToggleEl className="toggle" onClick={onClick} open={isOpen}>
     <i className={`fas fa-angle-${isOpen ? 'right' : 'left'}`} />
   </ToggleEl>

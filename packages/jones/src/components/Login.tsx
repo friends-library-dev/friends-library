@@ -39,7 +39,7 @@ const Div = styled.div`
   }
 `;
 
-const Component: React.SFC = () => {
+const Component: React.FC = () => {
   const url = [
     'https://github.com/login/oauth/authorize',
     `?client_id=${process.env.REACT_APP_OAUTH_CLIENT_ID || ''}`,

@@ -58,7 +58,7 @@ interface Props {
   replace: string;
 }
 
-const Component: React.SFC<Props> = ({ result, edit, replace }) => {
+const Component: React.FC<Props> = ({ result, edit, replace }) => {
   return (
     <SearchResultPreview
       onClick={(e: React.MouseEvent<HTMLDivElement>) => {

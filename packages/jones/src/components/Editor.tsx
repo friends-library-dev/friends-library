@@ -27,7 +27,7 @@ const noopEditor = new Proxy(
   },
 );
 
-const ChooseAFile: React.SFC<{}> = () => (
+const ChooseAFile: React.FC<{}> = () => (
   <Centered>
     <p style={{ opacity: 0.5 }}>
       <span role="img" aria-label="left">

@@ -42,7 +42,7 @@ interface Props {
 let inVerse: boolean;
 let inFootnote: boolean;
 
-const Asciidoc: React.SFC<Props> = ({ id, emphasize }) => {
+const Asciidoc: React.FC<Props> = ({ id, emphasize }) => {
   inVerse = false;
   inFootnote = false;
   const adoc = getAdoc(id)

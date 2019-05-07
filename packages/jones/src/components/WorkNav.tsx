@@ -55,7 +55,7 @@ interface Props {
   friendName: string;
 }
 
-const WorkNav: React.SFC<Props> = ({ task, goToTasks, friendName }) => (
+const WorkNav: React.FC<Props> = ({ task, goToTasks, friendName }) => (
   <Wrap>
     <Button secondary className="to-tasks" onClick={goToTasks}>
       &larr; Tasks

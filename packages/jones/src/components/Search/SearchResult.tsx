@@ -55,7 +55,7 @@ interface Props {
   dismiss: () => void;
 }
 
-const Component: React.SFC<Props> = ({
+const Component: React.FC<Props> = ({
   result,
   replace,
   number,

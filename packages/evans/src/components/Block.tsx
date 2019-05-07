@@ -11,7 +11,7 @@ const BlockSection = styled.section`
   padding: 15px;
 `;
 
-const Block: React.SFC<Props> = ({ children, className, css }) => (
+const Block: React.FC<Props> = ({ children, className, css }) => (
   <BlockSection className={className} css={css}>
     {children}
   </BlockSection>

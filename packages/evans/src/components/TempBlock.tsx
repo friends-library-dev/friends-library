@@ -7,7 +7,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const TempBlock: React.SFC<Props> = ({ children, alt }) => {
+const TempBlock: React.FC<Props> = ({ children, alt }) => {
   const element = css`
     background-color: ${alt ? '#ddd' : '#fff'};
 
