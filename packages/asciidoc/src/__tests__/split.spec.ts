@@ -277,4 +277,9 @@ describe('splitShort()', () => {
 
     expect(result).not.toMatch(/"`\n/);
   });
+
+  it('does not split inside spanish accented words', () => {
+    const adoc = 'experiencia a la tradición y la adoración';
+    expect(splitShort(adoc)).toBe('experiencia a la tradición\ny la adoración');
+  });
 });

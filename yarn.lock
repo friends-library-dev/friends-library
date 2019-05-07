@@ -13900,6 +13900,23 @@ node-gyp@^3.8.0:
     tar "^2.0.0"
     which "1"
 
+node-gyp@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-4.0.0.tgz#972654af4e5dd0cd2a19081b4b46fe0442ba6f45"
+  integrity sha512-2XiryJ8sICNo6ej8d0idXDEMKfVfFK7kekGCtJAuelGsYHQxhj13KTf95swTCN2dZ/4lTfZ84Fu31jqJEEgjWA==
+  dependencies:
+    glob "^7.0.3"
+    graceful-fs "^4.1.2"
+    mkdirp "^0.5.0"
+    nopt "2 || 3"
+    npmlog "0 || 1 || 2 || 3 || 4"
+    osenv "0"
+    request "^2.87.0"
+    rimraf "2"
+    semver "~5.3.0"
+    tar "^4.4.8"
+    which "1"
+
 node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
@@ -14057,16 +14074,16 @@ nodegit-promise@~4.0.0:
   dependencies:
     asap "~2.0.3"
 
-nodegit@^0.24.0:
-  version "0.24.2"
-  resolved "https://registry.yarnpkg.com/nodegit/-/nodegit-0.24.2.tgz#b747e17045a34ebaa8402d0aaaa38505ce8e6485"
-  integrity sha512-TT+3O6ONcljCiHwLzziuMeNrn6nbhYVWlR4IYVgE3LZF2RhSHanbwOY7+t0YHJMygAy5jN3HwTKcAlnzxBmSXA==
+nodegit@^0.24.3:
+  version "0.24.3"
+  resolved "https://registry.yarnpkg.com/nodegit/-/nodegit-0.24.3.tgz#f726e76921b33767a4e33e334343611c956ffd15"
+  integrity sha512-F9XpC5xzpoBgJXmdIRaD2z5DVG+iMttxFlzyCqmOu3y5y/DFuxBpzQtRND75oUOxJZh8sSlReVnXFV3PEyzvIw==
   dependencies:
     fs-extra "^7.0.0"
     json5 "^2.1.0"
     lodash "^4.17.11"
     nan "^2.11.1"
-    node-gyp "^3.8.0"
+    node-gyp "^4.0.0"
     node-pre-gyp "^0.11.0"
     promisify-node "~0.3.0"
     ramda "^0.25.0"

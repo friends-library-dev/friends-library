@@ -21,7 +21,7 @@
     "glob": "^7.1.2",
     "lodash": "^4.17.10",
     "node-fetch": "^2.2.0",
-    "nodegit": "^0.24.0",
+    "nodegit": "^0.24.3",
     "prompt": "^1.0.0",
     "prompt-sync": "^4.1.6",
     "prompt-sync-history": "^1.0.1",

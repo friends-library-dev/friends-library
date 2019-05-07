@@ -3,7 +3,7 @@ version: '2.1'
 jobs:
   node:
     docker:
-      - image: circleci/node:8.14.1
+      - image: circleci/node:10.15.3
     working_directory: ~/fl-node
     steps:
       - checkout
@@ -32,7 +32,7 @@ jobs:
 
   deploy_api:
     docker:
-      - image: circleci/node:8.14.1
+      - image: circleci/node:10.15.3
     steps:
       - add_ssh_keys:
           fingerprints:
