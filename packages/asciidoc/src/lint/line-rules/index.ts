@@ -29,3 +29,4 @@ export { default as midWordUppercase } from './mid-word-uppercase';
 export { default as unspacedPeriod } from './unspaced-period';
 export { default as midWordNonLetter } from './mid-word-non-letter';
 export { default as unexpectedPeriod } from './unexpected-period';
+export { default as modernizeWords } from './modernize-words';
