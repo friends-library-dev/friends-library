@@ -26,10 +26,6 @@ export async function handler({
   delay,
 }: Argv): Promise<void> {
   let repos = await getRepos(exclude, branch);
-  if (repos.some(repo => repo.includes('/es/'))) {
-    throw new Error('Pushing to spanish repos not supported.');
-  }
-
   if (branch !== 'master') {
     const ahead = await Promise.all(repos.map(repo => git.isAheadOfMaster(repo)));
     repos = repos.filter((repo, index) => ahead[index]);
