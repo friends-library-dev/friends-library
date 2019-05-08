@@ -1,6 +1,6 @@
 import { Arguments } from 'yargs';
-import { LintResult, EditionType, Lang } from '@friends-library/types';
-import { lintFixDir, lintDir, DirLints } from '@friends-library/asciidoc';
+import { LintResult } from '@friends-library/types';
+import { lintFixDir, lintDir, DirLints, langFromPath } from '@friends-library/asciidoc';
 import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
 import chalk from 'chalk';
 import leftPad from 'left-pad';
@@ -20,7 +20,6 @@ export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
   const options = {
     maybe,
     lang: langFromPath(path),
-    editionType: editionTypeFromPath(path),
     ...(rules ? { include: rules } : {}),
     ...(exclude ? { exclude } : {}),
   };
@@ -121,19 +120,4 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
 
 function printIsFixable(): void {
   console.log(chalk.dim.cyan('Use `--fix` to automatically fix'));
-}
-
-export function editionTypeFromPath(path: string): EditionType | undefined {
-  if (path.includes('/original/')) {
-    return 'original';
-  } else if (path.includes('/modernized/')) {
-    return 'modernized';
-  } else if (path.includes('/updated/')) {
-    return 'updated';
-  }
-  return undefined;
-}
-
-export function langFromPath(path: string): Lang {
-  return path.includes('/es/') || path.indexOf('es/') === 0 ? 'es' : 'en';
 }

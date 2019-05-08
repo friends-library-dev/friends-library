@@ -1,5 +1,13 @@
 export { quotify, quotifyLine } from './quotify';
-export { lint, lintDir, lintFixDir, lintFix, DirLints, filesFromPath } from './lint';
+export {
+  lint,
+  lintDir,
+  lintFixDir,
+  lintFix,
+  DirLints,
+  filesFromPath,
+  langFromPath,
+} from './lint';
 export { splitLines, makeSplitLines, refMutate, refUnmutate } from './split';
 export { createJob, createPrecursor } from './job';
 export { getDocumentMeta, jobToJson, unstringifyJob } from './job/utils';
