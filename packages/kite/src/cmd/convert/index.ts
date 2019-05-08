@@ -10,7 +10,7 @@ export const builder: CommandBuilder = function(yargs) {
       type: 'string',
       describe: 'full filepath to docbook xml file',
     })
-    .option('no-refs', {
+    .option('skip-refs', {
       type: 'boolean',
       default: false,
     });
