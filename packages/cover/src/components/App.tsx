@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import KeyEvent from 'react-keyboard-event-handler';
 import { CoverProps } from '@friends-library/types';
 import Cover from './Cover/Cover';
 import { coverCss } from './Cover/css';
@@ -87,6 +88,61 @@ export default class App extends React.Component<{}, State> {
     this.setState({ threeDView: next[threeDView] });
   }
 
+  public changeFriend(dir: Direction): void {
+    const { friendIndex } = this.state;
+
+    // prettier-ignore
+    const next = dir === FORWARD
+      ? friendIndex === friendData.length - 1 ? 0 : friendIndex + 1
+      : friendIndex === 0 ? friendData.length - 1 : friendIndex - 1;
+
+    this.setState({
+      friendIndex: next,
+      docIndex: 0,
+      edIndex: 0,
+    });
+  }
+
+  public changeDocument(dir: Direction): void {
+    const { friendIndex, docIndex } = this.state;
+    const docs = documents(friendIndex);
+    if (docs.length < 1) {
+      return;
+    }
+
+    // prettier-ignore
+    const next = dir === FORWARD
+      ? docIndex === docs.length - 1 ? 0 : docIndex + 1
+      : docIndex === 0 ? docs.length - 1 : docIndex - 1
+
+    this.setState({
+      docIndex: next,
+      edIndex: 0,
+    });
+  }
+
+  public changeEdition(dir: Direction): void {
+    const { friendIndex, docIndex, edIndex } = this.state;
+    const docs = documents(friendIndex);
+    if (docs.length < 1) {
+      return;
+    }
+
+    const eds = editions(friendIndex, docIndex);
+    if (eds.length < 1) {
+      return;
+    }
+
+    // prettier-ignore
+    const next = dir === FORWARD
+      ? edIndex === eds.length - 1 ? 0 : edIndex + 1
+      : edIndex === 0 ? eds.length - 1 : edIndex - 1
+
+    this.setState({
+      edIndex: next,
+    });
+  }
+
   public render(): JSX.Element {
     const {
       friendIndex,
@@ -101,6 +157,30 @@ export default class App extends React.Component<{}, State> {
     const coverProps = this.coverProps();
     return (
       <div className={`App web trim--${coverProps ? coverProps.printSize : 'm'}`}>
+        <KeyEvent
+          handleKeys={['right', 'f']}
+          onKeyEvent={() => this.changeFriend(FORWARD)}
+        />
+        <KeyEvent
+          handleKeys={['left', 'shift+f']}
+          onKeyEvent={() => this.changeFriend(BACKWARD)}
+        />
+        <KeyEvent
+          handleKeys={['up', 'd']}
+          onKeyEvent={() => this.changeDocument(FORWARD)}
+        />
+        <KeyEvent
+          handleKeys={['down', 'shift+d']}
+          onKeyEvent={() => this.changeDocument(BACKWARD)}
+        />
+        <KeyEvent
+          handleKeys={['pageup', 'e']}
+          onKeyEvent={() => this.changeEdition(FORWARD)}
+        />
+        <KeyEvent
+          handleKeys={['pagedown', 'shift+e']}
+          onKeyEvent={() => this.changeEdition(BACKWARD)}
+        />
         <form autoComplete="off" style={{ padding: '1em 1em 0 1em', display: 'flex' }}>
           <FormControl style={{ minWidth: 200, marginRight: '1em' }}>
             <Select
@@ -183,3 +263,7 @@ export default class App extends React.Component<{}, State> {
     );
   }
 }
+
+type Direction = 'FORWARD' | 'BACKWARD';
+const FORWARD = 'FORWARD';
+const BACKWARD = 'BACKWARD';

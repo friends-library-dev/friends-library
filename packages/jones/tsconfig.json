@@ -1,14 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "@emotion/core"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["@emotion/core"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,12 +15,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "unknownProperties": "ignore"
+        }
+      }
+    ]
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "src/**/__tests__/**"
-  ]
+  "include": ["src"],
+  "exclude": ["src/**/__tests__/**"]
 }
