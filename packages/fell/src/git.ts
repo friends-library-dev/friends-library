@@ -37,10 +37,10 @@ export async function deleteBranch(repoPath: Repo, branch: string): Promise<bool
 }
 
 export async function sync(repoPath: Repo): Promise<void> {
-  const branch = await getCurrentBranch(repoPath);
-  const repo = await getRepo(repoPath);
-  await repo.fetchAll({ ...remoteCallbacks });
   try {
+    const branch = await getCurrentBranch(repoPath);
+    const repo = await getRepo(repoPath);
+    await repo.fetchAll({ ...remoteCallbacks });
     await repo.mergeBranches(
       branch,
       'origin/master',
@@ -81,10 +81,15 @@ export async function push(
 ): Promise<void> {
   const repo = await getRepo(repoPath);
   const remote = await repo.getRemote(remoteName);
-  await remote.push(
-    [`${force ? '+' : ''}refs/heads/${branch}:refs/heads/${branch}`],
-    remoteCallbacks,
-  );
+  try {
+    await remote.push(
+      [`${force ? '+' : ''}refs/heads/${branch}:refs/heads/${branch}`],
+      remoteCallbacks,
+    );
+  } catch (error) {
+    red(`Error: git.push(${repoPath})`);
+    throw error;
+  }
 }
 
 const remoteCallbacks = {
@@ -139,5 +144,10 @@ export async function checkoutNewBranch(
 }
 
 async function getRepo(repoPath: Repo): Promise<NodeGit.Repository> {
-  return NodeGit.Repository.open(repoPath);
+  try {
+    return NodeGit.Repository.open(repoPath);
+  } catch (error) {
+    red(`Error: git.getRepo(${repoPath})`);
+    throw error;
+  }
 }
