@@ -5,7 +5,15 @@
     "module": "commonjs",
     "jsx": "react",
     "types": ["node", "@emotion/core", "jest"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "validProperties": ["compose"]
+        }
+      }
+    ]
   },
   "include": ["./src"]
 }

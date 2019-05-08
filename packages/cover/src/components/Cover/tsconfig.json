@@ -5,7 +5,13 @@
     "skipLibCheck": true,
     "declaration": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "validate": false
+      }
+    ]
   },
   "exclude": ["./__tests__/"]
 }
