@@ -12,7 +12,8 @@ export async function handler(): Promise<void> {
   await Promise.all(
     repos.map(repo => {
       const slug = repo.name;
-      const repoPath = `${cwd}/en/${slug}`;
+      const lang = repo.full_name.startsWith('friends-library/') ? 'en' : 'es';
+      const repoPath = `${cwd}/${lang}/${slug}`;
       if (fs.pathExistsSync(repoPath)) {
         alreadyCloned++;
         return Promise.resolve(undefined);
