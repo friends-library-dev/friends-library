@@ -1,0 +1,35 @@
+name: Robert Barclay
+slug: robert-barclay
+gender: male
+description: TODO
+documents:
+  - title: Esperando en el Senor
+    slug: esperando-en-el-senor
+    filename: Esperando_en_el_Senor
+    description: TODO
+    tags:
+      - doctrinal
+    editions:
+      - type: updated
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Esperando en el Senor
+
+  - title: Consideraciones sobre el Entretenimiento y la Recreacion
+    slug: entretenimiento-y-recreacion
+    filename: Consideraciones_sobre_el_Entretenimiento_y_la_Recreacion
+    description: TODO
+    tags:
+      - doctrinal
+    editions:
+      - type: updated
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Consideraciones sobre el Entretenimiento y la Recreacion
