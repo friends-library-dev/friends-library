@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import stripIndent from 'strip-indent';
-import lintFixDir from '../lint-fix-dir';
+import lintFixDir from '../lint-fix-path';
 
 describe('lintFixDir()', () => {
   test('it can fix a file at a dir', () => {
