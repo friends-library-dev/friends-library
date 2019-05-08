@@ -1,4 +1,4 @@
-import { Html } from '@friends-library/types';
+import { Lang, Html } from '@friends-library/types';
 
 export function makeReduceWrapper(
   before: string,
@@ -18,9 +18,11 @@ export function ucfirst(lower: string): string {
   return lower.replace(/^\w/, c => c.toUpperCase());
 }
 
-const small = 'a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|via'.split('|');
+const smallEn = 'a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|via'.split('|');
+const smallEs = 'a|un|una|el|la|los|las|y|e|o|con|de|del|al|por|si|en'.split('|');
 
-export function capitalizeTitle(str: string): string {
+export function capitalizeTitle(str: string, lang: Lang): string {
+  const small = lang === 'en' ? smallEn : smallEs;
   return str
     .split(' ')
     .map((word, index, parts) => {

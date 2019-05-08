@@ -1,7 +1,7 @@
 import { capitalizeTitle, makeReduceWrapper, trimTrailingPunctuation } from '../helpers';
 
 describe('capitalizeTitle()', () => {
-  const pairs = [
+  const enPairs = [
     ['foo bar', 'Foo Bar'],
     ['foo of bar', 'Foo of Bar'],
     ['of thing of', 'Of Thing Of'], // first and last should be capitalized
@@ -9,8 +9,18 @@ describe('capitalizeTitle()', () => {
     ['man&#8217;s miserable estate', 'Man&#8217;s Miserable Estate'],
   ];
 
-  test.each(pairs)('it transforms %s to %s', (input, expected) => {
-    expect(capitalizeTitle(input)).toBe(expected);
+  test.each(enPairs)('it transforms (english) %s to %s', (input, expected) => {
+    expect(capitalizeTitle(input, 'en')).toBe(expected);
+  });
+
+  const esPairs = [
+    ['la revelación de cristo en el corazón', 'La Revelación de Cristo en el Corazón'],
+    ['la muerte del alma inmortal', 'La Muerte del Alma Inmortal'],
+    ['la criatura sujeta a vanidad', 'La Criatura Sujeta a Vanidad'],
+  ];
+
+  test.each(esPairs)('it transforms (spanish) %s to %s', (input, expected) => {
+    expect(capitalizeTitle(input, 'es')).toBe(expected);
   });
 });
 

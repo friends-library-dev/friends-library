@@ -1,6 +1,6 @@
 import fs from 'fs';
 import glob from 'glob';
-import lintDir from '../lint-dir';
+import lintDir from '../lint-path';
 
 jest.mock('fs');
 

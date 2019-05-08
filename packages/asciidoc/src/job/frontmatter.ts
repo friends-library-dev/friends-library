@@ -64,7 +64,7 @@ export function halfTitle(job: Job): Html {
   return markup;
 }
 
-function originalTitle({ spec: { meta } }: Job): Html {
+function originalTitle({ spec: { meta, lang } }: Job): Html {
   if (!meta.originalTitle) {
     return '';
   }
@@ -77,7 +77,7 @@ function originalTitle({ spec: { meta } }: Job): Html {
         ${br7}
       </p>
       <p class="originally-titled__title">
-        ${capitalizeTitle(meta.originalTitle)}
+        ${capitalizeTitle(meta.originalTitle, lang)}
       </p>
     </div>
   `;

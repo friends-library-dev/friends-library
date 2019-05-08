@@ -1,4 +1,4 @@
-import { Job, Html, Heading, PrintSize } from '@friends-library/types';
+import { Job, Html, Heading, PrintSize, Lang } from '@friends-library/types';
 import stripIndent from 'strip-indent';
 import { flow } from 'lodash';
 import { replaceHeadings } from './headings';
@@ -30,16 +30,16 @@ function joinSections([, job]: [Html, Job]): [Html, Job] {
     .map(({ html, heading }) => {
       return replaceHeadings(html, heading, job).replace(
         '<div class="sectionbody">',
-        `<div class="sectionbody" short="${runningHeader(heading)}">`,
+        `<div class="sectionbody" short="${runningHeader(heading, job.spec.lang)}">`,
       );
     })
     .join('\n');
   return [joined, job];
 }
 
-function runningHeader({ shortText, text, sequence }: Heading): string {
+function runningHeader({ shortText, text, sequence }: Heading, lang: Lang): string {
   if (shortText || text || !sequence) {
-    return capitalizeTitle(trimTrailingPunctuation(shortText || text)).replace(
+    return capitalizeTitle(trimTrailingPunctuation(shortText || text), lang).replace(
       / \/ .+/,
       '',
     );
