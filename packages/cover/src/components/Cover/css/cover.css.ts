@@ -6,8 +6,9 @@ import author from './author.css';
 import diamond from './diamond.css';
 import blurb from './blurb.css';
 import threeD from './3d.css';
+import { css } from '../css';
 
-const css: string = /* css */ `
+const coverCss: string = css`
 
 .web .cover,
 .pdf body {
@@ -119,4 +120,4 @@ ${guides}
 ${isBrowser ? threeD : ''}
 `;
 
-export default css;
+export default coverCss;
