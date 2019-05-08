@@ -1,12 +1,13 @@
-import { Asciidoc, LintResult } from '@friends-library/types';
+import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import { LineRule } from '../types';
 
 const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
+  { lang }: LintOptions,
 ): LintResult[] => {
-  if (!line.length) {
+  if (lang === 'es' || !line.length) {
     return [];
   }
 
