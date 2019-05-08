@@ -1,3 +1,11 @@
+// fixes type of quote for contractions
+don"t lol
+don`'t lol
+
+// unusual close double-quote betweeen word and comma
+in the "day of small things", grew strong
+in the "`day of small things`", grew strong
+
 of July, '`72, against
 of July, `'72, against
 

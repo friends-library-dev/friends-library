@@ -46,7 +46,7 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
       (charAfter && charAfter.match(/[a-z,;:.]/i))
     ) {
       // continue; // comment out to segregate possessive fixes
-      mod[index] = left("'");
+      mod[index] = left(type);
       continue;
     }
 
