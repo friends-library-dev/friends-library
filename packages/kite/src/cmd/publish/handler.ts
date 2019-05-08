@@ -85,7 +85,8 @@ function getJobs(
 
   specs.forEach(spec => {
     if (spec.conversionLogs.length) {
-      throw new Error(chalk.red(spec.conversionLogs.join('\n')));
+      console.error(spec.conversionLogs);
+      throw new Error(chalk.red('Asciidoc conversion error!'));
     }
   });
 
