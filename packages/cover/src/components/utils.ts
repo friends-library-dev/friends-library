@@ -1,4 +1,5 @@
 import { CoverProps } from '@friends-library/types';
+import { quotify } from '@friends-library/asciidoc';
 import { FriendData, DocumentData, EditionData } from './Cover/types';
 import { cssVars } from './Cover/css';
 
@@ -64,6 +65,15 @@ export function editions(friendIndex: number, docIndex: number): EditionData[] {
 
 export function blurb(doc: DocumentData, friend: FriendData): string {
   let blurb = doc.description || friend.description;
-  if (blurb !== 'TODO') return blurb;
+  if (blurb !== 'TODO') return formatBlurb(blurb);
   return `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.`;
+}
+
+function formatBlurb(blurb: string): string {
+  return quotify(blurb)
+    .replace(/"`/g, '“')
+    .replace(/`"/g, '”')
+    .replace(/'`/g, '‘')
+    .replace(/`'/g, '’')
+    .replace(/--/g, '—');
 }
