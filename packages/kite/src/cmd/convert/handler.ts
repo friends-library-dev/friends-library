@@ -9,20 +9,20 @@ import { processAsciidoc } from './process';
 
 interface ConvertOptions {
   file: string;
-  noRefs: boolean;
+  skipRefs: boolean;
 }
 
-export default function convertHandler({ file, noRefs }: ConvertOptions): void {
+export default function convertHandler({ file, skipRefs }: ConvertOptions): void {
   const { src, target } = validate(file);
   prepMultiParagraphFootnotes(src);
   generateRawAsciiDoc(src, target);
 
   const processed = flow(
     combineLines,
-    noRefs ? s => s : replaceScriptureReferences,
+    skipRefs ? s => s : replaceScriptureReferences,
     splitLines,
     processAsciidoc,
-    refUnmutate,
+    skipRefs ? s => s : refUnmutate,
   )(fs.readFileSync(target).toString());
 
   fs.writeFileSync(target, processed);
