@@ -123,7 +123,7 @@ const allowedEn = [
   '\n ',
 ];
 
-const allowedEs = allowedEn.concat(['íéóáúñü', 'ÉÁÚ', '¡¿']);
+const allowedEs = allowedEn.concat(['íéóáúñü', 'ÍÉÓÁÚÑÜ', '¡¿']);
 const maps = {
   es: toObject(allowedEs),
   en: toObject(allowedEn),

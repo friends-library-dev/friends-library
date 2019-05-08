@@ -1,6 +1,6 @@
 import memoize from 'lodash/memoize';
 import escape from 'escape-string-regexp';
-import { Asciidoc, LintResult } from '@friends-library/types';
+import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import { ucfirst } from '../../job/helpers';
 import { LineRule } from '../types';
 
@@ -74,8 +74,9 @@ const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
+  { lang }: LintOptions,
 ): LintResult[] => {
-  if (line === '') {
+  if (lang === 'es' || line === '') {
     return [];
   }
 
