@@ -5,7 +5,7 @@ import { CoverProps } from '@friends-library/types';
 import Cover from './Cover/Cover';
 import { coverCss } from './Cover/css';
 import FormControl from '@material-ui/core/FormControl';
-import { friendData, blurb, editions, documents, fitScaler } from './utils';
+import { friendData, blurb, editions, documents, fitScaler, prepareTitle } from './utils';
 import Select from './Select';
 import Toolbar from './Toolbar';
 import './App.css';
@@ -65,7 +65,7 @@ export default class App extends React.Component<{}, State> {
 
     return {
       author: friend.name,
-      title: doc.title,
+      title: prepareTitle(doc.title, friend.name),
       printSize: ed.defaultSize,
       pages: ed.pages[ed.defaultSize],
       edition: ed.type,

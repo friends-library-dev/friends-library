@@ -21,7 +21,7 @@ const Cover: React.FC<CoverProps> = props => {
         </div>
       </div>
       <div className="spine">
-        <div className="spine__title">{title}</div>
+        <div className="spine__title" dangerouslySetInnerHTML={{ __html: title }} />
         <LogoIcon />
         <div className="guide guide--spine guide--vertical guide--spine-center" />
       </div>
@@ -34,7 +34,7 @@ const Cover: React.FC<CoverProps> = props => {
           <LogoIcon />
           <span className="first-initial initial">{firstInitial}</span>
           <span className="last-initial initial">{lastInitial}</span>
-          <h1 className="title">{title}</h1>
+          <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
           <div className="author">
             <div className="author__line" />
             <h2 className="author__name">{author}</h2>
