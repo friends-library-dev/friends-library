@@ -1,4 +1,4 @@
-import { css } from '../css';
+import css from './tmpl';
 
 const authorCss: string = css`
   .author {

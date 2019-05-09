@@ -28,7 +28,7 @@
     "compile": "rm -rf ./dist && mkdir ./dist && cp -r ./public/images ./dist && ../../node_modules/.bin/tsc -p ./src/components/Cover",
     "ts:check": "../../node_modules/.bin/tsc --noEmit -p . && ../../node_modules/.bin/tsc --noEmit -p ./src/components/Cover",
     "listen:pdf": "node ./listen/listen-pdf.js",
-    "develop": "yarn compile && yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"cd ../../ && yarn kite cover:watch\"",
+    "develop": "yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"sleep 3 && cd ../../ && yarn kite cover:watch\"",
     "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
     "friends": "yarn ts-node -T --skip-project ./src/scripts/friend-data.ts",
     "build": "yarn friends && SKIP_PREFLIGHT_CHECK=true react-scripts build",
