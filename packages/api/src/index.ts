@@ -5,7 +5,6 @@ import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { redirAndLog } from './download';
-import { handleGithubWebhook } from './github-webhook';
 import * as kiteJob from './kite-job';
 import * as lint from './lint';
 import legacy from './legacy';
@@ -30,8 +29,6 @@ const app = express();
 app.use(bodyParser.json({ limit: '50mb' }));
 
 app.get('/', (req: Request, res: Response) => res.send('Beep ༼ つ ◕_◕ ༽つ Boop!'));
-
-app.post('/github-webhook', handleGithubWebhook);
 
 app.use('/legacy', legacy);
 
