@@ -53,6 +53,13 @@ export function documents(friendIndex: number): DocumentData[] {
   return [];
 }
 
+export function prepareTitle(title: string, name: string): string {
+  if (!title.includes(name)) {
+    return title;
+  }
+  return title.replace(name, name.replace(/ /g, '&nbsp;'));
+}
+
 export function editions(friendIndex: number, docIndex: number): EditionData[] {
   if (!friendData[friendIndex]) {
     return [];
