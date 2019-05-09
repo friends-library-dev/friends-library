@@ -3,10 +3,11 @@ import guides from './guides.css';
 import spine from './spine.css';
 import initials from './initials.css';
 import author from './author.css';
-import diamond from './diamond.css';
 import blurb from './blurb.css';
 import threeD from './3d.css';
-import { css } from '../css';
+import back from './back.css';
+import front from './front.css';
+import css from './tmpl';
 
 const coverCss: string = css`
 
@@ -66,10 +67,16 @@ const coverCss: string = css`
   height: var(--safeAreaHeight);
 }
 
-.front__safe {
-  text-align: center;
+.diamond {
+  fill: white;
+  left: 50%;
+  top: 23%;
+  transform: translateX(-50%);
+  position: absolute;
+  width: 12%;
 }
 
+.back__safe .logo-icon,
 .front__safe .logo-icon {
   height: 6.5%;
   fill: var(--bgColor);
@@ -92,32 +99,16 @@ const coverCss: string = css`
   margin: 0;
 }
 
-.title {
-  margin-top: 64%;
-  line-height: 200%;
-  font-size: 0.35in;
-  font-weight: 400;
-  margin-left: 12%;
-  margin-right: 12%;
-  letter-spacing: 0.025in;
-}
 
-.isbn {
-  width: 1.25in;
-  background: white;
-  padding: 0.075in;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
 
 ${blurb}
-${diamond}
 ${author}
 ${initials}
 ${spine}
 ${guides}
 ${isBrowser ? threeD : ''}
+${front}
+${back};
 `;
 
 export default coverCss;

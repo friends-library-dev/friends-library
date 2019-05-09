@@ -1,4 +1,4 @@
-import { css } from '../css';
+import css from './tmpl';
 
 const threeDCss: string = css`
   .cover-wrap.cover--3d,

@@ -19,3 +19,15 @@ body {
 .cover {
   margin: 0 auto;
 }
+
+.cover-mask {
+  display: none;
+}
+
+.mask-bleed .cover-mask {
+  display: block;
+}
+
+.mask-bleed .guide--trim-bleed {
+  opacity: 0;
+}

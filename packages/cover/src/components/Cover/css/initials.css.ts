@@ -1,4 +1,4 @@
-import { css } from '../css';
+import css from './tmpl';
 
 const initialsCss: string = css`
   .first-initial {
@@ -12,7 +12,7 @@ const initialsCss: string = css`
   .initial {
     position: absolute;
     color: white;
-    opacity: 0.075;
+    opacity: 0.25;
     font-size: 2.5in;
     font-weight: 400;
     left: 50%;

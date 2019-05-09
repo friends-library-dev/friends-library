@@ -1,4 +1,4 @@
-import { css } from '../css';
+import css from './tmpl';
 
 const spineCss: string = css`
   .spine {
@@ -9,18 +9,27 @@ const spineCss: string = css`
     left: var(--edgeToSpine);
   }
 
-  .spine .logo-icon {
+  .spine > * {
     display: var(--spineDisplay);
-    height: 3.5%;
-    fill: white;
+  }
+
+  .spine .logo-icon {
+    height: 3.3%;
+    fill: var(--bgColor);
     position: absolute;
-    bottom: var(--edgeToSafe);
+    top: var(--edgeToSafe);
     left: 50%;
     transform: translateX(-44%);
   }
 
-  .spine__title {
-    display: var(--spineDisplay);
+  .spine .diamond {
+    fill: var(--bgColor);
+    width: 0.365in;
+    top: 10%;
+  }
+
+  .spine__title,
+  .spine__author {
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
@@ -28,7 +37,13 @@ const spineCss: string = css`
     writing-mode: vertical-rl;
     line-height: var(--spineWidth);
     font-size: 0.26in;
+    word-spacing: 0.035in;
     top: 20%;
+  }
+
+  .spine__author {
+    top: auto;
+    bottom: 5%;
   }
 `;
 

@@ -229,16 +229,12 @@ export default class App extends React.Component<{}, State> {
                 'cover--3d--back': threeD && threeDView === 'back',
                 'cover--3d--angle-front': threeD && threeDView === 'angle-front',
                 'cover--3d--angle-back': threeD && threeDView === 'angle-back',
+                'mask-bleed': maskBleed,
               })}
               onClick={() => this.clickCover()}
             >
               <Cover {...coverProps} />
-              <style>
-                {coverCss(coverProps, fitScaler(coverProps, fit, threeD))}
-                {maskBleed
-                  ? '.guide--trim-bleed { opacity: 0 }'
-                  : '.cover-mask { display: none }'}
-              </style>
+              <style>{coverCss(coverProps, fitScaler(coverProps, fit, threeD))}</style>
             </div>
           </>
         )}
