@@ -63,7 +63,7 @@ export function coverCss(props: CoverProps, scaler?: number): Css {
   });
 
   if (scaler) {
-    css = css.replace(/(?<inches>\d*(?:\.\d+)?)in(?<after>;| |\))/g, (...args) => {
+    css = css.replace(/(?<inches>\d*(?:\.\d+)?)in(?! +{)(?<after>;| |\))/g, (...args) => {
       const { inches, after } = args[args.length - 1];
       return `${Number(inches) * scaler}in${after}`;
     });

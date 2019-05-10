@@ -69,7 +69,7 @@ export default class App extends React.Component<{}, State> {
       printSize: ed.defaultSize,
       pages: ed.pages[ed.defaultSize],
       edition: ed.type,
-      blurb: blurb(doc, friend),
+      blurb: blurb(doc, friend, ed.defaultSize),
       isbn: '978-1-64476-015-4', // @TODO temp hard-coded during dev
       showGuides,
     };
@@ -180,6 +180,10 @@ export default class App extends React.Component<{}, State> {
         <KeyEvent
           handleKeys={['pagedown', 'shift+e']}
           onKeyEvent={() => this.changeEdition(BACKWARD)}
+        />
+        <KeyEvent
+          handleKeys={['g']}
+          onKeyEvent={() => this.setState({ showGuides: !showGuides })}
         />
         <form autoComplete="off" style={{ padding: '1em 1em 0 1em', display: 'flex' }}>
           <FormControl style={{ minWidth: 200, marginRight: '1em' }}>

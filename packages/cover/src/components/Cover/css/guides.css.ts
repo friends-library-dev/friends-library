@@ -68,6 +68,23 @@ const guidesCss: string = css`
     outline: 1px dashed orange;
     outline-offset: -1px;
   }
+
+  .guide--letter-spacing {
+    width: 70%;
+    height: 20px;
+    height: 0.18in;
+    margin: 0 15%;
+    border-top: 1px dashed green !important;
+    border-bottom: 1px dashed green !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .guide--front-vertical-center {
+    left: 50%;
+    border-color: green !important;
+  }
 `;
 
 export default guidesCss;

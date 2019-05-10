@@ -44,29 +44,48 @@ const Cover: React.FC<CoverProps> = props => {
       </div>
       <div className="front">
         <div className="front__safe">
-          <Diamond />
           <LogoIcon />
-          <span
+          <div
             className={classNames(
-              'initial',
-              'initial--first',
-              `initial--${firstInitial}`,
-              `initials--${firstInitial}${lastInitial}`,
+              'front__main',
+              `front__main--first-initial--${firstInitial}`,
             )}
           >
-            {firstInitial}
-          </span>
-          <span
-            className={classNames(
-              'initial',
-              'initial--last',
-              `initial--${lastInitial}`,
-              `initials--${firstInitial}${lastInitial}`,
-            )}
-          >
-            {lastInitial}
-          </span>
-          <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+            <Diamond />
+            <div className="guide guide--letter-spacing" />
+            <div className="guide guide--vertical guide--front-vertical-center" />
+            <div className="initials">
+              <div className="initials__top">
+                <span
+                  className={classNames(
+                    'initial',
+                    'initial--first',
+                    `initial--X${lastInitial}`,
+                    `initial--${firstInitial}`,
+                    `initials--${firstInitial}${lastInitial}`,
+                  )}
+                >
+                  {firstInitial}
+                </span>
+              </div>
+              <div className="initials__bottom">
+                <span
+                  className={classNames(
+                    'initial',
+                    'initial--last',
+                    `initial--${firstInitial}X`,
+                    `initial--${lastInitial}`,
+                    `initials--${firstInitial}${lastInitial}`,
+                  )}
+                >
+                  {lastInitial}
+                </span>
+              </div>
+            </div>
+            <div className="title-wrap">
+              <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+            </div>
+          </div>
           <div className="author">
             <div className="author__line" />
             <h2 className="author__name">{author}</h2>
