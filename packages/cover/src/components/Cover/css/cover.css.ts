@@ -70,7 +70,7 @@ const coverCss: string = css`
 .diamond {
   fill: white;
   left: 50%;
-  top: 23%;
+  top: 0;
   transform: translateX(-50%);
   position: absolute;
   width: 12%;
