@@ -78,7 +78,7 @@ describe('prepareAsciidoc()', () => {
     );
   });
 
-  it('italicizes staring words of discourse-parts', () => {
+  it('italicizes staring words of English discourse-parts', () => {
     const adoc = stripIndent(`
       == Chapter 1
 
@@ -93,6 +93,9 @@ describe('prepareAsciidoc()', () => {
 
       [.discourse-part]
       Objection: Qux!
+
+      [.discourse-part]
+      Inquiry 13: Foo
     `).trim();
 
     const prepared = prepareAsciidoc(adoc);
@@ -101,6 +104,32 @@ describe('prepareAsciidoc()', () => {
     expect(prepared).toContain('_Answer:_');
     expect(prepared).toContain('_Answer 143:_');
     expect(prepared).toContain('_Objection:_');
+    expect(prepared).toContain('_Inquiry 13:_');
+  });
+
+  it('italicizes staring words of Spanish discourse-parts', () => {
+    const adoc = stripIndent(`
+      == Chapter 1 Pregunta, Answer is Respuesta, Objection is Objeción
+
+      [.discourse-part]
+      Pregunta: Foo bar?
+
+      [.discourse-part]
+      Respuesta: Hash baz.
+
+      [.discourse-part]
+      Respuesta 143: Hash baz.
+
+      [.discourse-part]
+      Objeción: Qux!
+    `).trim();
+
+    const prepared = prepareAsciidoc(adoc);
+
+    expect(prepared).toContain('_Pregunta:_');
+    expect(prepared).toContain('_Respuesta:_');
+    expect(prepared).toContain('_Respuesta 143:_');
+    expect(prepared).toContain('_Objeción:_');
   });
 
   const discretes = [
