@@ -134,8 +134,25 @@ const threeDCss: string = css`
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 83%;
     background: var(--bgColor);
+  }
+
+  .trim--s .cover--3d .front::before,
+  .trim--s .cover--3d .back::before,
+  .trim--s .cover--3d .spine::before {
+    height: var(--bgHeightSizeS);
+  }
+
+  .trim--m .cover--3d .front::before,
+  .trim--m .cover--3d .back::before,
+  .trim--m .cover--3d .spine::before {
+    height: var(--bgHeightSizeM);
+  }
+
+  .trim--xl .cover--3d .front::before,
+  .trim--xl .cover--3d .back::before,
+  .trim--xl .cover--3d .spine::before {
+    height: var(--bgHeightSizeXl);
   }
 
   .cover--3d--angle-front .spine::before {

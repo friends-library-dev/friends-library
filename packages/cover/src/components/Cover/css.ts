@@ -10,6 +10,9 @@ export function cssVars(props: CoverProps): Record<string, string> {
   const spinePad = 0.06;
   const pagesPerInch = 444;
   const spineWidth = spinePad + props.pages / pagesPerInch;
+  const bgHeightSizeS = 6.005;
+  const bgHeightSizeM = 7.08;
+  const bgHeightSizeXl = 7.305;
   return mapValues(
     {
       trimBleed,
@@ -34,6 +37,12 @@ export function cssVars(props: CoverProps): Record<string, string> {
       guidesDisplay: props.showGuides ? 'block' : 'none',
       threeDLeftOffset: (book.width - spineWidth) / 2,
       threeDTopOffset: (book.height - spineWidth) / 2,
+      bgHeightSizeS,
+      bgHeightSizeM,
+      bgHeightSizeXl,
+      bgHeightPlusTrimBleedSizeS: bgHeightSizeS + trimBleed,
+      bgHeightPlusTrimBleedSizeM: bgHeightSizeM + trimBleed,
+      bgHeightPlusTrimBleedSizeXl: bgHeightSizeXl + trimBleed,
       bgColor: {
         updated: 'rgb(133, 75, 94)',
         modernized: 'rgb(126, 155, 171)',

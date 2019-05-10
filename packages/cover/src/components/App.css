@@ -20,6 +20,10 @@ body {
   margin: 0 auto;
 }
 
+.cover * {
+  user-select: none;
+}
+
 .cover-mask {
   display: none;
 }

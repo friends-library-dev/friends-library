@@ -37,12 +37,12 @@ export default class App extends React.Component<{}, State> {
 
   public componentDidMount(): void {
     try {
-      let stored = JSON.parse(localStorage.getItem('state') || 'null');
+      let stored = JSON.parse(sessionStorage.getItem('state') || 'null');
       this.setState({ ...this.state, ...stored });
     } catch {}
 
     window.addEventListener('beforeunload', () => {
-      localStorage.setItem('state', JSON.stringify(this.state));
+      sessionStorage.setItem('state', JSON.stringify(this.state));
     });
 
     window.addEventListener('resize', () => this.forceUpdate());

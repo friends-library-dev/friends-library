@@ -1,0 +1,28 @@
+.Toolbar {
+  background-color: white !important;
+  position: static !important;
+}
+
+.Toolbar button + button {
+  margin-left: 0.3em;
+}
+
+button.selected {
+  color: rgb(133, 75, 94);
+  background: #efefef;
+}
+
+.book-stats {
+  color: #bbb;
+  text-align: center;
+  flex-grow: 1;
+  font-size: 13px;
+}
+
+.book-stats span + span {
+  padding-left: 1em;
+}
+
+.book-stats code {
+  color: #666;
+}

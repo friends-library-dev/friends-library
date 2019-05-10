@@ -78,11 +78,27 @@ const coverCss: string = css`
 
 .back__safe .logo-icon,
 .front__safe .logo-icon {
-  height: 6.5%;
+  height: 0.45in;
   fill: var(--bgColor);
   position: absolute;
-  top: 2.75%;
+}
+
+.trim--s .back__safe .logo-icon,
+.trim--s .front__safe .logo-icon {
+  top: 0;
+  right: -0.068in;
+}
+
+.trim--m .back__safe .logo-icon,
+.trim--m .front__safe .logo-icon {
+  top: 3.4%;
   right: 0.2in;
+}
+
+.trim--xl .back__safe .logo-icon,
+.trim--xl .front__safe .logo-icon {
+  top: 4.5%;
+  right: 0.1in
 }
 
 .bg-block {
@@ -90,16 +106,25 @@ const coverCss: string = css`
   bottom: 0;
   left: 0;
   width: var(--coverWidth);
-  height: 82%;
   background: var(--bgColor);
+}
+
+.trim--s .bg-block {
+  height: var(--bgHeightPlusTrimBleedSizeS);
+}
+
+.trim--m .bg-block {
+  height: var(--bgHeightPlusTrimBleedSizeM);
+}
+
+.trim--xl .bg-block {
+  height: var(--bgHeightPlusTrimBleedSizeXl);
 }
 
 @page {
   size: var(--coverWidth) var(--coverHeight) landscape;
   margin: 0;
 }
-
-
 
 ${blurb}
 ${author}
