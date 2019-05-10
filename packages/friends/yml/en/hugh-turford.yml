@@ -1,0 +1,38 @@
+name: Hugh Turford
+slug: hugh-turford
+gender: male
+description: TODO
+documents:
+  - title: Walk in the Spirit
+    slug: walk-in-the-spirit
+    filename: Walk_in_the_Spirit
+    description: TODO
+    tags:
+      - doctrinal
+      - treatise
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: TODO
+      - type: modernized
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: TODO
+      - type: original
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: TODO
