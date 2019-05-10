@@ -1,8 +1,8 @@
 export { quotify, quotifyLine } from './quotify';
 export {
   lint,
-  lintDir,
-  lintFixDir,
+  lintPath,
+  lintFixPath,
   lintFix,
   DirLints,
   filesFromPath,
