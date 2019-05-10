@@ -1,23 +1,23 @@
 import fs from 'fs';
 import glob from 'glob';
-import lintDir from '../lint-path';
+import lintPath from '../lint-path';
 
 jest.mock('fs');
 
-describe('lintDir()', () => {
+describe('lintPath()', () => {
   beforeEach(() => {
     glob.sync = jest.fn();
   });
 
   it('throws if you pass a non-existent full path', () => {
     (<jest.Mock>fs.existsSync).mockReturnValue(false);
-    expect(() => lintDir('/path/to/foo.adoc')).toThrowError(/does not exist/);
+    expect(() => lintPath('/path/to/foo.adoc')).toThrowError(/does not exist/);
   });
 
   it('throws if the path contains no asciidoc files', () => {
     (<jest.Mock>fs.existsSync).mockReturnValue(true);
     (<jest.Mock>glob.sync).mockReturnValue([]); // <-- no files
-    expect(() => lintDir('/en/george-fox/')).toThrowError(/No files/);
+    expect(() => lintPath('/en/george-fox/')).toThrowError(/No files/);
   });
 
   it('lints the globbed paths and returns map of lint data', () => {
@@ -27,7 +27,7 @@ describe('lintDir()', () => {
       toString: () => '== C1\n\n® bad char\n',
     });
 
-    const lints = lintDir('/');
+    const lints = lintPath('/');
 
     expect(lints.count()).toBe(1);
 

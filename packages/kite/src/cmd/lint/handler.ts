@@ -1,6 +1,6 @@
 import { Arguments } from 'yargs';
 import { LintResult } from '@friends-library/types';
-import { lintFixDir, lintDir, DirLints, langFromPath } from '@friends-library/asciidoc';
+import { lintFixPath, lintPath, DirLints, langFromPath } from '@friends-library/asciidoc';
 import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
 import chalk from 'chalk';
 import leftPad from 'left-pad';
@@ -25,7 +25,7 @@ export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
   };
 
   if (fix) {
-    const { unfixable, numFixed } = lintFixDir(path, options);
+    const { unfixable, numFixed } = lintFixPath(path, options);
     if (unfixable.count() === 0) {
       if (numFixed === 0) {
         green('0 lint violations found! 😊 \n');
@@ -44,7 +44,7 @@ export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
     process.exit(1);
   }
 
-  const lints = lintDir(path, options);
+  const lints = lintPath(path, options);
   if (lints.count() === 0) {
     green('0 lint violations found! 😊 \n');
     process.exit(0);

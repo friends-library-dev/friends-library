@@ -1,8 +1,8 @@
 import fs from 'fs-extra';
 import stripIndent from 'strip-indent';
-import lintFixDir from '../lint-fix-path';
+import lintFixPath from '../lint-fix-path';
 
-describe('lintFixDir()', () => {
+describe('lintFixPath()', () => {
   test('it can fix a file at a dir', () => {
     const adoc = stripIndent(`
       == Chapter  1
@@ -19,7 +19,7 @@ describe('lintFixDir()', () => {
     fs.mkdirpSync(dir);
     fs.writeFileSync(`${dir}/test.adoc`, `${adoc} `);
 
-    const { unfixable, numFixed } = lintFixDir(dir);
+    const { unfixable, numFixed } = lintFixPath(dir);
 
     const expected = stripIndent(`
       == Chapter 1

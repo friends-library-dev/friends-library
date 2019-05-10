@@ -44,7 +44,7 @@
     "api:compile": "cd packages/api && yarn compile",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
-    "preflight": "yarn lint && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
+    "preflight": "yarn lint && yarn kite en/robert-barclay/recreation-entertainment/updated -t all && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
