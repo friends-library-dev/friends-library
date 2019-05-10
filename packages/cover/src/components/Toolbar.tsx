@@ -9,6 +9,7 @@ import GuidesIcon from '@material-ui/icons/BorderClear';
 import MaskBleedIcon from '@material-ui/icons/BorderStyle';
 import ThreeDIcon from '@material-ui/icons/FilterNone';
 import { makePdf } from './utils';
+import './Toolbar.css';
 
 interface Props {
   fit: boolean;
@@ -33,17 +34,11 @@ const Toolbar: React.FC<Props> = ({
   threeD,
   toggleThreeD,
 }) => (
-  <AppBar
-    style={{
-      backgroundColor: 'white',
-      position: 'static',
-    }}
-  >
+  <AppBar className="Toolbar">
     <MaterialUiToolbar>
       <IconButton style={fit ? selected : {}} onClick={() => toggleFit()}>
         <FitIcon />
       </IconButton>
-      &nbsp;&nbsp;
       <IconButton
         disabled={threeD}
         style={maskBleed && !threeD ? selected : {}}
@@ -51,18 +46,28 @@ const Toolbar: React.FC<Props> = ({
       >
         <MaskBleedIcon />
       </IconButton>
-      &nbsp;&nbsp;
-      <IconButton style={showGuides ? selected : {}} onClick={() => toggleShowGuides()}>
+      <IconButton
+        className={showGuides ? 'selected' : ''}
+        onClick={() => toggleShowGuides()}
+      >
         <GuidesIcon />
       </IconButton>
-      &nbsp;&nbsp;
-      <IconButton style={threeD ? selected : {}} onClick={() => toggleThreeD()}>
+      <IconButton className={threeD ? 'selected' : ''} onClick={() => toggleThreeD()}>
         <ThreeDIcon />
       </IconButton>
+      {coverProps && (
+        <p className="book-stats">
+          <span>
+            book size: <code>{coverProps.printSize.toUpperCase()}</code>
+          </span>
+          <span>
+            pages: <code>~{coverProps.pages}</code>
+          </span>
+        </p>
+      )}
       {coverProps && process.env.NODE_ENV === 'development' && (
         <>
-          <div style={{ flexGrow: 1 }} />
-          <IconButton style={{ float: 'right' }} onClick={() => makePdf(coverProps)}>
+          <IconButton onClick={() => makePdf(coverProps)}>
             <PdfIcon />
           </IconButton>
         </>

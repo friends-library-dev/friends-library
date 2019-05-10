@@ -10,6 +10,10 @@ const backCss: string = css`
     left: 0.2in;
   }
 
+  .trim--s .back__safe .logo-icon {
+    left: 0;
+  }
+
   .brackets {
     fill: white;
     position: absolute;

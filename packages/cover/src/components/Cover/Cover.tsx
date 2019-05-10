@@ -1,6 +1,7 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
 import { isBrowser } from 'browser-or-node';
+import classNames from 'classnames';
 import LogoIcon from './LogoIcon';
 import Logo from './Logo';
 import Diamonds from './Diamonds';
@@ -45,8 +46,26 @@ const Cover: React.FC<CoverProps> = props => {
         <div className="front__safe">
           <Diamond />
           <LogoIcon />
-          <span className="first-initial initial">{firstInitial}</span>
-          <span className="last-initial initial">{lastInitial}</span>
+          <span
+            className={classNames(
+              'initial',
+              'initial--first',
+              `initial--${firstInitial}`,
+              `initials--${firstInitial}${lastInitial}`,
+            )}
+          >
+            {firstInitial}
+          </span>
+          <span
+            className={classNames(
+              'initial',
+              'initial--last',
+              `initial--${lastInitial}`,
+              `initials--${firstInitial}${lastInitial}`,
+            )}
+          >
+            {lastInitial}
+          </span>
           <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
           <div className="author">
             <div className="author__line" />
