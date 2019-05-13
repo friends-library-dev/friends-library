@@ -20,18 +20,24 @@ const Cover: React.FC<CoverProps> = props => {
       <div className="back">
         <div className="back__safe">
           <Diamond />
-          <LogoIcon />
           <Brackets />
           <div className="blurb">{blurb}</div>
           {isbn && (
             <img className="isbn" src={`${publicUrl}/images/isbn/${isbn}.png`} alt="" />
           )}
-          <p className="purpose">
-            Friends Library Publishing exists to freely share the writings of early
-            members of the Religious Society of Friends (Quakers) in digital, audio, and
-            printed formats, believing them to contain a powerful testimony to the purity
-            and simplicity of primitive, biblical Christianity.
-          </p>
+          <div className="about-flp">
+            <p className="purpose">
+              <b>Friends Library Publishing</b> exists to freely share the writings of
+              early members of the Religious Society of Friends (Quakers), believing that
+              no other collection of Christian writings more accurately communicates or
+              powerfully illustrates the soul-transforming power of the gospel of Jesus
+              Christ.
+            </p>
+            <p className="website">
+              Download this and other books for free at <b>www.friendslibrary.com</b>.
+            </p>
+          </div>
+
           <Logo />
         </div>
       </div>
@@ -44,6 +50,7 @@ const Cover: React.FC<CoverProps> = props => {
       </div>
       <div className="front">
         <div className="front__safe">
+          <span className="flp">Friends Library Publishing</span>
           <LogoIcon />
           <div
             className={classNames(
@@ -51,7 +58,6 @@ const Cover: React.FC<CoverProps> = props => {
               `front__main--first-initial--${firstInitial}`,
             )}
           >
-            <Diamond />
             <div className="guide guide--letter-spacing" />
             <div className="guide guide--vertical guide--front-vertical-center" />
             <div className="initials">

@@ -20,6 +20,27 @@ const frontCss: string = css`
     height: 4.825in;
   }
 
+  .flp {
+    color: #bbb;
+    position: absolute;
+    left: 0.2in;
+    font-size: 0.19in;
+  }
+
+  .trim--s .flp {
+    top: 0.15in;
+    font-size: 0.16in;
+    left: 0.15in;
+  }
+
+  .trim--m .flp {
+    top: 0.41in;
+  }
+
+  .trim--xl .flp {
+    top: 0.53in;
+  }
+
   .trim--xl .front__main {
     margin-top: 2.35in;
   }

@@ -45,9 +45,9 @@ export default () => (
 
     <p>
       This website exists to freely share the writings of early members of the Religious
-      Society of Friends (Quakers) in digital, audio, and printed formats, believing them
-      to contain a powerful testimony to the purity and simplicity of primitive, biblical
-      Christianity.
+      Society of Friends (Quakers), believing that no other collection of Christian
+      writings more accurately communicates or powerfully illustrates the
+      soul-transforming power of the gospel of Jesus Christ.
     </p>
   </Block>
 );
