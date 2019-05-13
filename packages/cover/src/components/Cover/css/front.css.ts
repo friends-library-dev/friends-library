@@ -30,7 +30,7 @@ const frontCss: string = css`
   .trim--s .flp {
     top: 0.15in;
     font-size: 0.16in;
-    left: 0.15in;
+    left: 0.1in;
   }
 
   .trim--m .flp {

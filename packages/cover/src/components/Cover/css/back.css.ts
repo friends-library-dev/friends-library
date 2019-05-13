@@ -5,6 +5,10 @@ const backCss: string = css`
     top: 19%;
   }
 
+  .trim--s .back .diamond {
+    top: 13%;
+  }
+
   .brackets {
     fill: white;
     position: absolute;
@@ -16,19 +20,51 @@ const backCss: string = css`
     /* individual brackets maybe a hair narrower? --jason */
   }
 
+  .trim--s .brackets {
+    top: 23%;
+    width: 90%;
+    transform: translateX(-50%) scaleY(1.3);
+  }
+
   .about-flp {
-    position: absolute;
-    left: 0;
     opacity: 0.8;
-    bottom: 14.5%;
-    margin: 0 10%;
     font-size: 0.123in;
     line-height: 160%;
     text-align: center;
   }
 
+  .purpose,
   .website {
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    position: absolute;
+  }
+
+  .purpose {
+    padding: 0 10%;
+    bottom: 19%;
+  }
+
+  .website {
+    bottom: 14%;
     margin-top: 0.175in;
+  }
+
+  .trim--s .purpose {
+    bottom: 18.25%;
+    padding: 0 7%;
+    line-height: 145%;
+    font-size: 0.12in;
+  }
+
+  .trim--s .website {
+    line-height: 142%;
+    bottom: 0.425in;
+    left: 0.03in;
+    width: 65%;
+    text-align: left;
+    position: absolute;
   }
 
   .logo {
@@ -39,6 +75,11 @@ const backCss: string = css`
     left: 2.5%;
   }
 
+  .trim--s .logo {
+    bottom: 0.75%;
+    left: 1%;
+  }
+
   .isbn {
     width: 1.25in;
     background: white;
@@ -46,6 +87,11 @@ const backCss: string = css`
     position: absolute;
     bottom: 2.25%;
     right: 0;
+  }
+
+  .trim--s .isbn {
+    bottom: 0.75%;
+    transform: scaleX(0.9);
   }
 `;
 
