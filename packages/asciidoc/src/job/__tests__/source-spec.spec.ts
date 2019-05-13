@@ -46,6 +46,11 @@ describe('createSourceSpec()', () => {
     expect(sections[1].id).toBe('section2');
   });
 
+  it('entity followed by semicolon does not produce <dl>', () => {
+    const { sections } = specFromAdoc("== Ch1\n\nStayed at R. Jones`';");
+    expect(sections[0].html).not.toContain('<dl>');
+  });
+
   test('custom classes dont mess up sectioning', () => {
     const { sections } = specFromAdoc(
       '== Ch1\n\nPara1.\n\n[.style-foo]\n== Ch 2\n\nPara2.\n',

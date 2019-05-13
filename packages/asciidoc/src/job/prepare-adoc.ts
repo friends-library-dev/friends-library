@@ -68,7 +68,8 @@ function smartQuotesToEntities(adoc: Asciidoc): Asciidoc {
     .replace(/"`/gim, '&#8220;')
     .replace(/`"/gim, '&#8221;')
     .replace(/'`/gim, '&#8216;')
-    .replace(/`'/gim, '&#8217;');
+    .replace(/`'/gim, '&#8217;')
+    .replace(/(?<entity>&#82(1|2)(0|1|6|7););/, '$<entity>+++;+++');
 }
 
 function emdashBeforeBookTitle(adoc: Asciidoc): Asciidoc {

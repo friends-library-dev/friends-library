@@ -2,6 +2,12 @@ import stripIndent from 'strip-indent';
 import { prepareAsciidoc } from '../prepare-adoc';
 
 describe('prepareAsciidoc()', () => {
+  it('escapes entity+semicolon to prevent creating definition list', () => {
+    const adoc = "== Ch 1\n\nStayed at R. Jones`';\n\nLeft next day.";
+    const prepared = prepareAsciidoc(adoc);
+    expect(prepared).toContain('&#8217;+++;+++');
+  });
+
   it('swaps asterisms for html passthrough', () => {
     const adoc = stripIndent(`
       == Chapter 1
