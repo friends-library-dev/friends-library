@@ -46,6 +46,7 @@ function mapDocuments(friend: Friend): FriendData['documents'] {
     description: document.description,
     editions: document.editions.map(edition => ({
       type: friend.lang === 'es' ? 'spanish' : edition.type,
+      ...(edition.isbn ? { isbn: edition.isbn } : {}),
       ...estimatePages(edition),
     })),
   }));

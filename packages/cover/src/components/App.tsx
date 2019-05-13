@@ -70,7 +70,7 @@ export default class App extends React.Component<{}, State> {
       pages: ed.pages[ed.defaultSize],
       edition: ed.type,
       blurb: blurb(doc, friend, ed.defaultSize),
-      isbn: '978-1-64476-015-4', // @TODO temp hard-coded during dev
+      isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev
       showGuides,
     };
   }
