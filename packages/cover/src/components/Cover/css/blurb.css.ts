@@ -7,6 +7,10 @@ const blurbCss: string = css`
     line-height: 160%;
     text-align: center;
   }
+
+  .trim--s .blurb {
+    margin-top: 37%;
+  }
 `;
 
 export default blurbCss;
