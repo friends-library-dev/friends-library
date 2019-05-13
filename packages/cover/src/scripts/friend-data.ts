@@ -3,30 +3,33 @@ import { red } from '@friends-library/cli/color';
 import * as fs from 'fs';
 import { sync as glob } from 'glob';
 import { execSync } from 'child_process';
-import { getAllFriends, Edition } from '@friends-library/friends';
+import { getAllFriends, Edition, Friend } from '@friends-library/friends';
 import { FriendData } from '../components/Cover/types';
 import { PrintSizeAbbrev, requireEnv } from '@friends-library/types';
 
 const { KITE_DOCS_REPOS_ROOT: ROOT } = requireEnv('KITE_DOCS_REPOS_ROOT');
 
-const data: FriendData[] = [];
-
-getAllFriends()
-  .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))
-  .forEach(friend => {
-    data.push({
-      name: friend.name,
-      description: friend.description,
-      documents: friend.documents.map(document => ({
-        title: document.title,
-        description: document.description,
-        editions: document.editions.map(edition => ({
-          type: friend.lang === 'es' ? 'spanish' : edition.type,
-          ...estimatePages(edition),
-        })),
-      })),
-    });
-  });
+const data: FriendData[] = Object.values(
+  getAllFriends('en')
+    .concat(getAllFriends('es'))
+    .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))
+    .reduce(
+      (acc, friend: Friend) => {
+        if (!acc[friend.name]) {
+          acc[friend.name] = {
+            name: friend.name,
+            description: friend.description,
+            documents: [],
+          };
+        }
+        acc[friend.name].documents = acc[friend.name].documents.concat(
+          mapDocuments(friend),
+        );
+        return acc;
+      },
+      {} as { [k: string]: FriendData },
+    ),
+);
 
 fs.writeFileSync(
   `${__dirname}/../../public/friends.js`,
@@ -36,6 +39,17 @@ fs.writeFileSync(
 execSync(
   `cd ${__dirname}/../../ && ../../node_modules/.bin/prettier --write "./public/friends.js"`,
 );
+
+function mapDocuments(friend: Friend): FriendData['documents'] {
+  return friend.documents.map(document => ({
+    title: document.title,
+    description: document.description,
+    editions: document.editions.map(edition => ({
+      type: friend.lang === 'es' ? 'spanish' : edition.type,
+      ...estimatePages(edition),
+    })),
+  }));
+}
 
 function estimatePages(
   edition: Edition,
