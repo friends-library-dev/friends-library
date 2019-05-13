@@ -1,9 +1,16 @@
-import { Name, PrintSizeAbbrev, Description, EditionType } from '@friends-library/types';
+import {
+  Name,
+  PrintSizeAbbrev,
+  Description,
+  EditionType,
+  ISBN,
+} from '@friends-library/types';
 
 export interface EditionData {
   type: EditionType | 'spanish';
   pages: Record<PrintSizeAbbrev, number>;
   defaultSize: PrintSizeAbbrev;
+  isbn?: ISBN;
 }
 
 export interface DocumentData {
