@@ -5,15 +5,6 @@ const backCss: string = css`
     top: 19%;
   }
 
-  .back .logo-icon {
-    right: auto;
-    left: 0.2in;
-  }
-
-  .trim--s .back__safe .logo-icon {
-    left: 0;
-  }
-
   .brackets {
     fill: white;
     position: absolute;
@@ -22,16 +13,22 @@ const backCss: string = css`
     left: 50%;
     transform: translateX(-50%);
     width: 92%;
+    /* individual brackets maybe a hair narrower? --jason */
   }
 
-  .purpose {
+  .about-flp {
     position: absolute;
     left: 0;
-    bottom: 19%;
-    margin: 0 7%;
-    font-size: 0.115in;
+    opacity: 0.8;
+    bottom: 14.5%;
+    margin: 0 10%;
+    font-size: 0.123in;
     line-height: 160%;
     text-align: center;
+  }
+
+  .website {
+    margin-top: 0.175in;
   }
 
   .logo {

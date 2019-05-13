@@ -198,7 +198,8 @@ const initialsCss: string = css`
   }
 
   .initial--first.initial--W {
-    transform: scaleX(0.85) scaleY(0.95) translateX(-0.08in);
+    bottom: -0.44in;
+    transform: scaleX(0.85) scaleY(0.95) translateX(-0.09in);
   }
 
   .initial--last.initial--W {

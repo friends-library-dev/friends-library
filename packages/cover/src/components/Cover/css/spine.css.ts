@@ -14,10 +14,11 @@ const spineCss: string = css`
   }
 
   .spine .logo-icon {
-    height: 3.3%;
+    height: 4%;
     fill: var(--bgColor);
     position: absolute;
     top: var(--edgeToSafe);
+    top: 7%;
     left: 50%;
     transform: translateX(-44%);
   }
@@ -25,7 +26,9 @@ const spineCss: string = css`
   .spine .diamond {
     fill: var(--bgColor);
     width: 0.365in;
-    top: 10%;
+    top: auto;
+    bottom: 3.5% !important;
+    fill: white;
   }
 
   .spine__title,
@@ -43,7 +46,8 @@ const spineCss: string = css`
 
   .spine__author {
     top: auto;
-    bottom: 5%;
+    bottom: 11%;
+    font-size: 0.2in;
   }
 `;
 
