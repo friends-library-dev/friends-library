@@ -88,6 +88,66 @@ export default class App extends React.Component<{}, State> {
     this.setState({ threeDView: next[threeDView] });
   }
 
+  public changeCover(dir: Direction): void {
+    const { friendIndex, docIndex, edIndex } = this.state;
+    const friend = friendData[friendIndex];
+    if (!friend) {
+      this.setState({ friendIndex: 0, docIndex: 0, edIndex: 0 });
+      return;
+    }
+
+    const doc = friend.documents[docIndex];
+    if (!doc) {
+      this.setState({ docIndex: 0, edIndex: 0 });
+      return;
+    }
+
+    const ed = doc.editions[edIndex];
+    if (!ed) {
+      this.setState({ edIndex: 0 });
+      return;
+    }
+
+    if (dir === FORWARD) {
+      if (edIndex < doc.editions.length - 1) {
+        this.setState({ edIndex: edIndex + 1 });
+      } else if (docIndex < friend.documents.length - 1) {
+        this.setState({ docIndex: docIndex + 1, edIndex: 0 });
+      } else if (friendIndex < friendData.length - 1) {
+        this.setState({ friendIndex: friendIndex + 1, docIndex: 0, edIndex: 0 });
+      } else {
+        this.setState({ friendIndex: 0, docIndex: 0, edIndex: 0 });
+      }
+      return;
+    }
+
+    if (edIndex > 0) {
+      this.setState({ edIndex: edIndex - 1 });
+    } else if (docIndex > 0) {
+      this.setState({
+        docIndex: docIndex - 1,
+        edIndex: friend.documents[docIndex - 1].editions.length - 1,
+      });
+    } else if (friendIndex > 0) {
+      const newDocs = friendData[friendIndex - 1].documents;
+      this.setState({
+        friendIndex: friendIndex - 1,
+        docIndex: newDocs.length - 1,
+        edIndex: newDocs[newDocs.length - 1].editions.length - 1,
+      });
+    } else {
+      const lastFriendIndex = friendData.length - 1;
+      const lastFriendDocs = friendData[lastFriendIndex].documents;
+      const lastDocIndex = lastFriendDocs.length - 1;
+      const lastDoc = lastFriendDocs[lastDocIndex];
+      this.setState({
+        friendIndex: lastFriendIndex,
+        docIndex: lastDocIndex,
+        edIndex: lastDoc.editions.length - 1,
+      });
+    }
+  }
+
   public changeFriend(dir: Direction): void {
     const { friendIndex } = this.state;
 
@@ -157,12 +217,11 @@ export default class App extends React.Component<{}, State> {
     const coverProps = this.coverProps();
     return (
       <div className={`App web trim--${coverProps ? coverProps.printSize : 'm'}`}>
+        <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
+        <KeyEvent handleKeys={['left']} onKeyEvent={() => this.changeCover(BACKWARD)} />
+        <KeyEvent handleKeys={['f']} onKeyEvent={() => this.changeFriend(FORWARD)} />
         <KeyEvent
-          handleKeys={['right', 'f']}
-          onKeyEvent={() => this.changeFriend(FORWARD)}
-        />
-        <KeyEvent
-          handleKeys={['left', 'shift+f']}
+          handleKeys={['shift+f']}
           onKeyEvent={() => this.changeFriend(BACKWARD)}
         />
         <KeyEvent
