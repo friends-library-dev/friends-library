@@ -12,7 +12,8 @@ const frontCss: string = css`
   }
 
   .trim--s .front__main {
-    margin-top: 1.15in;
+    height: 4in;
+    margin-top: 1.32in;
   }
 
   .trim--m .front__main {

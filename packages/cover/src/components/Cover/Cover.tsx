@@ -65,6 +65,7 @@ const Cover: React.FC<Props> = props => {
             className={classNames(
               'front__main',
               `front__main--first-initial--${firstInitial}`,
+              `front__main--initials--${firstInitial}${lastInitial}`,
             )}
           >
             <div className="guide guide--letter-spacing" />
