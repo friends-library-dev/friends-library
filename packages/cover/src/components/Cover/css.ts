@@ -21,7 +21,7 @@ export function cssVars(props: CoverProps): Record<string, string> {
       pageHeight: book.height,
       spineWidth: spineWidth,
       halfSpineWidth: spineWidth / 2,
-      spineDisplay: props.pages > 160 ? 'block' : 'none',
+      spineAuthorDisplay: spineAuthorDisplay(props),
       edgeToSafe: trimBleed + safety,
       safeAreaWidth: book.width - safety * 2,
       safeAreaHeight: book.height - safety * 2,
@@ -70,4 +70,17 @@ export function coverCss(props: CoverProps, scaler?: number): Css {
   }
 
   return css;
+}
+
+function spineAuthorDisplay({ title, author, printSize }: CoverProps): 'block' | 'none' {
+  const lastName = String(author.split(' ').pop());
+  let totalChars = title.replace(/&nbsp;/g, ' ').length + lastName.length;
+  const numWideLetters = (`${title}${lastName}`.match(/(W|D)/g) || []).length;
+  totalChars += numWideLetters;
+
+  if (printSize === 'm' && totalChars >= 50) {
+    return 'none';
+  }
+
+  return 'block';
 }
