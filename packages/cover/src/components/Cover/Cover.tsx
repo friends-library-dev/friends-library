@@ -4,6 +4,7 @@ import { isBrowser } from 'browser-or-node';
 import classNames from 'classnames';
 import LogoIcon from './LogoIcon';
 import Logo from './Logo';
+import LogoSpanish from './LogoSpanish';
 import Diamonds from './Diamonds';
 import Brackets from './Brackets';
 
@@ -37,8 +38,7 @@ const Cover: React.FC<CoverProps> = props => {
               Download this and other books for free at <b>www.friendslibrary.com</b>.
             </p>
           </div>
-
-          <Logo />
+          {edition === 'spanish' ? <LogoSpanish /> : <Logo />}
         </div>
       </div>
       <div className={spineClasses(pages)}>
