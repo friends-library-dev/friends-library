@@ -58,10 +58,13 @@ const Toolbar: React.FC<Props> = ({
       {coverProps && (
         <p className="book-stats">
           <span>
-            book size: <code>{coverProps.printSize.toUpperCase()}</code>
+            size: <code>{coverProps.printSize.toUpperCase()}</code>
           </span>
           <span>
             pages: <code>~{coverProps.pages}</code>
+          </span>
+          <span>
+            blurb: <code>{coverProps.blurb.length}</code>
           </span>
         </p>
       )}

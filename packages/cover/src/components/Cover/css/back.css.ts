@@ -1,31 +1,6 @@
 import css from './tmpl';
 
 const backCss: string = css`
-  .back .diamond {
-    top: 19%;
-  }
-
-  .trim--s .back .diamond {
-    top: 13%;
-  }
-
-  .brackets {
-    fill: white;
-    position: absolute;
-    opacity: 0.32;
-    top: 28%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 92%;
-    /* individual brackets maybe a hair narrower? --jason */
-  }
-
-  .trim--s .brackets {
-    top: 23%;
-    width: 90%;
-    transform: translateX(-50%) scaleY(1.3);
-  }
-
   .about-flp {
     opacity: 0.8;
     font-size: 0.123in;

@@ -8,7 +8,7 @@ const threeDCss: string = css`
   }
 
   .web .cover--3d .cover {
-    transition: transform 1s;
+    transition: transform 0.75s;
     margin: 0;
     position: relative;
     background: transparent;

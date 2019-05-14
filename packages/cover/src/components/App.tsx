@@ -5,10 +5,19 @@ import { CoverProps } from '@friends-library/types';
 import Cover from './Cover/Cover';
 import { coverCss } from './Cover/css';
 import FormControl from '@material-ui/core/FormControl';
-import { friendData, blurb, editions, documents, fitScaler, prepareTitle } from './utils';
+import {
+  friendData,
+  formatBlurb,
+  editions,
+  documents,
+  fitScaler,
+  prepareTitle,
+  LOREM_BLURB,
+} from './utils';
 import Select from './Select';
 import Toolbar from './Toolbar';
 import './App.css';
+import { FriendData, DocumentData, EditionData } from './Cover/types';
 
 type View = 'front' | 'spine' | 'back' | 'angle-front' | 'angle-back';
 
@@ -21,6 +30,7 @@ interface State {
   maskBleed: boolean;
   threeD: boolean;
   threeDView: View;
+  customBlurbs: Record<string, string>;
 }
 
 export default class App extends React.Component<{}, State> {
@@ -33,6 +43,7 @@ export default class App extends React.Component<{}, State> {
     maskBleed: true,
     threeD: true,
     threeDView: 'angle-front' as View,
+    customBlurbs: {} as Record<string, string>,
   };
 
   public componentDidMount(): void {
@@ -48,34 +59,57 @@ export default class App extends React.Component<{}, State> {
     window.addEventListener('resize', () => this.forceUpdate());
   }
 
-  protected coverProps(): CoverProps | undefined {
-    const { friendIndex, docIndex, edIndex, showGuides } = this.state;
+  protected selectedEntities(): {
+    friend?: FriendData;
+    doc?: DocumentData;
+    ed?: EditionData;
+  } {
+    const { friendIndex, docIndex, edIndex } = this.state;
     if ([friendIndex, docIndex, edIndex].map(Number).includes(-1)) {
-      return;
+      return {};
     }
-
     const friend = friendData[friendIndex];
-    if (!friend) return;
-
+    if (!friend) return {};
     const doc = friend.documents[docIndex];
-    if (!doc) return;
-
+    if (!doc) return { friend };
     const ed = doc.editions[edIndex];
-    if (!ed) return;
+    if (!ed) return { friend, doc };
+    return { friend, doc, ed };
+  }
 
+  protected coverProps(): CoverProps | undefined {
+    const { showGuides } = this.state;
+    const { friend, doc, ed } = this.selectedEntities();
+    if (!friend || !doc || !ed) return;
     return {
       author: friend.name,
       title: prepareTitle(doc.title, friend.name),
       printSize: ed.defaultSize,
       pages: ed.pages[ed.defaultSize],
       edition: ed.type,
-      blurb: blurb(doc, friend, ed.defaultSize),
+      blurb: formatBlurb(this.getBlurb(friend, doc, ed)),
       isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev
       showGuides,
     };
   }
 
-  protected clickCover(): void {
+  protected getBlurb(friend: FriendData, doc: DocumentData, ed: EditionData): string {
+    const key = this.coverKey();
+    const { customBlurbs } = this.state;
+    if (customBlurbs[key] !== undefined) return customBlurbs[key];
+    const blurb = doc.description || friend.description || 'TODO';
+    return blurb === 'TODO' ? LOREM_BLURB : blurb;
+  }
+
+  protected coverKey(): string {
+    const { friend, doc, ed } = this.selectedEntities();
+    if (!friend || !doc || !ed) return '[[none]]';
+    return `${friend.name}${doc.title}${ed.type}`;
+  }
+
+  protected clickCover: (e: any) => void = e => {
+    console.log(e.target.contentEditable, typeof e.target.contentEditable);
+    if (e.target.contentEditable === 'true') return;
     const { threeD, threeDView } = this.state;
     if (!threeD) return;
     const next: { [k in View]: View } = {
@@ -86,7 +120,18 @@ export default class App extends React.Component<{}, State> {
       back: 'front',
     };
     this.setState({ threeDView: next[threeDView] });
-  }
+  };
+
+  public updateBlurb: (blurb: string) => void = blurb => {
+    const key = this.coverKey();
+    const { customBlurbs } = this.state;
+    this.setState({
+      customBlurbs: {
+        ...customBlurbs,
+        [key]: blurb,
+      },
+    });
+  };
 
   public changeCover(dir: Direction): void {
     const { friendIndex, docIndex, edIndex } = this.state;
@@ -294,9 +339,9 @@ export default class App extends React.Component<{}, State> {
                 'cover--3d--angle-back': threeD && threeDView === 'angle-back',
                 'mask-bleed': maskBleed,
               })}
-              onClick={() => this.clickCover()}
+              onClick={this.clickCover}
             >
-              <Cover {...coverProps} />
+              <Cover {...coverProps} updateBlurb={this.updateBlurb} />
               <style>{coverCss(coverProps, fitScaler(coverProps, fit, threeD))}</style>
             </div>
           </>
