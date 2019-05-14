@@ -75,9 +75,18 @@ const backCss: string = css`
     left: 2.5%;
   }
 
+  .logo--spanish {
+    height: 5.2%;
+    bottom: 1.4%;
+  }
+
   .trim--s .logo {
     bottom: 0.75%;
     left: 1%;
+  }
+
+  .trim--s .logo--spanish {
+    bottom: -0.1%;
   }
 
   .isbn {

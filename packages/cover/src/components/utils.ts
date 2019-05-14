@@ -55,7 +55,7 @@ export function documents(friendIndex: number): DocumentData[] {
 
 export function prepareTitle(title: string, name: string): string {
   title = title.replace(/--/g, '–');
-  title = title.replace(/\bVolumen? (?<number>(\d+|[IV]+))/, 'Vol.&nbsp;$<number>');
+  title = title.replace(/ – Volumen? (?<number>(\d+|[IV]+))/, ', Vol.&nbsp;$<number>');
   return title.replace(name, name.replace(/ /g, '&nbsp;'));
 }
 
