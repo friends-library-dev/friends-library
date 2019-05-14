@@ -1,4 +1,4 @@
-import { CoverProps, PrintSizeAbbrev } from '@friends-library/types';
+import { CoverProps } from '@friends-library/types';
 import { quotify } from '@friends-library/asciidoc';
 import { FriendData, DocumentData, EditionData } from './Cover/types';
 import { cssVars } from './Cover/css';
@@ -69,30 +69,16 @@ export function editions(friendIndex: number, docIndex: number): EditionData[] {
   return friendData[friendIndex].documents[docIndex].editions;
 }
 
-export function blurb(
-  doc: DocumentData,
-  friend: FriendData,
-  size: PrintSizeAbbrev,
-): string {
-  let blurb = doc.description || friend.description;
-  if (blurb === 'TODO') {
-    blurb = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
-  }
-  return formatBlurb(blurb, size);
-}
-
-function formatBlurb(blurb: string, size: PrintSizeAbbrev): string {
-  const trims: { [k in PrintSizeAbbrev]: number } = {
-    s: 320,
-    m: 600,
-    l: 650,
-    xl: 690,
-    xxl: 800,
-  };
-  return quotify(blurb.substring(0, trims[size]))
+export function formatBlurb(blurb: string): string {
+  return quotify(blurb)
     .replace(/"`/g, '“')
     .replace(/`"/g, '”')
     .replace(/'`/g, '‘')
     .replace(/`'/g, '’')
     .replace(/--/g, '–');
 }
+
+const LOREM_BLURB =
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+
+export { LOREM_BLURB };

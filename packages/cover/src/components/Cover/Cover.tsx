@@ -7,22 +7,31 @@ import Logo from './Logo';
 import LogoSpanish from './LogoSpanish';
 import Diamonds from './Diamonds';
 import Brackets from './Brackets';
+import EditableBlurb from './EditableBlurb';
 
 const publicUrl = process.env.PUBLIC_URL || '';
 
-const Cover: React.FC<CoverProps> = props => {
-  const { title, author, isbn, edition, blurb, showGuides, pages } = props;
+interface Props extends CoverProps {
+  updateBlurb: (blurb: string) => void;
+}
+
+const Cover: React.FC<Props> = props => {
+  const { title, author, isbn, edition, blurb, showGuides, pages, updateBlurb } = props;
   const [firstInitial, lastInitial] = initials(author);
   const Diamond = Diamonds[edition];
   return (
     <div className={`cover${showGuides ? ' cover--show-guides' : ''}`}>
       {isBrowser && <div className="cover-mask" />}
       <div className="bg-block" />
-      <div className="back">
+      <div className={`back ${blurbClasses(blurb)}`}>
         <div className="back__safe">
           <Diamond />
+          {isBrowser ? (
+            <EditableBlurb blurb={blurb} update={updateBlurb} />
+          ) : (
+            <div className="blurb">{blurb}</div>
+          )}
           <Brackets />
-          <div className="blurb">{blurb}</div>
           {isbn && (
             <img className="isbn" src={`${publicUrl}/images/isbn/${isbn}.png`} alt="" />
           )}
@@ -112,6 +121,10 @@ const Cover: React.FC<CoverProps> = props => {
   );
 };
 
+Cover.defaultProps = {
+  updateBlurb: () => {},
+};
+
 export default Cover;
 
 function initials(author: string): [string, string] {
@@ -127,6 +140,14 @@ function spineClasses(pages: number): string {
     rounded <= i && classes.push(`spine--pgs-lte-${i}`);
     rounded > i && classes.push(`spine--pgs-gt-${i}`);
     rounded >= i && classes.push(`spine--pgs-gte-${i}`);
+  }
+  return classes.join(' ');
+}
+
+function blurbClasses(blurb: string): string {
+  const classes: string[] = [];
+  for (let i = 150; i <= 1000; i += 25) {
+    classes.push(`blurb--${blurb.length < i ? 'lt' : 'gte'}-${i}`);
   }
   return classes.join(' ');
 }
