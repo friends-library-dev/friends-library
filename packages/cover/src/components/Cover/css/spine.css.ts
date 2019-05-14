@@ -9,8 +9,8 @@ const spineCss: string = css`
     left: var(--edgeToSpine);
   }
 
-  .spine > * {
-    display: var(--spineDisplay);
+  .spine--pgs-lt-140 > * {
+    display: none !important;
   }
 
   .spine .logo-icon {
@@ -44,10 +44,43 @@ const spineCss: string = css`
     top: 20%;
   }
 
+  .trim--s .spine__title {
+    top: 15%;
+  }
+
+  .trim--s .spine .logo-icon {
+    top: 5.6%;
+  }
+
+  .trim--xl .spine__title {
+    top: 21.5%;
+  }
+
   .spine__author {
+    display: var(--spineAuthorDisplay);
     top: auto;
     bottom: 11%;
     font-size: 0.2in;
+  }
+
+  .spine--pgs-lte-180 .spine__title {
+    font-size: 0.23in;
+  }
+
+  .spine--pgs-lte-180 .diamond {
+    width: 0.3in;
+  }
+
+  .spine--pgs-lte-180 .logo-icon {
+    height: 3.4%;
+  }
+
+  .spine--pgs-lte-160 .diamond {
+    width: 0.25in;
+  }
+
+  .spine--pgs-lte-160 .logo-icon {
+    height: 3.23%;
   }
 `;
 

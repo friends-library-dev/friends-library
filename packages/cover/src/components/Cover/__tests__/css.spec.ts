@@ -1,4 +1,4 @@
-import { CoverProps } from '@friends-library/types';
+import { CoverProps, PrintSizeAbbrev } from '@friends-library/types';
 import { getBookSize } from '@friends-library/asciidoc';
 import { cssVars } from '../css';
 
@@ -29,4 +29,23 @@ describe('cssVars()', () => {
     const { coverWidth } = cssVars(props);
     expect(coverWidth).toBe(`${trim.width * 2 + 1 + 0.06 + 0.25}in`);
   });
+
+  const spineAuthorDisplayCases: [string, string, PrintSizeAbbrev, boolean][] = [
+    ['The Life and Letters of John&nbsp;Fothergill', 'John Fothergill', 'm', true],
+    ['The Life and Letters of Catherine&nbsp;Payton', 'Catherine Payton', 'm', true],
+    ['The Christian Progress of George&nbsp;Whitehead', 'George Whitehead', 'm', false],
+    // all of the `W`s should be factored as making it longer
+    ['The Journal and Writings of John&nbsp;Woolman', 'John Woolman', 'm', false],
+  ];
+
+  test.only.each(spineAuthorDisplayCases)(
+    'spine author display for "%s"',
+    (title, author, size, display) => {
+      props.title = title;
+      props.author = author;
+      props.printSize = size;
+      const { spineAuthorDisplay } = cssVars(props);
+      expect(spineAuthorDisplay).toBe(display ? 'block' : 'none');
+    },
+  );
 });

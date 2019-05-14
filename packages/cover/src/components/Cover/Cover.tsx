@@ -10,7 +10,7 @@ import Brackets from './Brackets';
 const publicUrl = process.env.PUBLIC_URL || '';
 
 const Cover: React.FC<CoverProps> = props => {
-  const { title, author, isbn, edition, blurb, showGuides } = props;
+  const { title, author, isbn, edition, blurb, showGuides, pages } = props;
   const [firstInitial, lastInitial] = initials(author);
   const Diamond = Diamonds[edition];
   return (
@@ -41,7 +41,7 @@ const Cover: React.FC<CoverProps> = props => {
           <Logo />
         </div>
       </div>
-      <div className="spine">
+      <div className={spineClasses(pages)}>
         <LogoIcon />
         <Diamond />
         <div className="spine__title" dangerouslySetInnerHTML={{ __html: title }} />
@@ -117,4 +117,16 @@ export default Cover;
 function initials(author: string): [string, string] {
   const [first, ...rest] = author.split(' ');
   return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
+}
+
+function spineClasses(pages: number): string {
+  const classes = ['spine'];
+  const rounded = Math.floor(pages / 10) * 10;
+  for (let i = 130; i <= 220; i += 10) {
+    rounded < i && classes.push(`spine--pgs-lt-${i}`);
+    rounded <= i && classes.push(`spine--pgs-lte-${i}`);
+    rounded > i && classes.push(`spine--pgs-gt-${i}`);
+    rounded >= i && classes.push(`spine--pgs-gte-${i}`);
+  }
+  return classes.join(' ');
 }

@@ -54,9 +54,8 @@ export function documents(friendIndex: number): DocumentData[] {
 }
 
 export function prepareTitle(title: string, name: string): string {
-  if (!title.includes(name)) {
-    return title;
-  }
+  title = title.replace(/--/g, '–');
+  title = title.replace(/\bVolumen? (?<number>(\d+|[IV]+))/, 'Vol.&nbsp;$<number>');
   return title.replace(name, name.replace(/ /g, '&nbsp;'));
 }
 
@@ -95,5 +94,5 @@ function formatBlurb(blurb: string, size: PrintSizeAbbrev): string {
     .replace(/`"/g, '”')
     .replace(/'`/g, '‘')
     .replace(/`'/g, '’')
-    .replace(/--/g, '—');
+    .replace(/--/g, '–');
 }
