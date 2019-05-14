@@ -34,7 +34,7 @@ interface State {
 }
 
 export default class App extends React.Component<{}, State> {
-  public state = {
+  public state: State = {
     friendIndex: 0,
     docIndex: 0,
     edIndex: 0,
@@ -42,8 +42,8 @@ export default class App extends React.Component<{}, State> {
     showGuides: false,
     maskBleed: true,
     threeD: true,
-    threeDView: 'angle-front' as View,
-    customBlurbs: {} as Record<string, string>,
+    threeDView: 'angle-front',
+    customBlurbs: {},
   };
 
   public componentDidMount(): void {
@@ -87,13 +87,13 @@ export default class App extends React.Component<{}, State> {
       printSize: ed.defaultSize,
       pages: ed.pages[ed.defaultSize],
       edition: ed.type,
-      blurb: formatBlurb(this.getBlurb(friend, doc, ed)),
+      blurb: formatBlurb(this.getBlurb(friend, doc)),
       isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev
       showGuides,
     };
   }
 
-  protected getBlurb(friend: FriendData, doc: DocumentData, ed: EditionData): string {
+  protected getBlurb(friend: FriendData, doc: DocumentData): string {
     const key = this.coverKey();
     const { customBlurbs } = this.state;
     if (customBlurbs[key] !== undefined) return customBlurbs[key];
@@ -108,7 +108,6 @@ export default class App extends React.Component<{}, State> {
   }
 
   protected clickCover: (e: any) => void = e => {
-    console.log(e.target.contentEditable, typeof e.target.contentEditable);
     if (e.target.contentEditable === 'true') return;
     const { threeD, threeDView } = this.state;
     if (!threeD) return;

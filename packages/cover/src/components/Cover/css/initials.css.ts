@@ -16,6 +16,15 @@ const initialsCss: string = css`
     top: -0.39in;
   }
 
+  .trim--s .initial--first {
+    bottom: -0.56in;
+  }
+
+  .trim--s .initial--last {
+    bottom: auto;
+    top: -0.55in;
+  }
+
   .initial {
     width: 100%;
     text-align: center;
@@ -30,6 +39,10 @@ const initialsCss: string = css`
     left: 0;
   }
 
+  .trim--s .initial {
+    font-size: 2.55in;
+  }
+
   /* LETTER TWEAKS */
   .initial--first.initial--A {
     bottom: -0.44in;
@@ -42,6 +55,10 @@ const initialsCss: string = css`
 
   .initial--last.initial--C {
     top: -0.36in;
+  }
+
+  .trim--s .initial--last.initial--C {
+    top: -0.525in;
   }
 
   .initials--SC.initial--C {
@@ -68,6 +85,10 @@ const initialsCss: string = css`
     bottom: -0.435in;
   }
 
+  .trim--s .initial--first.initial--D {
+    bottom: -0.585in;
+  }
+
   .initials--DW.initial--D {
     bottom: -0.34in;
     transform: translateX(0.08in) scale(1.1);
@@ -89,12 +110,24 @@ const initialsCss: string = css`
     bottom: -0.44in;
   }
 
+  .trim--s .initial--first.initial--E {
+    bottom: -0.585in;
+  }
+
   .initials--EW.initial--E {
     transform: scaleX(1.08);
   }
 
   .initial--last.initial--G {
     top: -0.35in;
+  }
+
+  .trim--s .initial--last.initial--G {
+    top: -0.535in;
+  }
+
+  .trim--s .initial--first.initial--F {
+    bottom: -0.59in;
   }
 
   .initials--GF.initial--F {
@@ -113,9 +146,17 @@ const initialsCss: string = css`
     bottom: -0.43in;
   }
 
+  .trim--s .initial--first.initial--H {
+    bottom: -0.585in;
+  }
+
   .initials--FH.initial--H {
     transform: scaleX(0.8) scaleY(0.875);
     top: -0.52in;
+  }
+
+  .trim--s .initials--FH.initial--H {
+    top: -0.675in;
   }
 
   .initials--HT.initial--H {
@@ -139,6 +180,10 @@ const initialsCss: string = css`
     bottom: -0.28in;
   }
 
+  .trim--s .initial--first.initial--J {
+    bottom: -0.465in;
+  }
+
   .initial--last.initial--J {
     top: -0.46in;
   }
@@ -151,13 +196,38 @@ const initialsCss: string = css`
     transform: scaleX(0.9);
   }
 
+  .initial--first.initial--M {
+    transform: scaleX(0.9) translateY(0.04in);
+  }
+
+  .initials--SN.initial--N {
+    transform: scaleX(0.88);
+  }
+
   .initial--last.initial--P {
     top: -0.37in;
   }
 
+  .trim--s .initial--last.initial--P {
+    top: -0.555in;
+  }
+
+  .initials--CP.initial--P {
+    transform: scaleX(1.18);
+  }
+
   .initials--JP.initial--P {
-    top: -0.48in;
-    transform: scale(0.9) translateX(-0.15in);
+    top: -0.31in;
+    transform: scaleX(0.9) scaleY(1.075) translateX(-0.15in);
+  }
+
+  .trim--m .initials--JP.initial--P {
+    top: -0.36in;
+    transform: scaleX(0.9) scaleY(1.025) translateX(-0.15in);
+  }
+
+  .trim--s .initials--JP.initial--P {
+    top: -0.488in;
   }
 
   .initials--WP.initial--P {
@@ -169,12 +239,12 @@ const initialsCss: string = css`
     transform: translateX(0.18in);
   }
 
-  .initials--MR.initial--R {
-    transform: scaleX(1.15);
+  .trim--s .initial--first.initial--R {
+    bottom: -0.585in;
   }
 
-  .initials--SN.initial--N {
-    transform: scaleX(0.88);
+  .initials--MR.initial--R {
+    transform: scaleX(1.15);
   }
 
   .initial--RX {
@@ -189,8 +259,16 @@ const initialsCss: string = css`
     top: -0.35in;
   }
 
+  .trim--s .initial--last.initial--S {
+    top: -0.535in;
+  }
+
   .initial--S {
     transform: scaleX(1.2);
+  }
+
+  .initial--first.initial--T {
+    transform: translateY(0.026in);
   }
 
   .initial--W {
@@ -202,8 +280,16 @@ const initialsCss: string = css`
     transform: scaleX(0.85) scaleY(0.95) translateX(-0.09in);
   }
 
+  .trim--s .initial--first.initial--W {
+    bottom: -0.588in;
+  }
+
   .initial--last.initial--W {
     top: -0.46in;
+  }
+
+  .trim--s .initial--last.initial--W {
+    top: -0.61in;
   }
 
   /* SPECIAL STUFF */
@@ -211,12 +297,13 @@ const initialsCss: string = css`
     transform: translateX(0.21in);
   }
 
-  .front__main--first-initial--J .diamond {
-    transform: translateX(-0.09in) !important;
+  .front__main--initials--RD .initials,
+  .front__main--initials--RB .initials {
+    transform: translateX(-0.11in);
   }
 
-  .trim--s .front__main--first-initial--J .diamond {
-    transform: translateX(0in) !important;
+  .trim--xl .front__main--initials--TS {
+    margin-bottom: 0.2in;
   }
 `;
 

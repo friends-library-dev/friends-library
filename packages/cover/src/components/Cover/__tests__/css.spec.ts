@@ -38,7 +38,7 @@ describe('cssVars()', () => {
     ['The Journal and Writings of John&nbsp;Woolman', 'John Woolman', 'm', false],
   ];
 
-  test.only.each(spineAuthorDisplayCases)(
+  test.each(spineAuthorDisplayCases)(
     'spine author display for "%s"',
     (title, author, size, display) => {
       props.title = title;

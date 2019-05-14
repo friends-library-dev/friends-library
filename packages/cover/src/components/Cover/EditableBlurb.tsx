@@ -15,7 +15,7 @@ interface EditEvent {
 export default class EditableBlurb extends React.Component<Props> {
   private contentEditable = React.createRef<HTMLDivElement>();
 
-  render() {
+  public render(): JSX.Element {
     const { blurb, update } = this.props;
     return (
       <ContentEditable
