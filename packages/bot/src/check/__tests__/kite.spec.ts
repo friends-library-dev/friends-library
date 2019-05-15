@@ -94,7 +94,7 @@ describe('kiteCheck()', () => {
 
   it('retrieves friend from repository name', async () => {
     await kiteCheck(context, files);
-    expect(getFriend).toHaveBeenCalledWith('jane-doe');
+    expect(getFriend).toHaveBeenCalledWith('jane-doe', 'en');
   });
 
   it('passes assembled data to kiteJobs.fromPR()', async () => {

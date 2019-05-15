@@ -1,5 +1,5 @@
 import path from 'path';
-import { FilePath, Asciidoc, Sha, Url, Job } from '@friends-library/types';
+import { FilePath, Asciidoc, Sha, Url, Job, Lang } from '@friends-library/types';
 import { Friend, getFriend } from '@friends-library/friends';
 import { Base64 } from 'js-base64';
 import { Context } from 'probot';
@@ -21,6 +21,7 @@ export default async function kiteCheck(
   const { payload, github, repo } = context;
   const {
     pull_request: {
+      url,
       head: { sha },
     },
   } = payload;
@@ -57,7 +58,8 @@ export default async function kiteCheck(
   const repoName = payload.repository.name;
   let friend;
   try {
-    friend = getFriend(repoName);
+    const lang: Lang = url.includes('amigos') ? 'es' : 'en';
+    friend = getFriend(repoName, lang);
     context.log.info(`Got friend: ${repoName}`);
     context.log.debug({ friend }, 'Queried friend');
   } catch (e) {
