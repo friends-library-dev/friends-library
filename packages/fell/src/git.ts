@@ -55,7 +55,15 @@ export async function sync(repoPath: Repo): Promise<void> {
 
 export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Repository> {
   const opts = { fetchOpts: remoteCallbacks };
-  return NodeGit.Clone.clone(url, repoPath, opts);
+  if (url.startsWith('https')) {
+    delete opts.fetchOpts.callbacks.credentials;
+  }
+  try {
+    return NodeGit.Clone.clone(url, repoPath, opts);
+  } catch (error) {
+    red(`Error: git.clone(${repoPath}, ${url})`);
+    throw error;
+  }
 }
 
 // like `git add . && git commit -am <message>`
@@ -87,7 +95,7 @@ export async function push(
       remoteCallbacks,
     );
   } catch (error) {
-    red(`Error: git.push(${repoPath})`);
+    red(`Error: git.push(${repoPath}, ${branch}, ${force}, ${remoteName})`);
     throw error;
   }
 }

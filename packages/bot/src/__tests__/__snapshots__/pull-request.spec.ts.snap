@@ -6,5 +6,6 @@ exports[`pullRequest() adds netlify comment for monorepo PRs 1`] = `
 - [Website (English)](https://deploy-preview-11--en-evans.netlify.com)
 - [Website (Spanish)](https://deploy-preview-11--es-evans.netlify.com)
 - [Online Editor](https://deploy-preview-11--flp-editor.netlify.com)
-- [Styleguide](https://deploy-preview-11--flp-styleguide.netlify.com)"
+- [Styleguide](https://deploy-preview-11--flp-styleguide.netlify.com)
+- [Covers](https://deploy-preview-11--flp-covers.netlify.com)"
 `;

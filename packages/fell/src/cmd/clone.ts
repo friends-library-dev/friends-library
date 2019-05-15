@@ -18,8 +18,9 @@ export async function handler(): Promise<void> {
         alreadyCloned++;
         return Promise.resolve(undefined);
       }
-      green(`📡  Cloning missing repo "/en/${slug}"`);
-      return git.clone(repoPath, repo.ssh_url);
+      green(`📡  Cloning missing repo "/${lang}/${slug}"`);
+      const url = process.env.DEPLOY_URL ? repo.clone_url : repo.ssh_url;
+      return git.clone(repoPath, url);
     }),
   );
   magenta(`👌  Skipped ${alreadyCloned} repos already cloned.`);
