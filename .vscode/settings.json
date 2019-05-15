@@ -14,6 +14,7 @@
     "**/tsconfig.tsbuildinfo": true,
     "packages/cli/*.d.ts": true,
     "packages/cli/*.js": true,
-    "packages/cover/build": true
+    "packages/cover/build": true,
+    "design": true
   }
 }
