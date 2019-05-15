@@ -27,6 +27,7 @@ export function prTestSetup(): [any, any, any] {
     action: 'opened',
     number: 11,
     pull_request: {
+      url: 'https://api.github.com/repos/friends-library-sandbox/jane-doe/pulls/11',
       head: {
         sha: '2d306bb70578e6c019e3579c02d4f78f17bf915e',
       },
