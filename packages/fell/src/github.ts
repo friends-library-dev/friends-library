@@ -37,7 +37,7 @@ export async function openPullRequest(
 }
 
 export async function getFriendRepos(): Promise<
-  { name: string; ssh_url: string; full_name: string }[]
+  { name: string; ssh_url: string; clone_url: string; full_name: string }[]
 > {
   let enRepos = await gh.paginate('/orgs/friends-library/repos');
   enRepos = enRepos.filter(repo => repo.name !== 'friends-library');

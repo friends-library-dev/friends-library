@@ -77,5 +77,6 @@ function getNetlifyPreviewComment(prNumber: number): string {
     - [Website (Spanish)](https://deploy-preview-${prNumber}--es-evans.netlify.com)
     - [Online Editor](https://deploy-preview-${prNumber}--flp-editor.netlify.com)
     - [Styleguide](https://deploy-preview-${prNumber}--flp-styleguide.netlify.com)
+    - [Covers](https://deploy-preview-${prNumber}--flp-covers.netlify.com)
   `).trim();
 }
