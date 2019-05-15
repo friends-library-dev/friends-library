@@ -1,3 +1,4 @@
+import { Lang } from '@friends-library/types';
 import chunk from 'lodash/chunk';
 import { Context } from 'probot';
 import { ModifiedAsciidocFile } from '../type';
@@ -19,7 +20,8 @@ export default async function lintCheck(
     }),
   );
 
-  const annotations = getLintAnnotations(files);
+  const lang: Lang = payload.pull_request.url.includes('amigos') ? 'es' : 'en';
+  const annotations = getLintAnnotations(files, lang);
   context.log.info(`Generated ${annotations.length} annotations`);
   context.log.debug({ annotations }, 'annotations');
 

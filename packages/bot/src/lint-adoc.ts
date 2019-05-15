@@ -1,5 +1,5 @@
 import { lint } from '@friends-library/asciidoc';
-import { LintResult } from '@friends-library/types';
+import { LintResult, Lang } from '@friends-library/types';
 import { ModifiedAsciidocFile } from './type';
 
 interface GithubCheckAnnotation {
@@ -16,10 +16,11 @@ interface GithubCheckAnnotation {
 
 export function getLintAnnotations(
   files: ModifiedAsciidocFile[],
+  lang: Lang,
 ): GithubCheckAnnotation[] {
   return files.reduce(
     (annotations, { path, adoc }) => {
-      const lintResults = lint(adoc);
+      const lintResults = lint(adoc, { lang });
       return [...annotations, ...lintResults.map(result => toAnnotation(result, path))];
     },
     <GithubCheckAnnotation[]>[],
