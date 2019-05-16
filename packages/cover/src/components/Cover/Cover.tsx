@@ -32,6 +32,7 @@ const Cover: React.FC<Props> = props => {
   const [firstInitial, lastInitial] = initials(author);
   const Diamond = Diamonds[edition];
   const fragments = getHtmlFragments(customHtml);
+  const lang = edition === 'spanish' ? 'es' : 'en';
   return (
     <div className={`cover${showGuides ? ' cover--show-guides' : ''}`}>
       {isBrowser && <div className="cover-mask" />}
@@ -54,17 +55,38 @@ const Cover: React.FC<Props> = props => {
           )}
           <div className="about-flp">
             <p className="purpose">
-              <b>Friends Library Publishing</b> exists to freely share the writings of
-              early members of the Religious Society of Friends (Quakers), believing that
-              no other collection of Christian writings more accurately communicates or
-              powerfully illustrates the soul-transforming power of the gospel of Jesus
-              Christ.
+              {lang === 'es' ? (
+                <>
+                  <b>La Biblioteca de los Amigos</b> existe para compartir de forma
+                  gratuita los escritos de los primeros miembros de la Sociedad Religiosa
+                  de Amigos (Cuáqueros), creyendo que ninguna otra colección de escritos
+                  cristianos demuestra de manera más clara o convincente el poder
+                  transformador del evangelio de Jesucristo.
+                </>
+              ) : (
+                <>
+                  <b>Friends Library Publishing</b> exists to freely share the writings of
+                  early members of the Religious Society of Friends (Quakers), believing
+                  that no other collection of Christian writings more accurately
+                  communicates or powerfully illustrates the soul-transforming power of
+                  the gospel of Jesus Christ.
+                </>
+              )}
             </p>
             <p className="website">
-              Download this and other books for free at <b>www.friendslibrary.com</b>.
+              {lang === 'es' ? (
+                <>
+                  Descarga este y otros libros gratis en{' '}
+                  <b>www.labibliotecadelosamigos.com</b>.
+                </>
+              ) : (
+                <>
+                  Download this and other books for free at <b>www.friendslibrary.com</b>.
+                </>
+              )}
             </p>
           </div>
-          {edition === 'spanish' ? <LogoSpanish /> : <Logo />}
+          {lang === 'es' ? <LogoSpanish /> : <Logo />}
         </div>
       </div>
       <div className={spineClasses(pages)}>
@@ -84,7 +106,9 @@ const Cover: React.FC<Props> = props => {
       </div>
       <div className="front">
         <div className="front__safe">
-          <span className="flp">Friends Library Publishing</span>
+          <span className="flp">
+            {lang === 'es' ? 'Biblioteca de los Amigos' : 'Friends Library Publishing'}
+          </span>
           <LogoIcon />
           <div
             className={classNames(
