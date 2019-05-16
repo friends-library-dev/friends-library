@@ -153,6 +153,8 @@ export interface CoverProps {
   isbn?: ISBN;
   blurb: string;
   showGuides: boolean;
+  customCss: Css;
+  customHtml: Html;
 }
 
 export type ISBN = string;

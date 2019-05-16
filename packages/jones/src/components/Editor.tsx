@@ -11,10 +11,10 @@ import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
 import { addKeyCommands } from './editor-key-commands';
+import { lintOptions } from '../lib/lint';
 import './adoc-mode';
 import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
-import { lintOptions } from '../lib/lint';
 
 const noopEditor = new Proxy(
   {},

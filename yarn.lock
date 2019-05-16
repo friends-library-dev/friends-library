@@ -16683,7 +16683,7 @@ re-resizable@^4.11.0:
   resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-4.11.0.tgz#d5df10bda445c4ec0945751a223bf195afb61890"
   integrity sha512-dye+7rERqNf/6mDT1iwps+4Gf42420xuZgygF33uX178DxffqcyeuHbBuJ382FIcB5iP6mMZOhfW7kI0uXwb/Q==
 
-react-ace@^6.3.2:
+react-ace@^6.3.2, react-ace@^6.5.0:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/react-ace/-/react-ace-6.5.0.tgz#8238fff6d1b037c0aef864aab3715a7c60153f8f"
   integrity sha512-W8iA6669Tf3sfjCsBg8gKs2pUVMy6BroX6O6GZcgadnLN+MTq7jhs6Q2Rsjq3E3SrWjyA9vZgs1Uzjy8XgWX5w==

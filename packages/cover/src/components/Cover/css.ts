@@ -55,7 +55,7 @@ export function cssVars(props: CoverProps): Record<string, string> {
 }
 
 export function coverCss(props: CoverProps, scaler?: number): Css {
-  let css = cssString;
+  let css = `${cssString}${props.customCss}`;
   const vars = cssVars(props);
   Object.entries(vars).forEach(([key, val]) => {
     const regx = new RegExp(`var\\(--${key}\\)`, 'g');

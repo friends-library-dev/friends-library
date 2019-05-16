@@ -62,7 +62,6 @@ const Component: React.FC<Props> = ({ result, edit, replace }) => {
   return (
     <SearchResultPreview
       onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-        console.log(result);
         if (e.target instanceof Element && e.target.nodeName === 'B') {
           edit(result);
         }

@@ -133,7 +133,7 @@ ${spine}
 ${guides}
 ${isBrowser ? threeD : ''}
 ${front}
-${back};
+${back}
 `;
 
 export default coverCss;

@@ -26,6 +26,7 @@ body {
 
 .cover-mask {
   display: none;
+  outline: #eaeaea solid 5px;
 }
 
 .mask-bleed .cover-mask {

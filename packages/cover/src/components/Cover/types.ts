@@ -4,6 +4,8 @@ import {
   Description,
   EditionType,
   ISBN,
+  Html,
+  Css,
 } from '@friends-library/types';
 
 export interface EditionData {
@@ -17,6 +19,8 @@ export interface DocumentData {
   title: string;
   description: Description;
   editions: EditionData[];
+  customHtml: Html | null;
+  customCss: Css | null;
 }
 
 export interface FriendData {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CoverProps } from '@friends-library/types';
+import { CoverProps, Html } from '@friends-library/types';
 import { isBrowser } from 'browser-or-node';
 import classNames from 'classnames';
 import LogoIcon from './LogoIcon';
@@ -13,12 +13,25 @@ const publicUrl = process.env.PUBLIC_URL || '';
 
 interface Props extends CoverProps {
   updateBlurb: (blurb: string) => void;
+  allowEditingBlurb: boolean;
 }
 
 const Cover: React.FC<Props> = props => {
-  const { title, author, isbn, edition, blurb, showGuides, pages, updateBlurb } = props;
+  const {
+    title,
+    author,
+    isbn,
+    edition,
+    blurb,
+    showGuides,
+    pages,
+    updateBlurb,
+    customHtml,
+    allowEditingBlurb,
+  } = props;
   const [firstInitial, lastInitial] = initials(author);
   const Diamond = Diamonds[edition];
+  const fragments = getHtmlFragments(customHtml);
   return (
     <div className={`cover${showGuides ? ' cover--show-guides' : ''}`}>
       {isBrowser && <div className="cover-mask" />}
@@ -26,10 +39,14 @@ const Cover: React.FC<Props> = props => {
       <div className={`back ${blurbClasses(blurb)}`}>
         <div className="back__safe">
           <Diamond />
-          {isBrowser ? (
-            <EditableBlurb blurb={blurb} update={updateBlurb} />
-          ) : (
-            <div className="blurb">{blurb}</div>
+          {overridable(
+            'blurb',
+            fragments,
+            allowEditingBlurb ? (
+              <EditableBlurb blurb={blurb} update={updateBlurb} />
+            ) : (
+              <div className="blurb">{blurb}</div>
+            ),
           )}
           <Brackets />
           {isbn && (
@@ -53,8 +70,16 @@ const Cover: React.FC<Props> = props => {
       <div className={spineClasses(pages)}>
         <LogoIcon />
         <Diamond />
-        <div className="spine__title" dangerouslySetInnerHTML={{ __html: title }} />
-        <div className="spine__author">{author.split(' ').pop()}</div>
+        {overridable(
+          'spine__title',
+          fragments,
+          <div className="spine__title" dangerouslySetInnerHTML={{ __html: title }} />,
+        )}
+        {overridable(
+          'spine__author',
+          fragments,
+          <div className="spine__author">{author.split(' ').pop()}</div>,
+        )}
         <div className="guide guide--spine guide--vertical guide--spine-center" />
       </div>
       <div className="front">
@@ -98,14 +123,22 @@ const Cover: React.FC<Props> = props => {
                 </span>
               </div>
             </div>
-            <div className="title-wrap">
-              <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
-            </div>
+            {overridable(
+              'title-wrap',
+              fragments,
+              <div className="title-wrap">
+                <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+              </div>,
+            )}
           </div>
-          <div className="author">
-            <div className="author__line" />
-            <h2 className="author__name">{author}</h2>
-          </div>
+          {overridable(
+            'author',
+            fragments,
+            <div className="author">
+              <div className="author__line" />
+              <h2 className="author__name">{author}</h2>
+            </div>,
+          )}
         </div>
       </div>
       {isBrowser && (
@@ -124,6 +157,7 @@ const Cover: React.FC<Props> = props => {
 
 Cover.defaultProps = {
   updateBlurb: () => {},
+  allowEditingBlurb: false,
 };
 
 export default Cover;
@@ -151,4 +185,37 @@ function blurbClasses(blurb: string): string {
     classes.push(`blurb--${blurb.length < i ? 'lt' : 'gte'}-${i}`);
   }
   return classes.join(' ');
+}
+
+function getHtmlFragments(html: Html): Record<string, Html> {
+  const fragments: Record<string, Html> = {};
+  const regex = /(?:^|\n)<(div|p|h\d).+?\n<\/\1>/gs;
+  let match;
+  while ((match = regex.exec(html))) {
+    const lines = match[0]
+      .trim()
+      .split('\n')
+      .map(s => s.trim());
+    lines.pop();
+    const classMatch = (lines.shift() || '').match(/class="([^ "]+)/);
+    if (!classMatch) {
+      throw new Error(`Bad custom HTML -- frag wrapping elements must have class`);
+    }
+    fragments[classMatch[1]] = lines.join('');
+  }
+  return fragments;
+}
+
+function overridable(
+  key: string,
+  fragments: Record<string, Html>,
+  fallback: JSX.Element,
+): JSX.Element {
+  if (fragments[key] !== undefined) {
+    return React.createElement(key === 'blurb' ? 'div' : fallback.type, {
+      className: key,
+      dangerouslySetInnerHTML: { __html: fragments[key] },
+    });
+  }
+  return fallback;
 }
