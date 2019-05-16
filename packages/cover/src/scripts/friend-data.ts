@@ -41,15 +41,28 @@ execSync(
 );
 
 function mapDocuments(friend: Friend): FriendData['documents'] {
-  return friend.documents.map(document => ({
-    title: document.title,
-    description: document.description,
-    editions: document.editions.map(edition => ({
-      type: friend.lang === 'es' ? 'spanish' : edition.type,
-      ...(edition.isbn ? { isbn: edition.isbn } : {}),
-      ...estimatePages(edition),
-    })),
-  }));
+  return friend.documents.map(document => {
+    const path = `${ROOT}${document.friend.lang}${document.url()}`;
+    let customCss = null;
+    let customHtml = null;
+    if (fs.existsSync(`${path}/cover.css`)) {
+      customCss = fs.readFileSync(`${path}/cover.css`).toString();
+    }
+    if (fs.existsSync(`${path}/cover.html`)) {
+      customHtml = fs.readFileSync(`${path}/cover.html`).toString();
+    }
+    return {
+      title: document.title,
+      description: document.description,
+      customCss,
+      customHtml,
+      editions: document.editions.map(edition => ({
+        type: friend.lang === 'es' ? 'spanish' : edition.type,
+        ...(edition.isbn ? { isbn: edition.isbn } : {}),
+        ...estimatePages(edition),
+      })),
+    };
+  });
 }
 
 function estimatePages(

@@ -1,0 +1,31 @@
+.code-editor {
+  display: flex;
+  background: #222;
+  height: 300px;
+  box-sizing: border-box;
+}
+
+.code-editor .panel {
+  flex-grow: 1;
+  position: relative;
+}
+
+.code-editor .panel--html {
+  flex-grow: 1.5;
+}
+
+.ace_editor {
+  width: 100% !important;
+  height: 274px !important;
+  font-size: 14px !important;
+}
+
+.code-editor h1 {
+  font-size: 12px;
+  font-style: italic;
+  font-family: Menlo, monospace;
+  color: #777;
+  padding: 6px 0 6px 45px;
+  font-weight: 400;
+  margin: 0;
+}

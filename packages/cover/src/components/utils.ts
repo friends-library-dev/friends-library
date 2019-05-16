@@ -22,13 +22,15 @@ export function fitScaler(
   props: CoverProps,
   fit: boolean,
   threeD: boolean,
+  showCode: boolean,
 ): number | undefined {
   const webScaler = 1.1358;
   if (!fit) {
     return webScaler;
   }
 
-  const appChromeHeight = 175;
+  let appChromeHeight = 175;
+  if (showCode) appChromeHeight += 300;
   const vars = cssVars(props);
   const windowWidth = window.innerWidth / 96;
   const windowHeight = (window.innerHeight - appChromeHeight) / 96;

@@ -1,10 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import KeyEvent from 'react-keyboard-event-handler';
-import { CoverProps } from '@friends-library/types';
+import { CoverProps, Css, Html } from '@friends-library/types';
+import FormControl from '@material-ui/core/FormControl';
 import Cover from './Cover/Cover';
 import { coverCss } from './Cover/css';
-import FormControl from '@material-ui/core/FormControl';
+import { FriendData, DocumentData, EditionData } from './Cover/types';
 import {
   friendData,
   formatBlurb,
@@ -16,8 +17,8 @@ import {
 } from './utils';
 import Select from './Select';
 import Toolbar from './Toolbar';
+import CodeEditor from './CodeEditor';
 import './App.css';
-import { FriendData, DocumentData, EditionData } from './Cover/types';
 
 type View = 'front' | 'spine' | 'back' | 'angle-front' | 'angle-back';
 
@@ -28,9 +29,12 @@ interface State {
   fit: boolean;
   showGuides: boolean;
   maskBleed: boolean;
+  showCode: boolean;
   threeD: boolean;
   threeDView: View;
   customBlurbs: Record<string, string>;
+  customHtml: Record<string, string>;
+  customCss: Record<string, string>;
 }
 
 export default class App extends React.Component<{}, State> {
@@ -40,10 +44,13 @@ export default class App extends React.Component<{}, State> {
     edIndex: 0,
     fit: true,
     showGuides: false,
+    showCode: false,
     maskBleed: true,
     threeD: true,
     threeDView: 'angle-front',
     customBlurbs: {},
+    customCss: {},
+    customHtml: {},
   };
 
   public componentDidMount(): void {
@@ -90,6 +97,8 @@ export default class App extends React.Component<{}, State> {
       blurb: formatBlurb(this.getBlurb(friend, doc)),
       isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev
       showGuides,
+      customCss: this.getCustomCss(),
+      customHtml: this.getCustomHtml(),
     };
   }
 
@@ -99,6 +108,48 @@ export default class App extends React.Component<{}, State> {
     if (customBlurbs[key] !== undefined) return customBlurbs[key];
     const blurb = doc.description || friend.description || 'TODO';
     return blurb === 'TODO' ? LOREM_BLURB : blurb;
+  }
+
+  protected getCustomCss(): Css {
+    const key = this.documentKey();
+    if (this.state.customCss[key] !== undefined) {
+      return this.state.customCss[key];
+    }
+    const { doc } = this.selectedEntities();
+    return doc && doc.customCss ? doc.customCss : '';
+  }
+
+  protected getCustomHtml(): Html {
+    const key = this.documentKey();
+    if (this.state.customHtml[key] !== undefined) {
+      return this.state.customHtml[key];
+    }
+    const { doc } = this.selectedEntities();
+    return doc && doc.customHtml ? doc.customHtml : '';
+  }
+
+  protected updateCustomCss(css: Css): void {
+    this.setState({
+      customCss: {
+        ...this.state.customCss,
+        [this.documentKey()]: css,
+      },
+    });
+  }
+
+  protected updateCustomHtml(html: Html): void {
+    this.setState({
+      customHtml: {
+        ...this.state.customHtml,
+        [this.documentKey()]: html,
+      },
+    });
+  }
+
+  protected documentKey(): string {
+    const { friend, doc } = this.selectedEntities();
+    if (!friend || !doc) return '[[none]]';
+    return `${friend.name}${doc.title}`;
   }
 
   protected coverKey(): string {
@@ -257,6 +308,7 @@ export default class App extends React.Component<{}, State> {
       maskBleed,
       threeD,
       threeDView,
+      showCode,
     } = this.state;
     const coverProps = this.coverProps();
     return (
@@ -264,6 +316,16 @@ export default class App extends React.Component<{}, State> {
         <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
         <KeyEvent handleKeys={['left']} onKeyEvent={() => this.changeCover(BACKWARD)} />
         <KeyEvent handleKeys={['f']} onKeyEvent={() => this.changeFriend(FORWARD)} />
+        <KeyEvent
+          handleKeys={['esc']}
+          onKeyEvent={() =>
+            this.setState({
+              customBlurbs: {},
+              customCss: {},
+              customHtml: {},
+            })
+          }
+        />
         <KeyEvent
           handleKeys={['shift+f']}
           onKeyEvent={() => this.changeFriend(BACKWARD)}
@@ -340,16 +402,31 @@ export default class App extends React.Component<{}, State> {
               })}
               onClick={this.clickCover}
             >
-              <Cover {...coverProps} updateBlurb={this.updateBlurb} />
-              <style>{coverCss(coverProps, fitScaler(coverProps, fit, threeD))}</style>
+              <Cover
+                {...coverProps}
+                updateBlurb={this.updateBlurb}
+                allowEditingBlurb={true}
+              />
+              <style>
+                {coverCss(coverProps, fitScaler(coverProps, fit, threeD, showCode))}
+              </style>
             </div>
           </>
+        )}
+        {showCode && (
+          <CodeEditor
+            css={this.getCustomCss()}
+            html={this.getCustomHtml()}
+            updateCss={css => this.updateCustomCss(css)}
+            updateHtml={html => this.updateCustomHtml(html)}
+          />
         )}
         <Toolbar
           fit={fit}
           maskBleed={maskBleed}
           showGuides={showGuides}
           threeD={threeD}
+          showCode={showCode}
           toggleThreeD={() => {
             const newState = !threeD;
             this.setState({
@@ -357,6 +434,7 @@ export default class App extends React.Component<{}, State> {
               threeDView: newState === false ? 'angle-front' : this.state.threeDView,
             });
           }}
+          toggleShowCode={() => this.setState({ showCode: !showCode })}
           toggleFit={() => this.setState({ fit: !fit })}
           toggleShowGuides={() => this.setState({ showGuides: !showGuides })}
           toggleMaskBleed={() => this.setState({ maskBleed: !maskBleed })}

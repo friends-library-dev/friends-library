@@ -15,6 +15,8 @@ describe('cssVars()', () => {
       edition: 'original',
       blurb: 'TODO',
       showGuides: false,
+      customCss: '',
+      customHtml: '',
     };
     ({ dims: trim } = getBookSize(props.printSize));
   });

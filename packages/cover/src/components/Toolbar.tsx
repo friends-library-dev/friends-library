@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PdfIcon from '@material-ui/icons/PictureAsPdf';
 import FitIcon from '@material-ui/icons/SettingsOverscan';
 import GuidesIcon from '@material-ui/icons/BorderClear';
+import CodeIcon from '@material-ui/icons/Code';
 import MaskBleedIcon from '@material-ui/icons/BorderStyle';
 import ThreeDIcon from '@material-ui/icons/FilterNone';
 import { makePdf } from './utils';
@@ -16,6 +17,8 @@ interface Props {
   maskBleed: boolean;
   showGuides: boolean;
   threeD: boolean;
+  showCode: boolean;
+  toggleShowCode: () => void;
   toggleThreeD: () => void;
   toggleFit: () => void;
   toggleMaskBleed: () => void;
@@ -33,6 +36,8 @@ const Toolbar: React.FC<Props> = ({
   coverProps,
   threeD,
   toggleThreeD,
+  showCode,
+  toggleShowCode,
 }) => (
   <AppBar className="Toolbar">
     <MaterialUiToolbar>
@@ -54,6 +59,9 @@ const Toolbar: React.FC<Props> = ({
       </IconButton>
       <IconButton className={threeD ? 'selected' : ''} onClick={() => toggleThreeD()}>
         <ThreeDIcon />
+      </IconButton>
+      <IconButton className={showCode ? 'selected' : ''} onClick={() => toggleShowCode()}>
+        <CodeIcon />
       </IconButton>
       {coverProps && (
         <p className="book-stats">
