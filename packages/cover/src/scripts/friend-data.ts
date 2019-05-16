@@ -41,15 +41,35 @@ execSync(
 );
 
 function mapDocuments(friend: Friend): FriendData['documents'] {
+  const log = friend.name === 'James Nayler' ? console.log.bind(console) : () => {};
+  log('---------------------');
+  log(ROOT);
+  log(`glob ${ROOT}en/james-nayler/*`);
+  log(glob(`${ROOT}en/james-nayler/*`));
+  log(`glob ${ROOT}en/james-nayler/writings/*`);
+  log(glob(`${ROOT}en/james-nayler/writings/*`));
+  log('glob *');
+  log(glob(`${ROOT}en/james-nayler/**/*`));
   return friend.documents.map(document => {
     const path = `${ROOT}${document.friend.lang}${document.url()}`;
     let customCss = null;
     let customHtml = null;
+    log(`path: ${path}`);
+    log(`css path: ${path}/cover.css`);
     if (fs.existsSync(`${path}/cover.css`)) {
+      log('css path exists!');
       customCss = fs.readFileSync(`${path}/cover.css`).toString();
+      log(`customCSS`, customCss);
+    } else {
+      log('css path does not exist');
     }
+    log(`html path: ${path}/cover.html`);
     if (fs.existsSync(`${path}/cover.html`)) {
+      log('html path exists!');
       customHtml = fs.readFileSync(`${path}/cover.html`).toString();
+      log(`customHtml`, customHtml);
+    } else {
+      log('html path does not exist');
     }
     return {
       title: document.title,
