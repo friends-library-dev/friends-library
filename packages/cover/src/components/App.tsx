@@ -392,6 +392,7 @@ export default class App extends React.Component<{}, State> {
           <>
             <div
               className={classNames('cover-wrap', {
+                'cover--2d': !threeD,
                 'cover--3d': threeD,
                 'cover--3d--front': threeD && threeDView === 'front',
                 'cover--3d--spine': threeD && threeDView === 'spine',

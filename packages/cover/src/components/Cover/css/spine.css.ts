@@ -9,6 +9,14 @@ const spineCss: string = css`
     left: var(--edgeToSpine);
   }
 
+  .pdf .binding--saddle-stitch .spine,
+  .pdf .binding--saddle-stitch .guide--spine,
+  .web .cover--2d .binding--saddle-stitch .spine,
+  .web .cover--2d .binding--saddle-stitch .guide--spine {
+    width: 0;
+    display: none;
+  }
+
   .spine--pgs-lt-140 > * {
     display: none !important;
   }

@@ -34,7 +34,12 @@ const Cover: React.FC<Props> = props => {
   const fragments = getHtmlFragments(customHtml);
   const lang = edition === 'spanish' ? 'es' : 'en';
   return (
-    <div className={`cover${showGuides ? ' cover--show-guides' : ''}`}>
+    <div
+      className={classNames('cover', {
+        'cover--show-guides': showGuides,
+        'binding--saddle-stitch': pages < 32,
+      })}
+    >
       {isBrowser && <div className="cover-mask" />}
       <div className="bg-block" />
       <div className={`back ${blurbClasses(blurb)}`}>

@@ -13,7 +13,7 @@ const threeDCss: string = css`
     position: relative;
     background: transparent;
     transform-style: preserve-3d;
-    transform: translateZ(-var(--halfSpineWidth));
+    transform: translateZ(-var(--halfThreeDSpineWidth));
   }
 
   .cover--3d .top,
@@ -29,6 +29,7 @@ const threeDCss: string = css`
 
   .cover--3d .spine,
   .cover--3d .right {
+    width: var(--threeDSpineWidth);
     left: var(--threeDLeftOffset);
   }
 
@@ -39,10 +40,10 @@ const threeDCss: string = css`
 
   /* 3d-positioning */
   .cover--3d .front {
-    transform: rotateY(0deg) translateZ(var(--halfSpineWidth));
+    transform: rotateY(0deg) translateZ(var(--halfThreeDSpineWidth));
   }
   .cover--3d .back {
-    transform: rotateY(180deg) translateZ(var(--halfSpineWidth));
+    transform: rotateY(180deg) translateZ(var(--halfThreeDSpineWidth));
   }
   .cover--3d .right {
     transform: rotateY(90deg) translateZ(var(--halfBookWidth));
@@ -59,10 +60,10 @@ const threeDCss: string = css`
 
   /* perspective classes */
   .cover--3d.cover--3d--front .cover {
-    transform: translateZ(-var(--halfSpineWidth)) rotateY(0deg);
+    transform: translateZ(-var(--halfThreeDSpineWidth)) rotateY(0deg);
   }
   .cover--3d.cover--3d--back .cover {
-    transform: translateZ(-var(--halfSpineWidth)) rotateY(180deg);
+    transform: translateZ(-var(--halfThreeDSpineWidth)) rotateY(180deg);
   }
   .cover--3d.cover--3d--right .cover {
     transform: translateZ(-var(--halfBookWidth)) rotateY(-90deg);
@@ -111,12 +112,12 @@ const threeDCss: string = css`
 
   .right {
     height: var(--bookHeight);
-    width: var(--spineWidth);
+    width: var(--threeDSpineWidth);
   }
 
   .top,
   .bottom {
-    height: var(--spineWidth);
+    height: var(--threeDSpineWidth);
     width: var(--bookWidth);
   }
 
