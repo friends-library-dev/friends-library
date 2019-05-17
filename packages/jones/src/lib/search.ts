@@ -1,4 +1,3 @@
-import { Omit } from '@friends-library/types';
 import escape from 'escape-string-regexp';
 import { File, SearchResult } from '../type';
 

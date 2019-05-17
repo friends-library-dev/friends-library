@@ -171,8 +171,6 @@ export type Description = string;
 export type FilePath = string;
 export type Sha = string;
 
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
 export function isDefined<T>(x: T | undefined): x is T {
   return typeof x !== 'undefined';
 }

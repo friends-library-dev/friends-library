@@ -6,7 +6,6 @@ import {
   DocSection,
   Notes,
   Html,
-  Omit,
   AsciidocConversionLog,
 } from '@friends-library/types';
 import { extractShortHeadings } from './headings';

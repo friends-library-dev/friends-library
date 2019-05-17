@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect, Omit } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import { State as AppState, Task, Dispatch } from '../type';
 import { requireCurrentTask, currentTaskFriendName } from '../select';

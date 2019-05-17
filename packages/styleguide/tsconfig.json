@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "tsBuildInfoFile": "./dist/tsconfig.tsbuildinfo", // <-- became necessary when switching to ts 3.5rc, maybe remove later?
     "resolveJsonModule": true,
     "outDir": "./dist",
     "moduleResolution": "node",
