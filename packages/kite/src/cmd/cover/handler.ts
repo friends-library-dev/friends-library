@@ -15,6 +15,8 @@ export default async function cover(): Promise<void> {
     printSize: 'm',
     edition: 'modernized',
     showGuides: false,
+    customCss: '',
+    customHtml: '',
   };
   const filePath = await coverFromProps(props);
   exec(`open "${filePath}"`);

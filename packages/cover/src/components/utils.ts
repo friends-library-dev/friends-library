@@ -41,7 +41,7 @@ export function fitScaler(
   }
 
   const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
-  return webScaler * (scale - 0.015);
+  return webScaler * (scale - 0.019);
 }
 
 function inchToNum(val: string): number {

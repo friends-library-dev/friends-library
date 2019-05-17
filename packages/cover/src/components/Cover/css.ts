@@ -9,7 +9,8 @@ export function cssVars(props: CoverProps): Record<string, string> {
   const trimBleed = 0.125;
   const spinePad = 0.06;
   const pagesPerInch = 444;
-  const spineWidth = spinePad + props.pages / pagesPerInch;
+  const threeDSpineWidth = spinePad + props.pages / pagesPerInch;
+  const spineWidth = props.pages < 32 ? 0 : threeDSpineWidth;
   const bgHeightSizeS = 6.005;
   const bgHeightSizeM = 7.08;
   const bgHeightSizeXl = 7.305;
@@ -21,6 +22,8 @@ export function cssVars(props: CoverProps): Record<string, string> {
       pageHeight: book.height,
       spineWidth: spineWidth,
       halfSpineWidth: spineWidth / 2,
+      halfThreeDSpineWidth: threeDSpineWidth / 2,
+      threeDSpineWidth,
       spineAuthorDisplay: spineAuthorDisplay(props),
       edgeToSafe: trimBleed + safety,
       safeAreaWidth: book.width - safety * 2,
@@ -35,8 +38,8 @@ export function cssVars(props: CoverProps): Record<string, string> {
       coverWidth: book.width * 2 + spineWidth + trimBleed * 2,
       guideSafetyWidth: book.width * 2 + spineWidth,
       guidesDisplay: props.showGuides ? 'block' : 'none',
-      threeDLeftOffset: (book.width - spineWidth) / 2,
-      threeDTopOffset: (book.height - spineWidth) / 2,
+      threeDLeftOffset: (book.width - threeDSpineWidth) / 2,
+      threeDTopOffset: (book.height - threeDSpineWidth) / 2,
       bgHeightSizeS,
       bgHeightSizeM,
       bgHeightSizeXl,

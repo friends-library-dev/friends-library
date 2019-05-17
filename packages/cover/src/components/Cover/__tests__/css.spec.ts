@@ -32,6 +32,12 @@ describe('cssVars()', () => {
     expect(coverWidth).toBe(`${trim.width * 2 + 1 + 0.06 + 0.25}in`);
   });
 
+  test('book with less than 32 pages has no width added for spine', () => {
+    props.pages = 31;
+    const { coverWidth } = cssVars(props);
+    expect(coverWidth).toBe(`${trim.width * 2 + 0.25}in`);
+  });
+
   const spineAuthorDisplayCases: [string, string, PrintSizeAbbrev, boolean][] = [
     ['The Life and Letters of John&nbsp;Fothergill', 'John Fothergill', 'm', true],
     ['The Life and Letters of Catherine&nbsp;Payton', 'Catherine Payton', 'm', true],
