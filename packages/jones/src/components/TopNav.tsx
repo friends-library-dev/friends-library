@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { connect, Omit } from 'react-redux';
+import { connect } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import * as actions from '../actions';
 import * as gh from '../lib/github-api';

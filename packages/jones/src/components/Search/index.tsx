@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled/macro';
-import { connect, Omit } from 'react-redux';
+import { connect } from 'react-redux';
 import KeyEvent from 'react-keyboard-event-handler';
 import {
   Dispatch,

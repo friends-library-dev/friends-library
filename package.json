@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "prettier": "^1.16.4",
-    "typescript": "3.4.5"
+    "typescript": "^3.5.0-rc"
   },
   "workspaces": [
     "packages/api",

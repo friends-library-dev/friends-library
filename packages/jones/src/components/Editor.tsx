@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
 import debounce from 'lodash/debounce';
 import { lint } from '@friends-library/asciidoc';
-import { Asciidoc, LintResult, Omit, LintOptions } from '@friends-library/types';
+import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import { Dispatch, State } from '../type';
 import { requireCurrentTask } from '../select';
 import * as actions from '../actions';
@@ -142,6 +142,7 @@ class Editor extends React.Component<Props> {
         editorProps={{ $blockScrolling: true }}
         setOptions={{
           enableSnippets: true,
+          // @ts-ignore
           indentedSoftWrap: false,
           wrap: true, // !!! <- must be after `indentedSoftWrap`
         }}
