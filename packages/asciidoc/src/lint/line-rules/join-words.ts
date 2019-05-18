@@ -55,6 +55,7 @@ const sets = [
   ['noble', 'minded', '-'],
   ['single', 'minded', '-'],
   ['open', 'minded', '-'],
+  ['loving', 'kindness', ''],
 ];
 
 const firstParts = new RegExp(

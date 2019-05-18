@@ -5,33 +5,50 @@ const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-  { lang, editionType }: LintOptions,
+  { lang, editionType, maybe }: LintOptions,
 ): LintResult[] => {
   if (lang === 'es' || editionType !== 'modernized' || line === '') {
     return [];
   }
 
   // prettier-ignore
-  const words: [RegExp, string, string, string][] = [
+  const words: [RegExp, string, string, string, boolean, boolean][] = [
     [
       /\b(A|a)mongst\b/g,
       'amongst',
       'among',
       '$1mong',
+      FIXABLE,
+      ALWAYS,
     ],
+    [
+      /\bZionward(s?)\b/g,
+      'Zionward',
+      'towards Zion',
+      'towards Zion',
+      NOT_FIXABLE,
+      MAYBE,
+    ]
   ];
 
   const results: LintResult[] = [];
-  words.forEach(([pattern, archaic, updated, replace]) => {
+  words.forEach(([pattern, archaic, updated, replace, fixable, onlyMaybe]) => {
+    if (onlyMaybe === true && maybe !== true) {
+      return;
+    }
+
     const match = line.match(pattern);
+    const action = onlyMaybe
+      ? 'is often (but not always!) better'
+      : 'should be replaced with';
     if (match) {
       results.push({
         line: lineNumber,
         column: line.indexOf(match[0]) + 1,
         type: 'error',
         rule: rule.slug,
-        fixable: true,
-        message: `"${archaic}" should be replaced with "${updated}" in modernized editions`,
+        fixable,
+        message: `"${archaic}" ${action} "${updated}" in modernized editions`,
         recommendation: line.replace(pattern, replace),
       });
     }
@@ -42,3 +59,8 @@ const rule: LineRule = (
 
 rule.slug = 'modernize-words';
 export default rule;
+
+const FIXABLE = true;
+const NOT_FIXABLE = false;
+const MAYBE = true;
+const ALWAYS = false;

@@ -47,6 +47,8 @@ describe('obsoleteSpellings()', () => {
     ['the burthen-bearers', 'the burden-bearers'],
     ['foo burthens--each', 'foo burdens--each'],
     ['the judgment-seat of', 'the judgment seat of'],
+    ["of Sion`'s true", "of Zion`'s true"],
+    ['welfare of Sion to', 'welfare of Zion to'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {

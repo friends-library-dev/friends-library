@@ -36,4 +36,23 @@ describe('modernizeWords()', () => {
   test.each(allowed)('%s is not a lint violation', line => {
     expect(modernizeWords(line, [], 1, opts)).toHaveLength(0);
   });
+
+  test('maybe lint not detected without maybe flag', () => {
+    const line = 'Those with faces set Zionward';
+    expect(modernizeWords(line, [], 1, opts)).toHaveLength(0);
+  });
+
+  test('maybe lint detected with flag', () => {
+    const line = 'Those with faces set Zionward';
+    const results = modernizeWords(line, [], 1, {
+      lang: 'en' as const,
+      editionType: 'modernized' as const,
+      maybe: true,
+    });
+    expect(results).toHaveLength(1);
+    expect(results[0].fixable).toBe(false);
+    expect(results[0].message).toBe(
+      '"Zionward" is often (but not always!) better "towards Zion" in modernized editions',
+    );
+  });
 });
