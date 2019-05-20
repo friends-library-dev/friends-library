@@ -11,7 +11,7 @@ describe('obsoleteSpellings()', () => {
       column: 4,
       type: 'error',
       rule: 'obsolete-spellings',
-      message: '"staid" should be replaced with "stayed" in all editions',
+      message: '"Staid" should be replaced with "Stayed" in all editions',
       fixable: true,
       recommendation: 'Stayed the night',
     });
@@ -26,6 +26,12 @@ describe('obsoleteSpellings()', () => {
     ['"`Staid`" foo', '"`Stayed`" foo'],
     ['Does it not behove me to study', 'Does it not behoove me to study'],
     ['It behoves me', 'It behooves me'],
+    ['foo unskilfully bar', 'foo unskillfully bar'],
+    ['foo wilfulness bar', 'foo willfulness bar'],
+    ['he skilfully foo', 'he skillfully foo'],
+    ['he was subtil', 'he was subtle'],
+    ['the subtilty of the serpent', 'the subtlety of the serpent'],
+    ['subtilly crept in', 'subtly crept in'],
     ['The hardheartedness was', 'The hard-heartedness was'],
     ['My fellow-creatures', 'My fellow creatures'],
     ['Fellow-creatures are', 'Fellow creatures are'],
@@ -33,6 +39,8 @@ describe('obsoleteSpellings()', () => {
     ['broken-hearted foo', 'brokenhearted foo'],
     ['light-hearted foo', 'lighthearted foo'],
     ['Aaron, but of Melchisedec;', 'Aaron, but of Melchizedek;'],
+    ['Aaron, but of Melchizedeck;', 'Aaron, but of Melchizedek;'],
+    ['Aaron, but of Melchisedek;', 'Aaron, but of Melchizedek;'],
     ['within the vail.', 'within the veil.'],
     ['that would vail the seed,', 'that would veil the seed,'],
     ['through all vails, entering into', 'through all veils, entering into'],
@@ -49,6 +57,12 @@ describe('obsoleteSpellings()', () => {
     ['the judgment-seat of', 'the judgment seat of'],
     ["of Sion`'s true", "of Zion`'s true"],
     ['welfare of Sion to', 'welfare of Zion to'],
+    ['their faces Sion-ward,', 'their faces Zionward,'],
+    ['their faces Zion-ward,', 'their faces Zionward,'],
+    ["foo inn-keeper`'s bar", "foo innkeeper`'s bar"],
+    ['some spiritually-minded people', 'some spiritually minded people'],
+    ['Wo! to you!', 'Woe! to you!'],
+    ['my fellow-servants', 'my fellow servants'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {

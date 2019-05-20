@@ -41,6 +41,7 @@ const rule: LineRule = (
     const action = onlyMaybe
       ? 'is often (but not always!) better'
       : 'should be replaced with';
+
     if (match) {
       results.push({
         line: lineNumber,

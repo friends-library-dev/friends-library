@@ -1,153 +1,176 @@
-import memoize from 'lodash/memoize';
-import escape from 'escape-string-regexp';
-import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
-import { ucfirst } from '../../job/helpers';
+import { Asciidoc, LintResult } from '@friends-library/types';
 import { LineRule } from '../types';
+import RegexLintRunner from '../RegexLintRunner';
 
-const words: [string, string, boolean][] = [
-  ['connexion', 'connection', true],
-  ['connexions', 'connections', true],
-  ['behove', 'behoove', true],
-  ['behoves', 'behooves', true],
-  ['staid', 'stayed', true],
-  ['Melchisedec', 'Melchizedek', true],
-  ['Melchizedeck', 'Melchizedek', true],
-  ['Melchisedek', 'Melchizedek', true],
-  ['vail', 'veil', false],
-  ['vails', 'veils', false],
-  ['vailed', 'veiled', false],
-  ['gaol', 'jail', true],
-  ['gaoler', 'jailer', true],
-  ['burthen', 'burden', true],
-  ['burthens', 'burdens', true],
-  ['burthensome', 'burdensome', true],
-  ['burthened', 'burdened', true],
-  ['stopt', 'stopped', true],
-  ['Corah', 'Korah', false],
-  ['Barbadoes', 'Barbados', false],
-  ['skilful', 'skillful', true],
-  ['unskilful', 'unskillful', true],
-  ['skilfully', 'skillfully', true],
-  ['unskilfully', 'unskillfully', true],
-  ['wilful', 'willful', true],
-  ['wilfully', 'willfully', true],
-  ['wilfulness', 'willfulness', true],
-  ['subtil', 'subtle', true],
-  ['subtilty', 'subtlety', true],
-  ['subtilly', 'subtly', true],
-  ['fulfil', 'fulfill', true],
+const ruleSlug = 'obsolete-spellings';
 
-  // @see https://books.google.com/ngrams for data backing up below choices
-  ['hardheartedness', 'hard-heartedness', true],
-  ['fellow-creatures', 'fellow creatures', true],
-  ['fellow-travellers', 'fellow travellers', true],
-  ['fellow-traveller', 'fellow traveller', true],
-  ['fellow-servants', 'fellow servants', true],
-  ['fellow-servant', 'fellow servant', true],
-  ['heavy-laden', 'heavy laden', true],
-  ['faint-hearted', 'fainthearted', true],
-  ['broken-hearted', 'brokenhearted', true],
-  ['light-hearted', 'lighthearted', true],
-  ['judgment-seat', 'judgment seat', true],
-  ['holy-days', 'holy days', true],
-  ['worship-house', 'worship house', true],
-  ['worship-houses', 'worship houses', true],
-  ['dining-room', 'dining room', true],
-  ['inn-keeper', 'innkeeper', true],
-  ['inn-keepers', 'innkeepers', true],
-  ["inn-keeper`'s", "innkeeper`'s", true],
-  ['re-establish', 'reestablish', true],
-  ['re-established', 'reestablished', true],
-  ['re-establishment', 'reestablishment', true],
-  ['re-establishing', 'reestablishing', true],
-  ['spiritually-minded', 'spiritually minded', true],
-  ['religiously-minded', 'religiously minded', true],
-  ['wo', 'woe', true],
-  ['Hope-well', 'Hopewell', false],
-  ['bishoprick', 'bishopric', true],
-  ['loving-kindness', 'lovingkindness', false],
-  ['Sion', 'Zion', false],
-  ['Sionward', 'Zionward', false],
-  ['Sion-ward', 'Zionward', false],
-  ['Zion-ward', 'Zionward', false],
-];
-
-const test = new RegExp(
-  `\\b${words.map(([obsolete]) => escape(obsolete)).join('|')}\\b`,
-  'i',
+const runner = new RegexLintRunner(
+  [
+    {
+      test: 'staid',
+      search: /\b(S|s)taid\b/g,
+      replace: '$1tayed',
+    },
+    {
+      replace: 'Melchizedek',
+      search: /\bMelchi(sedec|zedeck|sedek)\b/g,
+      test: 'Melchi',
+    },
+    {
+      test: 'connexion',
+      search: /\b(C|c)onnexion(s)?/g,
+      replace: '$1onnection$2',
+    },
+    {
+      test: 'behove',
+      search: /\b(B|b)ehove(s)?/g,
+      replace: '$1ehoove$2',
+    },
+    {
+      test: 'vail',
+      search: /\bvail(s|ed)?/g,
+      replace: 'veil$1',
+    },
+    {
+      test: 'gaol',
+      search: /\b(G|g)aol(er)?/g,
+      replace: (_, g, end) => `${g === 'G' ? 'J' : 'j'}ail${end || ''}`,
+    },
+    {
+      test: 'burthen',
+      search: /\b(B|b)urthen(s|some|ed)?/g,
+      replace: '$1urden$2',
+    },
+    {
+      test: 'stopt',
+      search: /\b(S|s)topt\b/g,
+      replace: '$1topped',
+    },
+    {
+      test: 'Corah',
+      search: /\bCorah\b/g,
+      replace: 'Korah',
+    },
+    {
+      test: 'Barbadoes',
+      search: /\bBarbadoes\b/g,
+      replace: 'Barbados',
+    },
+    {
+      test: 'ilful',
+      search: /\b(un)?(sk|w)ilful(ly|ness)\b/gi,
+      replace: '$1$2illful$3',
+    },
+    {
+      test: 'subtil',
+      search: /\b(S|s)ubtil(ty|ly)?\b/g,
+      replace: (_, s, end) => {
+        if (!end) return `${s}ubtle`;
+        if (end === 'ty') return `${s}ubtlety`;
+        return `${s}ubtly`;
+      },
+    },
+    {
+      test: 'fulfil',
+      search: /\b(F|f)ulfil\b/g,
+      replace: '$1ulfill',
+    },
+    {
+      test: 'hardheartedness',
+      search: /\b(H|h)ardheartedness\b/g,
+      replace: '$1ard-heartedness',
+    },
+    {
+      test: 'fellow-',
+      search: /\b(F|f)ellow-(creature|servant|traveller)(s)?\b/g,
+      replace: '$1ellow $2$3',
+    },
+    {
+      test: 'heavy-laden',
+      search: /\b(H|h)eavy-laden\b/g,
+      replace: '$1eavy laden',
+    },
+    {
+      test: '-hearted',
+      search: /\b((F|f)aint|(B|b)roken|(L|l)ight)-hearted\b/g,
+      replace: '$1hearted',
+    },
+    {
+      test: 'judgment-seat',
+      search: /\b(J|j)udgment-seat\b/g,
+      replace: '$1udgment seat',
+    },
+    {
+      test: 'sion',
+      search: /\bSion(-?wards?)?\b/g,
+      replace: (_, end) => `Zion${end ? end.replace(/^-/, '') : ''}`,
+    },
+    {
+      test: 'Zion-ward',
+      search: /\bZion-ward(s)?\b/g,
+      replace: 'Zionward$1',
+    },
+    {
+      test: 'holy-days',
+      search: /\b(H|h)oly-days\b/g,
+      replace: '$1oly days',
+    },
+    {
+      test: 'worship-house',
+      search: /\b(W|w)orship-house(s)?\b/g,
+      replace: '$1orship house$2',
+    },
+    {
+      test: 'inn-keeper',
+      search: /\b(I|i)nn-keeper(s)?\b/g,
+      replace: '$1nnkeeper$2',
+    },
+    {
+      test: 'dining-room',
+      search: /\b(D|d)ining-room(s)?\b/g,
+      replace: '$1ining room$2',
+    },
+    {
+      test: 're-establish',
+      search: /\b(R|r)e-establish(ed|ment|ing)?\b/g,
+      replace: '$1eestablish$2',
+    },
+    {
+      test: '-minded',
+      search: /\b((S|s)piritually|(R|r)eligiously)-minded\b/g,
+      replace: '$1 minded',
+    },
+    {
+      test: '\\bwo\\b',
+      search: /\b(W|w)o\b/g,
+      replace: '$1oe',
+    },
+    {
+      test: 'hope-well',
+      search: /\bHope-well\b/g,
+      replace: 'Hopewell',
+    },
+    {
+      test: 'bishoprick',
+      search: /\b(B|b)ishoprick\b/g,
+      replace: '$1ishopric',
+    },
+    {
+      test: 'loving-kindness',
+      search: /\b(L|l)oving-kindness\b/g,
+      replace: '$1ovingkindness',
+    },
+  ],
+  ruleSlug,
 );
 
 const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-  { lang }: LintOptions,
 ): LintResult[] => {
-  if (lang === 'es' || line === '') {
-    return [];
-  }
-
-  if (!line.match(test)) {
-    return [];
-  }
-
-  const results: LintResult[] = [];
-  words.forEach(([obsolete, corrected, caseInsensitive]) => {
-    const find = new RegExp(`\\b${obsolete}\\b`, caseInsensitive ? 'i' : '');
-    const match = line.match(find);
-    if (match && match.index !== undefined) {
-      const column = match.index + 1 + getColumnOffset(obsolete, corrected);
-      results.push(getLint(line, lineNumber, column, obsolete, corrected));
-    }
-  });
-
-  return results;
+  return runner.getLineLintResults(line, lineNumber);
 };
 
-const getSearch = memoize(
-  (obsolete: string): RegExp => {
-    const letters = obsolete.split('');
-    const first = letters.shift() || '';
-    const rest = letters.join('');
-    return new RegExp(
-      `\\b(${first.toUpperCase()}|${first.toLowerCase()})${rest}\\b`,
-      'g',
-    );
-  },
-);
-
-function getColumnOffset(obsolete: string, corrected: string): number {
-  for (let i = 0; i < obsolete.length; i++) {
-    if (corrected[i] !== obsolete[i]) {
-      return i;
-    }
-  }
-  return obsolete.length;
-}
-
-rule.slug = 'obsolete-spellings';
+rule.slug = ruleSlug;
 export default rule;
-
-function getLint(
-  line: Asciidoc,
-  lineNumber: number,
-  column: number,
-  obsolete: string,
-  corrected: string,
-): LintResult {
-  const search = getSearch(obsolete);
-  return {
-    line: lineNumber,
-    column,
-    type: 'error',
-    rule: rule.slug,
-    message: `"${obsolete}" should be replaced with "${corrected}" in all editions`,
-    fixable: true,
-    recommendation: line.replace(search, match => {
-      if (match[0].match(/[A-Z]/)) {
-        return ucfirst(corrected);
-      }
-      return corrected;
-    }),
-  };
-}
