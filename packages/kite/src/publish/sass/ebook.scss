@@ -1,19 +1,52 @@
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   letter-spacing: -0.01em;
   -webkit-hyphens: none;
   hyphens: none;
   word-wrap: break-word;
 }
 
-
 .own-page {
   -webkit-column-break-before: always;
   page-break-before: always;
 }
 
+/* cover */
+body.cover,
+body.cover figure {
+  height: 99%; /* 99% b/c legacy RMSDK applies blank page after if 100% */
+}
+
+body.cover figure {
+  margin: 0;
+  text-indent: 0;
+  text-align: center;
+}
+
+body.cover img {
+  width: auto;
+  max-width: 100%;
+  /* Note: KF8 doesn't support max-width hence "width: auto;" as fallback */
+  height: 100%;
+  /* We try to prevent blank page after */
+  max-height: 95%;
+  /* Max value iBooks enforces */
+}
+
+@supports (height: 99vh) {
+  body.cover,
+  body.cover figure,
+  body.cover image {
+    height: 99vh; /* 99% b/c legacy RMSDK applies blank page after if 100% */
+  }
+}
+
 /* front matter */
 .half-title-page {
-
   h1 {
     margin-top: 35%;
     text-align: center;
@@ -47,7 +80,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .copyright-page {
-
   ul {
     text-align: left;
     font-size: 0.4em;
@@ -113,7 +145,6 @@ h2 {
   margin-top: 0.5em;
 }
 
-
 /* paragraphs */
 .paragraph p {
   text-indent: 1.4em;
@@ -136,7 +167,6 @@ blockquote + .attribution {
   margin-top: -0.8em;
 }
 
-
 /* footnotes */
 sup {
   font-size: 0.675em;
@@ -145,16 +175,15 @@ sup {
   vertical-align: 35%;
 
   a::before {
-    content: "["
+    content: '[';
   }
 
   a::after {
-    content: "]"
+    content: ']';
   }
 }
 
 #footnotes {
-
   .footnote + .footnote {
     margin-top: 1.5em;
   }

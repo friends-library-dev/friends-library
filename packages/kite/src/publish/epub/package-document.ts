@@ -6,17 +6,16 @@ import { frontmatter } from './frontmatter';
 export function packageDocument(job: Job): Xml {
   const {
     id: jobId,
-    spec,
-    meta: { perform },
+    spec: {
+      lang,
+      revision: { timestamp },
+      meta: {
+        author: { name, nameSort },
+        title,
+      },
+    },
+    meta: { perform, createEbookCover: withCover },
   } = job;
-  const {
-    meta,
-    revision: { timestamp },
-  } = spec;
-  const {
-    author: { name, nameSort },
-    title,
-  } = meta;
   const modified = moment.utc(moment.unix(timestamp)).format('YYYY-MM-DDThh:mm:ss[Z]');
   const randomizer = ` (${moment().format('h:mm:ss')})`;
 
@@ -24,7 +23,7 @@ export function packageDocument(job: Job): Xml {
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id">
 <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <dc:language id="pub-language">${spec.lang}</dc:language>
+  <dc:language id="pub-language">${lang}</dc:language>
   <dc:identifier id="pub-id">friends-library/${
     perform ? jobId : Date.now()
   }</dc:identifier>
@@ -36,6 +35,7 @@ export function packageDocument(job: Job): Xml {
   <dc:rights>Public domain in the USA.</dc:rights>
   <meta property="file-as" refines="#author">${nameSort}</meta>
   <meta property="dcterms:modified">${modified}</meta>
+  ${withCover ? '<meta name="cover" content="cover-img" />' : ''}
 </metadata>
 <manifest>
   ${[...manifestItems(job)]
@@ -47,6 +47,11 @@ export function packageDocument(job: Job): Xml {
     .map(id => `<itemref idref="${id}"/>`)
     .join('\n  ')}
 </spine>
+${
+  withCover
+    ? '<guide><reference href="cover.xhtml" title="Cover" type="cover"/></guide>'
+    : ''
+}
 </package>
 `.trim();
 }
@@ -63,16 +68,36 @@ function attrs(data: Record<string, any>): string {
     .join(' ');
 }
 
-export function manifestItems(job: Job): Map<string, Record<string, any>> {
+interface Item {
+  href: string;
+  'media-type': 'text/css' | 'application/xhtml+xml' | 'image/png' | 'image/jpeg';
+  properties?: string;
+}
+
+export function manifestItems(job: Job): Map<string, Item> {
   const {
+    meta: { createEbookCover: withCover },
     spec: { sections, notes },
   } = job;
-  const items = new Map();
+  const items = new Map<string, Item>();
 
   items.set('css', {
     href: 'style.css',
     'media-type': 'text/css',
   });
+
+  if (withCover) {
+    items.set('cover-img', {
+      href: 'cover.png',
+      'media-type': 'image/png',
+      properties: 'cover-image',
+    });
+
+    items.set('cover', {
+      href: 'cover.xhtml',
+      'media-type': 'application/xhtml+xml',
+    });
+  }
 
   items.set('nav', {
     href: 'nav.xhtml',
@@ -106,13 +131,21 @@ export function manifestItems(job: Job): Map<string, Record<string, any>> {
 
 export function spineItems(job: Job): string[] {
   const {
+    meta: { createEbookCover: withCover },
     spec: { sections, notes },
   } = job;
+  console.log(withCover);
+
   let items = Object.keys(frontmatter(job));
   items = items.concat(sections.map(section => section.id));
 
   if (notes.size) {
     items.push('notes');
   }
+
+  if (withCover) {
+    items.unshift('cover');
+  }
+
   return items;
 }

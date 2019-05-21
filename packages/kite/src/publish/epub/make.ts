@@ -19,31 +19,30 @@ export function makeEpub(job: Job): Promise<DocumentArtifacts> {
     .then(() => artifacts);
 }
 
-export function writeEbookManifest(
+export async function writeEbookManifest(
   manifest: FileManifest,
   job: Job,
 ): Promise<DocumentArtifacts> {
   const { spec, target } = job;
   const zip = new Zip();
-  const promises = [];
+  const promises: (Promise<any>)[] = [];
 
-  Object.keys(manifest).forEach(path => {
-    zip.file(path, manifest[path]);
-    promises.push(
-      fs.outputFile(
-        `${PUBLISH_DIR}/_src_/${spec.filename}/${target}/${path}`,
-        manifest[path],
-      ),
-    );
+  Object.keys(manifest).forEach(relPath => {
+    const isImg = !!relPath.match(/\.png$/);
+    const contents = isImg ? fs.readFileSync(manifest[relPath]) : manifest[relPath];
+    const absPath = `${PUBLISH_DIR}/_src_/${spec.filename}/${target}/${relPath}`;
+    zip.file(relPath, contents);
+    promises.push(fs.outputFile(absPath, contents));
   });
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
   const basename = `${spec.filename}${target === 'mobi' ? '.mobi' : ''}.epub`;
   promises.push(fs.writeFile(`${PUBLISH_DIR}/${basename}`, binary, 'binary'));
-  return Promise.all(promises).then(() => ({
+  await Promise.all(promises);
+  return {
     filePath: `${PUBLISH_DIR}/${basename}`,
     srcDir: `${PUBLISH_DIR}/_src_/${spec.filename}/${target}`,
-  }));
+  };
 }
 
 function check(filename: string): Promise<void | Message[]> {

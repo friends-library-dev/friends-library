@@ -57,13 +57,24 @@ export function tocItems({ spec: { sections } }: Job): TocItem[] {
 }
 
 interface Landmark {
-  type: 'toc' | 'titlepage' | 'bodymatter';
-  href: 'nav.xhtml' | 'half-title.xhtml' | 'section1.xhtml';
+  type: 'toc' | 'titlepage' | 'bodymatter' | 'cover';
+  href: 'nav.xhtml' | 'half-title.xhtml' | 'section1.xhtml' | 'cover.xhtml';
   text: string;
 }
 
-export function landmarks({ target, meta: { frontmatter } }: Job): Landmark[] {
+export function landmarks({
+  target,
+  meta: { frontmatter, createEbookCover: withCover },
+}: Job): Landmark[] {
   const landmarkItems: Landmark[] = [];
+
+  if (withCover) {
+    landmarkItems.push({
+      type: 'cover',
+      href: 'cover.xhtml',
+      text: 'Cover',
+    });
+  }
 
   landmarkItems.push({
     type: 'titlepage',

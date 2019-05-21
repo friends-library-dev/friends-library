@@ -2,8 +2,8 @@ declare module 'node-zip' {
   export default class Zip {
     constructor();
     constructor(data: any, opts: { base64: boolean; checkCRC32: boolean });
-    file(path: string, content: string): void;
-    generate(opts: { base64: boolean; compression: 'DEFLATE' }): any;
+    file(path: string, content: string | Buffer, options?: Record<string, any>): void;
+    generate(opts: { base64?: boolean; compression?: 'DEFLATE' }): any;
   }
 }
 

@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import { extname } from 'path';
-import { exec } from 'child_process';
+import { exec, execSync } from 'child_process';
 import { Arguments } from 'yargs';
 import { lintPath, lintFixPath, createSourceSpec } from '@friends-library/asciidoc';
-import { red } from '@friends-library/cli/color';
+import { red, green } from '@friends-library/cli/color';
 import { printLints } from '../lint/handler';
 import { getPrecursors } from './precursors';
 import { makeEpub } from '../../publish/epub/make';
@@ -35,15 +35,34 @@ export interface PublishOptions {
   skipLint: boolean;
   fix: boolean;
   condense: boolean;
+  createEbookCover: boolean;
+  skipCoverBuild: boolean;
   printSize?: PrintSizeAbbrev;
 }
 
-export default function handler(argv: Arguments<PublishOptions>): void {
+export default async function handler(argv: Arguments<PublishOptions>): Promise<void> {
   if (argv.skipLint !== true) {
     lint(argv.path, argv.fix);
   }
+  const makeCover = argv.createEbookCover && argv.target.join('').match(/epub|mobi/);
+
+  if (makeCover) {
+    if (!argv.skipCoverBuild) {
+      green('Building cover app...');
+      execSync(`cd ${process.cwd()} && yarn cover:build`);
+    }
+    green('Serving cover app');
+    exec(`cd ${process.cwd()}/packages/kite && yarn serve -l 5111 ../cover/build`);
+    // give `serve` time to do it's thing
+    await new Promise(res => setTimeout(res, 2000));
+  }
+
   const precursors = getPrecursors(argv.path);
   publishPrecursors(precursors, argv);
+
+  if (makeCover) {
+    exec('lsof -t -i tcp:5111 | xargs kill');
+  }
 }
 
 export function publishPrecursors(
@@ -72,6 +91,7 @@ function extractMeta(argv: PublishOptions): JobMeta {
     check: argv.check,
     frontmatter: !argv.noFrontmatter,
     condense: argv.condense,
+    createEbookCover: argv.createEbookCover,
     ...(argv.printSize ? { printSize: argv.printSize } : {}),
   };
 }

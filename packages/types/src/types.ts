@@ -60,6 +60,7 @@ export type JobMeta = Readonly<{
   frontmatter: boolean;
   printSize?: PrintSizeAbbrev;
   condense: boolean;
+  createEbookCover: boolean;
 }>;
 
 export interface AsciidocConversionLog {

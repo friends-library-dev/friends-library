@@ -1,14 +1,14 @@
 import { Html } from '@friends-library/types';
 
-export function wrapHtml(html: Html): Html {
+export function wrapHtml(html: Html, className: string = ''): Html {
   return `
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="en" lang="en">
-  <head>
+  <head${className ? ` class="${className}"` : ''}>
     <meta charset="UTF-8"/>
     <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
-  <body>
+  <body${className ? ` class="${className}"` : ''}>
     ${html.trim()}
   </body>
 </html>`.trim();

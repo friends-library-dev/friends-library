@@ -23,6 +23,17 @@ export const builder: (args: Argv) => Argv = function(yargs) {
       describe: '@todo -- rethink this param',
       default: false,
     })
+    .option('create-ebook-cover', {
+      alias: 'v',
+      type: 'boolean',
+      describe: 'create and insert ebook cover image',
+      default: false,
+    })
+    .option('skip-cover-build', {
+      type: 'boolean',
+      describe: 'skip the cover build step: `yarn cover:build`',
+      default: false,
+    })
     .option('open', {
       alias: 'o',
       type: 'boolean',

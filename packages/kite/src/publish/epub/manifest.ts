@@ -1,5 +1,6 @@
 import { replaceHeadings } from '@friends-library/asciidoc';
 import { flow, mapValues } from 'lodash';
+import fs from 'fs';
 import { Xml, Css, Html } from '@friends-library/types';
 import { Job, FileManifest } from '@friends-library/types';
 import { toCss } from '../file';
@@ -24,6 +25,7 @@ export function getEbookManifest(job: Job): FileManifest {
     'OEBPS/style.css': css(job),
     'OEBPS/package-document.opf': packageDocument(job),
     'OEBPS/nav.xhtml': wrapHtml(nav(job)),
+    ...coverFiles(job),
     ...sectionFiles(job),
     ...notesFile(job),
     ...frontmatterFiles(job),
@@ -38,6 +40,18 @@ function frontmatterFiles(job: Job): SubManifest<Html> {
     },
     {} as SubManifest<Html>,
   );
+}
+
+function coverFiles(job: Job): SubManifest<Html> {
+  const manifest: SubManifest<Html> = {};
+  if (job.meta.createEbookCover) {
+    manifest['OEBPS/cover.png'] = `${__dirname}/cover.png`;
+    manifest['OEBPS/cover.xhtml'] = wrapHtml(
+      '<figure id="cover"><img alt="Cover" src="cover.png"/></figure>',
+      'cover',
+    );
+  }
+  return manifest;
 }
 
 function sectionFiles(job: Job): SubManifest<Html> {
