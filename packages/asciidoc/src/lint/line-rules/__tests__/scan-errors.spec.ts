@@ -11,7 +11,7 @@ describe('scanErrors()', () => {
       column: 12,
       type: 'error',
       rule: 'scan-errors',
-      message: '"lime/s" is often a scanning error and should be corrected to "time/s"',
+      message: '"lime" is often a scanning error and should be corrected to "time"',
       fixable: false,
       recommendation: 'For a long time I was sad',
     });

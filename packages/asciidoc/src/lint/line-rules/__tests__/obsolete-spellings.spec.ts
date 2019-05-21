@@ -33,11 +33,6 @@ describe('obsoleteSpellings()', () => {
     ['the subtilty of the serpent', 'the subtlety of the serpent'],
     ['subtilly crept in', 'subtly crept in'],
     ['The hardheartedness was', 'The hard-heartedness was'],
-    ['My fellow-creatures', 'My fellow creatures'],
-    ['Fellow-creatures are', 'Fellow creatures are'],
-    ['faint-hearted foo', 'fainthearted foo'],
-    ['broken-hearted foo', 'brokenhearted foo'],
-    ['light-hearted foo', 'lighthearted foo'],
     ['Aaron, but of Melchisedec;', 'Aaron, but of Melchizedek;'],
     ['Aaron, but of Melchizedeck;', 'Aaron, but of Melchizedek;'],
     ['Aaron, but of Melchisedek;', 'Aaron, but of Melchizedek;'],
@@ -54,15 +49,10 @@ describe('obsoleteSpellings()', () => {
     ['with burthens hard to', 'with burdens hard to'],
     ['the burthen-bearers', 'the burden-bearers'],
     ['foo burthens--each', 'foo burdens--each'],
-    ['the judgment-seat of', 'the judgment seat of'],
     ["of Sion`'s true", "of Zion`'s true"],
     ['welfare of Sion to', 'welfare of Zion to'],
     ['their faces Sion-ward,', 'their faces Zionward,'],
-    ['their faces Zion-ward,', 'their faces Zionward,'],
-    ["foo inn-keeper`'s bar", "foo innkeeper`'s bar"],
-    ['some spiritually-minded people', 'some spiritually minded people'],
     ['Wo! to you!', 'Woe! to you!'],
-    ['my fellow-servants', 'my fellow servants'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {

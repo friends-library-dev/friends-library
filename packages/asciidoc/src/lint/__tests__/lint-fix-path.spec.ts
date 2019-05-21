@@ -33,7 +33,7 @@ describe('lintFixPath()', () => {
 
     const fixed = fs.readFileSync(`${dir}/test.adoc`).toString();
     expect(fixed).toBe(`${expected}\n`);
-    expect(numFixed).toBe(10);
+    expect(numFixed).toBe(11);
 
     expect(unfixable.get(`${dir}/test.adoc`)!.lints).toHaveLength(1);
     expect(unfixable.get(`${dir}/test.adoc`)!.lints![0]).toMatchObject({

@@ -11,7 +11,7 @@ describe('modernizeWords()', () => {
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
-      column: 7,
+      column: 12,
       type: 'error',
       rule: 'modernize-words',
       message: '"amongst" should be replaced with "among" in modernized editions',
@@ -22,7 +22,7 @@ describe('modernizeWords()', () => {
 
   const violations: [string, string][] = [
     ['Amongst a rude mob', 'Among a rude mob'],
-    ['Amongst friends and amongst enemies', 'Among friends and among enemies'],
+    ['and amongst enemies', 'and among enemies'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {
@@ -54,5 +54,31 @@ describe('modernizeWords()', () => {
     expect(results[0].message).toBe(
       '"Zionward" is often (but not always!) better "towards Zion" in modernized editions',
     );
+  });
+
+  it('creates a lint to replace "intercourse"', () => {
+    const results = modernizeWords('In their intercourse with', [], 1, opts);
+    expect(results).toHaveLength(1);
+    expect(results[0]).toEqual({
+      line: 1,
+      column: 10,
+      type: 'error',
+      rule: 'modernize-words',
+      message:
+        '"intercourse" should be replaced in modernized editions (communication, interaction, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
+      fixable: false,
+    });
+  });
+
+  const ejacCases = [
+    'The following ejaculations were found',
+    "He ejaculated: '`O Lord, thou art good",
+    'expressed a short ejaculation to this effect:',
+    'he was heard to ejaculate to this effect:',
+    'often ejaculating with earnestness, "`O blessed Saviour',
+  ];
+
+  test.each(ejacCases)('%s is a lint vilation', adoc => {
+    expect(modernizeWords(adoc, [], 1, opts)).toHaveLength(1);
   });
 });

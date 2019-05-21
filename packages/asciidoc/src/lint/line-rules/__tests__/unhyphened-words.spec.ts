@@ -11,8 +11,7 @@ describe('unhyphenedWords()', () => {
       column: 3,
       type: 'error',
       rule: 'unhyphened-words',
-      message:
-        'Archaic hyphenations (like to-day and to-morrow) should be replaced with modern spelling.',
+      message: '"To-day" should be replaced with "Today" in all editions',
       fixable: true,
       recommendation: 'Today foo',
     });
@@ -43,6 +42,16 @@ describe('unhyphenedWords()', () => {
     ['foo anti-christ bar', 'foo antichrist bar'],
     ['foo anti-Christ bar', 'foo antichrist bar'],
     ['Anti-christ foo', 'Antichrist foo'],
+    ['My fellow-creatures', 'My fellow creatures'],
+    ['Fellow-creatures are', 'Fellow creatures are'],
+    ['my fellow-servants', 'my fellow servants'],
+    ['their faces Zion-ward,', 'their faces Zionward,'],
+    ['faint-hearted foo', 'fainthearted foo'],
+    ['broken-hearted foo', 'brokenhearted foo'],
+    ['light-hearted foo', 'lighthearted foo'],
+    ["foo inn-keeper`'s bar", "foo innkeeper`'s bar"],
+    ['the judgment-seat of', 'the judgment seat of'],
+    ['some spiritually-minded people', 'some spiritually minded people'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {

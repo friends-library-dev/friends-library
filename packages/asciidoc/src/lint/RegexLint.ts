@@ -13,25 +13,33 @@ export interface RegexLintOptions {
   fixable: boolean | FixableFn;
   langs: Lang[];
   editions: EditionType[];
+  messagePattern: string;
+  recommend: boolean;
 }
 
 export interface RegexLintData {
   search: RegExp;
   test: string;
-  replace: string | ReplacerFn;
+  replace?: string | ReplacerFn;
+  allowIfNear?: RegExp;
 }
 
 export default class RegexLint {
   protected defaults: RegexLintOptions = {
     isMaybe: false,
     fixable: true,
-    langs: ['en', 'es'],
+    langs: ['en'],
     editions: ['original', 'modernized', 'updated'],
+    messagePattern: '"<found>" <shouldBecome> "<fixed>" <inContext>',
+    recommend: true,
   };
 
   protected data: RegexLintData & RegexLintOptions;
   public search: RegExp;
   public isMaybe: boolean;
+  public langs: Lang[];
+  public editions: EditionType[];
+  public allowIfNear?: RegExp;
 
   /**
    * Quick and dirty test to see if we should run the full
@@ -44,6 +52,9 @@ export default class RegexLint {
     this.search = this.data.search;
     this.isMaybe = this.data.isMaybe;
     this.test = this.data.test;
+    this.langs = this.data.langs;
+    this.editions = this.data.editions;
+    this.allowIfNear = this.data.allowIfNear;
   }
 
   public isFixable(): boolean {
@@ -52,17 +63,27 @@ export default class RegexLint {
   }
 
   public message(found: string): string {
-    const action = this.isMaybe
+    const fixed = this.execReplace(found);
+    const shouldBecome = this.isMaybe
       ? 'is often (but not always!) better'
       : 'should be replaced with';
-    let msg = `"${found}" ${action} "${this.execReplace(found)}"`;
-    if (this.data.editions.length === 3) {
-      return `${msg} in all editions`;
+    let inContext = 'in all editions';
+    if (this.data.editions.length < 3) {
+      inContext = `in ${this.data.editions.join(' and ')} editions`;
     }
-    return `${msg} in ${this.data.editions.join(' and ')} editions`;
+    return this.data.messagePattern
+      .replace('<found>', found)
+      .replace('<shouldBecome>', shouldBecome)
+      .replace('<fixed>', fixed)
+      .replace('<inContext>', inContext)
+      .trim();
   }
 
-  public recommendation(match: RegExpMatchArray): string {
+  public recommendation(match: RegExpMatchArray): string | undefined {
+    if (!this.data.recommend) {
+      return;
+    }
+
     const line = match.input || '';
     const index = match.index || 0;
     const parts = [
@@ -74,7 +95,8 @@ export default class RegexLint {
   }
 
   private execReplace(str: string): string {
+    const { replace } = this.data;
     // @ts-ignore https://github.com/microsoft/TypeScript/issues/29789
-    return str.replace(this.search, this.data.replace);
+    return str.replace(this.search, replace === undefined ? '???' : replace);
   }
 }
