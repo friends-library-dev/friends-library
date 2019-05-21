@@ -1,67 +1,55 @@
 import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import { LineRule } from '../types';
+import RegexLintRunner from '../RegexLintRunner';
+
+const runner = new RegexLintRunner(
+  [
+    {
+      test: 'amongst',
+      search: /\b(A|a)mongst\b/g,
+      replace: '$1mong',
+      fixable: true,
+    },
+    {
+      test: 'zionward',
+      search: /\bZionward(s?)\b/g,
+      replace: 'towards Zion',
+      isMaybe: true,
+      fixable: false,
+    },
+    {
+      test: 'intercourse',
+      search: /\b(I|i)ntercourse\b/g,
+      recommend: false,
+      fixable: false,
+      messagePattern:
+        '"<found>" should be replaced in modernized editions (communication, interaction, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
+    },
+    {
+      test: 'ejaculat',
+      search: /\b(E|e)jaculat(ed?|ions?|ing)\b/g,
+      recommend: false,
+      fixable: false,
+      messagePattern:
+        '"<found>" should be replaced in modernized editions (exclamation, utterance, etc.)',
+    },
+  ],
+  { langs: ['en'], editions: ['modernized'] },
+);
 
 const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-  { lang, editionType, maybe }: LintOptions,
+  lintOptions: LintOptions,
 ): LintResult[] => {
-  if (lang === 'es' || editionType !== 'modernized' || line === '') {
+  if (lintOptions.lang !== 'en' || lintOptions.editionType !== 'modernized') {
     return [];
   }
-
-  // prettier-ignore
-  const words: [RegExp, string, string, string, boolean, boolean][] = [
-    [
-      /\b(A|a)mongst\b/g,
-      'amongst',
-      'among',
-      '$1mong',
-      FIXABLE,
-      ALWAYS,
-    ],
-    [
-      /\bZionward(s?)\b/g,
-      'Zionward',
-      'towards Zion',
-      'towards Zion',
-      NOT_FIXABLE,
-      MAYBE,
-    ]
-  ];
-
-  const results: LintResult[] = [];
-  words.forEach(([pattern, archaic, updated, replace, fixable, onlyMaybe]) => {
-    if (onlyMaybe === true && maybe !== true) {
-      return;
-    }
-
-    const match = line.match(pattern);
-    const action = onlyMaybe
-      ? 'is often (but not always!) better'
-      : 'should be replaced with';
-
-    if (match) {
-      results.push({
-        line: lineNumber,
-        column: line.indexOf(match[0]) + 1,
-        type: 'error',
-        rule: rule.slug,
-        fixable,
-        message: `"${archaic}" ${action} "${updated}" in modernized editions`,
-        recommendation: line.replace(pattern, replace),
-      });
-    }
-  });
-
-  return results;
+  return runner.getLineLintResults(line, lineNumber, lintOptions);
 };
 
 rule.slug = 'modernize-words';
-export default rule;
+runner.rule = rule.slug;
 
-const FIXABLE = true;
-const NOT_FIXABLE = false;
-const MAYBE = true;
-const ALWAYS = false;
+export default rule;

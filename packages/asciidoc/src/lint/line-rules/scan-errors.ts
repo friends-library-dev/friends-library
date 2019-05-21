@@ -1,118 +1,94 @@
 import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import { LineRule } from '../types';
+import RegexLintRunner from '../RegexLintRunner';
+
+const runner = new RegexLintRunner(
+  [
+    {
+      test: 'lime|limes', // --> be
+      search: /\blime(s)?\b/g,
+      replace: 'time$1',
+      allowIfNear: /(lemon|orange|kiln|fruit|manure|white|stone|juice|chloride)/i,
+    },
+    {
+      test: 'wc', // --> we
+      search: /\b(W|w)c\b/g,
+      replace: '$1e',
+    },
+    {
+      test: 'bo', // --> be
+      search: /\b(B|b)o\b/g,
+      replace: '$1e',
+    },
+    {
+      test: 'T', // --> I
+      search: /( |^)(T|t) /g,
+      replace: '$1I ',
+    },
+    {
+      test: 'ray', // --> my
+      search: /\bray\b/g,
+      replace: 'my',
+      allowIfNear: /\b(ray of|gloom|sum)\b/i,
+    },
+    {
+      test: 'arid', // --> and
+      search: /\b(A|a)rid\b/g,
+      replace: '$1nd',
+      allowIfNear: /\b(dry|desert|parch)/i,
+    },
+    {
+      test: 'arc', // --> are
+      search: /\b(A|a)rc\b/g,
+      replace: '$1re',
+      allowIfNear: /\b(joan|jeanne)\b/i,
+    },
+    {
+      test: 'fife', // --> life
+      search: /\bfife\b/g,
+      replace: 'life',
+    },
+    {
+      test: 'Fie', // --> He
+      search: /\bFie\b/g,
+      replace: 'He',
+    },
+    {
+      test: 'sec', // --> see
+      search: /\b(S|s)ec(?!\.)\b/g,
+      replace: '$1ee',
+    },
+    {
+      test: 'aud', // --> and
+      search: /\b(A|a)ud\b/g,
+      replace: '$1nd',
+    },
+    {
+      test: 'mc', // --> me
+      search: /\bmc\b/g,
+      replace: 'me',
+    },
+  ].map(d => ({ ...d, test: `\\b${d.test}\\b` })),
+  {
+    fixable: false,
+    messagePattern:
+      '"<found>" is often a scanning error and should be corrected to "<fixed>"',
+  },
+);
 
 const rule: LineRule = (
   line: Asciidoc,
   lines: Asciidoc[],
   lineNumber: number,
-  { lang }: LintOptions,
+  lintOptions: LintOptions,
 ): LintResult[] => {
-  if (lang === 'es' || !line.length) {
+  if (lintOptions.lang !== 'en') {
     return [];
   }
-
-  // prettier-ignore
-  const sets = [
-    [
-      /\blime(s)?\b/,
-      'time$1',
-      'lime/s',
-      'time/s',
-      /(lemon|orange|kiln|fruit|manure|white|stone|juice|chloride)/i,
-    ],
-    [
-      /\b(w)c\b/i,
-      '$1e',
-      'wc',
-      'we',
-    ],
-    [
-      /\b(b)o\b/i,
-      '$1e',
-      'bo',
-      'be',
-    ],
-    [
-      /( |^)(T|t) /i,
-      '$1I ',
-      'T/t',
-      'I',
-    ],
-    [
-      /\b(r)ay\b/,
-      'my',
-      'ray',
-      'my',
-      /(ray of|gloom|sun)/,
-    ],
-    [
-      /\b(a)rid\b/i,
-      '$1nd',
-      'arid',
-      'and',
-      /dry|desert|parch/i,
-    ],
-    [
-      /\b(a)rc\b/i,
-      '$1re',
-      'arc',
-      'are',
-      /joan|jeanne/i,
-    ],
-    [
-      /\bfife\b/,
-      'life',
-      'fife',
-      'life',
-    ],
-    [
-      /\bFie\b/,
-      'He',
-      'Fie',
-      'He',
-    ],
-    [
-      /\bmc\b/,
-      'me',
-      'mc',
-      'me'
-    ],
-    [
-      /\b(A|a)ud\b/,
-      '$1nd',
-      'aud',
-      'and',
-    ],
-    [
-      /\b(s|S)ec(?!\.)\b/,
-      '$1ee',
-      'sec',
-      'see',
-    ]
-  ];
-
-  const results: LintResult[] = [];
-  sets.forEach(([find, replace, err, fix, allowIfNear]) => {
-    const match = line.match(find);
-    if (!match || match.index === undefined) {
-      return;
-    }
-    if (allowIfNear instanceof RegExp && line.match(allowIfNear)) {
-      return;
-    }
-    results.push({
-      line: lineNumber,
-      column: match.index + 1,
-      rule: rule.slug,
-      type: 'error',
-      message: `"${err}" is often a scanning error and should be corrected to "${fix}"`,
-      recommendation: line.replace(find, replace as string),
-      fixable: false,
-    });
-  });
-
-  return results;
+  return runner.getLineLintResults(line, lineNumber, lintOptions);
 };
 
 rule.slug = 'scan-errors';
+runner.rule = rule.slug;
+
 export default rule;

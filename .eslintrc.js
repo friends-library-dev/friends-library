@@ -15,6 +15,7 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-parameter-properties': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
+    'no-unused-vars': 'off',
     camelcase: 'off',
     '@typescript-eslint/camelcase': [
       'error',
