@@ -56,11 +56,15 @@ function mapDocuments(friend: Friend): FriendData['documents'] {
       description: document.description,
       customCss,
       customHtml,
-      editions: document.editions.map(edition => ({
-        type: friend.lang === 'es' ? 'spanish' : edition.type,
-        ...(edition.isbn ? { isbn: edition.isbn } : {}),
-        ...estimatePages(edition),
-      })),
+      editions: document.editions.map(edition => {
+        const type = friend.lang === 'es' ? 'spanish' : edition.type;
+        return {
+          id: `${friend.slug}/${document.slug}/${type}`,
+          type,
+          ...(edition.isbn ? { isbn: edition.isbn } : {}),
+          ...estimatePages(edition),
+        };
+      }),
     };
   });
 }

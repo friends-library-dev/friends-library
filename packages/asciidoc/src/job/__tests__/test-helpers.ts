@@ -22,6 +22,7 @@ export function precursor(
     adoc,
     meta: {
       title: 'Test Doc',
+      coverId: '',
       author: {
         name: 'George Fox',
         nameSort: 'Fox, George',

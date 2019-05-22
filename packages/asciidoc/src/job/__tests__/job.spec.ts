@@ -103,6 +103,7 @@ describe('createPrecursor()', () => {
       originalTitle: 'Olde Title',
       published: 1655,
       editor: 'Jared Henderson',
+      coverId: '',
       author: {
         name: 'George Fox',
         nameSort: 'Fox, George',

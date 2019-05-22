@@ -24,6 +24,7 @@ export function createPrecursor(
     adoc: data.adoc || '',
     meta: {
       title: 'Unknown Document',
+      coverId: '',
       author: {
         name: get(data, 'meta.author.name', 'Unknown Author'),
         nameSort: get(data, 'meta.author.nameSort', 'Author, Unknown'),
