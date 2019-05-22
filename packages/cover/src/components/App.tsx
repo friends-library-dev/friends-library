@@ -70,6 +70,8 @@ export default class App extends React.Component<{}, State> {
     const query = new URLSearchParams(window.location.search);
     if (query.get('capture') === 'ebook') {
       this.setState({ capture: true, mode: 'ebook', fit: false });
+    } else {
+      this.setState({ capture: false });
     }
     if (query.has('id')) {
       this.setState(this.selectCover(query.get('id') || ''));
