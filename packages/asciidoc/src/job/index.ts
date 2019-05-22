@@ -39,6 +39,7 @@ export function createJob(data: { [k in keyof Job]?: any } = {}): Job {
     perform: false,
     condense: false,
     frontmatter: true,
+    createEbookCover: false,
   };
   return {
     id: uuid(),

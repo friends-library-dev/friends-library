@@ -40,8 +40,13 @@ export const builder: (args: Argv) => Argv = function(yargs) {
       describe: 'send documents via email',
       default: false,
     })
-    .option('email', {
+    .option('create-ebook-cover', {
       alias: 'e',
+      type: 'boolean',
+      describe: 'create ebook cover',
+      default: false,
+    })
+    .option('email', {
       type: 'string',
       describe: 'email address to send to',
       default: false,

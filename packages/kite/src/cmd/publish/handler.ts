@@ -35,6 +35,7 @@ export interface PublishOptions {
   skipLint: boolean;
   fix: boolean;
   condense: boolean;
+  createEbookCover: boolean;
   printSize?: PrintSizeAbbrev;
 }
 
@@ -72,6 +73,7 @@ function extractMeta(argv: PublishOptions): JobMeta {
     check: argv.check,
     frontmatter: !argv.noFrontmatter,
     condense: argv.condense,
+    createEbookCover: argv.createEbookCover,
     ...(argv.printSize ? { printSize: argv.printSize } : {}),
   };
 }
