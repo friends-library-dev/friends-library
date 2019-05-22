@@ -6,20 +6,20 @@ import { Job, FileManifest, DocumentArtifacts } from '@friends-library/types';
 import { getEpubManifest } from './manifest';
 import { PUBLISH_DIR } from '../file';
 
-export function makeEpub(job: Job): Promise<DocumentArtifacts> {
-  const manifest = getEpubManifest(job);
-  let artifacts: DocumentArtifacts;
-  return writeEbookManifest(manifest, job)
-    .then(ebookArtifacts => (artifacts = ebookArtifacts))
-    .then(() => (job.meta.check ? check(job.spec.filename) : undefined))
-    .catch((messages: Message[]) => {
-      logEpubCheckFail(job.filename, messages);
+export async function makeEpub(job: Job): Promise<DocumentArtifacts> {
+  const manifest = await getEpubManifest(job);
+  const artifacts = await writeEbookManifest(manifest, job);
+  if (job.meta.check) {
+    const check = await epubCheck(`${PUBLISH_DIR}/_src_/${job.spec.filename}/epub`);
+    if (!check.pass) {
+      logEpubCheckFail(job.filename, check.messages);
       process.exit(1);
-    })
-    .then(() => artifacts);
+    }
+  }
+  return artifacts;
 }
 
-export function writeEbookManifest(
+export async function writeEbookManifest(
   manifest: FileManifest,
   job: Job,
 ): Promise<DocumentArtifacts> {
@@ -40,18 +40,11 @@ export function writeEbookManifest(
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
   const basename = `${spec.filename}${target === 'mobi' ? '.mobi' : ''}.epub`;
   promises.push(fs.writeFile(`${PUBLISH_DIR}/${basename}`, binary, 'binary'));
-  return Promise.all(promises).then(() => ({
+  await Promise.all(promises);
+  return {
     filePath: `${PUBLISH_DIR}/${basename}`,
     srcDir: `${PUBLISH_DIR}/_src_/${spec.filename}/${target}`,
-  }));
-}
-
-function check(filename: string): Promise<void | Message[]> {
-  return new Promise((resolve, reject) => {
-    epubCheck(`${PUBLISH_DIR}/_src_/${filename}/epub`).then(result =>
-      result.pass ? resolve() : reject(result.messages),
-    );
-  });
+  };
 }
 
 function logEpubCheckFail(filename: string, warnings: Message[]): void {

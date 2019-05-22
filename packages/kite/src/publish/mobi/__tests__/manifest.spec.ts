@@ -2,8 +2,8 @@ import { createJob } from '@friends-library/asciidoc';
 import { getMobiManifest } from '../manifest';
 
 describe('getMobiManifest()', () => {
-  it('should change meta charset to mobi-format', () => {
-    const manifest = getMobiManifest(createJob());
+  it('should change meta charset to mobi-format', async () => {
+    const manifest = await getMobiManifest(createJob());
 
     Object.keys(manifest).forEach(key => {
       expect(manifest[key]).not.toContain('<meta charset="UTF-8"/>');
