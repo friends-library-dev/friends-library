@@ -40,7 +40,6 @@ describe('invalidCharacters()', () => {
 
   const allowed = [
     ['Jim jam.'],
-    ['// lint-disable invalid-characters\n• foo'],
     ['<<<<<<<'], // caught by `git-conflict-marker`
     ['>>>>>>>'], // caught by `git-conflict-marker`
   ];
