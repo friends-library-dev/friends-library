@@ -27,6 +27,7 @@ export function testPrecursor(adoc?: Asciidoc): SourcePrecursor {
     adoc: adoc || '== C1\n\nPara.\n\n== C2\n\nPara.footnote:[A note.]',
     meta: {
       title: 'Test Doc',
+      coverId: '',
       author: {
         name: 'George Fox',
         nameSort: 'Fox, George',

@@ -112,6 +112,7 @@ export type DocumentRevision = Readonly<{
 
 export type DocumentMeta = Readonly<{
   title: string;
+  coverId: string;
   originalTitle?: string;
   published?: number;
   isbn?: ISBN;

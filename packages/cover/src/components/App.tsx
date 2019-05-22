@@ -71,6 +71,35 @@ export default class App extends React.Component<{}, State> {
     if (query.get('capture') === 'ebook') {
       this.setState({ capture: true, mode: 'ebook', fit: false });
     }
+    if (query.has('id')) {
+      this.setState(this.selectCover(query.get('id') || ''));
+    }
+  }
+
+  protected selectCover(
+    id: string,
+  ): {
+    friendIndex: number;
+    docIndex: number;
+    edIndex: number;
+  } {
+    for (let friendIndex = 0; friendIndex < friendData.length; friendIndex++) {
+      const friend = friendData[friendIndex];
+      for (let docIndex = 0; docIndex < friend.documents.length; docIndex++) {
+        const doc = friend.documents[docIndex];
+        for (let edIndex = 0; edIndex < doc.editions.length; edIndex++) {
+          const ed = doc.editions[edIndex];
+          if (ed.id === id) {
+            return {
+              friendIndex,
+              docIndex,
+              edIndex,
+            };
+          }
+        }
+      }
+    }
+    throw new Error(`Cover with ${id} not found`);
   }
 
   protected selectedEntities(): {

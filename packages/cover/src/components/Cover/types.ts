@@ -9,6 +9,7 @@ import {
 } from '@friends-library/types';
 
 export interface EditionData {
+  id: string;
   type: EditionType | 'spanish';
   pages: Record<PrintSizeAbbrev, number>;
   defaultSize: PrintSizeAbbrev;
