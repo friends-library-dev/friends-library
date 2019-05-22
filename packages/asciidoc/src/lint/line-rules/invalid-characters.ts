@@ -13,10 +13,6 @@ const rule: LineRule = (
     return [];
   }
 
-  if (isSuppressed(lines, lineNumber)) {
-    return [];
-  }
-
   if (gitConflictMarkers(line, lines, lineNumber, options).length) {
     return [];
   }
@@ -99,14 +95,6 @@ function nbsp(line: Asciidoc, column: number): Asciidoc {
     return `${line.substring(0, column - 1)}${line.substring(column)}`;
   }
   return `${line.substring(0, column - 1)} ${line.substring(column)}`;
-}
-
-function isSuppressed(lines: Asciidoc[], lineNumber: number): boolean {
-  const prevLine = lines[lineNumber - 2];
-  if (!prevLine || prevLine[0] !== '/') {
-    return false;
-  }
-  return !!prevLine.match(/^\/\/ lint-disable .*invalid-characters/);
 }
 
 // performance sort of matters here, because we're checking every character

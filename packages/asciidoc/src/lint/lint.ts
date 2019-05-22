@@ -21,7 +21,7 @@ export default function lint(
       }
 
       lineRules.forEach(rule => {
-        if (runRule(rule, options)) {
+        if (runRule(rule, options, lines[index - 1])) {
           const ruleResults = rule(line, lines, index + 1, options);
           ruleResults.forEach(result => acc.push(result));
         }
@@ -45,10 +45,18 @@ export default function lint(
   return [...lineResults, ...blockResults];
 }
 
-function runRule(rule: LineRule | BlockRule, options: LintOptions): boolean {
+function runRule(
+  rule: LineRule | BlockRule,
+  options: LintOptions,
+  prevLine?: Asciidoc,
+): boolean {
   const { include, exclude } = options;
 
   if (rule.maybe && !options.maybe && !(include || []).includes(rule.slug)) {
+    return false;
+  }
+
+  if (disabledByComment(rule.slug, prevLine)) {
     return false;
   }
 
@@ -65,6 +73,14 @@ function runRule(rule: LineRule | BlockRule, options: LintOptions): boolean {
   }
 
   return true;
+}
+
+function disabledByComment(ruleSlug: string, prevLine?: Asciidoc): boolean {
+  return !!(
+    prevLine &&
+    prevLine[0] === '/' &&
+    prevLine.match(new RegExp(`^// lint-disable .*${ruleSlug}`))
+  );
 }
 
 function isLintComment(line: Asciidoc): boolean {

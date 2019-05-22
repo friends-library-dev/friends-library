@@ -107,4 +107,19 @@ describe('lint()', () => {
         'Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. `// lint-disable invalid-characters`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with `--lint-ignore` to disable this lint warning)',
     });
   });
+
+  it('allows disabling of next line with lint-disable comment', () => {
+    const adoc = stripIndent(`
+      == Ch 1
+
+      // lint-disable consecutive-spaces
+      Foo    bar.
+
+      // lint-disable invalid-characters
+      Foo • bar.
+    `).trim();
+
+    const results = lint(`${adoc}\n`);
+    expect(results).toHaveLength(0);
+  });
 });
