@@ -21,6 +21,7 @@ import CodeEditor from './CodeEditor';
 import './App.css';
 
 type View = 'front' | 'spine' | 'back' | 'angle-front' | 'angle-back';
+export type Mode = '2d' | '3d' | 'ebook';
 
 interface State {
   friendIndex: number;
@@ -30,7 +31,7 @@ interface State {
   showGuides: boolean;
   maskBleed: boolean;
   showCode: boolean;
-  threeD: boolean;
+  mode: Mode;
   threeDView: View;
   customBlurbs: Record<string, string>;
   customHtml: Record<string, string>;
@@ -46,7 +47,7 @@ export default class App extends React.Component<{}, State> {
     showGuides: false,
     showCode: false,
     maskBleed: true,
-    threeD: true,
+    mode: '3d',
     threeDView: 'angle-front',
     customBlurbs: {},
     customCss: {},
@@ -85,13 +86,13 @@ export default class App extends React.Component<{}, State> {
   }
 
   protected coverProps(): CoverProps | undefined {
-    const { showGuides } = this.state;
+    const { showGuides, mode } = this.state;
     const { friend, doc, ed } = this.selectedEntities();
     if (!friend || !doc || !ed) return;
     return {
       author: friend.name,
       title: prepareTitle(doc.title, friend.name),
-      printSize: ed.defaultSize,
+      size: mode === 'ebook' ? 'xl' : ed.defaultSize,
       pages: ed.pages[ed.defaultSize],
       edition: ed.type,
       blurb: formatBlurb(this.getBlurb(friend, doc)),
@@ -160,8 +161,8 @@ export default class App extends React.Component<{}, State> {
 
   protected clickCover: (e: any) => void = e => {
     if (e.target.contentEditable === 'true') return;
-    const { threeD, threeDView } = this.state;
-    if (!threeD) return;
+    const { mode, threeDView } = this.state;
+    if (mode !== '3d') return;
     const next: { [k in View]: View } = {
       front: 'angle-front',
       'angle-front': 'spine',
@@ -306,13 +307,13 @@ export default class App extends React.Component<{}, State> {
       fit,
       showGuides,
       maskBleed,
-      threeD,
       threeDView,
       showCode,
+      mode,
     } = this.state;
     const coverProps = this.coverProps();
     return (
-      <div className={`App web trim--${coverProps ? coverProps.printSize : 'm'}`}>
+      <div className={`App web trim--${coverProps ? coverProps.size : 'm'}`}>
         <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
         <KeyEvent handleKeys={['left']} onKeyEvent={() => this.changeCover(BACKWARD)} />
         <KeyEvent handleKeys={['f']} onKeyEvent={() => this.changeFriend(FORWARD)} />
@@ -392,13 +393,14 @@ export default class App extends React.Component<{}, State> {
           <>
             <div
               className={classNames('cover-wrap', {
-                'cover--2d': !threeD,
-                'cover--3d': threeD,
-                'cover--3d--front': threeD && threeDView === 'front',
-                'cover--3d--spine': threeD && threeDView === 'spine',
-                'cover--3d--back': threeD && threeDView === 'back',
-                'cover--3d--angle-front': threeD && threeDView === 'angle-front',
-                'cover--3d--angle-back': threeD && threeDView === 'angle-back',
+                'cover--ebook': mode === 'ebook',
+                'cover--2d': mode === '2d',
+                'cover--3d': mode === '3d',
+                'cover--3d--front': mode === '3d' && threeDView === 'front',
+                'cover--3d--spine': mode === '3d' && threeDView === 'spine',
+                'cover--3d--back': mode === '3d' && threeDView === 'back',
+                'cover--3d--angle-front': mode === '3d' && threeDView === 'angle-front',
+                'cover--3d--angle-back': mode === '3d' && threeDView === 'angle-back',
                 'mask-bleed': maskBleed,
               })}
               onClick={this.clickCover}
@@ -409,7 +411,7 @@ export default class App extends React.Component<{}, State> {
                 allowEditingBlurb={true}
               />
               <style>
-                {coverCss(coverProps, fitScaler(coverProps, fit, threeD, showCode))}
+                {coverCss(coverProps, fitScaler(coverProps, fit, mode, showCode))}
               </style>
             </div>
           </>
@@ -426,13 +428,11 @@ export default class App extends React.Component<{}, State> {
           fit={fit}
           maskBleed={maskBleed}
           showGuides={showGuides}
-          threeD={threeD}
+          mode={mode}
           showCode={showCode}
-          toggleThreeD={() => {
-            const newState = !threeD;
+          cycleMode={() => {
             this.setState({
-              threeD: newState,
-              threeDView: newState === false ? 'angle-front' : this.state.threeDView,
+              mode: mode === '2d' ? '3d' : mode === '3d' ? 'ebook' : '2d',
             });
           }}
           toggleShowCode={() => this.setState({ showCode: !showCode })}

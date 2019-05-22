@@ -8,18 +8,21 @@ import FitIcon from '@material-ui/icons/SettingsOverscan';
 import GuidesIcon from '@material-ui/icons/BorderClear';
 import CodeIcon from '@material-ui/icons/Code';
 import MaskBleedIcon from '@material-ui/icons/BorderStyle';
-import ThreeDIcon from '@material-ui/icons/FilterNone';
+import ThreeDIcon from '@material-ui/icons/Looks3';
+import TwoDIcon from '@material-ui/icons/LooksTwo';
+import EbookIcon from '@material-ui/icons/PhoneIphone';
 import { makePdf } from './utils';
+import { Mode } from './App';
 import './Toolbar.css';
 
 interface Props {
   fit: boolean;
   maskBleed: boolean;
   showGuides: boolean;
-  threeD: boolean;
+  mode: Mode;
   showCode: boolean;
+  cycleMode: () => void;
   toggleShowCode: () => void;
-  toggleThreeD: () => void;
   toggleFit: () => void;
   toggleMaskBleed: () => void;
   toggleShowGuides: () => void;
@@ -34,10 +37,10 @@ const Toolbar: React.FC<Props> = ({
   toggleMaskBleed,
   toggleShowGuides,
   coverProps,
-  threeD,
-  toggleThreeD,
-  showCode,
+  mode,
   toggleShowCode,
+  showCode,
+  cycleMode,
 }) => (
   <AppBar className="Toolbar">
     <MaterialUiToolbar>
@@ -45,8 +48,8 @@ const Toolbar: React.FC<Props> = ({
         <FitIcon />
       </IconButton>
       <IconButton
-        disabled={threeD}
-        style={maskBleed && !threeD ? selected : {}}
+        disabled={mode !== '2d'}
+        style={maskBleed && mode === '2d' ? selected : {}}
         onClick={() => toggleMaskBleed()}
       >
         <MaskBleedIcon />
@@ -57,16 +60,16 @@ const Toolbar: React.FC<Props> = ({
       >
         <GuidesIcon />
       </IconButton>
-      <IconButton className={threeD ? 'selected' : ''} onClick={() => toggleThreeD()}>
-        <ThreeDIcon />
+      <IconButton onClick={() => cycleMode()}>
+        {mode === '3d' ? <ThreeDIcon /> : mode === '2d' ? <TwoDIcon /> : <EbookIcon />}
       </IconButton>
       <IconButton className={showCode ? 'selected' : ''} onClick={() => toggleShowCode()}>
         <CodeIcon />
       </IconButton>
-      {coverProps && (
+      {coverProps && mode !== 'ebook' && (
         <p className="book-stats">
           <span>
-            size: <code>{coverProps.printSize.toUpperCase()}</code>
+            size: <code>{coverProps.size.toUpperCase()}</code>
           </span>
           <span>
             pages: <code>~{coverProps.pages}</code>
@@ -76,7 +79,7 @@ const Toolbar: React.FC<Props> = ({
           </span>
         </p>
       )}
-      {coverProps && process.env.NODE_ENV === 'development' && (
+      {coverProps && process.env.NODE_ENV === 'development' && mode !== 'ebook' && (
         <>
           <IconButton onClick={() => makePdf(coverProps)}>
             <PdfIcon />
