@@ -33,6 +33,7 @@ interface State {
   showCode: boolean;
   mode: Mode;
   threeDView: View;
+  capture: boolean;
   customBlurbs: Record<string, string>;
   customHtml: Record<string, string>;
   customCss: Record<string, string>;
@@ -48,6 +49,7 @@ export default class App extends React.Component<{}, State> {
     showCode: false,
     maskBleed: true,
     mode: '3d',
+    capture: false,
     threeDView: 'angle-front',
     customBlurbs: {},
     customCss: {},
@@ -60,11 +62,15 @@ export default class App extends React.Component<{}, State> {
       this.setState({ ...this.state, ...stored });
     } catch {}
 
+    window.addEventListener('resize', () => this.forceUpdate());
     window.addEventListener('beforeunload', () => {
       sessionStorage.setItem('state', JSON.stringify(this.state));
     });
 
-    window.addEventListener('resize', () => this.forceUpdate());
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('capture') === 'ebook') {
+      this.setState({ capture: true, mode: 'ebook', fit: false });
+    }
   }
 
   protected selectedEntities(): {
@@ -310,10 +316,16 @@ export default class App extends React.Component<{}, State> {
       threeDView,
       showCode,
       mode,
+      capture,
     } = this.state;
     const coverProps = this.coverProps();
     return (
-      <div className={`App web trim--${coverProps ? coverProps.size : 'm'}`}>
+      <div
+        className={classNames('App', 'web', {
+          [`trim--${coverProps ? coverProps.size : 'm'}`]: true,
+          'capturing-screenshot': capture,
+        })}
+      >
         <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
         <KeyEvent handleKeys={['left']} onKeyEvent={() => this.changeCover(BACKWARD)} />
         <KeyEvent handleKeys={['f']} onKeyEvent={() => this.changeFriend(FORWARD)} />
