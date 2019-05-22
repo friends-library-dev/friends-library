@@ -23,7 +23,7 @@ const runner = new RegexLintRunner(
       recommend: false,
       fixable: false,
       messagePattern:
-        '"<found>" should be replaced in modernized editions (communication, interaction, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
+        '"<found>" should be replaced in modernized editions (communication, interaction, conversation, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
     },
     {
       test: 'ejaculat',
@@ -31,7 +31,7 @@ const runner = new RegexLintRunner(
       recommend: false,
       fixable: false,
       messagePattern:
-        '"<found>" should be replaced in modernized editions (exclamation, utterance, etc.)',
+        '"<found>" should be replaced in modernized editions (exclamation, cry, utterance, etc.)',
     },
   ],
   { langs: ['en'], editions: ['modernized'] },
