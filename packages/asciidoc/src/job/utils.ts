@@ -6,6 +6,9 @@ export function getDocumentMeta(edition: Edition): DocumentMeta {
   const { friend } = document;
   return {
     title: document.title,
+    coverId: `${friend.slug}/${document.slug}/${
+      friend.lang === 'es' ? 'spanish' : edition.type
+    }`,
     author: {
       name: friend.name,
       nameSort: friend.alphabeticalName(),

@@ -6,17 +6,16 @@ import { Job, FileManifest, DocumentArtifacts } from '@friends-library/types';
 import { getEpubManifest } from './manifest';
 import { PUBLISH_DIR } from '../file';
 
-export function makeEpub(job: Job): Promise<DocumentArtifacts> {
-  const manifest = getEpubManifest(job);
-  let artifacts: DocumentArtifacts;
-  return writeEbookManifest(manifest, job)
-    .then(ebookArtifacts => (artifacts = ebookArtifacts))
-    .then(() => (job.meta.check ? check(job.spec.filename) : undefined))
-    .catch((messages: Message[]) => {
-      logEpubCheckFail(job.filename, messages);
-      process.exit(1);
-    })
-    .then(() => artifacts);
+export async function makeEpub(job: Job): Promise<DocumentArtifacts> {
+  const manifest = await getEpubManifest(job);
+  const artifacts = await writeEbookManifest(manifest, job);
+  try {
+    if (job.meta.check) await check(job.spec.filename);
+  } catch (messages) {
+    logEpubCheckFail(job.filename, messages);
+    process.exit(1);
+  }
+  return artifacts;
 }
 
 export async function writeEbookManifest(

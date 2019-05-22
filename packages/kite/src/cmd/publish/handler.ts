@@ -46,29 +46,30 @@ export default async function handler(argv: Arguments<PublishOptions>): Promise<
   }
   const makeCover = argv.createEbookCover && argv.target.join('').match(/epub|mobi/);
 
-  if (makeCover) {
-    if (!argv.skipCoverBuild) {
-      green('Building cover app...');
-      execSync(`cd ${process.cwd()} && yarn cover:build`);
-    }
-    green('Serving cover app');
-    exec(`cd ${process.cwd()}/packages/kite && yarn serve -l 5111 ../cover/build`);
-    // give `serve` time to do it's thing
-    await new Promise(res => setTimeout(res, 2000));
-  }
+  // if (makeCover) {
+  //   if (!argv.skipCoverBuild) {
+  //     green('Building cover app...');
+  //     execSync(`cd ${process.cwd()} && yarn cover:build`);
+  //   }
+  //   green('Serving cover app');
+  //   execSync('lsof -t -i tcp:5111 | xargs kill');
+  //   exec(`cd ${process.cwd()}/packages/kite && yarn serve -l 5111 ../cover/build`);
+  //   await new Promise(res => setTimeout(res, 1000));
+  //   green('Cover app served 👍');
+  // }
 
   const precursors = getPrecursors(argv.path);
-  publishPrecursors(precursors, argv);
-
-  if (makeCover) {
-    exec('lsof -t -i tcp:5111 | xargs kill');
-  }
+  await publishPrecursors(precursors, argv);
+  // if (makeCover) {
+  //   execSync('lsof -t -i tcp:5111 | xargs kill');
+  // }
+  process.exit(0);
 }
 
 export function publishPrecursors(
   precursors: SourcePrecursor[],
   argv: PublishOptions,
-): void {
+): Promise<DocumentArtifacts[]> {
   fs.removeSync(PUBLISH_DIR);
   fs.ensureDir(PUBLISH_DIR);
 
@@ -83,6 +84,7 @@ export function publishPrecursors(
   if (argv.send) {
     complete.then(() => send(jobs.map(j => j.filename), argv.email));
   }
+  return complete;
 }
 
 function extractMeta(argv: PublishOptions): JobMeta {

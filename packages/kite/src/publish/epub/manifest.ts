@@ -9,23 +9,24 @@ import { packageDocument } from './package-document';
 import { makeFootnoteCallReplacer, notesMarkup } from './notes';
 import { nav } from './nav';
 import { frontmatter } from './frontmatter';
+import puppeteer from 'puppeteer';
 
 interface SubManifest<T> {
   [key: string]: T;
 }
 
-export function getEpubManifest(job: Job): FileManifest {
-  return mapValues(getEbookManifest(job), removeMobi7Tags);
+export async function getEpubManifest(job: Job): Promise<FileManifest> {
+  return mapValues(await getEbookManifest(job), removeMobi7Tags);
 }
 
-export function getEbookManifest(job: Job): FileManifest {
+export async function getEbookManifest(job: Job): Promise<FileManifest> {
   return {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),
     'OEBPS/style.css': css(job),
     'OEBPS/package-document.opf': packageDocument(job),
     'OEBPS/nav.xhtml': wrapHtml(nav(job)),
-    ...coverFiles(job),
+    ...(await coverFiles(job)),
     ...sectionFiles(job),
     ...notesFile(job),
     ...frontmatterFiles(job),
@@ -42,15 +43,25 @@ function frontmatterFiles(job: Job): SubManifest<Html> {
   );
 }
 
-function coverFiles(job: Job): SubManifest<Html> {
+async function coverFiles(job: Job): Promise<SubManifest<Html>> {
   const manifest: SubManifest<Html> = {};
-  if (job.meta.createEbookCover) {
-    manifest['OEBPS/cover.png'] = `${__dirname}/cover.png`;
-    manifest['OEBPS/cover.xhtml'] = wrapHtml(
-      '<figure id="cover"><img alt="Cover" src="cover.png"/></figure>',
-      'cover',
-    );
+  if (!job.meta.createEbookCover) {
+    return manifest;
   }
+
+  const browser = await puppeteer.launch({ headless: true, XslowMo: 500 });
+  const page = await browser.newPage();
+  /* 859 x 1367 */
+
+  await page.setViewport({ width: 693, height: 1003 });
+  await page.goto(`http://localhost:9999?ebook=true&id=${job.spec.meta.coverId}`);
+  const path = `${__dirname}/cover.png`;
+  await page.screenshot({ path });
+  manifest['OEBPS/cover.png'] = path;
+  manifest['OEBPS/cover.xhtml'] = wrapHtml(
+    '<figure id="cover"><img alt="Cover" src="cover.png"/></figure>',
+    'cover',
+  );
   return manifest;
 }
 

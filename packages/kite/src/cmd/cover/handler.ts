@@ -23,7 +23,11 @@ export default async function cover(): Promise<void> {
 }
 
 export async function coverFromProps(props: CoverProps): Promise<FilePath> {
-  const el = React.createElement(Cover, props);
+  const el = React.createElement(Cover, {
+    ...props,
+    updateBlurb: () => {}, // @TODO why default props no work?
+    allowEditingBlurb: false,
+  });
   const html = ReactDOMServer.renderToStaticMarkup(el);
   const isbnPath = `images/isbn/${props.isbn}.png`;
   const manifest = {

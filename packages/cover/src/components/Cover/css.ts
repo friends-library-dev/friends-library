@@ -5,6 +5,7 @@ import cssString from './css/cover.css';
 
 export function cssVars(props: CoverProps): Record<string, string> {
   const { dims: book } = getBookSize(props.printSize);
+  // const book = { width: 4, height: 6 }
   const safety = 0.25;
   const trimBleed = 0.125;
   const spinePad = 0.06;

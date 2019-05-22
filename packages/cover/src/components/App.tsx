@@ -31,6 +31,7 @@ interface State {
   maskBleed: boolean;
   showCode: boolean;
   threeD: boolean;
+  ebook: boolean;
   threeDView: View;
   customBlurbs: Record<string, string>;
   customHtml: Record<string, string>;
@@ -43,6 +44,7 @@ export default class App extends React.Component<{}, State> {
     docIndex: 0,
     edIndex: 0,
     fit: true,
+    ebook: true,
     showGuides: false,
     showCode: false,
     maskBleed: true,
@@ -64,6 +66,37 @@ export default class App extends React.Component<{}, State> {
     });
 
     window.addEventListener('resize', () => this.forceUpdate());
+
+    const query = new URLSearchParams(window.location.search);
+    if (query.has('ebook')) {
+      const id = query.get('id');
+      this.setState({
+        ebook: true,
+        threeD: false,
+        fit: false,
+        ...(id ? this.stateFromId(id) : {}),
+      });
+    }
+  }
+
+  protected stateFromId(id: string): any {
+    for (let friendIndex = 0; friendIndex < friendData.length; friendIndex++) {
+      const friend = friendData[friendIndex];
+      for (let docIndex = 0; docIndex < friend.documents.length; docIndex++) {
+        const doc = friend.documents[docIndex];
+        for (let edIndex = 0; edIndex < doc.editions.length; edIndex++) {
+          const ed = doc.editions[edIndex];
+          if (ed.id === id) {
+            return {
+              friendIndex,
+              docIndex,
+              edIndex,
+            };
+          }
+        }
+      }
+    }
+    return {};
   }
 
   protected selectedEntities(): {
@@ -85,13 +118,13 @@ export default class App extends React.Component<{}, State> {
   }
 
   protected coverProps(): CoverProps | undefined {
-    const { showGuides } = this.state;
+    const { showGuides, ebook } = this.state;
     const { friend, doc, ed } = this.selectedEntities();
     if (!friend || !doc || !ed) return;
     return {
       author: friend.name,
       title: prepareTitle(doc.title, friend.name),
-      printSize: ed.defaultSize,
+      printSize: ebook ? 's' : ed.defaultSize,
       pages: ed.pages[ed.defaultSize],
       edition: ed.type,
       blurb: formatBlurb(this.getBlurb(friend, doc)),
@@ -309,10 +342,16 @@ export default class App extends React.Component<{}, State> {
       threeD,
       threeDView,
       showCode,
+      ebook,
     } = this.state;
     const coverProps = this.coverProps();
     return (
-      <div className={`App web trim--${coverProps ? coverProps.printSize : 'm'}`}>
+      <div
+        className={classNames('App', 'web', {
+          [`trim--${coverProps ? coverProps.printSize : 'm'}`]: true,
+          ebook: ebook,
+        })}
+      >
         <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
         <KeyEvent handleKeys={['left']} onKeyEvent={() => this.changeCover(BACKWARD)} />
         <KeyEvent handleKeys={['f']} onKeyEvent={() => this.changeFriend(FORWARD)} />

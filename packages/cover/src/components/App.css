@@ -36,3 +36,8 @@ body {
 .mask-bleed .guide--trim-bleed {
   opacity: 0;
 }
+
+.ebook .Toolbar,
+.ebook form {
+  display: none !important;
+}

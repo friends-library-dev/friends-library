@@ -7,6 +7,7 @@ import blurb from './blurb.css';
 import threeD from './3d.css';
 import back from './back.css';
 import front from './front.css';
+import ebook from './ebook.css';
 import css from './tmpl';
 
 const coverCss: string = css`
@@ -134,6 +135,7 @@ ${guides}
 ${isBrowser ? threeD : ''}
 ${front}
 ${back}
+${ebook}
 `;
 
 export default coverCss;
