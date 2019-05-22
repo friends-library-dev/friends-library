@@ -13,11 +13,11 @@ interface SubManifest<T> {
   [key: string]: T;
 }
 
-export function getEpubManifest(job: Job): FileManifest {
-  return mapValues(getEbookManifest(job), removeMobi7Tags);
+export async function getEpubManifest(job: Job): Promise<FileManifest> {
+  return mapValues(await getEbookManifest(job), removeMobi7Tags);
 }
 
-export function getEbookManifest(job: Job): FileManifest {
+export async function getEbookManifest(job: Job): Promise<FileManifest> {
   return {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),

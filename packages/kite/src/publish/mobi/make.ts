@@ -7,19 +7,20 @@ import { getMobiManifest } from './manifest';
 import { writeEbookManifest } from '../epub/make';
 import { PUBLISH_DIR } from '../file';
 
-export function makeMobi(job: Job): Promise<DocumentArtifacts> {
-  const manifest = getMobiManifest(job);
-  return writeEbookManifest(manifest, job)
-    .then(({ filePath }) => kindlegen(filePath, job))
-    .catch(err => {
-      console.log(chalk.red(`Error generating MOBI ${job.filename}:`));
-      console.log(chalk.red(err));
-      process.exit();
-    })
-    .then(() => ({
-      filePath: `${PUBLISH_DIR}/${job.filename}`,
-      srcDir: `${PUBLISH_DIR}/_src_/${job.spec.filename}/mobi`,
-    }));
+export async function makeMobi(job: Job): Promise<DocumentArtifacts> {
+  const manifest = await getMobiManifest(job);
+  const { filePath } = await writeEbookManifest(manifest, job);
+  try {
+    await kindlegen(filePath, job);
+  } catch (err) {
+    console.log(chalk.red(`Error generating MOBI ${job.filename}:`));
+    console.log(chalk.red(err));
+    process.exit();
+  }
+  return {
+    filePath: `${PUBLISH_DIR}/${job.filename}`,
+    srcDir: `${PUBLISH_DIR}/_src_/${job.spec.filename}/mobi`,
+  };
 }
 
 function kindlegen(precursorPath: string, job: Job): Promise<void> {
