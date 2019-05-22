@@ -15,6 +15,7 @@
     "packages/cli/*.d.ts": true,
     "packages/cli/*.js": true,
     "packages/cover/build": true,
+    "packages/kite/src/publish/epub/cover.png": true,
     "design": true
   }
 }

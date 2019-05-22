@@ -46,6 +46,12 @@ export const builder: (args: Argv) => Argv = function(yargs) {
       describe: 'create ebook cover',
       default: false,
     })
+    .option('use-cover-dev-server', {
+      alias: 'x',
+      type: 'boolean',
+      describe: 'use already running dev server localhost:9999 for ebook cover',
+      default: false,
+    })
     .option('email', {
       type: 'string',
       describe: 'email address to send to',
