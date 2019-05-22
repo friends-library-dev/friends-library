@@ -27,14 +27,12 @@ export async function writeEbookManifest(
   const zip = new Zip();
   const promises = [];
 
-  Object.keys(manifest).forEach(path => {
-    zip.file(path, manifest[path]);
-    promises.push(
-      fs.outputFile(
-        `${PUBLISH_DIR}/_src_/${spec.filename}/${target}/${path}`,
-        manifest[path],
-      ),
-    );
+  Object.keys(manifest).forEach(relPath => {
+    const isImg = !!relPath.match(/\.(png|jpe?g)$/);
+    const contents = isImg ? fs.readFileSync(manifest[relPath]) : manifest[relPath];
+    const absPath = `${PUBLISH_DIR}/_src_/${spec.filename}/${target}/${relPath}`;
+    zip.file(relPath, contents);
+    promises.push(fs.outputFile(absPath, contents));
   });
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });

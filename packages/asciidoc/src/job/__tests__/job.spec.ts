@@ -17,6 +17,7 @@ describe('createJob()', () => {
         perform: false,
         condense: false,
         frontmatter: true,
+        createEbookCover: false,
       },
     });
   });
@@ -38,6 +39,7 @@ describe('createJob()', () => {
       perform: true,
       condense: true,
       frontmatter: false,
+      createEbookCover: true,
     };
     const job = createJob({ meta: { ...meta, nope: 'bad' } });
     expect(job.meta).toEqual(meta);

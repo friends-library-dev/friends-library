@@ -12,6 +12,7 @@ export function testJob(adoc?: Asciidoc): Job {
       check: false,
       frontmatter: true,
       condense: false,
+      createEbookCover: false,
     },
   };
 }

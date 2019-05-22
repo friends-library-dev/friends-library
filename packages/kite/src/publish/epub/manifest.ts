@@ -24,10 +24,26 @@ export async function getEbookManifest(job: Job): Promise<FileManifest> {
     'OEBPS/style.css': css(job),
     'OEBPS/package-document.opf': packageDocument(job),
     'OEBPS/nav.xhtml': wrapHtml(nav(job)),
+    ...(await coverFiles(job)),
     ...sectionFiles(job),
     ...notesFile(job),
     ...frontmatterFiles(job),
   };
+}
+
+async function coverFiles(job: Job): Promise<SubManifest<Html>> {
+  const manifest: SubManifest<Html> = {};
+  if (!job.meta.createEbookCover) {
+    return manifest;
+  }
+
+  const path = String(process.env.TEMP_COVER_PATH);
+  manifest['OEBPS/cover.png'] = path;
+  manifest['OEBPS/cover.xhtml'] = wrapHtml(
+    '<figure><img alt="Cover" src="cover.png"/></figure>',
+    'cover',
+  );
+  return manifest;
 }
 
 function frontmatterFiles(job: Job): SubManifest<Html> {
