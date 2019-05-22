@@ -2,6 +2,7 @@ import { CoverProps } from '@friends-library/types';
 import { quotify } from '@friends-library/asciidoc';
 import { FriendData, DocumentData, EditionData } from './Cover/types';
 import { cssVars } from './Cover/css';
+import { Mode } from './App';
 
 const friendData = (window as any).Friends as FriendData[];
 export { friendData };
@@ -18,30 +19,31 @@ export function makePdf(props: CoverProps): void {
   });
 }
 
+const WEB_SCALER = 1.1358;
+
 export function fitScaler(
   props: CoverProps,
   fit: boolean,
-  threeD: boolean,
+  mode: Mode,
   showCode: boolean,
 ): number | undefined {
-  const webScaler = 1.1358;
   if (!fit) {
-    return webScaler;
+    return WEB_SCALER;
   }
 
-  let appChromeHeight = 175;
-  if (showCode) appChromeHeight += 300;
-  const vars = cssVars(props);
+  const appChromeHeight = showCode ? 475 : 175;
+  const css = cssVars(props);
   const windowWidth = window.innerWidth / 96;
   const windowHeight = (window.innerHeight - appChromeHeight) / 96;
-  const coverWidth = inchToNum(threeD ? vars.bookWidth : vars.coverWidth) * webScaler;
-  const coverHeight = inchToNum(vars.coverHeight) * webScaler;
+  const coverWidth =
+    inchToNum(mode === '2d' ? css.coverWidth : css.bookWidth) * WEB_SCALER;
+  const coverHeight = inchToNum(css.coverHeight) * WEB_SCALER;
   if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
-    return webScaler;
+    return WEB_SCALER;
   }
 
   const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
-  return webScaler * (scale - 0.019);
+  return WEB_SCALER * (scale - 0.019);
 }
 
 function inchToNum(val: string): number {

@@ -4,13 +4,14 @@ import { mapValues } from 'lodash';
 import cssString from './css/cover.css';
 
 export function cssVars(props: CoverProps): Record<string, string> {
-  const { dims: book } = getBookSize(props.printSize);
+  const { size, pages, showGuides } = props;
+  const { dims: book } = getBookSize(size);
   const safety = 0.25;
   const trimBleed = 0.125;
   const spinePad = 0.06;
   const pagesPerInch = 444;
-  const threeDSpineWidth = spinePad + props.pages / pagesPerInch;
-  const spineWidth = props.pages < 32 ? 0 : threeDSpineWidth;
+  const threeDSpineWidth = spinePad + pages / pagesPerInch;
+  const spineWidth = pages < 32 ? 0 : threeDSpineWidth;
   const bgHeightSizeS = 6.005;
   const bgHeightSizeM = 7.08;
   const bgHeightSizeXl = 7.305;
@@ -37,7 +38,7 @@ export function cssVars(props: CoverProps): Record<string, string> {
       coverHeight: book.height + trimBleed * 2,
       coverWidth: book.width * 2 + spineWidth + trimBleed * 2,
       guideSafetyWidth: book.width * 2 + spineWidth,
-      guidesDisplay: props.showGuides ? 'block' : 'none',
+      guidesDisplay: showGuides ? 'block' : 'none',
       threeDLeftOffset: (book.width - threeDSpineWidth) / 2,
       threeDTopOffset: (book.height - threeDSpineWidth) / 2,
       bgHeightSizeS,
@@ -75,13 +76,13 @@ export function coverCss(props: CoverProps, scaler?: number): Css {
   return css;
 }
 
-function spineAuthorDisplay({ title, author, printSize }: CoverProps): 'block' | 'none' {
+function spineAuthorDisplay({ title, author, size }: CoverProps): 'block' | 'none' {
   const lastName = String(author.split(' ').pop());
   let totalChars = title.replace(/&nbsp;/g, ' ').length + lastName.length;
   const numWideLetters = (`${title}${lastName}`.match(/(W|D)/g) || []).length;
   totalChars += numWideLetters;
 
-  if (printSize === 'm' && totalChars >= 50) {
+  if (size === 'm' && totalChars >= 50) {
     return 'none';
   }
 

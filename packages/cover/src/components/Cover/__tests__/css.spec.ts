@@ -11,14 +11,14 @@ describe('cssVars()', () => {
       title: 'Journal of George Fox',
       author: 'George Fox',
       pages: 555,
-      printSize: 'm',
+      size: 'm',
       edition: 'original',
       blurb: 'TODO',
       showGuides: false,
       customCss: '',
       customHtml: '',
     };
-    ({ dims: trim } = getBookSize(props.printSize));
+    ({ dims: trim } = getBookSize(props.size));
   });
 
   test('cover height is book size height plus 0.25in fudge', () => {
@@ -51,7 +51,7 @@ describe('cssVars()', () => {
     (title, author, size, display) => {
       props.title = title;
       props.author = author;
-      props.printSize = size;
+      props.size = size;
       const { spineAuthorDisplay } = cssVars(props);
       expect(spineAuthorDisplay).toBe(display ? 'block' : 'none');
     },

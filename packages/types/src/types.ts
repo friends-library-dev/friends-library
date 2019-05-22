@@ -148,7 +148,7 @@ export interface LintOptions {
 export interface CoverProps {
   title: string;
   author: Name;
-  printSize: PrintSizeAbbrev;
+  size: PrintSizeAbbrev;
   pages: number;
   edition: EditionType | 'spanish';
   isbn?: ISBN;
