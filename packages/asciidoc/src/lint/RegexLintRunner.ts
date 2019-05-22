@@ -71,7 +71,7 @@ export default class RegexLintRunner {
       type: 'error',
       rule: this.rule,
       message: lint.message(match[0]),
-      recommendation,
+      ...(recommendation ? { recommendation } : {}),
     };
   }
 }

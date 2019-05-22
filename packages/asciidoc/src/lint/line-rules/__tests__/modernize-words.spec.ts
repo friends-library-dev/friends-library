@@ -65,7 +65,7 @@ describe('modernizeWords()', () => {
       type: 'error',
       rule: 'modernize-words',
       message:
-        '"intercourse" should be replaced in modernized editions (communication, interaction, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
+        '"intercourse" should be replaced in modernized editions (communication, interaction, conversation, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
       fixable: false,
     });
   });
