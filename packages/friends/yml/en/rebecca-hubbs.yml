@@ -1,0 +1,28 @@
+name: Rebecca Hubbs
+slug: rebecca-hubbs
+gender: female
+description: TODO
+documents:
+  - title: Journal of Rebecca Hubbs
+    slug: journal
+    filename: Journal_of_Rebecca_Hubbs
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Prefatory Remarks
+          - title: Memoir of Rebecca Hubbs
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Prefatory Remarks
+          - title: Memoir of Rebecca Hubbs
