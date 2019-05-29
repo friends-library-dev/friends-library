@@ -1,7 +1,7 @@
 import { replaceHeadings } from '@friends-library/asciidoc';
 import { flow, mapValues } from 'lodash';
-import puppeteer from 'puppeteer';
-import { Xml, Css, Html } from '@friends-library/types';
+import puppeteer from 'puppeteer-core';
+import { Xml, Css, Html, requireEnv } from '@friends-library/types';
 import { Job, FileManifest } from '@friends-library/types';
 import { toCss } from '../file';
 import { wrapHtml, removeMobi7Tags } from '../html';
@@ -38,9 +38,10 @@ async function coverFiles(job: Job): Promise<SubManifest<Html>> {
     return manifest;
   }
 
+  const { KITE_CHROMIUM_PATH } = requireEnv('KITE_CHROMIUM_PATH');
   const url = `http://localhost:${process.env.COVER_PORT}`;
   const path = `${__dirname}/cover.png`;
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ executablePath: KITE_CHROMIUM_PATH });
   const page = await browser.newPage();
   await page.setViewport({ width: 1600, height: 2400 });
   await page.goto(`${url}?capture=ebook&id=${job.spec.meta.coverId}`);
