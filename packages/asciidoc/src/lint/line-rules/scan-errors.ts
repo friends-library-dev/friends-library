@@ -5,7 +5,7 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
-      test: 'lime|limes', // --> be
+      test: 'lime|limes', // --> time/s
       search: /\blime(s)?\b/g,
       replace: 'time$1',
       allowIfNear: /(lemon|orange|kiln|fruit|manure|white|stone|juice|chloride)/i,
@@ -14,6 +14,15 @@ const runner = new RegexLintRunner(
       test: 'wc', // --> we
       search: /\b(W|w)c\b/g,
       replace: '$1e',
+    },
+    {
+      test: 'whoso', // --> whose
+      search: /\b(W|w)hoso\b/g,
+      replace: '$1hose',
+      message:
+        '"whoso" is sometimes a scan error of "whose" except when it is a synonym for "whoever"',
+      editions: ['original' as const],
+      isMaybe: true,
     },
     {
       test: 'bo', // --> be
@@ -71,8 +80,7 @@ const runner = new RegexLintRunner(
   ].map(d => ({ ...d, test: `\\b${d.test}\\b` })),
   {
     fixable: false,
-    messagePattern:
-      '"<found>" is often a scanning error and should be corrected to "<fixed>"',
+    message: '"<found>" is often a scanning error and should be corrected to "<fixed>"',
   },
 );
 

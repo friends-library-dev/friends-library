@@ -11,6 +11,24 @@ const runner = new RegexLintRunner(
       fixable: true,
     },
     {
+      test: 'spake',
+      search: /\b(S|s)pake\b/g,
+      replace: '$1poke',
+      fixable: true,
+    },
+    {
+      test: 'methinks',
+      search: /\b(M|m)ethinks\b/g,
+      replace: 'I think',
+      fixable: true,
+    },
+    {
+      test: 'whoso',
+      search: /\b(W|w)hoso\b/g,
+      replace: '$1hoever',
+      fixable: false,
+    },
+    {
       test: 'zionward',
       search: /\bZionward(s?)\b/g,
       replace: 'towards Zion',
@@ -18,11 +36,19 @@ const runner = new RegexLintRunner(
       fixable: false,
     },
     {
+      test: 'jollity',
+      search: /\b(J|j)ollity\b/g,
+      replace: (_, firstLetter) => `${firstLetter === 'J' ? 'M' : 'm'}erriment`,
+      fixable: false,
+      message:
+        '"<found>" should be replaced in modernized editions (merriment, revelry, mirth, gaiety, merrymaking, cheerfulness, etc.)',
+    },
+    {
       test: 'intercourse',
       search: /\b(I|i)ntercourse\b/g,
       recommend: false,
       fixable: false,
-      messagePattern:
+      message:
         '"<found>" should be replaced in modernized editions (communication, interaction, conversation, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
     },
     {
@@ -30,7 +56,7 @@ const runner = new RegexLintRunner(
       search: /\b(E|e)jaculat(ed?|ions?|ing)\b/g,
       recommend: false,
       fixable: false,
-      messagePattern:
+      message:
         '"<found>" should be replaced in modernized editions (exclamation, cry, utterance, etc.)',
     },
   ],
