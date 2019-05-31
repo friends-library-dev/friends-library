@@ -16,19 +16,18 @@ interface Props extends CoverProps {
   allowEditingBlurb: boolean;
 }
 
-const Cover: React.FC<Props> = props => {
-  const {
-    title,
-    author,
-    isbn,
-    edition,
-    blurb,
-    showGuides,
-    pages,
-    updateBlurb,
-    customHtml,
-    allowEditingBlurb,
-  } = props;
+const Cover: React.FC<Props> = ({
+  title,
+  author,
+  isbn,
+  edition,
+  blurb,
+  showGuides,
+  pages,
+  customHtml,
+  updateBlurb,
+  allowEditingBlurb,
+}) => {
   const [firstInitial, lastInitial] = initials(author);
   const Diamond = Diamonds[edition];
   const fragments = getHtmlFragments(customHtml);
