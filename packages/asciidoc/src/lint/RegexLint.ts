@@ -13,7 +13,7 @@ export interface RegexLintOptions {
   fixable: boolean | FixableFn;
   langs: Lang[];
   editions: EditionType[];
-  messagePattern: string;
+  message: string;
   recommend: boolean;
 }
 
@@ -30,7 +30,7 @@ export default class RegexLint {
     fixable: true,
     langs: ['en'],
     editions: ['original', 'modernized', 'updated'],
-    messagePattern: '"<found>" <shouldBecome> "<fixed>" <inContext>',
+    message: '"<found>" <shouldBecome> "<fixed>" <inContext>',
     recommend: true,
   };
 
@@ -71,7 +71,7 @@ export default class RegexLint {
     if (this.data.editions.length < 3) {
       inContext = `in ${this.data.editions.join(' and ')} editions`;
     }
-    return this.data.messagePattern
+    return this.data.message
       .replace('<found>', found)
       .replace('<shouldBecome>', shouldBecome)
       .replace('<fixed>', fixed)
