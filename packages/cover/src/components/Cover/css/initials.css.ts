@@ -163,6 +163,10 @@ const initialsCss: string = css`
     transform: scaleX(0.88);
   }
 
+  .initials--RH.initial--H {
+    transform: translateX(0);
+  }
+
   .initial--first.initial--I {
     transform: scaleX(1.15);
     bottom: -0.44in;
@@ -253,6 +257,10 @@ const initialsCss: string = css`
 
   .initials--SR.initial--R {
     transform: translateX(0.11in) scaleX(0.9);
+  }
+
+  .initials--RH.initial--R {
+    transform: translateX(-0.05in) scaleX(1.06);
   }
 
   .initial--last.initial--S {

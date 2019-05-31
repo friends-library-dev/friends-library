@@ -12,7 +12,7 @@ export default async function cover(): Promise<void> {
     author: 'Test Author',
     blurb: 'TODO',
     pages: 444,
-    printSize: 'm',
+    size: 'm',
     edition: 'modernized',
     showGuides: false,
     customCss: '',
@@ -23,7 +23,11 @@ export default async function cover(): Promise<void> {
 }
 
 export async function coverFromProps(props: CoverProps): Promise<FilePath> {
-  const el = React.createElement(Cover, props);
+  const el = React.createElement(Cover, {
+    ...props,
+    updateBlurb: () => {},
+    allowEditingBlurb: false,
+  });
   const html = ReactDOMServer.renderToStaticMarkup(el);
   const isbnPath = `images/isbn/${props.isbn}.png`;
   const manifest = {
@@ -42,7 +46,7 @@ export async function coverFromProps(props: CoverProps): Promise<FilePath> {
 function wrapHtml(inner: Html, props: any): Html {
   return stripIndent(`
     <!DOCTYPE html>
-    <html lang="en" class="pdf trim--${props.printSize}">
+    <html lang="en" class="pdf trim--${props.size}">
       <head>
         <meta charset="UTF-8"/>
         <link href="doc.css" rel="stylesheet" type="text/css"/>
