@@ -4,6 +4,7 @@ import KeyEvent from 'react-keyboard-event-handler';
 import { CoverProps, Css, Html } from '@friends-library/types';
 import FormControl from '@material-ui/core/FormControl';
 import Cover from './Cover/Cover';
+import debounce from 'lodash/debounce';
 import { coverCss } from './Cover/css';
 import { FriendData, DocumentData, EditionData } from './Cover/types';
 import {
@@ -196,10 +197,8 @@ export default class App extends React.Component<{}, State> {
     return `${friend.name}${doc.title}${ed.type}`;
   }
 
-  protected clickCover: (e: any) => void = e => {
-    if (e.target.contentEditable === 'true') return;
-    const { mode, threeDView } = this.state;
-    if (mode !== '3d') return;
+  protected spinCover: () => void = () => {
+    const { threeDView } = this.state;
     const next: { [k in View]: View } = {
       front: 'angle-front',
       'angle-front': 'spine',
@@ -394,6 +393,10 @@ export default class App extends React.Component<{}, State> {
           handleKeys={['g']}
           onKeyEvent={() => this.setState({ showGuides: !showGuides })}
         />
+        <KeyEvent
+          handleKeys={['s']}
+          onKeyEvent={debounce(() => mode === '3d' && this.spinCover(), 250)}
+        />
         <form autoComplete="off" style={{ padding: '1em 1em 0 1em', display: 'flex' }}>
           <FormControl style={{ minWidth: 200, marginRight: '1em' }}>
             <Select
@@ -446,7 +449,6 @@ export default class App extends React.Component<{}, State> {
                 'cover--3d--angle-back': mode === '3d' && threeDView === 'angle-back',
                 'mask-bleed': maskBleed,
               })}
-              onClick={this.clickCover}
             >
               <Cover
                 {...coverProps}
@@ -472,6 +474,7 @@ export default class App extends React.Component<{}, State> {
           maskBleed={maskBleed}
           showGuides={showGuides}
           mode={mode}
+          spinCover={this.spinCover}
           showCode={showCode}
           cycleMode={() => {
             this.setState({

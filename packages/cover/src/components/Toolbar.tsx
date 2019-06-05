@@ -11,6 +11,7 @@ import MaskBleedIcon from '@material-ui/icons/BorderStyle';
 import ThreeDIcon from '@material-ui/icons/Looks3';
 import TwoDIcon from '@material-ui/icons/LooksTwo';
 import EbookIcon from '@material-ui/icons/PhoneIphone';
+import ReplayIcon from '@material-ui/icons/Replay';
 import { makePdf } from './utils';
 import { Mode } from './App';
 import './Toolbar.css';
@@ -26,6 +27,7 @@ interface Props {
   toggleFit: () => void;
   toggleMaskBleed: () => void;
   toggleShowGuides: () => void;
+  spinCover: () => void;
   coverProps: CoverProps | undefined;
 }
 
@@ -37,6 +39,7 @@ const Toolbar: React.FC<Props> = ({
   toggleMaskBleed,
   toggleShowGuides,
   coverProps,
+  spinCover,
   mode,
   toggleShowCode,
   showCode,
@@ -78,6 +81,13 @@ const Toolbar: React.FC<Props> = ({
             blurb: <code>{coverProps.blurb.length}</code>
           </span>
         </p>
+      )}
+      {coverProps && mode === '3d' && (
+        <>
+          <IconButton onClick={spinCover}>
+            <ReplayIcon />
+          </IconButton>
+        </>
       )}
       {coverProps && process.env.NODE_ENV === 'development' && mode !== 'ebook' && (
         <>
