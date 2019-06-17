@@ -1,0 +1,28 @@
+name: Hannah Gibbons
+slug: hannah-gibbons
+gender: female
+description: TODO
+documents:
+  - title: Journal of Hannah Gibbons
+    slug: journal
+    filename: Journal_of_Hannah_Gibbons
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - title: Journal
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - title: Journal
