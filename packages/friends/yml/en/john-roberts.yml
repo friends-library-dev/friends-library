@@ -1,0 +1,34 @@
+name: John Roberts
+slug: john-roberts
+gender: male
+description: TODO
+documents:
+  - title: The Life of John Roberts
+    slug: life
+    filename: Life_of_John_Roberts
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Memoirs of the Life of John Roberts
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Memoirs of the Life of John Roberts
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Memoirs of the Life of John Roberts
