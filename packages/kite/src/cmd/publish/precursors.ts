@@ -14,7 +14,7 @@ import {
   Sha,
 } from '@friends-library/types';
 
-export function getPrecursors(path: string): SourcePrecursor[] {
+export function precursorsFromPath(path: string): SourcePrecursor[] {
   const [lang, friend, document, edition] = path
     .replace(/^\.\/packages\/kite\//, '')
     .split('/');
@@ -59,7 +59,7 @@ function gitRevision(path: string): { timestamp: number; sha: Sha } {
   };
 }
 
-function buildPrecursor(
+export function buildPrecursor(
   lang: Lang,
   friendSlug: string,
   docSlug: string,
@@ -79,7 +79,9 @@ function buildPrecursor(
       timestamp,
       sha,
       url: [
-        'https://github.com/friends-library',
+        `https://github.com/${
+          lang === 'en' ? 'friends-library' : 'biblioteca-de-los-amigos'
+        }`,
         friendSlug,
         'tree',
         sha,

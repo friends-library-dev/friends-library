@@ -10,6 +10,7 @@ import * as chapterize from './cmd/chapterize';
 import * as cover from './cmd/cover';
 import * as coverWatch from './cmd/cover-watch';
 import * as unusual from './cmd/unusual';
+import * as update from './cmd/update';
 
 prettifyErrors();
 
@@ -26,4 +27,5 @@ yargs
   .command(cover)
   .command(coverWatch)
   .command(unusual)
+  .command(update)
   .help().argv;

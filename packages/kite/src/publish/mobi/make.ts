@@ -10,6 +10,7 @@ import { PUBLISH_DIR } from '../file';
 export async function makeMobi(job: Job): Promise<DocumentArtifacts> {
   const manifest = await getMobiManifest(job);
   const { filePath } = await writeEbookManifest(manifest, job);
+
   try {
     await kindlegen(filePath, job);
   } catch (err) {
@@ -17,6 +18,11 @@ export async function makeMobi(job: Job): Promise<DocumentArtifacts> {
     console.log(chalk.red(err));
     process.exit();
   }
+
+  if (manifest['OEBPS/cover.png']) {
+    fs.unlinkSync(manifest['OEBPS/cover.png']);
+  }
+
   return {
     filePath: `${PUBLISH_DIR}/${job.filename}`,
     srcDir: `${PUBLISH_DIR}/_src_/${job.spec.filename}/mobi`,

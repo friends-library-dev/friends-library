@@ -90,7 +90,6 @@ documents:
       - allegory
     editions:
       - type: modernized
-        pages: 19
         formats:
           - type: pdf
           - type: epub
@@ -107,5 +106,12 @@ documents:
               seconds: 2215
               chapters:
                 - 0
+        chapters:
+          - title: A Short History of a Long Travel from Babylon to Bethel
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
         chapters:
           - title: A Short History of a Long Travel from Babylon to Bethel

@@ -1,10 +1,10 @@
-import { Argv } from 'yargs';
+import { CommandBuilder } from 'yargs';
 
 export const command = ['publish <path>', '$0'];
 
 export const describe = 'publish asciidoc documents at given path';
 
-export const builder: (args: Argv) => Argv = function(yargs) {
+export const builder: CommandBuilder = function(yargs) {
   return yargs
     .positional('path', {
       type: 'string',

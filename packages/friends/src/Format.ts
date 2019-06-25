@@ -13,10 +13,10 @@ export default class Format {
     const doc = this.edition.document;
 
     if (['paperback', 'audio'].includes(this.type)) {
-      return `${doc.url()}/${edType}/${this.type}`;
+      return `${this.edition.url()}/${this.type}`;
     }
 
-    return `${doc.url()}/${edType}/${doc.filename}--${edType}.${this.type}`;
+    return `${this.edition.url()}/${doc.filename}--${edType}.${this.type}`;
   }
 
   public toJSON(): Format {
