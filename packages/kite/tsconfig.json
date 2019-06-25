@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "downlevelIteration": true,
-    "lib": ["es2017"],
+    "lib": ["esnext.array", "es2017"],
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2017",

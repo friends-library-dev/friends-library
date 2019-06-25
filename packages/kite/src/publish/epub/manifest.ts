@@ -9,6 +9,7 @@ import { packageDocument } from './package-document';
 import { makeFootnoteCallReplacer, notesMarkup } from './notes';
 import { nav } from './nav';
 import { frontmatter } from './frontmatter';
+import { grey } from '@friends-library/cli/color';
 
 interface SubManifest<T> {
   [key: string]: T;
@@ -38,14 +39,22 @@ async function coverFiles(job: Job): Promise<SubManifest<Html>> {
     return manifest;
   }
 
+  const id = job.spec.meta.coverId;
   const { KITE_CHROMIUM_PATH } = requireEnv('KITE_CHROMIUM_PATH');
   const url = `http://localhost:${process.env.COVER_PORT}`;
-  const path = `${__dirname}/cover.png`;
-  const browser = await puppeteer.launch({ executablePath: KITE_CHROMIUM_PATH });
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1600, height: 2400 });
-  await page.goto(`${url}?capture=ebook&id=${job.spec.meta.coverId}`);
-  await page.screenshot({ path });
+  const path = `${__dirname}/cover_${job.target}_${id.replace(/\//g, '_')}.png`;
+  const start = Date.now();
+  grey(`start: capture ${id}/${job.target}`);
+  try {
+    const browser = await puppeteer.launch({ executablePath: KITE_CHROMIUM_PATH });
+    const page = await browser.newPage();
+    await page.setViewport({ width: 1600, height: 2400 });
+    await page.goto(`${url}?capture=ebook&id=${id}`);
+    await page.screenshot({ path });
+    grey(`end: capture ${id}/${job.target} in ${(Date.now() - start) / 1000}s.`);
+  } catch {
+    grey(`ERROR capturing: ${id}/${job.target}`);
+  }
 
   manifest['OEBPS/cover.png'] = path;
   manifest['OEBPS/cover.xhtml'] = wrapHtml(

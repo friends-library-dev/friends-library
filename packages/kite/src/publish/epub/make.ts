@@ -9,6 +9,7 @@ import { PUBLISH_DIR } from '../file';
 export async function makeEpub(job: Job): Promise<DocumentArtifacts> {
   const manifest = await getEpubManifest(job);
   const artifacts = await writeEbookManifest(manifest, job);
+
   if (job.meta.check) {
     const check = await epubCheck(`${PUBLISH_DIR}/_src_/${job.spec.filename}/epub`);
     if (!check.pass) {
@@ -16,6 +17,11 @@ export async function makeEpub(job: Job): Promise<DocumentArtifacts> {
       process.exit(1);
     }
   }
+
+  if (manifest['OEBPS/cover.png']) {
+    fs.unlinkSync(manifest['OEBPS/cover.png']);
+  }
+
   return artifacts;
 }
 

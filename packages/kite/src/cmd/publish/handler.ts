@@ -1,16 +1,17 @@
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import { extname } from 'path';
-import { exec, execSync } from 'child_process';
+import { exec } from 'child_process';
 import { Arguments } from 'yargs';
 import { lintPath, lintFixPath, createSourceSpec } from '@friends-library/asciidoc';
-import { red, green } from '@friends-library/cli/color';
+import { red } from '@friends-library/cli/color';
 import { printLints } from '../lint/handler';
-import { getPrecursors } from './precursors';
+import { precursorsFromPath } from './precursors';
 import { makeEpub } from '../../publish/epub/make';
 import { makeMobi } from '../../publish/mobi/make';
 import { makePdf } from '../../publish/pdf/make';
 import { send } from './send';
+import { withCoverServer } from './cover-server';
 import { PUBLISH_DIR } from '../../publish/file';
 import {
   Job,
@@ -45,34 +46,50 @@ export default async function handler(argv: Arguments<PublishOptions>): Promise<
     lint(argv.path, argv.fix);
   }
 
-  await withOptionalCoverServer(argv, async () => {
-    const precursors = getPrecursors(argv.path);
+  const publish: () => Promise<void> = async () => {
+    prepPublishDir();
+    const precursors = precursorsFromPath(argv.path);
     await publishPrecursors(precursors, argv);
-  });
+  };
+
+  if (!argv.createEbookCover) {
+    await publish();
+    return;
+  }
+
+  await withCoverServer(publish, argv.useCoverDevServer);
+  process.exit();
 }
 
 export async function publishPrecursors(
   precursors: SourcePrecursor[],
-  argv: PublishOptions,
+  opts: Omit<PublishOptions, 'path' | 'glob' | 'skipLint' | 'fix' | 'useCoverDevServer'>,
 ): Promise<DocumentArtifacts[]> {
-  fs.removeSync(PUBLISH_DIR);
-  fs.ensureDir(PUBLISH_DIR);
-
-  const meta = extractMeta(argv);
-  const jobs = getJobs(precursors, meta, argv.target);
+  const meta = extractMeta(opts);
+  const jobs = getJobs(precursors, meta, opts.target);
   const complete = Promise.all(jobs.map(take));
 
-  if (argv.open) {
+  if (opts.open) {
     complete.then(artifacts => open(artifacts));
   }
 
-  if (argv.send) {
-    complete.then(() => send(jobs.map(j => j.filename), argv.email));
+  if (opts.send) {
+    complete.then(() => send(jobs.map(j => j.filename), opts.email));
   }
   return complete;
 }
 
-function extractMeta(argv: PublishOptions): JobMeta {
+export function prepPublishDir(): void {
+  fs.removeSync(PUBLISH_DIR);
+  fs.ensureDir(PUBLISH_DIR);
+}
+
+function extractMeta(
+  argv: Pick<
+    PublishOptions,
+    'perform' | 'check' | 'noFrontmatter' | 'condense' | 'createEbookCover' | 'printSize'
+  >,
+): JobMeta {
   return {
     perform: argv.perform,
     check: argv.check,
@@ -163,39 +180,6 @@ function lint(path: string, fix: boolean): void {
     red(`\n\nERROR: ${lints.count()} lint errors must be fixed. 😬 `);
     process.exit(1);
   }
-}
-
-async function withOptionalCoverServer(
-  argv: PublishOptions,
-  publishFn: () => void,
-): Promise<void> {
-  if (!argv.createEbookCover) {
-    publishFn();
-    return;
-  }
-
-  const useDevServer = argv.useCoverDevServer;
-  const PORT = argv.useCoverDevServer ? 9999 : 5111;
-  process.env.COVER_PORT = String(PORT);
-  if (!useDevServer) {
-    const cwd = process.cwd();
-    green('Building cover app...');
-    execSync(`cd ${cwd} && yarn cover:build`);
-    green('Serving cover app');
-    execSync(`lsof -t -i tcp:${PORT} | xargs kill`);
-    exec(`cd ${cwd}/packages/kite && yarn serve -l ${PORT} ../cover/build`);
-    await new Promise(res => setTimeout(res, 1000));
-  } else {
-    green(`Using already running cover dev server at port ${PORT}`);
-  }
-
-  await publishFn();
-
-  if (!useDevServer) {
-    execSync(`lsof -t -i tcp:${PORT} | xargs kill`);
-  }
-
-  process.exit();
 }
 
 function open(artifacts: DocumentArtifacts[]): void {
