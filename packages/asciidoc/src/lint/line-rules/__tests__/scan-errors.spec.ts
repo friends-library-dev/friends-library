@@ -96,6 +96,9 @@ describe('scanErrors()', () => {
     // sec > see
     'Chapter 4, sec. 3',
     'Sec. 5, ch. 5',
+
+    // fife > life
+    'appearances were discouraging, the fife and fiddle playing,',
   ];
 
   test.each(allowed)('`%s` is not a lint violation', line => {
