@@ -56,6 +56,7 @@ const runner = new RegexLintRunner(
       test: 'fife', // --> life
       search: /\bfife\b/g,
       replace: 'life',
+      allowIfNear: /\bfiddle\b|\bplay/i,
     },
     {
       test: 'Fie', // --> He
