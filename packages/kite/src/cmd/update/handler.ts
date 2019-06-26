@@ -2,11 +2,15 @@ import { sync as glob } from 'glob';
 import flatten from 'lodash/flatten';
 import pLimit from 'p-limit';
 import prettyMilliseconds from 'pretty-ms';
-import { requireEnv } from '@friends-library/types';
+import { requireEnv, SourcePrecursor } from '@friends-library/types';
 import { Friend, Document, Edition, getAllFriends } from '@friends-library/friends';
 import { buildPrecursor } from '../publish/precursors';
 import { withCoverServer } from '../publish/cover-server';
-import { publishPrecursors, prepPublishDir } from '../publish/handler';
+import {
+  publishPrecursors,
+  prepPublishDir,
+  PublishPrecursorOpts,
+} from '../publish/handler';
 import { green, yellow } from '@friends-library/cli/color';
 
 interface UpdateOptions {
@@ -31,39 +35,17 @@ export default async function update(argv: UpdateOptions): Promise<void> {
   const concurrency = process.env.KITE_UPDATE_CONCURRENCY || 3;
   const limiter = pLimit(Number(concurrency));
   const updateStart = Date.now();
-  process.setMaxListeners(assets.length);
+  process.setMaxListeners(Math.max(assets.length * 2, 20));
 
   let results;
   await withCoverServer(async () => {
     const pool = assets.map(asset =>
       limiter(async () => {
         const assetStart = Date.now();
-        const { friend, document, edition } = asset;
-        yellow(`Begin generation of assets for ${edition.url()}`);
-        const precursor = buildPrecursor(
-          friend.lang,
-          friend.slug,
-          document.slug,
-          edition.type,
-        );
-        const artifacts = await publishPrecursors([precursor], {
-          perform: true,
-          check: true,
-          noFrontmatter: false,
-          condense: false, // @TODO
-          createEbookCover: true,
-          printSize: 'm', // @TODO
-          open: false,
-          email: '',
-          send: false,
-          target: ['pdf-print', 'pdf-web', 'epub', 'mobi'],
-        });
-        green(
-          `Completed generation of assets for ${edition.url()} in ${prettyMilliseconds(
-            Date.now() - assetStart,
-          )} (total: ${prettyMilliseconds(Date.now() - updateStart)})`,
-        );
-        console.log(artifacts);
+        const precursor = precursorFromAsset(asset);
+        const artifacts = await publishPrecursors([precursor], publishOpts());
+        logGeneration(asset, assetStart, updateStart);
+        return artifacts;
       }),
     );
     results = flatten(await Promise.all(pool));
@@ -71,6 +53,36 @@ export default async function update(argv: UpdateOptions): Promise<void> {
 
   console.log(results);
   process.exit();
+}
+
+function precursorFromAsset(asset: Asset): SourcePrecursor {
+  const { friend, document, edition } = asset;
+  yellow(`Begin generation of assets for ${edition.url()}`);
+  return buildPrecursor(friend.lang, friend.slug, document.slug, edition.type);
+}
+
+function elapsed(timestamp: number): string {
+  return prettyMilliseconds(Date.now() - timestamp);
+}
+
+function logGeneration(asset: Asset, assetStart: number, updateStart: number): void {
+  const timing = `${elapsed(assetStart)} (total: ${elapsed(updateStart)})`;
+  green(`Completed generation of assets for \`${asset.edition.url()}\` in ${timing}`);
+}
+
+function publishOpts(): PublishPrecursorOpts {
+  return {
+    perform: true,
+    check: true,
+    noFrontmatter: false,
+    condense: false, // @TODO
+    createEbookCover: true,
+    printSize: 'm', // @TODO
+    open: false,
+    email: '',
+    send: false,
+    target: ['pdf-print', 'pdf-web', 'epub', 'mobi'],
+  };
 }
 
 function getAllCandidates(pattern?: string): Asset[] {
