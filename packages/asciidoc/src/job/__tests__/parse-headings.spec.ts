@@ -51,6 +51,18 @@ describe('parsing headings', () => {
         },
       },
     ],
+
+    [
+      '[#ch10, short="Prayer, Ministry, Wisdom, & Kingdom"]\n== Chapter X. The Prayer, Ministry, Wisdom and Kingdom which are Spiritual',
+      {
+        text: 'The Prayer, Ministry, Wisdom and Kingdom which are Spiritual',
+        shortText: 'Prayer, Ministry, Wisdom, &#38; Kingdom',
+        sequence: {
+          type: 'Chapter',
+          number: 10,
+        },
+      },
+    ],
   ];
 
   test.each(cases)(

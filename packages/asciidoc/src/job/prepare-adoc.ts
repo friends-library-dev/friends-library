@@ -13,7 +13,8 @@ export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
     swapLineEndingDashesInVerse,
     emdashBeforeBookTitle,
     enAndEmDashToDoubleDash,
-    smartQuotesToEntities,
+    entitiesToDecimal,
+    escapeSemicolonAfterEntity,
     signaturePrependDoubleDash,
     doubleDashToEntity,
     collapseEmDashNewlineWhitespace,
@@ -63,13 +64,17 @@ function doubleDashToEntity(adoc: Asciidoc): Asciidoc {
     .replace(/{open-block-delimiter}/gm, '\n--\n');
 }
 
-function smartQuotesToEntities(adoc: Asciidoc): Asciidoc {
+function entitiesToDecimal(adoc: Asciidoc): Asciidoc {
   return adoc
     .replace(/"`/gim, '&#8220;')
     .replace(/`"/gim, '&#8221;')
     .replace(/'`/gim, '&#8216;')
     .replace(/`'/gim, '&#8217;')
-    .replace(/(?<entity>&#82(1|2)(0|1|6|7););/, '$<entity>+++;+++');
+    .replace(/&hellip;/g, '&#8230;');
+}
+
+function escapeSemicolonAfterEntity(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(/(?<entity>&#\d{2,4};);/, '$<entity>+++;+++');
 }
 
 function emdashBeforeBookTitle(adoc: Asciidoc): Asciidoc {

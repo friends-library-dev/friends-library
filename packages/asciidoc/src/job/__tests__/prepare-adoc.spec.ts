@@ -282,4 +282,11 @@ describe('prepareAsciidoc()', () => {
 
     expect(prepared).toContain('[.book-title]#Sewell#{blank}footnote:[[.book-title]');
   });
+
+  const entities = [['Foo bar&hellip;', 'Foo bar&#8230;']];
+
+  test.each(entities)('converts %s to %s', (before, after) => {
+    const prepared = prepareAsciidoc(before);
+    expect(prepared).toBe(after);
+  });
 });
