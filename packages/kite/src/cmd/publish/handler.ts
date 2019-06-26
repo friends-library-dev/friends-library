@@ -61,9 +61,14 @@ export default async function handler(argv: Arguments<PublishOptions>): Promise<
   process.exit();
 }
 
+export type PublishPrecursorOpts = Omit<
+  PublishOptions,
+  'path' | 'glob' | 'skipLint' | 'fix' | 'useCoverDevServer'
+>;
+
 export async function publishPrecursors(
   precursors: SourcePrecursor[],
-  opts: Omit<PublishOptions, 'path' | 'glob' | 'skipLint' | 'fix' | 'useCoverDevServer'>,
+  opts: PublishPrecursorOpts,
 ): Promise<DocumentArtifacts[]> {
   const meta = extractMeta(opts);
   const jobs = getJobs(precursors, meta, opts.target);
