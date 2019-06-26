@@ -26,8 +26,32 @@ documents:
     tags:
       - journal
     editions:
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - title: Testimony Concerning Jane Pearson
       - type: modernized
-        pages: 53
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - title: Testimony Concerning Jane Pearsom
+      - type: updated
+        editor: Jason R. Henderson
         formats:
           - type: pdf
           - type: epub
