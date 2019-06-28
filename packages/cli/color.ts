@@ -32,6 +32,10 @@ export function grey(...args: any[]): void {
   console.log(chalk.gray(...args));
 }
 
+export function bgRed(...args: any[]): void {
+  console.log(chalk.bgRed(...args));
+}
+
 export function white(...args: any[]): void {
   console.log(...args);
 }
