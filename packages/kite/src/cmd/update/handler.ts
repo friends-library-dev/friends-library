@@ -1,5 +1,6 @@
 import { sync as glob } from 'glob';
 import flatten from 'lodash/flatten';
+import omit from 'lodash/omit';
 import pLimit from 'p-limit';
 import path from 'path';
 import prettyMilliseconds from 'pretty-ms';
@@ -11,11 +12,13 @@ import {
   Lang,
   Slug,
   EditionType,
+  CoverProps,
 } from '@friends-library/types';
 import { green, yellow } from '@friends-library/cli/color';
 import { Friend, Document, Edition, getAllFriends } from '@friends-library/friends';
 import { buildPrecursor } from '../publish/precursors';
 import { withCoverServer } from '../publish/cover-server';
+import { coverFromProps } from '../cover/handler';
 import validate from './validate';
 import {
   publishPrecursors,
@@ -35,15 +38,18 @@ interface SourceDocument {
   edition: Edition;
 }
 
+export type AssetType = FileType | 'paperback-cover';
+
 export interface Asset {
   path: string;
   filename: string;
   pdfPages?: number;
-  target: FileType;
+  type: AssetType;
   lang: Lang;
   friendSlug: Slug;
   documentSlug: Slug;
   editionType: EditionType;
+  paperbackCoverBlurb: string;
 }
 
 export default async function update(argv: UpdateOptions): Promise<void> {
@@ -64,14 +70,71 @@ export default async function update(argv: UpdateOptions): Promise<void> {
         const precursor = precursorFromAsset(doc);
         const artifacts = await publishPrecursors([precursor], publishOpts());
         logGeneration(doc, assetStart, updateStart);
-        const assetsWithoutPages = artifacts.map(artifact => asset(artifact, doc));
-        const assetsWithPages = await validate(assetsWithoutPages, precursor);
-        return assetsWithPages;
+        let assetsSansPages = artifacts.map(artifact => asset(artifact, doc));
+        const assetsWithPages = await validate(assetsSansPages, precursor);
+        const paperbackCovers = await getPaperbackCovers(assetsSansPages, precursor, doc);
+        return assetsWithPages.concat(paperbackCovers);
       }),
     );
     results = flatten(await Promise.all(pool));
   }, argv.useCoverDevServer);
   console.log(results);
+}
+
+async function getPaperbackCovers(
+  assets: Asset[],
+  precursor: SourcePrecursor,
+  sourceDoc: SourceDocument,
+): Promise<Asset[]> {
+  const candidates = assets
+    .filter(({ type: target }) => target === 'pdf-print')
+    .reduce(
+      (makeCovers, asset) => {
+        if (newCoverNeeded(asset)) {
+          makeCovers.push(asset);
+        }
+        return makeCovers;
+      },
+      [] as Asset[],
+    );
+  const coverAssets: Asset[] = [];
+  for (const candidate of candidates) {
+    coverAssets.push(await makeCoverAsset(candidate, precursor, sourceDoc));
+  }
+  return coverAssets;
+}
+
+async function makeCoverAsset(
+  asset: Asset,
+  { meta, filename: basename }: SourcePrecursor,
+  { edition }: SourceDocument,
+): Promise<Asset> {
+  const pages = asset.pdfPages;
+  if (pages === undefined) {
+    throw new Error(`Missing pdf pages for ${edition.url()}`);
+  }
+
+  const coverProps: CoverProps = {
+    title: meta.title,
+    author: meta.author.name,
+    blurb: edition.paperbackCoverBlurb(),
+    edition: edition.type,
+    pages,
+    size: 'm', // @TODO
+    showGuides: false,
+    customCss: '', // @TODO
+    customHtml: '', // @TODO
+  };
+
+  const filename = `${basename}--cover.pdf`;
+  const filepath = await coverFromProps(coverProps, filename, `${basename}/cover`);
+
+  return {
+    ...omit(asset, 'pdfPages'),
+    type: 'paperback-cover',
+    filename: path.basename(filepath),
+    path: filepath,
+  };
 }
 
 function asset(
@@ -81,11 +144,12 @@ function asset(
   return {
     path: filePath,
     filename: path.basename(filePath),
-    target: <FileType>path.basename(srcDir),
+    type: <FileType>path.basename(srcDir),
     lang: friend.lang,
     friendSlug: friend.slug,
     documentSlug: document.slug,
     editionType: edition.type,
+    paperbackCoverBlurb: edition.paperbackCoverBlurb(),
   };
 }
 
@@ -145,23 +209,34 @@ function assetFromPath(path: string, editions: Map<string, Edition>): SourceDocu
   };
 }
 
-function filterByPattern(assets: SourceDocument[], pattern?: string): SourceDocument[] {
-  if (!pattern) return assets;
-  return assets.filter(asset => asset.fullPath.indexOf(pattern) !== -1);
+function filterByPattern(
+  sourceDocs: SourceDocument[],
+  pattern?: string,
+): SourceDocument[] {
+  if (!pattern) return sourceDocs;
+  return sourceDocs.filter(sourceDoc => sourceDoc.fullPath.indexOf(pattern) !== -1);
 }
 
-function needingUpdate(assets: SourceDocument[]): SourceDocument[] {
-  return assets.filter(asset => assetChanged(asset) || productionChanged(asset));
+function needingUpdate(sourceDocs: SourceDocument[]): SourceDocument[] {
+  return sourceDocs.filter(
+    sourceDoc => sourceDocChanged(sourceDoc) || productionChanged(sourceDoc),
+  );
 }
 
-function assetChanged(asset: SourceDocument): boolean {
+function sourceDocChanged(sourceDoc: SourceDocument): boolean {
   // @TODO implement real logic
-  if (asset) return true;
+  if (sourceDoc) return true;
   return true;
 }
 
-function productionChanged(asset: SourceDocument): boolean {
+function productionChanged(sourceDoc: SourceDocument): boolean {
   // @TODO implement real logic
+  if (sourceDoc) return true;
+  return true;
+}
+
+function newCoverNeeded(asset: Asset): boolean {
+  // @TODO implement real logic, compare pageg nums, etc.
   if (asset) return true;
   return true;
 }

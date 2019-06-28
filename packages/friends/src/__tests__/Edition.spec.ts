@@ -23,4 +23,21 @@ describe('Edition', () => {
       expect(edition.url()).toBe('/george-fox/journal/modernized');
     });
   });
+
+  describe('paperbackCoverBlurb()', () => {
+    it('returns edition description, if exists', () => {
+      edition.description = 'Modernized version of G. F.';
+      expect(edition.paperbackCoverBlurb()).toBe(edition.description);
+    });
+
+    it('returns document description, if no edition description', () => {
+      document.description = 'G. F.';
+      expect(edition.paperbackCoverBlurb()).toBe(document.description);
+    });
+
+    it('returns friend description, if no edition or doc desc', () => {
+      friend.description = 'Pure as bell, stiff as a tree';
+      expect(edition.paperbackCoverBlurb()).toBe(friend.description);
+    });
+  });
 });

@@ -22,7 +22,11 @@ export default async function cover(): Promise<void> {
   exec(`open "${filePath}"`);
 }
 
-export async function coverFromProps(props: CoverProps): Promise<FilePath> {
+export async function coverFromProps(
+  props: CoverProps,
+  filename?: string,
+  srcDir?: string,
+): Promise<FilePath> {
   const el = React.createElement(Cover, {
     ...props,
     updateBlurb: () => {},
@@ -35,10 +39,11 @@ export async function coverFromProps(props: CoverProps): Promise<FilePath> {
     'doc.css': coverCss(props),
     ...(props.isbn ? { [isbnPath]: coverAsset(isbnPath) } : {}),
   };
+
   const { filePath } = await prince(
     manifest,
-    '__cover__',
-    `cover-${new Date().getTime() / 1000}.pdf`,
+    srcDir || 'cover',
+    filename || `${props.author.replace(/( |&nbsp;)+/g, '_')}--cover--${Date.now()}.pdf`,
   );
   return filePath;
 }
