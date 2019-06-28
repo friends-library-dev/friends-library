@@ -58,7 +58,6 @@ export default async function handler(argv: Arguments<PublishOptions>): Promise<
   }
 
   await withCoverServer(publish, argv.useCoverDevServer);
-  process.exit();
 }
 
 export type PublishPrecursorOpts = Omit<
