@@ -1,8 +1,8 @@
-import { SourcePrecursor, FileType } from '@friends-library/types';
+import { SourcePrecursor } from '@friends-library/types';
 import pdf from 'pdf-parse';
 import chalk from 'chalk';
 import fs from 'fs-extra';
-import { Asset } from './handler';
+import { Asset, AssetType } from './handler';
 
 export default async function validate(
   assets: Asset[],
@@ -22,19 +22,18 @@ async function inspectAssets(
   { meta: { author, title }, adoc }: SourcePrecursor,
 ): Promise<[InvalidAssetError[], Asset[]]> {
   const errors: InvalidAssetError[] = [];
-  const adocLength = adoc.length;
   for (const asset of assets) {
-    const { path, target } = asset;
-    const error = makeError(target, path);
+    const { path, type } = asset;
+    const error = makeError(type, path);
 
     // validate size
     const { size } = await fs.stat(path);
-    if (size < adocLength * sizeMultipliers[target]) {
+    if (sizeTooSmall(size, type, adoc.length)) {
       errors.push(error(`Filesize too small -- (${size}) bytes`));
     }
 
     // validate pdf
-    if (target === 'pdf-print' || target === 'pdf-web') {
+    if (type === 'pdf-print' || type === 'pdf-web') {
       const buffer = await fs.readFile(path);
       try {
         const { text, numpages } = await pdf(buffer, { max: 1 });
@@ -65,15 +64,8 @@ function pdfTextHas(text: string, test: string): boolean {
   return true;
 }
 
-const sizeMultipliers: { [k in FileType]: number } = {
-  epub: 0.4,
-  mobi: 1.25,
-  'pdf-print': 1.5,
-  'pdf-web': 1.3,
-};
-
 class InvalidAssetError extends Error {
-  public constructor(message: string, public target: FileType, public path: string) {
+  public constructor(message: string, public type: AssetType, public path: string) {
     super(message);
   }
 
@@ -81,15 +73,30 @@ class InvalidAssetError extends Error {
     const file = this.path.split('/').pop() || '';
     console.log(`${chalk.bgRed('VALIDATION ERROR')} ${chalk.red(this.message)}`);
     console.log(`   ${chalk.gray('file:')} ${chalk.dim.yellow(file)}`);
-    console.log(`   ${chalk.gray('target:')} ${chalk.dim.yellow(this.target)}\n`);
+    console.log(`   ${chalk.gray('type:')} ${chalk.dim.yellow(this.type)}\n`);
   }
 }
 
 function makeError(
-  target: FileType,
+  type: AssetType,
   path: string,
 ): (message: string) => InvalidAssetError {
   return message => {
-    return new InvalidAssetError(message, target, path);
+    return new InvalidAssetError(message, type, path);
   };
+}
+
+function sizeTooSmall(filesize: number, type: AssetType, adocLength: number): boolean {
+  switch (type) {
+    case 'epub':
+      return filesize < adocLength * 0.35;
+    case 'mobi':
+      return filesize < adocLength * 1.15;
+    case 'pdf-print':
+      return filesize < adocLength * 1.5;
+    case 'pdf-web':
+      return filesize < adocLength * 1.3;
+    default:
+      return false;
+  }
 }

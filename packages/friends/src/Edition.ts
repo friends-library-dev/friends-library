@@ -24,6 +24,12 @@ export default class Edition {
     return `${this.document.url()}/${this.type}`;
   }
 
+  public paperbackCoverBlurb(): string {
+    return (
+      this.description || this.document.description || this.document.friend.description
+    );
+  }
+
   public toJSON(): Edition {
     delete this.document;
     return this;
