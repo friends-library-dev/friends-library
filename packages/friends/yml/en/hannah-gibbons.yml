@@ -1,12 +1,26 @@
 name: Hannah Gibbons
 slug: hannah-gibbons
 gender: female
-description: TODO
+description:
+  Hannah Gibbons (1771-1868) was a meek but truly living minister in the later period of
+  the Society of Friends. Though she forever maintained a low view of herself and her
+  spiritual attainments, she was considered by all to be a pillar in church, traveling in
+  the capacity of a minister well into her eighties, and often being led of the Lord, in
+  old age, to visit hardened prisoners who were condemend to death. She remained
+  spiritually green and fruitful to the very end of her life, and died with a heart full
+  of life, wisdom, and deep spiritual experience at 97 years of age.
 documents:
   - title: Journal of Hannah Gibbons
     slug: journal
     filename: Journal_of_Hannah_Gibbons
-    description: TODO
+    description:
+      Hannah Gibbons (1771-1868) was a meek but truly living minister in the later period
+      of the Society of Friends. Though she forever maintained a low view of herself and
+      her spiritual attainments, she was considered by all to be a pillar in church,
+      traveling in the capacity of a minister well into her eighties, and often being led
+      of the Lord, in old age, to visit hardened prisoners who were condemend to death.
+      She remained spiritually green and fruitful to the very end of her life, and died
+      with a heart full of life, wisdom, and deep spiritual experience at 97 years of age.
     tags:
       - journal
     editions:

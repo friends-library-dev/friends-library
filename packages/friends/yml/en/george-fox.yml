@@ -4,22 +4,28 @@ gender: male
 description:
   George Fox (1624-1691) is generally considered the founder of the Society of Friends
   (Quakers). As a young man, Fox could find no rest in the lifeless, outward Christianity
-  of his day, seeing that most believers professed far more than they actually possessed.
-  This journal tells the story of his desperate search for truth, his discovery of a
-  Christianity that stands in the life and light of Jesus Christ, and the ensuing fifty
-  years of powerful ministry that turned the world upside down. There are two unabridged
-  editions of Fox's journal on this site. One is Wilson Armistead's 1852 edition, which is
-  divided into chapters and has many interesting and valuable footnotes. The other is a
-  recent edition which has been more modernized in spelling and language.
+  of his day, seeing clearly that most believers professed far more than they tuly
+  possessed. This journal tells the story of his desperate search for the Truth, his
+  dicovery of a Christianity that stands in the life and light of Jesus Christ, and the
+  ensuing fifty years of powerful ministry that turned the world upside down. This is the
+  complete and unabridged Journal of Georged Fox, originally compiled and edited by Thomas
+  Ellwood in 1694, and later divided into chapters, and supplied with numerous historical
+  and biographical notes by William Armistead in 1852.
 documents:
   - title: The Journal of George Fox
     slug: journal
     filename: Journal_of_George_Fox
     description:
-      This is George Fox's unabridged, two-volume journal. It is extremely long, and
-      perhaps too exhaustive for some readers. But we highly recommend that you at least
-      read the account of his early years, his call to the ministry, and the birth of the
-      Society of Friends.
+      George Fox (1624-1691) is generally considered the founder of the Society of Friends
+      (Quakers). As a young man, Fox could find no rest in the lifeless, outward
+      Christianity of his day, seeing clearly that most believers professed far more than
+      they tuly possessed. This journal tells the story of his desperate search for the
+      Truth, his dicovery of a Christianity that stands in the life and light of Jesus
+      Christ, and the ensuing fifty years of powerful ministry that turned the world
+      upside down. This is the complete and unabridged Journal of Georged Fox, originally
+      compiled and edited by Thomas Ellwood in 1694, and later divided into chapters, and
+      supplied with numerous historical and biographical notes by William Armistead in
+      1852.
     tags:
       - journal
       - letters

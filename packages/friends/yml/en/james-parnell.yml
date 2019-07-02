@@ -3,13 +3,13 @@ slug: james-parnell
 gender: male
 description:
   James Parnell (1637-1656) is said to have been “young, small of stature, and poor in
-  appearance,” but thousands were made to confess that “he spoke as one having authority,
-  and not as the scribes.” He was convinced of the Truth when only fourteen years of age,
-  and became a mighty preacher and promoter of the gospel by sixteen. Following a debate
-  with a prominent priest, Parnell was arrested on spurious charges of being an “idle and
+  appearance, but thousands were obliged to confess that “he spoke as one having
+  authority, and not as the scribes.” He was convinced of the Truth when a boy of fourteen
+  years, and became a valiant minister of the gospel by sixteen. Following a debate with a
+  prominent priest, Parnell was arrested on spurious charges of being an “idle and
   disorderly person,” and imprisoned at Colchester Castle. There he was confined to a
-  small hole in the thick castle wall, twelve feet above the ground. He died from sickness
-  and ill-treatment after ten months imprisonment at the young age of nineteen.
+  small hole in the thick castle wall, twelve feet above the ground, and died from
+  sickness and ill-treatment after ten months imprisonment at nineteen years of age.
 documents:
   - title: Life of James Parnell - With Letters and Writings
     slug: life
@@ -17,14 +17,14 @@ documents:
     filename: Life_of_James_Parnell
     description:
       James Parnell (1637-1656) is said to have been “young, small of stature, and poor in
-      appearance,” but thousands were made to confess that “he spoke as one having
-      authority, and not as the scribes.” He was convinced of the Truth when only fourteen
-      years of age, and became a mighty preacher and promoter of the gospel by sixteen.
-      Following a debate with a prominent priest, Parnell was arrested on spurious charges
-      of being an “idle and disorderly person,” and imprisoned at Colchester Castle. There
-      he was confined to a small hole in the thick castle wall, twelve feet above the
-      ground. He died from sickness and ill-treatment after ten months imprisonment at the
-      young age of nineteen.
+      appearance, but thousands were obliged to confess that “he spoke as one having
+      authority, and not as the scribes.” He was convinced of the Truth when a boy of
+      fourteen years, and became a valiant minister of the gospel by sixteen. Following a
+      debate with a prominent priest, Parnell was arrested on spurious charges of being an
+      “idle and disorderly person,” and imprisoned at Colchester Castle. There he was
+      confined to a small hole in the thick castle wall, twelve feet above the ground, and
+      died from sickness and ill-treatment after ten months imprisonment at nineteen years
+      of age.
     tags:
       - journal
       - letters
@@ -36,6 +36,35 @@ documents:
           - type: pdf
           - type: epub
           - type: mobi
+          - type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: Part 1
+              external_id_hq: TODO
+              external_id_lq: TODO
+              filesize_hq: TODO
+              filesize_lq: TODO
+              seconds: TODO
+              chapters:
+                - 0
+            - title: Part 2
+              external_id_hq: TODO
+              external_id_lq: TODO
+              filesize_hq: TODO
+              filesize_lq: TODO
+              seconds: 4378
+              chapters:
+                - 1
+            - title: Part 3
+              external_id_hq: TODO
+              external_id_lq: TODO
+              filesize_hq: TODO
+              filesize_lq: TODO
+              seconds: TODO
+              chapters:
+                - 2
+
         chapters:
           - title: Memoir of James Parnell
           - title: Appendix - About Colchester Castle
