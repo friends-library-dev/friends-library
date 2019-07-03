@@ -1,4 +1,4 @@
-import { Job, Html, Heading, PrintSize, Lang } from '@friends-library/types';
+import { Job, Html, Heading, Lang, PrintSizeDetails } from '@friends-library/types';
 import stripIndent from 'strip-indent';
 import { flow } from 'lodash';
 import { replaceHeadings } from './headings';
@@ -76,7 +76,7 @@ function addBodyClasses([html, job]: [Html, Job]): [Html, Job] {
   return [html.replace('<body>', `<body class="body trim--${abbrev}">`), job];
 }
 
-export function getTrim({ meta }: Job): PrintSize {
+export function getTrim({ meta }: Job): PrintSizeDetails {
   return getBookSize(meta.printSize || 'm');
 }
 

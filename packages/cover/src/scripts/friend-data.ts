@@ -5,40 +5,46 @@ import { sync as glob } from 'glob';
 import { execSync } from 'child_process';
 import { getAllFriends, Edition, Friend } from '@friends-library/friends';
 import { FriendData } from '../components/Cover/types';
-import { PrintSizeAbbrev, requireEnv } from '@friends-library/types';
+import { PrintSize, requireEnv } from '@friends-library/types';
+import { DocumentMeta } from '@friends-library/client';
+import { bookSizes } from '@friends-library/asciidoc';
 
 const { KITE_DOCS_REPOS_ROOT: ROOT } = requireEnv('KITE_DOCS_REPOS_ROOT');
+const meta = new DocumentMeta();
 
-const data: FriendData[] = Object.values(
-  getAllFriends('en')
-    .concat(getAllFriends('es'))
-    .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))
-    .reduce(
-      (acc, friend: Friend) => {
-        if (!acc[friend.name]) {
-          acc[friend.name] = {
-            name: friend.name,
-            description: friend.description,
-            documents: [],
-          };
-        }
-        acc[friend.name].documents = acc[friend.name].documents.concat(
-          mapDocuments(friend),
-        );
-        return acc;
-      },
-      {} as { [k: string]: FriendData },
-    ),
-);
+(async () => {
+  await meta.load();
+  const data: FriendData[] = Object.values(
+    getAllFriends('en')
+      .concat(getAllFriends('es'))
+      .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))
+      .reduce(
+        (acc, friend: Friend) => {
+          if (!acc[friend.name]) {
+            acc[friend.name] = {
+              name: friend.name,
+              description: friend.description,
+              documents: [],
+            };
+          }
+          acc[friend.name].documents = acc[friend.name].documents.concat(
+            mapDocuments(friend),
+          );
+          return acc;
+        },
+        {} as { [k: string]: FriendData },
+      ),
+  );
 
-fs.writeFileSync(
-  `${__dirname}/../../public/friends.js`,
-  `window.Friends = ${JSON.stringify(data)}`,
-);
+  fs.writeFileSync(
+    `${__dirname}/../../public/friends.js`,
+    `window.Friends = ${JSON.stringify(data)}`,
+  );
 
-execSync(
-  `cd ${__dirname}/../../ && ../../node_modules/.bin/prettier --write "./public/friends.js"`,
-);
+  execSync(
+    `cd ${__dirname}/../../ && ../../node_modules/.bin/prettier --write "./public/friends.js"`,
+  );
+})();
 
 function mapDocuments(friend: Friend): FriendData['documents'] {
   return friend.documents.map(document => {
@@ -69,46 +75,34 @@ function mapDocuments(friend: Friend): FriendData['documents'] {
   });
 }
 
-function estimatePages(
-  edition: Edition,
-): {
-  defaultSize: PrintSizeAbbrev;
-  pages: Record<PrintSizeAbbrev, number>;
-} {
+function estimatePages(edition: Edition): { size: PrintSize; pages: number } {
   const { document } = edition;
   const path = `${document.friend.lang}${document.url()}/${edition.type}`;
   if (!fs.existsSync(`${ROOT}/${path}`)) {
     red(`No dir found: ${path}`);
     return {
-      defaultSize: 'm',
-      pages: {
-        s: 111,
-        m: 222,
-        l: 333,
-        xl: 444,
-        xxl: 555,
-      },
+      size: 'm',
+      pages: 222,
     };
   }
 
-  const adocLength = glob(`${ROOT}/${path}/*.adoc`)
+  const adocFiles = glob(`${ROOT}/${path}/*.adoc`);
+  const adocLength = adocFiles
     .map(filepath => fs.readFileSync(filepath, 'UTF-8'))
     .join('').length;
 
   const pages = {
-    s: Math.floor(adocLength * 0.000789195),
-    m: Math.floor(adocLength * 0.000492331),
-    l: Math.floor(adocLength * 0.000474325),
-    xl: Math.floor(adocLength * 0.000419238),
-    xxl: Math.floor(adocLength * 0.000307021),
+    s: meta.estimatePages(adocLength, adocFiles.length, 's'),
+    m: meta.estimatePages(adocLength, adocFiles.length, 'm'),
+    xl: meta.estimatePages(adocLength, adocFiles.length, 'xl'),
   };
 
-  let defaultSize: PrintSizeAbbrev = 's';
-  if (pages.s > 175) defaultSize = 'm';
-  if (pages.m > 500) defaultSize = 'xl';
+  let size: PrintSize = 's';
+  if (pages.s > bookSizes.s.maxPages) size = 'm';
+  if (pages.m > bookSizes.m.maxPages) size = 'xl';
 
   return {
-    defaultSize,
-    pages,
+    size,
+    pages: pages[size],
   };
 }

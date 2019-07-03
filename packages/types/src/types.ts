@@ -5,8 +5,7 @@ export type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
 export type NodeEnv = 'production' | 'development';
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
-export type PrintSizeName = 'Pocket Book' | 'Digest' | 'A5' | 'US Trade' | 'Crown Quarto';
-export type PrintSizeAbbrev = 's' | 'm' | 'l' | 'xl' | 'xxl';
+export type PrintSize = 's' | 'm' | 'xl';
 
 export interface Job {
   id: string;
@@ -21,9 +20,11 @@ export interface DocumentArtifacts {
   srcDir: FilePath;
 }
 
-export interface PrintSize {
-  name: PrintSizeName;
-  abbrev: PrintSizeAbbrev;
+export interface PrintSizeDetails {
+  abbrev: PrintSize;
+  maxPages: number;
+  minPages: number;
+  luluName: 'Pocket Book' | 'Digest' | 'US Trade';
   dims: {
     height: number;
     width: number;
@@ -58,7 +59,7 @@ export type JobMeta = Readonly<{
   perform: boolean;
   check: boolean;
   frontmatter: boolean;
-  printSize?: PrintSizeAbbrev;
+  printSize?: PrintSize;
   condense: boolean;
   createEbookCover: boolean;
 }>;
@@ -149,7 +150,7 @@ export interface LintOptions {
 export interface CoverProps {
   title: string;
   author: Name;
-  size: PrintSizeAbbrev;
+  size: PrintSize;
   pages: number;
   edition: EditionType | 'spanish';
   isbn?: ISBN;

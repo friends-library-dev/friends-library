@@ -1,6 +1,6 @@
 import {
   Name,
-  PrintSizeAbbrev,
+  PrintSize,
   Description,
   EditionType,
   ISBN,
@@ -11,8 +11,8 @@ import {
 export interface EditionData {
   id: string;
   type: EditionType | 'spanish';
-  pages: Record<PrintSizeAbbrev, number>;
-  defaultSize: PrintSizeAbbrev;
+  pages: number;
+  size: PrintSize;
   isbn?: ISBN;
 }
 

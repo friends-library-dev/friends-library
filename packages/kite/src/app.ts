@@ -11,6 +11,7 @@ import * as cover from './cmd/cover';
 import * as coverWatch from './cmd/cover-watch';
 import * as unusual from './cmd/unusual';
 import * as update from './cmd/update';
+import * as pagesData from './cmd/pages-data';
 
 prettifyErrors();
 
@@ -28,4 +29,5 @@ yargs
   .command(coverWatch)
   .command(unusual)
   .command(update)
+  .command(pagesData)
   .help().argv;

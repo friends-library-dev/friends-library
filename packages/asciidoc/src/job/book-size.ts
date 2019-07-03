@@ -1,4 +1,4 @@
-import { PrintSize, PrintSizeName } from '@friends-library/types';
+import { PrintSize, PrintSizeDetails } from '@friends-library/types';
 
 const defaultMargins = {
   top: 0.85,
@@ -8,10 +8,12 @@ const defaultMargins = {
   runningHeadTop: 0.35,
 };
 
-export const sizes: { [K in PrintSizeName]: PrintSize } = {
-  'Pocket Book': {
-    name: 'Pocket Book',
+export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
+  s: {
+    luluName: 'Pocket Book',
     abbrev: 's',
+    minPages: 2,
+    maxPages: 175,
     margins: {
       top: 0.68,
       bottom: 0.52,
@@ -24,8 +26,10 @@ export const sizes: { [K in PrintSizeName]: PrintSize } = {
       width: 4.24,
     },
   },
-  Digest: {
-    name: 'Digest',
+  m: {
+    minPages: 100,
+    maxPages: 450,
+    luluName: 'Digest',
     abbrev: 'm',
     margins: defaultMargins,
     dims: {
@@ -33,17 +37,10 @@ export const sizes: { [K in PrintSizeName]: PrintSize } = {
       width: 5.5,
     },
   },
-  A5: {
-    name: 'A5',
-    abbrev: 'l',
-    margins: defaultMargins,
-    dims: {
-      height: 8.27,
-      width: 5.83,
-    },
-  },
-  'US Trade': {
-    name: 'US Trade',
+  xl: {
+    minPages: 350,
+    maxPages: 2000, // @TODO lower after we handle multi-vol works like Fox, Shillitoe
+    luluName: 'US Trade',
     abbrev: 'xl',
     margins: defaultMargins,
     dims: {
@@ -51,22 +48,13 @@ export const sizes: { [K in PrintSizeName]: PrintSize } = {
       width: 6,
     },
   },
-  'Crown Quarto': {
-    name: 'Crown Quarto',
-    abbrev: 'xxl',
-    margins: defaultMargins,
-    dims: {
-      height: 9.68,
-      width: 7.44,
-    },
-  },
 };
 
-export function getBookSize(id: string): PrintSize {
+export function getBookSize(id: string): PrintSizeDetails {
   let size;
 
   Object.values(sizes).forEach(s => {
-    if (s && (s.name === id || s.abbrev === id)) {
+    if (s && (s.luluName === id || s.abbrev === id)) {
       size = s;
     }
   });

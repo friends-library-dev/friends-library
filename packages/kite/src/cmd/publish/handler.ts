@@ -16,7 +16,7 @@ import { PUBLISH_DIR } from '../../publish/file';
 import {
   Job,
   JobMeta,
-  PrintSizeAbbrev,
+  PrintSize,
   SourcePrecursor,
   SourceSpec,
   FileType,
@@ -38,7 +38,7 @@ export interface PublishOptions {
   condense: boolean;
   createEbookCover: boolean;
   useCoverDevServer: boolean;
-  printSize?: PrintSizeAbbrev;
+  printSize?: PrintSize;
 }
 
 export default async function handler(argv: Arguments<PublishOptions>): Promise<void> {

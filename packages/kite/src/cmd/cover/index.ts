@@ -18,7 +18,7 @@ export const builder: CommandBuilder = function(yargs) {
     })
     .option('print-size', {
       alias: 's',
-      choices: ['s', 'm', 'l', 'xl', 'xxl'],
+      choices: ['s', 'm', 'xl'],
       default: 'm',
     })
     .option('guides', {
