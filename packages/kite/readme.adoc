@@ -123,7 +123,7 @@ $ yarn kite en/george-fox --send
 $ yarn kite en/george-fox --send --email bob@gmail.com
 
 # `--print-size` allows you to force a book print size (only with `pdf-print` target)
-# possible sizes are `s`, `m`, (default), `l` (6x9), `xl`, and `xxl`
+# possible sizes are `s`, `m`, (default), `xl` (6x9)
 $ yarn kite en/george-fox --print-size l
 
 # `--condense` adds css to slightly reduce number of pages for very long books

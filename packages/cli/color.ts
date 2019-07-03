@@ -1,5 +1,7 @@
 import chalk from 'chalk';
 
+export { chalk as c };
+
 export function red(...args: any[]): void {
   console.log(chalk.red(...args));
 }

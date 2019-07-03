@@ -4,7 +4,7 @@ html {
   font-size: 1in;
   background: $bg;
   color: #000;
-  font-family: "Bodoni 72 Smallcaps", Georgia, serif;
+  font-family: 'Bodoni 72 Smallcaps', Georgia, serif;
 }
 
 html.size--s {
@@ -15,12 +15,12 @@ html.size--s {
   }
 }
 
-html.size--xl,
-html.size--xxl {
+html.size--xl {
   font-size: 1.1in;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: 400 !important;
 }
 

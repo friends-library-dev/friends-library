@@ -3,6 +3,9 @@ import pdf from 'pdf-parse';
 import chalk from 'chalk';
 import fs from 'fs-extra';
 import { Asset, AssetType } from './handler';
+import { bookSizes } from '@friends-library/asciidoc';
+
+type MakeError = (message: string) => InvalidAssetError;
 
 export default async function validate(
   assets: Asset[],
@@ -45,9 +48,28 @@ async function inspectAssets(
         errors.push(error('Un-parsable PDF'));
       }
     }
+
+    // validate print size
+    if (type === 'pdf-print') {
+      const printSizeError = validatePrintSize(asset, error);
+      if (printSizeError) errors.push(printSizeError);
+    }
   }
 
   return [errors, assets];
+}
+
+function validatePrintSize(asset: Asset, error: MakeError): InvalidAssetError | null {
+  const { pdfPages: pages, printSize: size } = asset;
+  if (pages === undefined) {
+    return error('Unexpected missing pdf page count');
+  }
+
+  if (pages < bookSizes[size].minPages || pages > bookSizes[size].maxPages) {
+    return error(`Unexpected page count (${pages}) for size: ${size}`);
+  }
+
+  return null;
 }
 
 /**
@@ -77,10 +99,7 @@ class InvalidAssetError extends Error {
   }
 }
 
-function makeError(
-  type: AssetType,
-  path: string,
-): (message: string) => InvalidAssetError {
+function makeError(type: AssetType, path: string): MakeError {
   return message => {
     return new InvalidAssetError(message, type, path);
   };

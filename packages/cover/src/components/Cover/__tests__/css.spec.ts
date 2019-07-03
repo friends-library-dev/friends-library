@@ -1,4 +1,4 @@
-import { CoverProps, PrintSizeAbbrev } from '@friends-library/types';
+import { CoverProps, PrintSize } from '@friends-library/types';
 import { getBookSize } from '@friends-library/asciidoc';
 import { cssVars } from '../css';
 
@@ -38,7 +38,7 @@ describe('cssVars()', () => {
     expect(coverWidth).toBe(`${trim.width * 2 + 0.25}in`);
   });
 
-  const spineAuthorDisplayCases: [string, string, PrintSizeAbbrev, boolean][] = [
+  const spineAuthorDisplayCases: [string, string, PrintSize, boolean][] = [
     ['The Life and Letters of John&nbsp;Fothergill', 'John Fothergill', 'm', true],
     ['The Life and Letters of Catherine&nbsp;Payton', 'Catherine Payton', 'm', true],
     ['The Christian Progress of George&nbsp;Whitehead', 'George Whitehead', 'm', false],

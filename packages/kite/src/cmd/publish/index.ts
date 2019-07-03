@@ -98,7 +98,7 @@ export const builder: CommandBuilder = function(yargs) {
     })
     .option('print-size', {
       describe: 'print size (target=`pdf-print` only)',
-      choices: ['s', 'm', 'l', 'xl', 'xxl'],
+      choices: ['s', 'm', 'xl'],
     });
 };
 

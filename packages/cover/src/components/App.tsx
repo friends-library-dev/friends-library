@@ -130,8 +130,8 @@ export default class App extends React.Component<{}, State> {
     return {
       author: friend.name,
       title: prepareTitle(doc.title, friend.name),
-      size: mode === 'ebook' ? 'xl' : ed.defaultSize,
-      pages: ed.pages[ed.defaultSize],
+      size: mode === 'ebook' ? 'xl' : ed.size,
+      pages: ed.pages,
       edition: ed.type,
       blurb: formatBlurb(this.getBlurb(friend, doc)),
       isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev

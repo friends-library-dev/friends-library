@@ -9,6 +9,7 @@ module.exports = {
     'react-app',
   ],
   rules: {
+    'default-case': 'off',
     'no-only-tests/no-only-tests': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-angle-bracket-type-assertion': 'off',
