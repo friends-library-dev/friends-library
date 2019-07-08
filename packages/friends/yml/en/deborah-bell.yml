@@ -1,7 +1,13 @@
 name: Deborah Bell
 slug: deborah-bell
 gender: female
-description: TODO
+description:
+  Deborah Bell (1689-1738) was called to preach the everlasting gospel when only nineteen
+  years old, and being faithful in little, she ​grew quickly ​both in​ the knowledge​ and
+  experience​ of God​.  Many who were unacquainted with the work of the Spirit of Truth in
+  themselves, were reached​ and awakened​ by her powerful and liv​ing​ ministry​.​ She
+  labored faithfully in word and doctrine,​ visiting many of the meetings of Friends in
+  most parts of England, Wales, Scotland, and Ireland.
 documents:
   - title: The Life and Letters of Deborah Bell
     original_title:
@@ -9,7 +15,13 @@ documents:
       Faithful Servant of Christ, Deborah Bell.
     slug: life-and-letters
     filename: Life_and_Letters_of_Deborah_Bell
-    description: TODO
+    description:
+      Deborah Bell (1689-1738) was called to preach the everlasting gospel when only
+      nineteen years old, and being faithful in little, she ​grew quickly ​both in​ the
+      knowledge​ and experience​ of God​.  Many who were unacquainted with the work of the
+      Spirit of Truth in themselves, were reached​ and awakened​ by her powerful and
+      liv​ing​ ministry​.​ She labored faithfully in word and doctrine,​ visiting many of
+      the meetings of Friends in most parts of England, Wales, Scotland, and Ireland.
     tags:
       - journal
     editions:

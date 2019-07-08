@@ -1,12 +1,34 @@
 name: James Nayler
 slug: james-nayler
 gender: male
-description: TODO
+description:
+  James Nayler was a prominent leader in the early Society of Friends in England. Though a
+  farmer by trade, and a man of limited education, his deep spiritual understanding,
+  piercing discernment, and powerful preaching of the gospel caused multitudes to
+  acknowledge that he spoke in the demonstration of the Spirit and power, as one having
+  authority, and not as the scribes. Sadly, he is best known for a single (and deeply
+  regretted) act of folly committed in a time of weakness and temptation, when, “because
+  of the abundance of revelation” and the unchecked flattery of a few imprudent admirers,
+  he accepted greater praise than is due to any man. The Lord, however, brought him to a
+  clear sight and sense of his error, and having heartily renounced and repented for all
+  wrong, he was restored to fellowship and usefulness in the body of Christ for the
+  remainder of his days.
 documents:
   - title: There is a Spirit Which I Feel
     slug: writings
     filename: writings
-    description: TODO
+    description:
+      James Nayler was a prominent leader in the early Society of Friends in England.
+      Though a farmer by trade, and a man of limited education, his deep spiritual
+      understanding, piercing discernment, and powerful preaching of the gospel caused
+      multitudes to acknowledge that he spoke in the demonstration of the Spirit and
+      power, as one having authority, and not as the scribes. Sadly, he is best known for
+      a single (and deeply regretted) act of folly committed in a time of weakness and
+      temptation, when, “because of the abundance of revelation” and the unchecked
+      flattery of a few imprudent admirers, he accepted greater praise than is due to any
+      man. The Lord, however, brought him to a clear sight and sense of his error, and
+      having heartily renounced and repented for all wrong, he was restored to fellowship
+      and usefulness in the body of Christ for the remainder of his days.
     tags:
       - treatise
       - devotional

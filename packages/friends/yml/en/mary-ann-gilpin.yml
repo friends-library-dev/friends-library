@@ -1,7 +1,15 @@
 name: Mary Ann Gilpin
 slug: mary-ann-gilpin
 gender: female
-description: TODO
+description:
+  The short life of Mary Ann Gilpin (1813-1838) is a beautiful and compelling testimony to
+  the powerful operation of the Spirit of Truth upon any heart that is “humble, contrite,
+  and trembles at His Word.” Bowing her neck to the yoke of Christ at a young age, this
+  extraordinary young woman was led step by step through the wilderness of this world,
+  through great losses and painful trials, unto a true growth in grace and a steadfastness
+  in faith. She finished her race in her 25th year, having fought the good fight, kept the
+  faith, and left behind her an “aroma of life”--the sweet fragrance of the knowledge of
+  her Lord and Savior Jesus Christ.
 
 documents:
   - title: Journal of Mary Ann Gilpin
@@ -10,7 +18,15 @@ documents:
       and letters.
     slug: journal
     filename: Journal_of_Mary_Ann_Gilpin
-    description: TODO
+    description:
+      The short life of Mary Ann Gilpin (1813-1838) is a beautiful and compelling
+      testimony to the powerful operation of the Spirit of Truth upon any heart that is
+      “humble, contrite, and trembles at His Word.” Bowing her neck to the yoke of Christ
+      at a young age, this extraordinary young woman was led step by step through the
+      wilderness of this world, through great losses and painful trials, unto a true
+      growth in grace and a steadfastness in faith. She finished her race in her 25th
+      year, having fought the good fight, kept the faith, and left behind her an “aroma of
+      life”—-the sweet fragrance of the knowledge of her Lord and Savior Jesus Christ.
     tags:
       - journal
     editions:

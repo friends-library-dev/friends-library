@@ -1,7 +1,17 @@
 name: John Pemberton
 slug: john-pemberton
 gender: male
-description: TODO
+description:
+  The humility and simplicity of John Pemberton (1727-1795), united with an ardent love
+  for his fellow creatures and a desire for their everlasting welfare, made him an eminent
+  and much-beloved minister in the Society of Friends. Though his journal speaks much of
+  his weakness and struggles, and little of his gifts and attainments, yet he was highly
+  esteemed by even the most notable ministers of his day. Rebecca Jones records in her
+  journal, “George Dillwyn has sometimes made a comparison between some of us and John
+  Pemberton, that we are as fishing with a crooked pin and thread, while John is casting
+  his net into the sea.” The reader will be amply repaid for tracing the footsteps of a
+  man much weaned from the spirit and ways of the world, who eagerly endeavoured to
+  perform his day’s work in the day time.
 documents:
   - title: The Journal of John Pemberton
     original_title:
@@ -9,7 +19,17 @@ documents:
     published: 1844
     slug: journal
     filename: Journal_of_John_Pemberton
-    description: TODO
+    description:
+      The humility and simplicity of John Pemberton (1727-1795), united with an ardent
+      love for his fellow creatures and a desire for their everlasting welfare, made him
+      an eminent and much-beloved minister in the Society of Friends. Though his journal
+      speaks much of his weakness and struggles, and little of his gifts and attainments,
+      yet he was highly esteemed by even the most notable ministers of his day. Rebecca
+      Jones records in her journal, “George Dillwyn has sometimes made a comparison
+      between some of us and John Pemberton, that we are as fishing with a crooked pin and
+      thread, while John is casting his net into the sea.” The reader will be amply repaid
+      for tracing the footsteps of a man much weaned from the spirit and ways of the
+      world, who eagerly endeavoured to perform his day’s work in the day time.
     tags:
       - journal
       - letters
