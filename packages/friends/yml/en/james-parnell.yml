@@ -41,27 +41,27 @@ documents:
           reader: Jason Henderson
           parts:
             - title: Part 1
-              external_id_hq: TODO
-              external_id_lq: TODO
-              filesize_hq: TODO
-              filesize_lq: TODO
-              seconds: TODO
+              external_id_hq:
+              external_id_lq:
+              filesize_hq:
+              filesize_lq:
+              seconds:
               chapters:
                 - 0
             - title: Part 2
-              external_id_hq: TODO
-              external_id_lq: TODO
-              filesize_hq: TODO
-              filesize_lq: TODO
-              seconds: 4378
+              external_id_hq:
+              external_id_lq:
+              filesize_hq:
+              filesize_lq:
+              seconds:
               chapters:
                 - 1
             - title: Part 3
-              external_id_hq: TODO
-              external_id_lq: TODO
-              filesize_hq: TODO
-              filesize_lq: TODO
-              seconds: TODO
+              external_id_hq:
+              external_id_lq:
+              filesize_hq:
+              filesize_lq:
+              seconds:
               chapters:
                 - 2
 
