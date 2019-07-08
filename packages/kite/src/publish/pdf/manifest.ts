@@ -35,7 +35,7 @@ export function getCss(job: Job): Css {
     'pdf/sass/chapter-heading.scss',
     ...(target === 'pdf-print' ? ['pdf/sass/print.scss'] : ['pdf/sass/web.scss']),
     ...(notes.size < 5 ? ['pdf/sass/symbol-notes.scss'] : []),
-    ...(condense ? ['pdf/sass/condense.scss'] : []),
+    ...(target === 'pdf-print' && condense ? ['pdf/sass/condense.scss'] : []),
   ]
     .map(path => toCss(path, vars))
     .join('\n')
