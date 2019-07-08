@@ -2,8 +2,7 @@ import { sync as glob } from 'glob';
 import { SourcePrecursor, PrintSize } from '@friends-library/types';
 import { buildPrecursor } from '../publish/precursors';
 import { PublishPrecursorOpts } from '../publish/handler';
-import { SourceDocument } from './handler';
-import { DocumentMeta } from '@friends-library/client';
+import { SourceDocument, getMeta } from './handler';
 import { bookSizes } from '@friends-library/asciidoc';
 
 export function precursorFromSourceDoc(asset: SourceDocument): SourcePrecursor {
@@ -38,14 +37,4 @@ export async function publishOpts(
     send: false,
     target: ['pdf-print', 'pdf-web', 'epub', 'mobi'],
   };
-}
-
-let meta: DocumentMeta | undefined;
-
-async function getMeta(): Promise<DocumentMeta> {
-  if (!meta) {
-    meta = new DocumentMeta();
-    await meta.load();
-  }
-  return meta;
 }

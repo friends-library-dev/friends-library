@@ -8,6 +8,7 @@ export interface EditionMeta {
   updated: string;
   adocLength: number;
   numSections: number;
+  printSize: Size;
   pages: {
     s: number;
     m: number;
@@ -88,7 +89,7 @@ export default class DocumentMeta {
     this.data[docId] = editionMeta;
   }
 
-  public setIn(docId: string, path: string, value: number): void {
+  public setIn(docId: string, path: string, value: number | string): void {
     if (!this.has(docId)) {
       throw new Error(`Connot .setIn(), ${docId} not found!`);
     }
