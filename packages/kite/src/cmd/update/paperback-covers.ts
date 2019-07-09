@@ -46,7 +46,7 @@ async function makeCoverAsset(
     blurb: edition.paperbackCoverBlurb(),
     edition: edition.type,
     pages,
-    size: 'm',
+    size: asset.printSize,
     showGuides: false,
     customCss: '',
     customHtml: '',
