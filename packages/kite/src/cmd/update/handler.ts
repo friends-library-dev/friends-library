@@ -30,6 +30,7 @@ import { precursorFromSourceDoc, publishOpts } from './publish';
 interface UpdateOptions {
   pattern?: string;
   useCoverDevServer: boolean;
+  build: boolean;
 }
 
 export interface SourceDocument {
@@ -76,7 +77,7 @@ export default async function update(argv: UpdateOptions): Promise<void> {
 
   await updatePageNumbers(assets);
   await uploadAssets(assets);
-  await triggerSiteRebuilds();
+  argv.build && (await triggerSiteRebuilds());
   logUpdateComplete(updateStart);
 }
 

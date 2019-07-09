@@ -6,6 +6,12 @@ export const describe = 'update book assets';
 
 export const builder: CommandBuilder = function(yargs) {
   return yargs
+    .option('build', {
+      alias: 'b',
+      type: 'boolean',
+      default: false,
+      demand: false,
+    })
     .option('pattern', {
       alias: 'p',
       type: 'string',
