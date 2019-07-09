@@ -4,6 +4,28 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: 'inclose',
+    search: /\b(Un|un)?(I|i)nclose?/g,
+    replace: (_, un, i) => {
+      let str = `${i === 'I' ? 'E' : 'e'}nclose`;
+      if (un !== undefined) {
+        return `${un}${str}`;
+      }
+      return str;
+    },
+  },
+  {
+    test: 'despatch',
+    search: /\b(D|d)espatch/g,
+    replace: '$1ispatch',
+  },
+  {
+    test: 'cotempor',
+    search: /\b(C|c)otempora/g,
+    replace: '$1ontempora',
+    message: '"cotemporary" should be replaced with "contemporary" in all editions',
+  },
+  {
     test: 'staid',
     search: /\b(S|s)taid\b/g,
     replace: '$1tayed',
@@ -42,6 +64,11 @@ const runner = new RegexLintRunner([
     test: 'stopt',
     search: /\b(S|s)topt\b/g,
     replace: '$1topped',
+  },
+  {
+    test: 'slipt',
+    search: /\b(S|s)lipt\b/g,
+    replace: '$1lipped',
   },
   {
     test: 'Corah',

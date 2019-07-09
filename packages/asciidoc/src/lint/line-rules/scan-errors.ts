@@ -5,6 +5,16 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: 'f',
+      search: /( |^)(F|f) /g,
+      replace: '$1I ',
+    },
+    {
+      test: 'mmd',
+      search: /\bmmd\b/g,
+      replace: 'mind',
+    },
+    {
       test: 'lime|limes', // --> time/s
       search: /\blime(s)?\b/g,
       replace: 'time$1',
