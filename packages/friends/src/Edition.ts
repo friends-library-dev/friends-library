@@ -1,4 +1,4 @@
-import { ISBN, EditionType, Url } from '@friends-library/types';
+import { ISBN, EditionType, Url, FileType } from '@friends-library/types';
 import Format from './Format';
 import Chapter from './Chapter';
 import Document from './Document';
@@ -22,6 +22,22 @@ export default class Edition {
 
   public url(): Url {
     return `${this.document.url()}/${this.type}`;
+  }
+
+  public filename(type: FileType | 'print-cover'): string {
+    const base = `${this.document.filename}--${this.type}`;
+    switch (type) {
+      case 'epub':
+        return `${base}.epub`;
+      case 'mobi':
+        return `${base}.mobi`;
+      case 'pdf-web':
+        return `${base}.pdf`;
+      case 'pdf-print':
+        return `${base}--(print).pdf`;
+      case 'print-cover':
+        return `${base}--cover.pdf`;
+    }
   }
 
   public paperbackCoverBlurb(): string {

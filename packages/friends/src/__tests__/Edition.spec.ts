@@ -12,10 +12,26 @@ describe('Edition', () => {
     document = new Document();
     friend = new Friend();
     document.friend = friend;
+    document.filename = 'Journal_of_George_Fox';
     edition.document = document;
     edition.type = 'modernized';
     document.slug = 'journal';
     friend.slug = 'george-fox';
+  });
+
+  describe('filename()', () => {
+    it('should give the right filename', () => {
+      expect(edition.filename('pdf-print')).toBe(
+        'Journal_of_George_Fox--modernized--(print).pdf',
+      );
+
+      expect(edition.filename('pdf-web')).toBe('Journal_of_George_Fox--modernized.pdf');
+      expect(edition.filename('epub')).toBe('Journal_of_George_Fox--modernized.epub');
+      expect(edition.filename('print-cover')).toBe(
+        'Journal_of_George_Fox--modernized--cover.pdf',
+      );
+      expect(edition.filename('mobi')).toBe('Journal_of_George_Fox--modernized.mobi');
+    });
   });
 
   describe('url()', () => {
