@@ -22,7 +22,7 @@ const frontCss: string = css`
   }
 
   .flp {
-    color: #bbb;
+    color: #aaa;
     position: absolute;
     left: 0.2in;
     font-size: 0.19in;
