@@ -4,6 +4,36 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: 'arch-angel',
+    search: /\b(A|a)rch-angel/g,
+    replace: '$1rchangel',
+  },
+  {
+    test: 'yoke-mate',
+    search: /\b(Y|y)oke-mate/g,
+    replace: '$1okemate',
+  },
+  {
+    test: 'back-yard',
+    search: /\b(B|b)ack-yard/g,
+    replace: '$1ackyard',
+  },
+  {
+    test: 'grave-yard',
+    search: /\b(G|g)rave-yard/g,
+    replace: '$1raveyard',
+  },
+  {
+    test: 'ware-house',
+    search: /\b(W|w)are-house/g,
+    replace: '$1arehouse',
+  },
+  {
+    test: 'grand-children',
+    search: /\b(G|g)rand-child/g,
+    replace: '$1randchild',
+  },
+  {
     test: 'fellow-',
     search: /\b(F|f)ellow-(creature|servant|traveller)(s)?\b/g,
     replace: '$1ellow $2$3',

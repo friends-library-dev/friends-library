@@ -53,6 +53,10 @@ describe('obsoleteSpellings()', () => {
     ['welfare of Sion to', 'welfare of Zion to'],
     ['their faces Sion-ward,', 'their faces Zionward,'],
     ['Wo! to you!', 'Woe! to you!'],
+    ['Uninclosed in', 'Unenclosed in'],
+    ['High uninclosed country', 'High unenclosed country'],
+    ['Inclosed you will find', 'Enclosed you will find'],
+    ['a few lines inclosed', 'a few lines enclosed'],
   ];
 
   test.each(violations)('`%s` should become "%s"', (line, reco) => {

@@ -23,6 +23,12 @@ const runner = new RegexLintRunner(
       fixable: true,
     },
     {
+      test: 'methought',
+      search: /\b(M|m)ethought\b/g,
+      replace: 'I thought',
+      fixable: true,
+    },
+    {
       test: 'whoso',
       search: /\b(W|w)hoso\b/g,
       replace: '$1hoever',

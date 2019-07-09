@@ -57,6 +57,10 @@ describe('scanErrors()', () => {
 
     // *** Fie > He ***
     ['Fie told me', 'He told me'],
+
+    // *** f > I
+    ['I apprehended f had', 'I apprehended I had'],
+    ['F humbly hope I may say', 'I humbly hope I may say'],
   ];
 
   test.each(violations)('`%s` should be a lint violation', (line, reco) => {

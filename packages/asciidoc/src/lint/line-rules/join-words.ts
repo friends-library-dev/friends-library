@@ -4,9 +4,13 @@ import { LineRule } from '../types';
 
 // @see https://books.google.com/ngrams for data backing up choices
 const sets = [
+  ['yoke', 'mate', ''],
+  ['yoke', 'mates', ''],
+  ['grave', 'yard', ''],
   ['every', 'where', ''],
   ['every', 'thing', ''],
   ['tender', 'spirited', '-'],
+  ['choice', 'spirited', '-'],
   ['hard', 'hearted', '-'],
   ['hard', 'heartedness', '-'],
   ['honest', 'hearted', '-'],
@@ -56,6 +60,7 @@ const sets = [
   ['single', 'minded', '-'],
   ['open', 'minded', '-'],
   ['loving', 'kindness', ''],
+  ['well', 'behaved', '-'],
 ];
 
 const firstParts = new RegExp(
