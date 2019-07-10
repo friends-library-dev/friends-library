@@ -1,9 +1,9 @@
-import omit from 'lodash/omit';
 import path from 'path';
 import { SourcePrecursor, CoverProps } from '@friends-library/types';
 import { coverFromProps } from '../cover/handler';
 import { newCoverNeeded } from './filters';
-import { Asset, SourceDocument } from './handler';
+import { Asset } from './handler';
+import { SourceDocument } from './source';
 
 export async function getPaperbackCovers(
   assets: Asset[],
@@ -56,7 +56,7 @@ async function makeCoverAsset(
   const filepath = await coverFromProps(coverProps, filename, `${basename}/cover`);
 
   return {
-    ...omit(asset, 'pdfPages'),
+    ...asset,
     type: 'paperback-cover',
     filename: path.basename(filepath),
     path: filepath,

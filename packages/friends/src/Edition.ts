@@ -20,6 +20,10 @@ export default class Edition {
     this.document = new Document();
   }
 
+  public id(): string {
+    return `${this.document.id()}/${this.type}`;
+  }
+
   public url(): Url {
     return `${this.document.url()}/${this.type}`;
   }

@@ -1,29 +1,28 @@
-import { SourcePrecursor } from '@friends-library/types';
+import { SourcePrecursor, DocumentArtifacts, PrintSize } from '@friends-library/types';
 import pdf from 'pdf-parse';
-import chalk from 'chalk';
 import fs from 'fs-extra';
-import { Asset, AssetType } from './handler';
+import { Asset } from './handler';
 import { bookSizes } from '@friends-library/asciidoc';
+import { log, c } from '@friends-library/cli/color';
 
 type MakeError = (message: string) => InvalidAssetError;
 
 export default async function validate(
   assets: Asset[],
   precursor: SourcePrecursor,
-): Promise<Asset[]> {
-  const [errors, augmentedAssets] = await inspectAssets(assets, precursor);
+): Promise<void> {
+  const errors = await inspectAssets(assets, precursor);
   if (errors.length) {
     process.stdout.write('\n');
     errors.forEach(e => e.print());
     process.exit(1);
   }
-  return augmentedAssets;
 }
 
 async function inspectAssets(
   assets: Asset[],
   { meta: { author, title }, adoc }: SourcePrecursor,
-): Promise<[InvalidAssetError[], Asset[]]> {
+): Promise<InvalidAssetError[]> {
   const errors: InvalidAssetError[] = [];
   for (const asset of assets) {
     const { path, type } = asset;
@@ -36,11 +35,11 @@ async function inspectAssets(
     }
 
     // validate pdf
+    let text = '';
+    let numpages = -1;
     if (type === 'pdf-print' || type === 'pdf-web') {
-      const buffer = await fs.readFile(path);
       try {
-        const { text, numpages } = await pdf(buffer, { max: 1 });
-        asset.pdfPages = numpages;
+        ({ text, numpages } = await parsePdf(path));
         if (!pdfTextHas(text, author.name) || !pdfTextHas(text, title)) {
           errors.push(error('PDF missing text author/title'));
         }
@@ -51,25 +50,69 @@ async function inspectAssets(
 
     // validate print size
     if (type === 'pdf-print') {
-      const printSizeError = validatePrintSize(asset, error);
+      const printSizeError = validatePrintSize(asset.printSize, numpages, error);
       if (printSizeError) errors.push(printSizeError);
     }
   }
 
-  return [errors, assets];
+  return errors;
 }
 
-function validatePrintSize(asset: Asset, error: MakeError): InvalidAssetError | null {
-  const { pdfPages: pages, printSize: size } = asset;
+async function parsePdf(path: string): ReturnType<typeof pdf> {
+  const buffer = await fs.readFile(path);
+  return pdf(buffer, { max: 1 });
+}
+
+export async function confirmPrintSize(
+  artifacts: DocumentArtifacts[],
+  printSize: PrintSize,
+): Promise<{
+  sizeCorrect: boolean;
+  otherSizes: PrintSize[];
+  numPages: number;
+}> {
+  const printFilePath = artifacts.filter(artifact =>
+    artifact.srcDir.endsWith('pdf-print'),
+  )[0].filePath;
+
+  const otherSizes = <PrintSize[]>['s', 'm', 'xl'].filter(s => s !== printSize);
+  let numPages = -1;
+  let sizeCorrect = true;
+
+  try {
+    ({ numpages: numPages } = await parsePdf(printFilePath));
+    sizeCorrect = !sizeInvalid(numPages, printSize);
+  } catch {
+    const error = new InvalidAssetError(
+      "Unparseable PDF, can't count pages",
+      'pdf-print',
+      printFilePath,
+    );
+    error.print();
+    process.exit(1);
+  }
+
+  return { sizeCorrect, otherSizes, numPages };
+}
+
+function validatePrintSize(
+  size: PrintSize,
+  pages: number,
+  error: MakeError,
+): InvalidAssetError | null {
   if (pages === undefined) {
     return error('Unexpected missing pdf page count');
   }
 
-  if (pages < bookSizes[size].minPages || pages > bookSizes[size].maxPages) {
+  if (sizeInvalid(pages, size)) {
     return error(`Unexpected page count (${pages}) for size: ${size}`);
   }
 
   return null;
+}
+
+export function sizeInvalid(pages: number, size: PrintSize): boolean {
+  return pages < bookSizes[size].minPages || pages > bookSizes[size].maxPages;
 }
 
 /**
@@ -87,25 +130,29 @@ function pdfTextHas(text: string, test: string): boolean {
 }
 
 class InvalidAssetError extends Error {
-  public constructor(message: string, public type: AssetType, public path: string) {
+  public constructor(message: string, public type: Asset['type'], public path: string) {
     super(message);
   }
 
   public print(): void {
     const file = this.path.split('/').pop() || '';
-    console.log(`${chalk.bgRed('VALIDATION ERROR')} ${chalk.red(this.message)}`);
-    console.log(`   ${chalk.gray('file:')} ${chalk.dim.yellow(file)}`);
-    console.log(`   ${chalk.gray('type:')} ${chalk.dim.yellow(this.type)}\n`);
+    log(c`{bgRed VALIDATION ERROR} {red ${this.message}}`);
+    log(c`   {gray file:} {yellow.dim ${file}}`);
+    log(c`   {gray type:} {yellow.dim ${this.type}}`);
   }
 }
 
-function makeError(type: AssetType, path: string): MakeError {
+function makeError(type: Asset['type'], path: string): MakeError {
   return message => {
     return new InvalidAssetError(message, type, path);
   };
 }
 
-function sizeTooSmall(filesize: number, type: AssetType, adocLength: number): boolean {
+function sizeTooSmall(
+  filesize: number,
+  type: Asset['type'],
+  adocLength: number,
+): boolean {
   switch (type) {
     case 'epub':
       return filesize < adocLength * 0.35;

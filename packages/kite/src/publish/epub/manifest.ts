@@ -44,7 +44,10 @@ async function coverFiles(job: Job): Promise<SubManifest<Html>> {
   const url = `http://localhost:${process.env.COVER_PORT}`;
   const path = `${__dirname}/cover_${job.target}_${id.replace(/\//g, '_')}.png`;
   try {
-    const browser = await puppeteer.launch({ executablePath: KITE_CHROMIUM_PATH });
+    const browser = await puppeteer.launch({
+      executablePath: KITE_CHROMIUM_PATH,
+      timeout: 90000,
+    });
     const page = await browser.newPage();
     await page.setViewport({ width: 1600, height: 2400 });
     await page.goto(`${url}?capture=ebook&id=${id}`);

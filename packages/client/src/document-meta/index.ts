@@ -4,7 +4,7 @@ import Octokit from '@octokit/rest';
 import { PrintSize as Size, requireEnv } from '@friends-library/types';
 import calculatePageEstimate from './estimate-pages';
 
-export interface EditionMeta {
+interface EditionMeta {
   updated: string;
   adocLength: number;
   numSections: number;
@@ -22,7 +22,6 @@ export default class DocumentMeta {
   protected data: Data = {};
   protected gistId: string;
   protected client: Octokit;
-  protected filepath = '/Users/jared/fl/packages/kite/src/cmd/document-meta.json';
 
   public constructor() {
     const { CLIENT_DOCUMENT_META_AUTH_TOKEN, CLIENT_DOCUMENT_META_GIST_ID } = requireEnv(
@@ -97,3 +96,27 @@ export default class DocumentMeta {
     set(this.data[docId], path, value);
   }
 }
+
+/**
+ * Allows multiple concurrent attempts to get a loaded singleton DocumentMeta
+ */
+export async function getDocumentMeta(): Promise<DocumentMeta> {
+  if (meta) {
+    return meta;
+  }
+
+  if (metaPromise) {
+    return metaPromise;
+  }
+
+  const tempMeta = new DocumentMeta();
+  metaPromise = tempMeta.load().then(() => {
+    meta = tempMeta;
+    return meta;
+  });
+
+  return metaPromise;
+}
+
+let meta: DocumentMeta | null;
+let metaPromise: Promise<DocumentMeta> | null;

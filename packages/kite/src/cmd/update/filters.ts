@@ -1,17 +1,8 @@
-import { SourceDocument, Asset } from './handler';
+import { Asset } from './handler';
+import { SourceDocument } from './source';
 
-export function filterByPattern(
-  sourceDocs: SourceDocument[],
-  pattern?: string,
-): SourceDocument[] {
-  if (!pattern) return sourceDocs;
-  return sourceDocs.filter(sourceDoc => sourceDoc.fullPath.indexOf(pattern) !== -1);
-}
-
-export function needingUpdate(sourceDocs: SourceDocument[]): SourceDocument[] {
-  return sourceDocs.filter(
-    sourceDoc => sourceDocChanged(sourceDoc) || productionChanged(sourceDoc),
-  );
+export function needingUpdate(sourceDoc: SourceDocument): boolean {
+  return sourceDocChanged(sourceDoc) || productionChanged(sourceDoc);
 }
 
 function sourceDocChanged(sourceDoc: SourceDocument): boolean {
