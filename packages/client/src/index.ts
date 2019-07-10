@@ -1,5 +1,5 @@
 import './load-env';
 import * as cloud from './cloud';
-import DocumentMeta, { EditionMeta } from './document-meta';
+import DocumentMeta, { getDocumentMeta } from './document-meta';
 
-export { cloud, DocumentMeta, EditionMeta };
+export { cloud, DocumentMeta, getDocumentMeta };

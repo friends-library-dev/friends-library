@@ -6,9 +6,17 @@ export const describe = 'update book assets';
 
 export const builder: CommandBuilder = function(yargs) {
   return yargs
+    .option('check', {
+      alias: 'c',
+      type: 'boolean',
+      description: 'perform epub check',
+      default: false,
+      demand: false,
+    })
     .option('build', {
       alias: 'b',
       type: 'boolean',
+      description: 'trigger website re-builds on complete',
       default: false,
       demand: false,
     })
