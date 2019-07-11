@@ -1,6 +1,3 @@
-# copied and transpiled version of friends to play nice with gatsby
-plugins/gatsby-source-friends-library/friends
-
 # Logs
 logs
 *.log
@@ -36,7 +33,7 @@ bower_components
 build/Release
 
 # compiled functions
-functions
+/functions
 
 # Dependency directories
 node_modules/
