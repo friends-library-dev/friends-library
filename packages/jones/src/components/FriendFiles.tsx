@@ -111,7 +111,7 @@ const Filename = styled.li`
   }
 `;
 
-const IconSearch = styled.i`
+const IconSearch = styled.i<{ isEdition?: boolean }>`
   padding-left: 10px;
 
   &::before {

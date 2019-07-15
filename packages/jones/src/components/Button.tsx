@@ -15,7 +15,7 @@ const Component: React.FC<Props> = props => (
   <StyledSpan
     {...props}
     {...(props.href && !props.disabled ? { as: 'a' } : {})}
-    {...(props.disabled ? { onClick: null } : {})}
+    {...(props.disabled ? { onClick: undefined } : {})}
   >
     {props.children}
   </StyledSpan>

@@ -2,7 +2,7 @@ import styled from '@emotion/styled/macro';
 
 const minusSearch = 'calc(30vh - 50px)';
 
-export default styled.div`
+export default styled.div<{ searching: boolean }>`
   position: relative;
   z-index: 1;
   background: #555;

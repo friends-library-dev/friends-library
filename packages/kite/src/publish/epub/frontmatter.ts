@@ -4,23 +4,21 @@ import { Html } from '@friends-library/types';
 import { Job } from '@friends-library/types';
 import { callMarkup, useSymbols } from './notes';
 
-export const frontmatter = memoize(
-  (job: Job): { [key: string]: Html } => {
-    const fm = commonFrontmatter(job);
+export const frontmatter = memoize((job: Job): { [key: string]: Html } => {
+  const fm = commonFrontmatter(job);
 
-    fm['half-title'] = `<div class="half-title-page">${fm['half-title']}</div>`;
+  fm['half-title'] = `<div class="half-title-page">${fm['half-title']}</div>`;
 
-    if (job.spec.notes.size) {
-      fm['footnote-helper'] = footnoteHelper(job);
-    }
+  if (job.spec.notes.size) {
+    fm['footnote-helper'] = footnoteHelper(job);
+  }
 
-    if (job.target === 'mobi' && job.spec.sections.length > 1) {
-      fm['content-toc'] = contentToc(job);
-    }
+  if (job.target === 'mobi' && job.spec.sections.length > 1) {
+    fm['content-toc'] = contentToc(job);
+  }
 
-    return fm;
-  },
-);
+  return fm;
+});
 
 function footnoteHelper({ spec: { lang, notes } }: Job): Html {
   let helpNote = `This e-book contains footnotes. When you see a reference number, click it to access the footnote. Once you're done reading the note, it's easy to get back to exactly where you were just reading—just click the back arrow <span>(\u23CE)</span> after the note, or the ${

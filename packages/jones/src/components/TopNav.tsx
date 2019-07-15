@@ -8,7 +8,7 @@ import throbber from '../assets/throbber.gif';
 import NavContent from './NavContent';
 import { Dispatch, State as AppState } from '../type';
 
-const TopNav = styled.div`
+const TopNav = styled.div<{ throbbing: boolean }>`
   height: 50px;
   color: #ddd;
   background: black;
