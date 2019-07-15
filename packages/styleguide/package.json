@@ -14,8 +14,8 @@
   "dependencies": {
     "@friends-library/asciidoc": "1.0.0",
     "@friends-library/cli": "1.0.0",
-    "@friends-library/kite": "1.0.0",
     "@friends-library/cover": "1.0.0",
+    "@friends-library/kite": "1.0.0",
     "@types/left-pad": "^1.2.0",
     "@types/react-hot-loader": "^4.1.0",
     "@types/styled-components": "4.1.8",

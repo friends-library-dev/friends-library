@@ -23,7 +23,7 @@ const Div = styled(Resizable)`
   }
 `;
 
-const ToggleEl = styled.div`
+const ToggleEl = styled.div<{ open: boolean }>`
   cursor: pointer;
   width: 25px;
   height: 50px;

@@ -9,7 +9,7 @@ type LogLevels = 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
 function noop(): void {}
 
 const logger: {
-  [k in LogLevels]: (dataOrMsg: string | Record<string, any>, msg?: string) => void
+  [k in LogLevels]: (dataOrMsg: string | Record<string, any>, msg?: string) => void;
 } = {
   trace: noop,
   debug: noop,

@@ -4,11 +4,9 @@ import sass from 'node-sass';
 import { memoize } from 'lodash';
 import { Css } from '@friends-library/types';
 
-export const file = memoize(
-  (path: string): string => {
-    return fs.readFileSync(pathResolve(__dirname, path)).toString();
-  },
-);
+export const file = memoize((path: string): string => {
+  return fs.readFileSync(pathResolve(__dirname, path)).toString();
+});
 
 export const toCss = memoize(
   (path: string, vars: { [key: string]: string } = {}): Css => {

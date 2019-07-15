@@ -9,7 +9,7 @@ import { Task as TaskType, Dispatch, Repo, State as AppState } from '../type';
 import Button from './Button';
 import { ORG } from '../lib/github-api';
 
-const Wrap = styled.li`
+const Wrap = styled.li<{ locked: boolean }>`
   background: #999;
   color: #222;
   border-radius: 3px;
@@ -213,9 +213,7 @@ class Task extends React.Component<Props, State> {
             <Button
               secondary
               target="_blank"
-              href={`https://github.com/${ORG}/${repo.slug}/pull/${
-                task.pullRequest.number
-              }`}
+              href={`https://github.com/${ORG}/${repo.slug}/pull/${task.pullRequest.number}`}
               className="pr"
             >
               <i className="fas fa-code-branch" />

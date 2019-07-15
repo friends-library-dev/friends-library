@@ -211,30 +211,28 @@ function cleanup(lines: string[], line: string, index: number): string[] {
   return lines;
 }
 
-const getLeadingRef = memoize(
-  (line: string): number | null => {
-    if (line.match(/verse [0-9]+\./)) {
-      return line.indexOf('.') + 1;
-    }
+const getLeadingRef = memoize((line: string): number | null => {
+  if (line.match(/verse [0-9]+\./)) {
+    return line.indexOf('.') + 1;
+  }
 
-    // catch refs in their "mutated" state
-    if (line.match(/^((1|2) )?[A-Z][a-z]+({•})? [0-9]{1,2}{\^}[0-9,-]+\./)) {
-      return line.indexOf('.') + 1;
-    }
+  // catch refs in their "mutated" state
+  if (line.match(/^((1|2) )?[A-Z][a-z]+({•})? [0-9]{1,2}{\^}[0-9,-]+\./)) {
+    return line.indexOf('.') + 1;
+  }
 
-    const refs = find(line);
+  const refs = find(line);
 
-    if (refs.length === 0 || refs[0].position.start !== 0) {
-      return null;
-    }
-
-    if (line[refs[0].position.end] === '.') {
-      return line.indexOf('.') + 1;
-    }
-
+  if (refs.length === 0 || refs[0].position.start !== 0) {
     return null;
-  },
-);
+  }
+
+  if (line[refs[0].position.end] === '.') {
+    return line.indexOf('.') + 1;
+  }
+
+  return null;
+});
 
 function fixFootnoteSplitters(input: string): string {
   return input
