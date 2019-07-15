@@ -1,9 +1,11 @@
+id: c8846ea4-b599-4a5a-aa6e-0299625709f9
 name: William Sewel
 slug: william-sewel
 gender: male
 description: TODO
 documents:
-  - title: Los Sufrimientos de Catharine Evans y Sarah Cheevers
+  - id: 184123b9-03ca-44aa-9242-50f339d8c711
+    title: Los Sufrimientos de Catharine Evans y Sarah Cheevers
     slug: sufrimientos-de-catharine-evans-sarah-cheevers
     filename: Sufrimientos_de_Catharine_Evans_Sarah_Cheevers
     description:

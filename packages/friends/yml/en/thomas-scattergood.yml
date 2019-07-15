@@ -1,3 +1,4 @@
+id: cb5e5a1c-f5d9-43e5-852a-7b960d8a318c
 name: Thomas Scattergood
 slug: thomas-scattergood
 gender: male
@@ -16,7 +17,8 @@ description:
   ministry, few have left behind them more seals to the baptizing and convincing power of
   their gospel ministry.
 documents:
-  - title: The Journal of Thomas Scattergood
+  - id: 0af1efec-461d-4936-bf91-cc0f44a60bd9
+    title: The Journal of Thomas Scattergood
     original_title:
       Memoirs of the Life and Religious Labors of Thomas Scattergood, A Minister of the
       Gospel in the Society of Friends.

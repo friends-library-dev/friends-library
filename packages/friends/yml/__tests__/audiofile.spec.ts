@@ -72,7 +72,7 @@ files.forEach(file => {
     test('audio parts chapters are required and should be an array of numbers', () => {
       audioParts(friend).forEach(part => {
         expect(Array.isArray(part.chapters)).toBe(true);
-        part.chapters.forEach(ch => expect(typeof ch).toBe('number'));
+        part.chapters.forEach((ch: any) => expect(typeof ch).toBe('number'));
       });
     });
   });

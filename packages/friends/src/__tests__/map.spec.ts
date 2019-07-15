@@ -10,12 +10,14 @@ describe('friendFromJS()', () => {
 
   beforeEach(() => {
     js = {
+      id: 'c16dad58-1939-4d0a-82ee-65770d2e2902',
       lang: 'en',
       name: 'Rebecca Jones',
       slug: 'rebecca-jones',
       description: 'description',
       documents: [
         {
+          id: '88091a2c-f2fc-4a54-8d6b-096eb94d192f',
           title: 'Diary and Letters',
           slug: 'diary-and-letters',
           filename: 'Journal_of_Rebecca_Jones',
@@ -65,6 +67,7 @@ describe('friendFromJS()', () => {
   it('should map the basic props', () => {
     const friend = friendFromJS(js);
 
+    expect(friend.id).toBe('c16dad58-1939-4d0a-82ee-65770d2e2902');
     expect(friend.lang).toBe('en');
     expect(friend.name).toBe('Rebecca Jones');
     expect(friend.slug).toBe('rebecca-jones');
@@ -76,6 +79,7 @@ describe('friendFromJS()', () => {
 
     expect(friend.documents.length).toBe(1);
     expect(friend.documents[0]).toBeInstanceOf(Document);
+    expect(friend.documents[0].id).toBe('88091a2c-f2fc-4a54-8d6b-096eb94d192f');
     expect(friend.documents[0].tags).toEqual(['journal', 'letters']);
     expect(friend.documents[0].filename).toBe('Journal_of_Rebecca_Jones');
   });

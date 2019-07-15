@@ -1,3 +1,4 @@
+id: 58930191-0066-4ebf-8064-16b9bda06fe0
 name: William Edmundson
 slug: william-edmundson
 gender: male
@@ -8,7 +9,8 @@ description:
   to the power of God working through a surrendered vessel.
 
 documents:
-  - title: The Journal of William Edmundson
+  - id: b61fceff-a434-43f4-9443-342a9137202e
+    title: The Journal of William Edmundson
     slug: journal
     filename: Journal_of_William_Edmundson
     description:

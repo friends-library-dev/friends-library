@@ -1,3 +1,4 @@
+id: 826a979f-3e51-48cc-8399-4be3ac1a94c1
 name: Elizabeth Webb
 slug: elizabeth-webb
 gender: female
@@ -10,7 +11,8 @@ description:
   instructive letter contained in this booklet, giving something of a summary of her
   spiritual pilgrimage.
 documents:
-  - title: A Letter of Elizabeth Webb
+  - id: a52eb875-8a1a-4f2f-b1b4-650eb3af1126
+    title: A Letter of Elizabeth Webb
     slug: letter
     filename: Letter_of_Elizabeth_Webb
     description:

@@ -1,3 +1,4 @@
+id: f5685a70-b8ff-4912-aa36-272e680bd5a7
 name: Joseph Oxley
 slug: joseph-oxley
 gender: male
@@ -12,7 +13,8 @@ description:
   sanctuary and true tabernacle, which God has pitched and not man."
 
 documents:
-  - title: The Journal of Joseph Oxley
+  - id: 20c95c47-62dd-4181-b6e7-dcd8142626ca
+    title: The Journal of Joseph Oxley
     original_title:
       The Journal of Joseph Oxley. His Life, Travels, and Labours of Love, in the Faith
       and Fellowship of Our Lord Jesus Christ.

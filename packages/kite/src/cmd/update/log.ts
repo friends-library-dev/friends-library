@@ -36,7 +36,7 @@ export function logResize(newSize: string, id: string): void {
 }
 
 function getId(sourceDoc: SourceDocument): string {
-  return c`{cyan ${sourceDoc.edition.id()}}`;
+  return c`{cyan ${sourceDoc.edition.path}}`;
 }
 
 function elapsed(timestamp: number): string {

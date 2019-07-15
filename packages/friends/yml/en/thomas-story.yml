@@ -1,3 +1,4 @@
+id: efbc4dad-18d7-4b15-9a94-26e6ef81686b
 name: Thomas Story
 slug: thomas-story
 gender: male
@@ -7,7 +8,8 @@ description:
   and the American colonies. He was known for both his spiritual depth and his
   intellectual genius, and his writings became very influential among Quakers.
 documents:
-  - title: Selection from the Journal of Thomas Story
+  - id: 659d4885-daa3-42e1-acc4-827ec5cd0d36
+    title: Selection from the Journal of Thomas Story
     slug: journal-selection
     filename: Selection_Journal_of_Thomas_Story
     description:
@@ -40,7 +42,8 @@ documents:
                 - 0
         chapters:
           - title: Selection from the Journal of Thomas Story
-  - title: Journal of Thomas Story
+  - id: 62e5131b-33a2-425e-8d33-e912b2b9f0ca
+    title: Journal of Thomas Story
     slug: journal
     filename: Journal_of_Thomas_Story
     description:
@@ -68,7 +71,8 @@ documents:
           - type: mobi
         chapters:
           - title: The Journal of Thomas Story
-  - title: Salvation By Christ
+  - id: 91c346f7-2909-4aca-8987-a96cc41683d1
+    title: Salvation By Christ
     slug: salvation-by-christ
     filename: Salvation_by_Christ
     description:
@@ -84,7 +88,8 @@ documents:
           - type: mobi
         chapters:
           - title: Salvation By Christ
-  - title: Letter to a Doubter
+  - id: dcc2ccc5-0fdb-4dd1-8783-5363bb0b0c27
+    title: Letter to a Doubter
     slug: letter-to-a-doubter
     filename: Letter_to_a_Doubter
     description: An excerpt from the journal of Thomas Story.

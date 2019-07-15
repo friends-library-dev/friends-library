@@ -1,3 +1,4 @@
+id: 8b3a4f42-3f92-47c3-bfcd-303e6b95736e
 name: James Nayler
 slug: james-nayler
 gender: male
@@ -14,7 +15,8 @@ description:
   wrong, he was restored to fellowship and usefulness in the body of Christ for the
   remainder of his days.
 documents:
-  - title: There is a Spirit Which I Feel
+  - id: d94f2fb3-f19f-4aa3-a3a0-9b2ddf87da9c
+    title: There is a Spirit Which I Feel
     slug: writings
     filename: writings
     description:

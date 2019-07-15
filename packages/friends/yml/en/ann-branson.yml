@@ -1,3 +1,4 @@
+id: 92751523-7fb2-4614-93ce-2b007403a7ce
 name: Ann Branson
 slug: ann-branson
 gender: female
@@ -11,7 +12,8 @@ description:
   purity and power of the original Quakers, even while all around her the 200 year old
   lampstand of the Society of Friends slowly and tragically burned out.
 documents:
-  - title: The Journal of Ann Branson
+  - id: 841500ef-cd48-4a42-8bd4-90ee841d19b4
+    title: The Journal of Ann Branson
     slug: journal
     filename: Journal_of_Ann_Branson
     description:

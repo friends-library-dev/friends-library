@@ -1,3 +1,4 @@
+id: 7619ef92-d444-40cf-a8e9-7e7ffc36fe4d
 name: Sarah Grubb
 slug: sarah-grubb
 gender: female
@@ -11,7 +12,8 @@ description:
   minister of the gospel of Jesus Christ until her death in 1790, at only 34 years of age.
 
 documents:
-  - title: The Life and Letters of Sarah Grubb
+  - id: d106a18d-6092-4628-a1ec-822f68127743
+    title: The Life and Letters of Sarah Grubb
     slug: life-and-letters
     filename: Life_and_Letters_of_Sarah_Grubb
     description:

@@ -1,3 +1,4 @@
+id: 2e0d8f1c-b8e6-493f-b1a5-15980df87929
 name: Joseph Phipps
 slug: joseph-phipps
 gender: male
@@ -11,7 +12,8 @@ description:
   restoration through the sacrifice of Christ, and the sensible operation of that Divine
   Spirit of grace and truth."
 documents:
-  - title: The Original and Present State of Man
+  - id: b7fb02eb-f804-431a-9c0c-7ead12400bf5
+    title: The Original and Present State of Man
     slug: original-and-present-state-of-man
     filename: Original_and_Present_State_of_Man
     original_title:

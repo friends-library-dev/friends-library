@@ -1,9 +1,11 @@
+id: ec432610-e85a-4818-a926-228580f45cec
 name: Rebecca Hubbs
 slug: rebecca-hubbs
 gender: female
 description: TODO
 documents:
-  - title: Journal of Rebecca Hubbs
+  - id: c7ef46fd-ed93-471e-971a-32b2e4d8558e
+    title: Journal of Rebecca Hubbs
     slug: journal
     filename: Journal_of_Rebecca_Hubbs
     description: TODO

@@ -1,3 +1,4 @@
+id: 8edf8070-2cfd-4a55-82f4-2bcf4ddbdb47
 name: John Pemberton
 slug: john-pemberton
 gender: male
@@ -13,7 +14,8 @@ description:
   man much weaned from the spirit and ways of the world, who eagerly endeavoured to
   perform his day’s work in the day time.
 documents:
-  - title: The Journal of John Pemberton
+  - id: 06d0660f-5f23-4e27-a13d-5c670dbb41e6
+    title: The Journal of John Pemberton
     original_title:
       The Life and Travels of John Pemberton, A Minister Of The Gospel Of Christ
     published: 1844

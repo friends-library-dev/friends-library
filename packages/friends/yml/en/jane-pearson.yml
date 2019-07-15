@@ -1,3 +1,4 @@
+id: 565bd2bc-7a25-4ca8-8b95-5e2fa5ee3142
 name: Jane Pearson
 slug: jane-pearson
 gender: female
@@ -11,7 +12,8 @@ description:
   she seemed to gain of Christ, and her experiences of God's power and mercy in her latter
   years are indescribably beautiful.
 documents:
-  - title: The Life and Experiences of Jane Pearson
+  - id: 0f940360-9aaf-41d1-9601-e8ce60cfd4d7
+    title: The Life and Experiences of Jane Pearson
     slug: journal
     filename: Life_and_Experiences_of_Jane_Pearson
     description:

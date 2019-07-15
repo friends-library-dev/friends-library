@@ -1,3 +1,4 @@
+id: ac06ca75-a9eb-44f3-9c9b-bca7c3369186
 name: John Barclay
 slug: john-barclay
 gender: male
@@ -11,7 +12,8 @@ description:
   Master's cause, and many of the journals, memoirs, and biographies of Early Friends are
   the fruit of his arduous and faithful labor with the original documents.
 documents:
-  - title: The Journal and Letters of John Barclay
+  - id: 318ac4f2-08ba-43d1-8d96-80d1714caddc
+    title: The Journal and Letters of John Barclay
     slug: journal
     filename: Journal_of_John_Barclay
     description:

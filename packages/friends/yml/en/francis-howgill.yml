@@ -1,3 +1,4 @@
+id: 311c83ee-2bb9-40fb-9ff5-6e34ea088ac7
 name: Francis Howgill
 slug: francis-howgill
 gender: male
@@ -11,7 +12,8 @@ description:
   evangelist. He died in prison for his testimony to the truth, leaving behind many
   influential books and letters.
 documents:
-  - title: Some of the Mysteries of God's Kingdom Declared
+  - id: fa1addc4-a434-48da-8d82-bbb1db322151
+    title: Some of the Mysteries of God's Kingdom Declared
     slug: mysteries-of-gods-kingdom-declared
     filename: Mysteries_of_Gods_Kingdom_Declared
     description:

@@ -1,3 +1,4 @@
+id: 593f481a-d4e7-4fe0-8126-33d408baa19f
 name: Charles Marshall
 slug: charles-marshall
 gender: male
@@ -9,7 +10,8 @@ description:
   judge and teacher, and also uncovers the several snares and temptations of the enemy
   that he met with and overcame along the way.
 documents:
-  - title: The Journal of Charles Marshall
+  - id: 9ac03f31-dba4-4723-a8cd-4a67bde65757
+    title: The Journal of Charles Marshall
     slug: short-journal
     filename: Journal_of_Charles_Marshall
     description:
@@ -45,7 +47,8 @@ documents:
         chapters:
           - title: The Journal of Charles Marshall
 
-  - title: The Way of Life Revealed and the Way of Death Discovered
+  - id: 769b12e4-b909-4fb0-9177-b74a1bef9f35
+    title: The Way of Life Revealed and the Way of Death Discovered
     slug: way-of-life-revealed
     filename: Way_of_Life_Revealed
     original_title:

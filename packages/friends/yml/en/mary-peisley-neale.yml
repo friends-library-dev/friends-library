@@ -1,3 +1,4 @@
+id: a46a9ccb-c179-4a05-bad4-78f161e367f7
 name: Mary Peisley Neale
 slug: mary-peisley-neale
 gender: female
@@ -12,7 +13,8 @@ description:
   a variety of probations."
 
 documents:
-  - title: The Life and Letters of Mary Peisley Neale
+  - id: 9bd10df3-80aa-4623-b66a-61e00f112b47
+    title: The Life and Letters of Mary Peisley Neale
     slug: journal
     filename: Journal_of_Mary_Peisley_Neale
     description:

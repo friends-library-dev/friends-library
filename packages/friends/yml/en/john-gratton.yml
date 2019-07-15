@@ -1,3 +1,4 @@
+id: 10011a5d-4773-49b1-badc-27e787a9315e
 name: John Gratton
 slug: john-gratton
 gender: male
@@ -9,7 +10,8 @@ description:
   truth of Christ's promise—'Everyone who asks receives, and he who seeks finds, and to
   him who knocks it will be opened.'
 documents:
-  - title: The Journal of John Gratton
+  - id: 0e46ae49-4202-446a-b5c3-06514aa16fa5
+    title: The Journal of John Gratton
     slug: journal
     filename: Journal_of_John_Gratton
     description:

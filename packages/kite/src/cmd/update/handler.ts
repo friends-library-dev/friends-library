@@ -88,7 +88,7 @@ async function publishDoc(
   }
 
   const assets: Asset[] = artifacts.map(artifact => ({
-    id: sourceDoc.edition.id(),
+    id: sourceDoc.edition.path,
     path: artifact.filePath,
     filename: path.basename(artifact.filePath),
     type: <FileType>path.basename(artifact.srcDir),

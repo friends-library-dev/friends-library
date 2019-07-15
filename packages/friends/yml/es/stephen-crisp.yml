@@ -1,3 +1,4 @@
+id: 59dd9acf-025e-4c34-b603-0639f6950814
 name: Stephen Crisp
 slug: stephen-crisp
 gender: male
@@ -10,7 +11,8 @@ description:
   el poder y la sabiduría del Espíritu a lo largo de Inglaterra, Escocia, Holanda y
   Alemania.
 documents:
-  - title: Un Camino Simple
+  - id: bf004555-1175-4cd4-8bcb-d5954e2efa4e
+    title: Un Camino Simple
     slug: camino-simple
     filename: Camino_Simple
     description:

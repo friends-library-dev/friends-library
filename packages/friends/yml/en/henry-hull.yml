@@ -1,3 +1,4 @@
+id: 5ad0539b-cbaf-454f-86de-84f352ee8807
 name: Henry Hull
 slug: henry-hull
 gender: male
@@ -14,7 +15,8 @@ description:
   seems good to Him.”
 
 documents:
-  - title: Journal of Henry Hull
+  - id: c9d8a647-792f-47c2-a0c5-4ba8773d5cc6
+    title: Journal of Henry Hull
     slug: journal
     filename: Journal_of_Henry_Hull
     description:

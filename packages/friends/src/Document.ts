@@ -1,4 +1,4 @@
-import { Title, Slug, Description, Url } from '@friends-library/types';
+import { Title, Slug, Description, Url, Uuid } from '@friends-library/types';
 import Edition from './Edition';
 import Friend from './Friend';
 
@@ -6,6 +6,7 @@ export default class Document {
   public friend: Friend;
 
   public constructor(
+    public id: Uuid = '',
     public title: Title = '',
     public originalTitle: Title = '',
     public slug: Slug = '',
@@ -18,8 +19,8 @@ export default class Document {
     this.friend = new Friend();
   }
 
-  public id(): string {
-    return `${this.friend.id()}/${this.slug}`;
+  public get path(): string {
+    return `${this.friend.path}/${this.slug}`;
   }
 
   public url(): Url {

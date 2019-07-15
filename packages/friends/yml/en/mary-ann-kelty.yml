@@ -1,3 +1,4 @@
+id: 5b448161-953f-4196-a1e4-e07fd5d48412
 name: Mary Ann Kelty
 slug: mary-ann-kelty
 gender: female
@@ -13,7 +14,8 @@ description:
   and remarkable events of that time.
 
 documents:
-  - title: The Lives and Persecutions of the Primitive Quakers
+  - id: 92d2a0ab-55d5-4fc1-aaf6-f003b172898d
+    title: The Lives and Persecutions of the Primitive Quakers
     original_title:
       Memoirs of the Lives and Persecutions of the Primitive Quakers, Exemplifying the
       Obedience of Faith in Some of the Early Members of the Society.

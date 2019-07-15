@@ -1,3 +1,4 @@
+id: 045aa005-fac5-43ac-91b6-3f6e6ed87498
 name: William Sewel
 slug: william-sewel
 gender: male
@@ -14,7 +15,8 @@ description:
   the modern reader.
 
 documents:
-  - title: The History of the Christian People Called Quakers
+  - id: 69c5fc26-76e3-4302-964e-ba46d889003b
+    title: The History of the Christian People Called Quakers
     slug: history-of-quakers
     filename: History_of_Christian_People_Called_Quakers
     description:
@@ -104,7 +106,8 @@ documents:
             subtitle: The Twelfth book
           - title: Addenda - The Light Upon the Candlestick
           - title: Appendix - Account of the Sufferings of Richard Seller
-  - title: The Sufferings of Catharine Evans and Sarah Cheevers
+  - id: 2c64c45a-02b0-406d-935f-c90a42daf5a7
+    title: The Sufferings of Catharine Evans and Sarah Cheevers
     slug: sufferings-of-catharine-evans-sarah-cheevers
     filename: Sufferings_of_Catharine_Evans_and_Sarah_Cheevers
     description:

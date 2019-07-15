@@ -1,10 +1,12 @@
+id: e875433e-57d2-497a-b811-069479c6b1a1
 name: Richard Jordan
 slug: richard-jordan
 gender: male
 description: TODO
 
 documents:
-  - title: The Journal of Richard Jordan
+  - id: 49084c34-f64e-4316-b238-49b7a37e5a8a
+    title: The Journal of Richard Jordan
     slug: journal
     filename: Journal_of_Richard_Jordan
     original_title:

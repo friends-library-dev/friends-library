@@ -1,3 +1,4 @@
+id: 8764b8e4-9e08-46db-8220-58af5ac4e6ba
 name: Job Scott
 slug: job-scott
 gender: male
@@ -12,7 +13,8 @@ description:
   travelers on the road to Zion. Job Scott died of Smallpox on a ministry trip to Ireland
   in 1793.
 documents:
-  - title: The Journal of Job Scott
+  - id: 5721d1c1-0c0c-4ac7-96d6-dea095446958
+    title: The Journal of Job Scott
     slug: journal
     filename: Journal_of_Job_Scott
     description:

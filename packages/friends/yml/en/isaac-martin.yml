@@ -1,3 +1,4 @@
+id: cac1edcf-7213-4a7a-92d6-e4f6faab6ff9
 name: Isaac Martin
 slug: isaac-martin
 gender: male
@@ -13,7 +14,8 @@ description:
   or abilit​y​, natural or acquired, which, as a man, I might possess.​"​
 
 documents:
-  - title: The Journal of Isaac Martin
+  - id: bed1a75e-bf7c-4bb4-9a84-1e6c908f6011
+    title: The Journal of Isaac Martin
     slug: journal
     filename: Journal_of_Isaac_Martin
     description:

@@ -1,3 +1,4 @@
+id: 1a43f3b6-f60b-4d5d-bdfd-5d777ac3dc77
 name: John Richardson
 slug: john-richardson
 gender: male
@@ -7,7 +8,8 @@ description:
   amazing story of a life entirely submitted to and dependent upon the light and power of
   Jesus Christ.
 documents:
-  - title: Selection from the Journal of John Richardson
+  - id: 470677d5-c6e0-4d1f-a61d-69827d25a14c
+    title: Selection from the Journal of John Richardson
     slug: journal-selection
     filename: Selection_Journal_of_John_Richardson
     description:
@@ -39,7 +41,8 @@ documents:
 
         chapters:
           - title: Journal of John Richardson
-  - title: The Journal of John Richardson
+  - id: 1e81ab5f-4f72-4570-93a1-e446e1e70267
+    title: The Journal of John Richardson
     slug: journal
     original_title:
       An Account of the Life of that Ancient Servant of Jesus Christ, John Richardson,

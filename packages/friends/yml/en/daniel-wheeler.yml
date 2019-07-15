@@ -1,3 +1,4 @@
+id: e1eb432b-6ae5-4968-89e4-91af5b40bb17
 name: Daniel Wheeler
 slug: daniel-wheeler
 gender: male
@@ -16,7 +17,8 @@ description:
   heart-purifying years. Afterwards, he was led by the Lord to preach the gospel of Christ
   in a multitude of islands in the South Pacific Ocean.
 documents:
-  - title: The Journal of Daniel Wheeler
+  - id: 3c1f4d2b-cefb-4a8f-a0aa-ad9de657b15f
+    title: The Journal of Daniel Wheeler
     slug: journal
     filename: Journal_of_Daniel_Wheeler
     original_title:

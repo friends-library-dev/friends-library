@@ -1,9 +1,11 @@
+id: 296c52ad-cd0a-4324-a90b-ed47d01eb5e3
 name: William Savery
 slug: william-savery
 gender: male
 description: TODO
 documents:
-  - title: The Journal of William Savery
+  - id: 25755480-7f1c-4f7f-8900-3f472001fae4
+    title: The Journal of William Savery
     original_title:
       A Journal Of the Life, Travels and Religious Labours of William Savery, A Minister
       of the Gospel of Christ, In the Society of Friends, Late of Philadelphia Compiled

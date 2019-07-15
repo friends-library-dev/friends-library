@@ -1,3 +1,4 @@
+id: 156aead1-a1b5-40bb-815b-6539e20bd459
 name: Samuel Crisp
 slug: samuel-crisp
 gender: male
@@ -9,7 +10,8 @@ description:
   explaining his reasons for leaving the national worship, and describing the true light
   and life he enjoyed among the Society of Friends.
 documents:
-  - title: Two Letters of Samuel Crisp
+  - id: 99ecfc4d-8a51-411d-805e-f5243d4879ed
+    title: Two Letters of Samuel Crisp
     slug: letters
     filename: Letters_of_Samuel_Crisp
     description:

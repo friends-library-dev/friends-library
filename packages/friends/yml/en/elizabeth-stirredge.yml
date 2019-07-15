@@ -1,3 +1,4 @@
+id: 2397ed74-df56-4c3d-8844-3b327bc2982f
 name: Elizabeth Stirredge
 slug: elizabeth-stirredge
 gender: female
@@ -10,7 +11,8 @@ description:
   persecutions, and deliverances she met with in the way, as she took up the daily cross
   and faithfully followed her Lord.
 documents:
-  - title: The Life of Elizabeth Stirredge
+  - id: 492a89d4-0f81-490a-9619-b3a390d51307
+    title: The Life of Elizabeth Stirredge
     slug: life-selection
     published: 1711
     original_title:
@@ -52,7 +54,8 @@ documents:
         chapters:
           - title: The Life of Elizabeth Stirredge
 
-  - title: The Life of Elizabeth Stirredge
+  - id: e27bc78c-ab04-4020-8c9f-9f1eed4f98e2
+    title: The Life of Elizabeth Stirredge
     slug: life
     filename: Life_of_Elizabeth_Stirredge
     description:

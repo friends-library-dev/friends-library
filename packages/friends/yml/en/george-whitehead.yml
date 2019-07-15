@@ -1,3 +1,4 @@
+id: c7431c80-8321-4e4e-93a9-5e91993deabc
 name: George Whitehead
 slug: george-whitehead
 gender: male
@@ -9,7 +10,8 @@ description:
   the cross, and came to be a pillar and elder in the church of God, constantly laboring
   for the advancement of Truth and the welfare of the Society.
 documents:
-  - title: The Christian Progress of George Whitehead
+  - id: eca687be-9a29-49d3-8394-2ed21b85f9a3
+    title: The Christian Progress of George Whitehead
     published: 1725
     original_title:
       The Christian Progress of that Ancient Servant and Minister of Jesus Christ, George

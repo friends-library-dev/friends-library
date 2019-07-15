@@ -1,3 +1,4 @@
+id: 4ec2e484-86d9-4ac6-b835-42bc1c1c16bc
 name: James Gough
 slug: james-gough
 gender: male
@@ -13,7 +14,8 @@ description:
   remarkable for his deep humility, and low opinion of himself.
 
 documents:
-  - title: The Journal of James Gough
+  - id: 9c43d93e-8bfb-43bc-a238-310cf00b77a1
+    title: The Journal of James Gough
     original_title:
       Memoirs of the Life, Religious Experiences and Labours in the Gospel of James Gough,
       Late of the City of Dublin, Deceased.

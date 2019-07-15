@@ -1,3 +1,4 @@
+id: 2fc07cca-624d-435e-9a48-d7dc28edff9f
 name: John Woolman
 slug: john-woolman
 gender: male
@@ -11,7 +12,8 @@ description:
   that overflowed towards his fellow creatures. The document provided here contains his
   unabridged journal and works.
 documents:
-  - title: The Journal and Writings of John Woolman
+  - id: 9ec7c639-b4eb-4e58-aa37-fdc23817f5f3
+    title: The Journal and Writings of John Woolman
     original_title:
       The Journal, Life, Gospel Labours, and Christian Experiences of that Faithful
       Minister of Jesus Christ, John Woolman. To Which Are Added His Last Epistle, and

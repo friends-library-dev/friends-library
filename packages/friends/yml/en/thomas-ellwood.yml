@@ -1,3 +1,4 @@
+id: 91e07656-1b05-47c7-9530-8b5a9bde58aa
 name: Thomas Ellwood
 slug: thomas-ellwood
 gender: male
@@ -11,7 +12,8 @@ description:
   publications in defense of the Truth, and for being the editor of George Fox's journal.
 
 documents:
-  - title: The Life of Thomas Ellwood
+  - id: 2ff4c475-b7a6-411f-a960-75edf4bb79fd
+    title: The Life of Thomas Ellwood
     slug: life
     filename: Life_of_Thomas_Ellwood
     description:
