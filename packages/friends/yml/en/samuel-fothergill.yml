@@ -1,3 +1,4 @@
+id: 0691bc74-ea85-4582-bf30-2412ba0ac133
 name: Samuel Fothergill
 slug: samuel-fothergill
 gender: male
@@ -15,7 +16,8 @@ description:
   became one of the most distinguished and influential ministers of his day.
 
 documents:
-  - title: The Life and Letters of Samuel Fothergill
+  - id: 53f21a86-f264-460f-b879-3cd4a7ddf615
+    title: The Life and Letters of Samuel Fothergill
     original_title:
       Memoirs of the Life and Gospel Labours of Samuel Fothergill, with Selections from
       His Correspondence; Beginning with a Short Account of the Life and Travels of His

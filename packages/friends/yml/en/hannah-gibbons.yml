@@ -1,3 +1,4 @@
+id: 6fc62584-d80d-44a9-8115-b09771517fb8
 name: Hannah Gibbons
 slug: hannah-gibbons
 gender: female
@@ -10,7 +11,8 @@ description:
   spiritually green and fruitful to the very end of her life, and died with a heart full
   of life, wisdom, and deep spiritual experience at 97 years of age.
 documents:
-  - title: Journal of Hannah Gibbons
+  - id: 35cd4c65-ea35-418d-a146-5bc3e5559247
+    title: Journal of Hannah Gibbons
     slug: journal
     filename: Journal_of_Hannah_Gibbons
     description:

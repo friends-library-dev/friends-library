@@ -8,6 +8,7 @@ import AudioPart from './AudioPart';
 
 export default function friendFromJS(js: any): Friend {
   const friend = new Friend(
+    js.id,
     js.lang,
     js.name,
     js.slug,
@@ -16,6 +17,7 @@ export default function friendFromJS(js: any): Friend {
     (js.documents || []).map(
       (document: any) =>
         new Document(
+          document.id,
           document.title,
           document.original_title || '',
           document.slug,

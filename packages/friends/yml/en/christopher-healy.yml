@@ -1,3 +1,4 @@
+id: 16340b4d-217f-4256-a35a-83e36a315986
 name: Christopher Healy
 slug: christopher-healy
 gender: male
@@ -11,7 +12,8 @@ description:
   to the saints."
 
 documents:
-  - title: The Life of Christopher Healy
+  - id: ede0dbbf-d031-4180-9ee5-e78641be72cd
+    title: The Life of Christopher Healy
     slug: life
     filename: Life_of_Christopher_Healy
     description:

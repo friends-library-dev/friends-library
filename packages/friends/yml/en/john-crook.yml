@@ -1,3 +1,4 @@
+id: b9da2f4c-2ee3-4357-b2d7-39a1afd0684a
 name: John Crook
 slug: john-crook
 gender: male
@@ -9,7 +10,8 @@ description:
   all, John Crook was imprisoned ten times for his faith, and suffered greatly at "the
   hands of unreasonable men."
 documents:
-  - title: Life of John Crook
+  - id: cf6f05e2-e5c9-4ec3-8096-d283f3e4c020
+    title: Life of John Crook
     original_title:
       Selections from the Writings of That Ancient, Faithful Servant of Christ Jesus John
       Crook. To which is Prefixed a Short Account of His Life Written by Himself.

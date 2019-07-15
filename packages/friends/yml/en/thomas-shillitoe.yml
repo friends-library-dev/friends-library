@@ -1,9 +1,11 @@
+id: 9581fa7b-bffd-469a-9b3a-3fcb731a2693
 name: Thomas Shillitoe
 slug: thomas-shillitoe
 gender: male
 description: TODO
 documents:
-  - title: Journal of Thomas Shillitoe
+  - id: 9511ab72-9a2e-4c6e-a102-1f46aebbd348
+    title: Journal of Thomas Shillitoe
     slug: journal
     filename: Journal_of_Thomas_Shillitoe
     description: TODO

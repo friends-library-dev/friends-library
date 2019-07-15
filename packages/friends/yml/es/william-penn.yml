@@ -1,9 +1,11 @@
+id: 4e244723-adca-4c32-a004-846952eb0e9e
 name: William Penn
 slug: william-penn
 gender: male
 description: TODO
 documents:
-  - title: No Cruz, No Corona
+  - id: 0089dff8-b287-4b8f-9418-543fa4cc6ffb
+    title: No Cruz, No Corona
     slug: no-cruz-no-corona
     filename: No_Cruz_No_Corona
     published: 1669

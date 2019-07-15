@@ -1,3 +1,4 @@
+id: 06275b48-4360-4d26-a0a6-91aa444fa5b9
 name: Compilations
 slug: compilations
 gender: mixed
@@ -6,7 +7,8 @@ description:
   compiled and published during the early history of the Society of Friends, and some were
   compiled recently by the editors of this website.
 documents:
-  - title: Truth in the Inward Parts
+  - id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
+    title: Truth in the Inward Parts
     slug: truth-in-the-inward-parts
     filename: Truth_in_the_Inward_Parts
     description:

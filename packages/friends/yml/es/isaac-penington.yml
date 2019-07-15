@@ -1,3 +1,4 @@
+id: 0f6f09d0-7c71-4adc-b159-b8e07a03cf93
 name: Isaac Penington
 slug: isaac-penington
 gender: male
@@ -15,7 +16,8 @@ description:
   con todo su corazón, mente y fuerza, y no cabe duda de que el Señor fue encontrado por
   él.
 documents:
-  - title: Los Escritos de Isaac Penington -- Volumen 1
+  - id: 78ec9b39-f599-4842-b843-b02080972349
+    title: Los Escritos de Isaac Penington -- Volumen 1
     slug: escritos-volumen-1
     filename: Escritos_de_Isaac_Penington_vol_1
     description:
@@ -203,7 +205,8 @@ documents:
           - number: 16
             subtitle: Las Cartas de Isaac Penington 1658 - 1671
 
-  - title: Los Escritos de Isaac Penington -- Volumen 2
+  - id: 5230bd9c-e096-4697-8664-a6eb379836f2
+    title: Los Escritos de Isaac Penington -- Volumen 2
     slug: escritos-volumen-2
     filename: Escritos_de_Isaac_Penington_vol_2
     description:

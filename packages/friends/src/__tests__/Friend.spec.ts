@@ -22,9 +22,9 @@ describe('Friend', () => {
     });
   });
 
-  describe('.id()', () => {
+  describe('.path', () => {
     it('returns combo of lang and slug', () => {
-      expect(friend.id()).toBe('en/george-fox');
+      expect(friend.path).toBe('en/george-fox');
     });
   });
 

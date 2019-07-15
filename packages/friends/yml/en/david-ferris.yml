@@ -1,3 +1,4 @@
+id: 373fe3ce-7971-4241-8124-74efad870ad2
 name: David Ferris
 slug: david-ferris
 gender: male
@@ -11,7 +12,8 @@ description:
   call to ministry for many years, but at length gave up to preach the gospel and travel
   in the Lord's service.
 documents:
-  - title: The Journal of David Ferris
+  - id: ad6a0837-7797-4c6c-a641-bfb722bedf21
+    title: The Journal of David Ferris
     slug: journal
     filename: Journal_of_David_Ferris
     original_title:

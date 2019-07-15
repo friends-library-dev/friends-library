@@ -1,3 +1,4 @@
+id: d4473761-5eec-49a8-8be3-109ec6b37ece
 name: Rebecca Jones
 slug: rebecca-jones
 gender: female
@@ -11,7 +12,8 @@ description:
   minister, a loving "mother in Israel", and a shining example of innocence, love,
   humility, and faithfulness to the Lord Jesus Christ.
 documents:
-  - title: The Life and Letters of Rebecca Jones
+  - id: 45dca7c2-3ff9-4a83-acdf-55ec1630cb25
+    title: The Life and Letters of Rebecca Jones
     slug: life-and-letters
     filename: Life_and_Letters_of_Rebecca_Jones
     description:

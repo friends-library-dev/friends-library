@@ -1,3 +1,4 @@
+id: 6de3c3cc-81c9-4e55-80b0-9f5b8fc6e4a0
 name: William Penn
 slug: william-penn
 gender: male
@@ -11,7 +12,8 @@ description:
   relinquished his prospects of honor and advantage, renounced the patterns and customs of
   the world, and lived a life of self-denial as a meek follower of Jesus Christ.
 documents:
-  - title: No Cross, No Crown
+  - id: 53561891-6761-41b8-b5f8-a1ed91e5dde8
+    title: No Cross, No Crown
     slug: no-cross-no-crown
     filename: No_Cross_No_Crown
     published: 1669
@@ -91,7 +93,8 @@ documents:
           - number: 7
             subtitle: The Sin of Pride
 
-  - title: Primitive Christianity Revived
+  - id: a1b1457c-3678-4659-916d-c7b66e465b7e
+    title: Primitive Christianity Revived
     slug: primitive-christianity-revived
     filename: Primitive_Christianity_Revived
     description:

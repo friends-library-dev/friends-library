@@ -1,3 +1,4 @@
+id: a71d0dd4-fed8-42a9-a5fd-8c3890701dee
 name: John Fothergill
 slug: john-fothergill
 gender: male
@@ -12,7 +13,8 @@ description:
   America. John Fothergill was the father of Samuel Fothergill (the well-known Quaker
   minister) and Dr. John Fothergill, the famous doctor and botanist.
 documents:
-  - title: The Life and Letters of John Fothergill
+  - id: b74bd655-8907-4484-a3bd-a658b3267dea
+    title: The Life and Letters of John Fothergill
     slug: life-and-letters
     original_title:
       An Account of the Life and Travels in the Work of the Ministry, of John Fothergill.

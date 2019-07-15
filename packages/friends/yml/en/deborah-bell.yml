@@ -1,3 +1,4 @@
+id: 130d2247-914f-4301-8f69-26ede577b7c0
 name: Deborah Bell
 slug: deborah-bell
 gender: female
@@ -9,7 +10,8 @@ description:
   labored faithfully in word and doctrine,​ visiting many of the meetings of Friends in
   most parts of England, Wales, Scotland, and Ireland.
 documents:
-  - title: The Life and Letters of Deborah Bell
+  - id: 14f4fcbb-1027-4364-977e-5a2aba92a827
+    title: The Life and Letters of Deborah Bell
     original_title:
       A Short Journal of the Labours and Travels in the Work of the Ministry, of that
       Faithful Servant of Christ, Deborah Bell.

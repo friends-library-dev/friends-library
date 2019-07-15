@@ -1,3 +1,4 @@
+id: 754c6fa9-bc0e-4932-ae7a-8dcea2b9aee9
 name: John Banks
 slug: john-banks
 gender: male
@@ -12,7 +13,8 @@ description:
   who were convinced of the evil of their ways, and turned unto Jesus Christ, their free
   Teacher, and were made to bless the Lord on his behalf."
 documents:
-  - title: The Journal and Epistles of John Banks
+  - id: 6237d678-48f8-44df-9eac-004562987a60
+    title: The Journal and Epistles of John Banks
     slug: journal
     original_title:
       The Journal of the Labours, Travels, and Sufferings in the Gospel of that Faithful

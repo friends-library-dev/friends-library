@@ -1,3 +1,4 @@
+id: cad036aa-1c1f-4c3c-b3e6-83101a2b9192
 name: Mary Ann Gilpin
 slug: mary-ann-gilpin
 gender: female
@@ -12,7 +13,8 @@ description:
   her Lord and Savior Jesus Christ.
 
 documents:
-  - title: Journal of Mary Ann Gilpin
+  - id: 8e66ed6c-5a9f-4842-91c3-4d2b32b02e93
+    title: Journal of Mary Ann Gilpin
     original_title:
       Memoir of Mary Ann Gilpin, of Bristol; consisting cheifly of extracts from her diary
       and letters.

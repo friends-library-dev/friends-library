@@ -1,3 +1,4 @@
+id: 8ac61de7-079e-497c-a55c-0d4a178ceccd
 name: Joseph Edgerton
 slug: joseph-edgerton
 gender: male
@@ -14,7 +15,8 @@ description:
   "taking root downward, and bringing forth fruit upward."
 
 documents:
-  - title: The Journal of Joseph Edgerton
+  - id: 0451a301-8654-42e3-8701-6288579e5bbb
+    title: The Journal of Joseph Edgerton
     original_title:
       Some Account of the Life and Religious Services of Joseph Edgerton, a Minister of
       the Gospel in the Society of Friends. With Extracts from His Correspondence.

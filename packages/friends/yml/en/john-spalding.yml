@@ -1,3 +1,4 @@
+id: 14754ae5-720e-45a3-bb45-3e227a7b4d65
 name: John Spalding
 slug: john-spalding
 gender: male
@@ -12,7 +13,8 @@ description:
   the power, till it pleased the Lord, by the ministry and writings of the people called
   Quakers, to direct him to where alone the power is to be known, that is, within."
 documents:
-  - title: The Convincement and Religious Progress of John Spalding
+  - id: 3ae687a1-e934-4585-8abd-a477d0cb3b75
+    title: The Convincement and Religious Progress of John Spalding
     slug: convincement-religious-progress
     description: TODO
     filename: Convincement_and_Religious_Progress_of_John_Spalding
@@ -33,7 +35,8 @@ documents:
           - title: Address
           - title: Some Account, etc.
           - title: A Few Reasons for Leaving the Established Mode of Worship
-  - title: A Few Reasons for Leaving the Established Mode of Worship
+  - id: 873dacbb-3205-4afb-8c38-772fb7a09fed
+    title: A Few Reasons for Leaving the Established Mode of Worship
     slug: few-reasons-for-leaving
     filename: A_Few_Reasons_for_Leaving
     description:

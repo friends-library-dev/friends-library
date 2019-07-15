@@ -1,3 +1,4 @@
+id: 6d57baa9-9a9d-434c-b41b-68adfcce02d3
 name: John Churchman
 slug: john-churchman
 gender: male
@@ -13,7 +14,8 @@ description:
   love.
 
 documents:
-  - title: The Journal of John Churchman
+  - id: 54d7505f-a7af-40fd-a21b-33cb6ad5b0a0
+    title: The Journal of John Churchman
     slug: journal
     filename: Journal_of_John_Churchman
     description:

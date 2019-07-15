@@ -1,3 +1,4 @@
+id: dbc9b5c7-f762-4c61-8b64-65d8200a68b2
 name: James Parnell
 slug: james-parnell
 gender: male
@@ -11,7 +12,8 @@ description:
   small hole in the thick castle wall, twelve feet above the ground, and died from
   sickness and ill-treatment after ten months imprisonment at nineteen years of age.
 documents:
-  - title: Life of James Parnell - With Letters and Writings
+  - id: 3159f4ec-2dd4-465b-8b40-ca8056af7a0e
+    title: Life of James Parnell - With Letters and Writings
     slug: life
     original_title: A Memoir of James Parnell with Extracts from His Writings
     filename: Life_of_James_Parnell

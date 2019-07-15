@@ -1,3 +1,4 @@
+id: f54c80ae-e5fe-46b1-adda-768c7e287621
 name: William Shewen
 slug: william-shewen
 gender: male
@@ -9,7 +10,8 @@ description:
   paragraphs and short treatises, penned throughout Shewen's life, describing his own
   experience of the heart-transforming power of Jesus Christ.
 documents:
-  - title: Meditations and Experiences
+  - id: 5eae7905-1c99-45ba-8ecd-ffd1cba8be47
+    title: Meditations and Experiences
     slug: meditations-experiences
     filename: Meditations_and_Experiences
     description:

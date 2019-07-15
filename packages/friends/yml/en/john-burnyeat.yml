@@ -1,3 +1,4 @@
+id: 6fb10f70-2783-4779-afa3-8376795d3879
 name: John Burnyeat
 slug: john-burnyeat
 gender: male
@@ -9,7 +10,8 @@ description:
   Truly it can be said of John Burnyeat that he followed the Lord fully in his generation,
   putting his hand to the plow and never looking back.
 documents:
-  - title: Selection from the Journal of John Burnyeat
+  - id: b40a8274-196a-43e3-9fef-0c96ab9ce55a
+    title: Selection from the Journal of John Burnyeat
     slug: journal-selection
     filename: Selection_Journal_of_John_Burnyeat
     description:
@@ -32,7 +34,8 @@ documents:
           - type: mobi
         chapters:
           - title: The Journal of John Burnyeat
-  - title: The Journal and Letters of John Burnyeat
+  - id: 2bb79cd9-88c3-4801-ae66-ac70970c97bc
+    title: The Journal and Letters of John Burnyeat
     slug: journal-letters
     published: 1691
     original_title:

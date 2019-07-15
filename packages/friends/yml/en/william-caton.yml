@@ -1,3 +1,4 @@
+id: e667086e-adf8-4566-a60f-1659728e6b5c
 name: William Caton
 slug: william-caton
 gender: male
@@ -16,7 +17,8 @@ description:
   over all."
 
 documents:
-  - title: The Journal and Letters of William Caton
+  - id: f4781480-fa53-41b6-bdb0-fdecb16089c0
+    title: The Journal and Letters of William Caton
     slug: journal-letters
     filename: Journal_and_Letters_of_William_Caton
     description:

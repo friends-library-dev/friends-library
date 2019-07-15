@@ -11,7 +11,6 @@ import {
   hasProp,
   isSlug,
 } from '../test-helpers';
-import { Friend, Document } from '../../src';
 
 const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
 const filenames: string[] = [];
@@ -25,6 +24,7 @@ const isbnPool = readFileSync(isbnPath)
   .trim()
   .split('\n');
 const isbns: string[] = [];
+const ids: string[] = [];
 
 describe('all files', () => {
   test('files is not empty', () => {
@@ -43,8 +43,8 @@ describe('all files', () => {
 
 files.forEach(file => {
   describe(`${file.short}`, () => {
-    let friend: Friend;
-    let documents: Document[];
+    let friend: any;
+    let documents: any[];
     let fileContents: string;
 
     try {
@@ -64,10 +64,20 @@ files.forEach(file => {
 
     test('has correct friend props', () => {
       const keys = Object.keys(friend);
-      expect(keys).toEqual(['name', 'slug', 'gender', 'description', 'documents']);
+      expect(keys).toEqual(['id', 'name', 'slug', 'gender', 'description', 'documents']);
+    });
+
+    test('ids must be unique', done => {
+      if (ids.indexOf(friend.id) !== -1) {
+        done.fail(`Invalid duplicate id ${friend.id}`);
+        return;
+      }
+      ids.push(friend.id);
+      done();
     });
 
     test('friend props are correct type', () => {
+      expect(typeof friend.id).toBe('string');
       expect(typeof friend.name).toBe('string');
       expect(typeof friend.slug).toBe('string');
       expect(typeof friend.description).toBe('string');
@@ -96,13 +106,13 @@ files.forEach(file => {
       documents.forEach(document => {
         expect(
           without(Object.keys(document).sort(), 'original_title', 'published'),
-        ).toEqual(['description', 'editions', 'filename', 'slug', 'tags', 'title']);
+        ).toEqual(['description', 'editions', 'filename', 'id', 'slug', 'tags', 'title']);
       });
     });
 
     test('document slugs are unique', () => {
       const slugs: string[] = [];
-      documents.forEach((doc: Document) => {
+      documents.forEach((doc: any) => {
         expect(slugs.indexOf(doc.slug)).toBe(-1);
         slugs.push(doc.slug);
       });
@@ -116,6 +126,17 @@ files.forEach(file => {
       documents.forEach(doc => {
         expect(filenames.indexOf(doc.filename)).toBe(-1);
         filenames.push(doc.filename);
+      });
+    });
+
+    test('document ids must be unique', done => {
+      documents.forEach(doc => {
+        if (ids.indexOf(doc.id) !== -1) {
+          done.fail(`Invalid duplicate id ${doc.id}`);
+          return;
+        }
+        ids.push(doc.id);
+        done();
       });
     });
 
@@ -154,7 +175,7 @@ files.forEach(file => {
     test('no duplicate editions', () => {
       documents.forEach(document => {
         const seen: string[] = [];
-        document.editions.forEach(edition => {
+        document.editions.forEach((edition: any) => {
           expect(seen.includes(edition.type)).toBe(false);
           seen.push(edition.type);
         });
@@ -231,7 +252,7 @@ files.forEach(file => {
 
     test('audio format requires audio data', () => {
       editions(friend).forEach(edition => {
-        edition.formats.forEach(format => {
+        edition.formats.forEach((format: any) => {
           if (format.type !== 'audio') {
             return;
           }
@@ -245,7 +266,7 @@ files.forEach(file => {
         if (!hasProp(edition, 'audio')) {
           return;
         }
-        const formatTypes = edition.formats.map(format => format.type);
+        const formatTypes = edition.formats.map((format: any) => format.type);
         expect(formatTypes.indexOf('audio') !== -1).toBe(true);
       });
     });

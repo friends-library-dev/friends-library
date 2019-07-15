@@ -1,3 +1,4 @@
+id: f96bee20-d10e-49f2-82be-a6b0f348f46e
 name: William Dewsbury
 slug: william-dewsbury
 gender: male
@@ -13,7 +14,8 @@ description:
   in many ways, and I thought, as exact a pattern of a perfect man as I ever knew."
 
 documents:
-  - title: The Life and Letters of William Dewsbury
+  - id: e1f74ba8-b391-4c4e-a77e-f9fcdb6fd8ff
+    title: The Life and Letters of William Dewsbury
     slug: life-and-letters
     filename: Life_and_Letters_of_William_Dewsbury
     description:

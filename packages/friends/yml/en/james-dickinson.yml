@@ -1,3 +1,4 @@
+id: a19be961-6cdd-42cb-864a-a280b60d2848
 name: James Dickinson
 slug: james-dickinson
 gender: male
@@ -13,7 +14,8 @@ description:
   knowing Him to be their true light and teacher.
 
 documents:
-  - title: The Journal of James Dickinson
+  - id: d0d15232-db51-48fc-a8ed-5e0b206f9a3f
+    title: The Journal of James Dickinson
     slug: journal
     filename: Journal_of_James_Dickinson
     description:

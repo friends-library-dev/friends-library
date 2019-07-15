@@ -1,9 +1,11 @@
+id: b435f143-71fa-4761-afa6-15a730c06e35
 name: Thomas Story
 slug: thomas-story
 gender: male
 description: TODO
 documents:
-  - title: La Salvación por medio de Cristo
+  - id: 17d5addc-df02-450b-8fc8-f845292af618
+    title: La Salvación por medio de Cristo
     slug: salvacion-por-medio-de-cristo
     filename: Salvación_por_medio_de_Cristo
     description: TODO

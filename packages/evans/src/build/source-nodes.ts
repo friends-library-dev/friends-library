@@ -27,11 +27,11 @@ export default function sourceNodes(
 
   allFriends.forEach(friend => {
     const color = friend.isMale() ? 'cyan' : 'magenta';
-    const msg = chalk[color].dim(`Create friend node: ${friend.id()}`);
+    const msg = chalk[color].dim(`Create friend node: ${friend.path}`);
     console.log(`${friend.isMale() ? '👴' : '👵'}  ${msg}`);
     const friendProps = friendNodeProps(friend);
     createNode({
-      id: friend.id(),
+      id: friend.id,
       internal: {
         type: 'Friend',
         content: JSON.stringify(friendProps),
@@ -41,10 +41,10 @@ export default function sourceNodes(
     });
 
     friend.documents.forEach(document => {
-      console.log(chalk.gray(`  ↳ 📙  Create document node: ${document.id()}`));
+      console.log(chalk.gray(`  ↳ 📙  Create document node: ${document.path}`));
       const docProps = documentNodeProps(document);
       createNode({
-        id: document.id(),
+        id: document.id,
         internal: {
           type: 'Document',
           content: JSON.stringify(docProps),

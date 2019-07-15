@@ -1,9 +1,11 @@
+id: c142b031-4632-4730-96cd-2c0e3efb76f5
 name: John Wigham
 slug: john-wigham
 gender: male
 description: TODO
 documents:
-  - title: Journal of John Wigham
+  - id: 84ca0ff5-f17c-49ff-9bde-6c9f67a6a352
+    title: Journal of John Wigham
     slug: journal
     original_title:
       Memoirs of the Life, Gospel Labors, and Religious Experiences of John Wigham,

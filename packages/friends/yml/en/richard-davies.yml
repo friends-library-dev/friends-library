@@ -1,3 +1,4 @@
+id: fa0aa8d3-c8ad-421b-89bf-38db7077426e
 name: Richard Davies
 slug: richard-davies
 gender: male
@@ -9,7 +10,8 @@ description:
   being so filled with the Lord's humility and love that even his enemies respected and
   admired him.
 documents:
-  - title: The Journal of Richard Davies
+  - id: dfda01ed-36ec-4b37-96fd-9e23b0352fa1
+    title: The Journal of Richard Davies
     slug: journal
     filename: Journal_of_Richard_Davies
     description:

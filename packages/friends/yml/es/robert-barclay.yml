@@ -1,9 +1,11 @@
+id: 33bc321a-09aa-4e40-b9dd-944e46dcb5a0
 name: Robert Barclay
 slug: robert-barclay
 gender: male
 description: TODO
 documents:
-  - title: Esperando en el Senor
+  - id: 398c7f5a-3fa4-4a29-a275-a0f33920ce08
+    title: Esperando en el Senor
     slug: esperando-en-el-senor
     filename: Esperando_en_el_Senor
     description: TODO
@@ -19,7 +21,8 @@ documents:
         chapters:
           - title: Esperando en el Senor
 
-  - title: Consideraciones sobre el Entretenimiento y la Recreacion
+  - id: 1314f777-2b9e-40b4-b148-18e64278557a
+    title: Consideraciones sobre el Entretenimiento y la Recreacion
     slug: entretenimiento-y-recreacion
     filename: Consideraciones_sobre_el_Entretenimiento_y_la_Recreacion
     description: TODO

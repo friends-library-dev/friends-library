@@ -1,3 +1,4 @@
+id: 88567a38-31e9-4bf0-8669-61355d8307d1
 name: Isaac Penington
 slug: isaac-penington
 gender: male
@@ -12,7 +13,8 @@ description:
   Christianity that stood in, and flowed out from, the light and life of Jesus Christ
   reigning in the inner man.
 documents:
-  - title: The Writings of Isaac Penington -- Volume 1
+  - id: c248c2e7-947b-4629-8296-0cdff67a6d99
+    title: The Writings of Isaac Penington -- Volume 1
     slug: writings-volume-1
     filename: Writings_of_Isaac_Penington_vol_1
     description:
@@ -234,7 +236,8 @@ documents:
             subtitle: How to Discern the Teachings of Christ
           - number: 1
             subtitle: Letters of Isaac Penington Written Between 1658 - 1671
-  - title: The Writings of Isaac Penington -- Volume 2
+  - id: 62213938-9464-4930-9478-5f112c43fe54
+    title: The Writings of Isaac Penington -- Volume 2
     slug: writings-volume-2
     filename: Writings_of_Isaac_Penington_vol_2
     description:
@@ -440,7 +443,8 @@ documents:
             subtitle: The Seed of the Kingdom
           - number: 15
             subtitle: Letters of Isaac Penington Written Between 1666 - 1679
-  - title: The Unabridged Works of Isaac Penington -- Volume 1
+  - id: 491af758-8872-4de2-a958-d9059761a661
+    title: The Unabridged Works of Isaac Penington -- Volume 1
     slug: unabridged-works-volume-1
     filename: Unabridged_Works_of_Isaac_Penington_vol_1
     description:
@@ -492,7 +496,8 @@ documents:
           - title: Where is the Wise, where is the Scribe? etc.
           - title: Letters of Isaac Penington
           - title: 'Appendix: Additional Testimonies for Isaac Penington'
-  - title: The Unabridged Works of Isaac Penington -- Volume 2
+  - id: 1e2ad3c4-d14e-4277-b2f4-a520de5d5409
+    title: The Unabridged Works of Isaac Penington -- Volume 2
     slug: unabridged-works-volume-2
     filename: Unabridged_Works_of_Isaac_Penington_vol_2
     description:
@@ -552,7 +557,8 @@ documents:
           - title: Concerning the Church, or Church State under the Gospel
           - title: Concerning the Substance of our Religion who are called Quakers
           - title: Letters of Isaac Penington
-  - title: The Unabridged Works of Isaac Penington -- Volume 3
+  - id: f2f76200-7cb1-491a-a6d5-e5ecae939d28
+    title: The Unabridged Works of Isaac Penington -- Volume 3
     slug: unabridged-works-volume-3
     filename: Unabridged_Works_of_Isaac_Penington_vol_3
     description:
@@ -593,7 +599,8 @@ documents:
           - title: To the Jews Natural, and to the Jews Spiritual
           - title: The Everlasting Gospel and its blessed Effects Testified To
           - title: The Letters of Isaac Penington
-  - title: The Unabridged Works of Isaac Penington -- Volume 4
+  - id: 7727b95b-960f-491c-ac61-cf876d10b278
+    title: The Unabridged Works of Isaac Penington -- Volume 4
     slug: unabridged-works-volume-4
     filename: Unabridged_Works_of_Isaac_Penington_vol_4
     description:

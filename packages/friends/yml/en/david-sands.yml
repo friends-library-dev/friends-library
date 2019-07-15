@@ -1,3 +1,4 @@
+id: a0b9e8ae-f6af-4e12-a0b0-381a84387780
 name: David Sands
 slug: david-sands
 gender: male
@@ -12,7 +13,8 @@ description:
   self-denial, in the midst of a much deteriorated Society.
 
 documents:
-  - title: The Life of David Sands
+  - id: 052ac10e-2c75-42c5-aa35-f38f34aa1214
+    title: The Life of David Sands
     slug: journal
     original_title:
       The Journal of the Life and Gospel Labors of David Sands With Extracts from His

@@ -1,3 +1,4 @@
+id: ee467431-a18f-465e-aa3e-751dde01f9a6
 name: John Conran
 slug: john-conran
 gender: male
@@ -12,7 +13,8 @@ description:
   condition of the Society of Friends. But John Conran kept the faith, and finished his
   race as monument to the transforming power of grace.
 documents:
-  - title: The Journal of John Conran
+  - id: bc710dda-f13a-4208-a8dc-e94fac82dbe6
+    title: The Journal of John Conran
     slug: journal
     original_title:
       The Journal of the Life and Gospel Labors of John Conran of Moyallen, in Ireland,

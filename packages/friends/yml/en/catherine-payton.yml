@@ -1,3 +1,4 @@
+id: d0348949-78b6-4c14-932f-93e6d7825607
 name: Catherine Payton
 slug: catherine-payton
 gender: female
@@ -9,7 +10,8 @@ description:
   Christ, a mind supplied with wisdom and utterance from on high, and a heart filled with
   love for God and for mankind.
 documents:
-  - title: The Life and Letters of Catherine Payton
+  - id: 0e7ca047-14ff-4883-8977-877d36632d11
+    title: The Life and Letters of Catherine Payton
     original_title:
       'Memoirs of the Life of Catherine Phillips: To Which are Added Some of Her Epistles'
     published: 1797
@@ -58,7 +60,8 @@ documents:
           - number: 7
           - number: 8
           - number: 9
-  - title: Letter to a Backslidden Brother
+  - id: 08b94a0b-b96f-4525-bd46-79b0d60c4302
+    title: Letter to a Backslidden Brother
     slug: letter-to-brother
     filename: Letter_to_Backslidden_Brother
     description:

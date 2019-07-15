@@ -22,9 +22,9 @@ describe('Document', () => {
     });
   });
 
-  describe('id()', () => {
+  describe('path', () => {
     it('returns correct id', () => {
-      expect(document.id()).toBe('en/george-fox/journal');
+      expect(document.path).toBe('en/george-fox/journal');
     });
   });
 

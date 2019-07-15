@@ -1,9 +1,11 @@
+id: 6bb7f835-a11b-44f4-bf93-2c8c89413d5f
 name: Thomas Kite
 slug: thomas-kite
 gender: male
 description: TODO
 documents:
-  - title: The Life and Letters of Thomas Kite
+  - id: c960e64d-3daf-410d-b028-cbf3d2cb1f77
+    title: The Life and Letters of Thomas Kite
     slug: life-and-letters
     original_title:
       Memoirs And Letters Of Thomas Kite, A Minister Of The Gospel In The Society Of

@@ -1,3 +1,4 @@
+id: 55dab152-9cb3-4e80-839e-40fe0ebbdd78
 name: Mary Dudley
 slug: mary-dudley
 gender: female
@@ -11,7 +12,8 @@ description:
   she grew to become a powerful minister and a "mother in Israel", pointing many to the
   covenant of light and life in Jesus Christ.
 documents:
-  - title: The Journal and Letters of Mary Dudley
+  - id: 468770bf-aae5-4c4a-a2b3-41d978f3dd72
+    title: The Journal and Letters of Mary Dudley
     slug: journal
     filename: Journal_of_Mary_Dudley
     description:

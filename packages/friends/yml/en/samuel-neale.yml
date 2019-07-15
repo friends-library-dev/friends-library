@@ -1,3 +1,4 @@
+id: ecf66297-d101-4875-aea4-0932bbd8673b
 name: Samuel Neale
 slug: samuel-neale
 gender: male
@@ -11,7 +12,8 @@ description:
   life traveling and ministering to the Lord's body.
 
 documents:
-  - title: The Journal and Letters of Samuel Neale
+  - id: c3428a4c-4a2f-480b-8612-f96e104914dd
+    title: The Journal and Letters of Samuel Neale
     slug: journal-letters
     filename: Journal_and_Letters_of_Samuel_Neale
     description:

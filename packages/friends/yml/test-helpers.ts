@@ -1,6 +1,5 @@
 import glob from 'glob';
 import { basename } from 'path';
-import { Friend, Edition, Format, AudioPart, Chapter } from '../src';
 
 interface File {
   path: string;
@@ -16,42 +15,45 @@ export function yamlGlob(pattern: string): File[] {
   }));
 }
 
-export function tags(friend: Friend): string[] {
+export function tags(friend: any): string[] {
   return friend.documents.reduce(
-    (accum, doc) => accum.concat(doc.tags || []),
+    (accum: string[], doc: any) => accum.concat(doc.tags || []),
     [] as string[],
   );
 }
 
-export function editions(friend: Friend): Edition[] {
+export function editions(friend: any): any[] {
   return friend.documents.reduce(
-    (accum, doc) => accum.concat(doc.editions || []),
-    [] as Edition[],
+    (accum: any, doc: any) => {
+      accum.concat(doc.editions || []);
+      return accum;
+    },
+    [] as any[],
   );
 }
 
-export function formats(friend: Friend): Format[] {
+export function formats(friend: any): any[] {
   return editions(friend).reduce(
     (accum, ed) => accum.concat(ed.formats || []),
-    [] as Format[],
+    [] as any[],
   );
 }
 
-export function chapters(friend: Friend): Chapter[] {
+export function chapters(friend: any): any[] {
   return editions(friend).reduce(
     (accum, ed) => accum.concat(ed.chapters || []),
-    [] as Chapter[],
+    [] as any[],
   );
 }
 
-export function audioParts(friend: Friend): AudioPart[] {
+export function audioParts(friend: any): any[] {
   return editions(friend).reduce(
     (accum, ed) => accum.concat(ed.audio ? ed.audio.parts : []),
-    [] as AudioPart[],
+    [] as any[],
   );
 }
 
-export function hasProp(obj: Record<string, any>, key: string): boolean {
+export function hasProp(obj: any, key: string): boolean {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 

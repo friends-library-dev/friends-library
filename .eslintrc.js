@@ -11,6 +11,8 @@ module.exports = {
   rules: {
     'default-case': 'off',
     'no-only-tests/no-only-tests': 'error',
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-angle-bracket-type-assertion': 'off',
     '@typescript-eslint/no-use-before-define': 'off',

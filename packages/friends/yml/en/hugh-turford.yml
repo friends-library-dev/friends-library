@@ -1,3 +1,4 @@
+id: 0f82b284-e156-4523-a9a1-7ddf8993bd63
 name: Hugh Turford
 slug: hugh-turford
 gender: male
@@ -10,7 +11,8 @@ description:
   salvation has been so long rejected, that few in our present age know what His Spirit
   is, where they may become acquainted with it, or how they may walk in it.
 documents:
-  - title: Walk in the Spirit
+  - id: 9333dd0a-d92b-401e-a086-f611cc20f984
+    title: Walk in the Spirit
     slug: walk-in-the-spirit
     filename: Walk_in_the_Spirit
     original_title:

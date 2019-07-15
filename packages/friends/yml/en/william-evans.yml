@@ -1,3 +1,4 @@
+id: a0395258-083a-4477-b12c-c78201771596
 name: William Evans
 slug: william-evans
 gender: male
@@ -13,7 +14,8 @@ description:
   Library as well as an updated version of Piety Promoted (both available on this site).
 
 documents:
-  - title: The Journal of William Evans
+  - id: bd22a3f4-51e1-45a5-9b65-2f0b21bde039
+    title: The Journal of William Evans
     slug: journal
     filename: Journal_of_William_Evans
     description:

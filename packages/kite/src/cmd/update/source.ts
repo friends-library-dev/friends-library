@@ -40,7 +40,7 @@ function getEditions(): Map<string, Edition> {
   [...getAllFriends('en'), ...getAllFriends('es')].forEach(friend => {
     friend.documents.forEach(document => {
       document.editions.forEach(edition => {
-        editions.set(edition.id(), edition);
+        editions.set(edition.path, edition);
       });
     });
   });

@@ -1,3 +1,4 @@
+id: 66dcaa80-447f-4f7e-a63d-3b1e5c5ca6d7
 name: James Parnell
 slug: james-parnell
 gender: male
@@ -12,7 +13,8 @@ description:
   a cuatro metros del suelo. Murió de enfermedad y maltrato después de diez meses de
   encarcelamiento, a la temprana edad de diecinueve.
 documents:
-  - title: La Vida de James Parnell
+  - id: d817ab14-ce02-434e-83a4-f8a142e0affd
+    title: La Vida de James Parnell
     slug: vida
     filename: Vida_de_James_Parnell
     description:

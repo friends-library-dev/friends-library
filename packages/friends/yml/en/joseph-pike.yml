@@ -1,3 +1,4 @@
+id: 07ceda74-7afb-4bc8-949c-195cb3a63338
 name: Joseph Pike
 slug: joseph-pike
 gender: male
@@ -9,7 +10,8 @@ description:
   the Truth by the Lord, and then how he became progressively more familiar with, and
   obedient to, the light, life, and power of Christ working within.
 documents:
-  - title: Selection from the Life of Joseph Pike
+  - id: f9356ff3-a098-45b1-9ed2-022790240c01
+    title: Selection from the Life of Joseph Pike
     slug: life-selection
     filename: Selection_Life_of_Joseph_Pike
     description:
