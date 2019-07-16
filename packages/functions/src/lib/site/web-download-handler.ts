@@ -28,23 +28,35 @@ const handler: Handler = async (
 
   const ua = useragent.parse(event.headers['user-agent'] || '');
   if (ua.isBot) {
+    console.log('Bot, bailing early');
     return;
   }
 
-  await connect();
-  await Download.create({
-    document_id: docId,
-    edition: editionType,
-    format,
-    is_mobile: ua.isMobile,
-    os: ua.os,
-    browser: ua.browser,
-    platform: ua.platform,
-    referrer,
-  });
+  try {
+    await connect();
+    const download = await Download.create({
+      document_id: docId,
+      edition: editionType,
+      format,
+      is_mobile: ua.isMobile,
+      os: ua.os,
+      browser: ua.browser,
+      platform: ua.platform,
+      referrer,
+    });
+    console.log('Download added to db:', download);
+  } catch (error) {
+    console.error(error);
+  }
 
-  if (!isDev) {
+  if (isDev) {
+    return;
+  }
+
+  try {
     sendSlack(ua, referrer, editionPath);
+  } catch (error) {
+    console.error(error);
   }
 };
 
