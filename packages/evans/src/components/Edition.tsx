@@ -2,10 +2,10 @@ import React from 'react';
 import { EditionType } from '@friends-library/types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
 import { t } from 'ttag';
 import * as descriptions from '../descriptions';
 import { h2, h3 } from '../typography';
+import { Location } from '@reach/router';
 
 const desc = css`
   font-size: 0.95em;
@@ -41,11 +41,15 @@ const Edition: React.FC<Props> = ({ edition }) => {
       <p css={desc} dangerouslySetInnerHTML={{ __html: description }} />
       <h2 css={h3}>{t`Formats`}:</h2>
       <ul>
-        {edition.formats.map(format => (
-          <li key={format.type}>
-            <Link to={format.url}>{format.type}</Link>
-          </li>
-        ))}
+        <Location>
+          {({ location: { href } }) =>
+            edition.formats.map(format => (
+              <li key={format.type}>
+                <a href={`${format.url}?referrer=${href}`}>{format.type}</a>
+              </li>
+            ))
+          }
+        </Location>
       </ul>
     </section>
   );

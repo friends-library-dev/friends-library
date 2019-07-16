@@ -1,9 +1,9 @@
 import path from 'path';
 import { Document, Edition, Format } from '@friends-library/friends';
 
-const FriendPage = path.resolve('src/templates/FriendPage.tsx');
-const DocumentPage = path.resolve('src/templates/DocumentPage.tsx');
-const AudioPage = path.resolve('src/templates/AudioPage.tsx');
+const FriendPage = path.resolve('./src/templates/FriendPage.tsx');
+const DocumentPage = path.resolve('./src/templates/DocumentPage.tsx');
+const AudioPage = path.resolve('./src/templates/AudioPage.tsx');
 
 export default function onCreateNode({ node, actions: { createPage } }: any): void {
   if (node.internal.type !== 'Friend') {

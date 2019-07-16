@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import { Friend, Document } from '@friends-library/friends';
 import { getPartials } from '../../src/lib/partials';
+import { formatUrl } from '../../src/lib/url';
 import { allFriends, eachFormat } from './helpers';
 
 export default function sourceNodes(
@@ -81,6 +82,7 @@ export default function sourceNodes(
 
 function friendNodeProps(friend: Friend): Record<string, any> {
   return {
+    id: friend.id,
     name: friend.name,
     slug: friend.slug,
     gender: friend.gender,
@@ -92,6 +94,7 @@ function friendNodeProps(friend: Friend): Record<string, any> {
 
 function documentNodeProps(doc: Document): Record<string, any> {
   return {
+    id: doc.id,
     slug: doc.slug,
     title: doc.title,
     description: doc.description,
@@ -107,7 +110,7 @@ function documentNodeProps(doc: Document): Record<string, any> {
       description: edition.description || '',
       formats: edition.formats.map(format => ({
         type: format.type,
-        url: format.url(),
+        url: formatUrl(format),
       })),
       ...(edition.audio
         ? {
