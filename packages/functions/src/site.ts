@@ -6,6 +6,8 @@ const handler: Handler = async (
   context: Context,
   callback: Callback,
 ) => {
+  process.env.NODE_ENV !== 'development' && console.log({ event, context });
+
   if (event.path.match(/\/download\/web/)) {
     webDownloadHandler(event, context, callback);
     return;
