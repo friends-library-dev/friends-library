@@ -3,22 +3,22 @@ import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
 import { requireEnv } from '@friends-library/types';
 import { slack } from '@friends-library/client';
 import useragent from 'express-useragent';
-import Download from '../Download';
-import connect from '../db';
+import mongoose from 'mongoose';
+import Download from '../lib/Download';
+import connect from '../lib/db';
 
 const handler: Handler = async (
   event: APIGatewayEvent,
   context: Context,
   callback: Callback,
 ) => {
-  context.callbackWaitsForEmptyEventLoop = false;
-  const { path, queryStringParameters: query } = event;
+  const { path, headers } = event;
   const isDev = process.env.NODE_ENV === 'development';
-  const referrer = query ? query.referrer : '';
+  const referrer = headers.referer || '';
   const pathParts = path.replace(/.*\/download\/web\//, '').split('/');
   const docId = pathParts.shift();
   const filename = pathParts.pop();
-  const format = pathParts.pop();
+  const format = pathParts.pop() || '';
   const editionPath = pathParts.join('/');
   const editionType = (editionPath || '').split('/').pop();
   const { CLOUD_STORAGE_BUCKET_URL } = requireEnv('CLOUD_STORAGE_BUCKET_URL');
@@ -33,7 +33,7 @@ const handler: Handler = async (
   }
 
   try {
-    await connect();
+    const db = await connect();
     const download = await Download.create({
       document_id: docId,
       edition: editionType,
@@ -44,6 +44,8 @@ const handler: Handler = async (
       platform: ua.platform,
       referrer,
     });
+    await db.close();
+    await mongoose.disconnect();
     console.log('Download added to db:', download);
   } catch (error) {
     console.error(error);
@@ -54,7 +56,7 @@ const handler: Handler = async (
   }
 
   try {
-    sendSlack(ua, referrer, editionPath);
+    sendSlack(ua, referrer, editionPath, format);
   } catch (error) {
     console.error(error);
   }
@@ -78,7 +80,12 @@ function respond(cloudUri: string, callback: Callback, isDev: boolean): void {
   });
 }
 
-function sendSlack(ua: useragent.UserAgent, referrer: string, path: string): void {
+function sendSlack(
+  ua: useragent.UserAgent,
+  referrer: string,
+  path: string,
+  format: string,
+): void {
   const device = [
     ua.platform,
     ua.os,
@@ -90,7 +97,7 @@ function sendSlack(ua: useragent.UserAgent, referrer: string, path: string): voi
   const { SLACK_DOWNLOADS_CHANNEL } = requireEnv('SLACK_DOWNLOADS_CHANNEL');
 
   slack.send(
-    `File downloaded: \`${path}\`, device: \`${device}\`${from}`,
+    `File downloaded: \`${path}/${format}\`, device: \`${device}\`${from}`,
     SLACK_DOWNLOADS_CHANNEL,
   );
 }

@@ -1,5 +1,5 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
-import webDownloadHandler from './lib/site/web-download-handler';
+import webDownloadHandler from './web-download-handler';
 
 const handler: Handler = async (
   event: APIGatewayEvent,

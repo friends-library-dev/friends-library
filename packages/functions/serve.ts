@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import { Context, APIGatewayEvent, Callback } from 'aws-lambda';
 import { handler as test } from './src/test';
-import { handler as site } from './src/site';
+import { handler as site } from './src/site/site';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
