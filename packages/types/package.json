@@ -5,7 +5,7 @@
   "types": "./dist/types.d.ts",
   "license": "MIT",
   "scripts": {
-    "compile": "../../node_modules/.bin/tsc -p ."
+    "compile": "../../node_modules/.bin/tsc -p . && sed -i -e 's|\"use strict\";||' ./dist/types.js"
   },
   "dependencies": {
     "typescript": "3.4.4"

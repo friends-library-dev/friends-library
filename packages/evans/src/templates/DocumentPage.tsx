@@ -7,6 +7,7 @@ import {
   Title,
   Name,
   Slug,
+  Uuid,
   Description,
 } from '@friends-library/types';
 import { Layout, Block, PageTitle, Divider, ByLine, Edition } from '../components';
@@ -18,6 +19,7 @@ interface Props {
       url: Url;
     };
     document: {
+      id: Uuid;
       slug: Slug;
       title: Title;
       description: Description;
@@ -61,6 +63,7 @@ export default ({ data: { friend, document } }: Props) => {
 export const query = graphql`
   query DocumentPage($documentSlug: String!, $friendSlug: String!) {
     friend(slug: { eq: $friendSlug }) {
+      id
       name
       url
     }
@@ -77,6 +80,7 @@ export const query = graphql`
       description
       slug
       title
+      id
     }
   }
 `;

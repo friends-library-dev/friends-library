@@ -1,4 +1,4 @@
-import { Url, FormatType } from '@friends-library/types';
+import { Url, FormatType, FileType } from '@friends-library/types';
 import Edition from './Edition';
 
 export default class Format {
@@ -9,14 +9,16 @@ export default class Format {
   }
 
   public url(): Url {
-    const edType = this.edition.type;
-    const doc = this.edition.document;
-
     if (['paperback', 'audio'].includes(this.type)) {
       return `${this.edition.url()}/${this.type}`;
     }
 
-    return `${this.edition.url()}/${doc.filename}--${edType}.${this.type}`;
+    return `${this.edition.url()}/${this.filename()}`;
+  }
+
+  public filename(): string {
+    const fileType = <FileType>(this.type === 'pdf' ? 'pdf-web' : this.type);
+    return this.edition.filename(fileType);
   }
 
   public toJSON(): Format {

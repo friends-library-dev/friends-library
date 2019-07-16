@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@octokit/rest": "^16.28.2",
+    "@slack/client": "^5.0.1",
     "aws-sdk": "^2.405.0",
     "dotenv": "^6.2.0",
     "fs-extra": "^7.0.1",
@@ -18,5 +19,8 @@
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
     "@types/fs-extra": "^5.0.5"
-  }
+  },
+  "sideEffects": [
+    "dist/load-env.js"
+  ]
 }
