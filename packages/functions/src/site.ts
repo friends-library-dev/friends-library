@@ -1,11 +1,12 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
-import webDownloadHandler from './web-download-handler';
+import webDownloadHandler from './site/web-download-handler';
 
-const handler: Handler = async (
+const handler: Handler = (
   event: APIGatewayEvent,
   context: Context,
   callback: Callback,
 ) => {
+  console.log('function build by: netlify-lambda 👍');
   process.env.NODE_ENV !== 'development' && console.log({ event, context });
 
   if (event.path.match(/\/download\/web/)) {

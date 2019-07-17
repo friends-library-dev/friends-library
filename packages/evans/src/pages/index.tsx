@@ -37,7 +37,7 @@ export default () => (
           This book is a collection of autobigraphical extracts taken from the journals
           and letters of ten early Quakers detailing the struggles, spiritual growth, and
           inward transformation of the early years of their discipleship.{' '}
-          <Link to="/compilations/truth-in-the-inward-parts">Read now &raquo;</Link>
+          <Link to="/">Read now &raquo;</Link>
         </p>
       </div>
       <div css={featured}>

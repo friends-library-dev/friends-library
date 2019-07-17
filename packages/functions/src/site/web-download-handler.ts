@@ -75,7 +75,7 @@ function respond(cloudUri: string, callback: Callback, isDev: boolean): void {
 
   callback(null, {
     statusCode: 200,
-    headers: { contentType: 'text/html' },
+    headers: { 'Content-Type': 'text/html' },
     body: `Redirect to:<br /><br /><a href="${cloudUri}"/>${cloudUri}</a>`,
   });
 }
