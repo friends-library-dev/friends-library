@@ -4,7 +4,6 @@ import yargs from 'yargs';
 import * as publish from './cmd/publish';
 import * as publishRef from './cmd/publish-ref';
 import * as lint from './cmd/lint';
-import * as takeApi from './cmd/take-api';
 import * as convert from './cmd/convert';
 import * as chapterize from './cmd/chapterize';
 import * as cover from './cmd/cover';
@@ -22,7 +21,6 @@ yargs
   .command(publish)
   .command(publishRef)
   .command(lint)
-  .command(takeApi)
   .command(convert)
   .command(chapterize)
   .command(cover)

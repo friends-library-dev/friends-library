@@ -1,9 +1,7 @@
 import { Base64 } from 'js-base64';
 import { Context } from 'probot';
 import stripIndent from 'strip-indent';
-import { cloud } from '@friends-library/client';
 import { ModifiedAsciidocFile } from './type';
-import kiteCheck from './check/kite';
 import lintCheck from './check/lint';
 
 export default async function(context: Context): Promise<void> {
@@ -27,12 +25,7 @@ export default async function(context: Context): Promise<void> {
       );
       context.log.debug({ files }, 'modified files');
       lintCheck(context, files);
-      kiteCheck(context, files);
     });
-  }
-
-  if (action === 'closed') {
-    cloud.rimraf(`pull-request/${repository.name}/${number}`);
   }
 }
 
