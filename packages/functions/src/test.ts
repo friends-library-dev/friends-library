@@ -1,11 +1,7 @@
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
+import { Handler, Context, APIGatewayEvent } from 'aws-lambda';
 
-const handler: Handler = (
-  event: APIGatewayEvent,
-  context: Context,
-  callback: Callback,
-) => {
-  callback(null, {
+const handler: Handler = async (event: APIGatewayEvent, context: Context) => {
+  return {
     statusCode: 200,
     headers: {
       'Content-Type': 'text/html',
@@ -21,7 +17,7 @@ CONTEXT:
 ${JSON.stringify(context, null, 2)}
 </pre>
     `,
-  });
+  };
 };
 
 export { handler };
