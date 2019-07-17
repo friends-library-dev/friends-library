@@ -8,7 +8,7 @@ const handler: Handler = (
   callback(null, {
     statusCode: 200,
     headers: {
-      contentType: 'text/html',
+      'Content-Type': 'text/html',
     },
     body: `
 <pre>
