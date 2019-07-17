@@ -15,7 +15,7 @@ module.exports = shipit => {
       workspace: '/tmp/api',
       repositoryUrl: 'git@github.com:friends-library/friends-library.git',
       ignore: ['.git', 'node_modules'],
-      keepReleases: 5,
+      keepReleases: 3,
       deleteOnRollback: false,
       shallowClone: true,
       deployTo: API_DEPLOY_PATH,
