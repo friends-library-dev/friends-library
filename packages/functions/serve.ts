@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import { Context, APIGatewayEvent, Callback } from 'aws-lambda';
 import { handler as test } from './src/test';
 import { handler as site } from './src/site/site';
+import { handler as zoeOrder } from './src/zoe-order';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -10,6 +11,10 @@ app.use(bodyParser.json());
 
 app.use('/site', async (req: Request, res: Response) => {
   site(reqToEvent(req), <Context>{}, respond(res));
+});
+
+app.use('/zoe-order', async (req: Request, res: Response) => {
+  zoeOrder(reqToEvent(req), <Context>{}, respond(res));
 });
 
 app.use('/test', async (req: Request, res: Response) => {
@@ -34,6 +39,10 @@ function respond(res: Response): Callback {
   return (err, data) => {
     Object.keys(data.headers || {}).forEach(key => res.setHeader(key, data.headers[key]));
     res.status(data.statusCode);
-    res.send(data.body);
+    if (data.body) {
+      res.send(data.body);
+    } else {
+      res.end();
+    }
   };
 }
