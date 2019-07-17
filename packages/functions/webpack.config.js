@@ -2,7 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: { test: './src/test.ts', site: './src/site/site.ts' },
+  entry: {
+    test: './src/test.ts',
+    site: './src/site/site.ts',
+    'zoe-order': '.src/zoe-order.ts',
+  },
   target: 'node',
   mode: 'development',
   devtool: false,
