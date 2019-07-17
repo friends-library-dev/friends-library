@@ -12,6 +12,7 @@ const handler: Handler = async (
   context: Context,
   callback: Callback,
 ) => {
+  context.callbackWaitsForEmptyEventLoop = false;
   const { path, headers } = event;
   const isDev = process.env.NODE_ENV === 'development';
   const referrer = headers.referer || '';
@@ -44,8 +45,6 @@ const handler: Handler = async (
       platform: ua.platform,
       referrer,
     });
-    await db.close();
-    await mongoose.disconnect();
     console.log('Download added to db:', download);
   } catch (error) {
     console.error(error);
