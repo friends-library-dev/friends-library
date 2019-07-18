@@ -9,12 +9,7 @@
     "ts:watch": "yarn types:compile -w & yarn client:compile -w & yarn friends:compile -w & yarn hilkiah:compile -w & yarn asciidoc:compile -w & yarn cli:compile -w & yarn bot:compile -w",
     "kite": "yarn ts-node --transpile-only --project ./packages/kite/tsconfig.json ./packages/kite/src/app.ts",
     "fell": "yarn ts-node --transpile-only --project ./packages/fell/tsconfig.json ./packages/fell/src/app.ts",
-    "phipps": "php ./packages/phipps/phipps",
-    "test": "yarn ts:test && yarn php:test",
-    "ts:test": "yarn jest",
-    "php:test": "yarn phipps:test",
-    "phipps:test": "php ./packages/phipps/vendor/bin/phpunit -c packages/phipps/phpunit.xml",
-    "phipps:test:watch": "cd ./packages/phipps && php vendor/bin/phpunit-watcher watch",
+    "test": "yarn jest",
     "lint": "yarn ts:lint && yarn sass:lint",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
     "ts:lint": "yarn eslint 'packages/**/*.{ts,tsx}'",
@@ -83,7 +78,6 @@
     "packages/hilkiah",
     "packages/jones",
     "packages/kite",
-    "packages/phipps",
     "packages/styleguide",
     "packages/types"
   ]

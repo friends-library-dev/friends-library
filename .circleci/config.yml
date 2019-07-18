@@ -1,10 +1,10 @@
 version: '2.1'
 
 jobs:
-  node:
+  node1:
     docker:
       - image: circleci/node:10.15.3
-    working_directory: ~/fl-node
+    working_directory: ~/fl-node1
     steps:
       - checkout
       - yarn_cached_install
@@ -13,22 +13,20 @@ jobs:
       - run: yarn evans:ts:check
       - run: yarn cover:ts:check
       - run: yarn ts:compile
-      - run: yarn styleguide:build
 
-  php:
+  node2:
     docker:
-      - image: circleci/php:7.3-node
-    working_directory: ~/fl-php
+      - image: circleci/node:10.15.3
+    working_directory: ~/fl-node2
     steps:
       - checkout
       - yarn_cached_install
-      - run: yarn ts:test -w=2
+      - run: yarn test -w=2
       - run: yarn sass:lint
       - run: yarn ts:lint
       - run: yarn jones:build
       - run: KITE_DOCS_REPOS_ROOT="" yarn cover:build
-      - composer_cached_install
-      - run: cd packages/phipps && vendor/bin/phpunit
+      - run: yarn styleguide:build
 
   deploy_bot:
     docker:
@@ -46,10 +44,10 @@ jobs:
 
 workflows:
   version: '2.1'
-  test_node_and_php:
+  test_all:
     jobs:
-      - node
-      - php
+      - node1
+      - node2
   deploy:
     jobs:
       - deploy_bot:
@@ -85,16 +83,3 @@ commands:
             - packages/styleguide/node_modules
             - packages/types/node_modules
           key: v1-node-{{ .Branch }}-{{ checksum "yarn.lock" }}
-
-  composer_cached_install:
-    steps:
-      - restore_cache:
-          keys:
-            - v1-php-{{ .Branch }}-{{ checksum "packages/phipps/composer.json" }}
-            - v1-php-{{ .Branch }}
-            - v1-php
-      - run: cd packages/phipps && composer install -n --prefer-dist
-      - save_cache:
-          paths:
-            - ./packages/phipps/vendor
-          key: v1-php-{{ .Branch }}-{{ checksum "packages/phipps/composer.json" }}
