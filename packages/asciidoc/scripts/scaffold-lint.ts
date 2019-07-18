@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import fs from 'fs';
 import camelCase from 'lodash/camelcase';
 import kebabCase from 'lodash/kebabcase';
@@ -39,7 +38,7 @@ try {
   fs.writeFileSync(`${src}/lint/line-rules/${slug}.ts`, rule);
   fs.writeFileSync(`${src}/lint/line-rules/__tests__/${slug}.spec.ts`, test);
 } catch (e) {
-  console.log(chalk.red(e.message));
+  console.log('Error:', e.message);
   process.exit(1);
 }
 

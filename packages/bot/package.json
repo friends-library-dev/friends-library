@@ -14,25 +14,28 @@
   "dependencies": {
     "@friends-library/asciidoc": "1.0.0",
     "@friends-library/client": "1.0.0",
+    "@friends-library/friends": "1.0.0",
+    "@friends-library/types": "1.0.0",
     "bunyan": "^1.8.12",
     "js-base64": "^2.5.1",
+    "node-fetch": "^2.6.0",
     "probot": "^7.2.0",
-    "strip-indent": "^2.0.0"
+    "strip-indent": "^3.0.0"
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.6",
     "@types/crypto-js": "^3.1.43",
-    "@types/dotenv": "^6.1.1",
     "@types/nock": "^9.3.1",
     "@types/node-fetch": "^2.3.0",
     "crypto-js": "^3.1.9-1",
+    "lodash": "^4.17.11",
     "nock": "^10.0.6",
-    "nodemon": "^1.17.2",
     "shipit-cli": "^5.0.0",
     "shipit-deploy": "^5.0.0",
     "shipit-shared": "^4.4.2",
     "shipit-yarn": "^0.2.0",
-    "smee-client": "^1.0.2"
+    "smee-client": "^1.0.2",
+    "uuid": "^3.3.2"
   },
   "engines": {
     "node": ">= 8.3.0"

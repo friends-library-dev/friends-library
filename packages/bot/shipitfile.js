@@ -1,9 +1,11 @@
-/* eslint-disable global-require */
-require('dotenv').config({ path: '../../.env' });
+require('@friends-library/client/load-env');
+const { requireEnv } = require('@friends-library/types');
 
-const {
-  env: { BOT_PRODUCTION_SERVER, BOT_DEPLOY_PATH, BOT_PORT },
-} = process;
+const { BOT_PRODUCTION_SERVER, BOT_DEPLOY_PATH, BOT_PORT } = requireEnv(
+  'BOT_PRODUCTION_SERVER',
+  'BOT_DEPLOY_PATH',
+  'BOT_PORT',
+);
 
 module.exports = shipit => {
   require('shipit-deploy')(shipit);

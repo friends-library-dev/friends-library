@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
@@ -10,7 +10,8 @@ const height = 16; // height of barcode
 const prefix = '978-1-64476'; // all our ISBNs start with this
 const url = 'http://bwipjs-api.metafloor.com/?bcid=isbn&includetext&guardwhitespace';
 
-const suffixes = fs.readFileSync(path.resolve(__dirname, 'suffixes.txt'))
+const suffixes = fs
+  .readFileSync(path.resolve(__dirname, 'suffixes.txt'))
   .toString()
   .trim()
   .split('\n');

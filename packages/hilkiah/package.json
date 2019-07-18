@@ -9,7 +9,5 @@
     "compile": "../../node_modules/.bin/tsc -p .",
     "test": "cd ../../ && yarn jest packages/hilkiah"
   },
-  "dependencies": {
-    "typescript": "3.4.4"
-  }
+  "dependencies": {}
 }

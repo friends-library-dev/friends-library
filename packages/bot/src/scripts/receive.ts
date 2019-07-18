@@ -1,6 +1,5 @@
 import '@friends-library/client/load-env';
 import { requireEnv } from '@friends-library/types';
-import chalk from 'chalk';
 import path from 'path';
 import nodeFetch from 'node-fetch';
 import fs from 'fs';
@@ -47,7 +46,7 @@ try {
     body: JSON.stringify(payload),
   });
 } catch (e) {
-  console.log(chalk.red(`ERROR: ${e.message}`));
+  console.log(`ERROR: ${e.message}`);
 }
 
 // @see https://stackoverflow.com/questions/44850789
