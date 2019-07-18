@@ -10,9 +10,6 @@ export const NODE_ENV: NodeEnv = process.env.NODE_ENV as NodeEnv;
 
 export const LANG: Lang = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
 
-export const API_URL: Url =
-  typeof process.env.API_URL === 'string' ? process.env.API_URL : '';
-
 export const PORT = String(process.env.GATSBY_PORT || '');
 
 /**

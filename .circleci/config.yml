@@ -30,7 +30,7 @@ jobs:
       - composer_cached_install
       - run: cd packages/phipps && vendor/bin/phpunit
 
-  deploy_api:
+  deploy_bot:
     docker:
       - image: circleci/node:10.15.3
     steps:
@@ -42,7 +42,7 @@ jobs:
           command: ssh-keyscan -H api.friendslibrary.com >> ~/.ssh/known_hosts
       - checkout
       - yarn_cached_install
-      - run: yarn api:deploy
+      - run: yarn bot:deploy
 
 workflows:
   version: '2.1'
@@ -52,7 +52,7 @@ workflows:
       - php
   deploy:
     jobs:
-      - deploy_api:
+      - deploy_bot:
           filters:
             branches:
               only:
@@ -72,7 +72,6 @@ commands:
       - save_cache:
           paths:
             - node_modules
-            - packages/api/node_modules
             - packages/asciidoc/node_modules
             - packages/bot/node_modules
             - packages/cli/node_modules

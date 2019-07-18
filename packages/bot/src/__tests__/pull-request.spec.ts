@@ -1,12 +1,10 @@
 import { cloud } from '@friends-library/client';
-import kiteCheck from '../check/kite';
 import lintCheck from '../check/lint';
 import { prTestSetup } from './helpers';
 import pullRequest from '../pull-request';
 
 jest.mock('@friends-library/client');
 jest.mock('@friends-library/asciidoc');
-jest.mock('../check/kite');
 jest.mock('../check/lint');
 
 describe('pullRequest()', () => {
@@ -22,7 +20,6 @@ describe('pullRequest()', () => {
     payload.repository.name = 'friends-library';
     pullRequest(context);
     expect(github.checks.create).not.toHaveBeenCalled();
-    expect(kiteCheck).not.toHaveBeenCalled();
     expect(lintCheck).not.toHaveBeenCalled();
   });
 
@@ -69,14 +66,13 @@ describe('pullRequest()', () => {
     });
   });
 
-  it('passes fetched files to lint and kite checks', async () => {
+  it('passes fetched files to lint check', async () => {
     const files = [{ path: '01.adoc', adoc: '== Ch 1' }];
     await pullRequest(context);
     expect(lintCheck).toHaveBeenCalledWith(expect.anything(), files);
-    expect(kiteCheck).toHaveBeenCalledWith(expect.anything(), files);
   });
 
-  it('deletes cloud PR preview files on PR close', () => {
+  xit('deletes cloud PR preview files on PR close', () => {
     payload.action = 'closed';
     pullRequest(context);
     expect(cloud.rimraf).toHaveBeenCalledWith('pull-request/jane-doe/11');

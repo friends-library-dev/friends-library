@@ -1,7 +1,7 @@
 import { encode } from 'he';
 import moment from 'moment';
 import { Document, Edition } from '@friends-library/friends';
-import { LANG, APP_URL, API_URL } from '../env';
+import { LANG, APP_URL } from '../env';
 
 export function podcast(document: Document, edition: Edition): string {
   const { friend } = document;
@@ -60,7 +60,7 @@ export function podcast(document: Document, edition: Edition): string {
         return `<item>
       <title>Part ${num}</title>
       <enclosure
-        url="${API_URL}/podcast-item/hq/${friend.slug}/${document.slug}/${
+        url="@TODO/podcast-item/hq/${friend.slug}/${document.slug}/${
           edition.type
         }/${num}/${document.filename}--pt${num}.mp3"
         length="${part.filesizeHq}"

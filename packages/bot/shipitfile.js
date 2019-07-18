@@ -2,7 +2,7 @@
 require('dotenv').config({ path: '../../.env' });
 
 const {
-  env: { API_PRODUCTION_SERVER, API_DEPLOY_PATH, BOT_PORT },
+  env: { BOT_PRODUCTION_SERVER, BOT_DEPLOY_PATH, BOT_PORT },
 } = process;
 
 module.exports = shipit => {
@@ -12,13 +12,12 @@ module.exports = shipit => {
 
   shipit.initConfig({
     default: {
-      workspace: '/tmp/api',
       repositoryUrl: 'git@github.com:friends-library/friends-library.git',
       ignore: ['.git', 'node_modules'],
       keepReleases: 3,
       deleteOnRollback: false,
       shallowClone: true,
-      deployTo: API_DEPLOY_PATH,
+      deployTo: BOT_DEPLOY_PATH,
       shared: {
         overwrite: true,
         files: [
@@ -33,18 +32,14 @@ module.exports = shipit => {
       },
     },
     production: {
-      servers: API_PRODUCTION_SERVER,
+      servers: BOT_PRODUCTION_SERVER,
     },
   });
 
   shipit.on('published', () => {
-    shipit.remote(`cd ${API_DEPLOY_PATH}/current/packages/api && yarn migrate`);
     shipit.remote('pm2 delete all');
     shipit.remote(
-      `cd ${API_DEPLOY_PATH}/current && NODE_ENV=production pm2 start packages/api/dist/index.js`,
-    );
-    shipit.remote(
-      `cd ${API_DEPLOY_PATH}/current && NODE_PORT=${BOT_PORT} pm2 start packages/bot/dist/scripts/run.js`,
+      `cd ${BOT_DEPLOY_PATH}/current && NODE_PORT=${BOT_PORT} pm2 start packages/bot/dist/scripts/run.js`,
     );
   });
 };
