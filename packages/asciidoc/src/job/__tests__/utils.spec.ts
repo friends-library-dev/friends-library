@@ -1,4 +1,5 @@
-import { createPrecursor, createSourceSpec, createJob } from '@friends-library/asciidoc';
+import createSourceSpec from '../source-spec';
+import { createPrecursor, createJob } from '../';
 import { jobToJson, unstringifyJob } from '../utils';
 
 jest.mock('uuid/v4', () => {

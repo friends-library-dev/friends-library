@@ -8,9 +8,9 @@
     "test": "cd ../../ && yarn jest packages/friends"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
-    "glob": "^7.1.2",
+    "@friends-library/types": "1.0.0",
+    "glob": "^7.1.3",
     "js-yaml": "^3.12.0",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.11"
   }
 }
