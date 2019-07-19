@@ -1,11 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
     "jsx": "react",
     "types": ["node", "@emotion/core", "jest"],
     "esModuleInterop": true,
+    "noEmit": true,
     "plugins": [
       {
         "name": "typescript-styled-plugin",
@@ -15,5 +14,10 @@
       }
     ]
   },
-  "include": ["./src"]
+  "include": [],
+  "references": [
+    { "path": "../types" },
+    { "path": "../friends" },
+    { "path": "../functions" }
+  ]
 }

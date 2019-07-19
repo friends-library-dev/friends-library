@@ -6,8 +6,7 @@
   "author": "jared@netrivet.com",
   "license": "MIT",
   "scripts": {
-    "compile": "../../node_modules/.bin/tsc -p .",
+    "compile": "cd ../../ && yarn compile hilkiah",
     "test": "cd ../../ && yarn jest packages/hilkiah"
-  },
-  "dependencies": {}
+  }
 }

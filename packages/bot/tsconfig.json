@@ -1,11 +1,17 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "downlevelIteration": true,
     "declaration": true,
     "outDir": "./dist",
-    "skipLibCheck": true,
+    "rootDir": "./src",
+    "skipLibCheck": true
   },
   "include": ["./src"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [
+    { "path": "../types" },
+    { "path": "../asciidoc" },
+    { "path": "../client" },
+    { "path": "../friends" }
+  ]
 }

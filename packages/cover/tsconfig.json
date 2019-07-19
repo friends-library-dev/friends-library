@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
@@ -19,7 +18,25 @@
         "name": "typescript-styled-plugin",
         "validate": false
       }
-    ]
+    ],
+    "target": "es5"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [
+    {
+      "path": "../asciidoc"
+    },
+    {
+      "path": "../cli"
+    },
+    {
+      "path": "../client"
+    },
+    {
+      "path": "../friends"
+    },
+    {
+      "path": "../types"
+    }
+  ]
 }

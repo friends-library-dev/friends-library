@@ -17,6 +17,7 @@
     "packages/cli/*.js": true,
     "packages/cover/build": true,
     "packages/kite/src/publish/epub/cover_*.png": true,
+    "packages/styleguide/src/built-frags.json": true,
     "design": true
   }
 }

@@ -2,10 +2,16 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "downlevelIteration": true,
     "paths": { "*": ["types/*"] },
     "declaration": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "composite": true
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [
+    { "path": "../types" },
+    { "path": "../hilkiah" },
+    { "path": "../friends" }
+  ]
 }

@@ -6,7 +6,7 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "compile": "../../node_modules/.bin/tsc -p ."
+    "compile": "cd ../../ && yarn compile client"
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",

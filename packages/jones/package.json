@@ -2,20 +2,23 @@
   "name": "jones",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "develop": "yarn start",
+    "compile": "cd ../../ && yarn compile jones",
+    "asciidoctorjs": "rm -f ./public/asciidoctor.min.js && cp ../../node_modules/@asciidoctor/core/dist/browser/asciidoctor.min.js ./public",
+    "prestart": "rm -rf ./.env && cp ../../.env . && yarn asciidoctorjs",
+    "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=8888 react-scripts start",
+    "build": "yarn asciidoctorjs && SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "test": "cd ../../ && yarn jest packages/api",
+    "eject": "react-scripts eject",
+    "build:netlify": "yarn install --focus && yarn compile && yarn build"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
     "@friends-library/asciidoc": "1.0.0",
+    "@friends-library/types": "1.0.0",
     "@octokit/rest": "^16.8.1",
-    "@types/classnames": "^2.2.7",
-    "@types/escape-string-regexp": "^1.0.0",
-    "@types/js-base64": "^2.3.1",
-    "@types/js-yaml": "^3.12.0",
-    "@types/node": "^11.11.3",
-    "@types/react": "^16.8.8",
-    "@types/react-dom": "^16.8.2",
-    "@types/react-redux": "^7.0.9",
-    "@types/uuid": "^3.4.4",
     "brace": "^0.11.1",
     "classnames": "^2.2.6",
     "escape-string-regexp": "^1.0.5",
@@ -37,14 +40,16 @@
     "smalltalk": "^3.2.2",
     "uuid": "^3.3.2"
   },
-  "scripts": {
-    "develop": "yarn start",
-    "asciidoctorjs": "rm -f ./public/asciidoctor.min.js && cp ../../node_modules/@asciidoctor/core/dist/browser/asciidoctor.min.js ./public",
-    "prestart": "rm -rf ./.env && cp ../../.env . && yarn asciidoctorjs",
-    "start": "SKIP_PREFLIGHT_CHECK=true PORT=8888 react-scripts start",
-    "build": "yarn asciidoctorjs && SKIP_PREFLIGHT_CHECK=true react-scripts build",
-    "test": "cd ../../ && yarn jest packages/api",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@types/classnames": "^2.2.7",
+    "@types/escape-string-regexp": "^1.0.0",
+    "@types/js-base64": "^2.3.1",
+    "@types/js-yaml": "^3.12.0",
+    "@types/node": "^11.11.3",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.2",
+    "@types/react-redux": "^7.0.9",
+    "@types/uuid": "^3.4.4"
   },
   "browserslist": [
     ">0.2%",

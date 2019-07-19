@@ -3,10 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "yarn ts:compile",
-    "ts:compile": "yarn types:compile && yarn client:compile && yarn friends:compile && yarn hilkiah:compile && yarn asciidoc:compile && yarn cli:compile && yarn bot:compile && yarn cover:compile",
-    "ts:recompile": "cd packages && find . -name \"*.tsbuildinfo\" -type f -delete && cd ../ && yarn ts:compile",
-    "ts:watch": "yarn types:compile -w & yarn client:compile -w & yarn friends:compile -w & yarn hilkiah:compile -w & yarn asciidoc:compile -w & yarn cli:compile -w & yarn bot:compile -w",
+    "compile": "node scripts/compile.js",
+    "ts:clean": "find . -name \"*.tsbuildinfo\" -type f -delete && rm -rf packages/*/dist",
     "kite": "yarn ts-node --transpile-only --project ./packages/kite/tsconfig.json ./packages/kite/src/app.ts",
     "fell": "yarn ts-node --transpile-only --project ./packages/fell/tsconfig.json ./packages/fell/src/app.ts",
     "test": "yarn jest",
@@ -26,20 +24,12 @@
     "cover:develop": "cd packages/cover && yarn develop",
     "cover:build:netlify": "mkdir -p ./en && mkdir -p ./es && yarn fell clone && yarn cover:build",
     "cover:build": "cd packages/cover && yarn build",
-    "cover:compile": "cd packages/cover && yarn compile",
     "cover:ts:check": "cd packages/cover && yarn ts:check",
-    "cli:compile": "cd packages/cli && yarn compile",
-    "asciidoc:compile": "cd ./packages/asciidoc && yarn compile",
-    "hilkiah:compile": "cd ./packages/hilkiah && yarn compile",
-    "client:compile": "cd packages/client && yarn compile",
-    "friends:compile": "cd ./packages/friends && yarn compile",
-    "bot:compile": "cd ./packages/bot && yarn compile",
     "bot:deploy": "cd ./packages/bot && yarn deploy",
-    "types:compile": "cd packages/types && yarn compile",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
     "format:yml": "yarn prettier \"packages/friends/**/*.yml\" --write",
-    "preflight": "yarn lint && yarn kite en/robert-barclay/recreation-entertainment/updated -t all && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:compile && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
+    "preflight": "yarn lint && yarn kite en/robert-barclay/recreation-entertainment/updated -t all && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
@@ -66,19 +56,6 @@
     "typescript": "3.5.1"
   },
   "workspaces": [
-    "packages/asciidoc",
-    "packages/bot",
-    "packages/cli",
-    "packages/client",
-    "packages/cover",
-    "packages/evans",
-    "packages/fell",
-    "packages/friends",
-    "packages/functions",
-    "packages/hilkiah",
-    "packages/jones",
-    "packages/kite",
-    "packages/styleguide",
-    "packages/types"
+    "packages/*"
   ]
 }
