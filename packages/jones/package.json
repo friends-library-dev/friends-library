@@ -11,7 +11,7 @@
     "build": "yarn asciidoctorjs && SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "test": "cd ../../ && yarn jest packages/api",
     "eject": "react-scripts eject",
-    "build:netlify": "yarn install --focus && yarn compile && yarn build"
+    "build:netlify": "yarn compile && yarn build"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",

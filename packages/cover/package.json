@@ -32,7 +32,8 @@
     "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
     "friends": "yarn ts-node -T --skip-project ./src/scripts/friend-data.ts",
     "build": "yarn friends && SKIP_PREFLIGHT_CHECK=true react-scripts build",
-    "build:netlify": "yarn install --focus && cd ../../ && yarn tsc --build packages/cover && cd packages/cover && yarn build",
+    "clone:netlify": "cd ../../ && mkdir -p ./en && mkdir -p ./es && yarn compile fell && yarn fell clone",
+    "build:netlify": "yarn clone:netlify && cd ../../ && yarn tsc --build packages/cover && cd packages/cover && yarn build",
     "test": "cd ../../ && yarn jest packages/cover",
     "eject": "react-scripts eject"
   },

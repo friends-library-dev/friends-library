@@ -12,7 +12,8 @@ jobs:
       - run: yarn evans:build:es
       - run: yarn evans:ts:check
       - run: yarn cover:ts:check
-      - run: yarn ts:compile
+      - run: yarn compile all
+      - run: yarn styleguide:build
 
   node2:
     docker:
@@ -26,7 +27,6 @@ jobs:
       - run: yarn ts:lint
       - run: yarn jones:build
       - run: KITE_DOCS_REPOS_ROOT="" yarn cover:build
-      - run: yarn styleguide:build
 
   deploy_bot:
     docker:
