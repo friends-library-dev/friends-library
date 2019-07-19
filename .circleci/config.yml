@@ -67,6 +67,7 @@ commands:
       - run:
           name: Install dependencies
           command: yarn install --frozen-lockfile
+      - run: yarn compile all
       - save_cache:
           paths:
             - node_modules

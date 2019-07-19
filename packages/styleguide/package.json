@@ -6,12 +6,15 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn webpack-dev-server --mode development --watch --hot & yarn watch:frags",
-    "watch:frags": "cd ../../ && yarn ts-node ./packages/styleguide/src/build-frags.ts --watch",
-    "build:frags": "cd ../../ && yarn ts-node ./packages/styleguide/src/build-frags.ts && cd ./packages/styleguide",
-    "build": "yarn build:frags && webpack --mode production --display=minimal"
+    "compile": "cd ../../ && yarn compile styleguide",
+    "start": "yarn compile && yarn webpack-dev-server --mode development --watch --hot & yarn watch:frags",
+    "watch:frags": "yarn build:frags --watch",
+    "build:frags": "yarn ts-node ./src/build-frags.ts",
+    "build": "yarn compile && yarn build:frags && webpack --mode production --display=minimal",
+    "build:netlify": "yarn install --focus && yarn build"
   },
   "dependencies": {
+    "@friends-library/types": "1.0.0",
     "@friends-library/asciidoc": "1.0.0",
     "chalk": "^2.4.1",
     "chokidar": "^2.0.4",

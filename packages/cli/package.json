@@ -6,7 +6,7 @@
   "author": "jared@netrivet.com",
   "license": "MIT",
   "scripts": {
-    "compile": "../../node_modules/.bin/tsc -p ."
+    "compile": "cd ../../ && yarn compile cli"
   },
   "dependencies": {
     "chalk": "^2.4.1",

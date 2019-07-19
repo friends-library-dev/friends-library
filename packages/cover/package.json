@@ -11,10 +11,6 @@
     "@friends-library/types": "1.0.0",
     "@material-ui/core": "^4.0.0-beta.0",
     "@material-ui/icons": "^4.0.0-beta.0",
-    "@types/jest": "24.0.11",
-    "@types/node": "11.13.7",
-    "@types/react": "16.8.14",
-    "@types/react-dom": "16.8.4",
     "brace": "^0.11.1",
     "browser-or-node": "^1.2.1",
     "classnames": "^2.2.6",
@@ -29,13 +25,14 @@
     "ts-node": "^8.1.0"
   },
   "scripts": {
-    "compile": "rm -rf ./dist && mkdir ./dist && cp -r ./public/images ./dist && ../../node_modules/.bin/tsc -p ./src/components/Cover",
+    "compile": "rm -rf ./dist && mkdir ./dist && cp -r ./public/images ./dist && cd ../../ && yarn tsc --build packages/cover/src/components/Cover",
     "ts:check": "../../node_modules/.bin/tsc --noEmit -p . && ../../node_modules/.bin/tsc --noEmit -p ./src/components/Cover",
     "listen:pdf": "node ./listen/listen-pdf.js",
     "develop": "yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"sleep 3 && cd ../../ && yarn kite cover:watch\"",
     "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
     "friends": "yarn ts-node -T --skip-project ./src/scripts/friend-data.ts",
     "build": "yarn friends && SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "build:netlify": "yarn install --focus && cd ../../ && yarn tsc --build packages/cover && cd packages/cover && yarn build",
     "test": "cd ../../ && yarn jest packages/cover",
     "eject": "react-scripts eject"
   },
@@ -52,6 +49,10 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "24.0.11",
+    "@types/node": "11.13.7",
+    "@types/react": "16.8.14",
+    "@types/react-dom": "16.8.4",
     "concurrently": "^4.1.0"
   }
 }

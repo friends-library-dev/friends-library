@@ -51,10 +51,7 @@ function regen(): void {
     };
   });
 
-  fs.writeFileSync(
-    path.resolve(__dirname, '..', 'dist/frags.json'),
-    JSON.stringify(frags),
-  );
+  fs.writeFileSync(path.resolve(__dirname, 'built-frags.json'), JSON.stringify(frags));
   notify();
 }
 

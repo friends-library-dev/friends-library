@@ -13,12 +13,13 @@
     "./dist/job/asciidoctor.js": "./dist/job/asciidoctor.browser.js"
   },
   "scripts": {
+    "compile": "cd ../../ && yarn compile asciidoc",
     "scaffold:lint": "yarn ts-node ./scripts/scaffold-lint.ts",
-    "compile": "../../node_modules/.bin/tsc -p .",
     "test": "cd ../../ && yarn jest packages/asciidoc"
   },
   "dependencies": {
     "@asciidoctor/core": "^2.0.2",
+    "@friends-library/friends": "1.0.0",
     "@friends-library/hilkiah": "1.0.0",
     "@friends-library/types": "1.0.0",
     "escape-string-regexp": "^2.0.0",

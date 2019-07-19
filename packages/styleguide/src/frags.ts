@@ -1,4 +1,5 @@
-import frags from '../dist/frags.json';
+// @ts-ignore
+import frags from './built-frags.json';
 
 export function html(id: string): string {
   return (<{ [k: string]: any }>frags)[id].html || '';

@@ -2,7 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "es2017",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "composite": true
   },
-  "include": ["./src"]
+  "include": ["./src"],
+  "references": [{ "path": "../types" }, { "path": "../client" }]
 }

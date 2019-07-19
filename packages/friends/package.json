@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "compile": "../../node_modules/.bin/tsc -p .",
+    "compile": "cd ../../ && yarn compile friends",
     "test": "cd ../../ && yarn jest packages/friends"
   },
   "dependencies": {
