@@ -11,7 +11,7 @@
     "watch:frags": "yarn build:frags --watch",
     "build:frags": "yarn ts-node ./src/build-frags.ts",
     "build": "yarn compile && yarn build:frags && webpack --mode production --display=minimal",
-    "build:netlify": "yarn install --focus && yarn build"
+    "build:netlify": "yarn build"
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",

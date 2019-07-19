@@ -14,6 +14,7 @@ const pkgs = [
   'types',
   'cover',
   'styleguide',
+  'fell',
   'all',
 ];
 
@@ -28,9 +29,14 @@ if (pkg === 'all') {
 }
 
 function compilePkg(pkg) {
-  const args = rest.length ? ` ${rest.join(' ')}` : '';
+  let args = rest.length ? ` ${rest.join(' ')}` : '';
   let cwd = process.cwd();
   let cmd = `yarn tsc --build packages/${pkg}${args}`;
+
+  // always use verbose output on netlify / ci
+  if (process.env.COMMIT_REF || process.env.CI) {
+    args += ' --verbose';
+  }
 
   if (pkg === 'cover') {
     cwd += '/packages/cover';

@@ -3,6 +3,7 @@
   "compilerOptions": {
     "lib": ["es2017", "dom"],
     "moduleResolution": "node",
+    "noEmit": true,
     "target": "es2017"
   },
   "references": [{ "path": "../cli" }, { "path": "../client" }, { "path": "../types" }]

@@ -22,7 +22,6 @@
     "jones:develop": "cd packages/jones && yarn develop",
     "jones:build": "cd packages/jones && yarn build",
     "cover:develop": "cd packages/cover && yarn develop",
-    "cover:build:netlify": "mkdir -p ./en && mkdir -p ./es && yarn fell clone && yarn cover:build",
     "cover:build": "cd packages/cover && yarn build",
     "cover:ts:check": "cd packages/cover && yarn ts:check",
     "bot:deploy": "cd ./packages/bot && yarn deploy",
