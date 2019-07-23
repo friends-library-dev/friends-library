@@ -18,7 +18,8 @@ h2 {
 }
 
 .half-title-page {
-  height: $page-height - (($condensed-page-top-margin + $condensed-page-bottom-margin) * 3);
+  height: $page-height -
+    (($condensed-page-top-margin + $condensed-page-bottom-margin) * 3);
 }
 
 @page {
