@@ -48,7 +48,7 @@
 }
 
 .body {
-  font-family: Georgia, "Bitstream Charter", serif;
+  font-family: Georgia, 'Bitstream Charter', serif;
 }
 
 div.asterism {
@@ -59,7 +59,6 @@ div.asterism {
   margin: 1em 0 0.6em 0;
 }
 
-
 .paragraph p {
   text-indent: 1.5em;
   text-align: justify;
@@ -69,7 +68,7 @@ div.asterism {
 
 .own-page {
   page-break-before: always;
-  page-break-after:  always;
+  page-break-after: always;
 }
 
 #footnotes {
@@ -87,7 +86,7 @@ div.asterism {
 *::footnote-call {
   content: counter(footnote);
   vertical-align: super;
-  line-height: none
+  line-height: none;
 }
 
 *::footnote-marker {
@@ -130,5 +129,5 @@ div.asterism {
 
 .embedded-content-document {
   margin-left: 1.3em;
-  font-family: "Times New Roman", Palatino, Arial, serif;
+  font-family: 'Times New Roman', Palatino, Arial, serif;
 }

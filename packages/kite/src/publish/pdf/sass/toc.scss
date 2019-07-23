@@ -19,7 +19,7 @@
 }
 
 .toc a[href]::after {
-  content: leader(" ") target-counter(attr(href), page);
+  content: leader(' ') target-counter(attr(href), page);
   vertical-align: top;
 }
 
