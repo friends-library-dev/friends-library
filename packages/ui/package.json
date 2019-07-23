@@ -1,0 +1,34 @@
+{
+  "name": "@friends-library/ui",
+  "version": "1.0.0",
+  "description": "Shared react component library for Friends Library",
+  "main": "src/index.tsx",
+  "author": "jared@netrivet.com",
+  "license": "MIT",
+  "scripts": {
+    "storybook": "start-storybook -p 6006 --ci",
+    "build:storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.14",
+    "@emotion/styled": "^10.0.14",
+    "classnames": "^2.2.6",
+    "gatsby-link": "^2.2.2",
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-centered": "^5.1.9",
+    "@storybook/addon-info": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-viewport": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
+    "@storybook/react": "^5.1.9",
+    "@types/react": "^16.8.23",
+    "@types/storybook__addon-centered": "^3.4.1",
+    "@types/storybook__react": "^4.0.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6"
+  }
+}
