@@ -3,14 +3,14 @@ import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import Helmet from 'react-helmet';
+import { Nav } from '@friends-library/ui';
 import Slideover from './Slideover';
-import StickyNav from './StickyNav';
 import Footer from './Footer';
 import theme from '../theme';
 import './Layout.css';
 
 const Content = styled.div`
-  padding-top: 52px;
+  padding-top: 90px;
   position: relative;
   background: #fff;
   min-height: 100vh;
@@ -32,16 +32,16 @@ interface Props {
 }
 
 interface State {
-  navOpen: boolean;
+  menuOpen: boolean;
 }
 
 export default class Layout extends React.Component<Props, State> {
   public state = {
-    navOpen: false,
+    menuOpen: false,
   };
 
   public render(): JSX.Element {
-    const { navOpen } = this.state;
+    const { menuOpen } = this.state;
     const { children } = this.props;
     return (
       <Fragment>
@@ -56,8 +56,12 @@ export default class Layout extends React.Component<Props, State> {
           />
         </Helmet>
         <ThemeProvider theme={theme}>
-          <Slideover isOpen={navOpen} close={() => this.setState({ navOpen: false })} />
-          <StickyNav onHamburgerClick={() => this.setState({ navOpen: !navOpen })} />
+          <Slideover isOpen={false} close={() => this.setState({ menuOpen: false })} />
+          <Nav
+            menuOpen={menuOpen}
+            className="Nav"
+            onHamburgerClick={() => this.setState({ menuOpen: !menuOpen })}
+          />
           <Content>
             {children}
             <Footer />

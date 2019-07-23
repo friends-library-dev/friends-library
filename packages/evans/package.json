@@ -13,6 +13,7 @@
     "@friends-library/friends": "1.0.0",
     "@friends-library/types": "1.0.0",
     "@friends-library/functions": "1.0.0",
+    "@friends-library/ui": "1.0.0",
     "babel-plugin-ttag": "^1.4.2",
     "babel-preset-gatsby": "^0.1.6",
     "babel-preset-gatsby-package": "^0.1.3",
