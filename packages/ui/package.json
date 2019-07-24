@@ -2,7 +2,8 @@
   "name": "@friends-library/ui",
   "version": "1.0.0",
   "description": "Shared react component library for Friends Library",
-  "main": "src/index.tsx",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "author": "jared@netrivet.com",
   "license": "MIT",
   "scripts": {
