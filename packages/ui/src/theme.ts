@@ -40,6 +40,6 @@ const es = {
   primary: gold,
 };
 
-export type Theme = typeof en;
-
 export { en, es };
+
+export type Theme = typeof en;

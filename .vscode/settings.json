@@ -18,6 +18,7 @@
     "packages/cover/build": true,
     "packages/kite/src/publish/epub/cover_*.png": true,
     "packages/styleguide/src/built-frags.json": true,
+    "packages/ui/storybook-static": true,
     "design": true
   }
 }
