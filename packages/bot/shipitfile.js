@@ -40,6 +40,7 @@ module.exports = shipit => {
 
   shipit.on('published', () => {
     shipit.remote('pm2 delete all');
+    shipit.remote(`cd ${BOT_DEPLOY_PATH}/current && yarn compile bot`);
     shipit.remote(
       `cd ${BOT_DEPLOY_PATH}/current && NODE_PORT=${BOT_PORT} pm2 start packages/bot/dist/scripts/run.js`,
     );
