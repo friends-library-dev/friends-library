@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 import { Name, Description } from '@friends-library/types';
 import { Layout, Block, Divider, PageTitle, Badge, DocumentTeaser } from '../components';
 import { h2 } from '../typography';

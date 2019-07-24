@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 import { h1 } from '../typography';
 
 const PageTitle = styled.h1`

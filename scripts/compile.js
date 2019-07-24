@@ -15,6 +15,7 @@ const pkgs = [
   'cover',
   'styleguide',
   'fell',
+  'ui',
   'all',
 ];
 

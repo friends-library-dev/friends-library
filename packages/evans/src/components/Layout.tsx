@@ -1,12 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Global, css } from '@emotion/core';
-import styled from '@emotion/styled';
-import { ThemeProvider } from 'emotion-theming';
+import { styled } from '@friends-library/ui';
 import Helmet from 'react-helmet';
-import { Nav } from '@friends-library/ui';
+import { ThemeProvider } from 'emotion-theming';
+import { Nav, enTheme, esTheme } from '@friends-library/ui';
 import Slideover from './Slideover';
 import Footer from './Footer';
-import theme from '../theme';
 import './Layout.css';
 
 const Content = styled.div`
@@ -18,56 +17,48 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
-const html = css`
-  & a {
-    color: ${theme.primary};
-  }
-  & a:hover {
-    border-bottom-color: ${theme.primary};
-  }
-`;
-
 interface Props {
   children: React.ReactNode;
 }
 
-interface State {
-  menuOpen: boolean;
-}
+const Layout: React.FC<Props> = ({ children }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const theme = process.env.GATSBY_LANG === 'en' ? enTheme : esTheme;
+  return (
+    <Fragment>
+      <Global
+        styles={css`
+          & a {
+            color: ${theme.primary.hex};
+          }
+          & a:hover {
+            border-bottom-color: ${theme.primary.hex};
+          }
+        `}
+      />
+      <Helmet>
+        <html lang="en" />
+        <title>Friends Library</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link
+          href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
+          rel="stylesheet prefetch"
+        />
+      </Helmet>
+      <ThemeProvider theme={theme}>
+        <Slideover isOpen={false} close={() => setMenuOpen(false)} />
+        <Nav
+          menuOpen={menuOpen}
+          className="Nav"
+          onHamburgerClick={() => setMenuOpen(!menuOpen)}
+        />
+        <Content>
+          {children}
+          <Footer />
+        </Content>
+      </ThemeProvider>
+    </Fragment>
+  );
+};
 
-export default class Layout extends React.Component<Props, State> {
-  public state = {
-    menuOpen: false,
-  };
-
-  public render(): JSX.Element {
-    const { menuOpen } = this.state;
-    const { children } = this.props;
-    return (
-      <Fragment>
-        <Global styles={html} />
-        <Helmet>
-          <html lang="en" />
-          <title>Friends Library</title>
-          <meta name="robots" content="noindex, nofollow" />
-          <link
-            href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
-            rel="stylesheet prefetch"
-          />
-        </Helmet>
-        <ThemeProvider theme={theme}>
-          <Slideover isOpen={false} close={() => this.setState({ menuOpen: false })} />
-          <Nav
-            menuOpen={menuOpen}
-            className="Nav"
-            onHamburgerClick={() => this.setState({ menuOpen: !menuOpen })}
-          />
-          <Content>
-            {children}
-            <Footer />
-          </Content>
-        </ThemeProvider>
-      </Fragment>
-    );
-  }
-}
+export default Layout;
