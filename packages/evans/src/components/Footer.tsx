@@ -21,12 +21,17 @@ const element = css`
     color: #fff;
   }
 
-  & p {
+  p {
     text-align: center;
     font-style: italic;
     color: #bbb;
     margin: 0;
     font-size: 0.8em;
+
+    b {
+      font-style: normal;
+      padding-left: 0.25em;
+    }
   }
 `;
 
@@ -71,6 +76,8 @@ export default () => (
       </li>
     </ul>
 
-    <p>&copy; 2018 The Friends Library</p>
+    <p>
+      &copy; 2018 Friends Library Publishing <b>[,]</b>
+    </p>
   </Block>
 );

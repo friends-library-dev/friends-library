@@ -80,7 +80,7 @@ export default () => (
       </p>
     </TempBlock>
     <TempBlock>
-      <h1>About our documents</h1>
+      <h1>Formats and Editions</h1>
       <p>
         On this site you will find many books available in multiple formats. Our desire is
         to make these precious writings as accessible as possible to the modern seeker
