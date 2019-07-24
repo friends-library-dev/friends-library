@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 import { t } from 'ttag';
 
 const StickyNav = styled.div`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${p => p.theme.primary.hex};
   color: #fff;
   position: fixed;
   width: 100%;

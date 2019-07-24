@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import styled from '@emotion/styled';
+import styled from './styled';
 
 const size = 50;
 
-const Search = styled('div')<Props>`
+const Search = styled('div')<{ expanded: boolean }>`
   height: ${size}px;
   width: ${p => (p.expanded ? 6 * size : size)}px;
   border-radius: ${size / 2}px;
-  border: 1px solid rgba(108, 49, 66, 0.5);
+  border: 1px solid ${p => p.theme.primary.rgba(0.5)};
   position: relative;
   transition: width 0.25s ease-out;
-  background: ${p => (p.expanded ? 'rgba(108, 49, 66, 0.05)' : 'none')};
+  background: ${p => (p.expanded ? p.theme.primary.rgba(0.05) : 'none')};
   cursor: pointer;
 
   input {
@@ -54,14 +54,14 @@ const Search = styled('div')<Props>`
     width: 34%;
     height: 34%;
     border-radius: 50%;
-    border: 3px solid #6c3142;
+    border: 3px solid ${p => p.theme.primary.hex};
   }
 
   .handle {
     position: absolute;
     width: 27%;
     height: 3px;
-    background: #6c3142;
+    background: ${p => p.theme.primary.hex};
     transform: rotate(39deg);
     border-radius: 2px;
     top: 55%;

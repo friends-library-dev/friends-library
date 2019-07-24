@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import styled from './styled';
 import Link from 'gatsby-link';
 import cx from 'classnames';
-import Logo from './Logo';
+import { withTheme } from 'emotion-theming';
+import FriendsLogo from './LogoFriends';
+import AmigosLogo from './LogoAmigos';
 import Hamburger from './Hamburger';
 import Search from './Search';
+import { Theme } from './theme';
 
 const StyledNav = styled('nav')`
   display: flex;
@@ -28,17 +31,17 @@ const StyledNav = styled('nav')`
 
   .Logo {
     transition: width 0.25s ease-out;
-    width: 140px;
+    width: ${p => (p.theme.lang === 'en' ? 140 : 190)}px;
     height: 100%;
   }
 
   .Friends,
   .Icon {
-    fill: #6c3142;
+    fill: ${p => p.theme.primary.hex};
   }
 
   .Library {
-    fill: #2d2a29;
+    fill: ${p => p.theme.black.hex};
   }
 
   .Search {
@@ -59,7 +62,7 @@ const StyledNav = styled('nav')`
 
   @media (min-width: 545px) {
     .Logo {
-      width: 170px;
+      width: ${p => (p.theme.lang === 'en' ? 170 : 210)}px;
     }
     .Search {
       display: block;
@@ -68,6 +71,7 @@ const StyledNav = styled('nav')`
 `;
 
 interface Props {
+  theme: Theme;
   menuOpen: boolean;
   className?: string;
   onHamburgerClick: () => void;
@@ -75,14 +79,19 @@ interface Props {
   initialSearching?: boolean;
 }
 
-const Component: React.FC<Props> = ({ className, initialMenuOpen, initialSearching }) => {
+const Component: React.FC<Props> = ({
+  className,
+  initialMenuOpen,
+  initialSearching,
+  theme,
+}) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(initialMenuOpen || false);
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
   return (
     <StyledNav className={cx(className, { searching })}>
       <Hamburger menuOpen={menuOpen} onClick={() => setMenuOpen(!menuOpen)} />
       <Link className="HomeLink" to="/">
-        <Logo />
+        {theme.lang === 'en' ? <FriendsLogo /> : <AmigosLogo />}
       </Link>
       <Search
         expanded={searching}
@@ -97,4 +106,4 @@ const Component: React.FC<Props> = ({ className, initialMenuOpen, initialSearchi
   );
 };
 
-export default Component;
+export default withTheme(Component);

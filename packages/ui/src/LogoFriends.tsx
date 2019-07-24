@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Logo: React.FC = () => (
+const FriendsLogo: React.FC = () => (
   <svg className="Logo" viewBox="0 0 391 98">
     <g className="Friends">
       <path d="M151.2 16h-4c-.6-3.1-1.5-5.4-2.7-6.8a7 7 0 0 0-3.9-2.7c-1.4-.3-3.4-.5-6-.5h-10v20h5.3c2.5 0 4.1-.5 5-1.3 1-.9 1.5-2.8 1.6-5.7h3.9v18.7h-4c-.1-2.1-.4-3.7-.7-4.6-.4-1-1-1.6-2-2-.9-.3-2.2-.5-4-.5h-5.1v16.8c0 2.3.4 4 1.3 5 1 1.1 3 1.6 6.5 1.6h1.1V58h-29V54c3.5 0 5.7-.5 6.7-1.5s1.4-2.7 1.4-5.1V11.9c0-1.6-.1-2.9-.5-3.8-.3-.9-1-1.6-2.2-2.1-1.2-.5-3-.8-5.4-.8V1.4h46.3l.4 14.6" />
@@ -34,4 +34,4 @@ const Logo: React.FC = () => (
     />
   </svg>
 );
-export default Logo;
+export default FriendsLogo;

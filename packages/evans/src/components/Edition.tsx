@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditionType } from '@friends-library/types';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 import { t } from 'ttag';
 import * as descriptions from '../descriptions';
 import { h2, h3 } from '../typography';

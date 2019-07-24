@@ -6,18 +6,23 @@
   "author": "jared@netrivet.com",
   "license": "MIT",
   "scripts": {
+    "compile": "cd ../../ && yarn compile ui",
     "storybook": "start-storybook -p 6006 --ci",
-    "build:storybook": "build-storybook"
+    "build": "build-storybook",
+    "build:quiet": "build-storybook --loglevel error --quiet",
+    "build:netlify": "yarn compile && yarn build:quiet"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
     "classnames": "^2.2.6",
+    "emotion-theming": "^10.0.14",
     "gatsby-link": "^2.2.2",
     "react": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@friends-library/types": "1.0.0",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-centered": "^5.1.9",
     "@storybook/addon-info": "^5.1.9",

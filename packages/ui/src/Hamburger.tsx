@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from './styled';
 
 const Hamburger = styled('div')<{ isX: boolean }>`
   width: 34px;
@@ -14,7 +14,7 @@ const Hamburger = styled('div')<{ isX: boolean }>`
     display: block;
     height: 2px;
     margin-bottom: 6px;
-    background-color: #6c3142;
+    background-color: ${p => p.theme.primary.hex};
     transition: transform 0.25s;
   }
 

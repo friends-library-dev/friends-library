@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 
 const Badge = styled.span`
   box-sizing: border-box;
@@ -9,7 +9,7 @@ const Badge = styled.span`
   padding: 0 5px;
   border-radius: 500px;
   vertical-align: middle;
-  background: ${({ theme }) => theme.primary};
+  background: ${p => p.theme.primary.hex};
   color: #fff;
   font-size: 13.25px;
   display: inline-flex;

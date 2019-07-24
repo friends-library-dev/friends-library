@@ -1,7 +1,7 @@
 import React from 'react';
 import { t } from 'ttag';
 import { Link } from 'gatsby';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 import { Title, Name, Url } from '@friends-library/types';
 import responsiveDocumentTitle from '../lib/responsive';
 
@@ -37,7 +37,7 @@ const Heading = styled.h3`
 
 const StyledLink = styled(Link)`
   padding: 0.75em;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${p => p.theme.primary.hex};
   display: block;
   text-align: center;
   text-decoration: none;

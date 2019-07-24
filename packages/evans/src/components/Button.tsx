@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 
 const Button = styled(Link)`
   display: block;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.primary.hex};
   text-align: center;
   text-transform: uppercase;
   margin: 20px 0 5px;

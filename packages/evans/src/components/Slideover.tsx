@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled from '@emotion/styled';
+import { styled } from '@friends-library/ui';
 
 const Slideover = styled.div<{ isOpen: boolean }>`
   z-index: 555;
