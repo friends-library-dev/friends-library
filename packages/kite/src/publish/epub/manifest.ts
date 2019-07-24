@@ -53,8 +53,9 @@ async function coverFiles(job: Job): Promise<SubManifest<Html>> {
     await page.goto(`${url}?capture=ebook&id=${id}`);
     await page.screenshot({ path });
     await browser.close();
-  } catch {
+  } catch (error) {
     bgRed(`ERROR capturing ebook cover: ${id}/${job.target}`);
+    bgRed(error.message);
   }
 
   manifest['OEBPS/cover.png'] = path;
