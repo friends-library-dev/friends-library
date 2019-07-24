@@ -50,7 +50,14 @@ export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
   },
 };
 
-export function getBookSize(id: string): PrintSizeDetails {
+export function choosePrintSize(pages: { s: number; m: number }): PrintSize {
+  let size: PrintSize = 's';
+  if (pages.s > sizes.s.maxPages) size = 'm';
+  if (pages.m > sizes.m.maxPages) size = 'xl';
+  return size;
+}
+
+export function getPrintSizeDetails(id: string): PrintSizeDetails {
   let size;
 
   Object.values(sizes).forEach(s => {

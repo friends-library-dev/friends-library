@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import { sync as glob } from 'glob';
-import { bookSizes } from '@friends-library/asciidoc';
+import { choosePrintSize } from '@friends-library/asciidoc';
 import { PrintSize, DocumentArtifacts, SourcePrecursor } from '@friends-library/types';
 import { publishPrecursors } from '../publish/handler';
 import { red } from '@friends-library/cli/color';
@@ -16,14 +16,12 @@ export async function estimatePrintSize(
   const meta = await getDocumentMeta();
   const sections = glob(`${sourceDocPath}/*.adoc`).length;
 
-  let printSize: PrintSize = 'xl';
-  if (meta.estimatePages(adocLength, sections, 's') < bookSizes.s.maxPages) {
-    printSize = 's';
-  } else if (meta.estimatePages(adocLength, sections, 'm') < bookSizes.m.maxPages) {
-    printSize = 'm';
-  }
+  const estimatedPages = {
+    s: meta.estimatePages(adocLength, sections, 's'),
+    m: meta.estimatePages(adocLength, sections, 'm'),
+  };
 
-  return printSize;
+  return choosePrintSize(estimatedPages);
 }
 
 export async function resizePrintPdf(

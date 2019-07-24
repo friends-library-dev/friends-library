@@ -1,5 +1,5 @@
 import { CoverProps, PrintSize } from '@friends-library/types';
-import { getBookSize } from '@friends-library/asciidoc';
+import { getPrintSizeDetails } from '@friends-library/asciidoc';
 import { cssVars } from '../css';
 
 describe('cssVars()', () => {
@@ -18,7 +18,7 @@ describe('cssVars()', () => {
       customCss: '',
       customHtml: '',
     };
-    ({ dims: trim } = getBookSize(props.size));
+    ({ dims: trim } = getPrintSizeDetails(props.size));
   });
 
   test('cover height is book size height plus 0.25in fudge', () => {

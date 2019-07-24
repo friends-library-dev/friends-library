@@ -1,11 +1,11 @@
 import { Css, CoverProps } from '@friends-library/types';
-import { getBookSize } from '@friends-library/asciidoc';
+import { getPrintSizeDetails } from '@friends-library/asciidoc';
 import { mapValues } from 'lodash';
 import cssString from './css/cover.css';
 
 export function cssVars(props: CoverProps): Record<string, string> {
   const { size, pages, showGuides } = props;
-  const { dims: book } = getBookSize(size);
+  const { dims: book } = getPrintSizeDetails(size);
   const safety = 0.25;
   const trimBleed = 0.125;
   const spinePad = 0.06;
