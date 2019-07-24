@@ -7,7 +7,7 @@ import { getAllFriends, Edition, Friend } from '@friends-library/friends';
 import { FriendData } from '../components/Cover/types';
 import { PrintSize, requireEnv } from '@friends-library/types';
 import { DocumentMeta } from '@friends-library/client';
-import { bookSizes } from '@friends-library/asciidoc';
+import { choosePrintSize } from '@friends-library/asciidoc';
 
 const { KITE_DOCS_REPOS_ROOT: ROOT } = requireEnv('KITE_DOCS_REPOS_ROOT');
 const meta = new DocumentMeta();
@@ -97,9 +97,7 @@ function estimatePages(edition: Edition): { size: PrintSize; pages: number } {
     xl: meta.estimatePages(adocLength, adocFiles.length, 'xl'),
   };
 
-  let size: PrintSize = 's';
-  if (pages.s > bookSizes.s.maxPages) size = 'm';
-  if (pages.m > bookSizes.m.maxPages) size = 'xl';
+  const size = choosePrintSize(pages);
 
   return {
     size,

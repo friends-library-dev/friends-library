@@ -15,4 +15,8 @@ export { default as createSourceSpec } from './job/source-spec';
 export { pdfHtml, embeddablePdfHtml, getTrim } from './job/pdf-html';
 export { navText, replaceHeadings } from './job/headings';
 export { frontmatter, epigraph } from './job/frontmatter';
-export { getBookSize, sizes as bookSizes } from './job/book-size';
+export {
+  getPrintSizeDetails,
+  sizes as bookSizes,
+  choosePrintSize,
+} from './job/book-size';

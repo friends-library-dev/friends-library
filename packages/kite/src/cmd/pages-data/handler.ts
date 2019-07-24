@@ -1,9 +1,10 @@
 import fs from 'fs-extra';
 import pdf from 'pdf-parse';
 import { sync as glob } from 'glob';
-import { DocumentMeta } from '@friends-library/client';
+import { getDocumentMeta, DocumentMeta } from '@friends-library/client';
+import { choosePrintSize } from '@friends-library/asciidoc';
 import { precursorFromSourceDoc } from '../update/publish';
-import { getAllSourceDocs } from '../update/source';
+import { getSourceDocs } from '../update/source';
 import { log, c } from '@friends-library/cli/color';
 import {
   PublishPrecursorOpts,
@@ -21,9 +22,8 @@ interface Options {
 }
 
 export default async function handler({ forceUpdate }: Options): Promise<void> {
-  const meta = new DocumentMeta();
-  await meta.load();
-  const docs = getAllSourceDocs();
+  const meta = await getDocumentMeta();
+  const docs = getSourceDocs();
 
   for (const doc of docs) {
     const path = `${doc.friend.lang}${doc.edition.url()}`;
@@ -44,6 +44,7 @@ export default async function handler({ forceUpdate }: Options): Promise<void> {
       adocLength: precursor.adoc.length,
       numSections: glob(`${doc.fullPath}/*.adoc`).length,
       pages,
+      printSize: choosePrintSize(pages),
     });
 
     await meta.persist();

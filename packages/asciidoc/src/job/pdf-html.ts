@@ -5,7 +5,7 @@ import { replaceHeadings } from './headings';
 import { capitalizeTitle, trimTrailingPunctuation, removeMobi7Tags } from './helpers';
 import { toRoman } from 'roman-numerals';
 import { pdfFrontmatter } from './pdf-frontmatter';
-import { getBookSize } from './book-size';
+import { getPrintSizeDetails } from './book-size';
 
 export function pdfHtml(job: Job): Html {
   return flow([
@@ -77,7 +77,7 @@ function addBodyClasses([html, job]: [Html, Job]): [Html, Job] {
 }
 
 export function getTrim({ meta }: Job): PrintSizeDetails {
-  return getBookSize(meta.printSize || 'm');
+  return getPrintSizeDetails(meta.printSize || 'm');
 }
 
 function wrapHtml([html, job]: [Html, Job]): [Html, Job] {
