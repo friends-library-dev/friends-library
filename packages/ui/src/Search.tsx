@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { t } from './translation';
 import styled from './styled';
 
 const size = 50;
@@ -93,7 +94,7 @@ const Component: React.FC<Props> = ({ expanded, onClick, onBlur, value }) => {
       <input
         ref={input}
         type="text"
-        placeholder="Search..."
+        placeholder={t`Search`}
         spellCheck={false}
         value={value}
       />

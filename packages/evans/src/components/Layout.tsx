@@ -37,7 +37,7 @@ const Layout: React.FC<Props> = ({ children }) => {
         `}
       />
       <Helmet>
-        <html lang="en" />
+        <html lang={theme.lang} />
         <title>Friends Library</title>
         <meta name="robots" content="noindex, nofollow" />
         <link
