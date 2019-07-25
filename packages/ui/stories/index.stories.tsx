@@ -1,40 +1,39 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
-import { ThemeProvider } from 'emotion-theming';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
-import { es, en } from '../src/theme';
+import { useEnglish, useSpanish } from './locale';
 
 storiesOf('Nav (en)', module)
-  .addDecorator(storyFn => <ThemeProvider theme={en}>{storyFn()}</ThemeProvider>)
+  .addDecorator(useEnglish)
   .add('default', () => (
-    <Nav menuOpen={false} onHamburgerClick={action('hamburger clicked')} />
+    <Nav menuOpen={false} onHamburgerClick={a('hamburger clicked')} />
   ))
   .add('searching', () => (
     <Nav
       menuOpen={false}
       initialSearching={true}
-      onHamburgerClick={action('hamburger clicked')}
+      onHamburgerClick={a('hamburger clicked')}
     />
   ));
 
 storiesOf('Nav (es)', module)
-  .addDecorator(storyFn => <ThemeProvider theme={es}>{storyFn()}</ThemeProvider>)
+  .addDecorator(useSpanish)
   .add('default', () => (
-    <Nav menuOpen={false} onHamburgerClick={action('hamburger clicked')} />
+    <Nav menuOpen={false} onHamburgerClick={a('hamburger clicked')} />
   ))
   .add('searching', () => (
     <Nav
       menuOpen={false}
       initialSearching={true}
-      onHamburgerClick={action('hamburger clicked')}
+      onHamburgerClick={a('hamburger clicked')}
     />
   ));
 
 storiesOf('Search', module)
-  .addDecorator(storyFn => <ThemeProvider theme={en}>{storyFn()}</ThemeProvider>)
+  .addDecorator(useEnglish)
   .addDecorator(centered)
   .add('minimized', () => <Search expanded={false} {...searchActions} />)
   .add('expanded', () => <Search expanded={true} {...searchActions} />)
@@ -43,6 +42,6 @@ storiesOf('Search', module)
   ));
 
 const searchActions = {
-  onClick: action('click'),
-  onBlur: action('blur'),
+  onClick: a('click'),
+  onBlur: a('blur'),
 };
