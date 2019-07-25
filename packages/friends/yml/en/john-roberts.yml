@@ -2,13 +2,28 @@ id: 64059654-ccbb-4082-a4d4-af51e38eed80
 name: John Roberts
 slug: john-roberts
 gender: male
-description: TODO
+description:
+  John Roberts (1623-1684) was a man of piety, wisdom, and remarkable wit. He was
+  convinced of the truth through the powerful ministry of Richard Farnsworth, while the
+  latter was a prisoner at Banbury Jail, and through heartfelt submission to the truth
+  became a respected minister in the Society of Friends, sometimes traveling with George
+  Fox. The combination of John Roberts' blunt honesty, profound understanding, and
+  humorous way of disputing with his adversaries, has long made the memoir of his life
+  (written by his youngest son, Daniel) a favorite among early Quaker writings.
 documents:
   - id: f044dc3e-9e30-41a0-80db-a9af65ff609d
     title: The Life of John Roberts
     slug: life
     filename: Life_of_John_Roberts
-    description: TODO
+    description:
+      John Roberts (1623-1684) was a man of piety, wisdom, and remarkable wit. He was
+      convinced of the truth through the powerful ministry of Richard Farnsworth, while
+      the latter was a prisoner at Banbury Jail, and through heartfelt submission to the
+      truth became a respected minister in the Society of Friends, sometimes traveling
+      with George Fox. The combination of John Roberts' blunt honesty, profound
+      understanding, and humorous way of disputing with his adversaries, has long made the
+      memoir of his life (written by his youngest son, Daniel) a favorite among early
+      Quaker writings.
     tags:
       - journal
     editions:

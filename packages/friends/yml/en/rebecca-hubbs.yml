@@ -2,13 +2,28 @@ id: ec432610-e85a-4818-a926-228580f45cec
 name: Rebecca Hubbs
 slug: rebecca-hubbs
 gender: female
-description: TODO
+description:
+  It is said of Rebecca Hubbs (1772-1852), that though she was not highly educated or
+  gifted for literary conversation, and though she had a very humble view of herself in
+  every way, yet her ministry savored richly of the power of the anointing, conveyed "not
+  in the words which man's wisdom teaches, but which the Holy Spirit teaches." Indeed, she
+  was a clear instance of the Lord's power made perfect in weakness, and was used of the
+  Lord in some remarkable ways, including a personal visit to president James Madison, to
+  declare unto him the burden of word of the Lord that weighed heavily on her heart.
 documents:
   - id: c7ef46fd-ed93-471e-971a-32b2e4d8558e
     title: Journal of Rebecca Hubbs
     slug: journal
     filename: Journal_of_Rebecca_Hubbs
-    description: TODO
+    description:
+      It is said of Rebecca Hubbs (1772-1852), that though she was not highly educated or
+      gifted for literary conversation, and though she had a very humble view of herself
+      in every way, yet her ministry savored richly of the power of the anointing,
+      conveyed "not in the words which man's wisdom teaches, but which the Holy Spirit
+      teaches." Indeed, she was a clear instance of the Lord's power made perfect in
+      weakness, and was used of the Lord in some remarkable ways, including a personal
+      visit to president James Madison, to declare unto him the burden of word of the Lord
+      that weighed heavily on her heart.
     tags:
       - journal
     editions:

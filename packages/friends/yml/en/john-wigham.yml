@@ -2,7 +2,14 @@ id: c142b031-4632-4730-96cd-2c0e3efb76f5
 name: John Wigham
 slug: john-wigham
 gender: male
-description: TODO
+description:
+  John Wigham (1749-1839) had strong desires raised in his heart to be the Lord's servant
+  when only eight years old, and feeling that he could not serve Him acceptably without
+  being preserved from evil, he began then to implore the Lord to purify his heart and to
+  make him a useful vessel in His house. After marrying, and beginning to travel in the
+  work of the ministry, he and his wife felt impressed of the Lord to move their family
+  (of seven children) from England to Scotland, where he served the declining church for
+  the remainder of his long and fruitful life, dying in Aberdeen at the age of 91.
 documents:
   - id: 84ca0ff5-f17c-49ff-9bde-6c9f67a6a352
     title: Journal of John Wigham
@@ -12,7 +19,15 @@ documents:
       Chiefly Written by Himself; To Which Are Added Some Concluding Remarks by His Son,
       Anthony Wigham.
     filename: Journal_of_John_Wigham
-    description: TODO
+    description:
+      John Wigham (1749-1839) had strong desires raised in his heart to be the Lord's
+      servant when only eight years old, and feeling that he could not serve Him
+      acceptably without being preserved from evil, he began then to implore the Lord to
+      purify his heart and to make him a useful vessel in His house. After marrying, and
+      beginning to travel in the work of the ministry, he and his wife felt impressed of
+      the Lord to move their family (of seven children) from England to Scotland, where he
+      served the declining church for the remainder of his long and fruitful life, dying
+      in Aberdeen at the age of 91.
     tags:
       - journal
     editions:

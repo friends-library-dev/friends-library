@@ -3,29 +3,30 @@ name: John Barclay
 slug: john-barclay
 gender: male
 description:
-  John Barclay (1797-1838), though a descendent of the well-known Barclay family, was a
-  complete stranger to the life and power of Truth until he began to seek the Lord with
-  all his heart, somewhere around his 18th year. The Society of Friends at that time was
-  in a sad and declining state, but John Barclay dug deep and found the Root of life from
-  which early Quakers had sprouted, and became a living branch himself, and a very useful
-  minister. He lived only 41 years, but his short life was wholly dedicated to his
-  Master's cause, and many of the journals, memoirs, and biographies of Early Friends are
-  the fruit of his arduous and faithful labor with the original documents.
+  Although John Barclay (1797-1838) was a descendent of the well-known apologist Robert
+  Barclay, he was a complete stranger to the life and power of Truth until he began to
+  seek the Lord with all his heart, somewhere around his 18th year. The Society of Friends
+  at that time was in a low and declining state, but John Barclay dug deep and found the
+  Root of life from which the early Quakers had sprouted, and in time became a living
+  branch himself, and a very useful author and minister. He lived only 41 years, but his
+  short life was wholly dedicated to his Master's cause, and many of the journals,
+  memoirs, and biographies of Early Friends that we possess now are the fruit of his
+  arduous and faithful labor with the original documents.
 documents:
   - id: 318ac4f2-08ba-43d1-8d96-80d1714caddc
     title: The Journal and Letters of John Barclay
     slug: journal
     filename: Journal_of_John_Barclay
     description:
-      John Barclay (1797-1838), though a descendent of the well-known Barclay family, was
-      a complete stranger to the life and power of Truth until he began to seek the Lord
-      with all his heart, somewhere around his 18th year. The Society of Friends at that
-      time was in a sad and declining state, but John Barclay dug deep and found the Root
-      of life from which early Quakers had sprouted, and became a living branch himself,
-      and a very useful minister. He lived only 41 years, but his short life was wholly
-      dedicated to his Master's cause, and many of the journals, memoirs, and biographies
-      of Early Friends are the fruit of his arduous and faithful labor with the original
-      documents.
+      Although John Barclay (1797-1838) was a descendent of the well-known apologist
+      Robert Barclay, he was a complete stranger to the life and power of Truth until he
+      began to seek the Lord with all his heart, somewhere around his 18th year. The
+      Society of Friends at that time was in a low and declining state, but John Barclay
+      dug deep and found the Root of life from which the early Quakers had sprouted, and
+      in time became a living branch himself, and a very useful author and minister. He
+      lived only 41 years, but his short life was wholly dedicated to his Master's cause,
+      and many of the journals, memoirs, and biographies of Early Friends that we possess
+      now are the fruit of his arduous and faithful labor with the original documents.
     tags:
       - journal
       - letters

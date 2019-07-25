@@ -3,14 +3,14 @@ name: John Woolman
 slug: john-woolman
 gender: male
 description:
-  John Woolman (1720-1772) is one of the most well known Quakers of the 1700's because of
-  his writings against slavery and other social evils. Unfortunately, many edited versions
-  of his journal exist online and in print today which have removed many aspects of his
-  Christian faith and experience, rendering him little more than a philanthropist and
-  abolitionist. The truth is that John Woolman was a devoted servant of Jesus Christ, a
-  preacher of truth and righteousness, and a man filled with the Spirit and love of God
-  that overflowed towards his fellow creatures. The document provided here contains his
-  unabridged journal and works.
+  Because of his writings against slavery and other social evils, John Woolman (1720-1772)
+  is one of the most well-known Quakers from the 18th century. Unfortunately, several
+  heavily edited versions of his journal exist today which have removed important aspects
+  of his Christian faith and experience, rendering him little more than a philanthropist
+  and abolitionist. The truth is that John Woolman was a devoted servant of Jesus Christ,
+  a preacher of truth and righteousness, and a man filled with the Spirit and love of God
+  that overflowed towards his fellow creatures. This edition contains his unabridged
+  journal and works.
 documents:
   - id: 9ec7c639-b4eb-4e58-aa37-fdc23817f5f3
     title: The Journal and Writings of John Woolman
@@ -21,14 +21,14 @@ documents:
     slug: journal-writings
     filename: Journal_and_Writings_of_John_Woolman
     description:
-      John Woolman (1720-1772) is one of the most well known Quakers of the 1700's because
-      of his writings against slavery and other social evils. Unfortunately, many edited
-      versions of his journal exist online and in print today which have removed many
-      aspects of his Christian faith and experience, rendering him little more than a
-      philanthropist and abolitionist. The truth is that John Woolman was a devoted
-      servant of Jesus Christ, a preacher of truth and righteousness, and a man filled
-      with the Spirit and love of God that overflowed towards his fellow creatures. The
-      document provided here contains his unabridged journal and works.
+      Because of his writings against slavery and other social evils, John Woolman
+      (1720-1772) is one of the most well-known Quakers from the 18th century.
+      Unfortunately, several heavily edited versions of his journal exist today which have
+      removed important aspects of his Christian faith and experience, rendering him
+      little more than a philanthropist and abolitionist. The truth is that John Woolman
+      was a devoted servant of Jesus Christ, a preacher of truth and righteousness, and a
+      man filled with the Spirit and love of God that overflowed towards his fellow
+      creatures. This edition contains his unabridged journal and works.
     tags:
       - journal
       - treatise
