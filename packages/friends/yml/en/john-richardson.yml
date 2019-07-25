@@ -56,6 +56,11 @@ documents:
     title: The Journal of John Richardson
     slug: journal
     original_title:
+      An Account of the Life of that Ancient Servant of Jesus Christ, John Richardson,
+      Giving a Relation of his Trials and Exercises in his Youth, and his services in the
+      Work of the Ministry, in England, Ireland, America, etc.
+    filename: Journal_of_John_Richardson
+    description:
       The life of John Richardson (1667-1753) is a powerful confirmation of Jesus' words,
       that heavenly things "are hidden from the wise and prudent and revealed unto babes,"
       and that His "power is made perfect in weakness." Though starting out in life a poor
@@ -65,10 +70,6 @@ documents:
       heart changed. Originally from England, he travelled as a minister for most of his
       adult life, twice visiting the American colonies, where he triumphantly defended the
       truth against "that sad apostate" George Keith.
-    filename: Journal_of_John_Richardson
-    description:
-      This is the unabridged journal of John Richardson, with modernization of spellings
-      and some archaic words.
     tags:
       - journal
     editions:
