@@ -33,6 +33,7 @@ const StyledNav = styled('nav')`
     transition: width 0.25s ease-out;
     width: ${p => (p.theme.lang === 'en' ? 140 : 190)}px;
     height: 100%;
+    display: block;
   }
 
   .Friends,
