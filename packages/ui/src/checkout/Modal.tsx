@@ -12,19 +12,19 @@ const Wrap = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: ${p => p.theme.primary.rgba(0.9)};
+  background: white;
 
   > button {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: ${p => p.theme.black.rgba(0.65)};
+    background: ${p => p.theme.black.rgba(0.5)};
     text-align: center;
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 17px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 15px;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

@@ -2,9 +2,10 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
 import Modal from '../src/checkout/Modal';
+import MessageThrobber from '../src/checkout/MessageThrobber';
 
-storiesOf('Checkout modal', module).add('default', () => (
+storiesOf('Checkout', module).add('MessageThrobber', () => (
   <Modal onClose={a('close modal')}>
-    <div style={{ color: 'white' }}>My rad modal content! 👍</div>
+    <MessageThrobber msg="Calculating exact shipping cost" />
   </Modal>
 ));
