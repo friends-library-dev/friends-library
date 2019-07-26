@@ -41,7 +41,9 @@ interface Props {
 
 const Modal: React.FC<Props> = ({ children, onClose }) => (
   <Wrap>
-    <Button onClick={onClose}>&#x2715;</Button>
+    <Button type="button" onClick={onClose}>
+      &#x2715;
+    </Button>
     <div>{children}</div>
   </Wrap>
 );

@@ -5,11 +5,15 @@ import { styled } from '@friends-library/ui';
 import UnstyledButton from './UnstyledButton';
 
 interface Props {
+  type?: 'submit' | 'reset' | 'button';
   secondary?: boolean;
+  disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const StyledButton = styled(UnstyledButton)<{ secondary?: boolean }>`
+const StyledButton = styled(UnstyledButton)<{ secondary?: boolean; disabled?: boolean }>`
+  opacity: ${p => (p.disabled ? '0.2' : 1)};
+  cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
   background: ${p => (p.secondary ? p.theme.blue.rgba(0.5) : p.theme.primary.hex)};
   display: block;
   width: 100%;
@@ -25,8 +29,13 @@ const StyledButton = styled(UnstyledButton)<{ secondary?: boolean }>`
   margin: 15px 0;
 `;
 
-const Button: React.FC<Props> = ({ children, secondary, onClick }) => (
-  <StyledButton {...(onClick ? { onClick } : {})} {...(secondary ? { secondary } : {})}>
+const Button: React.FC<Props> = ({ children, secondary, onClick, disabled, type }) => (
+  <StyledButton
+    type={type || 'submit'}
+    {...(onClick && !disabled ? { onClick } : {})}
+    {...(secondary ? { secondary } : {})}
+    disabled={disabled}
+  >
     {children}
   </StyledButton>
 );
