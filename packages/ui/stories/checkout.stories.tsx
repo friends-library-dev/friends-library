@@ -5,6 +5,7 @@ import Modal from '../src/checkout/Modal';
 import MessageThrobber from '../src/checkout/MessageThrobber';
 import CostExplanation from '../src/checkout/CostExplanation';
 import CollectEmail from '../src/checkout/CollectEmail';
+import CollectAddress from '../src/checkout/CollectAddress';
 import Success from '../src/checkout/Success';
 
 storiesOf('Checkout', module)
@@ -15,7 +16,7 @@ storiesOf('Checkout', module)
   ))
   .add('CostExplanation', () => (
     <Modal onClose={a('close modal')}>
-      <CostExplanation onGotIt={a('Got it!')} />
+      <CostExplanation onGotIt={a('got it')} />
     </Modal>
   ))
   .add('Success', () => (
@@ -23,8 +24,13 @@ storiesOf('Checkout', module)
       <Success onClose={a('close')} />
     </Modal>
   ))
-  .add('Collect email', () => (
+  .add('CollectEmail', () => (
     <Modal onClose={a('close modal')}>
-      <CollectEmail onSubmit={a('Submit')} />
+      <CollectEmail onSubmit={a('submit email')} />
+    </Modal>
+  ))
+  .add('CollectAddress', () => (
+    <Modal onClose={a('close modal')}>
+      <CollectAddress onSubmit={a('submit address')} />
     </Modal>
   ));

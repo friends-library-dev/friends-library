@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '../Button';
+import Input from './Input';
 
 const validEmail = /\S+@\S+\.\S+/;
 
@@ -26,14 +27,8 @@ const CostExplanation: React.FC<{ onSubmit: (emailAddress: string) => void }> = 
           validEmail.test(email) && onSubmit(email);
         }}
       >
-        <input
+        <Input
           ref={input}
-          style={{
-            fontSize: '25px',
-            width: '100%',
-            padding: '5px',
-            marginBottom: '10px',
-          }}
           type="email"
           onChange={e => setEmail(e.target.value)}
           value={email}

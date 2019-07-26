@@ -19410,6 +19410,11 @@ react-contenteditable@^3.2.6:
     "@types/prop-types" "^15.5.6"
     fast-deep-equal "^2.0.1"
 
+react-country-region-selector@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/react-country-region-selector/-/react-country-region-selector-1.4.3.tgz#fda4a50a1a632078c06b9f99c7a4a81ff2f0b40e"
+  integrity sha512-pWNWkPa6vnX4f8tWkaUQLh60JQKtP/TEkMIK4ZsXQYhvlmM6VNQe9qEbSLE80puakZ42KHhxoONjqg1LwEKW2A==
+
 react-dev-utils@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-4.2.3.tgz#5b42d9ea58d5e9e017a2f57a40a8af408a3a46fb"
