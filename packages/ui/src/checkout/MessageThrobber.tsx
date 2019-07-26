@@ -33,7 +33,7 @@ const Component: React.FC<{ msg: string; theme: Theme }> = ({ msg, theme }) => (
     <p
       css={css`
         font-family: Baskerville, serif;
-        font-size: 1.75rem;
+        font-size: 1.4rem;
         line-height: 1.4em;
         text-align: center;
         color: ${theme.gray.hex};

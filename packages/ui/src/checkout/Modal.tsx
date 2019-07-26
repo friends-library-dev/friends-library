@@ -30,7 +30,8 @@ const Wrap = styled.div`
   }
 
   > div {
-    max-width: calc(100vw - 20px);
+    max-width: 500px;
+    margin: 35px;
   }
 `;
 

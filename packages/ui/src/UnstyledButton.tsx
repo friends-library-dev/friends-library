@@ -3,12 +3,14 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 
 interface Props {
+  className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const UnstyledButton: React.FC<Props> = ({ children, onClick }) => (
+const UnstyledButton: React.FC<Props> = ({ children, onClick, className }) => (
   <button
     {...(onClick ? { onClick } : {})}
+    className={className || ''}
     css={css`
       background: none;
       border: 0;
