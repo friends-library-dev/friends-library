@@ -6,6 +6,7 @@ import MessageThrobber from '../src/checkout/MessageThrobber';
 import CostExplanation from '../src/checkout/CostExplanation';
 import CollectEmail from '../src/checkout/CollectEmail';
 import CollectAddress from '../src/checkout/CollectAddress';
+import CollectCreditCard from '../src/checkout/CollectCreditCard';
 import Success from '../src/checkout/Success';
 import ConfirmShipping from '../src/checkout/ConfirmShipping';
 
@@ -33,6 +34,11 @@ storiesOf('Checkout', module)
   .add('CollectAddress', () => (
     <Modal onClose={a('close modal')}>
       <CollectAddress onSubmit={a('submit address')} />
+    </Modal>
+  ))
+  .add('CollectCreditCard', () => (
+    <Modal onClose={a('close modal')}>
+      <CollectCreditCard onPay={a('pay with card')} />
     </Modal>
   ))
   .add('ConfirmShipping', () => (
