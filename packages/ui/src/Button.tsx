@@ -14,7 +14,7 @@ interface Props {
 const StyledButton = styled(UnstyledButton)<{ secondary?: boolean; disabled?: boolean }>`
   opacity: ${p => (p.disabled ? '0.2' : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
-  background: ${p => (p.secondary ? p.theme.blue.rgba(0.5) : p.theme.primary.hex)};
+  background: ${p => (p.secondary ? '#eee' : p.theme.primary.hex)};
   display: block;
   width: 100%;
   text-align: center;
@@ -24,9 +24,9 @@ const StyledButton = styled(UnstyledButton)<{ secondary?: boolean; disabled?: bo
   font-size: 15px;
   font-weight: 200;
   letter-spacing: 1px;
-  border-radius: 50px;
+  border-radius: 10px;
   color: ${p => (p.secondary ? p.theme.primary.hex : 'white')};
-  margin: 15px 0;
+  margin: 12px 0;
 `;
 
 const Button: React.FC<Props> = ({ children, secondary, onClick, disabled, type }) => (
