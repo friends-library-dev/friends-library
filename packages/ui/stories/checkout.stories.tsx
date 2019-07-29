@@ -7,6 +7,7 @@ import CostExplanation from '../src/checkout/CostExplanation';
 import CollectEmail from '../src/checkout/CollectEmail';
 import CollectAddress from '../src/checkout/CollectAddress';
 import Success from '../src/checkout/Success';
+import ConfirmShipping from '../src/checkout/ConfirmShipping';
 
 storiesOf('Checkout', module)
   .add('MessageThrobber', () => (
@@ -32,5 +33,15 @@ storiesOf('Checkout', module)
   .add('CollectAddress', () => (
     <Modal onClose={a('close modal')}>
       <CollectAddress onSubmit={a('submit address')} />
+    </Modal>
+  ))
+  .add('ConfirmShipping', () => (
+    <Modal onClose={a('close modal')}>
+      <ConfirmShipping
+        subTotal={8.24}
+        shipping={4.0}
+        onConfirm={a('confirm shipping')}
+        onBackToCart={a('back to cart')}
+      />
     </Modal>
   ));

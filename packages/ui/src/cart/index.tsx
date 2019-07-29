@@ -74,7 +74,7 @@ const CartComponent: React.FC = () => {
 
 export default CartComponent;
 
-const SubLine: React.FC<{ label: string }> = ({ label, children }) => (
+export const SubLine: React.FC<{ label: string }> = ({ label, children }) => (
   <div
     css={css`
       color: #333;
