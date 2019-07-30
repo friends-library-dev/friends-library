@@ -1,49 +1,34 @@
 /** @jsx jsx */
-import React, { useState } from 'react';
-import { styled } from '@friends-library/ui';
+import React from 'react';
 import { jsx, css } from '@emotion/core';
+import { CartItem } from '../checkout/types';
 import Item from './Item';
 import Button from '../Button';
 
-const Cart = styled.div``;
+interface Props {
+  checkout: () => void;
+  close: () => void;
+  items: CartItem[];
+  setItems: (items: CartItem[]) => void;
+}
 
-export const items = [
-  {
-    title: 'Journal of George Fox',
-    author: 'George Fox',
-    edition: 'original',
-    quantity: 1,
-    price: 8.25,
-  },
-  {
-    title: 'Walk in the Spirit',
-    author: 'Hugh Turford',
-    edition: 'updated',
-    quantity: 3,
-    price: 2.64,
-  },
-];
-
-export type CartItem = typeof items[0];
-
-const CartComponent: React.FC = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(items);
+const CartComponent: React.FC<Props> = ({ checkout, close, items, setItems }) => {
   return (
-    <Cart>
+    <div>
       <h1>
-        Your Cart <sup>({cartItems.length})</sup>
+        Your Cart <sup>({items.length})</sup>
       </h1>
-      {cartItems.map((item, index) => (
+      {items.map((item, index) => (
         <Item
           key={`item-${index}`}
           {...item}
           changeQty={(qty: number) => {
-            cartItems[index].quantity = qty;
-            setCartItems([...cartItems]);
+            items[index].quantity = qty;
+            setItems([...items]);
           }}
           remove={() => {
-            cartItems.splice(index, 1);
-            setCartItems([...cartItems]);
+            items.splice(index, 1);
+            setItems([...items]);
           }}
         />
       ))}
@@ -54,7 +39,7 @@ const CartComponent: React.FC = () => {
       >
         <SubLine label="Subtotal:">
           <code>
-            {cartItems.reduce((st, item) => st + item.price * item.quantity, 0)}
+            {items.reduce((st, item) => st + item.price * item.quantity, 0).toFixed(2)}
           </code>
         </SubLine>
         <SubLine label="Shipping:">
@@ -66,9 +51,11 @@ const CartComponent: React.FC = () => {
           <input style={{ width: 70 }} type="text" />
         </SubLine>
       </div>
-      <Button>Checkout &rarr;</Button>
-      <Button secondary>Close</Button>
-    </Cart>
+      <Button onClick={checkout}>Checkout &rarr;</Button>
+      <Button secondary onClick={close}>
+        Close
+      </Button>
+    </div>
   );
 };
 

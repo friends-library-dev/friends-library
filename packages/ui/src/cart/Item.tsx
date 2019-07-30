@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@friends-library/ui';
 import { withTheme } from 'emotion-theming';
-import { CartItem } from './';
+import { CartItem } from '../checkout/types';
 import ItemQuantity from './ItemQuantity';
 import { Theme } from 'theme';
 

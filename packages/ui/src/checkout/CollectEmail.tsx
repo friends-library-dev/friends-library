@@ -30,6 +30,7 @@ const CostExplanation: React.FC<{ onSubmit: (emailAddress: string) => void }> = 
         <Input
           ref={input}
           type="email"
+          autoComplete="email"
           onChange={e => setEmail(e.target.value)}
           value={email}
           placeholder="you@email.com"

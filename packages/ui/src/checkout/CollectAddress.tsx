@@ -1,19 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '../Button';
 import Input from './Input';
+import { Address } from './types';
 
 // @ts-ignore
 import { CountryDropdown } from 'react-country-region-selector';
-
-interface Address {
-  name: string;
-  address: string;
-  address2: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-}
 
 const CollectAddress: React.FC<{ onSubmit: (address: Address) => void }> = ({
   onSubmit,
@@ -92,7 +83,7 @@ const CollectAddress: React.FC<{ onSubmit: (address: Address) => void }> = ({
         />
         <CountryDropdown
           value={country}
-          onChange={setCountry}
+          onChange={(country: string) => setCountry(country)}
           style={{ fontSize: '13.7px', padding: '5px', margin: '8px 0' }}
         />
         <Button disabled={!filledOutCompletely}>Next &rarr;</Button>

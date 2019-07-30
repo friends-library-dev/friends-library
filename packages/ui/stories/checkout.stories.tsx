@@ -10,7 +10,7 @@ import CollectCreditCard from '../src/checkout/CollectCreditCard';
 import Success from '../src/checkout/Success';
 import ConfirmShipping from '../src/checkout/ConfirmShipping';
 
-storiesOf('Checkout', module)
+storiesOf('Checkout Components', module)
   .add('MessageThrobber', () => (
     <Modal onClose={a('close modal')}>
       <MessageThrobber msg="Calculating exact shipping cost" />
