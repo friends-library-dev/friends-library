@@ -52,7 +52,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/packages/styleguide/**'],
+      files: ['**/packages/styleguide/**', '**/packages/ui/stories/**'],
       rules: {
         'jsx-a11y/accessible-emoji': 'off',
       },

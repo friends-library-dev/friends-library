@@ -4,7 +4,7 @@ export class Color {
   public constructor(public hex: string, public rgb: string) {}
 
   public rgba(num: number): string {
-    return this.rgb.replace(')', `, ${String(num)})`);
+    return this.rgb.replace(')', `, ${String(num)})`).replace(/^rgb/, 'rgba');
   }
 }
 
