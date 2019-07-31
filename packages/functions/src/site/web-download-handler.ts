@@ -6,13 +6,14 @@ import useragent from 'express-useragent';
 import mongoose from 'mongoose';
 import Download from '../lib/Download';
 import connect from '../lib/db';
+import log from '../log';
 
 const handler: Handler = async (
   event: APIGatewayEvent,
   context: Context,
   callback: Callback,
 ) => {
-  const { path, headers } = event;
+  const { path, headers = {} } = event;
   const isDev = process.env.NODE_ENV === 'development';
   const referrer = headers.referer || '';
   const pathParts = path.replace(/.*\/download\/web\//, '').split('/');
@@ -26,9 +27,9 @@ const handler: Handler = async (
 
   respond(cloudUri, callback, isDev);
 
-  const ua = useragent.parse(event.headers['user-agent'] || '');
+  const ua = useragent.parse(headers['user-agent'] || '');
   if (ua.isBot) {
-    console.log('Bot, bailing early');
+    log('Bot, bailing early');
     return;
   }
 
@@ -46,9 +47,9 @@ const handler: Handler = async (
     });
     await db.close();
     await mongoose.disconnect();
-    console.log('Download added to db:', download);
+    log('Download added to db:', download);
   } catch (error) {
-    console.error(error);
+    log.error(error);
   }
 
   if (isDev) {
@@ -58,7 +59,7 @@ const handler: Handler = async (
   try {
     sendSlack(ua, referrer, editionPath, format);
   } catch (error) {
-    console.error(error);
+    log.error(error);
   }
 };
 

@@ -1,22 +1,29 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
 import webDownloadHandler from './site/web-download-handler';
+import log from './log';
 
 const handler: Handler = (
   event: APIGatewayEvent,
   context: Context,
   callback: Callback,
 ) => {
-  console.log('function build by: netlify-lambda 👍');
-  process.env.NODE_ENV !== 'development' && console.log({ event, context });
+  log({ event, context });
 
-  if (event.path.match(/\/download\/web/)) {
+  const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, '');
+  switch (path) {
+    case 'wakeup':
+      callback(null, { statusCode: 200, body: '👍' });
+      return;
+  }
+
+  if (path.startsWith('download/web/')) {
     webDownloadHandler(event, context, callback);
     return;
   }
 
   callback(null, {
     statusCode: 404,
-    body: 'NOT FOUND ¯\\_(ツ)_/¯',
+    body: 'Not Found',
   });
 };
 
