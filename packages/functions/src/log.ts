@@ -9,7 +9,10 @@ function error(...args: any[]): void {
 }
 
 function shouldLog(): boolean {
-  return typeof process.env.JEST_WORKER_ID === 'undefined';
+  if (typeof process.env.JEST_WORKER_ID !== 'undefined') {
+    return false;
+  }
+  return process.env.NODE_ENV === 'production';
 }
 
 export default log;

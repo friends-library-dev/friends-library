@@ -4126,6 +4126,13 @@
   resolved "https://registry.yarnpkg.com/@types/strip-indent/-/strip-indent-2.0.0.tgz#d2b6b191627cb5ad59dfbaafffe9b4e8531d496f"
   integrity sha512-YkVVBwrmuFTc2DXnd9oRGR1OG0Z4fiCCr7HhTtTU0iQoW+imgDGsbC16Xsw78u91WvnNKAq/hmnsKLCiQuUnHg==
 
+"@types/stripe@^6.31.11":
+  version "6.31.11"
+  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-6.31.11.tgz#ed13838c218ce60fd882a64c709ae222f1d936c1"
+  integrity sha512-8tfFcdMJYTQXgUgNqmj0HS54mg2sDSviyD+jz3xXhLT7WGj6Uzh+EsSO7DDy+do9R17KOAMNYR5hhcE/iJsi+Q==
+  dependencies:
+    "@types/node" "*"
+
 "@types/styled-components@4.1.8":
   version "4.1.8"
   resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.1.8.tgz#15c8a53bb4b9066e528fafb7558963dee5690ae0"
@@ -14661,6 +14668,11 @@ jsonparse@^1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=
 
+jsonschema@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/jsonschema/-/jsonschema-1.2.4.tgz#a46bac5d3506a254465bc548876e267c6d0d6464"
+  integrity sha512-lz1nOH69GbsVHeVgEdvyavc/33oymY1AZwtePMiMj4HZPMbP5OIKK3zT9INMWjwua/V4Z4yq7wSlBbSG+g4AEw==
+
 jsonwebtoken@^8.1.0:
   version "8.5.1"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
@@ -22017,6 +22029,15 @@ strip-outer@^1.0.0:
   integrity sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==
   dependencies:
     escape-string-regexp "^1.0.2"
+
+stripe@^7.5.2:
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-7.5.2.tgz#ff869f2384f7c90797ecb9a618641a8d81276d34"
+  integrity sha512-fDxd2ftJiKFJ2oSl1EfQG2Jmn3tlRzLg6ibxCiOTqtxGBXAHaEkpDPXgDO5AHSHHc9eUlNpagwZ9cpkOzgsuYQ==
+  dependencies:
+    lodash.isplainobject "^4.0.6"
+    qs "^6.6.0"
+    uuid "^3.3.2"
 
 striptags@^3.1.1:
   version "3.1.1"
