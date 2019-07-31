@@ -1,20 +1,19 @@
 import '@friends-library/client/load-env';
-import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
+import { APIGatewayEvent } from 'aws-lambda';
 import { requireEnv } from '@friends-library/types';
 import { slack } from '@friends-library/client';
 import useragent from 'express-useragent';
 import mongoose from 'mongoose';
 import Download from '../lib/Download';
 import connect from '../lib/db';
-import log from '../log';
+import Responder from '../lib/Responder';
+import log from '../lib/log';
 
-const handler: Handler = async (
-  event: APIGatewayEvent,
-  context: Context,
-  callback: Callback,
-) => {
-  const { path, headers = {} } = event;
-  const isDev = process.env.NODE_ENV === 'development';
+export async function webDownload(
+  { path, headers = {} }: APIGatewayEvent,
+  respond: Responder,
+): Promise<void> {
+  const isDev = process.env.NODE_ENV !== 'production';
   const referrer = headers.referer || '';
   const pathParts = path.replace(/.*\/download\/web\//, '').split('/');
   const docId = pathParts.shift();
@@ -25,7 +24,11 @@ const handler: Handler = async (
   const { CLOUD_STORAGE_BUCKET_URL } = requireEnv('CLOUD_STORAGE_BUCKET_URL');
   const cloudUri = `${CLOUD_STORAGE_BUCKET_URL}/${editionPath}/${filename}`;
 
-  respond(cloudUri, callback, isDev);
+  if (!isDev) {
+    respond.redirect(cloudUri);
+  } else {
+    respond.text(`Redir to: ${cloudUri}`);
+  }
 
   const ua = useragent.parse(headers['user-agent'] || '');
   if (ua.isBot) {
@@ -61,25 +64,9 @@ const handler: Handler = async (
   } catch (error) {
     log.error(error);
   }
-};
-
-export default handler;
-
-function respond(cloudUri: string, callback: Callback, isDev: boolean): void {
-  if (!isDev) {
-    callback(null, {
-      statusCode: 302,
-      headers: { location: cloudUri },
-    });
-    return;
-  }
-
-  callback(null, {
-    statusCode: 200,
-    headers: { 'Content-Type': 'text/html' },
-    body: `Redirect to:<br /><br /><a href="${cloudUri}"/>${cloudUri}</a>`,
-  });
 }
+
+export default webDownload;
 
 function sendSlack(
   ua: useragent.UserAgent,
