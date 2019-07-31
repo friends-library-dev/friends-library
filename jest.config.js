@@ -4,6 +4,7 @@ process.env.CLOUD_STORAGE_KEY = 'cloud-key';
 process.env.CLOUD_STORAGE_SECRET = 'cloud-secret';
 process.env.CLOUD_STORAGE_BUCKET_URL = '/cloud/bucket';
 process.env.CLOUD_STORAGE_BUCKET = 'bucket';
+process.env.STRIPE_SECRET_KEY = 'stripe-secret-key';
 
 module.exports = {
   preset: 'ts-jest',

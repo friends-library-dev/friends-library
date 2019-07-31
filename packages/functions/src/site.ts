@@ -1,5 +1,7 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
-import webDownloadHandler from './site/web-download-handler';
+import webDownloadHandler from './site/web-download';
+import paymentAuthorizationHandler from './site/payment-authorize';
+
 import log from './log';
 
 const handler: Handler = (
@@ -12,7 +14,10 @@ const handler: Handler = (
   const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, '');
   switch (path) {
     case 'wakeup':
-      callback(null, { statusCode: 200, body: '👍' });
+      callback(null, { statusCode: 204 });
+      return;
+    case 'payment-authorize':
+      paymentAuthorizationHandler(event, context, callback);
       return;
   }
 

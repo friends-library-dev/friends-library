@@ -46,6 +46,7 @@ module.exports = {
     {
       files: ['*.spec.ts'],
       rules: {
+        'no-throw-literal': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-object-literal-type-assertion': 'off',

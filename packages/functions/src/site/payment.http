@@ -1,0 +1,19 @@
+# Successful charge authorization
+POST http://localhost:2345/.netlify/functions/site/payment-authorize HTTP/1.1
+content-type: application/json
+
+{
+  "token": "tok_visa",
+  "amount": 1632
+}
+
+###
+
+# Declined due to expired card
+POST http://localhost:2345/.netlify/functions/site/payment-authorize HTTP/1.1
+content-type: application/json
+
+{
+  "token": "tok_chargeDeclinedExpiredCard",
+  "amount": 1632
+}
