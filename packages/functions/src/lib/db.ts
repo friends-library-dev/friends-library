@@ -1,6 +1,7 @@
 import '@friends-library/client/load-env';
 import { requireEnv } from '@friends-library/types';
 import mongoose, { Connection } from 'mongoose';
+import log from '../log';
 
 export default async function connect(): Promise<Connection> {
   const { FUNCTIONS_DB_CONNECT_STRING } = requireEnv('FUNCTIONS_DB_CONNECT_STRING');
@@ -10,10 +11,7 @@ export default async function connect(): Promise<Connection> {
     useFindAndModify: false,
   });
 
-  mongoose.connection.on(
-    'error',
-    console.error.bind(console, 'MongoDB connection error:'),
-  );
+  mongoose.connection.on('error', log.error.bind(log, 'MongoDB connection error:'));
 
   return mongoose.connection;
 }

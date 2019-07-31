@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development yarn netlify-lambda serve src --config ./webpack.config.js --port 2345",
-    "build": "NODE_ENV=production yarn netlify-lambda build src --config ./webpack.config.js"
+    "build": "NODE_ENV=production yarn netlify-lambda build src --config ./webpack.config.js",
+    "test": "cd ../../ && yarn jest packages/functions"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.3.3",
