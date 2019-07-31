@@ -1,7 +1,7 @@
 import '@friends-library/client/load-env';
 import { requireEnv } from '@friends-library/types';
 import mongoose, { Connection } from 'mongoose';
-import log from '../log';
+import log from './log';
 
 export default async function connect(): Promise<Connection> {
   const { FUNCTIONS_DB_CONNECT_STRING } = requireEnv('FUNCTIONS_DB_CONNECT_STRING');

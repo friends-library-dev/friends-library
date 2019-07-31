@@ -7,27 +7,23 @@ import log from '../lib/log';
 
 const schema = {
   properties: {
-    token: {
+    chargeId: {
       type: 'string',
     },
-    amount: {
-      type: 'integer',
-    },
   },
-  required: ['token', 'amount'],
+  required: ['chargeId'],
   example: {
-    token: 'tok_visa',
-    amount: 1111,
+    chargeId: 'ch_a3bd4g',
   },
 };
 
-export default async function authorizePayment(
+export default async function capturePayment(
   { body }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment-authorize', body);
+    log.error('invalid body for /payment-capture', body);
     respond.json({ msg: data.message }, 400);
     return;
   }
@@ -36,19 +32,16 @@ export default async function authorizePayment(
   const stripe = new Stripe(STRIPE_SECRET_KEY);
 
   try {
-    // @TODO @see https://stripe.com/docs/api/charges/create
-    // for more useful options to send when creating the charge
-    const charge = await stripe.charges.create({
-      source: data.token,
-      amount: data.amount,
-      currency: 'usd',
-      capture: false,
-    });
-
-    log('authorized charge', charge);
-    respond.json({ chargeId: charge.id }, 201);
+    const response = await stripe.charges.capture(data.chargeId);
+    if (response.captured === true) {
+      log(`captured charge: ${data.chargeId}`);
+      respond.noContent();
+    } else {
+      log.error('unexpected response capturing charge', response);
+      respond.json({ msg: 'Unexpected response' }, 500);
+    }
   } catch (error) {
-    log.error('error authorizing charge', error);
+    log.error(`error capturing charge ${data.chargeId}`, error);
     respond.json({ msg: error.code }, 403);
   }
 }

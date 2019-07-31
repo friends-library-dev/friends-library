@@ -1,7 +1,8 @@
-import { APIGatewayEvent, Handler, Context } from 'aws-lambda';
+import { APIGatewayEvent } from 'aws-lambda';
+import Responder from '../../lib/Responder';
 
 export async function invokeCb(
-  handler: Handler,
+  handler: (event: APIGatewayEvent, responder: Responder) => Promise<void>,
   event: Partial<APIGatewayEvent>,
 ): Promise<{
   err: Error | null;
@@ -12,7 +13,8 @@ export async function invokeCb(
   json: Record<string, any>;
 }> {
   const cb = jest.fn();
-  await handler(<APIGatewayEvent>event, <Context>{}, cb);
+  const respond = new Responder(cb);
+  await handler(<APIGatewayEvent>event, respond);
   const [err, res] = cb.mock.calls[0];
   let json: Record<string, any> = {};
   try {

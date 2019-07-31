@@ -1,8 +1,8 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
-import webDownloadHandler from './site/web-download';
-import paymentAuthorizationHandler from './site/payment-authorize';
+import Responder from './lib/Responder';
+import router from './site/router';
 
-import log from './log';
+import log from './lib/log';
 
 const handler: Handler = (
   event: APIGatewayEvent,
@@ -10,26 +10,7 @@ const handler: Handler = (
   callback: Callback,
 ) => {
   log({ event, context });
-
-  const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, '');
-  switch (path) {
-    case 'wakeup':
-      callback(null, { statusCode: 204 });
-      return;
-    case 'payment-authorize':
-      paymentAuthorizationHandler(event, context, callback);
-      return;
-  }
-
-  if (path.startsWith('download/web/')) {
-    webDownloadHandler(event, context, callback);
-    return;
-  }
-
-  callback(null, {
-    statusCode: 404,
-    body: 'Not Found',
-  });
+  router(event, new Responder(callback));
 };
 
 export { handler };
