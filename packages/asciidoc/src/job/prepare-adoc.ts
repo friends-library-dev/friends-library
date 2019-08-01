@@ -18,7 +18,6 @@ export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
     signaturePrependDoubleDash,
     doubleDashToEntity,
     collapseEmDashNewlineWhitespace,
-    fixItalicsTouchingEmdash, // @todo convert to lint and remove
     collapseFootnoteCarets,
     replaceSmallBreaks,
     helpBookTitleTouchingFootnote,
@@ -47,10 +46,6 @@ function collapseEmDashNewlineWhitespace(adoc: Asciidoc): Asciidoc {
 
 function enAndEmDashToDoubleDash(adoc: Asciidoc): Asciidoc {
   return adoc.replace(/[–|—]/g, '--');
-}
-
-function fixItalicsTouchingEmdash(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/&#8212;(?:\n)?_([^_]+?)_(?=[^_])/gm, '&#8212;__$1__');
 }
 
 function collapseFootnoteCarets(adoc: Asciidoc): Asciidoc {
