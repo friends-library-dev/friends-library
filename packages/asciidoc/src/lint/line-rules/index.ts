@@ -31,3 +31,6 @@ export { default as midWordNonLetter } from './mid-word-non-letter';
 export { default as unexpectedPeriod } from './unexpected-period';
 export { default as modernizeWords } from './modernize-words';
 export { default as consistentNameSpelling } from './consistent-name-spelling';
+export { default as italicsTouchingFootnote } from './italics-touching-footnote';
+export { default as unexpectedUnderscore } from './unexpected-underscore';
+export { default as emdashTouchingItalics } from './emdash-touching-italics';
