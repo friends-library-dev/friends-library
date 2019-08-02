@@ -1,0 +1,45 @@
+# Calculate shipping/tax fees (US)
+POST http://localhost:2345/.netlify/functions/site/print/calculate-fees HTTP/1.1
+content-type: application/json
+
+{
+  "address": {
+    "name": "Jared Henderson",
+    "street": "123 Mulberry Ln.",
+    "city": "Wadsworth",
+    "state": "OH",
+    "zip": "44281",
+    "country": "US"
+  },
+  "items": [
+    {
+      "pages": 178,
+      "printSize": "m",
+      "quantity": 5
+    }
+  ]
+}
+
+###
+ 
+ # Calculate shipping/tax fees (Germany -- incurs some tax)
+POST http://localhost:2345/.netlify/functions/site/print/calculate-fees HTTP/1.1
+content-type: application/json
+
+{
+  "address": {
+    "name": "Jared Henderson",
+    "street": "123 Flugenstrasse",
+    "city": "Berlin",
+    "state": "Garmisch",
+    "zip": "26133",
+    "country": "DE"
+  },
+  "items": [
+    {
+      "pages": 178,
+      "printSize": "m",
+      "quantity": 5
+    }
+  ]
+}
