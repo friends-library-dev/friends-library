@@ -11,7 +11,7 @@ const rule: LineRule = (
     return [];
   }
 
-  const match = line.match(/[^_ \n\+#\(\[`]_[a-zA-Z]/);
+  const match = line.match(/[^_ \n+#([`]_[a-zA-Z]/);
   if (!match) {
     return [];
   }

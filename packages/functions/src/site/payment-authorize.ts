@@ -27,7 +27,7 @@ export default async function authorizePayment(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment-authorize', body);
+    log.error('invalid body for /payment/authorize', body);
     respond.json({ msg: data.message }, 400);
     return;
   }

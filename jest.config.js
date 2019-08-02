@@ -1,4 +1,5 @@
 process.env.API_URL = 'https://test-api.friendslibrary.com';
+process.env.LULU_API_ENDPOINT = '/lulu-api';
 process.env.CLOUD_STORAGE_ENDPOINT = '/cloud/endpoint';
 process.env.CLOUD_STORAGE_KEY = 'cloud-key';
 process.env.CLOUD_STORAGE_SECRET = 'cloud-secret';

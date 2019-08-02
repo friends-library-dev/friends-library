@@ -1,5 +1,5 @@
 # Successful charge authorization
-POST http://localhost:2345/.netlify/functions/site/payment-authorize HTTP/1.1
+POST http://localhost:2345/.netlify/functions/site/payment/authorize HTTP/1.1
 content-type: application/json
 
 {
@@ -10,7 +10,7 @@ content-type: application/json
 ###
 
 # Declined due to expired card
-POST http://localhost:2345/.netlify/functions/site/payment-authorize HTTP/1.1
+POST http://localhost:2345/.netlify/functions/site/payment/authorize HTTP/1.1
 content-type: application/json
 
 {
@@ -21,8 +21,8 @@ content-type: application/json
 
 ###
 
-# Capture an authorized payment (create usable chargeId w/ `/payment-authorize`
-POST http://localhost:2345/.netlify/functions/site/payment-capture HTTP/1.1
+# Capture an authorized payment (create usable chargeId w/ `/payment/authorize`
+POST http://localhost:2345/.netlify/functions/site/payment/capture HTTP/1.1
 content-type: application/json
 
 {

@@ -9,6 +9,15 @@ describe('site fn', () => {
     expect(err).toBeNull();
   });
 
+  it('404s good path but wrong http method', async () => {
+    const event = {
+      path: '/.netlify/functions/site/wakeup',
+      httpMethod: 'POST', // <-- bad method!
+    };
+    const { res } = await invokeCb(router, event);
+    expect(res.statusCode).toBe(404);
+  });
+
   it('returns 404 from unknown path', async () => {
     const event = { path: '/.netlify/functions/site/bad/path' };
     const { err, res } = await invokeCb(router, event);

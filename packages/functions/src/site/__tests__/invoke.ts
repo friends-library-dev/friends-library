@@ -12,6 +12,7 @@ export async function invokeCb(
   };
   json: Record<string, any>;
 }> {
+  event.httpMethod = event.httpMethod || 'GET';
   const cb = jest.fn();
   const respond = new Responder(cb);
   await handler(<APIGatewayEvent>event, respond);
