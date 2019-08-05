@@ -5,7 +5,7 @@ import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { feeOffset } from '../lib/stripe';
-import { getAuthToken, podPackageId } from '../lib/lulu';
+import { getAuthToken, podPackageId, ShippingLevel, SHIPPING_LEVELS } from '../lib/lulu';
 
 export default async function calculatePrintOrderFees(
   { body }: APIGatewayEvent,
@@ -45,13 +45,13 @@ async function calculateCheapest(
   data: typeof schema.example,
   token: string,
 ): Promise<null | {
-  shippingType: ShippingType;
+  shippingLevel: ShippingLevel;
   shipping: number;
   tax: number;
   ccFee: number;
 }> {
   const results = await Promise.all(
-    SHIPPING_TYPES.map(type => calculateForType(data, token, type)),
+    SHIPPING_LEVELS.map(level => calculateForType(data, token, level)),
   );
 
   const [cheapest] = results
@@ -65,7 +65,7 @@ async function calculateCheapest(
   }
 
   return {
-    shippingType: cheapest.shippingType,
+    shippingLevel: cheapest.shippingLevel,
     shipping: Number(cheapest.json.shipping_cost.total_cost_excl_tax) * 100,
     tax: Number(cheapest.json.total_tax) * 100,
     ccFee: feeOffset(Number(cheapest.json.shipping_cost.total_cost_incl_tax) * 100),
@@ -75,11 +75,11 @@ async function calculateCheapest(
 async function calculateForType(
   data: typeof schema.example,
   token: string,
-  shippingType: ShippingType,
+  shippingLevel: ShippingLevel,
 ): Promise<{
   statusCode: number;
   json: typeof luluResponse;
-  shippingType: ShippingType;
+  shippingLevel: ShippingLevel;
 }> {
   const { LULU_API_ENDPOINT } = requireEnv('LULU_API_ENDPOINT');
   const res = await fetch(`${LULU_API_ENDPOINT}/print-job-cost-calculations/`, {
@@ -103,36 +103,25 @@ async function calculateForType(
         state_code: data.address.state,
         postcode: data.address.zip,
       },
-      shipping_option: shippingType,
+      shipping_option: shippingLevel,
     }),
   });
   const json = await res.json();
-  return { statusCode: res.status, json, shippingType };
+  return { statusCode: res.status, json, shippingLevel };
 }
 
 export const schema = {
   properties: {
-    address: {
-      type: 'object',
-      properties: {
-        name: { type: 'string', minLength: 2 },
-        street: { type: 'string', minLength: 2 },
-        city: { type: 'string', minLength: 2 },
-        state: { type: 'string', minLength: 2 },
-        zip: { type: 'string', minLength: 1, maxLength: 64 },
-        country: { type: 'string', minLength: 2, maxLength: 2 },
-      },
-      required: ['name', 'street', 'city', 'zip', 'state', 'country'],
-    },
+    address: { $ref: '/lulu-address' },
     items: {
       type: 'array',
       minItems: 1,
       items: {
         type: 'object',
         properties: {
-          pages: { type: 'integer', minimum: 4 },
-          printSize: { enum: ['s', 'm', 'xl'] },
-          quantity: { type: 'integer', minimum: 1 },
+          pages: { $ref: '/pages' },
+          printSize: { $ref: '/print-size' },
+          quantity: { $ref: '/book-qty' },
         },
         required: ['pages', 'printSize', 'quantity'],
       },
@@ -157,17 +146,6 @@ export const schema = {
     ],
   },
 };
-
-const SHIPPING_TYPES = [
-  'MAIL',
-  'PRIORITY_MAIL',
-  'GROUND_HD',
-  'GROUND',
-  'EXPEDITED',
-  'EXPRESS',
-] as const;
-
-type ShippingType = typeof SHIPPING_TYPES[number];
 
 const luluResponse = {
   line_item_costs: [

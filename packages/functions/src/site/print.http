@@ -1,3 +1,37 @@
+# Create an order
+
+POST http://localhost:2345/.netlify/functions/site/print/create-order HTTP/1.1
+content-type: application/json
+
+{
+  "orderId": "flp-order-id",
+  "emailAddress": "jared@netrivet.com",
+  "shippingLevel": "MAIL",
+  "chargeId": "ch_1F4BX9EswFkMHmtgd4DWKwba",
+  "items": [
+    {
+      "title": "Journal of George Fox (original)",
+      "editionId": "e5a1ecfb-4f0a-4c71-80bf-3ee924d0f46c--original",
+      "coverUrl": "/cloud/loc/GF--(cover).pdf",
+      "interiorUrl": "/cloud/loc/GF--(print).pdf",
+      "printSize": "m",
+      "pages": 178,
+      "quantity": 1
+    }
+  ],
+  "address": {
+    "name": "Jared Henderson",
+    "street": "123 Mulberry Ln.",
+    "city": "Wadsworth",
+    "state": "OH",
+    "zip": "44281",
+    "country": "US"
+  }
+}
+
+
+###
+
 # Calculate shipping/tax fees (US)
 POST http://localhost:2345/.netlify/functions/site/print/calculate-fees HTTP/1.1
 content-type: application/json
