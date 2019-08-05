@@ -1,24 +1,26 @@
 import calculateFees, { schema } from '../print-calculate-fees';
-import { getAuthToken, podPackageId } from '../../lib/lulu';
 import { invokeCb } from './invoke';
 import fetch from 'node-fetch';
 
-jest.mock('../../lib/lulu');
 jest.mock('node-fetch');
+
+const getToken = jest.fn(() => 'oauth-token');
+jest.mock('client-oauth2', () => {
+  return jest.fn().mockImplementation(() => ({
+    credentials: {
+      getToken,
+    },
+  }));
+});
 
 const { Response } = jest.requireActual('node-fetch');
 
 const mockFetch = <jest.Mock>(<unknown>fetch);
 
 describe('calculateFees()', () => {
-  beforeEach(() => {
-    (<jest.Mock>getAuthToken).mockResolvedValue('oauth-token');
-    (<jest.Mock>podPackageId).mockReturnValue('0550X0850BWSTDPB060UW444GXX');
-  });
-
   it('should return 500 response if oauth token acquisition fails', async () => {
     const body = JSON.stringify(schema.example);
-    (<jest.Mock>getAuthToken).mockImplementation(() => {
+    getToken.mockImplementationOnce(() => {
       throw new Error('some error');
     });
 
@@ -93,7 +95,7 @@ describe('calculateFees()', () => {
     expect(res.statusCode).toBe(200);
     expect(json).toMatchObject({
       shipping: 399,
-      shippingType: 'MAIL',
+      shippingLevel: 'MAIL',
       tax: 0,
       ccFee: 42,
     });
