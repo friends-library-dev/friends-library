@@ -92,10 +92,10 @@ describe('calculateFees()', () => {
     const { res, json } = await invokeCb(calculateFees, { body });
     expect(res.statusCode).toBe(200);
     expect(json).toMatchObject({
-      shipping: 3.99,
+      shipping: 399,
       shippingType: 'MAIL',
       tax: 0,
-      ccFee: 0.3, // ¯\_(ツ)_/¯
+      ccFee: 42,
     });
   });
 });

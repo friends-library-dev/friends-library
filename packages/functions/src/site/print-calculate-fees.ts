@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
+import { feeOffset } from '../lib/stripe';
 import { getAuthToken, podPackageId } from '../lib/lulu';
 
 export default async function calculatePrintOrderFees(
@@ -65,9 +66,9 @@ async function calculateCheapest(
 
   return {
     shippingType: cheapest.shippingType,
-    shipping: Number(cheapest.json.shipping_cost.total_cost_excl_tax),
-    tax: Number(cheapest.json.total_tax),
-    ccFee: 0.3,
+    shipping: Number(cheapest.json.shipping_cost.total_cost_excl_tax) * 100,
+    tax: Number(cheapest.json.total_tax) * 100,
+    ccFee: feeOffset(Number(cheapest.json.shipping_cost.total_cost_incl_tax) * 100),
   };
 }
 
