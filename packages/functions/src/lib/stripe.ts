@@ -1,3 +1,6 @@
+import { requireEnv } from '@friends-library/types';
+import Stripe from 'stripe';
+
 const STRIPE_FLAT_FEE = 30;
 const STRIPE_PERCENTAGE = 0.029;
 
@@ -17,4 +20,13 @@ function calculatePercentageOffset(amt: number, carry: number = 0): number {
     return carry;
   }
   return calculatePercentageOffset(offset, carry + offset);
+}
+
+let clientInstance: Stripe;
+
+export default function client(): Stripe {
+  if (clientInstance) return clientInstance;
+  const { STRIPE_SECRET_KEY } = requireEnv('STRIPE_SECRET_KEY');
+  clientInstance = new Stripe(STRIPE_SECRET_KEY);
+  return clientInstance;
 }

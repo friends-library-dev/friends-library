@@ -25,7 +25,7 @@ export default async function getOrderStatus(
   }
 
   const { LULU_API_ENDPOINT } = requireEnv('LULU_API_ENDPOINT');
-  const res = await fetch(`${LULU_API_ENDPOINT}/print-jobs/${luluOrderId}/`, {
+  const res = await fetch(`${LULU_API_ENDPOINT}/print-jobs/${luluOrderId}/status/`, {
     headers: {
       'Cache-Control': 'no-cache',
       Authorization: `Bearer ${token}`,
@@ -44,6 +44,17 @@ export default async function getOrderStatus(
     }
   }
 
-  const json = await res.json();
-  respond.json({ status: json.status.name });
+  switch ((await res.json()).name) {
+    case 'CREATED':
+      return respond.json({ status: 'pending' });
+    case 'REJECTED':
+      return respond.json({ status: 'rejected' });
+    case 'SHIPPED':
+      return respond.json({ status: 'shipped' });
+    case 'CANCELLED':
+    case 'CANCELED':
+      return respond.json({ status: 'canceled' });
+    default:
+      return respond.json({ status: 'accepted' });
+  }
 }

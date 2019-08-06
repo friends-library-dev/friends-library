@@ -1,6 +1,6 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import Stripe from 'stripe';
 import fetch from 'node-fetch';
+import stripeClient from '../lib/stripe';
 import Responder from '../lib/Responder';
 import { PrintSize, requireEnv } from '@friends-library/types';
 import validateJson from '../lib/validate-json';
@@ -14,8 +14,7 @@ export default async function createOrder(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /print/create-order', body);
-    respond.json({ msg: data.message }, 400);
-    return;
+    return respond.json({ msg: data.message }, 400);
   }
 
   const invalidChargeMsg = await verifyCharge(data.chargeId);
@@ -59,7 +58,6 @@ function createOrderPayload(data: typeof schema.example): Record<string, any> {
       title: item.title,
       cover: item.coverUrl,
       interior: item.interiorUrl,
-      external_id: item.editionId,
       pod_package_id: podPackageId(item.printSize, item.pages),
       quantity: item.quantity,
     })),
@@ -76,11 +74,8 @@ function createOrderPayload(data: typeof schema.example): Record<string, any> {
 }
 
 async function verifyCharge(chargeId: string): Promise<string | void> {
-  const { STRIPE_SECRET_KEY } = requireEnv('STRIPE_SECRET_KEY');
-  const stripe = new Stripe(STRIPE_SECRET_KEY);
-
   try {
-    const charge = await stripe.charges.retrieve(chargeId);
+    const charge = await stripeClient().charges.retrieve(chargeId);
     if (charge.captured === true) {
       log.error(`verify charge fail: charge ${chargeId} already captured`);
       return 'charge_already_captured';
@@ -110,22 +105,13 @@ export const schema = {
         type: 'object',
         properties: {
           title: { type: 'string', minLength: 4 },
-          editionId: { type: 'string', minLength: 36 },
           coverUrl: { type: 'string', minLength: 4 },
           interiorUrl: { type: 'string', minLength: 4 },
           pages: { $ref: '/pages' },
           printSize: { $ref: '/print-size' },
           quantity: { $ref: '/book-qty' },
         },
-        required: [
-          'pages',
-          'printSize',
-          'quantity',
-          'title',
-          'editionId',
-          'coverUrl',
-          'interiorUrl',
-        ],
+        required: ['pages', 'printSize', 'quantity', 'title', 'coverUrl', 'interiorUrl'],
       },
     },
   },
@@ -138,7 +124,6 @@ export const schema = {
     items: [
       {
         title: 'Journal of George Fox (original)',
-        editionId: 'e5a1ecfb-4f0a-4c71-80bf-3ee924d0f46c--original',
         coverUrl: '/cloud/loc/GF--(cover).pdf',
         interiorUrl: '/cloud/loc/GF--(print).pdf',
         printSize: 'm' as PrintSize,

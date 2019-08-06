@@ -38,6 +38,7 @@ const addressSchema = {
   properties: {
     name: { type: 'string', minLength: 2 },
     street: { type: 'string', minLength: 2 },
+    street2: { type: 'string' },
     city: { type: 'string', minLength: 2 },
     state: { type: 'string', minLength: 2 },
     zip: { type: 'string', minLength: 1, maxLength: 64 },
@@ -46,10 +47,15 @@ const addressSchema = {
   required: ['name', 'street', 'city', 'zip', 'state', 'country'],
 };
 
+const UUID = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
+
 validator.addSchema(addressSchema, '/lulu-address');
 validator.addSchema({ enum: ['s', 'm', 'xl'] }, '/print-size');
+validator.addSchema({ enum: ['original', 'modernized', 'updated'] }, '/edition');
 validator.addSchema({ type: 'integer', minimum: 4 }, '/pages');
 validator.addSchema({ type: 'integer', minimum: 1 }, '/book-qty');
+// @ts-ignore (until https://github.com/tdegrunt/jsonschema/pull/287 merged)
+validator.addSchema({ type: 'string', pattern: UUID }, '/uuid');
 // @ts-ignore (until https://github.com/tdegrunt/jsonschema/pull/287 merged)
 validator.addSchema({ type: 'string', pattern: /\S+@\S+\.\S+/ }, '/email');
 validator.addSchema(

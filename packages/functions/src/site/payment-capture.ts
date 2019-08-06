@@ -1,21 +1,10 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import Stripe from 'stripe';
-import { requireEnv } from '@friends-library/types';
+import { charges } from 'stripe';
+import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
-
-const schema = {
-  properties: {
-    chargeId: {
-      type: 'string',
-    },
-  },
-  required: ['chargeId'],
-  example: {
-    chargeId: 'ch_a3bd4g',
-  },
-};
+import { findById, persist } from '../lib/Order';
 
 export default async function capturePayment(
   { body }: APIGatewayEvent,
@@ -24,24 +13,51 @@ export default async function capturePayment(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /payment/capture', body);
-    respond.json({ msg: data.message }, 400);
-    return;
+    return respond.json({ msg: data.message }, 400);
   }
 
-  const { STRIPE_SECRET_KEY } = requireEnv('STRIPE_SECRET_KEY');
-  const stripe = new Stripe(STRIPE_SECRET_KEY);
+  const order = await findById(data.orderId);
+  if (!order) {
+    return respond.json({ msg: 'order_not_found' }, 404);
+  }
 
+  let charge: charges.ICharge;
   try {
-    const response = await stripe.charges.capture(data.chargeId);
-    if (response.captured === true) {
-      log(`captured charge: ${data.chargeId}`);
-      respond.noContent();
-    } else {
-      log.error('unexpected response capturing charge', response);
-      respond.json({ msg: 'Unexpected response' }, 500);
-    }
+    charge = await stripeClient().charges.capture(data.chargeId);
   } catch (error) {
     log.error(`error capturing charge ${data.chargeId}`, error);
-    respond.json({ msg: error.code }, 403);
+    return respond.json({ msg: error.code }, 403);
   }
+
+  if (charge.captured === false) {
+    log.error('unexpected response capturing charge', charge);
+    return respond.json({ msg: 'Unexpected response' }, 500);
+  }
+
+  try {
+    order.set('payment_status', 'captured');
+    await persist(order);
+  } catch (error) {
+    log.error('error updating flp order', error);
+    return respond.json({ msg: 'error_updating_order' }, 500);
+  }
+
+  log(`captured charge: ${data.chargeId}`);
+  respond.noContent();
 }
+
+const schema = {
+  properties: {
+    chargeId: {
+      type: 'string',
+    },
+    orderId: {
+      type: 'string',
+    },
+  },
+  required: ['chargeId', 'orderId'],
+  example: {
+    chargeId: 'ch_a3bd4g',
+    orderId: '5d49b249b58e56b378f13efe',
+  },
+};
