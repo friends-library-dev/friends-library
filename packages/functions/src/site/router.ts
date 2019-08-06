@@ -4,6 +4,7 @@ import authorizePayment from './payment-authorize';
 import capturePayment from './payment-capture';
 import calculatePrintOrderFees from './print-calculate-fees';
 import createPrintOrder from './print-create-order';
+import printOrderStatus from './print-order-status';
 import Responder from '../lib/Responder';
 
 export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
@@ -11,13 +12,17 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
   const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, '');
 
   if (method === 'GET') {
-    if (path === 'wakeup') {
-      return respond.noContent();
+    switch (path) {
+      case 'wakeup':
+        return respond.noContent();
+    }
+
+    if (path.startsWith('print/order-status/')) {
+      return printOrderStatus(event, respond);
     }
 
     if (path.startsWith('download/web/')) {
-      webDownload(event, respond);
-      return;
+      return webDownload(event, respond);
     }
   }
 

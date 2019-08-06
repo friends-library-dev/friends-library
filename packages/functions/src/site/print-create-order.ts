@@ -37,7 +37,7 @@ export default async function createOrder(
     headers: {
       'Cache-Control': 'no-cache',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}lol`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(payload),
   });
