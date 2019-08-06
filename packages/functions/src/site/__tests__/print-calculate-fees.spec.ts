@@ -2,19 +2,13 @@ import calculateFees, { schema } from '../print-calculate-fees';
 import { invokeCb } from './invoke';
 import fetch from 'node-fetch';
 
-jest.mock('node-fetch');
-
 const getToken = jest.fn(() => 'oauth-token');
 jest.mock('client-oauth2', () => {
-  return jest.fn().mockImplementation(() => ({
-    credentials: {
-      getToken,
-    },
-  }));
+  return jest.fn().mockImplementation(() => ({ credentials: { getToken } }));
 });
 
+jest.mock('node-fetch');
 const { Response } = jest.requireActual('node-fetch');
-
 const mockFetch = <jest.Mock>(<unknown>fetch);
 
 describe('calculateFees()', () => {

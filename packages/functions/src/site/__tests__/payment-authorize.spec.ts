@@ -1,5 +1,6 @@
-import auth from '../payment-authorize';
+import auth, { schema } from '../payment-authorize';
 import { invokeCb } from './invoke';
+import { persist } from '../../lib/Order';
 
 const createCharge = jest.fn();
 jest.mock('stripe', () => {
@@ -10,32 +11,51 @@ jest.mock('stripe', () => {
   }));
 });
 
-describe('/payment-authorize handler', () => {
-  it('should return 201 with chargeId if successful', async () => {
-    createCharge.mockResolvedValue({ id: 'ch_1F2LpjEswFkMHmtgZE014Ici' });
-    const body = { token: 'my-token', amount: 1111 };
+const mockOrder = { id: 'mongo-id', set: jest.fn() };
+jest.mock('../../lib/Order', () => ({
+  __esModule: true,
+  default: jest.fn(() => mockOrder),
+  persist: jest.fn(),
+}));
 
-    const { res, json } = await invokeCb(auth, {
-      body: JSON.stringify(body),
-    });
+describe('/payment-authorize handler', () => {
+  it('should return 201 with chargeId and orderId if successful', async () => {
+    createCharge.mockResolvedValue({ id: 'ch_id' });
+    const { res, json } = await invokeCb(auth, { body: JSON.stringify(schema.example) });
 
     expect(res.statusCode).toBe(201);
-    expect(json).toMatchObject({ chargeId: 'ch_1F2LpjEswFkMHmtgZE014Ici' });
-    expect(createCharge).toHaveBeenCalledWith({
-      source: 'my-token',
+    expect(json).toMatchObject({
+      chargeId: 'ch_id',
+      orderId: 'mongo-id',
+    });
+    expect(createCharge.mock.calls[0][0]).toMatchObject({
+      source: 'tok_visa',
       amount: 1111,
       currency: 'usd',
       capture: false,
+      metadata: { orderId: 'mongo-id' },
     });
+    expect(persist).toHaveBeenCalledWith(mockOrder);
+    expect(mockOrder.set).toHaveBeenCalledWith('charge_id', 'ch_id');
+    expect(mockOrder.set).toHaveBeenCalledWith('payment_status', 'authorized');
+  });
+
+  it('responds 500 if persisting order fails', async () => {
+    (<jest.Mock>persist).mockImplementationOnce(() => {
+      throw new Error('Oh noes!');
+    });
+
+    const { res, json } = await invokeCb(auth, { body: JSON.stringify(schema.example) });
+    expect(res.statusCode).toBe(500);
+    expect(json.msg).toBe('error_saving_flp_order');
   });
 
   it('returns 403 with error code from stripe in case of error', async () => {
     createCharge.mockImplementation(() => {
       throw { code: 'card_expired' };
     });
-    const body = { token: 'my-token', amount: 1111 };
     const { res, json } = await invokeCb(auth, {
-      body: JSON.stringify(body),
+      body: JSON.stringify(schema.example),
     });
     expect(res.statusCode).toBe(403);
     expect(json).toMatchObject({ msg: 'card_expired' });

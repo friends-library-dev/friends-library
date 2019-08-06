@@ -5,6 +5,7 @@ import capturePayment from './payment-capture';
 import calculatePrintOrderFees from './print-calculate-fees';
 import createPrintOrder from './print-create-order';
 import printOrderStatus from './print-order-status';
+import updateOrder from './order-update';
 import Responder from '../lib/Responder';
 
 export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
@@ -36,6 +37,12 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return calculatePrintOrderFees(event, respond);
       case 'print/create-order':
         return createPrintOrder(event, respond);
+    }
+  }
+
+  if (method === 'PATCH') {
+    if (path.startsWith('order/')) {
+      return updateOrder(event, respond);
     }
   }
 

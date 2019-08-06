@@ -14,8 +14,7 @@ export default async function calculatePrintOrderFees(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /print/calculate-fees', body);
-    respond.json({ msg: data.message }, 400);
-    return;
+    return respond.json({ msg: data.message }, 400);
   }
 
   let token = '';

@@ -88,7 +88,6 @@ describe('createOrder()', () => {
           title: schema.example.items[0].title,
           cover: schema.example.items[0].coverUrl,
           interior: schema.example.items[0].interiorUrl,
-          external_id: schema.example.items[0].editionId,
           pod_package_id: podPackageId(
             schema.example.items[0].printSize,
             schema.example.items[0].pages,

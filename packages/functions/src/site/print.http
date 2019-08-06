@@ -11,7 +11,6 @@ content-type: application/json
   "items": [
     {
       "title": "Journal of Ambrose Rigge (modernized)",
-      "editionId": "6b0e134d-8d2e-48bc-8fa3-e8fc79793804--modernized",
       "coverUrl": "https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.pdf",
       "interiorUrl": "https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf",
       "printSize": "m",
