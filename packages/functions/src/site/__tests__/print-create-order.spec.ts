@@ -3,16 +3,9 @@ import { invokeCb } from './invoke';
 import { podPackageId } from '../../lib/lulu';
 import fetch from 'node-fetch';
 
-jest.mock('client-oauth2');
-jest.mock('node-fetch');
-
 const getToken = jest.fn(() => 'oauth-token');
 jest.mock('client-oauth2', () => {
-  return jest.fn().mockImplementation(() => ({
-    credentials: {
-      getToken,
-    },
-  }));
+  return jest.fn().mockImplementation(() => ({ credentials: { getToken } }));
 });
 
 const retrieveCharge = jest.fn(() => ({ id: 'ch_123abc', captured: false }));
@@ -24,8 +17,8 @@ jest.mock('stripe', () => {
   }));
 });
 
+jest.mock('node-fetch');
 const { Response } = jest.requireActual('node-fetch');
-
 const mockFetch = <jest.Mock>(<unknown>fetch);
 
 describe('createOrder()', () => {
