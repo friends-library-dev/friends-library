@@ -123,11 +123,13 @@ export const schema = {
     chargeId: 'ch_123abc',
     items: [
       {
-        title: 'Journal of George Fox (original)',
-        coverUrl: '/cloud/loc/GF--(cover).pdf',
-        interiorUrl: '/cloud/loc/GF--(print).pdf',
+        title: 'Journal of Ambrose Rigge (modernized)',
+        coverUrl:
+          'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.pdf',
+        interiorUrl:
+          'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf',
         printSize: 'm' as PrintSize,
-        pages: 178,
+        pages: 166,
         quantity: 1,
       },
     ],
