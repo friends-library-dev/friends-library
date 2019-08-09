@@ -2,7 +2,17 @@ id: 296c52ad-cd0a-4324-a90b-ed47d01eb5e3
 name: William Savery
 slug: william-savery
 gender: male
-description: TODO
+description:
+  Though raised by godly parents, William Savery (1750-1804) turned aside from the path of
+  peace and joined in company with vain and careless youth until the twenty-eighth year of
+  his age. But finding his heart pierced by conviction at a meeting of Friends, he was so
+  deeply affected that he quickly and permanently turned his back upon the world and its
+  ways. Committing himself entirely to teachings of the Spirit of Truth, and seeking to
+  live in steady subjection to the cross, he soon felt a call to preach the gospel both on
+  the continent of North America and in many places in Europe. He was also a great
+  advocate for the Native Americans, sometimes accompanying them in their treaties and
+  negotiations with the United States government, doing all in his power to ensure that
+  they were not misled or mistreated.
 documents:
   - id: 25755480-7f1c-4f7f-8900-3f472001fae4
     title: The Journal of William Savery
@@ -12,7 +22,18 @@ documents:
       From His Original Memoranda, by Jonathan Evans.
     slug: journal
     filename: Journal_of_William_Savery
-    description: TODO
+    description:
+      Though raised by godly parents, William Savery (1750-1804) turned aside from the
+      path of peace and joined in company with vain and careless youth until the
+      twenty-eighth year of his age. But finding his heart pierced by conviction at a
+      meeting of Friends, he was so deeply affected that he quickly and permanently turned
+      his back upon the world and its ways. Committing himself entirely to teachings of
+      the Spirit of Truth, and seeking to live in steady subjection to the cross, he soon
+      felt a call to preach the gospel both on the continent of North America and in many
+      places in Europe. He was also a great advocate for the Native Americans, sometimes
+      accompanying them in their treaties and negotiations with the United States
+      government, doing all in his power to ensure that they were not misled or
+      mistreated.
     tags:
       - journal
     editions:

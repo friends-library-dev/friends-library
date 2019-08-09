@@ -3,10 +3,15 @@ name: Robert Barclay
 slug: robert-barclay
 gender: male
 description:
-  Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent writers in
-  the Society of Friends. His Apology for the True Christian Divinity is perhaps the most
-  well-known of all Quaker writings, containing a thorough explanation and defense of most
-  of their principles and doctrines.
+  Robert Barclay (1648–1690) was born into opulence and educated in some of the finest
+  schools of the time, where his natural genius gained the admiration of both teachers and
+  peers. But at seventeen years of age, upon entering a meeting of the people called
+  Quakers, he said, “I felt a secret power among them which touched my heart.” And as he
+  abode under the powerful operations of grace, he “came to receive and bear witness of
+  the Truth,” not being convinced “by strength of argument, or by a particular discussion
+  of each doctrine, but by being secretly reached by Life.” Barclay's Apology for the True
+  Christian Divinity was first published in 1675, and came to be considered the definitive
+  exposition and defense of Quaker principles for the next 200 years.
 documents:
   - id: f869e6e5-c5a2-4bdf-96bb-1c4dc13dad2f
     title: Waiting Upon the Lord
@@ -150,12 +155,16 @@ documents:
     slug: apology
     filename: Apology
     description:
-      Robert Barclay (1648–1690) was a Scottish Quaker, and one of the most eminent
-      writers in the Society of Friends. His "Apology for the True Christian Divinity" is
-      perhaps the most well-known of all Quaker writings, containing a thorough
-      explanation and defense of most of their principles and doctrines. The eBook edition
-      provided here is unabridged, but some archaic words and spellings have been
-      modernized by Market Street Fellowship.
+      Robert Barclay (1648–1690) was born into opulence and educated in some of the finest
+      schools of the time, where his natural genius gained the admiration of both teachers
+      and peers. But at seventeen years of age, upon entering a meeting of the people
+      called Quakers, he said, “I felt a secret power among them which touched my heart.”
+      And as he abode under the powerful operations of grace, he “came to receive and bear
+      witness of the Truth,” not being convinced “by strength of argument, or by a
+      particular discussion of each doctrine, but by being secretly reached by Life.”
+      Barclay's Apology for the True Christian Divinity was first published in 1675, and
+      came to be considered the definitive exposition and defense of Quaker principles for
+      the next 200 years.
 
     tags:
       - doctrinal

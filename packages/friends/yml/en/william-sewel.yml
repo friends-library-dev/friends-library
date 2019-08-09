@@ -3,16 +3,14 @@ name: William Sewel
 slug: william-sewel
 gender: male
 description:
-  William Sewel (1653-1720), being a Quaker himself, and an eye-witness to many of the
-  events described in this history, is considered by all to be the foremost authority on
-  the early history of the Society of Friends. This lengthy (but truly remarkable) work
-  was first published in Dutch in 1717, and then translated by Sewel into English and
-  printed in 1722. The original publication consisted of twelve volumes, but was reprinted
-  (with slightly modernized spelling and punctuation) in 1832 in two large volumes. There
-  are two versions of this publication on this website. One is an unabridged and unchanged
-  1832 edition, with all the archaic spellings and vocabulary. The other is also
-  unabridged, but archaic spellings and vocabulary have been somewhat modernized to aid
-  the modern reader.
+  William Sewel (1653-1720), being a Quaker himself, an honest and meticulous researcher,
+  and an eye-witness to many of the events described in his writings, has long been
+  considered the foremost authority on the early history of the Society of Friends. This
+  lengthy but invaluable publication (first written in Dutch in 1717, and then translated
+  by Sewel into English) tells the truly amazing story of a people who awoke from the
+  lifeless and formal religion of their day,  submitted whole-heartedly to the teachings
+  of the Spirit of truth, and so returned to the original life, light, power, and purity
+  of primitive Christianity.
 
 documents:
   - id: 69c5fc26-76e3-4302-964e-ba46d889003b
@@ -20,18 +18,14 @@ documents:
     slug: history-of-quakers
     filename: History_of_Christian_People_Called_Quakers
     description:
-      William Sewel (1653-1720), being a Quaker himself, and an eye-witness to many of the
-      events described in this history, is considered by all to be the foremost authority
-      on the early history of the Society of Friends. This lengthy (but truly remarkable)
-      work was first published in Dutch in 1717, and then translated by Sewel into English
-      and printed in 1722. The original publication consisted of twelve volumes, but was
-      reprinted (with slightly modernized spelling and punctuation) in 1832 in two large
-      volumes. There are two versions of this publication on this website. One is an
-      unabridged and unchanged 1832 edition, with all the archaic spellings and
-      vocabulary. The other is also unabridged, but archaic spellings and vocabulary have
-      been somewhat modernized to aid the modern reader. The full title of this book is
-      The History of the Rise, Increase, and Progress of the Christian People called
-      Quakers.
+      William Sewel (1653-1720), being a Quaker himself, an honest and meticulous
+      researcher, and an eye-witness to many of the events described in his writings, has
+      long been considered the foremost authority on the early history of the Society of
+      Friends. This lengthy but invaluable publication (first written in Dutch in 1717,
+      and then translated by Sewel into English) tells the truly amazing story of a people
+      who awoke from the lifeless and formal religion of their day,  submitted
+      whole-heartedly to the teachings of the Spirit of truth, and so returned to the
+      original life, light, power, and purity of primitive Christianity.
     tags:
       - journal
     editions:
@@ -111,15 +105,14 @@ documents:
     slug: sufferings-of-catharine-evans-sarah-cheevers
     filename: Sufferings_of_Catharine_Evans_and_Sarah_Cheevers
     description:
-      Catherine Evans (1618-1692) & Sarah Cheevers (1608-1664) were early ministers in the
-      Society of Friends who embarked together on a missionary journey, intending for
+      Catherine Evans (1618-1692) and Sarah Cheevers (1608-1664) were early ministers in
+      the Society of Friends who embarked together on a missionary journey, intending for
       Alexandria, Egypt. After enduring several storms, their ship stopped at Malta, an
-      island then under the control of the Catholic Church. Evans and Cheevers were
-      arrested on the island for preaching and handing out spiritual literature, and
-      placed under house arrest. After three months, they were moved to a local prison
-      where they endured nearly four years of cruel treatment at the hands of the
-      Inquisition in attempting to force their conversion to Catholicism. This account was
-      extracted from William Sewel's larger history.
+      island in the Mediterranean then under the dominion of the Catholic Church. Evans
+      and Cheevers were arrested on the island for preaching and handing out books and
+      were placed under house arrest. After three months, they were moved to a local
+      prison where they endured nearly four years of cruel treatment at the hands of the
+      Inquisition in attempting to force their conversion to Catholicism.
     tags:
       - history
       - letters

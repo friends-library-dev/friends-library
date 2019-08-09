@@ -2,7 +2,16 @@ id: a208b4cd-d73e-496a-a73d-bf7386c270e8
 name: Samuel Rundell
 slug: samuel-rundell
 gender: male
-description: TODO
+description:
+  Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in
+  southwest England. When young he befriended that worthy elder and "mother in Israel"
+  Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions
+  upon him. As a minister and author, Rundell was particularly concerned to press the
+  necessity of a real and living experience of inward purification by an unreserved
+  obedience to the light or Spirit of Christ working in the heart. Having witnessed its
+  effectual operation in his own soul, he greatly desired to see this scriptural doctrine
+  both upheld amongst his fellow Quakers and more widely known among sincere Christians of
+  every denomination.
 documents:
   - id: d230b8ce-a185-42b5-bdf1-cf54130e2764
     title: The Work of Vital Religion in the Soul
@@ -13,7 +22,16 @@ documents:
     published: 1834
     slug: vital-religion
     filename: Work_of_Vital_Religion_in_the_Soul
-    description: TODO
+    description:
+      Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town
+      in southwest England. When young he befriended that worthy elder and "mother in
+      Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting
+      impressions upon him. As a minister and author, Rundell was particularly concerned
+      to press the necessity of a real and living experience of inward purification by an
+      unreserved obedience to the light or Spirit of Christ working in the heart. Having
+      witnessed its effectual operation in his own soul, he greatly desired to see this
+      scriptural doctrine both upheld amongst his fellow Quakers and more widely known
+      among sincere Christians of every denomination.
     tags:
       - treatise
       - exhortation
