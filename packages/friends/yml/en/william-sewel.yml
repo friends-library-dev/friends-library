@@ -3,7 +3,14 @@ name: William Sewel
 slug: william-sewel
 gender: male
 description:
-  William Sewel (1653-1720), being a Quaker himself, an honest and meticulous researcher, and an eye-witness to many of the events described in his writings, has long been considered the foremost authority on the early history of the Society of Friends. This lengthy but invaluable publication (first written in Dutch in 1717, and then translated by Sewel into English) tells the truly amazing story of a people who awoke from the lifeless and formal religion of their day,  submitted whole-heartedly to the teachings of the Spirit of truth, and so returned to the original life, light, power, and purity of primitive Christianity.
+  William Sewel (1653-1720), being a Quaker himself, an honest and meticulous researcher,
+  and an eye-witness to many of the events described in his writings, has long been
+  considered the foremost authority on the early history of the Society of Friends. This
+  lengthy but invaluable publication (first written in Dutch in 1717, and then translated
+  by Sewel into English) tells the truly amazing story of a people who awoke from the
+  lifeless and formal religion of their day,  submitted whole-heartedly to the teachings
+  of the Spirit of truth, and so returned to the original life, light, power, and purity
+  of primitive Christianity.
 
 documents:
   - id: 69c5fc26-76e3-4302-964e-ba46d889003b
@@ -11,7 +18,14 @@ documents:
     slug: history-of-quakers
     filename: History_of_Christian_People_Called_Quakers
     description:
-      William Sewel (1653-1720), being a Quaker himself, an honest and meticulous researcher, and an eye-witness to many of the events described in his writings, has long been considered the foremost authority on the early history of the Society of Friends. This lengthy but invaluable publication (first written in Dutch in 1717, and then translated by Sewel into English) tells the truly amazing story of a people who awoke from the lifeless and formal religion of their day,  submitted whole-heartedly to the teachings of the Spirit of truth, and so returned to the original life, light, power, and purity of primitive Christianity.
+      William Sewel (1653-1720), being a Quaker himself, an honest and meticulous
+      researcher, and an eye-witness to many of the events described in his writings, has
+      long been considered the foremost authority on the early history of the Society of
+      Friends. This lengthy but invaluable publication (first written in Dutch in 1717,
+      and then translated by Sewel into English) tells the truly amazing story of a people
+      who awoke from the lifeless and formal religion of their day,  submitted
+      whole-heartedly to the teachings of the Spirit of truth, and so returned to the
+      original life, light, power, and purity of primitive Christianity.
     tags:
       - journal
     editions:
@@ -91,7 +105,14 @@ documents:
     slug: sufferings-of-catharine-evans-sarah-cheevers
     filename: Sufferings_of_Catharine_Evans_and_Sarah_Cheevers
     description:
-      Catherine Evans (1618-1692) and Sarah Cheevers (1608-1664) were early ministers in the Society of Friends who embarked together on a missionary journey, intending for Alexandria, Egypt. After enduring several storms, their ship stopped at Malta, an island in the Mediterranean then under the dominion of the Catholic Church. Evans and Cheevers were arrested on the island for preaching and handing out books and were placed under house arrest. After three months, they were moved to a local prison where they endured nearly four years of cruel treatment at the hands of the Inquisition in attempting to force their conversion to Catholicism.
+      Catherine Evans (1618-1692) and Sarah Cheevers (1608-1664) were early ministers in
+      the Society of Friends who embarked together on a missionary journey, intending for
+      Alexandria, Egypt. After enduring several storms, their ship stopped at Malta, an
+      island in the Mediterranean then under the dominion of the Catholic Church. Evans
+      and Cheevers were arrested on the island for preaching and handing out books and
+      were placed under house arrest. After three months, they were moved to a local
+      prison where they endured nearly four years of cruel treatment at the hands of the
+      Inquisition in attempting to force their conversion to Catholicism.
     tags:
       - history
       - letters
