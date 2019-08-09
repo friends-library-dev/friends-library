@@ -2,9 +2,17 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
+import { useEnglish, useSpanish } from './locale';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
-import { useEnglish, useSpanish } from './locale';
+import Button from '../src/Button';
+
+storiesOf('Button', module).add('primary + secondary', () => (
+  <>
+    <Button>Primary</Button>
+    <Button secondary>Secondary</Button>
+  </>
+));
 
 storiesOf('Nav (en)', module)
   .addDecorator(useEnglish)

@@ -24,6 +24,7 @@
     "cover:develop": "cd packages/cover && yarn develop",
     "cover:build": "cd packages/cover && yarn build",
     "cover:ts:check": "cd packages/cover && yarn ts:check",
+    "functions:test:integration": "cd packages/functions && yarn test:integration",
     "bot:deploy": "cd ./packages/bot && yarn deploy",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",

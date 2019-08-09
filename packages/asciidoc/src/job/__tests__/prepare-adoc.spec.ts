@@ -242,13 +242,6 @@ describe('prepareAsciidoc()', () => {
     expect(prepared).toContain('bar&#8221;&#8212;&#8220;jim');
   });
 
-  it('self-corrects problematic italics after emdash', () => {
-    const adoc = '== C1\n\nFoo--_bar_. Beep--\n_boop_ baz.';
-    const prepared = prepareAsciidoc(adoc);
-    expect(prepared).toContain('Foo&#8212;__bar__.');
-    expect(prepared).toContain('Beep&#8212;__boop__ baz.');
-  });
-
   it('removes linebreak and caret preceding footnote references', () => {
     const adoc = '== Ch\n\nA caret^\nfootnote:[lol].';
     const prepared = prepareAsciidoc(adoc);

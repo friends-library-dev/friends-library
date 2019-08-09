@@ -10,12 +10,12 @@ const schema = new mongoose.Schema(
     edition: {
       type: String,
       required: true,
-      match: /^(original|modernized|updated)$/,
+      enum: ['original', 'modernized', 'updated'],
     },
     format: {
       type: String,
       required: true,
-      match: /^(pdf-web|pdf-print|mobi|epub)$/,
+      enum: ['pdf-web', 'pdf-print', 'mobi', 'epub'],
     },
     is_mobile: {
       type: Boolean,
@@ -51,6 +51,6 @@ const schema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Download = mongoose.model('downloads', schema);
+const Download = mongoose.model('download', schema);
 
 export default Download;
