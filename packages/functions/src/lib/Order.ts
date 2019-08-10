@@ -3,24 +3,44 @@ import connect from './db';
 
 const schema = new mongoose.Schema(
   {
-    charge_id: {
-      type: String,
-      required: false,
-      match: /^ch_/,
+    payment: {
+      id: {
+        type: String,
+        required: true,
+        match: /^ch_/,
+      },
+      status: {
+        type: String,
+        required: true,
+        enum: ['authorized', 'captured'],
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      shipping: {
+        type: Number,
+        required: true,
+      },
+      taxes: {
+        type: Number,
+        required: true,
+      },
+      cc_fee_offset: {
+        type: Number,
+        required: true,
+      },
     },
-    payment_status: {
-      type: String,
-      required: false,
-      enum: ['authorized', 'captured'],
-    },
-    print_id: {
-      type: Number,
-      required: false,
-    },
-    print_status: {
-      type: String,
-      required: false,
-      enum: ['pending', 'accepted', 'rejected', 'shipped', 'canceled'],
+    print_job: {
+      id: {
+        type: Number,
+        required: false,
+      },
+      status: {
+        type: String,
+        required: false,
+        enum: ['pending', 'accepted', 'rejected', 'shipped', 'canceled'],
+      },
     },
     email: {
       type: String,
@@ -43,6 +63,10 @@ const schema = new mongoose.Schema(
           type: Number,
           required: true,
           min: 1,
+        },
+        unit_price: {
+          type: Number,
+          required: true,
         },
       },
     ],

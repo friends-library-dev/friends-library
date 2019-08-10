@@ -1,7 +1,20 @@
-import createOrder, { schema } from '../print-create-order';
+import createOrder, { schema } from '../print-job-create';
 import { invokeCb } from './invoke';
 import { podPackageId } from '../../lib/lulu';
+import { findById, persist } from '../../lib/Order';
 import fetch from 'node-fetch';
+
+const mockOrder = {
+  id: 'mongo-id',
+  set: jest.fn(),
+  toJSON: () => ({ _id: 'mongo-id' }),
+};
+jest.mock('../../lib/Order', () => ({
+  __esModule: true,
+  default: jest.fn(() => mockOrder),
+  findById: jest.fn(() => Promise.resolve(mockOrder)),
+  persist: jest.fn(),
+}));
 
 const getToken = jest.fn(() => 'oauth-token');
 jest.mock('client-oauth2', () => {
@@ -22,67 +35,73 @@ const { Response } = jest.requireActual('node-fetch');
 const mockFetch = <jest.Mock>(<unknown>fetch);
 
 describe('createOrder()', () => {
+  let testBody = JSON.stringify(schema.example);
+
   it('should return 500 response if oauth token acquisition fails', async () => {
-    const body = JSON.stringify(schema.example);
     getToken.mockImplementationOnce(() => {
       throw new Error('some error');
     });
 
-    const { res, json } = await invokeCb(createOrder, { body });
+    const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe('error_acquiring_oauth_token');
   });
 
   it('responds 400 if bad body passed', async () => {
-    const data = JSON.parse(JSON.stringify(schema.example));
-    data.emailAddress = 'foo[at]bar[dot]com'; // <-- invalid email!
+    const data = JSON.parse(testBody);
+    data.email = 'foo[at]bar[dot]com'; // <-- invalid email!
     const body = JSON.stringify(data);
     const { res } = await invokeCb(createOrder, { body });
     expect(res.statusCode).toBe(400);
   });
 
   it('returns 403 if the stripe API doesn’t recognize the charge', async () => {
-    const body = JSON.stringify(schema.example);
     retrieveCharge.mockImplementationOnce(() => {
       throw { statusCode: 404 };
     });
 
-    const { res, json } = await invokeCb(createOrder, { body });
+    const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
     expect(json.msg).toBe('charge_not_found');
   });
 
   it('returns 403 if the charge has already been captured', async () => {
-    const body = JSON.stringify(schema.example);
     retrieveCharge.mockImplementationOnce(() => ({ id: '', captured: true }));
 
-    const { res, json } = await invokeCb(createOrder, { body });
+    const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
     expect(json.msg).toBe('charge_already_captured');
   });
 
   it('returns 403 and passes on unknown stripe error', async () => {
-    const body = JSON.stringify(schema.example);
     retrieveCharge.mockImplementationOnce(() => {
       throw { statusCode: 500, code: 'unknown_stripe_error' };
     });
 
-    const { res, json } = await invokeCb(createOrder, { body });
+    const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
     expect(json.msg).toBe('unknown_stripe_error');
   });
 
+  it('responds 404 if order cannot be retrieved', async () => {
+    (<jest.Mock>findById).mockResolvedValueOnce(null);
+
+    const { res, json } = await invokeCb(createOrder, { body: testBody });
+
+    expect(res.statusCode).toBe(404);
+    expect(json.msg).toBe('order_not_found');
+  });
+
   it('translates passed body into correct body to pass to lulu', async () => {
     mockFetch.mockImplementation(() => new Response('{}'));
-    const body = JSON.stringify(schema.example);
-    await invokeCb(createOrder, { body });
+    await invokeCb(createOrder, { body: testBody });
     expect(JSON.parse(mockFetch.mock.calls[0][1].body)).toMatchObject({
       external_id: schema.example.orderId,
-      contact_email: schema.example.emailAddress,
+      contact_email: schema.example.email,
       line_items: [
         {
           title: schema.example.items[0].title,
@@ -109,17 +128,22 @@ describe('createOrder()', () => {
 
   it('returns 500 if the request to lulu is invalid', async () => {
     mockFetch.mockImplementation(() => new Response('{}', { status: 400 }));
-    const body = JSON.stringify(schema.example);
-    const { res, json } = await invokeCb(createOrder, { body });
+    const { res, json } = await invokeCb(createOrder, { body: testBody });
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe('lulu_400_error');
   });
 
   it('returns 201 with lulu order id if successful', async () => {
     mockFetch.mockImplementation(() => new Response('{"id":6}', { status: 201 }));
-    const body = JSON.stringify(schema.example);
-    const { res, json } = await invokeCb(createOrder, { body });
+    const { res, json } = await invokeCb(createOrder, { body: testBody });
     expect(res.statusCode).toBe(201);
-    expect(json).toMatchObject({ luluOrderId: 6 });
+    expect(json).toMatchObject({ printJobId: 6 });
+  });
+
+  it('updates order with print job order and status on success', async () => {
+    mockFetch.mockImplementation(() => new Response('{"id":6}', { status: 201 }));
+    await invokeCb(createOrder, { body: testBody });
+    expect(mockOrder.set).toHaveBeenCalledWith('print_job', { id: 6, status: 'pending' });
+    expect(persist).toHaveBeenCalledWith(mockOrder);
   });
 });

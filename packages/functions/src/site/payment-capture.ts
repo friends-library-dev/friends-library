@@ -35,11 +35,11 @@ export default async function capturePayment(
   }
 
   try {
-    order.set('payment_status', 'captured');
+    order.set('payment.status', 'captured');
     await persist(order);
   } catch (error) {
     log.error('error updating flp order', error);
-    return respond.json({ msg: 'error_updating_order' }, 500);
+    // @TODO decide what to do here... cancel the charge the charge?
   }
 
   log(`captured charge: ${data.chargeId}`);

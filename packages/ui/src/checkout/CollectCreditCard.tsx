@@ -5,7 +5,7 @@ import Input from './Input';
 import Button from '../Button';
 
 interface Props {
-  onPay: () => void;
+  onPay: (getToken: () => Promise<string>) => void;
 }
 
 const CollectCreditCard: React.FC<Props> = ({ onPay }) => {
@@ -40,7 +40,7 @@ const CollectCreditCard: React.FC<Props> = ({ onPay }) => {
           if (!isFilledOut) {
             return;
           }
-          onPay();
+          onPay(() => Promise.resolve('tok_visa'));
         }}
       >
         <label>Card number:</label>

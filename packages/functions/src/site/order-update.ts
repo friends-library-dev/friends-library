@@ -26,7 +26,7 @@ export default async function updateOrder(
     if (!order) {
       return respond.json({ msg: 'order_not_found' }, 404);
     }
-    order.set('print_status', data.print_status);
+    order.set('print_job.status', data['print_job.status']);
     await persist(order);
     respond.json(order.toJSON());
   } catch (error) {
@@ -37,13 +37,13 @@ export default async function updateOrder(
 
 const schema = {
   properties: {
-    print_status: {
+    'print_job.status': {
       type: 'string',
       enum: ['pending', 'accepted', 'rejected', 'canceled', 'shipped'],
     },
   },
-  required: ['print_status'],
+  required: ['print_job.status'],
   example: {
-    print_status: 'accepted',
+    'print_job.status': 'accepted',
   },
 };

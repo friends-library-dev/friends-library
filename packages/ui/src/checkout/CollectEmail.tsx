@@ -4,10 +4,11 @@ import Input from './Input';
 
 const validEmail = /\S+@\S+\.\S+/;
 
-const CostExplanation: React.FC<{ onSubmit: (emailAddress: string) => void }> = ({
-  onSubmit,
-}) => {
-  const [email, setEmail] = useState<string>('');
+const CostExplanation: React.FC<{
+  onSubmit: (email: string) => void;
+  stored: string;
+}> = ({ onSubmit, stored }) => {
+  const [email, setEmail] = useState<string>(stored);
   const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (input && input.current) {

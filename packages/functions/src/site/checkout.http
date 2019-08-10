@@ -1,0 +1,125 @@
+# Calculate shipping/tax fees (US)
+# @name printJobFees
+POST {{base}}/print-job/fees HTTP/1.1
+content-type: application/json
+
+{
+  "items": [{
+    "pages": 178,
+    "printSize": "m",
+    "quantity": 3
+  }],
+  "address": {{address}}
+}
+
+###
+ 
+# Calculate shipping/tax fees (Germany -- incurs some tax)
+# @name printJobFeesWithTax
+POST {{base}}/print-job/fees HTTP/1.1
+content-type: application/json
+
+{
+  "address": {
+    "name": "Jared Henderson",
+    "street": "123 Flugenstrasse",
+    "city": "Berlin",
+    "state": "Garmisch",
+    "zip": "26133",
+    "country": "DE"
+  },
+  "items": [{
+    "pages": 178,
+    "printSize": "m",
+    "quantity": 5
+  }]
+}
+
+###
+
+# Authorize a card and create a FLP order
+# @see https://stripe.com/docs/testing for more tokens including error tokens
+# @name authorizePayment
+POST {{base}}/payment/authorize HTTP/1.1
+content-type: application/json
+
+{
+  "token": "tok_visa",
+  "amount": 1632,
+  "email": "user@example.com",
+  "items": [{
+    "documentId": "6b0e134d-8d2e-48bc-8fa3-e8fc79793804",
+    "edition": "modernized",
+    "quantity": 1,
+    "unitPrice": 231
+  }],
+  "taxes": 0,
+  "shipping": 399,
+  "ccFeeOffset": 42,
+  "address": {{address}}
+}
+
+###
+
+# @name fetchOrder
+GET {{base}}/order/{{orderId}}
+
+###
+
+# Capture an authorized payment (create usable chargeId w/ `/payment/authorize`
+# @name capturePayment
+POST {{base}}/payment/capture HTTP/1.1
+content-type: application/json
+
+{
+  "chargeId": "{{chargeId}}",
+  "orderId": "{{orderId}}"
+}
+
+###
+
+# @name createPrintJob
+POST {{base}}/print-job HTTP/1.1
+content-type: application/json
+
+{
+  "orderId": "{{orderId}}",
+  "email": "jared@netrivet.com",
+  "shippingLevel": "MAIL",
+  "chargeId": "{{chargeId}}",
+  "items": [
+    {
+      "title": "Journal of Ambrose Rigge (modernized)",
+      "coverUrl": "{{pdfUrlBase}}/Journal_of_Ambrose_Rigge--modernized--cover.pdf",
+      "interiorUrl": "{{pdfUrlBase}}/Journal_of_Ambrose_Rigge--modernized--(print).pdf",
+      "printSize": "m",
+      "pages": 166,
+      "quantity": 1
+    }
+  ],
+  "address": {{address}}
+}
+
+###
+
+# Check status of print order
+GET {{base}}/print-job/{{printJobId}}/status
+
+###
+
+# Update print_job.status of an existing order
+PATCH {{base}}/order/{{orderId}} HTTP/1.1
+content-type: application/json
+
+{
+  "print_job.status": "shipped"
+}
+
+###
+
+@base = http://localhost:2345/.netlify/functions/site
+@chargeId = {{authorizePayment.response.body.$.chargeId}}
+@orderId = {{authorizePayment.response.body.$.orderId}}
+@printJobId = {{createPrintJob.response.body.$.printJobId}}
+@address = {"name":"Bo","street":"1 Rd","city":"Cody","state":"WY","zip":"82414","country": "US"}
+@pdfUrlBase = https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized

@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Address, CartItem } from './types';
-import CheckoutMachine from './CheckoutMachine';
+import CheckoutMachine from './services/CheckoutMachine';
 import Cart from '../cart';
 import CostExplanation from './CostExplanation';
 import CollectEmail from './CollectEmail';
 import CollectAddress from './CollectAddress';
 import MessageThrobber from './MessageThrobber';
-import ConfirmShipping from './ConfirmShipping';
+import ConfirmFees from './ConfirmFees';
 import CollectCreditCard from './CollectCreditCard';
 import Success from './Success';
+import CartItem, { CartItemData } from './models/CartItem';
 
-const CheckoutFlow: React.FC<{ machine: CheckoutMachine; cart: CartItem[] }> = ({
-  machine,
-  cart,
-}) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(cart);
-  const [shipping, setShipping] = useState<number | null>(null);
+const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
+  const [cartItems, setCartItems] = useState<CartItemData[]>(
+    machine.cart.items.map(i => i.toJSON()),
+  );
   const [state, setState] = useState<string>(machine.getState());
-  const [, setEmail] = useState<string>('');
-  const [, setAddress] = useState<Address | null>(null);
   useEffect(() => machine.listen(newState => setState(newState)), []);
 
   switch (state) {
@@ -26,7 +22,11 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine; cart: CartItem[] }> = (
       return (
         <Cart
           items={cartItems}
-          setItems={setCartItems}
+          setItems={items => {
+            machine.cart.items = items.map(i => new CartItem(i));
+            setCartItems(items);
+          }}
+          subTotal={machine.cart.subTotal()}
           checkout={() => machine.dispatch('next')}
           close={() => {}}
         />
@@ -36,8 +36,9 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine; cart: CartItem[] }> = (
     case 'collectEmail':
       return (
         <CollectEmail
+          stored={machine.cart.email || ''}
           onSubmit={email => {
-            setEmail(email);
+            machine.cart.email = email;
             machine.dispatch('next');
           }}
         />
@@ -45,18 +46,16 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine; cart: CartItem[] }> = (
     case 'collectAddress':
       return (
         <CollectAddress
+          stored={machine.cart.address}
           onSubmit={collectedAddress => {
-            setAddress(collectedAddress);
-            machine.dispatch('next', {
-              address: collectedAddress,
-              cart: cartItems,
-              setShipping,
-            });
+            machine.cart.address = collectedAddress;
+            machine.dispatch('next');
           }}
         />
       );
-    case 'calculatingShipping':
-      return <MessageThrobber msg="Calculating exact shipping cost..." />;
+    case 'calculatingFees':
+      return <MessageThrobber msg="Calculating exact shipping cost and fees..." />;
+    case 'fetchingPaymentToken':
     case 'authorizingPayment':
       return <MessageThrobber msg="Pre-authorizing credit card payment..." />;
     case 'submittingToPrinter':
@@ -64,24 +63,25 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine; cart: CartItem[] }> = (
         <MessageThrobber msg="Payment pre-authorized. Submitting order to printer..." />
       );
     case 'validatingPrintOrder':
+    case 'updateOrderPrintJobStatus':
       return (
         <MessageThrobber msg="Order submitted. Waiting for print order validation..." />
       );
     case 'capturingPayment':
       return <MessageThrobber msg="Order validated. Charging your credit card..." />;
-    case 'confirmShipping':
+    case 'confirmFees':
       return (
-        <ConfirmShipping
+        <ConfirmFees
           onConfirm={() => machine.dispatch('next')}
           onBackToCart={() => machine.dispatch('backToCart')}
-          subTotal={cartItems.reduce((st, i) => st + i.price * i.quantity, 0)}
-          shipping={shipping as number}
+          subTotal={machine.cart.subTotal()}
+          shipping={machine.service.fees.shipping}
         />
       );
     case 'collectCreditCart':
-      return <CollectCreditCard onPay={() => machine.dispatch('next')} />;
+      return <CollectCreditCard onPay={getToken => machine.dispatch('next', getToken)} />;
     case 'success':
-      return <Success onClose={() => {}} />;
+      return <Success email={machine.cart.email || ''} onClose={() => {}} />;
     default:
       return <p>not cart</p>;
   }

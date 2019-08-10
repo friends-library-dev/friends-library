@@ -11,7 +11,8 @@
     "storybook": "start-storybook -p 6006 --ci",
     "build": "build-storybook",
     "build:quiet": "build-storybook --loglevel error --quiet",
-    "build:netlify": "yarn compile && yarn build:quiet"
+    "build:netlify": "yarn compile && yarn build:quiet",
+    "test": "cd ../../ && yarn test packages/ui/src"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",

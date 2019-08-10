@@ -15,11 +15,11 @@ jest.mock('../../lib/Order', () => ({
 }));
 
 describe('updateOrder()', () => {
-  let body = '{"print_status":"accepted"}';
+  let body = '{"print_job.status":"accepted"}';
   let path = '/site/order/123abc';
 
   it('responds 400 if mal-formed body', async () => {
-    const badBody = '{"print_status":"bad_status"}';
+    const badBody = '{"print_job.status":"bad_status"}';
     const { res } = await invokeCb(updateOrder, { body: badBody, path });
     expect(res.statusCode).toBe(400);
   });
@@ -42,7 +42,7 @@ describe('updateOrder()', () => {
     const { res, json } = await invokeCb(updateOrder, { path, body });
     expect(res.statusCode).toBe(200);
     expect(json).toMatchObject({ _id: 'mongo-id' });
-    expect(mockOrder.set).toHaveBeenCalledWith('print_status', 'accepted');
+    expect(mockOrder.set).toHaveBeenCalledWith('print_job.status', 'accepted');
     expect(persist).toHaveBeenCalledWith(mockOrder);
   });
 

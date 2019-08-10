@@ -41,20 +41,19 @@ describe('/payment-capture handler', () => {
     expect(json.msg).toBe('order_not_found');
   });
 
-  it('should update & persist the order with new payment_status', async () => {
+  it('should update & persist the order with new payment.status', async () => {
     await invokeCb(capture, { body: testBody });
-    expect(mockOrder.set).toHaveBeenCalledWith('payment_status', 'captured');
+    expect(mockOrder.set).toHaveBeenCalledWith('payment.status', 'captured');
     expect(persist).toHaveBeenCalledWith(mockOrder);
   });
 
-  it('should respond 500 if persisting order fails', async () => {
+  it('should still respond 204 if persisting order fails', async () => {
     (<jest.Mock>persist).mockImplementationOnce(() => {
       throw new Error('Oh noes!');
     });
 
-    const { res, json } = await invokeCb(capture, { body: testBody });
-    expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_updating_order');
+    const { res } = await invokeCb(capture, { body: testBody });
+    expect(res.statusCode).toBe(204);
   });
 
   it('should return 500 if charge comes back not captured', async () => {

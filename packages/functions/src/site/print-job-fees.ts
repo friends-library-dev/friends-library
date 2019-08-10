@@ -7,13 +7,13 @@ import log from '../lib/log';
 import { feeOffset } from '../lib/stripe';
 import { getAuthToken, podPackageId, ShippingLevel, SHIPPING_LEVELS } from '../lib/lulu';
 
-export default async function calculatePrintOrderFees(
+export default async function printJobFees(
   { body }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /print/calculate-fees', body);
+    log.error('invalid body for /print-job/fees', body);
     return respond.json({ msg: data.message }, 400);
   }
 
@@ -21,14 +21,13 @@ export default async function calculatePrintOrderFees(
   try {
     token = await getAuthToken();
   } catch (error) {
-    respond.json({ msg: 'error_acquiring_oauth_token' }, 500);
-    return;
+    log.error('error aquiring oath token', error);
+    return respond.json({ msg: 'error_acquiring_oauth_token' }, 500);
   }
 
   const cheapest = await calculateCheapest(data, token);
   if (!cheapest) {
-    respond.json({ msg: 'shipping_not_possible' }, 500);
-    return;
+    return respond.json({ msg: 'shipping_not_possible' }, 500);
   }
 
   respond.json(cheapest);
@@ -46,8 +45,8 @@ async function calculateCheapest(
 ): Promise<null | {
   shippingLevel: ShippingLevel;
   shipping: number;
-  tax: number;
-  ccFee: number;
+  taxes: number;
+  ccFeeOffset: number;
 }> {
   const results = await Promise.all(
     SHIPPING_LEVELS.map(level => calculateForType(data, token, level)),
@@ -66,8 +65,8 @@ async function calculateCheapest(
   return {
     shippingLevel: cheapest.shippingLevel,
     shipping: Number(cheapest.json.shipping_cost.total_cost_excl_tax) * 100,
-    tax: Number(cheapest.json.total_tax) * 100,
-    ccFee: feeOffset(Number(cheapest.json.shipping_cost.total_cost_incl_tax) * 100),
+    taxes: Number(cheapest.json.total_tax) * 100,
+    ccFeeOffset: feeOffset(Number(cheapest.json.shipping_cost.total_cost_incl_tax) * 100),
   };
 }
 
