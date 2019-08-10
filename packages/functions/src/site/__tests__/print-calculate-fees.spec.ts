@@ -1,4 +1,4 @@
-import calculateFees, { schema } from '../print-calculate-fees';
+import printJobFees, { schema } from '../print-job-fees';
 import { invokeCb } from './invoke';
 import fetch from 'node-fetch';
 
@@ -11,14 +11,14 @@ jest.mock('node-fetch');
 const { Response } = jest.requireActual('node-fetch');
 const mockFetch = <jest.Mock>(<unknown>fetch);
 
-describe('calculateFees()', () => {
+describe('printJobFees()', () => {
   it('should return 500 response if oauth token acquisition fails', async () => {
     const body = JSON.stringify(schema.example);
     getToken.mockImplementationOnce(() => {
       throw new Error('some error');
     });
 
-    const { res, json } = await invokeCb(calculateFees, { body });
+    const { res, json } = await invokeCb(printJobFees, { body });
 
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe('error_acquiring_oauth_token');
@@ -28,14 +28,14 @@ describe('calculateFees()', () => {
     const data = JSON.parse(JSON.stringify(schema.example));
     data.items[0].quantity = 0; // <-- invalid quantity!
     const body = JSON.stringify(data);
-    const { res } = await invokeCb(calculateFees, { body });
+    const { res } = await invokeCb(printJobFees, { body });
     expect(res.statusCode).toBe(400);
   });
 
   it('translates passed body into correct body to pass to lulu', async () => {
     mockFetch.mockImplementation(() => new Response('{}'));
     const body = JSON.stringify(schema.example);
-    await invokeCb(calculateFees, { body });
+    await invokeCb(printJobFees, { body });
     expect(JSON.parse(mockFetch.mock.calls[0][1].body)).toMatchObject({
       line_items: [
         {
@@ -85,13 +85,13 @@ describe('calculateFees()', () => {
     })});
 
     const body = JSON.stringify(schema.example);
-    const { res, json } = await invokeCb(calculateFees, { body });
+    const { res, json } = await invokeCb(printJobFees, { body });
     expect(res.statusCode).toBe(200);
     expect(json).toMatchObject({
       shipping: 399,
       shippingLevel: 'MAIL',
-      tax: 0,
-      ccFee: 42,
+      taxes: 0,
+      ccFeeOffset: 42,
     });
   });
 });

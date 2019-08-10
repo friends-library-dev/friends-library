@@ -1,18 +1,25 @@
 /** @jsx jsx */
 import React from 'react';
 import { jsx, css } from '@emotion/core';
-import { CartItem } from '../checkout/types';
 import Item from './Item';
 import Button from '../Button';
+import CartItem, { CartItemData } from '../checkout/models/CartItem';
 
 interface Props {
   checkout: () => void;
   close: () => void;
-  items: CartItem[];
-  setItems: (items: CartItem[]) => void;
+  subTotal: number;
+  items: CartItemData[];
+  setItems: (items: CartItemData[]) => void;
 }
 
-const CartComponent: React.FC<Props> = ({ checkout, close, items, setItems }) => {
+const CartComponent: React.FC<Props> = ({
+  checkout,
+  close,
+  items,
+  setItems,
+  subTotal,
+}) => {
   return (
     <div>
       <h1>
@@ -21,6 +28,7 @@ const CartComponent: React.FC<Props> = ({ checkout, close, items, setItems }) =>
       {items.map((item, index) => (
         <Item
           key={`item-${index}`}
+          price={new CartItem(item).price()}
           {...item}
           changeQty={(qty: number) => {
             items[index].quantity = qty;
@@ -38,9 +46,7 @@ const CartComponent: React.FC<Props> = ({ checkout, close, items, setItems }) =>
         `}
       >
         <SubLine label="Subtotal:">
-          <code>
-            {items.reduce((st, item) => st + item.price * item.quantity, 0).toFixed(2)}
-          </code>
+          <code>{(subTotal / 100).toFixed(2)}</code>
         </SubLine>
         <SubLine label="Shipping:">
           <code>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { styled } from '@friends-library/ui';
 import { withTheme } from 'emotion-theming';
-import { CartItem } from '../checkout/types';
 import ItemQuantity from './ItemQuantity';
 import { Theme } from 'theme';
+import { CartItemData } from '../checkout/models/CartItem';
 
 const Item = styled.div`
   display: flex;
@@ -54,8 +54,9 @@ const Item = styled.div`
   }
 `;
 
-type Props = CartItem & {
+type Props = CartItemData & {
   theme: Theme;
+  price: number;
   changeQty: (qtn: number) => void;
   remove: () => void;
 };
@@ -79,7 +80,7 @@ const Component: React.FC<Props> = ({
       </dl>
       <ItemQuantity quantity={quantity} changeQuantity={changeQty} />
       <div className="price">
-        <code>${price}</code>
+        <code>${(price / 100).toFixed(2)}</code>
       </div>
       <div className="remove" onClick={remove}>
         &#x2715;

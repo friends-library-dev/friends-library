@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../Button';
-import { SubLine } from '../cart';
+import { SubLine } from '../cart/index';
 
 interface Props {
   onConfirm: () => void;
@@ -9,7 +9,7 @@ interface Props {
   shipping: number;
 }
 
-const ConfirmShippingComponent: React.FC<Props> = ({
+const ConfirmFees: React.FC<Props> = ({
   onConfirm,
   onBackToCart,
   shipping,
@@ -17,21 +17,21 @@ const ConfirmShippingComponent: React.FC<Props> = ({
 }) => (
   <div>
     <h1 style={{ marginTop: 0 }}>
-      Shipping cost: <code>${shipping.toFixed(2)}</code>
+      Shipping cost: <code>${(shipping / 100).toFixed(2)}</code>
     </h1>
     <p style={{ marginBottom: 25 }}>
       We've received exact shipping cost for your address from our print-on-demand
-      partner: <code>${shipping.toFixed(2)}</code>.
+      partner: <code>${(shipping / 100).toFixed(2)}</code>.
     </p>
     <SubLine label="Subtotal:">
-      <code>${subTotal.toFixed(2)}</code>
+      <code>${(subTotal / 100).toFixed(2)}</code>
     </SubLine>
     <SubLine label="Shipping:">
-      <code>${shipping.toFixed(2)}</code>
+      <code>${(shipping / 100).toFixed(2)}</code>
     </SubLine>
     <SubLine label="Grand Total:">
       <code>
-        <b>${(subTotal + shipping).toFixed(2)}</b>
+        <b>${((subTotal + shipping) / 100).toFixed(2)}</b>
       </code>
     </SubLine>
 
@@ -42,4 +42,4 @@ const ConfirmShippingComponent: React.FC<Props> = ({
   </div>
 );
 
-export default ConfirmShippingComponent;
+export default ConfirmFees;

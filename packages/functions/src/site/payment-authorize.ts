@@ -18,7 +18,11 @@ export default async function authorizePayment(
 
   const order = new Order({
     email: data.email,
-    items: data.items.map(i => ({ ...i, document_id: i.documentId })),
+    items: data.items.map(i => ({
+      ...i,
+      document_id: i.documentId,
+      unit_price: i.unitPrice,
+    })),
     address: data.address,
   } as any);
 
@@ -41,8 +45,14 @@ export default async function authorizePayment(
   }
 
   try {
-    order.set('charge_id', charge.id);
-    order.set('payment_status', 'authorized');
+    order.set('payment', {
+      id: charge.id,
+      status: 'authorized',
+      amount: data.amount,
+      shipping: data.shipping,
+      taxes: data.taxes,
+      cc_fee_offset: data.ccFeeOffset,
+    });
     await persistOrder(order);
   } catch (error) {
     log.error('error persisting flp order', error);
@@ -59,6 +69,9 @@ export const schema = {
     amount: { type: 'integer' },
     email: { $ref: '/email' },
     address: { $ref: '/lulu-address' },
+    taxes: { type: 'integer' },
+    shipping: { type: 'integer' },
+    ccFeeOffset: { type: 'integer' },
     items: {
       type: 'array',
       minItems: 1,
@@ -68,8 +81,9 @@ export const schema = {
           documentId: { $ref: '/uuid' },
           printSize: { $ref: '/print-size' },
           quantity: { $ref: '/book-qty' },
+          unitPrice: { type: 'integer' },
         },
-        required: ['documentId', 'edition', 'quantity'],
+        required: ['documentId', 'edition', 'quantity', 'unitPrice'],
       },
     },
   },
@@ -77,12 +91,16 @@ export const schema = {
   example: {
     token: 'tok_visa',
     amount: 1111,
+    taxes: 0,
+    shipping: 399,
+    ccFeeOffset: 42,
     email: 'user@example.com',
     items: [
       {
         documentId: '6b0e134d-8d2e-48bc-8fa3-e8fc79793804',
         edition: 'modernized',
         quantity: 1,
+        unitPrice: 231,
       },
     ],
     address: {

@@ -5,15 +5,16 @@ import Responder from '../lib/Responder';
 import { PrintSize, requireEnv } from '@friends-library/types';
 import validateJson from '../lib/validate-json';
 import log from '../lib/log';
+import { findById, persist } from '../lib/Order';
 import { getAuthToken, podPackageId } from '../lib/lulu';
 
-export default async function createOrder(
+export default async function createPrintJob(
   { body }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /print/create-order', body);
+    log.error('invalid body for /print-job', body);
     return respond.json({ msg: data.message }, 400);
   }
 
@@ -22,10 +23,16 @@ export default async function createOrder(
     return respond.json({ msg: invalidChargeMsg }, 403);
   }
 
+  const order = await findById(data.orderId);
+  if (!order) {
+    return respond.json({ msg: 'order_not_found' }, 404);
+  }
+
   let token = '';
   try {
     token = await getAuthToken();
   } catch (error) {
+    log.error('error aquiring oath token', error);
     return respond.json({ msg: 'error_acquiring_oauth_token' }, 500);
   }
 
@@ -47,13 +54,22 @@ export default async function createOrder(
     return respond.json({ msg: `lulu_${res.status}_error` }, 500);
   }
 
-  respond.json({ luluOrderId: json.id }, 201);
+  try {
+    order.set('print_job', { id: json.id, status: 'pending' });
+    await persist(order);
+  } catch (error) {
+    log.error('error updating order with print_job details', error);
+    // @TODO -- decide what to do here, we could cancel the lulu order
+    // or just proceed, since it's not 100% critical to have updated
+  }
+
+  respond.json({ printJobId: json.id }, 201);
 }
 
 function createOrderPayload(data: typeof schema.example): Record<string, any> {
   return {
     external_id: data.orderId,
-    contact_email: data.emailAddress,
+    contact_email: data.email,
     line_items: data.items.map(item => ({
       title: item.title,
       cover: item.coverUrl,
@@ -96,7 +112,7 @@ export const schema = {
     address: { $ref: '/lulu-address' },
     orderId: { type: 'string', minLength: 10 },
     chargeId: { type: 'string', minLength: 5 },
-    emailAddress: { $ref: '/email' },
+    email: { $ref: '/email' },
     shippingLevel: { $ref: '/lulu-shipping-level' },
     items: {
       type: 'array',
@@ -115,10 +131,10 @@ export const schema = {
       },
     },
   },
-  required: ['orderId', 'emailAddress', 'shippingLevel', 'chargeId', 'items', 'address'],
+  required: ['orderId', 'email', 'shippingLevel', 'chargeId', 'items', 'address'],
   example: {
     orderId: 'flp-order-id',
-    emailAddress: 'jared@netrivet.com',
+    email: 'jared@netrivet.com',
     shippingLevel: 'MAIL',
     chargeId: 'ch_123abc',
     items: [

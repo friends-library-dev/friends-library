@@ -8,7 +8,7 @@ import CollectEmail from '../src/checkout/CollectEmail';
 import CollectAddress from '../src/checkout/CollectAddress';
 import CollectCreditCard from '../src/checkout/CollectCreditCard';
 import Success from '../src/checkout/Success';
-import ConfirmShipping from '../src/checkout/ConfirmShipping';
+import ConfirmShipping from '../src/checkout/ConfirmFees';
 
 storiesOf('Checkout Components', module)
   .add('MessageThrobber', () => (
@@ -23,12 +23,12 @@ storiesOf('Checkout Components', module)
   ))
   .add('Success', () => (
     <Modal onClose={a('close modal')}>
-      <Success onClose={a('close')} />
+      <Success email="you@example.com" onClose={a('close')} />
     </Modal>
   ))
   .add('CollectEmail', () => (
     <Modal onClose={a('close modal')}>
-      <CollectEmail onSubmit={a('submit email')} />
+      <CollectEmail stored="" onSubmit={a('submit email')} />
     </Modal>
   ))
   .add('CollectAddress', () => (

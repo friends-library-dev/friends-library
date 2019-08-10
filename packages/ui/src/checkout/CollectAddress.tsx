@@ -6,18 +6,19 @@ import { Address } from './types';
 // @ts-ignore
 import { CountryDropdown } from 'react-country-region-selector';
 
-const CollectAddress: React.FC<{ onSubmit: (address: Address) => void }> = ({
-  onSubmit,
-}) => {
-  const [name, setName] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
-  const [address2, setAddress2] = useState<string>('');
-  const [city, setCity] = useState<string>('');
-  const [state, setState] = useState<string>('');
-  const [zip, setZip] = useState<string>('');
-  const [country, setCountry] = useState<string>('');
+const CollectAddress: React.FC<{
+  onSubmit: (address: Address) => void;
+  stored?: Address;
+}> = ({ onSubmit, stored }) => {
+  const [name, setName] = useState<string>(stored ? stored.name : '');
+  const [street, setStreet] = useState<string>(stored ? stored.street : '');
+  const [street2, setStreet2] = useState<string>(stored ? stored.street2 || '' : '');
+  const [city, setCity] = useState<string>(stored ? stored.city : '');
+  const [state, setState] = useState<string>(stored ? stored.state : '');
+  const [zip, setZip] = useState<string>(stored ? stored.zip : '');
+  const [country, setCountry] = useState<string>(stored ? stored.country : '');
   const nameRef = useRef<HTMLInputElement>(null);
-  const filledOutCompletely = !!(name && address && city && state && zip && country);
+  const filledOutCompletely = !!(name && street && city && state && zip && country);
 
   useEffect(() => {
     if (nameRef && nameRef.current) {
@@ -34,8 +35,8 @@ const CollectAddress: React.FC<{ onSubmit: (address: Address) => void }> = ({
           if (filledOutCompletely) {
             onSubmit({
               name,
-              address,
-              address2,
+              street,
+              street2,
               city,
               state,
               zip,
@@ -53,14 +54,14 @@ const CollectAddress: React.FC<{ onSubmit: (address: Address) => void }> = ({
         />
         <Input
           type="text"
-          onChange={e => setAddress(e.target.value)}
-          value={address}
+          onChange={e => setStreet(e.target.value)}
+          value={street}
           placeholder="Street address, P.O. box, c/o"
         />
         <Input
           type="text"
-          onChange={e => setAddress2(e.target.value)}
-          value={address2}
+          onChange={e => setStreet2(e.target.value)}
+          value={street2}
           placeholder="Apartment, suite, unit, etc."
         />
         <Input

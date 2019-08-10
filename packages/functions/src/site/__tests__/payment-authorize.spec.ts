@@ -36,8 +36,14 @@ describe('/payment-authorize handler', () => {
       metadata: { orderId: 'mongo-id' },
     });
     expect(persist).toHaveBeenCalledWith(mockOrder);
-    expect(mockOrder.set).toHaveBeenCalledWith('charge_id', 'ch_id');
-    expect(mockOrder.set).toHaveBeenCalledWith('payment_status', 'authorized');
+    expect(mockOrder.set).toHaveBeenCalledWith('payment', {
+      id: 'ch_id',
+      status: 'authorized',
+      amount: 1111,
+      taxes: 0,
+      cc_fee_offset: 42,
+      shipping: 399,
+    });
   });
 
   it('responds 500 if persisting order fails', async () => {
