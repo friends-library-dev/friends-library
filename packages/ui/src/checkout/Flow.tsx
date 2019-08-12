@@ -76,6 +76,8 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
           onBackToCart={() => machine.dispatch('backToCart')}
           subTotal={machine.cart.subTotal()}
           shipping={machine.service.fees.shipping}
+          taxes={machine.service.fees.taxes}
+          ccFeeOffset={machine.service.fees.ccFeeOffset}
         />
       );
     case 'collectCreditCart':

@@ -8,7 +8,7 @@ import CollectEmail from '../src/checkout/CollectEmail';
 import CollectAddress from '../src/checkout/CollectAddress';
 import CollectCreditCard from '../src/checkout/CollectCreditCard';
 import Success from '../src/checkout/Success';
-import ConfirmShipping from '../src/checkout/ConfirmFees';
+import ConfirmFees from '../src/checkout/ConfirmFees';
 
 storiesOf('Checkout Components', module)
   .add('MessageThrobber', () => (
@@ -41,11 +41,25 @@ storiesOf('Checkout Components', module)
       <CollectCreditCard onPay={a('pay with card')} />
     </Modal>
   ))
-  .add('ConfirmShipping', () => (
+  .add('ConfirmFees (no tax)', () => (
     <Modal onClose={a('close modal')}>
-      <ConfirmShipping
-        subTotal={8.24}
-        shipping={4.0}
+      <ConfirmFees
+        taxes={0}
+        subTotal={824}
+        shipping={399}
+        ccFeeOffset={42}
+        onConfirm={a('confirm shipping')}
+        onBackToCart={a('back to cart')}
+      />
+    </Modal>
+  ))
+  .add('ConfirmFees (with tax)', () => (
+    <Modal onClose={a('close modal')}>
+      <ConfirmFees
+        taxes={132}
+        subTotal={824}
+        shipping={399}
+        ccFeeOffset={42}
         onConfirm={a('confirm shipping')}
         onBackToCart={a('back to cart')}
       />
