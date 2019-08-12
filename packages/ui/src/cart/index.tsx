@@ -67,12 +67,20 @@ const CartComponent: React.FC<Props> = ({
 
 export default CartComponent;
 
-export const SubLine: React.FC<{ label: string }> = ({ label, children }) => (
+export const SubLine: React.FC<{ label: string; className?: string }> = ({
+  label,
+  children,
+  className,
+}) => (
   <div
+    {...(className ? { className } : {})}
     css={css`
       color: #333;
       padding: 1px 0;
       display: flex;
+      &.just-determined {
+        background: palegoldenrod;
+      }
     `}
   >
     <span
