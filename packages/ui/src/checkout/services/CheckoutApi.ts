@@ -74,6 +74,7 @@ export default class CheckoutApi {
   private async normalize(response: Response): Promise<ApiResponse> {
     let data: ApiResponse['data'] = {};
     const statusCode = response.status;
+    const ok = statusCode >= 200 && statusCode < 300;
     if (statusCode !== 204) {
       try {
         data = await response.json();
@@ -81,11 +82,12 @@ export default class CheckoutApi {
         data = {};
       }
     }
-    return { statusCode, data };
+    return { statusCode, data, ok };
   }
 }
 
 export interface ApiResponse {
+  ok: boolean;
   statusCode: number;
   data: Record<string, any>;
 }

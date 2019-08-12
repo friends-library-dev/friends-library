@@ -27,7 +27,7 @@ describe('CheckoutService()', () => {
   describe('.calculateFees()', () => {
     it('passes correct payload to api', async () => {
       const cart = cartPlusData();
-      calculateFees.mockResolvedValue({ statusCode: 200, data: {} });
+      calculateFees.mockResolvedValue({ ok: true, data: {} });
 
       await service.calculateFees(cart);
 
@@ -43,7 +43,7 @@ describe('CheckoutService()', () => {
 
     it('should return null error and set internal state if success', async () => {
       calculateFees.mockResolvedValue({
-        statusCode: 200,
+        ok: true,
         data: {
           shippingLevel: 'MAIL',
           shipping: 399,
@@ -65,7 +65,7 @@ describe('CheckoutService()', () => {
 
     it('returns error if error', async () => {
       calculateFees.mockResolvedValue({
-        statusCode: 500,
+        ok: false,
         data: { msg: 'shipping_not_possible' },
       });
 
@@ -79,7 +79,7 @@ describe('CheckoutService()', () => {
     it('passes correct payload to api', async () => {
       const cart = cartPlusData();
       service.fees = { shipping: 1, taxes: 0, ccFeeOffset: 1 };
-      authorizePayment.mockResolvedValue({ statusCode: 200, data: {} });
+      authorizePayment.mockResolvedValue({ ok: true, data: {} });
 
       await service.createOrderAndAuthorizePayment(cart, 'tok_visa');
 
@@ -102,7 +102,7 @@ describe('CheckoutService()', () => {
 
     it('should return null error and set internal state if success', async () => {
       authorizePayment.mockResolvedValue({
-        statusCode: 201,
+        ok: true,
         data: {
           chargeId: 'ch_id',
           orderId: 'order_id',
@@ -118,7 +118,7 @@ describe('CheckoutService()', () => {
 
     it('returns error if error', async () => {
       authorizePayment.mockResolvedValue({
-        statusCode: 500,
+        ok: false,
         data: { msg: 'error_saving_flp_order' },
       });
 
@@ -134,7 +134,7 @@ describe('CheckoutService()', () => {
       service.orderId = 'order_id';
       service.chargeId = 'ch_id';
       service.shippingLevel = 'PRIORITY_MAIL';
-      createPrintJob.mockResolvedValue({ statusCode: 201, data: { printJobId: 6 } });
+      createPrintJob.mockResolvedValue({ ok: true, data: { printJobId: 6 } });
 
       await service.createPrintJob(cart);
 
@@ -211,7 +211,7 @@ describe('CheckoutService()', () => {
     it('should send correct orderId & payload to api', async () => {
       service.orderId = '123abc';
       service.printJobStatus = 'rejected';
-      updateOrder.mockResolvedValueOnce({ statusCode: 200, data: {} });
+      updateOrder.mockResolvedValueOnce({ ok: true, data: {} });
       const [err] = await service.updateOrderPrintJobStatus();
       expect(updateOrder).toHaveBeenCalledWith('123abc', {
         'print_job.status': 'rejected',
@@ -222,7 +222,7 @@ describe('CheckoutService()', () => {
     it('returns error if api request errors', async () => {
       service.printJobStatus = 'rejected';
       updateOrder.mockResolvedValueOnce({
-        statusCode: 500,
+        ok: false,
         data: { msg: 'error_updating_order' },
       });
       const [err] = await service.updateOrderPrintJobStatus();
@@ -234,7 +234,7 @@ describe('CheckoutService()', () => {
     it('should send correct payload to api', async () => {
       service.orderId = '123abc';
       service.chargeId = 'ch_123';
-      capturePayment.mockResolvedValueOnce({ statusCode: 204, data: {} });
+      capturePayment.mockResolvedValueOnce({ ok: true, data: {} });
       const [err] = await service.capturePayment();
       expect(err).toBeNull();
       expect(capturePayment).toHaveBeenCalledWith({
@@ -245,7 +245,7 @@ describe('CheckoutService()', () => {
 
     it('should return error if api request errors', async () => {
       capturePayment.mockResolvedValueOnce({
-        statusCode: 404,
+        ok: false,
         data: { msg: 'order_not_found' },
       });
       const [err] = await service.capturePayment();
@@ -254,9 +254,9 @@ describe('CheckoutService()', () => {
   });
 });
 
-function jobStatus(status: string): { statusCode: 200; data: { status: string } } {
+function jobStatus(status: string): { ok: true; data: { status: string } } {
   return {
-    statusCode: 200,
+    ok: true,
     data: { status },
   };
 }

@@ -8,12 +8,14 @@ export default class MockCheckoutApi extends CheckoutApi {
   } = {
     wakeup: {
       default: {
+        ok: true,
         statusCode: 204,
         data: {},
       },
     },
     calculateFees: {
       default: {
+        ok: true,
         statusCode: 200,
         data: {
           shippingLevel: 'MAIL',
@@ -25,6 +27,7 @@ export default class MockCheckoutApi extends CheckoutApi {
     },
     authorizePayment: {
       default: {
+        ok: true,
         statusCode: 201,
         data: {
           chargeId: 'ch_123abc',
@@ -34,6 +37,7 @@ export default class MockCheckoutApi extends CheckoutApi {
     },
     createPrintJob: {
       default: {
+        ok: true,
         statusCode: 201,
         data: {
           printJobId: 123,
@@ -42,12 +46,14 @@ export default class MockCheckoutApi extends CheckoutApi {
     },
     getPrintJobStatus: {
       default: {
+        ok: true,
         statusCode: 200,
         delay: 500,
         data: { status: 'accepted' },
       },
       stack: [
         {
+          ok: true,
           statusCode: 200,
           delay: 500,
           data: { status: 'pending' },
@@ -56,12 +62,14 @@ export default class MockCheckoutApi extends CheckoutApi {
     },
     capturePayment: {
       default: {
+        ok: true,
         statusCode: 204,
         data: {},
       },
     },
     updateOrder: {
       default: {
+        ok: true,
         statusCode: 200,
         data: { _id: 'mongo-id', print_job: { status: 'accepted' } },
       },
