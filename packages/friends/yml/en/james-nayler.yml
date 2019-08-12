@@ -42,6 +42,92 @@ documents:
           - type: pdf
           - type: epub
           - type: mobi
+          - type: audio
+          - type: paperback
+        audio:
+          reader: Jason R. Henderson
+          parts:
+            - title: The Possession of Living Faith and its Fruits
+              external_id_hq: 590165508
+              external_id_lq: 590165541
+              filesize_hq: 85214823
+              filesize_lq: 18349599
+              seconds: 4587
+              chapters:
+                - 0
+            - title: The Lamb's War Against the Man of Sin
+              external_id_hq: 590167470
+              external_id_lq: 590167497
+              filesize_hq: 44727306
+              filesize_lq: 9750402
+              seconds: 2437
+              chapters:
+                - 1
+            - title: How Sin is Strengthened and How it is Overcome
+              external_id_hq: 590168370
+              external_id_lq: 590168385
+              filesize_hq: 37728757
+              filesize_lq: 8122764
+              seconds: 2030
+              chapters:
+                - 2
+            - title: A Door Opened to the Imprisoned Seed, pt. 1
+              external_id_hq: 590169738
+              external_id_lq: 590169765
+              filesize_hq: 68442496
+              filesize_lq: 14412737
+              seconds: 3603
+              chapters:
+                - 3
+            - title: A Door Opened to the Imprisoned Seed, pt. 2
+              external_id_hq: 590172270
+              external_id_lq: 590172297
+              filesize_hq: 60125397
+              filesize_lq: 14412737
+              seconds: 3281
+              chapters:
+                - 4
+            - title: Milk for Babes and Meat for Strong Men
+              external_id_hq: 590173056
+              external_id_lq: 590173068
+              filesize_hq: 69353407
+              filesize_lq: 14825471
+              seconds: 3706
+              chapters:
+                - 5
+            - title: Love to the Lost, pt 1.
+              external_id_hq: 590174640
+              external_id_lq: 590174667
+              filesize_hq: 58598741
+              filesize_lq: 12952805
+              seconds: 3238
+              chapters:
+                - 6
+            - title: Love to the Lost, pt. 2
+              external_id_hq: 590175123
+              external_id_lq: 590175150
+              filesize_hq: 61102847
+              filesize_lq: 13065863
+              seconds: 3266
+              chapters:
+                - 7
+            - title: Love to the Lost, pt. 3
+              external_id_hq: 590176065
+              external_id_lq: 590176095
+              filesize_hq: 50644440
+              filesize_lq: 11004384
+              seconds: 2751
+              chapters:
+                - 8
+            - title: Biography of James Nayler
+              external_id_hq: 590176929
+              external_id_lq: 590176947
+              filesize_hq: 88706574
+              filesize_lq: 18985106
+              seconds: 4746
+              chapters:
+                - 9
+
         chapters:
           - title: Forward
           - number: 1
