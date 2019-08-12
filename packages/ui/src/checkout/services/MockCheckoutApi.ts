@@ -71,7 +71,14 @@ export default class MockCheckoutApi extends CheckoutApi {
       default: {
         ok: true,
         statusCode: 200,
-        data: { _id: 'mongo-id', print_job: { status: 'accepted' } },
+        data: { _id: 'order-id', print_job: { status: 'accepted' } },
+      },
+    },
+    getOrder: {
+      default: {
+        ok: true,
+        statusCode: 200,
+        data: { _id: 'order-id ' },
       },
     },
   };

@@ -4,8 +4,8 @@ import { schema as authorizeSchema } from '../payment-authorize';
 import { schema as createOrderSchema } from '../print-job-create';
 
 describe('site fns integration', () => {
-  const { endpoint, domain } = urls();
-  console.log(`Running integration tests against: ${domain}`);
+  const { endpoint, origin } = urls();
+  console.log(`Running integration tests against: ${origin}`);
 
   test('GET /wakeup should return 204', async () => {
     const { status } = await fetch(`${endpoint}/wakeup`);
@@ -61,7 +61,7 @@ describe('site fns integration', () => {
     });
 
     /**
-     * Step 3: Create Lulu print order
+     * Step 3: Create print job
      */
     const createOrderBody = { ...createOrderSchema.example, orderId, chargeId };
     const createOrderRes = await fetch(`${endpoint}/print-job`, {
@@ -91,7 +91,7 @@ describe('site fns integration', () => {
      */
     let orderStatus: null | string = null;
     do {
-      await delay(1000);
+      orderStatus && (await delay(1000));
       const statusRes = await fetch(`${endpoint}/print-job/${printJobId}/status`);
       expect(statusRes.status).toBe(200);
       ({ status: orderStatus } = await statusRes.json());
@@ -145,7 +145,7 @@ function delay(ms: number): Promise<void> {
   return new Promise(res => setTimeout(res, ms));
 }
 
-function urls(): { endpoint: string; domain: string } {
+export function urls(): { endpoint: string; origin: string } {
   let endpoint = 'http://localhost:2345';
   if (process.env.FNS_INTEGRATION_TEST_URL) {
     endpoint = process.env.FNS_INTEGRATION_TEST_URL;
@@ -153,6 +153,6 @@ function urls(): { endpoint: string; domain: string } {
     endpoint = `https://deploy-preview-${process.env.PR}--en-evans.netlify.com`;
   }
   endpoint += '/.netlify/functions/site';
-  const domain = endpoint.split('/.netlify')[0];
-  return { endpoint, domain };
+  const origin = endpoint.split('/.netlify')[0];
+  return { endpoint, origin };
 }

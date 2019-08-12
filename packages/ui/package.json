@@ -12,7 +12,8 @@
     "build": "build-storybook",
     "build:quiet": "build-storybook --loglevel error --quiet",
     "build:netlify": "yarn compile && yarn build:quiet",
-    "test": "cd ../../ && yarn test packages/ui/src"
+    "test": "cd ../../ && yarn test packages/ui/src",
+    "test:integration": "cd ../../ && yarn test --testRegex=packages/ui/.*/.*\\.integration\\.ts --env=node"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
