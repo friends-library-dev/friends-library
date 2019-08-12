@@ -32,7 +32,7 @@ export async function getPaperbackCovers(
 
 async function makeCoverAsset(
   asset: Asset,
-  { meta, filename: basename }: SourcePrecursor,
+  { meta, filename: basename, lang }: SourcePrecursor,
   { edition }: SourceDocument,
 ): Promise<Asset> {
   const pages = asset.pdfPages;
@@ -44,7 +44,7 @@ async function makeCoverAsset(
     title: meta.title,
     author: meta.author.name,
     blurb: edition.paperbackCoverBlurb(),
-    edition: edition.type,
+    edition: lang === 'es' ? 'spanish' : edition.type,
     pages,
     size: asset.printSize,
     showGuides: false,
