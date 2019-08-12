@@ -1,11 +1,10 @@
-import Cart from '../models/Cart';
 import CheckoutService from './CheckoutService';
 
 export default class CheckoutMachine {
   private state = 'cart';
   private listeners: ((newState: string) => void)[] = [];
 
-  public constructor(public cart: Cart, public service: CheckoutService) {}
+  public constructor(public service: CheckoutService) {}
 
   private states = {
     hidden: {
@@ -30,7 +29,7 @@ export default class CheckoutMachine {
     collectAddress: {
       async next(this: CheckoutMachine) {
         this.transitionTo('calculatingFees');
-        const [err] = await this.service.calculateFees(this.cart);
+        const err = await this.service.calculateFees();
         this.dispatch(err ? 'failure' : 'success', err || undefined);
       },
     },
@@ -59,7 +58,7 @@ export default class CheckoutMachine {
     fetchingPaymentToken: {
       async success(this: CheckoutMachine, token: string) {
         this.transitionTo('authorizingPayment');
-        const [err] = await this.service.createOrderAndAuthorizePayment(this.cart, token);
+        const err = await this.service.createOrderAndAuthorizePayment(token);
         this.dispatch(err ? 'failure' : 'success', err || undefined);
       },
     },
@@ -67,7 +66,7 @@ export default class CheckoutMachine {
     authorizingPayment: {
       async success(this: CheckoutMachine) {
         this.transitionTo('submittingToPrinter');
-        const [err] = await this.service.createPrintJob(this.cart);
+        const err = await this.service.createPrintJob();
         this.dispatch(err ? 'failure' : 'success', err || undefined);
       },
     },
@@ -75,7 +74,7 @@ export default class CheckoutMachine {
     submittingToPrinter: {
       async success(this: CheckoutMachine) {
         this.transitionTo('validatingPrintOrder');
-        const [err] = await this.service.verifyPrintJobAccepted();
+        const err = await this.service.verifyPrintJobAccepted();
         this.dispatch(err ? 'failure' : 'success', err || undefined);
       },
     },
@@ -83,7 +82,7 @@ export default class CheckoutMachine {
     validatingPrintOrder: {
       async success(this: CheckoutMachine) {
         this.transitionTo('updateOrderPrintJobStatus');
-        const [err] = await this.service.updateOrderPrintJobStatus();
+        const err = await this.service.updateOrderPrintJobStatus();
         this.dispatch(err ? 'failure' : 'success', err || undefined);
       },
     },
@@ -91,7 +90,7 @@ export default class CheckoutMachine {
     updateOrderPrintJobStatus: {
       async success(this: CheckoutMachine) {
         this.transitionTo('capturingPayment');
-        const [err] = await this.service.capturePayment();
+        const err = await this.service.capturePayment();
         this.dispatch(err ? 'failure' : 'success', err || undefined);
       },
     },

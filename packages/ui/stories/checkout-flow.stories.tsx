@@ -10,8 +10,8 @@ import { cartPlusData, cart } from '../src/checkout/models/__tests__/fixtures';
 
 storiesOf('Checkout flow', module)
   .add('happy path (prefill)', () => {
-    const service = new CheckoutService(new MockCheckoutApi(3500));
-    const machine = new CheckoutMachine(cartPlusData(), service);
+    const service = new CheckoutService(cartPlusData(), new MockCheckoutApi(3500));
+    const machine = new CheckoutMachine(service);
     return (
       <Modal onClose={a('close modal')}>
         <CheckoutFlow machine={machine} />
@@ -19,8 +19,8 @@ storiesOf('Checkout flow', module)
     );
   })
   .add('happy path (empty)', () => {
-    const service = new CheckoutService(new MockCheckoutApi(3500));
-    const machine = new CheckoutMachine(cart(), service);
+    const service = new CheckoutService(cart(), new MockCheckoutApi(3500));
+    const machine = new CheckoutMachine(service);
     return (
       <Modal onClose={a('close modal')}>
         <CheckoutFlow machine={machine} />
