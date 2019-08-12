@@ -64,9 +64,9 @@ async function calculateCheapest(
 
   return {
     shippingLevel: cheapest.shippingLevel,
-    shipping: Number(cheapest.json.shipping_cost.total_cost_excl_tax) * 100,
-    taxes: Number(cheapest.json.total_tax) * 100,
-    ccFeeOffset: feeOffset(Number(cheapest.json.shipping_cost.total_cost_incl_tax) * 100),
+    shipping: toCents(cheapest.json.shipping_cost.total_cost_excl_tax),
+    taxes: toCents(cheapest.json.total_tax),
+    ccFeeOffset: feeOffset(toCents(cheapest.json.shipping_cost.total_cost_incl_tax)),
   };
 }
 
@@ -106,6 +106,10 @@ async function calculateForType(
   });
   const json = await res.json();
   return { statusCode: res.status, json, shippingLevel };
+}
+
+function toCents(strNum: string): number {
+  return Math.round(Number(strNum) * 100);
 }
 
 export const schema = {

@@ -38,6 +38,10 @@ export default class CheckoutApi {
     return this.get(`/print-job/${printJobId}/status`);
   }
 
+  public async getOrder(orderId: string): Promise<ApiResponse> {
+    return this.get(`/order/${orderId}`);
+  }
+
   private async get(path: string): Promise<ApiResponse> {
     const response = await fetch(this.endpoint(path));
     return await this.normalize(response);
