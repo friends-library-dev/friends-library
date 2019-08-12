@@ -12,7 +12,7 @@ import CartItem, { CartItemData } from './models/CartItem';
 
 const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
   const [cartItems, setCartItems] = useState<CartItemData[]>(
-    machine.cart.items.map(i => i.toJSON()),
+    machine.service.cart.items.map(i => i.toJSON()),
   );
   const [state, setState] = useState<string>(machine.getState());
   useEffect(() => machine.listen(newState => setState(newState)), []);
@@ -23,10 +23,10 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
         <Cart
           items={cartItems}
           setItems={items => {
-            machine.cart.items = items.map(i => new CartItem(i));
+            machine.service.cart.items = items.map(i => new CartItem(i));
             setCartItems(items);
           }}
-          subTotal={machine.cart.subTotal()}
+          subTotal={machine.service.cart.subTotal()}
           checkout={() => machine.dispatch('next')}
           close={() => {}}
         />
@@ -36,9 +36,9 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
     case 'collectEmail':
       return (
         <CollectEmail
-          stored={machine.cart.email || ''}
+          stored={machine.service.cart.email || ''}
           onSubmit={email => {
-            machine.cart.email = email;
+            machine.service.cart.email = email;
             machine.dispatch('next');
           }}
         />
@@ -46,9 +46,9 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
     case 'collectAddress':
       return (
         <CollectAddress
-          stored={machine.cart.address}
+          stored={machine.service.cart.address}
           onSubmit={collectedAddress => {
-            machine.cart.address = collectedAddress;
+            machine.service.cart.address = collectedAddress;
             machine.dispatch('next');
           }}
         />
@@ -74,7 +74,7 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
         <ConfirmFees
           onConfirm={() => machine.dispatch('next')}
           onBackToCart={() => machine.dispatch('backToCart')}
-          subTotal={machine.cart.subTotal()}
+          subTotal={machine.service.cart.subTotal()}
           shipping={machine.service.fees.shipping}
           taxes={machine.service.fees.taxes}
           ccFeeOffset={machine.service.fees.ccFeeOffset}
@@ -83,7 +83,7 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
     case 'collectCreditCart':
       return <CollectCreditCard onPay={getToken => machine.dispatch('next', getToken)} />;
     case 'success':
-      return <Success email={machine.cart.email || ''} onClose={() => {}} />;
+      return <Success email={machine.service.cart.email || ''} onClose={() => {}} />;
     default:
       return <p>not cart</p>;
   }

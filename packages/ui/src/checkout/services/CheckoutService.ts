@@ -22,12 +22,12 @@ export default class CheckoutService {
     ccFeeOffset: 0,
   };
 
-  public constructor(private api: CheckoutApi) {}
+  public constructor(public cart: Cart, private api: CheckoutApi) {}
 
-  public async calculateFees(cart: Cart): Promise<[null | string]> {
+  public async calculateFees(): Promise<null | string> {
     const payload = {
-      address: cart.address,
-      items: cart.items.map(item => ({
+      address: this.cart.address,
+      items: this.cart.items.map(item => ({
         pages: item.numPages,
         printSize: item.printSize,
         quantity: item.quantity,
@@ -36,7 +36,7 @@ export default class CheckoutService {
 
     const { ok, data } = await this.api.calculateFees(payload);
     if (!ok) {
-      return [data.msg];
+      return data.msg;
     }
 
     this.shippingLevel = data.shippingLevel;
@@ -46,23 +46,20 @@ export default class CheckoutService {
       ccFeeOffset: data.ccFeeOffset,
     };
 
-    return [null];
+    return null;
   }
 
-  public async createOrderAndAuthorizePayment(
-    cart: Cart,
-    token: string,
-  ): Promise<[null | string]> {
+  public async createOrderAndAuthorizePayment(token: string): Promise<null | string> {
     const { shipping, taxes, ccFeeOffset } = this.fees;
     const payload = {
       token,
-      amount: cart.subTotal() + this.sumFees(),
+      amount: this.cart.subTotal() + this.sumFees(),
       shipping,
       taxes,
       ccFeeOffset,
-      email: cart.email,
-      address: cart.address,
-      items: cart.items.map(item => ({
+      email: this.cart.email,
+      address: this.cart.address,
+      items: this.cart.items.map(item => ({
         documentId: item.documentId,
         edition: item.edition,
         quantity: item.quantity,
@@ -72,23 +69,23 @@ export default class CheckoutService {
 
     const { ok, data } = await this.api.authorizePayment(payload);
     if (!ok) {
-      return [data.msg];
+      return data.msg;
     }
 
     this.chargeId = data.chargeId;
     this.orderId = data.orderId;
 
-    return [null];
+    return null;
   }
 
-  public async createPrintJob(cart: Cart): Promise<[null | string]> {
+  public async createPrintJob(): Promise<null | string> {
     const payload = {
       orderId: this.orderId,
       chargeId: this.chargeId,
       shippingLevel: this.shippingLevel,
-      email: cart.email,
-      address: cart.address,
-      items: cart.items.map(i => ({
+      email: this.cart.email,
+      address: this.cart.address,
+      items: this.cart.items.map(i => ({
         title: i.printJobTitle(),
         coverUrl: i.coverPdfUrl,
         interiorUrl: i.interiorPdfUrl,
@@ -100,15 +97,15 @@ export default class CheckoutService {
 
     const { ok, data } = await this.api.createPrintJob(payload);
     if (!ok) {
-      return [data.msg];
+      return data.msg;
     }
 
     this.printJobId = data.printJobId;
 
-    return [null];
+    return null;
   }
 
-  public async verifyPrintJobAccepted(): Promise<[null | string]> {
+  public async verifyPrintJobAccepted(): Promise<null | string> {
     let attempts = 0;
     do {
       this.printJobStatus && (await new Promise(resolve => setTimeout(resolve, 500)));
@@ -119,30 +116,30 @@ export default class CheckoutService {
     } while (this.printJobStatus !== 'accepted' && attempts++ < 60);
 
     if (this.printJobStatus === 'accepted') {
-      return [null];
+      return null;
     }
 
-    return ['print_job_acceptance_verification_timeout'];
+    return 'print_job_acceptance_verification_timeout';
   }
 
-  public async updateOrderPrintJobStatus(): Promise<[null | string]> {
+  public async updateOrderPrintJobStatus(): Promise<null | string> {
     const { ok, data } = await this.api.updateOrder(this.orderId, {
       'print_job.status': this.printJobStatus,
     });
-    return [ok ? null : data.msg];
+    return ok ? null : data.msg;
   }
 
-  public async capturePayment(): Promise<[null | string]> {
+  public async capturePayment(): Promise<null | string> {
     const { ok, data } = await this.api.capturePayment({
       chargeId: this.chargeId,
       orderId: this.orderId,
     });
-    return [ok ? null : data.msg];
+    return ok ? null : data.msg;
   }
 
-  public async sendWakeup(): Promise<[null | string]> {
+  public async sendWakeup(): Promise<null | string> {
     const { ok, data } = await this.api.wakeup();
-    return [ok ? null : data.msg];
+    return ok ? null : data.msg;
   }
 
   private sumFees(): number {

@@ -14,7 +14,7 @@ describe('CheckoutService()', () => {
   const capturePayment = jest.fn();
 
   beforeEach(() => {
-    service = new CheckoutService(({
+    service = new CheckoutService(cartPlusData(), ({
       calculateFees,
       authorizePayment,
       createPrintJob,
@@ -26,14 +26,13 @@ describe('CheckoutService()', () => {
 
   describe('.calculateFees()', () => {
     it('passes correct payload to api', async () => {
-      const cart = cartPlusData();
       calculateFees.mockResolvedValue({ ok: true, data: {} });
 
-      await service.calculateFees(cart);
+      await service.calculateFees();
 
       expect(calculateFees).toHaveBeenCalledWith({
-        address: cart.address,
-        items: cart.items.map(i => ({
+        address: service.cart.address,
+        items: service.cart.items.map(i => ({
           pages: i.numPages,
           printSize: i.printSize,
           quantity: i.quantity,
@@ -52,7 +51,7 @@ describe('CheckoutService()', () => {
         },
       });
 
-      const [err] = await service.calculateFees(cartPlusData());
+      const err = await service.calculateFees();
 
       expect(err).toBeNull();
       expect(service.shippingLevel).toBe('MAIL');
@@ -69,7 +68,7 @@ describe('CheckoutService()', () => {
         data: { msg: 'shipping_not_possible' },
       });
 
-      const [err] = await service.calculateFees(cartPlusData());
+      const err = await service.calculateFees();
 
       expect(err).toBe('shipping_not_possible');
     });
@@ -77,21 +76,20 @@ describe('CheckoutService()', () => {
 
   describe('createOrderAndAuthorizePayment()', () => {
     it('passes correct payload to api', async () => {
-      const cart = cartPlusData();
       service.fees = { shipping: 1, taxes: 0, ccFeeOffset: 1 };
       authorizePayment.mockResolvedValue({ ok: true, data: {} });
 
-      await service.createOrderAndAuthorizePayment(cart, 'tok_visa');
+      await service.createOrderAndAuthorizePayment('tok_visa');
 
       expect(authorizePayment).toHaveBeenCalledWith({
         token: 'tok_visa',
-        amount: cart.subTotal() + 2, // 2 = sum of all fees
+        amount: service.cart.subTotal() + 2, // 2 = sum of all fees
         shipping: 1,
         taxes: 0,
         ccFeeOffset: 1,
-        email: cart.email,
-        address: cart.address,
-        items: cart.items.map(i => ({
+        email: service.cart.email,
+        address: service.cart.address,
+        items: service.cart.items.map(i => ({
           documentId: i.documentId,
           edition: i.edition,
           quantity: i.quantity,
@@ -109,7 +107,7 @@ describe('CheckoutService()', () => {
         },
       });
 
-      const [err] = await service.createOrderAndAuthorizePayment(cartPlusData(), '');
+      const err = await service.createOrderAndAuthorizePayment('');
 
       expect(err).toBeNull();
       expect(service.chargeId).toBe('ch_id');
@@ -122,7 +120,7 @@ describe('CheckoutService()', () => {
         data: { msg: 'error_saving_flp_order' },
       });
 
-      const [err] = await service.createOrderAndAuthorizePayment(cartPlusData(), '');
+      const err = await service.createOrderAndAuthorizePayment('');
 
       expect(err).toBe('error_saving_flp_order');
     });
@@ -130,21 +128,20 @@ describe('CheckoutService()', () => {
 
   describe('createPrintJob()', () => {
     it('passes correct payload to api and sets internal state', async () => {
-      const cart = cartPlusData();
       service.orderId = 'order_id';
       service.chargeId = 'ch_id';
       service.shippingLevel = 'PRIORITY_MAIL';
       createPrintJob.mockResolvedValue({ ok: true, data: { printJobId: 6 } });
 
-      await service.createPrintJob(cart);
+      await service.createPrintJob();
 
       expect(createPrintJob).toHaveBeenCalledWith({
         orderId: 'order_id',
         chargeId: 'ch_id',
         shippingLevel: 'PRIORITY_MAIL',
-        email: cart.email,
-        address: cart.address,
-        items: cart.items.map(i => ({
+        email: service.cart.email,
+        address: service.cart.address,
+        items: service.cart.items.map(i => ({
           title: i.printJobTitle(),
           coverUrl: i.coverPdfUrl,
           interiorUrl: i.interiorPdfUrl,
@@ -167,7 +164,7 @@ describe('CheckoutService()', () => {
     it('should request the status of the print job', async () => {
       getPrintJobStatus.mockResolvedValueOnce(jobStatus('accepted'));
 
-      const [err] = await service.verifyPrintJobAccepted();
+      const err = await service.verifyPrintJobAccepted();
 
       expect(getPrintJobStatus).toHaveBeenCalledWith(55);
       expect(err).toBeNull();
@@ -202,7 +199,7 @@ describe('CheckoutService()', () => {
         await drainPromiseQueue();
         jest.runOnlyPendingTimers();
       }
-      const [err] = await promise;
+      const err = await promise;
       expect(err).toBe('print_job_acceptance_verification_timeout');
     });
   });
@@ -212,7 +209,7 @@ describe('CheckoutService()', () => {
       service.orderId = '123abc';
       service.printJobStatus = 'rejected';
       updateOrder.mockResolvedValueOnce({ ok: true, data: {} });
-      const [err] = await service.updateOrderPrintJobStatus();
+      const err = await service.updateOrderPrintJobStatus();
       expect(updateOrder).toHaveBeenCalledWith('123abc', {
         'print_job.status': 'rejected',
       });
@@ -225,7 +222,7 @@ describe('CheckoutService()', () => {
         ok: false,
         data: { msg: 'error_updating_order' },
       });
-      const [err] = await service.updateOrderPrintJobStatus();
+      const err = await service.updateOrderPrintJobStatus();
       expect(err).toBe('error_updating_order');
     });
   });
@@ -235,7 +232,7 @@ describe('CheckoutService()', () => {
       service.orderId = '123abc';
       service.chargeId = 'ch_123';
       capturePayment.mockResolvedValueOnce({ ok: true, data: {} });
-      const [err] = await service.capturePayment();
+      const err = await service.capturePayment();
       expect(err).toBeNull();
       expect(capturePayment).toHaveBeenCalledWith({
         orderId: '123abc',
@@ -248,7 +245,7 @@ describe('CheckoutService()', () => {
         ok: false,
         data: { msg: 'order_not_found' },
       });
-      const [err] = await service.capturePayment();
+      const err = await service.capturePayment();
       expect(err).toBe('order_not_found');
     });
   });
