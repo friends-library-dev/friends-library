@@ -8,7 +8,7 @@ import { PrintJobStatus } from '../types';
  * (things like orderId, printJobId, chargeId) in order to pass correct
  * values to the various lambdas throughout the sequence. The CheckoutApi
  * is injected as an independent service for easier unit testing and usage
- * in Storybook.
+ * within Storybook.
  */
 export default class CheckoutService {
   public orderId = '';
@@ -34,8 +34,8 @@ export default class CheckoutService {
       })),
     };
 
-    const { statusCode, data } = await this.api.calculateFees(payload);
-    if (statusCode !== 200) {
+    const { ok, data } = await this.api.calculateFees(payload);
+    if (!ok) {
       return [data.msg];
     }
 
@@ -70,8 +70,8 @@ export default class CheckoutService {
       })),
     };
 
-    const { statusCode, data } = await this.api.authorizePayment(payload);
-    if (statusCode !== 201) {
+    const { ok, data } = await this.api.authorizePayment(payload);
+    if (!ok) {
       return [data.msg];
     }
 
@@ -98,8 +98,8 @@ export default class CheckoutService {
       })),
     };
 
-    const { statusCode, data } = await this.api.createPrintJob(payload);
-    if (statusCode !== 201) {
+    const { ok, data } = await this.api.createPrintJob(payload);
+    if (!ok) {
       return [data.msg];
     }
 
@@ -112,8 +112,8 @@ export default class CheckoutService {
     let attempts = 0;
     do {
       this.printJobStatus && (await new Promise(resolve => setTimeout(resolve, 500)));
-      const { statusCode, data } = await this.api.getPrintJobStatus(this.printJobId);
-      if (statusCode === 200) {
+      const { ok, data } = await this.api.getPrintJobStatus(this.printJobId);
+      if (ok) {
         this.printJobStatus = data.status;
       }
     } while (this.printJobStatus !== 'accepted' && attempts++ < 60);
@@ -126,26 +126,26 @@ export default class CheckoutService {
   }
 
   public async updateOrderPrintJobStatus(): Promise<[null | string]> {
-    const { statusCode, data } = await this.api.updateOrder(this.orderId, {
+    const { ok, data } = await this.api.updateOrder(this.orderId, {
       'print_job.status': this.printJobStatus,
     });
-    return [statusCode !== 200 ? data.msg : null];
+    return [ok ? null : data.msg];
   }
 
   public async capturePayment(): Promise<[null | string]> {
-    const { statusCode, data } = await this.api.capturePayment({
+    const { ok, data } = await this.api.capturePayment({
       chargeId: this.chargeId,
       orderId: this.orderId,
     });
-    return [statusCode === 204 ? null : data.msg];
+    return [ok ? null : data.msg];
   }
 
   public async sendWakeup(): Promise<[null | string]> {
-    const { statusCode, data } = await this.api.wakeup();
-    return [statusCode === 204 ? null : data.msg];
+    const { ok, data } = await this.api.wakeup();
+    return [ok ? null : data.msg];
   }
 
-  public sumFees(): number {
+  private sumFees(): number {
     return Object.values(this.fees).reduce((sum, fee) => sum + fee);
   }
 }
