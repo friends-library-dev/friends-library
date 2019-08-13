@@ -6,13 +6,16 @@ import { useEnglish, useSpanish } from './locale';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
 import Button from '../src/Button';
+import WhoWereTheQuakers from '../src/blocks/WhoWereTheQuakers';
 
-storiesOf('Button', module).add('primary + secondary', () => (
-  <>
-    <Button>Primary</Button>
-    <Button secondary>Secondary</Button>
-  </>
-));
+storiesOf('Button', module)
+  .addDecorator(centered)
+  .add('primary + secondary', () => (
+    <>
+      <Button className="mb-6 bg-flblue">Find out more</Button>
+      <Button className="bg-flmaroon">Secondary</Button>
+    </>
+  ));
 
 storiesOf('Nav (en)', module)
   .addDecorator(useEnglish)
@@ -48,6 +51,8 @@ storiesOf('Search', module)
   .add('with text', () => (
     <Search value="William Penn" expanded={true} {...searchActions} />
   ));
+
+storiesOf('Blocks', module).add('Who Were Quakers?', () => <WhoWereTheQuakers />);
 
 const searchActions = {
   onClick: a('click'),

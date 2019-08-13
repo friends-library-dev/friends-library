@@ -1,0 +1,14 @@
+.Headline {
+  margin-bottom: 3rem;
+}
+
+.Headline::after {
+  content: '';
+  display: block;
+  margin-top: 2rem;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 2px;
+  background: white;
+}

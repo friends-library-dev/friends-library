@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React, { useEffect, useState, useRef } from 'react';
 import { jsx, css } from '@emotion/core';
-import Input from './Input';
 import Button from '../Button';
 
 interface Props {
@@ -33,7 +32,7 @@ const CollectCreditCard: React.FC<Props> = ({ onPay }) => {
         }
       `}
     >
-      <h1 style={{ marginTop: 0 }}>Enter Card Details</h1>
+      <h1 className="text-2xl mb-5 uppercase">Enter Card Details</h1>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -44,7 +43,8 @@ const CollectCreditCard: React.FC<Props> = ({ onPay }) => {
         }}
       >
         <label>Card number:</label>
-        <Input
+        <input
+          className="input"
           ref={ccInput}
           type="tel"
           autoComplete="cc-number"
@@ -53,7 +53,8 @@ const CollectCreditCard: React.FC<Props> = ({ onPay }) => {
           placeholder="Card Number"
         />
         <label>Valid thru:</label>
-        <Input
+        <input
+          className="input"
           type="tel"
           autoComplete="cc-exp"
           onChange={e => setExpiration(e.target.value)}
@@ -61,14 +62,17 @@ const CollectCreditCard: React.FC<Props> = ({ onPay }) => {
           placeholder="MM-YYYY"
         />
         <label>CCV:</label>
-        <Input
+        <input
+          className="input"
           type="tel"
           autoComplete="cc-csc"
           onChange={e => setCcv(e.target.value)}
           value={ccv}
           placeholder="123"
         />
-        <Button disabled={!isFilledOut}>Pay with card</Button>
+        <Button className="bg-flblue mt-6" disabled={!isFilledOut}>
+          Pay with card
+        </Button>
       </form>
     </div>
   );

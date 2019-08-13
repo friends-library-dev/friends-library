@@ -22,7 +22,7 @@ const CartComponent: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <h1>
+      <h1 className="text-2xl mb-5 uppercase">
         Your Cart <sup>({items.length})</sup>
       </h1>
       {items.map((item, index) => (
@@ -57,8 +57,10 @@ const CartComponent: React.FC<Props> = ({
           <input style={{ width: 70 }} type="text" />
         </SubLine>
       </div>
-      <Button onClick={checkout}>Checkout &rarr;</Button>
-      <Button secondary onClick={close}>
+      <Button className="bg-flblue mb-5" onClick={checkout}>
+        Checkout &rarr;
+      </Button>
+      <Button className="bg-gray-300 text-gray-800" onClick={close}>
         Close
       </Button>
     </div>
@@ -73,9 +75,8 @@ export const SubLine: React.FC<{ label: string; className?: string }> = ({
   className,
 }) => (
   <div
-    {...(className ? { className } : {})}
+    className={`${className || ''} text-gray-700 text-sm`}
     css={css`
-      color: #333;
       padding: 1px 0;
       display: flex;
       &.just-determined {

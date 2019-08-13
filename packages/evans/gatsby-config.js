@@ -40,6 +40,14 @@ module.exports = {
     'gatsby-plugin-remove-serviceworker',
 
     'gatsby-plugin-typescript',
+    'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-google-fonts',
+      options: {
+        fonts: ['cabin'],
+        display: 'swap',
+      },
+    },
   ],
 
   // for avoiding CORS while developing Netlify Functions locally

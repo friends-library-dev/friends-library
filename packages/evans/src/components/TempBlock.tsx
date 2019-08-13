@@ -20,7 +20,11 @@ const TempBlock: React.FC<Props> = ({ children, alt }) => {
     }
   `;
 
-  return <Block css={element}>{children}</Block>;
+  return (
+    <Block className="font-serif" css={element}>
+      {children}
+    </Block>
+  );
 };
 
 TempBlock.defaultProps = {

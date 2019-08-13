@@ -22,7 +22,8 @@
     "emotion-theming": "^10.0.14",
     "gatsby-link": "^2.2.2",
     "react": "^16.8.6",
-    "react-country-region-selector": "^1.4.3"
+    "react-country-region-selector": "^1.4.3",
+    "tailwindcss": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -38,6 +39,7 @@
     "@types/storybook__addon-centered": "^3.4.1",
     "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
-    "babel-loader": "^8.0.6"
+    "babel-loader": "^8.0.6",
+    "file-loader": "^4.2.0"
   }
 }

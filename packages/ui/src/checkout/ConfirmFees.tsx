@@ -20,7 +20,7 @@ const ConfirmFees: React.FC<Props> = ({
   ccFeeOffset,
 }) => (
   <div>
-    <h1 style={{ marginTop: 0 }}>
+    <h1 className="text-2xl mb-5 uppercase">
       Grand Total:{' '}
       <code>${((subTotal + shipping + taxes + ccFeeOffset) / 100).toFixed(2)}</code>
     </h1>
@@ -48,8 +48,10 @@ const ConfirmFees: React.FC<Props> = ({
       </code>
     </SubLine>
 
-    <Button onClick={onConfirm}>Continue &rarr;</Button>
-    <Button secondary onClick={onBackToCart}>
+    <Button className="bg-flblue mt-6 mb-3" onClick={onConfirm}>
+      Continue &rarr;
+    </Button>
+    <Button className="bg-gray-300 text-gray-900" secondary onClick={onBackToCart}>
       &larr; Back to Cart
     </Button>
   </div>

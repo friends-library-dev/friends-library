@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '../Button';
-import Input from './Input';
 
 const validEmail = /\S+@\S+\.\S+/;
 
@@ -17,7 +16,7 @@ const CostExplanation: React.FC<{
   });
   return (
     <div>
-      <h1 style={{ marginTop: 0 }}>Enter Your Email</h1>
+      <h1 className="text-2xl mb-5 uppercase">Enter Your Email</h1>
       <p>
         Your email address is how we will contact you with your shipment tracking number
         or in case of any problem.
@@ -28,7 +27,8 @@ const CostExplanation: React.FC<{
           validEmail.test(email) && onSubmit(email);
         }}
       >
-        <Input
+        <input
+          className="input mt-3 mb-6"
           ref={input}
           type="email"
           autoComplete="email"
@@ -36,7 +36,9 @@ const CostExplanation: React.FC<{
           value={email}
           placeholder="you@email.com"
         />
-        <Button disabled={!validEmail.test(email)}>Next &rarr;</Button>
+        <Button className="bg-flblue" disabled={!validEmail.test(email)}>
+          Next &rarr;
+        </Button>
       </form>
     </div>
   );
