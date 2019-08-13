@@ -14,11 +14,7 @@ const UnstyledButton: React.FC<Props> = ({ children, onClick, className, type })
     {...(onClick ? { onClick } : {})}
     className={className || ''}
     css={css`
-      background: none;
       border: 0;
-      color: inherit;
-      font-family: inherit;
-      text-align: inherit;
       overflow: visible;
       padding: 0;
       cursor: pointer;

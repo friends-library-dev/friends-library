@@ -3,7 +3,7 @@ import { Global, css } from '@emotion/core';
 import { styled } from '@friends-library/ui';
 import Helmet from 'react-helmet';
 import { ThemeProvider } from 'emotion-theming';
-import { Nav, enTheme, esTheme } from '@friends-library/ui';
+import { Nav, enTheme, esTheme, Tailwind } from '@friends-library/ui';
 import Slideover from './Slideover';
 import Footer from './Footer';
 import './Layout.css';
@@ -26,6 +26,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   const theme = process.env.GATSBY_LANG === 'en' ? enTheme : esTheme;
   return (
     <Fragment>
+      <Tailwind />
       <Global
         styles={css`
           & a {

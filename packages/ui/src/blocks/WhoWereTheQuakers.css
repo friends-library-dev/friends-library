@@ -1,0 +1,8 @@
+.Block-quakers {
+  background: linear-gradient(
+      rgba(theme('rgb.flmaroon'), 0.85),
+      rgba(theme('rgb.flmaroon'), 0.85)
+    ),
+    url(../images/london.jpg);
+  background-size: cover;
+}

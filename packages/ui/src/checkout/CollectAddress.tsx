@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '../Button';
-import Input from './Input';
 import { Address } from './types';
 
 // @ts-ignore
@@ -28,7 +27,7 @@ const CollectAddress: React.FC<{
 
   return (
     <div style={{}}>
-      <h1 style={{ marginTop: 0 }}>Shipping Address</h1>
+      <h1 className="text-2xl mb-5 uppercase">Shipping Address</h1>
       <form
         onSubmit={e => {
           e.preventDefault();
@@ -45,49 +44,57 @@ const CollectAddress: React.FC<{
           }
         }}
       >
-        <Input
+        <input
+          className="input mb-2"
           ref={nameRef}
           type="text"
           onChange={e => setName(e.target.value)}
           value={name}
           placeholder="Full name"
         />
-        <Input
+        <input
+          className="input mb-2"
           type="text"
           onChange={e => setStreet(e.target.value)}
           value={street}
           placeholder="Street address, P.O. box, c/o"
         />
-        <Input
+        <input
+          className="input mb-2"
           type="text"
           onChange={e => setStreet2(e.target.value)}
           value={street2}
           placeholder="Apartment, suite, unit, etc."
         />
-        <Input
+        <input
+          className="input mb-2"
           type="text"
           onChange={e => setCity(e.target.value)}
           value={city}
           placeholder="City"
         />
-        <Input
+        <input
+          className="input mb-2"
           type="text"
           onChange={e => setState(e.target.value)}
           value={state}
           placeholder="State / Province / Region"
         />
-        <Input
+        <input
+          className="input mb-2"
           type="text"
           onChange={e => setZip(e.target.value)}
           value={zip}
           placeholder="ZIP / Postal Code"
         />
         <CountryDropdown
+          className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-6"
           value={country}
           onChange={(country: string) => setCountry(country)}
-          style={{ fontSize: '13.7px', padding: '5px', margin: '8px 0' }}
         />
-        <Button disabled={!filledOutCompletely}>Next &rarr;</Button>
+        <Button className="bg-flblue" disabled={!filledOutCompletely}>
+          Next &rarr;
+        </Button>
       </form>
     </div>
   );

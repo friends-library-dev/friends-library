@@ -8,29 +8,30 @@ interface Props {
   type?: 'submit' | 'reset' | 'button';
   secondary?: boolean;
   disabled?: boolean;
+  className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const StyledButton = styled(UnstyledButton)<{ secondary?: boolean; disabled?: boolean }>`
-  opacity: ${p => (p.disabled ? '0.2' : 1)};
+  opacity: ${p => (p.disabled ? '0.3' : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
-  background: ${p => (p.secondary ? '#eee' : p.theme.primary.hex)};
-  display: block;
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 1em;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: 200;
-  letter-spacing: 1px;
-  border-radius: 10px;
-  color: ${p => (p.secondary ? p.theme.primary.hex : 'white')};
-  margin: 12px 0;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  height: 70px;
 `;
 
-const Button: React.FC<Props> = ({ children, secondary, onClick, disabled, type }) => (
+const Button: React.FC<Props> = ({
+  children,
+  secondary,
+  onClick,
+  disabled,
+  type,
+  className,
+}) => (
   <StyledButton
+    className={`${
+      className ? `${className} ` : ''
+    }block rounded-full font-sans text-center uppercase tracking-wider text-white`}
     type={type || 'submit'}
     {...(onClick && !disabled ? { onClick } : {})}
     {...(secondary ? { secondary } : {})}

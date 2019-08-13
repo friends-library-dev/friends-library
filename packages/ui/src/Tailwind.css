@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+
+.input {
+  @apply block bg-white border border-gray-300 rounded-lg px-4 py-2 block w-full appearance-none leading-normal text-xl;
+}
+
+.input:focus {
+  @apply outline-none shadow-outline;
+}
+
+.input::placeholder {
+  @apply text-gray-500;
+}
+
+@tailwind utilities;

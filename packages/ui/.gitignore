@@ -1,3 +1,4 @@
 dist
 storybook-static
 **/*.d.ts
+!src/globals.d.ts

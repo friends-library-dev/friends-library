@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import HeroBlock from '../components/HeroBlock';
 import TempBlock from '../components/TempBlock';
 import Button from '../components/Button';
+import { WhoWereTheQuakers } from '@friends-library/ui';
 
 const featured = css`
   background: #eaeaea;
@@ -67,18 +68,7 @@ export default () => (
       </p>
       <Button url="/getting-started" text="Getting Started &raquo;" />
     </TempBlock>
-    <TempBlock alt>
-      <h1>Who were the Quakers?</h1>
-      <p>
-        The early Quakers arose in the mid 1600's in England. Dissatisfied with lifeless
-        religion, outward forms and ceremonies; they set about to return to the simple
-        purity of New Testament Christianity. They came to see that the same Jesus Christ
-        who died on the cross for our sins also appears by his spirit in our hearts, and
-        that, when yielded to, this heavenly light and grace becomes our salvation as it
-        purifies and truly changes us from within.{' '}
-        <Link to="/quakers">Find out more &raquo;</Link>
-      </p>
-    </TempBlock>
+    <WhoWereTheQuakers />
     <TempBlock>
       <h1>Formats and Editions</h1>
       <p>
