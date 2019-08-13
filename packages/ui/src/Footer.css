@@ -1,0 +1,19 @@
+.Footer {
+  background: linear-gradient(
+      rgba(theme('rgb.flmaroon'), 0.925),
+      rgba(theme('rgb.flmaroon'), 0.925)
+    ),
+    url(./images/mountains.jpg);
+  background-size: cover;
+  background-position: 0 40%;
+}
+
+.Footer dt::before {
+  content: '[';
+  @apply pr-2 opacity-50;
+}
+
+.Footer dt::after {
+  content: ']';
+  @apply pl-2 opacity-50;
+}
