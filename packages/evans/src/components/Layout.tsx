@@ -1,11 +1,9 @@
 import React, { useState, Fragment } from 'react';
-import { Global, css } from '@emotion/core';
 import { styled } from '@friends-library/ui';
 import Helmet from 'react-helmet';
 import { ThemeProvider } from 'emotion-theming';
-import { Nav, enTheme, esTheme, Tailwind } from '@friends-library/ui';
+import { Nav, enTheme, esTheme, Tailwind, Footer } from '@friends-library/ui';
 import Slideover from './Slideover';
-import Footer from './Footer';
 import './Layout.css';
 
 const Content = styled.div`
@@ -27,16 +25,6 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Fragment>
       <Tailwind />
-      <Global
-        styles={css`
-          & a {
-            color: ${theme.primary.hex};
-          }
-          & a:hover {
-            border-bottom-color: ${theme.primary.hex};
-          }
-        `}
-      />
       <Helmet>
         <html lang={theme.lang} />
         <title>Friends Library</title>
