@@ -1,35 +1,38 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
+const LANG = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
+const maroonRgb = '108, 49, 66';
+const goldRgb = '193, 140, 89';
+const blackRgb = '45, 42, 41';
+const grayRgb = '107, 108, 108';
+const blueRgb = '95, 140, 158';
+const greenRgb = '157, 157, 128';
+
 module.exports = {
   theme: {
     rgb: {
-      flmaroon: '108, 49, 66',
+      flprimary: LANG === 'en' ? maroonRgb : goldRgb,
+      flmaroon: maroonRgb,
+      flgold: goldRgb,
+      flblack: blackRgb,
+      flgray: grayRgb,
+      flblue: blueRgb,
+      flgreen: greenRgb,
     },
     fontFamily: {
-      sans: [
-        'Cabin',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        '"Noto Sans"',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-        '"Noto Color Emoji"',
-      ],
-      serif: ['Baskerville', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+      sans: ['Cabin'].concat(fontFamily.sans),
+      serif: ['Baskerville'].concat(fontFamily.serif),
       mono: fontFamily.mono,
     },
     extend: {
       colors: {
-        flgold: '#C18C59',
-        flmaroon: '#6C3142',
-        flblue: '#628C9D',
-        flgreen: '#9D9D80',
+        flprimary: `rgb(${LANG === 'en' ? maroonRgb : goldRgb})`,
+        flgold: `rgb(${goldRgb})`,
+        flmaroon: `rgb(${maroonRgb})`,
+        flblue: `rgb(${blueRgb})`,
+        flgreen: `rgb(${greenRgb})`,
+        flgray: `rgb(${grayRgb})`,
+        flblack: `rgb(${blackRgb})`,
       },
     },
   },
