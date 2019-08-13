@@ -13,6 +13,53 @@ description:
   Ellwood in 1694, and later divided into chapters, and supplied with numerous historical
   and biographical notes by William Armistead in 1852.
 documents:
+  - id: dcf39e10-9eaf-4878-98de-380b531fc2ee
+    title: Selection from the Journal of George Fox
+    slug: journal-selection
+    filename: Selection_Journal_of_George_Fox
+    description:
+      George Fox (1624-1691) is generally considered the founder of the Society of Friends
+      (Quakers). As a young man, Fox could find no rest in the lifeless, outward
+      Christianity of his day, seeing clearly that most believers professed far more than
+      they tuly possessed. This journal tells the story of his desperate search for the
+      Truth, his dicovery of a Christianity that stands in the life and light of Jesus
+      Christ, and the ensuing fifty years of powerful ministry that turned the world
+      upside down. This excerpt contains only the first three chapters of Fox's journal,
+      which focus on his early years, spiritual growth, and call to the ministry.
+    tags:
+      - journal
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        pages: 54
+        formats:
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: Part 1
+              external_id_hq: 663080018
+              external_id_lq: 663080159
+              filesize_hq: 58371011
+              filesize_lq: 58371011
+              seconds: 3149
+              chapters:
+                - 0
+            - title: Part 2
+              external_id_hq: 663080963
+              external_id_lq: 663081023
+              filesize_hq: 58961520
+              filesize_lq: 58961520
+              seconds: 3215
+              chapters:
+                - 1
+        chapters:
+          - title: Selection from the Journal of George Fox
+
   - id: e5a1ecfb-4f0a-4c71-80bf-3ee924d0f46c
     title: The Journal of George Fox
     slug: journal

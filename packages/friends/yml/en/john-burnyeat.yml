@@ -39,8 +39,21 @@ documents:
           - type: pdf
           - type: epub
           - type: mobi
+          - type: audio
+        audio:
+          reader: Jason R. Henderson
+          parts:
+            - title: Selection from the Journal of John Burnyeat
+              external_id_hq: 277873585
+              external_id_lq: 277873611
+              filesize_hq: 64074294
+              filesize_lq: 21090894
+              seconds: 3515
+              chapters:
+                - 0
         chapters:
           - title: The Journal of John Burnyeat
+
   - id: 2bb79cd9-88c3-4801-ae66-ac70970c97bc
     title: The Journal and Letters of John Burnyeat
     slug: journal-letters

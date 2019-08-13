@@ -10,6 +10,45 @@ description:
   the cross, and came to be a pillar and elder in the church of God, constantly laboring
   for the advancement of Truth and the welfare of the Society.
 documents:
+  - id: 1003add3-09be-4deb-8476-8a2be7c34405
+    title: Selection from the Journal of George Whitehead
+    slug: journal-selection
+    filename: Selection_Journal_of_George_Whitehead
+    description:
+      George Whitehead (1636-1723) was one of the most well-known and influential
+      ministers among the early Quakers. He was convinced of the Truth when only 17 years
+      old, and through faithfulness grew quickly in the life and power of the gospel.
+      Though publicly whipped, imprisoned multiple times, frequently abused and
+      persecuted, he kept close to the cross, and came to be a pillar and elder in the
+      church of God, constantly laboring for the advancement of Truth and the welfare of
+      the Society.
+    tags:
+      - journal
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        pages: 37
+        formats:
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: Selection from the Journal of George Whitehead
+              external_id_hq: 550690464
+              external_id_lq: 550690539
+              filesize_hq: 87176033
+              filesize_lq: 19392825
+              seconds: 4848
+              chapters:
+                - 0
+
+        chapters:
+          - title: Selection from the Journal of George Whitehead
+
   - id: eca687be-9a29-49d3-8394-2ed21b85f9a3
     title: The Christian Progress of George Whitehead
     published: 1725

@@ -42,6 +42,35 @@ documents:
           - type: pdf
           - type: epub
           - type: mobi
+          - type: audio
+        audio:
+          reader: Jason R. Henderson
+          parts:
+            - title: Part 1
+              external_id_hq: 613633581
+              external_id_lq: 613633605
+              filesize_hq: 53494728
+              filesize_lq: 14267646
+              seconds: 2853
+              chapters:
+                - 0
+            - title: Part 2
+              external_id_hq: 613632639
+              external_id_lq: 613632663
+              filesize_hq: 39594969
+              filesize_lq: 10955406
+              seconds: 2191
+              chapters:
+                - 1
+            - title: Part 3
+              external_id_hq: 622219650
+              external_id_lq: 622219674
+              filesize_hq: 42619978
+              filesize_lq: 11094246
+              seconds: 2219
+              chapters:
+                - 2
+
         chapters:
           - title: To the Reader
           - title: Walk in the Spirit
