@@ -14,8 +14,8 @@ const StyledNav = styled('nav')`
   justify-content: space-between;
   background: white;
   border-bottom: 1px solid #eaeaea;
-  height: 90px;
-  padding: 0 25px;
+  height: 80px;
+  padding: 0 25px 0 0;
 
   & > * {
     margin: auto 0;
