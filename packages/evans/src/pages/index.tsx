@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { css } from '@emotion/core';
 import Layout from '../components/Layout';
 import TempBlock from '../components/TempBlock';
 import {
@@ -9,62 +8,14 @@ import {
   SubHero,
   GettingStarted,
   ExploreBooks,
+  FeaturedBooks,
 } from '@friends-library/ui';
-
-const featured = css`
-  background: #eaeaea;
-  padding: 1px 0.6em 0.5em 0.6em;
-  margin-bottom: 1em;
-  border-radius: 5px;
-
-  > h2 {
-    font-size: 16px;
-    font-style: italic;
-    text-align: center;
-    margin: 10px 0 0;
-  }
-
-  > p {
-    line-height: 1.3em;
-    font-size: 0.9em;
-    margin-top: 10px;
-  }
-`;
 
 export default () => (
   <Layout>
     <Hero />
     <SubHero />
-    <TempBlock alt>
-      <h1>Featured Books</h1>
-      <div css={featured}>
-        <h2>Truth in the Inward Parts</h2>
-        <p>
-          This book is a collection of autobigraphical extracts taken from the journals
-          and letters of ten early Quakers detailing the struggles, spiritual growth, and
-          inward transformation of the early years of their discipleship.{' '}
-          <Link to="/">Read now &raquo;</Link>
-        </p>
-      </div>
-      <div css={featured}>
-        <h2>Penington's Writings, volume 1</h2>
-        <p>
-          Isaac Penington was an eminent writer a great sufferer for the cause of truth in
-          his day. His writings have been justly treasured by for their incredible depth,
-          wisdom, and usefulness to the Christian traveller.{' '}
-          <Link to="/isaac-penington/writings-volume-1">Read now &raquo;</Link>
-        </p>
-      </div>
-      <div css={featured}>
-        <h2>Saved to the Uttermost</h2>
-        <p>
-          This book contains a wonderfully clear presentation of some of the distinctive
-          principles and doctrines of the Society of Friends, including the fall of man,
-          redemption, justification, and perfection.{' '}
-          <Link to="/robert-barclay/saved-to-the-uttermost">Read now &raquo;</Link>
-        </p>
-      </div>
-    </TempBlock>
+    <FeaturedBooks />
     <GettingStarted />
     <WhoWereTheQuakers />
     <TempBlock>

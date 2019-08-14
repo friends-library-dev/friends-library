@@ -5,9 +5,17 @@
 }
 
 .Subhero .Devices {
-  height: 65vmin;
+  width: 45vw;
   top: -15%;
   right: -5%;
+}
+
+@screen lg {
+  .Subhero .Devices {
+    width: 35vw;
+    top: -15%;
+    right: -5%;
+  }
 }
 
 .Subhero .iPhone {

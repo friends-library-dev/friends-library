@@ -4,14 +4,14 @@ import Devices from '../images/device-array.png';
 import Cover from '../images/cover.jpg';
 import iPhone from '../images/iphone.png';
 import iPad from '../images/ipad.png';
-import './Subhero.css';
+import './SubHero.css';
 
 const SubHero: React.FC = () => (
   <section className="Subhero bg-flprimary p-10 pb-48 relative overflow-hidden md:px-20 lg:px-24 md:pt-20 md:pb-2 md:overflow-visible xl:py-20">
     <img
       className="Devices absolute right-0 top-0 hidden md:block"
       src={Devices}
-      alt="photo of Friends Library books on various devices"
+      alt="Friends Library books on various devices"
     />
     <Heading darkBg className="text-white md:hidden">
       Our Books
