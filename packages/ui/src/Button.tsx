@@ -1,5 +1,6 @@
 /** @jsx jsx  */
 import React from 'react';
+import cx from 'classnames';
 import { jsx } from '@emotion/core';
 import { styled } from '@friends-library/ui';
 import UnstyledButton from './UnstyledButton';
@@ -29,9 +30,10 @@ const Button: React.FC<Props> = ({
   className,
 }) => (
   <StyledButton
-    className={`${
-      className ? `${className} ` : ''
-    }block rounded-full font-sans text-center uppercase tracking-wider text-white`}
+    className={cx(
+      className,
+      'block rounded-full font-sans text-center uppercase tracking-wider text-white focus:outline-none focus:shadow-outline',
+    )}
     type={type || 'submit'}
     {...(onClick && !disabled ? { onClick } : {})}
     {...(secondary ? { secondary } : {})}

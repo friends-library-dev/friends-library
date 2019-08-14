@@ -3,13 +3,9 @@
       rgba(theme('rgb.flblack'), 0.75),
       rgba(theme('rgb.flblack'), 0.75)
     ),
-    url(./images/tree-roots.jpg);
+    url(../images/tree-roots.jpg);
   background-size: cover;
   background-position: 50% 50%;
-}
-
-.Hero p {
-  -webkit-font-smoothing: antialiased;
 }
 
 @screen md {
@@ -21,7 +17,7 @@
         rgba(theme('rgb.flprimary'), 0.7),
         rgba(theme('rgb.flprimary'), 0.7)
       ),
-      url(./images/tree-roots.jpg);
+      url(../images/tree-roots.jpg);
     background-size: cover;
     background-position: 50% 50%;
   }
