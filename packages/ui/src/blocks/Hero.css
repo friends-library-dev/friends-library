@@ -14,8 +14,8 @@
   }
   .Hero__bg {
     background: linear-gradient(
-        rgba(theme('rgb.flprimary'), 0.7),
-        rgba(theme('rgb.flprimary'), 0.7)
+        rgba(theme('rgb.flprimary'), 0.5),
+        rgba(theme('rgb.flprimary'), 0.5)
       ),
       url(../images/tree-roots.jpg);
     background-size: cover;

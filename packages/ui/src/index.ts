@@ -6,6 +6,7 @@ export { default as WhoWereTheQuakers } from './blocks/WhoWereTheQuakers';
 export { default as Footer } from './Footer';
 export { default as Hero } from './blocks/Hero';
 export { default as SubHero } from './blocks/SubHero';
+export { default as ExploreBooks } from './blocks/ExploreBooks';
 export { default as GettingStarted } from './blocks/GettingStarted';
 export { t, useLocale } from './translation';
 export { enTheme, esTheme };
