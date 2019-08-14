@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import Layout from '../components/Layout';
 import TempBlock from '../components/TempBlock';
 import Button from '../components/Button';
-import { WhoWereTheQuakers, Hero } from '@friends-library/ui';
+import { WhoWereTheQuakers, Hero, SubHero, GettingStarted } from '@friends-library/ui';
 
 const featured = css`
   background: #eaeaea;
@@ -29,6 +29,7 @@ const featured = css`
 export default () => (
   <Layout>
     <Hero />
+    <SubHero />
     <TempBlock alt>
       <h1>Featured Books</h1>
       <div css={featured}>
@@ -59,14 +60,7 @@ export default () => (
         </p>
       </div>
     </TempBlock>
-    <TempBlock>
-      <h1>Getting Started</h1>
-      <p>
-        Not sure where to begin? We've got a bunch recommendations adapted to various
-        states and interests to help guide you.
-      </p>
-      <Button url="/getting-started" text="Getting Started &raquo;" />
-    </TempBlock>
+    <GettingStarted />
     <WhoWereTheQuakers />
     <TempBlock>
       <h1>Formats and Editions</h1>

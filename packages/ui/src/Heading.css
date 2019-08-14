@@ -10,5 +10,37 @@
   margin-left: auto;
   margin-right: auto;
   height: 2px;
+  @apply bg-gray-900;
+}
+
+.Heading--darkbg::after {
   background: white;
+}
+
+.Heading--left::after {
+  margin-left: 0;
+}
+
+@screen sm {
+  .Heading--sm-left::after {
+    margin-left: 0;
+  }
+}
+
+@screen md {
+  .Heading--md-left::after {
+    margin-left: 0;
+  }
+}
+
+@screen lg {
+  .Heading--lg-left::after {
+    margin-left: 0;
+  }
+}
+
+@screen xl {
+  .Heading--xl-left::after {
+    margin-left: 0;
+  }
 }

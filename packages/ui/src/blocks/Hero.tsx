@@ -7,7 +7,7 @@ const Hero: React.FC = () => (
       <h1 className="font-sans text-3xl mb-8 md:mb-6 font-bold tracking-wider">
         Dedicated to the preservation and free distribution of early Quaker writings
       </h1>
-      <p className="font-serif text-xl md:text-gray-800 leading-relaxed font">
+      <p className="font-serif text-xl md:text-gray-800 leading-relaxed antialiased">
         This website exists to freely share the writings of early members of the Religious
         Society of Friends (Quakers), believing that no other collection of Christian
         writings more accurately communicates or powerfully illustrates the

@@ -7,7 +7,7 @@ import Nav from '../src/Nav';
 import Search from '../src/Search';
 import Button from '../src/Button';
 import Hamburger from '../src/Hamburger';
-import Hero from '../src/Hero';
+import Hero from '../src/blocks/Hero';
 import Footer from '../src/Footer';
 import WhoWereTheQuakers from '../src/blocks/WhoWereTheQuakers';
 
