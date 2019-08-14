@@ -1,0 +1,17 @@
+.FeaturedBooks {
+  background: #f9f9f9 url(../images/woodgrain.svg) repeat;
+  background-size: 500%;
+  background-position: center center;
+}
+
+@screen md {
+  .FeaturedBooks {
+    background-size: 200%;
+  }
+}
+
+@screen lg {
+  .FeaturedBooks {
+    background-size: 150%;
+  }
+}

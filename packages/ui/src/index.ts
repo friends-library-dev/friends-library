@@ -8,6 +8,7 @@ export { default as Hero } from './blocks/Hero';
 export { default as SubHero } from './blocks/SubHero';
 export { default as ExploreBooks } from './blocks/ExploreBooks';
 export { default as GettingStarted } from './blocks/GettingStarted';
+export { default as FeaturedBooks } from './blocks/FeaturedBooks';
 export { t, useLocale } from './translation';
 export { enTheme, esTheme };
 export type Theme = typeof enTheme;
