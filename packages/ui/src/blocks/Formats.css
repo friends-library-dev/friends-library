@@ -1,0 +1,14 @@
+.Formats .Books {
+  transform: scale(1.2);
+  right: -250px;
+  top: -100px;
+  position: absolute;
+}
+
+@screen lg {
+  .Formats .Books {
+    transform: scale(0.75);
+    top: -260px;
+    right: -350px;
+  }
+}
