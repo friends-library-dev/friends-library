@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { css } from '@emotion/core';
 import Layout from '../components/Layout';
-import HeroBlock from '../components/HeroBlock';
 import TempBlock from '../components/TempBlock';
 import Button from '../components/Button';
-import { WhoWereTheQuakers } from '@friends-library/ui';
+import { WhoWereTheQuakers, Hero } from '@friends-library/ui';
 
 const featured = css`
   background: #eaeaea;
@@ -29,7 +28,7 @@ const featured = css`
 
 export default () => (
   <Layout>
-    <HeroBlock />
+    <Hero />
     <TempBlock alt>
       <h1>Featured Books</h1>
       <div css={featured}>

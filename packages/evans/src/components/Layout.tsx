@@ -7,7 +7,7 @@ import Slideover from './Slideover';
 import './Layout.css';
 
 const Content = styled.div`
-  padding-top: 90px;
+  padding-top: 80px;
   position: relative;
   background: #fff;
   min-height: 100vh;
