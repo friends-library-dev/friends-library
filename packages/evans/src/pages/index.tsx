@@ -3,8 +3,13 @@ import { Link } from 'gatsby';
 import { css } from '@emotion/core';
 import Layout from '../components/Layout';
 import TempBlock from '../components/TempBlock';
-import Button from '../components/Button';
-import { WhoWereTheQuakers, Hero, SubHero, GettingStarted } from '@friends-library/ui';
+import {
+  WhoWereTheQuakers,
+  Hero,
+  SubHero,
+  GettingStarted,
+  ExploreBooks,
+} from '@friends-library/ui';
 
 const featured = css`
   background: #eaeaea;
@@ -79,13 +84,6 @@ export default () => (
         For more info on modernization, <Link to="/modernization">click here</Link>.
       </p>
     </TempBlock>
-    <TempBlock alt>
-      <h1>Explore Books</h1>
-      <p>
-        We currently have 113 books freely availble on this site. We'll help you find what
-        you're looking for by searching, browsing authors, topics, genres, and more.
-      </p>
-      <Button url="/explore" text="Explore Books &raquo;" />
-    </TempBlock>
+    <ExploreBooks />
   </Layout>
 );
