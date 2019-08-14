@@ -6,10 +6,15 @@ import { useEnglish, useSpanish } from './locale';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
 import Button from '../src/Button';
+import Hamburger from '../src/Hamburger';
 import Footer from '../src/Footer';
 import WhoWereTheQuakers from '../src/blocks/WhoWereTheQuakers';
 
 storiesOf('Footer', module).add('default', () => <Footer />);
+
+storiesOf('Hamburger', module)
+  .addDecorator(centered)
+  .add('default', () => <Hamburger menuOpen={false} onClick={a('hamburger-clicked')} />);
 
 storiesOf('Button', module)
   .addDecorator(centered)
