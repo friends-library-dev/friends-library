@@ -46,7 +46,7 @@ content-type: application/json
 {
   "token": "tok_visa",
   "amount": 1632,
-  "email": "user@example.com",
+  "email": "jared@netrivet.com",
   "items": [{
     "documentId": "6b0e134d-8d2e-48bc-8fa3-e8fc79793804",
     "edition": "modernized",
@@ -117,6 +117,9 @@ content-type: application/json
 
 ###
 
+POST {{base}}/order/{{orderId}}/confirmation-email HTTP/1.1
+
+###
 @base = http://localhost:2345/.netlify/functions/site
 @chargeId = {{authorizePayment.response.body.$.chargeId}}
 @orderId = {{authorizePayment.response.body.$.orderId}}
