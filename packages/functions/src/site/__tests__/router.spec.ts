@@ -1,8 +1,10 @@
 import router from '../router';
 import { invokeCb } from './invoke';
 import printJobStatus from '../print-job-status';
+import sendOrderConfirmationEmail from '../order-send-confirmation-email';
 
 jest.mock('../print-job-status');
+jest.mock('../order-send-confirmation-email');
 
 describe('site fn', () => {
   it('returns 200 from `wakeup` request', async () => {
@@ -45,6 +47,17 @@ describe('site fn', () => {
     (<jest.Mock>printJobStatus).mockImplementation((_, respond) => respond.noContent());
     await invokeCb(router, { path: '/site/print-job/123/status' });
     expect(printJobStatus).toHaveBeenCalled();
+  });
+
+  it('good print job status url handled', async () => {
+    (<jest.Mock>sendOrderConfirmationEmail).mockImplementation((_, respond) =>
+      respond.noContent(),
+    );
+    await invokeCb(router, {
+      path: '/site/order/123/confirmation-email',
+      httpMethod: 'POST',
+    });
+    expect(sendOrderConfirmationEmail).toHaveBeenCalled();
   });
 
   it('returns redirect from `web/download` path', async () => {

@@ -15,6 +15,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@friends-library/client": "1.0.0",
     "@friends-library/types": "1.0.0",
+    "@sendgrid/mail": "^6.4.0",
     "bufferutil": "^4.0.1",
     "client-oauth2": "^4.2.5",
     "express-useragent": "^1.0.12",
