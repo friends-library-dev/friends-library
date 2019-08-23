@@ -49,12 +49,12 @@ describe('site fn', () => {
     expect(printJobStatus).toHaveBeenCalled();
   });
 
-  it('good print job status url handled', async () => {
+  it('good send confirmation email request handled correctly', async () => {
     (<jest.Mock>sendOrderConfirmationEmail).mockImplementation((_, respond) =>
       respond.noContent(),
     );
     await invokeCb(router, {
-      path: '/site/order/123/confirmation-email',
+      path: '/site/orders/123/confirmation-email',
       httpMethod: 'POST',
     });
     expect(sendOrderConfirmationEmail).toHaveBeenCalled();

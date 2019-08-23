@@ -21,17 +21,17 @@ jest.mock('../../lib/Order', () => ({
 describe('sendOrderConfirmationEmail()', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it('should return 204 with chargeId if successful', async () => {
+  it('should return 204 if successful', async () => {
     const { res } = await invokeCb(sendConfirmation, {
-      path: '/site/order/123/confirmation-email',
+      path: '/site/orders/123/confirmation-email',
     });
     expect(res.statusCode).toBe(204);
   });
 
-  it('should return 500 of sendgrid does not respond 202', async () => {
+  it('should return 500 if sendgrid does not respond ok', async () => {
     (<jest.Mock>mailer.send).mockResolvedValueOnce([{ statusCode: 419 }]);
     const { res, json } = await invokeCb(sendConfirmation, {
-      path: '/site/order/123/confirmation-email',
+      path: '/site/orders/123/confirmation-email',
     });
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe('error_sending_email');
@@ -40,7 +40,7 @@ describe('sendOrderConfirmationEmail()', () => {
   it('should respond 404 if order cant be found', async () => {
     (<jest.Mock>findById).mockResolvedValueOnce(null);
     const { res, json } = await invokeCb(sendConfirmation, {
-      path: '/site/order/123/confirmation-email',
+      path: '/site/orders/123/confirmation-email',
     });
     expect(res.statusCode).toBe(404);
     expect(json.msg).toBe('order_not_found');
@@ -53,7 +53,7 @@ describe('sendOrderConfirmationEmail()', () => {
       get: () => 'foo@bar.com',
     });
     await invokeCb(sendConfirmation, {
-      path: '/site/order/345/confirmation-email',
+      path: '/site/orders/345/confirmation-email',
     });
     expect((<jest.Mock>mailer.send).mock.calls[0][0].to).toBe('foo@bar.com');
     expect((<jest.Mock>mailer.send).mock.calls[0][0].subject).toContain('345');

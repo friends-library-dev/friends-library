@@ -31,7 +31,7 @@ export default class CheckoutApi {
     orderId: string,
     payload: Record<string, any>,
   ): Promise<ApiResponse> {
-    return this.patch(`/order/${orderId}`, payload);
+    return this.patch(`/orders/${orderId}`, payload);
   }
 
   public async getPrintJobStatus(printJobId: number): Promise<ApiResponse> {
@@ -39,7 +39,7 @@ export default class CheckoutApi {
   }
 
   public async getOrder(orderId: string): Promise<ApiResponse> {
-    return this.get(`/order/${orderId}`);
+    return this.get(`/orders/${orderId}`);
   }
 
   private async get(path: string): Promise<ApiResponse> {

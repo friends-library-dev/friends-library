@@ -1,16 +1,16 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import mailer from '@sendgrid/mail';
 import stripIndent from 'strip-indent';
+import { requireEnv } from '@friends-library/types';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { findById } from '../lib/Order';
-import mailer from '@sendgrid/mail';
-import { requireEnv } from '@friends-library/types';
 
 export default async function sendOrderConfirmationEmail(
   { path }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const pathMatch = path.match(/\/order\/([a-z0-9]+)\/confirmation-email$/);
+  const pathMatch = path.match(/\/orders\/([a-z0-9]+)\/confirmation-email$/);
   if (!pathMatch) {
     log.error(`invalid send order confirmation email path: ${path}`);
     return respond.json({ msg: 'invalid_path' }, 400);
@@ -55,5 +55,5 @@ function emailText(orderId: string): string {
 
     Please don't hesitate to let us know if you have any questions!
 
-    - Jared Henderson`);
+    - Friends Library Publishing`);
 }

@@ -1,6 +1,6 @@
 import CheckoutApi from './CheckoutApi';
 import Cart from '../models/Cart';
-import { PrintJobStatus } from '../types';
+import { PrintJobStatus } from '@friends-library/types';
 
 /**
  * CheckoutService exists to orchestrate the series of lambda invocations

@@ -15,13 +15,13 @@ jest.mock('../../lib/Order', () => ({
 }));
 
 describe('fetchOrder()', () => {
-  let path = '/site/order/123abc';
+  let path = '/site/orders/123abc';
 
   const badPaths = [
-    ['/site/order/_nope'],
-    ['/site/order/41234?foo=bar'],
-    ['/site/order/6b0e134d-8d2e-48bc-8fa3-e8fc79793804'],
-    ['/site/order/'],
+    ['/site/orders/_nope'],
+    ['/site/orders/41234?foo=bar'],
+    ['/site/orders/6b0e134d-8d2e-48bc-8fa3-e8fc79793804'],
+    ['/site/orders/'],
   ];
 
   test.each(badPaths)('%s is invalid path', async badPath => {

@@ -46,7 +46,7 @@ describe('site fns integration', () => {
     /**
      * Step 2: Verify that our order was created
      */
-    let orderRes = await fetch(`${endpoint}/order/${orderId}`);
+    let orderRes = await fetch(`${endpoint}/orders/${orderId}`);
     expect(orderRes.status).toBe(200);
     expect(await orderRes.json()).toMatchObject({
       email,
@@ -77,7 +77,7 @@ describe('site fns integration', () => {
     /**
      * Step 4: Verify that our order was updated
      */
-    orderRes = await fetch(`${endpoint}/order/${orderId}`);
+    orderRes = await fetch(`${endpoint}/orders/${orderId}`);
     expect(orderRes.status).toBe(200);
     expect(await orderRes.json()).toMatchObject({
       print_job: {
@@ -100,7 +100,7 @@ describe('site fns integration', () => {
     /**
      * Step 7: Update order print_job status
      */
-    const updateOrderRes = await fetch(`${endpoint}/order/${orderId}`, {
+    const updateOrderRes = await fetch(`${endpoint}/orders/${orderId}`, {
       method: 'PATCH',
       body: JSON.stringify({ 'print_job.status': 'accepted' }),
       headers,
@@ -110,7 +110,7 @@ describe('site fns integration', () => {
     /**
      * Step 8: Verify that our order print_job.status was updated
      */
-    orderRes = await fetch(`${endpoint}/order/${orderId}`);
+    orderRes = await fetch(`${endpoint}/orders/${orderId}`);
     expect(orderRes.status).toBe(200);
     expect(await orderRes.json()).toMatchObject({
       print_job: { status: 'accepted' },
@@ -129,7 +129,7 @@ describe('site fns integration', () => {
     /**
      * Step 10: Verify that our order payment.status was updated
      */
-    orderRes = await fetch(`${endpoint}/order/${orderId}`);
+    orderRes = await fetch(`${endpoint}/orders/${orderId}`);
     expect(orderRes.status).toBe(200);
     expect(await orderRes.json()).toMatchObject({
       payment: { status: 'captured' },

@@ -1,5 +1,14 @@
 import mongoose from 'mongoose';
+import { PrintJobStatus } from '@friends-library/types';
 import connect from './db';
+
+const statuses: PrintJobStatus[] = [
+  'pending',
+  'accepted',
+  'rejected',
+  'shipped',
+  'canceled',
+];
 
 const schema = new mongoose.Schema(
   {
@@ -39,7 +48,7 @@ const schema = new mongoose.Schema(
       status: {
         type: String,
         required: false,
-        enum: ['pending', 'accepted', 'rejected', 'shipped', 'canceled'],
+        enum: statuses,
       },
     },
     email: {
@@ -117,10 +126,25 @@ export async function persist(order: mongoose.Document): Promise<void> {
   await mongoose.disconnect();
 }
 
+export async function persistAll(orders: mongoose.Document[]): Promise<void> {
+  const db = await connect();
+  await Promise.all(orders.map(o => o.save()));
+  await db.close();
+  await mongoose.disconnect();
+}
+
 export async function findById(id: string): Promise<mongoose.Document | null> {
   const db = await connect();
   const model = await Order.findById(id).exec();
   await db.close();
   await mongoose.disconnect();
   return model;
+}
+
+export async function find(query?: Record<string, string>): Promise<mongoose.Document[]> {
+  const db = await connect();
+  const results = await Order.find(query).exec();
+  await db.close();
+  await mongoose.disconnect();
+  return results;
 }
