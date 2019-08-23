@@ -7,6 +7,8 @@ export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
 export type PrintSize = 's' | 'm' | 'xl';
 
+export type PrintJobStatus = 'pending' | 'accepted' | 'shipped' | 'rejected' | 'canceled';
+
 export interface Job {
   id: string;
   spec: SourceSpec;

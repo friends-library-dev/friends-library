@@ -1,10 +1,3 @@
-export type PrintJobStatus =
-  | 'pending'
-  | 'accepted'
-  | 'shipped'
-  | 'rejected'
-  | 'cancelled';
-
 export interface Address {
   name: string;
   street: string;

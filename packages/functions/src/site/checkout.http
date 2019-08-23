@@ -62,19 +62,9 @@ content-type: application/json
 ###
 
 # @name fetchOrder
-GET {{base}}/order/{{orderId}}
+GET {{base}}/orders/{{orderId}}
 
-###
 
-# Capture an authorized payment (create usable chargeId w/ `/payment/authorize`
-# @name capturePayment
-POST {{base}}/payment/capture HTTP/1.1
-content-type: application/json
-
-{
-  "chargeId": "{{chargeId}}",
-  "orderId": "{{orderId}}"
-}
 
 ###
 
@@ -102,13 +92,25 @@ content-type: application/json
 
 ###
 
+# Capture an authorized payment (create usable chargeId w/ `/payment/authorize`
+# @name capturePayment
+POST {{base}}/payment/capture HTTP/1.1
+content-type: application/json
+
+{
+  "chargeId": "{{chargeId}}",
+  "orderId": "{{orderId}}"
+}
+
+###
+
 # Check status of print order
 GET {{base}}/print-job/{{printJobId}}/status
 
 ###
 
 # Update print_job.status of an existing order
-PATCH {{base}}/order/{{orderId}} HTTP/1.1
+PATCH {{base}}/orders/{{orderId}} HTTP/1.1
 content-type: application/json
 
 {
@@ -117,7 +119,13 @@ content-type: application/json
 
 ###
 
-POST {{base}}/order/{{orderId}}/confirmation-email HTTP/1.1
+# Send a confirmation email that order was created successfully
+POST {{base}}/orders/{{orderId}}/confirmation-email HTTP/1.1
+
+###
+
+# check all acepted orders, updating statuses and sending tracking emails
+POST {{base}}/orders/check HTTP/1.1
 
 ###
 @base = http://localhost:2345/.netlify/functions/site

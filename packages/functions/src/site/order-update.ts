@@ -8,7 +8,7 @@ export default async function updateOrder(
   { body, path }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const pathMatch = path.match(/\/order\/([a-z0-9]+)$/);
+  const pathMatch = path.match(/\/orders\/([a-z0-9]+)$/);
   if (!pathMatch) {
     log.error(`invalid update order path: ${path}`);
     return respond.json({ msg: 'invalid_patch_order_url' }, 400);
@@ -16,7 +16,7 @@ export default async function updateOrder(
 
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for PATCH /order/{:id}', body);
+    log.error('invalid body for PATCH /orders/{:id}', body);
     return respond.json({ msg: data.message }, 400);
   }
 

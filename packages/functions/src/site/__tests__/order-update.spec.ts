@@ -16,7 +16,7 @@ jest.mock('../../lib/Order', () => ({
 
 describe('updateOrder()', () => {
   let body = '{"print_job.status":"accepted"}';
-  let path = '/site/order/123abc';
+  let path = '/site/orders/123abc';
 
   it('responds 400 if mal-formed body', async () => {
     const badBody = '{"print_job.status":"bad_status"}';
@@ -25,10 +25,10 @@ describe('updateOrder()', () => {
   });
 
   const badPaths = [
-    ['/site/order/41234/nope'],
-    ['/site/order/41234?foo=bar'],
-    ['/site/order/6b0e134d-8d2e-48bc-8fa3-e8fc79793804'],
-    ['/site/order/'],
+    ['/site/orders/41234/nope'],
+    ['/site/orders/41234?foo=bar'],
+    ['/site/orders/6b0e134d-8d2e-48bc-8fa3-e8fc79793804'],
+    ['/site/orders/'],
   ];
 
   test.each(badPaths)('%s is invalid path', async path => {

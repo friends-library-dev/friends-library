@@ -8,6 +8,7 @@ import printJobStatus from './print-job-status';
 import fetchOrder from './order-fetch';
 import updateOrder from './order-update';
 import Responder from '../lib/Responder';
+import checkOrders from './orders-check';
 import sendOrderConfirmationEmail from './order-send-confirmation-email';
 
 export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
@@ -19,7 +20,7 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return respond.noContent();
     }
 
-    if (path.startsWith('order/')) {
+    if (path.startsWith('orders/')) {
       return fetchOrder(event, respond);
     }
 
@@ -42,14 +43,16 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return printJobFees(event, respond);
       case 'print-job':
         return createPrintJob(event, respond);
+      case 'orders/check':
+        return checkOrders(event, respond);
     }
-    if (path.match(/^order\/[a-z0-9]+\/confirmation-email$/)) {
+    if (path.match(/^orders\/[a-z0-9]+\/confirmation-email$/)) {
       return sendOrderConfirmationEmail(event, respond);
     }
   }
 
   if (method === 'PATCH') {
-    if (path.match(/^order\/[a-z0-9]+$/)) {
+    if (path.match(/^orders\/[a-z0-9]+$/)) {
       return updateOrder(event, respond);
     }
   }
