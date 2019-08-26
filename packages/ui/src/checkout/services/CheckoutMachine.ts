@@ -92,6 +92,7 @@ export default class CheckoutMachine {
         this.transitionTo('capturingPayment');
         const err = await this.service.capturePayment();
         this.dispatch(err ? 'failure' : 'success', err || undefined);
+        this.service.sendOrderConfirmationEmail(); // fire & forget, no need to wait
       },
     },
 

@@ -82,7 +82,7 @@ async function sendShipmentTrackingEmails(
   jobs: (Record<string, any>)[],
   orders: Orders,
 ): Promise<void> {
-  const { SENDGRID_API_KEY, NODE_ENV } = requireEnv('SENDGRID_API_KEY', 'NODE_ENV');
+  const { SENDGRID_API_KEY } = requireEnv('SENDGRID_API_KEY');
   const shippedJobs = jobs.filter(job => job.status.name === 'SHIPPED');
 
   const emails = shippedJobs.map(job => {
@@ -96,7 +96,7 @@ async function sendShipmentTrackingEmails(
       from: 'app@friendslibrary.com',
       subject: 'Your Friends Library order has shipped!',
       text: `Here is your tracking url: \n${trackingUrl}`,
-      mailSettings: { sandboxMode: { enable: NODE_ENV !== 'production' } },
+      mailSettings: { sandboxMode: { enable: process.env.NODE_ENV !== 'production' } },
     };
   });
 

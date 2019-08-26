@@ -81,6 +81,13 @@ export default class MockCheckoutApi extends CheckoutApi {
         data: { _id: 'order-id ' },
       },
     },
+    sendOrderConfirmationEmail: {
+      default: {
+        ok: true,
+        statusCode: 204,
+        data: {},
+      },
+    },
   };
 
   public constructor(private defaultDelay: number = 0) {
@@ -113,6 +120,10 @@ export default class MockCheckoutApi extends CheckoutApi {
 
   public async getPrintJobStatus(): Promise<ApiResponse> {
     return this.getResponse('getPrintJobStatus');
+  }
+
+  public async sendOrderConfirmationEmail(): Promise<ApiResponse> {
+    return this.getResponse('sendOrderConfirmationEmail');
   }
 
   public setResponse(method: string, response: MockResponse): void {

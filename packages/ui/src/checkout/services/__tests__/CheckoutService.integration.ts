@@ -81,6 +81,10 @@ describe('CheckoutService()', () => {
     expect(orderRes.data).toMatchObject({
       payment: { status: 'captured' },
     });
+
+    // step 11: send order confirmation email
+    const confirmRes = await api.sendOrderConfirmationEmail(service.orderId);
+    expect(confirmRes.statusCode).toBe(204);
   }, 30000);
 });
 
