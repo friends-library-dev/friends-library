@@ -42,6 +42,13 @@ export default class CheckoutApi {
     return this.get(`/orders/${orderId}`);
   }
 
+  public async sendOrderConfirmationEmail(orderId: string): Promise<ApiResponse> {
+    const response = await fetch(this.endpoint(`/orders/${orderId}/confirmation-email`), {
+      method: 'POST',
+    });
+    return this.normalize(response);
+  }
+
   private async get(path: string): Promise<ApiResponse> {
     const response = await fetch(this.endpoint(path));
     return await this.normalize(response);

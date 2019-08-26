@@ -142,6 +142,11 @@ export default class CheckoutService {
     return ok ? null : data.msg;
   }
 
+  public async sendOrderConfirmationEmail(): Promise<null | string> {
+    const { ok, data } = await this.api.sendOrderConfirmationEmail(this.orderId);
+    return ok ? null : data.msg;
+  }
+
   private sumFees(): number {
     return Object.values(this.fees).reduce((sum, fee) => sum + fee);
   }

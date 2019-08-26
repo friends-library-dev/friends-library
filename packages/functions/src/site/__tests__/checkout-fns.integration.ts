@@ -134,6 +134,14 @@ describe('site fns integration', () => {
     expect(await orderRes.json()).toMatchObject({
       payment: { status: 'captured' },
     });
+
+    /**
+     * Step 11: Send order confirmation email
+     */
+    const confirmRes = await fetch(`${endpoint}/orders/${orderId}/confirmation-email`, {
+      method: 'POST',
+    });
+    expect(confirmRes.status).toBe(204);
   }, 60000);
 });
 

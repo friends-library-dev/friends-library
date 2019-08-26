@@ -22,7 +22,7 @@ export default async function sendOrderConfirmationEmail(
     return respond.json({ msg: 'order_not_found' }, 404);
   }
 
-  const { SENDGRID_API_KEY, NODE_ENV } = requireEnv('SENDGRID_API_KEY', 'NODE_ENV');
+  const { SENDGRID_API_KEY } = requireEnv('SENDGRID_API_KEY');
   mailer.setApiKey(SENDGRID_API_KEY);
   const [res] = await mailer.send({
     to: order.get('email'),
@@ -31,7 +31,7 @@ export default async function sendOrderConfirmationEmail(
     text: emailText(order.id),
     mailSettings: {
       sandboxMode: {
-        enable: NODE_ENV !== 'production',
+        enable: process.env.NODE_ENV !== 'production',
       },
     },
   });
