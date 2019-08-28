@@ -1,11 +1,11 @@
 .Heading {
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .Heading::after {
   content: '';
   display: block;
-  margin-top: 2rem;
+  margin-top: 1rem;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
@@ -22,6 +22,14 @@
 }
 
 @screen sm {
+  .Heading {
+    margin-bottom: 3rem;
+  }
+
+  .Heading::after {
+    margin-top: 2rem;
+  }
+
   .Heading--sm-left::after {
     margin-left: 0;
   }

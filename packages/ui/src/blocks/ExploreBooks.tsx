@@ -4,7 +4,7 @@ import Button from '../Button';
 import './ExploreBooks.css';
 
 const ExploreBooks: React.FC = () => (
-  <section className="ExploreBooks py-32 px-16 bg-black">
+  <section className="ExploreBooks py-20 sm:py-32 px-8 sm:px-16 bg-black">
     <Heading darkBg className="text-white">
       Explore Books
     </Heading>
