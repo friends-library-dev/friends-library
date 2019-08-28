@@ -52,7 +52,7 @@ async function coverFiles(job: Job): Promise<SubManifest<Html>> {
     await page.setViewport({ width: 1600, height: 2400 });
     await page.goto(`${url}?capture=ebook&id=${id}`);
     await page.screenshot({ path });
-    // require('fs).copyFileSync(path, `/Users/jared/Desktop/${path.split('/').pop()}`);
+    // require('fs').copyFileSync(path, `/Users/jared/Desktop/${path.split('/').pop()}`);
     await browser.close();
   } catch (error) {
     bgRed(`ERROR capturing ebook cover: ${id}/${job.target}`);

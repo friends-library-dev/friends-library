@@ -1,29 +1,45 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
-import Modal from '../src/checkout/Modal';
 import CartModel from '../src/checkout/models/Cart';
 import Cart from '../src/cart';
-import { cartItemsData } from '../src/checkout/models/__tests__/fixtures';
-import CartItem, { CartItemData } from '../src/checkout/models/CartItem';
+import CartItem from '../src/cart/Item';
+import { cartItemsData, cartItemData3 } from '../src/checkout/models/__tests__/fixtures';
+import CartItemModel, { CartItemData } from '../src/checkout/models/CartItem';
 
 const StatefulCart: React.FC = () => {
-  const cart = CartModel.fromJson({ items: cartItemsData() });
+  const cart = CartModel.fromJson({ items: [...cartItemsData(), cartItemData3()] });
   const [items, setItems] = useState<CartItemData[]>(cart.items.map(i => i.toJSON()));
   return (
-    <Modal onClose={a('close modal')}>
-      <Cart
-        subTotal={cart.subTotal()}
-        items={items}
-        setItems={items => {
-          cart.items = items.map(i => new CartItem(i));
-          setItems(items);
-        }}
-        checkout={a('checkout')}
-        close={a('close')}
-      />
-    </Modal>
+    <Cart
+      subTotal={cart.subTotal()}
+      items={items}
+      setItems={items => {
+        cart.items = items.map(i => new CartItemModel(i));
+        setItems(items);
+      }}
+      checkout={a('checkout')}
+      close={a('close')}
+    />
   );
 };
 
-storiesOf('Cart', module).add('Cart', () => <StatefulCart />);
+const StatefulCartItem: React.FC = () => {
+  const [qty, setQty] = useState<number>(1);
+  const data = cartItemData3();
+  return (
+    <CartItem
+      title={data.title}
+      author={data.author}
+      quantity={qty}
+      coverUrl={data.coverPngUrl}
+      price={422}
+      changeQty={setQty}
+      remove={a('remove')}
+    />
+  );
+};
+
+storiesOf('Cart', module)
+  .add('Cart', () => <StatefulCart />)
+  .add('CartItem', () => <StatefulCartItem />);
