@@ -4,6 +4,7 @@ export interface CartItemData {
   title: string;
   interiorPdfUrl: string;
   coverPdfUrl: string;
+  coverPngUrl: string;
   documentId: string;
   edition: EditionType;
   quantity: number;
@@ -22,6 +23,7 @@ export default class CartItem {
   public author: string;
   public interiorPdfUrl: string;
   public coverPdfUrl: string;
+  public coverPngUrl: string;
 
   public constructor(config: CartItemData) {
     this.title = config.title;
@@ -33,6 +35,7 @@ export default class CartItem {
     this.author = config.author;
     this.interiorPdfUrl = config.interiorPdfUrl;
     this.coverPdfUrl = config.coverPdfUrl;
+    this.coverPngUrl = config.coverPngUrl;
   }
 
   public printJobTitle(): string {
@@ -60,6 +63,7 @@ export default class CartItem {
       numPages: this.numPages,
       interiorPdfUrl: this.interiorPdfUrl,
       coverPdfUrl: this.coverPdfUrl,
+      coverPngUrl: this.coverPngUrl,
     };
   }
 }

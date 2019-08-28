@@ -12,6 +12,8 @@ export const cartItemData1: () => CartItemData = () => ({
   numPages: 516,
   interiorPdfUrl: '/GF.pdf',
   coverPdfUrl: '/GF--cover.pdf',
+  coverPngUrl:
+    'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/george-fox/journal/original/Journal_of_George_Fox--original--cover.png',
 });
 
 export const cartItemData2: () => CartItemData = () => ({
@@ -24,6 +26,22 @@ export const cartItemData2: () => CartItemData = () => ({
   numPages: 113,
   interiorPdfUrl: '/HT.pdf',
   coverPdfUrl: '/HT--cover.pdf',
+  coverPngUrl:
+    'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/hugh-turford/walk-in-the-spirit/updated/Walk_in_the_Spirit--updated--cover.png',
+});
+
+export const cartItemData3: () => CartItemData = () => ({
+  title: 'The Journal and Writings of Ambrose Rigge',
+  documentId: 'f6b0e134d-8d2e-48bc-8fa3-e8fc79793804',
+  author: 'Ambrose Rigge',
+  edition: 'modernized',
+  printSize: 'm',
+  quantity: 1,
+  numPages: 227,
+  interiorPdfUrl: '/AR.pdf',
+  coverPdfUrl: '/AR--cover.pdf',
+  coverPngUrl:
+    'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.png',
 });
 
 export const cartItemsData: () => [CartItemData, CartItemData] = () => [

@@ -17,8 +17,8 @@ const StyledButton = styled(UnstyledButton)<{ secondary?: boolean; disabled?: bo
   opacity: ${p => (p.disabled ? '0.3' : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
   box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
-  width: 320px;
-  height: 70px;
+  width: 280px;
+  height: 60px;
 `;
 
 const Button: React.FC<Props> = ({
