@@ -1,13 +1,19 @@
 .Subhero .Paperback {
-  left: -50px;
-  bottom: -170px;
-  width: 250px;
+  left: -28px;
+  bottom: -110px;
+  width: 220px;
 }
 
 .Subhero .Devices {
   width: 45vw;
-  top: -15%;
-  right: -5%;
+  top: -5%;
+  right: -9%;
+}
+
+@screen md {
+  .Subhero .Devices {
+    top: -13%;
+  }
 }
 
 @screen lg {
@@ -15,6 +21,22 @@
     width: 35vw;
     top: -15%;
     right: -5%;
+  }
+}
+
+@screen xl {
+  .Subhero .Devices {
+    top: -21%;
+    width: 30vw;
+    max-width: 460px;
+    right: 0;
+  }
+}
+
+@media (min-width: 1540px) {
+  .Subhero .Devices {
+    top: -27%;
+    width: 26vw;
   }
 }
 
