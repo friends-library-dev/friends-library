@@ -16,7 +16,7 @@ const SubHero: React.FC = () => (
     <Heading darkBg className="text-white md:hidden">
       Our Books
     </Heading>
-    <p className="font-serif text-white antialiased text-xl leading-relaxed md:w-2/3 lg:w-4/5 lg:pr-24 md:pr-8">
+    <p className="font-serif text-white antialiased text-lg sm:text-xl leading-relaxed md:w-2/3 lg:w-4/5 lg:pr-24 md:pr-8">
       Our 113 books are available for free download in multiple editions and digital
       formats, and a growing number of them are also recorded as audiobooks. Or, if you
       prefer, order a paperback — you pay only and exactly what it costs us to have them

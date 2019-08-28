@@ -12,7 +12,7 @@ const Heading: React.FC<{
   <h1
     className={cx(
       className,
-      'Heading font-sans uppercase text-center text-2xl mb-5 text-3xl tracking-wider font-black',
+      'Heading font-sans uppercase text-center text-2xl mb-5 sm:text-3xl tracking-wider font-black',
       {
         'Heading--darkbg': darkBg,
         'Heading--left': left === true,

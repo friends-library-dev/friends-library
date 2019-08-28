@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { t } from './translation';
 import styled from './styled';
 
-const size = 50;
+const size = 40;
 
 const Search = styled('div')<{ expanded: boolean }>`
   height: ${size}px;

@@ -14,8 +14,8 @@ const StyledNav = styled('nav')`
   justify-content: space-between;
   background: white;
   border-bottom: 1px solid #eaeaea;
-  height: 80px;
-  padding: 0 25px 0 0;
+  height: 70px;
+  padding: 0 20px 0 0;
 
   & > * {
     margin: auto 0;
@@ -63,7 +63,7 @@ const StyledNav = styled('nav')`
 
   @media (min-width: 545px) {
     .Logo {
-      width: ${p => (p.theme.lang === 'en' ? 170 : 210)}px;
+      width: ${p => (p.theme.lang === 'en' ? 150 : 210)}px;
     }
     .Search {
       display: block;

@@ -2,15 +2,15 @@ import React from 'react';
 import styled from './styled';
 
 const Hamburger = styled('div')<{ isX: boolean }>`
-  width: 80px;
-  height: 80px;
-  padding-left: 23px;
+  width: 70px;
+  height: 70px;
+  padding-left: 18px;
 
   & > * {
     display: block;
     height: 2px;
     width: 32px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
 
   .Bun__Top {

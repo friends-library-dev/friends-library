@@ -4,9 +4,9 @@ import Button from '../Button';
 import Heading from '../Heading';
 
 const WhoWereTheQuakers: React.FC = () => (
-  <section className="Block-quakers bg-flmaroon text-white flex flex-col items-center py-16 px-12  md:px-16 lg:px-20 lg:py-24">
+  <section className="Block-quakers bg-flmaroon text-white flex flex-col items-center py-12 sm:py-16 px-12  md:px-16 lg:px-20 lg:py-24">
     <Heading darkBg>Who were the Quakers?</Heading>
-    <p className="font-serif text-xl opacity-75 leading-relaxed max-w-6xl">
+    <p className="font-serif text-lg sm:text-xl opacity-75 leading-relaxed max-w-6xl">
       The early Quakers arose in the mid 1600's in England. Dissatisfied with lifeless
       religion, outward forms and ceremonies; they set about to return to the simple
       purity of New Testament Christianity. They came to see that the same Jesus Christ
