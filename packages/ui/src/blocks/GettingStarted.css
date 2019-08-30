@@ -1,0 +1,38 @@
+.GettingStarted svg {
+  height: 120%;
+  position: absolute;
+  bottom: 0;
+}
+
+.Wave {
+  left: -10%;
+  width: 153%;
+}
+
+@screen sm {
+  .Wave {
+    left: 0;
+    width: 133%;
+  }
+}
+
+@screen md {
+  .GettingStarted svg {
+    height: 100%;
+  }
+
+  .Wave {
+    width: 112%;
+  }
+}
+
+@screen lg {
+  .Wave {
+    width: 100%;
+  }
+}
+
+.Bump {
+  left: -15%;
+  width: 105%;
+}
