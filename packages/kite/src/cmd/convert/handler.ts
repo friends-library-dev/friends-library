@@ -60,6 +60,12 @@ function generateRawAsciiDoc(src: string, target: string): void {
   execSync(`cd ~/msf/asciidoctor/docbookrx && bundle exec docbookrx ${src}`, {
     stdio: [0, 1, 2],
   });
+
+  if (!fs.existsSync(target)) {
+    red(`ERROR: Target file ${target} not generated!`);
+    process.exit();
+  }
+
   green(`Raw asciidoc file generated at: ${target}`);
 }
 

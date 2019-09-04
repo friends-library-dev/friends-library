@@ -1,0 +1,36 @@
+id: bcc93723-3316-4d03-a064-92aa8a785bc5
+name: Francis Howgill
+slug: francis-howgill
+gender: male
+description: TODO
+documents:
+  - id: bb2e6fb5-156a-4b24-b5aa-f1deefccb5b2
+    title: Algunos de Los Misterios del Reino
+    slug: algunos-de-los-misterios-del-reino
+    filename: Algunos_de_Los_Misterios_del_Reino
+    description: TODO
+    tags:
+      - treatise
+      - exhortation
+    editions:
+      - type: updated
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Prefacio por el Editor
+          - title: Al Lector
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
