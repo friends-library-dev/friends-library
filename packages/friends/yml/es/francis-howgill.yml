@@ -2,13 +2,26 @@ id: bcc93723-3316-4d03-a064-92aa8a785bc5
 name: Francis Howgill
 slug: francis-howgill
 gender: male
-description: TODO
+description:
+  Francis Howgill (1618-1669), estudió en la universidad para ser un ministro en la
+  iglesia Episcopal. Sin embargo, sintiéndose insatisfecho por la superstición que veía
+  que todavía permanecía allí, la abandonó y se unió a los Independientes, y luego a los
+  Anabaptistas, buscando desesperadamente la verdadera vida espiritual que anhelaba su
+  alma. Finalmente, al ser alcanzado poderosamente por el ministerio de George Fox, se
+  unió a la perseguida sociedad llamada Cuáqueros, dentro de la cual se convirtió en un
+  miembro y evagelista muy respetado. Murió en prisión por su testimonio por la verdad,
+  habiendo escrito muchos libros y cartas valiosos.
 documents:
   - id: bb2e6fb5-156a-4b24-b5aa-f1deefccb5b2
-    title: Algunos de Los Misterios del Reino
+    title: Algunos de Los Misterios del Reino de Dios Declarados
     slug: algunos-de-los-misterios-del-reino
     filename: Algunos_de_Los_Misterios_del_Reino
-    description: TODO
+    description:
+      Francis Howgill (1618-1668) fue un valiente ministro del evangelio en la primera
+      generación de la Sociedad de Amigos en Inglaterra. Él sufrió una persecución muy
+      grande y finalmente murió en prisión por "la Palabra de Dios y por el testimonio de
+      Jesús." Este corto libro contiene una increíble explicación del Día del Señor, y una
+      poderosa descripción de la obra del Espíritu Santo en el corazón del hombre.
     tags:
       - treatise
       - exhortation
