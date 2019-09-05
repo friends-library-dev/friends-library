@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import { flow } from 'lodash';
-import { execSync } from 'child_process';
+import { spawnSync } from 'child_process';
 import { red, green } from '@friends-library/cli/color';
 import { splitLines, refMutate, refUnmutate } from '@friends-library/asciidoc';
 import * as hilkiah from '@friends-library/hilkiah';
@@ -57,8 +57,11 @@ function validate(src: string): { src: string; target: string } {
 
 function generateRawAsciiDoc(src: string, target: string): void {
   // @todo remove hardcoded ref to docbookrx
-  execSync(`cd ~/msf/asciidoctor/docbookrx && bundle exec docbookrx ${src}`, {
-    stdio: [0, 1, 2],
+  const BUNDLE_PATH = '/Users/jared/.rvm/gems/ruby-2.4.1/bin/bundle';
+  const DOCBOOKRX_PATH = '/Users/jared/msf/asciidoctor/docbookrx';
+  spawnSync(BUNDLE_PATH, ['exec', 'docbookrx', src], {
+    cwd: DOCBOOKRX_PATH,
+    stdio: 'inherit',
   });
 
   if (!fs.existsSync(target)) {
