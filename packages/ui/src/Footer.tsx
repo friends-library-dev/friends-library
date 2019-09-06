@@ -10,7 +10,7 @@ import cx from 'classnames';
 const Footer: React.FC<{ theme: Theme }> = ({ theme: { lang } }) => {
   const Logo = lang === 'en' ? FriendsLogo : AmigosLogo;
   return (
-    <footer className="Footer text-gray-300 font-hairline">
+    <footer className="Footer text-gray-300 font-hairline mt-auto">
       <div className="flex flex-col items-center pt-16 pb-8 py-12 md:pt-16 md:pb-16 lg:py-16 xl:py-24">
         <div className="columns text-center md:flex md:text-left md:pt-2">
           <Logo

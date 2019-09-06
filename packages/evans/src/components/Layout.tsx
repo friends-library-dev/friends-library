@@ -8,12 +8,6 @@ import './Layout.css';
 
 const Content = styled.div`
   padding-top: 70px;
-  position: relative;
-  background: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 `;
 
 interface Props {
@@ -42,7 +36,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           className="Nav"
           onHamburgerClick={() => setMenuOpen(!menuOpen)}
         />
-        <Content className="Content">
+        <Content className="Content flex flex-col relative overflow-hidden bg-white min-h-screen">
           {children}
           <Footer />
         </Content>
