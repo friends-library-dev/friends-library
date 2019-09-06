@@ -1,0 +1,19 @@
+.Slideover {
+  z-index: 555;
+  width: 375px;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  position: fixed;
+  transition: transform 0.1s ease;
+}
+
+@screen md {
+  .Slideover {
+    width: 450px;
+  }
+}
+
+.Slideover > nav {
+  min-height: 100vh;
+}

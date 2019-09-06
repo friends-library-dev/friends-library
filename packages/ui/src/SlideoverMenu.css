@@ -1,12 +1,16 @@
-.Slideover header {
+.SlideoverMenu header {
   border-color: rgba(95, 43, 58, 1);
 }
 
-.Slideover .Logo {
+.SlideoverMenu .Logo {
   fill: white;
+  width: 140px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.Slideover ul::after {
+.SlideoverMenu ul::after {
   content: '';
   height: 4px;
   width: 150px;
@@ -17,36 +21,36 @@
   opacity: 0.25;
 }
 
-.Slideover ul:last-child::after {
+.SlideoverMenu ul:last-child::after {
   display: none;
 }
 
-.Slideover .Search {
+.SlideoverMenu .Search {
   background: white;
   border-width: 0;
 }
 
-.Slideover .LinkGroup a:hover {
+.SlideoverMenu .LinkGroup a:hover {
   opacity: 0.6;
   color: rgb(200, 129, 151);
 }
 
-.Slideover .LinkGroup a::after {
+.SlideoverMenu .LinkGroup a::after {
   opacity: 0;
   content: ']';
   padding-left: 0.4rem;
 }
 
-.Slideover .LinkGroup a::before {
+.SlideoverMenu .LinkGroup a::before {
   opacity: 0;
   content: '[';
   padding-right: 0.4rem;
 }
 
-.Slideover .LinkGroup a:hover::after {
+.SlideoverMenu .LinkGroup a:hover::after {
   opacity: 1;
 }
 
-.Slideover .LinkGroup a:hover::before {
+.SlideoverMenu .LinkGroup a:hover::before {
   opacity: 1;
 }

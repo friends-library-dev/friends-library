@@ -27,7 +27,7 @@ const Layout: React.FC<Props> = ({ children }) => {
     <Fragment>
       <Tailwind />
       <Helmet>
-        <html lang={theme.lang} />
+        <html lang={theme.lang} className={menuOpen ? 'Menu--open' : ''} />
         <title>Friends Library</title>
         <meta name="robots" content="noindex, nofollow" />
         <link
@@ -36,13 +36,13 @@ const Layout: React.FC<Props> = ({ children }) => {
         />
       </Helmet>
       <ThemeProvider theme={theme}>
-        <Slideover isOpen={false} close={() => setMenuOpen(false)} />
+        <Slideover isOpen={menuOpen} close={() => setMenuOpen(false)} />
         <Nav
           menuOpen={menuOpen}
           className="Nav"
           onHamburgerClick={() => setMenuOpen(!menuOpen)}
         />
-        <Content>
+        <Content className="Content">
           {children}
           <Footer />
         </Content>
