@@ -4,6 +4,7 @@ export { default as Tailwind } from './Tailwind';
 export { default as styled } from './styled';
 export { default as WhoWereTheQuakers } from './blocks/WhoWereTheQuakers';
 export { default as Footer } from './Footer';
+export { default as SlideoverMenu } from './SlideoverMenu';
 export { default as Hero } from './blocks/Hero';
 export { default as SubHero } from './blocks/SubHero';
 export { default as ExploreBooks } from './blocks/ExploreBooks';

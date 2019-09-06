@@ -76,21 +76,20 @@ interface Props {
   menuOpen: boolean;
   className?: string;
   onHamburgerClick: () => void;
-  initialMenuOpen?: boolean;
   initialSearching?: boolean;
 }
 
 const Component: React.FC<Props> = ({
   className,
-  initialMenuOpen,
+  menuOpen,
   initialSearching,
+  onHamburgerClick,
   theme,
 }) => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(initialMenuOpen || false);
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
   return (
     <StyledNav className={cx(className, { searching })}>
-      <Hamburger menuOpen={menuOpen} onClick={() => setMenuOpen(!menuOpen)} />
+      <Hamburger menuOpen={menuOpen} onClick={onHamburgerClick} />
       <Link className="HomeLink" to="/">
         {theme.lang === 'en' ? <FriendsLogo /> : <AmigosLogo />}
       </Link>

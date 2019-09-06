@@ -2,19 +2,21 @@ import React from 'react';
 import Link from 'gatsby-link';
 import FriendsLogo from './LogoFriends';
 import Search from './Search';
-import './Slideover.css';
+import './SlideoverMenu.css';
 
-const Slideover: React.FC = () => {
+const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
-    <nav className="Slideover bg-flmaroon text-white">
+    <nav className="SlideoverMenu bg-flmaroon text-white">
       <header className="p-5 flex border-b-4">
-        <span className="w-16 text-2xl pt-2">&#x2715;</span>
+        <span className="w-12 text-xl md:text-2xl p-1" onClick={onClose}>
+          &#x2715;
+        </span>
         <div className="flex-grow">
-          <FriendsLogo className="w-48 mx-auto" />
+          <FriendsLogo className="m-auto" />
         </div>
-        <i className="w-16" />
+        <i className="w-12" />
       </header>
-      <div className="py-12 pl-32">
+      <div className="py-12 pl-16 md:pl-24">
         <Search className="mb-4" expanded onClick={() => {}} onBlur={() => {}} />
         <LinkGroup
           links={[
@@ -45,12 +47,12 @@ const Slideover: React.FC = () => {
   );
 };
 
-export default Slideover;
+export default SlideoverMenu;
 
 const LinkGroup: React.FC<{ links: [string, string][] }> = ({ links }) => (
-  <ul className="LinkGroup py-4 text-xl tracking-wider antialiased">
+  <ul className="LinkGroup py-4 text-lg md:text-xl tracking-wider antialiased">
     {links.map(([href, text]) => (
-      <li className="py-2">
+      <li className="py-2" key={href}>
         <Link to={href}>{text}</Link>
       </li>
     ))}

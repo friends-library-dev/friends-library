@@ -7,14 +7,16 @@ import Nav from '../src/Nav';
 import Search from '../src/Search';
 import Button from '../src/Button';
 import Hamburger from '../src/Hamburger';
-import Slideover from '../src/Slideover';
+import SlideoverMenu from '../src/SlideoverMenu';
 import Hero from '../src/blocks/Hero';
 import Footer from '../src/Footer';
 import WhoWereTheQuakers from '../src/blocks/WhoWereTheQuakers';
 
 storiesOf('Footer', module).add('default', () => <Footer />);
 
-storiesOf('Slideover', module).add('default', () => <Slideover />);
+storiesOf('SlideoverMenu', module).add('default', () => (
+  <SlideoverMenu onClose={a('close')} />
+));
 
 storiesOf('Hamburger', module)
   .addDecorator(centered)

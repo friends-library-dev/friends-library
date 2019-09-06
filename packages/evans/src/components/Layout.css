@@ -43,3 +43,12 @@ blockquote {
 .Divider:after {
   left: calc(50% + 25px);
 }
+
+.Menu--open .Nav,
+.Menu--open .Content {
+  filter: blur(6px);
+}
+
+.Menu--open .Slideover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
