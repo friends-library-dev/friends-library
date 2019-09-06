@@ -15,7 +15,10 @@ interface Props {
 }
 
 export default ({ isOpen, close }: Props) => (
-  <Slideover className="Slideover" isOpen={isOpen}>
+  <Slideover
+    className="Slideover fixed overflow-hidden overflow-y-auto h-full"
+    isOpen={isOpen}
+  >
     <SlideoverMenu onClose={close} />
   </Slideover>
 );
