@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import cx from 'classnames';
 import { t } from './translation';
 import styled from './styled';
 
@@ -17,7 +18,7 @@ const Search = styled('div')<{ expanded: boolean }>`
   input {
     display: ${p => (p.expanded ? 'block' : 'none')};
     position: absolute;
-    right: ${size / 2}px;
+    left: ${size / 2}px;
     top: 0;
     height: ${size - 2}px;
     border-width: 0;
@@ -27,7 +28,7 @@ const Search = styled('div')<{ expanded: boolean }>`
     letter-spacing: 2px;
     color: #333;
     line-height: 30px;
-    padding-left: 4%;
+    padding-right: 4%;
     background: transparent;
   }
 
@@ -43,7 +44,7 @@ const Search = styled('div')<{ expanded: boolean }>`
     position: absolute;
     border-radius: 50%;
     top: 1.5%;
-    left: 0;
+    right: 0;
     height: ${size}px;
     width: ${size}px;
   }
@@ -75,9 +76,10 @@ interface Props {
   value?: string;
   onClick: () => void;
   onBlur: () => void;
+  className?: string;
 }
 
-const Component: React.FC<Props> = ({ expanded, onClick, onBlur, value }) => {
+const Component: React.FC<Props> = ({ expanded, onClick, onBlur, value, className }) => {
   const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (input && input.current) {
@@ -86,7 +88,12 @@ const Component: React.FC<Props> = ({ expanded, onClick, onBlur, value }) => {
   });
 
   return (
-    <Search onBlur={onBlur} expanded={expanded} className="Search" onClick={onClick}>
+    <Search
+      onBlur={onBlur}
+      expanded={expanded}
+      className={cx('Search', className)}
+      onClick={onClick}
+    >
       <div className="mg">
         <div className="glass" />
         <div className="handle" />
