@@ -1,4 +1,5 @@
 import path from 'path';
+import fs from 'fs';
 import { SourcePrecursor, CoverProps } from '@friends-library/types';
 import { coverFromProps } from '../cover/handler';
 import { newCoverNeeded } from './filters';
@@ -33,7 +34,7 @@ export async function getPaperbackCovers(
 async function makeCoverAsset(
   asset: Asset,
   { meta, filename: basename, lang }: SourcePrecursor,
-  { edition }: SourceDocument,
+  { edition, fullPath }: SourceDocument,
 ): Promise<Asset> {
   const pages = asset.pdfPages;
   if (pages === undefined) {
@@ -48,8 +49,7 @@ async function makeCoverAsset(
     pages,
     size: asset.printSize,
     showGuides: false,
-    customCss: '',
-    customHtml: '',
+    ...getCustomCode(fullPath),
   };
 
   const filename = `${basename}--cover.pdf`;
@@ -61,4 +61,19 @@ async function makeCoverAsset(
     filename: path.basename(filepath),
     path: filepath,
   };
+}
+
+function getCustomCode(fullPath: string): { customCss: string; customHtml: string } {
+  let customCss = '';
+  let customHtml = '';
+
+  const docPath = path.resolve(fullPath, '..');
+  if (fs.existsSync(`${docPath}/cover.css`)) {
+    customCss = fs.readFileSync(`${docPath}/cover.css`).toString();
+  }
+  if (fs.existsSync(`${docPath}/cover.html`)) {
+    customHtml = fs.readFileSync(`${docPath}/cover.html`).toString();
+  }
+
+  return { customCss, customHtml };
 }
