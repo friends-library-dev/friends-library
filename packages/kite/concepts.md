@@ -27,7 +27,7 @@ type SourcePrecursor = {
   revision: DocumentRevision;
   meta: DocumentMeta;
   filename: string;
->;
+};
 ```
 
 The core concept to understand about a `SourcePrecursor` is that it represents an
