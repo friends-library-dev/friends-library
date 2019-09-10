@@ -1,5 +1,6 @@
 /** @jsx jsx  */
 import React from 'react';
+import Link from 'gatsby-link';
 import cx from 'classnames';
 import { jsx } from '@emotion/core';
 import { styled } from '@friends-library/ui';
@@ -10,6 +11,7 @@ interface Props {
   secondary?: boolean;
   disabled?: boolean;
   className?: string;
+  to?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -21,6 +23,15 @@ const StyledButton = styled(UnstyledButton)<{ secondary?: boolean; disabled?: bo
   height: 60px;
 `;
 
+const StyledLink = styled(Link)<{ secondary?: boolean; disabled?: boolean }>`
+  opacity: ${p => (p.disabled ? '0.3' : 1)};
+  cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
+  width: 280px;
+  height: 60px;
+  line-height: 60px;
+`;
+
 const Button: React.FC<Props> = ({
   children,
   secondary,
@@ -28,19 +39,25 @@ const Button: React.FC<Props> = ({
   disabled,
   type,
   className,
-}) => (
-  <StyledButton
-    className={cx(
-      className,
-      'block rounded-full font-sans text-center uppercase tracking-wider text-white focus:outline-none focus:shadow-outline',
-    )}
-    type={type || 'submit'}
-    {...(onClick && !disabled ? { onClick } : {})}
-    {...(secondary ? { secondary } : {})}
-    disabled={disabled}
-  >
-    {children}
-  </StyledButton>
-);
+  to,
+}) => {
+  const Element = typeof to === 'string' ? StyledLink : StyledButton;
+  return (
+    // @ts-ignore
+    <Element
+      to={to || ''}
+      className={cx(
+        className,
+        'block rounded-full font-sans text-center uppercase tracking-wider text-white focus:outline-none focus:shadow-outline',
+      )}
+      {...(!to ? { type: type || 'submit' } : {})}
+      {...(onClick && !disabled ? { onClick } : {})}
+      {...(secondary ? { secondary } : {})}
+      disabled={disabled}
+    >
+      {children}
+    </Element>
+  );
+};
 
 export default Button;

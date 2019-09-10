@@ -9,6 +9,7 @@ import Button from '../src/Button';
 import Hamburger from '../src/Hamburger';
 import SlideoverMenu from '../src/SlideoverMenu';
 import Hero from '../src/blocks/Hero';
+import FeaturedBooks from '../src/blocks/FeaturedBooks';
 import Footer from '../src/Footer';
 import WhoWereTheQuakers from '../src/blocks/WhoWereTheQuakers';
 
@@ -68,6 +69,7 @@ storiesOf('Search', module)
 
 storiesOf('Blocks', module)
   .add('Who Were Quakers?', () => <WhoWereTheQuakers />)
+  .add('Featured Books', () => <FeaturedBooks />)
   .add('Hero', () => <Hero />);
 
 const searchActions = {
