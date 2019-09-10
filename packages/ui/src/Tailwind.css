@@ -13,4 +13,14 @@
   @apply text-gray-500;
 }
 
+.bracketed::before {
+  content: '[';
+  padding-right: 0.4em;
+}
+
+.bracketed::after {
+  content: ']';
+  padding-left: 0.4em;
+}
+
 @tailwind utilities;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Heading from '../Heading';
 import Devices from '../images/device-array.png';
-import Cover from '../images/cover.jpg';
+import Cover from '../images/samuel-fothergill-cover.jpg';
 import iPhone from '../images/iphone.png';
 import iPad from '../images/ipad.png';
 import './SubHero.css';
