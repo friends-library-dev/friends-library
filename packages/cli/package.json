@@ -1,0 +1,17 @@
+{
+  "name": "@friends-library/cli",
+  "version": "1.0.0",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "description": "cli for friends-library",
+  "license": "MIT",
+  "scripts": {
+    "test": "cd ../../ && yarn jest packages/kite"
+  },
+  "devDependencies": {
+    "@types/yargs": "^13.0.0"
+  },
+  "dependencies": {
+    "ts-node": "^8.3.0",
+    "yargs": "^14.0.0"
+  }
+}

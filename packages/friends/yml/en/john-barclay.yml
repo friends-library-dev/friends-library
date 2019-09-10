@@ -1,0 +1,81 @@
+id: ac06ca75-a9eb-44f3-9c9b-bca7c3369186
+name: John Barclay
+slug: john-barclay
+gender: male
+description:
+  Although John Barclay (1797-1838) was a descendent of the well-known apologist Robert
+  Barclay, he was a complete stranger to the life and power of Truth until he began to
+  seek the Lord with all his heart, somewhere around his 18th year. The Society of Friends
+  at that time was in a low and declining state, but John Barclay dug deep and found the
+  Root of life from which the early Quakers had sprouted, and in time became a living
+  branch himself, and a very useful author and minister. He lived only 41 years, but his
+  short life was wholly dedicated to his Master's cause, and many of the journals,
+  memoirs, and biographies of Early Friends that we possess now are the fruit of his
+  arduous and faithful labor with the original documents.
+documents:
+  - id: 318ac4f2-08ba-43d1-8d96-80d1714caddc
+    title: The Journal and Letters of John Barclay
+    slug: journal
+    filename: Journal_of_John_Barclay
+    description:
+      Although John Barclay (1797-1838) was a descendent of the well-known apologist
+      Robert Barclay, he was a complete stranger to the life and power of Truth until he
+      began to seek the Lord with all his heart, somewhere around his 18th year. The
+      Society of Friends at that time was in a low and declining state, but John Barclay
+      dug deep and found the Root of life from which the early Quakers had sprouted, and
+      in time became a living branch himself, and a very useful author and minister. He
+      lived only 41 years, but his short life was wholly dedicated to his Master's cause,
+      and many of the journals, memoirs, and biographies of Early Friends that we possess
+      now are the fruit of his arduous and faithful labor with the original documents.
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+          - number: 14
+          - number: 15
+          - number: 16
+          - title: Testimonies Concerning John Barclay
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+          - number: 14
+          - number: 15
+          - number: 16
+          - title: Testimonies Concerning John Barclay

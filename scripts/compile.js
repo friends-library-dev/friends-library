@@ -4,8 +4,10 @@ const [, , pkg, ...rest] = process.argv;
 
 const pkgs = [
   'bot',
-  'asciidoc',
-  'cli',
+  'adoc-lint',
+  'adoc-utils',
+  'env',
+  'cli-utils',
   'client',
   'evans',
   'friends',

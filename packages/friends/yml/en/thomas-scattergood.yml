@@ -1,0 +1,86 @@
+id: cb5e5a1c-f5d9-43e5-852a-7b960d8a318c
+name: Thomas Scattergood
+slug: thomas-scattergood
+gender: male
+description:
+  Thomas Scattergood (1748 - 1814) was a minister in the Society of Friends who knew what
+  it meant to be “in deaths often”, to be "hard-pressed on every side, yet not crushed;
+  perplexed but not in dispair." But his many seasons of conflict and suffering were
+  clearly made a blessing to him, both as a means of personal preservation from the snares
+  of the enemy, and of preparing him to minister in remarkable power and authority in the
+  presence of large assemblies. Few persons, it is believed, were preserved more steadily
+  in a state of inward watchfulness and retirement of spirit, waiting upon the Lord. And
+  few were enabled to see more clearly, or to minister more pertinently to the states of
+  meetings and individuals. Though he always maintained a low opinion of himself, and
+  spoke rarely and diffidently of the fruits of his ministry, all who knew him heartily
+  testified to the baptizing and convincing power of his gospel labors.
+documents:
+  - id: 0af1efec-461d-4936-bf91-cc0f44a60bd9
+    title: The Journal of Thomas Scattergood
+    original_title:
+      Memoirs of the Life and Religious Labors of Thomas Scattergood, A Minister of the
+      Gospel in the Society of Friends.
+    published: 1845
+    slug: journal
+    filename: Journal_of_Thomas_Scattergood
+    description:
+      Thomas Scattergood (1748 - 1814) was a minister in the Society of Friends who knew
+      what it meant to be “in deaths often”, to be "hard-pressed on every side, yet not
+      crushed; perplexed but not in dispair." But his many seasons of conflict and
+      suffering were clearly made a blessing to him, both as a means of personal
+      preservation from the snares of the enemy, and of preparing him to minister in
+      remarkable power and authority in the presence of large assemblies. Few persons, it
+      is believed, were preserved more steadily in a state of inward watchfulness and
+      retirement of spirit, waiting upon the Lord. And few were enabled to see more
+      clearly, or to minister more pertinently to the states of meetings and individuals.
+      Though he always maintained a low opinion of himself, and spoke rarely and
+      diffidently of the fruits of his ministry, all who knew him heartily testified to
+      the baptizing and convincing power of his gospel labors.
+    tags:
+      - journal
+    editions:
+      - type: modernized
+        pages: 596
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+
+        chapters:
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+            subtitle: Testimony of the monthly meeting of Philadelphia
+
+      - type: original
+        pages: 596
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+
+        chapters:
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+            subtitle: Testimony of the monthly meeting of Philadelphia

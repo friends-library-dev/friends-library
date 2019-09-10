@@ -1,0 +1,128 @@
+id: efbc4dad-18d7-4b15-9a94-26e6ef81686b
+name: Thomas Story
+slug: thomas-story
+gender: male
+description:
+  Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society
+  of Friends, who traveled all over England, Ireland, Scotland, Holland, Jamaica,
+  Barbados, and the American colonies in his service for the gospel. He was well-known for
+  both his spiritual depth and his intellectual genius. His clear perception of spiritual
+  truth, profound knowledge of Scripture, and facility of expression made him more than a
+  match for the enemies of truth who attempted to slander and oppose the teachings of
+  early Friends. The many compelling doctrinal arguments found in his journal became very
+  influential among Quakers, and will still be read with great benefit by every genuine
+  seeker of truth.
+documents:
+  - id: 659d4885-daa3-42e1-acc4-827ec5cd0d36
+    title: Selection from the Journal of Thomas Story
+    slug: journal-selection
+    filename: Selection_Journal_of_Thomas_Story
+    description:
+      Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the
+      Society of Friends, who traveled all over England, Ireland, Scotland, Holland,
+      Jamaica, Barbados, and the American colonies in his service for the gospel. He was
+      well-known for both his spiritual depth and his intellectual genius. His clear
+      perception of spiritual truth, profound knowledge of Scripture, and facility of
+      expression made him more than a match for the enemies of truth who attempted to
+      slander and oppose the teachings of early Friends. The many compelling doctrinal
+      arguments found in his journal became very influential among Quakers, and will still
+      be read with great benefit by every genuine seeker of truth.
+    tags:
+      - journal
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        pages: 31
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: Journal of Thomas Story
+              external_id_hq: 281992929
+              external_id_lq: 281992954
+              filesize_hq: 67694765
+              filesize_lq: 22560990
+              seconds: 3760
+              chapters:
+                - 0
+        chapters:
+          - title: Selection from the Journal of Thomas Story
+  - id: 62e5131b-33a2-425e-8d33-e912b2b9f0ca
+    title: Journal of Thomas Story
+    slug: journal
+    filename: Journal_of_Thomas_Story
+    description:
+      Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the
+      Society of Friends, who traveled all over England, Ireland, Scotland, Holland,
+      Jamaica, Barbados, and the American colonies in his service for the gospel. He was
+      well-known for both his spiritual depth and his intellectual genius. His clear
+      perception of spiritual truth, profound knowledge of Scripture, and facility of
+      expression made him more than a match for the enemies of truth who attempted to
+      slander and oppose the teachings of early Friends. The many compelling doctrinal
+      arguments found in his journal became very influential among Quakers, and will still
+      be read with great benefit by every genuine seeker of truth.
+    tags:
+      - journal
+    editions:
+      - type: modernized
+        pages: 1010
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: The Journal of Thomas Story
+
+      - type: original
+        pages: 1010
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: The Journal of Thomas Story
+  - id: 91c346f7-2909-4aca-8987-a96cc41683d1
+    title: Salvation By Christ
+    slug: salvation-by-christ
+    filename: Salvation_by_Christ
+    description:
+      An excerpt from the journal of Thomas Story concerning the nature of salvation,
+      showing it to depend upon both the outward work of Christ as a sacrifice for sin, in
+      conjunction with the inward work of Christ in the heart as the light, life, and
+      redemption of the soul.
+    tags:
+      - doctrinal
+    editions:
+      - type: modernized
+        pages: 3
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Salvation By Christ
+  - id: dcc2ccc5-0fdb-4dd1-8783-5363bb0b0c27
+    title: Letter to a Doubter
+    slug: letter-to-a-doubter
+    filename: Letter_to_a_Doubter
+    description:
+      An excerpt from the journal of Thomas Story containing a remarkably compelling
+      response written to one who, through misunderstanding, had charged Story and the
+      Society of Friends with error.
+    tags:
+      - exhortation
+      - doctrinal
+    editions:
+      - type: modernized
+        pages: 20
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Letter to a Doubter

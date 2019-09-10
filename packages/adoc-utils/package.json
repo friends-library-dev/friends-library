@@ -1,0 +1,15 @@
+{
+  "name": "@friends-library/adoc-utils",
+  "version": "1.0.0",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile adoc-utils",
+    "test": "cd ../../ && yarn jest packages/adoc-utils"
+  },
+  "dependencies": {
+    "@friends-library/hilkiah": "1.0.0",
+    "@friends-library/types": "1.0.0"
+  }
+}

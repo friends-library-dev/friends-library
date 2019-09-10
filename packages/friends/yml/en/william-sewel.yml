@@ -1,0 +1,127 @@
+id: 045aa005-fac5-43ac-91b6-3f6e6ed87498
+name: William Sewel
+slug: william-sewel
+gender: male
+description:
+  William Sewel (1653-1720), being a Quaker himself, an honest and meticulous researcher,
+  and an eye-witness to many of the events described in his writings, has long been
+  considered the foremost authority on the early history of the Society of Friends. This
+  lengthy but invaluable publication (first written in Dutch in 1717, and then translated
+  by Sewel into English) tells the truly amazing story of a people who awoke from the
+  lifeless and formal religion of their day,  submitted whole-heartedly to the teachings
+  of the Spirit of truth, and so returned to the original life, light, power, and purity
+  of primitive Christianity.
+
+documents:
+  - id: 69c5fc26-76e3-4302-964e-ba46d889003b
+    title: The History of the Christian People Called Quakers
+    slug: history-of-quakers
+    filename: History_of_Christian_People_Called_Quakers
+    description:
+      William Sewel (1653-1720), being a Quaker himself, an honest and meticulous
+      researcher, and an eye-witness to many of the events described in his writings, has
+      long been considered the foremost authority on the early history of the Society of
+      Friends. This lengthy but invaluable publication (first written in Dutch in 1717,
+      and then translated by Sewel into English) tells the truly amazing story of a people
+      who awoke from the lifeless and formal religion of their day,  submitted
+      whole-heartedly to the teachings of the Spirit of truth, and so returned to the
+      original life, light, power, and purity of primitive Christianity.
+    tags:
+      - journal
+    editions:
+      - type: modernized
+        pages: 1413
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+
+        chapters:
+          - title: Forward by Editor
+          - title: Preface by William Shewen
+          - number: 1
+            subtitle: The First Book
+          - number: 2
+            subtitle: The Second Book
+          - number: 3
+            subtitle: The Third Book
+          - number: 4
+            subtitle: The Fourth book
+          - number: 5
+            subtitle: The Fifth Book
+          - number: 6
+            subtitle: The Sixth Book
+          - number: 7
+            subtitle: The Seventh Book
+          - number: 8
+            subtitle: The Eighth book
+          - number: 9
+            subtitle: The Ninth Book
+          - number: 10
+            subtitle: The Tenth Book
+          - number: 11
+            subtitle: The Eleventh Book
+          - number: 12
+            subtitle: The Twelfth book
+          - title: Addenda - The Light Upon the Candlestick
+          - title: Appendix - Account of the Sufferings of Richard Seller
+      - type: original
+        pages: 1413
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Forward by Editor
+          - title: Preface by William Shewen
+          - number: 1
+            subtitle: The First Book
+          - number: 2
+            subtitle: The Second Book
+          - number: 3
+            subtitle: The Third Book
+          - number: 4
+            subtitle: The Fourth book
+          - number: 5
+            subtitle: The Fifth Book
+          - number: 6
+            subtitle: The Sixth Book
+          - number: 7
+            subtitle: The Seventh Book
+          - number: 8
+            subtitle: The Eighth book
+          - number: 9
+            subtitle: The Ninth Book
+          - number: 10
+            subtitle: The Tenth Book
+          - number: 11
+            subtitle: The Eleventh Book
+          - number: 12
+            subtitle: The Twelfth book
+          - title: Addenda - The Light Upon the Candlestick
+          - title: Appendix - Account of the Sufferings of Richard Seller
+  - id: 2c64c45a-02b0-406d-935f-c90a42daf5a7
+    title: The Sufferings of Catharine Evans and Sarah Cheevers
+    slug: sufferings-of-catharine-evans-sarah-cheevers
+    filename: Sufferings_of_Catharine_Evans_and_Sarah_Cheevers
+    description:
+      Catherine Evans (1618-1692) and Sarah Cheevers (1608-1664) were early ministers in
+      the Society of Friends who embarked together on a missionary journey, intending for
+      Alexandria, Egypt. After enduring several storms, their ship stopped at Malta, an
+      island in the Mediterranean then under the dominion of the Catholic Church. Evans
+      and Cheevers were arrested on the island for preaching and handing out books and
+      were placed under house arrest. After three months, they were moved to a local
+      prison where they endured nearly four years of cruel treatment at the hands of the
+      Inquisition in attempting to force their conversion to Catholicism.
+    tags:
+      - history
+      - letters
+    editions:
+      - type: modernized
+        pages: 52
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: The Sufferings of Catharine Evans and Sarah Cheevers

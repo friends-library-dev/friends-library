@@ -1,0 +1,100 @@
+id: 0f82b284-e156-4523-a9a1-7ddf8993bd63
+name: Hugh Turford
+slug: hugh-turford
+gender: male
+description:
+  The primitive Christians built on a sure rock, a living foundation, on Christ as He was
+  in all ages, and still is–-on His spiritual appeareance as the light of the world, and
+  the life of righteousness. His work of sanctification is inward, and is to be effected
+  by inward means. Nothing but inward light can expell inward darkness; nothing less than
+  eternal life can deliver our souls from the power of death. But this way of God’s
+  salvation has been so long rejected, that few in our present age know what His Spirit
+  is, where they may become acquainted with it, or how they may walk in it.
+documents:
+  - id: 9333dd0a-d92b-401e-a086-f611cc20f984
+    title: Walk in the Spirit
+    slug: walk-in-the-spirit
+    filename: Walk_in_the_Spirit
+    original_title:
+      "The grounds of a holy life; or, The way by which many who had been heathens, came
+      to be renowned Christians; and such as are now sinners, may come to be numbered with
+      saints, with little or no outward preaching: to which is added, Paul's speech to
+      Titus, called the first bishop of Crete: and also, A true touchstone, or trial of
+      Christianity."
+    description:
+      The primitive Christians built on a sure rock, a living foundation, on Christ as He
+      was in all ages, and still is–-on His spiritual appeareance as the light of the
+      world, and the life of righteousness. His work of sanctification is inward, and is
+      to be effected by inward means. Nothing but inward light can expell inward darkness;
+      nothing less than eternal life can deliver our souls from the power of death. But
+      this way of God’s salvation has been so long rejected, that few in our present age
+      know what His Spirit is, where they may become acquainted with it, or how they may
+      walk in it.
+    tags:
+      - doctrinal
+      - treatise
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        isbn: 978-1-64476-003-1
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
+        audio:
+          reader: Jason R. Henderson
+          parts:
+            - title: Part 1
+              external_id_hq: 613633581
+              external_id_lq: 613633605
+              filesize_hq: 53494728
+              filesize_lq: 14267646
+              seconds: 2853
+              chapters:
+                - 0
+            - title: Part 2
+              external_id_hq: 613632639
+              external_id_lq: 613632663
+              filesize_hq: 39594969
+              filesize_lq: 10955406
+              seconds: 2191
+              chapters:
+                - 1
+            - title: Part 3
+              external_id_hq: 622219650
+              external_id_lq: 622219674
+              filesize_hq: 42619978
+              filesize_lq: 11094246
+              seconds: 2219
+              chapters:
+                - 2
+
+        chapters:
+          - title: To the Reader
+          - title: Walk in the Spirit
+          - title: Considerations Grounded upon the Foregoing Discourse
+          - title: The Grace that Brings Salvation
+      - type: modernized
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: To the Reader
+          - title: Walk in the Spirit
+          - title: Considerations Grounded upon the Foregoing Discourse
+          - title: The Grace that Brings Salvation
+      - type: original
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: To the Reader
+          - title: Walk in the Spirit
+          - title: Considerations Grounded upon the Foregoing Discourse
+          - title: The Grace that Brings Salvation

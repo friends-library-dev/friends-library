@@ -1,0 +1,125 @@
+id: a71f80ff-35e0-4df7-b474-f6bf0fb473c7
+name: Stephen Crisp
+slug: stephen-crisp
+gender: male
+description:
+  Stephen Crisp (1628-1692) is an example of one whose desperate search for Truth (lasting
+  twenty long years) at last brought him to an experiential knowledge of the grace and
+  truth that are in Jesus Christ. Having found the Pearl of great price, he sold all to
+  buy it, and became an eminent preacher and writer among the early Society of Friends.
+  For the remaining thirty-five years of his life, he labored in the power and wisdom of
+  the Spirit, traveling throughout England, Scotland, Holland, and Germany, and writing
+  many valuable epistles and treatises to the church in both the English and Dutch
+  languages.
+documents:
+  - id: 0d7bb9f8-b098-4dbd-9780-b32805b43e96
+    title: Selection from the Journal of Stephen Crisp
+    slug: journal-selection
+    filename: Selection_Journal_of_Stephen_Crisp
+    description:
+      Stephen Crisp (1628-1692) is an example of one whose desperate search for Truth
+      (lasting twenty long years) at last brought him to an experiential knowledge of the
+      grace and truth that are in Jesus Christ. Having found the Pearl of great price, he
+      sold all to buy it, and became an eminent preacher and writer among the early
+      Society of Friends. For the remaining thirty-five years of his life, he labored in
+      the power and wisdom of the Spirit, traveling throughout England, Scotland, Holland,
+      and Germany, and writing many valuable epistles and treatises to the church in both
+      the English and Dutch languages.
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        pages: 27
+        formats:
+          - type: paperback
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: Journal of Stephen Crisp
+              external_id_hq: 276790389
+              external_id_lq: 276790407
+              filesize_hq: 55916850
+              filesize_lq: 19218174
+              seconds: 3203
+              chapters:
+                - 0
+        chapters:
+          - title: The Journal of Stephen Crisp
+  - id: 2eb862e1-cc3e-4588-a504-98db07a85474
+    title: A Plain Pathway
+    slug: plain-pathway
+    filename: Plain_Pathway
+    description:
+      The Plain Pathway is a short treatise written by Stephen Crisp concerning the
+      appearance of Christ's light in the heart. According to Crisp, it was written "for
+      the answering of all doubts and objections which arise against Christ's light and
+      truth in the inward parts; by which many are kept from obedience, and so from peace
+      to their panting souls."
+    tags:
+      - exhortation
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        pages: 12
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: A Plain Pathway
+              external_id_hq: 333353574
+              external_id_lq: 333353583
+              filesize_hq: 45647137
+              filesize_lq: 15094302
+              seconds: 2515
+              chapters:
+                - 0
+        chapters:
+          - title: A Plain Pathway
+
+  - id: 2e80b149-e111-4c8c-ab7a-c5e1ed3861f4
+    title: A Short History of a Long Travel from Babylon to Bethel
+    slug: babylon-to-bethel
+    filename: Babylon_to_Bethel
+    description:
+      This short but instructive allegory by Stephen Crisp was written to illustrate the
+      perilous journey of the Christian soul from Babylon (the man-made city of religious
+      confusion) to Bethel, the true house of God.
+    tags:
+      - allegory
+    editions:
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+          - type: audio
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: A Short History of a Long Travel from Babylon to Bethel
+              external_id_hq: 436511247
+              external_id_lq: 436511268
+              filesize_hq: 40841822
+              filesize_lq: 8860985
+              seconds: 2215
+              chapters:
+                - 0
+        chapters:
+          - title: A Short History of a Long Travel from Babylon to Bethel
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: A Short History of a Long Travel from Babylon to Bethel

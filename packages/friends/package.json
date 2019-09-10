@@ -1,0 +1,16 @@
+{
+  "name": "@friends-library/friends",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile friends",
+    "test": "cd ../../ && yarn jest packages/friends"
+  },
+  "dependencies": {
+    "@friends-library/types": "1.0.0",
+    "glob": "^7.1.3",
+    "js-yaml": "^3.12.0",
+    "lodash": "^4.17.11"
+  }
+}

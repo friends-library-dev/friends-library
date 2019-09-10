@@ -7,16 +7,26 @@ export {
   DirLints,
   filesFromPath,
   langFromPath,
-} from './lint';
+} from '../../../old_pkgs/asciidoc/src/lint';
 export { splitLines, makeSplitLines, refMutate, refUnmutate } from './split';
-export { createJob, createPrecursor } from './job';
-export { getDocumentMeta, jobToJson, unstringifyJob } from './job/utils';
-export { default as createSourceSpec } from './job/source-spec';
-export { pdfHtml, embeddablePdfHtml, getTrim } from './job/pdf-html';
-export { navText, replaceHeadings } from './job/headings';
-export { frontmatter, epigraph } from './job/frontmatter';
+export { createJob, createPrecursor } from '../../../old_pkgs/asciidoc/src/job';
+export {
+  getDocumentMeta,
+  jobToJson,
+  unstringifyJob,
+} from '../../../old_pkgs/asciidoc/src/job/utils';
+export {
+  default as createSourceSpec,
+} from '../../../old_pkgs/asciidoc/src/job/source-spec';
+export {
+  pdfHtml,
+  embeddablePdfHtml,
+  getTrim,
+} from '../../../old_pkgs/asciidoc/src/job/pdf-html';
+export { navText, replaceHeadings } from '../../../old_pkgs/asciidoc/src/job/headings';
+export { frontmatter, epigraph } from '../../../old_pkgs/asciidoc/src/job/frontmatter';
 export {
   getPrintSizeDetails,
   sizes as bookSizes,
   choosePrintSize,
-} from './job/book-size';
+} from '../../../old_pkgs/asciidoc/src/job/book-size';

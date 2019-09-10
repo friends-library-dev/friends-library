@@ -1,0 +1,88 @@
+id: 2fc07cca-624d-435e-9a48-d7dc28edff9f
+name: John Woolman
+slug: john-woolman
+gender: male
+description:
+  Because of his writings against slavery and other social evils, John Woolman (1720-1772)
+  is one of the most well-known Quakers from the 18th century. Unfortunately, several
+  heavily edited versions of his journal exist today which have removed important aspects
+  of his Christian faith and experience, rendering him little more than a philanthropist
+  and abolitionist. The truth is that John Woolman was a devoted servant of Jesus Christ,
+  a preacher of truth and righteousness, and a man filled with the Spirit and love of God
+  that overflowed towards his fellow creatures. This edition contains his unabridged
+  journal and works.
+documents:
+  - id: 9ec7c639-b4eb-4e58-aa37-fdc23817f5f3
+    title: The Journal and Writings of John Woolman
+    original_title:
+      The Journal, Life, Gospel Labours, and Christian Experiences of that Faithful
+      Minister of Jesus Christ, John Woolman. To Which Are Added His Last Epistle, and
+      Other Writings.
+    slug: journal-writings
+    filename: Journal_and_Writings_of_John_Woolman
+    description:
+      Because of his writings against slavery and other social evils, John Woolman
+      (1720-1772) is one of the most well-known Quakers from the 18th century.
+      Unfortunately, several heavily edited versions of his journal exist today which have
+      removed important aspects of his Christian faith and experience, rendering him
+      little more than a philanthropist and abolitionist. The truth is that John Woolman
+      was a devoted servant of Jesus Christ, a preacher of truth and righteousness, and a
+      man filled with the Spirit and love of God that overflowed towards his fellow
+      creatures. This edition contains his unabridged journal and works.
+    tags:
+      - journal
+      - treatise
+    editions:
+      - type: modernized
+        pages: 316
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: The Testimony of Friends in Yorkshire concerning John Woolman
+          - title: The Testimony of Burlington Monthly Meeting Concerning John Woolman
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - title: Considerations on the Keeping of Negros, pt. 1
+          - title: Considerations on the Keeping of Negros, pt. 2
+          - title: Considerations on Pure Wisdom and Human Policy
+          - title: Considerations on the True Harmony of Mankind
+          - title: Remarks on Sundry Subjects
+          - title: Epistle to the Quarterly and Monthly Meetings of Friends
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: The Testimony of Friends in Yorkshire concerning John Woolman
+          - title: The Testimony of Burlington Monthly Meeting Concerning John Woolman
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - title: Considerations on the Keeping of Negros, pt. 1
+          - title: Considerations on the Keeping of Negros, pt. 2
+          - title: Considerations on Pure Wisdom and Human Policy
+          - title: Considerations on the True Harmony of Mankind
+          - title: Remarks on Sundry Subjects
+          - title: Epistle to the Quarterly and Monthly Meetings of Friends

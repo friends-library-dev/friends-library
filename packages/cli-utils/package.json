@@ -1,5 +1,5 @@
 {
-  "name": "@friends-library/cli",
+  "name": "@friends-library/cli-utils",
   "version": "1.0.0",
   "description": "CLI utils for Friends Library",
   "main": "index.js",

@@ -14,5 +14,5 @@ process.env.SENDGRID_API_KEY = 'sendgrid-api-key';
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testRegex: '__tests__/.*spec\\.ts$',
+  testRegex: 'packages/.*/__tests__/.*spec\\.ts$',
 };

@@ -1,0 +1,79 @@
+id: a0395258-083a-4477-b12c-c78201771596
+name: William Evans
+slug: william-evans
+gender: male
+description:
+  William Evans (1787-1867) was one of the last spiritually living and weighty ministers
+  amidst a greatly divided and quickly vanishing Society of Friends. His journal is
+  remarkable for its deeply personal style, and its valuable and enlightening comments on
+  Scripture, the church, the operation of grace in the soul, ministry, and many other
+  important subjects. Evans witnessed and stood against the two unhappy divisions that
+  greatly crippled the Society in the first half of the 19th century (the Hicksite and
+  Gurneyite separations), contending earnestly for the original principles and practices
+  of Friends. William and his brother Thomas were the editors and publishers of the
+  original Friends' Library, as well as an updated version of the four-volume work
+  entitled Piety Promoted.
+
+documents:
+  - id: bd22a3f4-51e1-45a5-9b65-2f0b21bde039
+    title: The Journal of William Evans
+    slug: journal
+    filename: Journal_of_William_Evans
+    description:
+      William Evans (1787-1867) was one of the last spiritually living and weighty
+      ministers amidst a greatly divided and quickly vanishing Society of Friends. His
+      journal is remarkable for its deeply personal style, and its valuable and
+      enlightening comments on Scripture, the church, the operation of grace in the soul,
+      ministry, and many other important subjects. Evans witnessed and stood against the
+      two unhappy divisions that greatly crippled the Society in the first half of the
+      19th century (the Hicksite and Gurneyite separations), contending earnestly for the
+      original principles and practices of Friends. William and his brother Thomas were
+      the editors and publishers of the original Friends' Library, as well as an updated
+      version of the four-volume work entitled Piety Promoted.
+    tags:
+      - journal
+    editions:
+      - type: modernized
+        pages: 845
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+
+        chapters:
+          - title: To the Reader
+          - title: Introduction
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+          - number: 11
+          - number: 12
+          - number: 13
+          - number: 14
+          - number: 15
+          - number: 16
+          - number: 17
+          - number: 18
+          - number: 19
+          - number: 20
+          - number: 21
+          - number: 22
+          - number: 23
+          - number: 24
+          - number: 25
+          - number: 26
+          - number: 27
+          - number: 28
+          - number: 29
+          - number: 30
+          - number: 31
+          - number: 32
+          - number: 33
+          - title: Conclusion

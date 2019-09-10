@@ -7,6 +7,7 @@
     "ts:clean": "find . -name \"*.tsbuildinfo\" -type f -delete && rm -rf packages/*/dist",
     "kite": "yarn ts-node --transpile-only --project ./packages/kite/tsconfig.json ./packages/kite/src/app.ts",
     "fell": "yarn ts-node --transpile-only --project ./packages/fell/tsconfig.json ./packages/fell/src/app.ts",
+    "fl": "yarn ts-node --transpile-only --project ./packages/cli/tsconfig.json ./packages/cli/src/app.ts",
     "test": "yarn jest",
     "lint": "yarn ts:lint && yarn sass:lint",
     "sass:lint": "yarn stylelint packages/kite/**/*.scss",
@@ -54,6 +55,7 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
+    "lodash": "^4.17.15",
     "prettier": "^1.16.4",
     "typescript": "3.6.2"
   },

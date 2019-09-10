@@ -1,0 +1,84 @@
+id: 1a43f3b6-f60b-4d5d-bdfd-5d777ac3dc77
+name: John Richardson
+slug: john-richardson
+gender: male
+description:
+  The life of John Richardson (1667-1753) is a powerful confirmation of Jesus' words, that
+  heavenly things "are hidden from the wise and prudent and revealed unto babes," and that
+  His "power is made perfect in weakness." Though starting out in life a poor farm boy
+  with little education, Richardson became a faithful student in the Holy Spirit's school
+  of Christ, where he not only learned spiritual truths and heavenly mysteries, but came
+  to experience his garments washed, his mind renewed, and his heart changed. Originally
+  from England, he travelled as a minister for most of his adult life, twice visiting the
+  American colonies, where he triumphantly defended the truth against "that sad apostate"
+  George Keith.
+documents:
+  - id: 470677d5-c6e0-4d1f-a61d-69827d25a14c
+    title: Selection from the Journal of John Richardson
+    slug: journal-selection
+    filename: Selection_Journal_of_John_Richardson
+    description:
+      The life of John Richardson (1667-1753) is a powerful confirmation of Jesus' words,
+      that heavenly things "are hidden from the wise and prudent and revealed unto babes,"
+      and that His "power is made perfect in weakness." Though starting out in life a poor
+      farm boy with little education, Richardson became a faithful student in the Holy
+      Spirit's school of Christ, where he not only learned spiritual truths and heavenly
+      mysteries, but came to experience his garments washed, his mind renewed, and his
+      heart changed. This instructive portion is an excerpt from his journal relating his
+      early years, spiritual growth, and call to ministry.
+    tags:
+      - journal
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        pages: 28
+        formats:
+          - type: paperback
+          - type: audio
+          - type: pdf
+          - type: epub
+          - type: mobi
+        audio:
+          reader: Jason Henderson
+          parts:
+            - title: Selection from the Journal of John Richardson
+              external_id_hq: 276947054
+              external_id_lq: 276947064
+              filesize_hq: 59021156
+              filesize_lq: 19906998
+              seconds: 3318
+              chapters:
+                - 0
+
+        chapters:
+          - title: Journal of John Richardson
+  - id: 1e81ab5f-4f72-4570-93a1-e446e1e70267
+    title: The Journal of John Richardson
+    slug: journal
+    original_title:
+      An Account of the Life of that Ancient Servant of Jesus Christ, John Richardson,
+      Giving a Relation of his Trials and Exercises in his Youth, and his services in the
+      Work of the Ministry, in England, Ireland, America, etc.
+    filename: Journal_of_John_Richardson
+    description:
+      The life of John Richardson (1667-1753) is a powerful confirmation of Jesus' words,
+      that heavenly things "are hidden from the wise and prudent and revealed unto babes,"
+      and that His "power is made perfect in weakness." Though starting out in life a poor
+      farm boy with little education, Richardson became a faithful student in the Holy
+      Spirit's school of Christ, where he not only learned spiritual truths and heavenly
+      mysteries, but came to experience his garments washed, his mind renewed, and his
+      heart changed. Originally from England, he travelled as a minister for most of his
+      adult life, twice visiting the American colonies, where he triumphantly defended the
+      truth against "that sad apostate" George Keith.
+    tags:
+      - journal
+    editions:
+      - type: modernized
+        pages: 177
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+
+        chapters:
+          - title: An Account of the Life of John Richardson
