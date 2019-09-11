@@ -1,8 +1,5 @@
-import omit from 'lodash/omit';
 import stripIndent from 'strip-indent';
-import { createPrecursor } from '../';
-import createSourceSpec from '../source-spec';
-import { specFromAdoc } from './test-helpers';
+import processDocument from '../process-document';
 
 let mockCounter = 0;
 
@@ -10,49 +7,25 @@ jest.mock('uuid/v4', () => {
   return jest.fn(() => `uuid${++mockCounter}`);
 });
 
-beforeEach(() => {
-  mockCounter = 0;
-});
-
 describe('createSourceSpec()', () => {
   beforeEach(() => {
     mockCounter = 0;
   });
 
-  it('passes through all simple props from precursor', () => {
-    const opts = {
-      id: 'my-id',
-      adoc: '== Ch1\n\nFoo.',
-      lang: 'es',
-      meta: { title: 'My Title' },
-      filename: 'Foo',
-      revision: {
-        timestamp: 123,
-        sha: '123abc',
-        url: '/url',
-      },
-      config: { foo: 'bar' },
-      customCss: { all: 'custom' },
-    };
-    const precursor = createPrecursor(opts);
-    const spec = createSourceSpec(precursor);
-    expect(spec).toMatchObject(omit(opts, 'adoc'));
-  });
-
   it('turns adoc chapters into sections', () => {
-    const { sections } = specFromAdoc('== Ch1\n\nPara1.\n\n== Ch 2\n\nPara2.\n');
+    const { sections } = processDocument('== Ch1\n\nPara1.\n\n== Ch 2\n\nPara2.\n');
     expect(sections).toHaveLength(2);
     expect(sections[0].id).toBe('section1');
     expect(sections[1].id).toBe('section2');
   });
 
   it('entity followed by semicolon does not produce <dl>', () => {
-    const { sections } = specFromAdoc("== Ch1\n\nStayed at R. Jones`';");
+    const { sections } = processDocument("== Ch1\n\nStayed at R. Jones`';");
     expect(sections[0].html).not.toContain('<dl>');
   });
 
   test('custom classes dont mess up sectioning', () => {
-    const { sections } = specFromAdoc(
+    const { sections } = processDocument(
       '== Ch1\n\nPara1.\n\n[.style-foo]\n== Ch 2\n\nPara2.\n',
     );
     expect(sections).toHaveLength(2);
@@ -61,7 +34,7 @@ describe('createSourceSpec()', () => {
   it('placeholders chapter headings', () => {
     const {
       sections: [section],
-    } = specFromAdoc('== Ch1\n\nPara1.');
+    } = processDocument('== Ch1\n\nPara1.');
 
     expect(section.html).toContain('{% chapter-heading %}');
     expect(section.html).not.toContain('Ch1');
@@ -72,7 +45,7 @@ describe('createSourceSpec()', () => {
     const adoc = '[.style-blurb]\n== Title\n\nPara.';
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.html).toContain('{% chapter-heading, blurb %}');
     expect(section.html).not.toContain(' style-blurb'); // interferes with `first-chapter`
@@ -82,7 +55,7 @@ describe('createSourceSpec()', () => {
     const adoc = '[#foo.style-lol, short="Foo"]\n== Title\n\nPara.';
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.html).toContain('{% chapter-heading, lol %}');
   });
@@ -91,7 +64,7 @@ describe('createSourceSpec()', () => {
     const adoc = '[#intro, short="Intro"]\n== Introduction\n\nPara.';
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.heading).toMatchObject({
       id: 'intro',
@@ -104,13 +77,13 @@ describe('createSourceSpec()', () => {
     const adoc = '[#intro.style-foo, short="Intro"]\n== Introduction\n\nPara.';
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.heading.shortText).toBe('Intro');
   });
 
   it('extracts footnotes', () => {
-    const { sections, notes } = specFromAdoc('== Ch\n\nA caret^\nfootnote:[lol].');
+    const { sections, notes } = processDocument('== Ch\n\nA caret^\nfootnote:[lol].');
 
     expect(sections[0].html).toContain('<p>A caret{% note: uuid1 %}.</p>');
     expect(sections).toHaveLength(1);
@@ -119,7 +92,7 @@ describe('createSourceSpec()', () => {
 
   it('allows footnotes on chapter-synopsis items', () => {
     const adoc = '== C1\n\n[.chapter-synopsis]\n* foofootnote:[bar]\n* baz\n\n';
-    const { notes } = specFromAdoc(adoc);
+    const { notes } = processDocument(adoc);
     expect(notes.get('uuid1')).toBe('bar');
   });
 
@@ -127,7 +100,7 @@ describe('createSourceSpec()', () => {
     const adoc = '== Ch1\n\n[.offset]\nFoo.';
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
     expect(section.html).toContain('<br class="m7"/><p>Foo.</p>\n<br class="m7"/>');
   });
 
@@ -135,7 +108,7 @@ describe('createSourceSpec()', () => {
     const adoc = '== C1\n\n[quote]\n____\nFoo.\n____';
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
     expect(section.html).toContain('<blockquote><br class="m7"/>');
   });
 
@@ -143,7 +116,7 @@ describe('createSourceSpec()', () => {
     const adoc = '== Ch1\n\n[.discourse-part]\nFoo.';
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
     expect(section.html).toContain('<div class="discourse-part"><br class="m7"/>');
   });
 
@@ -159,7 +132,7 @@ describe('createSourceSpec()', () => {
     const {
       sections: [section],
       notes,
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.html).toContain(
       '<span class="book-title">bar</span>{% note: uuid1 %}',
@@ -179,7 +152,7 @@ describe('createSourceSpec()', () => {
     const {
       sections: [section],
       notes,
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.html).not.toContain('#Sewells History#]');
     expect(notes.get('uuid1')).toBe('<span class="book-title">Sewells History</span>');
@@ -191,7 +164,7 @@ describe('createSourceSpec()', () => {
     const {
       sections: [section],
       notes,
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.html).toContain('Foo{% note: uuid1 %}\nbar.');
     expect(notes.get('uuid1')).toBe('&#8212;<span class="book-title">title</span>');
@@ -210,7 +183,7 @@ describe('createSourceSpec()', () => {
 
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.html).toContain('>Foo bar;&#8212;<');
     expect(section.html).toContain('>So much baz!<');
@@ -233,7 +206,7 @@ describe('createSourceSpec()', () => {
 
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(section.html).toContain(`<div class="${kls}">`);
     expect(section.html).not.toContain('paragraph');
@@ -244,7 +217,7 @@ describe('createSourceSpec()', () => {
 
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     const expected = `
       <h3 id="_foo_bar_baz" class="old-style">
@@ -262,7 +235,7 @@ describe('createSourceSpec()', () => {
 
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     const expected = `
       <h3 id="_foo_bar_baz" class="old-style bold">
@@ -280,7 +253,7 @@ describe('createSourceSpec()', () => {
 
     const {
       sections: [sect1, sect2],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     expect(sect1.html).toMatch(/^<div class="sect1 chapter--no-signed-section"/);
     expect(sect2.html).toMatch(/^<div class="sect1 chapter--has-signed-section"/);
@@ -300,7 +273,7 @@ describe('createSourceSpec()', () => {
 
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     const expected = stripIndent(`
       <div class="verse">
@@ -331,7 +304,7 @@ describe('createSourceSpec()', () => {
 
     const {
       sections: [section],
-    } = specFromAdoc(adoc);
+    } = processDocument(adoc);
 
     const expected = stripIndent(`
       <div class="verse">
@@ -366,7 +339,7 @@ footnote:[Foo bar.
 End of footnote here.]
     `.trim();
 
-    const { notes } = specFromAdoc(adoc);
+    const { notes } = processDocument(adoc);
 
     const expected = stripIndent(`
       <span class="verse"><br class="m7"/>
@@ -397,7 +370,7 @@ End of footnote here.]
       Hash baz.]
     `).trim();
 
-    const { notes } = specFromAdoc(adoc);
+    const { notes } = processDocument(adoc);
 
     const splitMarkup = '<span class="fn-split"><br class="m7"/><br class="m7"/></span>';
     expect(notes.get('uuid1')).toContain(`bar. ${splitMarkup} Hash`);

@@ -1,0 +1,29 @@
+{
+  "name": "@friends-library/adoc-convert",
+  "version": "1.0.0",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "browser": {
+    "./dist/asciidoctor.js": "./dist/asciidoctor.browser.js"
+  },
+  "scripts": {
+    "compile": "cd ../../ && yarn compile adoc-convert",
+    "test": "cd ../../ && yarn jest packages/adoc-convert"
+  },
+  "dependencies": {
+    "@asciidoctor/core": "^2.0.2",
+    "@friends-library/types": "1.0.0",
+    "roman-numerals": "^0.3.2",
+    "striptags": "^3.1.1",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.5",
+    "@types/lodash": "^4.14.123",
+    "@types/roman-numerals": "^0.3.0",
+    "@types/strip-indent": "^2.0.0",
+    "@types/uuid": "^3.4.5",
+    "strip-indent": "^3.0.0"
+  }
+}

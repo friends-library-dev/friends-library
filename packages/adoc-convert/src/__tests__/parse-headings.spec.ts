@@ -1,13 +1,9 @@
 import { Asciidoc, Heading } from '@friends-library/types';
-import { jobFromAdoc } from './test-helpers';
+import processDocument from '../process-document';
 
 function parse(adoc: Asciidoc): Heading {
-  const {
-    spec: {
-      sections: [section],
-    },
-  } = jobFromAdoc(adoc);
-  return section.heading;
+  const { sections } = processDocument(adoc);
+  return sections[0].heading;
 }
 
 describe('parsing headings', () => {

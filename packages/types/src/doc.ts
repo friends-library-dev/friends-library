@@ -1,5 +1,15 @@
 import { ISBN, Sha, Url } from './primitive';
-import { Lang, EditionType, FileTypeWithShortcuts, Css, Html, Asciidoc } from './types';
+import {
+  Lang,
+  EditionType,
+  FileTypeWithShortcuts,
+  Css,
+  Html,
+  Asciidoc,
+  Epigraph,
+  DocSection,
+  Notes,
+} from './types';
 
 export interface DocPrecursor {
   lang: Lang;
@@ -7,6 +17,9 @@ export interface DocPrecursor {
   documentSlug: string;
   editionType: EditionType;
   asciidoc: Asciidoc;
+  epigraphs: Epigraph[];
+  sections: DocSection[];
+  notes: Notes;
   config: { [key: string]: any };
   customCode: {
     css: { [k in FileTypeWithShortcuts | 'cover']?: Css };

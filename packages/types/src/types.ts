@@ -61,11 +61,11 @@ export type SourceSpec = Readonly<{
   lang: Lang;
   size: number;
   filename: string;
-  epigraphs: Epigraph[];
   config: { [key: string]: any };
   customCss: CustomCss;
   meta: DocumentMeta;
   revision: DocumentRevision;
+  epigraphs: Epigraph[];
   sections: DocSection[];
   notes: Notes;
   conversionLogs: AsciidocConversionLog[];

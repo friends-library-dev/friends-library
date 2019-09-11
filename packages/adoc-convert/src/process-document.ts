@@ -1,6 +1,4 @@
 import {
-  SourcePrecursor,
-  SourceSpec,
   Asciidoc,
   Epigraph,
   DocSection,
@@ -13,25 +11,7 @@ import { extractEpigraphs } from './epigraphs';
 import adocToHtml from './adoc-to-html';
 import { extractNotes } from './notes';
 
-export default function createSourceSpec(precursor: SourcePrecursor): SourceSpec {
-  const { epigraphs, sections, notes, logs } = processAdoc(precursor.adoc);
-  return {
-    id: precursor.id,
-    size: precursor.adoc.length,
-    lang: precursor.lang,
-    meta: precursor.meta,
-    filename: precursor.filename,
-    revision: precursor.revision,
-    config: precursor.config,
-    customCss: precursor.customCss,
-    conversionLogs: logs,
-    epigraphs,
-    sections,
-    notes,
-  };
-}
-
-function processAdoc(
+export default function processDocument(
   adoc: Asciidoc,
 ): {
   epigraphs: Epigraph[];

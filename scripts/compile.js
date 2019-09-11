@@ -6,6 +6,7 @@ const pkgs = [
   'bot',
   'adoc-lint',
   'adoc-utils',
+  'adoc-convert',
   'env',
   'cli-utils',
   'client',
