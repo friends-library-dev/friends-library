@@ -1,3 +1,4 @@
+import '@friends-library/env/load';
 import yargs from 'yargs';
 import { prettifyErrors } from '@friends-library/cli-utils/error';
 import * as make from './cmd/make';

@@ -1,17 +1,19 @@
-export type ISBN = string;
-export type Uuid = string;
-export type Asciidoc = string;
-export type Xml = string;
-export type Html = string;
-export type Css = string;
-export type Url = string;
-export type Slug = string;
-export type Name = string;
-export type Title = string;
-export type Description = string;
-export type FilePath = string;
-export type Sha = string;
-
+import {
+  ISBN,
+  Uuid,
+  Asciidoc,
+  Xml,
+  Html,
+  Css,
+  Url,
+  Slug,
+  Name,
+  Title,
+  Description,
+  FilePath,
+  Sha,
+} from './primitive';
+export { DocPrecursor } from './doc';
 export type Gender = 'male' | 'female';
 export type Lang = 'en' | 'es';
 export type EditionType = 'original' | 'modernized' | 'updated';
@@ -128,7 +130,6 @@ export type DocumentRevision = Readonly<{
 }>;
 
 export type DocumentMeta = Readonly<{
-  title: string;
   coverId: string;
   originalTitle?: string;
   published?: number;
@@ -183,3 +184,19 @@ export function isDefined<T>(x: T | undefined): x is T {
 export function isNotFalse<T>(x: T | false): x is T {
   return x !== false;
 }
+
+export {
+  ISBN,
+  Uuid,
+  Asciidoc,
+  Xml,
+  Html,
+  Css,
+  Url,
+  Slug,
+  Name,
+  Title,
+  Description,
+  FilePath,
+  Sha,
+};
