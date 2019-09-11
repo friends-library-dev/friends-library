@@ -7,6 +7,7 @@ const pkgs = [
   'adoc-utils',
   'adoc-lint',
   'adoc-convert',
+  'doc-manifests',
   'env',
   'cli-utils',
   // 'client',

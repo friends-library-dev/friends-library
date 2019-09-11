@@ -1,0 +1,13 @@
+{
+  "name": "@friends-library/doc-artifacts",
+  "version": "1.0.0",
+  "description": "create filesystem final artifacts for consumables from manifests",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile doc-artifacts"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

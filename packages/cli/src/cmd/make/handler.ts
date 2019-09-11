@@ -2,7 +2,7 @@ import { sync as glob } from 'glob';
 import { Arguments } from 'yargs';
 import env from '@friends-library/env';
 import { processDocument } from '@friends-library/adoc-convert';
-import { paperbackInteriorManifest } from '@friends-library/kite';
+import { paperbackInteriorManifest } from '@friends-library/doc-manifests';
 import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
 import * as hydrate from '../../fs-precursor/hydrate';
 
