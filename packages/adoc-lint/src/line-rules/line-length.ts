@@ -1,6 +1,6 @@
 import * as hilkiah from '@friends-library/hilkiah';
 import { Asciidoc, LintResult } from '@friends-library/types';
-import { makeSplitLines } from '../../split';
+import { makeSplitLines } from '@friends-library/adoc-utils';
 import { LineRule } from '../types';
 
 const split = makeSplitLines(90, 45);

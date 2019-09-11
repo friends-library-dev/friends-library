@@ -3,22 +3,22 @@ const { execSync } = require('child_process');
 const [, , pkg, ...rest] = process.argv;
 
 const pkgs = [
-  'bot',
-  'adoc-lint',
+  // 'bot',
   'adoc-utils',
+  'adoc-lint',
   'adoc-convert',
   'env',
   'cli-utils',
-  'client',
-  'evans',
+  // 'client',
+  // 'evans',
   'friends',
-  'jones',
+  // 'jones',
   'hilkiah',
   'types',
-  'cover',
-  'styleguide',
-  'fell',
-  'ui',
+  // 'cover',
+  // 'styleguide',
+  // 'fell',
+  // 'ui',
   'all',
 ];
 

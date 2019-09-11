@@ -14,20 +14,15 @@
   },
   "dependencies": {
     "@asciidoctor/core": "^2.0.2",
-    "@friends-library/friends": "1.0.0",
     "@friends-library/hilkiah": "1.0.0",
     "@friends-library/types": "1.0.0",
     "escape-string-regexp": "^2.0.0",
-    "lodash": "^4.17.11",
-    "moment": "^2.22.2",
     "roman-numerals": "^0.3.2",
-    "striptags": "^3.1.1",
     "strip-indent": "^3.0.0",
     "unicharadata": "^9.0.0-alpha.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.123",
     "@types/roman-numerals": "^0.3.0",
     "@types/strip-indent": "^2.0.0"
   }

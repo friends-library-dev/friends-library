@@ -12,6 +12,6 @@
   "references": [
     { "path": "../types" },
     { "path": "../hilkiah" },
-    { "path": "../friends" }
+    { "path": "../adoc-utils" }
   ]
 }
