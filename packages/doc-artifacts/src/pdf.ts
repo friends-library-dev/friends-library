@@ -6,7 +6,7 @@ import { yellow } from '@friends-library/cli-utils/color';
 import { FileManifest } from '@friends-library/types';
 import { PdfOptions, Options } from './types';
 
-export default function pdf(
+export default async function pdf(
   manifest: FileManifest,
   filename: string,
   opts: PdfOptions = {},
@@ -26,39 +26,29 @@ export default function pdf(
   );
 
   const { PRINCE_BIN } = env.require('PRINCE_BIN');
-  return writeFiles
-    .then(() => {
-      const src = `${SRC_DIR}/doc.html`;
-      const stream = spawn(PRINCE_BIN || '/usr/local/bin/prince-books', [src]);
-      let output = '';
-
-      return new Promise((resolve, reject) => {
-        stream.stderr.on('data', data => {
-          output = output.concat(data.toString());
-        });
-
-        stream.on('close', code => {
-          output = output
-            .trim()
-            .split('\n')
-            .filter(filterPrinceOutput)
-            .map(opts.formatOutput || (l => l))
-            .join('\n');
-
-          if (output) {
-            yellow(output);
-          }
-
-          return code === 0 ? resolve() : reject(new Error(`prince-books error ${code}`));
-        });
-      });
-    })
-    .then(() => {
-      return fs.move(`${SRC_DIR}/doc.pdf`, `${ARTIFACT_DIR}/${filename}.pdf`);
-    })
-    .then(() => {
-      return `${ARTIFACT_DIR}/${filename}.pdf`;
+  await writeFiles;
+  const src = `${SRC_DIR}/doc.html`;
+  const stream = spawn(PRINCE_BIN || '/usr/local/bin/prince-books', [src]);
+  let output = '';
+  await new Promise((resolve, reject) => {
+    stream.stderr.on('data', data => {
+      output = output.concat(data.toString());
     });
+    stream.on('close', code => {
+      output = output
+        .trim()
+        .split('\n')
+        .filter(filterPrinceOutput)
+        .map(opts.formatOutput || (l => l))
+        .join('\n');
+      if (output) {
+        yellow(output);
+      }
+      return code === 0 ? resolve() : reject(new Error(`prince-books error ${code}`));
+    });
+  });
+  await fs.move(`${SRC_DIR}/doc.pdf`, `${ARTIFACT_DIR}/${filename}.pdf`);
+  return `${ARTIFACT_DIR}/${filename}.pdf`;
 }
 
 function filterPrinceOutput(line: string): boolean {
