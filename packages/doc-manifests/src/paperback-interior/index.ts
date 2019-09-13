@@ -1,12 +1,33 @@
-import { DocPrecursor, FileManifest } from '@friends-library/types';
+import stripIndent from 'strip-indent';
+import {
+  DocPrecursor,
+  FileManifest,
+  Html,
+  PaperbackInteriorOptions,
+} from '@friends-library/types';
+import { paperbackInterior as html } from '@friends-library/doc-html';
 
 export default async function paperbackInteriorManifests(
   dpc: DocPrecursor,
+  options: PaperbackInteriorOptions = {},
 ): Promise<FileManifest[]> {
   return [
     {
-      'doc.html': `<!DOCTYPE html>\n<html><head><link href="doc.css" rel="stylesheet" type="text/css"></head><body><h1>${dpc.meta.title}</h1></body></html>`,
+      'doc.html': html(dpc, 0, options),
       'doc.css': 'h1 { color: red; }',
     },
   ];
+}
+
+function wrapHtmlBody(bodyHtml: Html): Html {
+  return stripIndent(`
+    <!DOCTYPE html>
+    <html>
+    <head><link href="doc.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+      ${bodyHtml}
+    </body>
+    </html>
+  `).trim();
 }

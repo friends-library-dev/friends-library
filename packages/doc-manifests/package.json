@@ -9,7 +9,11 @@
     "compile": "cd ../../ && yarn compile doc-manifests"
   },
   "dependencies": {
-    "@friends-library/types": "1.0.0"
+    "@friends-library/types": "1.0.0",
+    "@friends-library/doc-html": "1.0.0",
+    "strip-indent": "^3.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/strip-indent": "^3.0.2"
+  }
 }

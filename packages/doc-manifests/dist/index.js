@@ -41,12 +41,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var paperback_interior_1 = __importDefault(require("./paperback-interior"));
 exports.paperbackInterior = paperback_interior_1.default;
-function create(type, dpc) {
+function create(type, dpc, options) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (type) {
                 case 'paperback-interior':
-                    return [2 /*return*/, paperback_interior_1.default(dpc)];
+                    return [2 /*return*/, paperback_interior_1.default(dpc, options)];
             }
             return [2 /*return*/, []];
         });

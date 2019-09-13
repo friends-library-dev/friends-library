@@ -1,3 +1,4 @@
+import { execSync } from 'child_process';
 import { sync as glob } from 'glob';
 import { Arguments } from 'yargs';
 import env from '@friends-library/env';
@@ -12,10 +13,12 @@ import { ArtifactType, DocPrecursor } from '@friends-library/types';
 interface MakeOptions {
   pattern: string;
   isolate?: number;
+  noOpen: boolean;
+  noFrontmatter: boolean;
 }
 
 export default async function handler(argv: Arguments<MakeOptions>): Promise<void> {
-  const { pattern, isolate } = argv;
+  const { noFrontmatter, noOpen, pattern, isolate } = argv;
   const dpcs = await getFsPrecursorsByPattern(pattern);
   if (dpcs.length === 0) {
     red(`Pattern: \`${pattern}\` matched 0 docs.`);
@@ -28,18 +31,20 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
   const namespace = 'fl-make';
   artifacts.deleteNamespaceDir(namespace);
 
-  const files = [];
+  const createPromises: Promise<string>[] = [];
   dpcs.forEach(dpc => {
     types.forEach(async type => {
-      const manifests = await createManifests(type, dpc);
+      const manifests = await createManifests(type, dpc, { frontmatter: !noFrontmatter });
       manifests.forEach(async (manifest, idx) => {
         const filename = makeFilename(dpc, idx, type);
-        files.push(
-          await artifacts.create(manifest, filename, { namespace, srcPath: filename }),
-        );
+        const options = { namespace, srcPath: filename };
+        createPromises.push(artifacts.create(manifest, filename, options));
       });
     });
   });
+
+  const files = await Promise.all(createPromises);
+  !noOpen && files.forEach(file => execSync(`open ${file}`));
 }
 
 function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): string {

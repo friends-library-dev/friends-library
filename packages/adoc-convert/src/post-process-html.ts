@@ -1,5 +1,5 @@
 import { flow, memoize, intersection } from 'lodash';
-import { makeReduceWrapper as makeWrap, br7 } from './helpers';
+import { makeReduceWrapper as makeWrap, br7 } from '../../doc-html/src/helpers';
 import { Html } from '@friends-library/types';
 
 export const postProcessHtml: (html: Html) => Html = memoize(

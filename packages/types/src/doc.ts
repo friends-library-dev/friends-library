@@ -49,3 +49,7 @@ export type ArtifactType =
   | 'web-pdf'
   | 'epub'
   | 'mobi';
+
+export interface PaperbackInteriorOptions {
+  frontmatter?: boolean;
+}

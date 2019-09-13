@@ -13,7 +13,7 @@ import {
   FilePath,
   Sha,
 } from './primitive';
-export { DocPrecursor, ArtifactType } from './doc';
+export { DocPrecursor, ArtifactType, PaperbackInteriorOptions } from './doc';
 export type Gender = 'male' | 'female';
 export type Lang = 'en' | 'es';
 export type EditionType = 'original' | 'modernized' | 'updated';

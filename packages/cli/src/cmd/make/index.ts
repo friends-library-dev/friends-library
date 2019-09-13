@@ -11,6 +11,18 @@ export const builder: CommandBuilder = function(yargs) {
       required: true,
       describe: 'pattern to match repo dirs against',
     })
+    .option('no-open', {
+      alias: 'o',
+      type: 'boolean',
+      describe: 'do not open created file/s',
+      default: false,
+    })
+    .option('no-frontmatter', {
+      alias: 'f',
+      type: 'boolean',
+      describe: 'skip frontmatter',
+      default: false,
+    })
     .option('isolate', {
       alias: 'i',
       type: 'number',

@@ -1,17 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": { "*": ["types/*"] },
     "declaration": true,
     "outDir": "./dist",
     "rootDir": "./src",
     "composite": true
   },
-  "include": [
-    "./src",
-    "../doc-html/src/__tests__/helpers.spec.ts",
-    "../doc-html/src/helpers.ts"
-  ],
+  "include": ["./src"],
   "references": [{ "path": "../types" }]
 }
