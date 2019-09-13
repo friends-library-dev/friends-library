@@ -42,3 +42,10 @@ export interface DocPrecursor {
     url: Url;
   };
 }
+
+export type ArtifactType =
+  | 'paperback-interior'
+  | 'paperback-cover'
+  | 'web-pdf'
+  | 'epub'
+  | 'mobi';

@@ -10,6 +10,7 @@
     "packages/evans/.cache": true,
     "packages/evans/public": true,
     "packages/jones/build": true,
+    "packages/doc-artifacts/artifacts": true,
     "packages/jones/.env": true,
     "packages/jones/public/asciidoctor.min.js": true,
     "**/tsconfig.tsbuildinfo": true,

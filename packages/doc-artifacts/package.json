@@ -8,6 +8,13 @@
   "scripts": {
     "compile": "cd ../../ && yarn compile doc-artifacts"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@friends-library/cli-utils": "1.0.0",
+    "@friends-library/env": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "fs-extra": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^8.0.0"
+  }
 }
