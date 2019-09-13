@@ -11,6 +11,7 @@ var color_1 = require("@friends-library/cli-utils/color");
 function pdf(manifest, filename, opts) {
     if (opts === void 0) { opts = {}; }
     var _a = dirs(opts), ARTIFACT_DIR = _a.ARTIFACT_DIR, SRC_DIR = _a.SRC_DIR;
+    console.log({ ARTIFACT_DIR: ARTIFACT_DIR, SRC_DIR: SRC_DIR });
     fs_extra_1.default.ensureDirSync(SRC_DIR);
     var writeFiles = Promise.all(Object.keys(manifest).map(function (path) {
         return fs_extra_1.default.outputFile(SRC_DIR + "/" + path, manifest[path], path.endsWith('.png') ? 'binary' : undefined);
@@ -18,7 +19,7 @@ function pdf(manifest, filename, opts) {
     var PRINCE_BIN = env_1.default.require('PRINCE_BIN').PRINCE_BIN;
     return writeFiles
         .then(function () {
-        var src = ARTIFACT_DIR + "/doc.html";
+        var src = SRC_DIR + "/doc.html";
         var stream = child_process_1.spawn(PRINCE_BIN || '/usr/local/bin/prince-books', [src]);
         var output = '';
         return new Promise(function (resolve, reject) {
@@ -40,10 +41,10 @@ function pdf(manifest, filename, opts) {
         });
     })
         .then(function () {
-        return fs_extra_1.default.move(SRC_DIR + "/doc.pdf", ARTIFACT_DIR + "/" + filename);
+        return fs_extra_1.default.move(SRC_DIR + "/doc.pdf", ARTIFACT_DIR + "/" + filename + ".pdf");
     })
         .then(function () {
-        return ARTIFACT_DIR + "/" + filename;
+        return ARTIFACT_DIR + "/" + filename + ".pdf";
     });
 }
 exports.default = pdf;

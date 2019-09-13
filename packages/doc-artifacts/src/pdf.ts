@@ -12,6 +12,7 @@ export default function pdf(
   opts: PdfOptions = {},
 ): Promise<string> {
   const { ARTIFACT_DIR, SRC_DIR } = dirs(opts);
+  console.log({ ARTIFACT_DIR, SRC_DIR });
   fs.ensureDirSync(SRC_DIR);
 
   const writeFiles = Promise.all(
@@ -27,7 +28,7 @@ export default function pdf(
   const { PRINCE_BIN } = env.require('PRINCE_BIN');
   return writeFiles
     .then(() => {
-      const src = `${ARTIFACT_DIR}/doc.html`;
+      const src = `${SRC_DIR}/doc.html`;
       const stream = spawn(PRINCE_BIN || '/usr/local/bin/prince-books', [src]);
       let output = '';
 
@@ -53,10 +54,10 @@ export default function pdf(
       });
     })
     .then(() => {
-      return fs.move(`${SRC_DIR}/doc.pdf`, `${ARTIFACT_DIR}/${filename}`);
+      return fs.move(`${SRC_DIR}/doc.pdf`, `${ARTIFACT_DIR}/${filename}.pdf`);
     })
     .then(() => {
-      return `${ARTIFACT_DIR}/${filename}`;
+      return `${ARTIFACT_DIR}/${filename}.pdf`;
     });
 }
 

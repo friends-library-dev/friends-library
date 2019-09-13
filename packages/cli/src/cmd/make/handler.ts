@@ -32,7 +32,7 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
       manifests.forEach(async manifest => {
         files.push(
           await artifacts.create(manifest, 'some-filename', {
-            srcRelPath: 'fl-test',
+            namespace: 'fl-test',
           }),
         );
       });
