@@ -41,6 +41,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var pdf_1 = __importDefault(require("./pdf"));
 exports.pdf = pdf_1.default;
+var dirs_1 = require("./dirs");
+exports.deleteNamespaceDir = dirs_1.deleteNamespaceDir;
 function create(manifest, filename, options) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {

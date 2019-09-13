@@ -40,10 +40,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_extra_1 = __importDefault(require("fs-extra"));
-var path_1 = __importDefault(require("path"));
 var child_process_1 = require("child_process");
 var env_1 = __importDefault(require("@friends-library/env"));
 var color_1 = require("@friends-library/cli-utils/color");
+var dirs_1 = require("./dirs");
 function pdf(manifest, filename, opts) {
     if (opts === void 0) { opts = {}; }
     return __awaiter(this, void 0, void 0, function () {
@@ -51,8 +51,7 @@ function pdf(manifest, filename, opts) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = dirs(opts), ARTIFACT_DIR = _a.ARTIFACT_DIR, SRC_DIR = _a.SRC_DIR;
-                    console.log({ ARTIFACT_DIR: ARTIFACT_DIR, SRC_DIR: SRC_DIR });
+                    _a = dirs_1.dirs(opts), ARTIFACT_DIR = _a.ARTIFACT_DIR, SRC_DIR = _a.SRC_DIR;
                     fs_extra_1.default.ensureDirSync(SRC_DIR);
                     writeFiles = Promise.all(Object.keys(manifest).map(function (path) {
                         return fs_extra_1.default.outputFile(SRC_DIR + "/" + path, manifest[path], path.endsWith('.png') ? 'binary' : undefined);
@@ -100,12 +99,4 @@ function filterPrinceOutput(line) {
         return false;
     }
     return true;
-}
-function dirs(opts) {
-    var namespace = opts.namespace || "ns_auto_gen_" + Date.now();
-    var srcPath = opts.srcPath || "src_path_auto_gen_" + Date.now();
-    var ROOT_DIR = path_1.default.resolve(__dirname, '..', 'artifacts');
-    var ARTIFACT_DIR = path_1.default.resolve(ROOT_DIR, namespace);
-    var SRC_DIR = path_1.default.resolve(ARTIFACT_DIR, 'src', srcPath);
-    return { ARTIFACT_DIR: ARTIFACT_DIR, SRC_DIR: SRC_DIR };
 }

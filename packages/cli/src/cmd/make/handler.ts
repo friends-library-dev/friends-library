@@ -7,7 +7,7 @@ import { create as createManifests } from '@friends-library/doc-manifests';
 import * as artifacts from '@friends-library/doc-artifacts';
 import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
 import * as hydrate from '../../fs-precursor/hydrate';
-import { ArtifactType } from '@friends-library/types';
+import { ArtifactType, DocPrecursor } from '@friends-library/types';
 
 interface MakeOptions {
   pattern: string;
@@ -23,21 +23,34 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
   }
 
   fullyHydrate(dpcs, isolate);
-  const targets = ['paperback-interior'] as ArtifactType[];
+
+  const types = ['paperback-interior'] as ArtifactType[];
+  const namespace = 'fl-make';
+  artifacts.deleteNamespaceDir(namespace);
 
   const files = [];
   dpcs.forEach(dpc => {
-    targets.forEach(async target => {
-      const manifests = await createManifests(target, dpc);
-      manifests.forEach(async manifest => {
+    types.forEach(async type => {
+      const manifests = await createManifests(type, dpc);
+      manifests.forEach(async (manifest, idx) => {
+        const filename = makeFilename(dpc, idx, type);
         files.push(
-          await artifacts.create(manifest, 'some-filename', {
-            namespace: 'fl-test',
-          }),
+          await artifacts.create(manifest, filename, { namespace, srcPath: filename }),
         );
       });
     });
   });
+}
+
+function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): string {
+  const initials = dpc.friendSlug
+    .split('-')
+    .map(s => s[0].toUpperCase())
+    .join('');
+  let suffix = '';
+  if (type === 'paperback-cover') suffix = '--(cover)';
+  if (type === 'web-pdf') suffix = '--(web)';
+  return `${initials}--${dpc.documentSlug}${suffix}`;
 }
 
 function getFsPrecursorsByPattern(pattern?: string): FsDocPrecursor[] {
