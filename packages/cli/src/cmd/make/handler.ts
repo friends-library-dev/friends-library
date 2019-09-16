@@ -8,7 +8,7 @@ import { create as createManifests } from '@friends-library/doc-manifests';
 import * as artifacts from '@friends-library/doc-artifacts';
 import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
 import * as hydrate from '../../fs-precursor/hydrate';
-import { ArtifactType, DocPrecursor } from '@friends-library/types';
+import { ArtifactType, DocPrecursor, FileManifest } from '@friends-library/types';
 
 interface MakeOptions {
   pattern: string;
@@ -31,19 +31,19 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
   const namespace = 'fl-make';
   artifacts.deleteNamespaceDir(namespace);
 
-  const createPromises: Promise<string>[] = [];
-  dpcs.forEach(dpc => {
-    types.forEach(async type => {
+  const files: string[] = [];
+  for (const dpc of dpcs) {
+    for (const type of types) {
       const manifests = await createManifests(type, dpc, { frontmatter: !noFrontmatter });
-      manifests.forEach(async (manifest, idx) => {
+      for (let idx = 0; idx < manifests.length; idx++) {
+        const manifest = manifests[idx];
         const filename = makeFilename(dpc, idx, type);
         const options = { namespace, srcPath: filename };
-        createPromises.push(artifacts.create(manifest, filename, options));
-      });
-    });
-  });
+        files.push(await artifacts.create(manifest, filename, options));
+      }
+    }
+  }
 
-  const files = await Promise.all(createPromises);
   !noOpen && files.forEach(file => execSync(`open ${file}`));
 }
 

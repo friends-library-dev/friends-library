@@ -11,6 +11,7 @@ export default async function paperbackInteriorManifests(
   dpc: DocPrecursor,
   options: PaperbackInteriorOptions = {},
 ): Promise<FileManifest[]> {
+  console.log('over here');
   return [
     {
       'doc.html': html(dpc, 0, options),

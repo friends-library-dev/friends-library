@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var uuid_1 = __importDefault(require("uuid"));
 var striptags_1 = __importDefault(require("striptags"));
 var helpers_1 = require("./helpers");
+var doc_html_1 = require("@friends-library/doc-html");
 function extractNotes(srcHtml) {
     var map = new Map();
     var html = srcHtml.replace(/<sup class="footnote">\[<a id="_footnoteref_([0-9]+)"[\s\S]+?<\/sup>/gim, function (_, num) {
@@ -17,7 +18,7 @@ function extractNotes(srcHtml) {
     html = html.replace(/<div class="footnote" id="_footnotedef_([0-9]+)[\S\s]+?<\/div>/gim, function (full, num) {
         var note = striptags_1.default(full, ['em', 'i', 'strong', 'b', 'span'])
             .trim()
-            .replace(/{footnote-paragraph-split}/g, "<span class=\"fn-split\">" + helpers_1.br7 + helpers_1.br7 + "</span>")
+            .replace(/{footnote-paragraph-split}/g, "<span class=\"fn-split\">" + doc_html_1.br7 + doc_html_1.br7 + "</span>")
             .replace(/^[0-9]+\. /, '');
         notes.set(map.get(num) || '', expandFootnotePoetry(note));
         return '';
@@ -44,10 +45,10 @@ function expandFootnotePoetry(html) {
                     .map(function () { return spacer; })
                     .join('');
             });
-            return "<span class=\"verse__line\">" + helpers_1.br7 + line + "</span>";
+            return "<span class=\"verse__line\">" + doc_html_1.br7 + line + "</span>";
         })
             .reduce(stanzas ? helpers_1.makeReduceWrapper('<span class="verse__stanza">', '</span>') : nowrap, [])
-            .reduce(helpers_1.makeReduceWrapper("<span class=\"verse\">" + helpers_1.br7, '</span>'), [])
+            .reduce(helpers_1.makeReduceWrapper("<span class=\"verse\">" + doc_html_1.br7, '</span>'), [])
             .join('\n');
     });
 }

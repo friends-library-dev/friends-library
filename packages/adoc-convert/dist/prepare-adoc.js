@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = require("lodash");
-var helpers_1 = require("./helpers");
+var doc_html_1 = require("@friends-library/doc-html");
 exports.prepareAsciidoc = lodash_1.memoize(lodash_1.flow([
     replaceAsterisms,
     changeChapterSynopsisMarkup,
@@ -23,7 +23,7 @@ exports.prepareAsciidoc = lodash_1.memoize(lodash_1.flow([
     restoreLineEndingDashesInVerse,
 ]));
 function replaceSmallBreaks(adoc) {
-    return adoc.replace(/\[\.small-break\]\n'''/gm, raw("<div class=\"small-break\">" + helpers_1.br7 + "</div>"));
+    return adoc.replace(/\[\.small-break\]\n'''/gm, raw("<div class=\"small-break\">" + doc_html_1.br7 + "</div>"));
 }
 function helpBookTitleTouchingFootnote(adoc) {
     return adoc.replace(/#footnote:\[/g, '#{blank}footnote:[');
@@ -70,7 +70,7 @@ function prepareDiscourseParts(adoc) {
     return adoc.replace(/(?<=\[\.discourse-part\]\n)(Question:|Pregunta:|(?:Answer|Respuesta)(?: [0-9]+)?:|Objection:|Objeción:|Inquiry [0-9]+:)( |\n)/gim, '_$1_$2');
 }
 function replaceAsterisms(adoc) {
-    return adoc.replace(/\[\.asterism\]\n'''/gim, raw("<div class=\"asterism\">" + helpers_1.br7 + "*&#160;&#160;*&#160;&#160;*" + helpers_1.br7 + helpers_1.br7 + "</div>"));
+    return adoc.replace(/\[\.asterism\]\n'''/gim, raw("<div class=\"asterism\">" + doc_html_1.br7 + "*&#160;&#160;*&#160;&#160;*" + doc_html_1.br7 + doc_html_1.br7 + "</div>"));
 }
 function changeChapterSynopsisMarkup(adoc) {
     return adoc.replace(/\[\.chapter-synopsis\]\n([\s\S]+?)(?=\n\n)/gim, function (_, inner) {

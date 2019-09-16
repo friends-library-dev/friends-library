@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var doc_html_1 = require("@friends-library/doc-html");
 var lodash_1 = require("lodash");
 var helpers_1 = require("./helpers");
 exports.postProcessHtml = lodash_1.memoize(lodash_1.flow([
@@ -7,13 +8,13 @@ exports.postProcessHtml = lodash_1.memoize(lodash_1.flow([
     modifyOldStyleHeadings,
     function (html) { return html.replace(/<hr>/gim, '<hr />'); },
     function (html) { return html.replace(/<br>/gim, '<br />'); },
-    function (html) { return html.replace(/<blockquote>/gim, "<blockquote>" + helpers_1.br7); },
+    function (html) { return html.replace(/<blockquote>/gim, "<blockquote>" + doc_html_1.br7); },
     removeParagraphClass,
     function (html) {
-        return html.replace(/(?<=<div class="offset">\n)([\s\S]*?)(?=<\/div>)/gim, helpers_1.br7 + "$1" + helpers_1.br7);
+        return html.replace(/(?<=<div class="offset">\n)([\s\S]*?)(?=<\/div>)/gim, doc_html_1.br7 + "$1" + doc_html_1.br7);
     },
     function (html) {
-        return html.replace(/<div class="discourse-part">/gm, "<div class=\"discourse-part\">" + helpers_1.br7);
+        return html.replace(/<div class="discourse-part">/gm, "<div class=\"discourse-part\">" + doc_html_1.br7);
     },
 ]));
 function modifyOldStyleHeadings(html) {

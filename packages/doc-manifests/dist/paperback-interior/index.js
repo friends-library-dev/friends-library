@@ -45,9 +45,10 @@ function paperbackInteriorManifests(dpc, options) {
     if (options === void 0) { options = {}; }
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
+            console.log('over here');
             return [2 /*return*/, [
                     {
-                        'doc.html': doc_html_1.paperbackInterior(dpc, 0),
+                        'doc.html': doc_html_1.paperbackInterior(dpc, 0, options),
                         'doc.css': 'h1 { color: red; }',
                     },
                 ]];
