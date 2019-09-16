@@ -37,14 +37,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var doc_html_1 = require("@friends-library/doc-html");
+var doc_css_1 = require("@friends-library/doc-css");
 function paperbackInteriorManifests(dpc, conf) {
-    if (conf === void 0) { conf = {}; }
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, [
                     {
                         'doc.html': doc_html_1.paperbackInterior(dpc, 0, conf),
-                        'doc.css': 'h1 { color: red; }',
+                        'doc.css': doc_css_1.paperbackInterior(dpc, conf),
+                        'line.svg': '<svg height="1px" width="88px" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="88" y2="0" style="stroke:rgb(0,0,0);stroke-width:1" /></svg>',
                     },
                 ]];
         });

@@ -1,0 +1,52 @@
+html {
+  font-size: 10pt;
+}
+
+@page {
+  size: var(--page-width) var(--page-height);
+  margin-top: var(--page-top-margin);
+  margin-bottom: var(--page-bottom-margin);
+
+  @top-center {
+    margin-top: var(--running-head-margin-top);
+  }
+}
+
+@page:left {
+  margin-left: var(--page-outer-margin);
+  margin-right: var(--page-inner-margin);
+}
+
+@page:right {
+  margin-left: var(--page-inner-margin);
+  margin-right: var(--page-outer-margin);
+}
+
+h2 {
+  margin-top: var(--chapter-margin-top);
+  prince-page-group: start; /* forces new page & allows target @page:first for pages starting chapters */
+}
+
+.sect1 {
+  page-break-before: recto; /* keep start of chapters on recto */
+}
+
+.copyright-page {
+  /* height: $page-height - $page-top-margin - $page-bottom-margin; */
+}
+
+.half-title-page {
+  /* height: $page-height - (($page-top-margin + $page-bottom-margin) * 3); */
+}
+
+blockquote .paragraph p {
+  font-size: 0.98rem;
+}
+
+blockquote .paragraph + .paragraph {
+  margin-top: 0.4em;
+}
+
+.first-chapter {
+  counter-reset: page 1;
+}

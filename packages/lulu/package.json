@@ -1,0 +1,13 @@
+{
+  "name": "@friends-library/lulu",
+  "version": "1.0.0",
+  "description": "things related to printing books through Lulu API",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile lulu"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

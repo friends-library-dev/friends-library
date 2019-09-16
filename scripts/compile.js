@@ -9,6 +9,7 @@ const pkgs = [
   'adoc-convert',
   'doc-manifests',
   'doc-html',
+  'doc-css',
   'doc-artifacts',
   'lulu',
   'env',

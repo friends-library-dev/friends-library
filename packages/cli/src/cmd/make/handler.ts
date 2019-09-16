@@ -37,6 +37,7 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
       const manifests = await createManifests(type, dpc, {
         frontmatter: !noFrontmatter,
         printSize: 'm',
+        condense: false, // @TODO
       });
       for (let idx = 0; idx < manifests.length; idx++) {
         const manifest = manifests[idx];

@@ -53,5 +53,6 @@ export type ArtifactType =
 
 export interface PaperbackInteriorConfig {
   printSize: PrintSize;
-  frontmatter?: boolean;
+  frontmatter: boolean;
+  condense: boolean;
 }

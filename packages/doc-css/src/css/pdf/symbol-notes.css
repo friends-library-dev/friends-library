@@ -1,0 +1,7 @@
+*::footnote-call {
+  content: counter(footnote, symbols('*', '†', '‡', '§'));
+}
+
+*::footnote-marker {
+  content: counter(footnote, symbols('*', '†', '‡', '§'));
+}

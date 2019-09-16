@@ -1,5 +1,5 @@
-$condensed-page-top-margin: 0.7in;
-$condensed-page-bottom-margin: 0.55in;
+// $condensed-page-top-margin: 0.7in;
+// $condensed-page-bottom-margin: 0.55in;
 
 html {
   font-size: 9.6pt;
@@ -14,11 +14,11 @@ h2 {
 }
 
 .copyright-page {
-  height: $page-height - $condensed-page-top-margin - $condensed-page-bottom-margin;
+  // height: $page-height - $condensed-page-top-margin - $condensed-page-bottom-margin;
 }
 
 .half-title-page {
-  height: $page-height -
+  // height: $page-height -
     (($condensed-page-top-margin + $condensed-page-bottom-margin) * 3);
 }
 

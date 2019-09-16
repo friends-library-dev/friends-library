@@ -8,6 +8,8 @@
   "scripts": {
     "compile": "cd ../../ && yarn compile doc-css"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@friends-library/lulu": "1.0.0",
+    "@friends-library/types": "1.0.0"
+  }
 }
