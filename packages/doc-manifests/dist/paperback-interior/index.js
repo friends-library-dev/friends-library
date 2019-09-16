@@ -35,20 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var strip_indent_1 = __importDefault(require("strip-indent"));
 var doc_html_1 = require("@friends-library/doc-html");
-function paperbackInteriorManifests(dpc, options) {
-    if (options === void 0) { options = {}; }
+function paperbackInteriorManifests(dpc, conf) {
+    if (conf === void 0) { conf = {}; }
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            console.log('over here');
             return [2 /*return*/, [
                     {
-                        'doc.html': doc_html_1.paperbackInterior(dpc, 0, options),
+                        'doc.html': doc_html_1.paperbackInterior(dpc, 0, conf),
                         'doc.css': 'h1 { color: red; }',
                     },
                 ]];
@@ -56,6 +51,3 @@ function paperbackInteriorManifests(dpc, options) {
     });
 }
 exports.default = paperbackInteriorManifests;
-function wrapHtmlBody(bodyHtml) {
-    return strip_indent_1.default("\n    <!DOCTYPE html>\n    <html>\n    <head><link href=\"doc.css\" rel=\"stylesheet\" type=\"text/css\">\n    </head>\n    <body>\n      " + bodyHtml + "\n    </body>\n    </html>\n  ").trim();
-}

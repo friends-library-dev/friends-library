@@ -9,6 +9,7 @@ import {
   Epigraph,
   DocSection,
   Notes,
+  PrintSize,
 } from './types';
 
 export interface DocPrecursor {
@@ -50,6 +51,7 @@ export type ArtifactType =
   | 'epub'
   | 'mobi';
 
-export interface PaperbackInteriorOptions {
+export interface PaperbackInteriorConfig {
+  printSize: PrintSize;
   frontmatter?: boolean;
 }

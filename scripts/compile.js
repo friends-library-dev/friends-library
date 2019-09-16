@@ -10,6 +10,7 @@ const pkgs = [
   'doc-manifests',
   'doc-html',
   'doc-artifacts',
+  'lulu',
   'env',
   'cli-utils',
   // 'client',

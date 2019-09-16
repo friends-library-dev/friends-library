@@ -5,35 +5,42 @@ import {
   Html,
   Heading,
   Lang,
-  PaperbackInteriorOptions,
+  PaperbackInteriorConfig,
 } from '@friends-library/types';
+import { getPrintSizeDetails } from '@friends-library/lulu';
 import { replaceHeadings } from '../headings';
-import { capitalizeTitle, trimTrailingPunctuation } from '../helpers';
+import {
+  capitalizeTitle,
+  trimTrailingPunctuation,
+  removeMobi7Tags,
+  wrapHtmlBody,
+} from '../helpers';
 import { frontmatter } from './frontmatter';
 
 export default function paperbackInteriorHtml(
   dpc: DocPrecursor,
   volumeIdx: number,
-  opts: PaperbackInteriorOptions,
+  conf: PaperbackInteriorConfig,
 ): Html {
-  console.log('the main fn');
-  return flow([joinSections, addFirstChapterClass, inlineNotes, prependFrontmatter])([
-    '',
-    dpc,
-    opts,
-  ])[0];
+  return flow([
+    joinSections,
+    addFirstChapterClass,
+    inlineNotes,
+    prependFrontmatter,
+    ([html, d, c]) => [removeMobi7Tags(html), d, c],
+    wrapHtml,
+  ])(['', dpc, conf])[0];
 }
 
 interface HtmlStep {
-  (data: [Html, DocPrecursor, PaperbackInteriorOptions]): [
+  (data: [Html, DocPrecursor, PaperbackInteriorConfig]): [
     Html,
     DocPrecursor,
-    PaperbackInteriorOptions,
+    PaperbackInteriorConfig,
   ];
 }
 
-const joinSections: HtmlStep = ([html, dpc, opts]) => {
-  console.log('join sections  s');
+const joinSections: HtmlStep = ([html, dpc, conf]) => {
   const joined = dpc.sections
     .map(({ html, heading }) => {
       return replaceHeadings(html, heading, dpc).replace(
@@ -42,7 +49,7 @@ const joinSections: HtmlStep = ([html, dpc, opts]) => {
       );
     })
     .join('\n');
-  return [joined, dpc, opts];
+  return [joined, dpc, conf];
 };
 
 function runningHeader({ shortText, text, sequence }: Heading, lang: Lang): string {
@@ -55,32 +62,38 @@ function runningHeader({ shortText, text, sequence }: Heading, lang: Lang): stri
   return `${sequence.type} ${toRoman(sequence.number)}`;
 }
 
-const addFirstChapterClass: HtmlStep = ([html, dpc, opts]) => {
+const addFirstChapterClass: HtmlStep = ([html, dpc, conf]) => {
   return [
     html.replace('<div class="sect1', '<div class="sect1 first-chapter'),
     dpc,
-    opts,
+    conf,
   ];
 };
 
-const inlineNotes: HtmlStep = ([html, dpc, opts]) => {
-  console.log('inline the notes');
+const inlineNotes: HtmlStep = ([html, dpc, conf]) => {
   return [
     html.replace(
       /{% note: ([a-z0-9-]+) %}/gim,
       (_, id) => `<span class="footnote">${dpc.notes.get(id) || ''}</span>`,
     ),
     dpc,
-    opts,
+    conf,
   ];
 };
 
-const prependFrontmatter: HtmlStep = ([html, dpc, opts]) => {
-  console.log('INSIDE THE FRONTMATTER FUN');
-  if (!opts.frontmatter) {
-    console.log('do not add front matter');
-    return [html, dpc, opts];
+const prependFrontmatter: HtmlStep = ([html, dpc, conf]) => {
+  if (!conf.frontmatter) {
+    return [html, dpc, conf];
   }
-  console.log('do add front matter');
-  return [frontmatter(dpc).concat(html), dpc, opts];
+  return [frontmatter(dpc).concat(html), dpc, conf];
+};
+
+const wrapHtml: HtmlStep = ([html, dpc, conf]) => {
+  const { abbrev } = getPrintSizeDetails(conf.printSize);
+  const wrapped = wrapHtmlBody(html, {
+    title: dpc.meta.title,
+    css: ['doc.css'],
+    bodyClass: `body trim--${abbrev}`,
+  });
+  return [wrapped, dpc, conf];
 };

@@ -1,2 +1,2 @@
-import { DocPrecursor, FileManifest, PaperbackInteriorOptions } from '@friends-library/types';
-export default function paperbackInteriorManifests(dpc: DocPrecursor, options?: PaperbackInteriorOptions): Promise<FileManifest[]>;
+import { DocPrecursor, FileManifest, PaperbackInteriorConfig } from '@friends-library/types';
+export default function paperbackInteriorManifests(dpc: DocPrecursor, conf?: PaperbackInteriorConfig): Promise<FileManifest[]>;

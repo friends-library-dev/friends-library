@@ -34,7 +34,10 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
   const files: string[] = [];
   for (const dpc of dpcs) {
     for (const type of types) {
-      const manifests = await createManifests(type, dpc, { frontmatter: !noFrontmatter });
+      const manifests = await createManifests(type, dpc, {
+        frontmatter: !noFrontmatter,
+        printSize: 'm',
+      });
       for (let idx = 0; idx < manifests.length; idx++) {
         const manifest = manifests[idx];
         const filename = makeFilename(dpc, idx, type);

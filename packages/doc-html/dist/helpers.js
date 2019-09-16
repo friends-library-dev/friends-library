@@ -1,5 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var strip_indent_1 = __importDefault(require("strip-indent"));
 exports.br7 = '<br class="m7"/>';
 function ucfirst(lower) {
     return lower.replace(/^\w/, function (c) { return c.toUpperCase(); });
@@ -30,3 +34,8 @@ function removeMobi7Tags(html) {
         .replace(/ *<span class="m7">.+?<\/span>\n?/gim, '');
 }
 exports.removeMobi7Tags = removeMobi7Tags;
+function wrapHtmlBody(bodyHtml, opts) {
+    if (opts === void 0) { opts = {}; }
+    return strip_indent_1.default("\n    <!DOCTYPE html>\n    <html>\n    <head>\n      " + (opts.title ? "<title>" + opts.title + "</title>" : '') + "\n      " + (opts.css || []).map(function (href) { return "<link href=\"" + href + "\" rel=\"stylesheet\" type=\"text/css\">"; }) + "\n    </head>\n    <body" + (opts.bodyClass ? " class=\"" + opts.bodyClass + "\"" : '') + ">\n      " + bodyHtml + "\n    </body>\n    </html>\n  ").trim();
+}
+exports.wrapHtmlBody = wrapHtmlBody;

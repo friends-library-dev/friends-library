@@ -1,34 +1,18 @@
-import stripIndent from 'strip-indent';
 import {
   DocPrecursor,
   FileManifest,
-  Html,
-  PaperbackInteriorOptions,
+  PaperbackInteriorConfig,
 } from '@friends-library/types';
 import { paperbackInterior as html } from '@friends-library/doc-html';
 
 export default async function paperbackInteriorManifests(
   dpc: DocPrecursor,
-  options: PaperbackInteriorOptions = {},
+  conf: PaperbackInteriorConfig = {},
 ): Promise<FileManifest[]> {
-  console.log('over here');
   return [
     {
-      'doc.html': html(dpc, 0, options),
+      'doc.html': html(dpc, 0, conf),
       'doc.css': 'h1 { color: red; }',
     },
   ];
-}
-
-function wrapHtmlBody(bodyHtml: Html): Html {
-  return stripIndent(`
-    <!DOCTYPE html>
-    <html>
-    <head><link href="doc.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-      ${bodyHtml}
-    </body>
-    </html>
-  `).trim();
 }
