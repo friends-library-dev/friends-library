@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@asciidoctor/core": "^2.0.2",
+    "@friends-library/adoc-utils": "1.0.0",
     "@friends-library/hilkiah": "1.0.0",
     "@friends-library/types": "1.0.0",
     "escape-string-regexp": "^2.0.0",
