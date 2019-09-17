@@ -23,8 +23,9 @@ html {
 }
 
 h2 {
+  /* forces new page & allows target @page:first for pages starting chapters */
+  prince-page-group: start;
   margin-top: var(--chapter-margin-top);
-  prince-page-group: start; /* forces new page & allows target @page:first for pages starting chapters */
 }
 
 .sect1 {
@@ -32,11 +33,11 @@ h2 {
 }
 
 .copyright-page {
-  /* height: $page-height - $page-top-margin - $page-bottom-margin; */
+  height: var(--copyright-page-height);
 }
 
 .half-title-page {
-  /* height: $page-height - (($page-top-margin + $page-bottom-margin) * 3); */
+  height: var(--half-title-page-height);
 }
 
 blockquote .paragraph p {

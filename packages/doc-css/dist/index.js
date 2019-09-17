@@ -56,9 +56,10 @@ function paperbackInterior(dpc, conf) {
 exports.paperbackInterior = paperbackInterior;
 function replaceVars(css, dpc, conf) {
     var sections = dpc.sections, meta = dpc.meta, config = dpc.config;
-    var size = lulu_1.getPrintSizeDetails(config.printSize);
+    var size = lulu_1.getPrintSizeDetails(conf.printSize);
+    var dims = size.dims, margins = size.margins;
     var runningHead = sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
-    var vars = __assign(__assign({ '--running-head-title': "\"" + runningHead + "\"", '--chapter-margin-top': size.dims.height / 4 + "in" }, printDims(size)), condenseVars(size.dims.height));
+    var vars = __assign(__assign({ '--running-head-title': "\"" + runningHead + "\"", '--chapter-margin-top': dims.height / 4 + "in", '--copyright-page-height': dims.height - margins.top - margins.bottom + "in", '--half-title-page-height': dims.height - (margins.top + margins.bottom) * 3 + "in" }, printDims(size)), condenseVars(dims.height));
     return css.replace(/var\((--[^\)]+)\)/g, function (_, varId) {
         return vars[varId];
     });

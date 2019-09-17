@@ -31,15 +31,18 @@ export function paperbackInterior(dpc: DocPrecursor, conf: PaperbackInteriorConf
 
 function replaceVars(css: Css, dpc: DocPrecursor, conf: PaperbackInteriorConfig): Css {
   const { sections, meta, config } = dpc;
-  const size = getPrintSizeDetails(config.printSize);
+  const size = getPrintSizeDetails(conf.printSize);
+  const { dims, margins } = size;
   const runningHead =
     sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
 
   const vars: { [k: string]: string } = {
     '--running-head-title': `"${runningHead}"`,
-    '--chapter-margin-top': `${size.dims.height / 4}in`,
+    '--chapter-margin-top': `${dims.height / 4}in`,
+    '--copyright-page-height': `${dims.height - margins.top - margins.bottom}in`,
+    '--half-title-page-height': `${dims.height - (margins.top + margins.bottom) * 3}in`,
     ...printDims(size),
-    ...condenseVars(size.dims.height),
+    ...condenseVars(dims.height),
   };
 
   return css.replace(/var\((--[^\)]+)\)/g, (_, varId) => {
