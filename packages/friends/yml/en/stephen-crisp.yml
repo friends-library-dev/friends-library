@@ -123,3 +123,33 @@ documents:
           - type: mobi
         chapters:
           - title: A Short History of a Long Travel from Babylon to Bethel
+
+  - id: b63ebb27-7aff-4795-ba5b-fd7f2dfe933e
+    title: Complete Works of Stephen Crisp
+    slug: works
+    filename: Works_of_Stephen_Crisp
+    description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Journal
+          - title: Writings
+          - title: Testimony
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Journal
+          - title: Writings
+          - title: Testimony
