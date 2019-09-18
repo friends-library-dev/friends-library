@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var pdf_1 = __importDefault(require("./pdf"));
 exports.pdf = pdf_1.default;
+var epub_1 = __importDefault(require("./epub"));
 var dirs_1 = require("./dirs");
 exports.deleteNamespaceDir = dirs_1.deleteNamespaceDir;
 function create(manifest, filename, options) {
@@ -49,8 +50,13 @@ function create(manifest, filename, options) {
             if (manifest['line.svg']) {
                 return [2 /*return*/, pdf_1.default(manifest, filename, options)];
             }
-            console.log(manifest);
-            process.exit(1);
+            if (manifest.mimetype) {
+                if (manifest['OEBPS/nav.xhtml'].includes('http-equiv')) {
+                    // return mobi(manifest, filename, options);
+                }
+                return [2 /*return*/, epub_1.default(manifest, filename, options)];
+            }
+            console.log(Object.keys(manifest));
             return [2 /*return*/, ''];
         });
     });

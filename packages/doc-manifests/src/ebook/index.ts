@@ -21,7 +21,7 @@ export default async function ebook(
   return {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),
-    // 'OEBPS/style.css': css(job),
+    'OEBPS/style.css': '', //css(job),
     'OEBPS/package-document.opf': packageDocument(dpc, conf),
     'OEBPS/nav.xhtml': wrapEbookBodyHtml(nav(dpc, conf), dpc.lang),
     // ...(await coverFiles(job)), // @TODO
@@ -51,14 +51,14 @@ function wrapEbookBodyHtml(bodyHtml: Html, lang: Lang): Html {
 }
 
 function sectionFiles(dpc: DocPrecursor): Record<string, Html> {
-  const { sections } = dpc;
+  const { sections, lang } = dpc;
   const replaceFootnoteCalls = makeFootnoteCallReplacer(dpc);
   return sections.reduce(
     (files, section) => {
       files[`OEBPS/${section.id}.xhtml`] = flow([
         replaceFootnoteCalls,
         html => replaceHeadings(html, section.heading, dpc),
-        wrapEbookBodyHtml,
+        html => wrapEbookBodyHtml(html, lang),
       ])(section.html);
       return files;
     },

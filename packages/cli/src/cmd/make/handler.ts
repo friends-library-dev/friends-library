@@ -43,7 +43,8 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
       const manifests = await getTypeManifests(type, dpc, argv);
       for (let idx = 0; idx < manifests.length; idx++) {
         const filename = makeFilename(dpc, idx, type);
-        const options = { namespace, srcPath: filename };
+        const srcPath = makeSrcPath(dpc, idx, type);
+        const options = { namespace, srcPath, check: true };
         files.push(await artifacts.create(manifests[idx], filename, options));
       }
     }
@@ -88,6 +89,14 @@ function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): strin
   if (type === 'paperback-cover') suffix = '--(cover)';
   if (type === 'web-pdf') suffix = '--(web)';
   return `${initials}--${dpc.documentSlug}${suffix}`;
+}
+
+function makeSrcPath(dpc: DocPrecursor, idx: number, type: ArtifactType): string {
+  let path = makeFilename(dpc, idx, type);
+  if (type == 'mobi' || type == 'epub') {
+    path += `/${type}`;
+  }
+  return path;
 }
 
 function getFsPrecursorsByPattern(pattern?: string): FsDocPrecursor[] {
