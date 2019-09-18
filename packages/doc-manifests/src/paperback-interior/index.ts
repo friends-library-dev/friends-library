@@ -10,14 +10,14 @@ import {
   PaperbackInteriorConfig,
 } from '@friends-library/types';
 import { getPrintSizeDetails } from '@friends-library/lulu';
-import { replaceHeadings } from '../headings';
 import {
+  replaceHeadings,
   capitalizeTitle,
   trimTrailingPunctuation,
   removeMobi7Tags,
 } from '@friends-library/doc-html';
-// import { frontmatter } from '../../../doc-manifests/src/paperback-interior/frontmatter';
 import wrapHtmlBody from '../wrap-html';
+import frontmatter from './frontmatter';
 
 export default async function paperbackInteriorManifests(
   dpc: DocPrecursor,

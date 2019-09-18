@@ -2,11 +2,11 @@ import {
   copyright as commonCopyright,
   halfTitle as commonHalfTitle,
   epigraph,
-} from '@friends-library/doc-html/src/frontmatter';
+} from '../frontmatter';
 import { navText } from '@friends-library/doc-html/src/nav';
 import { DocPrecursor, Html, DocSection } from '@friends-library/types';
 
-export function frontmatter(dpc: DocPrecursor): Html {
+export default function frontmatter(dpc: DocPrecursor): Html {
   return `
     ${halfTitle(dpc)}
     ${originalTitle(dpc)}

@@ -4,4 +4,5 @@ export {
   capitalizeTitle,
   trimTrailingPunctuation,
 } from './helpers';
+export { replaceHeadings } from './headings';
 export { navText } from './nav';

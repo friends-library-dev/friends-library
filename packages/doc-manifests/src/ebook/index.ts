@@ -7,8 +7,11 @@ import {
   Lang,
 } from '@friends-library/types';
 import { packageDocument } from './package-document';
-import { wrapHtmlBody } from '@friends-library/doc-html/dist/helpers';
+import wrapHtmlBody from '../wrap-html';
 import { nav } from './nav';
+import { makeFootnoteCallReplacer } from './notes';
+import { flow } from 'lodash';
+import { replaceHeadings } from '@friends-library/doc-html';
 
 export default async function ebook(
   dpc: DocPrecursor,
@@ -48,16 +51,16 @@ function wrapEbookBodyHtml(bodyHtml: Html, lang: Lang): Html {
 
 function sectionFiles(dpc: DocPrecursor): Record<string, Html> {
   const { sections } = dpc;
-  const replaceFootnoteCalls = makeFootnoteCallReplacer(job);
+  const replaceFootnoteCalls = makeFootnoteCallReplacer(dpc);
   return sections.reduce(
     (files, section) => {
       files[`OEBPS/${section.id}.xhtml`] = flow([
         replaceFootnoteCalls,
-        html => replaceHeadings(html, section.heading, job),
-        wrapHtml,
+        html => replaceHeadings(html, section.heading, dpc),
+        wrapEbookBodyHtml,
       ])(section.html);
       return files;
     },
-    {} as SubManifest<Html>,
+    {} as Record<string, Html>,
   );
 }

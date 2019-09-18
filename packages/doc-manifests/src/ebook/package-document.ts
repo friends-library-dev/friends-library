@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { Xml, DocPrecursor, EbookConfig } from '@friends-library/types';
-import { ebookFrontmatter } from '@friends-library/doc-html';
+import ebookFrontmatter from './frontmatter';
 
 export function packageDocument(dpc: DocPrecursor, conf: EbookConfig): Xml {
   const {

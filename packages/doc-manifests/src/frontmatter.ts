@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
 import { Html, DocPrecursor, FileManifest, Epigraph } from '@friends-library/types';
-import { capitalizeTitle, ucfirst, br7 } from './helpers';
+import { capitalizeTitle, ucfirst, br7 } from '@friends-library/doc-html/src/helpers';
 
 export const frontmatter = memoize(
   (dpc: DocPrecursor): FileManifest => {

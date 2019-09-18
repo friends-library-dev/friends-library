@@ -5,5 +5,7 @@ exports.br7 = helpers_1.br7;
 exports.removeMobi7Tags = helpers_1.removeMobi7Tags;
 exports.capitalizeTitle = helpers_1.capitalizeTitle;
 exports.trimTrailingPunctuation = helpers_1.trimTrailingPunctuation;
+var headings_1 = require("./headings");
+exports.replaceHeadings = headings_1.replaceHeadings;
 var nav_1 = require("./nav");
 exports.navText = nav_1.navText;

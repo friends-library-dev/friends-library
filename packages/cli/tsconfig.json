@@ -4,19 +4,14 @@
     "baseUrl": ".",
     "lib": ["esnext.array", "es2017"],
     "moduleResolution": "node",
-    "target": "es2017",
-    "paths": {
-      "*": ["types/*"],
-      "node-zip": ["*", "./types.d.ts"]
-    }
+    "target": "es2017"
   },
   "references": [
-    { "path": "../asciidoc" },
-    { "path": "../cli" },
-    { "path": "../client" },
-    { "path": "../cover/src/components/Cover" },
-    { "path": "../friends" },
-    { "path": "../hilkiah" },
-    { "path": "../types" }
+    { "path": "../types" },
+    { "path": "../env" },
+    { "path": "../cli-utils" },
+    { "path": "../adoc-convert" },
+    { "path": "../doc-manifests" },
+    { "path": "../doc-artifacts" }
   ]
 }
