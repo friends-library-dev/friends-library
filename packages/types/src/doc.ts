@@ -1,4 +1,4 @@
-import { ISBN, Sha, Url } from './primitive';
+import { Uuid, ISBN, Sha, Url } from './primitive';
 import {
   Lang,
   EditionType,
@@ -16,6 +16,7 @@ export interface DocPrecursor {
   lang: Lang;
   friendSlug: string;
   documentSlug: string;
+  documentId: Uuid;
   editionType: EditionType;
   asciidoc: Asciidoc;
   epigraphs: Epigraph[];
@@ -55,4 +56,11 @@ export interface PaperbackInteriorConfig {
   printSize: PrintSize;
   frontmatter: boolean;
   condense: boolean;
+}
+
+export interface EbookConfig {
+  frontmatter: boolean;
+  subType: 'epub' | 'mobi';
+  coverImgPath?: string;
+  randomizeForLocalTesting?: boolean;
 }

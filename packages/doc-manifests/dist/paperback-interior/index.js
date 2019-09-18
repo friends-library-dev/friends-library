@@ -41,6 +41,7 @@ var doc_css_1 = require("@friends-library/doc-css");
 function paperbackInteriorManifests(dpc, conf) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
+            // @TODO - handle Shilletoe faux-multi-vol
             return [2 /*return*/, [
                     {
                         'doc.html': doc_html_1.paperbackInterior(dpc, 0, conf),

@@ -19,6 +19,7 @@ export default class FsDocPrecursor implements DocPrecursor {
   public epigraphs: DocPrecursor['epigraphs'] = [];
   public sections: DocPrecursor['sections'] = [];
   public notes: DocPrecursor['notes'] = new Map();
+  public documentId: DocPrecursor['documentId'] = '';
 
   public constructor(fullPath: string, relPath: string) {
     const [lang, friendSlug, docSlug, editionType] = relPath.split('/');

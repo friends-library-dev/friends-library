@@ -19,6 +19,7 @@ export default function entities(dpc: FsDocPrecursor): void {
 
   dpc.friend = edition.document.friend;
   dpc.document = edition.document;
+  dpc.documentId = edition.document.id;
   dpc.edition = edition;
 }
 

@@ -1,4 +1,3 @@
-import stripIndent from 'strip-indent';
 import { Lang, Html } from '@friends-library/types';
 
 export const br7 = '<br class="m7"/>';
@@ -31,24 +30,4 @@ export function removeMobi7Tags(html: Html): Html {
   return html
     .replace(/ *<br class="m7" *\/>\n?/gim, '')
     .replace(/ *<span class="m7">.+?<\/span>\n?/gim, '');
-}
-
-export function wrapHtmlBody(
-  bodyHtml: Html,
-  opts: { css?: string[]; title?: string; bodyClass?: string } = {},
-): Html {
-  return stripIndent(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      ${opts.title ? `<title>${opts.title}</title>` : ''}
-      ${(opts.css || []).map(
-        href => `<link href="${href}" rel="stylesheet" type="text/css">`,
-      )}
-    </head>
-    <body${opts.bodyClass ? ` class="${opts.bodyClass}"` : ''}>
-      ${bodyHtml}
-    </body>
-    </html>
-  `).trim();
 }
