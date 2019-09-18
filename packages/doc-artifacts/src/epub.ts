@@ -7,6 +7,5 @@ export default async function epub(
   filename: string,
   opts: EbookOptions,
 ): Promise<string> {
-  const path = await writeEbookManifest(manifest, filename, opts, 'epub');
-  return path;
+  return await writeEbookManifest(manifest, filename, opts, 'epub');
 }

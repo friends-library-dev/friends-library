@@ -1,5 +1,2 @@
-import { DocPrecursor, PaperbackInteriorConfig, Css, PrintSizeDetails } from '@friends-library/types';
-export declare function paperbackInterior(dpc: DocPrecursor, conf: PaperbackInteriorConfig): Css;
-export declare function printDims(size: PrintSizeDetails): {
-    [key: string]: string;
-};
+export { default as paperbackInterior } from './paperback-interior';
+export { epub, mobi } from './ebook';

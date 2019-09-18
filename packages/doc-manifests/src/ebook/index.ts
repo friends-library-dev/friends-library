@@ -6,12 +6,13 @@ import {
   Html,
   Lang,
 } from '@friends-library/types';
+import { replaceHeadings } from '@friends-library/doc-html';
+import { mobi as mobiCss, epub as epubCss } from '@friends-library/doc-css';
 import { packageDocument } from './package-document';
 import wrapHtmlBody from '../wrap-html';
 import { nav } from './nav';
 import { makeFootnoteCallReplacer, notesMarkup } from './notes';
 import { flow } from 'lodash';
-import { replaceHeadings } from '@friends-library/doc-html';
 import { frontmatter } from '../frontmatter';
 
 export default async function ebook(
@@ -21,7 +22,7 @@ export default async function ebook(
   return {
     mimetype: 'application/epub+zip',
     'META-INF/container.xml': container(),
-    'OEBPS/style.css': '', //css(job),
+    'OEBPS/style.css': conf.subType === 'epub' ? epubCss(dpc) : mobiCss(dpc),
     'OEBPS/package-document.opf': packageDocument(dpc, conf),
     'OEBPS/nav.xhtml': wrapEbookBodyHtml(nav(dpc, conf), dpc.lang),
     // ...(await coverFiles(job)), // @TODO

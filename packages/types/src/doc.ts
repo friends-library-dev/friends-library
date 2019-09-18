@@ -2,7 +2,6 @@ import { Uuid, ISBN, Sha, Url } from './primitive';
 import {
   Lang,
   EditionType,
-  FileTypeWithShortcuts,
   Css,
   Html,
   Asciidoc,
@@ -24,8 +23,8 @@ export interface DocPrecursor {
   notes: Notes;
   config: { [key: string]: any };
   customCode: {
-    css: { [k in FileTypeWithShortcuts | 'cover']?: Css };
-    html: { [k in FileTypeWithShortcuts | 'cover']?: Html };
+    css: { [k in ArtifactType | 'all' | 'pdf' | 'ebook' | 'cover']?: Css };
+    html: { [k in ArtifactType | 'all' | 'pdf' | 'ebook' | 'cover']?: Html };
   };
   meta: {
     title: string;
