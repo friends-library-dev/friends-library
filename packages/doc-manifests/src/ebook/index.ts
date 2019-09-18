@@ -18,18 +18,20 @@ import { frontmatter } from '../frontmatter';
 export default async function ebook(
   dpc: DocPrecursor,
   conf: EbookConfig,
-): Promise<FileManifest> {
-  return {
-    mimetype: 'application/epub+zip',
-    'META-INF/container.xml': container(),
-    'OEBPS/style.css': conf.subType === 'epub' ? epubCss(dpc) : mobiCss(dpc),
-    'OEBPS/package-document.opf': packageDocument(dpc, conf),
-    'OEBPS/nav.xhtml': wrapEbookBodyHtml(nav(dpc, conf), dpc.lang),
-    // ...(await coverFiles(job)), // @TODO
-    ...sectionFiles(dpc),
-    ...notesFile(dpc),
-    ...frontmatterFiles(dpc),
-  };
+): Promise<FileManifest[]> {
+  return [
+    {
+      mimetype: 'application/epub+zip',
+      'META-INF/container.xml': container(),
+      'OEBPS/style.css': conf.subType === 'epub' ? epubCss(dpc) : mobiCss(dpc),
+      'OEBPS/package-document.opf': packageDocument(dpc, conf),
+      'OEBPS/nav.xhtml': wrapEbookBodyHtml(nav(dpc, conf), dpc.lang),
+      // ...(await coverFiles(job)), // @TODO
+      ...sectionFiles(dpc),
+      ...notesFile(dpc),
+      ...frontmatterFiles(dpc),
+    },
+  ];
 }
 
 function container(): Xml {

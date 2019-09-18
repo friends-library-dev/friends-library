@@ -33,7 +33,6 @@ export default function paperbackInterior(
   css += customCode.css['paperback-interior'] || ''; // @TODO rename all repo files!!!
 
   const vars = getVars(dpc, conf);
-
   return replaceVars(css, vars);
 }
 
