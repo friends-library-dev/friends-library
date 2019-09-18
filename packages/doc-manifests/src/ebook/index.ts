@@ -9,9 +9,10 @@ import {
 import { packageDocument } from './package-document';
 import wrapHtmlBody from '../wrap-html';
 import { nav } from './nav';
-import { makeFootnoteCallReplacer } from './notes';
+import { makeFootnoteCallReplacer, notesMarkup } from './notes';
 import { flow } from 'lodash';
 import { replaceHeadings } from '@friends-library/doc-html';
+import { frontmatter } from '../frontmatter';
 
 export default async function ebook(
   dpc: DocPrecursor,
@@ -24,9 +25,9 @@ export default async function ebook(
     'OEBPS/package-document.opf': packageDocument(dpc, conf),
     'OEBPS/nav.xhtml': wrapEbookBodyHtml(nav(dpc, conf), dpc.lang),
     // ...(await coverFiles(job)), // @TODO
-    // ...sectionFiles(job),
-    // ...notesFile(job),
-    // ...frontmatterFiles(job),
+    ...sectionFiles(dpc),
+    ...notesFile(dpc),
+    ...frontmatterFiles(dpc),
   };
 }
 
@@ -59,6 +60,26 @@ function sectionFiles(dpc: DocPrecursor): Record<string, Html> {
         html => replaceHeadings(html, section.heading, dpc),
         wrapEbookBodyHtml,
       ])(section.html);
+      return files;
+    },
+    {} as Record<string, Html>,
+  );
+}
+
+function notesFile(dpc: DocPrecursor): Record<string, Html> {
+  const { notes } = dpc;
+  if (!notes.size) {
+    return {};
+  }
+  return {
+    'OEBPS/notes.xhtml': wrapEbookBodyHtml(notesMarkup(dpc), dpc.lang),
+  };
+}
+
+function frontmatterFiles(dpc: DocPrecursor): Record<string, Html> {
+  return Object.entries(frontmatter(dpc)).reduce(
+    (files, [slug, html]) => {
+      files[`OEBPS/${slug}.xhtml`] = wrapEbookBodyHtml(String(html), dpc.lang);
       return files;
     },
     {} as Record<string, Html>,

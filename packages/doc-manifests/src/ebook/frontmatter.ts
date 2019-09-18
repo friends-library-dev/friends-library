@@ -2,7 +2,7 @@ import { memoize } from 'lodash';
 import { Html, DocPrecursor } from '@friends-library/types';
 import { frontmatter as commonFrontmatter } from '../frontmatter';
 import { callMarkup, useSymbols } from './notes';
-import { navText } from '@friends-library/doc-html/src/nav';
+import { navText } from '@friends-library/doc-html';
 
 const frontmatter = memoize((dpc: DocPrecursor, target: 'mobi' | 'epub'): {
   [key: string]: Html;

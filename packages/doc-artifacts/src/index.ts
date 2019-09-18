@@ -10,6 +10,10 @@ export async function create(
   filename: string,
   options: Options,
 ): Promise<string> {
-  // @TODO determine artifact type from manifest
-  return pdf(manifest, filename, options);
+  if (manifest['line.svg']) {
+    return pdf(manifest, filename, options);
+  }
+  console.log(manifest);
+  process.exit(1);
+  return '';
 }

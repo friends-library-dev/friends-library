@@ -46,8 +46,12 @@ exports.deleteNamespaceDir = dirs_1.deleteNamespaceDir;
 function create(manifest, filename, options) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            // @TODO determine artifact type from manifest
-            return [2 /*return*/, pdf_1.default(manifest, filename, options)];
+            if (manifest['line.svg']) {
+                return [2 /*return*/, pdf_1.default(manifest, filename, options)];
+            }
+            console.log(manifest);
+            process.exit(1);
+            return [2 /*return*/, ''];
         });
     });
 }

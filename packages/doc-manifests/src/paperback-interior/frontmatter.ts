@@ -3,7 +3,7 @@ import {
   halfTitle as commonHalfTitle,
   epigraph,
 } from '../frontmatter';
-import { navText } from '@friends-library/doc-html/src/nav';
+import { navText } from '@friends-library/doc-html';
 import { DocPrecursor, Html, DocSection } from '@friends-library/types';
 
 export default function frontmatter(dpc: DocPrecursor): Html {

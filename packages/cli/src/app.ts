@@ -12,7 +12,6 @@ import * as make from './cmd/make';
 // import * as unusual from './cmd/unusual';
 // import * as update from './cmd/update';
 // import * as pagesData from './cmd/pages-data';
-console.log('in here!');
 prettifyErrors();
 
 /* eslint-disable no-unused-expressions */
