@@ -74,7 +74,7 @@ async function getTypeManifests(
         subType: type,
         randomizeForLocalTesting: true,
       };
-      return manifest.epub(dpc, conf);
+      return manifest[type](dpc, conf);
     }
   }
   return [];
@@ -88,6 +88,7 @@ function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): strin
   let suffix = '';
   if (type === 'paperback-cover') suffix = '--(cover)';
   if (type === 'web-pdf') suffix = '--(web)';
+  if (type === 'mobi') suffix = `--${Math.floor(Date.now() / 1000)}`;
   return `${initials}--${dpc.documentSlug}${suffix}`;
 }
 

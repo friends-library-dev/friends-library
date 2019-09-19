@@ -31,7 +31,7 @@ export async function writeEbookManifest(
   promises.push(fs.writeFile(epubPath, binary, 'binary'));
   await Promise.all(promises);
 
-  if (opts.check) {
+  if (opts.check && ebookType === 'epub') {
     const check = await epubCheck(SRC_DIR);
     if (!check.pass) {
       logEpubCheckFail(basename, check.messages);

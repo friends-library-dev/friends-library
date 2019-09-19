@@ -12,8 +12,6 @@ export default async function mobi(
   filename: string,
   opts: EbookOptions,
 ): Promise<string> {
-  // const { ARTIFACT_DIR, SRC_DIR } = dirs(opts);
-  // const manifest = await getMobiManifest(job);
   const filePath = await writeEbookManifest(manifest, filename, opts, 'mobi');
 
   try {
@@ -24,20 +22,20 @@ export default async function mobi(
     process.exit();
   }
 
-  return filePath;
+  return filePath.replace(/\.epub$/, '');
 }
 
 function kindlegen(precursorPath: string, filename: string): Promise<void> {
   const bin = path.resolve(
     path.dirname(require.main!.filename), // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    '../../node_modules/kindlegen/bin/kindlegen',
+    '../../../node_modules/kindlegen/bin/kindlegen',
   );
 
   if (!fs.existsSync(bin)) {
     throw new Error(`kindlegen binary not found at path: \`${bin}\``);
   }
 
-  const stream = spawn(bin, [precursorPath, '-c2', '-verbose', '-o', filename]);
+  const stream = spawn(bin, [precursorPath, '-c2', '-verbose', '-o', `${filename}.mobi`]);
 
   return new Promise((resolve, reject) => {
     let errors: string[] = [];
