@@ -14,3 +14,13 @@ export { default as Formats } from './blocks/Formats';
 export { t, useLocale } from './translation';
 export { enTheme, esTheme };
 export type Theme = typeof enTheme;
+
+export {
+  Cover,
+  CoverFront,
+  staticCss as coverStaticCss,
+  docCss as coverDocCss,
+  scalingCss as coverScalingCss,
+  pdfCss as coverPdfCss,
+  webCss as coverWebCss,
+} from './cover';

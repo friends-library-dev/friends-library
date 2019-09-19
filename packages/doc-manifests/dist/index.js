@@ -10,3 +10,6 @@ exports.mobi = mobi_1.default;
 exports.mobiFromEbook = mobi_1.mobiFromEbook;
 var ebook_1 = require("./ebook");
 exports.ebook = ebook_1.default;
+var cover_1 = require("./cover");
+exports.cover = cover_1.default;
+exports.coverFromProps = cover_1.coverFromProps;
