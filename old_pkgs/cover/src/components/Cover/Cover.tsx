@@ -1,7 +1,7 @@
 import React from 'react';
 import { CoverProps, Html } from '@friends-library/types';
 import { isBrowser } from 'browser-or-node';
-import classNames from 'classnames';
+import cx from 'classnames';
 import LogoIcon from './LogoIcon';
 import Logo from './Logo';
 import LogoSpanish from './LogoSpanish';
@@ -34,7 +34,7 @@ const Cover: React.FC<Props> = ({
   const lang = edition === 'spanish' ? 'es' : 'en';
   return (
     <div
-      className={classNames('cover', {
+      className={cx('cover', {
         'cover--show-guides': showGuides,
         'binding--saddle-stitch': pages < 32,
       })}
@@ -115,7 +115,7 @@ const Cover: React.FC<Props> = ({
           </span>
           <LogoIcon />
           <div
-            className={classNames(
+            className={cx(
               'front__main',
               `front__main--first-initial--${firstInitial}`,
               `front__main--initials--${firstInitial}${lastInitial}`,
@@ -126,7 +126,7 @@ const Cover: React.FC<Props> = ({
             <div className="initials">
               <div className="initials__top">
                 <span
-                  className={classNames(
+                  className={cx(
                     'initial',
                     'initial--first',
                     `initial--X${lastInitial}`,
@@ -139,7 +139,7 @@ const Cover: React.FC<Props> = ({
               </div>
               <div className="initials__bottom">
                 <span
-                  className={classNames(
+                  className={cx(
                     'initial',
                     'initial--last',
                     `initial--${firstInitial}X`,

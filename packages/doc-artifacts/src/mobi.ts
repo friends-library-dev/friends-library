@@ -5,7 +5,6 @@ import { FileManifest } from '@friends-library/types';
 import { EbookOptions } from './types';
 import { writeEbookManifest } from './ebook';
 import { red } from '@friends-library/cli-utils/color';
-import { dirs } from './dirs';
 
 export default async function mobi(
   manifest: FileManifest,

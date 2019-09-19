@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import cx from 'classnames';
 import KeyEvent from 'react-keyboard-event-handler';
 import { CoverProps, Css, Html } from '@friends-library/types';
 import FormControl from '@material-ui/core/FormControl';
@@ -351,7 +351,7 @@ export default class App extends React.Component<{}, State> {
     const coverProps = this.coverProps();
     return (
       <div
-        className={classNames('App', 'web', {
+        className={cx('App', 'web', {
           [`trim--${coverProps ? coverProps.size : 'm'}`]: true,
           'capturing-screenshot': capture,
         })}
@@ -438,7 +438,7 @@ export default class App extends React.Component<{}, State> {
         {coverProps && (
           <>
             <div
-              className={classNames('cover-wrap', {
+              className={cx('cover-wrap', {
                 'cover--ebook': mode === 'ebook',
                 'cover--2d': mode === '2d',
                 'cover--3d': mode === '3d',
