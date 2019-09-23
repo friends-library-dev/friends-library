@@ -9,10 +9,10 @@
     "compile": "cd ../../ && yarn compile doc-manifests"
   },
   "dependencies": {
+    "@friends-library/cover-component": "1.0.0",
     "@friends-library/doc-css": "1.0.0",
     "@friends-library/doc-html": "1.0.0",
     "@friends-library/types": "1.0.0",
-    "@friends-library/ui": "1.0.0",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "moment": "^2.24.0",

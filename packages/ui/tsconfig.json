@@ -19,6 +19,14 @@
     "emitDecoratorMetadata": true
   },
   "references": [{ "path": "../types" }],
-  "include": ["src/**/*"],
+  "include": [
+    "src/**/*",
+    "../cover-component/src/css",
+    "../cover-component/src/LogoIcon.tsx",
+    "../cover-component/src/overrides.ts",
+    "../cover-component/src/CoverFront.tsx",
+    "../cover-component/src/Cover.tsx",
+    "../cover-component/src/index.ts"
+  ],
   "exclude": ["node_modules", "build", "scripts"]
 }

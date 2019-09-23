@@ -1,0 +1,18 @@
+{
+  "name": "@friends-library/cover-component",
+  "version": "1.0.0",
+  "description": "paperback cover react component",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile cover-component"
+  },
+  "dependencies": {
+    "@friends-library/types": "1.0.0",
+    "react": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.2"
+  }
+}

@@ -11,6 +11,7 @@ const pkgs = [
   'doc-html',
   'doc-css',
   'doc-artifacts',
+  'cover-component',
   'lulu',
   'env',
   'cli-utils',

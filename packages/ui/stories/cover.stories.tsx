@@ -1,16 +1,26 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { CoverFront, webCss, staticCss, scalingCss, docCss } from '../src/cover';
+import {
+  Front,
+  webCss,
+  staticCss,
+  scalingCss,
+  docCss,
+} from '@friends-library/cover-component';
 
 storiesOf('Cover', module).add('front', () => (
-  <div className="web">
-    <CoverFront
+  <div>
+    <Front
       lang="en"
-      firstInitial="S"
-      lastInitial="R"
+      size="m"
+      pages={222}
+      blurb="some blurb"
+      showGuides={false}
+      edition="updated"
       title="The Work of Vital Religion in the Soul"
       author="Samuel Rundell"
-      fragments={{}}
+      customCss=""
+      customHtml=""
     />
     <style>
       {staticCss()}
@@ -20,3 +30,11 @@ storiesOf('Cover', module).add('front', () => (
     </style>
   </div>
 ));
+
+/* 
+<Front />
+<Spine />
+<Back />
+<PrintPdf />
+<ThreeD />
+*/

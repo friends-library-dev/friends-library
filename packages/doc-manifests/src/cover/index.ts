@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { FileManifest } from '@friends-library/types';
-import { CoverFront } from '@friends-library/ui';
+import {
+  Front,
+  staticCss,
+  pdfCss,
+  scalingCss,
+  docCss,
+} from '@friends-library/cover-component';
 import wrapBodyHtml from '../wrap-html';
 
 export default function cover() {
@@ -9,13 +15,17 @@ export default function cover() {
 }
 
 export async function coverFromProps(): Promise<FileManifest[]> {
-  const el = React.createElement(CoverFront, {
-    firstInitial: 'S',
-    lastInitial: 'R',
+  const el = React.createElement(Front, {
     author: 'Samuel Rundell',
     title: 'The Work of Vital Religion in the Soul',
     lang: 'en',
-    fragments: {},
+    edition: 'updated',
+    showGuides: false,
+    customCss: '',
+    customHtml: '',
+    size: 'm',
+    pages: 222,
+    blurb: 'no blurb, no bueno',
   });
   const html = ReactDOMServer.renderToStaticMarkup(el);
   return [
@@ -25,7 +35,12 @@ export async function coverFromProps(): Promise<FileManifest[]> {
         css: ['doc.css'],
         htmlAttrs: 'lang="en" class="pdf trim--m"',
       }),
-      'doc.css': '',
+      'doc.css': `
+        ${staticCss()}
+        ${pdfCss()}
+        ${scalingCss()}
+        ${docCss()}
+      `,
     },
   ];
 }

@@ -165,11 +165,12 @@ export interface LintOptions {
 }
 
 export interface CoverProps {
+  lang: Lang;
   title: string;
   author: Name;
   size: PrintSize;
   pages: number;
-  edition: EditionType | 'spanish';
+  edition: EditionType;
   isbn?: ISBN;
   blurb: string;
   showGuides: boolean;

@@ -1,28 +1,20 @@
 import React from 'react';
 import cx from 'classnames';
-import { Lang, Html } from '@friends-library/types';
+import { CoverProps, Lang, Html, EditionType } from '@friends-library/types';
 import { overridable } from './overrides';
 import LogoIcon from './LogoIcon';
 
-interface Props {
-  lang: Lang;
-  firstInitial: string;
-  lastInitial: string;
-  title: string;
-  author: string;
-  fragments: Record<string, Html>;
-}
-
-const CoverFront: React.FC<Props> = ({
+const CoverFront: React.FC<CoverProps> = ({
   lang,
-  firstInitial,
-  lastInitial,
   title,
   author,
-  fragments,
+  showGuides,
+  edition,
 }) => {
+  const fragments = {}; // @TODO
+  const [firstInitial, lastInitial] = initials(author);
   return (
-    <div className="front">
+    <div className={`CoverFront Edition--${edition} Lang--${lang}`}>
       <div className="front__safe">
         <span className="flp">
           {lang === 'es' ? 'Biblioteca de los Amigos' : 'Friends Library Publishing'}
@@ -35,8 +27,12 @@ const CoverFront: React.FC<Props> = ({
             `front__main--initials--${firstInitial}${lastInitial}`,
           )}
         >
-          <div className="guide guide--letter-spacing" />
-          <div className="guide guide--vertical guide--front-vertical-center" />
+          {showGuides ? (
+            <>
+              <div className="guide guide--letter-spacing" />
+              <div className="guide guide--vertical guide--front-vertical-center" />
+            </>
+          ) : null}
           <div className="initials">
             <div className="initials__top">
               <span
@@ -87,3 +83,8 @@ const CoverFront: React.FC<Props> = ({
 };
 
 export default CoverFront;
+
+function initials(author: string): [string, string] {
+  const [first, ...rest] = author.split(' ');
+  return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
+}
