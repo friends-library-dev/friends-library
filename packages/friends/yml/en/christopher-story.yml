@@ -1,0 +1,43 @@
+id: 515aac77-35be-4270-a803-9e5418a60e24
+name: Christopher Story
+slug: christopher-story
+gender: male
+description: TODO
+documents:
+  - id: 843e3d87-d877-432c-a54e-fbe7996022a8
+    title: Life of Christopher Story
+    original_title:
+      A Brief Account of the Life of Christopher Story, A Minister of the Gospel, in the
+      Society of Friends
+    slug: journal
+    filename: Life_of_Christopher_Story
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Chapter 1
+          - title: Chapter 2
+          - title: Chapter 3
+          - title: Chapter 4
+          - title: Supplement
+          - title: Testimony of Bridget Story
+          - title: Testimony of Aaron Atkinson
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Chapter 1
+          - title: Chapter 2
+          - title: Chapter 3
+          - title: Chapter 4
+          - title: Supplement
+          - title: Testimony of Bridget Story
+          - title: Testimony of Aaron Atkinson
