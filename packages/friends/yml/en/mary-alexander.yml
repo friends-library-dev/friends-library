@@ -1,0 +1,59 @@
+id: e0af1dbc-cf6c-41ad-b342-067583ae1867
+name: Mary Alexander
+slug: mary-alexander
+gender: female
+description: TODO
+documents:
+  - id: 4cd93994-8176-4269-aae3-63eb68fdef28
+    title: Life of Mary Alexander
+    original_title:
+      Some Account of the Life and Religious Experience of Mary Alexander, Late of Needham
+      Market.
+    slug: life
+    filename: Life_of_Mary_Alexander
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Chapter 1
+          - title: Chapter 2
+          - title: Chapter 3
+          - title: Chapter 4
+          - title: Chapter 5
+          - title: Chapter 6
+          - title: Chapter 7
+          - title: Chapter 8
+          - title: Chapter 9
+          - title: Chapter 10
+          - title: Chapter 11
+          - title: Chapter 12
+          - title: Chapter 13
+          - title: Supplement
+      - type: modernized
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Chapter 1
+          - title: Chapter 2
+          - title: Chapter 3
+          - title: Chapter 4
+          - title: Chapter 5
+          - title: Chapter 6
+          - title: Chapter 7
+          - title: Chapter 8
+          - title: Chapter 9
+          - title: Chapter 10
+          - title: Chapter 11
+          - title: Chapter 12
+          - title: Chapter 13
+          - title: Supplement
