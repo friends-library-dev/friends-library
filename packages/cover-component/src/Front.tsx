@@ -15,6 +15,7 @@ const CoverFront: React.FC<CoverProps> = ({
   const [firstInitial, lastInitial] = initials(author);
   return (
     <div className={`CoverFront Edition--${edition} Lang--${lang}`}>
+      <div className="bg-block" />
       <div className="front__safe">
         <span className="flp">
           {lang === 'es' ? 'Biblioteca de los Amigos' : 'Friends Library Publishing'}
