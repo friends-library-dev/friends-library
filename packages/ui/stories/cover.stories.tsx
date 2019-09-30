@@ -40,6 +40,17 @@ storiesOf('Cover', module)
       </style>
     </div>
   ))
+  .add('back', () => (
+    <div>
+      <Back {...props} />
+      <style>
+        {staticCss()}
+        {webCss()}
+        {scalingCss()}
+        {docCss()}
+      </style>
+    </div>
+  ))
   .add('front', () => (
     <div>
       <Front {...props} />
