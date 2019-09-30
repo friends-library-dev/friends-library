@@ -1,5 +1,7 @@
 import { Css } from '@friends-library/types';
 import { css } from './lib/helpers';
+import spineCss from './spine.css';
+import colorsCss from './colors.css';
 
 const cssStr: Css = css`
   .CoverFront,
@@ -106,32 +108,8 @@ const cssStr: Css = css`
     left: 0;
   }
 
-  .Edition--original .logo-icon {
-    fill: #9d9d80;
-  }
-
-  .Edition--original .bg-block,
-  .bg-color--original {
-    background-color: #9d9d80;
-  }
-
-  .Edition--modernized .logo-icon {
-    fill: #628c9d;
-  }
-
-  .Edition--modernized .bg-block,
-  .bg-color--modernized {
-    background-color: #628c9d;
-  }
-
-  .Edition--updated .logo-icon {
-    fill: #6c3142;
-  }
-
-  .Edition--updated .bg-block,
-  .bg-color--updated {
-    background-color: #6c3142;
-  }
+  ${spineCss}
+  ${colorsCss}
 `;
 
 export default cssStr;

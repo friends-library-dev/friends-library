@@ -1,4 +1,8 @@
 export { default as Front } from './Front';
+export { default as Back } from './Back';
+export { default as Spine } from './Spine';
+export { default as ThreeD } from './ThreeD';
+export { default as PrintPdf } from './PrintPdf';
 export { default as staticCss } from './css/lib/static';
 export { default as docCss } from './css/lib/doc';
 export { default as scalingCss } from './css/lib/scaling';

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { CoverProps, Lang, Html, EditionType } from '@friends-library/types';
+import { CoverProps } from '@friends-library/types';
 import { overridable } from './overrides';
 import LogoIcon from './LogoIcon';
 

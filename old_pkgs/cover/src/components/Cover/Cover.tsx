@@ -198,11 +198,8 @@ function initials(author: string): [string, string] {
 function spineClasses(pages: number): string {
   const classes = ['spine'];
   const rounded = Math.floor(pages / 10) * 10;
-  for (let i = 130; i <= 220; i += 10) {
+  for (let i = 130; i <= 220; i += 22) {
     rounded < i && classes.push(`spine--pgs-lt-${i}`);
-    rounded <= i && classes.push(`spine--pgs-lte-${i}`);
-    rounded > i && classes.push(`spine--pgs-gt-${i}`);
-    rounded >= i && classes.push(`spine--pgs-gte-${i}`);
   }
   return classes.join(' ');
 }
