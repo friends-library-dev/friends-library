@@ -7,8 +7,13 @@ const cssStr: Css = css`
     margin: 0;
     padding: 0;
   }
+
+  .Cover .print-pdf {
+    display: flex;
+  }
+
   @page {
-    size: 6in 9in portrait;
+    size: 13in 9in landscape;
     margin: 0;
   }
 `;

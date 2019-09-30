@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { FileManifest } from '@friends-library/types';
 import {
-  Front,
+  PrintPdf,
   staticCss,
   pdfCss,
   scalingCss,
@@ -15,7 +15,7 @@ export default function cover() {
 }
 
 export async function coverFromProps(): Promise<FileManifest[]> {
-  const el = React.createElement(Front, {
+  const el = React.createElement(PrintPdf, {
     author: 'Samuel Rundell',
     title: 'The Work of Vital Religion in the Soul',
     lang: 'en',

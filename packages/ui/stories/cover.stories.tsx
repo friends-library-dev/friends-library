@@ -8,6 +8,7 @@ import {
   PrintPdf,
   Front,
   webCss,
+  pdfCss,
   staticCss,
   scalingCss,
   docCss,
@@ -30,6 +31,19 @@ const props: CoverProps = {
 
 storiesOf('Cover', module)
   .addDecorator(centered)
+  .add('pdf', () => (
+    <div>
+      <div className={wrapClasses(props)}>
+        <PrintPdf {...props} />
+      </div>
+      <style>
+        {staticCss()}
+        {pdfCss()}
+        {scalingCss()}
+        {docCss()}
+      </style>
+    </div>
+  ))
   .add('spine', () => (
     <div>
       <div className={wrapClasses(props)}>
