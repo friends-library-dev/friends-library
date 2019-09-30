@@ -2,7 +2,7 @@ import React from 'react';
 import { CoverProps } from '@friends-library/types';
 import { wrapClasses } from './css/lib/helpers';
 import Back from './Back';
-import Front from './Front';
+import FrontInner from './FrontInner';
 import Spine from './Spine';
 
 const PrintPdf: React.FC<CoverProps> = props => {
@@ -11,7 +11,7 @@ const PrintPdf: React.FC<CoverProps> = props => {
       <div className="print-pdf">
         <Back {...props} />
         <Spine {...props} />
-        <Front {...props} />
+        <FrontInner {...props} />
       </div>
     </div>
   );

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",
+    "@friends-library/lulu": "1.0.0",
     "react": "^16.9.0"
   },
   "devDependencies": {

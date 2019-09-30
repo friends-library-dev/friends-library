@@ -9,6 +9,7 @@ import {
   Front,
   webCss,
   pdfCss,
+  threeDCss,
   staticCss,
   scalingCss,
   docCss,
@@ -31,6 +32,17 @@ const props: CoverProps = {
 
 storiesOf('Cover', module)
   .addDecorator(centered)
+  .add('three-d', () => (
+    <div>
+      <ThreeD {...props} />
+      <style>
+        {staticCss()}
+        {threeDCss(props.size, props.pages)}
+        {scalingCss()}
+        {docCss(props.size, props.pages)}
+      </style>
+    </div>
+  ))
   .add('pdf', () => (
     <div>
       <div className={wrapClasses(props)}>
@@ -40,7 +52,7 @@ storiesOf('Cover', module)
         {staticCss()}
         {pdfCss()}
         {scalingCss()}
-        {docCss()}
+        {docCss(props.size, props.pages)}
       </style>
     </div>
   ))
@@ -53,7 +65,7 @@ storiesOf('Cover', module)
         {staticCss()}
         {webCss()}
         {scalingCss()}
-        {docCss()}
+        {docCss(props.size, props.pages)}
       </style>
     </div>
   ))
@@ -66,7 +78,7 @@ storiesOf('Cover', module)
         {staticCss()}
         {webCss()}
         {scalingCss()}
-        {docCss()}
+        {docCss(props.size, props.pages)}
       </style>
     </div>
   ))
@@ -77,15 +89,7 @@ storiesOf('Cover', module)
         {staticCss()}
         {webCss()}
         {scalingCss()}
-        {docCss()}
+        {docCss(props.size, props.pages)}
       </style>
     </div>
   ));
-
-/* 
-<Front />
-<Spine />
-<Back />
-<PrintPdf />
-<ThreeD />
-*/

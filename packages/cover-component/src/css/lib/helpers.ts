@@ -1,16 +1,19 @@
 import cx from 'classnames';
-import { CoverProps } from '@friends-library/types';
+import { CoverProps, PrintSize } from '@friends-library/types';
+import { sizes as bookSizes } from '@friends-library/lulu';
 
-/**
- * An identity pass-through tagged template literal function
- * just so I can get syntax highlighting etc. from vscode
- */
-export function css(strings: any, ...values: any[]): string {
-  let str = '';
-  strings.forEach((string: string, i: number) => {
-    str += string + (values[i] || '');
-  });
-  return str;
+export function docDims(size: PrintSize, pages: number): Record<string, number> {
+  const { width, height } = bookSizes[size].dims;
+  const spinePad = 0.06;
+  const pagesPerInch = 444;
+  const threeDSpineWidth = spinePad + pages / pagesPerInch;
+  const pdfSpineWidth = pages < 32 ? 0 : threeDSpineWidth;
+  return {
+    width,
+    height,
+    pdfSpineWidth,
+    threeDSpineWidth,
+  };
 }
 
 export function wrapClasses(
@@ -24,4 +27,16 @@ export function wrapClasses(
     `trim--${size}`,
     customClasses,
   );
+}
+
+/**
+ * An identity pass-through tagged template literal function
+ * just so I can get syntax highlighting etc. from vscode
+ */
+export function css(strings: any, ...values: any[]): string {
+  let str = '';
+  strings.forEach((string: string, i: number) => {
+    str += string + (values[i] || '');
+  });
+  return str;
 }
