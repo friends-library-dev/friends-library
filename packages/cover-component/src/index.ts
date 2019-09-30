@@ -8,3 +8,4 @@ export { default as docCss } from './css/lib/doc';
 export { default as scalingCss } from './css/lib/scaling';
 export { default as webCss } from './css/lib/web';
 export { default as pdfCss } from './css/lib/pdf';
+export { wrapClasses } from './css/lib/helpers';

@@ -11,6 +11,7 @@ import {
   staticCss,
   scalingCss,
   docCss,
+  wrapClasses,
 } from '@friends-library/cover-component';
 import { CoverProps } from '@friends-library/types';
 
@@ -31,7 +32,9 @@ storiesOf('Cover', module)
   .addDecorator(centered)
   .add('spine', () => (
     <div>
-      <Spine {...props} />
+      <div className={wrapClasses(props)}>
+        <Spine {...props} />
+      </div>
       <style>
         {staticCss()}
         {webCss()}
@@ -42,7 +45,9 @@ storiesOf('Cover', module)
   ))
   .add('back', () => (
     <div>
-      <Back {...props} />
+      <div className={wrapClasses(props)}>
+        <Back {...props} />
+      </div>
       <style>
         {staticCss()}
         {webCss()}

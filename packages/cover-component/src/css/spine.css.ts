@@ -1,7 +1,7 @@
 import { css } from './lib/helpers';
 
 const spineCss: string = css`
-  .CoverSpine {
+  .Cover .spine {
     /* width: var(--spineWidth); */
     /* height: var(--bookHeight); */
     position: relative;
@@ -9,19 +9,9 @@ const spineCss: string = css`
     /* left: var(--edgeToSpine); */
   }
 
-  /* @TODO, probably move this out */
-  .CoverSpine::before {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: 0;
-    height: 85%;
-    width: 100%;
-  }
-
-  .pdf .binding--saddle-stitch .CoverSpine,
+  .pdf .binding--saddle-stitch .Cover .spine,
   .pdf .binding--saddle-stitch .guide--spine,
-  .web .cover--2d .binding--saddle-stitch .CoverSpine,
+  .web .cover--2d .binding--saddle-stitch .Cover .spine,
   .web .cover--2d .binding--saddle-stitch .guide--spine {
     width: 0;
     display: none;
@@ -31,7 +21,7 @@ const spineCss: string = css`
     display: none !important;
   }
 
-  .CoverSpine .logo-icon {
+  .Cover .spine .logo-icon {
     height: 4%;
     /* fill: var(--bgColor); */
     position: absolute;
@@ -41,7 +31,7 @@ const spineCss: string = css`
     transform: translateX(-44%);
   }
 
-  .CoverSpine .diamond {
+  .Cover .spine .diamond {
     /* fill: var(--bgColor); */
     width: 0.365in;
     top: auto;
@@ -66,7 +56,7 @@ const spineCss: string = css`
     top: 15%;
   }
 
-  .trim--s .CoverSpine .logo-icon {
+  .trim--s .Cover .spine .logo-icon {
     top: 5.6%;
   }
 

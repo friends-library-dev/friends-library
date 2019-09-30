@@ -5,8 +5,7 @@ const spineCss: string = css`
     fill: #9d9d80;
   }
 
-  .Edition--original .bg-block,
-  .CoverSpine.Edition--original::before,
+  .Cover.Edition--original .has-bg::before,
   .bg-color--original {
     background-color: #9d9d80;
   }
@@ -15,8 +14,7 @@ const spineCss: string = css`
     fill: #628c9d;
   }
 
-  .Edition--modernized .bg-block,
-  .CoverSpine.Edition--modernized::before,
+  .Cover.Edition--modernized .has-bg::before,
   .bg-color--modernized {
     background-color: #628c9d;
   }
@@ -25,8 +23,7 @@ const spineCss: string = css`
     fill: #6c3142;
   }
 
-  .Edition--updated .bg-block,
-  .CoverSpine.Edition--updated::before,
+  .Cover.Edition--updated .has-bg::before,
   .bg-color--updated {
     background-color: #6c3142;
   }

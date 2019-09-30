@@ -28,7 +28,7 @@ const Spine: React.FC<CoverProps> = ({ lang, edition, title, pages, author }) =>
 export default Spine;
 
 function spineClasses(pages: number, edition: EditionType, lang: Lang): string {
-  const classes = ['CoverSpine', `Edition--${edition}`, `Lang--${lang}`];
+  const classes = ['spine has-bg'];
   const rounded = Math.floor(pages / 10) * 10;
   for (let i = 130; i <= 180; i += 20) {
     rounded < i && classes.push(`spine--pgs-lt-${i}`);

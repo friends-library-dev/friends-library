@@ -10,7 +10,7 @@ const Back: React.FC<CoverProps> = ({ blurb, isbn, lang, edition }) => {
   const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
   const fragments = {};
   return (
-    <div className={`back ${blurbClasses(blurb)}`}>
+    <div className={`back has-bg ${blurbClasses(blurb)}`}>
       <div className="back__safe">
         <Diamond />
         {overridable(
