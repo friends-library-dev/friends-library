@@ -1,11 +1,12 @@
-import { Css } from '@friends-library/types';
-import { css } from './lib/helpers';
+import { CoverCssModule } from './types';
+import { css, scopeCss, docDims } from './helpers';
 
-export default function threeDCss(dims: Record<string, number>): Css {
+const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
+  const dims = docDims(size, pages, scaler);
   const leftOffset = (dims.width - dims.threeDSpineWidth) / 2;
   const topOffset = (dims.height - dims.threeDSpineWidth) / 2;
 
-  return css`
+  const staticCss = css`
     .Cover.Cover--3d {
       background: transparent;
     }
@@ -13,8 +14,6 @@ export default function threeDCss(dims: Record<string, number>): Css {
     .Cover--3d,
     .Cover--3d .box {
       perspective: 2000px;
-      width: ${dims.width}in;
-      height: ${dims.height}in;
     }
 
     .Cover--3d .front,
@@ -35,6 +34,21 @@ export default function threeDCss(dims: Record<string, number>): Css {
       background: #f5f4ee;
     }
 
+    .Cover--3d .box {
+      margin: 0;
+      position: relative;
+      transition: transform 0.75s;
+      transform-style: preserve-3d;
+    }
+  `;
+
+  const sizeCss = css`
+    .Cover--3d,
+    .Cover--3d .box {
+      width: ${dims.width}in;
+      height: ${dims.height}in;
+    }
+
     .Cover--3d .box .spine,
     .Cover--3d .right {
       width: ${dims.threeDSpineWidth}in;
@@ -53,10 +67,6 @@ export default function threeDCss(dims: Record<string, number>): Css {
     }
 
     .Cover--3d .box {
-      margin: 0;
-      position: relative;
-      transition: transform 0.75s;
-      transform-style: preserve-3d;
       transform: translateZ(${dims.threeDSpineWidth / 2}in);
     }
 
@@ -110,4 +120,8 @@ export default function threeDCss(dims: Record<string, number>): Css {
       transform: translateZ(-${dims.width / 2}in) rotateY(90deg);
     }
   `;
-}
+
+  return [staticCss, scopeCss(sizeCss, scope)];
+};
+
+export default threeD;

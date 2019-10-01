@@ -1,8 +1,12 @@
 import cx from 'classnames';
-import { CoverProps, PrintSize } from '@friends-library/types';
+import { CoverProps, PrintSize, Css } from '@friends-library/types';
 import { sizes as bookSizes } from '@friends-library/lulu';
 
-export function docDims(size: PrintSize, pages: number): Record<string, number> {
+export function docDims(
+  size: PrintSize,
+  pages: number,
+  scaler?: number,
+): Record<string, number> {
   const { width, height } = bookSizes[size].dims;
   const spinePad = 0.06;
   const pagesPerInch = 444;
@@ -29,6 +33,12 @@ export function wrapClasses(
   );
 }
 
+export function scopeCss(css: Css, scope?: string): Css {
+  if (!scope) {
+    return css;
+  }
+  return css;
+}
 /**
  * An identity pass-through tagged template literal function
  * just so I can get syntax highlighting etc. from vscode

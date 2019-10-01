@@ -7,12 +7,7 @@ import {
   ThreeD,
   PrintPdf,
   Front,
-  webCss,
-  pdfCss,
-  threeDCss,
-  staticCss,
-  scalingCss,
-  docCss,
+  css as coverCss,
   wrapClasses,
 } from '@friends-library/cover-component';
 import { CoverProps } from '@friends-library/types';
@@ -36,10 +31,11 @@ storiesOf('Cover', module)
     <div>
       <ThreeD {...props} />
       <style>
-        {staticCss()}
-        {threeDCss(props.size, props.pages)}
-        {scalingCss()}
-        {docCss(props.size, props.pages)}
+        {coverCss.common(props).join('\n')}
+        {coverCss.front(props).join('\n')}
+        {coverCss.back(props).join('\n')}
+        {coverCss.spine(props).join('\n')}
+        {coverCss.threeD(props).join('\n')}
       </style>
     </div>
   ))
@@ -49,10 +45,11 @@ storiesOf('Cover', module)
         <PrintPdf {...props} />
       </div>
       <style>
-        {staticCss()}
-        {pdfCss()}
-        {scalingCss()}
-        {docCss(props.size, props.pages)}
+        {coverCss.common(props).join('\n')}
+        {coverCss.front(props).join('\n')}
+        {coverCss.back(props).join('\n')}
+        {coverCss.spine(props).join('\n')}
+        {coverCss.pdf(props).join('\n')}
       </style>
     </div>
   ))
@@ -62,10 +59,8 @@ storiesOf('Cover', module)
         <Spine {...props} />
       </div>
       <style>
-        {staticCss()}
-        {webCss()}
-        {scalingCss()}
-        {docCss(props.size, props.pages)}
+        {coverCss.common(props).join('\n')}
+        {coverCss.spine(props).join('\n')}
       </style>
     </div>
   ))
@@ -75,10 +70,8 @@ storiesOf('Cover', module)
         <Back {...props} />
       </div>
       <style>
-        {staticCss()}
-        {webCss()}
-        {scalingCss()}
-        {docCss(props.size, props.pages)}
+        {coverCss.common(props).join('\n')}
+        {coverCss.back(props).join('\n')}
       </style>
     </div>
   ))
@@ -86,10 +79,8 @@ storiesOf('Cover', module)
     <div>
       <Front {...props} />
       <style>
-        {staticCss()}
-        {webCss()}
-        {scalingCss()}
-        {docCss(props.size, props.pages)}
+        {coverCss.common(props).join('\n')}
+        {coverCss.front(props).join('\n')}
       </style>
     </div>
   ));

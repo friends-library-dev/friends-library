@@ -1,6 +1,6 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
-import { wrapClasses } from './css/lib/helpers';
+import { wrapClasses } from './css/helpers';
 import Back from './Back';
 import FrontInner from './FrontInner';
 import Spine from './Spine';
