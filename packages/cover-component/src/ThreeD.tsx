@@ -7,7 +7,7 @@ import Spine from './Spine';
 
 const ThreeD: React.FC<CoverProps> = props => {
   return (
-    <div className={wrapClasses(props, 'Cover--3d')}>
+    <div className={wrapClasses(props, ['Cover--3d', 'perspective--angle-front'])}>
       <div className="box">
         <Back {...props} />
         <Spine {...props} />
