@@ -5,9 +5,18 @@ import Back from './Back';
 import FrontInner from './FrontInner';
 import Spine from './Spine';
 
-const ThreeD: React.FC<CoverProps> = props => {
+type Props = CoverProps & {
+  perspective?: 'back' | 'front' | 'spine' | 'angle-front' | 'angle-back';
+};
+
+const ThreeD: React.FC<Props> = props => {
   return (
-    <div className={wrapClasses(props, ['Cover--3d', 'perspective--angle-front'])}>
+    <div
+      className={wrapClasses(props, [
+        'Cover--3d',
+        `perspective--${props.perspective || 'angle-front'}`,
+      ])}
+    >
       <div className="box">
         <Back {...props} />
         <Spine {...props} />

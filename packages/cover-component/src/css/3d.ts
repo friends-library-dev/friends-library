@@ -9,10 +9,6 @@ const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
     .Cover.Cover--3d {
       background: transparent;
-    }
-
-    .Cover--3d,
-    .Cover--3d .box {
       perspective: 2000px;
     }
 

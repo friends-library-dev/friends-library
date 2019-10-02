@@ -25,18 +25,51 @@ const props: CoverProps = {
   customHtml: '',
 };
 
+const Style: React.FC<{ type: '3d' | 'front' | 'back' | 'spine' | 'pdf' }> = ({
+  type,
+}) => {
+  return (
+    <style>
+      {coverCss.common(props).join('\n')}
+      {['front', '3d', 'pdf'].includes(type) ? coverCss.front(props).join('\n') : ''}
+      {['back', '3d', 'pdf'].includes(type) ? coverCss.back(props).join('\n') : ''}
+      {['spine', '3d', 'pdf'].includes(type) ? coverCss.spine(props).join('\n') : ''}
+      {type === '3d' ? coverCss.threeD(props).join('\n') : ''}
+      {type === 'pdf' ? coverCss.pdf(props).join('\n') : ''}
+    </style>
+  );
+};
+
 storiesOf('Cover', module)
   .addDecorator(centered)
-  .add('three-d', () => (
+  .add('three-d (angle-back)', () => (
     <div>
-      <ThreeD {...props} />
-      <style>
-        {coverCss.common(props).join('\n')}
-        {coverCss.front(props).join('\n')}
-        {coverCss.back(props).join('\n')}
-        {coverCss.spine(props).join('\n')}
-        {coverCss.threeD(props).join('\n')}
-      </style>
+      <ThreeD {...props} perspective="angle-back" />
+      <Style type="3d" />
+    </div>
+  ))
+  .add('three-d (angle-front)', () => (
+    <div>
+      <ThreeD {...props} perspective="angle-front" />
+      <Style type="3d" />
+    </div>
+  ))
+  .add('three-d (front)', () => (
+    <div>
+      <ThreeD {...props} perspective="front" />
+      <Style type="3d" />
+    </div>
+  ))
+  .add('three-d (back)', () => (
+    <div>
+      <ThreeD {...props} perspective="back" />
+      <Style type="3d" />
+    </div>
+  ))
+  .add('three-d (spine)', () => (
+    <div>
+      <ThreeD {...props} perspective="spine" />
+      <Style type="3d" />
     </div>
   ))
   .add('pdf', () => (
@@ -44,13 +77,7 @@ storiesOf('Cover', module)
       <div className={wrapClasses(props)}>
         <PrintPdf {...props} />
       </div>
-      <style>
-        {coverCss.common(props).join('\n')}
-        {coverCss.front(props).join('\n')}
-        {coverCss.back(props).join('\n')}
-        {coverCss.spine(props).join('\n')}
-        {coverCss.pdf(props).join('\n')}
-      </style>
+      <Style type="pdf" />
     </div>
   ))
   .add('spine', () => (
@@ -58,10 +85,7 @@ storiesOf('Cover', module)
       <div className={wrapClasses(props)}>
         <Spine {...props} />
       </div>
-      <style>
-        {coverCss.common(props).join('\n')}
-        {coverCss.spine(props).join('\n')}
-      </style>
+      <Style type="spine" />
     </div>
   ))
   .add('back', () => (
@@ -69,18 +93,12 @@ storiesOf('Cover', module)
       <div className={wrapClasses(props)}>
         <Back {...props} />
       </div>
-      <style>
-        {coverCss.common(props).join('\n')}
-        {coverCss.back(props).join('\n')}
-      </style>
+      <Style type="back" />
     </div>
   ))
   .add('front', () => (
     <div>
       <Front {...props} />
-      <style>
-        {coverCss.common(props).join('\n')}
-        {coverCss.front(props).join('\n')}
-      </style>
+      <Style type="front" />
     </div>
   ));
