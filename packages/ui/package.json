@@ -22,7 +22,7 @@
     "classnames": "^2.2.6",
     "emotion-theming": "^10.0.14",
     "gatsby-link": "^2.2.2",
-    "react": "^16.8.6",
+    "react": "^16.9.0",
     "react-country-region-selector": "^1.4.3",
     "tailwindcss": "^1.1.1"
   },
@@ -38,7 +38,7 @@
     "@storybook/react": "5.1.9",
     "@types/classnames": "^2.2.9",
     "@types/node-fetch": "^2.5.1",
-    "@types/react": "^16.8.23",
+    "@types/react": "^16.9.4",
     "@types/storybook__addon-centered": "^3.4.1",
     "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",

@@ -1,4 +1,4 @@
-POST http://localhost:2345/zoe-order HTTP/1.1
+POST https://es-evans.netlify.com/.netlify/functions/zoe-order HTTP/1.1
 content-type: application/json
 
 {

@@ -3,6 +3,7 @@ import { styled } from '@friends-library/ui';
 import Helmet from 'react-helmet';
 import { ThemeProvider } from 'emotion-theming';
 import { Nav, enTheme, esTheme, Tailwind, Footer } from '@friends-library/ui';
+import { css as coverCss } from '@friends-library/cover-component';
 import Slideover from './Slideover';
 import './Layout.css';
 
@@ -17,6 +18,11 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const theme = process.env.GATSBY_LANG === 'en' ? enTheme : esTheme;
+  const [common] = coverCss.common({ size: 'm', pages: 200 });
+  const [front] = coverCss.front({ size: 'm', pages: 200 });
+  const [back] = coverCss.back({ size: 'm', pages: 200 });
+  const [spine] = coverCss.spine({ size: 'm', pages: 200 });
+  const [threeD] = coverCss.threeD({ size: 'm', pages: 200 });
   return (
     <Fragment>
       <Tailwind />
@@ -28,6 +34,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
           rel="stylesheet prefetch"
         />
+        <style type="text/css">{`${common}${front}${back}${spine}${threeD}`}</style>
       </Helmet>
       <ThemeProvider theme={theme}>
         <Slideover isOpen={menuOpen} close={() => setMenuOpen(false)} />

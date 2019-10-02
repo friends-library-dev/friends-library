@@ -17,7 +17,7 @@
   "include": ["./src"],
   "references": [
     { "path": "../types" },
-    { "path": "../friends" },
-    { "path": "../functions" }
+    { "path": "../friends" }
+    // { "path": "../functions" }
   ]
 }
