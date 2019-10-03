@@ -6,7 +6,8 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "compile": "cd ../../ && yarn compile cover-component"
+    "compile": "cd ../../ && yarn compile cover-component",
+    "test": "cd ../../ && yarn jest packages/cover-component"
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",

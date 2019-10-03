@@ -25,23 +25,22 @@ const props: CoverProps = {
   customHtml: '',
 };
 
-const Style: React.FC<{ type: '3d' | 'front' | 'back' | 'spine' | 'pdf' }> = ({
-  type,
-}) => {
-  return (
-    <style>
-      {coverCss.common(props).join('\n')}
-      {['front', '3d', 'pdf'].includes(type) ? coverCss.front(props).join('\n') : ''}
-      {['back', '3d', 'pdf'].includes(type) ? coverCss.back(props).join('\n') : ''}
-      {['spine', '3d', 'pdf'].includes(type) ? coverCss.spine(props).join('\n') : ''}
-      {type === '3d' ? coverCss.threeD(props).join('\n') : ''}
-      {type === 'pdf' ? coverCss.pdf(props).join('\n') : ''}
-    </style>
-  );
-};
+addStaticCss();
 
 storiesOf('Cover', module)
   .addDecorator(centered)
+  .add('multi-front', () => (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <Front {...props} scope="full" />
+      <Style type="front" scope="full" scaler={1} />
+      <Front {...props} scope="half" />
+      <Style type="front" scope="half" scaler={0.5} />
+      <Front {...props} scope="third" />
+      <Style type="front" scope="third" scaler={0.3333333333} />
+      <Front {...props} scope="quarter" />
+      <Style type="front" scope="quarter" scaler={0.25} />
+    </div>
+  ))
   .add('three-d (angle-back)', () => (
     <div>
       <ThreeD {...props} perspective="angle-back" />
@@ -102,3 +101,36 @@ storiesOf('Cover', module)
       <Style type="front" />
     </div>
   ));
+
+const Style: React.FC<{
+  scaler?: number;
+  scope?: string;
+  type: '3d' | 'front' | 'back' | 'spine' | 'pdf';
+}> = ({ type, scaler, scope }) => {
+  const args: [CoverProps, number?, string?] = [props, scaler, scope];
+  return (
+    <style>
+      {coverCss.common(...args)[1]}
+      {['front', '3d', 'pdf'].includes(type) ? coverCss.front(...args)[1] : ''}
+      {['back', '3d', 'pdf'].includes(type) ? coverCss.back(...args)[1] : ''}
+      {['spine', '3d', 'pdf'].includes(type) ? coverCss.spine(...args)[1] : ''}
+      {type === '3d' ? coverCss.threeD(...args)[1] : ''}
+      {type === 'pdf' ? coverCss.pdf(...args)[1] : ''}
+    </style>
+  );
+};
+
+function addStaticCss() {
+  const style = document.createElement('style');
+  style.type = 'text/css';
+  const css = `
+    ${coverCss.common(props)[0]}
+    ${coverCss.front(props)[0]}
+    ${coverCss.back(props)[0]}
+    ${coverCss.spine(props)[0]}
+    ${coverCss.threeD(props)[0]}
+    ${coverCss.pdf(props)[0]}
+  `;
+  style.appendChild(document.createTextNode(css));
+  document.getElementsByTagName('head')[0].appendChild(style);
+}

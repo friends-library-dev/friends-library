@@ -12,16 +12,25 @@ export function docDims(
   const pagesPerInch = 444;
   const threeDSpineWidth = spinePad + pages / pagesPerInch;
   const pdfSpineWidth = pages < 32 ? 0 : threeDSpineWidth;
-  return {
+
+  const dims: Record<string, number> = {
     width,
     height,
     pdfSpineWidth,
     threeDSpineWidth,
   };
+
+  return Object.keys(dims).reduce(
+    (scaled, key) => {
+      scaled[key] = dims[key] * (scaler || 1);
+      return scaled;
+    },
+    {} as Record<string, number>,
+  );
 }
 
 export function wrapClasses(
-  { edition, lang, size }: CoverProps,
+  { edition, lang, size, scope }: Pick<CoverProps, 'edition' | 'lang' | 'size' | 'scope'>,
   customClasses?: string | string[] | Record<string, boolean>,
 ): string {
   return cx(
@@ -29,6 +38,7 @@ export function wrapClasses(
     `Edition--${edition}`,
     `Lang--${lang}`,
     `trim--${size}`,
+    scope ? `Cover--scope-${scope}` : false,
     customClasses,
   );
 }
@@ -37,8 +47,10 @@ export function scopeCss(css: Css, scope?: string): Css {
   if (!scope) {
     return css;
   }
-  return css;
+
+  return css.replace(/\.Cover(?=\.| |,)/gm, `.Cover--scope-${scope}`);
 }
+
 /**
  * An identity pass-through tagged template literal function
  * just so I can get syntax highlighting etc. from vscode

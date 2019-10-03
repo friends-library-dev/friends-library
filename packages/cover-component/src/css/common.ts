@@ -7,6 +7,7 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       font-family: 'Baskerville', Georgia, serif;
       background: white;
       color: white;
+      display: inline-block;
     }
 
     .Cover .has-bg::before {

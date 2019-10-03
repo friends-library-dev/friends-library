@@ -176,6 +176,7 @@ export interface CoverProps {
   showGuides: boolean;
   customCss: Css;
   customHtml: Html;
+  scope?: string;
 }
 
 export function isDefined<T>(x: T | undefined): x is T {
