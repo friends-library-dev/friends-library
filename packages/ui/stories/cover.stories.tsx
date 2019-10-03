@@ -14,12 +14,13 @@ import { CoverProps } from '@friends-library/types';
 
 const props: CoverProps = {
   lang: 'en',
-  size: 'm',
+  size: 's',
   pages: 222,
   blurb: 'some blurb',
   showGuides: false,
   edition: 'updated',
   title: 'The Work of Vital Religion in the Soul',
+  // title: 'The Life and Letters of Catherine Payton',
   author: 'Samuel Rundell',
   customCss: '',
   customHtml: '',
@@ -32,13 +33,17 @@ storiesOf('Cover', module)
   .add('multi-front', () => (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <Front {...props} scope="full" />
-      <Style type="front" scope="full" scaler={1} />
       <Front {...props} scope="half" />
-      <Style type="front" scope="half" scaler={0.5} />
       <Front {...props} scope="third" />
-      <Style type="front" scope="third" scaler={0.3333333333} />
       <Front {...props} scope="quarter" />
-      <Style type="front" scope="quarter" scaler={0.25} />
+      <Front {...props} scope="fifth" />
+      <Front {...props} scope="sixth" />
+      <Style type="front" scope="full" scaler={1.139} />
+      <Style type="front" scope="half" scaler={0.5} />
+      <Style type="front" scope="third" scaler={0.3333333333} />
+      <Style type="front" scope="quarter" scaler={0.225} />
+      <Style type="front" scope="fifth" scaler={0.14} />
+      <Style type="front" scope="sixth" scaler={0.07} />
     </div>
   ))
   .add('three-d (angle-back)', () => (
@@ -130,6 +135,7 @@ function addStaticCss() {
     ${coverCss.spine(props)[0]}
     ${coverCss.threeD(props)[0]}
     ${coverCss.pdf(props)[0]}
+    .Cover + .Cover { margin-left: 5px; }
   `;
   style.appendChild(document.createTextNode(css));
   document.getElementsByTagName('head')[0].appendChild(style);

@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, scopeCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims } from './helpers';
 
 const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
@@ -24,7 +24,7 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
       size: 13in 9in landscape;
     }
   `;
-  return [staticCss, scopeCss(sizeCss, scope)];
+  return [staticCss, dynamifyCss(sizeCss, scope, scaler)];
 };
 
 export default pdf;

@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, scopeCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims } from './helpers';
 
 const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
@@ -8,25 +8,29 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
 
     .Cover .front .logo-icon {
-      width: 8%;
+      width: 11%;
       position: absolute;
-      top: 5%;
+      top: 3.7%;
       right: 5%;
     }
 
     .Cover .front .front__safe {
+      /* background: rgba(0, 255, 0, 0.4); */
       position: relative;
       z-index: 2;
       height: 100%;
+      padding: 6%;
     }
 
     .Cover .front .flp {
       color: #aaa;
       position: absolute;
-      top: 7%;
-      left: 5%;
-      font-size: 90%;
-      font-size: 95%;
+      top: 5%;
+      left: 7%;
+      width: 5000%;
+      font-size: 62%;
+      transform: scale(0.06);
+      transform-origin: top left;
     }
 
     .Cover .front .front__main {
@@ -67,8 +71,17 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       /* background: rgba(0, 255, 0, 0.3); */
       justify-content: center;
       text-align: center;
-      font-size: 300%;
-      padding: 0 12%;
+      /* font-size: 300%; */
+    }
+
+    .Cover .front .title-wrap .title {
+      /* margin-right: 12%; */
+      /* margin-left: 12%; */
+      width: 210%;
+      line-height: 200%;
+      font-size: 25%;
+      transform: scale(0.33) translateX(-80%);
+      transform-origin: center center;
     }
 
     .Cover .front .initials > div {
@@ -93,7 +106,14 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  return [staticCss, ''];
+  const dynamicCss = css`
+    /* todo */
+    .Cover .front .title {
+      letter-spacing: 0.025in;
+    }
+  `;
+
+  return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];
 };
 
 export default front;

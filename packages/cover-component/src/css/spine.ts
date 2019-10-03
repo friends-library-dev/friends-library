@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, scopeCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims } from './helpers';
 
 const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
@@ -93,7 +93,8 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
       height: 3.23%;
     }
   `;
-  return [staticCss, ''];
+
+  return [staticCss, dynamifyCss('', scope, scaler)];
 };
 
 export default spine;

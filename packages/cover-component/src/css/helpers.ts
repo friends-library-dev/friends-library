@@ -19,14 +19,14 @@ export function docDims(
     pdfSpineWidth,
     threeDSpineWidth,
   };
-
-  return Object.keys(dims).reduce(
-    (scaled, key) => {
-      scaled[key] = dims[key] * (scaler || 1);
-      return scaled;
-    },
-    {} as Record<string, number>,
-  );
+  return dims;
+  // return Object.keys(dims).reduce(
+  //   (scaled, key) => {
+  //     scaled[key] = dims[key] * (scaler || 1);
+  //     return scaled;
+  //   },
+  //   {} as Record<string, number>,
+  // );
 }
 
 export function wrapClasses(
@@ -43,12 +43,29 @@ export function wrapClasses(
   );
 }
 
+export function scaleCssInches(css: Css, scaler?: number): Css {
+  if (typeof scaler !== 'number') {
+    return css;
+  }
+
+  const pattern = /(\d*(?:\.\d+)?)in(?! +{)(;| |\))/g;
+
+  return css.replace(pattern, (full, inches, after) => {
+    return `${Number(inches) * scaler}in${after}`;
+  });
+}
+
 export function scopeCss(css: Css, scope?: string): Css {
   if (!scope) {
     return css;
   }
 
   return css.replace(/\.Cover(?=\.| |,)/gm, `.Cover--scope-${scope}`);
+}
+
+export function dynamifyCss(css: Css, scope?: string, scaler?: number): Css {
+  console.log({ scaler });
+  return scopeCss(scaleCssInches(css, scaler), scope);
 }
 
 /**

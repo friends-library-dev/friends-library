@@ -1,4 +1,4 @@
-import { scopeCss } from '../helpers';
+import { scopeCss, scaleCssInches } from '../helpers';
 
 describe('scopeCss()', () => {
   // prettier-ignore
@@ -33,5 +33,20 @@ describe('scopeCss()', () => {
 
   test.each(cases)('css should be transformed', (before, after) => {
     expect(scopeCss(before, 'TEST')).toBe(after);
+  });
+});
+
+describe('scaleCssInches()', () => {
+  // prettier-ignore
+  const cases: [number, string, string][] = [
+   [
+     0.5,
+     '.foo { width: 1in; }',
+     '.foo { width: 0.5in; }',
+   ]
+ ];
+
+  test.each(cases)('css inches should be scaled', (scaler, before, after) => {
+    expect(scaleCssInches(before, scaler)).toBe(after);
   });
 });

@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, scopeCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims } from './helpers';
 
 const blurb: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss: string = css`
@@ -338,7 +338,8 @@ const blurb: CoverCssModule = ({ size, pages }, scaler, scope) => {
       transform: translateY(0.05in);
     }
   `;
-  return [staticCss, ''];
+
+  return [staticCss, dynamifyCss('', scope, scaler)];
 };
 
 export default blurb;

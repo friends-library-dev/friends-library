@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, scopeCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims } from './helpers';
 import blurbCss from './blurb';
 
 const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
@@ -98,7 +98,7 @@ const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
     ${blurbStaticCss}
   `;
 
-  return [staticCss, blurbSizeCss];
+  return [staticCss, dynamifyCss(blurbSizeCss, scope, scaler)];
 };
 
 export default back;

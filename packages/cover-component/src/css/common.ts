@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, scopeCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims } from './helpers';
 
 const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
@@ -8,6 +8,8 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       background: white;
       color: white;
       display: inline-block;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .Cover .has-bg::before {
@@ -15,7 +17,7 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       display: block;
       position: absolute;
       bottom: 0;
-      height: 85%;
+      height: 87%;
       width: 100%;
     }
 
@@ -46,6 +48,10 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
 
   const dims = docDims(size, pages, scaler);
   const sizeCss = css`
+    .Cover {
+      font-size: ${dims.width}in;
+    }
+
     .Cover .back,
     .Cover .front,
     .Cover .spine {
@@ -62,7 +68,7 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  return [staticCss, scopeCss(sizeCss, scope)];
+  return [staticCss, dynamifyCss(sizeCss, scope, scaler)];
 };
 
 export default common;

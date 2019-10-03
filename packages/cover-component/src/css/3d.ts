@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, scopeCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims } from './helpers';
 
 const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const dims = docDims(size, pages, scaler);
@@ -117,7 +117,7 @@ const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  return [staticCss, scopeCss(sizeCss, scope)];
+  return [staticCss, dynamifyCss(sizeCss, scope, scaler)];
 };
 
 export default threeD;
