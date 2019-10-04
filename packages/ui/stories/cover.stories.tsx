@@ -15,13 +15,14 @@ import { CoverProps } from '@friends-library/types';
 const props: CoverProps = {
   lang: 'en',
   size: 'm',
-  pages: 222,
+  pages: 323,
   blurb: 'some blurb',
   showGuides: false,
-  edition: 'updated',
-  title: 'The Work of Vital Religion in the Soul',
+  edition: 'modernized',
+  // title: 'The Work of Vital Religion in the Soul',
+  title: 'The Life and Letters of Sarah Grubb',
   // title: 'The Life and Letters of Catherine Payton',
-  author: 'Samuel Rundell',
+  author: 'Sarah Grubb',
   customCss: '',
   customHtml: '',
 };
@@ -54,8 +55,8 @@ storiesOf('Cover', module)
   ))
   .add('three-d (angle-front)', () => (
     <div>
-      <ThreeD {...props} perspective="angle-front" />
-      <Style type="3d" />
+      <ThreeD {...props} perspective="angle-front" scope="TEMP" />
+      <Style type="3d" scope="TEMP" scaler={0.4} />
     </div>
   ))
   .add('three-d (front)', () => (
@@ -86,10 +87,10 @@ storiesOf('Cover', module)
   ))
   .add('spine', () => (
     <div>
-      <div className={wrapClasses(props)}>
+      <div className={wrapClasses({ ...props, scope: 'match-old' })}>
         <Spine {...props} />
       </div>
-      <Style type="spine" />
+      <Style type="spine" scope="match-old" scaler={0.815} />
     </div>
   ))
   .add('back', () => (

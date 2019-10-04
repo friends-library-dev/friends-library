@@ -21,6 +21,14 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       width: 100%;
     }
 
+    .Cover.trim--m .has-bg::before {
+      height: 83.2%;
+    }
+
+    .Cover.trim--xl .has-bg::before {
+      /* height: 83.2%; */
+    }
+
     .Edition--original .logo-icon {
       fill: #9d9d80;
     }

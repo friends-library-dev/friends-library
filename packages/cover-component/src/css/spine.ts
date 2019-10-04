@@ -4,11 +4,7 @@ import { css, dynamifyCss, docDims } from './helpers';
 const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
     .Cover .spine {
-      /* width: var(--spineWidth); */
-      /* height: var(--bookHeight); */
       position: relative;
-      /* top: var(--trimBleed); */
-      /* left: var(--edgeToSpine); */
     }
 
     .pdf .binding--saddle-stitch .Cover .spine,
@@ -25,32 +21,29 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
 
     .Cover .spine .logo-icon {
       height: 4%;
-      /* fill: var(--bgColor); */
       position: absolute;
-      /* top: var(--edgeToSafe); */
       top: 7%;
       left: 50%;
       transform: translateX(-44%);
     }
 
     .Cover .spine .diamond {
-      /* fill: var(--bgColor); */
-      width: 0.365in;
+      position: absolute;
       top: auto;
       bottom: 3.5% !important;
+      left: 50%;
+      transform: translateX(-50%);
       fill: white;
     }
 
     .spine__title,
     .spine__author {
+      font-size: 4.7%;
       left: 50%;
       transform: translateX(-50%);
       margin: 0;
       position: absolute;
       writing-mode: vertical-rl;
-      /* line-height: var(--spineWidth); */
-      /* font-size: 0.26in; */
-      /* word-spacing: 0.035in; */
       top: 20%;
     }
 
@@ -69,8 +62,8 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
     .spine__author {
       /* display: var(--spineAuthorDisplay); */
       top: auto;
-      bottom: 11%;
-      /* font-size: 0.2in; */
+      bottom: 11.5%;
+      font-size: 3.95%;
     }
 
     .spine--pgs-lt-180 .spine__title {
@@ -94,7 +87,16 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  return [staticCss, dynamifyCss('', scope, scaler)];
+  const dynamicCss = css`
+    .Cover .spine__title,
+    .Cover .spine__author {
+      word-spacing: 0.03in;
+    }
+    .Cover .spine .diamond {
+      width: 0.365in;
+    }
+  `;
+  return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];
 };
 
 export default spine;
