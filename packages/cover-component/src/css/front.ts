@@ -36,6 +36,8 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
     .Cover .front .front__main {
       width: 100%;
       height: 60%;
+      position: relative;
+      top: 22%;
     }
 
     .Cover .front .title-wrap,
@@ -49,38 +51,40 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       flex-direction: column;
     }
 
-    .Cover .front .front__main,
-    .Cover .front .author {
-      position: relative;
-      top: 23%;
-    }
-
     .Cover .front .author {
       text-align: center;
-      font-size: 200%;
+      font-size: 10%;
+      position: absolute;
+      bottom: 6%;
+      box-sizing: content-box;
+      width: 100%;
+      left: 0;
+    }
+
+    .Cover .author__name {
+      transform: scale(0.5) translateY(-10%);
+      font-weight: 400;
+      opacity: 0.7;
     }
 
     .Cover .front .author__line {
       width: 40%;
       background: white;
-      height: 2px;
       margin: 0 auto 0 auto;
     }
 
     .Cover .front .title-wrap {
-      /* background: rgba(0, 255, 0, 0.3); */
       justify-content: center;
       text-align: center;
-      /* font-size: 300%; */
     }
 
     .Cover .front .title-wrap .title {
-      /* margin-right: 12%; */
-      /* margin-left: 12%; */
-      width: 210%;
+      margin-right: -6%;
+      margin-left: -6%;
+      width: 150%;
       line-height: 200%;
-      font-size: 25%;
-      transform: scale(0.33) translateX(-80%);
+      font-size: 18%;
+      transform: translateX(-12.5%) scale(0.46);
       transform-origin: center center;
     }
 
@@ -88,6 +92,7 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       width: 100%;
       height: 50%;
       position: relative;
+      display: none;
     }
 
     .Cover .front .initial {
@@ -107,9 +112,12 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
   `;
 
   const dynamicCss = css`
-    /* todo */
     .Cover .front .title {
       letter-spacing: 0.025in;
+    }
+
+    .Cover .author__line {
+      height: 0.02in;
     }
   `;
 

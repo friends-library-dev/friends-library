@@ -14,7 +14,7 @@ import { CoverProps } from '@friends-library/types';
 
 const props: CoverProps = {
   lang: 'en',
-  size: 's',
+  size: 'm',
   pages: 222,
   blurb: 'some blurb',
   showGuides: false,
@@ -38,12 +38,12 @@ storiesOf('Cover', module)
       <Front {...props} scope="quarter" />
       <Front {...props} scope="fifth" />
       <Front {...props} scope="sixth" />
-      <Style type="front" scope="full" scaler={1.139} />
+      <Style type="front" scope="full" scaler={1.03} />
       <Style type="front" scope="half" scaler={0.5} />
       <Style type="front" scope="third" scaler={0.3333333333} />
       <Style type="front" scope="quarter" scaler={0.225} />
       <Style type="front" scope="fifth" scaler={0.14} />
-      <Style type="front" scope="sixth" scaler={0.07} />
+      <Style type="front" scope="sixth" scaler={0.1} />
     </div>
   ))
   .add('three-d (angle-back)', () => (
