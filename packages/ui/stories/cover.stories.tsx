@@ -16,7 +16,9 @@ const props: CoverProps = {
   lang: 'en',
   size: 'm',
   pages: 323,
-  blurb: 'some blurb',
+  //'TODO',
+  blurb:
+    'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart.',
   showGuides: false,
   edition: 'modernized',
   // title: 'The Work of Vital Religion in the Soul',
@@ -31,6 +33,34 @@ addStaticCss();
 
 storiesOf('Cover', module)
   .addDecorator(centered)
+  .add('multi-back', () => (
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div className={wrapClasses({ ...props, scope: 'back-full', scaler: 1.03 })}>
+        <Back {...props} />
+      </div>
+      <div className={wrapClasses({ ...props, scope: 'back-half', scaler: 0.5 })}>
+        <Back {...props} />
+      </div>
+      <div className={wrapClasses({ ...props, scope: 'back-third', scaler: 0.3333 })}>
+        <Back {...props} />
+      </div>
+      <div className={wrapClasses({ ...props, scope: 'back-quarter', scaler: 0.225 })}>
+        <Back {...props} />
+      </div>
+      <div className={wrapClasses({ ...props, scope: 'back-fifth', scaler: 0.14 })}>
+        <Back {...props} />
+      </div>
+      <div className={wrapClasses({ ...props, scope: 'back-sixth', scaler: 0.1 })}>
+        <Back {...props} />
+      </div>
+      <Style type="back" scope="back-full" scaler={1.03} />
+      <Style type="back" scope="back-half" scaler={0.5} />
+      <Style type="back" scope="back-third" scaler={0.3333333333} />
+      <Style type="back" scope="back-quarter" scaler={0.225} />
+      <Style type="back" scope="back-fifth" scaler={0.14} />
+      <Style type="back" scope="back-sixth" scaler={0.1} />
+    </div>
+  ))
   .add('multi-front', () => (
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <Front {...props} scope="full" />
@@ -79,9 +109,7 @@ storiesOf('Cover', module)
   ))
   .add('pdf', () => (
     <div>
-      <div className={wrapClasses(props)}>
-        <PrintPdf {...props} />
-      </div>
+      <PrintPdf {...props} />
       <Style type="pdf" />
     </div>
   ))
@@ -127,7 +155,11 @@ const Style: React.FC<{
 };
 
 function addStaticCss() {
+  if (document.querySelector('.cover-static-css')) {
+    return;
+  }
   const style = document.createElement('style');
+  style.classList.add('.cover-static-css');
   style.type = 'text/css';
   const css = `
     ${coverCss.common(props)[0]}

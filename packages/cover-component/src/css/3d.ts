@@ -30,6 +30,12 @@ const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
       background: #f5f4ee;
     }
 
+    .Cover--3d .top::before,
+    .Cover--3d .bottom::before,
+    .Cover--3d .right::before {
+      display: none;
+    }
+
     .Cover--3d .box {
       margin: 0;
       position: relative;

@@ -19,10 +19,12 @@ const Back: React.FC<CoverProps> = ({ blurb, isbn, lang, edition }) => {
           // allowEditingBlurb ? (
           //   <EditableBlurb blurb={blurb} update={updateBlurb} />
           // ) : (
-          <div className="blurb">{blurb}</div>,
+          <div className="blurb">
+            <Brackets />
+            {blurb}
+          </div>,
           // ),
         )}
-        <Brackets />
         {/* {isbn && (
           <img className="isbn" src={`${publicUrl}/images/isbn/${isbn}.png`} alt="" />
         )} */}

@@ -177,6 +177,7 @@ export interface CoverProps {
   customCss: Css;
   customHtml: Html;
   scope?: string;
+  scaler?: number;
 }
 
 export function isDefined<T>(x: T | undefined): x is T {

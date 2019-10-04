@@ -67,6 +67,10 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       opacity: 0.7;
     }
 
+    .Cover.trim--m .author__name {
+      transform: scale(0.39) translateY(-29%);
+    }
+
     .Cover .front .author__line {
       width: 40%;
       background: white;

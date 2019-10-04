@@ -3,8 +3,8 @@ import { css, dynamifyCss, docDims } from './helpers';
 
 const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
-    html,
-    body {
+    html.prince,
+    html.prince body {
       margin: 0;
       padding: 0;
     }
@@ -19,9 +19,15 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
   `;
 
   const dims = docDims(size, pages, scaler);
+  const width = dims.width * 2 + dims.pdfSpineWidth;
   const sizeCss = css`
+    .Cover.browser {
+      width: ${width}in;
+      height: ${dims.height}in;
+    }
+
     @page {
-      size: 13in 9in landscape;
+      size: ${width}in ${dims.height}in landscape;
     }
   `;
   return [staticCss, dynamifyCss(sizeCss, scope, scaler)];

@@ -2,35 +2,36 @@ import cx from 'classnames';
 import { CoverProps, PrintSize, Css } from '@friends-library/types';
 import { sizes as bookSizes } from '@friends-library/lulu';
 
-export function docDims(
-  size: PrintSize,
-  pages: number,
-  scaler?: number,
-): Record<string, number> {
+export interface DocDims {
+  width: number;
+  height: number;
+  pdfSpineWidth: number;
+  threeDSpineWidth: number;
+}
+
+export function docDims(size: PrintSize, pages: number, scaler?: number): DocDims {
   const { width, height } = bookSizes[size].dims;
   const spinePad = 0.06;
   const pagesPerInch = 444;
   const threeDSpineWidth = spinePad + pages / pagesPerInch;
   const pdfSpineWidth = pages < 32 ? 0 : threeDSpineWidth;
 
-  const dims: Record<string, number> = {
+  return {
     width,
     height,
     pdfSpineWidth,
     threeDSpineWidth,
   };
-  return dims;
-  // return Object.keys(dims).reduce(
-  //   (scaled, key) => {
-  //     scaled[key] = dims[key] * (scaler || 1);
-  //     return scaled;
-  //   },
-  //   {} as Record<string, number>,
-  // );
 }
 
 export function wrapClasses(
-  { edition, lang, size, scope }: Pick<CoverProps, 'edition' | 'lang' | 'size' | 'scope'>,
+  {
+    edition,
+    lang,
+    size,
+    scope,
+    scaler,
+  }: Pick<CoverProps, 'edition' | 'lang' | 'size' | 'scope' | 'scaler'>,
   customClasses?: string | string[] | Record<string, boolean>,
 ): string {
   return cx(
@@ -39,6 +40,7 @@ export function wrapClasses(
     `Lang--${lang}`,
     `trim--${size}`,
     scope ? `Cover--scope-${scope}` : false,
+    typeof scaler === 'number' && scaler <= 0.35 ? 'Cover--scale-xs' : false,
     customClasses,
   );
 }
@@ -64,7 +66,6 @@ export function scopeCss(css: Css, scope?: string): Css {
 }
 
 export function dynamifyCss(css: Css, scope?: string, scaler?: number): Css {
-  console.log({ scaler });
   return scopeCss(scaleCssInches(css, scaler), scope);
 }
 

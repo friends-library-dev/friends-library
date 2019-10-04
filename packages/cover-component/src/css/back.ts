@@ -7,20 +7,30 @@ const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
     .Cover .back {
       position: relative;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .Cover .back__safe {
+      flex-grow: 1;
+      box-sizing: border-box;
+      position: relative;
+      margin: 0.25in;
     }
 
     .Cover .back .diamond {
       fill: white;
       left: 50%;
-      top: 0;
+      top: 17%;
       transform: translateX(-50%);
       position: absolute;
       width: 12%;
+      z-index: 1;
     }
 
     .Cover .back .about-flp {
       opacity: 0.8;
-      /* font-size: 0.123in; */
+      font-size: 2.8%;
       line-height: 160%;
       text-align: center;
     }
@@ -65,6 +75,7 @@ const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
       position: absolute;
       bottom: 2.25%;
       left: 2.5%;
+      z-index: 1;
     }
 
     .Cover .back .logo--spanish {
@@ -98,7 +109,15 @@ const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
     ${blurbStaticCss}
   `;
 
-  return [staticCss, dynamifyCss(blurbSizeCss, scope, scaler)];
+  const dynamicCss = css`
+    .Cover .back__safe {
+      margin: 0.25in;
+    }
+
+    ${blurbSizeCss}
+  `;
+
+  return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];
 };
 
 export default back;

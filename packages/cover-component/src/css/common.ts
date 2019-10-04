@@ -7,12 +7,21 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       font-family: 'Baskerville', Georgia, serif;
       background: white;
       color: white;
+      position: relative;
       display: inline-block;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
     }
 
-    .Cover .has-bg::before {
+    .Cover *,
+    .Cover *:before,
+    .Cover *:after {
+      box-sizing: inherit;
+    }
+
+    .Cover:not(.Cover--3d)::before,
+    .Cover--3d .box > *::before {
       content: '';
       display: block;
       position: absolute;
@@ -21,12 +30,12 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       width: 100%;
     }
 
-    .Cover.trim--m .has-bg::before {
+    .Cover.trim--m::before {
       height: 83.2%;
     }
 
-    .Cover.trim--xl .has-bg::before {
-      /* height: 83.2%; */
+    .Cover.trim--xl::before {
+      height: 83.2%;
     }
 
     .Edition--original .logo-icon {
@@ -41,15 +50,18 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       fill: #6c3142;
     }
 
-    .Cover.Edition--original .has-bg::before {
+    .Cover.Edition--original:not(.Cover--3d)::before,
+    .Cover--3d.Edition--original .box > *::before {
       background-color: #9d9d80;
     }
 
-    .Cover.Edition--modernized .has-bg::before {
+    .Cover.Edition--modernized:not(.Cover--3d)::before,
+    .Cover--3d.Edition--modernized .box > *::before {
       background-color: #628c9d;
     }
 
-    .Cover.Edition--updated .has-bg::before {
+    .Cover.Edition--updated:not(.Cover--3d)::before,
+    .Cover--3d.Edition--updated .box > *::before {
       background-color: #6c3142;
     }
   `;
