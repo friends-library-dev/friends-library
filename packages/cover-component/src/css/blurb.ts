@@ -18,7 +18,6 @@ const blurb: CoverCssModule = ({ size, pages }, scaler, scope) => {
     .Cover .blurb {
       padding: 1.4em 3.5em 0.5em 3.5em;
       cursor: text;
-      min-height: 2in;
       margin: 0 8%;
       position: relative;
       top: 23%;
@@ -29,12 +28,17 @@ const blurb: CoverCssModule = ({ size, pages }, scaler, scope) => {
       overflow: hidden;
     }
 
+    .Cover.trim--s .blurb {
+      top: 18%;
+    }
+
     .prince .Cover .blurb {
       padding-bottom: 1em;
     }
 
     .Cover--scale-xs .blurb {
       font-size: 0;
+      height: 40%;
     }
 
     .Cover--scale-xs .brackets {

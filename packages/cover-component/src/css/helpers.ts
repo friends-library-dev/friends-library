@@ -34,13 +34,15 @@ export function wrapClasses(
   }: Pick<CoverProps, 'edition' | 'lang' | 'size' | 'scope' | 'scaler'>,
   customClasses?: string | string[] | Record<string, boolean>,
 ): string {
+  const scale = typeof scaler === 'number' ? scaler : 1;
   return cx(
     'Cover',
     `Edition--${edition}`,
     `Lang--${lang}`,
     `trim--${size}`,
     scope ? `Cover--scope-${scope}` : false,
-    typeof scaler === 'number' && scaler <= 0.35 ? 'Cover--scale-xs' : false,
+    scale <= 0.5 ? 'Cover--scale-s' : false,
+    scale <= 0.35 ? 'Cover--scale-xs' : false,
     customClasses,
   );
 }

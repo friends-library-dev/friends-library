@@ -28,6 +28,10 @@ const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
       z-index: 1;
     }
 
+    .Cover.trim--s .back .diamond {
+      top: 12%;
+    }
+
     .Cover .back .about-flp {
       opacity: 0.8;
       font-size: 2.8%;
@@ -41,29 +45,48 @@ const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
       left: 0;
       width: 100%;
       position: absolute;
+      /* display: none; */
     }
 
     .Cover .back .purpose {
       padding: 0 10%;
-      bottom: 19%;
+      bottom: 18%;
     }
 
     .Cover .back .website {
-      bottom: 14%;
+      bottom: 13%;
       /* margin-top: 0.175in; */
     }
 
+    .Cover--scale-s .purpose,
+    .Cover--scale-xs .website {
+      font-size: 0;
+      opacity: 0.5;
+      background-size: 85% 100%;
+      background-repeat: no-repeat;
+    }
+
+    .Cover--scale-s .purpose {
+      height: 15%;
+      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/purpose.png');
+      background-position: center center;
+    }
+
+    .Cover--scale-xs .website {
+      height: 5%;
+      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/website.png');
+      background-position: left top;
+    }
+
     .Cover.trim--s .back .purpose {
-      bottom: 18.25%;
+      bottom: 20%;
       padding: 0 7%;
       line-height: 145%;
-      /* font-size: 0.12in; */
     }
 
     .Cover.trim--s .back .website {
+      bottom: 9%;
       line-height: 142%;
-      /* bottom: 0.425in; */
-      /* left: 0.03in; */
       width: 65%;
       text-align: left;
       position: absolute;

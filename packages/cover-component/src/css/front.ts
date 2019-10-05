@@ -15,7 +15,6 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
 
     .Cover .front .front__safe {
-      /* background: rgba(0, 255, 0, 0.4); */
       position: relative;
       z-index: 2;
       height: 100%;
@@ -65,6 +64,7 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       transform: scale(0.5) translateY(-10%);
       font-weight: 400;
       opacity: 0.7;
+      font-size: 100%;
     }
 
     .Cover.trim--m .author__name {
