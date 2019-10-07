@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, docDims } from './helpers';
+import { css, dynamifyCss } from './helpers';
 
 const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
@@ -25,6 +25,7 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
       top: 7%;
       left: 50%;
       transform: translateX(-44%);
+      z-index: 1;
     }
 
     .Cover .spine .diamond {

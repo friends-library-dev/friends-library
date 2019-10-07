@@ -27,7 +27,7 @@ const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
     .Cover--3d .top,
     .Cover--3d .bottom,
     .Cover--3d .right {
-      background: #f5f4ee;
+      background-color: #f5f4ee !important;
     }
 
     .Cover--3d .top::before,

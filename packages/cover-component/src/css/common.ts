@@ -5,7 +5,6 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
     .Cover {
       font-family: 'Baskerville', Georgia, serif;
-      background: white;
       color: white;
       position: relative;
       display: inline-block;
@@ -31,22 +30,24 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       flex-grow: 1;
     }
 
-    .Cover:not(.Cover--3d)::before,
-    .Cover--3d .box > *::before {
+    .Cover:not(.Cover--3d)::after,
+    .Cover--3d .box > *::after {
       content: '';
       display: block;
       position: absolute;
-      bottom: 0;
-      height: 87%;
+      z-index: 0;
+      top: 0;
+      height: 13%;
       width: 100%;
+      background-color: white;
     }
 
-    .Cover.trim--m::before {
-      height: 83.2%;
+    .Cover.trim--m::after {
+      height: 16.8%;
     }
 
-    .Cover.trim--xl::before {
-      height: 83.2%;
+    .Cover.trim--xl::after {
+      height: 16.8%;
     }
 
     .Edition--original .logo-icon {
@@ -61,18 +62,18 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       fill: #6c3142;
     }
 
-    .Cover.Edition--original:not(.Cover--3d)::before,
-    .Cover--3d.Edition--original .box > *::before {
+    .Cover.Edition--original:not(.Cover--3d),
+    .Cover--3d.Edition--original .box > * {
       background-color: #9d9d80;
     }
 
-    .Cover.Edition--modernized:not(.Cover--3d)::before,
-    .Cover--3d.Edition--modernized .box > *::before {
+    .Cover.Edition--modernized:not(.Cover--3d),
+    .Cover--3d.Edition--modernized .box > * {
       background-color: #628c9d;
     }
 
-    .Cover.Edition--updated:not(.Cover--3d)::before,
-    .Cover--3d.Edition--updated .box > *::before {
+    .Cover.Edition--updated:not(.Cover--3d),
+    .Cover--3d.Edition--updated .box > * {
       background-color: #6c3142;
     }
   `;

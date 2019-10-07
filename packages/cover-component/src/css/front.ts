@@ -9,13 +9,13 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       justify-content: flex-end;
     }
 
-    .Cover .front .top {
-      background: red;
+    .Cover .front .top-row {
       margin-bottom: auto;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      z-index: 1;
     }
 
     .Cover .front .flp {
@@ -29,12 +29,11 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       transform-origin: left center;
     }
 
-    .Cover .front .top .logo-icon {
+    .Cover .front .top-row .logo-icon {
       width: 11%;
     }
 
     .Cover .front .front__main {
-      /* background: rgba(0, 255, 0, 0.1); */
       position: relative;
     }
 

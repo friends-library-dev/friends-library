@@ -11,7 +11,7 @@ const FrontInner: React.FC<CoverProps> = props => {
   return (
     <div className="front has-bg">
       <div className="front__safe">
-        <div className="top">
+        <div className="top-row">
           <span className="flp">
             {lang === 'es' ? 'Biblioteca de los Amigos' : 'Friends Library Publishing'}
           </span>
