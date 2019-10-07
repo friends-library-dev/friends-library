@@ -30,7 +30,7 @@ const props: CoverProps = {
 };
 
 addStaticCss();
-
+let tester = 1;
 storiesOf('Cover', module)
   .addDecorator(centered)
   .add('multi-back', () => (
@@ -155,11 +155,10 @@ const Style: React.FC<{
 };
 
 function addStaticCss() {
-  if (document.querySelector('.cover-static-css')) {
-    return;
-  }
+  const prev = document.getElementById('cover-static-css');
+  prev && prev.remove();
   const style = document.createElement('style');
-  style.classList.add('.cover-static-css');
+  style.id = 'cover-static-css';
   style.type = 'text/css';
   const css = `
     ${coverCss.common(props)[0]}

@@ -10,7 +10,7 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
 
     .Cover .front .top {
-      background: pink;
+      background: red;
       margin-bottom: auto;
       position: relative;
       display: flex;
