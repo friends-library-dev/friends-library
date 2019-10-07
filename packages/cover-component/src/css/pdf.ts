@@ -17,8 +17,16 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
       margin: 0;
     }
 
-    .prince .Cover > * > * {
+    .prince .Cover .spine > * {
       z-index: 1;
+    }
+
+    .prince .Cover .front__safe > * {
+      z-index: 1;
+    }
+
+    .prince .Cover .front .author {
+      z-index: 19999;
     }
   `;
 

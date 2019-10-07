@@ -20,6 +20,17 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       box-sizing: inherit;
     }
 
+    .Cover .front,
+    .Cover .back {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .Cover .back > div,
+    .Cover .front > div {
+      flex-grow: 1;
+    }
+
     .Cover:not(.Cover--3d)::before,
     .Cover--3d .box > *::before {
       content: '';
@@ -85,6 +96,11 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
 
     .Cover .spine {
       width: ${dims.pdfSpineWidth}in;
+    }
+
+    .Cover .back > div,
+    .Cover .front > div {
+      margin: 0.25in; /* safety margin for printing */
     }
   `;
 

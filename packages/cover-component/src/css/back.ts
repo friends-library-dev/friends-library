@@ -5,17 +5,8 @@ import blurbCss from './blurb';
 const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const [blurbStaticCss, blurbSizeCss] = blurbCss({ size, pages }, scaler, scope);
   const staticCss = css`
-    .Cover .back {
-      position: relative;
-      display: flex;
-      align-items: stretch;
-    }
-
     .Cover .back__safe {
-      flex-grow: 1;
-      box-sizing: border-box;
       position: relative;
-      margin: 0.25in;
     }
 
     .Cover .back .diamond {
@@ -45,6 +36,7 @@ const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
       left: 0;
       width: 100%;
       position: absolute;
+      z-index: 1;
       /* display: none; */
     }
 

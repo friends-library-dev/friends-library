@@ -3,61 +3,58 @@ import { css, dynamifyCss, docDims } from './helpers';
 
 const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
-    .Cover .front {
-      position: relative;
+    .Cover .front__safe {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
-    .Cover .front .logo-icon {
-      width: 11%;
-      position: absolute;
-      top: 3.7%;
-      right: 5%;
-    }
-
-    .Cover .front .front__safe {
+    .Cover .front .top {
+      background: pink;
+      margin-bottom: auto;
       position: relative;
-      z-index: 2;
-      height: 100%;
-      padding: 6%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
 
     .Cover .front .flp {
       color: #aaa;
+      flex-grow: 1;
+      left: 0;
       position: absolute;
-      top: 5%;
-      left: 7%;
-      width: 5000%;
-      font-size: 62%;
-      transform: scale(0.06);
-      transform-origin: top left;
+      width: 200%;
+      font-size: 15%;
+      transform: scale(0.26);
+      transform-origin: left center;
+    }
+
+    .Cover .front .top .logo-icon {
+      width: 11%;
     }
 
     .Cover .front .front__main {
-      width: 100%;
-      height: 60%;
+      /* background: rgba(0, 255, 0, 0.1); */
       position: relative;
-      top: 22%;
     }
 
     .Cover .front .title-wrap,
     .Cover .front .initials {
       position: absolute;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
+      bottom: 0;
+      right: 0;
       display: flex;
       flex-direction: column;
     }
 
     .Cover .front .author {
+      z-index: 1; /* why? */
       text-align: center;
       font-size: 10%;
-      position: absolute;
-      bottom: 6%;
-      box-sizing: content-box;
-      width: 100%;
-      left: 0;
+      height: 15%;
+      margin-top: 2%;
     }
 
     .Cover .author__name {
@@ -90,38 +87,56 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       font-size: 18%;
       transform: translateX(-12.5%) scale(0.46);
       transform-origin: center center;
+      letter-spacing: 0.0335em;
     }
 
     .Cover .front .initials > div {
-      width: 100%;
-      height: 50%;
+      flex-grow: 1;
       position: relative;
-      display: none;
+    }
+
+    .Cover .initials__top {
+      /* background: green; */
+    }
+
+    .Cover .initials__bottom {
+      /* background: purple; */
     }
 
     .Cover .front .initial {
-      width: 100%;
       text-align: center;
       position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
       margin: 0;
       padding: 0;
       color: white;
       opacity: 0.25;
-      font-size: 1450%;
+      font-size: 50%;
       /* font-size: 2.6544506602702698in; */
       /* line-height: 2.6544506602702698in; */
+      line-height: 1em;
       font-weight: 400;
       left: 0;
     }
   `;
 
   const dynamicCss = css`
-    .Cover .front .title {
-      letter-spacing: 0.025in;
+    .Cover .author__line {
+      height: 0.018in;
     }
 
-    .Cover .author__line {
-      height: 0.02in;
+    .Cover.trim--s .front__main {
+      height: 4in;
+    }
+
+    .Cover.trim--m .front__main {
+      height: 4.825in;
+    }
+
+    .Cover.trim--xl .front__main {
+      height: 4.7in;
     }
   `;
 

@@ -11,10 +11,12 @@ const FrontInner: React.FC<CoverProps> = props => {
   return (
     <div className="front has-bg">
       <div className="front__safe">
-        <span className="flp">
-          {lang === 'es' ? 'Biblioteca de los Amigos' : 'Friends Library Publishing'}
-        </span>
-        <LogoIcon />
+        <div className="top">
+          <span className="flp">
+            {lang === 'es' ? 'Biblioteca de los Amigos' : 'Friends Library Publishing'}
+          </span>
+          <LogoIcon />
+        </div>
         <div
           className={cx(
             'front__main',

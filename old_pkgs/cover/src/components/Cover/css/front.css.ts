@@ -5,7 +5,7 @@ const frontCss: string = css`
     text-align: center;
   }
 
-  .front__main {
+  /* .front__main { */
     position: relative;
     width: 100%;
     height: 4.7in;
