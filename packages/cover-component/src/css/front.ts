@@ -22,9 +22,15 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       color: #aaa;
       flex-grow: 1;
       left: 0;
+      font-size: 3.9%;
+      transform-origin: left center;
+    }
+
+    .Cover--scale-xs .front .flp {
+      left: 0;
       position: absolute;
-      width: 200%;
-      font-size: 15%;
+      width: 300%;
+      font-size: 18%;
       transform: scale(0.26);
       transform-origin: left center;
     }

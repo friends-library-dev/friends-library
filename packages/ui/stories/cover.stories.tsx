@@ -33,50 +33,48 @@ addStaticCss();
 let tester = 1;
 storiesOf('Cover', module)
   .addDecorator(centered)
-  .add('multi-back', () => (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <div className={wrapClasses({ ...props, scope: 'back-full', scaler: 1.03 })}>
-        <Back {...props} />
+  .add('multi-back', () => {
+    const sizes: [string, number][] = [
+      ['back-full', 1],
+      ['back-half', 0.5],
+      ['back-third', 0.333333],
+      ['back-quarter', 0.225],
+      ['back-fifth', 0.14],
+      ['back-sixth', 0.1],
+    ];
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {sizes.map(([scope, scaler]) => (
+          <div className={wrapClasses({ ...props, scope, scaler })}>
+            <Back {...props} />
+          </div>
+        ))}
+        {sizes.map(([scope, scaler]) => (
+          <Style type="back" scope={scope} scaler={scaler} />
+        ))}
       </div>
-      <div className={wrapClasses({ ...props, scope: 'back-half', scaler: 0.5 })}>
-        <Back {...props} />
+    );
+  })
+  .add('multi-front', () => {
+    const sizes: [string, number][] = [
+      ['full', 1],
+      ['half', 0.5],
+      ['third', 0.333333],
+      ['quarter', 0.225],
+      ['fifth', 0.14],
+      ['sixth', 0.1],
+    ];
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {sizes.map(([scope, scaler]) => (
+          <Front {...{ ...props, scope, scaler }} />
+        ))}
+        {sizes.map(([scope, scaler]) => (
+          <Style type="front" scope={scope} scaler={scaler} />
+        ))}
       </div>
-      <div className={wrapClasses({ ...props, scope: 'back-third', scaler: 0.3333 })}>
-        <Back {...props} />
-      </div>
-      <div className={wrapClasses({ ...props, scope: 'back-quarter', scaler: 0.225 })}>
-        <Back {...props} />
-      </div>
-      <div className={wrapClasses({ ...props, scope: 'back-fifth', scaler: 0.14 })}>
-        <Back {...props} />
-      </div>
-      <div className={wrapClasses({ ...props, scope: 'back-sixth', scaler: 0.1 })}>
-        <Back {...props} />
-      </div>
-      <Style type="back" scope="back-full" scaler={1.03} />
-      <Style type="back" scope="back-half" scaler={0.5} />
-      <Style type="back" scope="back-third" scaler={0.3333333333} />
-      <Style type="back" scope="back-quarter" scaler={0.225} />
-      <Style type="back" scope="back-fifth" scaler={0.14} />
-      <Style type="back" scope="back-sixth" scaler={0.1} />
-    </div>
-  ))
-  .add('multi-front', () => (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Front {...props} scope="full" />
-      <Front {...props} scope="half" />
-      <Front {...props} scope="third" />
-      <Front {...props} scope="quarter" />
-      <Front {...props} scope="fifth" />
-      <Front {...props} scope="sixth" />
-      <Style type="front" scope="full" scaler={1.03} />
-      <Style type="front" scope="half" scaler={0.5} />
-      <Style type="front" scope="third" scaler={0.3333333333} />
-      <Style type="front" scope="quarter" scaler={0.225} />
-      <Style type="front" scope="fifth" scaler={0.14} />
-      <Style type="front" scope="sixth" scaler={0.1} />
-    </div>
-  ))
+    );
+  })
   .add('three-d (angle-back)', () => (
     <div>
       <ThreeD {...props} perspective="angle-back" />
