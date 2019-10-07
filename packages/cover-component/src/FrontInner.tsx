@@ -1,13 +1,12 @@
 import React from 'react';
-import cx from 'classnames';
 import { CoverProps } from '@friends-library/types';
-import { overridable } from './overrides';
+import { overridable } from './helpers';
 import LogoIcon from './LogoIcon';
+import FrontMain from './FrontMain';
 
 const FrontInner: React.FC<CoverProps> = props => {
-  const { lang, title, author, showGuides } = props;
+  const { lang, author } = props;
   const fragments = {}; // @TODO
-  const [firstInitial, lastInitial] = initials(author);
   return (
     <div className="front has-bg">
       <div className="front__safe">
@@ -17,55 +16,7 @@ const FrontInner: React.FC<CoverProps> = props => {
           </span>
           <LogoIcon />
         </div>
-        <div
-          className={cx(
-            'front__main',
-            `front__main--first-initial--${firstInitial}`,
-            `front__main--initials--${firstInitial}${lastInitial}`,
-          )}
-        >
-          {showGuides ? (
-            <>
-              <div className="guide guide--letter-spacing" />
-              <div className="guide guide--vertical guide--front-vertical-center" />
-            </>
-          ) : null}
-          <div className="initials">
-            <div className="initials__top">
-              <span
-                className={cx(
-                  'initial',
-                  'initial--first',
-                  `initial--X${lastInitial}`,
-                  `initial--${firstInitial}`,
-                  `initials--${firstInitial}${lastInitial}`,
-                )}
-              >
-                {firstInitial}
-              </span>
-            </div>
-            <div className="initials__bottom">
-              <span
-                className={cx(
-                  'initial',
-                  'initial--last',
-                  `initial--${firstInitial}X`,
-                  `initial--${lastInitial}`,
-                  `initials--${firstInitial}${lastInitial}`,
-                )}
-              >
-                {lastInitial}
-              </span>
-            </div>
-          </div>
-          {overridable(
-            'title-wrap',
-            fragments,
-            <div className="title-wrap">
-              <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
-            </div>,
-          )}
-        </div>
+        <FrontMain {...props} />
         {overridable(
           'author',
           fragments,
@@ -80,8 +31,3 @@ const FrontInner: React.FC<CoverProps> = props => {
 };
 
 export default FrontInner;
-
-function initials(author: string): [string, string] {
-  const [first, ...rest] = author.split(' ');
-  return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
-}

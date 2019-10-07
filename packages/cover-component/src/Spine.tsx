@@ -1,5 +1,5 @@
 import React from 'react';
-import { overridable } from './overrides';
+import { overridable } from './helpers';
 import LogoIcon from './LogoIcon';
 import Diamonds from './Diamonds';
 import { CoverProps, EditionType, Lang } from '@friends-library/types';

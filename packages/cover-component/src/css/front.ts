@@ -1,7 +1,10 @@
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, docDims } from './helpers';
+import { css, dynamifyCss } from './helpers';
+import frontMain from './front-main';
 
-const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
+const front: CoverCssModule = (props, scaler, scope) => {
+  const [frontMainCss, frontMainDynamicCss] = frontMain(props, scaler, scope);
+
   const staticCss = css`
     .Cover .front__safe {
       display: flex;
@@ -39,21 +42,6 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       width: 11%;
     }
 
-    .Cover .front .front__main {
-      position: relative;
-    }
-
-    .Cover .front .title-wrap,
-    .Cover .front .initials {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
     .Cover .front .author {
       z-index: 1; /* why? */
       text-align: center;
@@ -79,70 +67,14 @@ const front: CoverCssModule = ({ size, pages }, scaler, scope) => {
       margin: 0 auto 0 auto;
     }
 
-    .Cover .front .title-wrap {
-      justify-content: center;
-      text-align: center;
-    }
-
-    .Cover .front .title-wrap .title {
-      margin-right: -6%;
-      margin-left: -6%;
-      width: 150%;
-      line-height: 200%;
-      font-size: 18%;
-      transform: translateX(-12.5%) scale(0.46);
-      transform-origin: center center;
-      letter-spacing: 0.0335em;
-    }
-
-    .Cover .front .initials > div {
-      flex-grow: 1;
-      position: relative;
-    }
-
-    .Cover .initials__top {
-      /* background: green; */
-    }
-
-    .Cover .initials__bottom {
-      /* background: purple; */
-    }
-
-    .Cover .front .initial {
-      text-align: center;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      margin: 0;
-      padding: 0;
-      color: white;
-      opacity: 0.25;
-      font-size: 50%;
-      /* font-size: 2.6544506602702698in; */
-      /* line-height: 2.6544506602702698in; */
-      line-height: 1em;
-      font-weight: 400;
-      left: 0;
-    }
+    ${frontMainCss}
   `;
 
   const dynamicCss = css`
     .Cover .author__line {
       height: 0.018in;
     }
-
-    .Cover.trim--s .front__main {
-      height: 4in;
-    }
-
-    .Cover.trim--m .front__main {
-      height: 4.825in;
-    }
-
-    .Cover.trim--xl .front__main {
-      height: 4.7in;
-    }
+    ${frontMainDynamicCss}
   `;
 
   return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];

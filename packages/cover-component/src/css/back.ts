@@ -2,8 +2,8 @@ import { CoverCssModule } from './types';
 import { css, dynamifyCss, docDims } from './helpers';
 import blurbCss from './blurb';
 
-const back: CoverCssModule = ({ size, pages }, scaler, scope) => {
-  const [blurbStaticCss, blurbSizeCss] = blurbCss({ size, pages }, scaler, scope);
+const back: CoverCssModule = (props, scaler, scope) => {
+  const [blurbStaticCss, blurbSizeCss] = blurbCss(props, scaler, scope);
   const staticCss = css`
     .Cover .back__safe {
       position: relative;

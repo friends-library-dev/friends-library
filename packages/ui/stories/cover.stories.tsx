@@ -1,12 +1,13 @@
 import React from 'react';
 import centered from '@storybook/addon-centered/react';
-import { storiesOf } from '@storybook/react';
+import { storiesOf, addDecorator } from '@storybook/react';
 import {
   Spine,
   Back,
   ThreeD,
   PrintPdf,
   Front,
+  FrontMain,
   css as coverCss,
   wrapClasses,
 } from '@friends-library/cover-component';
@@ -30,9 +31,38 @@ const props: CoverProps = {
 };
 
 addStaticCss();
-let tester = 1;
+
+addDecorator(centered);
 storiesOf('Cover', module)
-  .addDecorator(centered)
+  .add(
+    'front-main (multi)',
+    () => {
+      const books: [string, string, string][] = [];
+      // @ts-ignore
+      (window.FRIENDS as any).forEach(friend => {
+        friend.documents.forEach((doc: any) => {
+          books.push([doc.id, doc.title, friend.name]);
+        });
+      });
+      return (
+        <div className="grid">
+          <style>{`
+            .grid { display: flex; flex-wrap: wrap; margin-right: -1.25em; }
+            .grid .square { height: 4.42in; overflow: hidden; border: 1.25em solid transparent; border-left-width: 0; border-top-width: 0;}
+            .grid .square .Cover { top: -1.5in; }
+            .grid .square .author { opacity: 0; }
+          `}</style>
+          {books.map(([scope, title, author]) => (
+            <div className="square">
+              <Front {...{ ...props, scope, author, title }} />
+              <Style type="front" scope={scope} author={author} />
+            </div>
+          ))}
+        </div>
+      );
+    },
+    { centered: { disable: true } },
+  )
   .add('multi-back', () => {
     const sizes: [string, number][] = [
       ['back-full', 1],
@@ -137,9 +167,11 @@ storiesOf('Cover', module)
 const Style: React.FC<{
   scaler?: number;
   scope?: string;
+  author?: string;
   type: '3d' | 'front' | 'back' | 'spine' | 'pdf';
-}> = ({ type, scaler, scope }) => {
-  const args: [CoverProps, number?, string?] = [props, scaler, scope];
+}> = ({ type, scaler, scope, author }) => {
+  const useProps = { ...props, author: author || props.author };
+  const args: [CoverProps, number?, string?] = [useProps, scaler, scope];
   return (
     <style>
       {coverCss.common(...args)[1]}

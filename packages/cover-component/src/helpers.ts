@@ -14,3 +14,8 @@ export function overridable(
   }
   return fallback;
 }
+
+export function initials(author: string): [string, string] {
+  const [first, ...rest] = author.split(' ');
+  return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
+}

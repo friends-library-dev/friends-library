@@ -1,7 +1,7 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
 import Diamonds from './Diamonds';
-import { overridable } from './overrides';
+import { overridable } from './helpers';
 import Brackets from './Brackets';
 import LogoSpanish from './LogoSpanish';
 import Logo from './Logo';
