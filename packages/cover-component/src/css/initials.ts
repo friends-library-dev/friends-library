@@ -59,273 +59,273 @@ const initialsCss: CoverCssModule = ({ author }, scaler, scope) => {
 
   const dynamicCssParts = css`
     /* LETTER TWEAKS */
-    .initial--first.initial--A {
+    .Cover .initial--first.initial--A {
       bottom: -0.44in;
     }
 
-    .initials--CM.initial--C,
-    .initials--CH.initial--C {
+    .Cover .initials--CM.initial--C,
+    .Cover .initials--CH.initial--C {
       transform: scaleX(1.1);
     }
 
-    .initial--last.initial--C {
+    .Cover .initial--last.initial--C {
       top: -0.36in;
     }
 
-    .trim--s .initial--last.initial--C {
+    .Cover.trim--s .initial--last.initial--C {
       top: -0.525in;
     }
 
-    .initials--SC.initial--C {
+    .Cover .initials--SC.initial--C {
       transform: scaleX(0.9) translateX(-0.05in);
     }
 
-    .initials--DB.initial--B {
+    .Cover .initials--DB.initial--B {
       transform: scaleX(1.1);
     }
 
-    .initials--RB.initial--B {
+    .Cover .initials--RB.initial--B {
       transform: scaleX(1.1) translateX(0.15in);
     }
 
-    .initial--D {
+    .Cover .initial--D {
       transform: translateX(0.08in);
     }
 
-    .initials--DF.initial--D {
+    .Cover .initials--DF.initial--D {
       transform: translateX(0.08in) scaleX(0.88);
     }
 
-    .initial--first.initial--D {
+    .Cover .initial--first.initial--D {
       bottom: -0.435in;
     }
 
-    .trim--s .initial--first.initial--D {
+    .Cover.trim--s .initial--first.initial--D {
       bottom: -0.585in;
     }
 
-    .initials--DW.initial--D {
+    .Cover .initials--DW.initial--D {
       bottom: -0.34in;
       transform: translateX(0.08in) scale(1.1);
     }
 
-    .initials--MD.initial--D {
+    .Cover .initials--MD.initial--D {
       transform: scaleX(1.1);
     }
 
-    .initial--JX {
+    .Cover .initial--JX {
       transform: scaleX(0.87);
     }
 
-    .initials--JS.initial--S {
+    .Cover .initials--JS.initial--S {
       transform: scale(1);
     }
 
-    .initial--first.initial--E {
+    .Cover .initial--first.initial--E {
       bottom: -0.44in;
     }
 
-    .trim--s .initial--first.initial--E {
+    .Cover.trim--s .initial--first.initial--E {
       bottom: -0.585in;
     }
 
-    .initials--EW.initial--E {
+    .Cover .initials--EW.initial--E {
       transform: scaleX(1.08);
     }
 
-    .initial--last.initial--G {
+    .Cover .initial--last.initial--G {
       top: -0.35in;
     }
 
-    .trim--s .initial--last.initial--G {
+    .Cover.trim--s .initial--last.initial--G {
       top: -0.535in;
     }
 
-    .trim--s .initial--first.initial--F {
+    .Cover.trim--s .initial--first.initial--F {
       bottom: -0.59in;
     }
 
-    .initials--GF.initial--F {
+    .Cover .initials--GF.initial--F {
       transform: scaleX(1.14) translateX(-0.1in);
     }
 
-    .initials--MG.initial--G {
+    .Cover .initials--MG.initial--G {
       transform: scaleX(1.075);
     }
 
-    .initials--SG.initial--G {
+    .Cover .initials--SG.initial--G {
       transform: scaleX(0.88);
     }
 
-    .initial--first.initial--H {
+    .Cover .initial--first.initial--H {
       bottom: -0.43in;
     }
 
-    .trim--s .initial--first.initial--H {
+    .Cover.trim--s .initial--first.initial--H {
       bottom: -0.585in;
     }
 
-    .initials--FH.initial--H {
+    .Cover .initials--FH.initial--H {
       transform: scaleX(0.8) scaleY(0.875);
       top: -0.52in;
     }
 
-    .trim--s .initials--FH.initial--H {
+    .Cover.trim--s .initials--FH.initial--H {
       top: -0.675in;
     }
 
-    .initials--HT.initial--H {
+    .Cover .initials--HT.initial--H {
       transform: scaleX(0.88);
     }
 
-    .initials--RH.initial--H {
+    .Cover .initials--RH.initial--H {
       transform: translateX(0);
     }
 
-    .initial--first.initial--I {
+    .Cover .initial--first.initial--I {
       transform: scaleX(1.15);
       bottom: -0.44in;
     }
 
-    .initials--TK.initial--K {
+    .Cover .initials--TK.initial--K {
       transform: scaleX(0.88);
     }
 
-    .initial--J {
+    .Cover .initial--J {
       transform: scaleY(0.78) translateY(-0.22in) translateX(-0.02in);
     }
 
-    .initial--first.initial--J {
+    .Cover .initial--first.initial--J {
       bottom: -0.28in;
     }
 
-    .trim--s .initial--first.initial--J {
+    .Cover.trim--s .initial--first.initial--J {
       bottom: -0.465in;
     }
 
-    .initial--last.initial--J {
+    .Cover .initial--last.initial--J {
       top: -0.46in;
     }
 
-    .initials--RJ.initial--J {
+    .Cover .initials--RJ.initial--J {
       transform: scaleY(0.78) translateY(-0.22in) translateX(0.15in);
     }
 
-    .initial--M {
+    .Cover .initial--M {
       transform: scaleX(0.9);
     }
 
-    .initial--first.initial--M {
+    .Cover .initial--first.initial--M {
       transform: scaleX(0.9) translateY(0.04in);
     }
 
-    .initials--SN.initial--N {
+    .Cover .initials--SN.initial--N {
       transform: scaleX(0.88);
     }
 
-    .initial--last.initial--P {
+    .Cover .initial--last.initial--P {
       top: -0.37in;
     }
 
-    .trim--s .initial--last.initial--P {
+    .Cover.trim--s .initial--last.initial--P {
       top: -0.555in;
     }
 
-    .initials--CP.initial--P {
+    .Cover .initials--CP.initial--P {
       transform: scaleX(1.18);
     }
 
-    .initials--JP.initial--P {
+    .Cover .initials--JP.initial--P {
       top: -0.31in;
       transform: scaleX(0.9) scaleY(1.075) translateX(-0.15in);
     }
 
-    .trim--m .initials--JP.initial--P {
+    .Cover.trim--m .initials--JP.initial--P {
       top: -0.36in;
       transform: scaleX(0.9) scaleY(1.025) translateX(-0.15in);
     }
 
-    .trim--s .initials--JP.initial--P {
+    .Cover.trim--s .initials--JP.initial--P {
       top: -0.488in;
     }
 
-    .initials--WP.initial--P {
+    .Cover .initials--WP.initial--P {
       transform: scaleX(1.1) translateX(-0.075in);
     }
 
-    .initial--first.initial--R {
+    .Cover .initial--first.initial--R {
       bottom: -0.43in;
       transform: translateX(0.18in);
     }
 
-    .trim--s .initial--first.initial--R {
+    .Cover.trim--s .initial--first.initial--R {
       bottom: -0.585in;
     }
 
-    .initials--MR.initial--R {
+    .Cover .initials--MR.initial--R {
       transform: scaleX(1.15);
     }
 
-    .initial--RX {
+    .Cover .initial--RX {
       transform: translateX(0.25in);
     }
 
-    .initials--SR.initial--R {
+    .Cover .initials--SR.initial--R {
       transform: translateX(0.11in) scaleX(0.9);
     }
 
-    .initials--RH.initial--R {
+    .Cover .initials--RH.initial--R {
       transform: translateX(-0.05in) scaleX(1.06);
     }
 
-    .initial--last.initial--S {
+    .Cover .initial--last.initial--S {
       top: -0.35in;
     }
 
-    .trim--s .initial--last.initial--S {
+    .Cover.trim--s .initial--last.initial--S {
       top: -0.535in;
     }
 
-    .initial--S {
+    .Cover .initial--S {
       transform: scaleX(1.2);
     }
 
-    .initial--first.initial--T {
+    .Cover .initial--first.initial--T {
       transform: translateY(0.026in);
     }
 
-    .initial--W {
+    .Cover .initial--W {
       transform: scaleX(0.85) scaleY(0.95);
     }
 
-    .initial--first.initial--W {
+    .Cover .initial--first.initial--W {
       bottom: -0.44in;
       transform: scaleX(0.85) scaleY(0.95) translateX(-0.09in);
     }
 
-    .trim--s .initial--first.initial--W {
+    .Cover.trim--s .initial--first.initial--W {
       bottom: -0.588in;
     }
 
-    .initial--last.initial--W {
+    .Cover .initial--last.initial--W {
       top: -0.46in;
     }
 
-    .trim--s .initial--last.initial--W {
+    .Cover.trim--s .initial--last.initial--W {
       top: -0.61in;
     }
 
     /* SPECIAL STUFF */
-    .front__main--first-initial--J .initials__top {
+    .Cover .front__main--first-initial--J .initials__top {
       transform: translateX(0.21in);
     }
 
-    .front__main--initials--RD .initials,
-    .front__main--initials--RB .initials {
+    .Cover .front__main--initials--RD .initials,
+    .Cover .front__main--initials--RB .initials {
       transform: translateX(-0.11in);
     }
 
-    .trim--xl .front__main--initials--TS {
+    .Cover.trim--xl .front__main--initials--TS {
       margin-bottom: 0.2in;
     }
   `.split('\n\n');

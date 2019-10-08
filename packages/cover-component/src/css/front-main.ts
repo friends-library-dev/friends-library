@@ -28,27 +28,32 @@ const frontMain: CoverCssModule = (props, scaler, scope) => {
     .front__main .title-wrap .title {
       margin-right: -6%;
       margin-left: -6%;
-      width: 150%;
+      width: 163%;
       line-height: 200%;
       font-size: 18%;
-      transform: translateX(-12.5%) scale(0.46);
+      transform: translateX(-15.75%) scale(0.46);
       transform-origin: center center;
       letter-spacing: 0.0335em;
+    }
+
+    .trim--xl .front__main .title-wrap .title,
+    .trim--m .front__main .title-wrap .title {
+      font-size: 13.88%;
     }
 
     ${initialsCss}
   `;
 
   const dynamicCss = css`
-    .trim--s .front__main {
+    .Cover.trim--s .front__main {
       height: 4in;
     }
 
-    .trim--m .front__main {
+    .Cover.trim--m .front__main {
       height: 4.825in;
     }
 
-    .trim--xl .front__main {
+    .Cover.trim--xl .front__main {
       height: 4.7in;
     }
 

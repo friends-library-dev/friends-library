@@ -52,7 +52,7 @@ export function scaleCssInches(css: Css, scaler?: number): Css {
     return css;
   }
 
-  const pattern = /(\d*(?:\.\d+)?)in(?! +{)(;| |\))/g;
+  const pattern = /(\d+(?:\.\d+)?)in(?! +{)(;| |\))/g;
 
   return css.replace(pattern, (full, inches, after) => {
     return `${Number(inches) * scaler}in${after}`;

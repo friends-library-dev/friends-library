@@ -47,7 +47,7 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
 
     .Cover.trim--xl::after {
-      height: 16.8%;
+      height: 18.8%;
     }
 
     .Edition--original .logo-icon {

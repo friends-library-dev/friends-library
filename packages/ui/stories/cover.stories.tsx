@@ -7,11 +7,10 @@ import {
   ThreeD,
   PrintPdf,
   Front,
-  FrontMain,
   css as coverCss,
   wrapClasses,
 } from '@friends-library/cover-component';
-import { CoverProps } from '@friends-library/types';
+import { CoverProps, PrintSize } from '@friends-library/types';
 
 const props: CoverProps = {
   lang: 'en',
@@ -34,6 +33,24 @@ addStaticCss();
 
 addDecorator(centered);
 storiesOf('Cover', module)
+  .add('front (s, m, xl)', () => (
+    <div className="all-sizes-front">
+      <style>{`
+        .all-sizes-front .Cover + .Cover {
+          margin-left: 20px;
+        }
+        .all-sizes-front .Cover {
+          vertical-align: top;
+        }
+      `}</style>
+      <Front {...{ ...props, scope: 's', size: 's' }} />
+      <Front {...{ ...props, scope: 'm', size: 'm' }} />
+      <Front {...{ ...props, scope: 'xl', size: 'xl' }} />
+      <Style type="front" size="s" scope="s" />
+      <Style type="front" size="m" scope="m" />
+      <Style type="front" size="xl" scope="xl" />
+    </div>
+  ))
   .add(
     'front-main (multi)',
     () => {
@@ -168,9 +185,10 @@ const Style: React.FC<{
   scaler?: number;
   scope?: string;
   author?: string;
+  size?: PrintSize;
   type: '3d' | 'front' | 'back' | 'spine' | 'pdf';
-}> = ({ type, scaler, scope, author }) => {
-  const useProps = { ...props, author: author || props.author };
+}> = ({ type, scaler, scope, author, size }) => {
+  const useProps = { ...props, size: size || props.size, author: author || props.author };
   const args: [CoverProps, number?, string?] = [useProps, scaler, scope];
   return (
     <style>

@@ -43,7 +43,12 @@ describe('scaleCssInches()', () => {
      0.5,
      '.foo { width: 1in; }',
      '.foo { width: 0.5in; }',
-   ]
+   ],
+    [
+      0.5,
+      `.Cover .front_main .foo { color: red; }`,
+      `.Cover .front_main .foo { color: red; }`, // prevent .front_main0 .foo
+    ],
  ];
 
   test.each(cases)('css inches should be scaled', (scaler, before, after) => {
