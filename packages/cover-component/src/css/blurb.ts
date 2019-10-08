@@ -32,6 +32,10 @@ const blurb: CoverCssModule = ({ size, pages }, scaler, scope) => {
       top: 18%;
     }
 
+    .Cover.trim--xl .blurb {
+      top: 25%;
+    }
+
     .prince .Cover .blurb {
       padding-bottom: 1em;
     }

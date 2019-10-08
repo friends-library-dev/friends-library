@@ -33,6 +33,30 @@ addStaticCss();
 
 addDecorator(centered);
 storiesOf('Cover', module)
+  .add('back (s, m, xl)', () => (
+    <div className="all-sizes-back">
+      <style>{`
+        .all-sizes-back .Cover + .Cover {
+          margin-left: 20px;
+        }
+        .all-sizes-back .Cover {
+          vertical-align: top;
+        }
+      `}</style>
+      <div className={wrapClasses({ ...{ ...props, scope: 's', size: 's' } })}>
+        <Back {...{ ...props, scope: 's', size: 's' }} />
+      </div>
+      <div className={wrapClasses({ ...{ ...props, scope: 'm', size: 'm' } })}>
+        <Back {...{ ...props, scope: 'm', size: 'm' }} />
+      </div>
+      <div className={wrapClasses({ ...{ ...props, scope: 'xl', size: 'xl' } })}>
+        <Back {...{ ...props, scope: 'xl', size: 'xl' }} />
+      </div>
+      <Style type="back" size="s" scope="s" />
+      <Style type="back" size="m" scope="m" />
+      <Style type="back" size="xl" scope="xl" />
+    </div>
+  ))
   .add('front (s, m, xl)', () => (
     <div className="all-sizes-front">
       <style>{`

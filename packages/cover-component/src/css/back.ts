@@ -23,11 +23,23 @@ const back: CoverCssModule = (props, scaler, scope) => {
       top: 12%;
     }
 
+    .Cover.trim--xl .back .diamond {
+      top: 19%;
+    }
+
     .Cover .back .about-flp {
       opacity: 0.8;
-      font-size: 2.8%;
+      font-size: 2.83%;
       line-height: 160%;
       text-align: center;
+    }
+
+    .Cover.trim--m .back .about-flp {
+      font-size: 2.25%;
+    }
+
+    .Cover.trim--xl .back .about-flp {
+      font-size: 2.05%;
     }
 
     .Cover .back .purpose,
@@ -37,7 +49,6 @@ const back: CoverCssModule = (props, scaler, scope) => {
       width: 100%;
       position: absolute;
       z-index: 1;
-      /* display: none; */
     }
 
     .Cover .back .purpose {
@@ -47,7 +58,6 @@ const back: CoverCssModule = (props, scaler, scope) => {
 
     .Cover .back .website {
       bottom: 13%;
-      /* margin-top: 0.175in; */
     }
 
     .Cover--scale-s .purpose,
