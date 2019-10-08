@@ -7,7 +7,12 @@ import Spine from './Spine';
 
 const PrintPdf: React.FC<CoverProps> = props => {
   return (
-    <div className={wrapClasses(props, { browser: typeof window !== 'undefined' })}>
+    <div
+      className={wrapClasses(props, {
+        'Cover--pdf': true,
+        browser: typeof window !== 'undefined',
+      })}
+    >
       <div className="print-pdf">
         <Back {...props} />
         <Spine {...props} />

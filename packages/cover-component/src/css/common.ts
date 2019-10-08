@@ -42,6 +42,28 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       background-color: white;
     }
 
+    /* start TEMP */
+    /* .Cover .front {
+      position: relative;
+    }
+    .Cover .front::after {
+      content: '';
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      height: 13%;
+      width: 100%;
+      background-color: rgba(0, 255, 0, 0.5);
+    }
+    .Cover.trim--m .front::after {
+      height: 16.8%;
+    }
+    .Cover.trim--xl .front::after {
+      height: 18.8%;
+    } */
+    /* end TEMP */
+
     .Cover.trim--m::after {
       height: 16.8%;
     }

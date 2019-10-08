@@ -14,7 +14,7 @@ import { CoverProps, PrintSize } from '@friends-library/types';
 
 const props: CoverProps = {
   lang: 'en',
-  size: 's',
+  size: 'xl',
   pages: 323,
   //'TODO',
   blurb:
