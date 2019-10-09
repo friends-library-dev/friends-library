@@ -15,7 +15,7 @@ import { CoverProps, PrintSize } from '@friends-library/types';
 const props: CoverProps = {
   lang: 'en',
   size: 'm',
-  pages: 283,
+  pages: 222,
   //'TODO',
   blurb:
     'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart. Having witnessed in his own soul, he to.',
@@ -190,12 +190,30 @@ storiesOf('Cover', module)
   ))
   .add('spine', () => (
     <div>
-      <div className={wrapClasses({ ...props, scope: 'match-old' })}>
+      <div className={wrapClasses(props)}>
         <Spine {...props} />
       </div>
-      <Style type="spine" scope="match-old" scaler={0.815} />
+      <Style type="spine" />
     </div>
   ))
+  .add('spine (s, m, xl)', () => {
+    const sizes: PrintSize[] = ['s', 'm', 'xl'];
+    return (
+      <div>
+        {sizes.map(size => {
+          const useProps = { ...props, size, scope: size };
+          return (
+            <>
+              <div className={wrapClasses(useProps)} style={{ marginRight: '75px' }}>
+                <Spine {...useProps} />
+              </div>
+              <Style type="spine" scope={size} size={size} />
+            </>
+          );
+        })}
+      </div>
+    );
+  })
   .add('back', () => (
     <div>
       <div className={wrapClasses(props)}>

@@ -50,8 +50,12 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
       top: 15%;
     }
 
-    .trim--s .Cover .spine .logo-icon {
-      top: 5.6%;
+    .Cover.trim--s .spine .logo-icon {
+      top: 5.3%;
+    }
+
+    .Cover.trim--xl .spine .logo-icon {
+      top: 7.6%;
     }
 
     .trim--xl .spine__title {
@@ -65,24 +69,30 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
       font-size: 3.95%;
     }
 
-    .spine--pgs-lt-180 .spine__title {
-      /* font-size: 0.23in; */
+    .trim--s .spine__author {
+      font-size: 4.2%;
     }
 
-    .spine--pgs-lt-180 .diamond {
-      /* width: 0.3in; */
+    .trim--m .spine__author {
+      font-size: 3.65%;
+      bottom: 10.5%;
     }
 
-    .spine--pgs-lt-180 .logo-icon {
-      height: 3.4%;
+    .trim--xl .spine__author {
+      font-size: 3.34%;
+      bottom: 11.2%;
     }
 
-    .spine--pgs-lt-160 .diamond {
-      /* width: 0.25in; */
+    .trim--xl .spine__title {
+      font-size: 4.33%;
     }
 
     .spine--pgs-lt-160 .logo-icon {
       height: 3.23%;
+    }
+
+    .spine--pgs-lt-180 .logo-icon {
+      height: 3.4%;
     }
   `;
 
@@ -91,8 +101,33 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
     .Cover .spine__author {
       word-spacing: 0.03in;
     }
+
     .Cover .spine .diamond {
       width: 0.365in;
+    }
+
+    .Cover .spine--pgs-lt-180 .spine__title {
+      font-size: 0.23in;
+    }
+
+    .Cover .spine--pgs-lt-180 .diamond {
+      width: 0.3in;
+    }
+
+    .Cover .spine--pgs-lt-160 .diamond {
+      width: 0.25in;
+    }
+
+    .Cover .spine--pgs-lt-180 .spine__title {
+      font-size: 0.23in;
+    }
+
+    .Cover .spine--pgs-lt-180 .diamond {
+      width: 0.3in;
+    }
+
+    .Cover .spine--pgs-lt-160 .diamond {
+      width: 0.25in;
     }
   `;
   return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];

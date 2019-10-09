@@ -39,7 +39,7 @@ export default Spine;
 function spineClasses(pages: number, edition: EditionType, lang: Lang): string {
   const classes = ['spine has-bg'];
   const rounded = Math.floor(pages / 10) * 10;
-  for (let i = 130; i <= 180; i += 20) {
+  for (let i = 120; i <= 180; i += 20) {
     rounded < i && classes.push(`spine--pgs-lt-${i}`);
   }
   return classes.join(' ');
