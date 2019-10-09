@@ -25,9 +25,13 @@ const Back: React.FC<CoverProps> = ({ blurb, isbn, lang, edition }) => {
           </div>,
           // ),
         )}
-        {/* {isbn && (
-          <img className="isbn" src={`${publicUrl}/images/isbn/${isbn}.png`} alt="" />
-        )} */}
+        {isbn && (
+          <img
+            className="isbn"
+            src={`https://friends-library-assets.nyc3.digitaloceanspaces.com/isbn/${isbn}.png`}
+            alt=""
+          />
+        )}
         <div className="about-flp">
           <p className="purpose">
             {lang === 'es' ? (

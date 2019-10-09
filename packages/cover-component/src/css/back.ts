@@ -118,9 +118,8 @@ const back: CoverCssModule = (props, scaler, scope) => {
     }
 
     .Cover .back .isbn {
-      /* width: 1.25in; */
+      box-sizing: content-box;
       background: white;
-      /* padding: 0.075in; */
       position: absolute;
       bottom: 2.25%;
       right: 0;
@@ -137,6 +136,11 @@ const back: CoverCssModule = (props, scaler, scope) => {
   const dynamicCss = css`
     .Cover .back__safe {
       margin: 0.25in;
+    }
+
+    .isbn {
+      width: 1.25in;
+      padding: 0.075in;
     }
 
     ${blurbSizeCss}
