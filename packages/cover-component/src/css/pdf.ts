@@ -34,7 +34,7 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
 
     /* change percentage height of white block because now padded by bleed area */
     .Cover.trim--s::after {
-      height: 14.376%;
+      height: 14.02%;
     }
     .Cover.trim--m::after {
       height: 17.817%;

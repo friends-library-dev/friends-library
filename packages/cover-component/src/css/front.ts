@@ -61,7 +61,8 @@ const front: CoverCssModule = (props, scaler, scope) => {
     }
 
     .Cover .front .top-row .logo-icon {
-      width: 11%;
+      width: 12.1%;
+      margin-right: -1.75%;
     }
 
     .Cover.trim--m .front .top-row .logo-icon {
@@ -78,7 +79,7 @@ const front: CoverCssModule = (props, scaler, scope) => {
       text-align: center;
       font-size: 10%;
       height: 14.5%;
-      margin-top: 2%;
+      margin-top: 3.5%;
     }
 
     .Cover.trim--xl .author {
@@ -86,7 +87,7 @@ const front: CoverCssModule = (props, scaler, scope) => {
     }
 
     .Cover .author__name {
-      transform: scale(0.45) translateY(-10%);
+      transform: scale(0.45) translateY(-20%);
       font-weight: 400;
       opacity: 0.7;
       font-size: 100%;
@@ -114,6 +115,7 @@ const front: CoverCssModule = (props, scaler, scope) => {
     .Cover .author__line {
       height: 0.011in;
     }
+
     ${frontMainDynamicCss}
   `;
 

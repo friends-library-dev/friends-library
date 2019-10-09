@@ -33,7 +33,6 @@ const frontMain: CoverCssModule = (props, scaler, scope) => {
       font-size: 18%;
       transform: translateX(-15.75%) scale(0.46);
       transform-origin: center center;
-      letter-spacing: 0.0335em;
     }
 
     .trim--xl .front__main .title-wrap .title,
@@ -45,6 +44,10 @@ const frontMain: CoverCssModule = (props, scaler, scope) => {
   `;
 
   const dynamicCss = css`
+    .Cover .front__main .title-wrap .title {
+      letter-spacing: 0.05in;
+    }
+
     .Cover.trim--s .front__main {
       height: 4in;
     }
