@@ -1,7 +1,7 @@
 import { CoverCssModule } from './types';
 import { css, dynamifyCss, docDims } from './helpers';
 
-const common: CoverCssModule = ({ size, pages, showGuides }, scaler, scope) => {
+const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const staticCss = css`
     .Cover {
       font-family: 'Baskerville', Georgia, serif;
@@ -78,31 +78,6 @@ const common: CoverCssModule = ({ size, pages, showGuides }, scaler, scope) => {
     }
   `;
 
-  let guideCss = css`
-    .Cover--show-guides .front__safe,
-    .Cover--show-guides .back__safe {
-      outline: 1px dashed orange;
-      outline-offset: -1px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .Cover--show-guides .print-pdf {
-      outline: 1px dashed red;
-      outline-offset: -0.125in;
-      outline-offset: -1px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .Cover--show-guides .spine {
-      /* outlin */
-    }
-  `;
-
-  if (showGuides === false) guideCss = '';
-  console.log({ guideCss });
-
   const dims = docDims(size, pages, scaler);
   const sizeCss = css`
     .Cover {
@@ -130,7 +105,7 @@ const common: CoverCssModule = ({ size, pages, showGuides }, scaler, scope) => {
     }
   `;
 
-  return [`${staticCss}\n${guideCss}`, dynamifyCss(sizeCss, scope, scaler)];
+  return [staticCss, dynamifyCss(sizeCss, scope, scaler)];
 };
 
 export default common;

@@ -8,9 +8,7 @@ const spine: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
 
     .pdf .binding--saddle-stitch .Cover .spine,
-    .pdf .binding--saddle-stitch .guide--spine,
-    .web .cover--2d .binding--saddle-stitch .Cover .spine,
-    .web .cover--2d .binding--saddle-stitch .guide--spine {
+    .web .cover--2d .binding--saddle-stitch .Cover .spine {
       width: 0;
       display: none;
     }

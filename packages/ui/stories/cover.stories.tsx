@@ -19,7 +19,7 @@ const props: CoverProps = {
   //'TODO',
   blurb:
     'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart. Having witnessed in his own soul, he to.',
-  showGuides: true,
+  showGuides: false,
   edition: 'updated',
   title: 'The Work of Vital Religion in the Soul',
   // title: 'The Life and Letters of Sarah Grubb',
@@ -182,6 +182,12 @@ storiesOf('Cover', module)
       <Style type="pdf" />
     </div>
   ))
+  .add('pdf (guides}', () => (
+    <div>
+      <PrintPdf {...{ ...props, showGuides: true }} />
+      <Style type="pdf" showGuides={true} />
+    </div>
+  ))
   .add('spine', () => (
     <div>
       <div className={wrapClasses({ ...props, scope: 'match-old' })}>
@@ -209,10 +215,16 @@ const Style: React.FC<{
   scaler?: number;
   scope?: string;
   author?: string;
+  showGuides?: boolean;
   size?: PrintSize;
   type: '3d' | 'front' | 'back' | 'spine' | 'pdf';
-}> = ({ type, scaler, scope, author, size }) => {
-  const useProps = { ...props, size: size || props.size, author: author || props.author };
+}> = ({ type, scaler, scope, author, showGuides, size }) => {
+  const useProps = {
+    ...props,
+    size: size || props.size,
+    author: author || props.author,
+    showGuides: showGuides || props.showGuides,
+  };
   const args: [CoverProps, number?, string?] = [useProps, scaler, scope];
   return (
     <style>
@@ -220,6 +232,7 @@ const Style: React.FC<{
       {['front', '3d', 'pdf'].includes(type) ? coverCss.front(...args)[1] : ''}
       {['back', '3d', 'pdf'].includes(type) ? coverCss.back(...args)[1] : ''}
       {['spine', '3d', 'pdf'].includes(type) ? coverCss.spine(...args)[1] : ''}
+      {useProps.showGuides ? coverCss.guides(...args)[1] : ''}
       {type === '3d' ? coverCss.threeD(...args)[1] : ''}
       {type === 'pdf' ? coverCss.pdf(...args)[1] : ''}
     </style>
@@ -239,6 +252,7 @@ function addStaticCss() {
     ${coverCss.spine(props)[0]}
     ${coverCss.threeD(props)[0]}
     ${coverCss.pdf(props)[0]}
+    ${coverCss.guides(props)[0]}
     .Cover + .Cover { margin-left: 5px; }
   `;
   style.appendChild(document.createTextNode(css));

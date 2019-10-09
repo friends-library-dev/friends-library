@@ -18,10 +18,9 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  const BLEED = 0.125;
   const dims = docDims(size, pages, scaler);
-  const width = dims.width * 2 + dims.pdfSpineWidth + 2 * BLEED;
-  const height = dims.height + 2 * BLEED;
+  const width = dims.width * 2 + dims.pdfSpineWidth + 2 * dims.printBleed;
+  const height = dims.height + 2 * dims.printBleed;
 
   const sizeCss = css`
     .Cover.browser {
@@ -37,51 +36,13 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
     .Cover.trim--s::after {
       height: 14.376%;
     }
-
     .Cover.trim--m::after {
       height: 17.817%;
     }
-
     .Cover.trim--xl::after {
       height: 19.707%;
     }
-
-    .Cover .guide--spine {
-      border-color: blue;
-    }
-
-    .Cover .guide {
-      box-sizing: border-box;
-      border-style: dashed;
-      display: block;
-      position: absolute;
-      border-width: 0;
-    }
-
-    .Cover .guide--vertical {
-      height: 100%;
-      border-right-width: 1px;
-      top: 0;
-      z-index: 1;
-    }
-
-    .Cover--show-guides {
-      position: relative;
-    }
-
-    .Cover .guide--spine-left {
-      left: ${dims.width + BLEED}in;
-    }
-
-    .Cover .guide--spine-right {
-      right: ${dims.width + BLEED}in;
-    }
-
-    .Cover .guide--spine-center {
-      border-color: magenta;
-      opacity: 0.75;
-      left: ${dims.pdfSpineWidth / 2}in;
-    }
+    /* end change percentage height */
 
     @page {
       size: ${width}in ${height}in landscape;
