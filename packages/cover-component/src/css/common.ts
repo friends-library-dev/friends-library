@@ -42,11 +42,13 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       background-color: white;
     }
 
-    .Cover.trim--m::after {
+    .Cover.trim--m::after,
+    .Cover--3d.trim--m .box > *::after {
       height: 16.8%;
     }
 
-    .Cover.trim--xl::after {
+    .Cover.trim--xl::after,
+    .Cover--3d.trim--xl .box > *::after {
       height: 18.8%;
     }
 

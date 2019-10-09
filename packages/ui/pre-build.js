@@ -6,7 +6,3 @@ let head = fs.readFileSync(`${__dirname}/.storybook/preview-head.pre.html`).toSt
 head = head.replace("'FRIENDS_JSON'", friends);
 
 fs.writeFileSync(`${__dirname}/.storybook/preview-head.html`, head);
-fs.writeFileSync(
-  `${__dirname}/.storybook/manager-head.html`,
-  `window.FRIENDS = ${friends};`,
-);

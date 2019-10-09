@@ -14,7 +14,7 @@ import { CoverProps, PrintSize } from '@friends-library/types';
 
 const props: CoverProps = {
   lang: 'en',
-  size: 'xl',
+  size: 'm',
   pages: 222,
   blurb:
     'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart. Having witnessed in his own soul, he to.',
@@ -28,80 +28,69 @@ const props: CoverProps = {
 
 addStaticCss();
 
-addDecorator(centered);
 storiesOf('Cover', module)
+  .addDecorator(centered)
+  .addDecorator(storyFn => <div className="Cover-storybook-bg">{storyFn()}</div>)
   .add('back (s, m, xl)', () => (
-    <div className="all-sizes-back">
-      <style>{`
-        .all-sizes-back .Cover + .Cover {
-          margin-left: 20px;
-        }
-        .all-sizes-back .Cover {
-          vertical-align: top;
-        }
-      `}</style>
-      <div className={wrapClasses({ ...{ ...props, scope: 's', size: 's' } })}>
-        <Back {...{ ...props, scope: 's', size: 's' }} />
-      </div>
-      <div className={wrapClasses({ ...{ ...props, scope: 'm', size: 'm' } })}>
-        <Back {...{ ...props, scope: 'm', size: 'm' }} />
-      </div>
-      <div className={wrapClasses({ ...{ ...props, scope: 'xl', size: 'xl' } })}>
-        <Back {...{ ...props, scope: 'xl', size: 'xl' }} />
-      </div>
+    <div className="all-sizes">
+      <Wrapped type="back" {...{ scope: 's', size: 's' }} />
+      <Wrapped type="back" {...{ scope: 'm', size: 'm' }} />
+      <Wrapped type="back" {...{ scope: 'xl', size: 'xl' }} />
       <Style type="back" size="s" scope="s" />
       <Style type="back" size="m" scope="m" />
       <Style type="back" size="xl" scope="xl" />
     </div>
   ))
   .add('front (s, m, xl)', () => (
-    <div className="all-sizes-front">
-      <style>{`
-        .all-sizes-front .Cover + .Cover {
-          margin-left: 20px;
-        }
-        .all-sizes-front .Cover {
-          vertical-align: top;
-        }
-      `}</style>
-      <Front {...{ ...props, scope: 's', size: 's' }} />
-      <Front {...{ ...props, scope: 'm', size: 'm' }} />
-      <Front {...{ ...props, scope: 'xl', size: 'xl' }} />
+    <div className="all-sizes">
+      <Front {...p({ scope: 's', size: 's' })} />
+      <Front {...p({ scope: 'm', size: 'm' })} />
+      <Front {...p({ scope: 'xl', size: 'xl' })} />
       <Style type="front" size="s" scope="s" />
       <Style type="front" size="m" scope="m" />
       <Style type="front" size="xl" scope="xl" />
     </div>
   ))
-  .add(
-    'front-main (multi)',
-    () => {
-      const books: [string, string, string][] = [];
-      // @ts-ignore
-      (window.FRIENDS as any).forEach(friend => {
-        friend.documents.forEach((doc: any) => {
-          books.push([doc.id, doc.title, friend.name]);
-        });
+  .add('front-main (multi)', () => {
+    const books: [string, string, string][] = [];
+    // @ts-ignore
+    (window.FRIENDS as any).forEach(friend => {
+      friend.documents.forEach((doc: any) => {
+        books.push([doc.id, doc.title, friend.name]);
       });
-      return (
-        <div className="grid">
-          <style>{`
-            .grid { display: flex; flex-wrap: wrap; margin-right: -1.25em; }
-            .grid .square { height: 4.42in; overflow: hidden; border: 1.25em solid transparent; border-left-width: 0; border-top-width: 0;}
-            .grid .square .Cover { top: -1.5in; }
-            .grid .square .author { opacity: 0; }
-          `}</style>
-          {books.map(([scope, title, author]) => (
-            <div className="square">
-              <Front {...{ ...props, scope, author, title }} />
-              <Style type="front" scope={scope} author={author} />
-            </div>
-          ))}
-        </div>
-      );
-    },
-    { centered: { disable: true } },
-  )
-  .add('multi-back', () => {
+    });
+    return (
+      <div className="grid">
+        <style>{css`
+          .grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -1.25em;
+          }
+          .grid .square {
+            height: 4.42in;
+            overflow: hidden;
+            border: 1.25em solid transparent;
+            border-left-width: 0;
+            border-top-width: 0;
+          }
+          .grid .square .Cover {
+            top: -1.5in;
+          }
+          .grid .square .author {
+            opacity: 0;
+          }
+        `}</style>
+        {books.map(([scope, title, author]) => (
+          <div className="square">
+            <Front {...p({ scope, author, title, size: 's' })} />
+            <Style type="front" scope={scope} author={author} size="s" />
+          </div>
+        ))}
+      </div>
+    );
+  })
+  .add('back (scaled)', () => {
     const sizes: [string, number][] = [
       ['back-full', 1],
       ['back-half', 0.5],
@@ -113,17 +102,15 @@ storiesOf('Cover', module)
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {sizes.map(([scope, scaler]) => (
-          <div className={wrapClasses({ ...props, scope, scaler })}>
-            <Back {...props} />
-          </div>
-        ))}
-        {sizes.map(([scope, scaler]) => (
-          <Style type="back" scope={scope} scaler={scaler} />
+          <>
+            <Wrapped type="back" {...{ scope, scaler }} />
+            <Style type="back" scope={scope} scaler={scaler} />
+          </>
         ))}
       </div>
     );
   })
-  .add('multi-front', () => {
+  .add('front (scaled)', () => {
     const sizes: [string, number][] = [
       ['full', 1],
       ['half', 0.5],
@@ -135,41 +122,23 @@ storiesOf('Cover', module)
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
         {sizes.map(([scope, scaler]) => (
-          <Front {...{ ...props, scope, scaler }} />
-        ))}
-        {sizes.map(([scope, scaler]) => (
-          <Style type="front" scope={scope} scaler={scaler} />
+          <>
+            <Front {...p({ scope, scaler })} />
+            <Style type="front" scope={scope} scaler={scaler} />
+          </>
         ))}
       </div>
     );
   })
-  .add('three-d (angle-back)', () => (
+  .add('3d (angle-back)', () => (
     <div>
       <ThreeD {...props} perspective="angle-back" />
       <Style type="3d" />
     </div>
   ))
-  .add('three-d (angle-front)', () => (
+  .add('3d (angle-front)', () => (
     <div>
-      <ThreeD {...props} perspective="angle-front" scope="TEMP" />
-      <Style type="3d" scope="TEMP" scaler={1} />
-    </div>
-  ))
-  .add('three-d (front)', () => (
-    <div>
-      <ThreeD {...props} perspective="front" />
-      <Style type="3d" />
-    </div>
-  ))
-  .add('three-d (back)', () => (
-    <div>
-      <ThreeD {...props} perspective="back" />
-      <Style type="3d" />
-    </div>
-  ))
-  .add('three-d (spine)', () => (
-    <div>
-      <ThreeD {...props} perspective="spine" />
+      <ThreeD {...props} perspective="angle-front" />
       <Style type="3d" />
     </div>
   ))
@@ -181,15 +150,13 @@ storiesOf('Cover', module)
   ))
   .add('pdf (guides}', () => (
     <div>
-      <PrintPdf {...{ ...props, showGuides: true }} />
+      <PrintPdf {...p({ showGuides: true })} />
       <Style type="pdf" showGuides={true} />
     </div>
   ))
   .add('spine', () => (
     <div>
-      <div className={wrapClasses(props)}>
-        <Spine {...props} />
-      </div>
+      <Wrapped type="spine" />
       <Style type="spine" />
     </div>
   ))
@@ -198,12 +165,13 @@ storiesOf('Cover', module)
     return (
       <div>
         {sizes.map(size => {
-          const useProps = { ...props, size, scope: size };
           return (
             <>
-              <div className={wrapClasses(useProps)} style={{ marginRight: '75px' }}>
-                <Spine {...useProps} />
-              </div>
+              <Wrapped
+                type="spine"
+                {...p({ size, scope: size })}
+                style={{ marginRight: 75 }}
+              />
               <Style type="spine" scope={size} size={size} />
             </>
           );
@@ -213,9 +181,7 @@ storiesOf('Cover', module)
   })
   .add('back', () => (
     <div>
-      <div className={wrapClasses(props)}>
-        <Back {...props} />
-      </div>
+      <Wrapped type="back" />
       <Style type="back" />
     </div>
   ))
@@ -254,13 +220,31 @@ const Style: React.FC<{
   );
 };
 
+const Wrapped: React.FC<
+  Partial<CoverProps> & {
+    type: 'back' | 'spine';
+    style?: Record<string, string | number>;
+  }
+> = wProps => {
+  const useProps = p(wProps);
+  return (
+    <div
+      className={wrapClasses(useProps, `type--${wProps.type}`)}
+      style={wProps.style ? wProps.style : {}}
+    >
+      {wProps.type === 'back' && <Back {...useProps} />}
+      {wProps.type === 'spine' && <Spine {...useProps} />}
+    </div>
+  );
+};
+
 function addStaticCss() {
   const prev = document.getElementById('cover-static-css');
   prev && prev.remove();
   const style = document.createElement('style');
   style.id = 'cover-static-css';
   style.type = 'text/css';
-  const css = `
+  const staticCss = css`
     ${coverCss.common(props)[0]}
     ${coverCss.front(props)[0]}
     ${coverCss.back(props)[0]}
@@ -268,8 +252,37 @@ function addStaticCss() {
     ${coverCss.threeD(props)[0]}
     ${coverCss.pdf(props)[0]}
     ${coverCss.guides(props)[0]}
-    .Cover + .Cover { margin-left: 5px; }
+    .all-sizes {
+      width: 17in;
+    }
+    .all-sizes .Cover {
+      vertical-align: top;
+    }
+    .Cover + .Cover,
+    style + .Cover {
+      margin-left: 20px;
+    }
+    .Cover-storybook-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #eaeaea;
+    }
   `;
-  style.appendChild(document.createTextNode(css));
+  style.appendChild(document.createTextNode(staticCss));
   document.getElementsByTagName('head')[0].appendChild(style);
+}
+
+function p(overrides: Partial<CoverProps>): CoverProps {
+  return { ...props, ...overrides };
+}
+
+function css(strings: any, ...values: any[]): string {
+  let str = '';
+  strings.forEach((string: string, i: number) => {
+    str += string + (values[i] || '');
+  });
+  return str;
 }

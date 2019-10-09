@@ -60,6 +60,12 @@ const front: CoverCssModule = (props, scaler, scope) => {
       transform-origin: left center;
     }
 
+    .Cover--scale-xs.trim--m .front .flp,
+    .Cover--scale-xs.trim--xl .front .flp {
+      font-size: 14.5%;
+      left: 4%;
+    }
+
     .Cover .front .top-row .logo-icon {
       width: 12.1%;
       margin-right: -1.75%;
