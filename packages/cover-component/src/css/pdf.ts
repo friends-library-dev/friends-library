@@ -46,6 +46,43 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
       height: 19.707%;
     }
 
+    .Cover .guide--spine {
+      border-color: blue;
+    }
+
+    .Cover .guide {
+      box-sizing: border-box;
+      border-style: dashed;
+      display: block;
+      position: absolute;
+      border-width: 0;
+    }
+
+    .Cover .guide--vertical {
+      height: 100%;
+      border-right-width: 1px;
+      top: 0;
+      z-index: 1;
+    }
+
+    .Cover--show-guides {
+      position: relative;
+    }
+
+    .Cover .guide--spine-left {
+      left: ${dims.width + BLEED}in;
+    }
+
+    .Cover .guide--spine-right {
+      right: ${dims.width + BLEED}in;
+    }
+
+    .Cover .guide--spine-center {
+      border-color: magenta;
+      opacity: 0.75;
+      left: ${dims.pdfSpineWidth / 2}in;
+    }
+
     @page {
       size: ${width}in ${height}in landscape;
     }

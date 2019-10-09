@@ -4,7 +4,14 @@ import LogoIcon from './LogoIcon';
 import Diamonds from './Diamonds';
 import { CoverProps, EditionType, Lang } from '@friends-library/types';
 
-const Spine: React.FC<CoverProps> = ({ lang, edition, title, pages, author }) => {
+const Spine: React.FC<CoverProps> = ({
+  lang,
+  edition,
+  title,
+  pages,
+  author,
+  showGuides,
+}) => {
   const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
   const fragments = {};
   return (
@@ -21,7 +28,9 @@ const Spine: React.FC<CoverProps> = ({ lang, edition, title, pages, author }) =>
         fragments,
         <div className="spine__author">{author.split(' ').pop()}</div>,
       )}
-      <div className="guide guide--spine guide--vertical guide--spine-center" />
+      {showGuides && (
+        <div className="guide guide--spine guide--vertical guide--spine-center" />
+      )}
     </div>
   );
 };

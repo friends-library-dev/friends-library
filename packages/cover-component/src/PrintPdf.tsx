@@ -18,6 +18,12 @@ const PrintPdf: React.FC<CoverProps> = props => {
         <Spine {...props} />
         <FrontInner {...props} />
       </div>
+      {props.showGuides && (
+        <>
+          <div className="guide guide--spine guide--vertical guide--spine-left" />
+          <div className="guide guide--spine guide--vertical guide--spine-right" />
+        </>
+      )}
     </div>
   );
 };

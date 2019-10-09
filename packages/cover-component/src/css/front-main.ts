@@ -44,6 +44,23 @@ const frontMain: CoverCssModule = (props, scaler, scope) => {
     ${initialsCss}
   `;
 
+  const guideCss = css`
+    .Cover--show-guides .guide--letter-spacing {
+      width: 70%;
+      height: 0.18in;
+      margin: 0 15%;
+      border-top: 1px dashed green !important;
+      border-bottom: 1px dashed green !important;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .Cover--show-guides .guide--front-vertical-center {
+      left: 50%;
+      border-color: green !important;
+    }
+  `;
+
   const dynamicCss = css`
     .Cover.trim--s .front__main {
       height: 4in;
@@ -58,6 +75,7 @@ const frontMain: CoverCssModule = (props, scaler, scope) => {
     }
 
     ${initialsDynamicCss}
+    ${props.showGuides ? guideCss : ''}
   `;
 
   return [staticCss, dynamicCss];
