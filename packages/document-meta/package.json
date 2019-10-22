@@ -10,6 +10,8 @@
     "compile": "cd ../../ && yarn compile document-meta"
   },
   "dependencies": {
-    "@friends-library/types": "1.0.0"
+    "@friends-library/env": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "@octokit/rest": "^16.33.1"
   }
 }

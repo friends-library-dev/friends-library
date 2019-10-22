@@ -1,6 +1,6 @@
 import { PrintSize } from '@friends-library/types';
 
-interface EditionMeta {
+export interface EditionMeta {
   updated: string;
   adocLength: number;
   numSections: number;
@@ -35,7 +35,13 @@ export default class DocumentMeta {
     this.data[id] = copy;
   }
 
-  public getAll(): EditionMeta[] {
-    return JSON.parse(JSON.stringify(Object.values(this.data)));
+  public getAll(): [string, EditionMeta][] {
+    return [...this];
+  }
+
+  public *[Symbol.iterator](): IterableIterator<[string, EditionMeta]> {
+    for (const id of Object.keys(this.data)) {
+      yield [id, JSON.parse(JSON.stringify(this.data[id]))];
+    }
   }
 }

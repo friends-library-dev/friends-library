@@ -1,4 +1,5 @@
 import DocumentMeta from '../document-meta';
+import { fetch, save } from '../repo';
 import { PrintSize } from '@friends-library/types';
 
 describe('DocumentMeta()', () => {
@@ -83,26 +84,12 @@ describe('DocumentMeta()', () => {
   });
 
   describe('.getAll()', () => {
-    test('returns array of all EditionMeta', () => {
+    test('returns array of all [id, EditionMeta]', () => {
       const eds = meta.getAll();
       expect(Array.isArray(eds)).toBe(true);
       expect(eds).toHaveLength(1);
-      expect(eds[0]).toMatchObject(meta.get(testId)!);
+      expect(eds[0][0]).toBe(testId);
+      expect(eds[0][1]).toMatchObject(meta.get(testId)!);
     });
   });
 });
-
-/* API THAT WILL COVER USE CASES
-
-repo.fetch()
-
-dm.has('id')
-dm.getAll()
-
-const em = dm.get('id')
-em.updated = 'lol'; // <-- should not mutate underlying data
-dm.set('id', em)
-
-repo.persist(dm)
-
-*/
