@@ -41,16 +41,6 @@ describe('Document', () => {
     });
   });
 
-  describe('shortestEdition()', () => {
-    it('returns the shortest edition', () => {
-      document.editions = [new Edition('updated', 1), new Edition('original', 100)];
-
-      const shortest = document.shortestEdition();
-
-      expect(shortest.type).toBe('updated');
-    });
-  });
-
   describe('hasAudio', () => {
     beforeEach(() => {
       document.editions.push(new Edition());

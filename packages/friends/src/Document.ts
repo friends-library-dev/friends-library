@@ -31,12 +31,6 @@ export default class Document {
     return this.friend.slug === 'compilations';
   }
 
-  public shortestEdition(): Edition {
-    return this.editions.reduce((shortest, edition) => {
-      return !shortest || edition.pages < shortest.pages ? edition : shortest;
-    });
-  }
-
   public hasAudio(): boolean {
     return this.editions.reduce(
       (docHasAudio, edition) => {

@@ -37,6 +37,8 @@ documents:
       - exhortation
     editions:
       - type: updated
+        splits:
+          - 2
         isbn: 978-1-64476-001-7
         editor: Jared Henderson
         formats:
@@ -44,7 +46,6 @@ documents:
           - type: epub
           - type: mobi
           - type: audio
-
         chapters:
           - title: Introduction
           - number: 1

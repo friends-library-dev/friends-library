@@ -29,7 +29,6 @@ export default function friendFromJS(js: any): Friend {
             (edition: any) =>
               new Edition(
                 edition.type,
-                edition.pages,
                 (edition.formats || []).map((format: any) => new Format(format.type)),
                 (edition.chapters || []).map((chapter: any) => new Chapter(chapter)),
                 edition.description || undefined,
@@ -52,6 +51,7 @@ export default function friendFromJS(js: any): Friend {
                       ),
                     )
                   : undefined,
+                edition.splits || undefined,
               ),
           ),
         ),

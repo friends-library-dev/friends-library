@@ -9,13 +9,13 @@ export default class Edition {
 
   public constructor(
     public type: EditionType = 'original',
-    public pages: number = 0,
     public formats: Format[] = [],
     public chapters: Chapter[] = [],
     public description?: string,
     public editor?: string,
     public isbn?: ISBN,
     public audio?: Audio,
+    public splits?: number[],
   ) {
     this.document = new Document();
   }
