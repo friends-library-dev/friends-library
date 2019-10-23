@@ -3,12 +3,13 @@ import { Friend, Document, Edition } from '@friends-library/friends';
 
 export default class FsDocPrecursor implements DocPrecursor {
   public fullPath: string;
-  public relPath: string;
   public friend?: Friend;
   public document?: Document;
   public edition?: Edition;
+  public path: DocPrecursor['path'];
   public lang: DocPrecursor['lang'];
   public friendSlug: DocPrecursor['friendSlug'];
+  public friendInitials: DocPrecursor['friendInitials'];
   public documentSlug: DocPrecursor['documentSlug'];
   public editionType: DocPrecursor['editionType'];
   public meta: DocPrecursor['meta'];
@@ -17,6 +18,7 @@ export default class FsDocPrecursor implements DocPrecursor {
   public customCode: DocPrecursor['customCode'] = { css: {}, html: {} };
   public asciidoc: DocPrecursor['asciidoc'] = '';
   public epigraphs: DocPrecursor['epigraphs'] = [];
+  public paperbackSplits: DocPrecursor['paperbackSplits'] = [];
   public sections: DocPrecursor['sections'] = [];
   public notes: DocPrecursor['notes'] = new Map();
   public documentId: DocPrecursor['documentId'] = '';
@@ -25,10 +27,11 @@ export default class FsDocPrecursor implements DocPrecursor {
     const [lang, friendSlug, docSlug, editionType] = relPath.split('/');
     this.lang = lang === 'es' ? 'es' : 'en';
     this.fullPath = fullPath;
-    this.relPath = relPath;
+    this.path = relPath;
     this.friendSlug = friendSlug;
     this.documentSlug = docSlug;
     this.editionType = editionType as DocPrecursor['editionType'];
+    this.friendInitials = friendSlug.split('-').map(s => s[0].toUpperCase());
     this.meta = {
       title: '',
       author: {

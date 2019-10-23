@@ -8,9 +8,17 @@ export interface EditionMeta {
     size: PrintSize;
     volumes: number[];
     pageData: {
-      s: number;
-      m: number;
-      xl: number;
+      single: {
+        s: number;
+        m: number;
+        xl: number;
+        'xl--condensed': number;
+      };
+      split?: {
+        m: number[];
+        xl: number[];
+        'xl--condensed': number[];
+      };
     };
   };
 }

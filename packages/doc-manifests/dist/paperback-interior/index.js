@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -51,6 +62,10 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -64,42 +79,62 @@ var wrap_html_1 = __importDefault(require("../wrap-html"));
 var frontmatter_1 = __importDefault(require("./frontmatter"));
 function paperbackInteriorManifests(dpc, conf) {
     return __awaiter(this, void 0, void 0, function () {
+        var docCss;
         return __generator(this, function (_a) {
-            // @TODO - handle Shilletoe faux-multi-vol
-            return [2 /*return*/, [
-                    {
-                        'doc.html': html(dpc, 0, conf),
-                        'doc.css': doc_css_1.paperbackInterior(dpc, conf),
-                        'line.svg': '<svg height="1px" width="88px" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="88" y2="0" style="stroke:rgb(0,0,0);stroke-width:1" /></svg>',
-                    },
-                ]];
+            docCss = doc_css_1.paperbackInterior(dpc, conf);
+            if (conf.allowSplits === false || dpc.paperbackSplits.length === 0) {
+                return [2 /*return*/, [
+                        {
+                            'doc.html': html(dpc, conf),
+                            'doc.css': docCss,
+                            'line.svg': lineSvgMarkup(),
+                        },
+                    ]];
+            }
+            return [2 /*return*/, __spread(dpc.paperbackSplits, [Infinity]).map(function (split, volIdx) {
+                    return {
+                        'doc.html': html(dpc, conf, volIdx),
+                        'doc.css': docCss,
+                        'line.svg': lineSvgMarkup(),
+                    };
+                })];
         });
     });
 }
 exports.default = paperbackInteriorManifests;
-function html(dpc, volumeIdx, conf) {
+function html(dpc, conf, volIdx) {
     return flow_1.default([
         joinSections,
         addFirstChapterClass,
         inlineNotes,
         prependFrontmatter,
         function (_a) {
-            var _b = __read(_a, 3), html = _b[0], d = _b[1], c = _b[2];
-            return [doc_html_1.removeMobi7Tags(html), d, c];
+            var _b = __read(_a, 4), html = _b[0], d = _b[1], c = _b[2], i = _b[3];
+            return [doc_html_1.removeMobi7Tags(html), d, c, i];
         },
         wrapHtml,
-    ])(['', dpc, conf])[0];
+    ])(['', dpc, conf, volIdx])[0];
 }
 var joinSections = function (_a) {
-    var _b = __read(_a, 3), html = _b[0], dpc = _b[1], conf = _b[2];
+    var _b = __read(_a, 4), dpc = _b[1], conf = _b[2], volIdx = _b[3];
     var joined = dpc.sections
+        .filter(makeVolumeSplitFilter(dpc, volIdx))
         .map(function (_a) {
         var html = _a.html, heading = _a.heading;
         return doc_html_1.replaceHeadings(html, heading, dpc).replace('<div class="sectionbody">', "<div class=\"sectionbody\" short=\"" + runningHeader(heading, dpc.lang) + "\">");
     })
         .join('\n');
-    return [joined, dpc, conf];
+    return [joined, dpc, conf, volIdx];
 };
+function makeVolumeSplitFilter(dpc, volIdx) {
+    return function (_, sectionIndex) {
+        if (typeof volIdx !== 'number')
+            return true;
+        var start = (dpc.paperbackSplits[volIdx - 1] || 0) - 1;
+        var stop = dpc.paperbackSplits[volIdx] || Infinity;
+        return sectionIndex > start && sectionIndex < stop;
+    };
+}
 function runningHeader(_a, lang) {
     var shortText = _a.shortText, text = _a.text, sequence = _a.sequence;
     if (shortText || text || !sequence) {
@@ -108,35 +143,41 @@ function runningHeader(_a, lang) {
     return sequence.type + " " + roman_numerals_1.toRoman(sequence.number);
 }
 var addFirstChapterClass = function (_a) {
-    var _b = __read(_a, 3), html = _b[0], dpc = _b[1], conf = _b[2];
+    var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
     return [
         html.replace('<div class="sect1', '<div class="sect1 first-chapter'),
         dpc,
         conf,
+        volIdx,
     ];
 };
 var inlineNotes = function (_a) {
-    var _b = __read(_a, 3), html = _b[0], dpc = _b[1], conf = _b[2];
+    var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
     return [
         html.replace(/{% note: ([a-z0-9-]+) %}/gim, function (_, id) { return "<span class=\"footnote\">" + (dpc.notes.get(id) || '') + "</span>"; }),
         dpc,
         conf,
+        volIdx,
     ];
 };
 var prependFrontmatter = function (_a) {
-    var _b = __read(_a, 3), html = _b[0], dpc = _b[1], conf = _b[2];
+    var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
     if (!conf.frontmatter) {
-        return [html, dpc, conf];
+        return [html, dpc, conf, volIdx];
     }
-    return [frontmatter_1.default(dpc).concat(html), dpc, conf];
+    var splitDpc = __assign(__assign({}, dpc), { sections: dpc.sections.filter(makeVolumeSplitFilter(dpc, volIdx)) });
+    return [frontmatter_1.default(splitDpc, volIdx).concat(html), dpc, conf, volIdx];
 };
 var wrapHtml = function (_a) {
-    var _b = __read(_a, 3), html = _b[0], dpc = _b[1], conf = _b[2];
+    var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
     var abbrev = lulu_1.getPrintSizeDetails(conf.printSize).abbrev;
     var wrapped = wrap_html_1.default(html, {
         title: dpc.meta.title,
         css: ['doc.css'],
         bodyClass: "body trim--" + abbrev,
     });
-    return [wrapped, dpc, conf];
+    return [wrapped, dpc, conf, volIdx];
 };
+function lineSvgMarkup() {
+    return '<svg height="1px" width="88px" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="88" y2="0" style="stroke:rgb(0,0,0);stroke-width:1" /></svg>';
+}

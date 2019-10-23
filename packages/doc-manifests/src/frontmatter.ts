@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { toRoman } from 'roman-numerals';
 import { memoize, pickBy } from 'lodash';
 import { Html, DocPrecursor, FileManifest, Epigraph } from '@friends-library/types';
 import { capitalizeTitle, ucfirst, br7 } from '@friends-library/doc-html/src/helpers';
@@ -37,7 +38,7 @@ function renderEpigraph({ text, source }: Epigraph, index: number): Html {
   `;
 }
 
-export function halfTitle(dpc: DocPrecursor): Html {
+export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
   const {
     lang,
     meta: {
@@ -46,7 +47,13 @@ export function halfTitle(dpc: DocPrecursor): Html {
       author: { name },
     },
   } = dpc;
-  let markup = `<h1>${title}</h1>`;
+
+  let volSuffix = '';
+  if (typeof volIdx === 'number') {
+    volSuffix = ` &#8212; Vol. ${toRoman(volIdx + 1)}`;
+  }
+
+  let markup = `<h1>${title}${volSuffix}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
   if (!nameInTitle) {
     markup = `${markup}\n<p class="byline">${br7}${

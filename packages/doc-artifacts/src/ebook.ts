@@ -10,7 +10,7 @@ import { red } from '@friends-library/cli-utils/color';
 
 export async function writeEbookManifest(
   manifest: FileManifest,
-  filename: string,
+  filenameNoExt: string,
   opts: EbookOptions,
   ebookType: 'epub' | 'mobi',
 ): Promise<string> {
@@ -26,7 +26,7 @@ export async function writeEbookManifest(
   });
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
-  const basename = `${filename}${ebookType === 'mobi' ? '.mobi' : ''}.epub`;
+  const basename = `${filenameNoExt}${ebookType === 'mobi' ? '.mobi' : ''}.epub`;
   const epubPath = `${ARTIFACT_DIR}/${basename}`;
   promises.push(fs.writeFile(epubPath, binary, 'binary'));
   await Promise.all(promises);

@@ -14,12 +14,15 @@ import {
 export interface DocPrecursor {
   lang: Lang;
   friendSlug: string;
+  friendInitials: string[];
   documentSlug: string;
+  path: string;
   documentId: Uuid;
   editionType: EditionType;
   asciidoc: Asciidoc;
   epigraphs: Epigraph[];
   sections: DocSection[];
+  paperbackSplits: number[];
   notes: Notes;
   config: { [key: string]: any };
   customCode: {
@@ -55,6 +58,7 @@ export interface PaperbackInteriorConfig {
   printSize: PrintSize;
   frontmatter: boolean;
   condense: boolean;
+  allowSplits: boolean;
 }
 
 export interface EbookConfig {

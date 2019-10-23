@@ -8,13 +8,17 @@
     "test": "cd ../../ && yarn jest packages/kite"
   },
   "dependencies": {
-    "@friends-library/env": "1.0.0",
-    "@friends-library/types": "1.0.0",
-    "@friends-library/cli-utils": "1.0.0",
     "@friends-library/adoc-convert": "1.0.0",
-    "@friends-library/doc-manifests": "1.0.0",
+    "@friends-library/cli-utils": "1.0.0",
     "@friends-library/doc-artifacts": "1.0.0",
+    "@friends-library/doc-manifests": "1.0.0",
+    "@friends-library/document-meta": "1.0.0",
+    "@friends-library/env": "1.0.0",
+    "@friends-library/lulu": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "fs-extra": "^8.1.0",
     "glob": "^7.1.4",
+    "pdf-parse": "^1.1.1",
     "ts-node": "^8.3.0",
     "yargs": "^14.0.0"
   },

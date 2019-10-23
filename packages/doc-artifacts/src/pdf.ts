@@ -8,7 +8,7 @@ import { dirs } from './dirs';
 
 export default async function pdf(
   manifest: FileManifest,
-  filename: string,
+  filenameNoExt: string,
   opts: PdfOptions = {},
 ): Promise<string> {
   const { ARTIFACT_DIR, SRC_DIR } = dirs(opts);
@@ -51,9 +51,9 @@ export default async function pdf(
     });
   });
 
-  await fs.move(`${SRC_DIR}/doc.pdf`, `${ARTIFACT_DIR}/${filename}.pdf`);
+  await fs.move(`${SRC_DIR}/doc.pdf`, `${ARTIFACT_DIR}/${filenameNoExt}.pdf`);
 
-  return `${ARTIFACT_DIR}/${filename}.pdf`;
+  return `${ARTIFACT_DIR}/${filenameNoExt}.pdf`;
 }
 
 function filterPrinceOutput(line: string): boolean {

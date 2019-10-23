@@ -12,15 +12,16 @@ export default function entities(dpc: FsDocPrecursor): void {
     editions = getEditions();
   }
 
-  const edition = editions.get(dpc.relPath);
+  const edition = editions.get(dpc.path);
   if (!edition) {
-    throw new Error(`No entities found for path: ${dpc.relPath}`);
+    throw new Error(`No entities found for path: ${dpc.path}`);
   }
 
   dpc.friend = edition.document.friend;
   dpc.document = edition.document;
   dpc.documentId = edition.document.id;
   dpc.edition = edition;
+  dpc.paperbackSplits = edition.splits || [];
 }
 
 function getEditions(): Map<string, Edition> {

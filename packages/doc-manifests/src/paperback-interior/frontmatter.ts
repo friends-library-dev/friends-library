@@ -6,12 +6,12 @@ import {
 import { navText } from '@friends-library/doc-html';
 import { DocPrecursor, Html, DocSection } from '@friends-library/types';
 
-export default function frontmatter(dpc: DocPrecursor): Html {
+export default function frontmatter(dpc: DocPrecursor, volIdx?: number): Html {
   return `
-    ${halfTitle(dpc)}
-    ${originalTitle(dpc)}
+    ${halfTitle(dpc, volIdx)}
+    ${originalTitle(dpc, volIdx)}
     ${copyright(dpc)}
-    ${epigraph(dpc)}
+    ${typeof volIdx === 'number' && volIdx > 0 ? '' : epigraph(dpc)}
     ${toc(dpc)}
   `;
 }
@@ -45,18 +45,18 @@ function copyright(dpc: DocPrecursor): Html {
     .replace(/([^@])friendslibrary\.com/g, '$1www.friendslibrary.com');
 }
 
-function halfTitle(dpc: DocPrecursor): Html {
+function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
   return `
     <div class="half-title-page own-page">
       <div>
-        ${commonHalfTitle(dpc)}
+        ${commonHalfTitle(dpc, volIdx)}
       </div>
     </div>
   `;
 }
 
-function originalTitle({ meta }: DocPrecursor): Html {
-  if (!meta.originalTitle) {
+function originalTitle({ meta }: DocPrecursor, volIdx?: number): Html {
+  if (!meta.originalTitle || (typeof volIdx === 'number' && volIdx > 0)) {
     return '';
   }
 
