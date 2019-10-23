@@ -1,27 +1,4 @@
-import { PrintSize } from '@friends-library/types';
-
-export interface EditionMeta {
-  updated: string;
-  adocLength: number;
-  numSections: number;
-  paperback: {
-    size: PrintSize;
-    volumes: number[];
-    pageData: {
-      single: {
-        s: number;
-        m: number;
-        xl: number;
-        'xl--condensed': number;
-      };
-      split?: {
-        m: number[];
-        xl: number[];
-        'xl--condensed': number[];
-      };
-    };
-  };
-}
+import { EditionMeta } from '@friends-library/types';
 
 export default class DocumentMeta {
   public constructor(private data: Record<string, EditionMeta>) {}

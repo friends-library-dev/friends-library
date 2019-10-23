@@ -15,10 +15,14 @@ describe('DocumentMeta()', () => {
         paperback: {
           size: 'xl',
           volumes: [435, 502],
+          condense: false,
           pageData: {
-            s: 1453,
-            m: 1143,
-            xl: 922,
+            single: {
+              s: 1453,
+              m: 1143,
+              xl: 922,
+              'xl--condensed': 900,
+            },
           },
         },
       },
@@ -70,11 +74,15 @@ describe('DocumentMeta()', () => {
         numSections: 2,
         paperback: {
           size: 's' as PrintSize,
+          condense: false,
           volumes: [111],
           pageData: {
-            s: 111,
-            m: 98,
-            xl: 55,
+            single: {
+              s: 111,
+              m: 98,
+              xl: 55,
+              'xl--condensed': 50,
+            },
           },
         },
       };

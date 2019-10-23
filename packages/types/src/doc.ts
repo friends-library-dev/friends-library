@@ -9,6 +9,7 @@ import {
   DocSection,
   Notes,
   PrintSize,
+  PrintSizeVariant,
 } from './types';
 
 export interface DocPrecursor {
@@ -67,3 +68,24 @@ export interface EbookConfig {
   coverImgPath?: string;
   randomizeForLocalTesting?: boolean;
 }
+
+export interface EditionMeta {
+  updated: string;
+  adocLength: number;
+  numSections: number;
+  paperback: {
+    size: PrintSize;
+    volumes: number[];
+    condense: boolean;
+    pageData: {
+      single: { [key in PrintSizeVariant]: number };
+      split?: {
+        m: number[];
+        xl: number[];
+        'xl--condensed': number[];
+      };
+    };
+  };
+}
+
+export type PageData = EditionMeta['paperback']['pageData'];

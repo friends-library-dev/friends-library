@@ -13,7 +13,14 @@ import {
   FilePath,
   Sha,
 } from './primitive';
-export { DocPrecursor, ArtifactType, PaperbackInteriorConfig, EbookConfig } from './doc';
+export {
+  DocPrecursor,
+  ArtifactType,
+  PaperbackInteriorConfig,
+  EbookConfig,
+  EditionMeta,
+  PageData,
+} from './doc';
 export type Gender = 'male' | 'female';
 export type Lang = 'en' | 'es';
 export type EditionType = 'original' | 'modernized' | 'updated';
@@ -22,7 +29,7 @@ export type NodeEnv = 'production' | 'development';
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
 export type PrintSize = 's' | 'm' | 'xl';
-
+export type PrintSizeVariant = PrintSize | 'xl--condensed';
 export type PrintJobStatus = 'pending' | 'accepted' | 'shipped' | 'rejected' | 'canceled';
 
 export interface Job {

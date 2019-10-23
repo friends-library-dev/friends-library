@@ -7,11 +7,12 @@ import { navText } from '@friends-library/doc-html';
 import { DocPrecursor, Html, DocSection } from '@friends-library/types';
 
 export default function frontmatter(dpc: DocPrecursor, volIdx?: number): Html {
+  const isFirstOrOnlyVolume = typeof volIdx !== 'number' || volIdx === 0;
   return `
     ${halfTitle(dpc, volIdx)}
-    ${originalTitle(dpc, volIdx)}
+    ${isFirstOrOnlyVolume ? originalTitle(dpc, volIdx) : ''}
     ${copyright(dpc)}
-    ${typeof volIdx === 'number' && volIdx > 0 ? '' : epigraph(dpc)}
+    ${isFirstOrOnlyVolume ? epigraph(dpc) : ''}
     ${toc(dpc)}
   `;
 }
@@ -56,7 +57,7 @@ function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
 }
 
 function originalTitle({ meta }: DocPrecursor, volIdx?: number): Html {
-  if (!meta.originalTitle || (typeof volIdx === 'number' && volIdx > 0)) {
+  if (!meta.originalTitle) {
     return '';
   }
 

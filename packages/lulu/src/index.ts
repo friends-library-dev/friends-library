@@ -1,4 +1,4 @@
-import { PrintSize, PrintSizeDetails } from '@friends-library/types';
+import { PrintSize, PrintSizeDetails, PageData } from '@friends-library/types';
 
 const defaultMargins = {
   top: 0.85,
@@ -39,7 +39,7 @@ export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
   },
   xl: {
     minPages: 350,
-    maxPages: 2000, // @TODO lower after we handle multi-vol works like Fox, Shillitoe
+    maxPages: 800,
     luluName: 'US Trade',
     abbrev: 'xl',
     margins: defaultMargins,
@@ -49,13 +49,6 @@ export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
     },
   },
 };
-
-export function choosePrintSize(pages: { s: number; m: number }): PrintSize {
-  let size: PrintSize = 's';
-  if (pages.s > sizes.s.maxPages) size = 'm';
-  if (pages.m > sizes.m.maxPages) size = 'xl';
-  return size;
-}
 
 export function getPrintSizeDetails(id: string): PrintSizeDetails {
   let size;
@@ -71,4 +64,45 @@ export function getPrintSizeDetails(id: string): PrintSizeDetails {
   }
 
   return size;
+}
+
+export function choosePrintSize(
+  singlePages: PageData['single'],
+  splitPages: PageData['split'],
+): [PrintSize, boolean] {
+  if (splitPages) {
+    const numVols = splitPages.m.length;
+    const average = {
+      s: Infinity,
+      m: splitPages.m.reduce(add) / numVols,
+      xl: splitPages.xl.reduce(add) / numVols,
+      'xl--condensed': splitPages['xl--condensed'].reduce(add) / numVols,
+    };
+    return choosePrintSize(average, undefined);
+  }
+
+  let printSize: PrintSize = 's';
+  let condense = false;
+
+  if (singlePages.s <= sizes.s.maxPages) {
+    return [printSize, condense];
+  }
+
+  printSize = 'm';
+  if (singlePages.m <= sizes.m.maxPages) {
+    return [printSize, condense];
+  }
+
+  printSize = 'xl';
+  if (singlePages.xl > CONDENSE_THRESHOLD) {
+    return [printSize, true];
+  }
+
+  return ['xl', false];
+}
+
+const CONDENSE_THRESHOLD = 600;
+
+function add(a: number, b: number): number {
+  return a + b;
 }

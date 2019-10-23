@@ -1,6 +1,7 @@
 import Octokit from '@octokit/rest';
 import env from '@friends-library/env';
-import DocumentMeta, { EditionMeta } from './document-meta';
+import { EditionMeta } from '@friends-library/types';
+import DocumentMeta from './document-meta';
 
 export async function fetch(): Promise<DocumentMeta> {
   const { GIST_ID, GIST_FILENAME } = envVars();

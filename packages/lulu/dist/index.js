@@ -38,7 +38,7 @@ exports.sizes = {
     },
     xl: {
         minPages: 350,
-        maxPages: 2000,
+        maxPages: 800,
         luluName: 'US Trade',
         abbrev: 'xl',
         margins: defaultMargins,
@@ -48,15 +48,6 @@ exports.sizes = {
         },
     },
 };
-function choosePrintSize(pages) {
-    var size = 's';
-    if (pages.s > exports.sizes.s.maxPages)
-        size = 'm';
-    if (pages.m > exports.sizes.m.maxPages)
-        size = 'xl';
-    return size;
-}
-exports.choosePrintSize = choosePrintSize;
 function getPrintSizeDetails(id) {
     var size;
     Object.values(exports.sizes).forEach(function (s) {
@@ -70,3 +61,34 @@ function getPrintSizeDetails(id) {
     return size;
 }
 exports.getPrintSizeDetails = getPrintSizeDetails;
+function choosePrintSize(singlePages, splitPages) {
+    if (splitPages) {
+        var numVols = splitPages.m.length;
+        var average = {
+            s: Infinity,
+            m: splitPages.m.reduce(add) / numVols,
+            xl: splitPages.xl.reduce(add) / numVols,
+            'xl--condensed': splitPages['xl--condensed'].reduce(add) / numVols,
+        };
+        return choosePrintSize(average, undefined);
+    }
+    var printSize = 's';
+    var condense = false;
+    if (singlePages.s <= exports.sizes.s.maxPages) {
+        return [printSize, condense];
+    }
+    printSize = 'm';
+    if (singlePages.m <= exports.sizes.m.maxPages) {
+        return [printSize, condense];
+    }
+    printSize = 'xl';
+    if (singlePages.xl > CONDENSE_THRESHOLD) {
+        return [printSize, true];
+    }
+    return ['xl', false];
+}
+exports.choosePrintSize = choosePrintSize;
+var CONDENSE_THRESHOLD = 600;
+function add(a, b) {
+    return a + b;
+}
