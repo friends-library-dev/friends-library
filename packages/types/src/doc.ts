@@ -73,6 +73,7 @@ export interface EditionMeta {
   updated: string;
   adocLength: number;
   numSections: number;
+  revision: Sha;
   paperback: {
     size: PrintSize;
     volumes: number[];
