@@ -3,10 +3,9 @@ import cx from 'classnames';
 import KeyEvent from 'react-keyboard-event-handler';
 import { CoverProps, Css, Html } from '@friends-library/types';
 import FormControl from '@material-ui/core/FormControl';
-import Cover from './Cover/Cover';
+import { ThreeD, PrintPdf, css as coverCss } from '@friends-library/cover-component';
 import debounce from 'lodash/debounce';
-import { coverCss } from './Cover/css';
-import { FriendData, DocumentData, EditionData } from './Cover/types';
+import { FriendData, DocumentData, EditionData } from '../types';
 import {
   friendData,
   formatBlurb,
@@ -21,8 +20,8 @@ import Toolbar from './Toolbar';
 import CodeEditor from './CodeEditor';
 import './App.css';
 
-type View = 'front' | 'spine' | 'back' | 'angle-front' | 'angle-back';
-export type Mode = '2d' | '3d' | 'ebook';
+type Perspective = 'front' | 'spine' | 'back' | 'angle-front' | 'angle-back';
+export type Mode = 'pdf' | '3d' | 'ebook';
 
 interface State {
   friendIndex: number;
@@ -33,7 +32,7 @@ interface State {
   maskBleed: boolean;
   showCode: boolean;
   mode: Mode;
-  threeDView: View;
+  perspective: Perspective;
   capture: boolean;
   customBlurbs: Record<string, string>;
   customHtml: Record<string, string>;
@@ -51,7 +50,7 @@ export default class App extends React.Component<{}, State> {
     maskBleed: true,
     mode: '3d',
     capture: false,
-    threeDView: 'angle-front',
+    perspective: 'angle-front',
     customBlurbs: {},
     customCss: {},
     customHtml: {},
@@ -129,6 +128,7 @@ export default class App extends React.Component<{}, State> {
     if (!friend || !doc || !ed) return;
     return {
       author: friend.name,
+      lang: doc.lang,
       title: prepareTitle(doc.title, friend.name),
       size: mode === 'ebook' ? 'xl' : ed.size,
       pages: ed.pages,
@@ -198,15 +198,15 @@ export default class App extends React.Component<{}, State> {
   }
 
   protected spinCover: () => void = () => {
-    const { threeDView } = this.state;
-    const next: { [k in View]: View } = {
+    const { perspective } = this.state;
+    const next: { [k in Perspective]: Perspective } = {
       front: 'angle-front',
       'angle-front': 'spine',
       spine: 'angle-back',
       'angle-back': 'back',
       back: 'front',
     };
-    this.setState({ threeDView: next[threeDView] });
+    this.setState({ perspective: next[perspective] });
   };
 
   public updateBlurb: (blurb: string) => void = blurb => {
@@ -343,7 +343,7 @@ export default class App extends React.Component<{}, State> {
       fit,
       showGuides,
       maskBleed,
-      threeDView,
+      perspective,
       showCode,
       mode,
       capture,
@@ -437,26 +437,16 @@ export default class App extends React.Component<{}, State> {
         {!coverProps && <div style={{ flexGrow: 1 }} />}
         {coverProps && (
           <>
-            <div
-              className={cx('cover-wrap', {
-                'cover--ebook': mode === 'ebook',
-                'cover--2d': mode === '2d',
-                'cover--3d': mode === '3d',
-                'cover--3d--front': mode === '3d' && threeDView === 'front',
-                'cover--3d--spine': mode === '3d' && threeDView === 'spine',
-                'cover--3d--back': mode === '3d' && threeDView === 'back',
-                'cover--3d--angle-front': mode === '3d' && threeDView === 'angle-front',
-                'cover--3d--angle-back': mode === '3d' && threeDView === 'angle-back',
-                'mask-bleed': maskBleed,
-              })}
-            >
-              <Cover
-                {...coverProps}
-                updateBlurb={this.updateBlurb}
-                allowEditingBlurb={true}
-              />
+            <div className={cx('cover-wrap', { 'cover--ebook': mode === 'ebook' })}>
+              {mode === '3d' && <ThreeD {...coverProps} perspective={perspective} />}
+              {mode === 'pdf' && <PrintPdf {...coverProps} />}
               <style>
-                {coverCss(coverProps, fitScaler(coverProps, fit, mode, showCode))}
+                {coverCss.common(coverProps).join('\n')}
+                {coverCss.front(coverProps).join('\n')}
+                {coverCss.back(coverProps).join('\n')}
+                {coverCss.spine(coverProps).join('\n')}
+                {mode === '3d' ? coverCss.threeD(coverProps).join('\n') : ''}
+                {mode === 'pdf' ? coverCss.pdf(coverProps).join('\n') : ''}
               </style>
             </div>
           </>
@@ -478,7 +468,7 @@ export default class App extends React.Component<{}, State> {
           showCode={showCode}
           cycleMode={() => {
             this.setState({
-              mode: mode === '2d' ? '3d' : mode === '3d' ? 'ebook' : '2d',
+              mode: mode === 'pdf' ? '3d' : mode === '3d' ? 'ebook' : 'pdf',
             });
           }}
           toggleShowCode={() => this.setState({ showCode: !showCode })}

@@ -1,7 +1,6 @@
 import { CoverProps } from '@friends-library/types';
-import { quotify } from '@friends-library/asciidoc';
-import { FriendData, DocumentData, EditionData } from './Cover/types';
-import { cssVars } from './Cover/css';
+import { quotify } from '@friends-library/adoc-utils';
+import { FriendData, DocumentData, EditionData } from '../types';
 import { Mode } from './App';
 
 const friendData = (window as any).Friends as FriendData[];
@@ -27,23 +26,24 @@ export function fitScaler(
   mode: Mode,
   showCode: boolean,
 ): number | undefined {
-  if (!fit) {
-    return WEB_SCALER;
-  }
+  return 1;
+  // if (!fit) {
+  //   return WEB_SCALER;
+  // }
 
-  const appChromeHeight = showCode ? 475 : 175;
-  const css = cssVars(props);
-  const windowWidth = window.innerWidth / 96;
-  const windowHeight = (window.innerHeight - appChromeHeight) / 96;
-  const coverWidth =
-    inchToNum(mode === '2d' ? css.coverWidth : css.bookWidth) * WEB_SCALER;
-  const coverHeight = inchToNum(css.coverHeight) * WEB_SCALER;
-  if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
-    return WEB_SCALER;
-  }
+  // const appChromeHeight = showCode ? 475 : 175;
+  // const css = cssVars(props);
+  // const windowWidth = window.innerWidth / 96;
+  // const windowHeight = (window.innerHeight - appChromeHeight) / 96;
+  // const coverWidth =
+  //   inchToNum(mode === '2d' ? css.coverWidth : css.bookWidth) * WEB_SCALER;
+  // const coverHeight = inchToNum(css.coverHeight) * WEB_SCALER;
+  // if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
+  //   return WEB_SCALER;
+  // }
 
-  const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
-  return WEB_SCALER * (scale - 0.019);
+  // const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
+  // return WEB_SCALER * (scale - 0.019);
 }
 
 function inchToNum(val: string): number {

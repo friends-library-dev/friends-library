@@ -64,9 +64,18 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       fill: #6c3142;
     }
 
+    .Edition--updated.Lang--es .logo-icon {
+      fill: #c18c59;
+    }
+
     .Cover.Edition--original:not(.Cover--3d),
     .Cover--3d.Edition--original .box > * {
       background-color: #9d9d80;
+    }
+
+    .Cover.Edition--updated.Lang--es:not(.Cover--3d),
+    .Cover--3d.Edition--updated.Lang--es .box > * {
+      background-color: #c18c59;
     }
 
     .Cover.Edition--modernized:not(.Cover--3d),
@@ -86,12 +95,14 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       font-size: ${dims.width}in;
     }
 
+    .Cover--front-only,
     .Cover .back,
     .Cover .front,
     .Cover .spine {
       height: ${dims.height}in;
     }
 
+    .Cover--front-only,
     .Cover .back,
     .Cover .front {
       width: ${dims.width}in;

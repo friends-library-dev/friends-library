@@ -26,6 +26,7 @@ const frontMain: CoverCssModule = (props, scaler, scope) => {
     }
 
     .front__main .title-wrap .title {
+      font-weight: 400;
       margin-right: -6%;
       margin-left: -6%;
       width: 163%;

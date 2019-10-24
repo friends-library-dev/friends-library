@@ -51,8 +51,8 @@ const Toolbar: React.FC<Props> = ({
         <FitIcon />
       </IconButton>
       <IconButton
-        disabled={mode !== '2d'}
-        style={maskBleed && mode === '2d' ? selected : {}}
+        disabled={mode !== 'pdf'}
+        style={maskBleed && mode === 'pdf' ? selected : {}}
         onClick={() => toggleMaskBleed()}
       >
         <MaskBleedIcon />
@@ -64,7 +64,7 @@ const Toolbar: React.FC<Props> = ({
         <GuidesIcon />
       </IconButton>
       <IconButton onClick={() => cycleMode()}>
-        {mode === '3d' ? <ThreeDIcon /> : mode === '2d' ? <TwoDIcon /> : <EbookIcon />}
+        {mode === '3d' ? <ThreeDIcon /> : mode === 'pdf' ? <TwoDIcon /> : <EbookIcon />}
       </IconButton>
       <IconButton className={showCode ? 'selected' : ''} onClick={() => toggleShowCode()}>
         <CodeIcon />

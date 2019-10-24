@@ -24,13 +24,19 @@
   "include": ["src"],
   "references": [
     {
-      "path": "../asciidoc"
+      "path": "../adoc-utils"
     },
     {
-      "path": "../cli"
+      "path": "../cover-component"
     },
     {
-      "path": "../client"
+      "path": "../document-meta"
+    },
+    {
+      "path": "../cli-utils"
+    },
+    {
+      "path": "../env"
     },
     {
       "path": "../friends"

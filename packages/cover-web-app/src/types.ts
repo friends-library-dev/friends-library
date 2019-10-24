@@ -1,4 +1,5 @@
 import {
+  Lang,
   Name,
   PrintSize,
   Description,
@@ -10,13 +11,14 @@ import {
 
 export interface EditionData {
   id: string;
-  type: EditionType | 'spanish';
+  type: EditionType;
   pages: number;
   size: PrintSize;
   isbn?: ISBN;
 }
 
 export interface DocumentData {
+  lang: Lang;
   title: string;
   description: Description;
   editions: EditionData[];
