@@ -31,6 +31,27 @@ documents:
           - type: pdf
           - type: epub
           - type: mobi
-
         chapters:
           - title: Un Camino Simple
+
+  - id: 1a7c0e85-250c-43c9-adbd-0b98972fb9d3
+    title: Una Historia Corta de un Largo Viaje desde Babilonia hasta Bet-el
+    slug: babilonia-hasta-bet-el
+    filename: Babilonia_hasta_Bet-el
+    description:
+      Esta breve alegoría, escrita por Stephen Crisp, ilustra el peligroso viaje del alma
+      cristiana desde Babilonia (la ciudad de confusión religiosa, hecha por el hombre) a
+      Betel, la verdadera casa de Dios. Al amar y seguir la luz de Jesucristo, el viajero
+      cristiano es sacado de todo falso descanso, llevado a través de las diversas trampas
+      y enemigos en el desierto, e introducido en la morada de Dios, donde hereda
+      justicia, paz y alegría para siempre.
+    tags:
+      - allegory
+    editions:
+      - type: updated
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Una Historia Corta de un Largo Viaje desde Babilonia hasta Bet-el
