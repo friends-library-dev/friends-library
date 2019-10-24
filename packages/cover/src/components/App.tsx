@@ -13,7 +13,6 @@ import {
   editions,
   documents,
   fitScaler,
-  prepareTitle,
   LOREM_BLURB,
 } from './utils';
 import Select from './Select';
@@ -129,7 +128,7 @@ export default class App extends React.Component<{}, State> {
     if (!friend || !doc || !ed) return;
     return {
       author: friend.name,
-      title: prepareTitle(doc.title, friend.name),
+      title: doc.title,
       size: mode === 'ebook' ? 'xl' : ed.size,
       pages: ed.pages,
       edition: ed.type,

@@ -99,7 +99,10 @@ const Cover: React.FC<Props> = ({
         {overridable(
           'spine__title',
           fragments,
-          <div className="spine__title" dangerouslySetInnerHTML={{ __html: title }} />,
+          <div
+            className="spine__title"
+            dangerouslySetInnerHTML={{ __html: prepareTitle(title, author) }}
+          />,
         )}
         {overridable(
           'spine__author',
@@ -155,7 +158,10 @@ const Cover: React.FC<Props> = ({
               'title-wrap',
               fragments,
               <div className="title-wrap">
-                <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+                <h1
+                  className="title"
+                  dangerouslySetInnerHTML={{ __html: prepareTitle(title, author) }}
+                />
               </div>,
             )}
           </div>
@@ -246,4 +252,10 @@ function overridable(
     });
   }
   return fallback;
+}
+
+function prepareTitle(title: string, name: string): string {
+  title = title.replace(/--/g, '–');
+  title = title.replace(/ – Volumen? (?<number>(\d+|[IV]+))/, ', Vol.&nbsp;$<number>');
+  return title.replace(name, name.replace(/ /g, '&nbsp;'));
 }

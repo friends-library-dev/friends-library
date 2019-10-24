@@ -57,12 +57,6 @@ export function documents(friendIndex: number): DocumentData[] {
   return [];
 }
 
-export function prepareTitle(title: string, name: string): string {
-  title = title.replace(/--/g, '–');
-  title = title.replace(/ – Volumen? (?<number>(\d+|[IV]+))/, ', Vol.&nbsp;$<number>');
-  return title.replace(name, name.replace(/ /g, '&nbsp;'));
-}
-
 export function editions(friendIndex: number, docIndex: number): EditionData[] {
   if (!friendData[friendIndex]) {
     return [];
