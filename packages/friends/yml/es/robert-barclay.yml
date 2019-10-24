@@ -5,10 +5,18 @@ gender: male
 description: TODO
 documents:
   - id: 398c7f5a-3fa4-4a29-a275-a0f33920ce08
-    title: Esperando en el Senor
+    title: Esperando en el Señor
     slug: esperando-en-el-senor
     filename: Esperando_en_el_Senor
-    description: TODO
+    description:
+      Barclay escribe, “Toda adoración verdadera y aceptable a Dios, se ofrece en el
+      movimiento y guía interiores e inmediatos de Su propio Espíritu.” No es difícil
+      estar de acuerdo con esta afirmación, pero ¿hemos esperado en nuestro Dios para
+      separar lo precioso de lo vil en el interior, para diferenciar entre la operación
+      pura de Su Espíritu y las imaginaciones desordenadas de nuestra propia alma? ¿Hemos
+      verdaderamente conocido y obedecido Sus movimientos y enseñanzas internos, o la
+      Semilla de Dios yace enterrada en los corazones cristianos, debajo de un montón de
+      superstición, presunción, y actividad carnal y religiosa?
     tags:
       - doctrinal
     editions:
@@ -19,7 +27,7 @@ documents:
           - type: epub
           - type: mobi
         chapters:
-          - title: Esperando en el Senor
+          - title: Esperando en el Señor
 
   - id: 1314f777-2b9e-40b4-b148-18e64278557a
     title: Consideraciones sobre el Entretenimiento y la Recreacion
