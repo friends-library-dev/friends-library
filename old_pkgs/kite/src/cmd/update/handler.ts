@@ -5,10 +5,15 @@ import fetch from 'node-fetch';
 import { FileType, PrintSize, requireEnv } from '@friends-library/types';
 import { log, c, red } from '@friends-library/cli/color';
 import { cloud, getDocumentMeta } from '@friends-library/client';
-import { withCoverServer } from '../publish/cover-server';
+import { withCoverServer } from '../../../../../packages/cli/src/cmd/publish/cover-server';
 import validate, { confirmPrintSize } from './validate';
 import { publishPrecursors, prepPublishDir } from '../publish/handler';
-import { logDocStart, logDocComplete, logUpdateComplete, logUpdateStart } from './log';
+import {
+  logDocStart,
+  logDocComplete,
+  logUpdateComplete,
+  logUpdateStart,
+} from '../../../../../packages/cli/src/cmd/publish/log';
 import { getPaperbackCovers } from './paperback-covers';
 import { getSourceDocs, SourceDocument } from './source';
 import { estimatePrintSize, resizePrintPdf } from './pdf';

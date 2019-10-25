@@ -11,7 +11,7 @@ import { makeEpub } from '../../publish/epub/make';
 import { makeMobi } from '../../publish/mobi/make';
 import { makePdf } from '../../publish/pdf/make';
 import { send } from './send';
-import { withCoverServer } from './cover-server';
+import { withCoverServer } from '../../../../../packages/cli/src/cmd/publish/cover-server';
 import { PUBLISH_DIR } from '../../publish/file';
 import {
   Job,

@@ -1,6 +1,6 @@
 import prettyMilliseconds from 'pretty-ms';
-import { log, c } from '@friends-library/cli/color';
-import { SourceDocument } from './source';
+import { log, c } from '@friends-library/cli-utils/color';
+import { DocPrecursor } from '@friends-library/types';
 
 let updateStart: number;
 
@@ -9,20 +9,20 @@ export function logUpdateStart(): void {
   log(c`\n{cyan Beginning asset updates at} {magenta ${new Date().toLocaleString()}}`);
 }
 
-export function logDocStart(sourceDoc: SourceDocument, progress: string): void {
-  const id = getId(sourceDoc);
+export function logDocStart(dpc: DocPrecursor, progress: string): void {
+  const id = getId(dpc);
   log(c`{yellow  →} {gray Begin generation of assets for} ${id} ${progress}`);
 }
 
 export function logDocComplete(
-  sourceDoc: SourceDocument,
+  dpc: DocPrecursor,
   assetStart: number,
   progress: string,
 ): void {
   const completed = c`{green  √} {gray Completed generation of assets for}`;
   const timing = c`{magenta ${elapsed(assetStart)} (total: ${elapsed(updateStart)})}`;
-  const id = getId(sourceDoc);
-  log(c`${completed} ${id} {gray in} ${timing} ${progress}`);
+  const id = getId(dpc);
+  log(c`${completed} ${id} {gray in} ${timing} ${progress}\n`);
 }
 
 export function logUpdateComplete(): void {
@@ -35,8 +35,8 @@ export function logResize(newSize: string, id: string): void {
   log(c` {red x} {gray Resizing print pdf for} {cyan ${id}} ${retry}`);
 }
 
-function getId(sourceDoc: SourceDocument): string {
-  return c`{cyan ${sourceDoc.edition.path}}`;
+function getId(dpc: DocPrecursor): string {
+  return c`{cyan ${dpc.path}}`;
 }
 
 function elapsed(timestamp: number): string {

@@ -4,7 +4,7 @@ import { choosePrintSize } from '@friends-library/asciidoc';
 import { PrintSize, DocumentArtifacts, SourcePrecursor } from '@friends-library/types';
 import { publishPrecursors } from '../publish/handler';
 import { red } from '@friends-library/cli/color';
-import { logResize } from './log';
+import { logResize } from '../../../../../packages/cli/src/cmd/publish/log';
 import { PublishOptions } from './publish';
 import { confirmPrintSize } from './validate';
 import { getDocumentMeta } from '@friends-library/client';
