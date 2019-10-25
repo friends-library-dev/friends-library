@@ -54,7 +54,7 @@ const guides: CoverCssModule = ({ size, pages }, scaler, scope) => {
       z-index: 1;
     }
 
-    .Cover--show-guides .print-pdf {
+    .Cover--show-guides.Cover--pdf--bleed .print-pdf {
       outline: 1px dashed red;
       outline-offset: -1px;
       position: relative;
@@ -70,10 +70,18 @@ const guides: CoverCssModule = ({ size, pages }, scaler, scope) => {
   const dims = docDims(size, pages, scaler);
   const dynamicCss = css`
     .Cover--show-guides .guide--spine-left {
-      left: ${dims.width + dims.printBleed}in;
+      left: ${dims.width}in;
     }
 
     .Cover--show-guides .guide--spine-right {
+      right: ${dims.width}in;
+    }
+
+    .Cover--show-guides.Cover--pdf--bleed .guide--spine-left {
+      left: ${dims.width + dims.printBleed}in;
+    }
+
+    .Cover--show-guides.Cover--pdf--bleed .guide--spine-right {
       right: ${dims.width + dims.printBleed}in;
     }
 

@@ -437,13 +437,14 @@ export default class App extends React.Component<{}, State> {
           <>
             <div className={cx('cover-wrap', { 'cover--ebook': mode === 'ebook' })}>
               {mode === '3d' && <ThreeD {...coverProps} perspective={perspective} />}
-              {mode === 'pdf' && <PrintPdf {...coverProps} />}
+              {mode === 'pdf' && <PrintPdf {...coverProps} bleed={!maskBleed} />}
               {mode === 'ebook' && <Front {...coverProps} />}
               <style>
                 {coverCss.common(coverProps, scaler).join('\n')}
                 {coverCss.front(coverProps, scaler).join('\n')}
                 {coverCss.back(coverProps, scaler).join('\n')}
                 {coverCss.spine(coverProps, scaler).join('\n')}
+                {coverCss.guides(coverProps, scaler).join('\n')}
                 {mode === '3d' ? coverCss.threeD(coverProps, scaler).join('\n') : ''}
                 {mode === 'pdf' ? coverCss.pdf(coverProps, scaler).join('\n') : ''}
               </style>

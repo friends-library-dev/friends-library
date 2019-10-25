@@ -5,11 +5,16 @@ import Back from './Back';
 import FrontInner from './FrontInner';
 import Spine from './Spine';
 
-const PrintPdf: React.FC<CoverProps> = props => {
+type Props = CoverProps & {
+  bleed?: boolean;
+};
+
+const PrintPdf: React.FC<Props> = props => {
   return (
     <div
       className={wrapClasses(props, {
         'Cover--pdf': true,
+        'Cover--pdf--bleed': props.bleed !== false,
         browser: typeof window !== 'undefined',
       })}
     >

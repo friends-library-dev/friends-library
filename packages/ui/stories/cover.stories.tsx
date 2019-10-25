@@ -149,7 +149,13 @@ storiesOf('Cover', module)
       <Style type="pdf" />
     </div>
   ))
-  .add('pdf (guides}', () => (
+  .add('pdf (no-bleed)', () => (
+    <div>
+      <PrintPdf {...props} bleed={false} />
+      <Style type="pdf" />
+    </div>
+  ))
+  .add('pdf (guides)', () => (
     <div>
       <PrintPdf {...p({ showGuides: true })} />
       <Style type="pdf" showGuides={true} />
