@@ -1,7 +1,7 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
 import Diamonds from './Diamonds';
-import { overridable } from './helpers';
+import { overridable, formatBlurb } from './helpers';
 import Brackets from './Brackets';
 import LogoSpanish from './LogoSpanish';
 import Logo from './Logo';
@@ -21,7 +21,7 @@ const Back: React.FC<CoverProps> = ({ blurb, isbn, lang, edition }) => {
           // ) : (
           <div className="blurb">
             <Brackets />
-            {blurb}
+            {formatBlurb(blurb)}
           </div>,
           // ),
         )}

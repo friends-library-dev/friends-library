@@ -4,7 +4,6 @@
   "private": true,
   "main": "dist/index.js",
   "dependencies": {
-    "@friends-library/adoc-utils": "1.0.0",
     "@friends-library/cover-component": "1.0.0",
     "@friends-library/document-meta": "1.0.0",
     "@friends-library/cli-utils": "1.0.0",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { overridable } from './helpers';
+import { overridable, prepareTitle } from './helpers';
 import LogoIcon from './LogoIcon';
 import Diamonds from './Diamonds';
 import { CoverProps, EditionType, Lang } from '@friends-library/types';
@@ -21,7 +21,10 @@ const Spine: React.FC<CoverProps> = ({
       {overridable(
         'spine__title',
         fragments,
-        <div className="spine__title" dangerouslySetInnerHTML={{ __html: title }} />,
+        <div
+          className="spine__title"
+          dangerouslySetInnerHTML={{ __html: prepareTitle(title, author) }}
+        />,
       )}
       {overridable(
         'spine__author',

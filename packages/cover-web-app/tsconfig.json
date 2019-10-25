@@ -24,9 +24,6 @@
   "include": ["src"],
   "references": [
     {
-      "path": "../adoc-utils"
-    },
-    {
       "path": "../cover-component"
     },
     {

@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { overridable, initials } from './helpers';
+import { overridable, initials, prepareTitle } from './helpers';
 import { CoverProps } from '@friends-library/types';
 
 const FrontMain: React.FC<CoverProps> = ({ showGuides, author, title }) => {
@@ -52,7 +52,10 @@ const FrontMain: React.FC<CoverProps> = ({ showGuides, author, title }) => {
         'title-wrap',
         fragments,
         <div className="title-wrap">
-          <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+          <h1
+            className="title"
+            dangerouslySetInnerHTML={{ __html: prepareTitle(title, author) }}
+          />
         </div>,
       )}
     </div>

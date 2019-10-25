@@ -10,6 +10,7 @@
     "test": "cd ../../ && yarn jest packages/cover-component"
   },
   "dependencies": {
+    "@friends-library/adoc-utils": "1.0.0",
     "@friends-library/types": "1.0.0",
     "@friends-library/lulu": "1.0.0",
     "react": "^16.9.0"

@@ -1,5 +1,5 @@
 import { CoverProps } from '@friends-library/types';
-import { quotify } from '@friends-library/adoc-utils';
+import { docDims } from '@friends-library/cover-component';
 import { FriendData, DocumentData, EditionData } from '../types';
 import { Mode } from './App';
 
@@ -18,36 +18,28 @@ export function makePdf(props: CoverProps): void {
   });
 }
 
-const WEB_SCALER = 1.1358;
-
 export function fitScaler(
   props: CoverProps,
   fit: boolean,
   mode: Mode,
   showCode: boolean,
 ): number | undefined {
-  return 1;
-  // if (!fit) {
-  //   return WEB_SCALER;
-  // }
+  if (!fit) {
+    return WEB_SCALER;
+  }
 
-  // const appChromeHeight = showCode ? 475 : 175;
-  // const css = cssVars(props);
-  // const windowWidth = window.innerWidth / 96;
-  // const windowHeight = (window.innerHeight - appChromeHeight) / 96;
-  // const coverWidth =
-  //   inchToNum(mode === '2d' ? css.coverWidth : css.bookWidth) * WEB_SCALER;
-  // const coverHeight = inchToNum(css.coverHeight) * WEB_SCALER;
-  // if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
-  //   return WEB_SCALER;
-  // }
+  const appChromeHeight = showCode ? 475 : 175;
+  const dims = docDims(props.size, props.pages);
+  const windowWidth = window.innerWidth / 96;
+  const windowHeight = (window.innerHeight - appChromeHeight) / 96;
+  const coverWidth = (mode === 'pdf' ? dims.pdfWidth : dims.width) * WEB_SCALER;
+  const coverHeight = (mode === 'pdf' ? dims.pdfHeight : dims.height) * WEB_SCALER;
+  if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
+    return WEB_SCALER;
+  }
 
-  // const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
-  // return WEB_SCALER * (scale - 0.019);
-}
-
-function inchToNum(val: string): number {
-  return Number(val.replace(/in$/, ''));
+  const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
+  return WEB_SCALER * (scale - 0.019);
 }
 
 export function documents(friendIndex: number): DocumentData[] {
@@ -55,12 +47,6 @@ export function documents(friendIndex: number): DocumentData[] {
     return friendData[friendIndex].documents;
   }
   return [];
-}
-
-export function prepareTitle(title: string, name: string): string {
-  title = title.replace(/--/g, '–');
-  title = title.replace(/ – Volumen? (?<number>(\d+|[IV]+))/, ', Vol.&nbsp;$<number>');
-  return title.replace(name, name.replace(/ /g, '&nbsp;'));
 }
 
 export function editions(friendIndex: number, docIndex: number): EditionData[] {
@@ -73,16 +59,11 @@ export function editions(friendIndex: number, docIndex: number): EditionData[] {
   return friendData[friendIndex].documents[docIndex].editions;
 }
 
-export function formatBlurb(blurb: string): string {
-  return quotify(blurb)
-    .replace(/"`/g, '“')
-    .replace(/`"/g, '”')
-    .replace(/'`/g, '‘')
-    .replace(/`'/g, '’')
-    .replace(/--/g, '–');
-}
-
 const LOREM_BLURB =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
 
 export { LOREM_BLURB };
+
+// I used to use this to match web app to prince pdf output
+// not really sure if i need it anymore, or if it's still the right value
+const WEB_SCALER = 1; //1.1358;

@@ -19,3 +19,18 @@ export function initials(author: string): [string, string] {
   const [first, ...rest] = author.split(' ');
   return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
 }
+
+export function prepareTitle(title: string, name: string): string {
+  title = title.replace(/--/g, '–');
+  title = title.replace(/ – Volumen? (?<number>(\d+|[IV]+))/, ', Vol.&nbsp;$<number>');
+  return title.replace(name, name.replace(/ /g, '&nbsp;'));
+}
+
+export function formatBlurb(blurb: string): string {
+  return quotify(blurb)
+    .replace(/"`/g, '“')
+    .replace(/`"/g, '”')
+    .replace(/'`/g, '‘')
+    .replace(/`'/g, '’')
+    .replace(/--/g, '–');
+}

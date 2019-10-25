@@ -5,6 +5,8 @@ import { sizes as bookSizes } from '@friends-library/lulu';
 export interface DocDims {
   width: number;
   height: number;
+  pdfWidth: number;
+  pdfHeight: number;
   pdfSpineWidth: number;
   threeDSpineWidth: number;
   printBleed: number;
@@ -17,10 +19,14 @@ export function docDims(size: PrintSize, pages: number, scaler?: number): DocDim
   const pagesPerInch = 444;
   const threeDSpineWidth = spinePad + pages / pagesPerInch;
   const pdfSpineWidth = pages < 32 ? 0 : threeDSpineWidth;
+  const pdfWidth = width * 2 + pdfSpineWidth + printBleed * 2;
+  const pdfHeight = height + printBleed * 2;
 
   return {
     width,
     height,
+    pdfWidth,
+    pdfHeight,
     pdfSpineWidth,
     threeDSpineWidth,
     printBleed,

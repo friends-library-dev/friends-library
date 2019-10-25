@@ -11,15 +11,7 @@ import {
 } from '@friends-library/cover-component';
 import debounce from 'lodash/debounce';
 import { FriendData, DocumentData, EditionData } from '../types';
-import {
-  friendData,
-  formatBlurb,
-  editions,
-  documents,
-  fitScaler,
-  prepareTitle,
-  LOREM_BLURB,
-} from './utils';
+import { friendData, editions, documents, fitScaler, LOREM_BLURB } from './utils';
 import Select from './Select';
 import Toolbar from './Toolbar';
 import CodeEditor from './CodeEditor';
@@ -134,11 +126,11 @@ export default class App extends React.Component<{}, State> {
     return {
       author: friend.name,
       lang: doc.lang,
-      title: prepareTitle(doc.title, friend.name),
+      title: doc.title,
       size: mode === 'ebook' ? 'xl' : ed.size,
       pages: ed.pages,
       edition: ed.type,
-      blurb: formatBlurb(this.getBlurb(friend, doc)),
+      blurb: this.getBlurb(friend, doc),
       isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev
       showGuides,
       customCss: this.getCustomCss(),
@@ -354,6 +346,7 @@ export default class App extends React.Component<{}, State> {
       capture,
     } = this.state;
     const coverProps = this.coverProps();
+    const scaler = coverProps ? fitScaler(coverProps, fit, mode, showCode) : undefined;
     return (
       <div
         className={cx('App', 'web', {
@@ -447,12 +440,12 @@ export default class App extends React.Component<{}, State> {
               {mode === 'pdf' && <PrintPdf {...coverProps} />}
               {mode === 'ebook' && <Front {...coverProps} />}
               <style>
-                {coverCss.common(coverProps).join('\n')}
-                {coverCss.front(coverProps).join('\n')}
-                {coverCss.back(coverProps).join('\n')}
-                {coverCss.spine(coverProps).join('\n')}
-                {mode === '3d' ? coverCss.threeD(coverProps).join('\n') : ''}
-                {mode === 'pdf' ? coverCss.pdf(coverProps).join('\n') : ''}
+                {coverCss.common(coverProps, scaler).join('\n')}
+                {coverCss.front(coverProps, scaler).join('\n')}
+                {coverCss.back(coverProps, scaler).join('\n')}
+                {coverCss.spine(coverProps, scaler).join('\n')}
+                {mode === '3d' ? coverCss.threeD(coverProps, scaler).join('\n') : ''}
+                {mode === 'pdf' ? coverCss.pdf(coverProps, scaler).join('\n') : ''}
               </style>
             </div>
           </>
