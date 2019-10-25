@@ -20,15 +20,14 @@ const namespace = 'fl-update-pages';
 export default async function handler({ forceUpdate }: Options): Promise<void> {
   const meta = await fetchSingleton();
   artifacts.deleteNamespaceDir(namespace);
-
-  const dpcs = dpcQuery.getByPattern();
-  hydrate.all(dpcs);
+  const dpcs = dpcQuery.getByPattern().reverse();
 
   for (const dpc of dpcs) {
     if (!forceUpdate && shouldSkip(dpc.path, meta)) {
       continue;
     }
 
+    hydrate.all([dpc]);
     const singlePageData = await singleVolumePageData(dpc);
     const splitPageData = await multiVolumePageData(dpc);
     const [size, condense] = choosePrintSize(singlePageData, splitPageData);
@@ -119,6 +118,7 @@ function filename(dpc: DocPrecursor, variant: string, volumeNumber?: number): st
     dpc.friendInitials.join(''),
     dpc.documentSlug,
     dpc.editionType,
+    dpc.documentId.substring(0, 8),
     variant,
     volumeNumber,
   ]
