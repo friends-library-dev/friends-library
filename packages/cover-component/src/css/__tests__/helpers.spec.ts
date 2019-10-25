@@ -1,4 +1,5 @@
-import { scopeCss, scaleCssInches } from '../helpers';
+import { scopeCss, scaleCssInches, spineAuthorDisplay } from '../helpers';
+import { PrintSize } from '@friends-library/types';
 
 describe('scopeCss()', () => {
   // prettier-ignore
@@ -54,4 +55,21 @@ describe('scaleCssInches()', () => {
   test.each(cases)('css inches should be scaled', (scaler, before, after) => {
     expect(scaleCssInches(before, scaler)).toBe(after);
   });
+});
+
+describe('spineAuthorDisplay()', () => {
+  const spineAuthorDisplayCases: [string, string, PrintSize, boolean][] = [
+    ['The Life and Letters of John&nbsp;Fothergill', 'John Fothergill', 'm', true],
+    ['The Life and Letters of Catherine&nbsp;Payton', 'Catherine Payton', 'm', true],
+    ['The Christian Progress of George&nbsp;Whitehead', 'George Whitehead', 'm', false],
+    // all of the `W`s should be factored as making it longer
+    ['The Journal and Writings of John&nbsp;Woolman', 'John Woolman', 'm', false],
+  ];
+
+  test.each(spineAuthorDisplayCases)(
+    'spine author display for "%s"',
+    (title, author, size, display) => {
+      expect(spineAuthorDisplay(title, author, size)).toBe(display ? 'block' : 'none');
+    },
+  );
 });

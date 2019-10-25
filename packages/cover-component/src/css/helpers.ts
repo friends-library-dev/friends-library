@@ -82,6 +82,23 @@ export function dynamifyCss(css: Css, scope?: string, scaler?: number): Css {
   return scopeCss(scaleCssInches(css, scaler), scope);
 }
 
+export function spineAuthorDisplay(
+  title: string,
+  author: string,
+  size: PrintSize,
+): 'block' | 'none' {
+  const lastName = String(author.split(' ').pop());
+  let totalChars = title.replace(/&nbsp;/g, ' ').length + lastName.length;
+  const numWideLetters = (`${title}${lastName}`.match(/(W|D)/g) || []).length;
+  totalChars += numWideLetters;
+
+  if (size === 'm' && totalChars >= 50) {
+    return 'none';
+  }
+
+  return 'block';
+}
+
 /**
  * An identity pass-through tagged template literal function
  * just so I can get syntax highlighting etc. from vscode
