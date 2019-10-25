@@ -3,7 +3,12 @@ import cx from 'classnames';
 import KeyEvent from 'react-keyboard-event-handler';
 import { CoverProps, Css, Html } from '@friends-library/types';
 import FormControl from '@material-ui/core/FormControl';
-import { ThreeD, PrintPdf, css as coverCss } from '@friends-library/cover-component';
+import {
+  Front,
+  ThreeD,
+  PrintPdf,
+  css as coverCss,
+} from '@friends-library/cover-component';
 import debounce from 'lodash/debounce';
 import { FriendData, DocumentData, EditionData } from '../types';
 import {
@@ -440,6 +445,7 @@ export default class App extends React.Component<{}, State> {
             <div className={cx('cover-wrap', { 'cover--ebook': mode === 'ebook' })}>
               {mode === '3d' && <ThreeD {...coverProps} perspective={perspective} />}
               {mode === 'pdf' && <PrintPdf {...coverProps} />}
+              {mode === 'ebook' && <Front {...coverProps} />}
               <style>
                 {coverCss.common(coverProps).join('\n')}
                 {coverCss.front(coverProps).join('\n')}

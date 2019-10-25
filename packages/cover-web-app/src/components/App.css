@@ -37,3 +37,16 @@ body {
 .mask-bleed .guide--trim-bleed {
   opacity: 0;
 }
+
+.capturing-screenshot form,
+.capturing-screenshot .Toolbar {
+  display: none !important;
+}
+
+.capturing-screenshot .cover-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scale(2.77778); /* 1600px x 2400px */
+  transform-origin: top left;
+}
