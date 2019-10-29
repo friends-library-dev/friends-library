@@ -41,17 +41,29 @@ export default async function update(argv: UpdateOptions): Promise<void> {
     const opts = { namespace, srcPath: fileId };
     artifacts.deleteNamespaceDir(namespace);
 
-    await handleEbooks(dpc, opts, uploads, makeScreenshot);
-    await handlePaperbackAndCover(dpc, opts, uploads, meta);
+    await handleWebPdf(dpc, opts, uploads);
+    // await handleEbooks(dpc, opts, uploads, makeScreenshot);
+    // await handlePaperbackAndCover(dpc, opts, uploads, meta);
     const urls = await cloud.uploadFiles(uploads);
     console.log(urls);
-    await docMeta.save(meta);
+    // await docMeta.save(meta);
 
     logDocComplete(dpc, assetStart, progress);
   }
 
   if (!argv.coverServerPort) coverServer.stop(COVER_PORT);
   await closeHeadlessBrowser();
+}
+
+async function handleWebPdf(
+  dpc: FsDocPrecursor,
+  opts: { namespace: string; srcPath: string },
+  uploads: Map<string, string>,
+): Promise<void> {
+  const [webManifest] = await manifest.webPdf(dpc);
+  const filename = dpc.edition!.filename('web-pdf');
+  const path = await artifacts.pdf(webManifest, filename, opts);
+  uploads.set(path, cloudPath(dpc, 'web-pdf'));
 }
 
 async function handlePaperbackAndCover(
@@ -75,7 +87,7 @@ async function handlePaperbackAndCover(
     paperback: paperbackMeta,
   });
 
-  const coverManifests = await manifest.cover(dpc, {
+  const coverManifests = await manifest.paperbackCover(dpc, {
     printSize: paperbackMeta.size,
     volumes: paperbackMeta.volumes,
   });

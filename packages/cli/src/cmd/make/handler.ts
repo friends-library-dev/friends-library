@@ -47,7 +47,7 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
     }
   }
 
-  !noOpen && files.forEach(file => execSync(`open ${file}`));
+  !noOpen && files.forEach(file => execSync(`open "${file}"`));
 }
 
 async function getTypeManifests(
@@ -56,6 +56,8 @@ async function getTypeManifests(
   argv: MakeOptions,
 ): Promise<FileManifest[]> {
   switch (type) {
+    case 'web-pdf':
+      return manifest.webPdf(dpc);
     case 'paperback-interior': {
       const conf: PaperbackInteriorConfig = {
         frontmatter: !argv.noFrontmatter,

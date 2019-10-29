@@ -6,7 +6,7 @@ import {
   PrintSizeDetails,
 } from '@friends-library/types';
 import { getPrintSizeDetails } from '@friends-library/lulu';
-import { joinCssFiles, replaceVars } from './helpers';
+import { runningHead, joinCssFiles, replaceVars } from './helpers';
 
 export default function paperbackInterior(
   dpc: DocPrecursor,
@@ -40,14 +40,11 @@ function getVars(
   dpc: DocPrecursor,
   conf: PaperbackInteriorConfig,
 ): Record<string, string> {
-  const { sections, meta, config } = dpc;
   const size = getPrintSizeDetails(conf.printSize);
   const { dims, margins } = size;
-  const runningHead =
-    sections.length === 1 ? meta.author.name : config.shortTitle || meta.title;
 
   return {
-    '--running-head-title': `"${runningHead}"`,
+    '--running-head-title': `"${runningHead(dpc)}"`,
     '--chapter-margin-top': `${dims.height / 4}in`,
     '--copyright-page-height': `${dims.height - margins.top - margins.bottom}in`,
     '--half-title-page-height': `${dims.height - (margins.top + margins.bottom) * 3}in`,

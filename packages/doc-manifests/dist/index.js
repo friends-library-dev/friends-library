@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var paperback_interior_1 = require("./paperback-interior");
 exports.paperbackInterior = paperback_interior_1.default;
+var paperback_cover_1 = require("./paperback-cover");
+exports.paperbackCover = paperback_cover_1.default;
+exports.paperbackCoverFromProps = paperback_cover_1.paperbackCoverFromProps;
 var epub_1 = require("./epub");
 exports.epub = epub_1.default;
 exports.epubFromEbook = epub_1.epubFromEbook;
@@ -10,6 +13,5 @@ exports.mobi = mobi_1.default;
 exports.mobiFromEbook = mobi_1.mobiFromEbook;
 var ebook_1 = require("./ebook");
 exports.ebook = ebook_1.default;
-var cover_1 = require("./cover");
-exports.cover = cover_1.default;
-exports.coverFromProps = cover_1.coverFromProps;
+var web_pdf_1 = require("./web-pdf");
+exports.webPdf = web_pdf_1.default;

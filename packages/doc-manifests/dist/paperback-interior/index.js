@@ -72,11 +72,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var doc_css_1 = require("@friends-library/doc-css");
 var flow_1 = __importDefault(require("lodash/flow"));
-var roman_numerals_1 = require("roman-numerals");
 var lulu_1 = require("@friends-library/lulu");
 var doc_html_1 = require("@friends-library/doc-html");
 var wrap_html_1 = __importDefault(require("../wrap-html"));
 var frontmatter_1 = __importDefault(require("./frontmatter"));
+var pdf_shared_1 = require("../pdf-shared");
 function paperbackInteriorManifests(dpc, conf) {
     return __awaiter(this, void 0, void 0, function () {
         var docCss;
@@ -87,7 +87,7 @@ function paperbackInteriorManifests(dpc, conf) {
                         {
                             'doc.html': html(dpc, conf),
                             'doc.css': docCss,
-                            'line.svg': lineSvgMarkup(),
+                            'line.svg': pdf_shared_1.lineSvgMarkup(),
                         },
                     ]];
             }
@@ -95,7 +95,7 @@ function paperbackInteriorManifests(dpc, conf) {
                     return {
                         'doc.html': html(dpc, conf, volIdx),
                         'doc.css': docCss,
-                        'line.svg': lineSvgMarkup(),
+                        'line.svg': pdf_shared_1.lineSvgMarkup(),
                     };
                 })];
         });
@@ -104,9 +104,9 @@ function paperbackInteriorManifests(dpc, conf) {
 exports.default = paperbackInteriorManifests;
 function html(dpc, conf, volIdx) {
     return flow_1.default([
-        joinSections,
+        pdf_shared_1.joinSections,
         addFirstChapterClass,
-        inlineNotes,
+        pdf_shared_1.inlineNotes,
         prependFrontmatter,
         function (_a) {
             var _b = __read(_a, 4), html = _b[0], d = _b[1], c = _b[2], i = _b[3];
@@ -114,33 +114,6 @@ function html(dpc, conf, volIdx) {
         },
         wrapHtml,
     ])(['', dpc, conf, volIdx])[0];
-}
-var joinSections = function (_a) {
-    var _b = __read(_a, 4), dpc = _b[1], conf = _b[2], volIdx = _b[3];
-    var joined = dpc.sections
-        .filter(makeVolumeSplitFilter(dpc, volIdx))
-        .map(function (_a) {
-        var html = _a.html, heading = _a.heading;
-        return doc_html_1.replaceHeadings(html, heading, dpc).replace('<div class="sectionbody">', "<div class=\"sectionbody\" short=\"" + runningHeader(heading, dpc.lang) + "\">");
-    })
-        .join('\n');
-    return [joined, dpc, conf, volIdx];
-};
-function makeVolumeSplitFilter(dpc, volIdx) {
-    return function (_, sectionIndex) {
-        if (typeof volIdx !== 'number')
-            return true;
-        var start = (dpc.paperbackSplits[volIdx - 1] || 0) - 1;
-        var stop = dpc.paperbackSplits[volIdx] || Infinity;
-        return sectionIndex > start && sectionIndex < stop;
-    };
-}
-function runningHeader(_a, lang) {
-    var shortText = _a.shortText, text = _a.text, sequence = _a.sequence;
-    if (shortText || text || !sequence) {
-        return doc_html_1.capitalizeTitle(doc_html_1.trimTrailingPunctuation(shortText || text), lang).replace(/ \/ .+/, '');
-    }
-    return sequence.type + " " + roman_numerals_1.toRoman(sequence.number);
 }
 var addFirstChapterClass = function (_a) {
     var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
@@ -151,26 +124,17 @@ var addFirstChapterClass = function (_a) {
         volIdx,
     ];
 };
-var inlineNotes = function (_a) {
-    var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
-    return [
-        html.replace(/{% note: ([a-z0-9-]+) %}/gim, function (_, id) { return "<span class=\"footnote\">" + (dpc.notes.get(id) || '') + "</span>"; }),
-        dpc,
-        conf,
-        volIdx,
-    ];
-};
 var prependFrontmatter = function (_a) {
     var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
     if (!conf.frontmatter) {
         return [html, dpc, conf, volIdx];
     }
-    var splitDpc = __assign(__assign({}, dpc), { sections: dpc.sections.filter(makeVolumeSplitFilter(dpc, volIdx)) });
+    var splitDpc = __assign(__assign({}, dpc), { sections: dpc.sections.filter(pdf_shared_1.makeVolumeSplitFilter(dpc, volIdx)) });
     return [frontmatter_1.default(splitDpc, volIdx).concat(html), dpc, conf, volIdx];
 };
 var wrapHtml = function (_a) {
     var _b = __read(_a, 4), html = _b[0], dpc = _b[1], conf = _b[2], volIdx = _b[3];
-    var abbrev = lulu_1.getPrintSizeDetails(conf.printSize).abbrev;
+    var abbrev = lulu_1.getPrintSizeDetails(conf.printSize || 'm').abbrev;
     var wrapped = wrap_html_1.default(html, {
         title: dpc.meta.title,
         css: ['doc.css'],
@@ -178,6 +142,3 @@ var wrapHtml = function (_a) {
     });
     return [wrapped, dpc, conf, volIdx];
 };
-function lineSvgMarkup() {
-    return '<svg height="1px" width="88px" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="0" x2="88" y2="0" style="stroke:rgb(0,0,0);stroke-width:1" /></svg>';
-}

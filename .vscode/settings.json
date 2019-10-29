@@ -16,7 +16,7 @@
     "**/tsconfig.tsbuildinfo": true,
     "packages/cli-utils/*.d.ts": true,
     "packages/cli-utils/*.js": true,
-    "packages/cover/build": true,
+    "packages/cover-web-app/build": true,
     "packages/kite/src/publish/epub/cover_*.png": true,
     "packages/styleguide/src/built-frags.json": true,
     "packages/ui/storybook-static": true,
