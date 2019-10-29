@@ -26,12 +26,24 @@ export default async function ebook(
       'OEBPS/style.css': conf.subType === 'epub' ? epubCss(dpc) : mobiCss(dpc),
       'OEBPS/package-document.opf': packageDocument(dpc, conf),
       'OEBPS/nav.xhtml': wrapEbookBodyHtml(nav(dpc, conf), dpc.lang),
-      // ...(await coverFiles(job)), // @TODO
+      ...coverFiles(dpc, conf.coverImg),
       ...sectionFiles(dpc),
       ...notesFile(dpc),
       ...frontmatterFiles(dpc),
     },
   ];
+}
+
+function coverFiles(dpc: DocPrecursor, coverImg?: Buffer): FileManifest {
+  if (!coverImg) return {};
+  return {
+    'OEBPS/cover.png': coverImg,
+    'OEBPS/cover.xhtml': wrapEbookBodyHtml(
+      '<figure><img alt="Cover" src="cover.png"/></figure>',
+      dpc.lang,
+      'cover',
+    ),
+  };
 }
 
 function container(): Xml {
@@ -45,11 +57,12 @@ function container(): Xml {
   `.trim();
 }
 
-function wrapEbookBodyHtml(bodyHtml: Html, lang: Lang): Html {
+function wrapEbookBodyHtml(bodyHtml: Html, lang: Lang, bodyClass?: string): Html {
   return wrapHtmlBody(bodyHtml, {
     htmlAttrs: `xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="${lang}" lang="${lang}"`,
     css: ['style.css'],
     isUtf8: true,
+    ...(bodyClass ? { bodyClass } : {}),
   });
 }
 

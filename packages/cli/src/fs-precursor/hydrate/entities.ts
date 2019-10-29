@@ -22,6 +22,7 @@ export default function entities(dpc: FsDocPrecursor): void {
   dpc.documentId = edition.document.id;
   dpc.edition = edition;
   dpc.paperbackSplits = edition.splits || [];
+  dpc.blurb = edition.document.description || dpc.friend.description;
 }
 
 function getEditions(): Map<string, Edition> {

@@ -16,10 +16,10 @@ type MultiFiles = { m: string[]; xl: string[]; 'xl--condensed': string[] } | und
 
 export async function publishPaperback(
   dpc: FsDocPrecursor,
-  namespace: string,
+  opts: { namespace: string; srcPath: string },
 ): Promise<[EditionMeta['paperback'], string[]]> {
-  const [singlePages, singleFiles] = await makeSingleVolumes(dpc, namespace);
-  const [splitPages, splitFiles] = await makeMultiVolumes(dpc, namespace);
+  const [singlePages, singleFiles] = await makeSingleVolumes(dpc, opts);
+  const [splitPages, splitFiles] = await makeMultiVolumes(dpc, opts);
   const [size, condense] = choosePrintSize(singlePages, splitPages);
 
   const sizeVariant = `${size}${condense ? '--condensed' : ''}` as PrintSizeVariant;
@@ -48,9 +48,9 @@ export async function publishPaperback(
 
 async function makeSingleVolumes(
   dpc: FsDocPrecursor,
-  namespace: string,
+  opts: { namespace: string; srcPath: string },
 ): Promise<[SinglePages, SingleFiles]> {
-  log(c`   {gray Determining paperback interior page numbers...}`);
+  log(c`   {gray Determining paperback interior page counts...}`);
   const pages: SinglePages = { s: 0, m: 0, xl: 0, 'xl--condensed': 0 };
   const files: SingleFiles = { s: '', m: '', xl: '', 'xl--condensed': '' };
 
@@ -65,7 +65,7 @@ async function makeSingleVolumes(
     });
 
     const file = filename(dpc, variant);
-    const filepath = await artifacts.pdf(manifest, file, { namespace, srcPath: file });
+    const filepath = await artifacts.pdf(manifest, file, opts);
     files[variant] = filepath;
     pages[variant] = await getPages(filepath);
   }
@@ -75,7 +75,7 @@ async function makeSingleVolumes(
 
 async function makeMultiVolumes(
   dpc: FsDocPrecursor,
-  namespace: string,
+  opts: { namespace: string; srcPath: string },
 ): Promise<[MultiPages, MultiFiles]> {
   if (!dpc.edition || !dpc.edition.splits) {
     return [undefined, undefined];
@@ -98,10 +98,7 @@ async function makeMultiVolumes(
       const manifest = manifests[idx];
       const vol = idx + 1;
       const volFilename = filename(dpc, variant, vol);
-      const filepath = await artifacts.pdf(manifest, volFilename, {
-        namespace,
-        srcPath: volFilename,
-      });
+      const filepath = await artifacts.pdf(manifest, volFilename, opts);
       files[variant].push(filepath);
       pages[variant].push(await getPages(filepath));
     }

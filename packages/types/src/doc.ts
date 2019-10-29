@@ -24,11 +24,12 @@ export interface DocPrecursor {
   epigraphs: Epigraph[];
   sections: DocSection[];
   paperbackSplits: number[];
+  blurb: string;
   notes: Notes;
   config: { [key: string]: any };
   customCode: {
-    css: { [k in ArtifactType | 'all' | 'pdf' | 'ebook' | 'cover']?: Css };
-    html: { [k in ArtifactType | 'all' | 'pdf' | 'ebook' | 'cover']?: Html };
+    css: { [k in ArtifactType | 'all' | 'pdf' | 'ebook']?: Css };
+    html: { [k in ArtifactType | 'all' | 'pdf' | 'ebook']?: Html };
   };
   meta: {
     title: string;
@@ -62,10 +63,16 @@ export interface PaperbackInteriorConfig {
   allowSplits: boolean;
 }
 
+export interface PaperbackCoverConfig {
+  printSize: PrintSize;
+  volumes: number[];
+  showGuides?: boolean;
+}
+
 export interface EbookConfig {
   frontmatter: boolean;
   subType: 'epub' | 'mobi';
-  coverImgPath?: string;
+  coverImg?: Buffer;
   randomizeForLocalTesting?: boolean;
 }
 
@@ -74,6 +81,7 @@ export interface EditionMeta {
   adocLength: number;
   numSections: number;
   revision: Sha;
+  productionRevision: Sha;
   paperback: {
     size: PrintSize;
     volumes: number[];

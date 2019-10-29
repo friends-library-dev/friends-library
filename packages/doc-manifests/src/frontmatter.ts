@@ -1,8 +1,8 @@
 import moment from 'moment';
-import { toRoman } from 'roman-numerals';
 import { memoize, pickBy } from 'lodash';
 import { Html, DocPrecursor, FileManifest, Epigraph } from '@friends-library/types';
 import { capitalizeTitle, ucfirst, br7 } from '@friends-library/doc-html/src/helpers';
+import { addVolumeSuffix } from './faux-volumes';
 
 export const frontmatter = memoize(
   (dpc: DocPrecursor): FileManifest => {
@@ -48,12 +48,7 @@ export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
     },
   } = dpc;
 
-  let volSuffix = '';
-  if (typeof volIdx === 'number') {
-    volSuffix = ` &#8212; Vol. ${toRoman(volIdx + 1)}`;
-  }
-
-  let markup = `<h1>${title}${volSuffix}</h1>`;
+  let markup = `<h1>${addVolumeSuffix(title, volIdx)}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
   if (!nameInTitle) {
     markup = `${markup}\n<p class="byline">${br7}${

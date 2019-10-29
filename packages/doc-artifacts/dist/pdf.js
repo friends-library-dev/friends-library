@@ -44,7 +44,7 @@ var child_process_1 = require("child_process");
 var env_1 = __importDefault(require("@friends-library/env"));
 var color_1 = require("@friends-library/cli-utils/color");
 var dirs_1 = require("./dirs");
-function pdf(manifest, filename, opts) {
+function pdf(manifest, filenameNoExt, opts) {
     if (opts === void 0) { opts = {}; }
     return __awaiter(this, void 0, void 0, function () {
         var _a, ARTIFACT_DIR, SRC_DIR, writeFiles, PRINCE_BIN, src, stream, output;
@@ -82,10 +82,10 @@ function pdf(manifest, filename, opts) {
                         })];
                 case 2:
                     _b.sent();
-                    return [4 /*yield*/, fs_extra_1.default.move(SRC_DIR + "/doc.pdf", ARTIFACT_DIR + "/" + filename + ".pdf")];
+                    return [4 /*yield*/, fs_extra_1.default.move(SRC_DIR + "/doc.pdf", ARTIFACT_DIR + "/" + filenameNoExt + ".pdf")];
                 case 3:
                     _b.sent();
-                    return [2 /*return*/, ARTIFACT_DIR + "/" + filename + ".pdf"];
+                    return [2 /*return*/, ARTIFACT_DIR + "/" + filenameNoExt + ".pdf"];
             }
         });
     });

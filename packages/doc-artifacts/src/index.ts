@@ -9,16 +9,16 @@ export { deleteNamespaceDir } from './dirs';
 
 export async function create(
   manifest: FileManifest,
-  filename: string,
+  filenameNoExt: string,
   options: PdfOptions & EbookOptions,
 ): Promise<string> {
-  if (manifest['line.svg']) {
-    return pdf(manifest, filename, options);
+  if (Object.keys(manifest).length < 4) {
+    return pdf(manifest, filenameNoExt, options);
   }
 
   if (manifest['OEBPS/nav.xhtml'].includes('http-equiv')) {
-    return mobi(manifest, filename, options);
+    return mobi(manifest, filenameNoExt, options);
   }
 
-  return epub(manifest, filename, options);
+  return epub(manifest, filenameNoExt, options);
 }

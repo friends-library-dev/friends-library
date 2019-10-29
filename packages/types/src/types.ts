@@ -17,6 +17,7 @@ export {
   DocPrecursor,
   ArtifactType,
   PaperbackInteriorConfig,
+  PaperbackCoverConfig,
   EbookConfig,
   EditionMeta,
   PageData,
@@ -149,7 +150,7 @@ export type DocumentMeta = Readonly<{
 }>;
 
 export interface FileManifest {
-  [key: string]: string;
+  [key: string]: string | Buffer;
 }
 
 export interface LintResult {

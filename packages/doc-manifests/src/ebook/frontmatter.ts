@@ -1,26 +1,26 @@
 import { memoize } from 'lodash';
-import { Html, DocPrecursor } from '@friends-library/types';
+import { Html, DocPrecursor, FileManifest } from '@friends-library/types';
 import { frontmatter as commonFrontmatter } from '../frontmatter';
 import { callMarkup, useSymbols } from './notes';
 import { navText } from '@friends-library/doc-html';
 
-const frontmatter = memoize((dpc: DocPrecursor, target: 'mobi' | 'epub'): {
-  [key: string]: Html;
-} => {
-  const fm = commonFrontmatter(dpc);
+const frontmatter = memoize(
+  (dpc: DocPrecursor, target: 'mobi' | 'epub'): FileManifest => {
+    const fm = commonFrontmatter(dpc);
 
-  fm['half-title'] = `<div class="half-title-page">${fm['half-title']}</div>`;
+    fm['half-title'] = `<div class="half-title-page">${fm['half-title']}</div>`;
 
-  if (dpc.notes.size) {
-    fm['footnote-helper'] = footnoteHelper(dpc);
-  }
+    if (dpc.notes.size) {
+      fm['footnote-helper'] = footnoteHelper(dpc);
+    }
 
-  if (target === 'mobi' && dpc.sections.length > 1) {
-    fm['content-toc'] = contentToc(dpc);
-  }
+    if (target === 'mobi' && dpc.sections.length > 1) {
+      fm['content-toc'] = contentToc(dpc);
+    }
 
-  return fm;
-});
+    return fm;
+  },
+);
 
 export default frontmatter;
 

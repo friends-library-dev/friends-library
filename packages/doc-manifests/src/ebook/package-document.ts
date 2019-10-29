@@ -31,7 +31,7 @@ export function packageDocument(dpc: DocPrecursor, conf: EbookConfig): Xml {
   <dc:rights>Public domain in the USA.</dc:rights>
   <meta property="file-as" refines="#author">${nameSort}</meta>
   <meta property="dcterms:modified">${modified}</meta>
-  ${conf.coverImgPath ? '<meta name="cover" content="cover-img" />' : ''}
+  ${conf.coverImg ? '<meta name="cover" content="cover-img" />' : ''}
 </metadata>
 <manifest>
   ${[...manifestItems(dpc, conf)]
@@ -74,7 +74,7 @@ export function manifestItems(dpc: DocPrecursor, conf: EbookConfig): Map<string,
     'media-type': 'text/css',
   });
 
-  if (conf.coverImgPath) {
+  if (conf.coverImg) {
     items.set('cover-img', {
       href: 'cover.png',
       'media-type': 'image/png',
@@ -126,7 +126,7 @@ export function spineItems(dpc: DocPrecursor, conf: EbookConfig): string[] {
     items.push('notes');
   }
 
-  if (conf.coverImgPath) {
+  if (conf.coverImg) {
     items.unshift('cover');
   }
 

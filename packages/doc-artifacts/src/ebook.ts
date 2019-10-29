@@ -22,7 +22,13 @@ export async function writeEbookManifest(
 
   Object.keys(manifest).forEach(path => {
     zip.file(path, manifest[path]);
-    promises.push(fs.outputFile(`${SRC_DIR}/${path}`, manifest[path]));
+    promises.push(
+      fs.outputFile(
+        `${SRC_DIR}/${path}`,
+        manifest[path],
+        path.endsWith('.png') ? 'binary' : undefined,
+      ),
+    );
   });
 
   const binary = zip.generate({ base64: false, compression: 'DEFLATE' });

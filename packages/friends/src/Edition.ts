@@ -1,4 +1,4 @@
-import { ISBN, EditionType, Url, FileType } from '@friends-library/types';
+import { ISBN, EditionType, Url, ArtifactType } from '@friends-library/types';
 import Format from './Format';
 import Chapter from './Chapter';
 import Document from './Document';
@@ -28,19 +28,20 @@ export default class Edition {
     return `${this.document.url()}/${this.type}`;
   }
 
-  public filename(type: FileType | 'print-cover'): string {
+  public filename(type: ArtifactType, volumeNumber?: number): string {
     const base = `${this.document.filename}--${this.type}`;
+    const volumeSuffix = typeof volumeNumber === 'number' ? `--v${volumeNumber}` : '';
     switch (type) {
       case 'epub':
         return `${base}.epub`;
       case 'mobi':
         return `${base}.mobi`;
-      case 'pdf-web':
+      case 'web-pdf':
         return `${base}.pdf`;
-      case 'pdf-print':
-        return `${base}--(print).pdf`;
-      case 'print-cover':
-        return `${base}--cover.pdf`;
+      case 'paperback-interior':
+        return `${base}--(print)${volumeSuffix}.pdf`;
+      case 'paperback-cover':
+        return `${base}--cover${volumeSuffix}.pdf`;
     }
   }
 

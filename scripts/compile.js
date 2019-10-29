@@ -16,6 +16,7 @@ const pkgs = [
   'lulu',
   'env',
   'cli-utils',
+  'cloud',
   // 'client',
   // 'evans',
   'friends',

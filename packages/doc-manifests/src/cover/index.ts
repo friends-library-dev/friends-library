@@ -1,28 +1,42 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { FileManifest, CoverProps } from '@friends-library/types';
+import {
+  PaperbackCoverConfig,
+  FileManifest,
+  CoverProps,
+  DocPrecursor,
+} from '@friends-library/types';
 import { PrintPdf, css } from '@friends-library/cover-component';
 import wrapBodyHtml from '../wrap-html';
+import { addVolumeSuffix } from '../faux-volumes';
 
-export default function cover() {
-  // @TODO
+export default async function cover(
+  dpc: DocPrecursor,
+  { printSize, volumes, showGuides }: PaperbackCoverConfig,
+): Promise<FileManifest[]> {
+  return Promise.resolve(
+    volumes.map((numPages, fauxVolIdx) => {
+      return coverFromProps({
+        author: dpc.meta.author.name,
+        title: addVolumeSuffix(
+          dpc.meta.title,
+          volumes.length > 1 ? fauxVolIdx : undefined,
+        ),
+        lang: dpc.lang,
+        edition: dpc.editionType,
+        showGuides: showGuides || false,
+        customCss: dpc.customCode.css['paperback-cover'] || '',
+        customHtml: dpc.customCode.html['paperback-cover'] || '',
+        size: printSize,
+        isbn: dpc.meta.isbn,
+        pages: numPages,
+        blurb: dpc.blurb,
+      })[0];
+    }),
+  );
 }
 
-export async function coverFromProps(): Promise<FileManifest[]> {
-  const props: CoverProps = {
-    author: 'Samuel Rundell',
-    title: 'The Work of Vital Religion in the Soul',
-    lang: 'en',
-    edition: 'updated',
-    showGuides: false,
-    customCss: '',
-    customHtml: '',
-    size: 'm',
-    isbn: '978-1-64476-000-0',
-    pages: 222,
-    blurb:
-      'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart.',
-  };
+export function coverFromProps(props: CoverProps): FileManifest[] {
   const el = React.createElement(PrintPdf, props);
   const html = ReactDOMServer.renderToStaticMarkup(el);
   return [
@@ -30,7 +44,7 @@ export async function coverFromProps(): Promise<FileManifest[]> {
       'doc.html': wrapBodyHtml(html, {
         isUtf8: true,
         css: ['doc.css'],
-        htmlAttrs: 'lang="en" class="prince pdf trim--m"',
+        htmlAttrs: `lang="en" class="prince pdf trim--${props.size}"`,
       }),
       'doc.css': `
         ${css.common(props).join('\n')}
@@ -42,3 +56,17 @@ export async function coverFromProps(): Promise<FileManifest[]> {
     },
   ];
 }
+const testProps: CoverProps = {
+  author: 'Samuel Rundell',
+  title: 'The Work of Vital Religion in the Soul',
+  lang: 'en',
+  edition: 'updated',
+  showGuides: false,
+  customCss: '',
+  customHtml: '',
+  size: 'm',
+  isbn: '978-1-64476-000-0',
+  pages: 222,
+  blurb:
+    'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart.',
+};

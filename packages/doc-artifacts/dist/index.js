@@ -45,16 +45,16 @@ var epub_1 = __importDefault(require("./epub"));
 var mobi_1 = __importDefault(require("./mobi"));
 var dirs_1 = require("./dirs");
 exports.deleteNamespaceDir = dirs_1.deleteNamespaceDir;
-function create(manifest, filename, options) {
+function create(manifest, filenameNoExt, options) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            if (manifest['line.svg']) {
-                return [2 /*return*/, pdf_1.default(manifest, filename, options)];
+            if (Object.keys(manifest).length < 4) {
+                return [2 /*return*/, pdf_1.default(manifest, filenameNoExt, options)];
             }
             if (manifest['OEBPS/nav.xhtml'].includes('http-equiv')) {
-                return [2 /*return*/, mobi_1.default(manifest, filename, options)];
+                return [2 /*return*/, mobi_1.default(manifest, filenameNoExt, options)];
             }
-            return [2 /*return*/, epub_1.default(manifest, filename, options)];
+            return [2 /*return*/, epub_1.default(manifest, filenameNoExt, options)];
         });
     });
 }
