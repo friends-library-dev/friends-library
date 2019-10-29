@@ -4,7 +4,6 @@ import { prettifyErrors } from '@friends-library/cli-utils/error';
 import * as make from './cmd/make';
 import * as cover from './cmd/cover';
 import * as publish from './cmd/publish';
-import * as updatePages from './cmd/update-pages';
 
 prettifyErrors();
 
@@ -15,5 +14,4 @@ yargs
   .command(make)
   .command(cover)
   .command(publish)
-  .command(updatePages)
   .help().argv;
