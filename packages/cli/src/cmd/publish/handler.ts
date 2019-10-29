@@ -1,8 +1,10 @@
 import { execSync } from 'child_process';
+import fetch from 'node-fetch';
 import memoize from 'lodash/memoize';
-import { log, c } from '@friends-library/cli-utils/color';
+import { log, c, red } from '@friends-library/cli-utils/color';
 import * as docMeta from '@friends-library/document-meta';
-import { Sha, DocPrecursor, EditionMeta, ArtifactType } from '@friends-library/types';
+import env from '@friends-library/env';
+import { Sha, DocPrecursor, ArtifactType } from '@friends-library/types';
 import * as artifacts from '@friends-library/doc-artifacts';
 import * as manifest from '@friends-library/doc-manifests';
 import * as cloud from '@friends-library/cloud';
@@ -41,14 +43,16 @@ export default async function update(argv: UpdateOptions): Promise<void> {
     const opts = { namespace, srcPath: fileId };
     artifacts.deleteNamespaceDir(namespace);
 
+    await handlePaperbackAndCover(dpc, opts, uploads, meta);
     await handleWebPdf(dpc, opts, uploads);
-    // await handleEbooks(dpc, opts, uploads, makeScreenshot);
-    // await handlePaperbackAndCover(dpc, opts, uploads, meta);
-    const urls = await cloud.uploadFiles(uploads);
-    console.log(urls);
-    // await docMeta.save(meta);
+    await handleEbooks(dpc, opts, uploads, makeScreenshot);
+    log(c`   {gray Uploading generated files to cloud storage...}`);
+    await cloud.uploadFiles(uploads);
+    log(c`   {gray Saving edition meta...}`);
+    await docMeta.save(meta);
 
     logDocComplete(dpc, assetStart, progress);
+    argv.build && (await triggerSiteRebuilds());
   }
 
   if (!argv.coverServerPort) coverServer.stop(COVER_PORT);
@@ -60,6 +64,7 @@ async function handleWebPdf(
   opts: { namespace: string; srcPath: string },
   uploads: Map<string, string>,
 ): Promise<void> {
+  log(c`   {gray Creating web-pdf artifact...}`);
   const [webManifest] = await manifest.webPdf(dpc);
   const filename = dpc.edition!.filename('web-pdf');
   const path = await artifacts.pdf(webManifest, filename, opts);
@@ -72,6 +77,7 @@ async function handlePaperbackAndCover(
   uploads: Map<string, string>,
   meta: docMeta.DocumentMeta,
 ): Promise<void> {
+  log(c`   {gray Starting paperback interior generation...}`);
   const [paperbackMeta, volumePaths] = await publishPaperback(dpc, opts);
   volumePaths.forEach((path, idx) => {
     const fauxVolNum = volumePaths.length > 1 ? idx + 1 : undefined;
@@ -110,10 +116,15 @@ async function handleEbooks(
   const coverImg = await makeScreenshot(dpc.path);
   const config = { coverImg, frontmatter: true };
   const base = dpc.edition!.filename('epub').replace(/\..*$/, '');
+
+  log(c`   {gray Creating epub artifact...}`);
   const [epubManifest] = await manifest.epub(dpc, { ...config, subType: 'epub' });
-  const [mobiManifest] = await manifest.mobi(dpc, { ...config, subType: 'mobi' });
   const epub = await artifacts.create(epubManifest, base, { ...opts, check: true });
+
+  log(c`   {gray Creating mobi artifact...}`);
+  const [mobiManifest] = await manifest.mobi(dpc, { ...config, subType: 'mobi' });
   const mobi = await artifacts.create(mobiManifest, base, { ...opts, check: false });
+
   uploads.set(epub, cloudPath(dpc, 'epub'));
   uploads.set(mobi, cloudPath(dpc, 'mobi'));
 }
@@ -122,40 +133,21 @@ function cloudPath(dpc: FsDocPrecursor, type: ArtifactType, volNum?: number): st
   return `${dpc.path}/${dpc.edition!.filename(type, volNum)}`;
 }
 
-/*
-DONT WORRY ABOUT SPEED, JUST MAKE AS SIMPLE AS POSSIBLE, OPTMIZE LATER
-----------------------------------------------------------------------
-
-√ store current production git hash
-√ Get all DPCs
-X Filter out the ones that we know ahead of time don't need updating // PUNT FOR NOW
-√ start up the cover website for screenshots
-
-For each DPC:
-
-  √ make one ebook screenshot for use later
-  √ make all {single-vol} print sizes
-  √ if necessary, make all multi-vol sizes
-  √ pick best print size
-  - update meta & persist
-
-  ? rename the chosen pdf file/s
-  ? delete unused pdf files
-
-  √ make manifests for:
-    √ cover/s (based on chosen pdf/s)
-    √ epub (pass ebook screenshot)
-    √ mobi (pass ebook screenshot)
-  
-  - upload the files
-
-/ For each DPC
-
-possibly trigger site rebuild
-close the cover website
-log end
-
-*/
+async function triggerSiteRebuilds(): Promise<void> {
+  const { EN_BUILD_HOOK_URI, ES_BUILD_HOOK_URI } = env.require(
+    'EN_BUILD_HOOK_URI',
+    'ES_BUILD_HOOK_URI',
+  );
+  const opts = { method: 'POST', body: '{}' };
+  try {
+    await Promise.all([fetch(EN_BUILD_HOOK_URI, opts), fetch(ES_BUILD_HOOK_URI, opts)]);
+    log(c`{green √} Triggered site re-builds for English and Spanish`);
+  } catch (error) {
+    red('Error triggering site deploy');
+    console.error(error);
+    process.exit(1);
+  }
+}
 
 function getFileId(dpc: DocPrecursor): string {
   return [

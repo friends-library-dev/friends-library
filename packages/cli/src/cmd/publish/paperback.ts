@@ -84,8 +84,9 @@ async function makeMultiVolumes(
   const pages: MultiPages = { m: [], xl: [], 'xl--condensed': [] };
   const files: MultiFiles = { m: [], xl: [], 'xl--condensed': [] };
 
+  log(c`   {gray Determining paperback interior page counts for split faux-volumes...}`);
   for (const variant of ['m', 'xl', 'xl--condensed'] as const) {
-    log(c`  {magenta.dim ->} {gray size (split):} {cyan ${variant}}`);
+    log(c`     {magenta.dim ->} {gray size (split):} {cyan ${variant}}`);
     const size = variant === 'xl--condensed' ? 'xl' : variant;
     const manifests = await paperbackManifest(dpc, {
       printSize: size,

@@ -38,7 +38,7 @@ export async function screenshot(
   return [
     async (id: string): Promise<Buffer> => {
       await page.goto(`http://localhost:${port}?capture=ebook&id=${id}`);
-      return page.screenshot({ path: 'foo.png' });
+      return page.screenshot({ encoding: 'binary' });
     },
     async () => {
       await browser.close();
