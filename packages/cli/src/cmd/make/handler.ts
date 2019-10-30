@@ -1,10 +1,13 @@
 import { execSync } from 'child_process';
 import { Arguments } from 'yargs';
-import { red } from '@friends-library/cli-utils/color';
+import { log, red } from '@friends-library/cli-utils/color';
 import * as manifest from '@friends-library/doc-manifests';
 import * as artifacts from '@friends-library/doc-artifacts';
 import * as hydrate from '../../fs-precursor/hydrate';
 import * as dpcQuery from '../../fs-precursor/query';
+import lintFixPath from '../../lint/lint-fix-path';
+import lintPath from '../../lint/lint-path';
+import { printLints } from '../../lint/display';
 import send from './send';
 import {
   ArtifactType,
@@ -26,10 +29,12 @@ interface MakeOptions {
   printSize?: PrintSize;
   email?: string;
   send: boolean;
+  fix: boolean;
+  skipLint: boolean;
 }
 
 export default async function handler(argv: Arguments<MakeOptions>): Promise<void> {
-  const { noOpen, pattern, isolate, target, email } = argv;
+  const { noOpen, pattern, isolate, target, email, fix, skipLint } = argv;
   const dpcs = dpcQuery.getByPattern(pattern);
   if (dpcs.length === 0) {
     red(`Pattern: \`${pattern}\` matched 0 docs.`);
@@ -43,6 +48,10 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
 
   const files: string[] = [];
   for (const dpc of dpcs) {
+    if (!skipLint) {
+      lint(dpc.fullPath, fix);
+    }
+
     for (const type of target) {
       const manifests = await getTypeManifests(type, dpc, argv);
       for (let idx = 0; idx < manifests.length; idx++) {
@@ -109,4 +118,23 @@ function makeSrcPath(dpc: DocPrecursor, idx: number, type: ArtifactType): string
     path += `/${type}`;
   }
   return path;
+}
+
+function lint(path: string, fix: boolean): void {
+  if (fix === true) {
+    const { unfixable, numFixed } = lintFixPath(path);
+    if (unfixable.count() > 0) {
+      printLints(unfixable);
+      log('\n\n');
+      red(`ERROR: ${unfixable.count()} remaining lint errors (fixed ${numFixed}). 😬 `);
+      process.exit(1);
+    }
+  }
+
+  const lints = lintPath(path);
+  if (lints.count() > 0) {
+    printLints(lints);
+    red(`\n\nERROR: ${lints.count()} lint errors must be fixed. 😬 `);
+    process.exit(1);
+  }
 }

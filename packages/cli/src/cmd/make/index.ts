@@ -54,6 +54,16 @@ export const builder: CommandBuilder = function(yargs) {
       describe: 'send documents via email',
       default: false,
     })
+    .option('skip-lint', {
+      type: 'boolean',
+      describe: 'bypass asciidoc linting',
+      default: false,
+    })
+    .option('fix', {
+      type: 'boolean',
+      describe: 'auto-fix asciidoc lint errors',
+      default: false,
+    })
     .option('target', {
       alias: 't',
       type: 'array',

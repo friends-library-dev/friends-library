@@ -12,6 +12,7 @@ import * as hydrate from '../../fs-precursor/hydrate';
 import * as dpcQuery from '../../fs-precursor/query';
 import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
 import * as coverServer from './cover-server';
+import validate from './validate';
 import { logDocStart, logDocComplete, logUpdateComplete, logUpdateStart } from './log';
 import { publishPaperback } from './paperback';
 
@@ -24,6 +25,7 @@ interface UpdateOptions {
 
 export default async function update(argv: UpdateOptions): Promise<void> {
   logUpdateStart();
+  const meta = await docMeta.fetch();
   const COVER_PORT = argv.coverServerPort || (await coverServer.start());
   const [makeScreenshot, closeHeadlessBrowser] = await coverServer.screenshot(COVER_PORT);
   const dpcs = dpcQuery.getByPattern(argv.pattern);
@@ -35,8 +37,8 @@ export default async function update(argv: UpdateOptions): Promise<void> {
 
     logDocStart(dpc, progress);
     hydrate.all([dpc]);
+    validate(dpc);
 
-    const meta = await docMeta.fetch();
     const uploads = new Map<string, string>();
     const fileId = getFileId(dpc);
     const namespace = `fl-publish/${fileId}`;
