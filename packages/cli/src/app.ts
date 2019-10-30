@@ -3,6 +3,7 @@ import yargs from 'yargs';
 import { prettifyErrors } from '@friends-library/cli-utils/error';
 import * as make from './cmd/make';
 import * as cover from './cmd/cover';
+import * as coverWatch from './cmd/cover-watch';
 import * as publish from './cmd/publish';
 
 prettifyErrors();
@@ -13,5 +14,6 @@ yargs
   // @ts-ignore
   .command(make)
   .command(cover)
+  .command(coverWatch)
   .command(publish)
   .help().argv;
