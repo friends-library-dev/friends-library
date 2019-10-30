@@ -19,6 +19,8 @@
     "@friends-library/types": "1.0.0",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.4",
+    "gmail-send": "^1.8.10",
+    "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
     "pdf-parse": "^1.1.1",
     "pretty-ms": "^5.0.0",

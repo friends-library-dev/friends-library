@@ -5,12 +5,14 @@ import * as manifest from '@friends-library/doc-manifests';
 import * as artifacts from '@friends-library/doc-artifacts';
 import * as hydrate from '../../fs-precursor/hydrate';
 import * as dpcQuery from '../../fs-precursor/query';
+import send from './send';
 import {
   ArtifactType,
   DocPrecursor,
   FileManifest,
   PaperbackInteriorConfig,
   EbookConfig,
+  PrintSize,
 } from '@friends-library/types';
 
 interface MakeOptions {
@@ -19,10 +21,15 @@ interface MakeOptions {
   noOpen: boolean;
   noFrontmatter: boolean;
   target: ArtifactType[];
+  condense: boolean;
+  check: boolean;
+  printSize?: PrintSize;
+  email?: string;
+  send: boolean;
 }
 
 export default async function handler(argv: Arguments<MakeOptions>): Promise<void> {
-  const { noOpen, pattern, isolate, target } = argv;
+  const { noOpen, pattern, isolate, target, email } = argv;
   const dpcs = dpcQuery.getByPattern(pattern);
   if (dpcs.length === 0) {
     red(`Pattern: \`${pattern}\` matched 0 docs.`);
@@ -41,13 +48,14 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
       for (let idx = 0; idx < manifests.length; idx++) {
         const filename = makeFilename(dpc, idx, type);
         const srcPath = makeSrcPath(dpc, idx, type);
-        const options = { namespace, srcPath, check: true };
+        const options = { namespace, srcPath, check: argv.check };
         files.push(await artifacts.create(manifests[idx], filename, options));
       }
     }
   }
 
   !noOpen && files.forEach(file => execSync(`open "${file}"`));
+  argv.send && send(files, email);
 }
 
 async function getTypeManifests(
@@ -61,8 +69,8 @@ async function getTypeManifests(
     case 'paperback-interior': {
       const conf: PaperbackInteriorConfig = {
         frontmatter: !argv.noFrontmatter,
-        printSize: 'm', // @TODO
-        condense: false, // @TODO
+        printSize: argv.printSize || 'm',
+        condense: argv.condense,
         allowSplits: false,
       };
       return manifest.paperbackInterior(dpc, conf);
@@ -82,10 +90,17 @@ async function getTypeManifests(
 
 function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): string {
   let suffix = '';
-  if (type === 'paperback-cover') suffix = '--(cover)';
-  if (type === 'web-pdf') suffix = '--(web)';
-  if (type === 'mobi') suffix = `--${Math.floor(Date.now() / 1000)}`;
-  return `${dpc.friendInitials.join('')}--${dpc.documentSlug}${suffix}`;
+  if (type === 'paperback-cover') suffix = '(cover)';
+  if (type === 'web-pdf') suffix = '(web)';
+  if (type === 'mobi') suffix = `${Math.floor(Date.now() / 1000)}`;
+  return [
+    dpc.friendInitials.join(''),
+    dpc.documentSlug,
+    dpc.documentId.substring(0, 8),
+    suffix,
+  ]
+    .filter(p => !!p)
+    .join('--');
 }
 
 function makeSrcPath(dpc: DocPrecursor, idx: number, type: ArtifactType): string {

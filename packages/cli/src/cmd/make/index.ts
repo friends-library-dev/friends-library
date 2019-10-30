@@ -28,6 +28,32 @@ export const builder: CommandBuilder = function(yargs) {
       type: 'number',
       describe: 'isolate a file by number',
     })
+    .option('condense', {
+      type: 'boolean',
+      describe: 'condense size (very large books)',
+      default: false,
+    })
+    .option('print-size', {
+      describe: 'print size (target=`pdf-print` only)',
+      choices: ['s', 'm', 'xl'],
+    })
+    .option('check', {
+      alias: 'c',
+      type: 'boolean',
+      describe: 'validate epub/mobi',
+      default: false,
+    })
+    .option('email', {
+      type: 'string',
+      describe: 'email address to send to',
+      default: false,
+    })
+    .option('send', {
+      alias: 's',
+      type: 'boolean',
+      describe: 'send documents via email',
+      default: false,
+    })
     .option('target', {
       alias: 't',
       type: 'array',
