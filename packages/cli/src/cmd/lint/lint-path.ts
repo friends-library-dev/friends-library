@@ -1,6 +1,6 @@
 import { FilePath, LintOptions } from '@friends-library/types';
-import lint from './lint';
-import DirLints from './dir-lints';
+import { lint } from '@friends-library/adoc-lint';
+import DirLints from './DirLints';
 import { filesFromPath, langFromPath, editionTypeFromPath } from './path';
 
 export default function lintPath(

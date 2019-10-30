@@ -1,7 +1,10 @@
 import { Arguments } from 'yargs';
 import { LintResult } from '@friends-library/types';
-import { lintFixPath, lintPath, DirLints, langFromPath } from '@friends-library/asciidoc';
-import { red, green, grey, yellow, cyan } from '@friends-library/cli/color';
+import { langFromPath } from './path';
+import lintFixPath from './lint-fix-path';
+import lintPath from './lint-path';
+import DirLints from './DirLints';
+import { red, green, grey, yellow, cyan } from '@friends-library/cli-utils/color';
 import chalk from 'chalk';
 import leftPad from 'left-pad';
 

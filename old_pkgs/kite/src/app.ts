@@ -3,7 +3,7 @@ import { prettifyErrors } from '@friends-library/cli/error';
 import yargs from 'yargs';
 import * as publish from './cmd/publish';
 import * as publishRef from './cmd/publish-ref';
-import * as lint from './cmd/lint';
+import * as lint from '../../../packages/cli/src/cmd/lint';
 import * as convert from './cmd/convert';
 import * as chapterize from './cmd/chapterize';
 import * as cover from './cmd/cover';

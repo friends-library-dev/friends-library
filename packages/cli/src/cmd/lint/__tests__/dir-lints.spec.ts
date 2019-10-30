@@ -1,4 +1,4 @@
-import DirLints from '../dir-lints';
+import DirLints from '../DirLints';
 
 describe('DirLints', () => {
   let lints: any;

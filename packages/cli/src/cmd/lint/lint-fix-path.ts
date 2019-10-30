@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { LintOptions, FilePath } from '@friends-library/types';
 import lintPath from './lint-path';
-import fix from './fix';
-import DirLints from './dir-lints';
+import { lintFix } from '@friends-library/adoc-lint';
+import DirLints from './DirLints';
 import { langFromPath, editionTypeFromPath } from './path';
 
 export default function lintFixPath(
@@ -16,7 +16,7 @@ export default function lintFixPath(
   }
 
   lints.toArray().forEach(([filepath, { adoc }]) => {
-    const { fixed } = fix(adoc, {
+    const { fixed } = lintFix(adoc, {
       ...options,
       lang: langFromPath(filepath),
       editionType: editionTypeFromPath(filepath),

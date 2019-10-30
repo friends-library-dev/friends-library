@@ -5,6 +5,7 @@ import * as make from './cmd/make';
 import * as cover from './cmd/cover';
 import * as coverWatch from './cmd/cover-watch';
 import * as publish from './cmd/publish';
+import * as lint from './cmd/lint';
 
 prettifyErrors();
 
@@ -16,4 +17,5 @@ yargs
   .command(cover)
   .command(coverWatch)
   .command(publish)
+  .command(lint)
   .help().argv;

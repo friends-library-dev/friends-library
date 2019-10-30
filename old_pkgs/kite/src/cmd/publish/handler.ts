@@ -5,7 +5,7 @@ import { exec } from 'child_process';
 import { Arguments } from 'yargs';
 import { lintPath, lintFixPath, createSourceSpec } from '@friends-library/asciidoc';
 import { red } from '@friends-library/cli/color';
-import { printLints } from '../lint/handler';
+import { printLints } from '../../../../../packages/cli/src/cmd/lint/handler';
 import { precursorsFromPath } from './precursors';
 import { makeEpub } from '../../publish/epub/make';
 import { makeMobi } from '../../publish/mobi/make';
