@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { FilePath } from '@friends-library/types';
-import { filesFromPath } from '@friends-library/asciidoc';
-import { green } from '@friends-library/cli/color';
+import { filesFromPath } from '../../lint/path';
+import { green } from '@friends-library/cli-utils/color';
 
 interface Argv {
   path: FilePath;
