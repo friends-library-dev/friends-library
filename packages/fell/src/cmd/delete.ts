@@ -1,4 +1,4 @@
-import { red } from '@friends-library/cli/color';
+import { red } from '@friends-library/cli-utils/color';
 import { CommandBuilder } from 'yargs';
 import { Argv as BaseArgv } from '../type';
 import { getRepos } from '../repos';

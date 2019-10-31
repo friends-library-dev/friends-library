@@ -1,5 +1,5 @@
 import { Options } from 'yargs';
-import { green } from '@friends-library/cli/color';
+import { green } from '@friends-library/cli-utils/color';
 import { Argv as BaseArgv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';
 import { excludable, scopeable } from './helpers';

@@ -6,5 +6,5 @@
     "noEmit": true,
     "target": "es2017"
   },
-  "references": [{ "path": "../cli" }, { "path": "../client" }, { "path": "../types" }]
+  "references": [{ "path": "../cli-utils" }, { "path": "../env" }, { "path": "../types" }]
 }

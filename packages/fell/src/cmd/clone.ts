@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import { Options } from 'yargs';
-import { green, magenta } from '@friends-library/cli/color';
+import { green, magenta } from '@friends-library/cli-utils/color';
 import { excludable, scopeable } from './helpers';
 import { getFriendRepos } from '../github';
 import * as git from '../git';
