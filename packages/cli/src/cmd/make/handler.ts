@@ -18,7 +18,7 @@ import {
   PrintSize,
 } from '@friends-library/types';
 
-interface MakeOptions {
+export interface MakeOptions {
   pattern: string;
   isolate?: number;
   noOpen: boolean;
@@ -51,7 +51,6 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
     if (!skipLint) {
       lint(dpc.fullPath, fix);
     }
-
     for (const type of target) {
       const manifests = await getTypeManifests(type, dpc, argv);
       for (let idx = 0; idx < manifests.length; idx++) {

@@ -10,6 +10,7 @@
   "dependencies": {
     "@friends-library/adoc-convert": "1.0.0",
     "@friends-library/adoc-lint": "1.0.0",
+    "@friends-library/adoc-utils": "1.0.0",
     "@friends-library/cli-utils": "1.0.0",
     "@friends-library/cloud": "1.0.0",
     "@friends-library/doc-artifacts": "1.0.0",

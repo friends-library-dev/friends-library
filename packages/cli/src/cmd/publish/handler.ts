@@ -16,14 +16,14 @@ import validate from './validate';
 import { logDocStart, logDocComplete, logUpdateComplete, logUpdateStart } from './log';
 import { publishPaperback } from './paperback';
 
-interface UpdateOptions {
+interface PublishOptions {
   build: boolean;
   check: boolean;
   pattern?: string;
   coverServerPort?: number;
 }
 
-export default async function update(argv: UpdateOptions): Promise<void> {
+export default async function update(argv: PublishOptions): Promise<void> {
   logUpdateStart();
   const meta = await docMeta.fetch();
   const COVER_PORT = argv.coverServerPort || (await coverServer.start());
