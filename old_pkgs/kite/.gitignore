@@ -1,4 +1,0 @@
-/dist
-_publish
-src/publish/epub/cover_*.png
-src/cmd/convert/__tests__/docbook.adoc

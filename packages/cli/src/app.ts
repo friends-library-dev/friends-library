@@ -9,6 +9,7 @@ import * as lint from './cmd/lint';
 import * as unusual from './cmd/unusual';
 import * as convert from './cmd/convert';
 import * as chapterize from './cmd/chapterize';
+import * as publishRef from './cmd/publish-ref';
 
 prettifyErrors();
 
@@ -20,6 +21,7 @@ yargs
   .command(cover)
   .command(coverWatch)
   .command(publish)
+  .command(publishRef)
   .command(lint)
   .command(unusual)
   .command(chapterize)

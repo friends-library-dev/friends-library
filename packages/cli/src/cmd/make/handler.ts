@@ -17,6 +17,7 @@ import {
   EbookConfig,
   PrintSize,
 } from '@friends-library/types';
+import FsDocPrecursor from 'src/fs-precursor/FsDocPrecursor';
 
 export interface MakeOptions {
   pattern: string;
@@ -34,7 +35,7 @@ export interface MakeOptions {
 }
 
 export default async function handler(argv: Arguments<MakeOptions>): Promise<void> {
-  const { noOpen, pattern, isolate, target, email, fix, skipLint } = argv;
+  const { noOpen, pattern, isolate, email } = argv;
   const dpcs = dpcQuery.getByPattern(pattern);
   if (dpcs.length === 0) {
     red(`Pattern: \`${pattern}\` matched 0 docs.`);
@@ -46,24 +47,35 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
   const namespace = 'fl-make';
   artifacts.deleteNamespaceDir(namespace);
 
-  const files: string[] = [];
+  let files: string[] = [];
   for (const dpc of dpcs) {
-    if (!skipLint) {
-      lint(dpc.fullPath, fix);
-    }
-    for (const type of target) {
-      const manifests = await getTypeManifests(type, dpc, argv);
-      for (let idx = 0; idx < manifests.length; idx++) {
-        const filename = makeFilename(dpc, idx, type);
-        const srcPath = makeSrcPath(dpc, idx, type);
-        const options = { namespace, srcPath, check: argv.check };
-        files.push(await artifacts.create(manifests[idx], filename, options));
-      }
-    }
+    files = files.concat(await makeDpc(dpc, argv, namespace));
   }
 
   !noOpen && files.forEach(file => execSync(`open "${file}"`));
   argv.send && send(files, email);
+}
+
+export async function makeDpc(
+  dpc: FsDocPrecursor,
+  argv: Arguments<MakeOptions>,
+  namespace: string,
+): Promise<string[]> {
+  if (!argv.skipLint) {
+    lint(dpc.fullPath, argv.fix);
+  }
+
+  const files: string[] = [];
+  for (const type of argv.target) {
+    const manifests = await getTypeManifests(type, dpc, argv);
+    for (let idx = 0; idx < manifests.length; idx++) {
+      const filename = makeFilename(dpc, idx, type);
+      const srcPath = makeSrcPath(dpc, idx, type);
+      const options = { namespace, srcPath, check: argv.check };
+      files.push(await artifacts.create(manifests[idx], filename, options));
+    }
+  }
+  return files;
 }
 
 async function getTypeManifests(
