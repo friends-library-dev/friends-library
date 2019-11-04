@@ -1,4 +1,4 @@
-import { lint } from '@friends-library/asciidoc';
+import { lint } from '@friends-library/adoc-lint';
 import { LintResult, Lang } from '@friends-library/types';
 import { ModifiedAsciidocFile } from './type';
 
