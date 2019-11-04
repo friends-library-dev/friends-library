@@ -1,7 +1,7 @@
-import '@friends-library/client/load-env';
+import '@friends-library/env/load';
 import { APIGatewayEvent } from 'aws-lambda';
-import { requireEnv } from '@friends-library/types';
-import { slack } from '@friends-library/client';
+import env from '@friends-library/env';
+import slack from '@friends-library/slack';
 import useragent from 'express-useragent';
 import mongoose from 'mongoose';
 import Download from '../lib/Download';
@@ -21,7 +21,7 @@ export async function webDownload(
   const format = pathParts.pop() || '';
   const editionPath = pathParts.join('/');
   const editionType = (editionPath || '').split('/').pop();
-  const { CLOUD_STORAGE_BUCKET_URL } = requireEnv('CLOUD_STORAGE_BUCKET_URL');
+  const { CLOUD_STORAGE_BUCKET_URL } = env.require('CLOUD_STORAGE_BUCKET_URL');
   const cloudUri = `${CLOUD_STORAGE_BUCKET_URL}/${editionPath}/${filename}`;
 
   if (!isDev) {
@@ -82,7 +82,7 @@ function sendSlack(
   ].join(' / ');
 
   const from = referrer ? ` from url: ${referrer}` : '';
-  const { SLACK_DOWNLOADS_CHANNEL } = requireEnv('SLACK_DOWNLOADS_CHANNEL');
+  const { SLACK_DOWNLOADS_CHANNEL } = env.require('SLACK_DOWNLOADS_CHANNEL');
 
   slack.send(
     `File downloaded: \`${path}/${format}\`, device: \`${device}\`${from}`,

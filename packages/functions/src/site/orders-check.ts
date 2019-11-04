@@ -6,7 +6,7 @@ import log from '../lib/log';
 import mongoose from 'mongoose';
 import { find, persistAll } from '../lib/Order';
 import { getAuthToken } from '../lib/lulu';
-import { requireEnv } from '@friends-library/types';
+import env from '@friends-library/env';
 
 type Orders = mongoose.Document[];
 
@@ -63,7 +63,7 @@ async function getPrintJobs(
     return ['error_acquiring_oauth_token', []];
   }
 
-  const { LULU_API_ENDPOINT } = requireEnv('LULU_API_ENDPOINT');
+  const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
   const query = orders.map(o => o.get('print_job.id')).join('&id=');
   const res = await fetch(`${LULU_API_ENDPOINT}/print-jobs/?id=${query}`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -82,7 +82,7 @@ async function sendShipmentTrackingEmails(
   jobs: (Record<string, any>)[],
   orders: Orders,
 ): Promise<void> {
-  const { SENDGRID_API_KEY } = requireEnv('SENDGRID_API_KEY');
+  const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');
   const shippedJobs = jobs.filter(job => job.status.name === 'SHIPPED');
 
   const emails = shippedJobs.map(job => {

@@ -2,7 +2,8 @@ import { APIGatewayEvent } from 'aws-lambda';
 import fetch from 'node-fetch';
 import stripeClient from '../lib/stripe';
 import Responder from '../lib/Responder';
-import { PrintSize, requireEnv } from '@friends-library/types';
+import { PrintSize } from '@friends-library/types';
+import env from '@friends-library/env';
 import validateJson from '../lib/validate-json';
 import log from '../lib/log';
 import { findById, persist } from '../lib/Order';
@@ -36,7 +37,7 @@ export default async function createPrintJob(
     return respond.json({ msg: 'error_acquiring_oauth_token' }, 500);
   }
 
-  const { LULU_API_ENDPOINT } = requireEnv('LULU_API_ENDPOINT');
+  const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
   const payload = createOrderPayload(data);
   const res = await fetch(`${LULU_API_ENDPOINT}/print-jobs/`, {
     method: 'POST',
