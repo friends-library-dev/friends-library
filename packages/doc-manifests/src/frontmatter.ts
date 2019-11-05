@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
-import { Html, DocPrecursor, FileManifest, Epigraph } from '@friends-library/types';
-import { capitalizeTitle, ucfirst, br7 } from '@friends-library/doc-html/src/helpers';
+import { Html, DocPrecursor, FileManifest } from '@friends-library/types';
+import { capitalizeTitle, ucfirst, br7, epigraph } from '@friends-library/doc-html';
 import { addVolumeSuffix } from './faux-volumes';
 
 export const frontmatter = memoize(
@@ -15,28 +15,6 @@ export const frontmatter = memoize(
     return pickBy(files, html => html !== '');
   },
 );
-
-export function epigraph({ epigraphs }: DocPrecursor): Html {
-  if (!epigraphs.length) {
-    return '';
-  }
-  return `
-    <div class="epigraphs own-page">
-      ${epigraphs.map(renderEpigraph).join(`\n${br7}\n${br7}\n`)}
-    </div>
-  `;
-}
-
-function renderEpigraph({ text, source }: Epigraph, index: number): Html {
-  return `
-    <div class="epigraph${index > 0 ? ' epigraph--not-first' : ''}">
-      <span class="epigraph__text">
-        &#8220;${text}&#8221;
-      </span>
-      ${source ? `<span class="epigraph__source">${source}</span>` : ''}
-    </div>
-  `;
-}
 
 export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
   const {

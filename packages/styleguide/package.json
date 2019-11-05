@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "@friends-library/types": "1.0.0",
-    "@friends-library/asciidoc": "1.0.0",
+    "@friends-library/adoc-convert": "1.0.0",
+    "@friends-library/doc-html": "1.0.0",
+    "@friends-library/doc-css": "1.0.0",
     "chalk": "^2.4.1",
     "chokidar": "^2.0.4",
     "fs-extra": "^7.0.1",

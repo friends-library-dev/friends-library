@@ -1,7 +1,11 @@
 import { Html, Heading, DocPrecursor } from '@friends-library/types';
 import { toRoman } from 'roman-numerals';
 
-export function replaceHeadings(html: Html, heading: Heading, dpc: DocPrecursor): Html {
+export function replaceHeadings(
+  html: Html,
+  heading: Heading,
+  dpc: Pick<DocPrecursor, 'config'>,
+): Html {
   const docStyle = dpc.config.chapterHeadingStyle || 'normal';
   return html.replace(/{% chapter-heading(?:, ([a-z]+))? %}/, (_, style) =>
     headingMarkup(heading, style || docStyle),

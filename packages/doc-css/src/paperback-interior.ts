@@ -16,6 +16,7 @@ export default function paperbackInterior(
     'common',
     'not-mobi7',
     'pdf/base',
+    'pdf/paging',
     'pdf/typography',
     'pdf/half-title',
     'pdf/original-title',

@@ -1,9 +1,8 @@
 import {
   copyright as commonCopyright,
   halfTitle as commonHalfTitle,
-  epigraph,
 } from '../frontmatter';
-import { navText } from '@friends-library/doc-html';
+import { navText, epigraph } from '@friends-library/doc-html';
 import { DocPrecursor, Html, DocSection } from '@friends-library/types';
 
 export default function frontmatter(dpc: DocPrecursor, volIdx?: number): Html {
