@@ -8,3 +8,4 @@ export {
 export { replaceHeadings } from './headings';
 export { navText } from './nav';
 export { epigraph } from './epigraphs';
+export { webHtml } from './web';

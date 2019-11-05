@@ -14,7 +14,7 @@
 # misc
 .DS_Store
 .env
-public/asciidoctor.min.js
+public/preview.css
 
 npm-debug.log*
 yarn-debug.log*

@@ -49,6 +49,31 @@ export interface DocPrecursor {
   };
 }
 
+export function genericDpc(): DocPrecursor {
+  return {
+    lang: 'en',
+    friendSlug: 'george-fox',
+    friendInitials: ['G', 'F'],
+    documentSlug: 'journal',
+    path: 'en/george-fox/journal/original',
+    documentId: '9414033c-4b70-4b4b-8e48-fec037822173',
+    editionType: 'original',
+    asciidoc: '',
+    epigraphs: [],
+    sections: [],
+    paperbackSplits: [],
+    blurb: '',
+    notes: new Map(),
+    config: {},
+    customCode: { css: {}, html: {} },
+    meta: {
+      title: 'Journal of George Fox',
+      author: { name: 'George Fox', nameSort: 'Fox, George' },
+    },
+    revision: { timestamp: Date.now(), sha: '', url: '' },
+  };
+}
+
 export type ArtifactType =
   | 'paperback-interior'
   | 'paperback-cover'

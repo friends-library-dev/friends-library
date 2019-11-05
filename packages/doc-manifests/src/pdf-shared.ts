@@ -28,7 +28,7 @@ export interface HtmlStep {
     number?,
   ];
 }
-// unpkg.com/@asciidoctor/core@2.0.3/dist/browser/asciidoctor.js
+
 export const joinSections: HtmlStep = ([, dpc, conf, volIdx]) => {
   const joined = dpc.sections
     .filter(makeVolumeSplitFilter(dpc, volIdx))

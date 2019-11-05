@@ -4,6 +4,7 @@ import {
   PaperbackInteriorConfig,
   Css,
   PrintSizeDetails,
+  genericDpc,
 } from '@friends-library/types';
 import { getPrintSizeDetails } from '@friends-library/lulu';
 import { runningHead, joinCssFiles, replaceVars } from './helpers';
@@ -78,4 +79,13 @@ export function printDimsVars(size: PrintSizeDetails): Record<string, string> {
     },
     v => `${v}in`,
   );
+}
+
+export function generic(): Css {
+  return paperbackInterior(genericDpc(), {
+    printSize: 'm',
+    allowSplits: false,
+    frontmatter: false,
+    condense: false,
+  });
 }

@@ -2,3 +2,4 @@ export { br7, ucfirst, removeMobi7Tags, capitalizeTitle, trimTrailingPunctuation
 export { replaceHeadings } from './headings';
 export { navText } from './nav';
 export { epigraph } from './epigraphs';
+export { webHtml } from './web';

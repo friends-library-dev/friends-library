@@ -12,3 +12,5 @@ var nav_1 = require("./nav");
 exports.navText = nav_1.navText;
 var epigraphs_1 = require("./epigraphs");
 exports.epigraph = epigraphs_1.epigraph;
+var web_1 = require("./web");
+exports.webHtml = web_1.webHtml;

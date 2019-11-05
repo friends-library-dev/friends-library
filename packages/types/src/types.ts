@@ -21,6 +21,7 @@ export {
   EbookConfig,
   EditionMeta,
   PageData,
+  genericDpc,
 } from './doc';
 export type Gender = 'male' | 'female';
 export type Lang = 'en' | 'es';
