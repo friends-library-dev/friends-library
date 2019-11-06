@@ -70,16 +70,30 @@ commands:
       - save_cache:
           paths:
             - node_modules
-            - packages/asciidoc/node_modules
+            - packages/adoc-convert/node_modules
+            - packages/adoc-lint/node_modules
+            - packages/adoc-utils/node_modules
             - packages/bot/node_modules
             - packages/cli/node_modules
-            - packages/client/node_modules
+            - packages/cli-utils/node_modules
+            - packages/cloud/node_modules
+            - packages/cover-component/node_modules
+            - packages/cover-web-app/node_modules
+            - packages/doc-artifacts/node_modules
+            - packages/doc-css/node_modules
+            - packages/doc-html/node_modules
+            - packages/doc-manifests/node_modules
+            - packages/document-meta/node_modules
+            - packages/env/node_modules
             - packages/evans/node_modules
             - packages/fell/node_modules
             - packages/friends/node_modules
+            - packages/functions/node_modules
             - packages/hilkiah/node_modules
             - packages/jones/node_modules
-            - packages/kite/node_modules
+            - packages/lulu/node_modules
+            - packages/slack/node_modules
             - packages/styleguide/node_modules
             - packages/types/node_modules
+            - packages/ui/node_modules
           key: v1-node-{{ .Branch }}-{{ checksum "yarn.lock" }}

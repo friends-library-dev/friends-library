@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-// $ node packages/kite/src/isbn/make-imgs.js
+// $ node packages/cover-web-app/public/images/isbn/_make-imgs.js
 // @see https://github.com/metafloor/bwip-js
 
 const scale = 3; // scale the image
