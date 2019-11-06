@@ -18,7 +18,7 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  const dims = docDims(size, pages, scaler);
+  const dims = docDims(size, pages);
   const widthNoBleed = dims.width * 2 + dims.pdfSpineWidth;
   const heightNoBleed = dims.height;
   const width = widthNoBleed + 2 * dims.printBleed;

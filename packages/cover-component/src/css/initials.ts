@@ -2,12 +2,8 @@ import { CoverCssModule } from './types';
 import { css } from './helpers';
 import { initials } from '../helpers';
 
-const initialsCss: CoverCssModule = ({ author }, scaler, scope) => {
+const initialsCss: CoverCssModule = ({ author }) => {
   const staticCss = css`
-    .front__main {
-      /* background: rgba(0, 255, 0, 0.2); */
-    }
-
     .Cover .front__main .initials > div {
       flex-grow: 1;
       position: relative;

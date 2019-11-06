@@ -1,7 +1,7 @@
 import { CoverCssModule } from './types';
 import { css, docDims, dynamifyCss } from './helpers';
 
-const guides: CoverCssModule = ({ size, pages }, scaler, scope) => {
+const guides: CoverCssModule = ({ size, pages }) => {
   const staticCss = css`
     .Cover--show-guides .guide--spine {
       border-color: blue;
@@ -67,7 +67,7 @@ const guides: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  const dims = docDims(size, pages, scaler);
+  const dims = docDims(size, pages);
   const dynamicCss = css`
     .Cover--show-guides .guide--spine-left {
       left: ${dims.width}in;

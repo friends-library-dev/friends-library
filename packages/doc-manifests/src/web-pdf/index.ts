@@ -1,11 +1,6 @@
 import { webPdf as css } from '@friends-library/doc-css';
 import flow from 'lodash/flow';
-import {
-  DocPrecursor,
-  Html,
-  FileManifest,
-  PaperbackInteriorConfig,
-} from '@friends-library/types';
+import { DocPrecursor, Html, FileManifest } from '@friends-library/types';
 import { removeMobi7Tags } from '@friends-library/doc-html';
 import wrapHtmlBody from '../wrap-html';
 import {

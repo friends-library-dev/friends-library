@@ -1,7 +1,7 @@
 import { CoverCssModule } from './types';
 import { css, dynamifyCss } from './helpers';
 
-const blurb: CoverCssModule = ({ size, pages }, scaler, scope) => {
+const blurb: CoverCssModule = (_, scaler, scope) => {
   const staticCss: string = css`
     .Cover .brackets {
       fill: white;

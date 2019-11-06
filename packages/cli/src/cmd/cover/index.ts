@@ -6,7 +6,7 @@ export const command = 'cover';
 
 export const describe = 'make a pdf book cover';
 
-export const handler = async () => {
+export async function handler(): Promise<void> {
   const [manifest] = paperbackCoverFromProps({
     lang: 'en',
     title: 'The Work of Vital Religion in the Soul',
@@ -24,4 +24,4 @@ export const handler = async () => {
   deleteNamespaceDir('fl-cover');
   const pdfPath = await pdf(manifest, 'cover', { namespace: 'fl-cover' });
   execSync(`open ${pdfPath}`);
-};
+}

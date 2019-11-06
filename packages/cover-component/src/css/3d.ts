@@ -2,7 +2,7 @@ import { CoverCssModule } from './types';
 import { css, dynamifyCss, docDims } from './helpers';
 
 const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
-  const dims = docDims(size, pages, scaler);
+  const dims = docDims(size, pages);
   const leftOffset = (dims.width - dims.threeDSpineWidth) / 2;
   const topOffset = (dims.height - dims.threeDSpineWidth) / 2;
 

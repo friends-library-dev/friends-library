@@ -1,5 +1,5 @@
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, docDims } from './helpers';
+import { css, dynamifyCss } from './helpers';
 import blurbCss from './blurb';
 
 const back: CoverCssModule = (props, scaler, scope) => {

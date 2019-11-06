@@ -9,7 +9,7 @@ export default function frontmatter(dpc: DocPrecursor, volIdx?: number): Html {
   const isFirstOrOnlyVolume = typeof volIdx !== 'number' || volIdx === 0;
   return `
     ${halfTitle(dpc, volIdx)}
-    ${isFirstOrOnlyVolume ? originalTitle(dpc, volIdx) : ''}
+    ${isFirstOrOnlyVolume ? originalTitle(dpc) : ''}
     ${copyright(dpc)}
     ${isFirstOrOnlyVolume ? epigraph(dpc) : ''}
     ${toc(dpc)}
@@ -55,7 +55,7 @@ function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
   `;
 }
 
-function originalTitle({ meta }: DocPrecursor, volIdx?: number): Html {
+function originalTitle({ meta }: DocPrecursor): Html {
   if (!meta.originalTitle) {
     return '';
   }

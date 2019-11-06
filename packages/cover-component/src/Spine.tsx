@@ -2,7 +2,7 @@ import React from 'react';
 import { overridable, prepareTitle } from './helpers';
 import LogoIcon from './LogoIcon';
 import Diamonds from './Diamonds';
-import { CoverProps, EditionType, Lang } from '@friends-library/types';
+import { CoverProps } from '@friends-library/types';
 
 const Spine: React.FC<CoverProps> = ({
   lang,
@@ -15,7 +15,7 @@ const Spine: React.FC<CoverProps> = ({
   const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
   const fragments = {};
   return (
-    <div className={spineClasses(pages, edition, lang)}>
+    <div className={spineClasses(pages)}>
       <LogoIcon />
       <Diamond />
       {overridable(
@@ -39,7 +39,7 @@ const Spine: React.FC<CoverProps> = ({
 };
 export default Spine;
 
-function spineClasses(pages: number, edition: EditionType, lang: Lang): string {
+function spineClasses(pages: number): string {
   const classes = ['spine has-bg'];
   const rounded = Math.floor(pages / 10) * 10;
   for (let i = 120; i <= 180; i += 20) {

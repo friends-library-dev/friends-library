@@ -89,7 +89,7 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  const dims = docDims(size, pages, scaler);
+  const dims = docDims(size, pages);
   const sizeCss = css`
     .Cover {
       font-size: ${dims.width}in;

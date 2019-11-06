@@ -125,7 +125,7 @@ function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): strin
 
 function makeSrcPath(dpc: DocPrecursor, idx: number, type: ArtifactType): string {
   let path = makeFilename(dpc, idx, type);
-  if (type == 'mobi' || type == 'epub') {
+  if (type === 'mobi' || type === 'epub') {
     path += `/${type}`;
   }
   return path;

@@ -12,7 +12,7 @@ export interface DocDims {
   printBleed: number;
 }
 
-export function docDims(size: PrintSize, pages: number, scaler?: number): DocDims {
+export function docDims(size: PrintSize, pages: number): DocDims {
   const { width, height } = bookSizes[size].dims;
   const printBleed = 0.125;
   const spinePad = 0.06;

@@ -1,6 +1,6 @@
 import React from 'react';
 import centered from '@storybook/addon-centered/react';
-import { storiesOf, addDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import {
   Spine,
   Back,
@@ -245,7 +245,7 @@ const Wrapped: React.FC<
   );
 };
 
-function addStaticCss() {
+function addStaticCss(): void {
   const prev = document.getElementById('cover-static-css');
   prev && prev.remove();
   const style = document.createElement('style');

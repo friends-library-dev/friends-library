@@ -1,5 +1,4 @@
 import DocumentMeta from '../document-meta';
-import { fetch, save } from '../repo';
 import { PrintSize } from '@friends-library/types';
 
 describe('DocumentMeta()', () => {
@@ -12,6 +11,8 @@ describe('DocumentMeta()', () => {
         updated: new Date().toLocaleString(),
         adocLength: 291357,
         numSections: 18,
+        revision: '',
+        productionRevision: '',
         paperback: {
           size: 'xl',
           volumes: [435, 502],
@@ -72,6 +73,8 @@ describe('DocumentMeta()', () => {
         updated: new Date().toLocaleString(),
         adocLength: 111,
         numSections: 2,
+        revision: '',
+        productionRevision: '',
         paperback: {
           size: 's' as PrintSize,
           condense: false,

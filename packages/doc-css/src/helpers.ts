@@ -6,7 +6,7 @@ export function joinCssFiles(paths: string[]): Css {
 }
 
 export function replaceVars(css: Css, vars: Record<string, string>): Css {
-  return css.replace(/var\((--[^\)]+)\)/g, (_, varId) => {
+  return css.replace(/var\((--[^)]+)\)/g, (_, varId) => {
     return vars[varId];
   });
 }

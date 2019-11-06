@@ -15,6 +15,7 @@ import * as coverServer from './cover-server';
 import validate from './validate';
 import { logDocStart, logDocComplete, logUpdateComplete, logUpdateStart } from './log';
 import { publishPaperback } from './paperback';
+import { Edition } from '@friends-library/friends';
 
 interface PublishOptions {
   build: boolean;
@@ -59,6 +60,7 @@ export default async function update(argv: PublishOptions): Promise<void> {
 
   if (!argv.coverServerPort) coverServer.stop(COVER_PORT);
   await closeHeadlessBrowser();
+  logUpdateComplete();
 }
 
 async function handleWebPdf(
@@ -68,7 +70,7 @@ async function handleWebPdf(
 ): Promise<void> {
   log(c`   {gray Creating web-pdf artifact...}`);
   const [webManifest] = await manifest.webPdf(dpc);
-  const filename = dpc.edition!.filename('web-pdf');
+  const filename = edition(dpc).filename('web-pdf');
   const path = await artifacts.pdf(webManifest, filename, opts);
   uploads.set(path, cloudPath(dpc, 'web-pdf'));
 }
@@ -103,7 +105,7 @@ async function handlePaperbackAndCover(
   for (let idx = 0; idx < coverManifests.length; idx++) {
     const manifest = coverManifests[idx];
     const fauxVolumeNumber = coverManifests.length > 1 ? idx + 1 : undefined;
-    const filename = dpc.edition!.filename('paperback-cover', fauxVolumeNumber);
+    const filename = edition(dpc).filename('paperback-cover', fauxVolumeNumber);
     const path = await artifacts.pdf(manifest, filename, opts);
     uploads.set(path, cloudPath(dpc, 'paperback-cover', fauxVolumeNumber));
   }
@@ -117,7 +119,9 @@ async function handleEbooks(
 ): Promise<void> {
   const coverImg = await makeScreenshot(dpc.path);
   const config = { coverImg, frontmatter: true };
-  const base = dpc.edition!.filename('epub').replace(/\..*$/, '');
+  const base = edition(dpc)
+    .filename('epub')
+    .replace(/\..*$/, '');
 
   log(c`   {gray Creating epub artifact...}`);
   const [epubManifest] = await manifest.epub(dpc, { ...config, subType: 'epub' });
@@ -132,7 +136,7 @@ async function handleEbooks(
 }
 
 function cloudPath(dpc: FsDocPrecursor, type: ArtifactType, volNum?: number): string {
-  return `${dpc.path}/${dpc.edition!.filename(type, volNum)}`;
+  return `${dpc.path}/${edition(dpc).filename(type, volNum)}`;
 }
 
 async function triggerSiteRebuilds(): Promise<void> {
@@ -166,3 +170,8 @@ const getProductionRevision: () => Sha = memoize(() => {
     .toString()
     .trim();
 });
+
+function edition(dpc: FsDocPrecursor): Edition {
+  if (!dpc.edition) throw new Error('Unexpected lack of Edition on hydrated dpc');
+  return dpc.edition;
+}
