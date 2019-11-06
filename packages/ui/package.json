@@ -24,7 +24,8 @@
     "classnames": "^2.2.6",
     "emotion-theming": "^10.0.14",
     "gatsby-link": "^2.2.2",
-    "react": "16.9.0",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
     "react-country-region-selector": "^1.4.3",
     "tailwindcss": "^1.1.1"
   },
