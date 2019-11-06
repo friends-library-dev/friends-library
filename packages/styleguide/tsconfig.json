@@ -9,5 +9,10 @@
     "jsx": "react"
   },
   "include": ["./src"],
-  "references": [{ "path": "../asciidoc" }, { "path": "../types" }]
+  "references": [
+    { "path": "../adoc-convert" },
+    { "path": "../doc-html" },
+    { "path": "../doc-css" },
+    { "path": "../types" }
+  ]
 }

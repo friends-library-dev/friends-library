@@ -36,7 +36,6 @@ documents:
           - type: pdf
           - type: epub
           - type: mobi
-
         chapters:
           - title: La Vida de James Parnell
           - title: Apéndice - Acerca del Castillo de Colchester

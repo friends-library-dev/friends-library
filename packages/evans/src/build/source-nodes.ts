@@ -102,7 +102,6 @@ function documentNodeProps(doc: Document): Record<string, any> {
     hasAudio: doc.hasAudio(),
     isCompilation: doc.isCompilation(),
     hasUpdatedEdition: doc.hasUpdatedEdition(),
-    shortestEdition: (({ pages }) => ({ pages }))(doc.shortestEdition()),
     tags: doc.tags,
     url: doc.url(),
     editions: doc.editions.map(edition => ({

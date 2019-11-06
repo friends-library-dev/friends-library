@@ -15,8 +15,15 @@ export default class AudioPart {
     this.audio = new Audio();
   }
 
-  public toJSON(): AudioPart {
-    delete this.audio;
-    return this;
+  public toJSON(): Omit<AudioPart, 'audio' | 'toJSON'> {
+    return {
+      seconds: this.seconds,
+      filesizeHq: this.filesizeHq,
+      filesizeLq: this.filesizeLq,
+      externalIdHq: this.externalIdHq,
+      externalIdLq: this.externalIdLq,
+      title: this.title,
+      chapters: this.chapters,
+    };
   }
 }

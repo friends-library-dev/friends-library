@@ -1,12 +1,8 @@
-import { Html, Asciidoc, Job } from '@friends-library/types';
+import { Html, Asciidoc } from '@friends-library/types';
+import { processDocument } from '@friends-library/adoc-convert';
+import { genericPaperbackInterior } from '@friends-library/doc-css';
+import { webHtml, epigraph } from '@friends-library/doc-html';
 import fs from 'fs-extra';
-import {
-  createJob,
-  createSourceSpec,
-  createPrecursor,
-  embeddablePdfHtml,
-  epigraph,
-} from '@friends-library/asciidoc';
 import chalk from 'chalk';
 import { sync as glob } from 'glob';
 import path from 'path';
@@ -28,25 +24,21 @@ if (process.argv.includes('--watch')) {
 }
 
 function regen(): void {
+  fs.writeFileSync(
+    path.resolve(__dirname, '../dist/paperback-interior.css'),
+    genericPaperbackInterior(),
+  );
+
   const files = glob(adocGlob);
   const frags: { [k: string]: { html: Html; adoc: Asciidoc } } = {};
 
   files.forEach(file => {
     const adoc = normalizeAdoc(fs.readFileSync(file).toString());
-    const precursor = createPrecursor({ adoc });
-    const spec = createSourceSpec(precursor);
+    const { sections, epigraphs } = processDocument(adoc);
     const id = path.basename(file).replace(/\.adoc$/, '');
-    const job = createJob({
-      id,
-      spec,
-      meta: {
-        frontmatter: false,
-      },
-      target: 'pdf-print',
-    });
 
     frags[id] = {
-      html: innerHtml(job),
+      html: `${epigraph({ epigraphs })}${webHtml(sections)}`,
       adoc,
     };
   });
@@ -61,8 +53,4 @@ function normalizeAdoc(adoc: Asciidoc): Asciidoc {
   }
 
   return `== Generated\n\n${adoc}`;
-}
-
-function innerHtml(job: Job): Html {
-  return `${epigraph(job)}${embeddablePdfHtml(job)}`;
 }

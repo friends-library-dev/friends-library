@@ -1,0 +1,27 @@
+{
+  "name": "@friends-library/doc-manifests",
+  "version": "1.0.0",
+  "description": "create manifests for consumable artifacts from doc-precursors",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile doc-manifests"
+  },
+  "dependencies": {
+    "@friends-library/cover-component": "1.0.0",
+    "@friends-library/doc-css": "1.0.0",
+    "@friends-library/doc-html": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "^16.9.0",
+    "moment": "^2.24.0",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
+    "roman-numerals": "^0.3.2",
+    "strip-indent": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/strip-indent": "^3.0.2"
+  }
+}

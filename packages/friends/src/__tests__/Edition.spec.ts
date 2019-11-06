@@ -21,16 +21,24 @@ describe('Edition', () => {
 
   describe('filename()', () => {
     it('should give the right filename', () => {
-      expect(edition.filename('pdf-print')).toBe(
+      expect(edition.filename('paperback-interior')).toBe(
         'Journal_of_George_Fox--modernized--(print).pdf',
       );
 
-      expect(edition.filename('pdf-web')).toBe('Journal_of_George_Fox--modernized.pdf');
+      expect(edition.filename('web-pdf')).toBe('Journal_of_George_Fox--modernized.pdf');
       expect(edition.filename('epub')).toBe('Journal_of_George_Fox--modernized.epub');
-      expect(edition.filename('print-cover')).toBe(
+      expect(edition.filename('paperback-cover')).toBe(
         'Journal_of_George_Fox--modernized--cover.pdf',
       );
       expect(edition.filename('mobi')).toBe('Journal_of_George_Fox--modernized.mobi');
+
+      expect(edition.filename('paperback-cover', 1)).toBe(
+        'Journal_of_George_Fox--modernized--cover--v1.pdf',
+      );
+      expect(edition.filename('paperback-interior', 2)).toBe(
+        'Journal_of_George_Fox--modernized--(print)--v2.pdf',
+      );
+      expect(edition.filename('mobi', 3)).toBe('Journal_of_George_Fox--modernized.mobi');
     });
   });
 

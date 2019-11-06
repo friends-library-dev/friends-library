@@ -31,6 +31,8 @@ documents:
       - journal
     editions:
       - type: original
+        splits:
+          - 23
         formats:
           - type: pdf
           - type: epub

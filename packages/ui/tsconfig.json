@@ -4,6 +4,7 @@
     "noEmit": true,
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
     "sourceMap": true,
+    "skipLibCheck": true,
     "allowJs": false,
     "jsx": "react",
     "moduleResolution": "node",
@@ -18,7 +19,19 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "references": [{ "path": "../types" }],
-  "include": ["src/**/*"],
+  "references": [
+    { "path": "../types" },
+    { "path": "../cover-component" },
+    { "path": "../friends" }
+  ],
+  "include": [
+    "src/**/*",
+    "../cover-component/src/css",
+    "../cover-component/src/LogoIcon.tsx",
+    "../cover-component/src/overrides.ts",
+    "../cover-component/src/CoverFront.tsx",
+    "../cover-component/src/Cover.tsx",
+    "../cover-component/src/index.ts"
+  ],
   "exclude": ["node_modules", "build", "scripts"]
 }

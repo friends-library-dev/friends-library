@@ -31,12 +31,6 @@ export default class Document {
     return this.friend.slug === 'compilations';
   }
 
-  public shortestEdition(): Edition {
-    return this.editions.reduce((shortest, edition) => {
-      return !shortest || edition.pages < shortest.pages ? edition : shortest;
-    });
-  }
-
   public hasAudio(): boolean {
     return this.editions.reduce(
       (docHasAudio, edition) => {
@@ -63,8 +57,28 @@ export default class Document {
     );
   }
 
-  public toJSON(): Document {
-    delete this.friend;
-    return this;
+  public toJSON(): Pick<
+    Document,
+    | 'id'
+    | 'title'
+    | 'originalTitle'
+    | 'slug'
+    | 'description'
+    | 'filename'
+    | 'published'
+    | 'tags'
+    | 'editions'
+  > {
+    return {
+      id: this.id,
+      title: this.title,
+      originalTitle: this.originalTitle,
+      slug: this.slug,
+      description: this.description,
+      filename: this.filename,
+      published: this.published,
+      tags: this.tags,
+      editions: this.editions,
+    };
   }
 }

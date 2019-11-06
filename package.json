@@ -5,11 +5,10 @@
   "scripts": {
     "compile": "node scripts/compile.js",
     "ts:clean": "find . -name \"*.tsbuildinfo\" -type f -delete && rm -rf packages/*/dist",
-    "kite": "yarn ts-node --transpile-only --project ./packages/kite/tsconfig.json ./packages/kite/src/app.ts",
     "fell": "yarn ts-node --transpile-only --project ./packages/fell/tsconfig.json ./packages/fell/src/app.ts",
+    "fl": "yarn ts-node --transpile-only --project ./packages/cli/tsconfig.json ./packages/cli/src/app.ts",
     "test": "yarn jest",
-    "lint": "yarn ts:lint && yarn sass:lint",
-    "sass:lint": "yarn stylelint packages/kite/**/*.scss",
+    "lint": "yarn ts:lint",
     "ts:lint": "yarn eslint 'packages/**/*.{ts,tsx}'",
     "asciidoc:scaffold:lint": "cd ./packages/asciidoc && yarn scaffold:lint",
     "styleguide:develop": "cd ./packages/styleguide && yarn start",
@@ -21,9 +20,9 @@
     "evans:ts:check": "cd packages/evans && yarn ts:check",
     "jones:develop": "cd packages/jones && yarn develop",
     "jones:build": "cd packages/jones && yarn build",
-    "cover:develop": "cd packages/cover && yarn develop",
-    "cover:build": "cd packages/cover && yarn build",
-    "cover:ts:check": "cd packages/cover && yarn ts:check",
+    "cover:develop": "cd packages/cover-web-app && yarn develop",
+    "cover:build": "cd packages/cover-web-app && yarn build",
+    "cover:ts:check": "cd packages/cover-web-app && yarn ts:check",
     "test:integration": "cd packages/functions && yarn test:integration && cd ../ui && yarn test:integration",
     "bot:deploy": "cd ./packages/bot && yarn deploy",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
@@ -31,10 +30,16 @@
     "format:yml": "yarn prettier \"packages/friends/**/*.yml\" --write",
     "format:all": "yarn prettier \"packages/**/*.{ts,tsx,js,css,scss,yml}\" --write",
     "storybook": "cd packages/ui && yarn storybook",
-    "preflight": "yarn lint && yarn kite en/robert-barclay/recreation-entertainment/updated -t all && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
+    "preflight": "yarn lint && yarn fl make en/robert-barclay/recreation-entertainment/updated --target all -o && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "prettier": "^1.16.4",
+    "typescript": "3.6.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
+    "@types/lodash": "^4.14.123",
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "@typescript-eslint/parser": "^1.7.0",
     "eslint": "^5.16.0",
@@ -52,10 +57,6 @@
     "stylelint-config-recommended": "^2.1.0",
     "ts-jest": "^24.0.2",
     "webpack-cli": "^3.2.3"
-  },
-  "dependencies": {
-    "prettier": "^1.16.4",
-    "typescript": "3.6.2"
   },
   "workspaces": [
     "packages/*"

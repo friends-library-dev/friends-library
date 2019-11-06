@@ -1,7 +1,7 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import mailer from '@sendgrid/mail';
 import stripIndent from 'strip-indent';
-import { requireEnv } from '@friends-library/types';
+import env from '@friends-library/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { findById } from '../lib/Order';
@@ -22,7 +22,7 @@ export default async function sendOrderConfirmationEmail(
     return respond.json({ msg: 'order_not_found' }, 404);
   }
 
-  const { SENDGRID_API_KEY } = requireEnv('SENDGRID_API_KEY');
+  const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');
   mailer.setApiKey(SENDGRID_API_KEY);
   const [res] = await mailer.send({
     to: order.get('email'),

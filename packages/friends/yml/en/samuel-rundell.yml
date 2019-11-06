@@ -44,7 +44,6 @@ documents:
           - type: epub
           - type: mobi
           - type: audio
-
         chapters:
           - title: Introduction
           - number: 1

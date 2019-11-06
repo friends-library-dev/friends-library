@@ -1,4 +1,3 @@
-process.env.API_URL = 'https://test-api.friendslibrary.com';
 process.env.LULU_API_ENDPOINT = '/lulu-api';
 process.env.LULU_CLIENT_KEY = 'lulu-client-key';
 process.env.LULU_CLIENT_SECRET = 'lulu-client-secret';
@@ -14,5 +13,5 @@ process.env.SENDGRID_API_KEY = 'sendgrid-api-key';
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testRegex: '__tests__/.*spec\\.ts$',
+  testRegex: 'packages/.*/__tests__/.*spec\\.ts$',
 };

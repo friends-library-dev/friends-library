@@ -9,6 +9,8 @@
     "noUnusedLocals": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "noImplicitUseStrict": true,
+    "alwaysStrict": false,
     "incremental": true,
     "lib": ["esnext", "dom"]
   },

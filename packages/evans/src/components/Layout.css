@@ -23,6 +23,7 @@ blockquote {
   border: none;
   box-sizing: content-box;
   overflow: visible;
+  clear: both;
 }
 
 .Divider:before,

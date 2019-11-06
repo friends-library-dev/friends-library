@@ -1,4 +1,4 @@
-import { red } from '@friends-library/cli/color';
+import { red } from '@friends-library/cli-utils/color';
 import NodeGit from 'nodegit';
 import { Repo } from './type';
 

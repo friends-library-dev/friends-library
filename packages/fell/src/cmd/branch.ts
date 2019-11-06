@@ -1,4 +1,4 @@
-import { log } from '@friends-library/cli/color';
+import { log } from '@friends-library/cli-utils/color';
 import { Options } from 'yargs';
 import chalk from 'chalk';
 import { Argv } from '../type';

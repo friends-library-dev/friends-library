@@ -1,5 +1,5 @@
 import { Options } from 'yargs';
-import { red, green } from '@friends-library/cli/color';
+import { red, green } from '@friends-library/cli-utils/color';
 import chalk from 'chalk';
 import { Argv } from '../type';
 import { getRepos, getStatusGroups } from '../repos';

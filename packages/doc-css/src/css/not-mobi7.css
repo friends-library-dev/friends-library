@@ -1,0 +1,16 @@
+.footnote .verse {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+.footnote .verse__stanza {
+  margin-bottom: 0;
+}
+
+.footnote .verse__stanza + .verse__stanza {
+  margin-top: 0.45em;
+}
+
+.footnote .verse__line {
+  line-height: 1.2em;
+}

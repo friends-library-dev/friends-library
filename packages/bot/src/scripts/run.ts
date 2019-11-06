@@ -1,9 +1,9 @@
-import '@friends-library/client/load-env';
-import { requireEnv } from '@friends-library/types';
+import '@friends-library/env/load';
+import env from '@friends-library/env';
 import { createProbot } from 'probot';
 import appFn from '../app';
 
-const { BOT_APP_ID, BOT_WEBHOOK_SECRET, BOT_PRIVATE_KEY } = requireEnv(
+const { BOT_APP_ID, BOT_WEBHOOK_SECRET, BOT_PRIVATE_KEY } = env.require(
   'BOT_APP_ID',
   'BOT_WEBHOOK_SECRET',
   'BOT_PRIVATE_KEY',

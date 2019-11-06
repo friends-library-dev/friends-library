@@ -10,8 +10,9 @@
   "exclude": ["node_modules"],
   "references": [
     { "path": "../types" },
-    { "path": "../asciidoc" },
-    { "path": "../client" },
+    { "path": "../adoc-lint" },
+    { "path": "../cloud" },
+    { "path": "../env" },
     { "path": "../friends" }
   ]
 }

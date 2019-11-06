@@ -6,8 +6,8 @@ export default () => (
     <H1>Footnotes</H1>
     <Note>
       Browsers can't render our footnotes, so all of the examples in this section are only
-      shown in asciidoc. You'll need to created PDFs using <code>kite</code> to actually
-      see rendered footnotes. Sorry! 😬
+      shown in asciidoc. You'll need to created PDFs using the CLI app to actually see
+      rendered footnotes. Sorry! 😬
     </Note>
     <Para>
       Footnotes in asciidoc are created with the <i>footnote macro</i>, which looks like{' '}

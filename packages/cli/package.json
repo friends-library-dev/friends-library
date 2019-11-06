@@ -1,15 +1,38 @@
 {
   "name": "@friends-library/cli",
   "version": "1.0.0",
-  "description": "CLI utils for Friends Library",
-  "main": "index.js",
-  "author": "jared@netrivet.com",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "description": "cli for friends-library",
   "license": "MIT",
   "scripts": {
-    "compile": "cd ../../ && yarn compile cli"
+    "test": "cd ../../ && yarn jest packages/cli"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
-    "pretty-error": "^2.1.1"
+    "@friends-library/adoc-convert": "1.0.0",
+    "@friends-library/adoc-lint": "1.0.0",
+    "@friends-library/adoc-utils": "1.0.0",
+    "@friends-library/cli-utils": "1.0.0",
+    "@friends-library/cloud": "1.0.0",
+    "@friends-library/doc-artifacts": "1.0.0",
+    "@friends-library/doc-manifests": "1.0.0",
+    "@friends-library/document-meta": "1.0.0",
+    "@friends-library/env": "1.0.0",
+    "@friends-library/lulu": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
+    "gmail-send": "^1.8.10",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.6.0",
+    "pdf-parse": "^1.1.1",
+    "pretty-ms": "^5.0.0",
+    "puppeteer-core": "^2.0.0",
+    "serve": "^11.2.0",
+    "ts-node": "^8.3.0",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {
+    "@types/puppeteer-core": "^1.9.0",
+    "@types/yargs": "^13.0.0"
   }
 }

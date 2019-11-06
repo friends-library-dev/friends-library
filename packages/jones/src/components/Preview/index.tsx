@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import { Global, css } from '@emotion/core';
 import { Uuid, Html } from '@friends-library/types';
-import { embeddablePdfHtml } from '@friends-library/asciidoc';
 import { State as AppState } from '../../type';
-import chapterJob from '../../lib/chapter-job';
+import chapterHtml from '../../lib/chapter-html';
 import Centered from '../Centered';
 import throbber from '../../assets/throbber.gif';
 
@@ -64,18 +63,18 @@ type Props = OwnProps & {
 };
 
 interface State {
-  cssLoaded: boolean;
   html: Html;
+  cssLoaded: boolean;
 }
 
 class Component extends React.Component<Props, State> {
-  public state: State = { cssLoaded: false, html: '' };
+  public state: State = { html: '', cssLoaded: false };
 
   public componentDidMount(): void {
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.type = 'text/css';
-    link.href = 'https://deploy-preview-235--flp-styleguide.netlify.com/pdf.css';
+    link.href = 'preview.css';
     document.head.appendChild(link);
     window.addEventListener('scroll', this.watchScroll);
 
@@ -114,7 +113,7 @@ class Component extends React.Component<Props, State> {
   }, 200);
 
   public render(): JSX.Element {
-    const { cssLoaded, html } = this.state;
+    const { html, cssLoaded } = this.state;
     return (
       <Rendered className="body">
         <Global styles={globalStyles} />
@@ -136,8 +135,8 @@ class Component extends React.Component<Props, State> {
 
 const mapState = (state: AppState, { taskId, file }: OwnProps): Props => {
   const getHtml = (): Html => {
-    const job = chapterJob(state, taskId, file);
-    job.spec.conversionLogs.forEach(log => {
+    const [html, conversionLogs] = chapterHtml(state, taskId, file);
+    conversionLogs.forEach(log => {
       console.warn(
         `${log.getSeverity()}: ${log.getText()}${
           log.getSourceLocation()
@@ -146,7 +145,7 @@ const mapState = (state: AppState, { taskId, file }: OwnProps): Props => {
         }`,
       );
     });
-    return embeddablePdfHtml(job);
+    return html;
   };
   return {
     taskId,

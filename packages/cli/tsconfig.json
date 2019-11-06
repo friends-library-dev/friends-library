@@ -1,7 +1,17 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "declaration": true,
-    "composite": true
-  }
+    "baseUrl": ".",
+    "lib": ["esnext.array", "es2017"],
+    "moduleResolution": "node",
+    "target": "es2017"
+  },
+  "references": [
+    { "path": "../types" },
+    { "path": "../env" },
+    { "path": "../cli-utils" },
+    { "path": "../adoc-convert" },
+    { "path": "../doc-manifests" },
+    { "path": "../doc-artifacts" }
+  ]
 }

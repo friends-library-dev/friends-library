@@ -1,0 +1,18 @@
+{
+  "name": "@friends-library/doc-html",
+  "version": "1.0.0",
+  "description": "html for document consumables",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile doc-html"
+  },
+  "dependencies": {
+    "@friends-library/lulu": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "moment": "^2.24.0",
+    "roman-numerals": "^0.3.2",
+    "strip-indent": "^3.0.0"
+  }
+}

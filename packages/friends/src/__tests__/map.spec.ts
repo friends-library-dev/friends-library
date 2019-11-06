@@ -28,9 +28,9 @@ describe('friendFromJS()', () => {
               type: 'updated',
               description: 'edition description',
               isbn: '978-1-64476-000-0',
-              pages: 261,
               formats: [{ type: 'pdf' }, { type: 'epub' }, { type: 'mobi' }],
               chapters: [{ title: 'Chapter 1' }, { title: 'Chapter 2' }],
+              splits: [2],
               audio: {
                 reader: 'Harriet Henderson',
                 parts: [
@@ -88,9 +88,9 @@ describe('friendFromJS()', () => {
     const edition = friendFromJS(js).documents[0].editions[0];
 
     expect(edition).toBeInstanceOf(Edition);
-    expect(edition.pages).toBe(261);
     expect(edition.type).toBe('updated');
     expect(edition.description).toBe('edition description');
+    expect(edition.splits).toMatchObject([2]);
   });
 
   it('maps document edition formats', () => {
