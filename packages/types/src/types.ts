@@ -34,19 +34,6 @@ export type PrintSize = 's' | 'm' | 'xl';
 export type PrintSizeVariant = PrintSize | 'xl--condensed';
 export type PrintJobStatus = 'pending' | 'accepted' | 'shipped' | 'rejected' | 'canceled';
 
-export interface Job {
-  id: string;
-  spec: SourceSpec;
-  meta: JobMeta;
-  target: FileType;
-  filename: string;
-}
-
-export interface DocumentArtifacts {
-  filePath: FilePath;
-  srcDir: FilePath;
-}
-
 export interface PrintSizeDetails {
   abbrev: PrintSize;
   maxPages: number;
@@ -65,31 +52,7 @@ export interface PrintSizeDetails {
   };
 }
 
-export type SourceSpec = Readonly<{
-  id: string;
-  lang: Lang;
-  size: number;
-  filename: string;
-  config: { [key: string]: any };
-  customCss: CustomCss;
-  meta: DocumentMeta;
-  revision: DocumentRevision;
-  epigraphs: Epigraph[];
-  sections: DocSection[];
-  notes: Notes;
-  conversionLogs: AsciidocConversionLog[];
-}>;
-
 export type CustomCss = { [K in FileTypeWithShortcuts]?: Css };
-
-export type JobMeta = Readonly<{
-  perform: boolean;
-  check: boolean;
-  frontmatter: boolean;
-  printSize?: PrintSize;
-  condense: boolean;
-  createEbookCover: boolean;
-}>;
 
 export interface AsciidocConversionLog {
   getText(): string;
@@ -119,35 +82,6 @@ export type DocSection = Readonly<{
   index: number;
   heading: Heading;
   html: Html;
-}>;
-
-export type SourcePrecursor = Readonly<{
-  id: string;
-  lang: Lang;
-  adoc: Asciidoc;
-  config: { [key: string]: any };
-  customCss: CustomCss;
-  revision: DocumentRevision;
-  meta: DocumentMeta;
-  filename: string;
-}>;
-
-export type DocumentRevision = Readonly<{
-  timestamp: number;
-  sha: string;
-  url: Url;
-}>;
-
-export type DocumentMeta = Readonly<{
-  coverId: string;
-  originalTitle?: string;
-  published?: number;
-  isbn?: ISBN;
-  editor?: string;
-  author: {
-    name: string;
-    nameSort: string;
-  };
 }>;
 
 export interface FileManifest {

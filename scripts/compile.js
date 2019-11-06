@@ -18,14 +18,9 @@ const pkgs = [
   'cli-utils',
   'cloud',
   'slack',
-  // 'evans',
   'friends',
-  // 'jones',
   'hilkiah',
   'types',
-  'styleguide',
-  // 'fell',
-  // 'ui',
   'all',
 ];
 
