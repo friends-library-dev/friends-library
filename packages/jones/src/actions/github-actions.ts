@@ -1,5 +1,5 @@
 import smalltalk from 'smalltalk';
-import { lintFix as fixLints } from '@friends-library/asciidoc';
+import { lintFix as fixLints } from '@friends-library/adoc-lint';
 import * as gh from '../lib/github-api';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import { Slug, Url, Uuid } from '@friends-library/types';

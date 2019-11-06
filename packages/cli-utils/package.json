@@ -1,0 +1,15 @@
+{
+  "name": "@friends-library/cli-utils",
+  "version": "1.0.0",
+  "description": "CLI utils for Friends Library",
+  "main": "index.js",
+  "author": "jared@netrivet.com",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile cli"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "pretty-error": "^2.1.1"
+  }
+}

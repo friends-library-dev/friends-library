@@ -42,7 +42,6 @@ export default ({ data: { friend } }: Props) => (
             friendName={friend.name}
             hasAudio={doc.hasAudio}
             hasUpdatedEdition={doc.hasUpdatedEdition}
-            shortestEditionPages={doc.shortestEdition.pages}
             tags={doc.tags}
             url={doc.url}
           />
@@ -64,9 +63,6 @@ export const query = graphql`
         hasUpdatedEdition
         tags
         url
-        shortestEdition {
-          pages
-        }
       }
     }
   }

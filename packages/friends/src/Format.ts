@@ -1,4 +1,4 @@
-import { Url, FormatType, FileType } from '@friends-library/types';
+import { Url, FormatType, ArtifactType } from '@friends-library/types';
 import Edition from './Edition';
 
 export default class Format {
@@ -17,12 +17,15 @@ export default class Format {
   }
 
   public filename(): string {
-    const fileType = <FileType>(this.type === 'pdf' ? 'pdf-web' : this.type);
-    return this.edition.filename(fileType);
+    // @TODO this is bad
+    let type: ArtifactType = 'paperback-interior';
+    if (this.type === 'pdf') type = 'web-pdf';
+    if (this.type === 'mobi') type = 'mobi';
+    if (this.type === 'epub') type = 'epub';
+    return this.edition.filename(type);
   }
 
-  public toJSON(): Format {
-    delete this.edition;
-    return this;
+  public toJSON(): Pick<Format, 'type'> {
+    return { type: this.type };
   }
 }

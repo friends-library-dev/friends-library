@@ -1,0 +1,59 @@
+{
+  "name": "@friends-library/cover-web-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "dependencies": {
+    "@friends-library/cover-component": "1.0.0",
+    "@friends-library/document-meta": "1.0.0",
+    "@friends-library/cli-utils": "1.0.0",
+    "@friends-library/friends": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "@material-ui/core": "^4.0.0-beta.0",
+    "@material-ui/icons": "^4.0.0-beta.0",
+    "brace": "^0.11.1",
+    "browser-or-node": "^1.2.1",
+    "classnames": "^2.2.6",
+    "glob": "^7.1.3",
+    "lodash": "^4.17.11",
+    "react": "16.10.1",
+    "react-ace": "^6.5.0",
+    "react-contenteditable": "^3.2.6",
+    "react-dom": "16.10.1",
+    "react-keyboard-event-handler": "^1.4.1",
+    "react-scripts": "3.0.0",
+    "ts-node": "^8.1.0"
+  },
+  "scripts": {
+    "compile": "cd ../../ && yarn compile cover-web-app",
+    "ts:check": "../../node_modules/.bin/tsc --noEmit -p .",
+    "listen:pdf": "node ./listen/listen-pdf.js",
+    "develop": "yarn friends && concurrently \"yarn compile -w\" yarn:listen:pdf yarn:start \"sleep 3 && cd ../../ && yarn fl cover:watch\"",
+    "start": "BROWSER=none SKIP_PREFLIGHT_CHECK=true PORT=9999 react-scripts start",
+    "friends": "yarn ts-node -T --skip-project ./src/scripts/friend-data.ts",
+    "build": "yarn friends && SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "clone:netlify": "cd ../../ && mkdir -p ./en && mkdir -p ./es && yarn compile fell && yarn fell clone",
+    "build:netlify": "yarn clone:netlify && yarn compile && yarn build",
+    "test": "cd ../../ && yarn jest packages/cover-web-app",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.11",
+    "@types/node": "11.13.7",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.8.4",
+    "concurrently": "^4.1.0"
+  }
+}

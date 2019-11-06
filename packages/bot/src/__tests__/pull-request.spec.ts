@@ -1,10 +1,10 @@
-import { cloud } from '@friends-library/client';
+import cloud from '@friends-library/cloud';
 import lintCheck from '../check/lint';
 import { prTestSetup } from './helpers';
 import pullRequest from '../pull-request';
 
-jest.mock('@friends-library/client');
-jest.mock('@friends-library/asciidoc');
+jest.mock('@friends-library/cloud');
+jest.mock('@friends-library/adoc-lint');
 jest.mock('../check/lint');
 
 describe('pullRequest()', () => {

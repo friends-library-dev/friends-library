@@ -12,8 +12,13 @@
     "test:integration": "cd ../../ && yarn test --testRegex=packages/functions/.*/.*\\.integration\\.ts --env=node"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/plugin-transform-regenerator": "^7.7.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@friends-library/client": "1.0.0",
+    "@friends-library/env": "1.0.0",
+    "@friends-library/slack": "1.0.0",
     "@friends-library/types": "1.0.0",
     "@sendgrid/mail": "^6.4.0",
     "bufferutil": "^4.0.1",

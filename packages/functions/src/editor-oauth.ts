@@ -1,5 +1,5 @@
 import { Handler, APIGatewayEvent } from 'aws-lambda';
-import { requireEnv } from '@friends-library/types';
+import env from '@friends-library/env';
 import fetch from 'node-fetch';
 
 const handler: Handler = async (event: APIGatewayEvent) => {
@@ -12,7 +12,7 @@ const handler: Handler = async (event: APIGatewayEvent) => {
     JONES_OAUTH_CLIENT_ID,
     JONES_OAUTH_CLIENT_SECRET,
     JONES_OAUTH_REDIR_URI,
-  } = requireEnv(
+  } = env.require(
     'JONES_OAUTH_CLIENT_ID',
     'JONES_OAUTH_CLIENT_SECRET',
     'JONES_OAUTH_REDIR_URI',

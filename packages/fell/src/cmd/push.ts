@@ -1,6 +1,6 @@
 import { CommandBuilder } from 'yargs';
 import path from 'path';
-import { red, green } from '@friends-library/cli/color';
+import { red, green } from '@friends-library/cli-utils/color';
 import { Argv as BaseArgv } from '../type';
 import { getRepos } from '../repos';
 import { excludable, forceable } from './helpers';

@@ -1,0 +1,15 @@
+{
+  "name": "@friends-library/doc-css",
+  "version": "1.0.0",
+  "description": "css for document consumables",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile doc-css"
+  },
+  "dependencies": {
+    "@friends-library/lulu": "1.0.0",
+    "@friends-library/types": "1.0.0"
+  }
+}

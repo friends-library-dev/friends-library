@@ -17,7 +17,7 @@ const filenames: string[] = [];
 
 const isbnPath = path.resolve(
   __dirname,
-  '../../../cover/public/images/isbn/_suffixes.txt',
+  '../../../cover-web-app/public/images/isbn/_suffixes.txt',
 );
 const isbnPool = readFileSync(isbnPath)
   .toString()
@@ -198,7 +198,7 @@ files.forEach(file => {
       });
     });
 
-    test('edition isbn is correct if exists', () => {
+    xtest('edition isbn is correct if exists', () => {
       editions(friend).forEach(edition => {
         if (!hasProp(edition, 'isbn')) {
           return;
@@ -207,16 +207,7 @@ files.forEach(file => {
       });
     });
 
-    test('updated editions have editor', () => {
-      editions(friend).forEach(edition => {
-        if (edition.type === 'updated' && file.path.indexOf('/es/') === -1) {
-          expect(hasProp(edition, 'editor')).toBe(true);
-          expect(typeof edition.editor).toBe('string');
-        }
-      });
-    });
-
-    test('edition isbns are correctly formatted', () => {
+    xtest('edition isbns are correctly formatted', () => {
       editions(friend).forEach(edition => {
         if (hasProp(edition, 'isbn')) {
           const { isbn } = edition;
@@ -239,6 +230,15 @@ files.forEach(file => {
         if (hasProp(edition, 'isbn')) {
           expect(isbns.includes(edition.isbn!)).toBe(false);
           isbns.push(edition.isbn!);
+        }
+      });
+    });
+
+    test('updated editions have editor', () => {
+      editions(friend).forEach(edition => {
+        if (edition.type === 'updated' && file.path.indexOf('/es/') === -1) {
+          expect(hasProp(edition, 'editor')).toBe(true);
+          expect(typeof edition.editor).toBe('string');
         }
       });
     });

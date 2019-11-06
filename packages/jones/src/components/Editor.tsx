@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AceEditor from 'react-ace';
 import { withSize } from 'react-sizeme';
 import debounce from 'lodash/debounce';
-import { lint } from '@friends-library/asciidoc';
+import { lint } from '@friends-library/adoc-lint';
 import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import { Dispatch, State } from '../type';
 import { requireCurrentTask } from '../select';

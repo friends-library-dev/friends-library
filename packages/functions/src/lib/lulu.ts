@@ -1,5 +1,6 @@
 import ClientOAuth2 from 'client-oauth2';
-import { requireEnv, PrintSize } from '@friends-library/types';
+import { PrintSize } from '@friends-library/types';
+import env from '@friends-library/env';
 
 export function podPackageId(printSize: PrintSize, numPages: number): string {
   const dimensions = {
@@ -21,7 +22,7 @@ export function podPackageId(printSize: PrintSize, numPages: number): string {
 }
 
 export async function getAuthToken(): Promise<string> {
-  const { LULU_CLIENT_KEY, LULU_CLIENT_SECRET, LULU_API_ENDPOINT } = requireEnv(
+  const { LULU_CLIENT_KEY, LULU_CLIENT_SECRET, LULU_API_ENDPOINT } = env.require(
     'LULU_CLIENT_KEY',
     'LULU_CLIENT_SECRET',
     'LULU_API_ENDPOINT',

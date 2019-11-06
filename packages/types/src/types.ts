@@ -1,3 +1,28 @@
+import {
+  ISBN,
+  Uuid,
+  Asciidoc,
+  Xml,
+  Html,
+  Css,
+  Url,
+  Slug,
+  Name,
+  Title,
+  Description,
+  FilePath,
+  Sha,
+} from './primitive';
+export {
+  DocPrecursor,
+  ArtifactType,
+  PaperbackInteriorConfig,
+  PaperbackCoverConfig,
+  EbookConfig,
+  EditionMeta,
+  PageData,
+  genericDpc,
+} from './doc';
 export type Gender = 'male' | 'female';
 export type Lang = 'en' | 'es';
 export type EditionType = 'original' | 'modernized' | 'updated';
@@ -6,21 +31,8 @@ export type NodeEnv = 'production' | 'development';
 export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
 export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
 export type PrintSize = 's' | 'm' | 'xl';
-
+export type PrintSizeVariant = PrintSize | 'xl--condensed';
 export type PrintJobStatus = 'pending' | 'accepted' | 'shipped' | 'rejected' | 'canceled';
-
-export interface Job {
-  id: string;
-  spec: SourceSpec;
-  meta: JobMeta;
-  target: FileType;
-  filename: string;
-}
-
-export interface DocumentArtifacts {
-  filePath: FilePath;
-  srcDir: FilePath;
-}
 
 export interface PrintSizeDetails {
   abbrev: PrintSize;
@@ -40,31 +52,7 @@ export interface PrintSizeDetails {
   };
 }
 
-export type SourceSpec = Readonly<{
-  id: string;
-  lang: Lang;
-  size: number;
-  filename: string;
-  epigraphs: Epigraph[];
-  config: { [key: string]: any };
-  customCss: CustomCss;
-  meta: DocumentMeta;
-  revision: DocumentRevision;
-  sections: DocSection[];
-  notes: Notes;
-  conversionLogs: AsciidocConversionLog[];
-}>;
-
 export type CustomCss = { [K in FileTypeWithShortcuts]?: Css };
-
-export type JobMeta = Readonly<{
-  perform: boolean;
-  check: boolean;
-  frontmatter: boolean;
-  printSize?: PrintSize;
-  condense: boolean;
-  createEbookCover: boolean;
-}>;
 
 export interface AsciidocConversionLog {
   getText(): string;
@@ -96,38 +84,8 @@ export type DocSection = Readonly<{
   html: Html;
 }>;
 
-export type SourcePrecursor = Readonly<{
-  id: string;
-  lang: Lang;
-  adoc: Asciidoc;
-  config: { [key: string]: any };
-  customCss: CustomCss;
-  revision: DocumentRevision;
-  meta: DocumentMeta;
-  filename: string;
-}>;
-
-export type DocumentRevision = Readonly<{
-  timestamp: number;
-  sha: string;
-  url: Url;
-}>;
-
-export type DocumentMeta = Readonly<{
-  title: string;
-  coverId: string;
-  originalTitle?: string;
-  published?: number;
-  isbn?: ISBN;
-  editor?: string;
-  author: {
-    name: string;
-    nameSort: string;
-  };
-}>;
-
 export interface FileManifest {
-  [key: string]: string;
+  [key: string]: string | Buffer;
 }
 
 export interface LintResult {
@@ -150,31 +108,20 @@ export interface LintOptions {
 }
 
 export interface CoverProps {
+  lang: Lang;
   title: string;
   author: Name;
   size: PrintSize;
   pages: number;
-  edition: EditionType | 'spanish';
+  edition: EditionType;
   isbn?: ISBN;
   blurb: string;
   showGuides: boolean;
   customCss: Css;
   customHtml: Html;
+  scope?: string;
+  scaler?: number;
 }
-
-export type ISBN = string;
-export type Uuid = string;
-export type Asciidoc = string;
-export type Xml = string;
-export type Html = string;
-export type Css = string;
-export type Url = string;
-export type Slug = string;
-export type Name = string;
-export type Title = string;
-export type Description = string;
-export type FilePath = string;
-export type Sha = string;
 
 export function isDefined<T>(x: T | undefined): x is T {
   return typeof x !== 'undefined';
@@ -184,15 +131,18 @@ export function isNotFalse<T>(x: T | false): x is T {
   return x !== false;
 }
 
-export function requireEnv<T extends string>(...keys: T[]): { [k in T]: string } {
-  /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
-  const obj = {} as { [k in T]: string };
-  keys.forEach(key => {
-    const val = process.env[key];
-    if (typeof val !== 'string') {
-      throw new Error(`Env var \`${key}\` is required.`);
-    }
-    obj[key] = val;
-  });
-  return obj;
-}
+export {
+  ISBN,
+  Uuid,
+  Asciidoc,
+  Xml,
+  Html,
+  Css,
+  Url,
+  Slug,
+  Name,
+  Title,
+  Description,
+  FilePath,
+  Sha,
+};

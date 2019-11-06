@@ -1,5 +1,5 @@
 import { Handler, APIGatewayEvent } from 'aws-lambda';
-import { requireEnv } from '@friends-library/types';
+import env from '@friends-library/env';
 import { URLSearchParams } from 'url';
 import fetch from 'node-fetch';
 
@@ -39,7 +39,7 @@ const handler: Handler = async ({ httpMethod, body }: APIGatewayEvent) => {
     ZOE_ORDER_EMAIL_PASS,
     ZOE_ORDER_EMAIL_RECIPIENT,
     ZOE_ORDER_RECAPTCHA_SECRET,
-  } = requireEnv(
+  } = env.require(
     'ZOE_ORDER_EMAIL_USER',
     'ZOE_ORDER_EMAIL_PASS',
     'ZOE_ORDER_EMAIL_RECIPIENT',

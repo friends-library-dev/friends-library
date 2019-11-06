@@ -1,0 +1,19 @@
+{
+  "name": "@friends-library/cloud",
+  "version": "1.0.0",
+  "description": "cloud storage api for FLP",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "cd ../.. && yarn jest packages/cloud",
+    "compile": "cd ../../ && yarn compile cloud"
+  },
+  "dependencies": {
+    "@friends-library/types": "1.0.0",
+    "@friends-library/env": "1.0.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.559.0"
+  }
+}

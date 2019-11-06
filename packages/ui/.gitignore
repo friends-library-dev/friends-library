@@ -2,3 +2,5 @@ dist
 storybook-static
 **/*.d.ts
 !src/globals.d.ts
+.storybook/preview-head.html
+.storybook/manager-head.html

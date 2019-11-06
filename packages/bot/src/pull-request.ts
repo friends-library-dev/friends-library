@@ -20,9 +20,7 @@ export default async function(context: Context): Promise<void> {
 
   if (['opened', 'synchronize', 'reopened'].includes(action)) {
     getModifiedFiles(context).then(files => {
-      context.log.info(
-        'Received modified files, passing on to `lintCheck` and `kiteCheck`',
-      );
+      context.log.info('Received modified files, passing on to `lintCheck`');
       context.log.debug({ files }, 'modified files');
       lintCheck(context, files);
     });

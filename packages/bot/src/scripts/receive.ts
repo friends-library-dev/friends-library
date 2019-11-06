@@ -1,12 +1,12 @@
-import '@friends-library/client/load-env';
-import { requireEnv } from '@friends-library/types';
+import '@friends-library/env/load';
+import env from '@friends-library/env';
 import path from 'path';
 import nodeFetch from 'node-fetch';
 import fs from 'fs';
 import uuid from 'uuid/v4';
 import CryptoJS from 'crypto-js';
 
-const { BOT_WEBHOOK_PROXY_URL, BOT_WEBHOOK_SECRET } = requireEnv(
+const { BOT_WEBHOOK_PROXY_URL, BOT_WEBHOOK_SECRET } = env.require(
   'BOT_WEBHOOK_SECRET',
   'BOT_WEBHOOK_PROXY_URL',
 );

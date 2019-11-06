@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "composite": true
+  },
+  "include": ["./src"],
+  "references": [
+    { "path": "../types" },
+    { "path": "../doc-css" },
+    { "path": "../cover-component" },
+    { "path": "../doc-html" }
+  ]
+}

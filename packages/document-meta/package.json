@@ -1,0 +1,17 @@
+{
+  "name": "@friends-library/document-meta",
+  "version": "1.0.0",
+  "description": "document meta class and repo",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "cd ../.. && yarn jest packages/document-meta",
+    "compile": "cd ../../ && yarn compile document-meta"
+  },
+  "dependencies": {
+    "@friends-library/env": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "@octokit/rest": "^16.33.1"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@friends-library/env",
+  "version": "1.0.0",
+  "description": "flp env helpers",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile env"
+  },
+  "dependencies": {
+    "dotenv": "^6.2.0"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1"
+  },
+  "sideEffects": [
+    "dist/load.js"
+  ]
+}

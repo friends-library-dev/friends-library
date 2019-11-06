@@ -1,5 +1,5 @@
-import '@friends-library/client/load-env';
-import { prettifyErrors } from '@friends-library/cli/error';
+import '@friends-library/env/load';
+import { prettifyErrors } from '@friends-library/cli-utils/error';
 import yargs from 'yargs';
 import * as branch from './cmd/branch';
 import * as status from './cmd/status';

@@ -70,7 +70,7 @@ const FEATURED_BOOKS = [
   },
   {
     title: 'No Cross, No Crown',
-    friendSlug: 'williami-penn',
+    friendSlug: 'william-penn',
     friendName: 'Wiliam Penn',
     cover:
       'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/william-penn/no-cross-no-crown/updated/No_Cross_No_Crown--updated--cover.png',

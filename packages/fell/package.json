@@ -12,8 +12,8 @@
     "test": "cd ../../ && yarn jest packages/fell"
   },
   "dependencies": {
-    "@friends-library/cli": "1.0.0",
-    "@friends-library/client": "1.0.0",
+    "@friends-library/cli-utils": "1.0.0",
+    "@friends-library/env": "1.0.0",
     "@friends-library/types": "1.0.0",
     "@octokit/rest": "^16.15.0",
     "chalk": "^2.4.1",
