@@ -9,6 +9,7 @@ export default async function connect(): Promise<Connection> {
   await mongoose.connect(FUNCTIONS_DB_CONNECT_STRING, {
     useNewUrlParser: true,
     useFindAndModify: false,
+    useUnifiedTopology: true,
   });
 
   mongoose.connection.on('error', log.error.bind(log, 'MongoDB connection error:'));
