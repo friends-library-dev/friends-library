@@ -7,7 +7,6 @@
     "@friends-library/cover-component": "1.0.0",
     "@friends-library/document-meta": "1.0.0",
     "@friends-library/cli-utils": "1.0.0",
-    "@friends-library/env": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/types": "1.0.0",
     "@material-ui/core": "^4.0.0-beta.0",
@@ -53,7 +52,7 @@
   "devDependencies": {
     "@types/jest": "24.0.11",
     "@types/node": "11.13.7",
-    "@types/react": "^16.9.4",
+    "@types/react": "16.9.11",
     "@types/react-dom": "16.8.4",
     "concurrently": "^4.1.0"
   }

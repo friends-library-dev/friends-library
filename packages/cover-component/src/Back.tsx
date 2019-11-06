@@ -28,7 +28,7 @@ const Back: React.FC<CoverProps> = ({ blurb, isbn, lang, edition }) => {
         {isbn && (
           <img
             className="isbn"
-            src={`https://friends-library-assets.nyc3.digitaloceanspaces.com/isbn/${isbn}.png`}
+            src={`https://friends-library-assets.nyc3.digitaloceanspaces.com/static/isbn/${isbn}.png`}
             alt=""
           />
         )}

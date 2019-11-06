@@ -70,13 +70,13 @@ const back: CoverCssModule = (props, scaler, scope) => {
 
     .Cover--scale-s .purpose {
       height: 15%;
-      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/purpose.png');
+      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/static/cover/purpose.png');
       background-position: center center;
     }
 
     .Cover--scale-xs .website {
       height: 5%;
-      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/website.png');
+      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/static/cover/website.png');
       background-position: left top;
     }
 

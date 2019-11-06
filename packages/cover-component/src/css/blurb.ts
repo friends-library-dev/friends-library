@@ -46,7 +46,7 @@ const blurb: CoverCssModule = (_, scaler, scope) => {
     }
 
     .Cover--scale-xs .brackets {
-      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/blurb.png');
+      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/static/cover/blurb.png');
       background-size: 75% 85%;
       background-repeat: no-repeat;
       background-position: center 69%;

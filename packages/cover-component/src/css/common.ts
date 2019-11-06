@@ -95,14 +95,12 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
       font-size: ${dims.width}in;
     }
 
-    .Cover--front-only,
     .Cover .back,
     .Cover .front,
     .Cover .spine {
       height: ${dims.height}in;
     }
 
-    .Cover--front-only,
     .Cover .back,
     .Cover .front {
       width: ${dims.width}in;
