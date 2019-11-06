@@ -1,4 +1,3 @@
-process.env.API_URL = 'https://test-api.friendslibrary.com';
 process.env.LULU_API_ENDPOINT = '/lulu-api';
 process.env.LULU_CLIENT_KEY = 'lulu-client-key';
 process.env.LULU_CLIENT_SECRET = 'lulu-client-secret';

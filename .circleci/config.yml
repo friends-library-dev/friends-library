@@ -25,7 +25,7 @@ jobs:
       - run: yarn test -w=2
       - run: yarn sass:lint
       - run: yarn ts:lint
-      - run: KITE_DOCS_REPOS_ROOT="" yarn cover:build
+      - run: DOCS_REPOS_ROOT="" yarn cover:build
 
   deploy_bot:
     docker:
