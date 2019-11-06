@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import convertHandler from '../handler';
 
-jest.mock('@friends-library/cli/color');
+jest.mock('@friends-library/cli-utils/color');
 
 describe('converHandler()', () => {
   it('converts a docbook file to asciidoc', () => {
