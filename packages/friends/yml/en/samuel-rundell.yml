@@ -37,9 +37,6 @@ documents:
       - exhortation
     editions:
       - type: updated
-        splits:
-          - 2
-          - 4
         isbn: 978-1-64476-001-7
         editor: Jared Henderson
         formats:
