@@ -4,6 +4,7 @@
     "jsx": "react",
     "types": ["node", "@emotion/core", "jest"],
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "noEmit": true,
     "plugins": [
       {
@@ -17,7 +18,8 @@
   "include": ["./src"],
   "references": [
     { "path": "../types" },
-    { "path": "../friends" }
-    // { "path": "../functions" }
+    { "path": "../cover-component" },
+    { "path": "../friends" },
+    { "path": "../functions" }
   ]
 }

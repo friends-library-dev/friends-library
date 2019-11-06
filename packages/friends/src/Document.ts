@@ -57,8 +57,28 @@ export default class Document {
     );
   }
 
-  public toJSON(): Document {
-    delete this.friend;
-    return this;
+  public toJSON(): Pick<
+    Document,
+    | 'id'
+    | 'title'
+    | 'originalTitle'
+    | 'slug'
+    | 'description'
+    | 'filename'
+    | 'published'
+    | 'tags'
+    | 'editions'
+  > {
+    return {
+      id: this.id,
+      title: this.title,
+      originalTitle: this.originalTitle,
+      slug: this.slug,
+      description: this.description,
+      filename: this.filename,
+      published: this.published,
+      tags: this.tags,
+      editions: this.editions,
+    };
   }
 }

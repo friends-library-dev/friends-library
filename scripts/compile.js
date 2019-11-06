@@ -21,6 +21,7 @@ const pkgs = [
   'friends',
   'hilkiah',
   'types',
+  'styleguide',
   'all',
 ];
 

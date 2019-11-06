@@ -30,7 +30,7 @@
     "format:yml": "yarn prettier \"packages/friends/**/*.yml\" --write",
     "format:all": "yarn prettier \"packages/**/*.{ts,tsx,js,css,scss,yml}\" --write",
     "storybook": "cd packages/ui && yarn storybook",
-    "preflight": "yarn lint && yarn fl make en/robert-barclay/recreation-entertainment/updated --target all --no-open && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
+    "preflight": "yarn lint && yarn fl make en/robert-barclay/recreation-entertainment/updated --target all -o && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
   },
   "dependencies": {
     "lodash": "^4.17.15",

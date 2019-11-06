@@ -25,8 +25,7 @@ export default class Format {
     return this.edition.filename(type);
   }
 
-  public toJSON(): Format {
-    delete this.edition;
-    return this;
+  public toJSON(): Pick<Format, 'type'> {
+    return { type: this.type };
   }
 }

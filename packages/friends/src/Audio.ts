@@ -13,8 +13,10 @@ export default class Audio {
     return `${this.edition.document.url()}/${this.edition.type}/podcast.rss`;
   }
 
-  public toJSON(): Audio {
-    delete this.edition;
-    return this;
+  public toJSON(): Pick<Audio, 'reader' | 'parts'> {
+    return {
+      reader: this.reader,
+      parts: this.parts,
+    };
   }
 }

@@ -54,10 +54,10 @@
   "scripts": {
     "test": "cd ../../ && yarn jest packages/evans",
     "ts:check": "../../node_modules/.bin/tsc --noEmit -p .",
-    "develop:functions": "echo \"TEMP NOT DEVELOP FUNCTIONS\" #cd ../functions && yarn start",
+    "develop:functions": "cd ../functions && yarn start",
     "compile": "cd ../../ && yarn compile evans",
     "lint:clean": "sed -i '' -e 's|\"use strict\";||' ../types/dist/types.js",
-    "build:functions": "echo \"TEMP NOT BUILD FUNCTIONS\" #cd ../functions && yarn build",
+    "build:functions": "cd ../functions && yarn build",
     "build": "gatsby clean && gatsby build && yarn build:functions",
     "build:en": "GATSBY_LANG=en yarn build",
     "build:es": "GATSBY_LANG=es yarn build",

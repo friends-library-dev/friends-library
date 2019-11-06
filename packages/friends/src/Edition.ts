@@ -51,8 +51,26 @@ export default class Edition {
     );
   }
 
-  public toJSON(): Edition {
-    delete this.document;
-    return this;
+  public toJSON(): Pick<
+    Edition,
+    | 'type'
+    | 'formats'
+    | 'chapters'
+    | 'description'
+    | 'editor'
+    | 'isbn'
+    | 'audio'
+    | 'splits'
+  > {
+    return {
+      type: this.type,
+      formats: this.formats,
+      chapters: this.chapters,
+      description: this.description,
+      editor: this.editor,
+      isbn: this.editor,
+      audio: this.audio,
+      splits: this.splits,
+    };
   }
 }

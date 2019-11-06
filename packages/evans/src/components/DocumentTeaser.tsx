@@ -64,20 +64,11 @@ interface Props {
   friendName: Name;
   hasAudio: boolean;
   hasUpdatedEdition: boolean;
-  shortestEditionPages: number;
   tags: string[];
   url: Url;
 }
 
-export default ({
-  title,
-  friendName,
-  hasAudio,
-  hasUpdatedEdition,
-  shortestEditionPages,
-  tags,
-  url,
-}: Props) => {
+export default ({ title, friendName, hasAudio, hasUpdatedEdition, tags, url }: Props) => {
   return (
     <DocumentTeaser>
       <Heading
@@ -100,7 +91,7 @@ export default ({
         )}
         <li>
           <i className="fa fa-clock-o" />
-          {shortestEditionPages} {t`Pages`}
+          999 {t`Pages`}
         </li>
         <li>
           <i className="fa fa-tags" />
