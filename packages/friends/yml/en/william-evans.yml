@@ -34,6 +34,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-153-3
         pages: 845
         formats:
           - type: pdf

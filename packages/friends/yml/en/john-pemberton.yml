@@ -37,6 +37,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-075-8
         formats:
           - type: pdf
           - type: epub
@@ -51,6 +52,7 @@ documents:
           - title: Testimony of Philadelphia Monthly Meeting
           - title: Testimony of Pyrmont Friends
       - type: original
+        isbn: 978-1-64476-076-5
         formats:
           - type: pdf
           - type: epub

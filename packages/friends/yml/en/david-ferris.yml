@@ -33,6 +33,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-019-2
         pages: 70
         formats:
           - type: pdf
@@ -46,6 +47,7 @@ documents:
           - number: 5
           - title: A Testimony of David Ferris
       - type: original
+        isbn: 978-1-64476-020-8
         pages: 70
         formats:
           - type: pdf

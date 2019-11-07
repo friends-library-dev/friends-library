@@ -30,6 +30,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-127-4
         pages: 310
         formats:
           - type: pdf
@@ -53,6 +54,7 @@ documents:
           - title:
               Some Remarks on Christian Discipline, as it Respects the Education of Youth.
       - type: original
+        isbn: 978-1-64476-128-1
         pages: 310
         formats:
           - type: pdf

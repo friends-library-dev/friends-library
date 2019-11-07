@@ -30,6 +30,7 @@ documents:
       - letters
     editions:
       - type: updated
+        isbn: 978-1-64476-129-8
         editor: Jason R. Henderson
         pages: 27
         formats:
@@ -65,6 +66,7 @@ documents:
       - exhortation
     editions:
       - type: updated
+        isbn: 978-1-64476-130-4
         editor: Jason R. Henderson
         pages: 12
         formats:
@@ -98,6 +100,7 @@ documents:
       - allegory
     editions:
       - type: modernized
+        isbn: 978-1-64476-131-1
         formats:
           - type: pdf
           - type: epub
@@ -117,6 +120,7 @@ documents:
         chapters:
           - title: A Short History of a Long Travel from Babylon to Bethel
       - type: original
+        isbn: 978-1-64476-132-8
         formats:
           - type: pdf
           - type: epub

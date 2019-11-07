@@ -35,6 +35,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-151-9
         pages: 265
         formats:
           - type: pdf
@@ -77,6 +78,7 @@ documents:
           - title: Testimonies Concerning William Edmundson
 
       - type: original
+        isbn: 978-1-64476-152-6
         pages: 265
         formats:
           - type: pdf

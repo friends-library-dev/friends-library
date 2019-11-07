@@ -198,39 +198,30 @@ files.forEach(file => {
       });
     });
 
-    xtest('edition isbn is correct if exists', () => {
+    test('edition isbn is correct', () => {
       editions(friend).forEach(edition => {
-        if (!hasProp(edition, 'isbn')) {
-          return;
-        }
         expect(edition.isbn).toMatch(/^978-1-64476-[0-9]{3}-[0-9]$/);
       });
     });
 
-    xtest('edition isbns are correctly formatted', () => {
+    test('edition isbns are correctly formatted', () => {
       editions(friend).forEach(edition => {
-        if (hasProp(edition, 'isbn')) {
-          const { isbn } = edition;
-          expect(isbn).toMatch(/^978-1-64476-\d\d\d-\d$/);
-        }
+        const { isbn } = edition;
+        expect(isbn).toMatch(/^978-1-64476-\d\d\d-\d$/);
       });
     });
 
     test('edition isbns are one of ours', () => {
       editions(friend).forEach(edition => {
-        if (hasProp(edition, 'isbn')) {
-          const suffix = edition.isbn!.replace(/^978-1-64476-/, '');
-          expect(isbnPool.includes(suffix)).toBe(true);
-        }
+        const suffix = edition.isbn!.replace(/^978-1-64476-/, '');
+        expect(isbnPool.includes(suffix)).toBe(true);
       });
     });
 
     test('edition isbns are unique', () => {
       editions(friend).forEach(edition => {
-        if (hasProp(edition, 'isbn')) {
-          expect(isbns.includes(edition.isbn!)).toBe(false);
-          isbns.push(edition.isbn!);
-        }
+        expect(isbns.includes(edition.isbn!)).toBe(false);
+        isbns.push(edition.isbn!);
       });
     });
 

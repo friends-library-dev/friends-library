@@ -34,6 +34,7 @@ documents:
       - treatise
     editions:
       - type: modernized
+        isbn: 978-1-64476-086-4
         pages: 316
         formats:
           - type: pdf
@@ -61,6 +62,7 @@ documents:
           - title: Remarks on Sundry Subjects
           - title: Epistle to the Quarterly and Monthly Meetings of Friends
       - type: original
+        isbn: 978-1-64476-087-1
         formats:
           - type: pdf
           - type: epub

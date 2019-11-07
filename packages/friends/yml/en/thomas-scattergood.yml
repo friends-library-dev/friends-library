@@ -40,6 +40,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-137-3
         pages: 596
         formats:
           - type: pdf
@@ -63,6 +64,7 @@ documents:
             subtitle: Testimony of the monthly meeting of Philadelphia
 
       - type: original
+        isbn: 978-1-64476-138-0
         pages: 596
         formats:
           - type: pdf

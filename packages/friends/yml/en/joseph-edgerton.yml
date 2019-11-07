@@ -37,6 +37,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-088-8
         pages: 208
         formats:
           - type: pdf
@@ -61,6 +62,7 @@ documents:
           - title: Address to the Members of the Society of Friends
 
       - type: original
+        isbn: 978-1-64476-089-5
         pages: 208
         formats:
           - type: pdf

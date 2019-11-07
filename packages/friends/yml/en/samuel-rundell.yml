@@ -83,6 +83,7 @@ documents:
               chapters:
                 - 4
       - type: modernized
+        isbn: 978-1-64476-125-0
         formats:
           - type: pdf
           - type: epub
@@ -101,6 +102,7 @@ documents:
               with Observations on the Partaking of the Flesh and Blood of Christ
           - title: Concluding Observations
       - type: original
+        isbn: 978-1-64476-126-7
         formats:
           - type: pdf
           - type: epub

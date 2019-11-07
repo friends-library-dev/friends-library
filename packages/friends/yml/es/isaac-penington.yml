@@ -36,6 +36,7 @@ documents:
       - letters
     editions:
       - type: updated
+        isbn: 978-1-64476-163-2
         pages: 391
         formats:
           - type: paperback
@@ -225,6 +226,7 @@ documents:
       - letters
     editions:
       - type: updated
+        isbn: 978-1-64476-164-9
         pages: 391
         formats:
           - type: paperback

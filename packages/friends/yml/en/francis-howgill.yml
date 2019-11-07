@@ -27,6 +27,7 @@ documents:
       - exhortation
     editions:
       - type: updated
+        isbn: 978-1-64476-027-7
         pages: 57
         editor: Jason R. Henderson
         formats:

@@ -21,6 +21,7 @@ documents:
       - doctrinal
     editions:
       - type: updated
+        isbn: 978-1-64476-167-0
         formats:
           - type: paperback
           - type: pdf
@@ -38,6 +39,7 @@ documents:
       - doctrinal
     editions:
       - type: updated
+        isbn: 978-1-64476-168-7
         formats:
           - type: pdf
           - type: epub
