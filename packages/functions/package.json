@@ -16,6 +16,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/plugin-transform-object-assign": "^7.2.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@babel/runtime": "^7.7.2",
     "@friends-library/env": "1.0.0",
     "@friends-library/slack": "1.0.0",
     "@friends-library/types": "1.0.0",
@@ -34,6 +35,7 @@
     "ws": "^7.1.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.6.2",
     "@types/aws-lambda": "^8.10.28",
     "@types/express-useragent": "^0.2.21",
     "@types/mongoose": "^5.5.8",

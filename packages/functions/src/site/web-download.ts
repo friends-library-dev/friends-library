@@ -1,7 +1,7 @@
 import '@friends-library/env/load';
 import { APIGatewayEvent } from 'aws-lambda';
 import env from '@friends-library/env';
-import slack from '@friends-library/slack';
+import * as slack from '@friends-library/slack';
 import useragent from 'express-useragent';
 import mongoose from 'mongoose';
 import Download from '../lib/Download';
