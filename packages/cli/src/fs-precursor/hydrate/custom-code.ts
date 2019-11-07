@@ -11,8 +11,7 @@ export default function customCode(dpc: FsDocPrecursor): void {
     const type = path.extname(file).replace(/^\./, '') as 'css' | 'html';
     const target = path
       .basename(file)
-      .replace(/\.(css|html)$/, '')
-      .replace(/^cover$/, 'paperback-cover') as keyof DocPrecursor['customCode']['css'];
+      .replace(/\.(css|html)$/, '') as keyof DocPrecursor['customCode']['css'];
     const content = fs.readFileSync(file).toString();
     dpc.customCode[type][target] = content;
   });
