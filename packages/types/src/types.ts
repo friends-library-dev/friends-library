@@ -28,8 +28,6 @@ export type Lang = 'en' | 'es';
 export type EditionType = 'original' | 'modernized' | 'updated';
 export type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
 export type NodeEnv = 'production' | 'development';
-export type FileType = 'epub' | 'mobi' | 'pdf-web' | 'pdf-print';
-export type FileTypeWithShortcuts = FileType | 'pdf' | 'all' | 'ebook';
 export type PrintSize = 's' | 'm' | 'xl';
 export type PrintSizeVariant = PrintSize | 'xl--condensed';
 export type PrintJobStatus = 'pending' | 'accepted' | 'shipped' | 'rejected' | 'canceled';
@@ -51,8 +49,6 @@ export interface PrintSizeDetails {
     runningHeadTop: number;
   };
 }
-
-export type CustomCss = { [K in FileTypeWithShortcuts]?: Css };
 
 export interface AsciidocConversionLog {
   getText(): string;
