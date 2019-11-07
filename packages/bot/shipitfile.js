@@ -1,4 +1,4 @@
-require('@friends-library/client/load-env');
+require('@friends-library/env/load');
 const { requireEnv } = require('@friends-library/types');
 
 const { BOT_PRODUCTION_SERVER, BOT_DEPLOY_PATH, BOT_PORT } = requireEnv(
@@ -30,7 +30,6 @@ module.exports = shipit => {
       },
       yarn: {
         remote: true,
-        installArgs: ['; npm rebuild node-sass'],
       },
     },
     production: {
