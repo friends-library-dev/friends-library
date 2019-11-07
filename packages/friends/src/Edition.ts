@@ -68,7 +68,7 @@ export default class Edition {
       chapters: this.chapters,
       description: this.description,
       editor: this.editor,
-      isbn: this.editor,
+      isbn: this.isbn,
       audio: this.audio,
       splits: this.splits,
     };
