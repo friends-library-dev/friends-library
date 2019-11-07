@@ -3,6 +3,9 @@ import { Callback } from 'aws-lambda';
 export default class Responder {
   private callback: Callback;
 
+  // for some reason using `private callback: Callback` with no
+  // constructor body got borked in transpilation, leave like this
+  // could have been a problem with Babel 7.0.0 which was just released
   public constructor(callback: Callback) {
     this.callback = callback;
   }

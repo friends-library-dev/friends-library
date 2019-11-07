@@ -9,7 +9,7 @@ const handler: Handler = (
   context: Context,
   callback: Callback,
 ) => {
-  log({ event, context, callback: typeof callback });
+  log({ event, context });
   router(event, new Responder(callback));
 };
 
