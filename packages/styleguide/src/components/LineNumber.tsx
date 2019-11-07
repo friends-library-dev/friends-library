@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import leftPad from 'left-pad';
 
 const Number = styled.span`
   position: absolute;
@@ -27,5 +26,5 @@ const Number = styled.span`
 `;
 
 export default ({ num }: { num: number }) => (
-  <Number>{leftPad(String(num), 2, '0')}.</Number>
+  <Number>{String(num).padStart(2, '0')}.</Number>
 );

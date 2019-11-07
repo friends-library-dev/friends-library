@@ -2,7 +2,6 @@ import chalk from 'chalk';
 import { LintResult } from '@friends-library/types';
 import { red, green, grey, yellow } from '@friends-library/cli-utils/color';
 import DirLints from './DirLints';
-import leftPad from 'left-pad';
 
 export function printLints(lints: DirLints, limit: false | number = false): void {
   let printed = 0;
@@ -34,7 +33,7 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
   }
 
   if (result.column !== false) {
-    yellow(leftPad('∨---', result.column + 3, ' '));
+    yellow('v---'.padStart(result.column + 3));
   }
 
   const line = lines[result.line - 1];

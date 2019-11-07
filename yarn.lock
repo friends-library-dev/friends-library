@@ -3773,13 +3773,6 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
   integrity sha512-Il2DtDVRGDcqjDtE+rF8iqg1CArehSK84HZJCT7AMITlyXRBpuPhqGLDQMowraqqu1coEaimg4ZOqggt6L6L+A==
 
-"@types/left-pad@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@types/left-pad/-/left-pad-1.2.0.tgz#a79764ac1bac2d467d68d2faac39ab0aff60ccf7"
-  integrity sha512-7byPJfj8xjiTTGGgr0upA4NXmX1LJTef4nQNCU1cX0LW8ED/qSa8ePF9SouKUhuLt55g2i6fOXZtxT7xx6nxbg==
-  dependencies:
-    left-pad "*"
-
 "@types/lodash@^4.14.123":
   version "4.14.144"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.144.tgz#12e57fc99064bce45e5ab3c8bc4783feb75eab8e"
@@ -4001,18 +3994,6 @@
   dependencies:
     "@types/react" "*"
     "@types/webpack-env" "*"
-
-"@types/strip-indent@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/strip-indent/-/strip-indent-2.0.0.tgz#d2b6b191627cb5ad59dfbaafffe9b4e8531d496f"
-  integrity sha512-YkVVBwrmuFTc2DXnd9oRGR1OG0Z4fiCCr7HhTtTU0iQoW+imgDGsbC16Xsw78u91WvnNKAq/hmnsKLCiQuUnHg==
-
-"@types/strip-indent@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@types/strip-indent/-/strip-indent-3.0.2.tgz#f5397256a0d8e938c37597ae088b89f778b30af3"
-  integrity sha512-PTJkDtO+fQT2QCAdmynV8PKiukcJnuoUzjkhzjJVX5BZmWbfTCA7NKDdw7Oes22kbYRhJNKMzplXpb+W88B3bw==
-  dependencies:
-    strip-indent "*"
 
 "@types/stripe@^6.31.11":
   version "6.32.13"
@@ -15189,7 +15170,7 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-left-pad@*, left-pad@^1.3.0:
+left-pad@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.3.0.tgz#5b8a3a7765dfe001261dde915589e782f8c94d1e"
   integrity sha512-XI5MPzVNApjAyhQzphX8BkmKsKUxD4LdyK24iZeQGinBN9yTQT3bFlCBy/aVx2HrNcqQGsdot8ghrjyrvMCoEA==
@@ -22396,13 +22377,6 @@ strip-final-newline@^2.0.0:
   resolved "https://registry.yarnpkg.com/strip-final-newline/-/strip-final-newline-2.0.0.tgz#89b852fb2fcbe936f6f4b3187afb0a12c1ab58ad"
   integrity sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==
 
-strip-indent@*, strip-indent@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
-  integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
-  dependencies:
-    min-indent "^1.0.0"
-
 strip-indent@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-1.0.1.tgz#0c7962a6adefa7bbd4ac366460a638552ae1a0a2"
@@ -22414,6 +22388,13 @@ strip-indent@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-2.0.0.tgz#5ef8db295d01e6ed6cbf7aab96998d7822527b68"
   integrity sha1-XvjbKV0B5u1sv3qrlpmNeCJSe2g=
+
+strip-indent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
+  integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
+  dependencies:
+    min-indent "^1.0.0"
 
 strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
