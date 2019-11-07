@@ -1,7 +1,11 @@
 import { Callback } from 'aws-lambda';
 
 export default class Responder {
-  public constructor(private callback: Callback) {}
+  private callback: Callback;
+
+  public constructor(callback: Callback) {
+    this.callback = callback;
+  }
 
   public json(body: Record<string, any>, statusCode: number = 200): void {
     this.callback(null, {
