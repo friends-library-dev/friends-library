@@ -1,7 +1,6 @@
 import env from '@friends-library/env';
 import { red } from '@friends-library/cli-utils/color';
 import fs from 'fs-extra';
-import leftPad from 'left-pad';
 import path from 'path';
 
 const { DOCS_REPOS_ROOT } = env.require('DOCS_REPOS_ROOT');
@@ -33,7 +32,7 @@ export default function chapterize({ file, dest, chStart }: ChapterizeOptions): 
 
   parts.forEach((part, index) => {
     const num = index + 1;
-    const paddedNum = leftPad(num, 2, '0');
+    const paddedNum = String(num).padStart(2, '0');
     let filename = `${paddedNum}-`;
     if (chapterNum || index + 1 === chStart) {
       filename += `chapter-${++chapterNum}.adoc`;

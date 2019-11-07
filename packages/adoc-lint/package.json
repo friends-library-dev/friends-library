@@ -24,7 +24,6 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@types/roman-numerals": "^0.3.0",
-    "@types/strip-indent": "^2.0.0"
+    "@types/roman-numerals": "^0.3.0"
   }
 }
