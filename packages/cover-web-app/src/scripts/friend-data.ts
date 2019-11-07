@@ -50,11 +50,11 @@ function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents
     let customHtml = null;
 
     if (fs.existsSync(`${fullPath}/cover.css`)) {
-      customCss = fs.readFileSync(`${fullPath}/cover.css`).toString();
+      customCss = fs.readFileSync(`${fullPath}/paperback-cover.css`).toString();
     }
 
     if (fs.existsSync(`${fullPath}/cover.html`)) {
-      customHtml = fs.readFileSync(`${fullPath}/cover.html`).toString();
+      customHtml = fs.readFileSync(`${fullPath}/paperback-cover.html`).toString();
     }
 
     return {
