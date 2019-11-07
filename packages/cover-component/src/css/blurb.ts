@@ -1,5 +1,6 @@
 import { CoverCssModule } from './types';
 import { css, dynamifyCss } from './helpers';
+import sizingCss from './blurb-sizing';
 
 const blurb: CoverCssModule = (_, scaler, scope) => {
   const staticCss: string = css`
@@ -16,7 +17,7 @@ const blurb: CoverCssModule = (_, scaler, scope) => {
     }
 
     .Cover .blurb {
-      padding: 1.4em 3.5em 0.5em 3.5em;
+      padding: 1.65em 3.65em 1.35em 3.65em;
       cursor: text;
       margin: 0 8%;
       position: relative;
@@ -25,15 +26,27 @@ const blurb: CoverCssModule = (_, scaler, scope) => {
       line-height: 160%;
       text-align: center;
       z-index: 100000;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .Cover.trim--s .blurb {
       top: 18%;
+      min-height: 38%;
+      max-height: 42%;
+    }
+
+    .Cover.Lang--es.trim--m .blurb {
+      max-height: 41%;
+    }
+
+    .Cover.trim--m .blurb {
+      max-height: 44%;
+      min-height: 38%;
     }
 
     .Cover.trim--xl .blurb {
       top: 25%;
+      max-height: 42%;
     }
 
     .prince .Cover .blurb {
@@ -51,6 +64,8 @@ const blurb: CoverCssModule = (_, scaler, scope) => {
       background-repeat: no-repeat;
       background-position: center 69%;
     }
+
+    ${sizingCss}
   `;
 
   return [staticCss, dynamifyCss('', scope, scaler)];
