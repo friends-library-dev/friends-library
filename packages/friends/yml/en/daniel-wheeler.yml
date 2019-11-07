@@ -43,6 +43,7 @@ documents:
       - journal
     editions:
       - type: original
+        isbn: 978-1-64476-017-8
         pages: 690
         formats:
           - type: pdf
@@ -93,6 +94,7 @@ documents:
           - title: Appendix
 
       - type: modernized
+        isbn: 978-1-64476-018-5
         pages: 690
         formats:
           - type: pdf

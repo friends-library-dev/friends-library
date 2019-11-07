@@ -13,6 +13,7 @@ documents:
       - doctrinal
     editions:
       - type: updated
+        isbn: 978-1-64476-171-7
         formats:
           - type: pdf
           - type: epub

@@ -31,6 +31,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-123-6
         pages: 192
         formats:
           - type: pdf
@@ -54,6 +55,7 @@ documents:
               Testimony from the Men's Meeting of Cork, concerning Samuel Neale, deceased.
 
       - type: original
+        isbn: 978-1-64476-124-3
         pages: 192
         formats:
           - type: pdf

@@ -38,6 +38,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-156-4
         formats:
           - type: pdf
           - type: epub
@@ -52,6 +53,7 @@ documents:
           - number: 6
           - number: 7
       - type: original
+        isbn: 978-1-64476-157-1
         formats:
           - type: pdf
           - type: epub

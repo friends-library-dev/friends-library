@@ -16,6 +16,7 @@ documents:
       - journal
     editions:
       - type: original
+        isbn: 978-1-64476-014-7
         formats:
           - type: pdf
           - type: epub
@@ -29,6 +30,7 @@ documents:
           - title: Testimony of Bridget Story
           - title: Testimony of Aaron Atkinson
       - type: modernized
+        isbn: 978-1-64476-015-4
         formats:
           - type: pdf
           - type: epub

@@ -16,6 +16,7 @@ documents:
       - journal
     editions:
       - type: original
+        isbn: 978-1-64476-118-2
         formats:
           - type: pdf
           - type: epub
@@ -31,6 +32,7 @@ documents:
           - title: Chapter 7
           - title: Chapter 8
       - type: modernized
+        isbn: 978-1-64476-119-9
         formats:
           - type: pdf
           - type: epub

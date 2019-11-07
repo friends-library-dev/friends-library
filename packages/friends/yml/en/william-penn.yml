@@ -35,6 +35,7 @@ documents:
       - exhortation
     editions:
       - type: updated
+        isbn: 978-1-64476-154-0
         editor: Jason R. Henderson
         formats:
           - type: pdf
@@ -118,6 +119,7 @@ documents:
       - doctrine
     editions:
       - type: updated
+        isbn: 978-1-64476-155-7
         editor: Jason R. Henderson
         formats:
           - type: pdf

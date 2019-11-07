@@ -33,6 +33,7 @@ documents:
       - letters
     editions:
       - type: updated
+        isbn: 978-1-64476-041-3
         editor: Jason R. Henderson
         pages: 391
         formats:
@@ -256,6 +257,7 @@ documents:
       - letters
     editions:
       - type: updated
+        isbn: 978-1-64476-042-0
         editor: Jason R. Henderson
         pages: 393
         formats:
@@ -465,6 +467,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-043-7
         pages: 538
         formats:
           - type: pdf
@@ -518,6 +521,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-044-4
         pages: 508
         formats:
           - type: pdf
@@ -579,6 +583,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-045-1
         pages: 538
         formats:
           - type: pdf
@@ -621,6 +626,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-046-8
         pages: 436
         formats:
           - type: pdf

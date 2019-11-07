@@ -31,6 +31,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-056-7
         pages: 180
         formats:
           - type: pdf
@@ -75,6 +76,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-057-4
         pages: 180
         formats:
           - type: pdf
@@ -86,6 +88,7 @@ documents:
           - title: Epistles and Papers
           - title: Testimonies Concerning John Banks
       - type: original
+        isbn: 978-1-64476-058-1
         formats:
           - type: pdf
           - type: epub

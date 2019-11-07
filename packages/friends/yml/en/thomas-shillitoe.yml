@@ -31,6 +31,7 @@ documents:
       - journal
     editions:
       - type: original
+        isbn: 978-1-64476-139-7
         splits:
           - 23
         formats:
@@ -81,6 +82,7 @@ documents:
           - number: 40
           - number: 41
       - type: modernized
+        isbn: 978-1-64476-140-3
         formats:
           - type: pdf
           - type: epub

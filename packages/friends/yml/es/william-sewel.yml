@@ -22,6 +22,7 @@ documents:
       - history
     editions:
       - type: updated
+        isbn: 978-1-64476-172-4
         pages: 52
         formats:
           - type: pdf

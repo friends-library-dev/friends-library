@@ -33,6 +33,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-047-5
         pages: 127
         formats:
           - type: pdf
@@ -45,6 +46,7 @@ documents:
           - number: 3
           - title: Testimonies of James Dickinson
       - type: original
+        isbn: 978-1-64476-048-2
         pages: 127
         formats:
           - type: pdf

@@ -32,6 +32,7 @@ documents:
       - letters
     editions:
       - type: original
+        isbn: 978-1-64476-059-8
         formats:
           - type: pdf
           - type: epub
@@ -56,6 +57,7 @@ documents:
           - number: 16
           - title: Testimonies Concerning John Barclay
       - type: modernized
+        isbn: 978-1-64476-060-4
         formats:
           - type: pdf
           - type: epub

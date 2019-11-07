@@ -31,6 +31,7 @@ documents:
       - doctrinal
     editions:
       - type: updated
+        isbn: 978-1-64476-114-4
         editor: Jason R. Henderson
         pages: 54
         formats:
@@ -76,6 +77,7 @@ documents:
       - doctrinal
     editions:
       - type: updated
+        isbn: 978-1-64476-115-1
         editor: Jason R. Henderson
         pages: 124
         formats:
@@ -170,6 +172,7 @@ documents:
       - doctrinal
     editions:
       - type: modernized
+        isbn: 978-1-64476-116-8
         pages: 557
         formats:
           - type: pdf
@@ -225,6 +228,7 @@ documents:
       - doctrinal
     editions:
       - type: updated
+        isbn: 978-1-64476-117-5
         editor: Jason R. Henderson
         pages: 4
         formats:

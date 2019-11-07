@@ -36,6 +36,7 @@ documents:
       - doctrinal
     editions:
       - type: updated
+        isbn: 978-1-64476-092-5
         pages: 97
         editor: Jason R. Henderson
         formats:

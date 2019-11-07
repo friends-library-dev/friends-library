@@ -25,6 +25,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-110-6
         pages: 141
         formats:
           - type: pdf
@@ -36,6 +37,7 @@ documents:
               Davies
           - title: Testimonies Concerning Richard Davies
       - type: original
+        isbn: 978-1-64476-111-3
         formats:
           - type: pdf
           - type: epub

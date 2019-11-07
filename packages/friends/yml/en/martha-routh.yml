@@ -32,6 +32,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-094-9
         pages: 173
         formats:
           - type: pdf
@@ -54,6 +55,7 @@ documents:
           - title: Testimony from Hardshaw Monthly Meeting Concerning Martha Routh
 
       - type: original
+        isbn: 978-1-64476-095-6
         pages: 173
         formats:
           - type: pdf

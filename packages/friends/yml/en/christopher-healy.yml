@@ -28,6 +28,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-012-3
         pages: 263
         formats:
           - type: pdf
@@ -56,6 +57,7 @@ documents:
           - title: Supplement - The Last Year of the Life of Christopher Healy
 
       - type: original
+        isbn: 978-1-64476-013-0
         pages: 263
         formats:
           - type: pdf

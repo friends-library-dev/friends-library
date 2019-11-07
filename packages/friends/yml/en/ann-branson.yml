@@ -31,6 +31,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-005-5
         pages: 371
         formats:
           - type: pdf
@@ -51,6 +52,7 @@ documents:
           - number: 12
           - number: 13
       - type: original
+        isbn: 978-1-64476-006-2
         pages: 371
         formats:
           - type: pdf

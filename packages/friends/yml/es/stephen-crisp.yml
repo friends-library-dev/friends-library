@@ -26,6 +26,7 @@ documents:
       - exhortation
     editions:
       - type: updated
+        isbn: 978-1-64476-169-4
         pages: 19
         formats:
           - type: pdf
@@ -49,6 +50,7 @@ documents:
       - allegory
     editions:
       - type: updated
+        isbn: 978-1-64476-170-0
         formats:
           - type: pdf
           - type: epub

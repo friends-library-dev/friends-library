@@ -36,6 +36,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-049-9
         pages: 117
         formats:
           - type: pdf
@@ -47,6 +48,7 @@ documents:
           - title: Supplement to the Journal
           - title: Testimony Concerning James Gough
       - type: original
+        isbn: 978-1-64476-050-5
         pages: 117
         formats:
           - type: pdf

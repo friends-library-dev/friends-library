@@ -35,8 +35,8 @@ documents:
       - treatise
     editions:
       - type: updated
-        editor: Jason R. Henderson
         isbn: 978-1-64476-003-1
+        editor: Jason R. Henderson
         formats:
           - type: paperback
           - type: pdf
@@ -77,6 +77,7 @@ documents:
           - title: Considerations Grounded upon the Foregoing Discourse
           - title: The Grace that Brings Salvation
       - type: modernized
+        isbn: 978-1-64476-037-6
         formats:
           - type: paperback
           - type: pdf
@@ -88,6 +89,7 @@ documents:
           - title: Considerations Grounded upon the Foregoing Discourse
           - title: The Grace that Brings Salvation
       - type: original
+        isbn: 978-1-64476-038-3
         formats:
           - type: paperback
           - type: pdf

@@ -36,8 +36,8 @@ documents:
       - devotional
     editions:
       - type: updated
-        editor: Jason R. Henderson
         isbn: 978-1-64476-000-0
+        editor: Jason R. Henderson
         formats:
           - type: pdf
           - type: epub

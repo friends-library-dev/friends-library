@@ -30,6 +30,7 @@ documents:
       - doctrine
     editions:
       - type: updated
+        isbn: 978-1-64476-161-8
         editor: Jason R. Henderson
         pages: 29
         formats:

@@ -33,6 +33,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-146-5
         pages: 76
         formats:
           - type: pdf
@@ -45,6 +46,7 @@ documents:
           - title: Testimonies Concerning Thomas Wilson
 
       - type: original
+        isbn: 978-1-64476-147-2
         pages: 76
         formats:
           - type: pdf

@@ -27,6 +27,7 @@ documents:
       - letters
     editions:
       - type: modernized
+        isbn: 978-1-64476-120-5
         pages: 29
         formats:
           - type: pdf

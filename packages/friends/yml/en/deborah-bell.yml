@@ -28,6 +28,7 @@ documents:
       - journal
     editions:
       - type: original
+        isbn: 978-1-64476-022-2
         formats:
           - type: pdf
           - type: epub
@@ -39,6 +40,7 @@ documents:
           - title: Correspondence with Joseph Pike
           - title: A Supplement, by Her Husband
       - type: modernized
+        isbn: 978-1-64476-023-9
         formats:
           - type: pdf
           - type: epub

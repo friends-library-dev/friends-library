@@ -32,6 +32,7 @@ documents:
       - journal
     editions:
       - type: original
+        isbn: 978-1-64476-084-0
         formats:
           - type: pdf
           - type: epub
@@ -48,6 +49,7 @@ documents:
           - title: Testimony
 
       - type: modernized
+        isbn: 978-1-64476-085-7
         formats:
           - type: pdf
           - type: epub

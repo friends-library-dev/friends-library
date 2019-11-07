@@ -29,6 +29,7 @@ documents:
       - journal
     editions:
       - type: updated
+        isbn: 978-1-64476-072-7
         editor: Jason R. Henderson
         pages: 26
         formats:
@@ -72,6 +73,7 @@ documents:
       - journal
     editions:
       - type: modernized
+        isbn: 978-1-64476-073-4
         pages: 289
         formats:
           - type: pdf
@@ -108,6 +110,7 @@ documents:
       - treatise
     editions:
       - type: updated
+        isbn: 978-1-64476-074-1
         editor: Jason R. Henderson
         pages: 75
         formats:

@@ -35,6 +35,7 @@ documents:
       - history
     editions:
       - type: modernized
+        isbn: 978-1-64476-100-7
         pages: 336
         formats:
           - type: pdf
@@ -66,6 +67,7 @@ documents:
           - title: Concluding Address to the Society of Friends
 
       - type: original
+        isbn: 978-1-64476-101-4
         pages: 336
         formats:
           - type: pdf
