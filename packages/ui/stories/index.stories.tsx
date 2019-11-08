@@ -11,6 +11,7 @@ import SlideoverMenu from '../src/SlideoverMenu';
 import Hero from '../src/blocks/Hero';
 import FeaturedBooks from '../src/blocks/FeaturedBooks';
 import Footer from '../src/Footer';
+import MultiPill from '../src/MultiPill';
 import WhoWereTheQuakers from '../src/blocks/WhoWereTheQuakers';
 
 storiesOf('Footer', module).add('default', () => <Footer />);
@@ -76,3 +77,18 @@ const searchActions = {
   onClick: a('click'),
   onBlur: a('blur'),
 };
+
+storiesOf('MultiPill', module)
+  .addDecorator(centered)
+  .add('3-part', () => (
+    <MultiPill
+      buttons={[
+        { text: 'Download', icon: 'cloud-download' },
+        { text: 'Paperback $4.99', icon: 'book' },
+        { text: 'Audio Book', icon: 'headphones' },
+      ]}
+    />
+  ))
+  .add('2-part', () => (
+    <MultiPill buttons={[{ text: 'Download Lo-Fi' }, { text: 'Download Hi-Fi' }]} />
+  ));
