@@ -17,7 +17,7 @@ const runner = new RegexLintRunner(
       replace: 'Penington',
       fixable: true,
       message: 'Isaac Penington\'s last name should always be spelled "Penington"',
-      allowIfNear: /\bSr\.|\bAlderman\b|\bFather\b|\bDaniel\b/,
+      allowIfNear: /\bSr\.|\bAlderman\b|\bFather\b|\bDaniel\b|\b(p|P)adre\b/,
     },
   ],
   { langs: ['en', 'es'] },
