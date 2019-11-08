@@ -1,6 +1,14 @@
 @tailwind base;
 @tailwind components;
 
+.btn {
+  @apply block rounded-full font-sans text-center uppercase tracking-wider text-white;
+}
+
+.btn:focus {
+  @apply outline-none shadow-outline;
+}
+
 .input {
   @apply block bg-white border border-gray-300 rounded-lg px-4 py-2 block w-full appearance-none leading-normal text-xl;
 }

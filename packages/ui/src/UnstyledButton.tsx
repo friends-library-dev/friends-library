@@ -16,7 +16,6 @@ const UnstyledButton: React.FC<Props> = ({ children, onClick, className, type })
     css={css`
       border: 0;
       overflow: visible;
-      padding: 0;
       cursor: pointer;
 
       &::-moz-focus-inner {

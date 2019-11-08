@@ -22,7 +22,7 @@ const FeaturedBooks: React.FC = () => {
       <div className="BooksViewer overflow-hidden">
         <div className="BookWrap flex">
           {FEATURED_BOOKS.map((book, bkIdx) => (
-            <FeaturedBook book={book} isCurrent={bkIdx === index} />
+            <FeaturedBook key={book.title} book={book} isCurrent={bkIdx === index} />
           ))}
         </div>
       </div>

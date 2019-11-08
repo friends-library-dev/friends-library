@@ -46,10 +46,7 @@ const Button: React.FC<Props> = ({
     // @ts-ignore
     <Element
       to={to || ''}
-      className={cx(
-        className,
-        'block rounded-full font-sans text-center uppercase tracking-wider text-white focus:outline-none focus:shadow-outline',
-      )}
+      className={cx(className, 'btn')}
       {...(!to ? { type: type || 'submit' } : {})}
       {...(onClick && !disabled ? { onClick } : {})}
       {...(secondary ? { secondary } : {})}
