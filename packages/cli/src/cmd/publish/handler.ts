@@ -38,7 +38,7 @@ export default async function publish(argv: PublishOptions): Promise<void> {
 
     logDocStart(dpc, progress);
     hydrate.all([dpc]);
-    validate(dpc);
+    await validate(dpc);
 
     const uploads = new Map<string, string>();
     const fileId = getFileId(dpc);
