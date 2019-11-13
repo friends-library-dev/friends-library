@@ -13,7 +13,7 @@ import * as dpcQuery from '../../fs-precursor/query';
 import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
 import * as coverServer from './cover-server';
 import validate from './validate';
-import { logDocStart, logDocComplete, logUpdateComplete, logUpdateStart } from './log';
+import { logDocStart, logDocComplete, logPublishComplete, logPublishStart } from './log';
 import { publishPaperback } from './paperback';
 import { Edition } from '@friends-library/friends';
 
@@ -24,8 +24,8 @@ interface PublishOptions {
   coverServerPort?: number;
 }
 
-export default async function update(argv: PublishOptions): Promise<void> {
-  logUpdateStart();
+export default async function publish(argv: PublishOptions): Promise<void> {
+  logPublishStart();
   const meta = await docMeta.fetch();
   const COVER_PORT = argv.coverServerPort || (await coverServer.start());
   const [makeScreenshot, closeHeadlessBrowser] = await coverServer.screenshot(COVER_PORT);
@@ -60,7 +60,7 @@ export default async function update(argv: PublishOptions): Promise<void> {
 
   if (!argv.coverServerPort) coverServer.stop(COVER_PORT);
   await closeHeadlessBrowser();
-  logUpdateComplete();
+  logPublishComplete();
 }
 
 async function handleWebPdf(
