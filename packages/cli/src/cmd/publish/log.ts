@@ -4,7 +4,7 @@ import { DocPrecursor } from '@friends-library/types';
 
 let updateStart: number;
 
-export function logUpdateStart(): void {
+export function logPublishStart(): void {
   updateStart = Date.now();
   log(c`\n{cyan Beginning asset updates at} {magenta ${new Date().toLocaleString()}}`);
 }
@@ -25,7 +25,7 @@ export function logDocComplete(
   log(c`${completed} ${id} {gray in} ${timing} ${progress}\n`);
 }
 
-export function logUpdateComplete(): void {
+export function logPublishComplete(): void {
   const timing = c`{magenta ${elapsed(updateStart)}}`;
   log(c`\n{green ✨  Successfully completed updated process} {gray in} ${timing}\n\n`);
 }
