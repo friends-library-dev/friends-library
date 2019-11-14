@@ -46,3 +46,26 @@ documents:
           - type: mobi
         chapters:
           - title: Consideraciones sobre el Entretenimiento y la Recreacion
+
+  - id: 9a0ac9a9-9111-4ff8-b416-4b26adc64a87
+    title: Esta Grande Salvación
+    slug: esta-grande-salvacion
+    filename: Esta_Grande_Salvación
+    description: TODO
+    tags:
+      - doctrinal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-999-7
+        formats:
+          - type: pdf
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Prefacio
+          - title: Capítulo 1 - La Condición del Hombre en la Caída
+          - title: Capítulo 2 - La Oferta Universal de Redención
+          - title: Capítulo 3 - La Semilla, Luz y Gracia de Dios
+          - title: Capítulo 4 - La Prueba de Nuestra Postura
+          - title: Capítulo 5 - Respecto a la Justificación
+          - title: Capítulo 6 - Respecto a la Perfección
