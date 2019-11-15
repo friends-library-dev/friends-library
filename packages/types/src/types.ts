@@ -117,6 +117,8 @@ export interface CoverProps {
   customHtml: Html;
   scope?: string;
   scaler?: number;
+  allowEditingBlurb?: boolean;
+  updateBlurb?: (blurb: string) => void;
 }
 
 export function isDefined<T>(x: T | undefined): x is T {

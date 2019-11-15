@@ -3,10 +3,18 @@ import { CoverProps } from '@friends-library/types';
 import Diamonds from './Diamonds';
 import { overridable, formatBlurb } from './helpers';
 import Brackets from './Brackets';
+import EditableBlurb from './EditableBlurb';
 import LogoSpanish from './LogoSpanish';
 import Logo from './Logo';
 
-const Back: React.FC<CoverProps> = ({ blurb, isbn, lang, edition }) => {
+const Back: React.FC<CoverProps> = ({
+  blurb,
+  isbn,
+  lang,
+  edition,
+  allowEditingBlurb,
+  updateBlurb,
+}) => {
   const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
   const fragments = {};
   return (
@@ -16,14 +24,20 @@ const Back: React.FC<CoverProps> = ({ blurb, isbn, lang, edition }) => {
         {overridable(
           'blurb',
           fragments,
-          // allowEditingBlurb ? (
-          //   <EditableBlurb blurb={blurb} update={updateBlurb} />
-          // ) : (
-          <div className="blurb">
-            <Brackets />
-            {formatBlurb(blurb)}
-          </div>,
-          // ),
+          allowEditingBlurb ? (
+            <div className="blurb">
+              <Brackets />
+              <EditableBlurb
+                blurb={formatBlurb(blurb)}
+                update={updateBlurb || (() => {})}
+              />
+            </div>
+          ) : (
+            <div className="blurb">
+              <Brackets />
+              {formatBlurb(blurb)}
+            </div>
+          ),
         )}
         {isbn && (
           <img

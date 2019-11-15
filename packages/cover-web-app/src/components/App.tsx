@@ -133,6 +133,8 @@ export default class App extends React.Component<{}, State> {
       blurb: this.getBlurb(friend, doc),
       isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev
       showGuides,
+      allowEditingBlurb: true,
+      updateBlurb: this.updateBlurb,
       customCss: this.getCustomCss(),
       customHtml: this.getCustomHtml(),
     };
