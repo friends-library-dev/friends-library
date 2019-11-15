@@ -1,7 +1,7 @@
 import { Handler, APIGatewayEvent } from 'aws-lambda';
 import env from '@friends-library/env';
-import { URLSearchParams } from 'url';
-import fetch from 'node-fetch';
+// import { URLSearchParams } from 'url';
+// import fetch from 'node-fetch';
 
 const makeSend = require('gmail-send') as any;
 
@@ -15,7 +15,7 @@ const handler: Handler = async ({ httpMethod, body }: APIGatewayEvent) => {
   }
 
   const isDev = process.env.NODE_ENV === 'development';
-  const allowedOrigin = isDev ? '*' : 'http://zoecostarica.com';
+  const allowedOrigin = isDev ? '*' : 'https://www.zoecostarica.com';
   const headers: Headers = {
     'Access-Control-Allow-Origin': allowedOrigin,
     'Access-Control-Allow-Methods': 'POST',
@@ -38,25 +38,25 @@ const handler: Handler = async ({ httpMethod, body }: APIGatewayEvent) => {
     ZOE_ORDER_EMAIL_USER,
     ZOE_ORDER_EMAIL_PASS,
     ZOE_ORDER_EMAIL_RECIPIENT,
-    ZOE_ORDER_RECAPTCHA_SECRET,
+    // ZOE_ORDER_RECAPTCHA_SECRET,
   } = env.require(
     'ZOE_ORDER_EMAIL_USER',
     'ZOE_ORDER_EMAIL_PASS',
     'ZOE_ORDER_EMAIL_RECIPIENT',
-    'ZOE_ORDER_RECAPTCHA_SECRET',
+    // 'ZOE_ORDER_RECAPTCHA_SECRET',
   );
 
-  const data = new URLSearchParams();
-  data.append('secret', ZOE_ORDER_RECAPTCHA_SECRET || '');
-  data.append('response', params['g-recaptcha-response']);
-  const { success } = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-    method: 'post',
-    body: data,
-  }).then(response => response.json());
+  // const data = new URLSearchParams();
+  // data.append('secret', ZOE_ORDER_RECAPTCHA_SECRET || '');
+  // data.append('response', params['g-recaptcha-response']);
+  // const { success } = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+  //   method: 'post',
+  //   body: data,
+  // }).then(response => response.json());
 
-  if (success === false) {
-    return response(false, 'Google cree que eres un robot');
-  }
+  // if (success === false) {
+  //   return response(false, 'Google cree que eres un robot');
+  // }
 
   let sendSuccess = false;
   await new Promise(resolve => {
