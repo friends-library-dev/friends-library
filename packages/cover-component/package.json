@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "@friends-library/adoc-utils": "1.0.0",
-    "@friends-library/types": "1.0.0",
     "@friends-library/lulu": "1.0.0",
-    "react": "16.10.1"
+    "@friends-library/types": "1.0.0",
+    "react": "16.10.1",
+    "react-contenteditable": "^3.3.2"
   },
   "devDependencies": {
     "@types/react": "16.9.11"
