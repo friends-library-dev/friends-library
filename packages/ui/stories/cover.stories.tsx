@@ -11,23 +11,45 @@ import {
   wrapClasses,
 } from '@friends-library/cover-component';
 import { CoverProps, PrintSize } from '@friends-library/types';
+import { addStaticCoverCss } from './helpers';
 
 const props: CoverProps = {
   lang: 'en',
-  size: 's',
+  size: 'm',
   pages: 222,
   blurb:
     'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart. Having witnessed in his own soul, he to.',
   showGuides: false,
-  edition: 'updated',
-  title: 'The Work of Vital Religion in the Soul',
+  edition: 'modernized',
+  title: 'The Journal and Writings of Ambrose Rigge',
   isbn: '978-1-64476-000-0',
-  author: 'Samuel Rundell',
+  author: 'Ambrose Rigge',
   customCss: '',
   customHtml: '',
 };
 
-addStaticCss();
+addStaticCoverCss(
+  css`
+    .all-sizes {
+      width: 17in;
+    }
+    .all-sizes .Cover {
+      vertical-align: top;
+    }
+    .Cover + .Cover,
+    style + .Cover {
+      margin-left: 20px;
+    }
+    .Cover-storybook-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #eaeaea;
+    }
+  `,
+);
 
 storiesOf('Cover', module)
   .addDecorator(centered)
@@ -139,8 +161,8 @@ storiesOf('Cover', module)
   ))
   .add('3d (angle-front)', () => (
     <div>
-      <ThreeD {...props} perspective="angle-front" />
-      <Style type="3d" />
+      <ThreeD scope="lol" scaler={1} {...props} perspective="angle-front" />
+      <Style type="3d" scope="lol" scaler={1} />
     </div>
   ))
   .add('pdf', () => (
@@ -213,7 +235,8 @@ const Style: React.FC<{
     author: author || props.author,
     showGuides: showGuides || props.showGuides,
   };
-  const args: [CoverProps, number?, string?] = [useProps, scaler, scope];
+  const args: [number?, string?] = [scaler, scope];
+  console.log({ showGuides });
   return (
     <style>
       {coverCss.common(...args)[1]}
@@ -222,7 +245,7 @@ const Style: React.FC<{
       {['spine', '3d', 'pdf'].includes(type) ? coverCss.spine(...args)[1] : ''}
       {useProps.showGuides ? coverCss.guides(...args)[1] : ''}
       {type === '3d' ? coverCss.threeD(...args)[1] : ''}
-      {type === 'pdf' ? coverCss.pdf(...args)[1] : ''}
+      {type === 'pdf' ? coverCss.pdf(useProps, ...args)[1] : ''}
     </style>
   );
 };
@@ -244,43 +267,6 @@ const Wrapped: React.FC<
     </div>
   );
 };
-
-function addStaticCss(): void {
-  const prev = document.getElementById('cover-static-css');
-  prev && prev.remove();
-  const style = document.createElement('style');
-  style.id = 'cover-static-css';
-  style.type = 'text/css';
-  const staticCss = css`
-    ${coverCss.common(props)[0]}
-    ${coverCss.front(props)[0]}
-    ${coverCss.back(props)[0]}
-    ${coverCss.spine(props)[0]}
-    ${coverCss.threeD(props)[0]}
-    ${coverCss.pdf(props)[0]}
-    ${coverCss.guides(props)[0]}
-    .all-sizes {
-      width: 17in;
-    }
-    .all-sizes .Cover {
-      vertical-align: top;
-    }
-    .Cover + .Cover,
-    style + .Cover {
-      margin-left: 20px;
-    }
-    .Cover-storybook-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #eaeaea;
-    }
-  `;
-  style.appendChild(document.createTextNode(staticCss));
-  document.getElementsByTagName('head')[0].appendChild(style);
-}
 
 function p(overrides: Partial<CoverProps>): CoverProps {
   return { ...props, ...overrides };

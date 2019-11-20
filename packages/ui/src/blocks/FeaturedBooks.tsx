@@ -63,7 +63,7 @@ const FEATURED_BOOKS = [
     friendSlug: 'hugh-turford',
     friendName: 'Hugh Turford',
     cover:
-      'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/hugh-turford/walk-in-the-spirit/updated/Walk_in_the_Spirit--updated--cover.png',
+      'https://flp-assets.nyc3.digitaloceanspaces.com/en/hugh-turford/walk-in-the-spirit/updated/Walk_in_the_Spirit--updated--cover.png',
     docSlug: 'walk-in-the-spirit',
     description:
       'This short work has long been treasured by Friends for the simplicity and clarity with which it describes the inward work of obedience and purification by the light and grace of the Holy Spirit working in the heart.',
@@ -73,7 +73,7 @@ const FEATURED_BOOKS = [
     friendSlug: 'william-penn',
     friendName: 'Wiliam Penn',
     cover:
-      'https://friends-library-assets.nyc3.digitaloceanspaces.com/en/william-penn/no-cross-no-crown/updated/No_Cross_No_Crown--updated--cover.png',
+      'https://flp-assets.nyc3.digitaloceanspaces.com/en/william-penn/no-cross-no-crown/updated/No_Cross_No_Crown--updated--cover.png',
     docSlug: 'no-cross-no-crown',
     description:
       'In this classic treatise, William Penn clearly presents the nature, power, and experience of the daily cross of Christ, explaining what it is, where and how it is to be taken up, and the manner of its working in the true disciples of Christ.',

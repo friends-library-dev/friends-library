@@ -1,7 +1,7 @@
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, spineAuthorDisplay } from './helpers';
+import { css, dynamifyCss } from './helpers';
 
-const spine: CoverCssModule = ({ size, title, author }, scaler, scope) => {
+const spine: CoverCssModule = (scaler, scope) => {
   const staticCss = css`
     .Cover .spine {
       position: relative;
@@ -127,10 +127,6 @@ const spine: CoverCssModule = ({ size, title, author }, scaler, scope) => {
 
     .Cover .spine--pgs-lt-160 .diamond {
       width: 0.25in;
-    }
-
-    .Cover .spine__author {
-      display: ${spineAuthorDisplay(title, author, size)};
     }
   `;
   return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];

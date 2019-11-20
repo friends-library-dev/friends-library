@@ -47,10 +47,10 @@ export function paperbackCoverFromProps(props: CoverProps): FileManifest[] {
         htmlAttrs: `lang="en" class="prince pdf trim--${props.size}"`,
       }),
       'doc.css': `
-        ${css.common(props).join('\n')}
-        ${css.back(props).join('\n')}
-        ${css.spine(props).join('\n')}
-        ${css.front(props).join('\n')}
+        ${css.common().join('\n')}
+        ${css.back().join('\n')}
+        ${css.spine().join('\n')}
+        ${css.front().join('\n')}
         ${css.pdf(props).join('\n')}
       `,
     },

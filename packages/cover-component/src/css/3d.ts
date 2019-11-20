@@ -1,11 +1,7 @@
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, docDims } from './helpers';
+import { css, dynamifyCss, withSizes } from './helpers';
 
-const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
-  const dims = docDims(size, pages);
-  const leftOffset = (dims.width - dims.threeDSpineWidth) / 2;
-  const topOffset = (dims.height - dims.threeDSpineWidth) / 2;
-
+const threeD: CoverCssModule = (scaler, scope) => {
   const staticCss = css`
     .Cover.Cover--3d {
       background: transparent;
@@ -44,84 +40,56 @@ const threeD: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  const sizeCss = css`
-    .Cover--3d,
-    .Cover--3d .box {
-      width: ${dims.width}in;
-      height: ${dims.height}in;
-    }
+  const sizeCss = withSizes(
+    ({ width, height }) => css`
+      .Cover.trim--__SIZE__.Cover--3d,
+      .Cover.trim--__SIZE__.Cover--3d .box {
+        width: ${width}in;
+        height: ${height}in;
+      }
 
-    .Cover--3d .box .spine,
-    .Cover--3d .right {
-      width: ${dims.threeDSpineWidth}in;
-      left: ${leftOffset}in;
-    }
+      .Cover.trim--__SIZE__.Cover--3d .right {
+        height: ${height}in;
+      }
 
-    .Cover--3d .right {
-      height: ${dims.height}in;
-    }
+      .Cover.trim--__SIZE__.Cover--3d .top,
+      .Cover.trim--__SIZE__.Cover--3d .bottom {
+        width: ${width}in;
+      }
 
-    .Cover--3d .top,
-    .Cover--3d .bottom {
-      height: ${dims.threeDSpineWidth}in;
-      width: ${dims.width}in;
-      top: ${topOffset}in;
-    }
+      .Cover.trim--__SIZE__.Cover--3d .right {
+        transform: rotateY(90deg) translateZ(${width / 2}in);
+      }
 
-    .Cover--3d .box {
-      transform: translateZ(${dims.threeDSpineWidth / 2}in);
-    }
+      .Cover.trim--__SIZE__.Cover--3d .spine {
+        transform: rotateY(-90deg) translateZ(${width / 2}in);
+      }
 
-    /* 3d-positioning of cover PARTS */
-    .Cover--3d .front {
-      transform: rotateY(0deg) translateZ(${dims.threeDSpineWidth / 2}in);
-    }
+      .Cover.trim--__SIZE__.Cover--3d .top {
+        transform: rotateX(90deg) translateZ(${height / 2}in);
+      }
 
-    .Cover--3d .back {
-      transform: rotateY(180deg) translateZ(${dims.threeDSpineWidth / 2}in);
-    }
+      .Cover.trim--__SIZE__.Cover--3d .bottom {
+        transform: rotateX(-90deg) translateZ(${height / 2}in);
+      }
 
-    .Cover--3d .right {
-      transform: rotateY(90deg) translateZ(${dims.width / 2}in);
-    }
+      .Cover.trim--__SIZE__.Cover--3d.perspective--right .box {
+        transform: translateZ(-${width / 2}in) rotateY(-90deg);
+      }
 
-    .Cover--3d .spine {
-      transform: rotateY(-90deg) translateZ(${dims.width / 2}in);
-    }
+      .Cover.trim--__SIZE__.Cover--3d.perspective--angle-front .box {
+        transform: translateZ(-${width / 2}in) rotateY(40deg);
+      }
 
-    .Cover--3d .top {
-      transform: rotateX(90deg) translateZ(${dims.height / 2}in);
-    }
+      .Cover.trim--__SIZE__.Cover--3d.perspective--angle-back .box {
+        transform: translateZ(-${width / 2}in) rotateY(140deg);
+      }
 
-    .Cover--3d .bottom {
-      transform: rotateX(-90deg) translateZ(${dims.height / 2}in);
-    }
-
-    /* 3d positioning of ENTIRE cover */
-    .Cover--3d.perspective--front .box {
-      transform: translateZ(-${dims.threeDSpineWidth}in) rotateY(0deg);
-    }
-
-    .Cover--3d.perspective--back .box {
-      transform: translateZ(-${dims.threeDSpineWidth}in) rotateY(180deg);
-    }
-
-    .Cover--3d.perspective--right .box {
-      transform: translateZ(-${dims.width / 2}in) rotateY(-90deg);
-    }
-
-    .Cover--3d.perspective--angle-front .box {
-      transform: translateZ(-${dims.width / 2}in) rotateY(40deg);
-    }
-
-    .Cover--3d.perspective--angle-back .box {
-      transform: translateZ(-${dims.width / 2}in) rotateY(140deg);
-    }
-
-    .Cover--3d.perspective--spine .box {
-      transform: translateZ(-${dims.width / 2}in) rotateY(90deg);
-    }
-  `;
+      .Cover.trim--__SIZE__.Cover--3d.perspective--spine .box {
+        transform: translateZ(-${width / 2}in) rotateY(90deg);
+      }
+    `,
+  );
 
   return [staticCss, dynamifyCss(sizeCss, scope, scaler)];
 };

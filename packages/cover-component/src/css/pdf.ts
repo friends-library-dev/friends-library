@@ -1,7 +1,11 @@
-import { CoverCssModule } from './types';
-import { css, dynamifyCss, docDims } from './helpers';
+import { css, dynamifyCss, docDims, PRINT_BLEED, pdfSpineWidth } from './helpers';
+import { CoverProps } from '@friends-library/types';
 
-const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
+export default function pdf(
+  { size, pages }: Pick<CoverProps, 'size' | 'pages'>,
+  scaler?: number,
+  scope?: string,
+) {
   const staticCss = css`
     html.prince,
     html.prince body {
@@ -18,11 +22,11 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  const dims = docDims(size, pages);
-  const widthNoBleed = dims.width * 2 + dims.pdfSpineWidth;
+  const dims = docDims(size);
+  const widthNoBleed = dims.width * 2 + pdfSpineWidth(pages);
   const heightNoBleed = dims.height;
-  const width = widthNoBleed + 2 * dims.printBleed;
-  const height = heightNoBleed + 2 * dims.printBleed;
+  const width = widthNoBleed + 2 * PRINT_BLEED;
+  const height = heightNoBleed + 2 * PRINT_BLEED;
 
   const sizeCss = css`
     .Cover.browser {
@@ -56,6 +60,4 @@ const pdf: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
   return [staticCss, dynamifyCss(sizeCss, scope, scaler)];
-};
-
-export default pdf;
+}

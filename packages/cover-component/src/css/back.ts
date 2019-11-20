@@ -2,8 +2,9 @@ import { CoverCssModule } from './types';
 import { css, dynamifyCss } from './helpers';
 import blurbCss from './blurb';
 
-const back: CoverCssModule = (props, scaler, scope) => {
-  const [blurbStaticCss, blurbSizeCss] = blurbCss(props, scaler, scope);
+const back: CoverCssModule = (scaler, scope) => {
+  const [blurbStaticCss, blurbSizeCss] = blurbCss(scaler, scope);
+
   const staticCss = css`
     .Cover .back__safe {
       position: relative;
@@ -70,13 +71,13 @@ const back: CoverCssModule = (props, scaler, scope) => {
 
     .Cover--scale-s .purpose {
       height: 15%;
-      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/static/cover/purpose.png');
+      background-image: url('https://flp-assets.nyc3.digitaloceanspaces.com/static/cover/purpose.png');
       background-position: center center;
     }
 
     .Cover--scale-xs .website {
       height: 5%;
-      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/static/cover/website.png');
+      background-image: url('https://flp-assets.nyc3.digitaloceanspaces.com/static/cover/website.png');
       background-position: left top;
     }
 
@@ -138,7 +139,7 @@ const back: CoverCssModule = (props, scaler, scope) => {
       margin: 0.25in;
     }
 
-    .isbn {
+    .Cover .isbn {
       width: 1.25in;
       padding: 0.075in;
     }

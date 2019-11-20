@@ -2,7 +2,7 @@ import { CoverCssModule } from './types';
 import { css, dynamifyCss } from './helpers';
 import sizingCss from './blurb-sizing';
 
-const blurb: CoverCssModule = (_, scaler, scope) => {
+const blurb: CoverCssModule = (scaler, scope) => {
   const staticCss: string = css`
     .Cover .brackets {
       fill: white;
@@ -59,7 +59,7 @@ const blurb: CoverCssModule = (_, scaler, scope) => {
     }
 
     .Cover--scale-xs .brackets {
-      background-image: url('https://friends-library-assets.nyc3.digitaloceanspaces.com/static/cover/blurb.png');
+      background-image: url('https://flp-assets.nyc3.digitaloceanspaces.com/static/cover/blurb.png');
       background-size: 75% 85%;
       background-repeat: no-repeat;
       background-position: center 69%;

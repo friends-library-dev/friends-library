@@ -1,7 +1,7 @@
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, docDims } from './helpers';
+import { css, dynamifyCss, withSizes } from './helpers';
 
-const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
+const common: CoverCssModule = (scaler, scope) => {
   const staticCss = css`
     .Cover {
       font-family: 'Baskerville', Georgia, serif;
@@ -89,34 +89,33 @@ const common: CoverCssModule = ({ size, pages }, scaler, scope) => {
     }
   `;
 
-  const dims = docDims(size, pages);
   const sizeCss = css`
-    .Cover {
-      font-size: ${dims.width}in;
-    }
-
-    .Cover .back,
-    .Cover .front,
-    .Cover .spine {
-      height: ${dims.height}in;
-    }
-
-    .Cover .back,
-    .Cover .front {
-      width: ${dims.width}in;
-    }
-
-    .Cover .spine {
-      width: ${dims.pdfSpineWidth}in;
-    }
-
     .Cover .back > div,
     .Cover .front > div {
       margin: 0.25in; /* safety margin for printing */
     }
   `;
 
-  return [staticCss, dynamifyCss(sizeCss, scope, scaler)];
+  const trimSizeCss = withSizes(
+    ({ width, height }) => css`
+      .Cover.trim--__SIZE__ {
+        font-size: ${width}in;
+      }
+
+      .Cover.trim--__SIZE__ .back,
+      .Cover.trim--__SIZE__ .front,
+      .Cover.trim--__SIZE__ .spine {
+        height: ${height}in;
+      }
+
+      .Cover.trim--__SIZE__ .back,
+      .Cover.trim--__SIZE__ .front {
+        width: ${width}in;
+      }
+    `,
+  );
+
+  return [staticCss, dynamifyCss(`${sizeCss}${trimSizeCss}`, scope, scaler)];
 };
 
 export default common;

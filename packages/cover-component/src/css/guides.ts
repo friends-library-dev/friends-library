@@ -1,7 +1,7 @@
 import { CoverCssModule } from './types';
-import { css, docDims, dynamifyCss } from './helpers';
+import { css, dynamifyCss, PRINT_BLEED, withSizes } from './helpers';
 
-const guides: CoverCssModule = ({ size, pages }) => {
+const guides: CoverCssModule = (scaler, scope) => {
   const staticCss = css`
     .Cover--show-guides .guide--spine {
       border-color: blue;
@@ -67,34 +67,34 @@ const guides: CoverCssModule = ({ size, pages }) => {
     }
   `;
 
-  const dims = docDims(size, pages);
+  const sizeCss = withSizes(
+    ({ width }) => css`
+      .Cover--show-guides.trim--__SIZE__ .guide--spine-left {
+        left: ${width}in;
+      }
+
+      .Cover--show-guides.trim--__SIZE__ .guide--spine-right {
+        right: ${width}in;
+      }
+
+      .Cover--show-guides.trim--__SIZE__.Cover--pdf--bleed .guide--spine-left {
+        left: ${width + PRINT_BLEED}in;
+      }
+
+      .Cover--show-guides.trim--__SIZE__.Cover--pdf--bleed .guide--spine-right {
+        right: ${width + PRINT_BLEED}in;
+      }
+    `,
+  );
+
   const dynamicCss = css`
-    .Cover--show-guides .guide--spine-left {
-      left: ${dims.width}in;
-    }
-
-    .Cover--show-guides .guide--spine-right {
-      right: ${dims.width}in;
-    }
-
-    .Cover--show-guides.Cover--pdf--bleed .guide--spine-left {
-      left: ${dims.width + dims.printBleed}in;
-    }
-
-    .Cover--show-guides.Cover--pdf--bleed .guide--spine-right {
-      right: ${dims.width + dims.printBleed}in;
-    }
-
-    .Cover--show-guides .guide--spine-center {
-      left: ${dims.pdfSpineWidth / 2}in;
-    }
-
+    ${sizeCss}
     .Cover--show-guides .guide--letter-spacing {
       height: 0.18in;
     }
   `;
 
-  return [staticCss, dynamifyCss(dynamicCss)];
+  return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];
 };
 
 export default guides;
