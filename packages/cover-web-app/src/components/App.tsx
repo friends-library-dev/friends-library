@@ -438,16 +438,20 @@ export default class App extends React.Component<{}, State> {
         {coverProps && (
           <>
             <div className={cx('cover-wrap', { 'cover--ebook': mode === 'ebook' })}>
-              {mode === '3d' && <ThreeD {...coverProps} perspective={perspective} />}
-              {mode === 'pdf' && <PrintPdf {...coverProps} bleed={!maskBleed} />}
-              {mode === 'ebook' && <Front {...coverProps} />}
+              {mode === '3d' && (
+                <ThreeD scaler={scaler} {...coverProps} perspective={perspective} />
+              )}
+              {mode === 'pdf' && (
+                <PrintPdf scaler={scaler} {...coverProps} bleed={!maskBleed} />
+              )}
+              {mode === 'ebook' && <Front scaler={scaler} {...coverProps} />}
               <style>
-                {coverCss.common(coverProps, scaler).join('\n')}
-                {coverCss.front(coverProps, scaler).join('\n')}
-                {coverCss.back(coverProps, scaler).join('\n')}
-                {coverCss.spine(coverProps, scaler).join('\n')}
-                {coverCss.guides(coverProps, scaler).join('\n')}
-                {mode === '3d' ? coverCss.threeD(coverProps, scaler).join('\n') : ''}
+                {coverCss.common(scaler).join('\n')}
+                {coverCss.front(scaler).join('\n')}
+                {coverCss.back(scaler).join('\n')}
+                {coverCss.spine(scaler).join('\n')}
+                {coverCss.guides(scaler).join('\n')}
+                {mode === '3d' ? coverCss.threeD(scaler).join('\n') : ''}
                 {mode === 'pdf' ? coverCss.pdf(coverProps, scaler).join('\n') : ''}
               </style>
             </div>

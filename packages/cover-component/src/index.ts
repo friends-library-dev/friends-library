@@ -6,5 +6,10 @@ export { default as Back } from './Back';
 export { default as Spine } from './Spine';
 export { default as ThreeD } from './ThreeD';
 export { default as PrintPdf } from './PrintPdf';
-export { wrapClasses, docDims } from './css/helpers';
+export { wrapClasses, docDims, pdfHeight, pdfWidth, pdfSpineWidth } from './css/helpers';
 export { css };
+export {
+  CoverWebStylesAllStatic,
+  CoverWebStylesAllDynamic,
+  CoverWebStylesSizes,
+} from './Styles';

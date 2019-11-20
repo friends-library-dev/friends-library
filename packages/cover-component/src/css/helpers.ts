@@ -5,32 +5,45 @@ import { sizes as bookSizes } from '@friends-library/lulu';
 export interface DocDims {
   width: number;
   height: number;
-  pdfWidth: number;
-  pdfHeight: number;
-  pdfSpineWidth: number;
-  threeDSpineWidth: number;
-  printBleed: number;
 }
 
-export function docDims(size: PrintSize, pages: number): DocDims {
-  const { width, height } = bookSizes[size].dims;
-  const printBleed = 0.125;
-  const spinePad = 0.06;
-  const pagesPerInch = 444;
-  const threeDSpineWidth = spinePad + pages / pagesPerInch;
-  const pdfSpineWidth = pages < 32 ? 0 : threeDSpineWidth;
-  const pdfWidth = width * 2 + pdfSpineWidth + printBleed * 2;
-  const pdfHeight = height + printBleed * 2;
+export function threeDSpineWidth(pages: number): number {
+  return SPINE_PAD + pages / PAGES_PER_INCH;
+}
 
+export function pdfSpineWidth(pages: number): number {
+  return pages < 32 ? 0 : threeDSpineWidth(pages);
+}
+
+export function pdfHeight(size: PrintSize): number {
+  const { height } = docDims(size);
+  return height + PRINT_BLEED * 2;
+}
+
+export function pdfWidth(size: PrintSize, pages: number) {
+  const { width } = docDims(size);
+  return width * 2 + pdfSpineWidth(pages) + PRINT_BLEED * 2;
+}
+
+export function docDims(size: PrintSize): DocDims {
+  const { width, height } = bookSizes[size].dims;
   return {
     width,
     height,
-    pdfWidth,
-    pdfHeight,
-    pdfSpineWidth,
-    threeDSpineWidth,
-    printBleed,
   };
+}
+
+export function allSizesDocDims(): { [k in PrintSize]: DocDims } {
+  return {
+    s: docDims('s'),
+    m: docDims('m'),
+    xl: docDims('xl'),
+  };
+}
+
+export function withSizes(fn: (dims: DocDims, size: PrintSize) => Css): Css {
+  const sizes: PrintSize[] = ['s', 'm', 'xl'];
+  return sizes.map(size => fn(docDims(size), size).replace(/__SIZE__/g, size)).join('\n');
 }
 
 export function wrapClasses(
@@ -110,3 +123,7 @@ export function css(strings: any, ...values: any[]): string {
   });
   return str;
 }
+
+const SPINE_PAD = 0.06;
+const PAGES_PER_INCH = 444;
+export const PRINT_BLEED = 0.125;

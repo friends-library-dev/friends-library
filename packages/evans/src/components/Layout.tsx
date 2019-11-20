@@ -41,6 +41,9 @@ const Layout: React.FC<Props> = ({ children }) => {
           href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
           rel="stylesheet prefetch"
         />
+        <CoverWebStylesAllStatic />
+        <CoverWebStylesAllDynamic scaler={0.5} scope="half" />
+        <CoverWebStylesSizes />
         <style type="text/css">{`${common}${front}${back}${spine}${threeD}`}</style>
       </Helmet>
       <ThemeProvider theme={theme}>

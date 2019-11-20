@@ -2,8 +2,8 @@ import { CoverCssModule } from './types';
 import { css, dynamifyCss } from './helpers';
 import frontMain from './front-main';
 
-const front: CoverCssModule = (props, scaler, scope) => {
-  const [frontMainCss, frontMainDynamicCss] = frontMain(props, scaler, scope);
+const front: CoverCssModule = (scaler, scope) => {
+  const [frontMainCss, frontMainDynamicCss] = frontMain();
 
   const staticCss = css`
     .Cover .front__safe {

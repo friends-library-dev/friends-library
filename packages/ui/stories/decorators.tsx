@@ -1,6 +1,10 @@
 import React from 'react';
 import { StoryDecorator } from '@storybook/react';
 import { ThemeProvider } from 'emotion-theming';
+import {
+  CoverWebStylesAllStatic,
+  CoverWebStylesSizes,
+} from '@friends-library/cover-component';
 import { useLocale } from '../src/translation';
 import { es, en } from '../src/theme';
 
@@ -14,4 +18,12 @@ const useSpanish: StoryDecorator = storyFn => {
   return <ThemeProvider theme={es}>{storyFn()}</ThemeProvider>;
 };
 
-export { useSpanish, useEnglish };
+const coverSizes: StoryDecorator = storyFn => (
+  <>
+    {storyFn()}
+    <CoverWebStylesAllStatic />
+    <CoverWebStylesSizes />
+  </>
+);
+
+export { useSpanish, useEnglish, coverSizes };

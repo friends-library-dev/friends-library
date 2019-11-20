@@ -38,19 +38,23 @@ describe('scopeCss()', () => {
 });
 
 describe('scaleCssInches()', () => {
-  // prettier-ignore
   const cases: [number, string, string][] = [
-   [
-     0.5,
-     '.foo { width: 1in; }',
-     '.foo { width: 0.5in; }',
-   ],
+    [
+      0.5,
+      '.Cover .foobarverylong { width: 1in; }',
+      '.Cover .foobarverylong { width: 0.5in; }',
+    ],
     [
       0.5,
       `.Cover .front_main .foo { color: red; }`,
       `.Cover .front_main .foo { color: red; }`, // prevent .front_main0 .foo
     ],
- ];
+    [
+      0.5,
+      `.Cover .foo { transform: rotateX(90deg) translateZ(1in); }`,
+      `.Cover .foo { transform: rotateX(90deg) translateZ(0.5in); }`,
+    ],
+  ];
 
   test.each(cases)('css inches should be scaled', (scaler, before, after) => {
     expect(scaleCssInches(before, scaler)).toBe(after);

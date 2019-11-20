@@ -7,18 +7,19 @@ import EditableBlurb from './EditableBlurb';
 import LogoSpanish from './LogoSpanish';
 import Logo from './Logo';
 
-const Back: React.FC<CoverProps> = ({
+const Back: React.FC<CoverProps & { style?: { [k in string]: number | string } }> = ({
   blurb,
   isbn,
   lang,
   edition,
   allowEditingBlurb,
   updateBlurb,
+  style,
 }) => {
   const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
   const fragments = {};
   return (
-    <div className={`back has-bg ${blurbClasses(blurb)}`}>
+    <div className={`back has-bg ${blurbClasses(blurb)}`} style={style || {}}>
       <div className="back__safe">
         <Diamond />
         {overridable(
@@ -42,7 +43,7 @@ const Back: React.FC<CoverProps> = ({
         {isbn && (
           <img
             className="isbn"
-            src={`https://friends-library-assets.nyc3.digitaloceanspaces.com/static/isbn/${isbn}.png`}
+            src={`https://flp-assets.nyc3.digitaloceanspaces.com/static/isbn/${isbn}.png`}
             alt=""
           />
         )}

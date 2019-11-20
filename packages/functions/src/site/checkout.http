@@ -133,4 +133,4 @@ POST {{base}}/orders/check HTTP/1.1
 @orderId = {{authorizePayment.response.body.$.orderId}}
 @printJobId = {{createPrintJob.response.body.$.printJobId}}
 @address = {"name":"Bo","street":"1 Rd","city":"Cody","state":"WY","zip":"82414","country": "US"}
-@pdfUrlBase = https://friends-library-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized
+@pdfUrlBase = https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized

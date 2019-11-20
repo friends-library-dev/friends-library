@@ -1,5 +1,5 @@
 import { CoverProps } from '@friends-library/types';
-import { docDims } from '@friends-library/cover-component';
+import { docDims, pdfWidth, pdfHeight } from '@friends-library/cover-component';
 import { FriendData, DocumentData, EditionData } from '../types';
 import { Mode } from './App';
 
@@ -28,12 +28,13 @@ export function fitScaler(
     return WEB_SCALER;
   }
 
+  const { size, pages } = props;
   const appChromeHeight = showCode ? 475 : 175;
-  const dims = docDims(props.size, props.pages);
+  const dims = docDims(size);
   const windowWidth = window.innerWidth / 96;
   const windowHeight = (window.innerHeight - appChromeHeight) / 96;
-  const coverWidth = (mode === 'pdf' ? dims.pdfWidth : dims.width) * WEB_SCALER;
-  const coverHeight = (mode === 'pdf' ? dims.pdfHeight : dims.height) * WEB_SCALER;
+  const coverWidth = (mode === 'pdf' ? pdfWidth(size, pages) : dims.width) * WEB_SCALER;
+  const coverHeight = (mode === 'pdf' ? pdfHeight(size) : dims.height) * WEB_SCALER;
   if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
     return WEB_SCALER;
   }

@@ -1,9 +1,9 @@
 import { CoverCssModule } from './types';
-import { css } from './helpers';
+import { css, dynamifyCss } from './helpers';
 import initials from './initials';
 
-const frontMain: CoverCssModule = (props, scaler, scope) => {
-  const [initialsCss, initialsDynamicCss] = initials(props, scaler, scope);
+const frontMain: CoverCssModule = (scaler, scope) => {
+  const [initialsCss, initialsDynamicCss] = initials(scaler, scope);
   const staticCss = css`
     .front__main {
       position: relative;
@@ -64,7 +64,7 @@ const frontMain: CoverCssModule = (props, scaler, scope) => {
     ${initialsDynamicCss}
   `;
 
-  return [staticCss, dynamicCss];
+  return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];
 };
 
 export default frontMain;

@@ -4,11 +4,13 @@ import { overridable } from './helpers';
 import LogoIcon from './LogoIcon';
 import FrontMain from './FrontMain';
 
-const FrontInner: React.FC<CoverProps> = props => {
-  const { lang, author } = props;
+const FrontInner: React.FC<
+  CoverProps & { style?: { [k in string]: number | string } }
+> = props => {
+  const { lang, author, style } = props;
   const fragments = {}; // @TODO
   return (
-    <div className="front has-bg">
+    <div className="front has-bg" style={style || {}}>
       <div className="front__safe">
         <div className="top-row">
           <span className="flp">

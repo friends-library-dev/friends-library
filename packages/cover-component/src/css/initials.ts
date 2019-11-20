@@ -1,8 +1,7 @@
 import { CoverCssModule } from './types';
-import { css } from './helpers';
-import { initials } from '../helpers';
+import { css, dynamifyCss } from './helpers';
 
-const initialsCss: CoverCssModule = ({ author }) => {
+const initialsCss: CoverCssModule = (scaler, scope) => {
   const staticCss = css`
     .Cover .front__main .initials > div {
       flex-grow: 1;
@@ -26,7 +25,7 @@ const initialsCss: CoverCssModule = ({ author }) => {
     }
   `;
 
-  let dynamicCss = css`
+  const dynamicCss = css`
     .Cover .front__main .initial {
       font-size: 3.05in;
       line-height: 3.05in;
@@ -51,9 +50,7 @@ const initialsCss: CoverCssModule = ({ author }) => {
     .Cover.trim--s .initial--last {
       top: -0.55in;
     }
-  `;
 
-  const dynamicCssParts = css`
     /* LETTER TWEAKS */
     .Cover .initial--first.initial--A {
       bottom: -0.44in;
@@ -324,19 +321,9 @@ const initialsCss: CoverCssModule = ({ author }) => {
     .Cover.trim--xl .front__main--initials--TS {
       margin-bottom: 0.2in;
     }
-  `.split('\n\n');
+  `;
 
-  const [first, last] = initials(author);
-
-  dynamicCss += dynamicCssParts
-    .filter(part => {
-      const singleLine = part.replace(/\n/g, ' ').replace(/\/\*.+\*\//, '');
-      const selectors = singleLine.replace(/{.+/m, '');
-      return selectors.includes(first) || selectors.includes(last);
-    })
-    .join('\n\n');
-
-  return [staticCss, dynamicCss];
+  return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];
 };
 
 export default initialsCss;
