@@ -1,6 +1,6 @@
 import cx from 'classnames';
 import { CoverProps, PrintSize, Css } from '@friends-library/types';
-import { sizes as bookSizes } from '@friends-library/lulu';
+import { sizes as bookSizes, PAGES_PER_INCH } from '@friends-library/lulu';
 
 export interface DocDims {
   width: number;
@@ -20,7 +20,7 @@ export function pdfHeight(size: PrintSize): number {
   return height + PRINT_BLEED * 2;
 }
 
-export function pdfWidth(size: PrintSize, pages: number) {
+export function pdfWidth(size: PrintSize, pages: number): number {
   const { width } = docDims(size);
   return width * 2 + pdfSpineWidth(pages) + PRINT_BLEED * 2;
 }
@@ -125,5 +125,4 @@ export function css(strings: any, ...values: any[]): string {
 }
 
 const SPINE_PAD = 0.06;
-const PAGES_PER_INCH = 444;
 export const PRINT_BLEED = 0.125;

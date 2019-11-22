@@ -3,7 +3,10 @@ import { styled } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
 import { ThemeProvider } from 'emotion-theming';
 import { Nav, enTheme, esTheme, Tailwind, Footer } from '@friends-library/ui';
-import { css as coverCss } from '@friends-library/cover-component';
+import {
+  CoverWebStylesAllStatic,
+  CoverWebStylesSizes,
+} from '@friends-library/cover-component';
 import Slideover from './Slideover';
 import './Layout.css';
 
@@ -18,18 +21,6 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const theme = process.env.GATSBY_LANG === 'en' ? enTheme : esTheme;
-  const coverProps = {
-    size: 'm' as const,
-    pages: 200,
-    showGuides: false,
-    title: 'Journal',
-    author: 'George Fox',
-  };
-  const [common] = coverCss.common(coverProps);
-  const [front] = coverCss.front(coverProps);
-  const [back] = coverCss.back(coverProps);
-  const [spine] = coverCss.spine(coverProps);
-  const [threeD] = coverCss.threeD(coverProps);
   return (
     <Fragment>
       <Tailwind />
@@ -41,12 +32,10 @@ const Layout: React.FC<Props> = ({ children }) => {
           href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
           rel="stylesheet prefetch"
         />
-        <CoverWebStylesAllStatic />
-        <CoverWebStylesAllDynamic scaler={0.5} scope="half" />
-        <CoverWebStylesSizes />
-        <style type="text/css">{`${common}${front}${back}${spine}${threeD}`}</style>
       </Helmet>
       <ThemeProvider theme={theme}>
+        <CoverWebStylesAllStatic />
+        <CoverWebStylesSizes />
         <Slideover isOpen={menuOpen} close={() => setMenuOpen(false)} />
         <Nav
           menuOpen={menuOpen}

@@ -31,4 +31,14 @@
   padding-left: 0.4em;
 }
 
+.fl-underline {
+  padding-bottom: 0.5em;
+  background-image: linear-gradient(
+    to top,
+    currentColor 0%,
+    currentColor 0.2em,
+    transparent 0.2em
+  );
+}
+
 @tailwind utilities;

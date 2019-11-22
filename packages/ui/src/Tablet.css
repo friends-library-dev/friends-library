@@ -1,0 +1,93 @@
+.Tablet {
+  width: 680px;
+  height: 900px;
+  border-radius: 40px;
+  border: 3px solid rgb(218, 218, 218);
+  position: relative;
+}
+
+.Tablet--inner {
+  border-radius: 20px;
+  border: 2px solid rgb(218, 218, 218);
+  height: calc(100% - 62px);
+  margin: 30px;
+}
+
+/* buttons */
+.Tablet .top-btn::after,
+.Tablet .side-btns::after,
+.Tablet .side-btns::before {
+  position: absolute;
+  content: '';
+  display: block;
+  background: rgb(212, 212, 212);
+}
+
+.Tablet .top-btn::after {
+  top: -6px;
+  right: 47px;
+  width: 46px;
+  height: 2px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.Tablet .side-btns::after,
+.Tablet .side-btns::before {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 2px;
+  height: 40px;
+  right: -6px;
+  top: 65px;
+}
+
+.Tablet .side-btns::before {
+  top: 118px;
+}
+
+/* cameras */
+.Tablet .extra-camera::before,
+.Tablet::before,
+.Tablet::after,
+.Tablet--inner::before,
+.Tablet--inner::after {
+  content: '•';
+  color: rgb(219, 219, 219) !important;
+  font-size: 44px;
+  position: absolute;
+  top: -22px;
+  transform: translateX(26px);
+}
+
+/* cam 1 (right-to-left) */
+.Tablet::after {
+  color: red;
+  right: 59%;
+  font-size: 34px;
+  top: -13px;
+}
+
+.Tablet::before {
+  color: green;
+  right: 55%;
+}
+
+.Tablet--inner::after {
+  color: blue;
+  right: 51.5%;
+  font-size: 34px;
+  top: -13px;
+}
+
+.Tablet--inner::before {
+  color: orange;
+  right: 49%;
+  font-size: 8px;
+  top: 9px;
+}
+
+.Tablet .extra-camera::before {
+  color: black;
+  right: 44.5%;
+}

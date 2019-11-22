@@ -11,8 +11,13 @@ import {
   Description,
   CoverProps,
 } from '@friends-library/types';
-import { ThreeD as Cover3D, css as coverCss } from '@friends-library/cover-component';
-import { Layout, Block, PageTitle, Divider, ByLine, Edition } from '../components';
+import { Layout } from '../components';
+import {
+  DocBlock,
+  ListenBlock,
+  ReadSampleBlock,
+  RelatedBookCard,
+} from '@friends-library/ui';
 
 interface Props {
   data: {
@@ -47,38 +52,65 @@ export default ({ data: { friend, document } }: Props) => {
     pages: 222, // @TODO
     edition: document.editions[0].type,
     blurb: document.description,
-    showGuides: false,
     customCss: '',
     customHtml: '',
   };
   return (
     <Layout>
-      <Block>
-        <div>
-          <Cover3D {...coverProps} />
-          <PageTitle>{document.title}</PageTitle>
-          <ByLine
-            isCompilation={document.isCompilation}
-            friendUrl={friend.url}
-            friendName={friend.name}
+      <DocBlock
+        description={document.description}
+        isbn="978-1-64476-004-8"
+        customHtml=""
+        authorSlug="ambrose-rigge"
+        price={499}
+        hasAudio={true}
+        numChapters={15}
+        altLanguageUrl="https://es-evans.netlify.com/james-parnell/vida"
+        {...coverProps}
+        pages={[222]}
+      />
+      <ReadSampleBlock price={499} hasAudio={true} chapters={chapters} />
+      <ListenBlock />
+      <div className="p-8 pt-12" style={{ backgroundColor: 'rgb(249, 249, 249)' }}>
+        <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
+          Other Books by this Author
+        </h1>
+        <div className="xl:flex justify-center">
+          <RelatedBookCard
+            lang="en"
+            title="The Journal of Charles&nbsp;Marshall"
+            author="Charles Marshall"
+            edition="updated"
+            description={shortBlurb}
+            customCss=""
+            customHtml=""
+            authorSlug="charles-marshall"
+            documentSlug="journal"
           />
-          <p>{document.description}</p>
-          <style>
-            {`.Cover { float: left; }`}
-            {coverCss.common(coverProps)[1]}
-            {coverCss.front(coverProps)[1]}
-            {coverCss.back(coverProps)[1]}
-            {coverCss.spine(coverProps)[1]}
-            {coverCss.threeD(coverProps)[1]}
-          </style>
+          <RelatedBookCard
+            lang="en"
+            title="The Journal of William Savery"
+            author="William Savery"
+            edition="modernized"
+            description={shortBlurb}
+            customCss=""
+            customHtml=""
+            authorSlug="charles-marshall"
+            documentSlug="journal"
+          />
+          <RelatedBookCard
+            lang="es"
+            title="Walk in the Spirit"
+            author="Hugh Turford"
+            edition="updated"
+            description={shortBlurb}
+            customCss=""
+            customHtml=""
+            authorSlug="charles-marshall"
+            documentSlug="journal"
+          />
         </div>
-        <Divider />
-        <div>
-          {document.editions.map(e => (
-            <Edition key={e.type} edition={e} />
-          ))}
-        </div>
-      </Block>
+      </div>
     </Layout>
   );
 };
@@ -107,3 +139,33 @@ export const query = graphql`
     }
   }
 `;
+
+const chapters = [
+  {
+    text: 'This is a chapter title that is way too long',
+    shortText: 'This is a chapter title',
+    sequence: {
+      type: 'Chapter',
+      number: 1,
+    },
+  },
+  {
+    text: 'This is a chapter title two',
+    sequence: {
+      type: 'Chapter',
+      number: 2,
+    },
+  },
+  {
+    text: 'This is a chapter title three',
+    sequence: {
+      type: 'Chapter',
+      number: 3,
+    },
+  },
+  {
+    text: 'Epilogue',
+  },
+];
+
+const shortBlurb = `Ambrose Rigge (1635-1705) was early convinced of the truth through the preaching of George Fox, and grew to be a powerful minister of the gospel, a faithful elder, and a great sufferer for the cause of Christ. In one of his letters, he writes, "I have been in eleven prisons in this county, one of which held me ten years, four months and upward, besides twice premunired, and once publicly lashed, and many other sufferings too long to relate here."`;

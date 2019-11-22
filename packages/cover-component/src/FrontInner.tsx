@@ -4,9 +4,11 @@ import { overridable } from './helpers';
 import LogoIcon from './LogoIcon';
 import FrontMain from './FrontMain';
 
-const FrontInner: React.FC<
-  CoverProps & { style?: { [k in string]: number | string } }
-> = props => {
+type Props = Pick<CoverProps, 'lang' | 'author' | 'showGuides' | 'title'> & {
+  style?: { [k in string]: number | string };
+};
+
+const FrontInner: React.FC<Props> = props => {
   const { lang, author, style } = props;
   const fragments = {}; // @TODO
   return (

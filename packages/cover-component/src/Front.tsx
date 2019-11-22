@@ -3,9 +3,13 @@ import { CoverProps } from '@friends-library/types';
 import { wrapClasses } from './css/helpers';
 import FrontInner from './FrontInner';
 
-const CoverFront: React.FC<CoverProps> = props => {
+type Props = Omit<CoverProps, 'blurb' | 'pages'> & {
+  className?: string;
+};
+
+const CoverFront: React.FC<Props> = props => {
   return (
-    <div className={wrapClasses(props)}>
+    <div className={wrapClasses(props, props.className || '')}>
       <FrontInner {...props} />
     </div>
   );

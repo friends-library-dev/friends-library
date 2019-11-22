@@ -1,0 +1,59 @@
+.DocBlock {
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 105px,
+    rgb(240, 240, 240) 105px,
+    rgb(240, 240, 240) 375px,
+    transparent 375px
+  );
+}
+
+.DocMeta a:link {
+  border-bottom: 1px dashed currentColor;
+  cursor: pointer;
+}
+
+.DocMeta li:before {
+  content: '\25c6';
+  padding-right: 0.4em;
+  color: rgb(108, 49, 66);
+}
+
+:lang(es) .DocMeta li:before {
+  color: rgb(193, 140, 89);
+}
+
+@screen md {
+  .DocMeta ul {
+    width: 100%;
+    padding: 0 5em;
+    column-count: 3;
+    column-width: 20vw;
+    column-gap: 20px;
+  }
+
+  .DocMeta li {
+    break-inside: avoid-column;
+  }
+}
+
+@screen xl {
+  .DocBlock {
+    background-image: linear-gradient(
+      transparent 0%,
+      transparent 105px,
+      rgb(240, 240, 240) 105px,
+      rgb(240, 240, 240) 510px,
+      transparent 510px
+    );
+  }
+
+  .DocBlock .TopWrap {
+    max-width: 80rem;
+  }
+
+  .DocMeta ul {
+    padding: 0 0 0 1.5em;
+    column-width: 10vw;
+  }
+}
