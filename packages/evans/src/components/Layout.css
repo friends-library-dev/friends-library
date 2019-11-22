@@ -1,7 +1,7 @@
 .Nav {
   position: fixed;
   width: 100%;
-  z-index: 20; /* needs to be higher than getting started block .z-10 */
+  z-index: 500; /* should be higher than just about everything */
 }
 
 p.lead {

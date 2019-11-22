@@ -1,0 +1,35 @@
+.RelatedBookCard .book-wrap {
+  background-image: linear-gradient(transparent 0%, transparent 25%, white 25%);
+}
+
+.RelatedBookCard .Cover--scope-1-4 {
+  display: none;
+}
+
+@screen md {
+  .RelatedBookCard .book-wrap {
+    transform: translateY(65px);
+  }
+}
+
+@screen xl {
+  .RelatedBookCard .book-wrap {
+    transform: none;
+  }
+
+  .RelatedBookCard .description {
+    padding-left: 134px;
+  }
+
+  .RelatedBookCard .Cover--scope-1-3 {
+    display: none;
+  }
+
+  .RelatedBookCard .Cover--scope-1-4 {
+    display: block;
+  }
+
+  .RelatedBookCard + .RelatedBookCard {
+    margin-left: 2em;
+  }
+}

@@ -1,11 +1,11 @@
 import { css, dynamifyCss, docDims, PRINT_BLEED, pdfSpineWidth } from './helpers';
-import { CoverProps } from '@friends-library/types';
+import { CoverProps, Css } from '@friends-library/types';
 
 export default function pdf(
   { size, pages }: Pick<CoverProps, 'size' | 'pages'>,
   scaler?: number,
   scope?: string,
-) {
+): [Css, Css] {
   const staticCss = css`
     html.prince,
     html.prince body {

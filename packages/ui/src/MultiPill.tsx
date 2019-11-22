@@ -4,21 +4,24 @@ import Button from './Button';
 import './MultiPill.css';
 
 interface Props {
+  className?: string;
+  inline?: boolean;
   buttons: {
     text: string;
     icon?: string;
   }[];
 }
-const MultiPill: React.FC<Props> = ({ buttons }) => {
+const MultiPill: React.FC<Props> = ({ buttons, className, inline = false }) => {
+  const brk = inline ? 'sm' : 'md';
   return (
-    <div className="MultiPill md:flex">
+    <div className={cx(className, 'MultiPill', `${brk}:flex`, { inline })}>
       {buttons.map((button, idx) => (
         <Button
           key={button.text}
           className={cx(`bg-flmaroon-${[600, 500, 400][idx]}`, `z-${[30, 20, 10][idx]}`, {
             'mb-2': idx < buttons.length - 1,
-            'md:-ml-12': idx > 0,
-            'md:pl-6': idx > 0,
+            [`${brk}:-ml-12`]: idx > 0,
+            [`${brk}:pl-6`]: idx > 0,
           })}
         >
           {button.icon && <i className={`fa fa-${button.icon} pr-3`} />}

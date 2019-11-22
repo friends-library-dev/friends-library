@@ -15,15 +15,15 @@ import { addStaticCoverCss } from './helpers';
 
 const props: CoverProps = {
   lang: 'en',
-  size: 'm',
+  size: 's',
   pages: 222,
   blurb:
     'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart. Having witnessed in his own soul, he to.',
   showGuides: false,
-  edition: 'modernized',
-  title: 'The Journal and Writings of Ambrose Rigge',
+  edition: 'updated',
+  title: 'The Work of Vital Religion in the Soul',
   isbn: '978-1-64476-000-0',
-  author: 'Ambrose Rigge',
+  author: 'Samuel Rndell',
   customCss: '',
   customHtml: '',
 };
@@ -161,8 +161,8 @@ storiesOf('Cover', module)
   ))
   .add('3d (angle-front)', () => (
     <div>
-      <ThreeD scope="lol" scaler={1} {...props} perspective="angle-front" />
-      <Style type="3d" scope="lol" scaler={1} />
+      <ThreeD {...props} perspective="angle-front" />
+      <Style type="3d" />
     </div>
   ))
   .add('pdf', () => (
@@ -236,7 +236,6 @@ const Style: React.FC<{
     showGuides: showGuides || props.showGuides,
   };
   const args: [number?, string?] = [scaler, scope];
-  console.log({ showGuides });
   return (
     <style>
       {coverCss.common(...args)[1]}

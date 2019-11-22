@@ -1,0 +1,25 @@
+.TocHamburger {
+  width: 70px;
+  height: 66px;
+}
+
+.TocHamburger::before,
+.TocHamburger::after,
+.TocHamburger i::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 3px;
+  left: 14px;
+  background-color: black;
+}
+
+.TocHamburger::before {
+  top: 20px;
+}
+.TocHamburger::after {
+  top: 31px;
+}
+.TocHamburger i::before {
+  top: 42px;
+}

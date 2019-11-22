@@ -8,6 +8,18 @@ const defaultMargins = {
   runningHeadTop: 0.35,
 };
 
+export const PAGES_PER_INCH = 444;
+
+export function bookDims(
+  size: PrintSize,
+  numPages: number,
+): { width: number; height: number; depth: number } {
+  return {
+    ...sizes[size].dims,
+    depth: numPages * (1 / PAGES_PER_INCH),
+  };
+}
+
 export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
   s: {
     luluName: 'Pocket Book',

@@ -1,0 +1,9 @@
+.SampleToc {
+  width: 400px;
+  border-bottom-width: 40px;
+}
+
+.SampleToc button {
+  top: 10px;
+  right: 14px;
+}

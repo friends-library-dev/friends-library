@@ -22,7 +22,6 @@ const ThreeD: React.FC<Props> = props => {
       <div
         className="box"
         style={{
-          // transform: `translateZ(${spineWidth / 2}in)`,
           ...(perspective === 'front'
             ? { transform: `translateZ(-${spineWidth * scaler}in) rotateY(0deg)` }
             : {}),

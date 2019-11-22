@@ -37,6 +37,15 @@ module.exports = {
         'flmaroon-500': 'rgb(132, 60, 81)',
         'flmaroon-400': `rgb(147, 64, 89)`,
       },
+      fontSize: {
+        '1-5xl': '1.375rem',
+        '2-5xl': '1.6875rem',
+        '3-5xl': '2.0625rem',
+      },
+      boxShadow: {
+        direct:
+          '0 -7px 25px -5px rgba(0, 0, 0, 0.1), 0 15px 10px -5px rgba(0, 0, 0, 0.04)',
+      },
     },
   },
   variants: {},
