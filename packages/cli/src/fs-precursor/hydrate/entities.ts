@@ -27,7 +27,7 @@ export default function entities(dpc: FsDocPrecursor): void {
 
 function getEditions(): Map<string, Edition> {
   const editions = new Map<string, Edition>();
-  [...getAllFriends('en'), ...getAllFriends('es')].forEach(friend => {
+  [...getAllFriends('en', true), ...getAllFriends('es', true)].forEach(friend => {
     friend.documents.forEach(document => {
       document.editions.forEach(edition => {
         editions.set(edition.path, edition);
