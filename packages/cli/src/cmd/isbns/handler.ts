@@ -7,7 +7,7 @@ interface Argv {
   next: boolean;
 }
 
-export default function handler({ next }: Argv) {
+export default function handler({ next }: Argv): void {
   if (!next) {
     red('Currently `--next` is the only supported option');
     process.exit(1);

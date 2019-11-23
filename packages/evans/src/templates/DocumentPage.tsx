@@ -51,6 +51,7 @@ export default ({ data: { friend, document } }: Props) => {
     size: 'm', // @TODO
     pages: 222, // @TODO
     edition: document.editions[0].type,
+    isbn: '978-1-64476-014-7', // @TODO
     blurb: document.description,
     customCss: '',
     customHtml: '',
