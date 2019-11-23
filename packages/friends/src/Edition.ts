@@ -11,9 +11,9 @@ export default class Edition {
     public type: EditionType = 'original',
     public formats: Format[] = [],
     public chapters: Chapter[] = [],
+    public isbn: ISBN = '',
     public description?: string,
     public editor?: string,
-    public isbn?: ISBN,
     public audio?: Audio,
     public splits?: number[],
   ) {

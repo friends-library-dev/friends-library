@@ -14,7 +14,7 @@ export interface EditionData {
   type: EditionType;
   pages: number;
   size: PrintSize;
-  isbn?: ISBN;
+  isbn: ISBN;
 }
 
 export interface DocumentData {

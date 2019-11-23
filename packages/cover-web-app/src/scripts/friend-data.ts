@@ -68,13 +68,13 @@ function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents
         return {
           id: `${friend.lang}/${friend.slug}/${document.slug}/${edition.type}`,
           type: edition.type,
+          isbn: edition.isbn,
           ...(editionMeta
             ? {
                 size: editionMeta.paperback.size,
                 pages: editionMeta.paperback.volumes[0],
               }
             : { pages: 222, size: 'm' }),
-          ...(edition.isbn ? { isbn: edition.isbn } : {}),
         };
       }),
     };

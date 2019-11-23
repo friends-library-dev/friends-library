@@ -35,7 +35,7 @@ export interface DocPrecursor {
     title: string;
     originalTitle?: string;
     published?: number;
-    isbn?: ISBN;
+    isbn: ISBN;
     editor?: string;
     author: {
       name: string;
@@ -68,6 +68,7 @@ export function genericDpc(): DocPrecursor {
     customCode: { css: {}, html: {} },
     meta: {
       title: 'Journal of George Fox',
+      isbn: '978-1-64476-029-1',
       author: { name: 'George Fox', nameSort: 'Fox, George' },
     },
     revision: { timestamp: Date.now(), sha: '', url: '' },

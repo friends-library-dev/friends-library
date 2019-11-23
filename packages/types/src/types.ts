@@ -110,7 +110,7 @@ export interface CoverProps {
   size: PrintSize;
   pages: number;
   edition: EditionType;
-  isbn?: ISBN;
+  isbn: ISBN;
   blurb: string;
   showGuides?: boolean;
   customCss: Css;

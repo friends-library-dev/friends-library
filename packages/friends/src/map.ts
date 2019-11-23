@@ -31,9 +31,9 @@ export default function friendFromJS(js: any): Friend {
                 edition.type,
                 (edition.formats || []).map((format: any) => new Format(format.type)),
                 (edition.chapters || []).map((chapter: any) => new Chapter(chapter)),
+                edition.isbn,
                 edition.description || undefined,
                 edition.editor || undefined,
-                edition.isbn || undefined,
                 edition.audio
                   ? new Audio(
                       edition.audio.reader,
