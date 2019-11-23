@@ -15,7 +15,10 @@ export default createReducer([], {
     return repos.map(repo => ({
       id: repo.id,
       slug: repo.name,
-      friendName: repo.description.replace(/^.. (.+) \((\d{4}|d\. \d{4}).*$/, '$1'),
+      friendName:
+        repo.name === 'compilations'
+          ? 'Compilations'
+          : repo.description.replace(/^.. (.+) \((\d{4}|d\. \d{4}).*$/, '$1'),
     }));
   },
 });
