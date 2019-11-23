@@ -83,6 +83,8 @@ documents:
           - number: 41
       - type: modernized
         isbn: 978-1-64476-140-3
+        splits:
+          - 23
         formats:
           - type: pdf
           - type: epub
