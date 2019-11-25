@@ -1,3 +1,19 @@
+She said "I trust our united language will forever be--'Father, your will be done.'"
+She said "`I trust our united language will forever be--'`Father, your will be done.`'`"
+
+//                                                   ---vv
+She said "`I trust our united language will forever be--`'Father, your will be done.`'`"
+She said "`I trust our united language will forever be--'`Father, your will be done.`'`"
+
+After dining at +++_______+++`'s, a solemnity ensued.
+After dining at +++_______+++`'s, a solemnity ensued.
+
+After dining at +++_______+++'s, a solemnity ensued.
+After dining at +++_______+++`'s, a solemnity ensued.
+
+After dining at +++_______+++'`s, a solemnity ensued.
+After dining at +++_______+++`'s, a solemnity ensued.
+
 // fixes type of quote for contractions
 don"t lol
 don`'t lol
@@ -12,6 +28,7 @@ of July, `'72, against
 of July, '72, against
 of July, `'72, against
 
+// not a two-digit shortened year, so leave as-is
 of July, '`7234, against
 of July, '`7234, against
 
