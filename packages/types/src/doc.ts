@@ -19,6 +19,7 @@ export interface DocPrecursor {
   documentSlug: string;
   path: string;
   documentId: Uuid;
+  isCompilation: boolean;
   editionType: EditionType;
   asciidoc: Asciidoc;
   epigraphs: Epigraph[];
@@ -57,6 +58,7 @@ export function genericDpc(): DocPrecursor {
     documentSlug: 'journal',
     path: 'en/george-fox/journal/original',
     documentId: '9414033c-4b70-4b4b-8e48-fec037822173',
+    isCompilation: false,
     editionType: 'original',
     asciidoc: '',
     epigraphs: [],

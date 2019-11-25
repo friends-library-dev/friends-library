@@ -1,5 +1,5 @@
 import React from 'react';
-import { Html } from '@friends-library/types';
+import { Html, Lang } from '@friends-library/types';
 import { quotify } from '@friends-library/adoc-utils';
 
 export function overridable(
@@ -16,7 +16,19 @@ export function overridable(
   return fallback;
 }
 
-export function initials(author: string): [string, string] {
+export function initials(
+  author: string,
+  title: string,
+  lang: Lang,
+  isCompilation: boolean,
+): [string, string] {
+  if (isCompilation) {
+    if (title.includes('Piety Promoted')) {
+      return ['P', 'P'];
+    }
+    // [F]riends [L]ibrary || [B]iblioteca [A}migos
+    return lang === 'en' ? ['F', 'L'] : ['B', 'A'];
+  }
   const [first, ...rest] = author.split(' ');
   return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
 }

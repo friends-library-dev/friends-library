@@ -106,6 +106,7 @@ export interface LintOptions {
 export interface CoverProps {
   lang: Lang;
   title: string;
+  isCompilation: boolean;
   author: Name;
   size: PrintSize;
   pages: number;

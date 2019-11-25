@@ -28,7 +28,7 @@ export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
 
   let markup = `<h1>${addVolumeSuffix(title, volIdx)}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
-  if (!nameInTitle) {
+  if (!nameInTitle && !dpc.isCompilation) {
     markup = `${markup}\n<p class="byline">${br7}${
       lang === 'en' ? 'by' : 'por'
     } ${name}</p>`;

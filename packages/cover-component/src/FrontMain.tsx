@@ -3,11 +3,20 @@ import cx from 'classnames';
 import { overridable, initials, prepareTitle } from './helpers';
 import { CoverProps } from '@friends-library/types';
 
-type Props = Pick<CoverProps, 'title' | 'author' | 'showGuides'>;
+type Props = Pick<
+  CoverProps,
+  'title' | 'author' | 'showGuides' | 'lang' | 'isCompilation'
+>;
 
-const FrontMain: React.FC<Props> = ({ showGuides, author, title }) => {
+const FrontMain: React.FC<Props> = ({
+  showGuides,
+  author,
+  title,
+  lang,
+  isCompilation,
+}) => {
   const fragments = {};
-  const [firstInitial, lastInitial] = initials(author);
+  const [firstInitial, lastInitial] = initials(author, title, lang, isCompilation);
   return (
     <div
       className={cx(

@@ -99,7 +99,12 @@ export function spineAuthorDisplay(
   title: string,
   author: string,
   size: PrintSize,
+  isCompilation: boolean,
 ): 'block' | 'none' {
+  if (isCompilation) {
+    return 'none';
+  }
+
   const lastName = String(author.split(' ').pop());
   let totalChars = title.replace(/&nbsp;/g, ' ').length + lastName.length;
   const numWideLetters = (`${title}${lastName}`.match(/(W|D)/g) || []).length;

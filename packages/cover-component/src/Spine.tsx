@@ -5,7 +5,20 @@ import Diamonds from './Diamonds';
 import { CoverProps } from '@friends-library/types';
 import { pdfSpineWidth, spineAuthorDisplay } from './css/helpers';
 
-const Spine: React.FC<CoverProps & { styles?: { [k in string]: string | number } }> = ({
+type Props = Pick<
+  CoverProps,
+  | 'lang'
+  | 'isCompilation'
+  | 'edition'
+  | 'title'
+  | 'pages'
+  | 'author'
+  | 'showGuides'
+  | 'size'
+  | 'scaler'
+> & { styles?: { [k in string]: string | number } };
+
+const Spine: React.FC<Props> = ({
   lang,
   edition,
   title,
@@ -13,6 +26,7 @@ const Spine: React.FC<CoverProps & { styles?: { [k in string]: string | number }
   author,
   showGuides,
   styles,
+  isCompilation,
   size,
   scaler = 1,
 }) => {
@@ -39,7 +53,7 @@ const Spine: React.FC<CoverProps & { styles?: { [k in string]: string | number }
         <div
           className="spine__author"
           style={{
-            display: spineAuthorDisplay(title, author, size),
+            display: spineAuthorDisplay(title, author, size, isCompilation),
           }}
         >
           {author.split(' ').pop()}

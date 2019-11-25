@@ -73,7 +73,9 @@ describe('spineAuthorDisplay()', () => {
   test.each(spineAuthorDisplayCases)(
     'spine author display for "%s"',
     (title, author, size, display) => {
-      expect(spineAuthorDisplay(title, author, size)).toBe(display ? 'block' : 'none');
+      expect(spineAuthorDisplay(title, author, size, false)).toBe(
+        display ? 'block' : 'none',
+      );
     },
   );
 });
