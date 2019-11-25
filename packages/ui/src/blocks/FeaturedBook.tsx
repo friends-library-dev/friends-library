@@ -1,12 +1,27 @@
 import React from 'react';
 import cx from 'classnames';
+import { ThreeD as Front } from '@friends-library/cover-component';
 import { FeaturedBook } from './FeaturedBooks';
 import Button from '../Button';
+import { Lang } from '@friends-library/types';
 
 const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
   isCurrent,
   book,
 }) => {
+  const coverProps = {
+    lang: 'en' as Lang,
+    edition: book.edition,
+    isCompilation: false,
+    author: book.friendName,
+    title: book.title,
+    isbn: '',
+    blurb: '',
+    pages: 222,
+    customCss: '',
+    customHtml: '',
+    perspective: 'angle-front' as const,
+  };
   return (
     <div
       className={cx(
@@ -14,12 +29,13 @@ const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
         isCurrent && 'order-first',
       )}
     >
-      <div className="md:w-2/5 md:mr-16">
-        <img
-          className="shadow-xl w-2/5 md:w-100 lg:w-4/5 xl:w-3/5 mx-auto mb-8 md:mb-12 md:w-auto"
-          src={book.cover}
-          alt="Paperback cover"
-        />
+      <div className="flex flex-col items-center md:items-end md:w-2/5 md:mr-16">
+        <div className="mb-8 md:hidden">
+          <Front {...coverProps} size="m" scope="1-2" scaler={1 / 2} />
+        </div>
+        <div className="hidden md:block">
+          <Front {...coverProps} size="m" scope="3-5" scaler={3 / 5} />
+        </div>
       </div>
       <div className="Text md:w-3/5 flex-grow flex flex-col justify-start">
         <h2 className="font-sans text-gray-800 text-2xl mb-4 md:mb-6 leading-relaxed tracking-wider font-bold">

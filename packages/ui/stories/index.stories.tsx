@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
-import { useEnglish, useSpanish } from './decorators';
+import { useEnglish, useSpanish, coverSizes } from './decorators';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
 import Button from '../src/Button';
@@ -69,6 +69,7 @@ storiesOf('Search', module)
   ));
 
 storiesOf('Home Blocks', module)
+  .addDecorator(coverSizes)
   .add('Who Were Quakers?', () => <WhoWereTheQuakers />)
   .add('Featured Books', () => <FeaturedBooks />)
   .add('Hero', () => <Hero />);

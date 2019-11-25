@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import Heading from '../Heading';
-import SFCover from '../images/samuel-fothergill-cover.jpg';
 import FeaturedBook from './FeaturedBook';
 import './FeaturedBooks.css';
+import { EditionType, PrintSize } from '@friends-library/types';
 
 const FeaturedBooks: React.FC = () => {
   const [index, setIndex] = useState<number>(0);
@@ -52,8 +52,8 @@ const FEATURED_BOOKS = [
   {
     title: 'The Life and Letters of Samuel Fothergill',
     friendSlug: 'samuel-fothergill',
+    edition: 'modernized' as EditionType,
     friendName: 'Samuel Fothergill',
-    cover: SFCover,
     docSlug: 'life-letters',
     description:
       'Samuel Fothergill was one of the most eminent ministers in the history of the Society of Friends, greatly loved and esteemed for the humility and purity of his life, as well as the authority and heart-tendering power of his ministry.',
@@ -62,8 +62,7 @@ const FEATURED_BOOKS = [
     title: 'Walk in the Spirit',
     friendSlug: 'hugh-turford',
     friendName: 'Hugh Turford',
-    cover:
-      'https://flp-assets.nyc3.digitaloceanspaces.com/en/hugh-turford/walk-in-the-spirit/updated/Walk_in_the_Spirit--updated--cover.png',
+    edition: 'updated' as EditionType,
     docSlug: 'walk-in-the-spirit',
     description:
       'This short work has long been treasured by Friends for the simplicity and clarity with which it describes the inward work of obedience and purification by the light and grace of the Holy Spirit working in the heart.',
@@ -72,8 +71,7 @@ const FEATURED_BOOKS = [
     title: 'No Cross, No Crown',
     friendSlug: 'william-penn',
     friendName: 'Wiliam Penn',
-    cover:
-      'https://flp-assets.nyc3.digitaloceanspaces.com/en/william-penn/no-cross-no-crown/updated/No_Cross_No_Crown--updated--cover.png',
+    edition: 'updated' as EditionType,
     docSlug: 'no-cross-no-crown',
     description:
       'In this classic treatise, William Penn clearly presents the nature, power, and experience of the daily cross of Christ, explaining what it is, where and how it is to be taken up, and the manner of its working in the true disciples of Christ.',
