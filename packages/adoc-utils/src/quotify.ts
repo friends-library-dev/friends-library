@@ -90,6 +90,8 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
     .replace(/([^` [])"`'/g, '$1`"`\'')
     .replace(/(^|\b| |`|-)'`(\d\d)(\b|$| )/g, "$1`'$2$3")
     .replace(/([a-z])`"([a-z])/i, "$1`'$2")
+    .replace(/([a-z])--`'([a-z])/gi, "$1--'`$2")
+    .replace(/\+\+\+____+\+\+\+'`s\b/g, "+++_______+++`'s")
     .replace(/(^|\b| |`|-)'`(')?(T|t)is(\b|$| )/g, (_, a, b, c, d) => {
       return `${a}${b ? "'`" : ''}\`'${c}is${d}`;
     });
