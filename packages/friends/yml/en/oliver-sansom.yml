@@ -1,0 +1,58 @@
+id: 7085b3b3-4600-4c4d-aa99-091dc2ac9b0c
+name: Oliver Sansom
+slug: oliver-sansom
+gender: male
+description: TODO
+documents:
+  - id: 67f4202e-ceff-402c-ad33-c1cb530dd247
+    title: The Life of Oliver Sansom
+    original_title:
+      'The Life of Oliver Sansom His Convincement of the Truth, the Exercises, Trials and
+      Sufferings Which Came Upon Him for His Obedience Thereunto: Also Relating Some of
+      His Travels and Labours in the Work of the Ministry for Turning People from Darkness
+      to Light.'
+    slug: life
+    filename: Life_of_Oliver_Sansom
+    description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-178-6
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
+      - type: original
+        isbn: 978-1-64476-179-3
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - number: 10
