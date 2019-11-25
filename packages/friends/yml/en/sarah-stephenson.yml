@@ -1,0 +1,57 @@
+id: 016cf5e7-fa39-4f21-8026-e2dad7592343
+name: Sarah Stephenson
+slug: sarah-stephenson
+gender: female
+description: TODO
+documents:
+  - id: 8b8604f4-042c-46b9-bdf6-a3ad6921164a
+    title: Life of Sarah Stephenson
+    original_title:
+      Memoirs Life and Travels in the Service of the Gospel of Sarah Stephenson
+    slug: life
+    filename: Life_of_Sarah_Stephenson
+    description: TODO
+    tags:
+      - letters
+      - journal
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-182-3
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - title: Testimony of Wiltshire Monthly Meeting
+          - title: Testimony of Philadelphia Monthly Meeting
+      - type: original
+        isbn: 978-1-64476-183-0
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - number: 1
+          - number: 2
+          - number: 3
+          - number: 4
+          - number: 5
+          - number: 6
+          - number: 7
+          - number: 8
+          - number: 9
+          - title: Testimony of Wiltshire Monthly Meeting
+          - title: Testimony of Philadelphia Monthly Meeting
