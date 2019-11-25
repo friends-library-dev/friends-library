@@ -117,6 +117,7 @@ function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): strin
     dpc.friendInitials.join(''),
     dpc.documentSlug,
     dpc.documentId.substring(0, 8),
+    dpc.editionType,
     suffix,
   ]
     .filter(p => !!p)
