@@ -1,0 +1,37 @@
+id: 920c904b-24e0-4e1c-9542-3a89cd97affe
+name: Elizabeth Ussher
+slug: elizabeth-ussher
+gender: female
+description: TODO
+documents:
+  - id: 4cde3c89-ab46-4f03-9346-5608a58e8393
+    title: Letters of Elizabeth, Lucy, and Judith Ussher
+    original_title:
+      Extracts from the Letters of Elizabeth, Lucy, and Judith Ussher, Late of the City of
+      Waterford.
+    slug: letters
+    filename: Ussher_Letters
+    description: TODO
+    tags:
+      - letters
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-176-2
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Letters
+      - type: original
+        isbn: 978-1-64476-177-9
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Letters
