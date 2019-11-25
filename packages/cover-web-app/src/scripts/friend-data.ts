@@ -11,8 +11,8 @@ const { DOCS_REPOS_ROOT: ROOT } = env.require('DOCS_REPOS_ROOT');
 (async () => {
   const meta = await fetchSingleton();
   const data: FriendData[] = Object.values(
-    getAllFriends('en')
-      .concat(getAllFriends('es'))
+    getAllFriends('en', true)
+      .concat(getAllFriends('es', true))
       .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))
       .reduce(
         (acc, friend: Friend) => {
@@ -61,6 +61,7 @@ function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents
       lang: friend.lang,
       title: document.title,
       description: document.description,
+      isCompilation: document.isCompilation(),
       customCss,
       customHtml,
       editions: document.editions.map(edition => {

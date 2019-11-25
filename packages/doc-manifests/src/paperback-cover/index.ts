@@ -22,6 +22,7 @@ export default async function paperbackCover(
           dpc.meta.title,
           volumes.length > 1 ? fauxVolIdx : undefined,
         ),
+        isCompilation: dpc.isCompilation,
         lang: dpc.lang,
         edition: dpc.editionType,
         showGuides: showGuides || false,

@@ -20,6 +20,7 @@ export interface EditionData {
 export interface DocumentData {
   lang: Lang;
   title: string;
+  isCompilation: boolean;
   description: Description;
   editions: EditionData[];
   customHtml: Html | null;

@@ -47,6 +47,7 @@ export default ({ data: { friend, document } }: Props) => {
   const coverProps: CoverProps = {
     lang: process.env.GATSBY_LANG === 'en' ? 'en' : 'es',
     title: document.title,
+    isCompilation: false, // @TODO
     author: friend.name,
     size: 'm', // @TODO
     pages: 222, // @TODO
@@ -80,6 +81,7 @@ export default ({ data: { friend, document } }: Props) => {
           <RelatedBookCard
             lang="en"
             title="The Journal of Charles&nbsp;Marshall"
+            isCompilation={false}
             author="Charles Marshall"
             edition="updated"
             description={shortBlurb}
@@ -91,6 +93,7 @@ export default ({ data: { friend, document } }: Props) => {
           <RelatedBookCard
             lang="en"
             title="The Journal of William Savery"
+            isCompilation={false}
             author="William Savery"
             edition="modernized"
             description={shortBlurb}
@@ -102,6 +105,7 @@ export default ({ data: { friend, document } }: Props) => {
           <RelatedBookCard
             lang="es"
             title="Walk in the Spirit"
+            isCompilation={false}
             author="Hugh Turford"
             edition="updated"
             description={shortBlurb}

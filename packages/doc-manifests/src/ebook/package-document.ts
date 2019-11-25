@@ -5,6 +5,7 @@ import ebookFrontmatter from './frontmatter';
 export function packageDocument(dpc: DocPrecursor, conf: EbookConfig): Xml {
   const {
     lang,
+    isCompilation,
     revision: { timestamp },
     meta: {
       author: { name, nameSort },
@@ -14,6 +15,8 @@ export function packageDocument(dpc: DocPrecursor, conf: EbookConfig): Xml {
   const modified = moment.utc(moment.unix(timestamp)).format('YYYY-MM-DDThh:mm:ss[Z]');
   const randomize = conf.randomizeForLocalTesting;
   const randomizer = ` (${moment().format('h:mm:ss')})`;
+  const publisher =
+    lang === 'en' ? 'The Friends Library' : 'La Biblioteca de los Amigios';
 
   return `
 <?xml version="1.0" encoding="utf-8"?>
@@ -24,12 +27,12 @@ export function packageDocument(dpc: DocPrecursor, conf: EbookConfig): Xml {
     randomize ? Date.now() : `${dpc.documentId}/${dpc.editionType}`
   }</dc:identifier>
   <dc:title id="pub-title">${title}${randomize ? '' : randomizer}</dc:title>
-  <dc:creator id="author">${name}</dc:creator>
-  <dc:publisher>The Friends Library</dc:publisher>
+  <dc:creator id="author">${isCompilation ? publisher : name}</dc:creator>
+  <dc:publisher>${publisher}</dc:publisher>
   <dc:subject>Quakers</dc:subject>
   <dc:subject>Religious Society of Friends</dc:subject>
   <dc:rights>Public domain in the USA.</dc:rights>
-  <meta property="file-as" refines="#author">${nameSort}</meta>
+  ${isCompilation ? '' : `<meta property="file-as" refines="#author">${nameSort}</meta>`}
   <meta property="dcterms:modified">${modified}</meta>
   ${conf.coverImg ? '<meta name="cover" content="cover-img" />' : ''}
 </metadata>

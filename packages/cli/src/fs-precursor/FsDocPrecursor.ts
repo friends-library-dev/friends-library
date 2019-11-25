@@ -22,6 +22,7 @@ export default class FsDocPrecursor implements DocPrecursor {
   public sections: DocPrecursor['sections'] = [];
   public notes: DocPrecursor['notes'] = new Map();
   public documentId: DocPrecursor['documentId'] = '';
+  public isCompilation: DocPrecursor['isCompilation'] = false;
   public blurb: DocPrecursor['blurb'] = '';
 
   public constructor(fullPath: string, relPath: string) {
@@ -35,6 +36,7 @@ export default class FsDocPrecursor implements DocPrecursor {
     this.friendInitials = friendSlug.split('-').map(s => s[0].toUpperCase());
     this.meta = {
       title: '',
+      isbn: '',
       author: {
         name: '',
         nameSort: '',

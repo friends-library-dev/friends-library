@@ -127,6 +127,7 @@ export default class App extends React.Component<{}, State> {
       author: friend.name,
       lang: doc.lang,
       title: doc.title,
+      isCompilation: doc.isCompilation,
       size: mode === 'ebook' ? 'xl' : ed.size,
       pages: ed.pages,
       edition: ed.type,

@@ -7,7 +7,12 @@ import EditableBlurb from './EditableBlurb';
 import LogoSpanish from './LogoSpanish';
 import Logo from './Logo';
 
-const Back: React.FC<CoverProps & { style?: { [k in string]: number | string } }> = ({
+type Props = Pick<
+  CoverProps,
+  'blurb' | 'isbn' | 'lang' | 'edition' | 'allowEditingBlurb' | 'updateBlurb'
+> & { style?: { [k in string]: number | string } };
+
+const Back: React.FC<Props> = ({
   blurb,
   isbn,
   lang,

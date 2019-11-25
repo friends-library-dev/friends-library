@@ -28,6 +28,7 @@ storiesOf('Doc Page', module)
         lang="en"
         title="The Journal of Charles&nbsp;Marshall"
         author="Charles Marshall"
+        isCompilation={false}
         edition="updated"
         description={shortBlurb}
         customCss=""
@@ -59,6 +60,7 @@ storiesOf('Doc Page', module)
       blurb={blurb}
       description={blurb}
       showGuides={false}
+      isCompilation={false}
       customCss=""
       isbn="978-1-64476-004-8"
       customHtml=""
