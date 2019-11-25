@@ -1,5 +1,6 @@
 import fs from 'fs';
-import { red } from '@friends-library/cli-utils/color';
+import { spawn } from 'child_process';
+import { c, log, red } from '@friends-library/cli-utils/color';
 import { ISBN } from '@friends-library/types';
 import { getAllFriends } from '@friends-library/friends';
 
@@ -30,7 +31,10 @@ export default function handler({ next }: Argv): void {
 
   for (let isbn of all) {
     if (!used.includes(isbn)) {
-      console.log(`Next unused ISBN: ${isbn}`);
+      const pbcopy = spawn('pbcopy');
+      pbcopy.stdin.write(isbn);
+      pbcopy.stdin.end();
+      log(c`\nNext ISBN is: {green ${isbn}}  {gray (also copied to clipboard)}\n`);
       return;
     }
   }
