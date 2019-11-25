@@ -1,0 +1,38 @@
+id: 7390bce7-827a-4885-98bb-ec22579c5adb
+name: Mary Hagger
+slug: mary-hagger
+gender: female
+description: TODO
+documents:
+  - id: 53f7cdb3-6c11-47d2-9a5d-0fcd41b5ab57
+    title: Life of Mary Hagger
+    original_title: Extracts from the Memoranda of Mary Hagger, Ashford, Kent.
+    slug: life
+    filename: Life_of_Mary_Hagger
+    description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-180-9
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - title: Life of Mary Hagger
+          - title: Testimony
+      - type: original
+        isbn: 978-1-64476-181-6
+        formats:
+          - type: pdf
+          - type: paperback
+          - type: epub
+          - type: mobi
+        chapters:
+          - title: Introduction
+          - title: Life of Mary Hagger
+          - title: Testimony
