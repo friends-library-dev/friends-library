@@ -25,7 +25,7 @@
     "cover:ts:check": "cd packages/cover-web-app && yarn ts:check",
     "ui:start": "cd packages/ui && yarn start",
     "test:integration": "cd packages/functions && yarn test:integration && cd ../ui && yarn test:integration",
-    "bot:deploy": "cd ./packages/bot && yarn deploy",
+    "bot:deploy": "yarn compile bot && cd ./packages/bot && yarn deploy",
     "bot:develop": "node ./packages/bot/dist/scripts/run.js",
     "bot:receive": "cd packages/bot && yarn receive",
     "format:yml": "yarn prettier \"packages/friends/**/*.yml\" --write",

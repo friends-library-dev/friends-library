@@ -32,10 +32,10 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - 'ce:27:a7:ac:8c:5d:4f:2b:0b:7c:f6:b8:8f:bb:e5:8b'
+            - 'bd:98:af:65:4a:64:db:d8:b1:97:55:29:af:00:0d:07'
       - run:
           name: Add to Known Hosts
-          command: ssh-keyscan -H api.friendslibrary.com >> ~/.ssh/known_hosts
+          command: ssh-keyscan -H bot.friendslibrary.com >> ~/.ssh/known_hosts
       - checkout
       - yarn_cached_install
       - run: yarn bot:deploy

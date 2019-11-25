@@ -1,5 +1,5 @@
 require('@friends-library/env/load');
-const env = require('@friends-library/env');
+const env = require('@friends-library/env').default;
 
 const { BOT_PRODUCTION_SERVER, BOT_DEPLOY_PATH, BOT_PORT } = env.require(
   'BOT_PRODUCTION_SERVER',
