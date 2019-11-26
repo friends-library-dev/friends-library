@@ -80,6 +80,7 @@ export default ({ data: { friend, document } }: Props) => {
         <div className="xl:flex justify-center">
           <RelatedBookCard
             lang="en"
+            isbn=""
             title="The Journal of Charles&nbsp;Marshall"
             isCompilation={false}
             author="Charles Marshall"
@@ -92,6 +93,7 @@ export default ({ data: { friend, document } }: Props) => {
           />
           <RelatedBookCard
             lang="en"
+            isbn=""
             title="The Journal of William Savery"
             isCompilation={false}
             author="William Savery"
@@ -104,6 +106,7 @@ export default ({ data: { friend, document } }: Props) => {
           />
           <RelatedBookCard
             lang="es"
+            isbn=""
             title="Walk in the Spirit"
             isCompilation={false}
             author="Hugh Turford"

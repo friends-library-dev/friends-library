@@ -1,11 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
-import { overridable, initials, prepareTitle } from './helpers';
+import { getHtmlFragments, overridable, initials, prepareTitle } from './helpers';
 import { CoverProps } from '@friends-library/types';
 
 type Props = Pick<
   CoverProps,
-  'title' | 'author' | 'showGuides' | 'lang' | 'isCompilation'
+  'title' | 'customHtml' | 'author' | 'showGuides' | 'lang' | 'isCompilation'
 >;
 
 const FrontMain: React.FC<Props> = ({
@@ -14,8 +14,9 @@ const FrontMain: React.FC<Props> = ({
   title,
   lang,
   isCompilation,
+  customHtml,
 }) => {
-  const fragments = {};
+  const fragments = getHtmlFragments(customHtml);
   const [firstInitial, lastInitial] = initials(author, title, lang, isCompilation);
   return (
     <div

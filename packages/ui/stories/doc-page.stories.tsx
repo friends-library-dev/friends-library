@@ -26,6 +26,7 @@ storiesOf('Doc Page', module)
     <div style={{ minWidth: 300 }}>
       <RelatedBookCard
         lang="en"
+        isbn=""
         title="The Journal of Charles&nbsp;Marshall"
         author="Charles Marshall"
         isCompilation={false}
