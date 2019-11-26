@@ -51,7 +51,6 @@ const CartComponent: React.FC<Props> = ({
         <Item
           key={`item-${index}`}
           price={new CartItem(item).price()}
-          coverUrl={item.coverPngUrl}
           {...item}
           changeQty={(qty: number) => {
             items[index].quantity = qty;

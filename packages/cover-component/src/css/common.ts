@@ -98,6 +98,11 @@ const common: CoverCssModule = (scaler, scope) => {
 
   const trimSizeCss = withSizes(
     ({ width, height }) => css`
+      .Cover.Cover--front-only.trim--__SIZE__ {
+        height: ${height}in;
+        width: ${width}in;
+      }
+
       .Cover.trim--__SIZE__ {
         font-size: ${width}in;
       }
