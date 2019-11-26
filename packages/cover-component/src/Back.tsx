@@ -1,7 +1,7 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
 import Diamonds from './Diamonds';
-import { overridable, formatBlurb } from './helpers';
+import { overridable, formatBlurb, getHtmlFragments } from './helpers';
 import Brackets from './Brackets';
 import EditableBlurb from './EditableBlurb';
 import LogoSpanish from './LogoSpanish';
@@ -9,7 +9,13 @@ import Logo from './Logo';
 
 type Props = Pick<
   CoverProps,
-  'blurb' | 'isbn' | 'lang' | 'edition' | 'allowEditingBlurb' | 'updateBlurb'
+  | 'blurb'
+  | 'customHtml'
+  | 'isbn'
+  | 'lang'
+  | 'edition'
+  | 'allowEditingBlurb'
+  | 'updateBlurb'
 > & { style?: { [k in string]: number | string } };
 
 const Back: React.FC<Props> = ({
@@ -19,10 +25,11 @@ const Back: React.FC<Props> = ({
   edition,
   allowEditingBlurb,
   updateBlurb,
+  customHtml,
   style,
 }) => {
   const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
-  const fragments = {};
+  const fragments = getHtmlFragments(customHtml);
   return (
     <div className={`back has-bg ${blurbClasses(blurb)}`} style={style || {}}>
       <div className="back__safe">

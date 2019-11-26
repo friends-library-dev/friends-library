@@ -1,5 +1,5 @@
 import React from 'react';
-import { overridable, prepareTitle } from './helpers';
+import { overridable, prepareTitle, getHtmlFragments } from './helpers';
 import LogoIcon from './LogoIcon';
 import Diamonds from './Diamonds';
 import { CoverProps } from '@friends-library/types';
@@ -12,6 +12,7 @@ type Props = Pick<
   | 'edition'
   | 'title'
   | 'pages'
+  | 'customHtml'
   | 'author'
   | 'showGuides'
   | 'size'
@@ -27,14 +28,15 @@ const Spine: React.FC<Props> = ({
   showGuides,
   styles,
   isCompilation,
+  customHtml,
   size,
   scaler = 1,
 }) => {
   const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
   const width = pdfSpineWidth(pages) * scaler;
   const style = Object.assign({}, { width: `${width}in` }, styles || {});
+  const fragments = getHtmlFragments(customHtml);
 
-  const fragments = {};
   return (
     <div className={spineClasses(pages)} style={style}>
       <LogoIcon />

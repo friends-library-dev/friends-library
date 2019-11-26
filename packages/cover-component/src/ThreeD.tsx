@@ -11,7 +11,7 @@ type Props = CoverProps & {
 };
 
 const ThreeD: React.FC<Props> = props => {
-  const { size, pages, scaler = 1, className = '' } = props;
+  const { isbn, size, pages, scaler = 1, className = '' } = props;
   const { width, height } = docDims(size);
   const spineWidth = threeDSpineWidth(pages);
   const leftOffset = (width - spineWidth) / 2;
@@ -20,6 +20,7 @@ const ThreeD: React.FC<Props> = props => {
 
   return (
     <div
+      id={`Cover--${isbn}`}
       className={wrapClasses(props, [
         'Cover--3d',
         `perspective--${perspective}`,

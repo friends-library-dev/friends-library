@@ -5,7 +5,7 @@ import { Front } from '@friends-library/cover-component';
 import Link from 'gatsby-link';
 import './RelatedBookCard.css';
 
-type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb' | 'isbn'> & {
+type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
   description: string;
   authorSlug: string;
   documentSlug: string;

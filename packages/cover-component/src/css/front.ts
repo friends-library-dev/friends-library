@@ -98,6 +98,7 @@ const front: CoverCssModule = (scaler, scope) => {
       opacity: 0.7;
       font-size: 100%;
       white-space: nowrap;
+      margin-top: 3%;
     }
 
     .Cover.trim--m .author__name {

@@ -47,3 +47,23 @@ export function formatBlurb(blurb: string): string {
     .replace(/`'/g, '’')
     .replace(/--/g, '–');
 }
+
+export function getHtmlFragments(html: Html): Record<string, Html> {
+  const fragments: Record<string, Html> = {};
+  const regex = /(?:^|\n)<(div|p|h\d).+?\n<\/\1>/gs;
+  let match;
+  while ((match = regex.exec(html))) {
+    const lines = match[0]
+      .trim()
+      .split('\n')
+      .map(s => s.trim());
+    lines.pop();
+    const classMatch = (lines.shift() || '').match(/class="([^ "]+)/);
+    if (classMatch) {
+      fragments[classMatch[1]] = lines.join('');
+    } else {
+      console.error(`Bad custom HTML -- frag wrapping elements must have class`);
+    }
+  }
+  return fragments;
+}

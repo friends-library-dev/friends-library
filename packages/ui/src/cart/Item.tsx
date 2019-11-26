@@ -33,7 +33,8 @@ const Component: React.FC<Props> = ({
             title={title}
             customCss=""
             customHtml=""
-            edition="updated"
+            isbn="" // TODO
+            edition="updated" // TODO
             scaler={1 / 4}
             scope="1-4"
           />

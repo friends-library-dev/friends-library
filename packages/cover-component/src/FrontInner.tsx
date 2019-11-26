@@ -1,19 +1,26 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
-import { overridable } from './helpers';
+import { overridable, getHtmlFragments } from './helpers';
 import LogoIcon from './LogoIcon';
 import FrontMain from './FrontMain';
 
 type Props = Pick<
   CoverProps,
-  'lang' | 'author' | 'showGuides' | 'title' | 'isCompilation'
+  | 'customCss'
+  | 'isbn'
+  | 'customHtml'
+  | 'lang'
+  | 'author'
+  | 'showGuides'
+  | 'title'
+  | 'isCompilation'
 > & {
   style?: { [k in string]: number | string };
 };
 
 const FrontInner: React.FC<Props> = props => {
-  const { lang, author, style, isCompilation } = props;
-  const fragments = {}; // @TODO
+  const { lang, author, style, isCompilation, customHtml, customCss } = props;
+  const fragments = getHtmlFragments(customHtml);
   return (
     <div className="front has-bg" style={style || {}}>
       <div className="front__safe">
@@ -35,6 +42,7 @@ const FrontInner: React.FC<Props> = props => {
           </div>,
         )}
       </div>
+      {customCss && <style>{customCss.replace(/__id__/g, `Cover--${props.isbn}`)}</style>}
     </div>
   );
 };
