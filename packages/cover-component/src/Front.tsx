@@ -9,7 +9,7 @@ type Props = Omit<CoverProps, 'blurb' | 'pages' | 'isbn'> & {
 
 const CoverFront: React.FC<Props> = props => {
   return (
-    <div className={wrapClasses(props, props.className || '')}>
+    <div className={wrapClasses(props, ['Cover--front-only', props.className || ''])}>
       <FrontInner {...props} />
     </div>
   );

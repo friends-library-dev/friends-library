@@ -3,7 +3,7 @@ import cx from 'classnames';
 import Heading from '../Heading';
 import FeaturedBook from './FeaturedBook';
 import './FeaturedBooks.css';
-import { EditionType, PrintSize } from '@friends-library/types';
+import { EditionType } from '@friends-library/types';
 
 const FeaturedBooks: React.FC = () => {
   const [index, setIndex] = useState<number>(0);

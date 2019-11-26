@@ -1,5 +1,6 @@
 import React from 'react';
 import { withTheme } from 'emotion-theming';
+import { Front as FrontCover } from '@friends-library/cover-component';
 import ItemQuantity from './ItemQuantity';
 import './Item.css';
 
@@ -8,7 +9,6 @@ interface Props {
   author: string;
   quantity: number;
   price: number;
-  coverUrl: string;
   changeQty: (qtn: number) => void;
   remove: () => void;
 }
@@ -18,17 +18,27 @@ const Component: React.FC<Props> = ({
   author,
   price,
   quantity,
-  coverUrl,
   changeQty,
   remove,
 }) => {
   return (
     <div className="Cart__Item flex py-2 md:py-6 border-b border-gray-300">
       <div className="w-2/3 md:w-3/5 flex">
-        <div className="w-1/4 mr-1 cover-img flex flex-col justify-center">
-          <img src={coverUrl} alt="" />
+        <div className="CoverWrap hidden mr-1 flex flex-col justify-center">
+          <FrontCover
+            lang="en"
+            isCompilation={false}
+            size="s"
+            author={author}
+            title={title}
+            customCss=""
+            customHtml=""
+            edition="updated"
+            scaler={1 / 4}
+            scope="1-4"
+          />
         </div>
-        <dl className="w-3/4 border-r border-gray-300 p-2 md:px-6 flex-grow">
+        <dl className="border-r border-gray-300 p-2 md:px-6 flex-grow">
           <dt className="max-w-sm font-sans font-bold text-md md:text-lg tracking-wide md:tracking-widest pb-2 pt-2">
             {title}
           </dt>

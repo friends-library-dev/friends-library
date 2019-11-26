@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
+import { coverSizes } from './decorators';
 import CartModel from '../src/checkout/models/Cart';
 import Cart from '../src/cart';
 import CartItem from '../src/cart/Item';
@@ -32,7 +33,6 @@ const StatefulCartItem: React.FC = () => {
       title={data.title}
       author={data.author}
       quantity={qty}
-      coverUrl={data.coverPngUrl}
       price={422}
       changeQty={setQty}
       remove={a('remove')}
@@ -41,5 +41,6 @@ const StatefulCartItem: React.FC = () => {
 };
 
 storiesOf('Cart', module)
+  .addDecorator(coverSizes)
   .add('Cart', () => <StatefulCart />)
   .add('CartItem', () => <StatefulCartItem />);
