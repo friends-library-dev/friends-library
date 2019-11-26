@@ -51,7 +51,7 @@ export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
   },
   xl: {
     minPages: 350,
-    maxPages: 800,
+    maxPages: 720,
     luluName: 'US Trade',
     abbrev: 'xl',
     margins: defaultMargins,
@@ -93,28 +93,29 @@ export function choosePrintSize(
     return choosePrintSize(average, undefined);
   }
 
-  let printSize: PrintSize = 's';
-  let condense = false;
-
   if (singlePages.s <= sizes.s.maxPages) {
-    return [printSize, condense];
+    return ['s', NOT_CONDENSED];
   }
 
-  printSize = 'm';
   if (singlePages.m <= sizes.m.maxPages) {
-    return [printSize, condense];
+    return ['m', NOT_CONDENSED];
   }
 
-  printSize = 'xl';
-  if (singlePages.xl > CONDENSE_THRESHOLD) {
-    return [printSize, true];
+  if (singlePages.xl <= CONDENSE_THRESHOLD) {
+    return ['xl', NOT_CONDENSED];
   }
 
-  return ['xl', false];
+  if (singlePages['xl--condensed'] > sizes.xl.maxPages) {
+    throw new RangeError('Max book size exceeded');
+  }
+
+  return ['xl', CONDENSED];
 }
-
-const CONDENSE_THRESHOLD = 600;
 
 function add(a: number, b: number): number {
   return a + b;
 }
+
+const CONDENSE_THRESHOLD = 650;
+const CONDENSED = true;
+const NOT_CONDENSED = false;

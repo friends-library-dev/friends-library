@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import parsePdf from 'pdf-parse';
 import { choosePrintSize } from '@friends-library/lulu';
-import { log, c } from '@friends-library/cli-utils/color';
+import { log, c, red } from '@friends-library/cli-utils/color';
 import * as artifacts from '@friends-library/doc-artifacts';
 import { PageData, PrintSizeVariant, EditionMeta } from '@friends-library/types';
 import { paperbackInterior as paperbackManifest } from '@friends-library/doc-manifests';
@@ -20,7 +20,13 @@ export async function publishPaperback(
 ): Promise<[EditionMeta['paperback'], string[]]> {
   const [singlePages, singleFiles] = await makeSingleVolumes(dpc, opts);
   const [splitPages, splitFiles] = await makeMultiVolumes(dpc, opts);
-  const [size, condense] = choosePrintSize(singlePages, splitPages);
+
+  try {
+    var [size, condense] = choosePrintSize(singlePages, splitPages);
+  } catch (error) {
+    red(`${dpc.path} exceeds max allowable size, must be split`);
+    process.exit(1);
+  }
 
   const sizeVariant = `${size}${condense ? '--condensed' : ''}` as PrintSizeVariant;
   let volumes = [singlePages[sizeVariant]];
