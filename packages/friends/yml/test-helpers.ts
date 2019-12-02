@@ -24,10 +24,7 @@ export function tags(friend: any): string[] {
 
 export function editions(friend: any): any[] {
   return friend.documents.reduce(
-    (accum: any, doc: any) => {
-      accum.concat(doc.editions || []);
-      return accum;
-    },
+    (accum: any, doc: any) => accum.concat(doc.editions || []),
     [] as any[],
   );
 }

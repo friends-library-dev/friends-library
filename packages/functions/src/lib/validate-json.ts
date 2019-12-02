@@ -54,9 +54,7 @@ validator.addSchema({ enum: ['s', 'm', 'xl'] }, '/print-size');
 validator.addSchema({ enum: ['original', 'modernized', 'updated'] }, '/edition');
 validator.addSchema({ type: 'integer', minimum: 4 }, '/pages');
 validator.addSchema({ type: 'integer', minimum: 1 }, '/book-qty');
-// @ts-ignore (until https://github.com/tdegrunt/jsonschema/pull/287 merged)
 validator.addSchema({ type: 'string', pattern: UUID }, '/uuid');
-// @ts-ignore (until https://github.com/tdegrunt/jsonschema/pull/287 merged)
 validator.addSchema({ type: 'string', pattern: /\S+@\S+\.\S+/ }, '/email');
 validator.addSchema(
   { enum: (SHIPPING_LEVELS as unknown) as any[] },

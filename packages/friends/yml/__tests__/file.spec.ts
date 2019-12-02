@@ -1,16 +1,8 @@
 import path from 'path';
-import { kebabCase, without } from 'lodash';
+import { kebabCase } from 'lodash';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
-import {
-  yamlGlob,
-  tags,
-  editions,
-  formats,
-  chapters,
-  hasProp,
-  isSlug,
-} from '../test-helpers';
+import { yamlGlob, editions, hasProp } from '../test-helpers';
 
 const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
 const filenames: string[] = [];
@@ -62,11 +54,6 @@ files.forEach(file => {
       expect(fileContents).not.toContain('Lorem');
     });
 
-    test('has correct friend props', () => {
-      const keys = Object.keys(friend);
-      expect(keys).toEqual(['id', 'name', 'slug', 'gender', 'description', 'documents']);
-    });
-
     test('ids must be unique', done => {
       if (ids.indexOf(friend.id) !== -1) {
         done.fail(`Invalid duplicate id ${friend.id}`);
@@ -76,38 +63,13 @@ files.forEach(file => {
       done();
     });
 
-    test('friend props are correct type', () => {
-      expect(typeof friend.id).toBe('string');
-      expect(typeof friend.name).toBe('string');
-      expect(typeof friend.slug).toBe('string');
-      expect(typeof friend.description).toBe('string');
-
-      expect(Array.isArray(friend.documents)).toBe(true);
-    });
-
-    test('friend slug is in correct format', () => {
-      expect(isSlug(friend.slug)).toBe(true);
-    });
-
     test('friend slug matches filename slug', () => {
       expect(file.name).toBe(`${friend.slug}.yml`);
-    });
-
-    test('friend is male or female or mixed (for compilations)', () => {
-      expect(['male', 'female', 'mixed'].includes(friend.gender)).toBe(true);
     });
 
     test('no dual friends', () => {
       expect(friend.name).not.toContain(' and ');
       expect(friend.name).not.toContain(' y ');
-    });
-
-    test('has correct document props', () => {
-      documents.forEach(document => {
-        expect(
-          without(Object.keys(document).sort(), 'original_title', 'published'),
-        ).toEqual(['description', 'editions', 'filename', 'id', 'slug', 'tags', 'title']);
-      });
     });
 
     test('document slugs are unique', () => {
@@ -116,10 +78,6 @@ files.forEach(file => {
         expect(slugs.indexOf(doc.slug)).toBe(-1);
         slugs.push(doc.slug);
       });
-    });
-
-    test('document slugs are in correct format', () => {
-      documents.forEach(doc => expect(isSlug(doc.slug)).toBe(true));
     });
 
     test('document filenames are globally unique', () => {
@@ -137,77 +95,6 @@ files.forEach(file => {
         }
         ids.push(doc.id);
         done();
-      });
-    });
-
-    test('document props are correct type', () => {
-      documents.forEach(document => {
-        expect(typeof document.title).toBe('string');
-        expect(typeof document.slug).toBe('string');
-        expect(typeof document.description).toBe('string');
-        expect(typeof document.filename).toBe('string');
-
-        expect(Array.isArray(document.tags)).toBe(true);
-        expect(Array.isArray(document.editions)).toBe(true);
-      });
-    });
-
-    test('document tags are correct', () => {
-      tags(friend).forEach(tag => {
-        expect(typeof tag).toBe('string');
-        expect(tag).toBe(kebabCase(tag));
-      });
-    });
-
-    test('document filenames may not have spaces', () => {
-      documents.forEach(document => {
-        const hasSpace = document.filename.indexOf(' ') !== -1;
-        expect(hasSpace).toBe(false);
-      });
-    });
-
-    test('editions have correct type', () => {
-      editions(friend).forEach(edition => {
-        expect(['updated', 'original', 'modernized'].indexOf(edition.type)).not.toBe(-1);
-      });
-    });
-
-    test('no duplicate editions', () => {
-      documents.forEach(document => {
-        const seen: string[] = [];
-        document.editions.forEach((edition: any) => {
-          expect(seen.includes(edition.type)).toBe(false);
-          seen.push(edition.type);
-        });
-      });
-    });
-
-    test('edition pages is number if exists', () => {
-      editions(friend).forEach(edition => {
-        if (!hasProp(edition, 'pages')) {
-          return;
-        }
-        expect(typeof edition.pages).toBe('number');
-        expect(parseInt(String(edition.pages), 10)).toBe(edition.pages);
-      });
-    });
-
-    test('edition formats is array', () => {
-      editions(friend).forEach(edition => {
-        expect(Array.isArray(edition.formats)).toBe(true);
-      });
-    });
-
-    test('edition isbn is correct', () => {
-      editions(friend).forEach(edition => {
-        expect(edition.isbn).toMatch(/^978-1-64476-[0-9]{3}-[0-9]$/);
-      });
-    });
-
-    test('edition isbns are correctly formatted', () => {
-      editions(friend).forEach(edition => {
-        const { isbn } = edition;
-        expect(isbn).toMatch(/^978-1-64476-\d\d\d-\d$/);
       });
     });
 
@@ -230,62 +117,6 @@ files.forEach(file => {
         if (edition.type === 'updated' && file.path.indexOf('/es/') === -1) {
           expect(hasProp(edition, 'editor')).toBe(true);
           expect(typeof edition.editor).toBe('string');
-        }
-      });
-    });
-
-    test('formats have correct type', () => {
-      const types = ['pdf', 'mobi', 'epub', 'paperback', 'audio'];
-      formats(friend).forEach(format => {
-        expect(types.indexOf(format.type)).not.toBe(-1);
-      });
-    });
-
-    test('audio format requires audio data', () => {
-      editions(friend).forEach(edition => {
-        edition.formats.forEach((format: any) => {
-          if (format.type !== 'audio') {
-            return;
-          }
-          expect(hasProp(edition, 'audio')).toBe(true);
-        });
-      });
-    });
-
-    test('audio data requires corresponding edition format of audio', () => {
-      editions(friend).forEach(edition => {
-        if (!hasProp(edition, 'audio')) {
-          return;
-        }
-        const formatTypes = edition.formats.map((format: any) => format.type);
-        expect(formatTypes.indexOf('audio') !== -1).toBe(true);
-      });
-    });
-
-    test('editions have at least one chapter', () => {
-      editions(friend).forEach(edition => {
-        expect(Array.isArray(edition.chapters)).toBe(true);
-        expect(edition.chapters.length > 0).toBe(true);
-      });
-    });
-
-    test('chapters have non-empty string titles or number', () => {
-      chapters(friend).forEach(chapter => {
-        if (hasProp(chapter, 'title')) {
-          expect(typeof chapter.title).toBe('string');
-          expect(chapter.title).toBeTruthy();
-        } else {
-          expect(typeof chapter.number).toBe('number');
-          expect(parseInt(String(chapter.number), 10)).toBe(chapter.number);
-        }
-      });
-    });
-
-    test('chapters may have optional non-empty subtitles', () => {
-      chapters(friend).forEach(chapter => {
-        if (hasProp(chapter, 'subtitle')) {
-          expect(typeof chapter.subtitle).toBe('string');
-          expect(chapter.subtitle).toBeTruthy();
         }
       });
     });
