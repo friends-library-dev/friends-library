@@ -29,12 +29,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-093-2
         editor: Jason R. Henderson
-        pages: 18
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -46,6 +40,5 @@ documents:
               seconds: 2213
               chapters:
                 - 0
-
         chapters:
           - title: An Account of the Life of Joseph Pike

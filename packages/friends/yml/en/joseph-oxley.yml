@@ -35,11 +35,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-090-1
-        pages: 164
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Joseph Oxley's Address to His Children
           - number: 1
@@ -56,11 +51,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-091-8
-        pages: 164
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Joseph Oxley's Address to His Children
           - number: 1

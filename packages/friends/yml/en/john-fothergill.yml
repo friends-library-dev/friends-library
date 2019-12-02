@@ -38,20 +38,11 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-069-7
-        pages: 255
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: The Life and Letters of John Fothergill
       - type: original
         isbn: 978-1-64476-070-3
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: The Life and Letters of John Fothergill

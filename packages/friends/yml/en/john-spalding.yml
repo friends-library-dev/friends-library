@@ -38,10 +38,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-082-6
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Address
           - title: Some Account, etc.
@@ -62,18 +58,12 @@ documents:
       writings of the people called Quakers, to direct him to where alone the power is to
       be known, that is, within."
     tags:
-      - letter
+      - letters
       - treatise
     editions:
       - type: updated
         isbn: 978-1-64476-083-3
         editor: Jason R. Henderson
-        pages: 40
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -94,6 +84,5 @@ documents:
               seconds: 2774
               chapters:
                 - 1
-
         chapters:
           - title: A Few Reasons for Leaving the National Established Mode of Worship

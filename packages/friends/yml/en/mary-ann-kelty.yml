@@ -36,11 +36,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-100-7
-        pages: 336
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introductory Chapter
           - number: 1
@@ -68,11 +63,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-101-4
-        pages: 336
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introductory Chapter
           - number: 1

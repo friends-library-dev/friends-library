@@ -34,11 +34,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-019-2
-        pages: 70
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
           - number: 2
@@ -48,11 +43,6 @@ documents:
           - title: A Testimony of David Ferris
       - type: original
         isbn: 978-1-64476-020-8
-        pages: 70
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
           - number: 2

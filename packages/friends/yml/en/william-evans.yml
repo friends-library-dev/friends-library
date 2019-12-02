@@ -35,12 +35,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-153-3
-        pages: 845
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: To the Reader
           - title: Introduction

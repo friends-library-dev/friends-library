@@ -32,13 +32,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-077-2
         editor: Jason R. Henderson
-        pages: 28
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
@@ -76,11 +69,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-078-9
-        pages: 177
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: An Account of the Life of John Richardson

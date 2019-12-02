@@ -26,11 +26,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-110-6
-        pages: 141
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title:
               An Account of the Convincement, Exercises, Services, and Travels of Richard
@@ -38,10 +33,6 @@ documents:
           - title: Testimonies Concerning Richard Davies
       - type: original
         isbn: 978-1-64476-111-3
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title:
               An Account of the Convincement, Exercises, Services, and Travels of Richard

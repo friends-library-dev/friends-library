@@ -32,13 +32,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-056-7
-        pages: 180
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
-          - type: paperback
         audio:
           reader: Jason R. Henderson
           parts:
@@ -77,11 +70,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-057-4
-        pages: 180
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Journal of John Banks
           - title: A Supplement to His Journal
@@ -89,10 +77,6 @@ documents:
           - title: Testimonies Concerning John Banks
       - type: original
         isbn: 978-1-64476-058-1
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Journal of John Banks
           - title: A Supplement to His Journal

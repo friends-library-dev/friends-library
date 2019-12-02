@@ -38,10 +38,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-112-0
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
           - number: 2
@@ -53,10 +49,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-113-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
           - number: 2

@@ -17,21 +17,11 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-176-2
-        formats:
-          - type: pdf
-          - type: paperback
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Letters
       - type: original
         isbn: 978-1-64476-177-9
-        formats:
-          - type: pdf
-          - type: paperback
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Letters

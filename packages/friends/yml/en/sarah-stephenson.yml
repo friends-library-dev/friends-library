@@ -17,11 +17,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-182-3
-        formats:
-          - type: pdf
-          - type: paperback
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - number: 1
@@ -37,11 +32,6 @@ documents:
           - title: Testimony of Philadelphia Monthly Meeting
       - type: original
         isbn: 978-1-64476-183-0
-        formats:
-          - type: pdf
-          - type: paperback
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - number: 1

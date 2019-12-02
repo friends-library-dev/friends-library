@@ -30,11 +30,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-007-9
-        pages: 267
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
           - number: 2
@@ -47,11 +42,6 @@ documents:
           - number: 9
       - type: original
         isbn: 978-1-64476-008-6
-        pages: 267
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
           - number: 2
@@ -76,10 +66,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-009-3
-        pages: 6
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Letter to a Backslidden Brother

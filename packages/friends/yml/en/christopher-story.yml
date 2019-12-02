@@ -17,10 +17,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-014-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Chapter 1
           - title: Chapter 2
@@ -31,10 +27,6 @@ documents:
           - title: Testimony of Aaron Atkinson
       - type: modernized
         isbn: 978-1-64476-015-4
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Chapter 1
           - title: Chapter 2

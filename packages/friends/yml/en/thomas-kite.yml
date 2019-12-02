@@ -35,11 +35,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-135-9
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Introduction
           - number: 1
@@ -67,11 +62,6 @@ documents:
 
       - type: modernized
         isbn: 978-1-64476-136-6
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Introduction
           - number: 1

@@ -34,11 +34,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-150-2
-        pages: 245
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Editor's Prefatory Address
           - number: 1

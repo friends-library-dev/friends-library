@@ -32,11 +32,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-165-6
-        pages: 69
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: La Vida de James Parnell
           - title: Apéndice - Acerca del Castillo de Colchester

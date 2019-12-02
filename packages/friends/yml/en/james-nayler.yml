@@ -18,7 +18,7 @@ documents:
   - id: d94f2fb3-f19f-4aa3-a3a0-9b2ddf87da9c
     title: There is a Spirit Which I Feel
     slug: writings
-    filename: writings
+    filename: There_is_a_Spirit_Which_I_Feel
     description:
       James Nayler was a prominent leader in the early Society of Friends in England.
       Though a farmer by trade, and a man of limited education, his deep spiritual
@@ -38,12 +38,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-000-0
         editor: Jason R. Henderson
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
-          - type: paperback
         audio:
           reader: Jason R. Henderson
           parts:

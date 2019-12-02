@@ -35,13 +35,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-041-3
         editor: Jason R. Henderson
-        pages: 391
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
@@ -259,13 +252,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-042-0
         editor: Jason R. Henderson
-        pages: 393
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
@@ -468,11 +454,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-043-7
-        pages: 538
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Testimony of George Fox, concerning Isaac Penington
           - title: The Testimony of Thomas Ellwood, concerning Isaac Penington
@@ -522,11 +503,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-044-4
-        pages: 508
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Root of Popery Struck At
           - title: An Epistle to Such as Observe the Seventh Day for a Sabbath
@@ -584,11 +560,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-045-1
-        pages: 538
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Some things of great Weight and Concernment to All
           - title: A Question to the Professors of Christianity
@@ -627,11 +598,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-046-8
-        pages: 436
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: A Further Testimony to Truth, Revived out of the Ruins of the Apostasy
           - title: Life and Immortality brought to Light through the Gospel

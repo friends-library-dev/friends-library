@@ -25,17 +25,11 @@ documents:
       something of a summary of her spiritual pilgrimage.
     tags:
       - journal
-      - letter
+      - letters
     editions:
       - type: updated
         isbn: 978-1-64476-026-0
-        pages: 25
         editor: Jason R. Henderson
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -47,6 +41,5 @@ documents:
               seconds: 2848
               chapters:
                 - 0
-
         chapters:
           - title: A Letter of Elizabeth Webb

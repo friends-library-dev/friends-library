@@ -17,10 +17,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-096-3
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Chapter 1
@@ -39,10 +35,6 @@ documents:
           - title: Supplement
       - type: modernized
         isbn: 978-1-64476-097-0
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Chapter 1

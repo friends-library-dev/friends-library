@@ -42,11 +42,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-121-2
-        pages: 523
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - number: 1
@@ -64,11 +59,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-122-9
-        pages: 523
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - number: 1

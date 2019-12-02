@@ -38,11 +38,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-148-9
-        pages: 120
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: George Fox's Testimony Concerning William Caton
           - number: 1
@@ -65,11 +60,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-149-6
-        pages: 120
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: George Fox's Testimony Concerning William Caton
           - number: 1

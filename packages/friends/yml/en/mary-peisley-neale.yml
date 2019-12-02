@@ -32,11 +32,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-104-5
-        pages: 129
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introuction
           - title: The Life of Mary Neale
@@ -47,11 +42,6 @@ documents:
           - title: Testimony of the Monthly Meeting of Mountmellick concerning Mary Neale
       - type: original
         isbn: 978-1-64476-105-2
-        pages: 129
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introuction
           - title: The Life of Mary Neale

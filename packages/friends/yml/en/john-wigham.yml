@@ -33,11 +33,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-084-0
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Preface
           - number: 1
@@ -50,11 +45,6 @@ documents:
 
       - type: modernized
         isbn: 978-1-64476-085-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Preface
           - number: 1

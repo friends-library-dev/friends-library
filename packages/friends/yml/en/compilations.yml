@@ -17,11 +17,9 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-030-7
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
+        chapters:
+          - title: To the Reader
+          - title: Piety Promoted, Volume I
 
   - id: 8e77ebe3-8678-44d2-9826-8c1be2633dcc
     title: Piety Promoted, Volume II
@@ -33,11 +31,9 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-173-1
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
+        chapters:
+          - title: Preface
+          - title: Piety Promoted, Volume II
 
   - id: 951f52bb-fc11-4e76-a08d-c3dc52b8a07c
     title: Piety Promoted, Volume III
@@ -49,13 +45,11 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-174-8
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
+        chapters:
+          - title: Piety Promoted, Volume III
+          - title: Appendix
 
-  - id: 928c1a092-c8da-4ff3-9187-e6a3cdfea725
+  - id: 46cffe12-7fac-486d-8597-afecee546baa
     title: Piety Promoted, Volume IV
     slug: piety-promoted-v4
     filename: Piety_Promoted_v4
@@ -65,11 +59,8 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-175-5
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
+        chapters:
+          - title: Piety Promoted, Volume IV
 
   - id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
     title: Truth in the Inward Parts
@@ -89,13 +80,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-016-1
         editor: Jason R. Henderson
-        pages: 296
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:

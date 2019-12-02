@@ -30,10 +30,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-052-9
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - number: 1
@@ -43,10 +39,6 @@ documents:
           - title: Testimony Concerning Jane Pearson
       - type: modernized
         isbn: 978-1-64476-053-6
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - number: 1
@@ -57,10 +49,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-054-3
         editor: Jason R. Henderson
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - number: 1

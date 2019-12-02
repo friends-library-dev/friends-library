@@ -32,13 +32,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-129-8
         editor: Jason R. Henderson
-        pages: 27
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -52,6 +45,7 @@ documents:
                 - 0
         chapters:
           - title: The Journal of Stephen Crisp
+
   - id: 2eb862e1-cc3e-4588-a504-98db07a85474
     title: A Plain Pathway
     slug: plain-pathway
@@ -68,12 +62,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-130-4
         editor: Jason R. Henderson
-        pages: 12
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -101,11 +89,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-131-1
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -121,10 +104,6 @@ documents:
           - title: A Short History of a Long Travel from Babylon to Bethel
       - type: original
         isbn: 978-1-64476-132-8
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: A Short History of a Long Travel from Babylon to Bethel
 
@@ -138,20 +117,14 @@ documents:
       - letters
     editions:
       - type: modernized
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
+        isbn: 978-1-64476-184-7
         chapters:
           - title: Preface
           - title: Journal
           - title: Writings
           - title: Testimony
       - type: original
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
+        isbn: 978-1-64476-185-4
         chapters:
           - title: Preface
           - title: Journal

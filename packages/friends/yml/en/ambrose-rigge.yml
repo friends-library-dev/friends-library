@@ -34,11 +34,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-004-8
-        pages: 154
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
             subtitle: A True Relation of Ambrose Rigge by Way of Journal

@@ -34,13 +34,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-061-1
         editor: Jason R. Henderson
-        pages: 18
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason R. Henderson
           parts:
@@ -80,11 +73,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-062-8
-        pages: 126
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Testimonies
           - number: 1
@@ -96,10 +84,6 @@ documents:
           - number: 7
       - type: original
         isbn: 978-1-64476-063-5
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - number: 1
           - number: 2

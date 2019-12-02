@@ -23,11 +23,5 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-172-4
-        pages: 52
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Los Sufrimientos de Catharine Evans y Sarah Cheevers

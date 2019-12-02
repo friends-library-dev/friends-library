@@ -31,12 +31,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-158-8
-        pages: 1413
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Forward by Editor
           - title: Preface by William Shewen
@@ -68,11 +62,6 @@ documents:
           - title: Appendix - Account of the Sufferings of Richard Seller
       - type: original
         isbn: 978-1-64476-159-5
-        pages: 1413
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Forward by Editor
           - title: Preface by William Shewen
@@ -121,10 +110,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-160-1
-        pages: 52
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Sufferings of Catharine Evans and Sarah Cheevers
