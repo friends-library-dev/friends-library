@@ -27,11 +27,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-169-4
-        pages: 19
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Un Camino Simple
 
@@ -51,9 +46,5 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-170-0
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Una Historia Corta de un Largo Viaje desde Babilonia hasta Bet-el

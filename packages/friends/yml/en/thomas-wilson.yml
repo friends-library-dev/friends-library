@@ -34,11 +34,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-146-5
-        pages: 76
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - title: A Brief Account of the Life and Travels of Thomas Wilson
@@ -47,11 +42,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-147-2
-        pages: 76
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - title: A Brief Account of the Life and Travels of Thomas Wilson

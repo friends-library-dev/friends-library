@@ -7,16 +7,12 @@ documents:
   - id: 17d5addc-df02-450b-8fc8-f845292af618
     title: La Salvación por medio de Cristo
     slug: salvacion-por-medio-de-cristo
-    filename: Salvación_por_medio_de_Cristo
+    filename: Salvacion_por_medio_de_Cristo
     description: TODO
     tags:
       - doctrinal
     editions:
       - type: updated
         isbn: 978-1-64476-171-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: La Salvación por medio de Cristo

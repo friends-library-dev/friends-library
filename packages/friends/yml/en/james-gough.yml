@@ -37,11 +37,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-049-9
-        pages: 117
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface by the Editor
           - title: Memoir of James Gough
@@ -49,11 +44,6 @@ documents:
           - title: Testimony Concerning James Gough
       - type: original
         isbn: 978-1-64476-050-5
-        pages: 117
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface by the Editor
           - title: Memoir of James Gough

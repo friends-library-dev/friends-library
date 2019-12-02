@@ -35,11 +35,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-035-2
-        pages: 245
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - title: Memoirs of the Life and Religious Labors of Henry Hull
@@ -50,11 +45,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-036-9
-        pages: 245
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - title: Memoirs of the Life and Religious Labors of Henry Hull

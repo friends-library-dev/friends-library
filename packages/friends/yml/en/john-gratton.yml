@@ -32,11 +32,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-071-0
         editor: Jason R. Henderson
-        pages: 131
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Forward by Editor
           - number: 1

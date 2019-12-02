@@ -31,11 +31,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-133-5
-        pages: 239
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Life of Thomas Ellwood
@@ -45,11 +40,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-134-2
-        pages: 239
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Life of Thomas Ellwood

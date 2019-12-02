@@ -33,13 +33,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-114-4
         editor: Jason R. Henderson
-        pages: 54
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
@@ -79,13 +72,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-115-1
         editor: Jason R. Henderson
-        pages: 124
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
@@ -173,12 +159,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-116-8
-        pages: 557
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: 'Preface: Unto the Friendly Reader'
           - title: Theses Theologicae
@@ -230,12 +210,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-117-5
         editor: Jason R. Henderson
-        pages: 4
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:

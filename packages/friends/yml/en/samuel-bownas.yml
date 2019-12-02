@@ -17,10 +17,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-118-2
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Chapter 1
@@ -33,10 +29,6 @@ documents:
           - title: Chapter 8
       - type: modernized
         isbn: 978-1-64476-119-9
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Chapter 1

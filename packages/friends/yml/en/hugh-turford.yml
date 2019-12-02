@@ -37,12 +37,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-003-1
         editor: Jason R. Henderson
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason R. Henderson
           parts:
@@ -78,11 +72,6 @@ documents:
           - title: The Grace that Brings Salvation
       - type: modernized
         isbn: 978-1-64476-037-6
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - title: Walk in the Spirit
@@ -90,11 +79,6 @@ documents:
           - title: The Grace that Brings Salvation
       - type: original
         isbn: 978-1-64476-038-3
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - title: Walk in the Spirit

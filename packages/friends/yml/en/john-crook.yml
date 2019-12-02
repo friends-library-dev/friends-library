@@ -28,12 +28,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-068-0
         editor: Jason R. Henderson
-        pages: 27
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:

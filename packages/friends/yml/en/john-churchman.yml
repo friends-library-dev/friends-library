@@ -35,11 +35,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-064-2
-        pages: 241
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - number: 1
@@ -53,11 +48,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-065-9
-        pages: 241
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - number: 1

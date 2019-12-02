@@ -29,10 +29,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-022-2
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: John Bell's Testimony
@@ -41,10 +37,6 @@ documents:
           - title: A Supplement, by Her Husband
       - type: modernized
         isbn: 978-1-64476-023-9
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: John Bell's Testimony

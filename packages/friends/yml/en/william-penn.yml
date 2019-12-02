@@ -37,12 +37,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-154-0
         editor: Jason R. Henderson
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: paperback
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -116,17 +110,11 @@ documents:
     tags:
       - history
       - exhortation
-      - doctrine
+      - doctrinal
     editions:
       - type: updated
         isbn: 978-1-64476-155-7
         editor: Jason R. Henderson
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: paperback
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:

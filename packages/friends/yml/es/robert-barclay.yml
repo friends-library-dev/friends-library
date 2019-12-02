@@ -22,11 +22,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-167-0
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Esperando en el Señor
 
@@ -40,17 +35,13 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-168-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Consideraciones sobre el Entretenimiento y la Recreacion
 
   - id: 9a0ac9a9-9111-4ff8-b416-4b26adc64a87
     title: Esta Grande Salvación
     slug: esta-grande-salvacion
-    filename: Esta_Grande_Salvación
+    filename: Esta_Grande_Salvacion
     description:
       'Robert Barclay (1648-1690) fue educado en algunas de las mejores escuelas de la
       época, en las que su ingenio natural ganó la admiración de maestros y compañeros.
@@ -69,10 +60,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-999-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Prefacio
           - title: Capítulo 1 - La Condición del Hombre en la Caída

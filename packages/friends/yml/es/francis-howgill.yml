@@ -28,10 +28,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-162-5
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Prefacio por el Editor
           - title: Al Lector

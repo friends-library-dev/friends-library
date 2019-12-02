@@ -37,14 +37,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-163-2
-        pages: 391
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
-
         audio:
           reader: Jason Henderson
           parts:
@@ -227,13 +219,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-164-9
-        pages: 391
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Prefacio
           - number: 1

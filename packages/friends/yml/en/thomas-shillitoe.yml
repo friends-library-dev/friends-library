@@ -34,10 +34,6 @@ documents:
         isbn: 978-1-64476-139-7
         splits:
           - 23
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface by the Author
           - number: 1
@@ -85,10 +81,6 @@ documents:
         isbn: 978-1-64476-140-3
         splits:
           - 23
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface by the Author
           - number: 1

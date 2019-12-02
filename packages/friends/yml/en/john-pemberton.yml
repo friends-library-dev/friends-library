@@ -38,11 +38,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-075-8
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: To The Reader
           - number: 1
@@ -53,11 +48,6 @@ documents:
           - title: Testimony of Pyrmont Friends
       - type: original
         isbn: 978-1-64476-076-5
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: To The Reader
           - number: 1

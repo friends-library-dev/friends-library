@@ -44,11 +44,6 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-017-8
-        pages: 690
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Testimony of Balby Monthly Meeting
@@ -95,11 +90,6 @@ documents:
 
       - type: modernized
         isbn: 978-1-64476-018-5
-        pages: 690
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Testimony of Balby Monthly Meeting

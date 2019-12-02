@@ -34,21 +34,11 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-039-0
-        pages: 132
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Journal of Isaac Martin
           - title: A Testimony to the Silent Worship of God in Spirit and Truth
       - type: original
         isbn: 978-1-64476-040-6
-        pages: 132
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Journal of Isaac Martin
           - title: A Testimony to the Silent Worship of God in Spirit and Truth

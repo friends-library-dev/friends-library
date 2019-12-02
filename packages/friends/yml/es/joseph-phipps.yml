@@ -23,11 +23,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-166-3
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Prefacio
           - number: 1

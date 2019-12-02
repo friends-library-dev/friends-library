@@ -34,20 +34,12 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-098-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Memoir
           - title: Extracts from Letters
       - type: modernized
         isbn: 978-1-64476-099-4
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: Memoir

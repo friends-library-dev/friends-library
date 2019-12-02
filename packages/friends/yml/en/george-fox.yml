@@ -32,13 +32,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-028-4
         editor: Jason R. Henderson
-        pages: 54
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
@@ -82,13 +75,8 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-029-1
-        pages: 1197
         splits:
           - 17
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Note From Friends Library Publishing
           - title: Introduction to the Seventh Edition

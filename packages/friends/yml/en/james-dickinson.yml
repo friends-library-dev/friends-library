@@ -34,11 +34,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-047-5
-        pages: 127
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - number: 1
@@ -47,11 +42,6 @@ documents:
           - title: Testimonies of James Dickinson
       - type: original
         isbn: 978-1-64476-048-2
-        pages: 127
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: To the Reader
           - number: 1

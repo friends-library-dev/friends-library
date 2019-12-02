@@ -28,12 +28,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-120-5
-        pages: 29
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:

@@ -39,11 +39,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-001-7
         editor: Jared Henderson
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         chapters:
           - title: Introduction
           - number: 1
@@ -84,11 +79,6 @@ documents:
                 - 4
       - type: modernized
         isbn: 978-1-64476-125-0
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Introduction
           - number: 1
@@ -103,11 +93,6 @@ documents:
           - title: Concluding Observations
       - type: original
         isbn: 978-1-64476-126-7
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Introduction
           - number: 1

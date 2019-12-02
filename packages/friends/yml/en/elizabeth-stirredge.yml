@@ -34,12 +34,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-024-6
         editor: Jason R. Henderson
-        pages: 21
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason R. Henderson
           parts:
@@ -51,7 +45,6 @@ documents:
               seconds: 2425
               chapters:
                 - 0
-
         chapters:
           - title: The Life of Elizabeth Stirredge
 
@@ -72,11 +65,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-025-3
-        pages: 80
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - title: The Life of Elizabeth Stirredge

@@ -16,22 +16,12 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-180-9
-        formats:
-          - type: pdf
-          - type: paperback
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - title: Life of Mary Hagger
           - title: Testimony
       - type: original
         isbn: 978-1-64476-181-6
-        formats:
-          - type: pdf
-          - type: paperback
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - title: Life of Mary Hagger

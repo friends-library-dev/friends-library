@@ -11,7 +11,7 @@ export function yamlGlob(pattern: string): File[] {
   return glob.sync(pattern).map(path => ({
     path,
     name: basename(path),
-    short: path.replace(/^src\//, ''),
+    short: path.replace(/.+?\/yml\//, ''),
   }));
 }
 

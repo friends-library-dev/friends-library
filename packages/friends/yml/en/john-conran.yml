@@ -35,12 +35,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-066-6
-        pages: 170
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - number: 1
           - number: 2
@@ -53,11 +47,6 @@ documents:
           - title: The Testimony of the Monthly Meeting of Lisburn Concerning John Conran
       - type: original
         isbn: 978-1-64476-067-3
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
-
         chapters:
           - title: Preface
           - number: 1

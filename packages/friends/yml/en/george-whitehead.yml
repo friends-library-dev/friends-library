@@ -28,13 +28,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-031-4
         editor: Jason R. Henderson
-        pages: 37
-        formats:
-          - type: paperback
-          - type: audio
-          - type: pdf
-          - type: epub
-          - type: mobi
         audio:
           reader: Jason Henderson
           parts:
@@ -73,11 +66,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-032-1
-        pages: 292
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: A Brief Testimony of George Whitehead
           - title: The Christian Progress of George Whitehead

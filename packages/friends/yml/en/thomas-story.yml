@@ -33,13 +33,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-141-0
         editor: Jason R. Henderson
-        pages: 31
-        formats:
-          - type: paperback
-          - type: pdf
-          - type: epub
-          - type: mobi
-          - type: audio
         audio:
           reader: Jason Henderson
           parts:
@@ -72,21 +65,11 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-142-7
-        pages: 1010
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Journal of Thomas Story
 
       - type: original
         isbn: 978-1-64476-143-4
-        pages: 1010
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: The Journal of Thomas Story
   - id: 91c346f7-2909-4aca-8987-a96cc41683d1
@@ -103,11 +86,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-144-1
-        pages: 3
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Salvation By Christ
   - id: dcc2ccc5-0fdb-4dd1-8783-5363bb0b0c27
@@ -124,10 +102,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-145-8
-        pages: 20
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Letter to a Doubter

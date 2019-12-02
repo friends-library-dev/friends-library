@@ -32,11 +32,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-123-6
-        pages: 192
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface to the First Edition
           - number: 1
@@ -56,11 +51,6 @@ documents:
 
       - type: original
         isbn: 978-1-64476-124-3
-        pages: 192
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface to the First Edition
           - number: 1

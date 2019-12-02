@@ -39,10 +39,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-156-4
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - number: 1
@@ -54,10 +50,6 @@ documents:
           - number: 7
       - type: original
         isbn: 978-1-64476-157-1
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Preface
           - number: 1

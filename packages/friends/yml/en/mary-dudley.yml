@@ -33,11 +33,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-102-1
-        pages: 267
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - number: 1
@@ -61,10 +56,6 @@ documents:
           - title: Some Account of the Last Illness and Death of Hannah Dudley
       - type: original
         isbn: 978-1-64476-103-8
-        formats:
-          - type: pdf
-          - type: epub
-          - type: mobi
         chapters:
           - title: Introduction
           - number: 1
