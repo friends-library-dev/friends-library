@@ -15,7 +15,7 @@ const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'))
   .map(({ path, contents }) => ({ path, json: safeLoad(contents) }));
 
 files.forEach(({ path, json }) => {
-  it(`${path} should validate`, () => {
+  it(`${path} should validate against schema`, () => {
     const result = validator.validate(json, schema);
     if (result.errors.length) {
       throw new Error(`${result.errors.map(e => e.stack).join('\n')}`);
