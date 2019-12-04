@@ -1,4 +1,5 @@
 import { LintOptions, EditionType } from '@friends-library/types';
+import { LANG } from './github-api';
 
 export function lintOptions(path: string): LintOptions {
   let editionType: EditionType = 'original';
@@ -7,5 +8,5 @@ export function lintOptions(path: string): LintOptions {
   } else if (path.includes('/updated/')) {
     editionType = 'updated';
   }
-  return { lang: 'en', editionType };
+  return { lang: LANG, editionType };
 }
