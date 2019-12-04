@@ -194,7 +194,7 @@ export function fetchFriendRepos(): ReduxThunk {
     try {
       const friendRepos = (await gh.getFriendRepos()) as Named[];
       // filter out any friend repos that don't have a yml file yet
-      const ymlsPath = '/repos/:owner/:repo/contents/packages/friends/yml/en';
+      const ymlsPath = `/repos/friends-library/:repo/contents/packages/friends/yml/${gh.LANG}`;
       const { data: ymls } = await gh.req(ymlsPath, { repo: 'friends-library' });
       repos = friendRepos.filter(repo => {
         return !!ymls.find((y: Named) => y.name === `${repo.name}.yml`);
@@ -245,8 +245,8 @@ function alertGithubError(type: string): void {
 function friendYmlUrl(friendSlug: Slug): Url {
   return [
     'https://raw.githubusercontent.com/',
-    `${gh.ORG}/friends-library/master/`,
-    'packages/friends/yml/en/',
+    'friends-library/friends-library/master/',
+    `packages/friends/yml/${gh.LANG}/`,
     `${friendSlug}.yml`,
   ].join('');
 }

@@ -1,17 +1,18 @@
 import Octokit from '@octokit/rest';
 import { Base64 } from 'js-base64';
-import { Slug, Sha } from '@friends-library/types';
+import { Slug, Sha, Lang } from '@friends-library/types';
 import { Task, File } from '../type';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 let GITHUB_ORG = 'friends-library';
-if (process.env.GITHUB_ORG) {
-  GITHUB_ORG = process.env.GITHUB_ORG;
+if (process.env.REACT_APP_GITHUB_ORG) {
+  GITHUB_ORG = process.env.REACT_APP_GITHUB_ORG;
 } else if (process.env.REACT_APP_NETLIFY_CONTEXT === 'deploy-preview' || isDev) {
   GITHUB_ORG = 'friends-library-sandbox';
 }
 export const ORG = GITHUB_ORG;
+export const LANG: Lang = ORG === 'biblioteca-de-los-amigos' ? 'es' : 'en';
 
 type RepoSlug = string;
 type BranchName = string;

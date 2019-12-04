@@ -88,7 +88,7 @@ class Editor extends React.Component<Props> {
       return;
     }
 
-    const lints = lint(adoc)
+    const lints = lint(adoc, this.props.lintOptions)
       .filter(
         l => l.fixable !== true || ['join-words', 'obsolete-spellings'].includes(l.rule),
       )
