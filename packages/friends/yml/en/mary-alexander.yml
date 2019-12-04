@@ -2,7 +2,17 @@ id: e0af1dbc-cf6c-41ad-b342-067583ae1867
 name: Mary Alexander
 slug: mary-alexander
 gender: female
-description: TODO
+description:
+  Before Mary Alexander (1760-1809) had attained to the age of seventeen years, she was
+  impressed with a strong apprehension that, if faithful to the manifestations of the Holy
+  Spirit, she would be called to the work of the ministry. But having a low opinion of
+  herself, and feeling entirely unprepared for so important a work, she was for many years
+  reluctant to give up to the Lord’s clear leading. However, finding His Word in her heart
+  to “like a burning fire shut up in her bones,” she at last yielded to His call and began
+  traveling and preaching throughout England, Scotland, and Wales as the Lord gave her
+  utterance. Mary Alexander was known to be a woman of deep humility and uncommon
+  spiritual understanding, and one whose life was unreservedly dedicated to her Master’s
+  cause.
 documents:
   - id: 4cd93994-8176-4269-aae3-63eb68fdef28
     title: Life of Mary Alexander
@@ -11,7 +21,17 @@ documents:
       Market.
     slug: life
     filename: Life_of_Mary_Alexander
-    description: TODO
+    description:
+      Before Mary Alexander (1760-1809) had attained to the age of seventeen years, she
+      was impressed with a strong apprehension that, if faithful to the manifestations of
+      the Holy Spirit, she would be called to the work of the ministry. But having a low
+      opinion of herself, and feeling entirely unprepared for so important a work, she was
+      for many years reluctant to give up to the Lord’s clear leading. However, finding
+      His Word in her heart to “like a burning fire shut up in her bones,” she at last
+      yielded to His call and began traveling and preaching throughout England, Scotland,
+      and Wales as the Lord gave her utterance. Mary Alexander was known to be a woman of
+      deep humility and uncommon spiritual understanding, and one whose life was
+      unreservedly dedicated to her Master’s cause.
     tags:
       - journal
     editions:

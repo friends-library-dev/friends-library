@@ -2,7 +2,18 @@ id: 7f083eb6-674f-4cc8-843b-8d4edd15a345
 name: Samuel Bownas
 slug: samuel-bownas
 gender: male
-description: TODO
+description:
+  As a young man, Samuel Bownas (1676-1753) was awakened to his lost condition through the
+  powerful ministry of a young woman named Anne Wilson who, pointing to him in a meeting,
+  told him he was but “a Quaker by tradition,” and a stranger to the transforming power of
+  the gospel. Knowing this to be true, Bownas was cut to the quick, and so fervently
+  turned to the Lord that both his heart and his conduct were greatly altered in a short
+  time. Continuing in faithful submission to the Light of Christ, he became a minister and
+  a sufferer for the gospel, traveling frequently in Great Britain and the American
+  colonies, and being several times imprisoned for the testimony of Jesus Christ. Bownas
+  was particularly conspicuous for his deep understanding concerning the work of the
+  ministry, and became the author of a highly-regarded book entitled, “A Description of
+  the Qualifications Necessary to a Gospel Minister.”
 documents:
   - id: 51303b80-b6c1-4d45-a740-bf3eaf0767e4
     title: Life of Samuel Bownas
@@ -11,7 +22,19 @@ documents:
       Minister in the Society of Friends
     slug: journal
     filename: Life_of_Samuel_Bownas
-    description: TODO
+    description:
+      As a young man, Samuel Bownas (1676-1753) was awakened to his lost condition through
+      the powerful ministry of a young woman named Anne Wilson who, pointing to him in a
+      meeting, told him he was but “a Quaker by tradition,” and a stranger to the
+      transforming power of the gospel. Knowing this to be true, Bownas was cut to the
+      quick, and so fervently turned to the Lord that both his heart and his conduct were
+      greatly altered in a short time. Continuing in faithful submission to the Light of
+      Christ, he became a minister and a sufferer for the gospel, traveling frequently in
+      Great Britain and the American colonies, and being several times imprisoned for the
+      testimony of Jesus Christ. Bownas was particularly conspicuous for his deep
+      understanding concerning the work of the ministry, and became the author of a
+      highly-regarded book entitled, “A Description of the Qualifications Necessary to a
+      Gospel Minister.”
     tags:
       - journal
     editions:
