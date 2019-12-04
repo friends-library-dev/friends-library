@@ -2,7 +2,15 @@ id: 515aac77-35be-4270-a803-9e5418a60e24
 name: Christopher Story
 slug: christopher-story
 gender: male
-description: TODO
+description:
+  Christopher Story (1648-1720) was inclined to piety from his youth. But when the Lord
+  was pleased to open his understanding, he saw that his former religious building must be
+  entirely thrown down, having not been built upon the true foundation. Being awakened to
+  see something of the “exceeding sinfulness” of sin, he willingly bowed under the yoke of
+  Christ, took up his daily cross, and thereby became a disciple and follower of Him. In
+  time, he was endued with a large gift in the ministry which, though simple, was powerful
+  and edifying, and was said to “often fall upon the people of God like a sweet shower
+  upon the tender grass.”
 documents:
   - id: 843e3d87-d877-432c-a54e-fbe7996022a8
     title: Life of Christopher Story
@@ -11,7 +19,15 @@ documents:
       Society of Friends
     slug: journal
     filename: Life_of_Christopher_Story
-    description: TODO
+    description:
+      Christopher Story (1648-1720) was inclined to piety from his youth. But when the
+      Lord was pleased to open his understanding, he saw that his former religious
+      building must be entirely thrown down, having not been built upon the true
+      foundation. Being awakened to see something of the “exceeding sinfulness” of sin, he
+      willingly bowed under the yoke of Christ, took up his daily cross, and thereby
+      became a disciple and follower of Him. In time, he was endued with a large gift in
+      the ministry which, though simple, was powerful and edifying, and was said to “often
+      fall upon the people of God like a sweet shower upon the tender grass.”
     tags:
       - journal
     editions:
