@@ -23,7 +23,7 @@ export default function entities(dpc: FsDocPrecursor): void {
   dpc.edition = edition;
   dpc.paperbackSplits = edition.splits || [];
   dpc.blurb = edition.document.description || dpc.friend.description;
-  dpc.isCompilation = dpc.document.isCompilation();
+  dpc.isCompilation = dpc.document.isCompilation;
 }
 
 function getEditions(): Map<string, Edition> {

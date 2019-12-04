@@ -41,6 +41,7 @@ const subSchemas: Record<string, Schema> = {
   },
 
   chapter: {
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     oneOf: [
       {
         type: 'object',
@@ -83,6 +84,7 @@ const subSchemas: Record<string, Schema> = {
   audio: {
     type: 'object',
     additionalProperties: false,
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       reader: { $ref: '/name', required: true },
       parts: {
@@ -98,9 +100,11 @@ const subSchemas: Record<string, Schema> = {
   edition: {
     type: 'object',
     additionalProperties: false,
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       type: { enum: ['original', 'modernized', 'updated'], required: true },
       editor: { $ref: '/name', required: false },
+      description: { type: 'string', required: false },
       splits: {
         type: 'array',
         required: false,
@@ -129,6 +133,7 @@ const subSchemas: Record<string, Schema> = {
   document: {
     type: 'object',
     additionalProperties: false,
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       id: { $ref: '/uuid', required: true },
       title: { type: 'string', required: true },

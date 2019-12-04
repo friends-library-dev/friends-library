@@ -1,5 +1,7 @@
-build
 dist
 packages/evans/public
 packages/jones/public/asciidoctor.min.js
+packages/jones/build
+packages/cover-web-app/build
+packages/doc-artifacts/artifacts
 .cache

@@ -1,21 +1,14 @@
-import { Friend, Document, Edition, Format } from '@friends-library/friends';
-import { formatUrl } from '../url';
+import { logDownloadUrl } from '../url';
+import { getFriend } from '@friends-library/friends';
 
-const friend = new Friend('fr-id', 'en', 'George Fox', 'george-fox');
-const doc = new Document('doc-id', '', '', 'journal', '', 'Journal_of_George_Fox');
-const edition = new Edition('original');
-const format = new Format('pdf');
-friend.documents = [doc];
-doc.editions = [edition];
-edition.formats = [format];
-format.edition = edition;
-edition.document = doc;
-doc.friend = friend;
-
-describe('formatUrl()', () => {
+describe('logDownloadUrl()', () => {
   it('should return a correctly formed function log url', () => {
-    const expected =
-      '/.netlify/functions/site/download/web/doc-id/en/george-fox/journal/original/pdf-web/Journal_of_George_Fox--original.pdf';
-    expect(formatUrl(format)).toBe(expected);
+    const george = getFriend('george-fox');
+    const doc = george.documents[0];
+    const edition = doc.editions[0];
+    const expected = `/.netlify/functions/site/download/web/${doc.id}/en/george-fox/${
+      doc.slug
+    }/${edition.type}/web-pdf/${edition.filename('web-pdf')}`;
+    expect(logDownloadUrl(edition, 'web-pdf')).toBe(expected);
   });
 });

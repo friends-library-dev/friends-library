@@ -1,0 +1,30 @@
+id: 3db2b190-3b5d-4f06-990e-65273b6ce896
+name: George Fox
+slug: george-fox
+gender: male
+description: Description here.
+documents:
+  - id: d3f5e306-433f-40e5-ab8c-68f9c0486713
+    title: The Journal of George Fox
+    slug: journal
+    filename: Journal_of_George_Fox
+    description: Document description.
+    tags:
+      - journal
+    editions:
+      - type: original
+        isbn: 978-1-64476-999-9
+        chapters:
+          - number: 1
+          - number: 2
+      - type: modernized
+        isbn: 978-1-64476-999-8
+        chapters:
+          - number: 1
+          - number: 2
+      - type: updated
+        isbn: 978-1-64476-999-6
+        editor: Jared Henderson
+        chapters:
+          - number: 1
+          - number: 2

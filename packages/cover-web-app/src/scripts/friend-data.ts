@@ -44,7 +44,7 @@ const { DOCS_REPOS_ROOT: ROOT } = env.require('DOCS_REPOS_ROOT');
 
 function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents'] {
   return friend.documents.map(document => {
-    const path = `${document.friend.lang}${document.url()}`;
+    const path = `${friend.lang}/${friend.slug}/${document.slug}`;
     const fullPath = `${ROOT}${path}`;
     let customCss = null;
     let customHtml = null;
@@ -61,7 +61,7 @@ function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents
       lang: friend.lang,
       title: document.title,
       description: document.description,
-      isCompilation: document.isCompilation(),
+      isCompilation: document.isCompilation,
       customCss,
       customHtml,
       editions: document.editions.map(edition => {

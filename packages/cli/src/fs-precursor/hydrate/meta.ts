@@ -10,9 +10,10 @@ export default function meta(dpc: FsDocPrecursor): void {
 
   dpc.meta = {
     title: document.title,
+    isbn: edition.isbn,
     author: {
       name: friend.name,
-      nameSort: friend.alphabeticalName(),
+      nameSort: friend.alphabeticalName,
     },
   };
 
@@ -22,10 +23,6 @@ export default function meta(dpc: FsDocPrecursor): void {
 
   if (document.published) {
     dpc.meta.published = document.published;
-  }
-
-  if (edition.isbn) {
-    dpc.meta.isbn = edition.isbn;
   }
 
   if (edition.editor) {

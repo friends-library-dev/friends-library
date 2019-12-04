@@ -15,6 +15,7 @@ import {
 } from './primitive';
 export {
   DocPrecursor,
+  ARTIFACT_TYPES,
   ArtifactType,
   PaperbackInteriorConfig,
   PaperbackCoverConfig,
