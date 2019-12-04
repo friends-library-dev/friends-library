@@ -13,6 +13,7 @@ if (process.env.REACT_APP_GITHUB_ORG) {
 }
 export const ORG = GITHUB_ORG;
 export const LANG: Lang = ORG === 'biblioteca-de-los-amigos' ? 'es' : 'en';
+console.log({ ORG, LANG, gh_org: process.env.REACT_APP_GITHUB_ORG, env: process.env });
 
 type RepoSlug = string;
 type BranchName = string;
