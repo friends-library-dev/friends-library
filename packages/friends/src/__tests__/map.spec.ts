@@ -1,12 +1,12 @@
 import friendFromJS from '../map';
 import Document from '../Document';
-import Format from '../Format';
 import Edition from '../Edition';
 import Chapter from '../Chapter';
 import Audio from '../Audio';
+import { FriendData } from '../types';
 
 describe('friendFromJS()', () => {
-  let js: { [key: string]: any };
+  let js: FriendData;
 
   beforeEach(() => {
     js = {
@@ -14,6 +14,7 @@ describe('friendFromJS()', () => {
       lang: 'en',
       name: 'Rebecca Jones',
       slug: 'rebecca-jones',
+      gender: 'female',
       description: 'description',
       documents: [
         {
@@ -28,8 +29,10 @@ describe('friendFromJS()', () => {
               type: 'updated',
               description: 'edition description',
               isbn: '978-1-64476-000-0',
-              formats: [{ type: 'pdf' }, { type: 'epub' }, { type: 'mobi' }],
-              chapters: [{ title: 'Chapter 1' }, { title: 'Chapter 2' }],
+              chapters: [
+                { title: 'Chapter 1', number: undefined, subtitle: undefined },
+                { title: 'Chapter 2', number: undefined, subtitle: undefined },
+              ],
               splits: [2],
               audio: {
                 reader: 'Harriet Henderson',
@@ -56,11 +59,9 @@ describe('friendFromJS()', () => {
     const friend = friendFromJS(js);
     const document = friend.documents[0];
     const edition = document.editions[0];
-    const format = edition.formats[0];
 
     expect(document.friend).toBe(friend);
     expect(edition.document).toBe(document);
-    expect(format.edition).toBe(edition);
     expect(edition.audio!.edition).toBe(edition);
   });
 
@@ -81,7 +82,7 @@ describe('friendFromJS()', () => {
     expect(friend.documents[0]).toBeInstanceOf(Document);
     expect(friend.documents[0].id).toBe('88091a2c-f2fc-4a54-8d6b-096eb94d192f');
     expect(friend.documents[0].tags).toEqual(['journal', 'letters']);
-    expect(friend.documents[0].filename).toBe('Journal_of_Rebecca_Jones');
+    expect(friend.documents[0].filenameBase).toBe('Journal_of_Rebecca_Jones');
   });
 
   it('maps document editions', () => {
@@ -91,15 +92,6 @@ describe('friendFromJS()', () => {
     expect(edition.type).toBe('updated');
     expect(edition.description).toBe('edition description');
     expect(edition.splits).toMatchObject([2]);
-  });
-
-  it('maps document edition formats', () => {
-    const formats = friendFromJS(js).documents[0].editions[0].formats;
-
-    expect(formats[0]).toBeInstanceOf(Format);
-    expect(formats[0].type).toBe('pdf');
-    expect(formats[1].type).toBe('epub');
-    expect(formats[2].type).toBe('mobi');
   });
 
   it('maps document edition isbn', () => {

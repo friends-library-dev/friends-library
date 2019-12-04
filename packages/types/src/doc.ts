@@ -77,12 +77,17 @@ export function genericDpc(): DocPrecursor {
   };
 }
 
-export type ArtifactType =
-  | 'paperback-interior'
-  | 'paperback-cover'
-  | 'web-pdf'
-  | 'epub'
-  | 'mobi';
+const ARTIFACT_TYPES = [
+  'paperback-interior',
+  'paperback-cover',
+  'web-pdf',
+  'epub',
+  'mobi',
+] as const;
+
+export type ArtifactType = typeof ARTIFACT_TYPES[number];
+
+export { ARTIFACT_TYPES };
 
 export interface PaperbackInteriorConfig {
   printSize: PrintSize;

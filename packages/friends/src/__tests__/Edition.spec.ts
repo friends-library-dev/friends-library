@@ -1,26 +1,13 @@
-import Document from '../Document';
-import Edition from '../Edition';
-import Friend from '../Friend';
+import { firstEdition } from './helpers';
 
 describe('Edition', () => {
-  let edition: Edition;
-  let document: Document;
-  let friend: Friend;
-
-  beforeEach(() => {
-    edition = new Edition();
-    document = new Document();
-    friend = new Friend();
-    document.friend = friend;
-    document.filename = 'Journal_of_George_Fox';
-    edition.document = document;
-    edition.type = 'modernized';
-    document.slug = 'journal';
-    friend.slug = 'george-fox';
-  });
-
   describe('filename()', () => {
     it('should give the right filename', () => {
+      const edition = firstEdition(f => {
+        f.documents[0].filename = 'Journal_of_George_Fox';
+        f.documents[0].editions[0].type = 'modernized';
+      });
+
       expect(edition.filename('paperback-interior')).toBe(
         'Journal_of_George_Fox--modernized--(print).pdf',
       );
@@ -42,26 +29,27 @@ describe('Edition', () => {
     });
   });
 
-  describe('url()', () => {
-    it('returns correct url', () => {
-      expect(edition.url()).toBe('/george-fox/journal/modernized');
-    });
-  });
-
-  describe('paperbackCoverBlurb()', () => {
+  describe('paperbackCoverBlurb', () => {
     it('returns edition description, if exists', () => {
-      edition.description = 'Modernized version of G. F.';
-      expect(edition.paperbackCoverBlurb()).toBe(edition.description);
+      const edition = firstEdition(f => {
+        f.documents[0].editions[0].description = 'Edition desc.';
+      });
+      expect(edition.paperbackCoverBlurb).toBe('Edition desc.');
     });
 
     it('returns document description, if no edition description', () => {
-      document.description = 'G. F.';
-      expect(edition.paperbackCoverBlurb()).toBe(document.description);
+      const edition = firstEdition(f => {
+        f.documents[0].description = 'Document desc.';
+      });
+      expect(edition.paperbackCoverBlurb).toBe('Document desc.');
     });
 
     it('returns friend description, if no edition or doc desc', () => {
-      friend.description = 'Pure as bell, stiff as a tree';
-      expect(edition.paperbackCoverBlurb()).toBe(friend.description);
+      const edition = firstEdition(f => {
+        f.description = 'Friend desc.';
+        delete f.documents[0].description;
+      });
+      expect(edition.paperbackCoverBlurb).toBe('Friend desc.');
     });
   });
 });

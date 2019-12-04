@@ -1,19 +1,28 @@
-import { Name, Url } from '@friends-library/types';
+import { Name } from '@friends-library/types';
 import Edition from './Edition';
 import AudioPart from './AudioPart';
+import { AudioData } from './types';
 
 export default class Audio {
-  public edition: Edition;
+  private _edition?: Edition;
+  public parts: AudioPart[] = [];
 
-  public constructor(public reader: Name = '', public parts: AudioPart[] = []) {
-    this.edition = new Edition();
+  public constructor(private data: Omit<AudioData, 'parts'>) {}
+
+  public set edition(edition: Edition) {
+    this._edition = edition;
   }
 
-  public url(): Url {
-    return `${this.edition.document.url()}/${this.edition.type}/podcast.rss`;
+  public get edition(): Edition {
+    if (!this._edition) throw new Error('Edition not set');
+    return this._edition;
   }
 
-  public toJSON(): Pick<Audio, 'reader' | 'parts'> {
+  public get reader(): Name {
+    return this.data.reader;
+  }
+
+  public toJSON(): Omit<Audio, 'edition' | 'toJSON'> {
     return {
       reader: this.reader,
       parts: this.parts,

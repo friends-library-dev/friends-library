@@ -1,12 +1,13 @@
 import fs from 'fs-extra';
-import { eachFormat } from './helpers';
+import { eachEdition } from './helpers';
 import { podcast } from '../lib/xml';
+import { podcastUrl } from '../lib/url';
 
 export default function onPostBuild(): void {
-  eachFormat(({ format, document, edition }) => {
-    if (format.type === 'audio') {
+  eachEdition(({ document, edition }) => {
+    if (edition.audio) {
       const xml = podcast(document, edition);
-      fs.outputFileSync(`./public/${document.url()}/${edition.type}/podcast.rss`, xml);
+      fs.outputFileSync(`./public/${podcastUrl(edition.audio)}`, xml);
     }
   });
 }

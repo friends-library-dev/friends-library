@@ -1,35 +1,51 @@
-import { ISBN, EditionType, Url, ArtifactType } from '@friends-library/types';
-import Format from './Format';
-import Chapter from './Chapter';
+import { ISBN, EditionType, ArtifactType } from '@friends-library/types';
 import Document from './Document';
-import Audio from './Audio';
+import Chapter from './Chapter';
+import { EditionData } from './types';
+import { Audio } from '.';
 
 export default class Edition {
-  public document: Document;
+  private _document?: Document;
+  public chapters: Chapter[] = [];
+  public audio?: Audio;
 
-  public constructor(
-    public type: EditionType = 'original',
-    public formats: Format[] = [],
-    public chapters: Chapter[] = [],
-    public isbn: ISBN = '',
-    public description?: string,
-    public editor?: string,
-    public audio?: Audio,
-    public splits?: number[],
-  ) {
-    this.document = new Document();
+  public constructor(private data: Omit<EditionData, 'chapters' | 'audio'>) {}
+
+  public set document(document: Document) {
+    this._document = document;
+  }
+
+  public get document(): Document {
+    if (!this._document) throw new Error('Document not set');
+    return this._document;
   }
 
   public get path(): string {
-    return `${this.document.path}/${this.type}`;
+    return `${this.document.path}/${this.data.type}`;
   }
 
-  public url(): Url {
-    return `${this.document.url()}/${this.type}`;
+  public get description(): string | undefined {
+    return this.data.description;
+  }
+
+  public get editor(): string | undefined {
+    return this.data.editor;
+  }
+
+  public get splits(): number[] | undefined {
+    return this.data.splits;
+  }
+
+  public get type(): EditionType {
+    return this.data.type;
+  }
+
+  public get isbn(): ISBN {
+    return this.data.isbn;
   }
 
   public filename(type: ArtifactType, volumeNumber?: number): string {
-    const base = `${this.document.filename}--${this.type}`;
+    const base = `${this.document.filenameBase}--${this.type}`;
     const volumeSuffix = typeof volumeNumber === 'number' ? `--v${volumeNumber}` : '';
     switch (type) {
       case 'epub':
@@ -45,32 +61,32 @@ export default class Edition {
     }
   }
 
-  public paperbackCoverBlurb(): string {
+  public get paperbackCoverBlurb(): string {
     return (
       this.description || this.document.description || this.document.friend.description
     );
   }
 
-  public toJSON(): Pick<
-    Edition,
-    | 'type'
-    | 'formats'
-    | 'chapters'
-    | 'description'
-    | 'editor'
-    | 'isbn'
-    | 'audio'
-    | 'splits'
-  > {
+  public toJSON(): Omit<Edition, 'filename' | 'document' | 'toJSON'> & {
+    filename: { [k in ArtifactType]: string };
+  } {
     return {
       type: this.type,
-      formats: this.formats,
       chapters: this.chapters,
       description: this.description,
       editor: this.editor,
       isbn: this.isbn,
       audio: this.audio,
       splits: this.splits,
+      path: this.path,
+      paperbackCoverBlurb: this.paperbackCoverBlurb,
+      filename: {
+        epub: this.filename('epub'),
+        mobi: this.filename('mobi'),
+        'web-pdf': this.filename('web-pdf'),
+        'paperback-cover': this.filename('paperback-cover'),
+        'paperback-interior': this.filename('paperback-interior'),
+      },
     };
   }
 }

@@ -1,44 +1,50 @@
-import { Gender, Lang, Slug, Name, Description, Url, Uuid } from '@friends-library/types';
+import { FriendData } from './types';
 import Document from './Document';
+import { Name, Lang, Uuid, Slug, Description } from '@friends-library/types';
 
 export default class Friend {
-  public constructor(
-    public id: Uuid = '',
-    public lang: Lang = 'en',
-    public name: Name = '',
-    public slug: Slug = '',
-    public gender: Gender = 'male',
-    public description: Description = '',
-    public documents: Document[] = [],
-  ) {}
+  public documents: Document[] = [];
 
-  public url(): Url {
-    if (this.slug === 'compilations') {
-      return '/compilations';
-    }
+  public constructor(private data: Omit<FriendData, 'documents'>) {}
 
-    if (this.lang === 'en') {
-      return `/friend/${this.slug}`;
-    }
+  public get id(): Uuid {
+    return this.data.id;
+  }
 
-    const pref = this.isMale() ? 'amigo' : 'amiga';
-    return `/${pref}/${this.slug}`;
+  public get lang(): Lang {
+    return this.data.lang;
+  }
+
+  public get description(): Description {
+    return this.data.description;
+  }
+
+  public get name(): Name {
+    return this.data.name;
+  }
+
+  public get gender(): string {
+    return this.data.gender;
+  }
+
+  public get slug(): Slug {
+    return this.data.slug;
   }
 
   public get path(): string {
-    return `${this.lang}/${this.slug}`;
+    return `${this.data.lang}/${this.data.slug}`;
   }
 
-  public isMale(): boolean {
-    return this.gender === 'male';
+  public get isMale(): boolean {
+    return this.data.gender === 'male';
   }
 
-  public isFemale(): boolean {
-    return !this.isMale();
+  public get isFemale(): boolean {
+    return !this.isMale;
   }
 
-  public alphabeticalName(): string {
-    const parts = this.name.split(' ');
+  public get alphabeticalName(): string {
+    const parts = this.data.name.split(' ');
     return `${parts.pop()}, ${parts.join(' ')}`;
   }
 }

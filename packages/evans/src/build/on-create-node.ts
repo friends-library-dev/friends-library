@@ -1,5 +1,7 @@
 import path from 'path';
-import { Document, Edition, Format } from '@friends-library/friends';
+import { Document, Edition } from '@friends-library/friends';
+import { audioUrl, documentUrl } from '../lib/url';
+import { allFriendsMap } from './helpers';
 
 const FriendPage = path.resolve('./src/templates/FriendPage.tsx');
 const DocumentPage = path.resolve('./src/templates/DocumentPage.tsx');
@@ -10,6 +12,11 @@ export default function onCreateNode({ node, actions: { createPage } }: any): vo
     return;
   }
 
+  const friend = allFriendsMap.get(node.slug);
+  if (!friend) {
+    throw new Error(`Error finding friend for slug: ${node.slug}`);
+  }
+
   createPage({
     path: node.url,
     component: FriendPage,
@@ -18,9 +25,9 @@ export default function onCreateNode({ node, actions: { createPage } }: any): vo
     },
   });
 
-  node.documents.forEach((document: Document) => {
+  friend.documents.forEach((document: Document) => {
     createPage({
-      path: document.url,
+      path: documentUrl(document),
       component: DocumentPage,
       context: {
         friendSlug: node.slug,
@@ -29,19 +36,17 @@ export default function onCreateNode({ node, actions: { createPage } }: any): vo
     });
 
     document.editions.forEach((edition: Edition) => {
-      edition.formats.forEach((format: Format) => {
-        if (format.type === 'audio') {
-          createPage({
-            path: format.url,
-            component: AudioPage,
-            context: {
-              friendSlug: node.slug,
-              documentSlug: document.slug,
-              editionType: edition.type,
-            },
-          });
-        }
-      });
+      if (edition.audio) {
+        createPage({
+          path: audioUrl(edition.audio),
+          component: AudioPage,
+          context: {
+            friendSlug: node.slug,
+            documentSlug: document.slug,
+            editionType: edition.type,
+          },
+        });
+      }
     });
   });
 }

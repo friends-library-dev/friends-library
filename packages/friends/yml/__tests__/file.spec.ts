@@ -4,7 +4,9 @@ import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 import { yamlGlob, editions, hasProp } from '../test-helpers';
 
-const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'));
+const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml')).filter(
+  file => !['en/jane-doe.yml', 'en/john-doe.yml'].includes(file.short),
+);
 const filenames: string[] = [];
 
 const isbnPath = path.resolve(
