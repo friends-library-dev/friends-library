@@ -14,7 +14,7 @@ const frontmatter = memoize(
       fm['footnote-helper'] = footnoteHelper(dpc);
     }
 
-    if (target === 'mobi' && dpc.sections.length > 1) {
+    if (target === 'mobi' && dpc.sections.length > 2) {
       fm['content-toc'] = contentToc(dpc);
     }
 

@@ -17,7 +17,7 @@ export default function frontmatter(dpc: DocPrecursor, volIdx?: number): Html {
 }
 
 function toc({ lang, sections }: DocPrecursor): Html {
-  if (sections.length === 1) {
+  if (sections.length <= 3) {
     return '';
   }
   return `
