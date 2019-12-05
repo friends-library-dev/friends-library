@@ -56,7 +56,7 @@ export const query = graphql`
     friend(slug: { eq: $slug }) {
       name
       description
-      documents {
+      documents: childrenDocument {
         slug
         title
         hasAudio

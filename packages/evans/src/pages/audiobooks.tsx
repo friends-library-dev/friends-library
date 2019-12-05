@@ -5,13 +5,14 @@ import { Layout, Block, PageTitle, Divider } from '../components';
 
 interface Props {
   data: {
-    allAudio: {
-      edges: {
-        node: {
+    allFriend: {
+      nodes: {
+        name: Name;
+        documents: {
           url: Url;
-          documentTitle: Title;
-          friendName: Name;
-        };
+          title: Title;
+          hasAudio: boolean;
+        }[];
       }[];
     };
   };
@@ -19,7 +20,7 @@ interface Props {
 
 export default ({
   data: {
-    allAudio: { edges },
+    allFriend: { nodes: friends },
   },
 }: Props) => (
   <Layout>
@@ -39,13 +40,16 @@ export default ({
       </p>
       <Divider />
       <ul>
-        {edges.map(({ node: { url, documentTitle, friendName } }) => (
-          <li key={url}>
-            <Link to={url}>
-              {friendName}: {documentTitle}
-            </Link>
-          </li>
-        ))}
+        {friends
+          .flatMap(f => f.documents.map(doc => ({ ...doc, friendName: f.name })))
+          .filter(d => d.hasAudio)
+          .map(doc => (
+            <li key={doc.url}>
+              <Link to={doc.url}>
+                {doc.friendName}: {doc.title}
+              </Link>
+            </li>
+          ))}
       </ul>
     </Block>
   </Layout>
@@ -53,12 +57,13 @@ export default ({
 
 export const query = graphql`
   {
-    allAudio {
-      edges {
-        node {
+    allFriend(filter: { childrenDocument: { elemMatch: { hasAudio: { eq: true } } } }) {
+      nodes {
+        name
+        documents: childrenDocument {
           url
-          documentTitle
-          friendName
+          title
+          hasAudio
         }
       }
     }

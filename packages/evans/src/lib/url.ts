@@ -15,7 +15,7 @@ export function friendUrl(friend: Friend): Url {
 }
 
 export function documentUrl(document: Document): Url {
-  return `${document.friend.slug}/${document.slug}`;
+  return `/${document.friend.slug}/${document.slug}`;
 }
 
 export function editionUrl(edition: Edition): Url {

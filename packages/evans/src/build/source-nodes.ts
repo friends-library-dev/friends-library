@@ -1,134 +1,87 @@
-import chalk from 'chalk';
-import { Friend, Document } from '@friends-library/friends';
-import { ARTIFACT_TYPES } from '@friends-library/types';
-import { getPartials } from '../../src/lib/partials';
-import {
-  logDownloadUrl,
-  audioUrl,
-  podcastUrl,
-  friendUrl,
-  documentUrl,
-} from '../../src/lib/url';
-import { allFriends, eachEdition } from './helpers';
+import { GatsbyNode, SourceNodesArgs } from 'gatsby';
+import { allFriends } from './helpers';
+import * as url from '../lib/url';
+import { getPartials } from '../lib/partials';
 
-export default function sourceNodes(
-  { actions, createContentDigest }: any,
-  configOptions: any,
-): void {
-  const { createNode } = actions;
-  delete configOptions.plugins;
-
+const sourceNodes: GatsbyNode['sourceNodes'] = async ({
+  actions: { createNode },
+  createNodeId,
+  createContentDigest,
+}: SourceNodesArgs) => {
   Object.entries(getPartials()).forEach(([slug, html]) => {
     createNode({
       id: `partial:${slug}`,
       html,
       internal: {
         type: 'Partial',
-        content: html,
         contentDigest: createContentDigest(html),
       },
     });
   });
 
-  console.log('\n🚀  Creating nodes from Friends .yml files');
-  console.log('-----------------------------------------');
+  allFriends().forEach(friend => {
+    const friendProps = {
+      ...friend.toJSON(),
+      friendId: friend.id,
+      url: url.friendUrl(friend),
+    };
 
-  allFriends.forEach(friend => {
-    const color = friend.isMale ? 'cyan' : 'magenta';
-    const msg = chalk[color].dim(`Create friend node: ${friend.path}`);
-    console.log(`${friend.isMale ? '👴' : '👵'}  ${msg}`);
-    const friendProps = friendNodeProps(friend);
     createNode({
-      id: friend.id,
+      ...friendProps,
+      id: createNodeId(`friend-${friend.id}`),
+      children: friend.documents.map(d => createNodeId(`document-${d.id}`)),
       internal: {
         type: 'Friend',
-        content: JSON.stringify(friendProps),
         contentDigest: createContentDigest(friendProps),
       },
-      ...friendProps,
     });
 
     friend.documents.forEach(document => {
-      console.log(chalk.gray(`  ↳ 📙  Create document node: ${document.path}`));
-      const docProps = documentNodeProps(document);
+      const documentProps = {
+        ...document.toJSON(),
+        url: url.documentUrl(document),
+        documentId: document.id,
+        friendSlug: friend.slug,
+      };
+
       createNode({
-        id: document.id,
+        ...documentProps,
+        id: createNodeId(`document-${document.id}`),
+        parent: createNodeId(`friend-${friend.id}`),
+        children: document.editions.map(e => createNodeId(`edition-${e.path}`)),
         internal: {
           type: 'Document',
-          content: JSON.stringify(docProps),
-          contentDigest: createContentDigest(docProps),
+          contentDigest: createContentDigest(documentProps),
         },
-        friendSlug: friend.slug,
-        ...docProps,
+      });
+
+      document.editions.forEach(edition => {
+        const editionProps = {
+          ...edition.toJSON(),
+          url: url.editionUrl(edition),
+          friendSlug: friend.slug,
+          documentSlug: document.slug,
+          audio: edition.audio
+            ? {
+                reader: edition.audio.reader,
+                url: url.audioUrl(edition.audio),
+                podcastUrl: url.podcastUrl(edition.audio),
+                parts: edition.audio.parts.map(part => part.toJSON()),
+              }
+            : undefined,
+        };
+        createNode({
+          ...editionProps,
+          id: createNodeId(`edition-${edition.path}`),
+          parent: createNodeId(`document-${document.id}`),
+          internal: {
+            type: 'Edition',
+            contentDigest: createContentDigest(editionProps),
+          },
+        });
       });
     });
   });
+};
 
-  eachEdition(({ document, edition, friend }) => {
-    if (edition.audio) {
-      const props = {
-        id: `audio:${audioUrl(edition.audio)}`,
-        url: audioUrl(edition.audio),
-        podcastUrl: podcastUrl(edition.audio),
-        friendName: friend.name,
-        documentTitle: document.title,
-      };
-      createNode({
-        ...props,
-        internal: {
-          type: 'Audio',
-          content: JSON.stringify(props),
-          contentDigest: createContentDigest(props),
-        },
-      });
-    }
-  });
-
-  console.log('\n');
-}
-
-function friendNodeProps(friend: Friend): Record<string, any> {
-  return {
-    id: friend.id,
-    name: friend.name,
-    slug: friend.slug,
-    gender: friend.gender,
-    description: friend.description,
-    url: friendUrl(friend),
-    documents: friend.documents.map(documentNodeProps),
-  };
-}
-
-function documentNodeProps(doc: Document): Record<string, any> {
-  return {
-    id: doc.id,
-    slug: doc.slug,
-    title: doc.title,
-    description: doc.description,
-    filename: doc.filenameBase,
-    hasAudio: doc.hasAudio,
-    isCompilation: doc.isCompilation,
-    hasUpdatedEdition: doc.hasUpdatedEdition,
-    tags: doc.tags,
-    url: documentUrl(doc),
-    editions: doc.editions.map(edition => ({
-      type: edition.type,
-      description: edition.description || '',
-      formats: ARTIFACT_TYPES.filter(t => t !== 'paperback-cover').map(type => ({
-        type,
-        url: logDownloadUrl(edition, type),
-      })),
-      ...(edition.audio
-        ? {
-            audio: {
-              reader: edition.audio.reader,
-              parts: edition.audio.parts.map(part => ({
-                title: part.title,
-                externalIdHq: part.externalIdHq,
-              })),
-            },
-          }
-        : {}),
-    })),
-  };
-}
+export default sourceNodes;

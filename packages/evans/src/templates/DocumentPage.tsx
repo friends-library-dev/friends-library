@@ -131,13 +131,9 @@ export const query = graphql`
       url
     }
     document(slug: { eq: $documentSlug }, friendSlug: { eq: $friendSlug }) {
-      editions {
+      editions: childrenEdition {
         type
         description
-        formats {
-          type
-          url
-        }
       }
       isCompilation
       description
