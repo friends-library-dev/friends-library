@@ -2,11 +2,11 @@ import { testFriend } from './helpers';
 
 describe('Friend', () => {
   describe('toJSON()', () => {
-    it('removes circular reference to documents[*].friend', () => {
+    it('does not set a value for Friend.documents', () => {
       const friend = testFriend();
       const json = JSON.parse(JSON.stringify(friend));
 
-      expect(json.documents[0].friend).toBeUndefined();
+      expect(json.documents).toBeUndefined();
     });
   });
 

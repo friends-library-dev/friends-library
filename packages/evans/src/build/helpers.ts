@@ -2,11 +2,24 @@ import { getAllFriends, Friend, Document, Edition } from '@friends-library/frien
 import { LANG } from '../../src/env';
 import { Slug } from '@friends-library/types';
 
-export const allFriends = getAllFriends(LANG);
+let friends: Friend[] = [];
 
-export const allFriendsMap: Map<Slug, Friend> = new Map();
-for (let friend of allFriends) {
-  allFriendsMap.set(friend.slug, friend);
+export function allFriends(): Friend[] {
+  if (!friends.length) {
+    friends = getAllFriends(LANG);
+  }
+  return friends;
+}
+
+let friendsMap: Map<Slug, Friend> = new Map();
+
+export function allFriendsMap(): Map<Slug, Friend> {
+  if (friendsMap.size === 0) {
+    for (let friend of allFriends()) {
+      friendsMap.set(friend.slug, friend);
+    }
+  }
+  return friendsMap;
 }
 
 interface EditionCallback {
@@ -14,7 +27,7 @@ interface EditionCallback {
 }
 
 export function eachEdition(cb: EditionCallback): void {
-  allFriends.forEach(friend => {
+  allFriends().forEach(friend => {
     friend.documents.forEach(document => {
       document.editions.forEach(edition => {
         cb({ friend, document, edition });

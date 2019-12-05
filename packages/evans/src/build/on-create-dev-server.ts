@@ -1,8 +1,11 @@
+import { GatsbyNode, CreateDevServerArgs } from 'gatsby';
 import { eachEdition } from './helpers';
 import { podcast } from '../lib/xml';
 import { podcastUrl } from '../lib/url';
 
-exports.onCreateDevServer = ({ app }: any) => {
+const onCreateDevServer: GatsbyNode['onCreateDevServer'] = ({
+  app,
+}: CreateDevServerArgs) => {
   eachEdition(({ document, edition }) => {
     if (!edition.audio) {
       return;
@@ -13,3 +16,5 @@ exports.onCreateDevServer = ({ app }: any) => {
     });
   });
 };
+
+export default onCreateDevServer;

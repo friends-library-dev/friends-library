@@ -47,4 +47,19 @@ export default class Friend {
     const parts = this.data.name.split(' ');
     return `${parts.pop()}, ${parts.join(' ')}`;
   }
+
+  public toJSON(): Omit<Friend, 'toJSON' | 'documents'> {
+    return {
+      id: this.id,
+      lang: this.lang,
+      description: this.description,
+      name: this.name,
+      gender: this.gender,
+      slug: this.slug,
+      path: this.path,
+      isMale: this.isMale,
+      isFemale: this.isFemale,
+      alphabeticalName: this.alphabeticalName,
+    };
+  }
 }
