@@ -14,6 +14,7 @@ description:
   reigning in the inner man.
 documents:
   - id: c248c2e7-947b-4629-8296-0cdff67a6d99
+    alt_language_id: 78ec9b39-f599-4842-b843-b02080972349
     title: The Writings of Isaac Penington -- Volume 1
     slug: writings-volume-1
     filename: Writings_of_Isaac_Penington_vol_1
@@ -231,6 +232,7 @@ documents:
           - number: 1
             subtitle: Letters of Isaac Penington Written Between 1658 - 1671
   - id: 62213938-9464-4930-9478-5f112c43fe54
+    alt_language_id: 5230bd9c-e096-4697-8664-a6eb379836f2
     title: The Writings of Isaac Penington -- Volume 2
     slug: writings-volume-2
     filename: Writings_of_Isaac_Penington_vol_2

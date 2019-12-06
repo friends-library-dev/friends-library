@@ -5,6 +5,7 @@ gender: male
 description: TODO
 documents:
   - id: 184123b9-03ca-44aa-9242-50f339d8c711
+    alt_language_id: 2c64c45a-02b0-406d-935f-c90a42daf5a7
     title: Los Sufrimientos de Catharine Evans y Sarah Cheevers
     slug: sufrimientos-de-catharine-evans-sarah-cheevers
     filename: Sufrimientos_de_Catharine_Evans_Sarah_Cheevers

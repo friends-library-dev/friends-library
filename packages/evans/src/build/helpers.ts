@@ -1,12 +1,13 @@
 import { getAllFriends, Friend, Document, Edition } from '@friends-library/friends';
-import { LANG } from '../../src/env';
-import { Slug } from '@friends-library/types';
+import { Slug, ISBN } from '@friends-library/types';
 
 let friends: Friend[] = [];
 
 export function allFriends(): Friend[] {
   if (!friends.length) {
-    friends = getAllFriends(LANG);
+    friends = getAllFriends('en')
+      .concat(getAllFriends('es'))
+      .filter(f => !['Jane Doe', 'John Doe'].includes(f.name));
   }
   return friends;
 }
@@ -20,6 +21,20 @@ export function allFriendsMap(): Map<Slug, Friend> {
     }
   }
   return friendsMap;
+}
+
+let docsMap: Map<Slug | ISBN, Document> = new Map();
+
+export function allDocsMap(): Map<Slug | ISBN, Document> {
+  if (docsMap.size === 0) {
+    for (let friend of allFriends()) {
+      for (let document of friend.documents) {
+        docsMap.set(document.slug, document);
+        docsMap.set(document.id, document);
+      }
+    }
+  }
+  return docsMap;
 }
 
 interface EditionCallback {

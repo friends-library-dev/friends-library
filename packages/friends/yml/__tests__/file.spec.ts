@@ -3,6 +3,8 @@ import { kebabCase } from 'lodash';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 import { yamlGlob, editions, hasProp } from '../test-helpers';
+import { FriendData, DocumentData } from '../../src/types';
+import { isDefined, Lang } from '@friends-library/types';
 
 const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml')).filter(
   file => !['en/jane-doe.yml', 'en/john-doe.yml'].includes(file.short),
@@ -19,6 +21,8 @@ const isbnPool = readFileSync(isbnPath)
   .split('\n');
 const isbns: string[] = [];
 const ids: string[] = [];
+const friends: FriendData[] = [];
+const docMap: Map<string, DocumentData & { lang: Lang }> = new Map();
 
 describe('all files', () => {
   test('files is not empty', () => {
@@ -37,13 +41,15 @@ describe('all files', () => {
 
 files.forEach(file => {
   describe(`${file.short}`, () => {
-    let friend: any;
-    let documents: any[];
+    let friend: FriendData;
+    let documents: DocumentData[];
     let fileContents: string;
 
     try {
       fileContents = readFileSync(file.path, 'utf8');
       friend = safeLoad(fileContents);
+      friend.lang = file.path.includes('/es/') ? 'es' : 'en';
+      friends.push(friend);
       documents = friend.documents; // eslint-disable-line prefer-destructuring
     } catch (err) {
       throw new Error(err.message);
@@ -96,6 +102,7 @@ files.forEach(file => {
           return;
         }
         ids.push(doc.id);
+        docMap.set(doc.id, { ...doc, lang: friend.lang });
         done();
       });
     });
@@ -121,6 +128,36 @@ files.forEach(file => {
           expect(typeof edition.editor).toBe('string');
         }
       });
+    });
+  });
+});
+
+describe('document.alt_language_id', () => {
+  friends.forEach(friend => {
+    friend.documents.forEach(document => {
+      const docPath = `${friend.lang}/${friend.slug}/${document.slug}`;
+      const altId = document.alt_language_id;
+
+      if (friend.lang === 'es') {
+        test(`spanish doc ${docPath} must have alt_language_id`, () => {
+          expect(altId).toBeDefined();
+        });
+      }
+
+      if (isDefined(altId)) {
+        test(`${docPath} doc.alt_language_id must exist`, () => {
+          expect(docMap.has(altId)).toBe(true);
+        });
+
+        test(`${docPath} doc.alt_language_id must ref doc id in alt language`, () => {
+          expect(docMap.get(altId)!.lang).not.toBe(friend.lang);
+        });
+
+        test(`${docPath} doc.alt_language_id must be reciprocal`, () => {
+          expect(docMap.get(altId)!.alt_language_id).not.toBeUndefined();
+          expect(docMap.get(altId)!.alt_language_id).toBe(document.id);
+        });
+      }
     });
   });
 });

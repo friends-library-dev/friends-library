@@ -5,6 +5,7 @@ gender: male
 description: TODO
 documents:
   - id: 17d5addc-df02-450b-8fc8-f845292af618
+    alt_language_id: 91c346f7-2909-4aca-8987-a96cc41683d1
     title: La Salvación por medio de Cristo
     slug: salvacion-por-medio-de-cristo
     filename: Salvacion_por_medio_de_Cristo

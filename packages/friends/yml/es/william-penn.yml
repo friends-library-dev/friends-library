@@ -5,6 +5,7 @@ gender: male
 description: TODO
 documents:
   - id: 0089dff8-b287-4b8f-9418-543fa4cc6ffb
+    alt_language_id: 53561891-6761-41b8-b5f8-a1ed91e5dde8
     title: No Cruz, No Corona
     slug: no-cruz-no-corona
     filename: No_Cruz_No_Corona

@@ -17,6 +17,7 @@ description:
   él.
 documents:
   - id: 78ec9b39-f599-4842-b843-b02080972349
+    alt_language_id: c248c2e7-947b-4629-8296-0cdff67a6d99
     title: Los Escritos de Isaac Penington -- Volumen 1
     slug: escritos-volumen-1
     filename: Escritos_de_Isaac_Penington_vol_1
@@ -196,6 +197,7 @@ documents:
             subtitle: Las Cartas de Isaac Penington 1658 - 1671
 
   - id: 5230bd9c-e096-4697-8664-a6eb379836f2
+    alt_language_id: 62213938-9464-4930-9478-5f112c43fe54
     title: Los Escritos de Isaac Penington -- Volumen 2
     slug: escritos-volumen-2
     filename: Escritos_de_Isaac_Penington_vol_2

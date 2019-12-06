@@ -1,7 +1,12 @@
 import { GatsbyNode, SourceNodesArgs } from 'gatsby';
-import { allFriends } from './helpers';
+import { price } from '@friends-library/lulu';
+import { fetch } from '@friends-library/document-meta';
+import { red } from '@friends-library/cli-utils/color';
+import { allFriends, allDocsMap } from './helpers';
 import * as url from '../lib/url';
 import { getPartials } from '../lib/partials';
+import { PrintSize } from '@friends-library/types';
+import { APP_ALT_URL, LANG } from '../env';
 
 const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions: { createNode },
@@ -19,7 +24,15 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     });
   });
 
-  allFriends().forEach(friend => {
+  const meta = await fetch();
+  const friends = allFriends();
+  const docs = allDocsMap();
+
+  friends.forEach(friend => {
+    if (friend.lang !== LANG) {
+      return;
+    }
+
     const friendProps = {
       ...friend.toJSON(),
       friendId: friend.id,
@@ -37,12 +50,18 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     });
 
     friend.documents.forEach(document => {
-      const documentProps = {
+      const documentProps: Record<string, any> = {
         ...document.toJSON(),
         url: url.documentUrl(document),
         documentId: document.id,
         friendSlug: friend.slug,
       };
+
+      if (document.altLanguageId) {
+        const altDoc = docs.get(document.altLanguageId);
+        if (!altDoc) throw new Error(`Missing alt language doc from ${document.path}`);
+        documentProps.altLanguageUrl = `${APP_ALT_URL}${url.documentUrl(altDoc)}`;
+      }
 
       createNode({
         ...documentProps,
@@ -56,11 +75,25 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
       });
 
       document.editions.forEach(edition => {
+        const editionMeta = meta.get(edition.path);
+        let printSize: PrintSize = 'm';
+        let pages = [175];
+        if (editionMeta) {
+          printSize = editionMeta.paperback.size;
+          pages = editionMeta.paperback.volumes;
+        } else {
+          red(`Edition meta not found for ${edition.path}`);
+        }
+
         const editionProps = {
           ...edition.toJSON(),
           url: url.editionUrl(edition),
           friendSlug: friend.slug,
           documentSlug: document.slug,
+          printSize,
+          pages,
+          price: price(printSize, pages),
+          numChapters: editionMeta ? editionMeta.numSections : 1,
           audio: edition.audio
             ? {
                 reader: edition.audio.reader,

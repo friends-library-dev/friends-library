@@ -5,6 +5,7 @@ gender: male
 description: TODO
 documents:
   - id: 398c7f5a-3fa4-4a29-a275-a0f33920ce08
+    alt_language_id: f869e6e5-c5a2-4bdf-96bb-1c4dc13dad2f
     title: Esperando en el Señor
     slug: esperando-en-el-senor
     filename: Esperando_en_el_Senor
@@ -26,6 +27,7 @@ documents:
           - title: Esperando en el Señor
 
   - id: 1314f777-2b9e-40b4-b148-18e64278557a
+    alt_language_id: fea5c7ff-bd6f-4c46-b928-c3b4fb1a04e6
     title: Consideraciones sobre el Entretenimiento y la Recreacion
     slug: entretenimiento-y-recreacion
     filename: Consideraciones_sobre_el_Entretenimiento_y_la_Recreacion
@@ -39,6 +41,7 @@ documents:
           - title: Consideraciones sobre el Entretenimiento y la Recreacion
 
   - id: 9a0ac9a9-9111-4ff8-b416-4b26adc64a87
+    alt_language_id: a0aa67e3-e96e-44ea-a90c-db739d54eba6
     title: Esta Grande Salvación
     slug: esta-grande-salvacion
     filename: Esta_Grande_Salvacion

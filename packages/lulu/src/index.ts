@@ -8,7 +8,13 @@ const defaultMargins = {
   runningHeadTop: 0.35,
 };
 
-export const PAGES_PER_INCH = 444;
+export function price(size: PrintSize, pages: number[]): number {
+  return pages.reduce((sum, volPages) => {
+    const isSaddleStitch = size === 's' && volPages < 32;
+    const basePrice = isSaddleStitch ? 200 : 125;
+    return sum + basePrice + Math.round(volPages * PRICE_PER_PAGE);
+  }, 0);
+}
 
 export function bookDims(
   size: PrintSize,
@@ -116,6 +122,8 @@ function add(a: number, b: number): number {
   return a + b;
 }
 
+export const PAGES_PER_INCH = 444;
 const CONDENSE_THRESHOLD = 650;
 const CONDENSED = true;
 const NOT_CONDENSED = false;
+const PRICE_PER_PAGE = 1.4;

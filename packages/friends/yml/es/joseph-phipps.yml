@@ -5,6 +5,7 @@ gender: male
 description: TODO
 documents:
   - id: 55d322b1-0e53-4281-9c7b-cf50547d8221
+    alt_language_id: b7fb02eb-f804-431a-9c0c-7ead12400bf5
     title: Estado Original y Presente del Hombre
     slug: estado-original-y-presente-del-hombre
     filename: Estado_Original_y_Presente_del_Hombre

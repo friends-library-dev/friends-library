@@ -136,6 +136,7 @@ const subSchemas: Record<string, Schema> = {
     // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       id: { $ref: '/uuid', required: true },
+      alt_language_id: { $ref: '/uuid', required: false },
       title: { type: 'string', required: true },
       original_title: { type: 'string', required: false },
       published: { type: 'integer', required: false },

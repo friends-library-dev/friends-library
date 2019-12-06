@@ -54,6 +54,10 @@ export default class Document {
     return `${this.friend.path}/${this.slug}`;
   }
 
+  public get altLanguageId(): Uuid | undefined {
+    return this.data.alt_language_id;
+  }
+
   public get isCompilation(): boolean {
     return this.friend.slug === 'compilations';
   }
@@ -84,6 +88,7 @@ export default class Document {
       isCompilation: this.isCompilation,
       hasAudio: this.hasAudio,
       hasUpdatedEdition: this.hasUpdatedEdition,
+      altLanguageId: this.altLanguageId,
     };
   }
 }

@@ -14,6 +14,7 @@ description:
   exposition and defense of Quaker principles for the next 200 years.
 documents:
   - id: f869e6e5-c5a2-4bdf-96bb-1c4dc13dad2f
+    alt_language_id: 398c7f5a-3fa4-4a29-a275-a0f33920ce08
     title: Waiting Upon the Lord
     slug: waiting-upon-the-lord
     filename: Waiting_Upon_the_Lord
@@ -56,6 +57,7 @@ documents:
         chapters:
           - title: Waiting Upon the Lord
   - id: a0aa67e3-e96e-44ea-a90c-db739d54eba6
+    alt_language_id: 9a0ac9a9-9111-4ff8-b416-4b26adc64a87
     title: Saved to the Uttermost
     slug: saved-to-the-uttermost
     filename: Saved_to_the_Uttermost
@@ -198,6 +200,7 @@ documents:
             subtitle: Concerning Salutations and Recreations, etc.
           - title: The Conclusion
   - id: fea5c7ff-bd6f-4c46-b928-c3b4fb1a04e6
+    alt_language_id: 1314f777-2b9e-40b4-b148-18e64278557a
     title: Considerations upon Recreation and Entertainment
     slug: recreation-entertainment
     filename: Recreation_and_Entertainment

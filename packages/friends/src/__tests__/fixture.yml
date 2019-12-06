@@ -12,7 +12,7 @@ documents:
     tags:
       - journal
     editions:
-      - type: original
+      - type: updated
         isbn: 978-1-64476-999-9
         chapters:
           - number: 1
@@ -22,7 +22,7 @@ documents:
         chapters:
           - number: 1
           - number: 2
-      - type: updated
+      - type: original
         isbn: 978-1-64476-999-6
         editor: Jared Henderson
         chapters:

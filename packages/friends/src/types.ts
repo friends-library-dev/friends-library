@@ -37,6 +37,7 @@ export interface DocumentData {
   original_title?: string;
   published?: number;
   editions: EditionData[];
+  alt_language_id?: Uuid;
 }
 
 export interface EditionData {
