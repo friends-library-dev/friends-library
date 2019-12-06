@@ -12,6 +12,7 @@ description:
   Alemania.
 documents:
   - id: bf004555-1175-4cd4-8bcb-d5954e2efa4e
+    alt_language_id: 2eb862e1-cc3e-4588-a504-98db07a85474
     title: Un Camino Simple
     slug: camino-simple
     filename: Camino_Simple
@@ -31,6 +32,7 @@ documents:
           - title: Un Camino Simple
 
   - id: 1a7c0e85-250c-43c9-adbd-0b98972fb9d3
+    alt_language_id: 2e80b149-e111-4c8c-ab7a-c5e1ed3861f4
     title: Una Historia Corta de un Largo Viaje desde Babilonia hasta Bet-el
     slug: babilonia-hasta-bet-el
     filename: Babilonia_hasta_Bet-el

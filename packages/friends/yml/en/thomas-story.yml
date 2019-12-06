@@ -73,6 +73,7 @@ documents:
         chapters:
           - title: The Journal of Thomas Story
   - id: 91c346f7-2909-4aca-8987-a96cc41683d1
+    alt_language_id: 17d5addc-df02-450b-8fc8-f845292af618
     title: Salvation By Christ
     slug: salvation-by-christ
     filename: Salvation_by_Christ

@@ -12,11 +12,6 @@ export const LANG: Lang = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
 
 export const PORT = String(process.env.GATSBY_PORT || '');
 
-/**
- * Api url
- *
- * @type {Url}
- */
 export const APP_URL: Url = (() => {
   if (NODE_ENV === 'development') {
     return `http://localhost:${PORT}`;
@@ -28,3 +23,28 @@ export const APP_URL: Url = (() => {
 
   return String(process.env.DEPLOY_PRIME_URL);
 })();
+
+export const APP_ALT_URL: Url = (() => {
+  if (NODE_ENV === 'development') {
+    return `http://localhost:${process.env.GATSBY_ALT_PORT}`;
+  }
+
+  if (process.env.HEAD === 'master') {
+    return swapAltUrl(String(process.env.URL));
+  }
+
+  return swapAltUrl(String(process.env.DEPLOY_PRIME_URL));
+})();
+
+// @TODO this is hinky
+function swapAltUrl(url: Url): Url {
+  if (url.includes('.netlify.com')) {
+    return url.replace('en-evans.', 'es-evans.').replace('es-evans.', 'en-evans.');
+  }
+
+  if (url.includes('friendslibrary.com')) {
+    return url.replace('friendslibrary.com', 'bibliotecadelosamigos.org');
+  }
+
+  return url.replace('bibliotecadelosamigos.org', 'friendslibrary.com');
+}

@@ -13,7 +13,7 @@ const DocActions: React.FC<Props> = ({ price, hasAudio, className = '' }) => {
       className={className}
       buttons={[
         { text: 'Download', icon: 'cloud' },
-        { text: `Paperback $${price / 100}`, icon: 'book' },
+        { text: `Paperback $${(price / 100).toFixed(2)}`, icon: 'book' },
         ...(hasAudio ? [{ text: 'Audio Book', icon: 'headphones' }] : []),
       ]}
     />

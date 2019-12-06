@@ -55,6 +55,24 @@ describe('friendFromJS()', () => {
     };
   });
 
+  it('orders the editions updated > modernize > original', () => {
+    js.documents[0].editions.push(
+      JSON.parse(JSON.stringify(js.documents[0].editions[0])),
+    );
+    js.documents[0].editions.push(
+      JSON.parse(JSON.stringify(js.documents[0].editions[0])),
+    );
+    js.documents[0].editions[0].type = 'original';
+    js.documents[0].editions[1].type = 'modernized';
+    js.documents[0].editions[2].type = 'updated';
+
+    const friend = friendFromJS(js);
+    const document = friend.documents[0];
+    expect(document.editions[0].type).toBe('updated');
+    expect(document.editions[1].type).toBe('modernized');
+    expect(document.editions[2].type).toBe('original');
+  });
+
   it('should set parent/child refs', () => {
     const friend = friendFromJS(js);
     const document = friend.documents[0];

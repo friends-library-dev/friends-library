@@ -1,3 +1,4 @@
+import { price } from '@friends-library/lulu';
 import { EditionType, PrintSize } from '@friends-library/types';
 
 export interface CartItemData {
@@ -44,9 +45,7 @@ export default class CartItem {
   }
 
   public price(): number {
-    const isSaddleStitch = this.printSize === 's' && this.numPages < 32;
-    const basePrice = isSaddleStitch ? 200 : 125;
-    return basePrice + Math.round(this.numPages * LULU_PRICE_PER_PAGE);
+    return price(this.printSize, [this.numPages]);
   }
 
   public toJSON(): CartItemData {
@@ -63,5 +62,3 @@ export default class CartItem {
     };
   }
 }
-
-const LULU_PRICE_PER_PAGE = 1.4;

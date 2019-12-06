@@ -5,7 +5,7 @@ import Edition from './Edition';
 import Chapter from './Chapter';
 import Audio from './Audio';
 import AudioPart from './AudioPart';
-import { FriendData } from './types';
+import { FriendData, EditionData } from './types';
 
 export default function friendFromJS(json: FriendData): Friend {
   const friend = new Friend(omit(json, 'documents'));
@@ -13,6 +13,7 @@ export default function friendFromJS(json: FriendData): Friend {
   friend.documents = json.documents.map(docData => {
     const document = new Document(omit(docData, 'editions'));
     document.friend = friend;
+    docData.editions.sort(sortEditions);
 
     document.editions = docData.editions.map(edData => {
       const edition = new Edition(omit(edData, ['chapters', 'audio']));
@@ -37,4 +38,14 @@ export default function friendFromJS(json: FriendData): Friend {
   });
 
   return friend;
+}
+
+function sortEditions(ed1: EditionData, ed2: EditionData): number {
+  if (ed1.type === 'updated') {
+    return -1;
+  }
+  if (ed1.type === 'modernized') {
+    return ed2.type === 'updated' ? 1 : -1;
+  }
+  return 1;
 }

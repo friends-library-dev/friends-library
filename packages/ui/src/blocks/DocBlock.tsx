@@ -13,7 +13,7 @@ type Props = Omit<CoverProps, 'pages'> & {
   hasAudio: boolean;
   description: string;
   numChapters: number;
-  altLanguageUrl?: string;
+  altLanguageUrl?: string | null;
   pages: number[];
 };
 
@@ -98,7 +98,7 @@ function LinksAndMeta(props: Props & { className: string }): JSX.Element {
           <li className="capitalize">{edition} Edition</li>
           <li>{dimensions(size, pages)}</li>
           <li>{numChapters} Chapters</li>
-          <li>{pages.reduce((acc, p) => acc + p)} Pages</li>
+          <li>{pages.map(p => `${p} pages`).join(', ')}</li>
           <li>112 Downloads</li>
           <li>English Language</li>
           {altLanguageUrl && (
@@ -115,7 +115,7 @@ function LinksAndMeta(props: Props & { className: string }): JSX.Element {
 function dimensions(size: PrintSize, pages: number[]): string {
   return pages
     .map(p => bookDims(size, p))
-    .map(dims => `${dims.width} x ${dims.height} x ${dims.depth} in`)
+    .map(dims => `${dims.width} x ${dims.height} x ${dims.depth.toPrecision(2)} in`)
     .join(', ');
 }
 

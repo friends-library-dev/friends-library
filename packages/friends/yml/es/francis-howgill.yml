@@ -13,6 +13,7 @@ description:
   habiendo escrito muchos libros y cartas valiosos.
 documents:
   - id: bb2e6fb5-156a-4b24-b5aa-f1deefccb5b2
+    alt_language_id: fa1addc4-a434-48da-8d82-bbb1db322151
     title: Algunos de Los Misterios del Reino de Dios Declarados
     slug: algunos-de-los-misterios-del-reino
     filename: Algunos_de_Los_Misterios_del_Reino

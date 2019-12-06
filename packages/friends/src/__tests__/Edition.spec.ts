@@ -5,27 +5,27 @@ describe('Edition', () => {
     it('should give the right filename', () => {
       const edition = firstEdition(f => {
         f.documents[0].filename = 'Journal_of_George_Fox';
-        f.documents[0].editions[0].type = 'modernized';
+        f.documents[0].editions[0].type = 'updated';
       });
 
       expect(edition.filename('paperback-interior')).toBe(
-        'Journal_of_George_Fox--modernized--(print).pdf',
+        'Journal_of_George_Fox--updated--(print).pdf',
       );
 
-      expect(edition.filename('web-pdf')).toBe('Journal_of_George_Fox--modernized.pdf');
-      expect(edition.filename('epub')).toBe('Journal_of_George_Fox--modernized.epub');
+      expect(edition.filename('web-pdf')).toBe('Journal_of_George_Fox--updated.pdf');
+      expect(edition.filename('epub')).toBe('Journal_of_George_Fox--updated.epub');
       expect(edition.filename('paperback-cover')).toBe(
-        'Journal_of_George_Fox--modernized--cover.pdf',
+        'Journal_of_George_Fox--updated--cover.pdf',
       );
-      expect(edition.filename('mobi')).toBe('Journal_of_George_Fox--modernized.mobi');
+      expect(edition.filename('mobi')).toBe('Journal_of_George_Fox--updated.mobi');
 
       expect(edition.filename('paperback-cover', 1)).toBe(
-        'Journal_of_George_Fox--modernized--cover--v1.pdf',
+        'Journal_of_George_Fox--updated--cover--v1.pdf',
       );
       expect(edition.filename('paperback-interior', 2)).toBe(
-        'Journal_of_George_Fox--modernized--(print)--v2.pdf',
+        'Journal_of_George_Fox--updated--(print)--v2.pdf',
       );
-      expect(edition.filename('mobi', 3)).toBe('Journal_of_George_Fox--modernized.mobi');
+      expect(edition.filename('mobi', 3)).toBe('Journal_of_George_Fox--updated.mobi');
     });
   });
 

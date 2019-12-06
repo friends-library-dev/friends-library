@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import {
-  FormatType,
   EditionType,
   Url,
   Title,
@@ -10,6 +9,8 @@ import {
   Uuid,
   Description,
   CoverProps,
+  PrintSize,
+  ISBN,
 } from '@friends-library/types';
 import { Layout } from '../components';
 import {
@@ -23,6 +24,7 @@ interface Props {
   data: {
     friend: {
       name: Name;
+      slug: Slug;
       url: Url;
     };
     document: {
@@ -30,29 +32,34 @@ interface Props {
       slug: Slug;
       title: Title;
       description: Description;
+      altLanguageUrl: Url | null;
       isCompilation: boolean;
       editions: {
         type: EditionType;
-        description: Description;
-        formats: {
-          type: FormatType;
-          url: Url;
-        }[];
+        isbn: ISBN;
+        price: number;
+        numChapters: number;
+        description: Description | null;
+        printSize: PrintSize;
+        pages: number[];
+        audio: null | { reader: Name };
       }[];
     };
   };
 }
 
 export default ({ data: { friend, document } }: Props) => {
+  const mainEdition = document.editions[0];
+  const hasAudio = !!mainEdition.audio;
   const coverProps: CoverProps = {
     lang: process.env.GATSBY_LANG === 'en' ? 'en' : 'es',
     title: document.title,
-    isCompilation: false, // @TODO
+    isCompilation: document.isCompilation,
     author: friend.name,
-    size: 'm', // @TODO
-    pages: 222, // @TODO
-    edition: document.editions[0].type,
-    isbn: '978-1-64476-014-7', // @TODO
+    size: mainEdition.printSize,
+    pages: mainEdition.pages[0], // use first vol if 2-vol faux-vols
+    edition: mainEdition.type,
+    isbn: mainEdition.isbn,
     blurb: document.description,
     customCss: '',
     customHtml: '',
@@ -61,17 +68,21 @@ export default ({ data: { friend, document } }: Props) => {
     <Layout>
       <DocBlock
         description={document.description}
-        isbn="978-1-64476-004-8"
+        isbn={mainEdition.isbn}
         customHtml=""
-        authorSlug="ambrose-rigge"
-        price={499}
-        hasAudio={true}
-        numChapters={15}
-        altLanguageUrl="https://es-evans.netlify.com/james-parnell/vida"
+        authorSlug={friend.slug}
+        price={mainEdition.price}
+        hasAudio={hasAudio}
+        numChapters={mainEdition.numChapters}
+        altLanguageUrl={document.altLanguageUrl}
         {...coverProps}
-        pages={[222]}
+        pages={mainEdition.pages}
       />
-      <ReadSampleBlock price={499} hasAudio={true} chapters={chapters} />
+      <ReadSampleBlock
+        price={mainEdition.price}
+        hasAudio={hasAudio}
+        chapters={chapters}
+      />
       <ListenBlock />
       <div className="p-8 pt-12" style={{ backgroundColor: 'rgb(249, 249, 249)' }}>
         <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
@@ -127,14 +138,24 @@ export const query = graphql`
   query DocumentPage($documentSlug: String!, $friendSlug: String!) {
     friend(slug: { eq: $friendSlug }) {
       id
+      slug
       name
       url
     }
     document(slug: { eq: $documentSlug }, friendSlug: { eq: $friendSlug }) {
       editions: childrenEdition {
         type
+        isbn
         description
+        printSize
+        pages
+        price
+        numChapters
+        audio {
+          reader
+        }
       }
+      altLanguageUrl
       isCompilation
       description
       slug
