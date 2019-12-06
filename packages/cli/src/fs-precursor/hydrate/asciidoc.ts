@@ -5,7 +5,7 @@ import FsDocPrecursor from '../FsDocPrecursor';
 export default function asciidoc(dpc: FsDocPrecursor, isolate?: number): void {
   let pattern = '*';
   if (isolate) {
-    pattern = `${isolate < 9 ? '0' : ''}${isolate}*`;
+    pattern = `${isolate < 10 ? '0' : ''}${isolate}*`;
   }
 
   const asciidoc = glob(`${dpc.fullPath}/${pattern}.adoc`)
