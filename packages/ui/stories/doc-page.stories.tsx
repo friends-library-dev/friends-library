@@ -65,7 +65,7 @@ storiesOf('Doc Page', module)
       customCss=""
       isbn="978-1-64476-004-8"
       customHtml=""
-      authorSlug="ambrose-rigge"
+      authorUrl="/friend/ambrose-rigge"
       price={499}
       hasAudio={true}
       numChapters={15}

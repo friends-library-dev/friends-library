@@ -5,7 +5,7 @@ import './SampleToc.css';
 
 interface Props {
   onClose: () => void;
-  chapters: Omit<Heading, 'id'>[];
+  chapters: Heading[];
   className?: string;
 }
 
@@ -22,7 +22,7 @@ const SampleToc: React.FC<Props> = ({ chapters, onClose, className = '' }) => {
       </h5>
       <ul className="font-serif">
         {chapters.map(chapter => (
-          <Chapter {...chapter} />
+          <Chapter key={chapter.id} {...chapter} />
         ))}
       </ul>
       <button className="absolute font-bold" onClick={onClose}>

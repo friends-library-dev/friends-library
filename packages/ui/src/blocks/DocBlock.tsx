@@ -8,7 +8,7 @@ import SpinBook from '../images/spin-book.png';
 import './DocBlock.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
-  authorSlug: string;
+  authorUrl: string;
   price: number;
   hasAudio: boolean;
   description: string;
@@ -21,7 +21,7 @@ type Perspective = 'back' | 'front' | 'spine' | 'angle-front' | 'angle-back';
 
 const DocBlock: React.FC<Props> = props => {
   const [perspective, setPerspective] = useState<Perspective>('angle-front');
-  const { title, authorSlug, pages, author, description } = props;
+  const { title, authorUrl, pages, author, description } = props;
   return (
     <section className="DocBlock bg-white pt-8 pb-12 px-10 md:px-12 xl:flex xl:flex-col xl:items-center">
       <div className="TopWrap md:flex">
@@ -59,7 +59,7 @@ const DocBlock: React.FC<Props> = props => {
             <i className="font-serif tracking-widest pr-1">by:</i>{' '}
             <Link
               className="AuthorLink text-flprimary font-bold antialiased tracking-wider fl-underline"
-              to={authorSlug}
+              to={authorUrl}
             >
               {author}
             </Link>

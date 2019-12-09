@@ -2,16 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import {
   EditionType,
-  Url,
-  Title,
-  Name,
-  Slug,
-  Uuid,
-  Description,
   CoverProps,
   PrintSize,
-  ISBN,
   Heading,
+  Lang,
 } from '@friends-library/types';
 import { Layout } from '../components';
 import {
@@ -24,33 +18,47 @@ import {
 interface Props {
   data: {
     friend: {
-      name: Name;
-      slug: Slug;
-      url: Url;
+      lang: Lang;
+      name: string;
+      slug: string;
+      url: string;
     };
     document: {
-      id: Uuid;
-      slug: Slug;
-      title: Title;
-      description: Description;
-      altLanguageUrl: Url | null;
+      id: string;
+      slug: string;
+      title: string;
+      description: string;
+      altLanguageUrl: string | null;
       isCompilation: boolean;
       editions: {
         type: EditionType;
-        isbn: ISBN;
+        isbn: string;
         price: number;
         chapterHeadings: Heading[];
         numChapters: number;
-        description: Description | null;
+        description: string | null;
         printSize: PrintSize;
         pages: number[];
-        audio: null | { reader: Name };
+        audio: null | { reader: string };
+      }[];
+    };
+    otherDocuments: {
+      nodes: {
+        title: string;
+        slug: string;
+        description: string;
+        isCompilation: boolean;
+        editions: {
+          isbn: string;
+          type: EditionType;
+        }[];
       }[];
     };
   };
 }
 
-export default ({ data: { friend, document } }: Props) => {
+export default ({ data: { friend, document, otherDocuments } }: Props) => {
+  const otherBooks = otherDocuments.nodes;
   const mainEdition = document.editions[0];
   const hasAudio = !!mainEdition.audio;
   const coverProps: CoverProps = {
@@ -72,7 +80,7 @@ export default ({ data: { friend, document } }: Props) => {
         description={document.description}
         isbn={mainEdition.isbn}
         customHtml=""
-        authorSlug={friend.slug}
+        authorUrl={friend.url}
         price={mainEdition.price}
         hasAudio={hasAudio}
         numChapters={mainEdition.numChapters}
@@ -86,52 +94,34 @@ export default ({ data: { friend, document } }: Props) => {
         chapters={mainEdition.chapterHeadings}
       />
       <ListenBlock />
-      <div className="p-8 pt-12" style={{ backgroundColor: 'rgb(249, 249, 249)' }}>
-        <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
-          Other Books by this Author
-        </h1>
-        <div className="xl:flex justify-center">
-          <RelatedBookCard
-            lang="en"
-            isbn=""
-            title="The Journal of Charles&nbsp;Marshall"
-            isCompilation={false}
-            author="Charles Marshall"
-            edition="updated"
-            description={shortBlurb}
-            customCss=""
-            customHtml=""
-            authorSlug="charles-marshall"
-            documentSlug="journal"
-          />
-          <RelatedBookCard
-            lang="en"
-            isbn=""
-            title="The Journal of William Savery"
-            isCompilation={false}
-            author="William Savery"
-            edition="modernized"
-            description={shortBlurb}
-            customCss=""
-            customHtml=""
-            authorSlug="charles-marshall"
-            documentSlug="journal"
-          />
-          <RelatedBookCard
-            lang="es"
-            isbn=""
-            title="Walk in the Spirit"
-            isCompilation={false}
-            author="Hugh Turford"
-            edition="updated"
-            description={shortBlurb}
-            customCss=""
-            customHtml=""
-            authorSlug="charles-marshall"
-            documentSlug="journal"
-          />
+      {otherBooks.length > 0 && (
+        <div className="p-8 pt-12" style={{ backgroundColor: 'rgb(249, 249, 249)' }}>
+          <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
+            Other Books by this Author
+          </h1>
+          <div className="xl:flex justify-center">
+            {otherBooks.map(book => (
+              <RelatedBookCard
+                lang={friend.lang}
+                isbn={book.editions[0].isbn}
+                title={book.title}
+                isCompilation={book.isCompilation}
+                author={friend.name}
+                edition={book.editions[0].type}
+                description={book.description
+                  .split(' ')
+                  .slice(0, 30)
+                  .concat(['...'])
+                  .join(' ')}
+                customCss=""
+                customHtml=""
+                authorSlug={friend.slug}
+                documentSlug={book.slug}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   );
 };
@@ -140,6 +130,7 @@ export const query = graphql`
   query DocumentPage($documentSlug: String!, $friendSlug: String!) {
     friend(slug: { eq: $friendSlug }) {
       id
+      lang
       slug
       name
       url
@@ -153,6 +144,7 @@ export const query = graphql`
         pages
         price
         chapterHeadings {
+          id
           text
           shortText
           sequence {
@@ -172,7 +164,19 @@ export const query = graphql`
       title
       id
     }
+    otherDocuments: allDocument(
+      filter: { friendSlug: { eq: $friendSlug }, slug: { ne: $documentSlug } }
+    ) {
+      nodes {
+        title
+        slug
+        description
+        isCompilation
+        editions: childrenEdition {
+          isbn
+          type
+        }
+      }
+    }
   }
 `;
-
-const shortBlurb = `Ambrose Rigge (1635-1705) was early convinced of the truth through the preaching of George Fox, and grew to be a powerful minister of the gospel, a faithful elder, and a great sufferer for the cause of Christ. In one of his letters, he writes, "I have been in eleven prisons in this county, one of which held me ten years, four months and upward, besides twice premunired, and once publicly lashed, and many other sufferings too long to relate here."`;
