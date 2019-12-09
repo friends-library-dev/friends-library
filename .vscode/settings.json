@@ -8,6 +8,7 @@
     "coverage": true,
     "packages/evans/.cache": true,
     "packages/evans/public": true,
+    "packages/evans/src/build/.dpc-cache.json": true,
     "packages/jones/build": true,
     "packages/doc-artifacts/artifacts": true,
     "packages/jones/.env": true,

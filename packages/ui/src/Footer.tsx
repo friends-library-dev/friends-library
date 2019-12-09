@@ -69,7 +69,7 @@ const LinkList: React.FC<{ title: string; links: [string, string][] }> = ({
       <dd>
         <ul className="text-gray-300">
           {links.map(([href, text]) => (
-            <li className="mb-2 tracking-wider opacity-75 text-md">
+            <li key={href} className="mb-2 tracking-wider opacity-75 text-md">
               <Link to={href}>{text}</Link>
             </li>
           ))}
