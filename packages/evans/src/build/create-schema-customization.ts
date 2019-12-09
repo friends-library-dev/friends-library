@@ -10,6 +10,17 @@ const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = async
     type Edition implements Node {
       description: String
       audio: Audio
+      chapterHeadings: [ChapterHeading!]!
+    } 
+    type ChapterHeading {
+      id: String!
+      text: String!
+      shortText: String
+      sequence: ChapterHeadingSequence
+    }
+    type ChapterHeadingSequence {
+      type: String!
+      number: Int!
     } 
     type Audio {
       reader: String!

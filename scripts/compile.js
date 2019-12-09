@@ -14,6 +14,7 @@ const pkgs = [
   'cover-web-app',
   'document-meta',
   'cover-component',
+  'dpc-fs',
   'lulu',
   'env',
   'evans',

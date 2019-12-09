@@ -11,6 +11,7 @@ import {
   CoverProps,
   PrintSize,
   ISBN,
+  Heading,
 } from '@friends-library/types';
 import { Layout } from '../components';
 import {
@@ -38,6 +39,7 @@ interface Props {
         type: EditionType;
         isbn: ISBN;
         price: number;
+        chapterHeadings: Heading[];
         numChapters: number;
         description: Description | null;
         printSize: PrintSize;
@@ -81,7 +83,7 @@ export default ({ data: { friend, document } }: Props) => {
       <ReadSampleBlock
         price={mainEdition.price}
         hasAudio={hasAudio}
-        chapters={chapters}
+        chapters={mainEdition.chapterHeadings}
       />
       <ListenBlock />
       <div className="p-8 pt-12" style={{ backgroundColor: 'rgb(249, 249, 249)' }}>
@@ -150,6 +152,14 @@ export const query = graphql`
         printSize
         pages
         price
+        chapterHeadings {
+          text
+          shortText
+          sequence {
+            type
+            number
+          }
+        }
         numChapters
         audio {
           reader
@@ -164,33 +174,5 @@ export const query = graphql`
     }
   }
 `;
-
-const chapters = [
-  {
-    text: 'This is a chapter title that is way too long',
-    shortText: 'This is a chapter title',
-    sequence: {
-      type: 'Chapter',
-      number: 1,
-    },
-  },
-  {
-    text: 'This is a chapter title two',
-    sequence: {
-      type: 'Chapter',
-      number: 2,
-    },
-  },
-  {
-    text: 'This is a chapter title three',
-    sequence: {
-      type: 'Chapter',
-      number: 3,
-    },
-  },
-  {
-    text: 'Epilogue',
-  },
-];
 
 const shortBlurb = `Ambrose Rigge (1635-1705) was early convinced of the truth through the preaching of George Fox, and grew to be a powerful minister of the gospel, a faithful elder, and a great sufferer for the cause of Christ. In one of his letters, he writes, "I have been in eleven prisons in this county, one of which held me ten years, four months and upward, besides twice premunired, and once publicly lashed, and many other sufferings too long to relate here."`;

@@ -1,5 +1,5 @@
-# copied and transpiled version of friends to play nice with gatsby
-plugins/gatsby-source-friends-library/friends
+# @friends-library things
+src/build/.dpc-cache.json
 
 # Logs
 logs
