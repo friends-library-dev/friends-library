@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "composite": true
+  },
+  "include": ["./src"],
+  "references": [
+    { "path": "../adoc-convert" },
+    { "path": "../env" },
+    { "path": "../friends" },
+    { "path": "../types" }
+  ]
+}

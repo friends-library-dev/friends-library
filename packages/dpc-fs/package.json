@@ -1,0 +1,18 @@
+{
+  "name": "@friends-library/dpc-fs",
+  "version": "1.0.0",
+  "description": "DocPrecursor from the filesystem",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "cd ../../ && yarn compile dpc-fs"
+  },
+  "dependencies": {
+    "@friends-library/adoc-convert": "1.0.0",
+    "@friends-library/env": "1.0.0",
+    "@friends-library/friends": "1.0.0",
+    "@friends-library/types": "1.0.0",
+    "glob": "^7.1.4"
+  }
+}

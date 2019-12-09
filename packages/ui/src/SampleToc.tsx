@@ -39,7 +39,8 @@ const Chapter: React.FC<Omit<Heading, 'id'>> = ({ text, shortText, sequence }) =
     <h6 className="leading-loose">
       {sequence && (
         <b className="antialiased pr-2">
-          {sequence.type} {sequence.number}:
+          {sequence.type} {sequence.number}
+          {shortText || text ? ':' : ''}
         </b>
       )}
       {shortText || text}
