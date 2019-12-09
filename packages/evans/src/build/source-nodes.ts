@@ -7,7 +7,7 @@ import { red } from '@friends-library/cli-utils/color';
 import { allFriends, allDocsMap } from './helpers';
 import * as url from '../lib/url';
 import { getPartials } from '../lib/partials';
-import { PrintSize, Heading } from '@friends-library/types';
+import { PrintSize, Heading, DocPrecursor } from '@friends-library/types';
 import { NODE_ENV, APP_ALT_URL, LANG } from '../env';
 
 const sourceNodes: GatsbyNode['sourceNodes'] = async ({
@@ -88,14 +88,20 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           red(`Edition meta not found for ${edition.path}`);
         }
 
-        let headings: Heading[] = dpcCache.get(edition.path) || [];
-        if (headings.length === 0) {
+        let dpcData: EditionCache = dpcCache.get(edition.path) || {
+          headings: [],
+          customCode: { css: {}, html: {} },
+        };
+        if (dpcData.headings.length === 0) {
           const [dpc] = query.getByPattern(edition.path);
           if (dpc) {
             hydrate.asciidoc(dpc);
             hydrate.process(dpc);
-            headings = dpc.sections.map(sect => sect.heading);
-            dpcCache.set(edition.path, headings);
+            hydrate.customCode(dpc);
+            dpcCache.set(edition.path, {
+              headings: dpc.sections.map(sect => sect.heading),
+              customCode: dpc.customCode,
+            });
             persistDpcCache(dpcCache);
           }
         }
@@ -107,8 +113,9 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           documentSlug: document.slug,
           printSize,
           pages,
-          chapterHeadings: headings,
+          chapterHeadings: dpcData.headings,
           price: price(printSize, pages),
+          customCode: dpcData.customCode,
           numChapters: editionMeta ? editionMeta.numSections : 1,
           audio: edition.audio
             ? {
@@ -135,8 +142,8 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 
 export default sourceNodes;
 
-function getDpcCache(): Map<string, Heading[]> {
-  const cache: Map<string, Heading[]> = new Map();
+function getDpcCache(): Map<string, EditionCache> {
+  const cache: Map<string, EditionCache> = new Map();
   if (NODE_ENV !== 'development') {
     return cache;
   }
@@ -146,8 +153,8 @@ function getDpcCache(): Map<string, Heading[]> {
   }
 
   const stored = JSON.parse(fs.readFileSync(CACHE_PATH).toString());
-  for (let [path, headings] of stored) {
-    cache.set(path, headings);
+  for (let [path, edCache] of stored) {
+    cache.set(path, edCache);
   }
 
   return cache;
@@ -155,6 +162,13 @@ function getDpcCache(): Map<string, Heading[]> {
 
 const CACHE_PATH = `${__dirname}/.dpc-cache.json`;
 
-function persistDpcCache(dpcCache: Map<string, Heading[]>): void {
-  fs.writeFileSync(CACHE_PATH, JSON.stringify([...dpcCache], null, 2));
+function persistDpcCache(dpcCache: Map<string, EditionCache>): void {
+  if (NODE_ENV === 'development') {
+    fs.writeFileSync(CACHE_PATH, JSON.stringify([...dpcCache], null, 2));
+  }
+}
+
+interface EditionCache {
+  headings: Heading[];
+  customCode: DocPrecursor['customCode'];
 }

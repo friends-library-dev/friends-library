@@ -1,0 +1,51 @@
+type Document implements Node {
+  altLanguageUrl: String
+}
+
+type Edition implements Node {
+  description: String
+  audio: Audio
+  chapterHeadings: [ChapterHeading!]!
+  customCode: CustomCode!
+}
+
+type ChapterHeading {
+  id: String!
+  text: String!
+  shortText: String
+  sequence: ChapterHeadingSequence
+}
+
+type ChapterHeadingSequence {
+  type: String!
+  number: Int!
+}
+
+type Audio {
+  reader: String!
+  url: String!
+  podcastUrl: String!
+  parts: [AudioPart!]!
+}
+
+type AudioPart {
+  seconds: Int!
+  filesizeHq: Int!
+  filesizeLq: Int!
+  externalIdHq: Int!
+  externalIdLq: Int!
+  title: String!
+  chapters: [Int!]!
+}
+
+type CustomCode {
+  css: CustomCodeFiles!
+  html: CustomCodeFiles!
+}
+
+type CustomCodeFiles {
+  paperback_interior: String
+  paperback_cover: String
+  all: String
+  pdf: String
+}
