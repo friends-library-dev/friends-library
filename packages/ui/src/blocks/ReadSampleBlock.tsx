@@ -9,7 +9,7 @@ import './ReadSampleBlock.css';
 interface Props {
   price: number;
   hasAudio: boolean;
-  chapters: Omit<Heading, 'id'>[];
+  chapters: Heading[];
 }
 
 const ReadSampleBlock: React.FC<Props> = ({ price, hasAudio, chapters }) => {

@@ -35,6 +35,10 @@ interface Props {
         isbn: string;
         price: number;
         chapterHeadings: Heading[];
+        customCode: {
+          css: { paperback_cover: null | string };
+          html: { paperback_cover: null | string };
+        };
         numChapters: number;
         description: string | null;
         printSize: PrintSize;
@@ -49,6 +53,10 @@ interface Props {
         description: string;
         isCompilation: boolean;
         editions: {
+          customCode: {
+            css: { paperback_cover: null | string };
+            html: { paperback_cover: null | string };
+          };
           isbn: string;
           type: EditionType;
         }[];
@@ -67,12 +75,12 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
     isCompilation: document.isCompilation,
     author: friend.name,
     size: mainEdition.printSize,
-    pages: mainEdition.pages[0], // use first vol if 2-vol faux-vols
+    pages: mainEdition.pages[0],
     edition: mainEdition.type,
     isbn: mainEdition.isbn,
     blurb: document.description,
-    customCss: '',
-    customHtml: '',
+    customCss: mainEdition.customCode.css.paperback_cover || '',
+    customHtml: mainEdition.customCode.html.paperback_cover || '',
   };
   return (
     <Layout>
@@ -113,8 +121,8 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
                   .slice(0, 30)
                   .concat(['...'])
                   .join(' ')}
-                customCss=""
-                customHtml=""
+                customCss={book.editions[0].customCode.css.paperback_cover || ''}
+                customHtml={book.editions[0].customCode.html.paperback_cover || ''}
                 authorSlug={friend.slug}
                 documentSlug={book.slug}
               />
@@ -143,6 +151,7 @@ export const query = graphql`
         printSize
         pages
         price
+        ...CoverCode
         chapterHeadings {
           id
           text
@@ -175,6 +184,7 @@ export const query = graphql`
         editions: childrenEdition {
           isbn
           type
+          ...CoverCode
         }
       }
     }

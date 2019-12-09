@@ -1,6 +1,7 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
 import { overridable, getHtmlFragments } from './helpers';
+import { dynamifyCss } from './css/helpers';
 import LogoIcon from './LogoIcon';
 import FrontMain from './FrontMain';
 
@@ -14,6 +15,8 @@ type Props = Pick<
   | 'showGuides'
   | 'title'
   | 'isCompilation'
+  | 'scope'
+  | 'scaler'
 > & {
   style?: { [k in string]: number | string };
 };
@@ -42,7 +45,15 @@ const FrontInner: React.FC<Props> = props => {
           </div>,
         )}
       </div>
-      {customCss && <style>{customCss.replace(/__id__/g, `Cover--${props.isbn}`)}</style>}
+      {customCss && (
+        <style>
+          {dynamifyCss(
+            customCss.replace(/__id__/g, `Cover--${props.isbn}.Cover`),
+            props.scope,
+            props.scaler,
+          )}
+        </style>
+      )}
     </div>
   );
 };
