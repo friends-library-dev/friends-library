@@ -62,7 +62,7 @@
     "build": "gatsby clean && gatsby build && yarn build:functions",
     "build:en": "GATSBY_LANG=en yarn build",
     "build:es": "GATSBY_LANG=es yarn build",
-    "dpc-cache:clean": "rm src/build/.dpc-cache.json",
+    "dpc-cache:clean": "rm -f src/build/.dpc-cache.json",
     "develop:en:site": "GATSBY_LANG=en GATSBY_PORT=9222 GATSBY_ALT_PORT=9333 gatsby develop --port 9222",
     "develop:es:site": "GATSBY_LANG=es GATSBY_PORT=9333 GATSBY_ALT_PORT=9222 gatsby develop --port 9333",
     "develop:en": "run-p develop:en:site develop:functions",

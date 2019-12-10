@@ -2,7 +2,7 @@ import path from 'path';
 import { execSync } from 'child_process';
 import fetch from 'node-fetch';
 import { red } from '@friends-library/cli-utils/color';
-import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
+import { FsDocPrecursor } from '@friends-library/dpc-fs';
 import lintPath from '../../lint/lint-path';
 
 export default async function validate(dpc: FsDocPrecursor): Promise<void> {

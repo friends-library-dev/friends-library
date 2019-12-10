@@ -17,7 +17,7 @@ let friendsMap: Map<Slug, Friend> = new Map();
 export function allFriendsMap(): Map<Slug, Friend> {
   if (friendsMap.size === 0) {
     for (let friend of allFriends()) {
-      friendsMap.set(friend.slug, friend);
+      friendsMap.set(friend.path, friend);
     }
   }
   return friendsMap;

@@ -116,7 +116,7 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
                 isCompilation={book.isCompilation}
                 author={friend.name}
                 edition={book.editions[0].type}
-                description={book.description
+                description={(book.description || '')
                   .split(' ')
                   .slice(0, 30)
                   .concat(['...'])
