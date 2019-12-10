@@ -3,6 +3,7 @@ import { GatsbyNode, SourceNodesArgs } from 'gatsby';
 import { price } from '@friends-library/lulu';
 import { fetch } from '@friends-library/document-meta';
 import { query, hydrate } from '@friends-library/dpc-fs';
+import { Edition } from '@friends-library/friends';
 import { red } from '@friends-library/cli-utils/color';
 import { allFriends, allDocsMap } from './helpers';
 import * as url from '../lib/url';
@@ -27,15 +28,11 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   });
 
   const meta = await fetch();
-  const friends = allFriends();
+  const friends = allFriends().filter(f => f.lang === LANG);
   const docs = allDocsMap();
   const dpcCache = getDpcCache();
 
   friends.forEach(friend => {
-    if (friend.lang !== LANG) {
-      return;
-    }
-
     const friendProps = {
       ...friend.toJSON(),
       friendId: friend.id,
@@ -70,7 +67,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         ...documentProps,
         id: createNodeId(`document-${document.id}`),
         parent: createNodeId(`friend-${friend.id}`),
-        children: document.editions.map(e => createNodeId(`edition-${e.path}`)),
+        children: editionNodeIds(document.editions, createNodeId),
         internal: {
           type: 'Document',
           contentDigest: createContentDigest(documentProps),
@@ -126,15 +123,27 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
               }
             : undefined,
         };
-        createNode({
-          ...editionProps,
-          id: createNodeId(`edition-${edition.path}`),
-          parent: createNodeId(`document-${document.id}`),
-          internal: {
-            type: 'Edition',
-            contentDigest: createContentDigest(editionProps),
-          },
-        });
+
+        const createEditionNode = (withUniformityHack: boolean = false): void => {
+          const props = {
+            ...editionProps,
+            ...(withUniformityHack ? { type: 'original' } : {}),
+          };
+          createNode({
+            ...props,
+            id: createNodeId(
+              `edition-${edition.path}${withUniformityHack ? '--uniformity-hack' : ''}`,
+            ),
+            parent: createNodeId(`document-${document.id}`),
+            internal: {
+              type: 'Edition',
+              contentDigest: createContentDigest(props),
+            },
+          });
+        };
+
+        createEditionNode();
+        friend.lang === 'es' && createEditionNode(true);
       });
     });
   });
@@ -171,4 +180,16 @@ function persistDpcCache(dpcCache: Map<string, EditionCache>): void {
 interface EditionCache {
   headings: Heading[];
   customCode: DocPrecursor['customCode'];
+}
+
+function editionNodeIds(
+  editions: Edition[],
+  createNodeId: SourceNodesArgs['createNodeId'],
+): string[] {
+  const ids = editions.map(e => createNodeId(`edition-${e.path}`));
+  // hack for `childEdition` vs `childrenEdition` SDL generation
+  if (editions[0].document.friend.lang === 'es') {
+    ids.push(createNodeId(`edition-${editions[0].path}--uniformity-hack`));
+  }
+  return ids;
 }

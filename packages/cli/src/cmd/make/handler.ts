@@ -3,8 +3,7 @@ import { Arguments } from 'yargs';
 import { log, red } from '@friends-library/cli-utils/color';
 import * as manifest from '@friends-library/doc-manifests';
 import * as artifacts from '@friends-library/doc-artifacts';
-import * as hydrate from '../../fs-precursor/hydrate';
-import * as dpcQuery from '../../fs-precursor/query';
+import { hydrate, query as dpcQuery, FsDocPrecursor } from '@friends-library/dpc-fs';
 import lintFixPath from '../../lint/lint-fix-path';
 import lintPath from '../../lint/lint-path';
 import { printLints } from '../../lint/display';
@@ -17,7 +16,6 @@ import {
   EbookConfig,
   PrintSize,
 } from '@friends-library/types';
-import FsDocPrecursor from 'src/fs-precursor/FsDocPrecursor';
 
 export interface MakeOptions {
   pattern: string;
@@ -35,14 +33,25 @@ export interface MakeOptions {
 }
 
 export default async function handler(argv: Arguments<MakeOptions>): Promise<void> {
-  const { noOpen, pattern, isolate, email } = argv;
+  const { noOpen, pattern, isolate, email, skipLint, fix } = argv;
   const dpcs = dpcQuery.getByPattern(pattern);
   if (dpcs.length === 0) {
     red(`Pattern: \`${pattern}\` matched 0 docs.`);
     process.exit(1);
   }
 
-  hydrate.all(dpcs, isolate);
+  dpcs.forEach(hydrate.meta);
+  dpcs.forEach(hydrate.revision);
+  dpcs.forEach(hydrate.config);
+  dpcs.forEach(hydrate.customCode);
+  dpcs.forEach(dpc => hydrate.asciidoc(dpc, isolate));
+
+  // lint before hydrate.process so linter catches adoc > html errors
+  if (!skipLint) {
+    dpcs.forEach(dpc => lint(dpc.fullPath, fix));
+  }
+
+  dpcs.forEach(hydrate.process);
 
   const namespace = 'fl-make';
   artifacts.deleteNamespaceDir(namespace);
@@ -61,10 +70,6 @@ export async function makeDpc(
   argv: Arguments<MakeOptions>,
   namespace: string,
 ): Promise<string[]> {
-  if (!argv.skipLint) {
-    lint(dpc.fullPath, argv.fix);
-  }
-
   const files: string[] = [];
   for (const type of argv.target) {
     const manifests = await getTypeManifests(type, dpc, argv);

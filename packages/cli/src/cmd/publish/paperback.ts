@@ -5,7 +5,7 @@ import { log, c, red } from '@friends-library/cli-utils/color';
 import * as artifacts from '@friends-library/doc-artifacts';
 import { PageData, PrintSizeVariant, EditionMeta } from '@friends-library/types';
 import { paperbackInterior as paperbackManifest } from '@friends-library/doc-manifests';
-import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
+import { FsDocPrecursor } from '@friends-library/dpc-fs';
 
 const variants: PrintSizeVariant[] = ['s', 'm', 'xl', 'xl--condensed'];
 

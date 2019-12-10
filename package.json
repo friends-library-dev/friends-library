@@ -6,7 +6,7 @@
     "compile": "node scripts/compile.js",
     "ts:clean": "find . -name \"*.tsbuildinfo\" -type f -delete && rm -rf packages/*/dist",
     "fell": "yarn ts-node --transpile-only --project ./packages/fell/tsconfig.json ./packages/fell/src/app.ts",
-    "fell:clone:netlify": "mkdir -p ./en ./es && yarn compile fell && yarn fell clone",
+    "fell:clone": "mkdir -p ./en ./es && yarn compile fell && yarn fell clone",
     "fl": "yarn ts-node --transpile-only --project ./packages/cli/tsconfig.json ./packages/cli/src/app.ts",
     "test": "yarn jest",
     "lint": "yarn ts:lint",

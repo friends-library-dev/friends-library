@@ -3,8 +3,7 @@ import { CommandBuilder, Arguments } from 'yargs';
 import { deleteNamespaceDir } from '@friends-library/doc-artifacts';
 import fs from 'fs-extra';
 import path from 'path';
-import FsDocPrecursor from '../../fs-precursor/FsDocPrecursor';
-import process from '../../fs-precursor/hydrate/process';
+import { FsDocPrecursor, hydrate } from '@friends-library/dpc-fs';
 import { MakeOptions, makeDpc } from '../make/handler';
 import { builder as makeBuilder } from '../make';
 import send from '../make/send';
@@ -27,7 +26,7 @@ export async function handler(
 ): Promise<void> {
   deleteNamespaceDir('fl-publish-ref');
   const dpc = dpcFromPath(argv.path);
-  process(dpc);
+  hydrate.process(dpc);
   const files = await makeDpc(dpc, { ...argv, skipLint: true }, 'fl-publish-ref');
   !argv.noOpen && files.forEach(file => execSync(`open "${file}"`));
   argv.send && send(files, argv.email);
