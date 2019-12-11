@@ -33,7 +33,8 @@ export interface DocumentData {
     | 'treatise'
     | 'history'
     | 'allegory'
-    | 'devotional')[];
+    | 'devotional'
+  )[];
   original_title?: string;
   published?: number;
   editions: EditionData[];

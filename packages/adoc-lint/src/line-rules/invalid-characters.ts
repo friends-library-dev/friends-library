@@ -28,7 +28,7 @@ const rule: LineRule = (
   const allowed = maps[options.lang];
   const results: LintResult[] = [];
   line.split('').forEach((char, index) => {
-    if (hasEscape && (escapeStart <= index && escapeEnd > index)) {
+    if (hasEscape && escapeStart <= index && escapeEnd > index) {
       return;
     }
     if (!allowed[char]) {

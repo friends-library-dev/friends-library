@@ -14,22 +14,19 @@ const { DOCS_REPOS_ROOT: ROOT } = env.require('DOCS_REPOS_ROOT');
     getAllFriends('en', true)
       .concat(getAllFriends('es', true))
       .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))
-      .reduce(
-        (acc, friend: Friend) => {
-          if (!acc[friend.name]) {
-            acc[friend.name] = {
-              name: friend.name,
-              description: friend.description,
-              documents: [],
-            };
-          }
-          acc[friend.name].documents = acc[friend.name].documents.concat(
-            mapDocuments(friend, meta),
-          );
-          return acc;
-        },
-        {} as { [k: string]: FriendData },
-      ),
+      .reduce((acc, friend: Friend) => {
+        if (!acc[friend.name]) {
+          acc[friend.name] = {
+            name: friend.name,
+            description: friend.description,
+            documents: [],
+          };
+        }
+        acc[friend.name].documents = acc[friend.name].documents.concat(
+          mapDocuments(friend, meta),
+        );
+        return acc;
+      }, {} as { [k: string]: FriendData }),
   );
 
   fs.writeFileSync(

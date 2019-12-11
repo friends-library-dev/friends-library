@@ -43,7 +43,8 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
     if (
       charBefore &&
       charBefore.match(/[a-z0-9]/i) &&
-      (charAfter && charAfter.match(/[a-z,;:.]/i))
+      charAfter &&
+      charAfter.match(/[a-z,;:.]/i)
     ) {
       // continue; // comment out to segregate possessive fixes
       mod[index] = left(type);

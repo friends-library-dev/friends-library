@@ -69,17 +69,14 @@ function wrapEbookBodyHtml(bodyHtml: Html, lang: Lang, bodyClass?: string): Html
 function sectionFiles(dpc: DocPrecursor): Record<string, Html> {
   const { sections, lang } = dpc;
   const replaceFootnoteCalls = makeFootnoteCallReplacer(dpc);
-  return sections.reduce(
-    (files, section) => {
-      files[`OEBPS/${section.id}.xhtml`] = flow([
-        replaceFootnoteCalls,
-        html => replaceHeadings(html, section.heading, dpc),
-        html => wrapEbookBodyHtml(html, lang),
-      ])(section.html);
-      return files;
-    },
-    {} as Record<string, Html>,
-  );
+  return sections.reduce((files, section) => {
+    files[`OEBPS/${section.id}.xhtml`] = flow([
+      replaceFootnoteCalls,
+      html => replaceHeadings(html, section.heading, dpc),
+      html => wrapEbookBodyHtml(html, lang),
+    ])(section.html);
+    return files;
+  }, {} as Record<string, Html>);
 }
 
 function notesFile(dpc: DocPrecursor): Record<string, Html> {
@@ -93,11 +90,8 @@ function notesFile(dpc: DocPrecursor): Record<string, Html> {
 }
 
 function frontmatterFiles(dpc: DocPrecursor): Record<string, Html> {
-  return Object.entries(frontmatter(dpc)).reduce(
-    (files, [slug, html]) => {
-      files[`OEBPS/${slug}.xhtml`] = wrapEbookBodyHtml(String(html), dpc.lang);
-      return files;
-    },
-    {} as Record<string, Html>,
-  );
+  return Object.entries(frontmatter(dpc)).reduce((files, [slug, html]) => {
+    files[`OEBPS/${slug}.xhtml`] = wrapEbookBodyHtml(String(html), dpc.lang);
+    return files;
+  }, {} as Record<string, Html>);
 }

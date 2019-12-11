@@ -52,13 +52,10 @@ export function packageDocument(dpc: DocPrecursor, conf: EbookConfig): Xml {
 
 function attrs(data: Record<string, any>): string {
   return Object.entries(data)
-    .reduce(
-      (acc, [key, val]) => {
-        acc.push(`${key}="${String(val)}"`);
-        return acc;
-      },
-      [] as string[],
-    )
+    .reduce((acc, [key, val]) => {
+      acc.push(`${key}="${String(val)}"`);
+      return acc;
+    }, [] as string[])
     .join(' ');
 }
 

@@ -18,13 +18,10 @@ export function getLintAnnotations(
   files: ModifiedAsciidocFile[],
   lang: Lang,
 ): GithubCheckAnnotation[] {
-  return files.reduce(
-    (annotations, { path, adoc }) => {
-      const lintResults = lint(adoc, { lang });
-      return [...annotations, ...lintResults.map(result => toAnnotation(result, path))];
-    },
-    <GithubCheckAnnotation[]>[],
-  );
+  return files.reduce((annotations, { path, adoc }) => {
+    const lintResults = lint(adoc, { lang });
+    return [...annotations, ...lintResults.map(result => toAnnotation(result, path))];
+  }, <GithubCheckAnnotation[]>[]);
 }
 
 function toAnnotation(result: LintResult, path: string): GithubCheckAnnotation {

@@ -9,51 +9,45 @@ interface Delimiter {
 
 const rule: BlockRule = (block: Asciidoc): LintResult[] => {
   const lines = block.split('\n');
-  const delimiters = lines.reduce(
-    (delims, line, index) => {
-      if (line !== '--') {
-        return delims;
-      }
-      const isStart = lines[index - 1].indexOf('[.') === 0;
-      delims.push({
-        line: index + 1,
-        type: isStart ? 'start' : 'end',
-        flagged: false,
-      });
+  const delimiters = lines.reduce((delims, line, index) => {
+    if (line !== '--') {
       return delims;
-    },
-    [] as Delimiter[],
-  );
+    }
+    const isStart = lines[index - 1].indexOf('[.') === 0;
+    delims.push({
+      line: index + 1,
+      type: isStart ? 'start' : 'end',
+      flagged: false,
+    });
+    return delims;
+  }, [] as Delimiter[]);
 
   let opened = false;
-  const lints = delimiters.reduce(
-    (acc, current, index) => {
-      const prev = delimiters[index - 1];
-      if (current.type === 'start') {
-        if (opened && prev) {
-          current.flagged = true;
-          acc.push(unterminated(prev.line));
-        } else if (lines[current.line] && lines[current.line] !== '') {
-          acc.push(missingSurroundingSpace(current.line + 1));
-        }
+  const lints = delimiters.reduce((acc, current, index) => {
+    const prev = delimiters[index - 1];
+    if (current.type === 'start') {
+      if (opened && prev) {
+        current.flagged = true;
+        acc.push(unterminated(prev.line));
+      } else if (lines[current.line] && lines[current.line] !== '') {
+        acc.push(missingSurroundingSpace(current.line + 1));
       }
+    }
 
-      if (current.type === 'end') {
-        if (!opened && (!prev || !prev.flagged)) {
-          current.flagged = true;
-          acc.push(unlabeled(current.line));
-        } else if (lines[current.line - 2] !== '') {
-          acc.push(missingSurroundingSpace(current.line));
-        } else if (lines[current.line] && lines[current.line] !== '') {
-          acc.push(missingSurroundingSpace(current.line + 1));
-        }
+    if (current.type === 'end') {
+      if (!opened && (!prev || !prev.flagged)) {
+        current.flagged = true;
+        acc.push(unlabeled(current.line));
+      } else if (lines[current.line - 2] !== '') {
+        acc.push(missingSurroundingSpace(current.line));
+      } else if (lines[current.line] && lines[current.line] !== '') {
+        acc.push(missingSurroundingSpace(current.line + 1));
       }
+    }
 
-      opened = current.type === 'start';
-      return acc;
-    },
-    [] as LintResult[],
-  );
+    opened = current.type === 'start';
+    return acc;
+  }, [] as LintResult[]);
 
   if (opened && delimiters.length > 0) {
     // @ts-ignore https://github.com/Microsoft/TypeScript/issues/30406

@@ -89,7 +89,4 @@ const mapDispatch = {
   edit: actions.editSearchResult,
 };
 
-export default connect(
-  null,
-  mapDispatch,
-)(Component);
+export default connect(null, mapDispatch)(Component);

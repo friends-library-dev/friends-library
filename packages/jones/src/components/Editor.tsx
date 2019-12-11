@@ -183,7 +183,4 @@ const mapDispatch = {
 };
 
 const SizedEditor = withSize({ monitorHeight: true })(Editor);
-export default connect(
-  mapState,
-  mapDispatch,
-)(SizedEditor);
+export default connect(mapState, mapDispatch)(SizedEditor);

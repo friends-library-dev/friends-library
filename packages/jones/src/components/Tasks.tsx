@@ -41,7 +41,4 @@ const mapDispatch = {
   createTask: actions.createTask,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Welcome);
+export default connect(mapState, mapDispatch)(Welcome);

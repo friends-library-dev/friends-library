@@ -100,7 +100,4 @@ const mapDispatch = {
   hardReset: actions.hardReset,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(App);
+export default connect(mapState, mapDispatch)(App);

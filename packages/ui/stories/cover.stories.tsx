@@ -250,12 +250,10 @@ const Style: React.FC<{
   );
 };
 
-const Wrapped: React.FC<
-  Partial<CoverProps> & {
-    type: 'back' | 'spine';
-    style?: Record<string, string | number>;
-  }
-> = wProps => {
+const Wrapped: React.FC<Partial<CoverProps> & {
+  type: 'back' | 'spine';
+  style?: Record<string, string | number>;
+}> = wProps => {
   const useProps = p(wProps);
   return (
     <div

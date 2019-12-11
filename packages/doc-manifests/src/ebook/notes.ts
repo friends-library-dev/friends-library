@@ -1,7 +1,12 @@
 import { Html, Lang, DocPrecursor, DocSection, Notes } from '@friends-library/types';
 import { br7 } from '@friends-library/doc-html';
 
-const symbolMap = new Map([[1, '§'], [2, '*'], [3, '†'], [4, '‡']]);
+const symbolMap = new Map([
+  [1, '§'],
+  [2, '*'],
+  [3, '†'],
+  [4, '‡'],
+]);
 
 function makeGetRef({ notes }: DocPrecursor): (num: number) => number | string {
   return (num: number) => (useSymbols(notes) ? symbolMap.get(num) || '' : num);
