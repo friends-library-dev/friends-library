@@ -18,7 +18,10 @@
   "include": ["./src"],
   "references": [
     { "path": "../types" },
+    { "path": "../cli-utils" },
     { "path": "../cover-component" },
+    { "path": "../dpc-fs" },
+    { "path": "../document-meta" },
     { "path": "../friends" },
     { "path": "../functions" }
   ]
