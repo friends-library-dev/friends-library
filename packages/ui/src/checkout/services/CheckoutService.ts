@@ -27,11 +27,13 @@ export default class CheckoutService {
   public async calculateFees(): Promise<null | string> {
     const payload = {
       address: this.cart.address,
-      items: this.cart.items.map(item => ({
-        pages: item.numPages,
-        printSize: item.printSize,
-        quantity: item.quantity,
-      })),
+      items: this.cart.items.flatMap(item =>
+        item.numPages.map(pages => ({
+          pages,
+          printSize: item.printSize,
+          quantity: item.quantity,
+        })),
+      ),
     };
 
     const { ok, data } = await this.api.calculateFees(payload);
@@ -85,14 +87,16 @@ export default class CheckoutService {
       shippingLevel: this.shippingLevel,
       email: this.cart.email,
       address: this.cart.address,
-      items: this.cart.items.map(i => ({
-        title: i.printJobTitle(),
-        coverUrl: i.coverPdfUrl,
-        interiorUrl: i.interiorPdfUrl,
-        printSize: i.printSize,
-        pages: i.numPages,
-        quantity: i.quantity,
-      })),
+      items: this.cart.items.flatMap(i =>
+        i.numPages.map((pages, idx) => ({
+          title: i.printJobTitle(idx),
+          coverUrl: i.coverPdfUrl[idx],
+          interiorUrl: i.interiorPdfUrl[idx],
+          printSize: i.printSize,
+          pages,
+          quantity: i.quantity,
+        })),
+      ),
     };
 
     const { ok, data } = await this.api.createPrintJob(payload);

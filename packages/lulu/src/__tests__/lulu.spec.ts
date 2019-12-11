@@ -1,4 +1,4 @@
-import { choosePrintSize } from '../';
+import { price, choosePrintSize } from '../';
 import { PageData, PrintSize } from '@friends-library/types';
 
 describe('choosePrintSize()', () => {
@@ -64,6 +64,23 @@ describe('choosePrintSize()', () => {
     (split, result) => {
       const single = { s: 5, m: 5, xl: 5, 'xl--condensed': 5 };
       expect(choosePrintSize(single, split)).toMatchObject(result);
+    },
+  );
+});
+
+describe('price()', () => {
+  const priceCases: [number, PrintSize, number[]][] = [
+    [214, 's', [10]],
+    [265, 's', [100]],
+    [265, 'm', [100]],
+    [405, 'm', [200]],
+    [685, 'xl', [400]],
+  ];
+
+  test.each(priceCases)(
+    '.price() is %d for size: %s, pages: %d',
+    (expectedPrice, printSize, numPages) => {
+      expect(price(printSize, numPages)).toBe(expectedPrice);
     },
   );
 });
