@@ -2,27 +2,27 @@ import { price } from '@friends-library/lulu';
 import { EditionType, PrintSize } from '@friends-library/types';
 
 export interface CartItemData {
-  title: string;
-  interiorPdfUrl: string;
-  coverPdfUrl: string;
+  title: string[];
+  interiorPdfUrl: string[];
+  coverPdfUrl: string[];
   documentId: string;
   edition: EditionType;
   quantity: number;
   printSize: PrintSize;
-  numPages: number;
+  numPages: number[];
   author: string;
 }
 
 export default class CartItem {
-  public title: string;
+  public title: string[];
   public documentId: string;
   public edition: EditionType;
   public quantity: number;
   public printSize: PrintSize;
-  public numPages: number;
+  public numPages: number[];
   public author: string;
-  public interiorPdfUrl: string;
-  public coverPdfUrl: string;
+  public interiorPdfUrl: string[];
+  public coverPdfUrl: string[];
 
   public constructor(config: CartItemData) {
     this.title = config.title;
@@ -36,8 +36,8 @@ export default class CartItem {
     this.coverPdfUrl = config.coverPdfUrl;
   }
 
-  public printJobTitle(): string {
-    let title = this.title;
+  public printJobTitle(index: number): string {
+    let title = this.title[index];
     if (this.edition !== 'updated') {
       title += ` (${this.edition})`;
     }
@@ -45,7 +45,7 @@ export default class CartItem {
   }
 
   public price(): number {
-    return price(this.printSize, [this.numPages]);
+    return price(this.printSize, this.numPages);
   }
 
   public toJSON(): CartItemData {

@@ -3,39 +3,39 @@ import { Address } from '../../types';
 import Cart from '../Cart';
 
 export const cartItemData1: () => CartItemData = () => ({
-  title: 'Journal of George Fox',
+  title: ['Journal of George Fox'],
   author: 'George Fox',
   documentId: 'e5a1ecfb-4f0a-4c71-80bf-3ee924d0f46c',
   edition: 'original',
   printSize: 'xl',
   quantity: 1,
-  numPages: 516,
-  interiorPdfUrl: '/GF.pdf',
-  coverPdfUrl: '/GF--cover.pdf',
+  numPages: [516],
+  interiorPdfUrl: ['/GF.pdf'],
+  coverPdfUrl: ['/GF--cover.pdf'],
 });
 
 export const cartItemData2: () => CartItemData = () => ({
-  title: 'Walk in the Spirit',
+  title: ['Journal of T. Shillitoe, vol 1', 'Journal of T. Shillitoe, vol 2'],
   documentId: '9333dd0a-d92b-401e-a086-f611cc20f984',
-  author: 'Hugh Turford',
+  author: 'Thomas Shillitoe',
   edition: 'updated',
-  printSize: 's',
+  printSize: 'xl',
   quantity: 3,
-  numPages: 113,
-  interiorPdfUrl: '/HT.pdf',
-  coverPdfUrl: '/HT--cover.pdf',
+  numPages: [543, 599],
+  interiorPdfUrl: ['/TS-1.pdf', '/TS-2.pdf'],
+  coverPdfUrl: ['/TS-1--cover.pdf', '/TS-2--cover.pdf'],
 });
 
 export const cartItemData3: () => CartItemData = () => ({
-  title: 'The Journal and Writings of Ambrose Rigge',
+  title: ['The Journal and Writings of Ambrose Rigge'],
   documentId: 'f6b0e134d-8d2e-48bc-8fa3-e8fc79793804',
   author: 'Ambrose Rigge',
   edition: 'modernized',
   printSize: 'm',
   quantity: 1,
-  numPages: 227,
-  interiorPdfUrl: '/AR.pdf',
-  coverPdfUrl: '/AR--cover.pdf',
+  numPages: [227],
+  interiorPdfUrl: ['/AR.pdf'],
+  coverPdfUrl: ['/AR--cover.pdf'],
 });
 
 export const cartItemsData: () => [CartItemData, CartItemData] = () => [

@@ -32,11 +32,13 @@ describe('CheckoutService()', () => {
 
       expect(calculateFees).toHaveBeenCalledWith({
         address: service.cart.address,
-        items: service.cart.items.map(i => ({
-          pages: i.numPages,
-          printSize: i.printSize,
-          quantity: i.quantity,
-        })),
+        items: service.cart.items.flatMap(i =>
+          i.numPages.map(pages => ({
+            pages,
+            printSize: i.printSize,
+            quantity: i.quantity,
+          })),
+        ),
       });
     });
 
@@ -141,14 +143,16 @@ describe('CheckoutService()', () => {
         shippingLevel: 'PRIORITY_MAIL',
         email: service.cart.email,
         address: service.cart.address,
-        items: service.cart.items.map(i => ({
-          title: i.printJobTitle(),
-          coverUrl: i.coverPdfUrl,
-          interiorUrl: i.interiorPdfUrl,
-          printSize: i.printSize,
-          pages: i.numPages,
-          quantity: i.quantity,
-        })),
+        items: service.cart.items.flatMap(i =>
+          i.numPages.map((pages, idx) => ({
+            title: i.printJobTitle(idx),
+            coverUrl: i.coverPdfUrl[idx],
+            interiorUrl: i.interiorPdfUrl[idx],
+            printSize: i.printSize,
+            pages,
+            quantity: i.quantity,
+          })),
+        ),
       });
 
       expect(service.printJobId).toBe(6);
