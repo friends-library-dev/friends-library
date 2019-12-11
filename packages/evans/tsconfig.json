@@ -18,6 +18,7 @@
   "include": ["./src"],
   "references": [
     { "path": "../types" },
+    { "path": "../env" },
     { "path": "../cli-utils" },
     { "path": "../cover-component" },
     { "path": "../dpc-fs" },

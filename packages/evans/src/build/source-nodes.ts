@@ -1,5 +1,7 @@
+import '@friends-library/env/load';
 import fs from 'fs';
 import { GatsbyNode, SourceNodesArgs } from 'gatsby';
+import env from '@friends-library/env';
 import { price } from '@friends-library/lulu';
 import { fetch } from '@friends-library/document-meta';
 import { query, hydrate } from '@friends-library/dpc-fs';
@@ -9,6 +11,7 @@ import * as url from '../lib/url';
 import { getPartials } from '../lib/partials';
 import { PrintSize, Heading, DocPrecursor } from '@friends-library/types';
 import { NODE_ENV, APP_ALT_URL, LANG } from '../env';
+import { Edition } from '@friends-library/friends';
 
 const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions: { createNode },
@@ -93,6 +96,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 
         return {
           ...edition.toJSON(),
+          ...cartItemData(edition, pages),
           friendSlug: friend.slug,
           documentSlug: document.slug,
           printSize,
@@ -127,6 +131,24 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 };
 
 export default sourceNodes;
+
+function cartItemData(edition: Edition, pages: number[]): Record<string, string[]> {
+  const isMulti = pages.length > 1;
+  const vols = pages.map((_, idx) => idx + 1);
+  const cloudUrl = env.require('CLOUD_STORAGE_BUCKET_URL').CLOUD_STORAGE_BUCKET_URL;
+  const url = `${cloudUrl}/${edition.path}`;
+  return {
+    cartItemTitles: vols.map(
+      v => `${edition.document.title}${isMulti ? `, vol. ${v}` : ''}`,
+    ),
+    cartItemInteriorPdfUrls: vols.map(
+      v => `${url}/${edition.filename('paperback-interior', isMulti ? v : undefined)}`,
+    ),
+    cartItemCoverPdfUrls: vols.map(
+      v => `${url}/${edition.filename('paperback-cover', isMulti ? v : undefined)}`,
+    ),
+  };
+}
 
 function getDpcCache(): Map<string, EditionCache> {
   const cache: Map<string, EditionCache> = new Map();

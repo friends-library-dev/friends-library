@@ -14,6 +14,7 @@
     "@friends-library/cover-component": "1.0.0",
     "@friends-library/document-meta": "1.0.0",
     "@friends-library/dpc-fs": "1.0.0",
+    "@friends-library/env": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/types": "1.0.0",
     "@friends-library/ui": "1.0.0",
