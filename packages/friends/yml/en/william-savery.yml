@@ -39,23 +39,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-156-4
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
       - type: original
         isbn: 978-1-64476-157-1
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7

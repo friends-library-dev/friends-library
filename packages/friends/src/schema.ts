@@ -40,25 +40,6 @@ const subSchemas: Record<string, Schema> = {
     pattern: /^[a-z]+(-[a-z0-9-]+)?$/,
   },
 
-  chapter: {
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
-    oneOf: [
-      {
-        type: 'object',
-        properties: {
-          number: { type: 'integer', required: true },
-          subtitle: { type: 'string' },
-        },
-      },
-      {
-        type: 'object',
-        properties: {
-          title: { type: 'string', required: true },
-        },
-      },
-    ],
-  },
-
   title: {
     type: 'string',
     minLength: 5,
@@ -116,15 +97,6 @@ const subSchemas: Record<string, Schema> = {
         type: 'string',
         pattern: /^978-1-64476-\d{3}-\d$/,
         required: true,
-      },
-      chapters: {
-        type: 'array',
-        required: true,
-        minItems: 1,
-        uniqueItems: true,
-        items: {
-          $ref: '/chapter',
-        },
       },
       audio: { $ref: '/audio', required: false },
     },

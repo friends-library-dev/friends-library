@@ -29,17 +29,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-022-2
-        chapters:
-          - title: Preface
-          - title: John Bell's Testimony
-          - title: Journal
-          - title: Correspondence with Joseph Pike
-          - title: A Supplement, by Her Husband
       - type: modernized
         isbn: 978-1-64476-023-9
-        chapters:
-          - title: Preface
-          - title: John Bell's Testimony
-          - title: Journal
-          - title: Correspondence with Joseph Pike
-          - title: A Supplement, by Her Husband

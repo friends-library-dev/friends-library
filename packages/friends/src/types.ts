@@ -46,21 +46,8 @@ export interface EditionData {
   splits?: number[];
   isbn: ISBN;
   description?: string;
-  chapters: ChapterData[];
   audio?: AudioData;
 }
-
-export type ChapterData =
-  | {
-      number: number;
-      subtitle?: string;
-      title: undefined;
-    }
-  | {
-      title: string;
-      number: undefined;
-      subtitle: undefined;
-    };
 
 export interface AudioData {
   reader: Name;

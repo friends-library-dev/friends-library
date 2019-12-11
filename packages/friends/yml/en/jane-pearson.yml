@@ -30,29 +30,8 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-052-9
-        chapters:
-          - title: Introduction
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - title: Testimony Concerning Jane Pearson
       - type: modernized
         isbn: 978-1-64476-053-6
-        chapters:
-          - title: Introduction
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - title: Testimony Concerning Jane Pearsom
       - type: updated
         isbn: 978-1-64476-054-3
         editor: Jason R. Henderson
-        chapters:
-          - title: Introduction
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - title: Testimony Concerning Jane Pearson

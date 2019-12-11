@@ -53,9 +53,6 @@ documents:
               seconds: 3076
               chapters:
                 - 1
-
-        chapters:
-          - title: Waiting Upon the Lord
   - id: a0aa67e3-e96e-44ea-a90c-db739d54eba6
     alt_language_id: 9a0ac9a9-9111-4ff8-b416-4b26adc64a87
     title: Saved to the Uttermost
@@ -125,21 +122,6 @@ documents:
               seconds: 2347
               chapters:
                 - 5
-
-        chapters:
-          - title: Forward
-          - number: 1
-            subtitle: The Condition of Man in the Fall
-          - number: 2
-            subtitle: A Universal Offer of Redemption
-          - number: 3
-            subtitle: The Seed, Light, and Grace of God
-          - number: 4
-            subtitle: The Proof of Our Position
-          - number: 5
-            subtitle: Concerning Justification
-          - number: 6
-            subtitle: Concerning Perfection
   - id: a8da908c-c9b4-4583-a2a3-ee460a90a4b9
     title: Apology for the True Christian Divinity
     slug: apology
@@ -155,50 +137,11 @@ documents:
       Barclay's Apology for the True Christian Divinity was first published in 1675, and
       came to be considered the definitive exposition and defense of Quaker principles for
       the next 200 years.
-
     tags:
       - doctrinal
     editions:
       - type: modernized
         isbn: 978-1-64476-116-8
-        chapters:
-          - title: 'Preface: Unto the Friendly Reader'
-          - title: Theses Theologicae
-          - title: The Fifteen Propositions Summarized
-          - title: The First Proposition
-            subtitle: Concerning the True Foundation of Knowledge
-          - title: The Second Proposition
-            subtitle: Concerning Immediate Revelation
-          - title: The Third Proposition
-            subtitle: Concerning the Scriptures
-          - title: The Fourth Proposition
-            subtitle: Concerning the Condition of Man in the Fall
-          - title: The Fifth and Sixth Propositions
-            subtitle:
-              Concerning the Universal Redemption by Christ, and also the Saving and
-              Spiritual Light wherewith every man is enlightened
-          - title: The Seventh Proposition
-            subtitle: Concerning Justification
-          - title: The Eighth Proposition
-            subtitle: Concerning Perfection
-          - title: The Ninth Proposition
-            subtitle: Concerning Perseverance, and the Possibility of Falling from Grace
-          - title: The Tenth Proposition
-            subtitle: Concerning the Ministry
-          - title: The Eleventh Proposition
-            subtitle: Concerning Worship
-          - title: The Twelfth Proposition
-            subtitle: Concerning Baptism
-          - title: The Thirteenth Proposition
-            subtitle:
-              Concerning the Communion, or participation of the Body and Blood of Christ
-          - title: The Fourteenth Proposition
-            subtitle:
-              Concerning the Power of the Civil Magistrate in Matters purely Religious and
-              pertaining to the Conscience
-          - title: The Fifteenth Proposition
-            subtitle: Concerning Salutations and Recreations, etc.
-          - title: The Conclusion
   - id: fea5c7ff-bd6f-4c46-b928-c3b4fb1a04e6
     alt_language_id: 1314f777-2b9e-40b4-b148-18e64278557a
     title: Considerations upon Recreation and Entertainment
@@ -224,6 +167,3 @@ documents:
               seconds: 552
               chapters:
                 - 0
-
-        chapters:
-          - title: Considerations upon Recreation and Entertainment

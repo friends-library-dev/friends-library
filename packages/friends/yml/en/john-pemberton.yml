@@ -38,21 +38,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-075-8
-        chapters:
-          - title: To The Reader
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - title: Testimony of Philadelphia Monthly Meeting
-          - title: Testimony of Pyrmont Friends
       - type: original
         isbn: 978-1-64476-076-5
-        chapters:
-          - title: To The Reader
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - title: Testimony of Philadelphia Monthly Meeting
-          - title: Testimony of Pyrmont Friends

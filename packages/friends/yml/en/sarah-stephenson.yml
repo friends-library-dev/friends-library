@@ -17,31 +17,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-182-3
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - title: Testimony of Wiltshire Monthly Meeting
-          - title: Testimony of Philadelphia Monthly Meeting
       - type: original
         isbn: 978-1-64476-183-0
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - title: Testimony of Wiltshire Monthly Meeting
-          - title: Testimony of Philadelphia Monthly Meeting

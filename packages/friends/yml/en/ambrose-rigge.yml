@@ -34,8 +34,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-004-8
-        chapters:
-          - number: 1
-            subtitle: A True Relation of Ambrose Rigge by Way of Journal
-          - number: 2
-            subtitle: A Selection of Writings and Epistles by Ambrose Rigge

@@ -12,7 +12,6 @@ description:
   to follow Christ. James Gough became a wise and well-beloved minister among the Society
   of Friends, but having learned to live low at the feet of His Master, he was always
   remarkable for his deep humility, and low opinion of himself.
-
 documents:
   - id: 9c43d93e-8bfb-43bc-a238-310cf00b77a1
     title: The Journal of James Gough
@@ -37,15 +36,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-049-9
-        chapters:
-          - title: Preface by the Editor
-          - title: Memoir of James Gough
-          - title: Supplement to the Journal
-          - title: Testimony Concerning James Gough
       - type: original
         isbn: 978-1-64476-050-5
-        chapters:
-          - title: Preface by the Editor
-          - title: Memoir of James Gough
-          - title: Supplement to the Journal
-          - title: Testimony Concerning James Gough

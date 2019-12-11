@@ -11,7 +11,6 @@ description:
   about the twenty-third year of her age. Some years later, she and her husband founded a
   girls school in Clonmel, Irland, where she lived and ministered until death in 1790, at
   only 34 years of age.
-
 documents:
   - id: d106a18d-6092-4628-a1ec-822f68127743
     title: The Life and Letters of Sarah Grubb
@@ -31,39 +30,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-127-4
-        chapters:
-          - title: Introduction
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - title:
-              A Testimony from our monthly meeting for the County of Tipperary, concerning
-              Sarah Grubb, deceased.
-          - title:
-              A Testimony of York quarterly meeting concerning Sarah Grubb, late wife of
-              our friend Robert Grubb, of Clonmel, in Ireland.
-          - title:
-              Some Remarks on Christian Discipline, as it Respects the Education of Youth.
       - type: original
         isbn: 978-1-64476-128-1
-        chapters:
-          - title: Introduction
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - title:
-              A Testimony from our monthly meeting for the County of Tipperary, concerning
-              Sarah Grubb, deceased.
-          - title:
-              A Testimony of York quarterly meeting concerning Sarah Grubb, late wife of
-              our friend Robert Grubb, of Clonmel, in Ireland.
-          - title:
-              Some Remarks on Christian Discipline, as it Respects the Education of Youth.

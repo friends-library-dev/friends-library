@@ -38,11 +38,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-069-7
-        chapters:
-          - title: Preface
-          - title: The Life and Letters of John Fothergill
       - type: original
         isbn: 978-1-64476-070-3
-        chapters:
-          - title: Preface
-          - title: The Life and Letters of John Fothergill

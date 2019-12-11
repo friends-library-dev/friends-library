@@ -33,24 +33,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-084-0
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - title: Testimony
-
       - type: modernized
         isbn: 978-1-64476-085-7
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - title: Testimony

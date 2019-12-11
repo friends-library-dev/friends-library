@@ -1,7 +1,6 @@
 import friendFromJS from '../map';
 import Document from '../Document';
 import Edition from '../Edition';
-import Chapter from '../Chapter';
 import Audio from '../Audio';
 import { FriendData } from '../types';
 
@@ -29,10 +28,6 @@ describe('friendFromJS()', () => {
               type: 'updated',
               description: 'edition description',
               isbn: '978-1-64476-000-0',
-              chapters: [
-                { title: 'Chapter 1', number: undefined, subtitle: undefined },
-                { title: 'Chapter 2', number: undefined, subtitle: undefined },
-              ],
               splits: [2],
               audio: {
                 reader: 'Harriet Henderson',
@@ -116,14 +111,6 @@ describe('friendFromJS()', () => {
     const edition = friendFromJS(js).documents[0].editions[0];
 
     expect(edition.isbn).toBe('978-1-64476-000-0');
-  });
-
-  it('maps document edition chapters', () => {
-    const chapters = friendFromJS(js).documents[0].editions[0].chapters;
-
-    expect(chapters[0]).toBeInstanceOf(Chapter);
-    expect(chapters[0].title).toBe('Chapter 1');
-    expect(chapters[1].title).toBe('Chapter 2');
   });
 
   it('maps document edition audio', () => {

@@ -11,7 +11,6 @@ description:
   led to preach the gospel in England, Ireland, Scotland, and the American Colonies, where
   his services were said to have "proceeded from the influence of the Minister of the
   sanctuary and true tabernacle, which God has pitched and not man."
-
 documents:
   - id: 20c95c47-62dd-4181-b6e7-dcd8142626ca
     title: The Journal of Joseph Oxley
@@ -35,32 +34,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-090-1
-        chapters:
-          - title: Joseph Oxley's Address to His Children
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-
       - type: original
         isbn: 978-1-64476-091-8
-        chapters:
-          - title: Joseph Oxley's Address to His Children
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11

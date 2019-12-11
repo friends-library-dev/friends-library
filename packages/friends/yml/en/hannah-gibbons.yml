@@ -28,11 +28,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-033-8
-        chapters:
-          - title: Introduction
-          - title: Journal
       - type: modernized
         isbn: 978-1-64476-034-5
-        chapters:
-          - title: Introduction
-          - title: Journal

@@ -12,7 +12,6 @@ description:
   the minds of adversaries. His godly example in life, great humility, and self-denial
   greatly adorned his ministry, and he was made a watchful shepherd over the flock of
   Christ in England, Ireland, Scotland, and America.
-
 documents:
   - id: 9acb6df3-765e-47bd-b50c-bab6b3cd7239
     title: The Journal and Letters of Thomas Wilson
@@ -34,16 +33,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-146-5
-        chapters:
-          - title: To the Reader
-          - title: A Brief Account of the Life and Travels of Thomas Wilson
-          - title: Epistles Written by Thomas Wilson
-          - title: Testimonies Concerning Thomas Wilson
-
       - type: original
         isbn: 978-1-64476-147-2
-        chapters:
-          - title: To the Reader
-          - title: A Brief Account of the Life and Travels of Thomas Wilson
-          - title: Epistles Written by Thomas Wilson
-          - title: Testimonies Concerning Thomas Wilson

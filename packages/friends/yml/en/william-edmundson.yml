@@ -13,7 +13,6 @@ description:
   But through all he remained faithful, and was preserved in strength of body and mind to
   a good old age, tirelessly serving the church and bearing much fruit to the end of his
   days.
-
 documents:
   - id: b61fceff-a434-43f4-9443-342a9137202e
     title: The Journal of William Edmundson
@@ -36,76 +35,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-151-9
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-          - number: 12
-          - number: 13
-          - number: 14
-          - number: 15
-          - number: 16
-          - number: 17
-          - number: 18
-          - number: 19
-          - number: 20
-          - number: 21
-          - number: 22
-          - number: 23
-          - number: 24
-          - number: 25
-          - number: 26
-          - number: 27
-          - number: 28
-          - number: 29
-          - number: 30
-            subtitle: A Supplement
-          - title: Epistles and Papers of William Edmundson
-          - title: Testimonies Concerning William Edmundson
-
       - type: original
         isbn: 978-1-64476-152-6
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-          - number: 12
-          - number: 13
-          - number: 14
-          - number: 15
-          - number: 16
-          - number: 17
-          - number: 18
-          - number: 19
-          - number: 20
-          - number: 21
-          - number: 22
-          - number: 23
-          - number: 24
-          - number: 25
-          - number: 26
-          - number: 27
-          - number: 28
-          - number: 29
-          - number: 30
-            subtitle: A Supplement
-          - title: Epistles and Papers of William Edmundson
-          - title: Testimonies Concerning William Edmundson

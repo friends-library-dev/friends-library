@@ -32,15 +32,3 @@ documents:
       - type: updated
         isbn: 978-1-64476-071-0
         editor: Jason R. Henderson
-        chapters:
-          - title: Forward by Editor
-          - number: 1
-            subtitle: Seeking Truth
-          - number: 2
-            subtitle: Finding Truth
-          - number: 3
-            subtitle: Ministry Years
-          - number: 4
-            subtitle: Prison Years
-          - number: 5
-            subtitle: Return to Ministry

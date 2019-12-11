@@ -45,9 +45,6 @@ documents:
               seconds: 2425
               chapters:
                 - 0
-        chapters:
-          - title: The Life of Elizabeth Stirredge
-
   - id: e27bc78c-ab04-4020-8c9f-9f1eed4f98e2
     title: The Life of Elizabeth Stirredge
     slug: life
@@ -65,7 +62,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-025-3
-        chapters:
-          - title: Preface
-          - title: The Life of Elizabeth Stirredge
-          - title: Testimonies Concerning Elizabeth Stirredge

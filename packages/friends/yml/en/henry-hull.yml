@@ -13,7 +13,6 @@ description:
   the loss of his wife, son, and mother to a malignant fever, he was nevertheless enabled
   to say, “Though He slay me, yet I will trust in Him. It is the Lord, let Him do what
   seems good to Him.”
-
 documents:
   - id: c9d8a647-792f-47c2-a0c5-4ba8773d5cc6
     title: Journal of Henry Hull
@@ -35,20 +34,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-035-2
-        chapters:
-          - title: Introduction
-          - title: Memoirs of the Life and Religious Labors of Henry Hull
-          - title: Testimony of Standford Monthly Meeting Concerning Sarah Hull
-          - title: An Address to the Youth of the Society of Friends
-          - title: A Memorial Concerning Tiddeman Hull
-          - title: Testimony of the Stanford Monthly Meeting Concerning Henry Hull
-
       - type: original
         isbn: 978-1-64476-036-9
-        chapters:
-          - title: Introduction
-          - title: Memoirs of the Life and Religious Labors of Henry Hull
-          - title: Testimony of Standford Monthly Meeting Concerning Sarah Hull
-          - title: An Address to the Youth of the Society of Friends
-          - title: A Memorial Concerning Tiddeman Hull
-          - title: Testimony of the Stanford Monthly Meeting Concerning Henry Hull

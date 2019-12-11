@@ -39,15 +39,6 @@ documents:
       - type: updated
         isbn: 978-1-64476-001-7
         editor: Jared Henderson
-        chapters:
-          - title: Introduction
-          - number: 1
-            subtitle: On Conversion and Regeneration
-          - number: 2
-            subtitle: The Worship Ordained of God
-          - number: 3
-            subtitle: Baptism, Worship, and Partaking of the Flesh and Blood
-          - title: Concluding Observations
         audio:
           reader: Jared Henderson
           parts:
@@ -79,29 +70,5 @@ documents:
                 - 4
       - type: modernized
         isbn: 978-1-64476-125-0
-        chapters:
-          - title: Introduction
-          - number: 1
-            subtitle: On Conversion, and Regeneration
-          - number: 2
-            subtitle:
-              The Worship Which, Under the Christian Dispensation, is Ordained of God
-          - number: 3
-            subtitle:
-              On Baptism.--Continuation of the Subject of Divine Worship, in Connection
-              with Observations on the Partaking of the Flesh and Blood of Christ
-          - title: Concluding Observations
       - type: original
         isbn: 978-1-64476-126-7
-        chapters:
-          - title: Introduction
-          - number: 1
-            subtitle: On Conversion, and Regeneration
-          - number: 2
-            subtitle:
-              The Worship Which, Under the Christian Dispensation, is Ordained of God
-          - number: 3
-            subtitle:
-              On Baptism.--Continuation of the Subject of Divine Worship, in Connection
-              with Observations on the Partaking of the Flesh and Blood of Christ
-          - title: Concluding Observations

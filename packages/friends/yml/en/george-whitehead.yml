@@ -39,10 +39,6 @@ documents:
               seconds: 4848
               chapters:
                 - 0
-
-        chapters:
-          - title: Selection from the Journal of George Whitehead
-
   - id: eca687be-9a29-49d3-8394-2ed21b85f9a3
     title: The Christian Progress of George Whitehead
     published: 1725
@@ -66,6 +62,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-032-1
-        chapters:
-          - title: A Brief Testimony of George Whitehead
-          - title: The Christian Progress of George Whitehead

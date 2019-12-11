@@ -43,9 +43,6 @@ documents:
               seconds: 3609
               chapters:
                 - 0
-        chapters:
-          - title: The Journal of John Banks
-
   - id: 6237d678-48f8-44df-9eac-004562987a60
     title: The Journal and Epistles of John Banks
     slug: journal
@@ -70,15 +67,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-057-4
-        chapters:
-          - title: The Journal of John Banks
-          - title: A Supplement to His Journal
-          - title: Epistles and Papers
-          - title: Testimonies Concerning John Banks
       - type: original
         isbn: 978-1-64476-058-1
-        chapters:
-          - title: The Journal of John Banks
-          - title: A Supplement to His Journal
-          - title: Epistles and Papers
-          - title: Testimonies Concerning John Banks

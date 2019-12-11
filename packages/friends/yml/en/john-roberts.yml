@@ -30,13 +30,7 @@ documents:
       - type: updated
         isbn: 978-1-64476-079-6
         editor: Jason R. Henderson
-        chapters:
-          - title: Memoirs of the Life of John Roberts
       - type: original
         isbn: 978-1-64476-080-2
-        chapters:
-          - title: Memoirs of the Life of John Roberts
       - type: modernized
         isbn: 978-1-64476-081-9
-        chapters:
-          - title: Memoirs of the Life of John Roberts

@@ -43,7 +43,6 @@ documents:
               seconds: 2464
               chapters:
                 - 0
-
             - title: Part 2
               external_id_hq: 428647167
               external_id_lq: 428647311
@@ -52,7 +51,6 @@ documents:
               seconds: 2844
               chapters:
                 - 1
-
             - title: Part 3
               external_id_hq: 431753844
               external_id_lq: 431753880
@@ -61,7 +59,6 @@ documents:
               seconds: 2410
               chapters:
                 - 2
-
             - title: Part 4
               external_id_hq: 432764763
               external_id_lq: 432764784
@@ -70,7 +67,6 @@ documents:
               seconds: 2442
               chapters:
                 - 3
-
             - title: Part 5
               external_id_hq: 435148314
               external_id_lq: 435148326
@@ -87,7 +83,6 @@ documents:
               seconds: 2403
               chapters:
                 - 5
-
             - title: Part 7
               external_id_hq: 437877921
               external_id_lq: 437877951
@@ -96,7 +91,6 @@ documents:
               seconds: 2180
               chapters:
                 - 6
-
             - title: Part 8
               external_id_hq: 438988485
               external_id_lq: 438988506
@@ -105,11 +99,3 @@ documents:
               seconds: 2020
               chapters:
                 - 7
-
-        chapters:
-          - title: Meditations and Experiences
-          - title: A Treatise Concerning Thoughts and Imaginations
-          - title: Concerning Christian Worship—In What it Stands, and How it is Performed
-          - title: A Few Words Added to the Sensible Reader
-          - title: Concerning the Life, State, and Enjoyment of a True Christian
-          - title: Counsel to the Christian Traveler

@@ -1,15 +1,13 @@
 import { ISBN, EditionType, ArtifactType } from '@friends-library/types';
 import Document from './Document';
-import Chapter from './Chapter';
 import { EditionData } from './types';
 import { Audio } from '.';
 
 export default class Edition {
   private _document?: Document;
-  public chapters: Chapter[] = [];
   public audio?: Audio;
 
-  public constructor(private data: Omit<EditionData, 'chapters' | 'audio'>) {}
+  public constructor(private data: Omit<EditionData, 'audio'>) {}
 
   public set document(document: Document) {
     this._document = document;
@@ -67,7 +65,7 @@ export default class Edition {
     );
   }
 
-  public toJSON(): Omit<Edition, 'filename' | 'document' | 'chapters' | 'toJSON'> & {
+  public toJSON(): Omit<Edition, 'filename' | 'document' | 'toJSON'> & {
     filename: { [k in ArtifactType]: string };
   } {
     return {

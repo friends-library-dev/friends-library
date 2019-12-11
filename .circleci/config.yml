@@ -13,8 +13,6 @@ jobs:
       - run: DOCS_REPOS_ROOT=~/fl-node1 yarn evans:build:es
       - run: yarn evans:ts:check
       - run: yarn cover:ts:check
-      - run: yarn styleguide:build
-      - run: yarn jones:build
 
   node2:
     docker:
@@ -26,6 +24,8 @@ jobs:
       - run: yarn test -w=2
       - run: yarn ts:lint
       - run: DOCS_REPOS_ROOT="" yarn cover:build
+      - run: yarn styleguide:build
+      - run: yarn jones:build
 
   deploy_bot:
     docker:
