@@ -1,6 +1,5 @@
-/** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
+import cx from 'classnames';
 
 interface Props {
   type?: 'submit' | 'reset' | 'button';
@@ -12,17 +11,7 @@ const UnstyledButton: React.FC<Props> = ({ children, onClick, className, type })
   <button
     type={type || 'submit'}
     {...(onClick ? { onClick } : {})}
-    className={className || ''}
-    css={css`
-      border: 0;
-      overflow: visible;
-      cursor: pointer;
-
-      &::-moz-focus-inner {
-        border: 0;
-        padding: 0;
-      }
-    `}
+    className={cx(className, 'border-none', 'overflow-visible', 'cursor-pointer')}
   >
     {children}
   </button>

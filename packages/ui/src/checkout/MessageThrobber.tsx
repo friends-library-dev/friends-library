@@ -1,25 +1,11 @@
-/** @jsx jsx */
 import React from 'react';
-import { css, jsx } from '@emotion/core';
 import { withTheme } from 'emotion-theming';
 import { Theme } from 'theme';
 
 /* height, width, radius, margin */
 const Component: React.FC<{ msg: string; theme: Theme }> = ({ msg, theme }) => (
-  <div
-    css={css`
-      max-width: 75vw;
-    `}
-  >
-    <svg
-      viewBox="0 0 32 10"
-      css={css`
-        fill: ${theme.primary.hex};
-        display: block;
-        width: 175px;
-        margin: 0 auto;
-      `}
-    >
+  <div>
+    <svg viewBox="0 0 32 10">
       <circle cx="10" cy="4" r="1">
         <Animate begin="0" />
       </circle>
@@ -30,18 +16,7 @@ const Component: React.FC<{ msg: string; theme: Theme }> = ({ msg, theme }) => (
         <Animate begin="0.6" />
       </circle>
     </svg>
-    <p
-      css={css`
-        font-family: Baskerville, serif;
-        font-size: 1.4rem;
-        line-height: 1.4em;
-        text-align: center;
-        color: ${theme.gray.hex};
-        margin: 5px;
-      `}
-    >
-      {msg}
-    </p>
+    <p>{msg}</p>
   </div>
 );
 

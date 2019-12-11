@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React, { useEffect, useState, useRef } from 'react';
-import { jsx, css } from '@emotion/core';
 import Button from '../Button';
 
 interface Props {
@@ -21,17 +19,7 @@ const CollectCreditCard: React.FC<Props> = ({ onPay }) => {
   const validCcv = /\d{3,4}/;
   const isFilledOut = !!(validCc.test(ccNum) && expiration && validCcv.test(ccv));
   return (
-    <div
-      css={css`
-        label {
-          display: inline-block;
-          color: #777;
-          padding: 4px 0;
-          font-size: 13px;
-          text-transform: uppercase;
-        }
-      `}
-    >
+    <div>
       <h1 className="text-2xl mb-5 uppercase">Enter Card Details</h1>
       <form
         onSubmit={e => {
