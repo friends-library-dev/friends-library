@@ -67,12 +67,11 @@ export default class Edition {
     );
   }
 
-  public toJSON(): Omit<Edition, 'filename' | 'document' | 'toJSON'> & {
+  public toJSON(): Omit<Edition, 'filename' | 'document' | 'chapters' | 'toJSON'> & {
     filename: { [k in ArtifactType]: string };
   } {
     return {
       type: this.type,
-      chapters: this.chapters,
       description: this.description,
       editor: this.editor,
       isbn: this.isbn,

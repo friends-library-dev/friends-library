@@ -1,12 +1,34 @@
 type Document implements Node {
   altLanguageUrl: String
+  editions: [Edition!]!
 }
 
-type Edition implements Node {
+type Edition @dontInfer {
   description: String
   audio: Audio
   chapterHeadings: [ChapterHeading!]!
   customCode: CustomCode!
+  type: String!
+  isbn: String!
+  path: String!
+  paperbackCoverBlurb: String!
+  filename: EditionFilename!
+  numChapters: Int!
+  friendSlug: String!
+  documentSlug: String!
+  printSize: String!
+  pages: [Int!]!
+  price: Int!
+  editor: String
+  splits: [Int!]
+}
+
+type EditionFilename {
+  epub: String!
+  mobi: String!
+  web_pdf: String!
+  paperback_cover: String!
+  paperback_interior: String!
 }
 
 type ChapterHeading {

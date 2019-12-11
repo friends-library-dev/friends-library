@@ -144,7 +144,7 @@ export const query = graphql`
       url
     }
     document(slug: { eq: $documentSlug }, friendSlug: { eq: $friendSlug }) {
-      editions: childrenEdition {
+      editions {
         type
         isbn
         description
@@ -181,7 +181,7 @@ export const query = graphql`
         slug
         description
         isCompilation
-        editions: childrenEdition {
+        editions {
           isbn
           type
           ...CoverCode
