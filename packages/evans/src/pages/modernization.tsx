@@ -18,7 +18,6 @@ const Div = styled.div`
     font-weight: 700;
     display: inline;
     margin: 0;
-    width: 50px;
   }
   & dt:after {
     content: ' - ';

@@ -7,7 +7,15 @@ import Button from '../components/Button';
 import Layout from '../components/Layout';
 
 interface Props {
-  data: any;
+  data: {
+    allFriend: {
+      friends: {
+        slug: string;
+        name: string;
+        url: string;
+      }[];
+    };
+  };
 }
 
 export default ({ data }: Props) => (
@@ -32,7 +40,7 @@ export default ({ data }: Props) => (
       <Divider />
 
       <ul>
-        {data.allFriend.edges.map(({ node: friend }: any) => (
+        {data.allFriend.friends.map(friend => (
           <li key={friend.slug}>
             <Link to={friend.url}>{friend.name}</Link>
           </li>
@@ -60,12 +68,10 @@ export default ({ data }: Props) => (
 export const query = graphql`
   query {
     allFriend {
-      edges {
-        node {
-          slug
-          name
-          url
-        }
+      friends: nodes {
+        slug
+        name
+        url
       }
     }
   }

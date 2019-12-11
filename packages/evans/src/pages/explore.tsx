@@ -1,25 +1,12 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import { Slug } from '@friends-library/types';
 import { Layout, Block, PageTitle, Divider, Button } from '../components';
 
 interface Props {
-  data: {
-    allFriend: {
-      edges: {
-        node: {
-          slug: Slug;
-        };
-      }[];
-    };
-  };
+  data: { allFriend: { totalCount: number } };
 }
 
-export default ({
-  data: {
-    allFriend: { edges },
-  },
-}: Props) => (
+export default ({ data: { allFriend } }: Props) => (
   <Layout>
     <Block>
       <PageTitle>Explore Books</PageTitle>
@@ -61,7 +48,7 @@ export default ({
         </li>
       </ul>
 
-      <Button url="/friends" text={`See all ${edges.length} friends »`} />
+      <Button url="/friends" text={`See all ${allFriend.totalCount} friends »`} />
 
       <Divider />
 
@@ -146,11 +133,7 @@ export default ({
 export const query = graphql`
   query {
     allFriend {
-      edges {
-        node {
-          slug
-        }
-      }
+      totalCount
     }
   }
 `;

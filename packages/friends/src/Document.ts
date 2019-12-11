@@ -73,7 +73,7 @@ export default class Document {
     return this.editions.map(edition => edition.type).includes('updated');
   }
 
-  public toJSON(): Omit<Document, 'friend' | 'toJSON'> {
+  public toJSON(): Omit<Document, 'friend' | 'editions' | 'toJSON'> {
     return {
       id: this.id,
       title: this.title,
@@ -83,7 +83,6 @@ export default class Document {
       filenameBase: this.filenameBase,
       published: this.published,
       tags: this.tags,
-      editions: this.editions,
       path: this.path,
       isCompilation: this.isCompilation,
       hasAudio: this.hasAudio,
