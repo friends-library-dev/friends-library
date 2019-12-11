@@ -1,6 +1,4 @@
-/** @jsx jsx */
 import React from 'react';
-import { jsx, css } from '@emotion/core';
 import Item from './Item';
 import Button from '../Button';
 import CartItem, { CartItemData } from '../checkout/models/CartItem';
@@ -52,6 +50,7 @@ const CartComponent: React.FC<Props> = ({
           key={`item-${index}`}
           price={new CartItem(item).price()}
           {...item}
+          title="Temp"
           changeQty={(qty: number) => {
             items[index].quantity = qty;
             setItems([...items]);
@@ -88,23 +87,8 @@ export const SubLine: React.FC<{ label: string; className?: string }> = ({
   children,
   className,
 }) => (
-  <div
-    className={`${className || ''} text-gray-700 text-sm`}
-    css={css`
-      padding: 1px 0;
-      display: flex;
-      &.just-determined {
-        background: palegoldenrod;
-      }
-    `}
-  >
-    <span
-      css={css`
-        flex-grow: 1;
-      `}
-    >
-      {label}
-    </span>
+  <div className={`${className || ''} text-gray-700 text-sm flex`}>
+    <span className="flex-grow">{label}</span>
     {children}
   </div>
 );

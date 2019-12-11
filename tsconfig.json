@@ -12,7 +12,8 @@
     "noImplicitUseStrict": true,
     "alwaysStrict": false,
     "incremental": true,
-    "lib": ["esnext", "dom"]
+    "skipLibCheck": true,
+    "lib": ["esnext", "dom", "es2019"]
   },
   "exclude": ["node_modules", "**/__tests__/*"]
 }
