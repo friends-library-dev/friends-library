@@ -29,11 +29,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-106-9
-        chapters:
-          - title: Prefatory Remarks
-          - title: Memoir of Rebecca Hubbs
       - type: modernized
         isbn: 978-1-64476-107-6
-        chapters:
-          - title: Prefatory Remarks
-          - title: Memoir of Rebecca Hubbs

@@ -28,9 +28,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-169-4
-        chapters:
-          - title: Un Camino Simple
-
   - id: 1a7c0e85-250c-43c9-adbd-0b98972fb9d3
     alt_language_id: 2e80b149-e111-4c8c-ab7a-c5e1ed3861f4
     title: Una Historia Corta de un Largo Viaje desde Babilonia hasta Bet-el
@@ -48,5 +45,3 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-170-0
-        chapters:
-          - title: Una Historia Corta de un Largo Viaje desde Babilonia hasta Bet-el

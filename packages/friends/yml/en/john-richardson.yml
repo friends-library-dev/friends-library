@@ -43,9 +43,6 @@ documents:
               seconds: 3318
               chapters:
                 - 0
-
-        chapters:
-          - title: Journal of John Richardson
   - id: 1e81ab5f-4f72-4570-93a1-e446e1e70267
     title: The Journal of John Richardson
     slug: journal
@@ -69,5 +66,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-078-9
-        chapters:
-          - title: An Account of the Life of John Richardson

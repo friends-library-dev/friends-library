@@ -39,7 +39,6 @@ documents:
               seconds: 1703
               chapters:
                 - 0
-
             - title: Part 2
               external_id_hq: 417772568
               external_id_lq: 417772596
@@ -48,10 +47,3 @@ documents:
               seconds: 2095
               chapters:
                 - 1
-
-        chapters:
-          - title: Memoir of Samuel Crisp
-          - title: Letter 1
-          - title: Letter 2
-          - title: Extracts from A Vindication of the People Called Quakers
-          - title: On Divine Worship, Gospel Ministry, and the True Church

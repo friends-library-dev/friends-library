@@ -44,8 +44,6 @@ documents:
               seconds: 3760
               chapters:
                 - 0
-        chapters:
-          - title: Selection from the Journal of Thomas Story
   - id: 62e5131b-33a2-425e-8d33-e912b2b9f0ca
     title: Journal of Thomas Story
     slug: journal
@@ -65,13 +63,8 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-142-7
-        chapters:
-          - title: The Journal of Thomas Story
-
       - type: original
         isbn: 978-1-64476-143-4
-        chapters:
-          - title: The Journal of Thomas Story
   - id: 91c346f7-2909-4aca-8987-a96cc41683d1
     alt_language_id: 17d5addc-df02-450b-8fc8-f845292af618
     title: Salvation By Christ
@@ -87,8 +80,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-144-1
-        chapters:
-          - title: Salvation By Christ
   - id: dcc2ccc5-0fdb-4dd1-8783-5363bb0b0c27
     title: Letter to a Doubter
     slug: letter-to-a-doubter
@@ -103,5 +94,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-145-8
-        chapters:
-          - title: Letter to a Doubter

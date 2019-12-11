@@ -43,9 +43,6 @@ documents:
               seconds: 3203
               chapters:
                 - 0
-        chapters:
-          - title: The Journal of Stephen Crisp
-
   - id: 2eb862e1-cc3e-4588-a504-98db07a85474
     alt_language_id: bf004555-1175-4cd4-8bcb-d5954e2efa4e
     title: A Plain Pathway
@@ -74,9 +71,6 @@ documents:
               seconds: 2515
               chapters:
                 - 0
-        chapters:
-          - title: A Plain Pathway
-
   - id: 2e80b149-e111-4c8c-ab7a-c5e1ed3861f4
     alt_language_id: 1a7c0e85-250c-43c9-adbd-0b98972fb9d3
     title: A Short History of a Long Travel from Babylon to Bethel
@@ -102,13 +96,8 @@ documents:
               seconds: 2215
               chapters:
                 - 0
-        chapters:
-          - title: A Short History of a Long Travel from Babylon to Bethel
       - type: original
         isbn: 978-1-64476-132-8
-        chapters:
-          - title: A Short History of a Long Travel from Babylon to Bethel
-
   - id: b63ebb27-7aff-4795-ba5b-fd7f2dfe933e
     title: Complete Works of Stephen Crisp
     slug: works
@@ -120,15 +109,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-184-7
-        chapters:
-          - title: Preface
-          - title: Journal
-          - title: Writings
-          - title: Testimony
       - type: original
         isbn: 978-1-64476-185-4
-        chapters:
-          - title: Preface
-          - title: Journal
-          - title: Writings
-          - title: Testimony

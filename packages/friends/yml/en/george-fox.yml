@@ -51,9 +51,6 @@ documents:
               seconds: 3215
               chapters:
                 - 1
-        chapters:
-          - title: Selection from the Journal of George Fox
-
   - id: e5a1ecfb-4f0a-4c71-80bf-3ee924d0f46c
     title: The Journal of George Fox
     slug: journal
@@ -77,45 +74,3 @@ documents:
         isbn: 978-1-64476-029-1
         splits:
           - 17
-        chapters:
-          - title: Note From Friends Library Publishing
-          - title: Introduction to the Seventh Edition
-          - title: Preface by William Penn
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-          - number: 12
-          - number: 13
-          - number: 14
-          - number: 15
-          - number: 16
-          - number: 17
-          - number: 18
-          - number: 19
-          - number: 20
-          - number: 21
-          - number: 22
-          - number: 23
-          - number: 24
-          - number: 25
-          - number: 26
-          - number: 27
-          - number: 28
-          - number: 29
-          - number: 30
-          - number: 31
-          - title: Testimony of Margaret Fox
-          - title: Testimony of Some of the Author's Relations
-          - title: Testimony from London Second-day Meeting
-          - title: Testimony of Thomas Ellwood
-          - title: Epistle of George Fox
-          - title: The Appearance of the Lord's Everlasting Truth
-          - title: Particulars of Varfious Editions

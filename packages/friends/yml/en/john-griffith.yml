@@ -42,9 +42,6 @@ documents:
               seconds: 3227
               chapters:
                 - 0
-
-        chapters:
-          - title: Selection from the Journal of John Griffith
   - id: f93a7eb9-cef7-4b30-81da-7d1a3cd35de2
     title: The Journal of John Griffith
     slug: journal
@@ -67,20 +64,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-073-4
-        chapters:
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - title:
-              A Testimony from the Monthly Meeting of Witham, in Essex, concerning John
-              Griffith, deceased.
   - id: 1b31482a-5cba-4ab3-b562-462b0a2b4fd3
     title: The Ancient Path
     slug: ancient-path
@@ -144,11 +127,3 @@ documents:
               seconds: 2573
               chapters:
                 - 4
-
-        chapters:
-          - title:
-              Section 1 -- Tender Advice, Caution, and Counsel to Parents and Children
-          - title: Section 2 -- The Nature and Necessity of the New Birth
-          - title: Section 3 -- The Nature of True Worship
-          - title: Section 4 -- Remarks Upon the True and the False Ministry
-          - title: Section 5 -- The Nature and Usefulness of Christian Discipline

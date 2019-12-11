@@ -13,7 +13,6 @@ description:
   ever before," and then speaking more of the divine refreshment and comfort he felt
   flowing like a pure stream to his inward man, he said, "I feel that which lives beyond
   death and the grave."
-
 documents:
   - id: 54d7505f-a7af-40fd-a21b-33cb6ad5b0a0
     title: The Journal of John Churchman
@@ -35,26 +34,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-064-2
-        chapters:
-          - title: To the Reader
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-
       - type: original
         isbn: 978-1-64476-065-9
-        chapters:
-          - title: To the Reader
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8

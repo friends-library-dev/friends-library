@@ -2,7 +2,6 @@ import omit from 'lodash/omit';
 import Friend from './Friend';
 import Document from './Document';
 import Edition from './Edition';
-import Chapter from './Chapter';
 import Audio from './Audio';
 import AudioPart from './AudioPart';
 import { FriendData, EditionData } from './types';
@@ -16,12 +15,8 @@ export default function friendFromJS(json: FriendData): Friend {
     docData.editions.sort(sortEditions);
 
     document.editions = docData.editions.map(edData => {
-      const edition = new Edition(omit(edData, ['chapters', 'audio']));
+      const edition = new Edition(omit(edData, 'audio'));
       edition.document = document;
-
-      edition.chapters = edData.chapters.map(chapData => {
-        return new Chapter(chapData);
-      });
 
       if (edData.audio) {
         edition.audio = new Audio(omit(edData.audio, 'parts'));

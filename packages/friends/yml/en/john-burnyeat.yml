@@ -45,9 +45,6 @@ documents:
               seconds: 3515
               chapters:
                 - 0
-        chapters:
-          - title: The Journal of John Burnyeat
-
   - id: 2bb79cd9-88c3-4801-ae66-ac70970c97bc
     title: The Journal and Letters of John Burnyeat
     slug: journal-letters
@@ -73,27 +70,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-062-8
-        chapters:
-          - title: Testimonies
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
       - type: original
         isbn: 978-1-64476-063-5
-        chapters:
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - title: Testimony of Friends in Cumberland
-          - title: The Testimony of Women Friends in Cumberland
-          - title: Testimony of Friends in Ireland
-          - title: Testimony of George Fox
-          - title: Testimony of Morning Meeting of Ministers and Elders

@@ -12,7 +12,6 @@ description:
   Her book "The Lives and Persecutions of the Primitive Quakers" is a very well-written,
   short history of the early Society of Friends, highlighting the most noteworthy figures
   and remarkable events of that time.
-
 documents:
   - id: 92d2a0ab-55d5-4fc1-aaf6-f003b172898d
     title: The Lives and Persecutions of the Primitive Quakers
@@ -36,54 +35,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-100-7
-        chapters:
-          - title: Introductory Chapter
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-          - number: 12
-          - number: 13
-          - number: 14
-          - number: 15
-          - number: 16
-          - number: 17
-          - number: 18
-          - number: 19
-          - number: 20
-          - number: 21
-          - title: Concluding Address to the Society of Friends
-
       - type: original
         isbn: 978-1-64476-101-4
-        chapters:
-          - title: Introductory Chapter
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-          - number: 12
-          - number: 13
-          - number: 14
-          - number: 15
-          - number: 16
-          - number: 17
-          - number: 18
-          - number: 19
-          - number: 20
-          - number: 21
-          - title: Concluding Address to the Society of Friends

@@ -35,26 +35,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-066-6
-        chapters:
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - title: The Testimony of the Monthly Meeting of Lisburn Concerning John Conran
       - type: original
         isbn: 978-1-64476-067-3
-        chapters:
-          - title: Preface
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - title: The Testimony of the Monthly Meeting of Lisburn Concerning John Conran

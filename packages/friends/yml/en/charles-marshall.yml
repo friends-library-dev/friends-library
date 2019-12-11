@@ -38,10 +38,6 @@ documents:
               seconds: 2287
               chapters:
                 - 0
-
-        chapters:
-          - title: The Journal of Charles Marshall
-
   - id: 769b12e4-b909-4fb0-9177-b74a1bef9f35
     title: The Way of Life Revealed and the Way of Death Discovered
     slug: way-of-life-revealed
@@ -62,5 +58,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-011-6
-        chapters:
-          - title: The Way of Life Revealed

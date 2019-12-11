@@ -40,7 +40,7 @@ documents:
               filesize_lq: 16628334
               seconds: 2771
               chapters:
-                - 0 # These aren't really chapters. They are "Sections"
+                - 0
                 - 1
                 - 2
                 - 3
@@ -60,20 +60,3 @@ documents:
                 - 10
                 - 11
                 - 12
-
-        chapters:
-          - title: Forward by the Editor
-          - title: To the Reader
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-          - number: 12
-          - number: 13

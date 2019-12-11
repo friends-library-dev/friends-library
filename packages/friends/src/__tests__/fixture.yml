@@ -14,17 +14,8 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-999-9
-        chapters:
-          - number: 1
-          - number: 2
       - type: modernized
         isbn: 978-1-64476-999-8
-        chapters:
-          - number: 1
-          - number: 2
       - type: original
         isbn: 978-1-64476-999-6
         editor: Jared Henderson
-        chapters:
-          - number: 1
-          - number: 2

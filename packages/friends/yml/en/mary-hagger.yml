@@ -16,13 +16,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-180-9
-        chapters:
-          - title: Introduction
-          - title: Life of Mary Hagger
-          - title: Testimony
       - type: original
         isbn: 978-1-64476-181-6
-        chapters:
-          - title: Introduction
-          - title: Life of Mary Hagger
-          - title: Testimony

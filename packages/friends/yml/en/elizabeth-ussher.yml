@@ -17,11 +17,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-176-2
-        chapters:
-          - title: Preface
-          - title: Letters
       - type: original
         isbn: 978-1-64476-177-9
-        chapters:
-          - title: Preface
-          - title: Letters

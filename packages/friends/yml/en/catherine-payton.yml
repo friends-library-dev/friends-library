@@ -30,28 +30,8 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-007-9
-        chapters:
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
       - type: original
         isbn: 978-1-64476-008-6
-        chapters:
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
   - id: 08b94a0b-b96f-4525-bd46-79b0d60c4302
     title: Letter to a Backslidden Brother
     slug: letter-to-brother
@@ -66,5 +46,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-009-3
-        chapters:
-          - title: Letter to a Backslidden Brother

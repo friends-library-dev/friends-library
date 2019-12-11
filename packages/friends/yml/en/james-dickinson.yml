@@ -12,7 +12,6 @@ description:
   teaches, but in the demonstration of the Spirit and power, and was effectual to the
   convincing and gathering of many whose hearts became settled on the Rock Christ Jesus,
   knowing Him to be their true light and teacher.
-
 documents:
   - id: d0d15232-db51-48fc-a8ed-5e0b206f9a3f
     title: The Journal of James Dickinson
@@ -34,17 +33,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-047-5
-        chapters:
-          - title: To the Reader
-          - number: 1
-          - number: 2
-          - number: 3
-          - title: Testimonies of James Dickinson
       - type: original
         isbn: 978-1-64476-048-2
-        chapters:
-          - title: To the Reader
-          - number: 1
-          - number: 2
-          - number: 3
-          - title: Testimonies of James Dickinson

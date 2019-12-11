@@ -11,7 +11,6 @@ description:
   the Society of Friends) wrote, "I am ready to conclude that none in our day, from the
   time of the effectual visitation of Christ in her soul, adhered with more steadiness to
   His guidance, through a variety of probations."
-
 documents:
   - id: 9bd10df3-80aa-4623-b66a-61e00f112b47
     title: The Life and Letters of Mary Peisley Neale
@@ -32,21 +31,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-104-5
-        chapters:
-          - title: Introuction
-          - title: The Life of Mary Neale
-          - title:
-              The Testimonies of Richard and Elizabeth Shackleton concerning Mary Neale,
-              late Peisley
-          - title: Extract from James Gough's Memoirs
-          - title: Testimony of the Monthly Meeting of Mountmellick concerning Mary Neale
       - type: original
         isbn: 978-1-64476-105-2
-        chapters:
-          - title: Introuction
-          - title: The Life of Mary Neale
-          - title:
-              The Testimonies of Richard and Elizabeth Shackleton concerning Mary Neale,
-              late Peisley
-          - title: Extract from James Gough's Memoirs
-          - title: Testimony of the Monthly Meeting of Mountmellick concerning Mary Neale

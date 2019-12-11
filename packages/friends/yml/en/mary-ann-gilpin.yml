@@ -11,7 +11,6 @@ description:
   in faith. She finished her race in her 25th year, having fought the good fight, kept the
   faith, and left behind her an “aroma of life”--the sweet fragrance of the knowledge of
   her Lord and Savior Jesus Christ.
-
 documents:
   - id: 8e66ed6c-5a9f-4842-91c3-4d2b32b02e93
     title: Journal of Mary Ann Gilpin
@@ -34,13 +33,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-098-7
-        chapters:
-          - title: Preface
-          - title: Memoir
-          - title: Extracts from Letters
       - type: modernized
         isbn: 978-1-64476-099-4
-        chapters:
-          - title: Preface
-          - title: Memoir
-          - title: Extracts from Letters

@@ -25,19 +25,3 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-002-4
-        chapters:
-          - title: Prefacio de William Penn
-          - number: 1
-            subtitle: Un Cristianismo sin Cruz
-          - number: 2
-            subtitle: La Gran Apostasía
-          - number: 3
-            subtitle: La Cruz Diaria
-          - number: 4
-            subtitle: Negando el Yo Lícito
-          - number: 5
-            subtitle: Negando el Yo Ilícito
-          - number: 6
-            subtitle: La Adoración Espiritual
-          - number: 7
-            subtitle: El Pecado del Orgullo

@@ -10,7 +10,6 @@ description:
   he came to be considered a member of their family, and eventually served as tutor to the
   Penington's young children. Thomas Ellwood is best known among Friends for his many
   publications in defense of the Truth, and for being the editor of George Fox's journal.
-
 documents:
   - id: 2ff4c475-b7a6-411f-a960-75edf4bb79fd
     title: The Life of Thomas Ellwood
@@ -31,18 +30,5 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-133-5
-        chapters:
-          - title: Preface
-          - title: Life of Thomas Ellwood
-          - title:
-              Appendix - Containing a Supplementary Memoir of the Life of Thomas Ellwood
-          - title: Testimonies of Thomas Ellwood
-
       - type: original
         isbn: 978-1-64476-134-2
-        chapters:
-          - title: Preface
-          - title: Life of Thomas Ellwood
-          - title:
-              Appendix - Containing a Supplementary Memoir of the Life of Thomas Ellwood
-          - title: Testimonies of Thomas Ellwood

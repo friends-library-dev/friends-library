@@ -12,7 +12,6 @@ description:
   upon me as jewels." After visiting William Dewsbury in 1676, John Whiting described him
   as "an extraordinary man in many ways, and I thought, as exact a pattern of a perfect
   man as I ever knew."
-
 documents:
   - id: e1f74ba8-b391-4c4e-a77e-f9fcdb6fd8ff
     title: The Life and Letters of William Dewsbury
@@ -34,25 +33,3 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-150-2
-        chapters:
-          - title: The Editor's Prefatory Address
-          - number: 1
-          - number: 2
-          - number: 3
-          - number: 4
-          - number: 5
-          - number: 6
-          - number: 7
-          - number: 8
-          - number: 9
-          - number: 10
-          - number: 11
-          - number: 12
-          - number: 13
-          - number: 14
-          - number: 15
-          - number: 16
-          - number: 17
-          - number: 18
-          - number: 19
-          - title: Appendix - Letters of William Dewsbury
