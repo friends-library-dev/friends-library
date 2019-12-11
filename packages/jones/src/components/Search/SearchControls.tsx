@@ -226,7 +226,4 @@ const mapDispatch = {
   redo: actions.redoTasks,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Component);
+export default connect(mapState, mapDispatch)(Component);

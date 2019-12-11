@@ -129,7 +129,4 @@ const mapDispatch = {
   updateWidth: actions.updateSidebarWidth,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Sidebar);
+export default connect(mapState, mapDispatch)(Sidebar);

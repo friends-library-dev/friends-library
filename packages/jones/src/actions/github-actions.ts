@@ -146,22 +146,16 @@ export function checkout(task: Task): ReduxThunk {
         const repoSlug = await gh.getRepoSlug(task.repoId);
         const parentCommit = await gh.getHeadSha(repoSlug, 'master');
         const fileArray = await gh.getAdocFiles(repoSlug, parentCommit);
-        const files = fileArray.reduce(
-          (acc, file) => {
-            acc[file.path] = file;
-            return acc;
-          },
-          {} as any,
-        );
+        const files = fileArray.reduce((acc, file) => {
+          acc[file.path] = file;
+          return acc;
+        }, {} as any);
         const yml = await fetch(friendYmlUrl(repoSlug)).then(r => r.text());
         const { documents } = ymlToJs(yml);
-        const documentTitles = documents.reduce(
-          (acc: any, doc: any) => {
-            acc[doc.slug] = doc.title;
-            return acc;
-          },
-          {} as { [key: string]: string },
-        );
+        const documentTitles = documents.reduce((acc: any, doc: any) => {
+          acc[doc.slug] = doc.title;
+          return acc;
+        }, {} as { [key: string]: string });
         return Promise.resolve({ documentTitles, files, parentCommit });
       },
       'CHECKOUT',

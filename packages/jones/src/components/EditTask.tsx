@@ -196,7 +196,4 @@ const mapDispatch = {
   deleteTask: actions.deleteTask,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(EditTask);
+export default connect(mapState, mapDispatch)(EditTask);

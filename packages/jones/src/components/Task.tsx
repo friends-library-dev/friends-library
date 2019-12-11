@@ -284,7 +284,4 @@ const mapDispatch = {
   syncStatus: actions.syncPullRequestStatus,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Task);
+export default connect(mapState, mapDispatch)(Task);

@@ -199,7 +199,4 @@ const mapDispatch = {
   cancelSearch: actions.cancelSearch,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Search);
+export default connect(mapState, mapDispatch)(Search);

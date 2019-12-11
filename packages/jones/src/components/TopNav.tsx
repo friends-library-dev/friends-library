@@ -110,7 +110,4 @@ const mapDispatch = {
   requestGitHubUser: actions.requestGitHubUser,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Component);
+export default connect(mapState, mapDispatch)(Component);

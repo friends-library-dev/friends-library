@@ -45,9 +45,9 @@ const RelatedBookCard: React.FC<Props> = props => {
 
 export default RelatedBookCard;
 
-const TitleSection: React.FC<
-  Pick<Props, 'title' | 'authorSlug' | 'author'> & { className: string }
-> = ({ title, authorSlug, author, className }) => {
+const TitleSection: React.FC<Pick<Props, 'title' | 'authorSlug' | 'author'> & {
+  className: string;
+}> = ({ title, authorSlug, author, className }) => {
   return (
     <div className={cx(className)}>
       <h4 className="tracking-wider mb-2">{title}</h4>

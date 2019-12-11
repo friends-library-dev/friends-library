@@ -55,7 +55,7 @@ export default async function checkOrders(
 
 async function getPrintJobs(
   orders: Orders,
-): Promise<[null | string, (Record<string, any>)[]]> {
+): Promise<[null | string, Record<string, any>[]]> {
   try {
     var token = await getAuthToken();
   } catch (error) {
@@ -74,12 +74,12 @@ async function getPrintJobs(
     return ['error_retrieving_print_job_data', []];
   }
 
-  const jobs = (await res.json()).results as (Record<string, any>)[];
+  const jobs = (await res.json()).results as Record<string, any>[];
   return [null, jobs];
 }
 
 async function sendShipmentTrackingEmails(
-  jobs: (Record<string, any>)[],
+  jobs: Record<string, any>[],
   orders: Orders,
 ): Promise<void> {
   const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');

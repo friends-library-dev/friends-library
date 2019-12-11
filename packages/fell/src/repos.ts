@@ -10,12 +10,9 @@ export async function getRepos(exclude: string[], branch?: string): Promise<stri
   const esRepos = glob.sync(path.resolve(cwd, 'es', '*'));
   const repos = [...enRepos, ...esRepos];
   const notExcluded = repos.filter(repo => {
-    return exclude.reduce(
-      (bool, str) => {
-        return bool === false ? false : repo.indexOf(str) === -1;
-      },
-      true as boolean,
-    );
+    return exclude.reduce((bool, str) => {
+      return bool === false ? false : repo.indexOf(str) === -1;
+    }, true as boolean);
   });
 
   if (!branch) {

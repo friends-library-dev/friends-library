@@ -59,7 +59,11 @@ export default function handler(argv: Argv): void {
   if (argv.write) {
     fs.writeFileSync(
       `${process.cwd()}/unusual.json`,
-      JSON.stringify(unusual.map(([word]) => word), null, 2),
+      JSON.stringify(
+        unusual.map(([word]) => word),
+        null,
+        2,
+      ),
     );
   }
 }

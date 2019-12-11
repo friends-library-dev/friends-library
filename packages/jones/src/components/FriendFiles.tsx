@@ -249,7 +249,4 @@ const mapDispatch = {
   updateSearch: actions.updateSearch,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(FriendFiles);
+export default connect(mapState, mapDispatch)(FriendFiles);

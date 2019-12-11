@@ -30,12 +30,9 @@ export default class DirLints {
   }
 
   public all(): LintResult[] {
-    return [...this.map].reduce(
-      (acc, [, { lints }]) => {
-        return [...acc, ...lints];
-      },
-      [] as LintResult[],
-    );
+    return [...this.map].reduce((acc, [, { lints }]) => {
+      return [...acc, ...lints];
+    }, [] as LintResult[]);
   }
 
   public count(): number {

@@ -3,15 +3,12 @@ import { BlockRule } from '../types';
 
 const rule: BlockRule = (block: Asciidoc): LintResult[] => {
   const lines = block.split('\n');
-  const chapterHeadings: number[] = lines.reduce(
-    (acc, line, index) => {
-      if (line && line.substring(0, 3) === '== ' && line.match(/^== +[^\s\n]/)) {
-        acc.push(index + 1);
-      }
-      return acc;
-    },
-    [] as number[],
-  );
+  const chapterHeadings: number[] = lines.reduce((acc, line, index) => {
+    if (line && line.substring(0, 3) === '== ' && line.match(/^== +[^\s\n]/)) {
+      acc.push(index + 1);
+    }
+    return acc;
+  }, [] as number[]);
 
   if (chapterHeadings.length === 1) {
     return [];

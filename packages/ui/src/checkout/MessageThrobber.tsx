@@ -1,9 +1,8 @@
 import React from 'react';
 import { withTheme } from 'emotion-theming';
-import { Theme } from 'theme';
 
 /* height, width, radius, margin */
-const Component: React.FC<{ msg: string; theme: Theme }> = ({ msg, theme }) => (
+const Component: React.FC<{ msg: string }> = ({ msg }) => (
   <div>
     <svg viewBox="0 0 32 10">
       <circle cx="10" cy="4" r="1">

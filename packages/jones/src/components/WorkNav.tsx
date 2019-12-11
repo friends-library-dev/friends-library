@@ -90,7 +90,4 @@ const mapDispatch = {
   goToTasks: () => actions.changeScreen('TASKS'),
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(WorkNav);
+export default connect(mapState, mapDispatch)(WorkNav);

@@ -9,38 +9,32 @@ export default function lint(
 ): LintResult[] {
   const lineRules: LineRule[] = Object.values(lineLints);
   const lines = adoc.split('\n');
-  const lineResults = lines.reduce(
-    (acc, line, index) => {
-      if (isLintComment(line)) {
-        return acc;
-      }
-
-      if (isComment(line)) {
-        acc.push(commentWarning(index + 1));
-        return acc;
-      }
-
-      lineRules.forEach(rule => {
-        if (runRule(rule, options, lines[index - 1])) {
-          const ruleResults = rule(line, lines, index + 1, options);
-          ruleResults.forEach(result => acc.push(result));
-        }
-      });
+  const lineResults = lines.reduce((acc, line, index) => {
+    if (isLintComment(line)) {
       return acc;
-    },
-    [] as LintResult[],
-  );
+    }
+
+    if (isComment(line)) {
+      acc.push(commentWarning(index + 1));
+      return acc;
+    }
+
+    lineRules.forEach(rule => {
+      if (runRule(rule, options, lines[index - 1])) {
+        const ruleResults = rule(line, lines, index + 1, options);
+        ruleResults.forEach(result => acc.push(result));
+      }
+    });
+    return acc;
+  }, [] as LintResult[]);
 
   const blockRules: BlockRule[] = Object.values(blockLints);
-  const blockResults = blockRules.reduce(
-    (acc, rule) => {
-      if (!runRule(rule, options)) {
-        return acc;
-      }
-      return acc.concat(...rule(adoc, options));
-    },
-    [] as LintResult[],
-  );
+  const blockResults = blockRules.reduce((acc, rule) => {
+    if (!runRule(rule, options)) {
+      return acc;
+    }
+    return acc.concat(...rule(adoc, options));
+  }, [] as LintResult[]);
 
   return [...lineResults, ...blockResults];
 }

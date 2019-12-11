@@ -124,10 +124,7 @@ const mapDispatch = {
   syncTask: actions.syncPullRequestStatus,
 };
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(Work);
+export default connect(mapState, mapDispatch)(Work);
 
 const ClosedWarning: React.FC<{ status: 'closed' | 'merged' }> = ({ status }) => (
   <div style={{ color: 'red', padding: '1em 3em' }}>

@@ -32,13 +32,10 @@ export async function fetchSingleton(): Promise<DocumentMeta> {
 }
 
 export async function save(meta: DocumentMeta): Promise<boolean> {
-  const data = [...meta].reduce(
-    (acc, [id, editionMeta]) => {
-      acc[id] = editionMeta;
-      return acc;
-    },
-    {} as Record<string, EditionMeta>,
-  );
+  const data = [...meta].reduce((acc, [id, editionMeta]) => {
+    acc[id] = editionMeta;
+    return acc;
+  }, {} as Record<string, EditionMeta>);
   const { GIST_ID, GIST_FILENAME } = envVars();
   try {
     await getClient().gists.update({

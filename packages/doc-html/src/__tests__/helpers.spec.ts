@@ -25,7 +25,10 @@ describe('capitalizeTitle()', () => {
 });
 
 describe('trimTrailingPunctuation()', () => {
-  const pairs = [['Foo bar.', 'Foo bar'], ['Foo bar, etc.', 'Foo bar, etc.']];
+  const pairs = [
+    ['Foo bar.', 'Foo bar'],
+    ['Foo bar, etc.', 'Foo bar, etc.'],
+  ];
 
   test.each(pairs)('it transforms %s to %s', (input, expected) => {
     expect(trimTrailingPunctuation(input)).toBe(expected);

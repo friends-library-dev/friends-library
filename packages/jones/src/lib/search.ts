@@ -8,49 +8,46 @@ export function searchFiles(
   caseSensitive: boolean = false,
   regexp: boolean = false,
 ): SearchResult[] {
-  const results = files.reduce(
-    (acc, file) => {
-      const lines = (file.editedContent || file.content || '').split(/\n/);
-      let pattern = regexp ? searchTerm : escape(searchTerm);
-      if (words) {
-        pattern = `\\b${pattern}\\b`;
-      }
+  const results = files.reduce((acc, file) => {
+    const lines = (file.editedContent || file.content || '').split(/\n/);
+    let pattern = regexp ? searchTerm : escape(searchTerm);
+    if (words) {
+      pattern = `\\b${pattern}\\b`;
+    }
 
-      let exp: RegExp;
-      try {
-        exp = new RegExp(pattern, `g${caseSensitive ? '' : 'i'}`);
-      } catch {
-        return [];
-      }
+    let exp: RegExp;
+    try {
+      exp = new RegExp(pattern, `g${caseSensitive ? '' : 'i'}`);
+    } catch {
+      return [];
+    }
 
-      lines.forEach((line, index) => {
-        let match;
-        while ((match = exp.exec(line))) {
-          const [documentSlug, editionType, filename] = file.path.split('/');
-          const result = {
-            path: file.path,
-            documentSlug,
-            editionType,
-            filename,
-            start: {
-              line: index + 1,
-              column: match.index,
-            },
-            end: {
-              line: index + 1,
-              column: match.index + searchTerm.length,
-            },
-          };
-          acc.push({
-            ...result,
-            context: getContext(result, lines),
-          });
-        }
-      });
-      return acc;
-    },
-    [] as SearchResult[],
-  );
+    lines.forEach((line, index) => {
+      let match;
+      while ((match = exp.exec(line))) {
+        const [documentSlug, editionType, filename] = file.path.split('/');
+        const result = {
+          path: file.path,
+          documentSlug,
+          editionType,
+          filename,
+          start: {
+            line: index + 1,
+            column: match.index,
+          },
+          end: {
+            line: index + 1,
+            column: match.index + searchTerm.length,
+          },
+        };
+        acc.push({
+          ...result,
+          context: getContext(result, lines),
+        });
+      }
+    });
+    return acc;
+  }, [] as SearchResult[]);
   return results.sort(({ editionType }) => {
     switch (editionType) {
       case 'updated':
