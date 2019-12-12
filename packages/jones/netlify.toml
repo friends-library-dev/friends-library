@@ -1,0 +1,8 @@
+[build]
+  # `command` not in netlify.toml b/c it deploys twice in two languages
+  # and has different environment variables passed
+  publish = "build"
+
+[build.environment]
+  YARN_VERSION = "1.17.3"
+  NODE_VERSION = "12.13.1"
