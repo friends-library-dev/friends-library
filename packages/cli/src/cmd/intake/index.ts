@@ -1,0 +1,5 @@
+export const command = 'intake';
+
+export const describe = 'guess which docs have not been "intaken"';
+
+export { default as handler } from './handler';

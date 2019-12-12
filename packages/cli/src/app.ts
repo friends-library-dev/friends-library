@@ -10,6 +10,7 @@ import * as unusual from './cmd/unusual';
 import * as convert from './cmd/convert';
 import * as chapterize from './cmd/chapterize';
 import * as isbns from './cmd/isbns';
+import * as intake from './cmd/intake';
 import * as publishRef from './cmd/publish-ref';
 
 prettifyErrors();
@@ -26,6 +27,7 @@ yargs
   .command(lint)
   .command(unusual)
   .command(isbns)
+  .command(intake)
   .command(chapterize)
   .command(convert)
   .help().argv;
