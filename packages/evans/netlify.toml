@@ -1,0 +1,18 @@
+[build]
+  command = "yarn build:netlify"
+  publish = "public"
+  functions = "../functions/dist"
+
+[build.processing]
+  skip_processing = false
+[build.processing.html]
+  pretty_urls = true
+
+[build.environment]
+  DOCS_REPOS_ROOT = "/opt/build/repo/"
+  YARN_VERSION = "1.17.3"
+  NODE_VERSION = "12.13.1"
+  AWS_LAMBDA_JS_RUNTIME = "nodejs10.x"
+  DOCUMENT_META_GIST_FILENAME = "fl-doc-meta-v2.json"
+  DOCUMENT_META_GIST_ID = "32117af9174d8c6bf3ba72956b6e60dc"
+  RUBY_VERSION = "2.2.9"

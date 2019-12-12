@@ -1,0 +1,7 @@
+[build]
+  command = "yarn build:netlify"
+  publish = "storybook-static"
+
+[build.environment]
+  YARN_VERSION = "1.17.3"
+  NODE_VERSION = "12.13.1"

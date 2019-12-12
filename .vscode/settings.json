@@ -6,6 +6,7 @@
     "**/dist": true,
     "**/*.log": true,
     "coverage": true,
+    "packages/**/yarn.lock": true,
     "packages/evans/.cache": true,
     "packages/evans/public": true,
     "packages/evans/src/build/.dpc-cache.json": true,
