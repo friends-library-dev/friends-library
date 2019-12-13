@@ -1,7 +1,7 @@
 [build]
   command = "yarn build:netlify"
   publish = "public"
-  functions = "../functions/dist"
+  functions = "functions"
 
 [build.processing]
   skip_processing = false
@@ -15,4 +15,3 @@
   AWS_LAMBDA_JS_RUNTIME = "nodejs12.x"
   DOCUMENT_META_GIST_FILENAME = "fl-doc-meta-v2.json"
   DOCUMENT_META_GIST_ID = "32117af9174d8c6bf3ba72956b6e60dc"
-  RUBY_VERSION = "2.2.9"
