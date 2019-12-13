@@ -1,7 +1,7 @@
 [build]
-  command = "yarn build:netlify"
+  command = "yarn build"
   publish = "dist"
 
 [build.environment]
-  YARN_VERSION = "1.17.3"
+  YARN_VERSION = "1.21.1"
   NODE_VERSION = "12.13.1"
