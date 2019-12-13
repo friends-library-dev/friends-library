@@ -30,7 +30,10 @@ documents:
       - type: updated
         isbn: 978-1-64476-079-6
         editor: Jason R. Henderson
+        draft: true
       - type: original
         isbn: 978-1-64476-080-2
+        draft: true
       - type: modernized
         isbn: 978-1-64476-081-9
+        draft: true

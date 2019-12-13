@@ -24,6 +24,17 @@ describe('Document', () => {
     });
   });
 
+  describe('hasNonDraftEdition', () => {
+    it('returns true if one edition is not a draft', () => {
+      expect(firstDoc().hasNonDraftEdition).toBe(true);
+    });
+
+    it('returns false if all editions are draft', () => {
+      const doc = firstDoc(f => f.documents[0].editions.forEach(e => (e.draft = true)));
+      expect(doc.hasNonDraftEdition).toBe(false);
+    });
+  });
+
   describe('hasAudio', () => {
     it('returns true if document has one edition with audio', () => {
       const doc = firstDoc(f => {

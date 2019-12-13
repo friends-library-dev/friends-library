@@ -1,6 +1,7 @@
 import '@friends-library/env/load';
 import fs from 'fs';
 import { GatsbyNode, SourceNodesArgs } from 'gatsby';
+import { PrintSize, Heading, DocPrecursor } from '@friends-library/types';
 import { price } from '@friends-library/lulu';
 import { fetch } from '@friends-library/document-meta';
 import { query, hydrate } from '@friends-library/dpc-fs';
@@ -8,7 +9,6 @@ import { red } from '@friends-library/cli-utils/color';
 import { allFriends, allDocsMap, cartItemData, justHeadings } from './helpers';
 import * as url from '../lib/url';
 import { getPartials } from '../lib/partials';
-import { PrintSize, Heading, DocPrecursor } from '@friends-library/types';
 import { NODE_ENV, APP_ALT_URL, LANG } from '../env';
 
 const sourceNodes: GatsbyNode['sourceNodes'] = async ({
@@ -28,11 +28,12 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   });
 
   const meta = await fetch();
-  const friends = allFriends().filter(f => f.lang === LANG);
+  const friends = allFriends().filter(f => f.lang === LANG && f.hasNonDraftDocument);
   const docs = allDocsMap();
   const dpcCache = getDpcCache();
 
   friends.forEach(friend => {
+    const documents = friend.documents.filter(doc => doc.hasNonDraftEdition);
     const friendProps = {
       ...friend.toJSON(),
       friendId: friend.id,
@@ -42,14 +43,14 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     createNode({
       ...friendProps,
       id: createNodeId(`friend-${friend.id}`),
-      children: friend.documents.map(d => createNodeId(`document-${d.id}`)),
+      children: documents.map(d => createNodeId(`document-${d.id}`)),
       internal: {
         type: 'Friend',
         contentDigest: createContentDigest(friendProps),
       },
     });
 
-    friend.documents.forEach(document => {
+    documents.forEach(document => {
       const documentProps: Record<string, any> = {
         ...document.toJSON(),
         url: url.documentUrl(document),
@@ -63,7 +64,8 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         documentProps.altLanguageUrl = `${APP_ALT_URL}${url.documentUrl(altDoc)}`;
       }
 
-      const editions = document.editions.map(edition => {
+      const filteredEditions = document.editions.filter(ed => !ed.isDraft);
+      const editions = filteredEditions.map(edition => {
         const editionMeta = meta.get(edition.path);
         let printSize: PrintSize = 'm';
         let pages = [175];

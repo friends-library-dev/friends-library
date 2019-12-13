@@ -61,7 +61,7 @@ function generateRawAsciiDoc(src: string, target: string): void {
   const DOCBOOKRX_PATH = '/Users/jared/msf/asciidoctor/docbookrx';
   spawnSync(BUNDLE_PATH, ['exec', 'docbookrx', src], {
     cwd: DOCBOOKRX_PATH,
-    stdio: 'inherit',
+    // stdio: 'inherit', // turn on to debug
   });
 
   if (!fs.existsSync(target)) {

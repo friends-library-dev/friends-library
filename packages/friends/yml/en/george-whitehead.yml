@@ -28,6 +28,7 @@ documents:
       - type: updated
         isbn: 978-1-64476-031-4
         editor: Jason R. Henderson
+        draft: true
         audio:
           reader: Jason Henderson
           parts:

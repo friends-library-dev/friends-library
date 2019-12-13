@@ -66,3 +66,4 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-078-9
+        draft: true

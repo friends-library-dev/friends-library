@@ -38,7 +38,6 @@ module.exports = {
     },
 
     'gatsby-plugin-remove-serviceworker',
-
     'gatsby-plugin-typescript',
     'gatsby-plugin-postcss',
     {

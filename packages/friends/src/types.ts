@@ -48,6 +48,7 @@ export interface EditionData {
   isbn: ISBN;
   description?: string;
   audio?: AudioData;
+  draft?: true;
 }
 
 export interface AudioData {

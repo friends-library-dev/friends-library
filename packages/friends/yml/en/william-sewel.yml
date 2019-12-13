@@ -30,8 +30,10 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-158-8
+        draft: true
       - type: original
         isbn: 978-1-64476-159-5
+        draft: true
   - id: 2c64c45a-02b0-406d-935f-c90a42daf5a7
     alt_language_id: 184123b9-03ca-44aa-9242-50f339d8c711
     title: The Sufferings of Catharine Evans and Sarah Cheevers
@@ -52,3 +54,4 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-160-1
+        draft: true

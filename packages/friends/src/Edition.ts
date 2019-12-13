@@ -38,6 +38,10 @@ export default class Edition {
     return this.data.type;
   }
 
+  public get isDraft(): boolean {
+    return !!this.data.draft;
+  }
+
   public get isbn(): ISBN {
     return this.data.isbn;
   }
@@ -77,6 +81,7 @@ export default class Edition {
       splits: this.splits,
       path: this.path,
       paperbackCoverBlurb: this.paperbackCoverBlurb,
+      isDraft: this.isDraft,
       filename: {
         epub: this.filename('epub'),
         mobi: this.filename('mobi'),

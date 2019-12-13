@@ -48,11 +48,19 @@ export default class Friend {
     return `${parts.pop()}, ${parts.join(' ')}`;
   }
 
+  public get hasNonDraftDocument(): boolean {
+    return this.documents.reduce(
+      (hasNonDraft, doc) => hasNonDraft || doc.hasNonDraftEdition,
+      false as boolean,
+    );
+  }
+
   public toJSON(): Omit<Friend, 'toJSON' | 'documents'> {
     return {
       id: this.id,
       lang: this.lang,
       description: this.description,
+      hasNonDraftDocument: this.hasNonDraftDocument,
       name: this.name,
       gender: this.gender,
       slug: this.slug,

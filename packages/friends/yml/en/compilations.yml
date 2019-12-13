@@ -17,6 +17,7 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-030-7
+        draft: true
   - id: 8e77ebe3-8678-44d2-9826-8c1be2633dcc
     title: Piety Promoted, Volume II
     slug: piety-promoted-v2
@@ -27,6 +28,7 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-173-1
+        draft: true
   - id: 951f52bb-fc11-4e76-a08d-c3dc52b8a07c
     title: Piety Promoted, Volume III
     slug: piety-promoted-v3
@@ -37,6 +39,7 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-174-8
+        draft: true
   - id: 46cffe12-7fac-486d-8597-afecee546baa
     title: Piety Promoted, Volume IV
     slug: piety-promoted-v4
@@ -47,6 +50,7 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-175-5
+        draft: true
   - id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
     title: Truth in the Inward Parts
     slug: truth-in-the-inward-parts
@@ -64,6 +68,7 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-016-1
+        draft: true
         editor: Jason R. Henderson
         audio:
           reader: Jason Henderson

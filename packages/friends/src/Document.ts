@@ -62,6 +62,13 @@ export default class Document {
     return this.friend.slug === 'compilations';
   }
 
+  public get hasNonDraftEdition(): boolean {
+    return this.editions.reduce(
+      (hasNonDraft, edition) => hasNonDraft || !edition.isDraft,
+      false as boolean,
+    );
+  }
+
   public get hasAudio(): boolean {
     return this.editions.reduce(
       (hasAudio, edition) => hasAudio || !!edition.audio,
@@ -81,6 +88,7 @@ export default class Document {
       slug: this.slug,
       description: this.description,
       filenameBase: this.filenameBase,
+      hasNonDraftEdition: this.hasNonDraftEdition,
       published: this.published,
       tags: this.tags,
       path: this.path,

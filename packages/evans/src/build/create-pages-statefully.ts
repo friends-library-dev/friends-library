@@ -13,6 +13,7 @@ const createPagesStatefully: GatsbyNode['createPagesStatefully'] = ({
 }: CreatePagesArgs) => {
   allFriends()
     .filter(f => f.lang === LANG)
+    .filter(f => f.hasNonDraftDocument)
     .forEach(friend => {
       createPage({
         path: friendUrl(friend),
@@ -22,16 +23,18 @@ const createPagesStatefully: GatsbyNode['createPagesStatefully'] = ({
         },
       });
 
-      friend.documents.forEach((document: Document) => {
-        createPage({
-          path: documentUrl(document),
-          component: DocumentPage,
-          context: {
-            friendSlug: friend.slug,
-            documentSlug: document.slug,
-          },
+      friend.documents
+        .filter(d => d.hasNonDraftEdition)
+        .forEach((document: Document) => {
+          createPage({
+            path: documentUrl(document),
+            component: DocumentPage,
+            context: {
+              friendSlug: friend.slug,
+              documentSlug: document.slug,
+            },
+          });
         });
-      });
     });
 };
 
