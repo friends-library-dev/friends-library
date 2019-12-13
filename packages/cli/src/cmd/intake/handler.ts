@@ -2,24 +2,43 @@ import { query, hydrate } from '@friends-library/dpc-fs';
 import { c, log } from '@friends-library/cli-utils/color';
 
 export default function handler(): void {
-  const dpcs = query.getByPattern();
-  dpcs.forEach(dpc => {
+  let err = false;
+  query.getByPattern().forEach(dpc => {
+    hydrate.entities(dpc);
     hydrate.asciidoc(dpc);
-    const lines: string[] = [];
-    const signs = dpc.asciidoc.split('\n').reduce((count: number, line: string) => {
-      for (let regex of regexes) {
-        if (regex.test(line)) {
-          lines.push(line);
-          return count + 1;
+    if (!dpc.edition) {
+      throw new Error('Missing dpc edition entity');
+    }
+
+    const signsOfIntake = dpc.asciidoc
+      .split('\n')
+      .reduce((count: number, line: string) => {
+        for (let regex of regexes) {
+          if (regex.test(line)) {
+            return count + 1;
+          }
         }
-      }
-      return count;
-    }, 0);
-    const rate = dpc.asciidoc.split('\n').length / signs;
-    if (rate > 650) {
+        return count;
+      }, 0);
+
+    const rate = dpc.asciidoc.split('\n').length / signsOfIntake;
+
+    if (rate > 650 && dpc.edition.isDraft === false) {
       log(c`{yellow ${dpc.path}} {gray likely not intaken}`);
+      err = true;
+    }
+
+    if (rate <= 650 && dpc.edition.isDraft) {
+      log(c`{green ${dpc.path}} {yellow likely no longer a draft}`);
+      err = true;
     }
   });
+
+  if (err) {
+    process.exit(1);
+  }
+
+  log(c`👍  {green All editions complete or correctly marked as draft.}`);
 }
 
 const regexes = [

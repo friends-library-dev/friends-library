@@ -86,6 +86,7 @@ const subSchemas: Record<string, Schema> = {
       type: { enum: ['original', 'modernized', 'updated'], required: true },
       editor: { $ref: '/name', required: false },
       description: { type: 'string', required: false },
+      draft: { enum: [true], required: false },
       splits: {
         type: 'array',
         required: false,

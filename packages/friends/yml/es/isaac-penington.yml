@@ -179,4 +179,5 @@ documents:
       - letters
     editions:
       - type: updated
+        draft: true
         isbn: 978-1-64476-164-9
