@@ -10,8 +10,7 @@
     "start": "yarn compile && yarn webpack-dev-server --mode development --watch --hot & yarn watch:frags",
     "watch:frags": "yarn build:frags --watch",
     "build:frags": "yarn ts-node ./src/build-frags.ts",
-    "build": "yarn compile && yarn build:frags && webpack --mode production --display=minimal",
-    "build:netlify": "yarn build"
+    "build": "yarn compile && yarn build:frags && webpack --mode production --display=minimal"
   },
   "dependencies": {
     "@friends-library/adoc-convert": "1.0.0",
