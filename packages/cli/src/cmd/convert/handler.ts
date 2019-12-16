@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+import uuid from 'uuid/v4';
 import { flow } from 'lodash';
 import { spawnSync } from 'child_process';
 import { red, green } from '@friends-library/cli-utils/color';
@@ -56,18 +57,39 @@ function validate(src: string): { src: string; target: string } {
 }
 
 function generateRawAsciiDoc(src: string, target: string): void {
-  // @todo remove hardcoded ref to docbookrx
-  const BUNDLE_PATH = '/Users/jared/.rvm/gems/ruby-2.4.1/bin/bundle';
-  const DOCBOOKRX_PATH = '/Users/jared/msf/asciidoctor/docbookrx';
-  spawnSync(BUNDLE_PATH, ['exec', 'docbookrx', src], {
-    cwd: DOCBOOKRX_PATH,
-    // stdio: 'inherit', // turn on to debug
-  });
+  const tag = 'jaredh159/convert:1.0.0';
+  const opts = { cwd: __dirname };
 
-  if (!fs.existsSync(target)) {
+  // check that we have docker installed
+  if (spawnSync('docker', ['--version']).status !== 0) {
+    red(`Docker required to run convert command.`);
+    process.exit(1);
+  }
+
+  const imageExists = spawnSync('docker', ['image', 'inspect', tag], opts).status === 0;
+  if (!imageExists) {
+    // build an image according to specs in ./Dockerfile
+    spawnSync('docker', ['build', '-t', tag, '.'], opts);
+  }
+
+  const id = uuid();
+  const tmpDir = `/tmp/${id}`;
+  fs.mkdirSync(tmpDir);
+  fs.copyFileSync(src, `${tmpDir}/document.xml`);
+
+  // run the command in the docker container
+  spawnSync('docker', ['run', '--name', id, `--volume=${tmpDir}:/root/docs`, tag], opts);
+
+  // destroy the docker container
+  spawnSync('docker', ['rm', id]);
+
+  if (!fs.existsSync(`${tmpDir}/document.adoc`)) {
     red(`ERROR: Target file ${target} not generated!`);
     process.exit();
   }
+
+  fs.copyFileSync(`${tmpDir}/document.adoc`, target);
+  fs.rmdirSync(tmpDir, { recursive: true });
 
   green(`Raw asciidoc file generated at: ${target}`);
 }
