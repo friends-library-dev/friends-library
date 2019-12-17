@@ -30,7 +30,7 @@ const StatefulCartItem: React.FC = () => {
   const data = cartItemData3();
   return (
     <CartItem
-      title={data.title}
+      title={data.title[0]}
       author={data.author}
       quantity={qty}
       price={422}

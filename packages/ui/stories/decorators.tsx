@@ -1,5 +1,4 @@
 import React from 'react';
-import { StoryDecorator } from '@storybook/react';
 import { ThemeProvider } from 'emotion-theming';
 import {
   CoverWebStylesAllStatic,
@@ -8,22 +7,22 @@ import {
 import { useLocale } from '../src/translation';
 import { es, en } from '../src/theme';
 
-const useEnglish: StoryDecorator = storyFn => {
+export function useEnglish(storyFn: any): JSX.Element {
   useLocale('en');
   return <ThemeProvider theme={en}>{storyFn()}</ThemeProvider>;
-};
+}
 
-const useSpanish: StoryDecorator = storyFn => {
+export function useSpanish(storyFn: any): JSX.Element {
   useLocale('es');
   return <ThemeProvider theme={es}>{storyFn()}</ThemeProvider>;
-};
+}
 
-const coverSizes: StoryDecorator = storyFn => (
-  <>
-    {storyFn()}
-    <CoverWebStylesAllStatic />
-    <CoverWebStylesSizes />
-  </>
-);
-
-export { useSpanish, useEnglish, coverSizes };
+export function coverSizes(storyFn: any): JSX.Element {
+  return (
+    <>
+      {storyFn()}
+      <CoverWebStylesAllStatic />
+      <CoverWebStylesSizes />
+    </>
+  );
+}
