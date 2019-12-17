@@ -34,3 +34,4 @@ export { default as consistentNameSpelling } from './consistent-name-spelling';
 export { default as italicsTouchingFootnote } from './italics-touching-footnote';
 export { default as unexpectedUnderscore } from './unexpected-underscore';
 export { default as emdashTouchingItalics } from './emdash-touching-italics';
+export { default as libreOfficeArtifacts } from './libre-office-artifacts';

@@ -26,17 +26,17 @@ try {
   }
 
   const src = `${__dirname}/../src`;
-  const index = fs.readFileSync(`${src}/lint/line-rules/index.ts`).toString();
+  const index = fs.readFileSync(`${src}/line-rules/index.ts`).toString();
   const lines = index.trim().split('\n');
   lines.push(`export { default as ${camel} } from './${slug}';\n`);
-  fs.writeFileSync(`${src}/lint/line-rules/index.ts`, lines.join('\n'));
+  fs.writeFileSync(`${src}/line-rules/index.ts`, lines.join('\n'));
 
   let rule = fs.readFileSync(`${__dirname}/lint-rule-scaffold.ts`).toString();
   let test = fs.readFileSync(`${__dirname}/lint-test-${multi}scaffold.ts`).toString();
   rule = replaceStrings(rule, slug, camel);
   test = replaceStrings(test, slug, camel);
-  fs.writeFileSync(`${src}/lint/line-rules/${slug}.ts`, rule);
-  fs.writeFileSync(`${src}/lint/line-rules/__tests__/${slug}.spec.ts`, test);
+  fs.writeFileSync(`${src}/line-rules/${slug}.ts`, rule);
+  fs.writeFileSync(`${src}/line-rules/__tests__/${slug}.spec.ts`, test);
 } catch (e) {
   console.log('Error:', e.message);
   process.exit(1);
