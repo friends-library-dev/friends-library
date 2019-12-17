@@ -79,6 +79,7 @@ const shortBlurb = `Ambrose Rigge (1635-1705) was early convinced of the truth t
 
 const chapters = [
   {
+    id: 'one',
     text: 'This is a chapter title that is way too long',
     shortText: 'This is a chapter title',
     sequence: {
@@ -87,6 +88,7 @@ const chapters = [
     },
   },
   {
+    id: 'two',
     text: 'This is a chapter title two',
     sequence: {
       type: 'Chapter',
@@ -94,6 +96,7 @@ const chapters = [
     },
   },
   {
+    id: 'three',
     text: 'This is a chapter title three',
     sequence: {
       type: 'Chapter',
@@ -101,6 +104,7 @@ const chapters = [
     },
   },
   {
+    id: 'four',
     text: 'Epilogue',
   },
 ];
