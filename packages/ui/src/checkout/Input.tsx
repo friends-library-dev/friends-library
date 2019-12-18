@@ -1,0 +1,49 @@
+import React from 'react';
+import cx from 'classnames';
+import './Input.css';
+
+interface Props {
+  valid: boolean;
+  placeholder: string;
+  invalidMsg: string;
+  className?: string;
+  value?: string;
+  onChange: (newVal: string) => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
+  autofocus?: boolean;
+  type?: string;
+}
+
+const Input: React.FC<Props> = ({
+  valid,
+  autofocus,
+  placeholder,
+  invalidMsg,
+  value,
+  onChange,
+  onBlur,
+  onFocus,
+  className,
+  type = 'text',
+}) => (
+  <div className="relative">
+    <input
+      autoFocus={autofocus}
+      className={cx(className, 'CartInput', { invalid: !valid })}
+      type={type}
+      placeholder={valid ? placeholder : invalidMsg}
+      value={value || ''}
+      onChange={e => onChange(e.target.value)}
+      onBlur={onBlur || (() => {})}
+      onFocus={onFocus || (() => {})}
+    />
+    {!valid && value && (
+      <span className="absolute text-red-600 top-0 right-0 text-xs p-1">
+        {invalidMsg}
+      </span>
+    )}
+  </div>
+);
+
+export default Input;
