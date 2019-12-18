@@ -7,10 +7,51 @@ import CostExplanation from '../src/checkout/CostExplanation';
 import CollectEmail from '../src/checkout/CollectEmail';
 import CollectAddress from '../src/checkout/CollectAddress';
 import CollectCreditCard from '../src/checkout/CollectCreditCard';
+import Input from '../src/checkout/Input';
+import Progress from '../src/checkout/Progress';
 import Success from '../src/checkout/Success';
 import ConfirmFees from '../src/checkout/ConfirmFees';
 
 storiesOf('Checkout Components', module)
+  .add('Progress (order)', () => <Progress step="Order" />)
+  .add('Progress (payment)', () => <Progress step="Payment" />)
+  .add('Input (valid)', () => (
+    <Modal onClose={a('close modal')}>
+      <div style={{ width: 300 }}>
+        <Input
+          valid={true}
+          onChange={() => {}}
+          placeholder="Credit Card #"
+          invalidMsg="Invalid Credit Card Number"
+        />
+      </div>
+    </Modal>
+  ))
+  .add('Input (invalid)', () => (
+    <Modal onClose={a('close modal')}>
+      <div style={{ width: 300 }}>
+        <Input
+          valid={false}
+          onChange={() => {}}
+          placeholder="Credit Card #"
+          invalidMsg="Invalid Credit Card Number"
+        />
+      </div>
+    </Modal>
+  ))
+  .add('Input (invalid+value)', () => (
+    <Modal onClose={a('close modal')}>
+      <div style={{ width: 300 }}>
+        <Input
+          valid={false}
+          onChange={() => {}}
+          placeholder="Credit Card #"
+          value="444"
+          invalidMsg="Invalid Credit Card Number"
+        />
+      </div>
+    </Modal>
+  ))
   .add('MessageThrobber', () => (
     <Modal onClose={a('close modal')}>
       <MessageThrobber msg="Calculating exact shipping cost" />
@@ -32,9 +73,9 @@ storiesOf('Checkout Components', module)
     </Modal>
   ))
   .add('CollectAddress', () => (
-    <Modal onClose={a('close modal')}>
+    <div style={{ margin: 25 }}>
       <CollectAddress onSubmit={a('submit address')} />
-    </Modal>
+    </div>
   ))
   .add('CollectCreditCard', () => (
     <Modal onClose={a('close modal')}>

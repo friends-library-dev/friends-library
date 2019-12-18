@@ -1,7 +1,10 @@
 import React from 'react';
 import Item from './Item';
 import Button from '../Button';
+import Progress from '../checkout/Progress';
+import Header from '../checkout/Header';
 import CartItem, { CartItemData } from '../checkout/models/CartItem';
+import NoProfit from '../checkout/NoProfit';
 
 interface Props {
   checkout: () => void;
@@ -20,20 +23,9 @@ const CartComponent: React.FC<Props> = ({
 }) => {
   return (
     <div className="p-6 md:p-8">
-      <h1 className="text-center tracking-widest text-2xl mb-5 uppercase">Your Order</h1>
-      <p className="text-center font-serif text-md md:text-lg tracking-wide leading-relaxed text-gray-800 antialiased px-4 md:px-6 mb-8">
-        We are committed to never making a profit from the books we make available on this
-        website. For that reason, when you order one or more paperback books, we charge
-        you <i>only and exactly</i> what we calculate it will cost us to have the books
-        printed and shipped from our printing partner.
-      </p>
-      <div className="BreadCrumbs md:p-5 bg-gray-100 border-t-8 border-flmaroon">
-        <ul className="hidden md:flex text-gray-900 justify-center tracking-wider">
-          <li className="mx-8 text-flmaroon">[ 01. Order ]</li>
-          <li className="mx-8">02. Review</li>
-          <li className="mx-8">03. Payment</li>
-        </ul>
-      </div>
+      <Header>Your Order</Header>
+      <NoProfit />
+      <Progress step="Order" />
       <div className="ColumnHeadings flex text-gray-900 text-center font-semibold antialiased mt-6 border-b border-gray-300 pb-2">
         <div className="w-2/3 md:w-3/5 text-left">Item</div>
         <div className="w-1/3 md:w-2/5 flex">
@@ -50,7 +42,7 @@ const CartComponent: React.FC<Props> = ({
           key={`item-${index}`}
           price={new CartItem(item).price()}
           {...item}
-          title="Temp"
+          title={item.title[0]}
           changeQty={(qty: number) => {
             items[index].quantity = qty;
             setItems([...items]);

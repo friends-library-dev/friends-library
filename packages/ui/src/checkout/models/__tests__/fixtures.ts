@@ -50,6 +50,7 @@ export const address: () => Address = () => ({
   state: 'OH',
   zip: '44281',
   country: 'US',
+  email: 'you@example.com',
 });
 
 export const cartItem1: () => CartItem = () => new CartItem(cartItemData1());

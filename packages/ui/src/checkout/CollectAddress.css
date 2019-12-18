@@ -1,0 +1,5 @@
+@screen md {
+  .InputWrap > * {
+    width: calc(50% - 1em) !important;
+  }
+}
