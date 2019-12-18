@@ -6,6 +6,7 @@ import MessageThrobber from '../src/checkout/MessageThrobber';
 import CostExplanation from '../src/checkout/CostExplanation';
 import CollectEmail from '../src/checkout/CollectEmail';
 import CollectAddress from '../src/checkout/CollectAddress';
+import Payment from '../src/checkout/Payment';
 import CollectCreditCard from '../src/checkout/CollectCreditCard';
 import Input from '../src/checkout/Input';
 import Progress from '../src/checkout/Progress';
@@ -13,6 +14,19 @@ import Success from '../src/checkout/Success';
 import ConfirmFees from '../src/checkout/ConfirmFees';
 
 storiesOf('Checkout Components', module)
+  .add('Payment', () => (
+    <div className="p-8">
+      <Payment
+        onPay={a('on pay')}
+        onConfirm={a('on confirm')}
+        onBackToCart={a('on back to cart')}
+        subTotal={1298}
+        shipping={399}
+        taxes={132}
+        ccFeeOffset={42}
+      />
+    </div>
+  ))
   .add('Progress (order)', () => <Progress step="Order" />)
   .add('Progress (payment)', () => <Progress step="Payment" />)
   .add('Input (valid)', () => (
