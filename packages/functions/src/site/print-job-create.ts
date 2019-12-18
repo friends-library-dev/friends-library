@@ -19,7 +19,7 @@ export default async function createPrintJob(
     return respond.json({ msg: data.message }, 400);
   }
 
-  const invalidChargeMsg = await verifyCharge(data.chargeId);
+  const invalidChargeMsg = await verifyPaymentIntent(data.paymentIntentId);
   if (invalidChargeMsg) {
     return respond.json({ msg: invalidChargeMsg }, 403);
   }
@@ -33,8 +33,8 @@ export default async function createPrintJob(
   try {
     token = await getAuthToken();
   } catch (error) {
-    log.error('error aquiring oath token', error);
-    return respond.json({ msg: 'error_acquiring_oauth_token' }, 500);
+    log.error('error acquiring lulu oauth token', error);
+    return respond.json({ msg: 'error_acquiring_lulu_oauth_token' }, 500);
   }
 
   const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
@@ -90,20 +90,20 @@ function createOrderPayload(data: typeof schema.example): Record<string, any> {
   };
 }
 
-async function verifyCharge(chargeId: string): Promise<string | void> {
+async function verifyPaymentIntent(paymentIntentId: string): Promise<string | void> {
   try {
-    const charge = await stripeClient().charges.retrieve(chargeId);
-    if (charge.captured === true) {
-      log.error(`verify charge fail: charge ${chargeId} already captured`);
-      return 'charge_already_captured';
+    const intent = await stripeClient().paymentIntents.retrieve(paymentIntentId);
+    if (intent.status === 'succeeded') {
+      log.error(`verify payment intent fail: intent ${paymentIntentId} already captured`);
+      return 'payment_intent_already_captured';
     }
   } catch (error) {
     if (error.statusCode === 404) {
-      log.error(`non-existent charge id: ${chargeId}`);
-      return 'charge_not_found';
+      log.error(`non-existent payment intent id: ${paymentIntentId}`);
+      return 'payment_intent_not_found';
     }
 
-    log.error(`error retrieving charge ${chargeId}`, error);
+    log.error(`error retrieving charge ${paymentIntentId}`, error);
     return error.code as string;
   }
 }
@@ -112,7 +112,7 @@ export const schema = {
   properties: {
     address: { $ref: '/lulu-address' },
     orderId: { type: 'string', minLength: 10 },
-    chargeId: { type: 'string', minLength: 5 },
+    paymentIntentId: { type: 'string', minLength: 5 },
     email: { $ref: '/email' },
     shippingLevel: { $ref: '/lulu-shipping-level' },
     items: {
@@ -132,12 +132,12 @@ export const schema = {
       },
     },
   },
-  required: ['orderId', 'email', 'shippingLevel', 'chargeId', 'items', 'address'],
+  required: ['orderId', 'email', 'shippingLevel', 'paymentIntentId', 'items', 'address'],
   example: {
     orderId: 'flp-order-id',
     email: 'jared@netrivet.com',
     shippingLevel: 'MAIL',
-    chargeId: 'ch_123abc',
+    paymentIntentId: 'ch_123abc',
     items: [
       {
         title: 'Journal of Ambrose Rigge (modernized)',

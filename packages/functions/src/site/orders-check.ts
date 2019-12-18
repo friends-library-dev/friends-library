@@ -60,7 +60,7 @@ async function getPrintJobs(
     var token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring oauth-token', error);
-    return ['error_acquiring_oauth_token', []];
+    return ['error_acquiring_lulu_oauth_token', []];
   }
 
   const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');

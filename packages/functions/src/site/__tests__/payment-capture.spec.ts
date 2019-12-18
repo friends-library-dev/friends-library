@@ -2,11 +2,11 @@ import capture from '../payment-capture';
 import { invokeCb } from './invoke';
 import { findById, persist } from '../../lib/Order';
 
-const captureCharge = jest.fn();
+const captureIntent = jest.fn();
 jest.mock('stripe', () => {
   return jest.fn().mockImplementation(() => ({
-    charges: {
-      capture: captureCharge,
+    paymentIntents: {
+      capture: captureIntent,
     },
   }));
 });
@@ -21,17 +21,17 @@ jest.mock('../../lib/Order', () => ({
 
 describe('/payment-capture handler', () => {
   let testBody = JSON.stringify({
-    chargeId: 'charge-id',
+    paymentIntentId: 'pi_123',
     orderId: 'order-id',
   });
 
-  it('should return 204 with chargeId if successful', async () => {
-    captureCharge.mockResolvedValue({ id: 'charge-id', captured: true });
+  it('should capture correct paymentItent and respond 204', async () => {
+    captureIntent.mockResolvedValue({ id: 'pi_123', status: 'succeeded' });
 
     const { res } = await invokeCb(capture, { body: testBody });
 
     expect(res.statusCode).toBe(204);
-    expect(captureCharge).toHaveBeenCalledWith('charge-id');
+    expect(captureIntent).toHaveBeenCalledWith('pi_123');
   });
 
   it('should respond 404 if order cant be found', async () => {
@@ -57,18 +57,18 @@ describe('/payment-capture handler', () => {
   });
 
   it('should return 500 if charge comes back not captured', async () => {
-    captureCharge.mockResolvedValue({ id: 'charge-id', captured: false });
+    captureIntent.mockResolvedValue({ id: 'pi_123', status: 'lol' });
     const { res } = await invokeCb(capture, { body: testBody });
     expect(res.statusCode).toBe(500);
   });
 
   it('returns 403 with error code from stripe in case of error', async () => {
-    captureCharge.mockImplementation(() => {
-      throw { code: 'charge_already_captured' };
+    captureIntent.mockImplementation(() => {
+      throw { code: 'intent_already_captured' };
     });
     const { res, json } = await invokeCb(capture, { body: testBody });
     expect(res.statusCode).toBe(403);
-    expect(json).toMatchObject({ msg: 'charge_already_captured' });
+    expect(json).toMatchObject({ msg: 'intent_already_captured' });
   });
 
   it('should return 400 if invalid body', async () => {

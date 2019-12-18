@@ -21,7 +21,7 @@ describe('printJobFees()', () => {
     const { res, json } = await invokeCb(printJobFees, { body });
 
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_acquiring_oauth_token');
+    expect(json.msg).toBe('error_acquiring_lulu_oauth_token');
   });
 
   it('responds 400 if bad body passed', async () => {

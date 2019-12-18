@@ -1,7 +1,8 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import webDownload from './web-download';
-import authorizePayment from './payment-authorize';
+import createOrder from './order-create';
 import capturePayment from './payment-capture';
+import confirmPayment from './payment-confirm';
 import printJobFees from './print-job-fees';
 import createPrintJob from './print-job-create';
 import printJobStatus from './print-job-status';
@@ -35,16 +36,18 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
 
   if (method === 'POST') {
     switch (path) {
-      case 'payment/authorize':
-        return authorizePayment(event, respond);
       case 'payment/capture':
         return capturePayment(event, respond);
+      case 'payment/confirm':
+        return confirmPayment(event, respond);
       case 'print-job/fees':
         return printJobFees(event, respond);
       case 'print-job':
         return createPrintJob(event, respond);
       case 'orders/check':
         return checkOrders(event, respond);
+      case 'orders/create':
+        return createOrder(event, respond);
     }
     if (path.match(/^orders\/[a-z0-9]+\/confirmation-email$/)) {
       return sendOrderConfirmationEmail(event, respond);

@@ -56,9 +56,9 @@ export default class CheckoutMachine {
     },
 
     fetchingPaymentToken: {
-      async success(this: CheckoutMachine, token: string) {
+      async success(this: CheckoutMachine) {
         this.transitionTo('authorizingPayment');
-        const err = await this.service.createOrderAndAuthorizePayment(token);
+        const err = await this.service.createOrder();
         this.dispatch(err ? 'failure' : 'success', err || undefined);
       },
     },

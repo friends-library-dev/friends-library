@@ -16,7 +16,7 @@ const schema = new mongoose.Schema(
       id: {
         type: String,
         required: true,
-        match: /^ch_/,
+        match: /^pi_/,
       },
       status: {
         type: String,

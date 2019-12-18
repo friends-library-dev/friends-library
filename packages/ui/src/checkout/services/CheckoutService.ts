@@ -5,14 +5,15 @@ import { PrintJobStatus } from '@friends-library/types';
 /**
  * CheckoutService exists to orchestrate the series of lambda invocations
  * necessary for checking out. It builds up necessary intermediate state
- * (things like orderId, printJobId, chargeId) in order to pass correct
+ * (things like orderId, printJobId, paymentIntentId) in order to pass correct
  * values to the various lambdas throughout the sequence. The CheckoutApi
  * is injected as an independent service for easier unit testing and usage
  * within Storybook.
  */
 export default class CheckoutService {
   public orderId = '';
-  public chargeId = '';
+  public paymentIntentId = '';
+  public paymentIntentClientSecret = '';
   public shippingLevel = '';
   public printJobId = -1;
   public printJobStatus?: PrintJobStatus;
@@ -51,10 +52,9 @@ export default class CheckoutService {
     return null;
   }
 
-  public async createOrderAndAuthorizePayment(token: string): Promise<null | string> {
+  public async createOrder(): Promise<null | string> {
     const { shipping, taxes, ccFeeOffset } = this.fees;
     const payload = {
-      token,
       amount: this.cart.subTotal() + this.sumFees(),
       shipping,
       taxes,
@@ -69,12 +69,13 @@ export default class CheckoutService {
       })),
     };
 
-    const { ok, data } = await this.api.authorizePayment(payload);
+    const { ok, data } = await this.api.createOrder(payload);
     if (!ok) {
       return data.msg;
     }
 
-    this.chargeId = data.chargeId;
+    this.paymentIntentId = data.paymentIntentId;
+    this.paymentIntentClientSecret = data.paymentIntentClientSecret;
     this.orderId = data.orderId;
 
     return null;
@@ -83,7 +84,7 @@ export default class CheckoutService {
   public async createPrintJob(): Promise<null | string> {
     const payload = {
       orderId: this.orderId,
-      chargeId: this.chargeId,
+      paymentIntentId: this.paymentIntentId,
       shippingLevel: this.shippingLevel,
       email: this.cart.email,
       address: this.cart.address,
@@ -133,9 +134,17 @@ export default class CheckoutService {
     return ok ? null : data.msg;
   }
 
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  public async __testonly__confirmPayment(): Promise<null | string> {
+    const { ok, data } = await this.api.__testonly__confirmPayment({
+      paymentIntentId: this.paymentIntentId,
+    });
+    return ok ? null : data.msg;
+  }
+
   public async capturePayment(): Promise<null | string> {
     const { ok, data } = await this.api.capturePayment({
-      chargeId: this.chargeId,
+      paymentIntentId: this.paymentIntentId,
       orderId: this.orderId,
     });
     return ok ? null : data.msg;

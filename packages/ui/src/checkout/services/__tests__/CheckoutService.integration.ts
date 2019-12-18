@@ -32,16 +32,21 @@ describe('CheckoutService()', () => {
     expect(service.fees).toEqual({ shipping: 399, taxes: 0, ccFeeOffset: 42 });
 
     // step 2, create order and authorize payment
-    err = await service.createOrderAndAuthorizePayment('tok_visa');
+    err = await service.createOrder();
     expect(err).toBeNull();
-    expect(service.chargeId).toMatch(/^ch_[a-z0-9]+$/i);
+    expect(service.paymentIntentId).toMatch(/^pi_\w+$/i);
+    expect(service.paymentIntentClientSecret).toMatch(/^pi_\w+?_secret_\w+$/i);
     expect(service.orderId).toMatch(/^[a-f\d]{24}$/i);
+
+    // step 2.5 (testing only, because not using stripe js client)
+    err = await service.__testonly__confirmPayment();
+    expect(err).toBeNull();
 
     // step 3: verify that the order was created
     let orderRes = await api.getOrder(service.orderId);
     expect(orderRes.data).toMatchObject({
       payment: {
-        id: service.chargeId,
+        id: service.paymentIntentId,
         shipping: 399,
         taxes: 0,
         cc_fee_offset: 42,
@@ -66,6 +71,7 @@ describe('CheckoutService()', () => {
 
     // step 7: update order print job status
     err = await service.updateOrderPrintJobStatus();
+    expect(err).toBeNull();
 
     // step 8: verify print job status updated
     orderRes = await api.getOrder(service.orderId);
@@ -75,6 +81,7 @@ describe('CheckoutService()', () => {
 
     // step 9: capture the payment
     err = await service.capturePayment();
+    expect(err).toBeNull();
 
     // step 10: verify order payment.status updated
     orderRes = await api.getOrder(service.orderId);
