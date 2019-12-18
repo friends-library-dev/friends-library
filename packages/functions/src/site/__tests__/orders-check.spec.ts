@@ -44,7 +44,7 @@ describe('checkOrders()', () => {
     });
     const { res, json } = await invokeCb(checkOrders, {});
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_acquiring_oauth_token');
+    expect(json.msg).toBe('error_acquiring_lulu_oauth_token');
   });
 
   it('hits lulu api with ids of interesting orders', async () => {

@@ -21,11 +21,11 @@ jest.mock('client-oauth2', () => {
   return jest.fn().mockImplementation(() => ({ credentials: { getToken } }));
 });
 
-const retrieveCharge = jest.fn(() => ({ id: 'ch_123abc', captured: false }));
+const retrieveIntent = jest.fn(() => ({ id: 'pi_abc123', status: 'requires_capture' }));
 jest.mock('stripe', () => {
   return jest.fn().mockImplementation(() => ({
-    charges: {
-      retrieve: retrieveCharge,
+    paymentIntents: {
+      retrieve: retrieveIntent,
     },
   }));
 });
@@ -45,7 +45,7 @@ describe('createOrder()', () => {
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_acquiring_oauth_token');
+    expect(json.msg).toBe('error_acquiring_lulu_oauth_token');
   });
 
   it('responds 400 if bad body passed', async () => {
@@ -57,27 +57,27 @@ describe('createOrder()', () => {
   });
 
   it('returns 403 if the stripe API doesn’t recognize the charge', async () => {
-    retrieveCharge.mockImplementationOnce(() => {
+    retrieveIntent.mockImplementationOnce(() => {
       throw { statusCode: 404 };
     });
 
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe('charge_not_found');
+    expect(json.msg).toBe('payment_intent_not_found');
   });
 
   it('returns 403 if the charge has already been captured', async () => {
-    retrieveCharge.mockImplementationOnce(() => ({ id: '', captured: true }));
+    retrieveIntent.mockImplementationOnce(() => ({ id: '', status: 'succeeded' }));
 
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe('charge_already_captured');
+    expect(json.msg).toBe('payment_intent_already_captured');
   });
 
   it('returns 403 and passes on unknown stripe error', async () => {
-    retrieveCharge.mockImplementationOnce(() => {
+    retrieveIntent.mockImplementationOnce(() => {
       throw { statusCode: 500, code: 'unknown_stripe_error' };
     });
 

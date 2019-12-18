@@ -22,8 +22,8 @@ export default async function printJobFees(
   try {
     token = await getAuthToken();
   } catch (error) {
-    log.error('error aquiring oath token', error);
-    return respond.json({ msg: 'error_acquiring_oauth_token' }, 500);
+    log.error('error acquiring lulu oauth token', error);
+    return respond.json({ msg: 'error_acquiring_lulu_oauth_token' }, 500);
   }
 
   const cheapest = await calculateCheapest(data, token);

@@ -1,18 +1,17 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import { charges } from 'stripe';
 import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import Order, { persist as persistOrder } from '../lib/Order';
 import log from '../lib/log';
 
-export default async function authorizePayment(
+export default async function createOrder(
   { body }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment/authorize', body);
+    log.error('invalid body for /orders/create', body);
     return respond.json({ msg: data.message }, 400);
   }
 
@@ -26,15 +25,12 @@ export default async function authorizePayment(
     address: data.address,
   } as any);
 
-  let charge: charges.ICharge;
   try {
-    // @TODO @see https://stripe.com/docs/api/charges/create
-    // for more useful options to send when creating the charge
-    charge = await stripeClient().charges.create({
-      source: data.token,
+    var paymentIntent = await stripeClient().paymentIntents.create({
       amount: data.amount,
       currency: 'usd',
-      capture: false,
+      capture_method: 'manual',
+      payment_method_types: ['card'],
       metadata: {
         orderId: order.id,
       },
@@ -46,7 +42,7 @@ export default async function authorizePayment(
 
   try {
     order.set('payment', {
-      id: charge.id,
+      id: paymentIntent.id,
       status: 'authorized',
       amount: data.amount,
       shipping: data.shipping,
@@ -59,13 +55,19 @@ export default async function authorizePayment(
     return respond.json({ msg: 'error_saving_flp_order' }, 500);
   }
 
-  log('authorized charge', charge);
-  respond.json({ chargeId: charge.id, orderId: order.id }, 201);
+  log('created payment intent', paymentIntent);
+  respond.json(
+    {
+      paymentIntentId: paymentIntent.id,
+      paymentIntentClientSecret: paymentIntent.client_secret,
+      orderId: order.id,
+    },
+    201,
+  );
 }
 
 export const schema = {
   properties: {
-    token: { type: 'string' },
     amount: { type: 'integer' },
     email: { $ref: '/email' },
     address: { $ref: '/lulu-address' },
@@ -87,9 +89,8 @@ export const schema = {
       },
     },
   },
-  required: ['token', 'amount', 'email', 'address', 'items'],
+  required: ['amount', 'email', 'address', 'items'],
   example: {
-    token: 'tok_visa',
     amount: 1111,
     taxes: 0,
     shipping: 399,

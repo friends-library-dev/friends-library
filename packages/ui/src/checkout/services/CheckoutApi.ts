@@ -15,12 +15,19 @@ export default class CheckoutApi {
     return this.post('/print-job/fees', payload);
   }
 
-  public async authorizePayment(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post('/payment/authorize', payload);
+  public async createOrder(payload: Record<string, any>): Promise<ApiResponse> {
+    return this.post('/orders/create', payload);
   }
 
   public async capturePayment(payload: Record<string, any>): Promise<ApiResponse> {
     return this.post('/payment/capture', payload);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  public async __testonly__confirmPayment(payload: {
+    paymentIntentId: string;
+  }): Promise<ApiResponse> {
+    return this.post('/payment/confirm', payload);
   }
 
   public async createPrintJob(payload: Record<string, any>): Promise<ApiResponse> {

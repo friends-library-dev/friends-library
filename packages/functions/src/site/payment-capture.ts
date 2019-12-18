@@ -1,5 +1,4 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import { charges } from 'stripe';
 import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
@@ -21,16 +20,15 @@ export default async function capturePayment(
     return respond.json({ msg: 'order_not_found' }, 404);
   }
 
-  let charge: charges.ICharge;
   try {
-    charge = await stripeClient().charges.capture(data.chargeId);
+    var intent = await stripeClient().paymentIntents.capture(data.paymentIntentId);
   } catch (error) {
-    log.error(`error capturing charge ${data.chargeId}`, error);
+    log.error(`error capturing payment intent ${data.paymentIntentId}`, error);
     return respond.json({ msg: error.code }, 403);
   }
 
-  if (charge.captured === false) {
-    log.error('unexpected response capturing charge', charge);
+  if (intent.status !== 'succeeded') {
+    log.error('unexpected response capturing intent', intent);
     return respond.json({ msg: 'Unexpected response' }, 500);
   }
 
@@ -42,22 +40,22 @@ export default async function capturePayment(
     // @TODO decide what to do here... cancel the charge the charge?
   }
 
-  log(`captured charge: ${data.chargeId}`);
+  log(`captured charge: ${data.paymentIntentId}`);
   respond.noContent();
 }
 
 const schema = {
   properties: {
-    chargeId: {
+    paymentIntentId: {
       type: 'string',
     },
     orderId: {
       type: 'string',
     },
   },
-  required: ['chargeId', 'orderId'],
+  required: ['paymentIntentId', 'orderId'],
   example: {
-    chargeId: 'ch_a3bd4g',
+    paymentIntentId: 'pi_a3bd4g',
     orderId: '5d49b249b58e56b378f13efe',
   },
 };

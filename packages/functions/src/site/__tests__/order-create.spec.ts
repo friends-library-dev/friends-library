@@ -1,12 +1,12 @@
-import auth, { schema } from '../payment-authorize';
+import auth, { schema } from '../order-create';
 import { invokeCb } from './invoke';
 import { persist } from '../../lib/Order';
 
-const createCharge = jest.fn();
+const createIntent = jest.fn();
 jest.mock('stripe', () => {
   return jest.fn().mockImplementation(() => ({
-    charges: {
-      create: createCharge,
+    paymentIntents: {
+      create: createIntent,
     },
   }));
 });
@@ -18,26 +18,30 @@ jest.mock('../../lib/Order', () => ({
   persist: jest.fn(),
 }));
 
-describe('/payment-authorize handler', () => {
-  it('should return 201 with chargeId and orderId if successful', async () => {
-    createCharge.mockResolvedValue({ id: 'ch_id' });
+describe('/orders/create handler', () => {
+  it('should return 201 with correct data if successful', async () => {
+    createIntent.mockResolvedValue({
+      id: 'intent_id',
+      client_secret: 'intent_id_secret',
+    });
     const { res, json } = await invokeCb(auth, { body: JSON.stringify(schema.example) });
 
     expect(res.statusCode).toBe(201);
     expect(json).toMatchObject({
-      chargeId: 'ch_id',
+      paymentIntentId: 'intent_id',
+      paymentIntentClientSecret: 'intent_id_secret',
       orderId: 'mongo-id',
     });
-    expect(createCharge.mock.calls[0][0]).toMatchObject({
-      source: 'tok_visa',
+    expect(createIntent.mock.calls[0][0]).toMatchObject({
       amount: 1111,
       currency: 'usd',
-      capture: false,
+      capture_method: 'manual',
+      payment_method_types: ['card'],
       metadata: { orderId: 'mongo-id' },
     });
     expect(persist).toHaveBeenCalledWith(mockOrder);
     expect(mockOrder.set).toHaveBeenCalledWith('payment', {
-      id: 'ch_id',
+      id: 'intent_id',
       status: 'authorized',
       amount: 1111,
       taxes: 0,
@@ -57,7 +61,7 @@ describe('/payment-authorize handler', () => {
   });
 
   it('returns 403 with error code from stripe in case of error', async () => {
-    createCharge.mockImplementation(() => {
+    createIntent.mockImplementation(() => {
       throw { code: 'card_expired' };
     });
     const { res, json } = await invokeCb(auth, {

@@ -102,7 +102,7 @@ export default class MockCheckoutApi extends CheckoutApi {
     return this.getResponse('calculateFees');
   }
 
-  public async authorizePayment(): Promise<ApiResponse> {
+  public async createOrder(): Promise<ApiResponse> {
     return this.getResponse('authorizePayment');
   }
 

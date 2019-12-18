@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { schema as feesSchema } from '../print-job-fees';
-import { schema as authorizeSchema } from '../payment-authorize';
-import { schema as createOrderSchema } from '../print-job-create';
+import { schema as createOrderSchema } from '../order-create';
+import { schema as createPrintJobSchema } from '../print-job-create';
 
 describe('site fns integration', () => {
   const { endpoint, origin } = urls();
@@ -29,19 +29,32 @@ describe('site fns integration', () => {
 
   test('sequential, stateful checkout fns', async () => {
     /**
-     * Step 1: Authorize payment, retrieving an `orderId` and `chargeId`
+     * Step 1: Authorize payment, retrieving an `orderId`, `paymentIntentId`, etc.
      */
     const email = `integration-${Date.now()}@test.com`;
-    const authRes = await fetch(`${endpoint}/payment/authorize`, {
+    const authRes = await fetch(`${endpoint}/orders/create`, {
       method: 'POST',
-      body: JSON.stringify({ ...authorizeSchema.example, email }),
+      body: JSON.stringify({ ...createOrderSchema.example, email }),
       headers,
     });
 
-    const { chargeId, orderId } = await authRes.json();
+    const authResJson = await authRes.json();
+    const { paymentIntentId, paymentIntentClientSecret, orderId } = authResJson;
     expect(authRes.status).toBe(201);
-    expect(chargeId).toMatch(/^ch_[a-z0-9]+$/i);
+    expect(paymentIntentId).toMatch(/^pi_\w+$/i);
+    expect(paymentIntentClientSecret).toMatch(/^pi_\w+?_secret_\w+$/i);
     expect(orderId).toMatch(/^[a-f\d]{24}$/i);
+
+    /**
+     * Step 1.5 (only required here, since no js client):
+     * Confirm payment intent with payment method
+     */
+    const confirmRes = await fetch(`${endpoint}/payment/confirm`, {
+      method: 'POST',
+      body: JSON.stringify({ paymentIntentId }),
+      headers,
+    });
+    expect(confirmRes.status).toBe(204);
 
     /**
      * Step 2: Verify that our order was created
@@ -51,27 +64,31 @@ describe('site fns integration', () => {
     expect(await orderRes.json()).toMatchObject({
       email,
       payment: {
-        id: chargeId,
+        id: paymentIntentId,
         status: 'authorized',
-        amount: authorizeSchema.example.amount,
-        shipping: authorizeSchema.example.shipping,
-        taxes: authorizeSchema.example.taxes,
-        cc_fee_offset: authorizeSchema.example.ccFeeOffset,
+        amount: createOrderSchema.example.amount,
+        shipping: createOrderSchema.example.shipping,
+        taxes: createOrderSchema.example.taxes,
+        cc_fee_offset: createOrderSchema.example.ccFeeOffset,
       },
     });
 
     /**
      * Step 3: Create print job
      */
-    const createOrderBody = { ...createOrderSchema.example, orderId, chargeId };
-    const createOrderRes = await fetch(`${endpoint}/print-job`, {
+    const createPrintJobBody = {
+      ...createPrintJobSchema.example,
+      orderId,
+      paymentIntentId,
+    };
+    const createPrintJobRes = await fetch(`${endpoint}/print-job`, {
       method: 'POST',
-      body: JSON.stringify(createOrderBody),
+      body: JSON.stringify(createPrintJobBody),
       headers,
     });
 
-    const { printJobId } = await createOrderRes.json();
-    expect(createOrderRes.status).toBe(201);
+    const { printJobId } = await createPrintJobRes.json();
+    expect(createPrintJobRes.status).toBe(201);
     expect(Number.isInteger(printJobId)).toBe(true);
 
     /**
@@ -121,7 +138,7 @@ describe('site fns integration', () => {
      */
     const captureRes = await fetch(`${endpoint}/payment/capture`, {
       method: 'POST',
-      body: JSON.stringify({ chargeId, orderId }),
+      body: JSON.stringify({ paymentIntentId, orderId }),
       headers,
     });
     expect(captureRes.status).toBe(204);
@@ -138,10 +155,10 @@ describe('site fns integration', () => {
     /**
      * Step 11: Send order confirmation email
      */
-    const confirmRes = await fetch(`${endpoint}/orders/${orderId}/confirmation-email`, {
+    const emailRes = await fetch(`${endpoint}/orders/${orderId}/confirmation-email`, {
       method: 'POST',
     });
-    expect(confirmRes.status).toBe(204);
+    expect(emailRes.status).toBe(204);
   }, 60000);
 });
 

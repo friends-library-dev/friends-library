@@ -37,14 +37,13 @@ content-type: application/json
 
 ###
 
-# Authorize a card and create a FLP order
+# Create a FLP order and initialize a Stripe PaymentIntent object
 # @see https://stripe.com/docs/testing for more tokens including error tokens
-# @name authorizePayment
-POST {{base}}/payment/authorize HTTP/1.1
+# @name createOrder
+POST {{base}}/orders/create HTTP/1.1
 content-type: application/json
 
 {
-  "token": "tok_visa",
   "amount": 1632,
   "email": "jared@netrivet.com",
   "items": [{
@@ -63,8 +62,6 @@ content-type: application/json
 
 # @name fetchOrder
 GET {{base}}/orders/{{orderId}}
-
-
 
 ###
 
@@ -92,7 +89,7 @@ content-type: application/json
 
 ###
 
-# Capture an authorized payment (create usable chargeId w/ `/payment/authorize`
+# Capture an authorized payment (create usable chargeId w/ `/orders/create`
 # @name capturePayment
 POST {{base}}/payment/capture HTTP/1.1
 content-type: application/json
@@ -129,8 +126,8 @@ POST {{base}}/orders/check HTTP/1.1
 
 ###
 @base = http://localhost:2345/.netlify/functions/site
-@chargeId = {{authorizePayment.response.body.$.chargeId}}
-@orderId = {{authorizePayment.response.body.$.orderId}}
+@chargeId = {{createOrder.response.body.$.chargeId}}
+@orderId = {{createOrder.response.body.$.orderId}}
 @printJobId = {{createPrintJob.response.body.$.printJobId}}
 @address = {"name":"Bo","street":"1 Rd","city":"Cody","state":"WY","zip":"82414","country": "US"}
 @pdfUrlBase = https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized
