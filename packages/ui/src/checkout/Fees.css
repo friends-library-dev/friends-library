@@ -1,3 +1,7 @@
+.Fees {
+  border-spacing: 0;
+}
+
 .Fees td {
   @apply p-3 text-sm text-gray-700 antialiased;
 }

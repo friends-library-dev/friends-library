@@ -38,12 +38,14 @@ const Input: React.FC<Props> = ({
       onBlur={onBlur || (() => {})}
       onFocus={onFocus || (() => {})}
     />
-    {!valid && value && (
-      <span className="absolute text-red-600 top-0 right-0 text-xs p-1">
-        {invalidMsg}
-      </span>
-    )}
+    {!valid && value && <InvalidOverlay>{invalidMsg}</InvalidOverlay>}
   </div>
 );
 
 export default Input;
+
+export const InvalidOverlay: React.FC = ({ children }) => (
+  <span className="absolute text-red-600 top-0 right-0 text-xs p-1 font-normal leading-tight">
+    {children}
+  </span>
+);

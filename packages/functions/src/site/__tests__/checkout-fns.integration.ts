@@ -46,17 +46,6 @@ describe('site fns integration', () => {
     expect(orderId).toMatch(/^[a-f\d]{24}$/i);
 
     /**
-     * Step 1.5 (only required here, since no js client):
-     * Confirm payment intent with payment method
-     */
-    const confirmRes = await fetch(`${endpoint}/payment/confirm`, {
-      method: 'POST',
-      body: JSON.stringify({ paymentIntentId }),
-      headers,
-    });
-    expect(confirmRes.status).toBe(204);
-
-    /**
      * Step 2: Verify that our order was created
      */
     let orderRes = await fetch(`${endpoint}/orders/${orderId}`);
@@ -72,6 +61,17 @@ describe('site fns integration', () => {
         cc_fee_offset: createOrderSchema.example.ccFeeOffset,
       },
     });
+
+    /**
+     * Step 2.5 (only required here, since no js client):
+     * Confirm payment intent with payment method
+     */
+    const confirmRes = await fetch(`${endpoint}/payment/confirm`, {
+      method: 'POST',
+      body: JSON.stringify({ paymentIntentId }),
+      headers,
+    });
+    expect(confirmRes.status).toBe(204);
 
     /**
      * Step 3: Create print job
