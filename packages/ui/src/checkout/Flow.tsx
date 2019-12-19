@@ -6,7 +6,6 @@ import CollectEmail from './CollectEmail';
 import CollectAddress from './CollectAddress';
 import MessageThrobber from './MessageThrobber';
 import ConfirmFees from './ConfirmFees';
-import CollectCreditCard from './CollectCreditCard';
 import Success from './Success';
 import CartItem, { CartItemData } from './models/CartItem';
 
@@ -80,8 +79,8 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
           ccFeeOffset={machine.service.fees.ccFeeOffset}
         />
       );
-    case 'collectCreditCart':
-      return <CollectCreditCard onPay={getToken => machine.dispatch('next', getToken)} />;
+    // case 'collectCreditCart':
+    //   return <CollectCreditCard onPay={getToken => machine.dispatch('next', getToken)} />;
     case 'success':
       return <Success email={machine.service.cart.email || ''} onClose={() => {}} />;
     default:

@@ -20,14 +20,15 @@
     "@emotion/core": "^10.0.14",
     "@emotion/styled": "^10.0.14",
     "@friends-library/cover-component": "1.0.0",
-    "@friends-library/lulu": "1.0.0",
     "@friends-library/friends": "1.0.0",
+    "@friends-library/lulu": "1.0.0",
     "classnames": "^2.2.6",
     "emotion-theming": "^10.0.14",
     "gatsby-link": "^2.2.2",
     "react": "16.10.1",
-    "react-dom": "16.10.1",
     "react-country-region-selector": "^1.4.3",
+    "react-dom": "16.10.1",
+    "react-stripe-elements": "^6.0.1",
     "tailwindcss": "^1.1.1"
   },
   "devDependencies": {
@@ -43,6 +44,7 @@
     "@types/classnames": "^2.2.9",
     "@types/node-fetch": "^2.5.1",
     "@types/react": "16.9.11",
+    "@types/react-stripe-elements": "^6.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "file-loader": "^4.2.0"

@@ -1,9 +1,22 @@
 import React from 'react';
+import cx from 'classnames';
+import {
+  injectStripe,
+  CardNumberElement,
+  CardExpiryElement,
+  CardCvcElement,
+  ReactStripeElements,
+} from 'react-stripe-elements';
+import Back from './Back';
 import Header from './Header';
 import Progress from './Progress';
-import './Payment.css';
+import NoProfit from './NoProfit';
+import Button from '../Button';
+import Fees from './Fees';
+import { InvalidOverlay } from './Input';
+import { CardRow, FeedbackCard } from './Cards';
 
-interface Props {
+type Props = ReactStripeElements.InjectedStripeProps & {
   onConfirm: () => void;
   onBackToCart: () => void;
   subTotal: number;
@@ -11,39 +24,163 @@ interface Props {
   taxes: number;
   ccFeeOffset: number;
   onPay: (getToken: () => Promise<string>) => void;
+  paymentIntentClientSecret: string;
+};
+
+interface State {
+  cardBrand?: string;
+  numberComplete: boolean;
+  expiryComplete: boolean;
+  cvcComplete: boolean;
+  numberError?: string;
+  expiryError?: string;
+  cvcError?: string;
 }
 
-const Payment: React.FC<Props> = ({ shipping, taxes, subTotal, ccFeeOffset }) => (
-  <div>
-    <Header>Payment</Header>
-    <Progress step="Payment" />
-    <table className="Fees w-full my-4">
-      <tr>
-        <td>Subtotal</td>
-        <td>{money(subTotal)}</td>
-      </tr>
-      <tr>
-        <td>Shipping</td>
-        <td>{money(shipping)}</td>
-      </tr>
-      <tr>
-        <td>Credit Card Fee Offset</td>
-        <td>{money(ccFeeOffset)}</td>
-      </tr>
-      <tr>
-        <td>Taxes</td>
-        <td>{money(taxes)}</td>
-      </tr>
-      <tr className="text-black font-bold">
-        <td>Grand Total</td>
-        <td>{money(subTotal + shipping + taxes + ccFeeOffset)}</td>
-      </tr>
-    </table>
-  </div>
-);
+class Payment extends React.Component<Props, State> {
+  public state: State = {
+    numberComplete: false,
+    expiryComplete: false,
+    cvcComplete: false,
+  };
 
-export default Payment;
+  private handleSubmit: (
+    ev: React.FormEvent<HTMLFormElement>,
+  ) => Promise<void> = async ev => {
+    ev.preventDefault();
 
-function money(amt: number): string {
-  return `$${(amt / 100).toFixed(2)}`;
+    const { paymentIntentClientSecret, stripe, elements } = this.props;
+    if (!stripe || !elements) {
+      throw new Error('Missing stripe prop!');
+    }
+
+    // @ts-ignore
+    const res = await stripe.confirmCardPayment(paymentIntentClientSecret, {
+      payment_method: {
+        card: elements.getElement('cardNumber'),
+      },
+    });
+    console.log(res);
+    // res.paymentIntent // <-- payment intent object from API, OR:
+    // res.error // <-- error object from API, may include res.error.paymentIntent
+  };
+
+  private valid: () => boolean = () => {
+    return (
+      this.state.numberComplete &&
+      !this.state.numberError &&
+      this.state.cvcComplete &&
+      !this.state.cvcError &&
+      this.state.expiryComplete &&
+      !this.state.expiryError
+    );
+  };
+
+  public render(): JSX.Element {
+    const { numberError, cardBrand, expiryError, cvcError } = this.state;
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <Header>Payment</Header>
+        <NoProfit className="hidden md:block" />
+        <Progress step="Payment" />
+        <div className="md:flex mt-4">
+          <Fees
+            className="w-full md:w-1/2 md:mr-10 md:border-b md:pb-2 md:mb-4"
+            {...this.props}
+          />
+          <div className="md:w-1/2 mt-4 md:mt-0">
+            <h3 className="hidden md:block pt-0 mt-2 mb-6 text-gray-600 antialiased tracking-wider font-sans font-normal text-lg">
+              Enter credit card details:
+            </h3>
+            <div className="relative">
+              <CardNumberElement
+                className={cx('CartInput', { invalid: !!numberError })}
+                placeholder="Credit Card Number"
+                onReady={el => el.focus()}
+                onChange={({ error, brand, complete }) => {
+                  this.setState({
+                    cardBrand: brand,
+                    numberError: error ? error.message : undefined,
+                    numberComplete: complete,
+                  });
+                }}
+                onFocus={() => this.setState({ numberError: undefined })}
+                style={style}
+              />
+              {numberError && <InvalidOverlay>{numberError}</InvalidOverlay>}
+              {!numberError && <FeedbackCard brand={cardBrand} />}
+            </div>
+            <div className="flex justify-between md:mt-6">
+              <div className="relative mr-4 w-1/2 flex-grow">
+                <CardExpiryElement
+                  style={style}
+                  className={cx('CartInput', { invalid: !!expiryError })}
+                  onFocus={() => this.setState({ expiryError: undefined })}
+                  onChange={({ error, complete }) => {
+                    this.setState({
+                      expiryError: error ? error.message : undefined,
+                      expiryComplete: complete,
+                    });
+                  }}
+                />
+                {expiryError && <InvalidOverlay>{expiryError}</InvalidOverlay>}
+              </div>
+              <div className="relative w-1/2">
+                <CardCvcElement
+                  style={style}
+                  placeholder="CVC"
+                  className={cx('CartInput', { invalid: !!cvcError })}
+                  onFocus={() => this.setState({ cvcError: undefined })}
+                  onChange={({ error, complete }) => {
+                    this.setState({
+                      cvcError: error ? error.message : undefined,
+                      cvcComplete: complete,
+                    });
+                  }}
+                />
+                {cvcError && <InvalidOverlay>{cvcError}</InvalidOverlay>}
+              </div>
+            </div>
+            <div className="mb-6 mt-1 md:mt-2">
+              <CardRow />
+            </div>
+          </div>
+        </div>
+        <Back>Back to delivery</Back>
+        <Button
+          className={cx('mx-auto', {
+            'bg-gray-800': !this.valid(),
+            'bg-flprimary': this.valid(),
+          })}
+          disabled={!this.valid()}
+        >
+          Purchase
+        </Button>
+      </form>
+    );
+  }
 }
+
+export default injectStripe(Payment);
+
+const style = {
+  base: {
+    color: '#666',
+    fontWeight: 500,
+    fontFamily: 'Cabin, Open Sans, Segoe UI, sans-serif',
+    fontSize: '16px',
+    letterSpacing: '0.05em',
+    fontSmoothing: 'antialiased',
+    '::placeholder': {
+      color: '#ccc',
+    },
+  },
+  complete: {
+    color: '#106314',
+  },
+  invalid: {
+    '::placeholder': {
+      color: '#fff',
+    },
+  },
+};
