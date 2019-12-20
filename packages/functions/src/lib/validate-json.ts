@@ -22,7 +22,6 @@ export default function validateJson<Data>(
     const json = JSON.parse(body);
     const result = validator.validate(json, schema);
     if (result.errors.length) {
-      // @ts-ignore https://github.com/tdegrunt/jsonschema/issues/286
       const errors = result.errors.map(e => e.stack).join(', ');
       return new Error(`Invalid JSON body: ${errors}`);
     }

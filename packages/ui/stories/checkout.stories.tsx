@@ -5,15 +5,12 @@ import { action as a } from '@storybook/addon-actions';
 import { ThreeD } from '@friends-library/cover-component';
 import Modal from '../src/checkout/Modal';
 import MessageThrobber from '../src/checkout/MessageThrobber';
-import CostExplanation from '../src/checkout/CostExplanation';
-import CollectEmail from '../src/checkout/CollectEmail';
-import CollectAddress from '../src/checkout/CollectAddress';
+import Delivery from '../src/checkout/Delivery';
 import Payment from '../src/checkout/Payment';
 import Input from '../src/checkout/Input';
 import EmptyCart from '../src/checkout/EmptyCart';
 import Progress from '../src/checkout/Progress';
 import Success from '../src/checkout/Success';
-import ConfirmFees from '../src/checkout/ConfirmFees';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 
@@ -48,7 +45,6 @@ storiesOf('Checkout Components', module)
         <Elements>
           <Payment
             onPay={a('on pay')}
-            onConfirm={a('on confirm')}
             onBackToCart={a('on back to cart')}
             subTotal={1298}
             shipping={399}
@@ -106,47 +102,13 @@ storiesOf('Checkout Components', module)
       <MessageThrobber msg="Calculating exact shipping cost" />
     </Modal>
   ))
-  .add('CostExplanation', () => (
-    <Modal onClose={a('close modal')}>
-      <CostExplanation onGotIt={a('got it')} />
-    </Modal>
-  ))
   .add('Success', () => (
     <Modal onClose={a('close modal')}>
       <Success email="you@example.com" onClose={a('close')} />
     </Modal>
   ))
-  .add('CollectEmail', () => (
-    <Modal onClose={a('close modal')}>
-      <CollectEmail stored="" onSubmit={a('submit email')} />
-    </Modal>
-  ))
-  .add('CollectAddress', () => (
+  .add('Delivery', () => (
     <div style={{ margin: 25 }}>
-      <CollectAddress onSubmit={a('submit address')} />
+      <Delivery onSubmit={a('submit address')} />
     </div>
-  ))
-  .add('ConfirmFees (no tax)', () => (
-    <Modal onClose={a('close modal')}>
-      <ConfirmFees
-        taxes={0}
-        subTotal={824}
-        shipping={399}
-        ccFeeOffset={42}
-        onConfirm={a('confirm shipping')}
-        onBackToCart={a('back to cart')}
-      />
-    </Modal>
-  ))
-  .add('ConfirmFees (with tax)', () => (
-    <Modal onClose={a('close modal')}>
-      <ConfirmFees
-        taxes={132}
-        subTotal={824}
-        shipping={399}
-        ccFeeOffset={42}
-        onConfirm={a('confirm shipping')}
-        onBackToCart={a('back to cart')}
-      />
-    </Modal>
   ));

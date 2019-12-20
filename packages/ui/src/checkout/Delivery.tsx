@@ -7,12 +7,12 @@ import Input from './Input';
 import Back from './Back';
 import NoProfit from './NoProfit';
 import { Address } from './types';
-import './CollectAddress.css';
+import './Delivery.css';
 
 // @ts-ignore
 import { CountryDropdown } from 'react-country-region-selector';
 
-const CollectAddress: React.FC<{
+const Delivery: React.FC<{
   onSubmit: (address: Address) => void;
   stored?: Address;
 }> = ({ onSubmit, stored }) => {
@@ -122,6 +122,7 @@ const CollectAddress: React.FC<{
               countryBlurred && !country && 'invalid text-red-600',
             )}
             value={country}
+            valueType="short"
             onChange={(country: string) => setCountry(country)}
             onFocus={() => setCountryBlurred(false)}
             onBlur={() => setCountryBlurred(true)}
@@ -148,4 +149,4 @@ const CollectAddress: React.FC<{
   );
 };
 
-export default CollectAddress;
+export default Delivery;

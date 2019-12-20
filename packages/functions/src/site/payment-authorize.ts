@@ -12,18 +12,18 @@ import log from '../lib/log';
  * viz, creating a payment method with a credit card, and attaching the payment
  * method to the payment intent object.
  */
-export default async function confirmPayment(
+export default async function authorizePayment(
   { body }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
   if (!isTestInvocation()) {
-    log.error('/payment/confirm used outside of local testing');
+    log.error('/payment/authorize used outside of local testing');
     return respond.json({ msg: 'payment_confirm_production_attempt' }, 403);
   }
 
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment/confirm', body);
+    log.error('invalid body for /payment/authorize', body);
     return respond.json({ msg: data.message }, 400);
   }
 
@@ -40,7 +40,6 @@ export default async function confirmPayment(
       },
     });
   } catch (error) {
-    console.log(error);
     log.error(`error creating payment method`, error);
     return respond.json({ msg: error.code }, 500);
   }
@@ -50,13 +49,11 @@ export default async function confirmPayment(
       payment_method: paymentMethod.id,
     });
   } catch (error) {
-    console.log(error);
     log.error(`error confirming payment intent: ${intentId}`, error);
     return respond.json({ msg: error.code }, 500);
   }
 
   if (intent.status !== 'requires_capture') {
-    console.log(intent);
     log.error('unexpected intent status after confirmation', intent);
     return respond.json({ msg: intent.status }, 500);
   }

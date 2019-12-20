@@ -17,13 +17,12 @@ import { InvalidOverlay } from './Input';
 import { CardRow, FeedbackCard } from './Cards';
 
 type Props = ReactStripeElements.InjectedStripeProps & {
-  onConfirm: () => void;
   onBackToCart: () => void;
   subTotal: number;
   shipping: number;
   taxes: number;
   ccFeeOffset: number;
-  onPay: (getToken: () => Promise<string>) => void;
+  onPay: (authorizePayment: () => Promise<Record<string, any>>) => void;
   paymentIntentClientSecret: string;
 };
 
@@ -49,20 +48,19 @@ class Payment extends React.Component<Props, State> {
   ) => Promise<void> = async ev => {
     ev.preventDefault();
 
-    const { paymentIntentClientSecret, stripe, elements } = this.props;
+    const { paymentIntentClientSecret, stripe, elements, onPay } = this.props;
     if (!stripe || !elements) {
       throw new Error('Missing stripe prop!');
     }
 
-    // @ts-ignore
-    const res = await stripe.confirmCardPayment(paymentIntentClientSecret, {
-      payment_method: {
-        card: elements.getElement('cardNumber'),
-      },
-    });
-    console.log(res);
-    // res.paymentIntent // <-- payment intent object from API, OR:
-    // res.error // <-- error object from API, may include res.error.paymentIntent
+    onPay(() =>
+      // @ts-ignore
+      stripe.confirmCardPayment(paymentIntentClientSecret, {
+        payment_method: {
+          card: elements.getElement('cardNumber'),
+        },
+      }),
+    );
   };
 
   private valid: () => boolean = () => {

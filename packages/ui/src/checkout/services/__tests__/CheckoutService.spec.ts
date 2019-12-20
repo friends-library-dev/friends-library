@@ -55,7 +55,7 @@ describe('CheckoutService()', () => {
 
       const err = await service.calculateFees();
 
-      expect(err).toBeNull();
+      expect(err).toBeUndefined();
       expect(service.shippingLevel).toBe('MAIL');
       expect(service.fees).toEqual({
         shipping: 399,
@@ -111,7 +111,7 @@ describe('CheckoutService()', () => {
 
       const err = await service.createOrder();
 
-      expect(err).toBeNull();
+      expect(err).toBeUndefined();
       expect(service.paymentIntentId).toBe('pi_id');
       expect(service.paymentIntentClientSecret).toBe('pi_id_secret_123');
       expect(service.orderId).toBe('order_id');
@@ -172,7 +172,7 @@ describe('CheckoutService()', () => {
       const err = await service.verifyPrintJobAccepted();
 
       expect(getPrintJobStatus).toHaveBeenCalledWith(55);
-      expect(err).toBeNull();
+      expect(err).toBeUndefined();
     });
 
     it('should keep requesting status until it gets accepted', async () => {
@@ -218,7 +218,7 @@ describe('CheckoutService()', () => {
       expect(updateOrder).toHaveBeenCalledWith('123abc', {
         'print_job.status': 'rejected',
       });
-      expect(err).toBeNull();
+      expect(err).toBeUndefined();
     });
 
     it('returns error if api request errors', async () => {
@@ -238,7 +238,7 @@ describe('CheckoutService()', () => {
       service.paymentIntentId = 'ch_123';
       capturePayment.mockResolvedValueOnce({ ok: true, data: {} });
       const err = await service.capturePayment();
-      expect(err).toBeNull();
+      expect(err).toBeUndefined();
       expect(capturePayment).toHaveBeenCalledWith({
         orderId: '123abc',
         paymentIntentId: 'ch_123',
