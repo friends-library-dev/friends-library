@@ -10,7 +10,7 @@ import Payment from '../src/checkout/Payment';
 import Input from '../src/checkout/Input';
 import EmptyCart from '../src/checkout/EmptyCart';
 import Progress from '../src/checkout/Progress';
-import Success from '../src/checkout/Success';
+import Confirmation from '../src/checkout/Confirmation';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 
@@ -102,9 +102,9 @@ storiesOf('Checkout Components', module)
       <MessageThrobber msg="Calculating exact shipping cost" />
     </Modal>
   ))
-  .add('Success', () => (
+  .add('Confirmation', () => (
     <Modal onClose={a('close modal')}>
-      <Success email="you@example.com" onClose={a('close')} />
+      <Confirmation email="you@example.com" onClose={a('close')} />
     </Modal>
   ))
   .add('Delivery', () => (

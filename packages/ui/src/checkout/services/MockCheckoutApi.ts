@@ -48,14 +48,14 @@ export default class MockCheckoutApi extends CheckoutApi {
       default: {
         ok: true,
         statusCode: 200,
-        delay: 500,
+        delay: 250,
         data: { status: 'accepted' },
       },
       stack: [
         {
           ok: true,
           statusCode: 200,
-          delay: 500,
+          delay: 250,
           data: { status: 'pending' },
         },
       ],

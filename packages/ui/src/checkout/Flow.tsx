@@ -5,7 +5,7 @@ import Cart from '../cart';
 import Delivery from './Delivery';
 import Payment from './Payment';
 import MessageThrobber from './MessageThrobber';
-import Success from './Success';
+import Success from './Confirmation';
 import CartItem, { CartItemData } from './models/CartItem';
 
 const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
