@@ -13,7 +13,7 @@ const Progress: React.FC<Props> = ({ step }) => {
       <Step
         step="Payment"
         active={step === 'Payment'}
-        complete={['Payment', 'Order'].includes(step)}
+        complete={['Payment', 'Confirmation'].includes(step)}
       />
       <Step
         step="Confirmation"
@@ -38,8 +38,9 @@ const Step: React.FC<{ active: boolean; complete: boolean; step: string }> = ({
       'text-flprimary': complete,
       'text-gray-600': !complete,
       'hidden md:block': step === 'Confirmation',
+      bracketed: active,
     })}
   >
-    {`${active ? `[ ${step} ]` : step}`}
+    {step}
   </li>
 );

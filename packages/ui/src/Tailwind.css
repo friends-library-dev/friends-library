@@ -29,4 +29,8 @@
   );
 }
 
+.body-text {
+  @apply font-serif antialiased text-gray-800 text-base tracking-wide leading-relaxed;
+}
+
 @tailwind utilities;
