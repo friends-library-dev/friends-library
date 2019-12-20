@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import { action as a } from '@storybook/addon-actions';
+import { ThreeD } from '@friends-library/cover-component';
 import Modal from '../src/checkout/Modal';
 import MessageThrobber from '../src/checkout/MessageThrobber';
 import CostExplanation from '../src/checkout/CostExplanation';
@@ -9,11 +10,38 @@ import CollectEmail from '../src/checkout/CollectEmail';
 import CollectAddress from '../src/checkout/CollectAddress';
 import Payment from '../src/checkout/Payment';
 import Input from '../src/checkout/Input';
+import EmptyCart from '../src/checkout/EmptyCart';
 import Progress from '../src/checkout/Progress';
 import Success from '../src/checkout/Success';
 import ConfirmFees from '../src/checkout/ConfirmFees';
+import { coverSizes } from './decorators';
+import { props as coverProps } from './cover.stories';
 
 storiesOf('Checkout Components', module)
+  .addDecorator(coverSizes)
+  .add('EmptyCart', () => (
+    <EmptyCart
+      recommendedBooks={[
+        {
+          title: 'No Cross, No Crown',
+          path: '/',
+          Cover: <ThreeD {...coverProps} scaler={0.25} scope="1-4" />,
+        },
+        {
+          title: 'Journal of George Fox',
+          path: '/',
+          Cover: (
+            <ThreeD {...coverProps} edition="modernized" scaler={0.25} scope="1-4" />
+          ),
+        },
+        {
+          title: 'The Work of Vital Religion in the Soul',
+          path: '/',
+          Cover: <ThreeD {...coverProps} edition="original" scaler={0.25} scope="1-4" />,
+        },
+      ]}
+    />
+  ))
   .add('Payment', () => (
     <div className="p-8">
       <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
@@ -26,14 +54,16 @@ storiesOf('Checkout Components', module)
             shipping={399}
             taxes={132}
             ccFeeOffset={42}
-            paymentIntentClientSecret="pi_1FrU2XEswFkMHmtgmm48hicB_secret_wfDDG8R6qaQSoooevUltSZQDG"
+            paymentIntentClientSecret="pi_123_secret_345"
           />
         </Elements>
       </StripeProvider>
     </div>
   ))
   .add('Progress (order)', () => <Progress step="Order" />)
+  .add('Progress (delivery)', () => <Progress step="Delivery" />)
   .add('Progress (payment)', () => <Progress step="Payment" />)
+  .add('Progress (confirmation)', () => <Progress step="Confirmation" />)
   .add('Input (valid)', () => (
     <Modal onClose={a('close modal')}>
       <div style={{ width: 300 }}>
@@ -96,11 +126,6 @@ storiesOf('Checkout Components', module)
       <CollectAddress onSubmit={a('submit address')} />
     </div>
   ))
-  // .add('CollectCreditCard', () => (
-  //   <Modal onClose={a('close modal')}>
-  //     <CollectCreditCard />
-  //   </Modal>
-  // ))
   .add('ConfirmFees (no tax)', () => (
     <Modal onClose={a('close modal')}>
       <ConfirmFees

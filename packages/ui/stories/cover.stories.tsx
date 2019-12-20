@@ -13,7 +13,7 @@ import {
 import { CoverProps, PrintSize } from '@friends-library/types';
 import { addStaticCoverCss } from './helpers';
 
-const props: CoverProps = {
+export const props: CoverProps = {
   lang: 'en',
   size: 's',
   pages: 222,
@@ -24,7 +24,7 @@ const props: CoverProps = {
   edition: 'updated',
   title: 'The Work of Vital Religion in the Soul',
   isbn: '978-1-64476-000-0',
-  author: 'Samuel Rndell',
+  author: 'Samuel Rundell',
   customCss: '',
   customHtml: '',
 };
