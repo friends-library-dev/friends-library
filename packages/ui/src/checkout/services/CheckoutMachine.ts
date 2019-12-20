@@ -1,6 +1,7 @@
 import CheckoutService from './CheckoutService';
 
 export default class CheckoutMachine {
+  private history = ['cart'];
   private state = 'cart';
   private listeners: ((newState: string) => void)[] = [];
 
@@ -12,92 +13,95 @@ export default class CheckoutMachine {
     },
 
     cart: {
-      next(this: CheckoutMachine) {
-        this.transitionTo('costExplanation');
+      async next(this: CheckoutMachine) {
+        await this.transitionTo('delivery');
+        // don't await, fire & forget to wakeup in background
         this.service.sendWakeup();
       },
+      close: 'hidden',
     },
 
-    costExplanation: {
-      next: 'collectEmail',
+    delivery: {
+      next: 'calculateFees',
     },
 
-    collectEmail: {
-      next: 'collectAddress',
+    calculateFees: {
+      onEnter: 'Service.calculateFees',
+      success: 'createOrder',
+      failure: 'delivery',
     },
 
-    collectAddress: {
-      async next(this: CheckoutMachine) {
-        this.transitionTo('calculatingFees');
-        const err = await this.service.calculateFees();
-        this.dispatch(err ? 'failure' : 'success', err || undefined);
-      },
+    createOrder: {
+      onEnter: 'Service.createOrder',
+      success: 'payment',
+      failure: 'delivery',
     },
 
-    calculatingFees: {
-      success: 'confirmFees',
-    },
-
-    confirmFees: {
-      backToCart: 'cart',
-      next: 'collectCreditCart',
-    },
-
-    collectCreditCart: {
-      async next(this: CheckoutMachine, getToken: () => Promise<string>) {
-        this.transitionTo('fetchingPaymentToken');
-        try {
-          const token = await getToken();
-          this.dispatch('success', token);
-        } catch {
-          this.dispatch('failure');
-        }
-      },
-    },
-
-    fetchingPaymentToken: {
-      async success(this: CheckoutMachine) {
-        this.transitionTo('authorizingPayment');
-        const err = await this.service.createOrder();
-        this.dispatch(err ? 'failure' : 'success', err || undefined);
+    payment: {
+      async next(
+        this: CheckoutMachine,
+        authorizePayment: () => Promise<Record<string, any>>,
+      ) {
+        await this.transitionTo('authorizingPayment');
+        const err = await this.service.authorizePayment(authorizePayment);
+        await this.dispatch(err ? 'failure' : 'success', err);
       },
     },
 
     authorizingPayment: {
-      async success(this: CheckoutMachine) {
-        this.transitionTo('submittingToPrinter');
-        const err = await this.service.createPrintJob();
-        this.dispatch(err ? 'failure' : 'success', err || undefined);
-      },
+      success: 'createPrintJob',
+      failure: 'payment',
     },
 
-    submittingToPrinter: {
-      async success(this: CheckoutMachine) {
-        this.transitionTo('validatingPrintOrder');
-        const err = await this.service.verifyPrintJobAccepted();
-        this.dispatch(err ? 'failure' : 'success', err || undefined);
-      },
+    createPrintJob: {
+      onEnter: 'Service.createPrintJob',
+      success: 'verifyPrintJob',
+      failure: 'brickSession',
     },
 
-    validatingPrintOrder: {
-      async success(this: CheckoutMachine) {
-        this.transitionTo('updateOrderPrintJobStatus');
-        const err = await this.service.updateOrderPrintJobStatus();
-        this.dispatch(err ? 'failure' : 'success', err || undefined);
-      },
+    verifyPrintJob: {
+      onEnter: 'Service.verifyPrintJobAccepted',
+      success: 'updateOrderPrintJobStatus',
+      failure: 'brickSession',
     },
 
     updateOrderPrintJobStatus: {
-      async success(this: CheckoutMachine) {
-        this.transitionTo('capturingPayment');
-        const err = await this.service.capturePayment();
-        this.dispatch(err ? 'failure' : 'success', err || undefined);
-        this.service.sendOrderConfirmationEmail(); // fire & forget, no need to wait
-      },
+      onEnter: 'Service.updateOrderPrintJobStatus',
+      success: 'capturePayment',
+      failure: 'capturePayment',
     },
 
-    capturingPayment: {
-      success: 'success',
+    capturePayment: {
+      onEnter: 'Service.capturePayment',
+      success(this: CheckoutMachine) {
+        this.transitionTo('confirmation');
+        this.service.sendOrderConfirmationEmail(); // fire & forget, no need to wait
+      },
+      failure: 'brickSession',
+    },
+
+    confirmation: {
+      onEnter(this: CheckoutMachine) {
+        // @TODO reset cart completely, keep address @BLOCKER
+      },
+      finish: 'hidden',
+    },
+
+    /**
+     * There are many possible errors that can happen during the lambda orchestration, most of which
+     * are very rare, and probably not worth the effort at this point to graph out detailed recovery
+     * scenarios. So, when we hit one of those rare, not-straightforward-how-to-handle errors, we
+     * just `brick` the session -- cancel payment if authorized, set the order status to `bricked`,
+     * clear most of the state on the CheckoutService, show them a sad message, and let them start again.
+     * As these events trickle in from production, I can plan out remediation for common errors.
+     */
+    brickSession: {
+      onEnter(this: CheckoutMachine) {
+        // @TODO cancel authorized payment @BLOCKER
+        // @TODO set order status to `bricked` @BLOCKER
+        // @TODO clear most of the CheckoutMachine state (except cart items, and address?) @BLOCKER
+        // @TODO not a blocker, but it would be nice to send a slack via a fn to log this.history
+      },
     },
   };
 
@@ -109,13 +113,42 @@ export default class CheckoutMachine {
     this.listeners.push(listener);
   }
 
-  public transitionTo(state: string): void {
+  public async transitionTo(state: string): Promise<void> {
     console.log(`%ctransition to state: %c${state}`, 'color: grey', 'color: green');
+    const nextState = this.states[state];
+    if (!nextState) {
+      throw new Error(`Unexpected next state: ${state}`);
+    }
+
     this.state = state;
+    this.history.push(state);
     this.listeners.forEach(listener => listener(state));
+
+    if (typeof nextState.onEnter === 'undefined') {
+      return;
+    }
+
+    const { onEnter } = nextState;
+    if (typeof onEnter === 'function') {
+      await onEnter.call(this);
+      return;
+    }
+
+    // support `Service.[method] shorthand for invoking no-argument service fns
+    if (typeof onEnter === 'string' && onEnter.startsWith('Service.')) {
+      const method = onEnter.replace(/^Service\./, '');
+      if (typeof this.service[method] !== 'function') {
+        throw new Error(`CheckoutService method: ${method} does not exist`);
+      }
+      const err = await this.service[method]();
+      await this.dispatch(err ? 'failure' : 'success', err);
+      return;
+    }
+
+    throw new Error('Unexpected value for [state].onEnter');
   }
 
-  public dispatch<T>(action: string, payload?: T): void {
+  public async dispatch<T>(action: string, payload?: T): Promise<void> {
     console.log(`%cdispatch action: %c${action}`, 'color: grey', 'color: orange');
     const state = this.states[this.state];
     if (!state) {
@@ -127,11 +160,11 @@ export default class CheckoutMachine {
       return;
     }
 
-    if (typeof handler === 'string') {
-      this.transitionTo(handler);
+    if (typeof handler === 'function') {
+      handler.call(this, payload);
       return;
     }
 
-    handler.call(this, payload);
+    await this.transitionTo(handler);
   }
 }

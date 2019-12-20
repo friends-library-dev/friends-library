@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { StripeProvider, Elements } from 'react-stripe-elements';
 import CheckoutMachine from './services/CheckoutMachine';
 import Cart from '../cart';
-import CostExplanation from './CostExplanation';
-import CollectEmail from './CollectEmail';
-import CollectAddress from './CollectAddress';
+import Delivery from './Delivery';
+import Payment from './Payment';
 import MessageThrobber from './MessageThrobber';
-import ConfirmFees from './ConfirmFees';
 import Success from './Success';
 import CartItem, { CartItemData } from './models/CartItem';
 
@@ -27,24 +26,12 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
           }}
           subTotal={machine.service.cart.subTotal()}
           checkout={() => machine.dispatch('next')}
-          close={() => {}}
+          close={() => machine.dispatch('close')}
         />
       );
-    case 'costExplanation':
-      return <CostExplanation onGotIt={() => machine.dispatch('next')} />;
-    case 'collectEmail':
+    case 'delivery':
       return (
-        <CollectEmail
-          stored={machine.service.cart.email || ''}
-          onSubmit={email => {
-            machine.service.cart.email = email;
-            machine.dispatch('next');
-          }}
-        />
-      );
-    case 'collectAddress':
-      return (
-        <CollectAddress
+        <Delivery
           stored={machine.service.cart.address}
           onSubmit={collectedAddress => {
             machine.service.cart.address = collectedAddress;
@@ -52,39 +39,40 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
           }}
         />
       );
-    case 'calculatingFees':
+    case 'payment':
+      return (
+        <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
+          <Elements>
+            <Payment
+              onBackToCart={() => machine.dispatch('backToCart')}
+              paymentIntentClientSecret={machine.service.paymentIntentClientSecret}
+              subTotal={machine.service.cart.subTotal()}
+              shipping={machine.service.fees.shipping}
+              taxes={machine.service.fees.taxes}
+              ccFeeOffset={machine.service.fees.ccFeeOffset}
+              onPay={getToken => machine.dispatch('next', getToken)}
+            />
+          </Elements>
+        </StripeProvider>
+      );
+    case 'calculateFees':
       return <MessageThrobber msg="Calculating exact shipping cost and fees..." />;
-    case 'fetchingPaymentToken':
+    case 'createOrder':
+      return <MessageThrobber msg="Creating order..." />;
     case 'authorizingPayment':
       return <MessageThrobber msg="Pre-authorizing credit card payment..." />;
-    case 'submittingToPrinter':
-      return (
-        <MessageThrobber msg="Payment pre-authorized. Submitting order to printer..." />
-      );
-    case 'validatingPrintOrder':
+    case 'createPrintJob':
+      return <MessageThrobber msg="Payment authed. Submitting order to printer..." />;
+    case 'verifyPrintJob':
+      return <MessageThrobber msg="Verifying print job..." />;
     case 'updateOrderPrintJobStatus':
-      return (
-        <MessageThrobber msg="Order submitted. Waiting for print order validation..." />
-      );
-    case 'capturingPayment':
+      return <MessageThrobber msg="Updating order print job status" />;
+    case 'capturePayment':
       return <MessageThrobber msg="Order validated. Charging your credit card..." />;
-    case 'confirmFees':
-      return (
-        <ConfirmFees
-          onConfirm={() => machine.dispatch('next')}
-          onBackToCart={() => machine.dispatch('backToCart')}
-          subTotal={machine.service.cart.subTotal()}
-          shipping={machine.service.fees.shipping}
-          taxes={machine.service.fees.taxes}
-          ccFeeOffset={machine.service.fees.ccFeeOffset}
-        />
-      );
-    // case 'collectCreditCart':
-    //   return <CollectCreditCard onPay={getToken => machine.dispatch('next', getToken)} />;
-    case 'success':
+    case 'confirmation':
       return <Success email={machine.service.cart.email || ''} onClose={() => {}} />;
     default:
-      return <p>not cart</p>;
+      return <p>What? {state}</p>;
   }
 };
 

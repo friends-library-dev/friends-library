@@ -24,10 +24,10 @@ export default class CheckoutApi {
   }
 
   // eslint-disable-next-line @typescript-eslint/camelcase
-  public async __testonly__confirmPayment(payload: {
+  public async __testonly__authorizePayment(payload: {
     paymentIntentId: string;
   }): Promise<ApiResponse> {
-    return this.post('/payment/confirm', payload);
+    return this.post('/payment/authorize', payload);
   }
 
   public async createPrintJob(payload: Record<string, any>): Promise<ApiResponse> {

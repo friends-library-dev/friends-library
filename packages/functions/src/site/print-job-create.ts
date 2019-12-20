@@ -16,7 +16,7 @@ export default async function createPrintJob(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /print-job', body);
-    return respond.json({ msg: data.message }, 400);
+    return respond.json({ msg: 'invalid_request_body', detail: data.message }, 400);
   }
 
   const invalidChargeMsg = await verifyPaymentIntent(data.paymentIntentId);
@@ -26,12 +26,12 @@ export default async function createPrintJob(
 
   const order = await findById(data.orderId);
   if (!order) {
+    log.error('order not found for print job creation', data);
     return respond.json({ msg: 'order_not_found' }, 404);
   }
 
-  let token = '';
   try {
-    token = await getAuthToken();
+    var token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring lulu oauth token', error);
     return respond.json({ msg: 'error_acquiring_lulu_oauth_token' }, 500);
@@ -59,7 +59,10 @@ export default async function createPrintJob(
     order.set('print_job', { id: json.id, status: 'pending' });
     await persist(order);
   } catch (error) {
-    log.error('error updating order with print_job details', error);
+    log.error('error updating order with print_job details', error, {
+      orderId: data.orderId,
+      printJobId: json.id,
+    });
     // @TODO -- decide what to do here, we could cancel the lulu order
     // or just proceed, since it's not 100% critical to have updated
   }

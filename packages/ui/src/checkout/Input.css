@@ -1,5 +1,5 @@
 .CartInput {
-  @apply w-full font-sans rounded-none bg-transparent antialiased tracking-wider border p-3 outline-none border-gray-400;
+  @apply w-full rounded-none bg-transparent antialiased tracking-wider border p-3 outline-none border-gray-400;
   margin-bottom: 17px;
   border-bottom-width: 1px;
 }
@@ -11,9 +11,13 @@
 }
 
 .CartInput.invalid::placeholder {
-  @apply text-red-600;
+  @apply text-red-600 font-sans;
 }
 
 .CartInput:focus {
   @apply shadow-outline bg-blue-100 border-gray-400;
+}
+
+select.CartInput {
+  -webkit-appearance: none;
 }

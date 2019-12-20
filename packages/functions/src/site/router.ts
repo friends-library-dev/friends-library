@@ -2,7 +2,7 @@ import { APIGatewayEvent } from 'aws-lambda';
 import webDownload from './web-download';
 import createOrder from './order-create';
 import capturePayment from './payment-capture';
-import confirmPayment from './payment-confirm';
+import authorizePayment from './payment-authorize';
 import printJobFees from './print-job-fees';
 import createPrintJob from './print-job-create';
 import printJobStatus from './print-job-status';
@@ -38,8 +38,8 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
     switch (path) {
       case 'payment/capture':
         return capturePayment(event, respond);
-      case 'payment/confirm':
-        return confirmPayment(event, respond);
+      case 'payment/authorize':
+        return authorizePayment(event, respond);
       case 'print-job/fees':
         return printJobFees(event, respond);
       case 'print-job':

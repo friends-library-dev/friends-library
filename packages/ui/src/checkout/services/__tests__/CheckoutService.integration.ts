@@ -25,7 +25,7 @@ describe('CheckoutService()', () => {
   });
 
   test('sequential, stateful checkout fns', async () => {
-    let err: string | null;
+    let err: string | void;
 
     // step 1: calculate fees
     err = await service.calculateFees();
@@ -39,7 +39,7 @@ describe('CheckoutService()', () => {
     expect(service.orderId).toMatch(/^[a-f\d]{24}$/i);
 
     // step 2.5 (testing only, because not using stripe js client)
-    err = await service.__testonly__confirmPayment();
+    err = await service.__testonly__authorizePayment();
     expect(err).toBeNull();
 
     // step 3: verify that the order was created

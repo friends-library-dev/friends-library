@@ -15,12 +15,11 @@ export default async function printJobFees(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /print-job/fees', body);
-    return respond.json({ msg: data.message }, 400);
+    return respond.json({ msg: 'invalid_request_body', details: data.message }, 400);
   }
 
-  let token = '';
   try {
-    token = await getAuthToken();
+    var token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring lulu oauth token', error);
     return respond.json({ msg: 'error_acquiring_lulu_oauth_token' }, 500);

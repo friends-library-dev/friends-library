@@ -7,8 +7,10 @@ import CheckoutService from '../src/checkout/services/CheckoutService';
 import MockCheckoutApi from '../src/checkout/services/MockCheckoutApi';
 import CheckoutFlow from '../src/checkout/Flow';
 import { cartPlusData, cart } from '../src/checkout/models/__tests__/fixtures';
+import { coverSizes } from './decorators';
 
 storiesOf('Checkout flow', module)
+  .addDecorator(coverSizes)
   .add('happy path (prefill)', () => {
     const service = new CheckoutService(cartPlusData(), new MockCheckoutApi(3500));
     const machine = new CheckoutMachine(service);

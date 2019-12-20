@@ -1,4 +1,4 @@
-import CheckoutApi from './CheckoutApi';
+import CheckoutApi, { ApiResponse } from './CheckoutApi';
 import Cart from '../models/Cart';
 import { PrintJobStatus } from '@friends-library/types';
 
@@ -11,6 +11,7 @@ import { PrintJobStatus } from '@friends-library/types';
  * within Storybook.
  */
 export default class CheckoutService {
+  private errors: string[] = [];
   public orderId = '';
   public paymentIntentId = '';
   public paymentIntentClientSecret = '';
@@ -25,7 +26,7 @@ export default class CheckoutService {
 
   public constructor(public cart: Cart, private api: CheckoutApi) {}
 
-  public async calculateFees(): Promise<null | string> {
+  public async calculateFees(): Promise<string | void> {
     const payload = {
       address: this.cart.address,
       items: this.cart.items.flatMap(item =>
@@ -39,6 +40,7 @@ export default class CheckoutService {
 
     const { ok, data } = await this.api.calculateFees(payload);
     if (!ok) {
+      this.errors.push(data.msg);
       return data.msg;
     }
 
@@ -48,11 +50,9 @@ export default class CheckoutService {
       taxes: data.taxes,
       ccFeeOffset: data.ccFeeOffset,
     };
-
-    return null;
   }
 
-  public async createOrder(): Promise<null | string> {
+  public async createOrder(): Promise<string | void> {
     const { shipping, taxes, ccFeeOffset } = this.fees;
     const payload = {
       amount: this.cart.subTotal() + this.sumFees(),
@@ -71,17 +71,16 @@ export default class CheckoutService {
 
     const { ok, data } = await this.api.createOrder(payload);
     if (!ok) {
+      this.errors.push(data.msg);
       return data.msg;
     }
 
     this.paymentIntentId = data.paymentIntentId;
     this.paymentIntentClientSecret = data.paymentIntentClientSecret;
     this.orderId = data.orderId;
-
-    return null;
   }
 
-  public async createPrintJob(): Promise<null | string> {
+  public async createPrintJob(): Promise<string | void> {
     const payload = {
       orderId: this.orderId,
       paymentIntentId: this.paymentIntentId,
@@ -102,62 +101,98 @@ export default class CheckoutService {
 
     const { ok, data } = await this.api.createPrintJob(payload);
     if (!ok) {
+      this.errors.push(data.msg);
       return data.msg;
     }
 
     this.printJobId = data.printJobId;
-
-    return null;
   }
 
-  public async verifyPrintJobAccepted(): Promise<null | string> {
+  public async verifyPrintJobAccepted(): Promise<string | void> {
     let attempts = 0;
     do {
       this.printJobStatus && (await new Promise(resolve => setTimeout(resolve, 500)));
       const { ok, data } = await this.api.getPrintJobStatus(this.printJobId);
       if (ok) {
+        this.errors.push(data.msg);
         this.printJobStatus = data.status;
       }
     } while (this.printJobStatus !== 'accepted' && attempts++ < 60);
 
     if (this.printJobStatus === 'accepted') {
-      return null;
+      return;
     }
 
     return 'print_job_acceptance_verification_timeout';
   }
 
-  public async updateOrderPrintJobStatus(): Promise<null | string> {
-    const { ok, data } = await this.api.updateOrder(this.orderId, {
+  public async updateOrderPrintJobStatus(): Promise<string | void> {
+    const res = await this.api.updateOrder(this.orderId, {
       'print_job.status': this.printJobStatus,
     });
-    return ok ? null : data.msg;
+    return this.resolve(res);
+  }
+
+  public async authorizePayment(
+    authorizePayment: () => Promise<Record<string, any>>,
+  ): Promise<string | void> {
+    try {
+      var res = await authorizePayment();
+    } catch (error) {
+      this.errors.push(error.msg);
+      return error.msg;
+    }
+
+    // @TODO figure out what to do here ¯\_(ツ)_/¯
+    console.log(res);
+
+    if (res.error) {
+      this.errors.push(res.error.type);
+      return res.error.type;
+    }
+
+    if (res.paymentIntent.status !== 'requires_capture') {
+      const error = 'unexpected_payment_authorize_status';
+      this.errors.push(error);
+      return error;
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/camelcase
-  public async __testonly__confirmPayment(): Promise<null | string> {
-    const { ok, data } = await this.api.__testonly__confirmPayment({
+  public async __testonly__authorizePayment(): Promise<string | void> {
+    const res = await this.api.__testonly__authorizePayment({
       paymentIntentId: this.paymentIntentId,
     });
-    return ok ? null : data.msg;
+    return this.resolve(res);
   }
 
-  public async capturePayment(): Promise<null | string> {
-    const { ok, data } = await this.api.capturePayment({
+  public async capturePayment(): Promise<string | void> {
+    const res = await this.api.capturePayment({
       paymentIntentId: this.paymentIntentId,
       orderId: this.orderId,
     });
-    return ok ? null : data.msg;
+    return this.resolve(res);
   }
 
-  public async sendWakeup(): Promise<null | string> {
-    const { ok, data } = await this.api.wakeup();
-    return ok ? null : data.msg;
+  public async sendWakeup(): Promise<string | void> {
+    const res = await this.api.wakeup();
+    return this.resolve(res);
   }
 
-  public async sendOrderConfirmationEmail(): Promise<null | string> {
-    const { ok, data } = await this.api.sendOrderConfirmationEmail(this.orderId);
-    return ok ? null : data.msg;
+  public async sendOrderConfirmationEmail(): Promise<string | void> {
+    const res = await this.api.sendOrderConfirmationEmail(this.orderId);
+    return this.resolve(res);
+  }
+
+  public popError(): string | undefined {
+    return this.errors.pop();
+  }
+
+  private resolve({ ok, data }: ApiResponse): string | void {
+    if (!ok) {
+      this.errors.push(data.msg);
+      return data.msg;
+    }
   }
 
   private sumFees(): number {

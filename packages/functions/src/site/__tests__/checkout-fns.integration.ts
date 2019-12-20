@@ -66,7 +66,7 @@ describe('site fns integration', () => {
      * Step 2.5 (only required here, since no js client):
      * Confirm payment intent with payment method
      */
-    const confirmRes = await fetch(`${endpoint}/payment/confirm`, {
+    const confirmRes = await fetch(`${endpoint}/payment/authorize`, {
       method: 'POST',
       body: JSON.stringify({ paymentIntentId }),
       headers,
