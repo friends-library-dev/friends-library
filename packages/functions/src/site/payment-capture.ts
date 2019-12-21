@@ -1,4 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import { checkoutErrors as Err } from '@friends-library/types';
 import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
@@ -12,24 +13,24 @@ export default async function capturePayment(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /payment/capture', body);
-    return respond.json({ msg: data.message }, 400);
+    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
   const order = await findById(data.orderId);
   if (!order) {
-    return respond.json({ msg: 'order_not_found' }, 404);
+    return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
   try {
     var intent = await stripeClient().paymentIntents.capture(data.paymentIntentId);
   } catch (error) {
     log.error(`error capturing payment intent ${data.paymentIntentId}`, error);
-    return respond.json({ msg: error.code }, 403);
+    return respond.json({ msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT }, 403);
   }
 
   if (intent.status !== 'succeeded') {
     log.error('unexpected response capturing intent', intent);
-    return respond.json({ msg: 'Unexpected response' }, 500);
+    return respond.json({ msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT }, 500);
   }
 
   try {

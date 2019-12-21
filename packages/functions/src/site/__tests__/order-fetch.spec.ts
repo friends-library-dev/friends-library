@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import fetchOrder from '../order-fetch';
 import { invokeCb } from './invoke';
 import { findById } from '../../lib/Order';
@@ -27,14 +28,14 @@ describe('fetchOrder()', () => {
   test.each(badPaths)('%s is invalid path', async badPath => {
     const { res, json } = await invokeCb(fetchOrder, { path: badPath });
     expect(res.statusCode).toBe(400);
-    expect(json).toMatchObject({ msg: 'invalid_fetch_order_url' });
+    expect(json).toMatchObject({ msg: Err.INVALID_FETCH_FLP_ORDER_URL });
   });
 
   it('responds 404 if order not found', async () => {
     (<jest.Mock>findById).mockResolvedValueOnce(null);
     const { res, json } = await invokeCb(fetchOrder, { path });
     expect(res.statusCode).toBe(404);
-    expect(json).toMatchObject({ msg: 'order_not_found' });
+    expect(json).toMatchObject({ msg: Err.FLP_ORDER_NOT_FOUND });
   });
 
   it('responds 200 with order json if found', async () => {

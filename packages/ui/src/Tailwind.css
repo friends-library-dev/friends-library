@@ -33,4 +33,20 @@
   @apply font-serif antialiased text-gray-800 text-base tracking-wide leading-relaxed;
 }
 
+.blur {
+  filter: blur(10px);
+}
+
+.vcenter {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hcenter {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @tailwind utilities;

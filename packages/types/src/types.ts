@@ -24,6 +24,7 @@ export {
   PageData,
   genericDpc,
 } from './doc';
+export { checkoutErrors, CheckoutError } from './errors';
 export type Gender = 'male' | 'female';
 export type Lang = 'en' | 'es';
 export type EditionType = 'original' | 'modernized' | 'updated';

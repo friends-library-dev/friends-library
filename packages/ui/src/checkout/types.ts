@@ -7,4 +7,5 @@ export interface Address {
   zip: string;
   country: string;
   email: string;
+  unusable?: boolean;
 }

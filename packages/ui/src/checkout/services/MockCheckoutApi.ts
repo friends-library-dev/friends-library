@@ -28,10 +28,18 @@ export default class MockCheckoutApi extends CheckoutApi {
     authorizePayment: {
       default: {
         ok: true,
+        statusCode: 200,
+        data: {},
+      },
+    },
+    createOrder: {
+      default: {
+        ok: true,
         statusCode: 201,
         data: {
-          chargeId: 'ch_123abc',
-          orderId: '123abc',
+          paymentIntentId: 'pi_abc',
+          paymentIntentClientSecret: 'pi_abc_secret_123',
+          orderId: 'order-id',
         },
       },
     },
@@ -103,6 +111,10 @@ export default class MockCheckoutApi extends CheckoutApi {
   }
 
   public async createOrder(): Promise<ApiResponse> {
+    return this.getResponse('createOrder');
+  }
+
+  public async authorizePayment(): Promise<ApiResponse> {
     return this.getResponse('authorizePayment');
   }
 

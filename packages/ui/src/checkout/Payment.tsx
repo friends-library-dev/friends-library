@@ -15,6 +15,7 @@ import Button from '../Button';
 import Fees from './Fees';
 import { InvalidOverlay } from './Input';
 import { CardRow, FeedbackCard } from './Cards';
+import MessageThrobber from './MessageThrobber';
 
 type Props = ReactStripeElements.InjectedStripeProps & {
   onBackToCart: () => void;
@@ -22,6 +23,7 @@ type Props = ReactStripeElements.InjectedStripeProps & {
   shipping: number;
   taxes: number;
   ccFeeOffset: number;
+  throbbing: boolean;
   onPay: (authorizePayment: () => Promise<Record<string, any>>) => void;
   paymentIntentClientSecret: string;
 };
@@ -47,6 +49,9 @@ class Payment extends React.Component<Props, State> {
     ev: React.FormEvent<HTMLFormElement>,
   ) => Promise<void> = async ev => {
     ev.preventDefault();
+    if (!this.valid() || this.props.throbbing) {
+      return;
+    }
 
     const { paymentIntentClientSecret, stripe, elements, onPay } = this.props;
     if (!stripe || !elements) {
@@ -75,85 +80,91 @@ class Payment extends React.Component<Props, State> {
   };
 
   public render(): JSX.Element {
+    const { throbbing } = this.props;
     const { numberError, cardBrand, expiryError, cvcError } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <Header>Payment</Header>
         <NoProfit className="hidden md:block" />
         <Progress step="Payment" />
-        <div className="md:flex mt-4">
-          <Fees
-            className="w-full md:w-1/2 md:mr-10 md:border-b md:pb-2 md:mb-4"
-            {...this.props}
-          />
-          <div className="md:w-1/2 mt-4 md:mt-0">
-            <h3 className="hidden md:block pt-0 mt-2 mb-6 text-gray-600 antialiased tracking-wider font-sans font-normal text-lg">
-              Enter credit card details:
-            </h3>
-            <div className="relative">
-              <CardNumberElement
-                className={cx('CartInput', { invalid: !!numberError })}
-                placeholder="Credit Card Number"
-                onReady={el => el.focus()}
-                onChange={({ error, brand, complete }) => {
-                  this.setState({
-                    cardBrand: brand,
-                    numberError: error ? error.message : undefined,
-                    numberComplete: complete,
-                  });
-                }}
-                onFocus={() => this.setState({ numberError: undefined })}
-                style={style}
-              />
-              {numberError && <InvalidOverlay>{numberError}</InvalidOverlay>}
-              {!numberError && <FeedbackCard brand={cardBrand} />}
-            </div>
-            <div className="flex justify-between md:mt-6">
-              <div className="relative mr-4 w-1/2 flex-grow">
-                <CardExpiryElement
-                  style={style}
-                  className={cx('CartInput', { invalid: !!expiryError })}
-                  onFocus={() => this.setState({ expiryError: undefined })}
-                  onChange={({ error, complete }) => {
+        <div className="relative">
+          {throbbing && <MessageThrobber />}
+          <div className={cx('md:flex mt-4', throbbing && 'blur pointer-events-none')}>
+            <Fees
+              className="w-full md:w-1/2 md:mr-10 md:border-b md:pb-2 md:mb-4"
+              {...this.props}
+            />
+            <div className="md:w-1/2 mt-4 md:mt-0">
+              <h3 className="hidden md:block pt-0 mt-2 mb-6 text-gray-600 antialiased tracking-wider font-sans font-normal text-lg">
+                Enter credit card details:
+              </h3>
+              <div className="relative">
+                <CardNumberElement
+                  className={cx('CartInput', { invalid: !!numberError })}
+                  placeholder="Credit Card Number"
+                  onReady={el => el.focus()}
+                  onChange={({ error, brand, complete }) => {
                     this.setState({
-                      expiryError: error ? error.message : undefined,
-                      expiryComplete: complete,
+                      cardBrand: brand,
+                      numberError: error ? error.message : undefined,
+                      numberComplete: complete,
                     });
                   }}
-                />
-                {expiryError && <InvalidOverlay>{expiryError}</InvalidOverlay>}
-              </div>
-              <div className="relative w-1/2">
-                <CardCvcElement
+                  onFocus={() => this.setState({ numberError: undefined })}
                   style={style}
-                  placeholder="CVC"
-                  className={cx('CartInput', { invalid: !!cvcError })}
-                  onFocus={() => this.setState({ cvcError: undefined })}
-                  onChange={({ error, complete }) => {
-                    this.setState({
-                      cvcError: error ? error.message : undefined,
-                      cvcComplete: complete,
-                    });
-                  }}
                 />
-                {cvcError && <InvalidOverlay>{cvcError}</InvalidOverlay>}
+                {numberError && <InvalidOverlay>{numberError}</InvalidOverlay>}
+                {!numberError && <FeedbackCard brand={cardBrand} />}
               </div>
-            </div>
-            <div className="mb-6 mt-1 md:mt-2">
-              <CardRow />
+              <div className="flex justify-between md:mt-6">
+                <div className="relative mr-4 w-1/2 flex-grow">
+                  <CardExpiryElement
+                    style={style}
+                    className={cx('CartInput', { invalid: !!expiryError })}
+                    onFocus={() => this.setState({ expiryError: undefined })}
+                    onChange={({ error, complete }) => {
+                      this.setState({
+                        expiryError: error ? error.message : undefined,
+                        expiryComplete: complete,
+                      });
+                    }}
+                  />
+                  {expiryError && <InvalidOverlay>{expiryError}</InvalidOverlay>}
+                </div>
+                <div className="relative w-1/2">
+                  <CardCvcElement
+                    style={style}
+                    placeholder="CVC"
+                    className={cx('CartInput', { invalid: !!cvcError })}
+                    onFocus={() => this.setState({ cvcError: undefined })}
+                    onChange={({ error, complete }) => {
+                      this.setState({
+                        cvcError: error ? error.message : undefined,
+                        cvcComplete: complete,
+                      });
+                    }}
+                  />
+                  {cvcError && <InvalidOverlay>{cvcError}</InvalidOverlay>}
+                </div>
+              </div>
+              <div className="mb-6 mt-1 md:mt-2">
+                <CardRow />
+              </div>
             </div>
           </div>
         </div>
-        <Back>Back to delivery</Back>
-        <Button
-          className={cx('mx-auto', {
-            'bg-gray-800': !this.valid(),
-            'bg-flprimary': this.valid(),
-          })}
-          disabled={!this.valid()}
-        >
-          Purchase
-        </Button>
+        <div className={cx(throbbing && 'blur pointer-events-none')}>
+          <Back>Back to delivery</Back>
+          <Button
+            className={cx('mx-auto', {
+              'bg-gray-800': !this.valid(),
+              'bg-flprimary': this.valid(),
+            })}
+            disabled={!this.valid()}
+          >
+            Purchase
+          </Button>
+        </div>
       </form>
     );
   }

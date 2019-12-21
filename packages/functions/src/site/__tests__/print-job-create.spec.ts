@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import createOrder, { schema } from '../print-job-create';
 import { invokeCb } from './invoke';
 import { podPackageId } from '../../lib/lulu';
@@ -45,7 +46,7 @@ describe('createOrder()', () => {
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_acquiring_lulu_oauth_token');
+    expect(json.msg).toBe(Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN);
   });
 
   it('responds 400 if bad body passed', async () => {
@@ -64,7 +65,7 @@ describe('createOrder()', () => {
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe('payment_intent_not_found');
+    expect(json.msg).toBe(Err.STRIPE_PAYMENT_INTENT_NOT_FOUND);
   });
 
   it('returns 403 if the charge has already been captured', async () => {
@@ -73,7 +74,7 @@ describe('createOrder()', () => {
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe('payment_intent_already_captured');
+    expect(json.msg).toBe(Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED);
   });
 
   it('returns 403 and passes on unknown stripe error', async () => {
@@ -84,7 +85,7 @@ describe('createOrder()', () => {
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe('unknown_stripe_error');
+    expect(json.msg).toBe(Err.ERROR_RETRIEVING_STRIPE_PAYMENT_INTENT);
   });
 
   it('responds 404 if order cannot be retrieved', async () => {
@@ -93,7 +94,7 @@ describe('createOrder()', () => {
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
     expect(res.statusCode).toBe(404);
-    expect(json.msg).toBe('order_not_found');
+    expect(json.msg).toBe(Err.FLP_ORDER_NOT_FOUND);
   });
 
   it('translates passed body into correct body to pass to lulu', async () => {
@@ -130,7 +131,7 @@ describe('createOrder()', () => {
     mockFetch.mockImplementation(() => new Response('{}', { status: 400 }));
     const { res, json } = await invokeCb(createOrder, { body: testBody });
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('lulu_400_error');
+    expect(json.msg).toBe(Err.ERROR_CREATING_PRINT_JOB);
   });
 
   it('returns 201 with lulu order id if successful', async () => {

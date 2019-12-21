@@ -1,4 +1,5 @@
 import fetch, { Response } from 'node-fetch';
+import { checkoutErrors as Err } from '@friends-library/types';
 
 export default class CheckoutApi {
   private API_ROOT: string;
@@ -21,6 +22,46 @@ export default class CheckoutApi {
 
   public async capturePayment(payload: Record<string, any>): Promise<ApiResponse> {
     return this.post('/payment/capture', payload);
+  }
+
+  public async authorizePayment(
+    authorize: () => Promise<Record<string, any>>,
+  ): Promise<ApiResponse> {
+    try {
+      var res = await authorize();
+    } catch (error) {
+      return {
+        ok: false,
+        statusCode: 500,
+        data: {
+          msg: Err.ERROR_AUTHORIZING_STRIPE_PAYMENT_INTENT,
+          details: error.message,
+        },
+      };
+    }
+
+    // @TODO figure out what to do here ¯\_(ツ)_/¯
+    console.log(res);
+
+    if (res.error) {
+      return {
+        ok: false,
+        statusCode: 500,
+        data: {
+          msg: Err.ERROR_AUTHORIZING_STRIPE_PAYMENT_INTENT,
+        },
+      };
+    }
+
+    if (res.paymentIntent.status !== 'requires_capture') {
+      return {
+        ok: false,
+        statusCode: 500,
+        data: { msg: Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED },
+      };
+    }
+
+    return { ok: true, statusCode: 200, data: {} };
   }
 
   // eslint-disable-next-line @typescript-eslint/camelcase

@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import updateOrder from '../order-update';
 import { invokeCb } from './invoke';
 import { findById, persist } from '../../lib/Order';
@@ -34,7 +35,7 @@ describe('updateOrder()', () => {
   test.each(badPaths)('%s is invalid path', async path => {
     const { res, json } = await invokeCb(updateOrder, { path, body });
     expect(res.statusCode).toBe(400);
-    expect(json).toMatchObject({ msg: 'invalid_patch_order_url' });
+    expect(json).toMatchObject({ msg: Err.INVALID_PATCH_FLP_ORDER_URL });
   });
 
   it('updates & persists order, returning 200 and order body', async () => {
@@ -53,6 +54,6 @@ describe('updateOrder()', () => {
     });
     const { res, json } = await invokeCb(updateOrder, { path, body });
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_updating_order');
+    expect(json.msg).toBe(Err.ERROR_UPDATING_FLP_ORDER);
   });
 });

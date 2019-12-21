@@ -3,7 +3,7 @@ import Button from '../Button';
 import Header from './Header';
 import Progress from './Progress';
 
-const Success: React.FC<{ onClose: () => void; email: string }> = ({
+const Confirmation: React.FC<{ onClose: () => void; email: string }> = ({
   onClose,
   email,
 }) => (
@@ -22,4 +22,4 @@ const Success: React.FC<{ onClose: () => void; email: string }> = ({
   </div>
 );
 
-export default Success;
+export default Confirmation;

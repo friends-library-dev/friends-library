@@ -1,5 +1,6 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import fetch from 'node-fetch';
+import { CheckoutError, checkoutErrors as Err } from '@friends-library/types';
 import stripeClient from '../lib/stripe';
 import Responder from '../lib/Responder';
 import { PrintSize } from '@friends-library/types';
@@ -16,7 +17,7 @@ export default async function createPrintJob(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /print-job', body);
-    return respond.json({ msg: 'invalid_request_body', detail: data.message }, 400);
+    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, detail: data.message }, 400);
   }
 
   const invalidChargeMsg = await verifyPaymentIntent(data.paymentIntentId);
@@ -27,14 +28,14 @@ export default async function createPrintJob(
   const order = await findById(data.orderId);
   if (!order) {
     log.error('order not found for print job creation', data);
-    return respond.json({ msg: 'order_not_found' }, 404);
+    return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
   try {
     var token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring lulu oauth token', error);
-    return respond.json({ msg: 'error_acquiring_lulu_oauth_token' }, 500);
+    return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
   const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
@@ -52,7 +53,7 @@ export default async function createPrintJob(
   const json = await res.json();
   if (res.status > 201) {
     log.error(`bad request (${res.status}) to lulu api`, json, payload);
-    return respond.json({ msg: `lulu_${res.status}_error` }, 500);
+    return respond.json({ msg: Err.ERROR_CREATING_PRINT_JOB }, 500);
   }
 
   try {
@@ -93,21 +94,23 @@ function createOrderPayload(data: typeof schema.example): Record<string, any> {
   };
 }
 
-async function verifyPaymentIntent(paymentIntentId: string): Promise<string | void> {
+async function verifyPaymentIntent(
+  paymentIntentId: string,
+): Promise<CheckoutError | void> {
   try {
     const intent = await stripeClient().paymentIntents.retrieve(paymentIntentId);
     if (intent.status === 'succeeded') {
       log.error(`verify payment intent fail: intent ${paymentIntentId} already captured`);
-      return 'payment_intent_already_captured';
+      return Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED;
     }
   } catch (error) {
     if (error.statusCode === 404) {
       log.error(`non-existent payment intent id: ${paymentIntentId}`);
-      return 'payment_intent_not_found';
+      return Err.STRIPE_PAYMENT_INTENT_NOT_FOUND;
     }
 
-    log.error(`error retrieving charge ${paymentIntentId}`, error);
-    return error.code as string;
+    log.error(`error retrieving payment intent ${paymentIntentId}`, error);
+    return Err.ERROR_RETRIEVING_STRIPE_PAYMENT_INTENT;
   }
 }
 

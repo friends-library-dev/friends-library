@@ -1,25 +1,22 @@
 import React from 'react';
-import { withTheme } from 'emotion-theming';
 
-/* height, width, radius, margin */
-const Component: React.FC<{ msg: string }> = ({ msg }) => (
-  <div>
-    <svg viewBox="0 0 32 10">
-      <circle cx="10" cy="4" r="1">
+const MessageThrobber: React.FC = () => (
+  <div className="absolute w-40 top-0 hcenter z-50 mt-16">
+    <svg viewBox="2 0 21 8" className="text-flprimary fill-current">
+      <circle cx="6" cy="4" r="1">
         <Animate begin="0" />
       </circle>
-      <circle cx="16" cy="4" r="1">
+      <circle cx="12" cy="4" r="1">
         <Animate begin="0.3" />
       </circle>
-      <circle cx="22" cy="4" r="1">
+      <circle cx="18" cy="4" r="1">
         <Animate begin="0.6" />
       </circle>
     </svg>
-    <p>{msg}</p>
   </div>
 );
 
-export default withTheme(Component);
+export default MessageThrobber;
 
 const Animate: React.FC<{ begin: string }> = ({ begin }) => (
   <animate
