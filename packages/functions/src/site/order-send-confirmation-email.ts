@@ -1,4 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
 import stripIndent from 'strip-indent';
 import env from '@friends-library/env';
@@ -13,13 +14,13 @@ export default async function sendOrderConfirmationEmail(
   const pathMatch = path.match(/\/orders\/([a-z0-9]+)\/confirmation-email$/);
   if (!pathMatch) {
     log.error(`invalid send order confirmation email path: ${path}`);
-    return respond.json({ msg: 'invalid_path' }, 400);
+    return respond.json({ msg: Err.INVALID_SEND_ORDER_CONFIRMATION_EMAIL_URL }, 400);
   }
 
   const [, orderId] = pathMatch;
   const order = await findById(orderId);
   if (!order) {
-    return respond.json({ msg: 'order_not_found' }, 404);
+    return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
   const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');
@@ -37,7 +38,7 @@ export default async function sendOrderConfirmationEmail(
   });
 
   if (res.statusCode > 202) {
-    return respond.json({ msg: 'error_sending_email' }, 500);
+    return respond.json({ msg: Err.ERROR_SENDING_EMAIL }, 500);
   }
 
   respond.noContent();

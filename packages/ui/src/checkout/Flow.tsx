@@ -4,8 +4,8 @@ import CheckoutMachine from './services/CheckoutMachine';
 import Cart from '../cart';
 import Delivery from './Delivery';
 import Payment from './Payment';
-import MessageThrobber from './MessageThrobber';
-import Success from './Confirmation';
+import Confirmation from './Confirmation';
+import UnrecoverableError from './UnrecoverableError';
 import CartItem, { CartItemData } from './models/CartItem';
 
 const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
@@ -30,8 +30,12 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
         />
       );
     case 'delivery':
+    case 'createOrder':
+    case 'calculateFees':
       return (
         <Delivery
+          throbbing={state !== 'delivery'}
+          error={!!machine.service.cart.address?.unusable}
           stored={machine.service.cart.address}
           onSubmit={collectedAddress => {
             machine.service.cart.address = collectedAddress;
@@ -40,10 +44,16 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
         />
       );
     case 'payment':
+    case 'authorizingPayment':
+    case 'createPrintJob':
+    case 'verifyPrintJob':
+    case 'updateOrderPrintJobStatus':
+    case 'capturePayment':
       return (
         <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
           <Elements>
             <Payment
+              throbbing={state !== 'payment'}
               onBackToCart={() => machine.dispatch('backToCart')}
               paymentIntentClientSecret={machine.service.paymentIntentClientSecret}
               subTotal={machine.service.cart.subTotal()}
@@ -55,22 +65,15 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
           </Elements>
         </StripeProvider>
       );
-    case 'calculateFees':
-      return <MessageThrobber msg="Calculating exact shipping cost and fees..." />;
-    case 'createOrder':
-      return <MessageThrobber msg="Creating order..." />;
-    case 'authorizingPayment':
-      return <MessageThrobber msg="Pre-authorizing credit card payment..." />;
-    case 'createPrintJob':
-      return <MessageThrobber msg="Payment authed. Submitting order to printer..." />;
-    case 'verifyPrintJob':
-      return <MessageThrobber msg="Verifying print job..." />;
-    case 'updateOrderPrintJobStatus':
-      return <MessageThrobber msg="Updating order print job status" />;
-    case 'capturePayment':
-      return <MessageThrobber msg="Order validated. Charging your credit card..." />;
     case 'confirmation':
-      return <Success email={machine.service.cart.email || ''} onClose={() => {}} />;
+      return <Confirmation email={machine.service.cart.email || ''} onClose={() => {}} />;
+    case 'brickSession':
+      return (
+        <UnrecoverableError
+          onRetry={() => machine.dispatch('tryAgain')}
+          onClose={() => machine.dispatch('close')}
+        />
+      );
     default:
       return <p>What? {state}</p>;
   }

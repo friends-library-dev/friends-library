@@ -1,13 +1,7 @@
 import React from 'react';
 
-interface Props {
-  id: string;
-}
-
-const ErrorMsg: React.FC<Props> = ({ id }) => {
-  return <h1>ErrorMsg: {id}</h1>;
+const ErrorMsg: React.FC = ({ children }) => {
+  return <p className="bg-red-700 font-sans text-white p-4 mt-8">{children}</p>;
 };
 
 export default ErrorMsg;
-
-// const USER_ERRORS = ['shipping_not_possible'];

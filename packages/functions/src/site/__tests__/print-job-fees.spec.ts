@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import printJobFees, { schema } from '../print-job-fees';
 import { invokeCb } from './invoke';
 import fetch from 'node-fetch';
@@ -21,7 +22,7 @@ describe('printJobFees()', () => {
     const { res, json } = await invokeCb(printJobFees, { body });
 
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_acquiring_lulu_oauth_token');
+    expect(json.msg).toBe(Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN);
   });
 
   it('responds 400 if bad body passed', async () => {

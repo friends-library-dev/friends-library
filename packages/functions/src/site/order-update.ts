@@ -1,4 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import { checkoutErrors as Err } from '@friends-library/types';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { findById, persist } from '../lib/Order';
@@ -11,27 +12,27 @@ export default async function updateOrder(
   const pathMatch = path.match(/\/orders\/([a-z0-9]+)$/);
   if (!pathMatch) {
     log.error(`invalid update order path: ${path}`);
-    return respond.json({ msg: 'invalid_patch_order_url' }, 400);
+    return respond.json({ msg: Err.INVALID_PATCH_FLP_ORDER_URL }, 400);
   }
 
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for PATCH /orders/{:id}', body);
-    return respond.json({ msg: data.message }, 400);
+    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
   try {
     const orderId = String(pathMatch[1]);
     const order = await findById(orderId);
     if (!order) {
-      return respond.json({ msg: 'order_not_found' }, 404);
+      return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
     }
     order.set('print_job.status', data['print_job.status']);
     await persist(order);
     respond.json(order.toJSON());
   } catch (error) {
     log.error('error updating order', error);
-    respond.json({ msg: 'error_updating_order' }, 500);
+    respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER }, 500);
   }
 }
 

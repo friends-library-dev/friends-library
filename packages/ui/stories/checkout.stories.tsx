@@ -4,11 +4,11 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 import { action as a } from '@storybook/addon-actions';
 import { ThreeD } from '@friends-library/cover-component';
 import Modal from '../src/checkout/Modal';
-import MessageThrobber from '../src/checkout/MessageThrobber';
 import Delivery from '../src/checkout/Delivery';
 import Payment from '../src/checkout/Payment';
 import Input from '../src/checkout/Input';
 import EmptyCart from '../src/checkout/EmptyCart';
+import UnrecoverableError from '../src/checkout/UnrecoverableError';
 import Progress from '../src/checkout/Progress';
 import Confirmation from '../src/checkout/Confirmation';
 import { coverSizes } from './decorators';
@@ -44,6 +44,25 @@ storiesOf('Checkout Components', module)
       <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
         <Elements>
           <Payment
+            throbbing={false}
+            onPay={a('on pay')}
+            onBackToCart={a('on back to cart')}
+            subTotal={1298}
+            shipping={399}
+            taxes={132}
+            ccFeeOffset={42}
+            paymentIntentClientSecret="pi_123_secret_345"
+          />
+        </Elements>
+      </StripeProvider>
+    </div>
+  ))
+  .add('Payment (throbbing)', () => (
+    <div className="p-8">
+      <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
+        <Elements>
+          <Payment
+            throbbing={true}
             onPay={a('on pay')}
             onBackToCart={a('on back to cart')}
             subTotal={1298}
@@ -97,18 +116,26 @@ storiesOf('Checkout Components', module)
       </div>
     </Modal>
   ))
-  .add('MessageThrobber', () => (
-    <Modal onClose={a('close modal')}>
-      <MessageThrobber msg="Calculating exact shipping cost" />
-    </Modal>
-  ))
   .add('Confirmation', () => (
     <Modal onClose={a('close modal')}>
       <Confirmation email="you@example.com" onClose={a('close')} />
     </Modal>
   ))
+  .add('Delivery (shipping err)', () => (
+    <div style={{ margin: 25 }}>
+      <Delivery onSubmit={a('submit address')} error />
+    </div>
+  ))
+  .add('Delivery (throbbing)', () => (
+    <div style={{ margin: 25 }}>
+      <Delivery throbbing onSubmit={a('submit address')} />
+    </div>
+  ))
   .add('Delivery', () => (
     <div style={{ margin: 25 }}>
       <Delivery onSubmit={a('submit address')} />
     </div>
+  ))
+  .add('UnrecoverableError', () => (
+    <UnrecoverableError onClose={a('close')} onRetry={a('retry')} />
   ));

@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import capture from '../payment-capture';
 import { invokeCb } from './invoke';
 import { findById, persist } from '../../lib/Order';
@@ -38,7 +39,7 @@ describe('/payment-capture handler', () => {
     (<jest.Mock>findById).mockReturnValueOnce(null);
     const { res, json } = await invokeCb(capture, { body: testBody });
     expect(res.statusCode).toBe(404);
-    expect(json.msg).toBe('order_not_found');
+    expect(json.msg).toBe(Err.FLP_ORDER_NOT_FOUND);
   });
 
   it('should update & persist the order with new payment.status', async () => {
@@ -68,7 +69,7 @@ describe('/payment-capture handler', () => {
     });
     const { res, json } = await invokeCb(capture, { body: testBody });
     expect(res.statusCode).toBe(403);
-    expect(json).toMatchObject({ msg: 'intent_already_captured' });
+    expect(json).toMatchObject({ msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT });
   });
 
   it('should return 400 if invalid body', async () => {

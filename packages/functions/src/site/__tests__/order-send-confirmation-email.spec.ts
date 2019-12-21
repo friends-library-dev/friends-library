@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
 import sendConfirmation from '../order-send-confirmation-email';
 import { invokeCb } from './invoke';
@@ -34,7 +35,7 @@ describe('sendOrderConfirmationEmail()', () => {
       path: '/site/orders/123/confirmation-email',
     });
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_sending_email');
+    expect(json.msg).toBe(Err.ERROR_SENDING_EMAIL);
   });
 
   it('should respond 404 if order cant be found', async () => {
@@ -43,7 +44,7 @@ describe('sendOrderConfirmationEmail()', () => {
       path: '/site/orders/123/confirmation-email',
     });
     expect(res.statusCode).toBe(404);
-    expect(json.msg).toBe('order_not_found');
+    expect(json.msg).toBe(Err.FLP_ORDER_NOT_FOUND);
     expect(<jest.Mock>findById).toHaveBeenCalledWith('123');
   });
 

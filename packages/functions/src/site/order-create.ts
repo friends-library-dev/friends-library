@@ -1,4 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import { checkoutErrors as Err } from '@friends-library/types';
 import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
@@ -12,7 +13,7 @@ export default async function createOrder(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /orders/create', body);
-    return respond.json({ msg: data.message }, 400);
+    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
   const order = new Order({
@@ -36,8 +37,8 @@ export default async function createOrder(
       },
     });
   } catch (error) {
-    log.error('error authorizing charge', error);
-    return respond.json({ msg: error.code }, 403);
+    log.error('error creating payment intent', error);
+    return respond.json({ msg: Err.ERROR_CREATING_STRIPE_PAYMENT_INTENT }, 403);
   }
 
   try {
@@ -52,7 +53,7 @@ export default async function createOrder(
     await persistOrder(order);
   } catch (error) {
     log.error('error persisting flp order', error);
-    return respond.json({ msg: 'error_saving_flp_order' }, 500);
+    return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER }, 500);
   }
 
   log('created payment intent', paymentIntent);

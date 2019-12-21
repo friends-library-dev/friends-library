@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import Link from 'gatsby-link';
 import cx from 'classnames';
 import Button from '../Button';
 import Header from './Header';
 import Progress from './Progress';
+import MessageThrobber from './MessageThrobber';
 import Input from './Input';
 import Back from './Back';
 import NoProfit from './NoProfit';
+import ErrorMsg from './ErrorMsg';
 import { Address } from './types';
 import './Delivery.css';
 
@@ -15,7 +18,9 @@ import { CountryDropdown } from 'react-country-region-selector';
 const Delivery: React.FC<{
   onSubmit: (address: Address) => void;
   stored?: Address;
-}> = ({ onSubmit, stored }) => {
+  throbbing?: boolean;
+  error?: boolean;
+}> = ({ onSubmit, stored, error, throbbing }) => {
   const [email, setEmail] = useState<string>(stored ? stored.email : '');
   const [emailBlurred, setEmailBlurred] = useState<boolean>(false);
   const [name, setName] = useState<string>(stored ? stored.name : '');
@@ -34,15 +39,16 @@ const Delivery: React.FC<{
   const filledOutCompletely = !!(name && street && city && state && zip && country);
 
   return (
-    <div>
+    <div className={cx(throbbing && 'pointer-events-none')}>
       <Header>Delivery</Header>
-      <NoProfit className="hidden md:block" />
+      {!error && <NoProfit className="hidden md:block" />}
       <Progress step="Delivery" />
+      {error && <ShippingError />}
       <form
-        className="mt-8"
+        className="mt-8 relative"
         onSubmit={e => {
           e.preventDefault();
-          if (filledOutCompletely) {
+          if (filledOutCompletely && !throbbing) {
             onSubmit({
               name,
               street,
@@ -56,9 +62,15 @@ const Delivery: React.FC<{
           }
         }}
       >
-        <div className="InputWrap md:flex flex-wrap justify-between">
+        {throbbing && <MessageThrobber />}
+        <div
+          className={cx(
+            'InputWrap md:flex flex-wrap justify-between',
+            throbbing && 'blur',
+          )}
+        >
           <Input
-            autofocus
+            {...(throbbing ? {} : { autofocus: true })}
             className="order-1"
             onChange={val => setName(val)}
             onBlur={() => setNameBlurred(true)}
@@ -141,7 +153,10 @@ const Delivery: React.FC<{
           />
         </div>
         <Back>Back to Order</Back>
-        <Button className="bg-flprimary mx-auto" disabled={!filledOutCompletely}>
+        <Button
+          className="bg-flprimary mx-auto"
+          disabled={!filledOutCompletely || throbbing}
+        >
           Payment &nbsp;&rsaquo;
         </Button>
       </form>
@@ -150,3 +165,15 @@ const Delivery: React.FC<{
 };
 
 export default Delivery;
+
+const ShippingError: React.FC = () => (
+  <ErrorMsg>
+    Sorry, we're not able to ship to that address. Please double-check for any{' '}
+    <i>errors,</i> or try an <i>alternate address</i> where you could receive a shipment.
+    Still no luck? We might not be able to ship directly to your location, but you can{' '}
+    <Link to="/contact-us" className="underline">
+      contact us
+    </Link>{' '}
+    to arrange an alternate shipment.
+  </ErrorMsg>
+);

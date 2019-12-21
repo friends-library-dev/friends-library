@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import CheckoutService from './CheckoutService';
 
 export default class CheckoutMachine {
@@ -28,13 +29,17 @@ export default class CheckoutMachine {
     calculateFees: {
       onEnter: 'Service.calculateFees',
       success: 'createOrder',
-      failure: 'delivery',
+      failure(this: CheckoutMachine, err: string) {
+        this.transitionTo(
+          err === Err.SHIPPING_NOT_POSSIBLE ? 'delivery' : 'brickSession',
+        );
+      },
     },
 
     createOrder: {
       onEnter: 'Service.createOrder',
       success: 'payment',
-      failure: 'delivery',
+      failure: 'brickSession',
     },
 
     payment: {
@@ -102,6 +107,8 @@ export default class CheckoutMachine {
         // @TODO clear most of the CheckoutMachine state (except cart items, and address?) @BLOCKER
         // @TODO not a blocker, but it would be nice to send a slack via a fn to log this.history
       },
+      tryAgain: 'cart',
+      close: 'hidden',
     },
   };
 

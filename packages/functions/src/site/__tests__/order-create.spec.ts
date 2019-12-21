@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import auth, { schema } from '../order-create';
 import { invokeCb } from './invoke';
 import { persist } from '../../lib/Order';
@@ -57,7 +58,7 @@ describe('/orders/create handler', () => {
 
     const { res, json } = await invokeCb(auth, { body: JSON.stringify(schema.example) });
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_saving_flp_order');
+    expect(json.msg).toBe(Err.ERROR_UPDATING_FLP_ORDER);
   });
 
   it('returns 403 with error code from stripe in case of error', async () => {
@@ -68,7 +69,7 @@ describe('/orders/create handler', () => {
       body: JSON.stringify(schema.example),
     });
     expect(res.statusCode).toBe(403);
-    expect(json).toMatchObject({ msg: 'card_expired' });
+    expect(json).toMatchObject({ msg: Err.ERROR_CREATING_STRIPE_PAYMENT_INTENT });
   });
 
   it('should return 400 if missing body', async () => {

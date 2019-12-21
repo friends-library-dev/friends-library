@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { checkoutErrors as Err } from '@friends-library/types';
 import printJobStatus from '../print-job-status';
 import { invokeCb } from './invoke';
 
@@ -45,7 +46,7 @@ describe('printJobStatus()', () => {
     );
     const { res, json } = await invokeCb(printJobStatus, { path: '/1432/status' });
     expect(res.statusCode).toBe(404);
-    expect(json).toMatchObject({ msg: 'print_job_not_found' });
+    expect(json).toMatchObject({ msg: Err.PRINT_JOB_NOT_FOUND });
   });
 
   it('responds 401 if bad auth', async () => {
@@ -54,6 +55,6 @@ describe('printJobStatus()', () => {
     );
     const { res, json } = await invokeCb(printJobStatus, { path: '/1432/status' });
     expect(res.statusCode).toBe(401);
-    expect(json).toMatchObject({ msg: 'print_job_status_auth_error' });
+    expect(json).toMatchObject({ msg: Err.ERROR_FETCHING_PRINT_JOB_STATUS });
   });
 });

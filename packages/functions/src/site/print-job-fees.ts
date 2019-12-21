@@ -1,5 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import { PrintSize } from '@friends-library/types';
+import { PrintSize, checkoutErrors as Err } from '@friends-library/types';
 import env from '@friends-library/env';
 import fetch from 'node-fetch';
 import validateJson from '../lib/validate-json';
@@ -15,19 +15,19 @@ export default async function printJobFees(
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
     log.error('invalid body for /print-job/fees', body);
-    return respond.json({ msg: 'invalid_request_body', details: data.message }, 400);
+    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
   try {
     var token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring lulu oauth token', error);
-    return respond.json({ msg: 'error_acquiring_lulu_oauth_token' }, 500);
+    return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
   const cheapest = await calculateCheapest(data, token);
   if (!cheapest) {
-    return respond.json({ msg: 'shipping_not_possible' }, 500);
+    return respond.json({ msg: Err.SHIPPING_NOT_POSSIBLE }, 400);
   }
 
   respond.json(cheapest);

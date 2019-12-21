@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import CheckoutApi, { ApiResponse } from './CheckoutApi';
 import Cart from '../models/Cart';
 import { PrintJobStatus } from '@friends-library/types';
@@ -38,18 +39,26 @@ export default class CheckoutService {
       ),
     };
 
+    if (!this.cart.address) throw new Error('Missing address');
+
     const { ok, data } = await this.api.calculateFees(payload);
-    if (!ok) {
-      this.errors.push(data.msg);
-      return data.msg;
+    if (ok) {
+      this.cart.address.unusable = false;
+      this.shippingLevel = data.shippingLevel;
+      this.fees = {
+        shipping: data.shipping,
+        taxes: data.taxes,
+        ccFeeOffset: data.ccFeeOffset,
+      };
+      return;
     }
 
-    this.shippingLevel = data.shippingLevel;
-    this.fees = {
-      shipping: data.shipping,
-      taxes: data.taxes,
-      ccFeeOffset: data.ccFeeOffset,
-    };
+    if (data.msg === Err.SHIPPING_NOT_POSSIBLE) {
+      this.cart.address.unusable = true;
+    }
+
+    this.errors.push(data.msg);
+    return data.msg;
   }
 
   public async createOrder(): Promise<string | void> {
@@ -136,26 +145,8 @@ export default class CheckoutService {
   public async authorizePayment(
     authorizePayment: () => Promise<Record<string, any>>,
   ): Promise<string | void> {
-    try {
-      var res = await authorizePayment();
-    } catch (error) {
-      this.errors.push(error.msg);
-      return error.msg;
-    }
-
-    // @TODO figure out what to do here ¯\_(ツ)_/¯
-    console.log(res);
-
-    if (res.error) {
-      this.errors.push(res.error.type);
-      return res.error.type;
-    }
-
-    if (res.paymentIntent.status !== 'requires_capture') {
-      const error = 'unexpected_payment_authorize_status';
-      this.errors.push(error);
-      return error;
-    }
+    const res = await this.api.authorizePayment(authorizePayment);
+    return this.resolve(res);
   }
 
   // eslint-disable-next-line @typescript-eslint/camelcase
@@ -186,6 +177,10 @@ export default class CheckoutService {
 
   public popError(): string | undefined {
     return this.errors.pop();
+  }
+
+  public lastError(): string | undefined {
+    return this.errors[this.errors.length - 1];
   }
 
   private resolve({ ok, data }: ApiResponse): string | void {

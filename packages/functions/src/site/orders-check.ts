@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import mailer from '@sendgrid/mail';
 import { APIGatewayEvent } from 'aws-lambda';
+import { CheckoutError, checkoutErrors as Err } from '@friends-library/types';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import mongoose from 'mongoose';
@@ -45,7 +46,7 @@ export default async function checkOrders(
       await persistAll(updatedOrders);
     } catch (error) {
       log.error('error persisting updated orders');
-      return respond.json({ msg: 'error_persisting_updated_orders' }, 500);
+      return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDERS }, 500);
     }
   }
 
@@ -55,12 +56,12 @@ export default async function checkOrders(
 
 async function getPrintJobs(
   orders: Orders,
-): Promise<[null | string, Record<string, any>[]]> {
+): Promise<[null | CheckoutError, Record<string, any>[]]> {
   try {
     var token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring oauth-token', error);
-    return ['error_acquiring_lulu_oauth_token', []];
+    return [Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN, []];
   }
 
   const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
@@ -71,7 +72,7 @@ async function getPrintJobs(
 
   if (!res.ok) {
     log.error('error retrieving print job data', await res.text());
-    return ['error_retrieving_print_job_data', []];
+    return [Err.ERROR_RETRIEVING_PRINT_JOB_DATA, []];
   }
 
   const jobs = (await res.json()).results as Record<string, any>[];

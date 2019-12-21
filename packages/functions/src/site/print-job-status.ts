@@ -1,4 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import { checkoutErrors as Err } from '@friends-library/types';
 import fetch from 'node-fetch';
 import Responder from '../lib/Responder';
 import env from '@friends-library/env';
@@ -22,7 +23,7 @@ export default async function getPrintJobStatus(
     token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring lulu oauth token', error);
-    return respond.json({ msg: 'error_acquiring_lulu_oauth_token' }, 500);
+    return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
   const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
@@ -37,11 +38,9 @@ export default async function getPrintJobStatus(
     log.error(`${res.status} error fetching print job status`, await res.json());
     switch (res.status) {
       case 404:
-        return respond.json({ msg: 'print_job_not_found' }, 404);
-      case 401:
-        return respond.json({ msg: 'print_job_status_auth_error' }, 401);
+        return respond.json({ msg: Err.PRINT_JOB_NOT_FOUND }, 404);
       default:
-        return respond.json({ msg: `print_job_status_${res.status}_error` }, res.status);
+        return respond.json({ msg: Err.ERROR_FETCHING_PRINT_JOB_STATUS }, res.status);
     }
   }
 

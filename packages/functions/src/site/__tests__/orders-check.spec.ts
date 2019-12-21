@@ -1,3 +1,4 @@
+import { checkoutErrors as Err } from '@friends-library/types';
 import fetch from 'node-fetch';
 import mailer from '@sendgrid/mail';
 import checkOrders from '../orders-check';
@@ -44,7 +45,7 @@ describe('checkOrders()', () => {
     });
     const { res, json } = await invokeCb(checkOrders, {});
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_acquiring_lulu_oauth_token');
+    expect(json.msg).toBe(Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN);
   });
 
   it('hits lulu api with ids of interesting orders', async () => {
@@ -60,7 +61,7 @@ describe('checkOrders()', () => {
     mockFetch.mockResolvedValueOnce(new Response('', { status: 500 }));
     const { res, json } = await invokeCb(checkOrders, {});
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_retrieving_print_job_data');
+    expect(json.msg).toBe(Err.ERROR_RETRIEVING_PRINT_JOB_DATA);
   });
 
   it('sends emails with tracking links', async () => {
@@ -154,7 +155,7 @@ describe('checkOrders()', () => {
     const { res, json } = await invokeCb(checkOrders, {});
 
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe('error_persisting_updated_orders');
+    expect(json.msg).toBe(Err.ERROR_UPDATING_FLP_ORDERS);
     expect(mailer.send).not.toHaveBeenCalled();
   });
 });
