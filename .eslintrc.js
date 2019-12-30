@@ -17,7 +17,7 @@ module.exports = {
     '@typescript-eslint/no-angle-bracket-type-assertion': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-parameter-properties': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIngorePattern: '^_' }],
     'no-unused-vars': 'off',
     camelcase: 'off',
     '@typescript-eslint/camelcase': [

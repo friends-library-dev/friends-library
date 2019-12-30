@@ -25,6 +25,13 @@ export default class MockCheckoutApi extends CheckoutApi {
         },
       },
     },
+    brickOrder: {
+      default: {
+        ok: true,
+        statusCode: 204,
+        data: {},
+      },
+    },
     authorizePayment: {
       default: {
         ok: true,
@@ -124,6 +131,10 @@ export default class MockCheckoutApi extends CheckoutApi {
 
   public async createPrintJob(): Promise<ApiResponse> {
     return this.getResponse('createPrintJob');
+  }
+
+  public async brickOrder(): Promise<ApiResponse> {
+    return this.getResponse('brickOrder');
   }
 
   public async updateOrder(): Promise<ApiResponse> {
