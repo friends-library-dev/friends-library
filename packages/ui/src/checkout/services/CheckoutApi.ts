@@ -12,6 +12,22 @@ export default class CheckoutApi {
     return this.get('/wakeup');
   }
 
+  public async brickOrder(
+    stateHistory: string[],
+    orderId: string,
+    paymentIntentId: string,
+    printJobId: number,
+  ): Promise<ApiResponse> {
+    const payload = {
+      stateHistory,
+      orderId,
+      paymentIntentId,
+      printJobId,
+      userAgent: navigator ? navigator.userAgent : null,
+    };
+    return this.post('/order/brick', payload);
+  }
+
   public async calculateFees(payload: Record<string, any>): Promise<ApiResponse> {
     return this.post('/print-job/fees', payload);
   }

@@ -21,7 +21,7 @@ const schema = new mongoose.Schema(
       status: {
         type: String,
         required: true,
-        enum: ['authorized', 'captured'],
+        enum: ['authorized', 'captured', 'canceled'],
       },
       amount: {
         type: Number,

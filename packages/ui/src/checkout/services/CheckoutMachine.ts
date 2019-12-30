@@ -102,10 +102,7 @@ export default class CheckoutMachine {
      */
     brickSession: {
       onEnter(this: CheckoutMachine) {
-        // @TODO cancel authorized payment @BLOCKER
-        // @TODO set order status to `bricked` @BLOCKER
-        // @TODO clear most of the CheckoutMachine state (except cart items, and address?) @BLOCKER
-        // @TODO not a blocker, but it would be nice to send a slack via a fn to log this.history
+        this.service.brickOrder(this.history);
       },
       tryAgain: 'cart',
       close: 'hidden',
@@ -121,7 +118,7 @@ export default class CheckoutMachine {
   }
 
   public async transitionTo(state: string): Promise<void> {
-    console.log(`%ctransition to state: %c${state}`, 'color: grey', 'color: green');
+    log(`%ctransition to state: %c${state}`, 'color: grey', 'color: green');
     const nextState = this.states[state];
     if (!nextState) {
       throw new Error(`Unexpected next state: ${state}`);
@@ -156,7 +153,7 @@ export default class CheckoutMachine {
   }
 
   public async dispatch<T>(action: string, payload?: T): Promise<void> {
-    console.log(`%cdispatch action: %c${action}`, 'color: grey', 'color: orange');
+    log(`%cdispatch action: %c${action}`, 'color: grey', 'color: orange');
     const state = this.states[this.state];
     if (!state) {
       return;
@@ -175,3 +172,6 @@ export default class CheckoutMachine {
     await this.transitionTo(handler);
   }
 }
+
+const log: any =
+  process?.env?.NODE_ENV === 'production' ? (): void => {} : console.log.bind(console);

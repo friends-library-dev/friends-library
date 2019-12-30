@@ -27,6 +27,17 @@ export default class CheckoutService {
 
   public constructor(public cart: Cart, private api: CheckoutApi) {}
 
+  public brickOrder(stateHistory: string[]): void {
+    this.api.brickOrder(
+      stateHistory,
+      this.orderId,
+      this.paymentIntentId,
+      this.printJobId,
+    );
+
+    this.resetState();
+  }
+
   public async calculateFees(): Promise<string | void> {
     const payload = {
       address: this.cart.address,
@@ -192,5 +203,16 @@ export default class CheckoutService {
 
   private sumFees(): number {
     return Object.values(this.fees).reduce((sum, fee) => sum + fee);
+  }
+
+  private resetState(): void {
+    this.errors = [];
+    this.orderId = '';
+    this.paymentIntentId = '';
+    this.paymentIntentClientSecret = '';
+    this.shippingLevel = '';
+    this.printJobId = -1;
+    this.printJobStatus = undefined;
+    this.fees = { shipping: 0, taxes: 0, ccFeeOffset: 0 };
   }
 }
