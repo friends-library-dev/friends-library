@@ -20,7 +20,7 @@ export { default as CheckoutService } from './checkout/services/CheckoutService'
 export { default as CheckoutModal } from './checkout/Modal';
 export { default as CheckoutApi } from './checkout/services/CheckoutApi';
 export { default as CheckoutFlow } from './checkout/Flow';
-export { useNumCartItems } from './checkout/hooks';
+export { useNumCartItems, useCartTotalQuantity } from './checkout/hooks';
 export { default as CartStore } from './checkout/services/CartStore';
 export { default as CartModel } from './checkout/models/Cart';
 export { t, useLocale } from './translation';

@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'gatsby-link';
 import FriendsLogo from './LogoFriends';
 import Search from './Search';
-import { useNumCartItems } from './checkout/hooks';
+import { useCartTotalQuantity } from './checkout/hooks';
 import './SlideoverMenu.css';
 
 const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  const [numCartItems, , store] = useNumCartItems();
+  const [cartQty, , store] = useCartTotalQuantity();
   return (
     <nav className="SlideoverMenu bg-flmaroon text-white">
       <header className="p-5 flex border-b-4">
@@ -49,7 +49,7 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                   store.open();
                 }}
               >
-                Cart ({numCartItems})
+                Cart ({cartQty})
               </button>
             ),
           ]}
