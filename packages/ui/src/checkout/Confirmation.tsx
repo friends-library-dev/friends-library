@@ -7,7 +7,7 @@ const Confirmation: React.FC<{ onClose: () => void; email: string }> = ({
   onClose,
   email,
 }) => (
-  <div>
+  <div className="md:py-12">
     <Header>Confirmed!</Header>
     <Progress step="Confirmation" />
     <p className="body-text text-center mt-10">

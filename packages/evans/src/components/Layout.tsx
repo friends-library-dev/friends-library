@@ -79,7 +79,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           <Footer />
         </Content>
         {checkoutModalOpen && (
-          <CheckoutModal onClose={() => {}}>
+          <CheckoutModal onClose={() => store.close()}>
             <CheckoutFlow machine={machine} recommendedBooks={[]} />
           </CheckoutModal>
         )}
