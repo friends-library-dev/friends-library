@@ -73,7 +73,7 @@ content-type: application/json
   "orderId": "{{orderId}}",
   "email": "jared@netrivet.com",
   "shippingLevel": "MAIL",
-  "chargeId": "{{chargeId}}",
+  "paymentIntentId": "{{paymentIntentId}}",
   "items": [
     {
       "title": "Journal of Ambrose Rigge (modernized)",
@@ -89,13 +89,13 @@ content-type: application/json
 
 ###
 
-# Capture an authorized payment (create usable chargeId w/ `/orders/create`
+# Capture an authorized payment (create usable paymentIntentId w/ `/orders/create`
 # @name capturePayment
 POST {{base}}/payment/capture HTTP/1.1
 content-type: application/json
 
 {
-  "chargeId": "{{chargeId}}",
+  "paymentIntentId": "{{paymentIntentId}}",
   "orderId": "{{orderId}}"
 }
 
@@ -126,7 +126,7 @@ POST {{base}}/orders/check HTTP/1.1
 
 ###
 @base = http://localhost:2345/.netlify/functions/site
-@chargeId = {{createOrder.response.body.$.chargeId}}
+@paymentIntentId = {{createOrder.response.body.$.paymentIntentId}}
 @orderId = {{createOrder.response.body.$.orderId}}
 @printJobId = {{createPrintJob.response.body.$.printJobId}}
 @address = {"name":"Bo","street":"1 Rd","city":"Cody","state":"WY","zip":"82414","country": "US"}

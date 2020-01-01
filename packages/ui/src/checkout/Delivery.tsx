@@ -13,26 +13,28 @@ import ErrorMsg from './ErrorMsg';
 import { Address } from './types';
 import './Delivery.css';
 
+type AddressWithEmail = Address & { email: string };
+
 const Delivery: React.FC<{
-  onSubmit: (address: Address) => void;
-  stored?: Address;
+  onSubmit: (address: AddressWithEmail) => void;
+  stored?: Partial<AddressWithEmail>;
   throbbing?: boolean;
   error?: boolean;
-}> = ({ onSubmit, stored, error, throbbing }) => {
-  const [email, setEmail] = useState<string>(stored ? stored.email : '');
+}> = ({ onSubmit, stored = {}, error, throbbing }) => {
+  const [email, setEmail] = useState<string>(stored.email || '');
   const [emailBlurred, setEmailBlurred] = useState<boolean>(false);
-  const [name, setName] = useState<string>(stored ? stored.name : '');
+  const [name, setName] = useState<string>(stored.name || '');
   const [nameBlurred, setNameBlurred] = useState<boolean>(false);
-  const [street, setStreet] = useState<string>(stored ? stored.street : '');
+  const [street, setStreet] = useState<string>(stored.street || '');
   const [streetBlurred, setStreetBlurred] = useState<boolean>(false);
-  const [street2, setStreet2] = useState<string>(stored ? stored.street2 || '' : '');
-  const [city, setCity] = useState<string>(stored ? stored.city : '');
+  const [street2, setStreet2] = useState<string>(stored.street2 || '');
+  const [city, setCity] = useState<string>(stored.city || '');
   const [cityBlurred, setCityBlurred] = useState<boolean>(false);
-  const [state, setState] = useState<string>(stored ? stored.state : '');
+  const [state, setState] = useState<string>(stored.state || '');
   const [stateBlurred, setStateBlurred] = useState<boolean>(false);
-  const [zip, setZip] = useState<string>(stored ? stored.zip : '');
+  const [zip, setZip] = useState<string>(stored.zip || '');
   const [zipBlurred, setZipBlurred] = useState<boolean>(false);
-  const [country, setCountry] = useState<string>(stored ? stored.country : '');
+  const [country, setCountry] = useState<string>(stored.country || '');
   const [countryBlurred, setCountryBlurred] = useState<boolean>(false);
   const filledOutCompletely = !!(name && street && city && state && zip && country);
 

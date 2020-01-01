@@ -114,7 +114,7 @@ function toCents(strNum: string): number {
 
 export const schema = {
   properties: {
-    address: { $ref: '/lulu-address' },
+    address: { $ref: '/address' },
     items: {
       type: 'array',
       minItems: 1,

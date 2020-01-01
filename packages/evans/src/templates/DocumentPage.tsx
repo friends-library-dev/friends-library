@@ -150,7 +150,7 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
 export const query = graphql`
   query DocumentPage($documentSlug: String!, $friendSlug: String!) {
     friend(slug: { eq: $friendSlug }) {
-      id
+      id: friendId
       lang
       slug
       name
@@ -187,7 +187,7 @@ export const query = graphql`
       description
       slug
       title
-      id
+      id: documentId
     }
     otherDocuments: allDocument(
       filter: { friendSlug: { eq: $friendSlug }, slug: { ne: $documentSlug } }
