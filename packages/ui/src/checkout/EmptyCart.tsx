@@ -4,7 +4,7 @@ import Link from 'gatsby-link';
 import Header from './Header';
 import Button from '../Button';
 
-interface Props {
+export interface Props {
   recommendedBooks: {
     Cover: JSX.Element;
     title: string;
@@ -17,7 +17,7 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
     <div>
       <Header>Empty Cart</Header>
       <p className="body-text text-center">
-        There's nothing in your cart! See our wide variety of books avialable on our site.
+        There's nothing in your cart! See our wide variety of books available on our site.
       </p>
       <div className="flex flex-col items-center md:flex-row md:justify-center md:items-start mt-8 px-6">
         {recommendedBooks.map(({ Cover, title, path }, idx) => (

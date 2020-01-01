@@ -73,7 +73,12 @@ const FakeInnerds: React.FC<{ price: number; hasAudio: boolean }> = ({
         tempora nobis debitis voluptates, necessitatibus incidunt vitae quam pariatur
         adipisci!
       </p>
-      <DocActions className="mt-8" price={price} hasAudio={hasAudio} />
+      <DocActions
+        addToCart={() => console.log('@TODO @BLOCKER')}
+        className="mt-8"
+        price={price}
+        hasAudio={hasAudio}
+      />
     </div>
   );
 };

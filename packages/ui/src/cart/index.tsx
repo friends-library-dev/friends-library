@@ -22,7 +22,7 @@ const CartComponent: React.FC<Props> = ({
   subTotal,
 }) => {
   return (
-    <div className="p-6 md:p-8">
+    <>
       <Header>Your Order</Header>
       <NoProfit />
       <Progress step="Order" />
@@ -68,7 +68,7 @@ const CartComponent: React.FC<Props> = ({
       <Button className="bg-flmaroon mb-5 mx-auto" onClick={checkout}>
         Review
       </Button>
-    </div>
+    </>
   );
 };
 

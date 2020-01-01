@@ -45,8 +45,8 @@ blockquote {
   left: calc(50% + 25px);
 }
 
-.Menu--open .Nav,
-.Menu--open .Content {
+.Site--blur .Nav,
+.Site--blur .Content {
   filter: blur(6px);
 }
 

@@ -121,14 +121,23 @@ export const CardRow: React.FC = () => (
 );
 
 export const FeedbackCard: React.FC<{ brand?: string }> = ({ brand }) => {
-  const Component = brand
-    ? {
-        amex: Amex,
-        discover: Discover,
-        mastercard: Mastercard,
-        visa: Visa,
-      }[brand] || Card
-    : Card;
+  let Component = Card;
+  switch (brand) {
+    case 'amex':
+      Component = Amex;
+      break;
+    case 'discover':
+      Component = Discover;
+      break;
+    case 'visa':
+      Component = Visa;
+      break;
+    case 'mastercard':
+      Component = Mastercard;
+      break;
+    default:
+      Component = Card;
+  }
   return (
     <Component
       className={`absolute top-0 right-0 mt-2 mr-2${

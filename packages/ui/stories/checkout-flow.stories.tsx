@@ -17,7 +17,7 @@ storiesOf('Checkout flow', module)
     const machine = new CheckoutMachine(service);
     return (
       <Modal onClose={a('close modal')}>
-        <CheckoutFlow machine={machine} />
+        <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );
   })
@@ -26,7 +26,7 @@ storiesOf('Checkout flow', module)
     const machine = new CheckoutMachine(service);
     return (
       <Modal onClose={a('close modal')}>
-        <CheckoutFlow machine={machine} />
+        <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );
   })
@@ -41,7 +41,7 @@ storiesOf('Checkout flow', module)
     const machine = new CheckoutMachine(service);
     return (
       <Modal onClose={a('close modal')}>
-        <CheckoutFlow machine={machine} />
+        <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );
   })
@@ -56,7 +56,7 @@ storiesOf('Checkout flow', module)
     const machine = new CheckoutMachine(service);
     return (
       <Modal onClose={a('close modal')}>
-        <CheckoutFlow machine={machine} />
+        <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );
   });

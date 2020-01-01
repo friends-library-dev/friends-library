@@ -12,8 +12,8 @@ export default async function createOrder(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /orders/create', body);
-    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
+    log.error('invalid body for /orders/create', body, data);
+    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
   const order = new Order({

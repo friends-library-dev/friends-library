@@ -9,6 +9,7 @@ interface Props {
   buttons: {
     text: string;
     icon?: string;
+    onClick?: () => void;
   }[];
 }
 const MultiPill: React.FC<Props> = ({ buttons, className, inline = false }) => {
@@ -18,6 +19,7 @@ const MultiPill: React.FC<Props> = ({ buttons, className, inline = false }) => {
       {buttons.map((button, idx) => (
         <Button
           key={button.text}
+          {...(button.onClick ? { onClick: button.onClick } : {})}
           className={cx(`bg-flmaroon-${[600, 500, 400][idx]}`, `z-${[30, 20, 10][idx]}`, {
             'mb-2': idx < buttons.length - 1,
             [`${brk}:-ml-12`]: idx > 0,

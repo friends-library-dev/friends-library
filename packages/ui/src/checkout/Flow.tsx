@@ -7,8 +7,11 @@ import Payment from './Payment';
 import Confirmation from './Confirmation';
 import UnrecoverableError from './UnrecoverableError';
 import CartItem, { CartItemData } from './models/CartItem';
+import EmptyCart, { Props as EmptyCartProps } from './EmptyCart';
 
-const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
+type Props = { machine: CheckoutMachine } & EmptyCartProps;
+
+const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
   const [cartItems, setCartItems] = useState<CartItemData[]>(
     machine.service.cart.items.map(i => i.toJSON()),
   );
@@ -17,6 +20,9 @@ const CheckoutFlow: React.FC<{ machine: CheckoutMachine }> = ({ machine }) => {
 
   switch (state) {
     case 'cart':
+      if (cartItems.length === 0) {
+        return <EmptyCart recommendedBooks={recommendedBooks} />;
+      }
       return (
         <Cart
           items={cartItems}
