@@ -7,7 +7,7 @@ import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';
 import Hamburger from './Hamburger';
 import Search from './Search';
-import { useNumCartItems } from './checkout/hooks';
+import CartBadge from './CartBadge';
 import { Theme } from './theme';
 
 const StyledNav = styled('nav')`
@@ -76,6 +76,8 @@ interface Props {
   theme: Theme;
   menuOpen: boolean;
   className?: string;
+  showCartBadge: boolean;
+  onCartBadgeClick: () => void;
   onHamburgerClick: () => void;
   initialSearching?: boolean;
 }
@@ -85,26 +87,29 @@ const Component: React.FC<Props> = ({
   menuOpen,
   initialSearching,
   onHamburgerClick,
+  onCartBadgeClick,
+  showCartBadge,
   theme,
 }) => {
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
-  const [numCartItems, , store] = useNumCartItems();
   return (
     <StyledNav className={cx(className, { searching })}>
       <Hamburger menuOpen={menuOpen} onClick={onHamburgerClick} />
       <Link className="HomeLink" to="/">
         {theme.lang === 'en' ? <FriendsLogo /> : <AmigosLogo />}
       </Link>
-      {numCartItems > 0 && <button onClick={() => store.open()}>{numCartItems}</button>}
-      <Search
-        expanded={searching}
-        onClick={() => {
-          if (!searching) {
-            setSearching(true);
-          }
-        }}
-        onBlur={() => setSearching(false)}
-      />
+      <div className="flex">
+        <Search
+          expanded={searching}
+          onClick={() => {
+            if (!searching) {
+              setSearching(true);
+            }
+          }}
+          onBlur={() => setSearching(false)}
+        />
+        {showCartBadge && <CartBadge onClick={onCartBadgeClick} />}
+      </div>
     </StyledNav>
   );
 };

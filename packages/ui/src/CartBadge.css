@@ -1,0 +1,24 @@
+.CartBadge {
+  width: 40px;
+  height: 40px;
+}
+
+.CartBadge::before,
+.CartBadge::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: rgb(200, 52, 98);
+}
+
+.CartBadge::after {
+  opacity: 0.5;
+  width: 14px;
+  height: 14px;
+  top: -1px;
+  right: -1px;
+}

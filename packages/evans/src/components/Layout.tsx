@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import cx from 'classnames';
 import {
   styled,
+  useNumCartItems,
   CheckoutModal,
   CartStore,
   CheckoutApi,
@@ -34,6 +35,7 @@ const machine = new CheckoutMachine(service);
 
 const Layout: React.FC<Props> = ({ children }) => {
   const theme = process.env.GATSBY_LANG === 'en' ? enTheme : esTheme;
+  const [numCartItems] = useNumCartItems();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState<boolean>(false);
 
@@ -73,6 +75,8 @@ const Layout: React.FC<Props> = ({ children }) => {
           menuOpen={menuOpen}
           className="Nav"
           onHamburgerClick={() => setMenuOpen(!menuOpen)}
+          onCartBadgeClick={() => store.open()}
+          showCartBadge={numCartItems > 0}
         />
         <Content className="Content flex flex-col relative overflow-hidden bg-white min-h-screen">
           {children}

@@ -5,6 +5,7 @@ import centered from '@storybook/addon-centered/react';
 import { useEnglish, useSpanish, coverSizes } from './decorators';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
+import CartBadge from '../src/CartBadge';
 import Button from '../src/Button';
 import Hamburger from '../src/Hamburger';
 import SlideoverMenu from '../src/SlideoverMenu';
@@ -36,12 +37,27 @@ storiesOf('Button', module)
 storiesOf('Nav (en)', module)
   .addDecorator(useEnglish)
   .add('default', () => (
-    <Nav menuOpen={false} onHamburgerClick={a('hamburger clicked')} />
+    <Nav
+      showCartBadge={false}
+      onCartBadgeClick={a('cart badge clicked')}
+      menuOpen={false}
+      onHamburgerClick={a('hamburger clicked')}
+    />
+  ))
+  .add('with cart badge', () => (
+    <Nav
+      showCartBadge
+      onCartBadgeClick={a('cart badge clicked')}
+      menuOpen={false}
+      onHamburgerClick={a('hamburger clicked')}
+    />
   ))
   .add('searching', () => (
     <Nav
       menuOpen={false}
       initialSearching={true}
+      showCartBadge={false}
+      onCartBadgeClick={a('cart badge clicked')}
       onHamburgerClick={a('hamburger clicked')}
     />
   ));
@@ -49,11 +65,18 @@ storiesOf('Nav (en)', module)
 storiesOf('Nav (es)', module)
   .addDecorator(useSpanish)
   .add('default', () => (
-    <Nav menuOpen={false} onHamburgerClick={a('hamburger clicked')} />
+    <Nav
+      menuOpen={false}
+      showCartBadge={false}
+      onCartBadgeClick={a('cart badge clicked')}
+      onHamburgerClick={a('hamburger clicked')}
+    />
   ))
   .add('searching', () => (
     <Nav
       menuOpen={false}
+      showCartBadge={false}
+      onCartBadgeClick={a('cart badge clicked')}
       initialSearching={true}
       onHamburgerClick={a('hamburger clicked')}
     />
