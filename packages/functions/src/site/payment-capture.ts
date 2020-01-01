@@ -25,7 +25,10 @@ export default async function capturePayment(
     var intent = await stripeClient().paymentIntents.capture(data.paymentIntentId);
   } catch (error) {
     log.error(`error capturing payment intent ${data.paymentIntentId}`, error);
-    return respond.json({ msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT }, 403);
+    return respond.json(
+      { msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT, details: error.message },
+      403,
+    );
   }
 
   if (intent.status !== 'succeeded') {

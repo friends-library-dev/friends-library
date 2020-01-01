@@ -71,7 +71,7 @@ export const schema = {
   properties: {
     amount: { type: 'integer' },
     email: { $ref: '/email' },
-    address: { $ref: '/lulu-address' },
+    address: { $ref: '/address' },
     taxes: { type: 'integer' },
     shipping: { type: 'integer' },
     ccFeeOffset: { type: 'integer' },

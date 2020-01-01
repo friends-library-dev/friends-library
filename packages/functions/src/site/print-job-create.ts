@@ -116,7 +116,7 @@ async function verifyPaymentIntent(
 
 export const schema = {
   properties: {
-    address: { $ref: '/lulu-address' },
+    address: { $ref: '/address' },
     orderId: { type: 'string', minLength: 10 },
     paymentIntentId: { type: 'string', minLength: 5 },
     email: { $ref: '/email' },

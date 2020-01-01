@@ -6,6 +6,5 @@ export interface Address {
   state: string;
   zip: string;
   country: string;
-  email: string;
   unusable?: boolean;
 }
