@@ -70,6 +70,8 @@ storiesOf('Doc Page', module)
       hasAudio={true}
       numChapters={15}
       altLanguageUrl="https://es-evans.netlify.com/james-parnell/vida"
+      documentId="123abc"
+      cartData={[]}
     />
   ));
 

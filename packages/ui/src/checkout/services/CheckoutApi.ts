@@ -25,7 +25,7 @@ export default class CheckoutApi {
       printJobId,
       userAgent: navigator ? navigator.userAgent : null,
     };
-    return this.post('/order/brick', payload);
+    return this.post('/orders/brick', payload);
   }
 
   public async calculateFees(payload: Record<string, any>): Promise<ApiResponse> {

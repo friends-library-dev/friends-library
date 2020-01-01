@@ -1,23 +1,37 @@
 import React, { useState } from 'react';
 import Link from 'gatsby-link';
-import { CoverProps, PrintSize } from '@friends-library/types';
+import { CoverProps, PrintSize, EditionType } from '@friends-library/types';
 import { bookDims } from '@friends-library/lulu';
 import { ThreeD } from '@friends-library/cover-component';
 import DocActions from '../DocActions';
+import CartItem from '../checkout/models/CartItem';
+import CartStore from '../checkout/services/CartStore';
 import SpinBook from '../images/spin-book.png';
 import './DocBlock.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
   authorUrl: string;
+  documentId: string;
+  author: string;
   price: number;
   hasAudio: boolean;
   description: string;
   numChapters: number;
   altLanguageUrl?: string | null;
   pages: number[];
+  cartData: {
+    title: string[];
+    interiorPdfUrl: string[];
+    coverPdfUrl: string[];
+    edition: EditionType;
+    printSize: PrintSize;
+    numPages: number[];
+  }[];
 };
 
 type Perspective = 'back' | 'front' | 'spine' | 'angle-front' | 'angle-back';
+
+const store = CartStore.getSingleton();
 
 const DocBlock: React.FC<Props> = props => {
   const [perspective, setPerspective] = useState<Perspective>('angle-front');
@@ -87,11 +101,33 @@ function LinksAndMeta(props: Props & { className: string }): JSX.Element {
     numChapters,
     pages,
     altLanguageUrl,
+    cartData,
+    documentId,
     className,
   } = props;
   return (
     <div className={className}>
-      <DocActions className="mb-8 lg:mx-24 xl:mx-0" price={price} hasAudio={hasAudio} />
+      <DocActions
+        addToCart={() => {
+          const edition = cartData[0];
+          store.cart.addItem(
+            new CartItem({
+              title: edition.title,
+              documentId,
+              edition: edition.edition,
+              quantity: 1,
+              printSize: edition.printSize,
+              numPages: edition.numPages,
+              author,
+              interiorPdfUrl: edition.interiorPdfUrl,
+              coverPdfUrl: edition.coverPdfUrl,
+            }),
+          );
+        }}
+        className="mb-8 lg:mx-24 xl:mx-0"
+        price={price}
+        hasAudio={hasAudio}
+      />
       <div className="DocMeta flex flex-col items-center">
         <ul className="text-sans text-gray-600 leading-loose antialiased">
           <li>{author}</li>

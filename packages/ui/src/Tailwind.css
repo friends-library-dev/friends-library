@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 
+:root {
+  /* prevent js errors from @reach/dialog */
+  --reach-dialog: 1;
+}
+
 .btn {
   @apply block rounded-full font-sans text-center uppercase tracking-wider text-white;
 }

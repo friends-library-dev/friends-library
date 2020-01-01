@@ -7,6 +7,7 @@ import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';
 import Hamburger from './Hamburger';
 import Search from './Search';
+import { useNumCartItems } from './checkout/hooks';
 import { Theme } from './theme';
 
 const StyledNav = styled('nav')`
@@ -87,12 +88,14 @@ const Component: React.FC<Props> = ({
   theme,
 }) => {
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
+  const [numCartItems, , store] = useNumCartItems();
   return (
     <StyledNav className={cx(className, { searching })}>
       <Hamburger menuOpen={menuOpen} onClick={onHamburgerClick} />
       <Link className="HomeLink" to="/">
         {theme.lang === 'en' ? <FriendsLogo /> : <AmigosLogo />}
       </Link>
+      {numCartItems > 0 && <button onClick={() => store.open()}>{numCartItems}</button>}
       <Search
         expanded={searching}
         onClick={() => {

@@ -34,6 +34,9 @@ interface Props {
         type: EditionType;
         isbn: string;
         price: number;
+        cartItemTitles: string[];
+        cartItemCoverPdfUrls: string[];
+        cartItemInteriorPdfUrls: string[];
         chapterHeadings: Heading[];
         customCode: {
           css: { paperback_cover: null | string };
@@ -91,10 +94,20 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
         authorUrl={friend.url}
         price={mainEdition.price}
         hasAudio={hasAudio}
+        author={friend.name}
+        documentId={document.id}
         numChapters={mainEdition.numChapters}
         altLanguageUrl={document.altLanguageUrl}
         {...coverProps}
         pages={mainEdition.pages}
+        cartData={document.editions.map(edition => ({
+          title: edition.cartItemTitles,
+          interiorPdfUrl: edition.cartItemInteriorPdfUrls,
+          coverPdfUrl: edition.cartItemCoverPdfUrls,
+          edition: edition.type,
+          printSize: edition.printSize,
+          numPages: edition.pages,
+        }))}
       />
       <ReadSampleBlock
         price={mainEdition.price}
@@ -151,6 +164,9 @@ export const query = graphql`
         printSize
         pages
         price
+        cartItemTitles
+        cartItemCoverPdfUrls
+        cartItemInteriorPdfUrls
         ...CoverCode
         chapterHeadings {
           id

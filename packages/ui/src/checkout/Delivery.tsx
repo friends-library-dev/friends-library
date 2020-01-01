@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CountryDropdown } from 'react-country-region-selector';
 import Link from 'gatsby-link';
 import cx from 'classnames';
 import Button from '../Button';
@@ -11,9 +12,6 @@ import NoProfit from './NoProfit';
 import ErrorMsg from './ErrorMsg';
 import { Address } from './types';
 import './Delivery.css';
-
-// @ts-ignore
-import { CountryDropdown } from 'react-country-region-selector';
 
 const Delivery: React.FC<{
   onSubmit: (address: Address) => void;
@@ -129,14 +127,13 @@ const Delivery: React.FC<{
             placeholder="ZIP / Postal Code"
           />
           <CountryDropdown
-            className={cx(
+            classes={cx(
               'CartInput text-gray-500 order-8',
               countryBlurred && !country && 'invalid text-red-600',
             )}
             value={country}
             valueType="short"
             onChange={(country: string) => setCountry(country)}
-            onFocus={() => setCountryBlurred(false)}
             onBlur={() => setCountryBlurred(true)}
             priorityOptions={['US', 'GB']}
           />
