@@ -48,6 +48,10 @@ export default class CartItem {
     return price(this.printSize, this.numPages);
   }
 
+  public equals(other: CartItem): boolean {
+    return this.documentId === other.documentId && this.edition === other.edition;
+  }
+
   public toJSON(): CartItemData {
     return {
       title: this.title,

@@ -36,8 +36,23 @@ export default class Cart extends EventEmitter {
     return this._items;
   }
 
-  public addItem(item: CartItem): void {
-    this._items.push(item);
+  public numItems(): number {
+    return this.items.length;
+  }
+
+  public totalQuantity(): number {
+    return this.items.reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  public addItem(newItem: CartItem): void {
+    for (let item of this.items) {
+      if (item.equals(newItem)) {
+        item.quantity++;
+        this.emit('change');
+        return;
+      }
+    }
+    this._items.push(newItem);
     this.emit('change');
   }
 

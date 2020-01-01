@@ -5,7 +5,6 @@ import centered from '@storybook/addon-centered/react';
 import { useEnglish, useSpanish, coverSizes } from './decorators';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
-import CartBadge from '../src/CartBadge';
 import Button from '../src/Button';
 import Hamburger from '../src/Hamburger';
 import SlideoverMenu from '../src/SlideoverMenu';
