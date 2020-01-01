@@ -9,7 +9,7 @@ const Search = styled('div')<{ expanded: boolean }>`
   height: ${size}px;
   width: ${p => (p.expanded ? 6 * size : size)}px;
   border-radius: ${size / 2}px;
-  border: 1px solid ${p => p.theme.primary.rgba(0.5)};
+  border: 1px solid ${p => p.theme.primary.hex};
   position: relative;
   transition: width 0.25s ease-out;
   background: ${p => (p.expanded ? p.theme.primary.rgba(0.05) : 'none')};
