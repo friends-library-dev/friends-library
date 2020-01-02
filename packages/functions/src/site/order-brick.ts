@@ -34,7 +34,7 @@ export default async function brickOrder(
     'Bricked order!',
     `orderId: ${data.orderId},`,
     `printJobId: ${data.printJobId},`,
-    `paymentItentId: ${data.paymentItentId},`,
+    `paymentIntentId: ${data.paymentIntentId},`,
     `userAgent: ${data.userAgent},`,
     `stateHistory: ${JSON.stringify(data.stateHistory)}`,
   ].join(' ');

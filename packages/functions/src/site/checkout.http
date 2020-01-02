@@ -125,6 +125,20 @@ POST {{base}}/orders/{{orderId}}/confirmation-email HTTP/1.1
 POST {{base}}/orders/check HTTP/1.1
 
 ###
+
+# brick an order
+POST {{base}}/orders/brick HTTP/1.1
+content-type: application/json
+
+{
+  "stateHistory": ["cart"],
+  "orderId": "{{orderId}}",
+  "paymentIntentId": "{{paymentIntentId}}",
+  "printJobId": "{{printJobId}}",
+  "userAgent": ""
+}
+
+###
 @base = http://localhost:2345/.netlify/functions/site
 @paymentIntentId = {{createOrder.response.body.$.paymentIntentId}}
 @orderId = {{createOrder.response.body.$.orderId}}

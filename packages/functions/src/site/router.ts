@@ -8,6 +8,7 @@ import createPrintJob from './print-job-create';
 import printJobStatus from './print-job-status';
 import fetchOrder from './order-fetch';
 import updateOrder from './order-update';
+import brickOrder from './order-brick';
 import Responder from '../lib/Responder';
 import checkOrders from './orders-check';
 import sendOrderConfirmationEmail from './order-send-confirmation-email';
@@ -48,6 +49,8 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return checkOrders(event, respond);
       case 'orders/create':
         return createOrder(event, respond);
+      case 'orders/brick':
+        return brickOrder(event, respond);
     }
     if (path.match(/^orders\/[a-z0-9]+\/confirmation-email$/)) {
       return sendOrderConfirmationEmail(event, respond);
