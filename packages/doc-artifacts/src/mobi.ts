@@ -18,7 +18,7 @@ export default async function mobi(
   } catch (err) {
     red(`Error generating MOBI ${filenameNoExt}:`);
     red(err);
-    process.exit();
+    process.exit(1);
   }
 
   return filePath.replace(/\.epub$/, '');
