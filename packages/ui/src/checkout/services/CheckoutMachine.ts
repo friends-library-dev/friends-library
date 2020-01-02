@@ -78,9 +78,7 @@ const states = {
   },
 
   confirmation: {
-    onEnter(this: CheckoutMachine) {
-      // @TODO reset cart completely, keep address @BLOCKER
-    },
+    onEnter: 'Service.complete',
     finish(this: CheckoutMachine) {
       this.close();
     },
