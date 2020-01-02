@@ -194,6 +194,11 @@ export default class CheckoutService {
     return this.errors[this.errors.length - 1];
   }
 
+  public complete(): void {
+    this.resetState();
+    this.cart.items = [];
+  }
+
   private resolve({ ok, data }: ApiResponse): string | void {
     if (!ok) {
       this.errors.push(data.msg);
