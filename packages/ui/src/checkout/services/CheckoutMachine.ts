@@ -1,22 +1,22 @@
+import { EventEmitter } from 'events';
 import { checkoutErrors as Err } from '@friends-library/types';
 import CheckoutService from './CheckoutService';
 
 const states = {
-  hidden: {
-    show: 'cart',
-  },
-
   cart: {
     async next(this: CheckoutMachine) {
       await this.transitionTo('delivery');
       // don't await, fire & forget to wakeup in background
       this.service.sendWakeup();
     },
-    close: 'hidden',
+    continueBrowsing(this: CheckoutMachine) {
+      this.close();
+    },
   },
 
   delivery: {
     next: 'calculateFees',
+    back: 'cart',
   },
 
   calculateFees: {
@@ -42,6 +42,7 @@ const states = {
       const err = await this.service.authorizePayment(authorizePayment);
       await this.dispatch(err ? 'failure' : 'success', err);
     },
+    back: 'delivery',
   },
 
   authorizingPayment: {
@@ -80,7 +81,9 @@ const states = {
     onEnter(this: CheckoutMachine) {
       // @TODO reset cart completely, keep address @BLOCKER
     },
-    finish: 'hidden',
+    finish(this: CheckoutMachine) {
+      this.close();
+    },
   },
 
   /**
@@ -96,25 +99,34 @@ const states = {
       this.service.brickOrder(this.history);
     },
     tryAgain: 'cart',
-    close: 'hidden',
+    close(this: CheckoutMachine) {
+      this.close();
+    },
+  },
+
+  closed: {
+    next: 'cart',
   },
 };
 
 type StateKey = keyof typeof states;
 
-export default class CheckoutMachine {
+export default class CheckoutMachine extends EventEmitter {
   public history: StateKey[] = ['cart'];
   public state: StateKey = 'cart';
-  private listeners: ((newState: string) => void)[] = [];
 
-  public constructor(public service: CheckoutService) {}
+  public constructor(public service: CheckoutService) {
+    super();
+  }
 
   public getState(): string {
     return this.state;
   }
 
-  public listen(listener: (newState: string) => void): void {
-    this.listeners.push(listener);
+  public close(): void {
+    this.emit('close');
+    this.transitionTo('closed');
+    this.dispatch('next');
   }
 
   public async transitionTo(state: StateKey): Promise<void> {
@@ -126,7 +138,7 @@ export default class CheckoutMachine {
 
     this.state = state;
     this.history.push(state);
-    this.listeners.forEach(listener => listener(state));
+    this.emit('state:change', state);
 
     if (!nextState.hasOwnProperty('onEnter')) {
       return;

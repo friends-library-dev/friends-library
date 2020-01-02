@@ -17,10 +17,11 @@ type AddressWithEmail = Address & { email: string };
 
 const Delivery: React.FC<{
   onSubmit: (address: AddressWithEmail) => void;
+  onBack: () => void;
   stored?: Partial<AddressWithEmail>;
   throbbing?: boolean;
   error?: boolean;
-}> = ({ onSubmit, stored = {}, error, throbbing }) => {
+}> = ({ onSubmit, onBack, stored = {}, error, throbbing }) => {
   const [email, setEmail] = useState<string>(stored.email || '');
   const [emailBlurred, setEmailBlurred] = useState<boolean>(false);
   const [name, setName] = useState<string>(stored.name || '');
@@ -151,7 +152,9 @@ const Delivery: React.FC<{
             type="email"
           />
         </div>
-        <Back>Back to Order</Back>
+        <Back className={cx(throbbing && 'blur')} onClick={onBack}>
+          Back to Order
+        </Back>
         <Button
           className="bg-flprimary mx-auto"
           disabled={!filledOutCompletely || throbbing}

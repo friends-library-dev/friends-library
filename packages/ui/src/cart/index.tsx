@@ -1,6 +1,7 @@
 import React from 'react';
 import Item from './Item';
 import Button from '../Button';
+import Back from '../checkout/Back';
 import Progress from '../checkout/Progress';
 import Header from '../checkout/Header';
 import CartItem, { CartItemData } from '../checkout/models/CartItem';
@@ -8,7 +9,7 @@ import NoProfit from '../checkout/NoProfit';
 
 interface Props {
   checkout: () => void;
-  close: () => void;
+  onContinueBrowsing: () => void;
   subTotal: number;
   items: CartItemData[];
   setItems: (items: CartItemData[]) => void;
@@ -16,7 +17,7 @@ interface Props {
 
 const CartComponent: React.FC<Props> = ({
   checkout,
-  close,
+  onContinueBrowsing,
   items,
   setItems,
   subTotal,
@@ -59,12 +60,7 @@ const CartComponent: React.FC<Props> = ({
           ${(subTotal / 100).toFixed(2)}
         </span>
       </div>
-      <div
-        className="mb-8 font-sans antialiased text-gray-600 tracking-wide"
-        onClick={close}
-      >
-        &larr; Continue Browsing
-      </div>
+      <Back onClick={onContinueBrowsing}>Continue Browsing</Back>
       <Button className="bg-flmaroon mb-5 mx-auto" onClick={checkout}>
         Delivery &nbsp;&rsaquo;
       </Button>

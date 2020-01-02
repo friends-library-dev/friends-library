@@ -46,7 +46,7 @@ storiesOf('Checkout Components', module)
           <Payment
             throbbing={false}
             onPay={a('on pay')}
-            onBackToCart={a('on back to cart')}
+            onBack={a('on back')}
             subTotal={1298}
             shipping={399}
             taxes={132}
@@ -64,7 +64,7 @@ storiesOf('Checkout Components', module)
           <Payment
             throbbing={true}
             onPay={a('on pay')}
-            onBackToCart={a('on back to cart')}
+            onBack={a('on back')}
             subTotal={1298}
             shipping={399}
             taxes={132}
@@ -123,17 +123,17 @@ storiesOf('Checkout Components', module)
   ))
   .add('Delivery (shipping err)', () => (
     <div style={{ margin: 25 }}>
-      <Delivery onSubmit={a('submit address')} error />
+      <Delivery onBack={a('back')} onSubmit={a('submit address')} error />
     </div>
   ))
   .add('Delivery (throbbing)', () => (
     <div style={{ margin: 25 }}>
-      <Delivery throbbing onSubmit={a('submit address')} />
+      <Delivery onBack={a('back')} throbbing onSubmit={a('submit address')} />
     </div>
   ))
   .add('Delivery', () => (
     <div style={{ margin: 25 }}>
-      <Delivery onSubmit={a('submit address')} />
+      <Delivery onBack={a('back')} onSubmit={a('submit address')} />
     </div>
   ))
   .add('UnrecoverableError', () => (

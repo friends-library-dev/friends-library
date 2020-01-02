@@ -32,6 +32,7 @@ const store = CartStore.getSingleton();
 const api = new CheckoutApi('/.netlify/functions/site');
 const service = new CheckoutService(store.cart, api);
 const machine = new CheckoutMachine(service);
+machine.on('close', () => store.close());
 
 const Layout: React.FC<Props> = ({ children }) => {
   const theme = process.env.GATSBY_LANG === 'en' ? enTheme : esTheme;
@@ -83,7 +84,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           <Footer />
         </Content>
         {checkoutModalOpen && (
-          <CheckoutModal onClose={() => store.close()}>
+          <CheckoutModal onClose={() => machine.close()}>
             <CheckoutFlow machine={machine} recommendedBooks={[]} />
           </CheckoutModal>
         )}

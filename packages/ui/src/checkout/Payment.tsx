@@ -18,7 +18,7 @@ import { CardRow, FeedbackCard } from './Cards';
 import MessageThrobber from './MessageThrobber';
 
 type Props = ReactStripeElements.InjectedStripeProps & {
-  onBackToCart: () => void;
+  onBack: () => void;
   subTotal: number;
   shipping: number;
   taxes: number;
@@ -80,7 +80,7 @@ class Payment extends React.Component<Props, State> {
   };
 
   public render(): JSX.Element {
-    const { throbbing } = this.props;
+    const { throbbing, onBack } = this.props;
     const { numberError, cardBrand, expiryError, cvcError } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
@@ -154,7 +154,7 @@ class Payment extends React.Component<Props, State> {
           </div>
         </div>
         <div className={cx(throbbing && 'blur pointer-events-none')}>
-          <Back>Back to delivery</Back>
+          <Back onClick={onBack}>Back to delivery</Back>
           <Button
             className={cx('mx-auto', {
               'bg-gray-800': !this.valid(),
