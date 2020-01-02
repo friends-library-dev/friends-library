@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import Cookies from 'js-cookie';
 import Cart from '../models/Cart';
 
 export default class CartStore extends EventEmitter {
@@ -8,7 +9,20 @@ export default class CartStore extends EventEmitter {
   public constructor() {
     super();
     this.cart = new Cart([]);
-    this.cart.on('change', () => this.emit('cart:changed'));
+
+    try {
+      const stored = JSON.parse(Cookies.get('flp-cart') || '');
+      if (stored) {
+        this.cart = Cart.fromJson(stored);
+      }
+    } catch (e) {
+      // ¯\_(ツ)_/¯
+    }
+
+    this.cart.on('change', () => {
+      Cookies.set('flp-cart', JSON.stringify(this.cart.toJSON()));
+      this.emit('cart:changed');
+    });
   }
 
   public isOpen(): boolean {
