@@ -186,21 +186,21 @@ describe('CheckoutService()', () => {
 
       expect(getPrintJobStatus.mock.calls.length).toBe(1);
 
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(1000);
       await drainPromiseQueue();
 
       expect(getPrintJobStatus.mock.calls.length).toBe(2);
 
-      jest.advanceTimersByTime(500);
+      jest.advanceTimersByTime(1000);
       await drainPromiseQueue();
 
       expect(getPrintJobStatus.mock.calls.length).toBe(3);
     });
 
-    it('returns an error after 30 seconds without acceptance', async () => {
+    it('returns an error after 45 seconds without acceptance', async () => {
       getPrintJobStatus.mockResolvedValue(jobStatus('pending'));
       const promise = service.verifyPrintJobAccepted();
-      for (let i = 0; i <= 60; i++) {
+      for (let i = 0; i <= 45; i++) {
         await drainPromiseQueue();
         jest.runOnlyPendingTimers();
       }

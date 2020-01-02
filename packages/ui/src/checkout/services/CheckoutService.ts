@@ -131,13 +131,13 @@ export default class CheckoutService {
   public async verifyPrintJobAccepted(): Promise<string | void> {
     let attempts = 0;
     do {
-      this.printJobStatus && (await new Promise(resolve => setTimeout(resolve, 500)));
+      this.printJobStatus && (await new Promise(resolve => setTimeout(resolve, 1000)));
       const { ok, data } = await this.api.getPrintJobStatus(this.printJobId);
       if (ok) {
         this.errors.push(data.msg);
         this.printJobStatus = data.status;
       }
-    } while (this.printJobStatus !== 'accepted' && attempts++ < 60);
+    } while (this.printJobStatus !== 'accepted' && attempts++ < 45);
 
     if (this.printJobStatus === 'accepted') {
       return;
