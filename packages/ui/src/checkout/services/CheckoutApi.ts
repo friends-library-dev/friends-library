@@ -1,4 +1,3 @@
-import fetch, { Response } from 'node-fetch';
 import { checkoutErrors as Err } from '@friends-library/types';
 
 export default class CheckoutApi {
@@ -107,14 +106,15 @@ export default class CheckoutApi {
   }
 
   public async sendOrderConfirmationEmail(orderId: string): Promise<ApiResponse> {
-    const response = await fetch(this.endpoint(`/orders/${orderId}/confirmation-email`), {
-      method: 'POST',
-    });
+    const response = await window.fetch(
+      this.endpoint(`/orders/${orderId}/confirmation-email`),
+      { method: 'POST' },
+    );
     return this.normalize(response);
   }
 
   private async get(path: string): Promise<ApiResponse> {
-    const response = await fetch(this.endpoint(path));
+    const response = await window.fetch(this.endpoint(path), { credentials: 'omit' });
     return await this.normalize(response);
   }
 
@@ -131,9 +131,10 @@ export default class CheckoutApi {
     payload: Record<string, any>,
     method: 'POST' | 'PATCH' | 'PUT',
   ): Promise<ApiResponse> {
-    const response = await fetch(this.endpoint(path), {
+    const response = await window.fetch(this.endpoint(path), {
       method,
       body: JSON.stringify(payload),
+      credentials: 'omit',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
