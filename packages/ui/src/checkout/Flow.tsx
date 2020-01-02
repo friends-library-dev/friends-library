@@ -13,11 +13,17 @@ type Props = { machine: CheckoutMachine } & EmptyCartProps;
 
 const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
   const cart = machine.service.cart;
+  const [state, setState] = useState<string>(machine.getState());
   const [cartItems, setCartItems] = useState<CartItemData[]>(
     cart.items.map(i => i.toJSON()),
   );
-  const [state, setState] = useState<string>(machine.getState());
-  useEffect(() => machine.listen(newState => setState(newState)), []);
+
+  useEffect(() => {
+    machine.on('state:change', setState);
+    return () => {
+      machine.removeListener('state:change', setState);
+    };
+  }, []);
 
   switch (state) {
     case 'cart':
@@ -33,7 +39,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
           }}
           subTotal={cart.subTotal()}
           checkout={() => machine.dispatch('next')}
-          close={() => machine.dispatch('close')}
+          onContinueBrowsing={() => machine.dispatch('continueBrowsing')}
         />
       );
     case 'delivery':
@@ -42,6 +48,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
       return (
         <Delivery
           throbbing={state !== 'delivery'}
+          onBack={() => machine.dispatch('back')}
           error={!!cart.address?.unusable}
           stored={{ ...cart.address, ...(cart.email ? { email: cart.email } : {}) }}
           onSubmit={data => {
@@ -63,7 +70,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
           <Elements>
             <Payment
               throbbing={state !== 'payment'}
-              onBackToCart={() => machine.dispatch('backToCart')}
+              onBack={() => machine.dispatch('back')}
               paymentIntentClientSecret={machine.service.paymentIntentClientSecret}
               subTotal={cart.subTotal()}
               shipping={machine.service.fees.shipping}
@@ -75,7 +82,12 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
         </StripeProvider>
       );
     case 'confirmation':
-      return <Confirmation email={cart.email || ''} onClose={() => {}} />;
+      return (
+        <Confirmation
+          email={cart.email || ''}
+          onClose={() => machine.dispatch('finish')}
+        />
+      );
     case 'brickSession':
       return (
         <UnrecoverableError
@@ -84,7 +96,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
         />
       );
     default:
-      return <p>What? {state}</p>;
+      return null;
   }
 };
 

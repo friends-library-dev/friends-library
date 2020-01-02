@@ -20,7 +20,7 @@ const StatefulCart: React.FC = () => {
         setItems(items);
       }}
       checkout={a('checkout')}
-      close={a('close')}
+      onContinueBrowsing={a('continue browsing')}
     />
   );
 };
