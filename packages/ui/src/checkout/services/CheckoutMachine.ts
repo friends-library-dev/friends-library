@@ -47,7 +47,15 @@ const states = {
 
   authorizingPayment: {
     success: 'createPrintJob',
-    failure: 'payment',
+    failure(this: CheckoutMachine) {
+      // we've got a user-actionable stripe error, display it on payment screen
+      if (this.service.peekStripeError()) {
+        this.transitionTo('payment');
+        return;
+      }
+      // something went horribly wrong, brick session
+      this.transitionTo('brickSession');
+    },
   },
 
   createPrintJob: {

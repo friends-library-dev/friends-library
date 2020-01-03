@@ -70,6 +70,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
           <Elements>
             <Payment
               throbbing={state !== 'payment'}
+              error={machine.service.popStripeError()}
               onBack={() => machine.dispatch('back')}
               paymentIntentClientSecret={machine.service.paymentIntentClientSecret}
               subTotal={cart.subTotal()}

@@ -16,12 +16,14 @@ import Fees from './Fees';
 import { InvalidOverlay } from './Input';
 import { CardRow, FeedbackCard } from './Cards';
 import MessageThrobber from './MessageThrobber';
+import ErrorMsg from './ErrorMsg';
 
 type Props = ReactStripeElements.InjectedStripeProps & {
   onBack: () => void;
   subTotal: number;
   shipping: number;
   taxes: number;
+  error?: string;
   ccFeeOffset: number;
   throbbing: boolean;
   onPay: (authorizePayment: () => Promise<Record<string, any>>) => void;
@@ -80,13 +82,14 @@ class Payment extends React.Component<Props, State> {
   };
 
   public render(): JSX.Element {
-    const { throbbing, onBack } = this.props;
+    const { throbbing, onBack, error } = this.props;
     const { numberError, cardBrand, expiryError, cvcError } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <Header>Payment</Header>
-        <NoProfit className="hidden md:block" />
+        {!error && <NoProfit className="hidden md:block" />}
         <Progress step="Payment" />
+        {error && <ErrorMsg>{error}</ErrorMsg>}
         <div className="relative">
           {throbbing && <MessageThrobber />}
           <div className={cx('md:flex mt-4', throbbing && 'blur pointer-events-none')}>
