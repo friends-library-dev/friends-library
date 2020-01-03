@@ -32,11 +32,13 @@ export default class CartStore extends EventEmitter {
   public close(): void {
     this._isOpen = false;
     this.emit('hide');
+    this.emit('toggle:visibility', false);
   }
 
   public open(): void {
     this._isOpen = true;
     this.emit('show');
+    this.emit('toggle:visibility', true);
   }
 
   public static getSingleton(): CartStore {
