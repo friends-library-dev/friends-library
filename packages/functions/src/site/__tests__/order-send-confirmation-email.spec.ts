@@ -4,6 +4,8 @@ import sendConfirmation from '../order-send-confirmation-email';
 import { invokeCb } from './invoke';
 import { findById } from '../../lib/Order';
 
+jest.mock('@friends-library/slack');
+
 jest.mock('@sendgrid/mail', () => ({
   setApiKey: jest.fn(),
   send: jest.fn(() => Promise.resolve([{ statusCode: 202 }])),

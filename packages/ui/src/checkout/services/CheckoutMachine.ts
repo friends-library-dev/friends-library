@@ -70,15 +70,16 @@ const states = {
 
   capturePayment: {
     onEnter: 'Service.capturePayment',
-    success(this: CheckoutMachine) {
-      this.transitionTo('confirmation');
-      this.service.sendOrderConfirmationEmail(); // fire & forget, no need to wait
-    },
+    success: 'confirmation',
     failure: 'brickSession',
   },
 
   confirmation: {
-    onEnter: 'Service.complete',
+    onEnter(this: CheckoutMachine) {
+      this.service.sendOrderConfirmationEmail(); // fire & forget, no need to wait
+      this.service.complete();
+    },
+
     finish(this: CheckoutMachine) {
       this.close();
     },

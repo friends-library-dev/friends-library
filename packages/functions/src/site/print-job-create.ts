@@ -16,7 +16,7 @@ export default async function createPrintJob(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /print-job', body);
+    log.error('invalid body for /print-job', { body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, detail: data.message }, 400);
   }
 
@@ -27,14 +27,14 @@ export default async function createPrintJob(
 
   const order = await findById(data.orderId);
   if (!order) {
-    log.error('order not found for print job creation', data);
+    log.error('order not found for print job creation', { data });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
   try {
     var token = await getAuthToken();
   } catch (error) {
-    log.error('error acquiring lulu oauth token', error);
+    log.error('error acquiring lulu oauth token', { error });
     return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
@@ -52,7 +52,7 @@ export default async function createPrintJob(
 
   const json = await res.json();
   if (res.status > 201) {
-    log.error(`bad request (${res.status}) to lulu api`, json, payload);
+    log.error(`bad request (${res.status}) to lulu api`, { json, payload });
     return respond.json({ msg: Err.ERROR_CREATING_PRINT_JOB }, 500);
   }
 
@@ -60,9 +60,12 @@ export default async function createPrintJob(
     order.set('print_job', { id: json.id, status: 'pending' });
     await persist(order);
   } catch (error) {
-    log.error('error updating order with print_job details', error, {
-      orderId: data.orderId,
-      printJobId: json.id,
+    log.error('error updating order with print_job details', {
+      error,
+      data: {
+        orderId: data.orderId,
+        printJobId: json.id,
+      },
     });
     // @TODO -- decide what to do here, we could cancel the lulu order
     // or just proceed, since it's not 100% critical to have updated
@@ -109,7 +112,7 @@ async function verifyPaymentIntent(
       return Err.STRIPE_PAYMENT_INTENT_NOT_FOUND;
     }
 
-    log.error(`error retrieving payment intent ${paymentIntentId}`, error);
+    log.error(`error retrieving payment intent ${paymentIntentId}`, { error });
     return Err.ERROR_RETRIEVING_STRIPE_PAYMENT_INTENT;
   }
 }

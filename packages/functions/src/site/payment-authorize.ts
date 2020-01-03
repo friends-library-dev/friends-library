@@ -23,7 +23,7 @@ export default async function authorizePayment(
 
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment/authorize', body);
+    log.error('invalid body for /payment/authorize', { body, error: data });
     return respond.json({ msg: data.message }, 400);
   }
 
@@ -40,7 +40,7 @@ export default async function authorizePayment(
       },
     });
   } catch (error) {
-    log.error(`error creating payment method`, error);
+    log.error(`error creating payment method`, { error });
     return respond.json({ msg: error.code }, 500);
   }
 
@@ -49,12 +49,12 @@ export default async function authorizePayment(
       payment_method: paymentMethod.id,
     });
   } catch (error) {
-    log.error(`error confirming payment intent: ${intentId}`, error);
+    log.error(`error confirming payment intent: ${intentId}`, { error });
     return respond.json({ msg: error.code }, 500);
   }
 
   if (intent.status !== 'requires_capture') {
-    log.error('unexpected intent status after confirmation', intent);
+    log.error('unexpected intent status after confirmation', { intent });
     return respond.json({ msg: intent.status }, 500);
   }
 

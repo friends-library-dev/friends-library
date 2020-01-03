@@ -12,7 +12,7 @@ export default async function capturePayment(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment/capture', body);
+    log.error('invalid body for /payment/capture', { body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
@@ -24,7 +24,7 @@ export default async function capturePayment(
   try {
     var intent = await stripeClient().paymentIntents.capture(data.paymentIntentId);
   } catch (error) {
-    log.error(`error capturing payment intent ${data.paymentIntentId}`, error);
+    log.error(`error capturing payment intent ${data.paymentIntentId}`, { error });
     return respond.json(
       { msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT, details: error.message },
       403,
@@ -32,7 +32,7 @@ export default async function capturePayment(
   }
 
   if (intent.status !== 'succeeded') {
-    log.error('unexpected response capturing intent', intent);
+    log.error('unexpected response capturing intent', { intent });
     return respond.json({ msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT }, 500);
   }
 
@@ -40,7 +40,7 @@ export default async function capturePayment(
     order.set('payment.status', 'captured');
     await persist(order);
   } catch (error) {
-    log.error('error updating flp order', error);
+    log.error('error updating flp order', { error });
     // @TODO decide what to do here... cancel the charge the charge?
   }
 

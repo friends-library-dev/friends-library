@@ -14,14 +14,14 @@ export default async function printJobFees(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /print-job/fees', body);
+    log.error('invalid body for /print-job/fees', { body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
   try {
     var token = await getAuthToken();
   } catch (error) {
-    log.error('error acquiring lulu oauth token', error);
+    log.error('error acquiring lulu oauth token', { error });
     return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
