@@ -55,15 +55,13 @@ export default class CheckoutApi {
       };
     }
 
-    // @TODO figure out what to do here ¯\_(ツ)_/¯
-    console.log(res);
-
     if (res.error) {
       return {
         ok: false,
         statusCode: 500,
         data: {
           msg: Err.ERROR_AUTHORIZING_STRIPE_PAYMENT_INTENT,
+          userMsg: res.error.message,
         },
       };
     }

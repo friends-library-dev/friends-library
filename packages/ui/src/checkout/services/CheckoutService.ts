@@ -13,6 +13,7 @@ import { PrintJobStatus } from '@friends-library/types';
  */
 export default class CheckoutService {
   private errors: string[] = [];
+  private stripeError?: string;
   public orderId = '';
   public paymentIntentId = '';
   public paymentIntentClientSecret = '';
@@ -157,6 +158,9 @@ export default class CheckoutService {
     authorizePayment: () => Promise<Record<string, any>>,
   ): Promise<string | void> {
     const res = await this.api.authorizePayment(authorizePayment);
+    if (!res.ok && typeof res.data.userMsg === 'string') {
+      this.stripeError = res.data.userMsg;
+    }
     return this.resolve(res);
   }
 
@@ -199,6 +203,16 @@ export default class CheckoutService {
     this.cart.items = [];
   }
 
+  public peekStripeError(): string | undefined {
+    return this.stripeError;
+  }
+
+  public popStripeError(): string | undefined {
+    const error = this.stripeError;
+    delete this.stripeError;
+    return error;
+  }
+
   private resolve({ ok, data }: ApiResponse): string | void {
     if (!ok) {
       this.errors.push(data.msg);
@@ -219,5 +233,6 @@ export default class CheckoutService {
     this.printJobId = -1;
     this.printJobStatus = undefined;
     this.fees = { shipping: 0, taxes: 0, ccFeeOffset: 0 };
+    delete this.stripeError;
   }
 }
