@@ -41,12 +41,10 @@ const Layout: React.FC<Props> = ({ children }) => {
   const [checkoutModalOpen, setCheckoutModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    store.on('show', () => {
-      setCheckoutModalOpen(true);
-    });
-    store.on('hide', () => {
-      setCheckoutModalOpen(false);
-    });
+    store.on('toggle:visibility', setCheckoutModalOpen);
+    return () => {
+      store.removeListener('toggle:visibility', setCheckoutModalOpen);
+    };
   });
 
   return (
