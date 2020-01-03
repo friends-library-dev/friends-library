@@ -17,7 +17,7 @@ export default async function updateOrder(
 
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for PATCH /orders/{:id}', body);
+    log.error('invalid body for PATCH /orders/{:id}', { body: body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
@@ -31,7 +31,7 @@ export default async function updateOrder(
     await persist(order);
     respond.json(order.toJSON());
   } catch (error) {
-    log.error('error updating order', error);
+    log.error('error updating order', { error });
     respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER }, 500);
   }
 }

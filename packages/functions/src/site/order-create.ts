@@ -12,7 +12,7 @@ export default async function createOrder(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /orders/create', body, data);
+    log.error('invalid body for /orders/create', { body: body, data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
@@ -37,7 +37,7 @@ export default async function createOrder(
       },
     });
   } catch (error) {
-    log.error('error creating payment intent', error);
+    log.error('error creating payment intent', { error });
     return respond.json({ msg: Err.ERROR_CREATING_STRIPE_PAYMENT_INTENT }, 403);
   }
 
@@ -52,11 +52,11 @@ export default async function createOrder(
     });
     await persistOrder(order);
   } catch (error) {
-    log.error('error persisting flp order', error);
+    log.error('error persisting flp order', { error });
     return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER }, 500);
   }
 
-  log('created payment intent', paymentIntent);
+  log(`created payment intent: ${paymentIntent.id}`);
   respond.json(
     {
       paymentIntentId: paymentIntent.id,

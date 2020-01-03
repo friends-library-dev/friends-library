@@ -22,7 +22,7 @@ export default async function getPrintJobStatus(
   try {
     token = await getAuthToken();
   } catch (error) {
-    log.error('error acquiring lulu oauth token', error);
+    log.error('error acquiring lulu oauth token', { error });
     return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
@@ -35,7 +35,9 @@ export default async function getPrintJobStatus(
   });
 
   if (res.status !== 200) {
-    log.error(`${res.status} error fetching print job status`, await res.json());
+    log.error(`${res.status} error fetching print job status`, {
+      response: await res.json(),
+    });
     switch (res.status) {
       case 404:
         return respond.json({ msg: Err.PRINT_JOB_NOT_FOUND }, 404);

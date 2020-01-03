@@ -60,7 +60,7 @@ async function getPrintJobs(
   try {
     var token = await getAuthToken();
   } catch (error) {
-    log.error('error acquiring oauth-token', error);
+    log.error('error acquiring oauth-token', { error });
     return [Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN, []];
   }
 
@@ -71,7 +71,7 @@ async function getPrintJobs(
   });
 
   if (!res.ok) {
-    log.error('error retrieving print job data', await res.text());
+    log.error('error retrieving print job data', { msg: await res.text() });
     return [Err.ERROR_RETRIEVING_PRINT_JOB_DATA, []];
   }
 
@@ -108,9 +108,9 @@ async function sendShipmentTrackingEmails(
     const responses = (sendResult[0] as unknown) as [{ statusCode: number } | undefined];
     const failed = responses.filter(r => r && r.statusCode >= 300);
     if (failed.length) {
-      log.error('bad send shipment tracking email response', failed);
+      log.error('bad send shipment tracking email response', { error: failed });
     }
   } catch (error) {
-    log.error('error sending shipment tracking emails', error, emails);
+    log.error('error sending shipment tracking emails', { error, emails });
   }
 }

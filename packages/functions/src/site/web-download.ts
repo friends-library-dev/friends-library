@@ -50,9 +50,9 @@ export async function webDownload(
     });
     await db.close();
     await mongoose.disconnect();
-    log('Download added to db:', download);
+    log('Download added to db:', { download });
   } catch (error) {
-    log.error(error);
+    log.error('error adding download to db', { error });
   }
 
   if (isDev) {
@@ -62,7 +62,7 @@ export async function webDownload(
   try {
     sendSlack(ua, referrer, editionPath, format);
   } catch (error) {
-    log.error(error);
+    // ¯\_(ツ)_/¯
   }
 }
 

@@ -12,7 +12,7 @@ export default async function brickOrder(
   try {
     var data = JSON.parse(body || '');
   } catch (error) {
-    log.error('Unparseable JSON body for /orders/brick', body);
+    log.error('Unparseable JSON body for /orders/brick', { body: body, error });
     data = {};
   }
 
@@ -30,15 +30,12 @@ export default async function brickOrder(
   }
 
   const { SLACK_ERROR_CHANNEL } = env.get('SLACK_ERROR_CHANNEL');
-  const msg = [
-    'Bricked order!',
-    `orderId: ${data.orderId},`,
-    `printJobId: ${data.printJobId},`,
-    `paymentIntentId: ${data.paymentIntentId},`,
-    `userAgent: ${data.userAgent},`,
-    `stateHistory: ${JSON.stringify(data.stateHistory)}`,
-  ].join(' ');
-  await slack.send(msg, SLACK_ERROR_CHANNEL || 'errors');
+  await slack.sendJson(
+    '*Bricked Order*',
+    { data },
+    SLACK_ERROR_CHANNEL || 'errors',
+    ':fire_engine:',
+  );
 
   respond.noContent();
 }
