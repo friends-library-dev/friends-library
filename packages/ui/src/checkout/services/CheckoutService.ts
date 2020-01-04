@@ -53,24 +53,23 @@ export default class CheckoutService {
 
     if (!this.cart.address) throw new Error('Missing address');
 
-    const { ok, data } = await this.api.calculateFees(payload);
-    if (ok) {
+    const res = await this.api.calculateFees(payload);
+    if (res.ok) {
       this.cart.address.unusable = false;
-      this.shippingLevel = data.shippingLevel;
+      this.shippingLevel = res.data.shippingLevel;
       this.fees = {
-        shipping: data.shipping,
-        taxes: data.taxes,
-        ccFeeOffset: data.ccFeeOffset,
+        shipping: res.data.shipping,
+        taxes: res.data.taxes,
+        ccFeeOffset: res.data.ccFeeOffset,
       };
       return;
     }
 
-    if (data.msg === Err.SHIPPING_NOT_POSSIBLE) {
+    if (res.data.msg === Err.SHIPPING_NOT_POSSIBLE) {
       this.cart.address.unusable = true;
     }
 
-    this.errors.push(data.msg);
-    return data.msg;
+    return this.resolve(res);
   }
 
   public async createOrder(): Promise<string | void> {
@@ -90,15 +89,14 @@ export default class CheckoutService {
       })),
     };
 
-    const { ok, data } = await this.api.createOrder(payload);
-    if (!ok) {
-      this.errors.push(data.msg);
-      return data.msg;
+    const res = await this.api.createOrder(payload);
+    if (res.ok) {
+      this.paymentIntentId = res.data.paymentIntentId;
+      this.paymentIntentClientSecret = res.data.paymentIntentClientSecret;
+      this.orderId = res.data.orderId;
     }
 
-    this.paymentIntentId = data.paymentIntentId;
-    this.paymentIntentClientSecret = data.paymentIntentClientSecret;
-    this.orderId = data.orderId;
+    return this.resolve(res);
   }
 
   public async createPrintJob(): Promise<string | void> {
@@ -120,22 +118,21 @@ export default class CheckoutService {
       ),
     };
 
-    const { ok, data } = await this.api.createPrintJob(payload);
-    if (!ok) {
-      this.errors.push(data.msg);
-      return data.msg;
+    const res = await this.api.createPrintJob(payload);
+    if (res.ok) {
+      this.printJobId = res.data.printJobId;
     }
 
-    this.printJobId = data.printJobId;
+    return this.resolve(res);
   }
 
   public async verifyPrintJobAccepted(): Promise<string | void> {
     let attempts = 0;
     do {
       this.printJobStatus && (await new Promise(resolve => setTimeout(resolve, 1000)));
-      const { ok, data } = await this.api.getPrintJobStatus(this.printJobId);
+      const { ok, data, statusCode } = await this.api.getPrintJobStatus(this.printJobId);
       if (ok) {
-        this.errors.push(data.msg);
+        this.errors.push(data.msg || `Status: ${statusCode}`);
         this.printJobStatus = data.status;
       }
     } while (this.printJobStatus !== 'accepted' && attempts++ < 45);
@@ -213,10 +210,11 @@ export default class CheckoutService {
     return error;
   }
 
-  private resolve({ ok, data }: ApiResponse): string | void {
+  private resolve({ ok, data, statusCode }: ApiResponse): string | void {
     if (!ok) {
-      this.errors.push(data.msg);
-      return data.msg;
+      const msg = data.msg || `Status: ${statusCode}`;
+      this.errors.push(msg);
+      return msg;
     }
   }
 

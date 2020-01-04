@@ -22,7 +22,10 @@ export default async function printJobFees(
     var token = await getAuthToken();
   } catch (error) {
     log.error('error acquiring lulu oauth token', { error });
-    return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
+    return respond.json(
+      { msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN, error: error.message },
+      500,
+    );
   }
 
   const cheapest = await calculateCheapest(data, token);
