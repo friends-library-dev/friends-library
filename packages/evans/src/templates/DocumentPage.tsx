@@ -38,9 +38,9 @@ interface Props {
         cartItemCoverPdfUrls: string[];
         cartItemInteriorPdfUrls: string[];
         chapterHeadings: Heading[];
-        customCode: {
-          css: { paperback_cover: null | string };
-          html: { paperback_cover: null | string };
+        code: {
+          css: { cover: null | string };
+          html: { cover: null | string };
         };
         numChapters: number;
         description: string | null;
@@ -56,9 +56,9 @@ interface Props {
         description: string;
         isCompilation: boolean;
         editions: {
-          customCode: {
-            css: { paperback_cover: null | string };
-            html: { paperback_cover: null | string };
+          code: {
+            css: { cover: null | string };
+            html: { cover: null | string };
           };
           isbn: string;
           type: EditionType;
@@ -82,8 +82,8 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
     edition: mainEdition.type,
     isbn: mainEdition.isbn,
     blurb: document.description,
-    customCss: mainEdition.customCode.css.paperback_cover || '',
-    customHtml: mainEdition.customCode.html.paperback_cover || '',
+    customCss: mainEdition.code.css.cover || '',
+    customHtml: mainEdition.code.html.cover || '',
   };
   return (
     <Layout>
@@ -134,8 +134,8 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
                   .slice(0, 30)
                   .concat(['...'])
                   .join(' ')}
-                customCss={book.editions[0].customCode.css.paperback_cover || ''}
-                customHtml={book.editions[0].customCode.html.paperback_cover || ''}
+                customCss={book.editions[0].code.css.cover || ''}
+                customHtml={book.editions[0].code.html.cover || ''}
                 authorSlug={friend.slug}
                 documentSlug={book.slug}
               />
