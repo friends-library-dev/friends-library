@@ -1,15 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import cx from 'classnames';
-import {
-  styled,
-  useNumCartItems,
-  CheckoutModal,
-  CartStore,
-  CheckoutApi,
-  CheckoutService,
-  CheckoutMachine,
-  CheckoutFlow,
-} from '@friends-library/ui';
+import { styled, useNumCartItems, CartStore } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
 import { ThemeProvider } from 'emotion-theming';
 import { Nav, enTheme, esTheme, Tailwind, Footer } from '@friends-library/ui';
@@ -17,6 +8,7 @@ import {
   CoverWebStylesAllStatic,
   CoverWebStylesSizes,
 } from '@friends-library/cover-component';
+import Checkout from './Checkout';
 import Slideover from './Slideover';
 import './Layout.css';
 
@@ -29,10 +21,6 @@ interface Props {
 }
 
 const store = CartStore.getSingleton();
-const api = new CheckoutApi('/.netlify/functions/site');
-const service = new CheckoutService(store.cart, api);
-const machine = new CheckoutMachine(service);
-machine.on('close', () => store.close());
 
 const Layout: React.FC<Props> = ({ children }) => {
   const theme = process.env.GATSBY_LANG === 'en' ? enTheme : esTheme;
@@ -81,11 +69,7 @@ const Layout: React.FC<Props> = ({ children }) => {
           {children}
           <Footer />
         </Content>
-        {checkoutModalOpen && (
-          <CheckoutModal onClose={() => machine.close()}>
-            <CheckoutFlow machine={machine} recommendedBooks={[]} />
-          </CheckoutModal>
-        )}
+        <Checkout isOpen={checkoutModalOpen} />
       </ThemeProvider>
     </Fragment>
   );

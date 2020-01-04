@@ -56,6 +56,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         url: url.documentUrl(document),
         documentId: document.id,
         friendSlug: friend.slug,
+        authorName: friend.name,
       };
 
       if (document.altLanguageId) {
