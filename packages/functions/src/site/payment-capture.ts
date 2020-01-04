@@ -41,10 +41,10 @@ export default async function capturePayment(
     await persist(order);
   } catch (error) {
     log.error('error updating flp order', { error });
-    // @TODO decide what to do here... cancel the charge the charge?
+    // @TODO decide what to do here... cancel the payment intent?
   }
 
-  log(`captured charge: ${data.paymentIntentId}`);
+  log(`captured payment intent: ${data.paymentIntentId}`);
   respond.noContent();
 }
 

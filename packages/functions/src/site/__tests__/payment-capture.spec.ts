@@ -57,7 +57,7 @@ describe('/payment-capture handler', () => {
     expect(res.statusCode).toBe(204);
   });
 
-  it('should return 500 if charge comes back not captured', async () => {
+  it('should return 500 if payment intent comes back not captured', async () => {
     captureIntent.mockResolvedValue({ id: 'pi_123', status: 'lol' });
     const { res } = await invokeCb(capture, { body: testBody });
     expect(res.statusCode).toBe(500);
