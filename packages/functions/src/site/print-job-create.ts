@@ -20,9 +20,9 @@ export default async function createPrintJob(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, detail: data.message }, 400);
   }
 
-  const invalidChargeMsg = await verifyPaymentIntent(data.paymentIntentId);
-  if (invalidChargeMsg) {
-    return respond.json({ msg: invalidChargeMsg }, 403);
+  const invalidPaymentIntentMsg = await verifyPaymentIntent(data.paymentIntentId);
+  if (invalidPaymentIntentMsg) {
+    return respond.json({ msg: invalidPaymentIntentMsg }, 403);
   }
 
   const order = await findById(data.orderId);
