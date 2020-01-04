@@ -67,7 +67,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
     case 'capturePayment':
       return (
         <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
-          <Elements>
+          <Elements locale={process.env.GATSBY_LANG || 'en'}>
             <Payment
               throbbing={state !== 'payment'}
               error={machine.service.popStripeError()}
