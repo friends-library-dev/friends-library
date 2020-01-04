@@ -46,14 +46,23 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
         url
         ...CoverProps
       }
+      doc4: document(
+        slug: { eq: "no-cruz-no-corona" }
+        friendSlug: { eq: "william-penn" }
+      ) {
+        url
+        ...CoverProps
+      }
     }
   `);
 
-  const recommended = Object.values(data).map((docData: any) => ({
-    Cover: cover3dFromQuery(docData, { scaler: 0.25, scope: '1-4', size: 'm' }),
-    title: docData.title,
-    path: docData.url,
-  }));
+  const recommended = Object.values(data)
+    .filter(Boolean)
+    .map((docData: any) => ({
+      Cover: cover3dFromQuery(docData, { scaler: 0.25, scope: '1-4', size: 'm' }),
+      title: docData.title,
+      path: docData.url,
+    }));
 
   return (
     <CheckoutModal onClose={() => machine.close()}>
