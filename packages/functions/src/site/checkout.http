@@ -107,11 +107,12 @@ GET {{base}}/print-job/{{printJobId}}/status
 ###
 
 # Update print_job.status of an existing order
-PATCH {{base}}/orders/{{orderId}} HTTP/1.1
+PATCH {{base}}/orders/update-print-job-status HTTP/1.1
 content-type: application/json
 
 {
-  "print_job.status": "shipped"
+  "orderId": "{{orderId}}",
+  "printJobStatus": "shipped"
 }
 
 ###

@@ -1,13 +1,14 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import webDownload from './web-download';
 import createOrder from './order-create';
+import updateOrder from './order-update';
 import capturePayment from './payment-capture';
 import authorizePayment from './payment-authorize';
 import printJobFees from './print-job-fees';
 import createPrintJob from './print-job-create';
 import printJobStatus from './print-job-status';
 import fetchOrder from './order-fetch';
-import updateOrder from './order-update';
+import updateOrderPrintJobStatus from './order-update-print-job-status';
 import brickOrder from './order-brick';
 import Responder from '../lib/Responder';
 import checkOrders from './orders-check';
@@ -49,17 +50,16 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return checkOrders(event, respond);
       case 'orders/create':
         return createOrder(event, respond);
+      case 'orders/update':
+        return updateOrder(event, respond);
+      case 'orders/update-print-job-status':
+        return updateOrderPrintJobStatus(event, respond);
       case 'orders/brick':
         return brickOrder(event, respond);
     }
+
     if (path.match(/^orders\/[a-z0-9]+\/confirmation-email$/)) {
       return sendOrderConfirmationEmail(event, respond);
-    }
-  }
-
-  if (method === 'PATCH') {
-    if (path.match(/^orders\/[a-z0-9]+$/)) {
-      return updateOrder(event, respond);
     }
   }
 

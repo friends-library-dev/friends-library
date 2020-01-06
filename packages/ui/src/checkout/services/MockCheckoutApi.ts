@@ -50,6 +50,13 @@ export default class MockCheckoutApi extends CheckoutApi {
         },
       },
     },
+    updateOrder: {
+      default: {
+        ok: true,
+        statusCode: 204,
+        data: {},
+      },
+    },
     createPrintJob: {
       default: {
         ok: true,
@@ -82,7 +89,7 @@ export default class MockCheckoutApi extends CheckoutApi {
         data: {},
       },
     },
-    updateOrder: {
+    updateOrderPrintJobStatus: {
       default: {
         ok: true,
         statusCode: 200,
@@ -121,6 +128,10 @@ export default class MockCheckoutApi extends CheckoutApi {
     return this.getResponse('createOrder');
   }
 
+  public async updateOrder(): Promise<ApiResponse> {
+    return this.getResponse('updateOrder');
+  }
+
   public async authorizePayment(): Promise<ApiResponse> {
     return this.getResponse('authorizePayment');
   }
@@ -137,8 +148,8 @@ export default class MockCheckoutApi extends CheckoutApi {
     return this.getResponse('brickOrder');
   }
 
-  public async updateOrder(): Promise<ApiResponse> {
-    return this.getResponse('updateOrder');
+  public async updateOrderPrintJobStatus(): Promise<ApiResponse> {
+    return this.getResponse('updateOrderPrintJobStatus');
   }
 
   public async getPrintJobStatus(): Promise<ApiResponse> {

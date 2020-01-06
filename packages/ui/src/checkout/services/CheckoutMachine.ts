@@ -21,7 +21,13 @@ const states = {
 
   calculateFees: {
     onEnter: 'Service.calculateFees',
-    success: 'createOrder',
+    success(this: CheckoutMachine) {
+      if (!this.service.orderId) {
+        this.transitionTo('createOrder');
+      } else {
+        this.transitionTo('updateOrder');
+      }
+    },
     failure(this: CheckoutMachine, err: string) {
       this.transitionTo(err === Err.SHIPPING_NOT_POSSIBLE ? 'delivery' : 'brickSession');
     },
@@ -29,6 +35,12 @@ const states = {
 
   createOrder: {
     onEnter: 'Service.createOrder',
+    success: 'payment',
+    failure: 'brickSession',
+  },
+
+  updateOrder: {
+    onEnter: 'Service.updateOrder',
     success: 'payment',
     failure: 'brickSession',
   },

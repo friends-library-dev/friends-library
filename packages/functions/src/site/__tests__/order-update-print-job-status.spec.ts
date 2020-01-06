@@ -1,5 +1,5 @@
 import { checkoutErrors as Err } from '@friends-library/types';
-import updateOrder from '../order-update';
+import updateOrderPrintJobStatus from '../order-update-print-job-status';
 import { invokeCb } from './invoke';
 import { findById, persist } from '../../lib/Order';
 
@@ -15,32 +15,18 @@ jest.mock('../../lib/Order', () => ({
   persist: jest.fn(),
 }));
 
-describe('updateOrder()', () => {
-  let body = '{"print_job.status":"accepted"}';
-  let path = '/site/orders/123abc';
+describe('updateOrderPrintJobStatus()', () => {
+  let body = '{"orderId":"123abc","printJobStatus":"accepted"}';
 
   it('responds 400 if mal-formed body', async () => {
-    const badBody = '{"print_job.status":"bad_status"}';
-    const { res } = await invokeCb(updateOrder, { body: badBody, path });
+    const badBody = '{"printJobStatus":"bad_status"}';
+    const { res } = await invokeCb(updateOrderPrintJobStatus, { body: badBody });
     expect(res.statusCode).toBe(400);
-  });
-
-  const badPaths = [
-    ['/site/orders/41234/nope'],
-    ['/site/orders/41234?foo=bar'],
-    ['/site/orders/6b0e134d-8d2e-48bc-8fa3-e8fc79793804'],
-    ['/site/orders/'],
-  ];
-
-  test.each(badPaths)('%s is invalid path', async path => {
-    const { res, json } = await invokeCb(updateOrder, { path, body });
-    expect(res.statusCode).toBe(400);
-    expect(json).toMatchObject({ msg: Err.INVALID_PATCH_FLP_ORDER_URL });
   });
 
   it('updates & persists order, returning 200 and order body', async () => {
     (<jest.Mock>findById).mockResolvedValueOnce(mockOrder);
-    const { res, json } = await invokeCb(updateOrder, { path, body });
+    const { res, json } = await invokeCb(updateOrderPrintJobStatus, { body });
     expect(res.statusCode).toBe(200);
     expect(json).toMatchObject({ _id: 'mongo-id' });
     expect(mockOrder.set).toHaveBeenCalledWith('print_job.status', 'accepted');
@@ -52,7 +38,7 @@ describe('updateOrder()', () => {
     (<jest.Mock>persist).mockImplementationOnce(() => {
       throw new Error('Oh noes!');
     });
-    const { res, json } = await invokeCb(updateOrder, { path, body });
+    const { res, json } = await invokeCb(updateOrderPrintJobStatus, { body });
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe(Err.ERROR_UPDATING_FLP_ORDER);
   });
