@@ -41,6 +41,7 @@ const CartComponent: React.FC<Props> = ({
       {items.map((item, index) => (
         <Item
           key={`item-${index}`}
+          edition={item.edition}
           price={new CartItem(item).price()}
           {...item}
           title={item.title[0]}

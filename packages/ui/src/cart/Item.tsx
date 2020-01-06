@@ -1,11 +1,13 @@
 import React from 'react';
 import { withTheme } from 'emotion-theming';
 import { Front as FrontCover } from '@friends-library/cover-component';
+import { EditionType } from '@friends-library/types';
 import ItemQuantity from './ItemQuantity';
 import './Item.css';
 
 interface Props {
   title: string;
+  edition: EditionType;
   author: string;
   quantity: number;
   price: number;
@@ -18,6 +20,7 @@ const Component: React.FC<Props> = ({
   author,
   price,
   quantity,
+  edition,
   changeQty,
   remove,
 }) => {
@@ -34,7 +37,7 @@ const Component: React.FC<Props> = ({
             customCss=""
             customHtml=""
             isbn="" // TODO
-            edition="updated" // TODO
+            edition={edition}
             scaler={1 / 4}
             scope="1-4"
           />
