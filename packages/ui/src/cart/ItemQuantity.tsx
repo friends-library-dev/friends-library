@@ -24,7 +24,7 @@ const Component: React.FC<Props> = ({ quantity, changeQuantity }) => {
           &lt;
         </span>
         <input
-          className="bg-gray-100 w-8 md:w-10 py-2 text-center font-sans text-gray-700 text-md md:text-lg"
+          className="bg-gray-100 w-8 md:w-10 py-2 text-center font-sans text-gray-700 text-md md:text-lg subtle-focus"
           type="number"
           value={quantity}
           onChange={evt => {

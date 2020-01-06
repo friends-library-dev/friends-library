@@ -14,6 +14,11 @@
   @apply outline-none shadow-outline;
 }
 
+.subtle-focus:focus {
+  @apply outline-none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.25);
+}
+
 .bracketed::before {
   content: '[';
   padding-right: 0.4em;
