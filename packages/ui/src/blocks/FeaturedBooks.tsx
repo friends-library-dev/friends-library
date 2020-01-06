@@ -11,9 +11,10 @@ const FeaturedBooks: React.FC = () => {
 
   useEffect(() => {
     if (controlled) return;
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setIndex(index === FEATURED_BOOKS.length - 1 ? 0 : index + 1);
     }, 6500);
+    return () => clearTimeout(timeout);
   });
 
   return (
