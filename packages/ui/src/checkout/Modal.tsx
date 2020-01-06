@@ -15,13 +15,16 @@ const Modal: React.FC<Props> = ({ children, onClose }) => (
       className="CheckoutModal__Content relative w-full max-w-6xl p-10 md:p-16 outline-none bg-white md:shadow-direct"
       aria-label="Cart"
     >
-      {children}
-      <button className="absolute top-0 right-0 p-4 mt-1 mr-2" onClick={onClose}>
+      <button
+        className="absolute top-0 right-0 px-4 py-2 m-1 subtle-focus"
+        onClick={onClose}
+      >
         <span className="sr-only">Close</span>
         <span aria-hidden className="text-xl">
           &times;
         </span>
       </button>
+      {children}
     </DialogContent>
   </DialogOverlay>
 );

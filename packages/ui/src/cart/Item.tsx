@@ -26,7 +26,7 @@ const Component: React.FC<Props> = ({
       <div className="w-2/3 md:w-3/5 flex">
         <div className="CoverWrap hidden mr-1 flex flex-col justify-center">
           <FrontCover
-            lang="en"
+            lang={process?.env?.GATSBY_LANG === 'es' ? 'es' : 'en'}
             isCompilation={false}
             size="s"
             author={author}
