@@ -35,6 +35,10 @@ export default class CheckoutApi {
     return this.post('/orders/create', payload);
   }
 
+  public async updateOrder(payload: Record<string, any>): Promise<ApiResponse> {
+    return this.post('/orders/update', payload);
+  }
+
   public async capturePayment(payload: Record<string, any>): Promise<ApiResponse> {
     return this.post('/payment/capture', payload);
   }
@@ -88,11 +92,10 @@ export default class CheckoutApi {
     return this.post('/print-job', payload);
   }
 
-  public async updateOrder(
-    orderId: string,
+  public async updateOrderPrintJobStatus(
     payload: Record<string, any>,
   ): Promise<ApiResponse> {
-    return this.patch(`/orders/${orderId}`, payload);
+    return this.post('/orders/update-print-job-status', payload);
   }
 
   public async getPrintJobStatus(printJobId: number): Promise<ApiResponse> {
@@ -106,7 +109,7 @@ export default class CheckoutApi {
   public async sendOrderConfirmationEmail(orderId: string): Promise<ApiResponse> {
     const response = await window.fetch(
       this.endpoint(`/orders/${orderId}/confirmation-email`),
-      { method: 'POST' },
+      { method: 'POST', credentials: 'omit' },
     );
     return this.normalize(response);
   }
@@ -118,10 +121,6 @@ export default class CheckoutApi {
 
   private async post(path: string, payload: Record<string, any>): Promise<ApiResponse> {
     return this.sendJson(path, payload, 'POST');
-  }
-
-  private async patch(path: string, payload: Record<string, any>): Promise<ApiResponse> {
-    return this.sendJson(path, payload, 'PATCH');
   }
 
   private async sendJson(

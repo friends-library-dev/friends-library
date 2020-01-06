@@ -10,7 +10,7 @@ describe('CheckoutService()', () => {
   const createOrder = jest.fn();
   const createPrintJob = jest.fn();
   const getPrintJobStatus = jest.fn();
-  const updateOrder = jest.fn();
+  const updateOrderPrintJobStatus = jest.fn();
   const capturePayment = jest.fn();
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('CheckoutService()', () => {
       createOrder,
       createPrintJob,
       getPrintJobStatus,
-      updateOrder,
+      updateOrderPrintJobStatus,
       capturePayment,
     } as unknown) as CheckoutApi);
   });
@@ -213,17 +213,18 @@ describe('CheckoutService()', () => {
     it('should send correct orderId & payload to api', async () => {
       service.orderId = '123abc';
       service.printJobStatus = 'rejected';
-      updateOrder.mockResolvedValueOnce({ ok: true, data: {} });
+      updateOrderPrintJobStatus.mockResolvedValueOnce({ ok: true, data: {} });
       const err = await service.updateOrderPrintJobStatus();
-      expect(updateOrder).toHaveBeenCalledWith('123abc', {
-        'print_job.status': 'rejected',
+      expect(updateOrderPrintJobStatus).toHaveBeenCalledWith({
+        orderId: '123abc',
+        printJobStatus: 'rejected',
       });
       expect(err).toBeUndefined();
     });
 
     it('returns error if api request errors', async () => {
       service.printJobStatus = 'rejected';
-      updateOrder.mockResolvedValueOnce({
+      updateOrderPrintJobStatus.mockResolvedValueOnce({
         ok: false,
         data: { msg: 'error_updating_order' },
       });

@@ -117,9 +117,9 @@ describe('site fns integration', () => {
     /**
      * Step 7: Update order print_job status
      */
-    const updateOrderRes = await fetch(`${endpoint}/orders/${orderId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({ 'print_job.status': 'accepted' }),
+    const updateOrderRes = await fetch(`${endpoint}/orders/update-print-job-status`, {
+      method: 'POST',
+      body: JSON.stringify({ orderId, printJobStatus: 'accepted' }),
       headers,
     });
     expect(updateOrderRes.status).toBe(200);

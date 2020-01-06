@@ -1,50 +1,114 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err } from '@friends-library/types';
-import Responder from '../lib/Responder';
-import log from '../lib/log';
-import { findById, persist } from '../lib/Order';
+import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
+import Responder from '../lib/Responder';
+import { persist, findById } from '../lib/Order';
+import log from '../lib/log';
 
 export default async function updateOrder(
-  { body, path }: APIGatewayEvent,
+  { body }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const pathMatch = path.match(/\/orders\/([a-z0-9]+)$/);
-  if (!pathMatch) {
-    log.error(`invalid update order path: ${path}`);
-    return respond.json({ msg: Err.INVALID_PATCH_FLP_ORDER_URL }, 400);
-  }
-
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for PATCH /orders/{:id}', { body: body, error: data });
-    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
+    log.error('invalid body for /orders/update', { body: body, data });
+    return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
   try {
-    const orderId = String(pathMatch[1]);
-    const order = await findById(orderId);
-    if (!order) {
-      return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
-    }
-    order.set('print_job.status', data['print_job.status']);
-    await persist(order);
-    respond.json(order.toJSON());
+    await stripeClient().paymentIntents.update(data.paymentIntentId, {
+      amount: data.amount,
+    });
+    log(`updated payment intent: ${data.paymentIntentId}`);
   } catch (error) {
-    log.error('error updating order', { error });
-    respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER }, 500);
+    log.error('error updating payment intent', { error });
+    return respond.json({ msg: Err.ERROR_UPDATING_STRIPE_PAYMENT_INTENT }, 403);
   }
+
+  const order = await findById(data.orderId);
+  if (!order) {
+    return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
+  }
+
+  try {
+    order.set('email', data.email);
+    order.set('address', data.address);
+    order.set(
+      'items',
+      data.items.map(i => ({
+        ...i,
+        document_id: i.documentId,
+        unit_price: i.unitPrice,
+      })),
+    );
+    order.set('payment', {
+      id: data.paymentIntentId,
+      status: order.get('payment.status'),
+      amount: data.amount,
+      shipping: data.shipping,
+      taxes: data.taxes,
+      cc_fee_offset: data.ccFeeOffset,
+    });
+    await persist(order);
+    log(`updated order: ${data.orderId}`);
+  } catch (error) {
+    log.error('error persisting flp order', { error });
+    return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error: error.message }, 500);
+  }
+
+  respond.noContent();
 }
 
-const schema = {
+export const schema = {
   properties: {
-    'print_job.status': {
-      type: 'string',
-      enum: ['pending', 'accepted', 'rejected', 'canceled', 'shipped'],
+    orderId: { type: 'string' },
+    paymentIntentId: { type: 'string' },
+    amount: { type: 'integer' },
+    email: { $ref: '/email' },
+    address: { $ref: '/address' },
+    taxes: { type: 'integer' },
+    shipping: { type: 'integer' },
+    ccFeeOffset: { type: 'integer' },
+    items: {
+      type: 'array',
+      minItems: 1,
+      items: {
+        type: 'object',
+        properties: {
+          documentId: { $ref: '/uuid' },
+          printSize: { $ref: '/print-size' },
+          quantity: { $ref: '/book-qty' },
+          unitPrice: { type: 'integer' },
+        },
+        required: ['documentId', 'edition', 'quantity', 'unitPrice'],
+      },
     },
   },
-  required: ['print_job.status'],
+  required: ['orderId', 'paymentIntentId', 'amount', 'email', 'address', 'items'],
   example: {
-    'print_job.status': 'accepted',
+    orderId: '123abc',
+    paymentIntentId: 'pi_345def',
+    amount: 1111,
+    taxes: 0,
+    shipping: 399,
+    ccFeeOffset: 42,
+    email: 'user@example.com',
+    items: [
+      {
+        documentId: '6b0e134d-8d2e-48bc-8fa3-e8fc79793804',
+        edition: 'modernized',
+        quantity: 1,
+        unitPrice: 231,
+      },
+    ],
+    address: {
+      name: 'Jared Henderson',
+      street: '123 Mulberry Ln.',
+      city: 'Wadsworth',
+      state: 'OH',
+      zip: '44281',
+      country: 'US',
+    },
   },
 };

@@ -73,29 +73,22 @@ export default class CheckoutService {
   }
 
   public async createOrder(): Promise<string | void> {
-    const { shipping, taxes, ccFeeOffset } = this.fees;
-    const payload = {
-      amount: this.cart.subTotal() + this.sumFees(),
-      shipping,
-      taxes,
-      ccFeeOffset,
-      email: this.cart.email,
-      address: this.cart.address,
-      items: this.cart.items.map(item => ({
-        documentId: item.documentId,
-        edition: item.edition,
-        quantity: item.quantity,
-        unitPrice: item.price(),
-      })),
-    };
-
-    const res = await this.api.createOrder(payload);
+    const res = await this.api.createOrder(this.createOrderPayload());
     if (res.ok) {
       this.paymentIntentId = res.data.paymentIntentId;
       this.paymentIntentClientSecret = res.data.paymentIntentClientSecret;
       this.orderId = res.data.orderId;
     }
+    return this.resolve(res);
+  }
 
+  public async updateOrder(): Promise<string | void> {
+    const payload = {
+      ...this.createOrderPayload(),
+      orderId: this.orderId,
+      paymentIntentId: this.paymentIntentId,
+    };
+    const res = await this.api.updateOrder(payload);
     return this.resolve(res);
   }
 
@@ -145,8 +138,9 @@ export default class CheckoutService {
   }
 
   public async updateOrderPrintJobStatus(): Promise<string | void> {
-    const res = await this.api.updateOrder(this.orderId, {
-      'print_job.status': this.printJobStatus,
+    const res = await this.api.updateOrderPrintJobStatus({
+      orderId: this.orderId,
+      printJobStatus: this.printJobStatus,
     });
     return this.resolve(res);
   }
@@ -220,6 +214,24 @@ export default class CheckoutService {
 
   private sumFees(): number {
     return Object.values(this.fees).reduce((sum, fee) => sum + fee);
+  }
+
+  private createOrderPayload(): Record<string, any> {
+    const { shipping, taxes, ccFeeOffset } = this.fees;
+    return {
+      amount: this.cart.subTotal() + this.sumFees(),
+      shipping,
+      taxes,
+      ccFeeOffset,
+      email: this.cart.email,
+      address: this.cart.address,
+      items: this.cart.items.map(item => ({
+        documentId: item.documentId,
+        edition: item.edition,
+        quantity: item.quantity,
+        unitPrice: item.price(),
+      })),
+    };
   }
 
   private resetState(): void {
