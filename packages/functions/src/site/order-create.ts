@@ -27,15 +27,20 @@ export default async function createOrder(
   } as any);
 
   try {
-    var paymentIntent = await stripeClient().paymentIntents.create({
-      amount: data.amount,
-      currency: 'usd',
-      capture_method: 'manual',
-      payment_method_types: ['card'],
-      metadata: {
-        orderId: order.id,
+    var paymentIntent = await stripeClient().paymentIntents.create(
+      {
+        amount: data.amount,
+        currency: 'usd',
+        capture_method: 'manual',
+        payment_method_types: ['card'],
+        metadata: {
+          orderId: order.id,
+        },
       },
-    });
+      {
+        idempotency_key: order.id,
+      },
+    );
   } catch (error) {
     log.error('error creating payment intent', { error });
     return respond.json({ msg: Err.ERROR_CREATING_STRIPE_PAYMENT_INTENT }, 403);
