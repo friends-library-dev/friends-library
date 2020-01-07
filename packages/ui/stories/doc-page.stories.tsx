@@ -34,8 +34,8 @@ storiesOf('Doc Page', module)
         description={shortBlurb}
         customCss=""
         customHtml=""
-        authorSlug="charles-marshall"
-        documentSlug="journal"
+        authorUrl="charles-marshall"
+        documentUrl="journal"
       />
     </div>
   ));

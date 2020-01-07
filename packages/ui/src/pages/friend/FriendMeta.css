@@ -1,0 +1,22 @@
+.FriendMeta li::before {
+  color: 'white';
+  content: '\25c6';
+  margin-left: -1.4rem;
+  padding-right: 0.65rem;
+  font-size: 0.9em;
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+.FriendMeta li {
+  padding-left: 0.45em;
+  margin-bottom: 0.45rem;
+}
+
+.FriendMeta li a:link {
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.85);
+}
+
+.FriendMeta li a:hover {
+  border-bottom: 1px solid white;
+}

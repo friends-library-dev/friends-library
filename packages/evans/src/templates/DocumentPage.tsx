@@ -52,7 +52,7 @@ interface Props {
     otherDocuments: {
       nodes: {
         title: string;
-        slug: string;
+        url: string;
         description: string;
         isCompilation: boolean;
         editions: {
@@ -116,7 +116,7 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
       />
       <ListenBlock />
       {otherBooks.length > 0 && (
-        <div className="p-8 pt-12" style={{ backgroundColor: 'rgb(249, 249, 249)' }}>
+        <div className="p-8 pt-12 bg-flgray-100">
           <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
             Other Books by this Author
           </h1>
@@ -136,8 +136,8 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
                   .join(' ')}
                 customCss={book.editions[0].code.css.cover || ''}
                 customHtml={book.editions[0].code.html.cover || ''}
-                authorSlug={friend.slug}
-                documentSlug={book.slug}
+                authorUrl={friend.url}
+                documentUrl={book.url}
               />
             ))}
           </div>
@@ -194,7 +194,7 @@ export const query = graphql`
     ) {
       nodes {
         title
-        slug
+        url
         description
         isCompilation
         editions {

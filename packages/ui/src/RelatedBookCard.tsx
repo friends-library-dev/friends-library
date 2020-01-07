@@ -7,26 +7,29 @@ import './RelatedBookCard.css';
 
 type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
   description: string;
-  authorSlug: string;
-  documentSlug: string;
+  authorUrl: string;
+  documentUrl: string;
+  className?: string;
 };
 
 const RelatedBookCard: React.FC<Props> = props => {
   return (
-    <div className="RelatedBookCard md:mb-24 xl:bg-white xl:max-w-xl">
+    <div
+      className={cx(props.className, 'RelatedBookCard md:mb-24 xl:bg-white xl:max-w-xl')}
+    >
       <TitleSection {...props} className="hidden xl:block pt-6 pb-4 text-center" />
       <div className="md:flex md:px-8 md:bg-white">
         <div className="book-wrap flex flex-col items-center xl:absolute">
           <Front
-            className="shadow-direct xl:hidden"
             {...props}
+            className="shadow-direct xl:hidden"
             size="m"
             scope="1-3"
             scaler={1 / 3}
           />
           <Front
-            className="shadow-direct hidden xl:block"
             {...props}
+            className="shadow-direct hidden xl:block"
             size="m"
             scope="1-4"
             scaler={1 / 4}
@@ -45,14 +48,14 @@ const RelatedBookCard: React.FC<Props> = props => {
 
 export default RelatedBookCard;
 
-const TitleSection: React.FC<Pick<Props, 'title' | 'authorSlug' | 'author'> & {
+const TitleSection: React.FC<Pick<Props, 'title' | 'authorUrl' | 'author'> & {
   className: string;
-}> = ({ title, authorSlug, author, className }) => {
+}> = ({ title, authorUrl, author, className }) => {
   return (
     <div className={cx(className)}>
       <h4 className="tracking-wider mb-2">{title}</h4>
       <h5 className="text-flprimary mb-6 font-bold antialiased text-sm">
-        <Link className="fl-underline" to={authorSlug}>
+        <Link className="fl-underline" to={authorUrl}>
           {author}
         </Link>
       </h5>

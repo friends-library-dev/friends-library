@@ -38,6 +38,13 @@ const threeD: CoverCssModule = (scaler, scope) => {
       transition: transform 0.75s;
       transform-style: preserve-3d;
     }
+
+    .Cover--3d.with-shadow .right,
+    .Cover--3d.with-shadow .bottom,
+    .Cover--3d.with-shadow .back {
+      box-shadow: 0 -7px 25px -5px rgba(0, 0, 0, 0.2),
+        0 15px 10px -5px rgba(0, 0, 0, 0.08);
+    }
   `;
 
   const sizeCss = withSizes(

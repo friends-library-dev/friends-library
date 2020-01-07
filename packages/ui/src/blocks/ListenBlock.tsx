@@ -2,11 +2,10 @@ import React from 'react';
 import MultiPill from '../MultiPill';
 import Soundcloud from '../images/soundcloud.png';
 import SoundcloudMobile from '../images/soundcloud-mobile.png';
-import './ListenBlock.css';
 
 const ListenBlock: React.FC = () => {
   return (
-    <section className="ListenBlock px-0 overflow-hidden py-10 sm:p-16 relative">
+    <section className="bg-flgray-100 px-0 overflow-hidden py-10 sm:p-16 relative">
       <Bump fill="rgb(152, 200, 220)" viewBox="100 -180 1200 600" />
       <Bump fill="rgb(72, 105, 118)" viewBox="-0 -180 1010 600" />
       <Bump fill="rgb(98, 140, 157)" viewBox="300 -245 1020 600" />

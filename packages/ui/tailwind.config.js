@@ -36,6 +36,11 @@ module.exports = {
         'flmaroon-600': `rgb(${maroonRgb})`,
         'flmaroon-500': 'rgb(132, 60, 81)',
         'flmaroon-400': `rgb(147, 64, 89)`,
+        'flgreen-800': 'rgb(142, 142, 113)',
+        'flgreen-700': 'rgb(152, 152, 123)',
+        'flgreen-600': `rgb(${greenRgb})`,
+        'flgray-900': 'rgb(44, 42, 41)',
+        'flgray-100': 'rgb(249, 249, 249)',
       },
       fontSize: {
         '1-5xl': '1.375rem',
