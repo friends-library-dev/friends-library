@@ -11,22 +11,29 @@ interface Props {
   secondary?: boolean;
   disabled?: boolean;
   className?: string;
+  shadow?: boolean;
   to?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const StyledButton = styled(UnstyledButton)<{ secondary?: boolean; disabled?: boolean }>`
+interface StyledProps {
+  secondary?: boolean;
+  disabled?: boolean;
+  shadow?: boolean;
+}
+
+const StyledButton = styled(UnstyledButton)<StyledProps>`
   opacity: ${p => (p.disabled ? '0.3' : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
-  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: ${p => (p.shadow ? '0 0 10px 4px rgba(0, 0, 0, 0.15)' : 'none')};
   width: 280px;
   height: 60px;
 `;
 
-const StyledLink = styled(Link)<{ secondary?: boolean; disabled?: boolean }>`
+const StyledLink = styled(Link)<StyledProps>`
   opacity: ${p => (p.disabled ? '0.3' : 1)};
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
-  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: ${p => (p.shadow ? '0 0 10px 4px rgba(0, 0, 0, 0.15)' : 'none')};
   width: 280px;
   height: 60px;
   line-height: 60px;
@@ -40,6 +47,7 @@ const Button: React.FC<Props> = ({
   type,
   className,
   to,
+  shadow = true,
 }) => {
   const Element = typeof to === 'string' ? StyledLink : StyledButton;
   return (
@@ -51,6 +59,7 @@ const Button: React.FC<Props> = ({
       {...(onClick && !disabled ? { onClick } : {})}
       {...(secondary ? { secondary } : {})}
       disabled={disabled}
+      shadow={shadow}
     >
       {children}
     </Element>

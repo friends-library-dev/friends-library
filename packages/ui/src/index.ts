@@ -20,6 +20,12 @@ export { default as CheckoutService } from './checkout/services/CheckoutService'
 export { default as CheckoutModal } from './checkout/Modal';
 export { default as CheckoutApi } from './checkout/services/CheckoutApi';
 export { default as CheckoutFlow } from './checkout/Flow';
+export { default as FriendBlock } from './pages/friend/FriendBlock';
+export { default as FeaturedQuoteBlock } from './pages/friend/FeaturedQuoteBlock';
+export { default as TestimonialsBlock } from './pages/friend/TestimonialsBlock';
+export { default as MapBlock } from './pages/friend/MapBlock';
+export { default as FriendMeta } from './pages/friend/FriendMeta';
+export { default as BookByFriend } from './pages/friend/BookByFriend';
 export { useNumCartItems, useCartTotalQuantity } from './checkout/hooks';
 export { default as CartStore } from './checkout/services/CartStore';
 export { default as CartModel } from './checkout/models/Cart';

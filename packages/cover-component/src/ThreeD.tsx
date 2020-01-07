@@ -8,10 +8,11 @@ import Spine from './Spine';
 type Props = CoverProps & {
   perspective?: 'back' | 'front' | 'spine' | 'angle-front' | 'angle-back';
   className?: string;
+  shadow?: boolean;
 };
 
 const ThreeD: React.FC<Props> = props => {
-  const { isbn, size, pages, scaler = 1, className = '' } = props;
+  const { isbn, size, pages, shadow, scaler = 1, className = '' } = props;
   const { width, height } = docDims(size);
   const spineWidth = threeDSpineWidth(pages);
   const leftOffset = (width - spineWidth) / 2;
@@ -25,6 +26,7 @@ const ThreeD: React.FC<Props> = props => {
         'Cover--3d',
         `perspective--${perspective}`,
         className,
+        ...(shadow ? ['with-shadow'] : []),
       ])}
     >
       <div

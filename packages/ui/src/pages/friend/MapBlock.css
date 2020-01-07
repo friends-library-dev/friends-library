@@ -1,0 +1,48 @@
+.MapBlock {
+  background-image: url(../../images/Books7.jpg);
+}
+
+.MapBlock .FriendMeta {
+  transform: translateY(20px);
+}
+
+.MapBlock::before {
+  content: '';
+  position: absolute;
+  background: white;
+  display: block;
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+}
+
+@screen md {
+  .MapBlock::before {
+    height: 120px;
+  }
+
+  .MapBlock .FriendMeta {
+    transform: translateY(32px);
+  }
+}
+
+@screen xl {
+  .MapBlock::before {
+    height: 220px;
+  }
+
+  .MapBlock .FriendMeta {
+    width: 72rem;
+    transform: translateY(-125px);
+  }
+
+  .MapBlock img {
+    max-width: 700px;
+  }
+
+  .MapBlock > * {
+    width: 85vw;
+    max-width: 1400px;
+  }
+}

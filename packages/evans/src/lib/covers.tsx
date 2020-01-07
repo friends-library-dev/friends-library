@@ -3,7 +3,7 @@ import { ThreeD } from '@friends-library/cover-component';
 import { LANG } from '../env';
 import { PrintSize, EditionType, ISBN, CoverProps } from '@friends-library/types';
 
-interface CoverData {
+export interface CoverData {
   title: string;
   author: string;
   isCompilation: boolean;
@@ -23,26 +23,29 @@ interface CoverData {
     };
   }[];
 }
-export function cover3dFromQuery(
-  data: CoverData,
-  props?: Partial<CoverProps>,
-): JSX.Element {
+
+export function coverPropsFromQueryData(data: CoverData): CoverProps {
   const { title, author, isCompilation, editions } = data;
   const edition = editions[0];
-  return (
-    <ThreeD
-      lang={LANG}
-      title={title}
-      isCompilation={isCompilation}
-      author={author}
-      size={edition.size}
-      pages={edition.pages[0]}
-      edition={edition.type}
-      isbn={edition.isbn}
-      blurb={edition.blurb}
-      customCss={edition.code.css.cover || ''}
-      customHtml={edition.code.html.cover || ''}
-      {...props}
-    />
-  );
+  return {
+    lang: LANG,
+    title,
+    isCompilation,
+    author,
+    size: edition.size,
+    pages: edition.pages[0],
+    edition: edition.type,
+    isbn: edition.isbn,
+    blurb: edition.blurb,
+    customCss: edition.code.css.cover || '',
+    customHtml: edition.code.html.cover || '',
+  };
+}
+
+export function cover3dFromQuery(
+  data: CoverData,
+  overrideProps?: Partial<CoverProps>,
+): JSX.Element {
+  const propsFromQuery = coverPropsFromQueryData(data);
+  return <ThreeD {...propsFromQuery} {...overrideProps} />;
 }

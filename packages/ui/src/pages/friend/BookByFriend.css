@@ -1,0 +1,21 @@
+.BookByFriend .Cover--scope-1-3 {
+  display: none;
+}
+
+@screen lg {
+  .BookByFriend--not-alone .Cover--scope-1-2 {
+    display: none;
+  }
+  .BookByFriend--not-alone .Cover--scope-1-3 {
+    display: block;
+  }
+  .BookByFriend--not-alone {
+    width: calc(50% - 70px);
+  }
+}
+
+@screen xl {
+  .BookByFriend--not-alone {
+    width: calc(50% - 130px);
+  }
+}

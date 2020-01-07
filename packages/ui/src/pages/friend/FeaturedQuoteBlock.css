@@ -1,0 +1,29 @@
+.FeaturedQuoteBlock .RightQuote,
+.FeaturedQuoteBlock .LeftQuote {
+  width: 130px;
+  height: 74px;
+  position: absolute;
+}
+
+.FeaturedQuoteBlock .LeftQuote {
+  left: -19px;
+  top: -14px;
+  transform: scaleX(-1);
+}
+
+.FeaturedQuoteBlock .RightQuote {
+  right: -60px;
+  bottom: -37px;
+}
+
+@screen md {
+  .FeaturedQuoteBlock .RightQuote,
+  .FeaturedQuoteBlock .LeftQuote {
+    width: 169px;
+    height: 100px;
+  }
+  .FeaturedQuoteBlock .LeftQuote {
+    left: -110px;
+    top: -20px;
+  }
+}
