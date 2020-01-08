@@ -120,6 +120,7 @@ async function handleEbooks(
   makeScreenshot: (id: string) => Promise<Buffer>,
 ): Promise<void> {
   const coverImg = await makeScreenshot(dpc.path);
+  // to get a cover image .png file, see epub src files in `artifacts` dir after publish
   const config = { coverImg, frontmatter: true };
   const base = edition(dpc)
     .filename('epub')
