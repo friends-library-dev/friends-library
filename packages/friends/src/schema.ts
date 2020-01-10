@@ -12,14 +12,18 @@ export default {
     gender: { enum: ['male', 'female', 'mixed'], required: true },
     description: { type: 'string', required: true },
     slug: { $ref: '/slug', required: true },
+    residences: {
+      type: 'array',
+      required: false,
+      minItems: 1,
+      items: { $ref: '/residence' },
+    },
     documents: {
       type: 'array',
       required: true,
       uniqueItems: true,
       minItems: 1,
-      items: {
-        $ref: '/document',
-      },
+      items: { $ref: '/document' },
     },
   },
 };
@@ -43,6 +47,31 @@ const subSchemas: Record<string, Schema> = {
   title: {
     type: 'string',
     minLength: 5,
+  },
+
+  'residence-duration': {
+    type: 'object',
+    additionalProperties: false,
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
+    properties: {
+      start: { type: 'integer', required: true },
+      end: { type: 'integer', required: true },
+    },
+  },
+
+  residence: {
+    type: 'object',
+    additionalProperties: false,
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
+    properties: {
+      city: { type: 'string', required: true },
+      country: { type: 'string', required: true },
+      durations: {
+        type: 'array',
+        required: true,
+        items: { $ref: '/residence-duration', minItems: 1 },
+      },
+    },
   },
 
   'audio-part': {

@@ -22,6 +22,16 @@ interface Props {
       name: Name;
       description: Description;
       documents: (CoverData & { tags: string[]; url: string; hasAudio: boolean })[];
+      residences: {
+        city: string;
+        country: string;
+        top: number;
+        left: number;
+        durations: {
+          start: number;
+          end: number;
+        }[];
+      }[];
     };
   };
 }
@@ -80,11 +90,14 @@ export default ({ data: { friend } }: Props) => {
       </div>
       <MapBlock
         friendName={friend.name}
-        abodes={[
-          'London England (1808 -1825)',
-          'Scotland (1825 - 1829)',
-          'Ireland (1829 - 1891)',
-        ]}
+        residences={friend.residences.flatMap(r =>
+          r.durations.map(d => `${r.city}, ${r.country} (${d.start} - ${d.end})`),
+        )}
+        markers={friend.residences.map(r => ({
+          label: `${r.city}, ${r.country}`,
+          top: r.top,
+          left: r.top,
+        }))}
       />
       <TestimonialsBlock
         testimonials={[
@@ -167,6 +180,17 @@ export const query = graphql`
         hasAudio
         tags
         url
+      }
+      residences {
+        city
+        country
+        map
+        top
+        left
+        durations {
+          start
+          end
+        }
       }
     }
   }

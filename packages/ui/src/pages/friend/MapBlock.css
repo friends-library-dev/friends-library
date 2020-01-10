@@ -4,6 +4,7 @@
 
 .MapBlock .FriendMeta {
   transform: translateY(20px);
+  min-height: 15rem;
 }
 
 .MapBlock::before {

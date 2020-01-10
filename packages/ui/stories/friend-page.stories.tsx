@@ -137,10 +137,17 @@ storiesOf('Friend page/TestimonialsBlock', module)
 storiesOf('Friend page/MapBlock', module).add('basic', () => (
   <MapBlock
     friendName="Ann Branson"
-    abodes={[
+    residences={[
       'London England (1808 -1825)',
       'Scotland (1825 - 1829)',
       'Ireland (1829 - 1891)',
+    ]}
+    markers={[
+      {
+        label: 'London, England',
+        top: 69,
+        left: 66,
+      },
     ]}
   />
 ));

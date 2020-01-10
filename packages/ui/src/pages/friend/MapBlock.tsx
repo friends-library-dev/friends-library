@@ -1,14 +1,20 @@
 import React from 'react';
 import Meta from './FriendMeta';
-import Europe from '../../images/maps/europe.png';
+import Uk from '../../images/maps/united_kingdom.png';
+import LocationMarker from '../../icons/LocationMarker';
 import './MapBlock.css';
 
 interface Props {
   friendName: string;
-  abodes: string[];
+  residences: string[];
+  markers: {
+    label: string;
+    top: number;
+    left: number;
+  }[];
 }
 
-const MapBlock: React.FC<Props> = ({ friendName, abodes }) => {
+const MapBlock: React.FC<Props> = ({ friendName, residences, markers }) => {
   return (
     <div className="MapBlock relative bg-cover pb-20 md:pb-32 xl:pb-64">
       <div className="relative items-start justify-center xl:flex xl:bg-flgray-100 xl:mx-auto xl:mt-12 xl:py-10">
@@ -17,12 +23,17 @@ const MapBlock: React.FC<Props> = ({ friendName, abodes }) => {
           title={`Where did ${friendName} live?`}
           color="maroon"
         >
-          {abodes.map(abode => (
-            <li>{abode}</li>
+          {residences.map(residence => (
+            <li>{residence}</li>
           ))}
         </Meta>
         <div className="bg-white py-6 md:py-12 md:px-8 lg:px-32 xl:bg-flgray-100 xl:p-0">
-          <img src={Europe} alt="Map of Europe." />
+          <div className="relative">
+            {markers.map(m => (
+              <LocationMarker top={m.top} left={m.left} label={m.label} />
+            ))}
+            <img src={Uk} alt="Map of UK." />
+          </div>
         </div>
       </div>
     </div>
