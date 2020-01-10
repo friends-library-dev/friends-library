@@ -15,6 +15,7 @@ describe('friendFromJS()', () => {
       slug: 'rebecca-jones',
       gender: 'female',
       description: 'description',
+      residences: [],
       documents: [
         {
           id: '88091a2c-f2fc-4a54-8d6b-096eb94d192f',

@@ -17,6 +17,14 @@ export interface FriendData {
   gender: Gender;
   description: Description;
   documents: DocumentData[];
+  residences: {
+    city: string;
+    country: string;
+    durations: {
+      start: number;
+      end: number;
+    }[];
+  }[];
 }
 
 export interface DocumentData {

@@ -43,6 +43,13 @@ export default class Friend {
     return !this.isMale;
   }
 
+  public get residences(): FriendData['residences'] {
+    if (!this.data.residences) {
+      return [];
+    }
+    return this.data.residences;
+  }
+
   public get alphabeticalName(): string {
     const parts = this.data.name.split(' ');
     return `${parts.pop()}, ${parts.join(' ')}`;
@@ -68,6 +75,7 @@ export default class Friend {
       isMale: this.isMale,
       isFemale: this.isFemale,
       alphabeticalName: this.alphabeticalName,
+      residences: this.residences,
     };
   }
 }

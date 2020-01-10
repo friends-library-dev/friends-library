@@ -1,15 +1,16 @@
 import '@friends-library/env/load';
-import fs from 'fs';
 import { GatsbyNode, SourceNodesArgs } from 'gatsby';
-import { PrintSize, Heading, DocPrecursor } from '@friends-library/types';
+import { PrintSize } from '@friends-library/types';
 import { price } from '@friends-library/lulu';
 import { fetch } from '@friends-library/document-meta';
 import { query, hydrate } from '@friends-library/dpc-fs';
 import { red } from '@friends-library/cli-utils/color';
 import { allFriends, allDocsMap, cartItemData, justHeadings } from './helpers';
+import { getDpcCache, persistDpcCache, EditionCache } from './dpc-cache';
+import residences from './residences';
 import * as url from '../lib/url';
 import { getPartials } from '../lib/partials';
-import { NODE_ENV, APP_ALT_URL, LANG } from '../env';
+import { APP_ALT_URL, LANG } from '../env';
 
 const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions: { createNode },
@@ -37,6 +38,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     const friendProps = {
       ...friend.toJSON(),
       friendId: friend.id,
+      residences: residences(friend),
       url: url.friendUrl(friend),
     };
 
@@ -132,34 +134,3 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 };
 
 export default sourceNodes;
-
-function getDpcCache(): Map<string, EditionCache> {
-  const cache: Map<string, EditionCache> = new Map();
-  if (NODE_ENV !== 'development') {
-    return cache;
-  }
-
-  if (!fs.existsSync(CACHE_PATH)) {
-    return cache;
-  }
-
-  const stored = JSON.parse(fs.readFileSync(CACHE_PATH).toString());
-  for (let [path, edCache] of stored) {
-    cache.set(path, edCache);
-  }
-
-  return cache;
-}
-
-const CACHE_PATH = `${__dirname}/.dpc-cache.json`;
-
-function persistDpcCache(dpcCache: Map<string, EditionCache>): void {
-  if (NODE_ENV === 'development') {
-    fs.writeFileSync(CACHE_PATH, JSON.stringify([...dpcCache], null, 2));
-  }
-}
-
-interface EditionCache {
-  headings: Heading[];
-  customCode: DocPrecursor['customCode'];
-}
