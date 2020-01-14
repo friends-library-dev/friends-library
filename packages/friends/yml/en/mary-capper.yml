@@ -1,0 +1,20 @@
+id: c7ee8fdf-6cb7-4619-b3e3-6f12144e475f
+name: Mary Capper
+slug: mary-capper
+gender: female
+description: TODO
+documents:
+  - id: a64bc50d-4a4c-47ad-9e83-d72bbf5363b7
+    title: A Memoir of Mary Capper
+    slug: memoir
+    filename: Memoir_of_Mary_Capper
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        isbn: 978-1-64476-187-8
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-188-5
+        draft: true
