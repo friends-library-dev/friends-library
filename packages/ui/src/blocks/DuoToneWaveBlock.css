@@ -1,4 +1,4 @@
-.GettingStarted svg {
+.DuoToneWaveBlock svg {
   height: 120%;
   position: absolute;
   bottom: 0;
@@ -17,7 +17,7 @@
 }
 
 @screen md {
-  .GettingStarted svg {
+  .DuoToneWaveBlock svg {
     height: 100%;
   }
 

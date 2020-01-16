@@ -30,7 +30,7 @@ const MapBlock: React.FC<Props> = ({ friendName, residences, markers }) => {
         <div className="bg-white py-6 md:py-12 md:px-8 lg:px-32 xl:bg-flgray-100 xl:p-0">
           <div className="relative">
             {markers.map(m => (
-              <LocationMarker top={m.top} left={m.left} label={m.label} />
+              <LocationMarker key={m.label} top={m.top} left={m.left} label={m.label} />
             ))}
             <img src={Uk} alt="Map of UK." />
           </div>

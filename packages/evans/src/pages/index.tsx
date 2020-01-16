@@ -4,8 +4,8 @@ import {
   WhoWereTheQuakers,
   Hero,
   SubHero,
-  GettingStarted,
-  ExploreBooks,
+  GettingStartedBlock,
+  ExploreBooksBlock,
   FeaturedBooks,
   Formats,
 } from '@friends-library/ui';
@@ -15,9 +15,9 @@ export default () => (
     <Hero />
     <SubHero />
     <FeaturedBooks />
-    <GettingStarted />
+    <GettingStartedBlock />
     <WhoWereTheQuakers />
     <Formats />
-    <ExploreBooks />
+    <ExploreBooksBlock />
   </Layout>
 );

@@ -1,10 +1,10 @@
 import React from 'react';
-import Heading from '../Heading';
-import Button from '../Button';
-import './ExploreBooks.css';
+import MultiBookBgBlock from '../../blocks/MultiBookBgBlock';
+import Heading from '../../Heading';
+import Button from '../../Button';
 
-const ExploreBooks: React.FC = () => (
-  <section className="ExploreBooks py-20 sm:py-32 px-8 sm:px-16 bg-black">
+const ExploreBooksBlock: React.FC = () => (
+  <MultiBookBgBlock>
     <Heading darkBg className="text-white">
       Explore Books
     </Heading>
@@ -13,7 +13,7 @@ const ExploreBooks: React.FC = () => (
       you're looking for by searching, browsing authors, topics, genres, and more.
     </p>
     <Button className="bg-flmaroon mx-auto mt-12">Explore More</Button>
-  </section>
+  </MultiBookBgBlock>
 );
 
-export default ExploreBooks;
+export default ExploreBooksBlock;

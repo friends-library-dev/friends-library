@@ -56,6 +56,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
       const documentProps: Record<string, any> = {
         ...document.toJSON(),
         url: url.documentUrl(document),
+        authorUrl: url.friendUrl(friend),
         documentId: document.id,
         friendSlug: friend.slug,
         authorName: friend.name,

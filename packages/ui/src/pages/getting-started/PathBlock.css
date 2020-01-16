@@ -1,0 +1,95 @@
+.PathBlock {
+  background-image: linear-gradient(
+    to top,
+    currentColor 0%,
+    currentColor 100px,
+    transparent 100px,
+    transparent 100%
+  );
+}
+
+.PathBlock > svg {
+  transform: translateY(-100px);
+}
+
+.PathBooks::before {
+  opacity: 0.7;
+  content: 'Start Here';
+}
+
+.PathBooks > div::before {
+  content: '';
+  width: 30px;
+  height: 16px;
+  margin: 0 auto 38px auto;
+  display: block;
+  transform: rotate(90deg);
+  opacity: 0.7;
+  background-image: url(../../images/arrow-right.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.PathBooks > div:last-child svg path {
+  color: white !important;
+}
+
+@screen md {
+  .PathBooks > div:nth-last-child(-n + 2) {
+    margin-bottom: 0;
+  }
+
+  .PathBooks > div:nth-last-child(-n + 2) svg path {
+    color: white !important;
+  }
+
+  .PathBooks::before {
+    position: absolute;
+    top: 150px;
+    left: -18px;
+    transform: rotate(-90deg);
+  }
+
+  .PathBooks::after {
+    content: '';
+    position: absolute;
+    top: 210px;
+    left: 20px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../images/arrow-bend.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .PathBooks > div::before {
+    position: absolute;
+    right: -15px;
+    top: 58%;
+    transform: rotate(0deg);
+  }
+
+  .PathBooks > div:nth-child(even)::before {
+    transform: rotate(135deg);
+    right: auto;
+    left: -15px;
+    top: 108%;
+  }
+
+  .PathBooks > div:last-child::before {
+    display: none;
+  }
+}
+
+@screen xl {
+  .PathBooks > div:nth-child(even)::before {
+    transform: rotate(0deg);
+    right: 0;
+    top: 58%;
+    left: auto;
+  }
+
+  .PathBooks > div:nth-last-child(-n + 4) svg path {
+    color: white !important;
+  }
+}
