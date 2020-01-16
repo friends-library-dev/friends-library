@@ -2,14 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
-import DocBlock from '../src/blocks/DocBlock';
-import ListenBlock from '../src/blocks/ListenBlock';
-import ReadSampleBlock from '../src/blocks/ReadSampleBlock';
+import DocBlock from '../src/pages/document/DocBlock';
+import ListenBlock from '../src/pages/document/ListenBlock';
+import ReadSampleBlock from '../src/pages/document/ReadSampleBlock';
 import { coverSizes } from './decorators';
-import Tablet from '../src/Tablet';
-import SampleToc from '../src/SampleToc';
+import Tablet from '../src/pages/document/Tablet';
+import SampleToc from '../src/pages/document/SampleToc';
 import RelatedBookCard from '../src/RelatedBookCard';
-import TocHamburger from '../src/TocHamburger';
+import TocHamburger from '../src/pages/document/TocHamburger';
 import DownloadOptions from '../src/DownloadOptions';
 
 storiesOf('Doc Page', module)

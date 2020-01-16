@@ -3,10 +3,10 @@ import Link from 'gatsby-link';
 import { CoverProps, PrintSize, EditionType } from '@friends-library/types';
 import { bookDims } from '@friends-library/lulu';
 import { ThreeD } from '@friends-library/cover-component';
-import DocActions from '../DocActions';
-import CartItem from '../checkout/models/CartItem';
-import CartStore from '../checkout/services/CartStore';
-import SpinBook from '../images/spin-book.png';
+import DocActions from './DocActions';
+import CartItem from '../../checkout/models/CartItem';
+import CartStore from '../../checkout/services/CartStore';
+import SpinBook from '../../images/spin-book.png';
 import './DocBlock.css';
 
 type Props = Omit<CoverProps, 'pages'> & {

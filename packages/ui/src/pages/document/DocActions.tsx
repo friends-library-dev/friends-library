@@ -1,5 +1,5 @@
 import React from 'react';
-import MultiPill from './MultiPill';
+import MultiPill from '../../MultiPill';
 
 interface Props {
   price: number;

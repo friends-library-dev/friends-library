@@ -1,5 +1,5 @@
 .ReadSampleBlock .bg > div {
-  background-image: url(../images/Books7.jpg);
+  background-image: url(../../images/Books7.jpg);
   background-size: cover;
   filter: blur(5px);
 }
