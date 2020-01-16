@@ -1,9 +1,9 @@
 import React from 'react';
 import { Heading } from '@friends-library/types';
-import DocActions from '../DocActions';
-import Tablet from '../Tablet';
-import TocHamburger from '../TocHamburger';
-import SampleToc from '../SampleToc';
+import DocActions from './DocActions';
+import Tablet from './Tablet';
+import TocHamburger from './TocHamburger';
+import SampleToc from './SampleToc';
 import './ReadSampleBlock.css';
 
 interface Props {

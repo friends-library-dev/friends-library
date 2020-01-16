@@ -1,8 +1,8 @@
 import React from 'react';
-import MultiPill from '../MultiPill';
-import Soundcloud from '../images/soundcloud.png';
-import SoundcloudMobile from '../images/soundcloud-mobile.png';
-import WaveBottomBlock from './WaveBottomBlock';
+import MultiPill from '../../MultiPill';
+import Soundcloud from '../../images/soundcloud.png';
+import SoundcloudMobile from '../../images/soundcloud-mobile.png';
+import WaveBottomBlock from '../../blocks/WaveBottomBlock';
 
 const ListenBlock: React.FC = () => {
   return (
