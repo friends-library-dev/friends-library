@@ -71,10 +71,7 @@ const DocBlock: React.FC<Props> = props => {
           </h1>
           <h2 className="font-sans text-1-5xl md:text-xl subpixel-antialiased leading-loose mb-8">
             <i className="font-serif tracking-widest pr-1">by:</i>{' '}
-            <Link
-              className="AuthorLink text-flprimary font-bold antialiased tracking-wider fl-underline"
-              to={authorUrl}
-            >
+            <Link className="strong-link" to={authorUrl}>
               {author}
             </Link>
           </h2>

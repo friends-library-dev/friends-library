@@ -19,7 +19,6 @@ storiesOf('Doc Page', module)
     <div className="bg-gray-800 w-screen h-screen">{storyFn()}</div>
   ))
   .add('TocHamburger', () => <TocHamburger />)
-  .add('DownloadOptions', () => <DownloadOptions />)
   .add('Tablet', () => <Tablet />)
   .add('SampleToc', () => <SampleToc onClose={a('close')} chapters={chapters} />)
   .add('RelatedBookCard', () => (

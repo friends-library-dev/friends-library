@@ -1,226 +1,102 @@
 import React from 'react';
-import { Link } from 'gatsby';
-import { css } from '@emotion/core';
-import { Block, Layout, PageTitle, Divider, EmbeddedAudio } from '../components';
-
-const featured = css`
-  background: #eaeaea;
-  padding: 1px 0.6em 0.5em 0.85em;
-  margin-bottom: 1em;
-  border-radius: 5px;
-
-  > h2 {
-    font-size: 16px;
-    font-style: italic;
-    margin: 10px 0 0;
-  }
-
-  > p {
-    line-height: 1.3em;
-    font-size: 0.9em;
-    margin-top: 8px;
-  }
-`;
+import cx from 'classnames';
+import { MultiBookBgBlock, DuoToneWaveBlock, Heading } from '@friends-library/ui';
+import { Layout, EmbeddedAudio } from '../components';
+import GettingStartedPaths from '../components/GettingStartedPaths';
 
 export default () => (
   <Layout>
-    <Block>
-      <PageTitle>Getting Started</PageTitle>
-
-      <p>
-        <i>
-          [This page will have the carefully thought-through, curated paths for new people
-          to use in exploring the books on the site. This is probably a page that we will
-          want to iterate on extensively and keep honing for quite a while. It might also
-          be one that is in a continual state of slow change as new documents are added
-          and we get more experience recommending books to new folks. The book choices,
-          order, are all meant to be not much more than glorified placeholders.]
-        </i>
+    <MultiBookBgBlock className="flex flex-col items-center">
+      <Heading darkBg className="text-white">
+        Not sure where to get started?
+      </Heading>
+      <p className="text-center body-text text-white text-lg leading-loose max-w-4xl md:text-left">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium ea ullam
+        culpa eveniet? Facere enim tempora consequuntur recusandae adipisci fugiat itaque
+        sit dolorum? Sunt, perspiciatis quasi. Dolorem recusandae temporibus cupiditate.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit neque
+        necessitatibus, asperiores tenetur, sint est doloribus repudiandae assumenda
+        corporis provident, nisi nam eum aliquam ratione tempora enim! Corporis, quasi
+        doloremque.
       </p>
-
-      <Divider />
-
-      <p>
-        First, if you haven't listened to our introductory audio explaining who the early
-        Quakers were, we recommend you start there by clicking the play button below:
+    </MultiBookBgBlock>
+    <DuoToneWaveBlock className="p-12 pb-32">
+      <div className="flex flex-col items-center">
+        <h2 className="font-sans text-3xl text-center mb-6 tracking-wide md:text-left">
+          Listen to the Beginnings
+        </h2>
+        <p className="body-text text-center mb-10 max-w-3xl md:text-left md:pr-20">
+          First, if you haven't listened to our introductory audio explaining who the
+          early Quakers were, we recommend you start there by clicking the play button
+          below:
+        </p>
+        <div className="max-w-3xl w-3/4">
+          <EmbeddedAudio id={242345955} title="Introduction to the Early Quakers" />
+        </div>
+      </div>
+    </DuoToneWaveBlock>
+    <div className="bg-flgray-100 p-12">
+      <h2 className="font-sans text-3xl text-center mb-6 tracking-wide">Choose A Path</h2>
+      <p className="body-text text-lg text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla reprehenderit nemo,
+        eaque, officia mollitia provident repellendus sit nesciunt dicta et voluptatibus
+        vero voluptate, necessitatibus voluptatem explicabo. Voluptatum officia minus
+        aliquam.
       </p>
-
-      <EmbeddedAudio id={242345955} title="Introduction to the Early Quakers" />
-
-      <p>
-        Next, scan the sections below to see which one feels like the best match for what
-        you're interested in reading first.
-      </p>
-
-      <Divider />
-
-      <h2>History</h2>
-
-      <p>
-        <i>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </i>
-      </p>
-
-      <div css={featured}>
-        <h2>1. William Penn: Primitive Christianity Revived</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/william-penn/primitive-christianity-revived">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>2. Mary Ann Kelty: Lives and Persecutions</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/william-penn/primitive-christianity-revived">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>3. William Sewell: History of the Quakers</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/william-sewel/history-of-quakers">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <Divider />
-
-      <h2>Doctrine</h2>
-
-      <p>
-        <i>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </i>
-      </p>
-
-      <div css={featured}>
-        <h2>1. Robert Barclay: Saved to the Uttermost</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/robert-barclay/saved-to-the-uttermost">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>2. Joseph Phipps: Original and Present State</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/joseph-phipps/original-and-present-state-of-man">
-            Read now &raquo;
-          </Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>3. William Penn: No Cross, No Crown</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/william-penn/no-cross-no-crown">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <Divider />
-
-      <h2>Devotional</h2>
-
-      <p>
-        <i>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </i>
-      </p>
-
-      <div css={featured}>
-        <h2>1. Isaac Penington: Writings, volume 1</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/isaac-penington/writings-volume-1">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>2. William Shewen: Meditations &amp; Experiences</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/william-shewen/meditations-experiences">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>3. Isaac Penington: Writings, volume 2</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/isaac-penington/writings-volume-2">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <Divider />
-
-      <h2>Journals</h2>
-
-      <p>
-        <i>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </i>
-      </p>
-
-      <div css={featured}>
-        <h2>1. Journal of John Richardson</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/john-richardson/journal">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>2. Life and Letters of Rebecca Jones</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/rebecca-jones/life-letters">Read now &raquo;</Link>
-        </p>
-      </div>
-
-      <div css={featured}>
-        <h2>3. The Life of Thomas Ellwood</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.{' '}
-          <Link to="/thomas-ellwood/life">Read now &raquo;</Link>
-        </p>
-      </div>
-    </Block>
+    </div>
+    <div className="md:flex flex-wrap">
+      <PathIntro title="History" color="maroon" onClick={() => {}}>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
+        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
+        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+      </PathIntro>
+      <PathIntro title="Doctrine" color="blue" onClick={() => {}}>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
+        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
+        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
+        e pluribus unum.
+      </PathIntro>
+      <PathIntro title="Devotional" color="green" onClick={() => {}}>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
+        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
+        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+        Tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+      </PathIntro>
+      <PathIntro title="Journals" color="gold" onClick={() => {}}>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
+        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
+        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+      </PathIntro>
+    </div>
+    <GettingStartedPaths />
   </Layout>
+);
+
+interface PathIntroProps {
+  title: string;
+  className?: string;
+  color: 'blue' | 'maroon' | 'gold' | 'green';
+  onClick: () => void;
+}
+
+const PathIntro: React.FC<PathIntroProps> = ({ className, color, title, children }) => (
+  <section
+    className={cx(
+      className,
+      `bg-fl${color}`,
+      'p-8 pb-4 md:w-1/2 lg:w-1/4 flex flex-col justify-start',
+    )}
+  >
+    <h3 className="font-sans text-white text-center text-3xl tracking-wide mb-8">
+      {title}
+    </h3>
+    <p className="body-text text-white text-md mb-8">{children}</p>
+    <div className="flex flex-col items-center mb-10 text-xl mt-auto">
+      <button className="text-white uppercase font-sans tracking-wider text-base">
+        Learn More
+      </button>
+      <i className="fa fa-chevron-down text-white antialiased pt-2" />
+    </div>
+  </section>
 );

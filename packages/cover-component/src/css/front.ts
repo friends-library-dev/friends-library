@@ -115,6 +115,11 @@ const front: CoverCssModule = (scaler, scope) => {
       margin: 0 auto 0 auto;
     }
 
+    .Cover.Cover--front-only.with-shadow {
+      box-shadow: 0 -7px 25px -5px rgba(0, 0, 0, 0.2),
+        0 15px 10px -5px rgba(0, 0, 0, 0.08);
+    }
+
     ${frontMainCss}
   `;
 
