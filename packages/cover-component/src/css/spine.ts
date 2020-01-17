@@ -32,7 +32,6 @@ const spine: CoverCssModule = (scaler, scope) => {
       bottom: 3.5% !important;
       left: 50%;
       transform: translateX(-50%);
-      fill: white;
     }
 
     .spine__title,

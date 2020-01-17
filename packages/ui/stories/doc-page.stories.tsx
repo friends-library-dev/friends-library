@@ -10,7 +10,13 @@ import Tablet from '../src/pages/document/Tablet';
 import SampleToc from '../src/pages/document/SampleToc';
 import RelatedBookCard from '../src/RelatedBookCard';
 import TocHamburger from '../src/pages/document/TocHamburger';
+import ChooseEdition from '../src/pages/document/ChooseEdition';
+import ChooseFormat from '../src/pages/document/ChooseFormat';
+import ChooseEbookType from '../src/pages/document/ChooseEbookType';
+import Downloading from '../src/pages/document/Downloading';
+import DownloadWizard from '../src/pages/document/DownloadWizard';
 import DownloadOptions from '../src/DownloadOptions';
+import PopUnder from '../src/PopUnder';
 
 storiesOf('Doc Page', module)
   .addDecorator(coverSizes)
@@ -41,7 +47,37 @@ storiesOf('Doc Page', module)
 
 storiesOf('Doc Page', module)
   .addDecorator(centered)
-  .add('DownloadOptions', () => <DownloadOptions />);
+  .add('DownloadOptions', () => <DownloadOptions />)
+  .add('ChooseFormat', () => (
+    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
+      <ChooseFormat onChoose={a('choose format')} />
+    </PopUnder>
+  ))
+  .add('Downloading', () => (
+    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
+      <Downloading />
+    </PopUnder>
+  ))
+  .add('ChooseEbookType', () => (
+    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
+      <ChooseEbookType recommendation="epub" onChoose={a('choose ebook type')} />
+    </PopUnder>
+  ))
+  .add('ChooseEdition', () => (
+    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
+      <ChooseEdition
+        editions={['updated', 'modernized', 'original']}
+        onSelect={a('select')}
+      />
+    </PopUnder>
+  ))
+  .add('DownloadWizard', () => (
+    <DownloadWizard
+      editions={['updated', 'modernized', 'original']}
+      eBookTypeRecommendation="epub"
+      onSelect={a('select')}
+    />
+  ));
 
 storiesOf('Doc Page', module)
   .addDecorator(coverSizes)

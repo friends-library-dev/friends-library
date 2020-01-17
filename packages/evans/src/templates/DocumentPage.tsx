@@ -34,6 +34,11 @@ interface Props {
         type: EditionType;
         isbn: string;
         price: number;
+        downloadUrl: {
+          web_pdf: string;
+          mobi: string;
+          epub: string;
+        };
         cartItemTitles: string[];
         cartItemCoverPdfUrls: string[];
         cartItemInteriorPdfUrls: string[];
@@ -100,13 +105,14 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
         altLanguageUrl={document.altLanguageUrl}
         {...coverProps}
         pages={mainEdition.pages}
-        cartData={document.editions.map(edition => ({
+        editions={document.editions.map(edition => ({
           title: edition.cartItemTitles,
           interiorPdfUrl: edition.cartItemInteriorPdfUrls,
           coverPdfUrl: edition.cartItemCoverPdfUrls,
-          edition: edition.type,
+          type: edition.type,
           printSize: edition.printSize,
           numPages: edition.pages,
+          downloadUrl: edition.downloadUrl,
         }))}
       />
       <ReadSampleBlock
@@ -164,6 +170,11 @@ export const query = graphql`
         printSize
         pages
         price
+        downloadUrl {
+          web_pdf
+          mobi
+          epub
+        }
         cartItemTitles
         cartItemCoverPdfUrls
         cartItemInteriorPdfUrls

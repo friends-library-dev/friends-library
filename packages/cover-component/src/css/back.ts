@@ -11,7 +11,6 @@ const back: CoverCssModule = (scaler, scope) => {
     }
 
     .Cover .back .diamond {
-      fill: white;
       left: 50%;
       top: 17%;
       transform: translateX(-50%);

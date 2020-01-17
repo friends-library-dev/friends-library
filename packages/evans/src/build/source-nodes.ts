@@ -105,6 +105,11 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           documentSlug: document.slug,
           printSize,
           pages,
+          downloadUrl: {
+            web_pdf: url.logDownloadUrl(edition, 'web-pdf'),
+            epub: url.logDownloadUrl(edition, 'epub'),
+            mobi: url.logDownloadUrl(edition, 'mobi'),
+          },
           chapterHeadings: dpcData.headings,
           price: price(printSize, pages),
           customCode: dpcData.customCode,

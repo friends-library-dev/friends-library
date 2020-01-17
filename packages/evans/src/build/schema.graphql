@@ -24,6 +24,13 @@ type Edition @dontInfer {
   cartItemTitles: [String!]!
   cartItemInteriorPdfUrls: [String!]!
   cartItemCoverPdfUrls: [String!]!
+  downloadUrl: EditionDownloadUrl!
+}
+
+type EditionDownloadUrl {
+  web_pdf: String!
+  mobi: String!
+  epub: String!
 }
 
 type EditionFilename {

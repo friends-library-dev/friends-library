@@ -1,4 +1,4 @@
-.DownloadOptions::after {
+.PopUnder::after {
   content: '';
   position: absolute;
   top: 0;
@@ -6,8 +6,13 @@
   width: 0;
   height: 0;
   border: 15px solid transparent;
-  border-bottom-color: #fff;
+  border-bottom-color: currentColor;
   border-top: 0;
   margin-left: -15px;
   margin-top: -15px;
+}
+
+.PopUnder.align-right::after {
+  left: auto;
+  right: 19px;
 }

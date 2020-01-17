@@ -1,10 +1,10 @@
 import React from 'react';
-import './DownloadOptions.css';
+import PopUnder from './PopUnder';
 
 const DownloadOptions: React.FC = () => {
   return (
-    <div className="DownloadOptions bg-white py-10 px-20 tracking-widest uppercase antialiased rounded-lg shadow-direct relative">
-      <dl>
+    <PopUnder className="bg-white py-10 px-20 tracking-widest uppercase antialiased">
+      <dl className="text-flgray-900">
         <dt className="font-bold text-lg">Download .MP3</dt>
         <dd className="text-gray-500 text-xs mb-4">(works anywhere)</dd>
         <dt className="font-bold text-lg">Download .M4B</dt>
@@ -16,7 +16,7 @@ const DownloadOptions: React.FC = () => {
         <dt className="font-bold text-lg">Help</dt>
         <dd className="text-gray-500 text-xs">(Get help)</dd>
       </dl>
-    </div>
+    </PopUnder>
   );
 };
 
