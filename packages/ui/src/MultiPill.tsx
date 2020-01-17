@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import cx from 'classnames';
 import Button from './Button';
 import './MultiPill.css';
@@ -9,7 +9,7 @@ interface Props {
   buttons: {
     text: string;
     icon?: string;
-    onClick?: () => void;
+    onClick?: (event: MouseEvent<HTMLButtonElement>) => any;
   }[];
 }
 const MultiPill: React.FC<Props> = ({ buttons, className, inline = false }) => {

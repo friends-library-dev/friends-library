@@ -49,11 +49,13 @@ export default class Cart extends EventEmitter {
       if (item.equals(newItem)) {
         item.quantity++;
         this.emit('change');
+        this.emit('add-item');
         return;
       }
     }
     this._items.push(newItem);
     this.emit('change');
+    this.emit('add-item');
   }
 
   public subTotal(): number {

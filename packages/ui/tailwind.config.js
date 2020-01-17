@@ -41,6 +41,7 @@ module.exports = {
         'flgreen-600': `rgb(${greenRgb})`,
         'flgreen-400': 'rgb(193, 193, 139)',
         'flblue-800': 'rgb(72, 105, 118)',
+        'flblue-700': 'rgb(73, 112, 127)',
         'flblue-600': `rgb(${blueRgb})`,
         'flblue-400': 'rgb(152, 200, 220)',
         'flgold-800': 'rgb(162, 112, 67)',

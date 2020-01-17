@@ -23,6 +23,8 @@ export default class CartStore extends EventEmitter {
       Cookies.set('flp-cart', JSON.stringify(this.cart.toJSON()));
       this.emit('cart:changed');
     });
+
+    this.cart.on('add-item', () => this.emit('cart:item-added'));
   }
 
   public isOpen(): boolean {
