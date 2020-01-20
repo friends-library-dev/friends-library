@@ -15,7 +15,7 @@ const schema = new mongoose.Schema(
     format: {
       type: String,
       required: true,
-      enum: ['pdf-web', 'pdf-print', 'mobi', 'epub'],
+      enum: ['web-pdf', 'mobi', 'epub'],
     },
     is_mobile: {
       type: Boolean,
