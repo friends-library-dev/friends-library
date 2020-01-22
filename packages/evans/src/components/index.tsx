@@ -7,4 +7,3 @@ export { default as Badge } from './Badge';
 export { default as ByLine } from './ByLine';
 export { default as Edition } from './Edition';
 export { default as DocumentTeaser } from './DocumentTeaser';
-export { default as EmbeddedAudio } from './EmbeddedAudio';

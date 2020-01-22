@@ -8,7 +8,6 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import Asciidoctor from '@asciidoctor/core';
 import { Html } from '@friends-library/types';
 import Divider from '../components/Divider';
-import EmbeddedAudio from '../components/EmbeddedAudio';
 import { LANG } from '../env';
 
 export function getPartials(): { [key: string]: Html } {
@@ -28,7 +27,6 @@ export function getPartials(): { [key: string]: Html } {
       src => Asciidoctor().convert(src),
       cleanAsciidoctor,
       replaceDividers,
-      replaceEmbeddedAudio,
     )(file);
   });
 
@@ -37,13 +35,6 @@ export function getPartials(): { [key: string]: Html } {
 
 const replaceDividers = (html: Html): Html =>
   html.replace('<Divider />', renderToStaticMarkup(<Divider />));
-
-const replaceEmbeddedAudio = (html: Html): Html =>
-  html.replace(
-    /<EmbeddedAudio\s+id={(\d+)}\s+title="([^"]+)"(?:\s+)?\/>/,
-    (_, id, title) =>
-      renderToStaticMarkup(<EmbeddedAudio id={parseInt(id, 10)} title={title} />),
-  );
 
 const cleanAsciidoctor = (html: Html): Html => {
   return html

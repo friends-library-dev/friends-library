@@ -51,7 +51,11 @@ interface Props {
         description: string | null;
         printSize: PrintSize;
         pages: number[];
-        audio: null | { reader: string };
+        audio: null | {
+          reader: string;
+          externalPlaylistIdLq: null | number;
+          parts: { externalIdLq: number }[];
+        };
       }[];
     };
     otherDocuments: {
@@ -120,7 +124,14 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
         hasAudio={hasAudio}
         chapters={mainEdition.chapterHeadings}
       />
-      <ListenBlock />
+      {mainEdition.audio && (
+        <ListenBlock
+          title={document.title}
+          numAudioParts={mainEdition.audio.parts.length}
+          trackId={mainEdition.audio.parts[0].externalIdLq || 0}
+          playlistId={mainEdition.audio.externalPlaylistIdLq}
+        />
+      )}
       {otherBooks.length > 0 && (
         <div className="p-8 pt-12 bg-flgray-100">
           <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
@@ -191,6 +202,10 @@ export const query = graphql`
         numChapters
         audio {
           reader
+          externalPlaylistIdLq
+          parts {
+            externalIdLq
+          }
         }
       }
       altLanguageUrl

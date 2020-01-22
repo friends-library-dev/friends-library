@@ -10,10 +10,6 @@ or link off to sub-articles with more depth on certain things.]_
 <Divider />
 ++++
 
-++++
-<EmbeddedAudio id={242345955} title="Introduction to the Early Quakers" />
-++++
-
 == Who were the early Quakers?
 
 The birth of the Religious Society of Friends

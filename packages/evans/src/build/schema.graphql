@@ -58,6 +58,8 @@ type Audio {
   url: String!
   podcastUrl: String!
   parts: [AudioPart!]!
+  externalPlaylistIdHq: Int
+  externalPlaylistIdLq: Int
 }
 
 type AudioPart {

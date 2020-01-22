@@ -36,6 +36,7 @@ export { useNumCartItems, useCartTotalQuantity } from './checkout/hooks';
 export { default as CartStore } from './checkout/services/CartStore';
 export { default as CartModel } from './checkout/models/Cart';
 export { default as Heading } from './Heading';
+export { default as EmbeddedAudio } from './EmbeddedAudio';
 export { t, useLocale } from './translation';
 export { enTheme, esTheme };
 export type Theme = typeof enTheme;
