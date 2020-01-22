@@ -41,6 +41,8 @@ documents:
         editor: Jared Henderson
         audio:
           reader: Jared Henderson
+          external_playlist_id_hq: 971895736
+          external_playlist_id_lq: 971902480
           parts:
             - title: Part 1
               external_id_hq: 545074938
