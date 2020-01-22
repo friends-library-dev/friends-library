@@ -22,10 +22,35 @@ export default class Audio {
     return this.data.reader;
   }
 
+  public get imageFilename(): string {
+    return `${this.edition.filenameBase}--audio.png`;
+  }
+
+  public get imagePath(): string {
+    return `${this.edition.path}/${this.imageFilename}`;
+  }
+
+  public get externalPlaylistId(): number | undefined {
+    return this.data.external_playlist_id_hq;
+  }
+
+  public get externalPlaylistIdHq(): number | undefined {
+    return this.externalPlaylistId;
+  }
+
+  public get externalPlaylistIdLq(): number | undefined {
+    return this.data.external_playlist_id_lq;
+  }
+
   public toJSON(): Omit<Audio, 'edition' | 'toJSON'> {
     return {
       reader: this.reader,
       parts: this.parts,
+      imageFilename: this.imageFilename,
+      imagePath: this.imagePath,
+      externalPlaylistId: this.externalPlaylistId,
+      externalPlaylistIdHq: this.externalPlaylistIdHq,
+      externalPlaylistIdLq: this.externalPlaylistIdLq,
     };
   }
 }

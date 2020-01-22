@@ -47,20 +47,23 @@ export default class Edition {
   }
 
   public filename(type: ArtifactType, volumeNumber?: number): string {
-    const base = `${this.document.filenameBase}--${this.type}`;
-    const volumeSuffix = typeof volumeNumber === 'number' ? `--v${volumeNumber}` : '';
+    const volSuffix = typeof volumeNumber === 'number' ? `--v${volumeNumber}` : '';
     switch (type) {
       case 'epub':
-        return `${base}.epub`;
+        return `${this.filenameBase}.epub`;
       case 'mobi':
-        return `${base}.mobi`;
+        return `${this.filenameBase}.mobi`;
       case 'web-pdf':
-        return `${base}.pdf`;
+        return `${this.filenameBase}.pdf`;
       case 'paperback-interior':
-        return `${base}--(print)${volumeSuffix}.pdf`;
+        return `${this.filenameBase}--(print)${volSuffix}.pdf`;
       case 'paperback-cover':
-        return `${base}--cover${volumeSuffix}.pdf`;
+        return `${this.filenameBase}--cover${volSuffix}.pdf`;
     }
+  }
+
+  public get filenameBase(): string {
+    return `${this.document.filenameBase}--${this.type}`;
   }
 
   public get paperbackCoverBlurb(): string {
@@ -82,6 +85,7 @@ export default class Edition {
       path: this.path,
       paperbackCoverBlurb: this.paperbackCoverBlurb,
       isDraft: this.isDraft,
+      filenameBase: this.filenameBase,
       filename: {
         epub: this.filename('epub'),
         mobi: this.filename('mobi'),

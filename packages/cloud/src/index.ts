@@ -32,6 +32,26 @@ function getClient(): AWS.S3 {
   return clientInstance;
 }
 
+export function downloadFile(cloudFilePath: CloudFilePath): Promise<Buffer> {
+  const { CLOUD_STORAGE_BUCKET } = env.require('CLOUD_STORAGE_BUCKET');
+  const client = getClient();
+  return new Promise((resolve, reject) => {
+    client.getObject(
+      {
+        Bucket: CLOUD_STORAGE_BUCKET,
+        Key: cloudFilePath,
+      },
+      (err, { Body }) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(Body as Buffer);
+      },
+    );
+  });
+}
+
 export async function uploadFile(
   localFilePath: LocalFilePath,
   cloudFilePath: CloudFilePath,
@@ -123,6 +143,8 @@ export async function rimraf(path: CloudFilePath): Promise<CloudFilePath[]> {
 
 function getContentType(path: LocalFilePath): string {
   switch (extname(path)) {
+    case '.mp3':
+      return 'audio/mpeg';
     case '.png':
       return 'image/png';
     case '.pdf':
