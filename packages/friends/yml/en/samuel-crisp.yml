@@ -30,6 +30,8 @@ documents:
         isbn: 978-1-64476-120-5
         audio:
           reader: Jason Henderson
+          external_playlist_id_hq: 971895424
+          external_playlist_id_lq: 971902252
           parts:
             - title: Part 1
               external_id_hq: 417771204

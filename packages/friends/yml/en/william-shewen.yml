@@ -34,6 +34,8 @@ documents:
         editor: Jason R. Henderson
         audio:
           reader: Jason Henderson
+          external_playlist_id_hq: 971897023
+          external_playlist_id_lq: 971903407
           parts:
             - title: Part 1
               external_id_hq: 428646291

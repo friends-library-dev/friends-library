@@ -36,6 +36,8 @@ documents:
         editor: Jason R. Henderson
         audio:
           reader: Jason Henderson
+          external_playlist_id_hq: 971894755
+          external_playlist_id_lq: 971901652
           parts:
             - title: Part 1
               external_id_hq: 258518813
@@ -73,6 +75,8 @@ documents:
         editor: Jason R. Henderson
         audio:
           reader: Jason Henderson
+          external_playlist_id_hq: 971895049
+          external_playlist_id_lq: 971901967
           parts:
             - title: Chapter 1 - The Condition of Man in the Fall
               external_id_hq: 318326826

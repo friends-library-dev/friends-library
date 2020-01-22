@@ -40,6 +40,8 @@ documents:
         editor: Jason R. Henderson
         audio:
           reader: Jason R. Henderson
+          external_playlist_id_hq: 971888572
+          external_playlist_id_lq: 971900347
           parts:
             - title: The Possession of Living Faith and its Fruits
               external_id_hq: 590165508
