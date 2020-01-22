@@ -19,8 +19,15 @@ export function stop(port: number): void {
   execSync(`lsof -t -i tcp:${port} | xargs kill`);
 }
 
-interface ScreenshotTaker {
-  (id: string): Promise<Buffer>;
+export interface Clip {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+export interface ScreenshotTaker {
+  (id: string, clip?: Clip): Promise<Buffer>;
 }
 
 interface BrowserCloser {
@@ -36,9 +43,9 @@ export async function screenshot(
   await page.setViewport({ width: 1600, height: 2400 });
 
   return [
-    async (id: string): Promise<Buffer> => {
+    async (id: string, clip?: Clip): Promise<Buffer> => {
       await page.goto(`http://localhost:${port}?capture=ebook&id=${id}`);
-      return page.screenshot({ encoding: 'binary' });
+      return page.screenshot({ encoding: 'binary', ...(clip ? { clip } : {}) });
     },
     async () => {
       await browser.close();
