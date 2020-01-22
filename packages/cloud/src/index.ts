@@ -123,6 +123,8 @@ export async function rimraf(path: CloudFilePath): Promise<CloudFilePath[]> {
 
 function getContentType(path: LocalFilePath): string {
   switch (extname(path)) {
+    case '.png':
+      return 'image/png';
     case '.pdf':
       return 'application/pdf';
     case '.epub':

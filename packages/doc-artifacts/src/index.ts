@@ -5,7 +5,7 @@ import { FileManifest } from '@friends-library/types';
 import { PdfOptions, EbookOptions } from './types';
 
 export { pdf };
-export { deleteNamespaceDir } from './dirs';
+export { deleteNamespaceDir, dirs } from './dirs';
 
 export async function create(
   manifest: FileManifest,
