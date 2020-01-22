@@ -1,10 +1,16 @@
 import React from 'react';
 import MultiPill from '../../MultiPill';
-import Soundcloud from '../../images/soundcloud.png';
-import SoundcloudMobile from '../../images/soundcloud-mobile.png';
+import EmbeddedAudio from '../../EmbeddedAudio';
 import WaveBottomBlock from '../../blocks/WaveBottomBlock';
 
-const ListenBlock: React.FC = () => {
+interface Props {
+  title: string;
+  trackId: number;
+  numAudioParts: number;
+  playlistId?: number | null;
+}
+
+const ListenBlock: React.FC<Props> = ({ trackId, numAudioParts, playlistId, title }) => {
   return (
     <WaveBottomBlock color="blue" className="bg-flgray-100 px-0 py-10 sm:p-16">
       <h1 className="font-sans font-bold text-3xl text-center tracking-wider mb-8">
@@ -23,16 +29,18 @@ const ListenBlock: React.FC = () => {
           ?
         </a>
       </div>
-      <div className="flex flex-col items-center">
-        <img
-          src={SoundcloudMobile}
-          alt=""
-          className="md:hidden shadow-2xl mt-12 max-w-xs"
-        />
-        <img
-          src={Soundcloud}
-          alt=""
-          className="hidden md:block shadow-2xl mt-12 max-w-3xl"
+      <div className="flex flex-col items-center shadow-xl mt-8 mx-6">
+        <EmbeddedAudio
+          trackId={trackId}
+          playlistId={playlistId}
+          height={
+            playlistId
+              ? SC_MAIN_SECTION_HEIGHT +
+                SC_FOOTER_HEIGHT +
+                SC_TRACK_HEIGHT * numAudioParts
+              : SC_MAIN_SECTION_HEIGHT
+          }
+          title={title}
         />
       </div>
     </WaveBottomBlock>
@@ -40,3 +48,7 @@ const ListenBlock: React.FC = () => {
 };
 
 export default ListenBlock;
+
+const SC_MAIN_SECTION_HEIGHT = 165;
+const SC_FOOTER_HEIGHT = 55;
+const SC_TRACK_HEIGHT = 31;

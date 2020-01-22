@@ -120,6 +120,8 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
                 url: url.audioUrl(edition.audio),
                 podcastUrl: url.podcastUrl(edition.audio),
                 parts: edition.audio.parts.map(part => part.toJSON()),
+                externalPlaylistIdHq: edition.audio.externalPlaylistIdHq || null,
+                externalPlaylistIdLq: edition.audio.externalPlaylistIdLq || null,
               }
             : undefined,
         };

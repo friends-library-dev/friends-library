@@ -1,7 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
-import { MultiBookBgBlock, DuoToneWaveBlock, Heading } from '@friends-library/ui';
-import { Layout, EmbeddedAudio } from '../components';
+import {
+  MultiBookBgBlock,
+  EmbeddedAudio,
+  DuoToneWaveBlock,
+  Heading,
+} from '@friends-library/ui';
+import { Layout } from '../components';
 import GettingStartedPaths from '../components/GettingStartedPaths';
 
 export default () => (
@@ -31,7 +36,11 @@ export default () => (
           below:
         </p>
         <div className="max-w-3xl w-3/4">
-          <EmbeddedAudio id={242345955} title="Introduction to the Early Quakers" />
+          <EmbeddedAudio
+            trackId={242345955}
+            title="Introduction to the Early Quakers"
+            showArtwork={false}
+          />
         </div>
       </div>
     </DuoToneWaveBlock>
