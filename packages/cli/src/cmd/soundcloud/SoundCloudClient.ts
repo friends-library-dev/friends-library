@@ -31,6 +31,18 @@ export default class SoundCloudClient {
 
   public constructor(private config: Config) {}
 
+  public async getTrack(trackId: number): Promise<null | Record<string, any>> {
+    if (!this.token) await this.getToken();
+    const res = await fetch(this.endpoint(`tracks/${trackId}?oauth_token=${this.token}`));
+    if (res.status === 404) {
+      return null;
+    }
+    if (res.status >= 300) {
+      throw new Error(`Error getting track: ${trackId}`);
+    }
+    return await res.json();
+  }
+
   public async setPlaylistTracks(
     playlistId: number,
     trackIds: number[],
@@ -108,6 +120,19 @@ export default class SoundCloudClient {
     return json.id;
   }
 
+  public async updateTrackAttrs(
+    trackId: number,
+    attrs: Record<string, string>,
+  ): Promise<Record<string, any>> {
+    if (!this.token) await this.getToken();
+
+    const res = await this.sendJson(`tracks/${trackId}`, { track: attrs }, 'PUT');
+    if (res.status >= 300) {
+      throw new Error('Error updating track attributes');
+    }
+    return await res.json();
+  }
+
   public async uploadTrack(track: Track): Promise<number> {
     if (!this.token) await this.getToken();
 
@@ -172,6 +197,7 @@ export default class SoundCloudClient {
     });
 
     if (res.status >= 300) {
+      console.log(res);
       throw new Error('Error acquiring soundcloud access token');
     }
     const json = await res.json();

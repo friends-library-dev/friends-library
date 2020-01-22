@@ -70,7 +70,7 @@ async function handleAudioImage(
   uploads: Map<string, string>,
   makeScreenshot: ScreenshotTaker,
 ): Promise<void> {
-  const filename = `${dpc.document?.filenameBase}--${dpc.edition?.type}--audio.png`;
+  const filename = `${dpc.edition?.filenameBase}--audio.png`;
   const dirname = artifacts.dirs(opts).ARTIFACT_DIR;
   const filepath = `${dirname}/${filename}`;
   fs.ensureDirSync(dirname);

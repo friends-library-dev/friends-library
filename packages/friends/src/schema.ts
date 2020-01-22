@@ -97,6 +97,8 @@ const subSchemas: Record<string, Schema> = {
     // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       reader: { $ref: '/name', required: true },
+      external_playlist_id_hq: { type: 'integer', required: false },
+      external_playlist_id_lq: { type: 'integer', required: false },
       parts: {
         type: 'array',
         required: true,
