@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import uuid from 'uuid/v4';
 import env from '@friends-library/env';
 import * as cloud from '@friends-library/cloud';
-import { red, green } from '@friends-library/cli-utils/color';
+import { red, green, yellow } from '@friends-library/cli-utils/color';
 import { getAllFriends, Audio, Friend } from '@friends-library/friends';
 import { isDefined } from '@friends-library/types';
 import Client from './SoundCloudClient';
@@ -18,6 +18,7 @@ interface Argv {
   setPlaylistArtwork: boolean;
   verifyExternalTracks: boolean;
   createMissingPlaylists: boolean;
+  recreateIndividualTitip: boolean;
 }
 
 export default async function handler(argv: Argv): Promise<void> {
@@ -60,9 +61,15 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
     }
   }
 
+  const needArtwork =
+    argv.all ||
+    argv.setPlaylistArtwork ||
+    argv.setTrackArtwork ||
+    argv.recreateIndividualTitip;
+
   const tmpDir = `/tmp/${uuid()}`;
   let artworkPath = '';
-  if (argv.all || argv.setPlaylistArtwork || argv.setTrackArtwork) {
+  if (needArtwork) {
     fs.mkdirpSync(tmpDir);
     artworkPath = `${tmpDir}/artwork.png`;
     const buffer = await cloud.downloadFile(audio.imagePath);
@@ -109,7 +116,11 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
     await client.setPlaylistArtwork(audio.externalPlaylistIdLq || 0, artworkPath);
   }
 
-  if (argv.all || argv.setPlaylistArtwork || argv.setTrackArtwork) {
+  if (argv.recreateIndividualTitip) {
+    await recreateIndividualTitip(audio, artworkPath);
+  }
+
+  if (needArtwork) {
     fs.removeSync(tmpDir);
   }
 }
@@ -164,6 +175,46 @@ function verifyAudioPaths(audio: Audio): string[] {
   if (fileMissing) process.exit(1);
 
   return paths;
+}
+
+/**
+ * The audio files for the individual TITIP files were created for embedding on
+ * the MSF site, and so their titles indicated that they were individual chapters
+ * of the TITIP book. This was jarring when these audios were embedded as standalone
+ * files for the "journal selection" item for the individual friend. This function
+ * just finds those files, and creates copies in soundcloud with a correct title.
+ */
+async function recreateIndividualTitip(audio: Audio, artworkPath: string): Promise<void> {
+  if (audio.parts.length > 1 || audio.edition.document.isCompilation) {
+    return;
+  }
+
+  const track = await getClient().getTrack(audio.parts[0].externalIdLq);
+  if (track && track.title.toLowerCase().includes('truth in the inward parts')) {
+    const [hqPath, lqPath] = verifyAudioPaths(audio);
+    const lqTrackId = await uploadIndividualTitip(audio, lqPath, artworkPath, 'LQ');
+    red(`set ${audio.edition.path} external_id_lq: ${lqTrackId}`);
+    const hqTrackId = await uploadIndividualTitip(audio, hqPath, artworkPath, 'HQ');
+    red(`set ${audio.edition.path} external_id_hq: ${hqTrackId}`);
+  }
+}
+
+async function uploadIndividualTitip(
+  audio: Audio,
+  path: string,
+  artworkPath: string,
+  quality: 'HQ' | 'LQ',
+): Promise<number> {
+  yellow(`start upload of ${audio.edition.path}`);
+  const trackId = await getClient().uploadTrack({
+    title: audio.edition.document.title,
+    description: audio.edition.description || audio.edition.document.description,
+    audioPath: path,
+    imagePath: artworkPath,
+    tags: [quality as string].concat(audio.edition.document.tags),
+  });
+  green(`complete upload of ${audio.edition.path}`);
+  return trackId;
 }
 
 let client: Client | undefined;
