@@ -3,15 +3,16 @@ import uuid from 'uuid/v4';
 import env from '@friends-library/env';
 import * as cloud from '@friends-library/cloud';
 import { red, green } from '@friends-library/cli-utils/color';
-import { getAllFriends, Audio } from '@friends-library/friends';
+import { getAllFriends, Audio, Friend } from '@friends-library/friends';
 import { isDefined } from '@friends-library/types';
 import Client from './SoundCloudClient';
 
 interface Argv {
   all: boolean;
+  lang: 'en' | 'es' | 'both';
   limit: number;
   verifyLocalFilepaths: boolean;
-  uploadMp3s: boolean;
+  uploadMp3Files: boolean;
   setTrackAttrs: boolean;
   setTrackArtwork: boolean;
   setPlaylistArtwork: boolean;
@@ -20,7 +21,15 @@ interface Argv {
 }
 
 export default async function handler(argv: Argv): Promise<void> {
-  const audios = getAllFriends('en', true)
+  let friends: Friend[] = [];
+  if (argv.lang === 'both' || argv.lang === 'en') {
+    friends = friends.concat(getAllFriends('en', true));
+  }
+  if (argv.lang === 'both' || argv.lang === 'es') {
+    friends = friends.concat(getAllFriends('es', true));
+  }
+
+  const audios = friends
     .filter(friend => friend.documents.some(doc => doc.hasAudio))
     .flatMap(friend => friend.documents)
     .flatMap(document => document.editions)
@@ -36,14 +45,14 @@ export default async function handler(argv: Argv): Promise<void> {
 async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   const client = getClient();
   const edition = audio.edition;
-  console.log('handle', edition.path);
+  green(`handling audio: ${edition.path}`);
 
   let paths: string[] = [];
-  if (argv.all || argv.verifyLocalFilepaths || argv.uploadMp3s) {
+  if (argv.all || argv.verifyLocalFilepaths || argv.uploadMp3Files) {
     paths = verifyAudioPaths(audio);
   }
 
-  if (argv.all || argv.uploadMp3s) {
+  if (argv.all || argv.uploadMp3Files) {
     for (let path of paths) {
       const cloudPath = path.replace(/^.+\/(en|es)\//, '$1/');
       green(`uploading file: ${cloudPath}`);
@@ -95,7 +104,7 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
     }
   }
 
-  if ((argv.all || argv.createMissingPlaylists) && audio.parts.length > 1) {
+  if ((argv.all || argv.setPlaylistArtwork) && audio.parts.length > 1) {
     await client.setPlaylistArtwork(audio.externalPlaylistIdHq || 0, artworkPath);
     await client.setPlaylistArtwork(audio.externalPlaylistIdLq || 0, artworkPath);
   }
@@ -125,10 +134,12 @@ async function verifyTracksExist(audio: Audio): Promise<void> {
     if (trackHq === null) {
       throw new Error(`HQ track not found for ${audio.edition.path} ${part.title}`);
     }
+    green(`sc track: ${trackHq.id} for ${audio.edition.path} ${part.title} HQ`);
     const trackLq = await getClient().getTrack(part.externalIdLq);
     if (trackLq === null) {
       throw new Error(`LQ track not found for ${audio.edition.path} ${part.title}`);
     }
+    green(`sc track: ${trackLq.id} for ${audio.edition.path} ${part.title} LQ`);
   }
 }
 
