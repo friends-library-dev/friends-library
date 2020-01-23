@@ -36,8 +36,8 @@ documents:
           reader: Jason Henderson
           parts:
             - title: Selection from the Journal of John Richardson
-              external_id_hq: 276947054
-              external_id_lq: 276947064
+              external_id_hq: 748335568
+              external_id_lq: 748335253
               filesize_hq: 59021156
               filesize_lq: 19906998
               seconds: 3318
