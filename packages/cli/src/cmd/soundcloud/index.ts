@@ -33,6 +33,12 @@ export const builder: CommandBuilder = function(yargs) {
       default: false,
       demand: false,
     })
+    .option('recreate-individual-titip', {
+      type: 'boolean',
+      description: 'create duplicates of TITIP chapter files for standalone embedding',
+      default: false,
+      demand: false,
+    })
     .option('create-missing-playlists', {
       type: 'boolean',
       description: 'create external playlists if missing',
