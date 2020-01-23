@@ -35,8 +35,8 @@ documents:
           reader: Jason Henderson
           parts:
             - title: Selection from the Journal of John Griffith
-              external_id_hq: 278743551
-              external_id_lq: 278743565
+              external_id_hq: 748335079
+              external_id_lq: 748334743
               filesize_hq: 57467106
               filesize_lq: 19362030
               seconds: 3227
