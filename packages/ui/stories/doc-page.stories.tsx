@@ -70,13 +70,6 @@ storiesOf('Doc Page', module)
         onSelect={a('select')}
       />
     </PopUnder>
-  ))
-  .add('DownloadWizard', () => (
-    <DownloadWizard
-      editions={['updated', 'modernized', 'original']}
-      eBookTypeRecommendation="epub"
-      onSelect={a('select')}
-    />
   ));
 
 storiesOf('Doc Page', module)
@@ -84,7 +77,9 @@ storiesOf('Doc Page', module)
   .add('ReadSampleBlock', () => (
     <ReadSampleBlock price={499} hasAudio={true} chapters={chapters} />
   ))
-  .add('ListenBlock', () => <ListenBlock />)
+  .add('ListenBlock', () => (
+    <ListenBlock title="Sweet Track" trackId={6} numAudioParts={1} />
+  ))
   .add('DocBlock', () => (
     <DocBlock
       lang="en"
@@ -108,6 +103,15 @@ storiesOf('Doc Page', module)
       documentId="123abc"
       editions={[]}
     />
+  ))
+  .add('DownloadWizard', () => (
+    <div style={{ transform: 'translate(50%)', marginTop: 50 }}>
+      <DownloadWizard
+        editions={['updated', 'modernized', 'original']}
+        eBookTypeRecommendation="epub"
+        onSelect={a('select')}
+      />
+    </div>
   ));
 
 const blurb = `Ambrose Rigge (1635-1705) was early convinced of the truth through the preaching of George Fox, and grew to be a powerful minister of the gospel, a faithful elder, and a great sufferer for the cause of Christ. In one of his letters, he writes, "I have been in eleven prisons in this county, one of which held me ten years, four months and upward, besides twice premunired, and once publicly lashed, and many other sufferings too long to relate here." Yet through all he kept the faith, and served the Lord's body even while in bonds, through letters and papers given to encourage and establish the flock. Ambrose Rigge was one of many in his generation who sold all to buy the Pearl of great price, and having found true treasure, he kept it till the end.`;
