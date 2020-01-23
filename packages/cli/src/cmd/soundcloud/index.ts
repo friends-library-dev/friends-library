@@ -20,6 +20,13 @@ export const builder: CommandBuilder = function(yargs) {
       default: 999999,
       demand: false,
     })
+    .option('lang', {
+      type: 'string',
+      describe: 'which languages',
+      choices: ['en', 'es', 'both'],
+      default: 'both',
+      demand: false,
+    })
     .option('verify-external-tracks', {
       type: 'boolean',
       description: 'verify existence of soundcloud tracks from .yml data',
@@ -38,7 +45,7 @@ export const builder: CommandBuilder = function(yargs) {
       default: false,
       demand: false,
     })
-    .option('upload-mp3s', {
+    .option('upload-mp3-files', {
       type: 'boolean',
       description: 'upload local mp3s to cloud location',
       default: false,

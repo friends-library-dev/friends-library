@@ -187,6 +187,15 @@ export default class SoundCloudClient {
   }
 
   private async getToken(): Promise<void> {
+    const cachedTokenPath = `${__dirname}/.token`;
+    if (fs.existsSync(cachedTokenPath)) {
+      this.token = fs
+        .readFileSync(cachedTokenPath)
+        .toString()
+        .trim();
+      return;
+    }
+
     const res = await this.postForm('oauth2/token', {
       grant_type: 'password',
       scope: 'non-expiring',
@@ -197,11 +206,11 @@ export default class SoundCloudClient {
     });
 
     if (res.status >= 300) {
-      console.log(res);
       throw new Error('Error acquiring soundcloud access token');
     }
     const json = await res.json();
     this.token = json.access_token;
+    fs.writeFileSync(cachedTokenPath, this.token);
   }
 
   private postForm(path: string, params: Record<string, any>): Promise<Response> {
