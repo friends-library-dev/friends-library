@@ -187,7 +187,7 @@ export default class SoundCloudClient {
   }
 
   private async getToken(): Promise<void> {
-    const cachedTokenPath = `${__dirname}/.token`;
+    const cachedTokenPath = `${__dirname}/.soundcloud-token`;
     if (fs.existsSync(cachedTokenPath)) {
       this.token = fs
         .readFileSync(cachedTokenPath)

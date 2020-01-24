@@ -153,6 +153,8 @@ function getContentType(path: LocalFilePath): string {
       return 'application/epub+zip';
     case '.mobi':
       return 'application/x-mobipocket-ebook';
+    case '.zip':
+      return 'application/zip';
     default:
       throw new Error(`Unexpected file extension: ${path}`);
   }

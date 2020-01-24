@@ -11,7 +11,7 @@ import * as convert from './cmd/convert';
 import * as chapterize from './cmd/chapterize';
 import * as isbns from './cmd/isbns';
 import * as intake from './cmd/intake';
-import * as soundcloud from './cmd/soundcloud';
+import * as audio from './cmd/audio';
 import * as publishRef from './cmd/publish-ref';
 
 prettifyErrors();
@@ -31,5 +31,5 @@ yargs
   .command(intake)
   .command(chapterize)
   .command(convert)
-  .command(soundcloud)
+  .command(audio)
   .help().argv;
