@@ -1,5 +1,5 @@
 import { Document, Edition, Audio, Friend } from '@friends-library/friends';
-import { Url, ArtifactType } from '@friends-library/types';
+import { Url, ArtifactType, AudioQuality } from '@friends-library/types';
 
 export function friendUrl(friend: Friend): Url {
   if (friend.slug === 'compilations') {
@@ -22,12 +22,8 @@ export function editionUrl(edition: Edition): Url {
   return `${documentUrl(edition.document)}/${edition.type}`;
 }
 
-export function audioUrl(audio: Audio): Url {
-  return `${editionUrl(audio.edition)}/audio`;
-}
-
-export function podcastUrl(audio: Audio): Url {
-  return `${editionUrl(audio.edition)}/podcast.rss`;
+export function podcastUrl(audio: Audio, quality: AudioQuality): Url {
+  return `${editionUrl(audio.edition)}/${quality === 'LQ' ? 'lq/' : ''}podcast.rss`;
 }
 
 export function logDownloadUrl(edition: Edition, type: ArtifactType): string {

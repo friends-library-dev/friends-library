@@ -7,8 +7,10 @@ import { GatsbyNode } from 'gatsby';
 const onPostBuild: GatsbyNode['onPostBuild'] = () => {
   eachEdition(({ document, edition }) => {
     if (edition.audio) {
-      const xml = podcast(document, edition);
-      fs.outputFileSync(`./public/${podcastUrl(edition.audio)}`, xml);
+      const xmlHq = podcast(document, edition, 'HQ');
+      fs.outputFileSync(`./public/${podcastUrl(edition.audio, 'HQ')}`, xmlHq);
+      const xmlLq = podcast(document, edition, 'LQ');
+      fs.outputFileSync(`./public/${podcastUrl(edition.audio, 'LQ')}`, xmlLq);
     }
   });
 };

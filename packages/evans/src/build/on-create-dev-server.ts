@@ -10,9 +10,13 @@ const onCreateDevServer: GatsbyNode['onCreateDevServer'] = ({
     if (!edition.audio) {
       return;
     }
-    app.get(podcastUrl(edition.audio), (req: any, res: any) => {
+    app.get(podcastUrl(edition.audio, 'HQ'), (req: any, res: any) => {
       res.type('application/xml');
-      res.send(podcast(document, edition));
+      res.send(podcast(document, edition, 'HQ'));
+    });
+    app.get(podcastUrl(edition.audio, 'LQ'), (req: any, res: any) => {
+      res.type('application/xml');
+      res.send(podcast(document, edition, 'LQ'));
     });
   });
 };

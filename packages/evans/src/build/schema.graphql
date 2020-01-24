@@ -55,9 +55,9 @@ type ChapterHeadingSequence {
 
 type Audio {
   reader: String!
-  url: String!
-  podcastUrl: String!
   parts: [AudioPart!]!
+  podcastUrlHq: String!
+  podcastUrlLq: String!
   externalPlaylistIdHq: Int
   externalPlaylistIdLq: Int
 }
