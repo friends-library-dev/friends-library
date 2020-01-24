@@ -1,2 +1,2 @@
-src/cmd/soundcloud/.token
+src/cmd/audio/.soundcloud-token
 src/cmd/isbns/isbns.csv

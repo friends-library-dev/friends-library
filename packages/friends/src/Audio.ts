@@ -22,6 +22,22 @@ export default class Audio {
     return this.data.reader;
   }
 
+  public get zipFilenameHq(): string {
+    return this.zipFilenameLq.replace(/--lq\.zip$/, '.zip');
+  }
+
+  public get zipFilenameLq(): string {
+    return `${this.edition.document.filenameBase}--mp3s--lq.zip`;
+  }
+
+  public get zipFilepathLq(): string {
+    return `${this.edition.path}/${this.zipFilenameLq}`;
+  }
+
+  public get zipFilepathHq(): string {
+    return `${this.edition.path}/${this.zipFilenameHq}`;
+  }
+
   public get imageFilename(): string {
     return `${this.edition.filenameBase}--audio.png`;
   }
@@ -51,6 +67,10 @@ export default class Audio {
       externalPlaylistId: this.externalPlaylistId,
       externalPlaylistIdHq: this.externalPlaylistIdHq,
       externalPlaylistIdLq: this.externalPlaylistIdLq,
+      zipFilenameHq: this.zipFilenameHq,
+      zipFilepathHq: this.zipFilepathHq,
+      zipFilenameLq: this.zipFilenameLq,
+      zipFilepathLq: this.zipFilepathLq,
     };
   }
 }

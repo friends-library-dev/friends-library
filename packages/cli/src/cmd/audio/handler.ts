@@ -1,8 +1,10 @@
 import fs from 'fs-extra';
+import path from 'path';
+import { execSync } from 'child_process';
 import uuid from 'uuid/v4';
 import env from '@friends-library/env';
 import * as cloud from '@friends-library/cloud';
-import { red, green, yellow } from '@friends-library/cli-utils/color';
+import { c, log, red, green, yellow } from '@friends-library/cli-utils/color';
 import { getAllFriends, Audio, Friend } from '@friends-library/friends';
 import { isDefined } from '@friends-library/types';
 import Client from './SoundCloudClient';
@@ -13,12 +15,14 @@ interface Argv {
   limit: number;
   verifyLocalFilepaths: boolean;
   uploadMp3Files: boolean;
+  uploadMp3Zips: boolean;
   setTrackAttrs: boolean;
   setTrackArtwork: boolean;
   setPlaylistArtwork: boolean;
   verifyExternalTracks: boolean;
   createMissingPlaylists: boolean;
   recreateIndividualTitip: boolean;
+  pattern?: string;
 }
 
 export default async function handler(argv: Argv): Promise<void> {
@@ -46,10 +50,19 @@ export default async function handler(argv: Argv): Promise<void> {
 async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   const client = getClient();
   const edition = audio.edition;
-  green(`handling audio: ${edition.path}`);
+  if (argv.pattern && !edition.path.includes(argv.pattern)) {
+    return;
+  }
+
+  log(c`🎤  Handling audio: {magenta ${edition.path}}`);
 
   let paths: string[] = [];
-  if (argv.all || argv.verifyLocalFilepaths || argv.uploadMp3Files) {
+  if (
+    argv.all ||
+    argv.verifyLocalFilepaths ||
+    argv.uploadMp3Files ||
+    argv.uploadMp3Zips
+  ) {
     paths = verifyAudioPaths(audio);
   }
 
@@ -59,6 +72,10 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
       green(`uploading file: ${cloudPath}`);
       await cloud.uploadFile(path, cloudPath);
     }
+  }
+
+  if (argv.all || argv.uploadMp3Zips) {
+    await zipAndUploadMp3s(audio, paths);
   }
 
   const needArtwork =
@@ -123,6 +140,18 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   if (needArtwork) {
     fs.removeSync(tmpDir);
   }
+}
+
+async function zipAndUploadMp3s(audio: Audio, paths: string[]): Promise<void> {
+  const { zipFilenameHq, zipFilenameLq } = audio;
+  const hqPaths = paths.filter(p => !p.endsWith('--lq.mp3'));
+  const lqPaths = paths.filter(p => p.endsWith('--lq.mp3'));
+  const dir = path.dirname(paths[0]);
+  const opts = { cwd: dir };
+  execSync(`zip ${zipFilenameLq} ${lqPaths.map(p => path.basename(p)).join(' ')}`, opts);
+  execSync(`zip ${zipFilenameHq} ${hqPaths.map(p => path.basename(p)).join(' ')}`, opts);
+  await cloud.uploadFile(`${dir}/${zipFilenameLq}`, audio.zipFilepathLq);
+  await cloud.uploadFile(`${dir}/${zipFilenameHq}`, audio.zipFilepathHq);
 }
 
 async function createMissingPlaylist(audio: Audio, quality: 'HQ' | 'LQ'): Promise<void> {

@@ -1,8 +1,8 @@
 import { CommandBuilder } from 'yargs';
 
-export const command = 'soundcloud';
+export const command = 'audio';
 
-export const describe = 'do soundcloud things';
+export const describe = 'handle audio-related tasks';
 
 export const builder: CommandBuilder = function(yargs) {
   return yargs
@@ -18,6 +18,12 @@ export const builder: CommandBuilder = function(yargs) {
       alias: 'l',
       description: 'limit the number of audio resources operated upon',
       default: 999999,
+      demand: false,
+    })
+    .option('pattern', {
+      type: 'string',
+      alias: 'p',
+      describe: 'pattern to match audio paths',
       demand: false,
     })
     .option('lang', {
@@ -41,13 +47,19 @@ export const builder: CommandBuilder = function(yargs) {
     })
     .option('create-missing-playlists', {
       type: 'boolean',
-      description: 'create external playlists if missing',
+      description: 'create soundcloud playlists if missing',
       default: false,
       demand: false,
     })
     .option('verify-local-filepaths', {
       type: 'boolean',
       description: 'verify existence of local mp3 files in ~/Sync',
+      default: false,
+      demand: false,
+    })
+    .option('upload-mp3-zips', {
+      type: 'boolean',
+      description: 'upload local mp3s as aggregate zip files to cloud location',
       default: false,
       demand: false,
     })
@@ -59,19 +71,19 @@ export const builder: CommandBuilder = function(yargs) {
     })
     .option('set-track-attrs', {
       type: 'boolean',
-      description: 'set track attributes',
+      description: 'set soundcloud track attributes',
       default: false,
       demand: false,
     })
     .option('set-track-artwork', {
       type: 'boolean',
-      description: 'upload artwork image for each track',
+      description: 'upload soundcloud artwork image for each track',
       default: false,
       demand: false,
     })
     .option('set-playlist-artwork', {
       type: 'boolean',
-      description: 'upload artwork image for playlists',
+      description: 'upload soundcloud artwork image for playlists',
       default: false,
       demand: false,
     });
