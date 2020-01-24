@@ -11,14 +11,8 @@ const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml')).filter(
 );
 const filenames: string[] = [];
 
-const isbnPath = path.resolve(
-  __dirname,
-  '../../../cover-web-app/public/images/isbn/_suffixes.txt',
-);
-const isbnPool = readFileSync(isbnPath)
-  .toString()
-  .trim()
-  .split('\n');
+const isbnPath = path.resolve(__dirname, '../../../cli/src/cmd/isbns/isbns.json');
+const isbnPool = JSON.parse(readFileSync(isbnPath).toString());
 const isbns: string[] = [];
 const ids: string[] = [];
 const friends: FriendData[] = [];
@@ -109,8 +103,7 @@ files.forEach(file => {
 
     test('edition isbns are one of ours', () => {
       editions(friend).forEach(edition => {
-        const suffix = edition.isbn!.replace(/^978-1-64476-/, '');
-        expect(isbnPool.includes(suffix)).toBe(true);
+        expect(isbnPool.includes(edition.isbn)).toBe(true);
       });
     });
 
