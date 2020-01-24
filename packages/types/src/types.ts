@@ -33,6 +33,7 @@ export type NodeEnv = 'production' | 'development';
 export type PrintSize = 's' | 'm' | 'xl';
 export type PrintSizeVariant = PrintSize | 'xl--condensed';
 export type PrintJobStatus = 'pending' | 'accepted' | 'shipped' | 'rejected' | 'canceled';
+export type AudioQuality = 'HQ' | 'LQ';
 
 export interface PrintSizeDetails {
   abbrev: PrintSize;

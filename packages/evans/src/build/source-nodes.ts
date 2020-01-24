@@ -117,9 +117,9 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           audio: edition.audio
             ? {
                 reader: edition.audio.reader,
-                url: url.audioUrl(edition.audio),
-                podcastUrl: url.podcastUrl(edition.audio),
                 parts: edition.audio.parts.map(part => part.toJSON()),
+                podcastUrlHq: url.podcastUrl(edition.audio, 'HQ'),
+                podcastUrlLq: url.podcastUrl(edition.audio, 'LQ'),
                 externalPlaylistIdHq: edition.audio.externalPlaylistIdHq || null,
                 externalPlaylistIdLq: edition.audio.externalPlaylistIdLq || null,
               }

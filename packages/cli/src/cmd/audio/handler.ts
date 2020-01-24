@@ -184,13 +184,12 @@ async function verifyTracksExist(audio: Audio): Promise<void> {
 }
 
 function verifyAudioPaths(audio: Audio): string[] {
-  const syncPath = `/Users/jared/Sync/${audio.edition.path}`;
+  const syncPath = `/Users/jared/Sync`;
   const paths = audio.parts.flatMap((part, idx) => {
-    let path = `${syncPath}/${audio.edition.document.filenameBase}`;
-    if (audio.parts.length > 1) {
-      path += `--pt${idx + 1}`;
-    }
-    return [`${path}.mp3`, `${path}--lq.mp3`];
+    return [
+      `${syncPath}/${audio.partFilepath(idx, 'HQ')}`,
+      `${syncPath}/${audio.partFilepath(idx, 'LQ')}`,
+    ];
   });
 
   let fileMissing = false;

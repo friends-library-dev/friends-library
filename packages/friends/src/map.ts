@@ -19,10 +19,13 @@ export default function friendFromJS(json: FriendData): Friend {
       edition.document = document;
 
       if (edData.audio) {
-        edition.audio = new Audio(omit(edData.audio, 'parts'));
-        edition.audio.parts = edData.audio.parts.map(
-          audioPartData => new AudioPart(audioPartData),
-        );
+        const audio = new Audio(omit(edData.audio, 'parts'));
+        edition.audio = audio;
+        edition.audio.parts = edData.audio.parts.map(audioPartData => {
+          const part = new AudioPart(audioPartData);
+          part.audio = audio;
+          return part;
+        });
         edition.audio.edition = edition;
       }
 

@@ -1,15 +1,23 @@
 import { encode } from 'he';
 import moment from 'moment';
-import { Document, Edition } from '@friends-library/friends';
+import { Document, Edition, AudioPart } from '@friends-library/friends';
+import { AudioQuality } from '@friends-library/types';
+import env from '@friends-library/env';
 import { LANG, APP_URL } from '../env';
-import { audioUrl } from './url';
+import { podcastUrl } from './url';
 
-export function podcast(document: Document, edition: Edition): string {
+export function podcast(
+  document: Document,
+  edition: Edition,
+  quality: AudioQuality,
+): string {
   const { friend } = document;
   const { audio } = edition;
   if (!audio) {
     throw new Error('Document has no audio');
   }
+
+  const { CLOUD_STORAGE_BUCKET_URL: CLOUD_URL } = env.require('CLOUD_STORAGE_BUCKET_URL');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss
@@ -19,7 +27,7 @@ export function podcast(document: Document, edition: Edition): string {
 >
   <channel>
     <atom:link
-      href="${APP_URL}${audioUrl(audio)}"
+      href="${APP_URL}${podcastUrl(audio, quality)}"
       rel="self"
       type="application/rss+xml"
     />
@@ -29,7 +37,7 @@ export function podcast(document: Document, edition: Edition): string {
     document.title
   }" from The Friends Library. Read by ${audio.reader}.
     </itunes:subtitle>
-    <link>${APP_URL}${audioUrl(audio)}</link>
+    <link>${APP_URL}${podcastUrl(audio, quality)}</link>
     <language>${LANG}</language>
     <itunes:author>${encode(friend.name)}</itunes:author>
     <description>${encode(document.description)}</description>
@@ -41,29 +49,23 @@ export function podcast(document: Document, edition: Edition): string {
       <itunes:name>Jared Henderson</itunes:name>
       <itunes:email>jared.thomas.henderson@gmail.com</itunes:email>
     </itunes:owner>
-    <itunes:image href="${APP_URL}/img/podcast-artwork.gif" />
+    <itunes:image href="${CLOUD_URL}/${audio.imagePath}" />
     <image>
-      <url>${APP_URL}/img/podcast-artwork.gif</url>
+      <url>${CLOUD_URL}/${audio.imagePath}</url>
       <title>${encode(document.title)}</title>
-      <link>${APP_URL}${audioUrl(audio)}</link>
+      <link>${APP_URL}${podcastUrl(audio, quality)}</link>
     </image>
     <itunes:category text="Religion &amp; Spirituality">
       <itunes:category text="Christianity" />
     </itunes:category>
     ${audio.parts
-      .map((part, index, parts) => {
+      .map((part, index) => {
         const num = index + 1;
-        const desc = `${part.title}. Part ${num} of ${
-          parts.length
-        } of the audiobook version of "${encode(document.title)}" by ${encode(
-          friend.name,
-        )}.`;
+        const desc = partDescription(part, num);
         return `<item>
       <title>Part ${num}</title>
       <enclosure
-        url="@TODO/podcast-item/hq/${friend.slug}/${document.slug}/${
-          edition.type
-        }/${num}/${document.filenameBase}--pt${num}.mp3"
+        url="${CLOUD_URL}/${audio.partFilepath(index, quality)}"
         length="${part.filesizeHq}"
         type="audio/mpeg"
       />
@@ -71,7 +73,10 @@ export function podcast(document: Document, edition: Edition): string {
       <itunes:summary>${desc}</itunes:summary>
       <itunes:subtitle>${desc}</itunes:subtitle>
       <description>${desc}</description>
-      <guid isPermaLink="false">${audioUrl(audio)} pt-${num} at ${APP_URL}</guid>
+      <guid isPermaLink="false">${podcastUrl(
+        audio,
+        quality,
+      )} pt-${num} at ${APP_URL}</guid>
       <pubDate>${moment().format('ddd, DD MMM YYYY hh:mm:ss ZZ')}</pubDate>
       <itunes:duration>${part.seconds}</itunes:duration>
       <itunes:order>${num}</itunes:order>
@@ -83,4 +88,19 @@ export function podcast(document: Document, edition: Edition): string {
   </channel>
 </rss>
 `;
+}
+
+function partDescription(part: AudioPart, partNumber: number): string {
+  const document = part.audio.edition.document;
+  let desc = [
+    `Part ${partNumber} of ${part.audio.parts.length}`,
+    `of the audiobook version of`,
+    `"${encode(document.title)}" by ${encode(document.friend.name)}`,
+  ].join(' ');
+
+  if (part.title !== `Part ${partNumber}`) {
+    desc = `Part ${partNumber}. ${desc}`;
+  }
+
+  return desc;
 }

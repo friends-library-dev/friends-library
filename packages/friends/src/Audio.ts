@@ -1,4 +1,4 @@
-import { Name } from '@friends-library/types';
+import { Name, AudioQuality } from '@friends-library/types';
 import Edition from './Edition';
 import AudioPart from './AudioPart';
 import { AudioData } from './types';
@@ -58,7 +58,22 @@ export default class Audio {
     return this.data.external_playlist_id_lq;
   }
 
-  public toJSON(): Omit<Audio, 'edition' | 'toJSON'> {
+  public partFilename(index: number, quality: AudioQuality): string {
+    let filename = this.edition.document.filenameBase;
+    if (this.parts.length > 1) {
+      filename += `--pt${index + 1}`;
+    }
+    if (quality === 'LQ') {
+      filename += '--lq';
+    }
+    return `${filename}.mp3`;
+  }
+
+  public partFilepath(index: number, quality: AudioQuality): string {
+    return `${this.edition.path}/${this.partFilename(index, quality)}`;
+  }
+
+  public toJSON(): Omit<Audio, 'edition' | 'partFilename' | 'partFilepath' | 'toJSON'> {
     return {
       reader: this.reader,
       parts: this.parts,
