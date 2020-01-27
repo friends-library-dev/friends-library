@@ -61,9 +61,9 @@ export function podcast(
     ${audio.parts
       .map((part, index) => {
         const num = index + 1;
-        const desc = partDescription(part, num);
+        const desc = partDesc(part, num, audio.parts.length);
         return `<item>
-      <title>Part ${num}</title>
+      <title>${partTitle(part, num, audio.parts.length)}</title>
       <enclosure
         url="${CLOUD_URL}/${audio.partFilepath(index, quality)}"
         length="${part.filesizeHq}"
@@ -90,17 +90,33 @@ export function podcast(
 `;
 }
 
-function partDescription(part: AudioPart, partNumber: number): string {
+export function partDesc(part: AudioPart, partNumber: number, numParts: number): string {
   const document = part.audio.edition.document;
+  const byLine = `"${encode(document.title)}" by ${encode(document.friend.name)}`;
+  if (numParts === 1) {
+    return `Audiobook version of ${byLine}`;
+  }
+
   let desc = [
     `Part ${partNumber} of ${part.audio.parts.length}`,
     `of the audiobook version of`,
-    `"${encode(document.title)}" by ${encode(document.friend.name)}`,
+    byLine,
   ].join(' ');
 
   if (part.title !== `Part ${partNumber}`) {
-    desc = `Part ${partNumber}. ${desc}`;
+    desc = `${part.title}. ${desc}`;
   }
 
+  desc = desc.replace(/^Chapter (\d)/, 'Ch. $1');
+  desc = desc.replace(/^Capítulo (\d)/, 'Cp. $1');
+
   return desc;
+}
+
+export function partTitle(part: AudioPart, partNumber: number, numParts: number): string {
+  const title = part.audio.edition.document.title;
+  if (numParts === 1) {
+    return title;
+  }
+  return `${title}, pt. ${partNumber}`;
 }
