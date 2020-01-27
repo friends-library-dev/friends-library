@@ -7,6 +7,8 @@ export { default as Spine } from './Spine';
 export { default as ThreeD } from './ThreeD';
 export { default as PrintPdf } from './PrintPdf';
 export { default as Diamonds } from './Diamonds';
+export { default as LogoEnglish } from './Logo';
+export { default as LogoSpanish } from './LogoSpanish';
 export { wrapClasses, docDims, pdfHeight, pdfWidth, pdfSpineWidth } from './css/helpers';
 export { css };
 export {

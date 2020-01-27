@@ -11,7 +11,7 @@ import * as manifest from '@friends-library/doc-manifests';
 import * as cloud from '@friends-library/cloud';
 import { hydrate, query as dpcQuery, FsDocPrecursor } from '@friends-library/dpc-fs';
 import * as coverServer from './cover-server';
-import { ScreenshotTaker, Clip } from './cover-server';
+import { ScreenshotTaker } from './cover-server';
 import validate from './validate';
 import { logDocStart, logDocComplete, logPublishComplete, logPublishStart } from './log';
 import { publishPaperback } from './paperback';
@@ -74,7 +74,7 @@ async function handleAudioImage(
   const dirname = artifacts.dirs(opts).ARTIFACT_DIR;
   const filepath = `${dirname}/${filename}`;
   fs.ensureDirSync(dirname);
-  const buffer = await makeScreenshot(dpc.path, getAudioImageClip());
+  const buffer = await makeScreenshot(dpc.path, 'audio');
   uploads.set(filepath, `${dpc.path}/${filename}`);
   fs.writeFileSync(filepath, buffer, { encoding: 'binary' });
 }
@@ -137,7 +137,7 @@ async function handleEbooks(
   uploads: Map<string, string>,
   makeScreenshot: ScreenshotTaker,
 ): Promise<void> {
-  const coverImg = await makeScreenshot(dpc.path);
+  const coverImg = await makeScreenshot(dpc.path, 'ebook');
   // to get a cover image .png file, see epub src files in `artifacts` dir after publish
   const config = { coverImg, frontmatter: true };
   const base = edition(dpc)
@@ -195,25 +195,4 @@ const getProductionRevision: () => Sha = memoize(() => {
 function edition(dpc: FsDocPrecursor): Edition {
   if (!dpc.edition) throw new Error('Unexpected lack of Edition on hydrated dpc');
   return dpc.edition;
-}
-
-function getAudioImageClip(): Clip {
-  // height (in px) of top white bar, which we clip out
-  const TOP_WHITE_BAR_HEIGHT = 451;
-
-  // quasi-arbitrary value that tightens in on the main title square
-  const ZOOM = 260;
-
-  // a little extra room beyond the height of the top white bar, to center better
-  const Y_PADDING = ZOOM / 10;
-
-  // actual width (in px) of full ebook screenshot cover element
-  const FULL_WIDTH = 1600;
-
-  return {
-    x: 0 + ZOOM / 2,
-    y: TOP_WHITE_BAR_HEIGHT + Y_PADDING + ZOOM / 2,
-    width: FULL_WIDTH - ZOOM,
-    height: FULL_WIDTH - ZOOM,
-  };
 }

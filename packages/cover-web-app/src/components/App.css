@@ -50,3 +50,20 @@ body {
   transform: scale(2.77778); /* 1600px x 2400px */
   transform-origin: top left;
 }
+
+.capturing-audio .audio-logo {
+  position: absolute;
+  top: 661px;
+  right: 60px;
+  width: 100px;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.capturing-audio .audio-logo--es {
+  width: 130px;
+}
+
+.capturing-audio .author {
+  opacity: 0;
+}

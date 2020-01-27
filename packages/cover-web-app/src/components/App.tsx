@@ -7,6 +7,8 @@ import {
   Front,
   ThreeD,
   PrintPdf,
+  LogoEnglish,
+  LogoSpanish,
   css as coverCss,
 } from '@friends-library/cover-component';
 import debounce from 'lodash/debounce';
@@ -30,7 +32,7 @@ interface State {
   showCode: boolean;
   mode: Mode;
   perspective: Perspective;
-  capture: boolean;
+  capturing: 'ebook' | 'audio' | null;
   customBlurbs: Record<string, string>;
   customHtml: Record<string, string>;
   customCss: Record<string, string>;
@@ -46,7 +48,7 @@ export default class App extends React.Component<{}, State> {
     showCode: false,
     maskBleed: true,
     mode: '3d',
-    capture: false,
+    capturing: null,
     perspective: 'angle-front',
     customBlurbs: {},
     customCss: {},
@@ -65,10 +67,11 @@ export default class App extends React.Component<{}, State> {
     });
 
     const query = new URLSearchParams(window.location.search);
-    if (query.get('capture') === 'ebook') {
-      this.setState({ capture: true, mode: 'ebook', fit: false });
+    const capturing = query.get('capture');
+    if (capturing === 'ebook' || capturing === 'audio') {
+      this.setState({ capturing, mode: 'ebook', fit: false });
     } else {
-      this.setState({ capture: false });
+      this.setState({ capturing: null });
     }
     if (query.has('id')) {
       this.setState(this.selectCover(query.get('id') || ''));
@@ -346,7 +349,7 @@ export default class App extends React.Component<{}, State> {
       perspective,
       showCode,
       mode,
-      capture,
+      capturing,
     } = this.state;
     const coverProps = this.coverProps();
     const scaler = coverProps ? fitScaler(coverProps, fit, mode, showCode) : undefined;
@@ -354,7 +357,8 @@ export default class App extends React.Component<{}, State> {
       <div
         className={cx('App', 'web', {
           [`trim--${coverProps ? coverProps.size : 'm'}`]: true,
-          'capturing-screenshot': capture,
+          'capturing-screenshot': capturing !== null,
+          'capturing-audio': capturing === 'audio',
         })}
       >
         <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
@@ -439,6 +443,11 @@ export default class App extends React.Component<{}, State> {
         {coverProps && (
           <>
             <div className={cx('cover-wrap', { 'cover--ebook': mode === 'ebook' })}>
+              {capturing === 'audio' && (
+                <div className={`audio-logo audio-logo--${coverProps.lang}`}>
+                  {coverProps.lang === 'en' ? <LogoEnglish /> : <LogoSpanish />}
+                </div>
+              )}
               {mode === '3d' && (
                 <ThreeD scaler={scaler} {...coverProps} perspective={perspective} />
               )}
