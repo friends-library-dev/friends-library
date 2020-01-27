@@ -58,6 +58,18 @@ export default class Audio {
     return this.data.external_playlist_id_lq;
   }
 
+  public audiobookFilename(quality: AudioQuality): string {
+    let filename = this.edition.document.filenameBase;
+    if (quality === 'LQ') {
+      filename += '--lq';
+    }
+    return `${filename}.m4b`;
+  }
+
+  public audiobookFilepath(quality: AudioQuality): string {
+    return `${this.edition.path}/${this.audiobookFilename(quality)}`;
+  }
+
   public partFilename(index: number, quality: AudioQuality): string {
     let filename = this.edition.document.filenameBase;
     if (this.parts.length > 1) {
@@ -73,7 +85,15 @@ export default class Audio {
     return `${this.edition.path}/${this.partFilename(index, quality)}`;
   }
 
-  public toJSON(): Omit<Audio, 'edition' | 'partFilename' | 'partFilepath' | 'toJSON'> {
+  public toJSON(): Omit<
+    Audio,
+    | 'edition'
+    | 'partFilename'
+    | 'partFilepath'
+    | 'audiobookFilename'
+    | 'audiobookFilepath'
+    | 'toJSON'
+  > {
     return {
       reader: this.reader,
       parts: this.parts,

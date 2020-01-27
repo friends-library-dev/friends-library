@@ -69,6 +69,12 @@ export const builder: CommandBuilder = function(yargs) {
       default: false,
       demand: false,
     })
+    .option('upload-m4b-files', {
+      type: 'boolean',
+      description: 'upload local m4b files to cloud location',
+      default: false,
+      demand: false,
+    })
     .option('set-track-attrs', {
       type: 'boolean',
       description: 'set soundcloud track attributes',

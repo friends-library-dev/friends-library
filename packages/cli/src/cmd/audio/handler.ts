@@ -16,6 +16,7 @@ interface Argv {
   verifyLocalFilepaths: boolean;
   uploadMp3Files: boolean;
   uploadMp3Zips: boolean;
+  uploadM4BFiles: boolean;
   setTrackAttrs: boolean;
   setTrackArtwork: boolean;
   setPlaylistArtwork: boolean;
@@ -57,36 +58,25 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   log(c`🎤  Handling audio: {magenta ${edition.path}}`);
 
   let paths: string[] = [];
-  if (
-    argv.all ||
-    argv.verifyLocalFilepaths ||
-    argv.uploadMp3Files ||
-    argv.uploadMp3Zips
-  ) {
+  if (shouldVerifyAudioPaths(argv)) {
     paths = verifyAudioPaths(audio);
   }
 
   if (argv.all || argv.uploadMp3Files) {
-    for (let path of paths) {
-      const cloudPath = path.replace(/^.+\/(en|es)\//, '$1/');
-      green(`uploading file: ${cloudPath}`);
-      await cloud.uploadFile(path, cloudPath);
-    }
+    await uploadLocalAudioFilesToCloud(paths, isMp3);
+  }
+
+  if (argv.all || argv.uploadM4BFiles) {
+    await uploadLocalAudioFilesToCloud(paths, isM4b);
   }
 
   if (argv.all || argv.uploadMp3Zips) {
-    await zipAndUploadMp3s(audio, paths);
+    await zipAndUploadMp3s(audio, paths.filter(isMp3));
   }
-
-  const needArtwork =
-    argv.all ||
-    argv.setPlaylistArtwork ||
-    argv.setTrackArtwork ||
-    argv.recreateIndividualTitip;
 
   const tmpDir = `/tmp/${uuid()}`;
   let artworkPath = '';
-  if (needArtwork) {
+  if (needArtwork(argv)) {
     fs.mkdirpSync(tmpDir);
     artworkPath = `${tmpDir}/artwork.png`;
     const buffer = await cloud.downloadFile(audio.imagePath);
@@ -137,8 +127,19 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
     await recreateIndividualTitip(audio, artworkPath);
   }
 
-  if (needArtwork) {
+  if (needArtwork(argv)) {
     fs.removeSync(tmpDir);
+  }
+}
+
+async function uploadLocalAudioFilesToCloud(
+  paths: string[],
+  filter: (str: string) => boolean,
+): Promise<void> {
+  for (let path of paths.filter(filter)) {
+    const cloudPath = path.replace(/^.+?\/(en|es)\//, '$1/');
+    green(`uploading ${filter === isMp3 ? 'mp3' : 'm4b'} file: ${cloudPath}`);
+    await cloud.uploadFile(path, cloudPath);
   }
 }
 
@@ -185,12 +186,19 @@ async function verifyTracksExist(audio: Audio): Promise<void> {
 
 function verifyAudioPaths(audio: Audio): string[] {
   const syncPath = `/Users/jared/Sync`;
-  const paths = audio.parts.flatMap((part, idx) => {
-    return [
-      `${syncPath}/${audio.partFilepath(idx, 'HQ')}`,
-      `${syncPath}/${audio.partFilepath(idx, 'LQ')}`,
-    ];
-  });
+  let paths = [
+    `${syncPath}/${audio.audiobookFilepath('HQ')}`,
+    `${syncPath}/${audio.audiobookFilepath('LQ')}`,
+  ];
+
+  paths = paths.concat(
+    audio.parts.flatMap((part, idx) => {
+      return [
+        `${syncPath}/${audio.partFilepath(idx, 'HQ')}`,
+        `${syncPath}/${audio.partFilepath(idx, 'LQ')}`,
+      ];
+    }),
+  );
 
   let fileMissing = false;
   paths.forEach(path => {
@@ -243,6 +251,33 @@ async function uploadIndividualTitip(
   });
   green(`complete upload of ${audio.edition.path}`);
   return trackId;
+}
+
+function isM4b(path: string): boolean {
+  return path.endsWith('.m4b');
+}
+
+function isMp3(path: string): boolean {
+  return path.endsWith('.mp3');
+}
+
+function needArtwork(argv: Argv): boolean {
+  return (
+    argv.all ||
+    argv.setPlaylistArtwork ||
+    argv.setTrackArtwork ||
+    argv.recreateIndividualTitip
+  );
+}
+
+function shouldVerifyAudioPaths(argv: Argv): boolean {
+  return (
+    argv.all ||
+    argv.verifyLocalFilepaths ||
+    argv.uploadM4BFiles ||
+    argv.uploadMp3Files ||
+    argv.uploadMp3Zips
+  );
 }
 
 let client: Client | undefined;

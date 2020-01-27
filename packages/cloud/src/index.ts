@@ -145,6 +145,8 @@ function getContentType(path: LocalFilePath): string {
   switch (extname(path)) {
     case '.mp3':
       return 'audio/mpeg';
+    case '.m4b':
+      return 'audio/mp4';
     case '.png':
       return 'image/png';
     case '.pdf':
