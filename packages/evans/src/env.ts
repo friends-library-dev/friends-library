@@ -1,12 +1,7 @@
-import { Lang, NodeEnv, Url, isDefined } from '@friends-library/types';
+import { Lang, NodeEnv, Url } from '@friends-library/types';
 
-const env = process.env.NODE_ENV;
-
-if (!isDefined(env) || !['production', 'development'].includes(env)) {
-  throw new Error(`process.env.NODE_ENV must be set to "production" or "development"`);
-}
-
-export const NODE_ENV: NodeEnv = process.env.NODE_ENV as NodeEnv;
+export const NODE_ENV: NodeEnv =
+  process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 export const LANG: Lang = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
 
