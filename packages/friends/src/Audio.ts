@@ -22,6 +22,14 @@ export default class Audio {
     return this.data.reader;
   }
 
+  public get m4bFilenameHq(): string {
+    return this.m4bFilenameLq.replace(/--lq\.m4b$/, '.m4b');
+  }
+
+  public get m4bFilenameLq(): string {
+    return `${this.edition.document.filenameBase}--lq.m4b`;
+  }
+
   public get zipFilenameHq(): string {
     return this.zipFilenameLq.replace(/--lq\.zip$/, '.zip');
   }
@@ -85,6 +93,12 @@ export default class Audio {
     return `${this.edition.path}/${this.partFilename(index, quality)}`;
   }
 
+  public podcastRelFilepath(quality: AudioQuality): string {
+    let path = this.edition.path.replace(/^(en|es)\//, '/');
+    if (quality === 'LQ') path += '/lq';
+    return `${path}/podcast.rss`;
+  }
+
   public toJSON(): Omit<
     Audio,
     | 'edition'
@@ -92,6 +106,7 @@ export default class Audio {
     | 'partFilepath'
     | 'audiobookFilename'
     | 'audiobookFilepath'
+    | 'podcastRelFilepath'
     | 'toJSON'
   > {
     return {
@@ -106,6 +121,8 @@ export default class Audio {
       zipFilepathHq: this.zipFilepathHq,
       zipFilenameLq: this.zipFilenameLq,
       zipFilepathLq: this.zipFilepathLq,
+      m4bFilenameLq: this.m4bFilenameLq,
+      m4bFilenameHq: this.m4bFilenameHq,
     };
   }
 }

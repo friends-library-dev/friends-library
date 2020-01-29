@@ -59,4 +59,8 @@ export default class Responder {
       body: 'Not Found',
     });
   }
+
+  public clientError(msg?: string): void {
+    this.callback(null, { statusCode: 400, body: msg || '' });
+  }
 }

@@ -1,5 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import webDownload from './web-download';
+import logDownload from './log-download';
 import createOrder from './order-create';
 import updateOrder from './order-update';
 import capturePayment from './payment-capture';
@@ -31,8 +31,8 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
       return printJobStatus(event, respond);
     }
 
-    if (path.startsWith('download/web/')) {
-      return webDownload(event, respond);
+    if (path.startsWith('log/download/')) {
+      return logDownload(event, respond);
     }
   }
 

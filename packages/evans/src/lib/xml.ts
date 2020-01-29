@@ -4,7 +4,7 @@ import { Document, Edition, AudioPart } from '@friends-library/friends';
 import { AudioQuality } from '@friends-library/types';
 import env from '@friends-library/env';
 import { LANG, APP_URL } from '../env';
-import { podcastUrl } from './url';
+import { podcastUrl, mp3PartDownloadUrl } from './url';
 
 export function podcast(
   document: Document,
@@ -65,7 +65,7 @@ export function podcast(
         return `<item>
       <title>${partTitle(part, num, audio.parts.length)}</title>
       <enclosure
-        url="${CLOUD_URL}/${audio.partFilepath(index, quality)}"
+        url="${APP_URL}${mp3PartDownloadUrl(audio, quality, index)}"
         length="${part.filesizeHq}"
         type="audio/mpeg"
       />

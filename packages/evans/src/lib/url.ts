@@ -1,5 +1,5 @@
 import { Document, Edition, Audio, Friend } from '@friends-library/friends';
-import { Url, ArtifactType, AudioQuality } from '@friends-library/types';
+import { Url, AudioQuality } from '@friends-library/types';
 
 export function friendUrl(friend: Friend): Url {
   if (friend.slug === 'compilations') {
@@ -23,15 +23,43 @@ export function editionUrl(edition: Edition): Url {
 }
 
 export function podcastUrl(audio: Audio, quality: AudioQuality): Url {
-  return `${editionUrl(audio.edition)}/${quality === 'LQ' ? 'lq/' : ''}podcast.rss`;
+  const filename = `podcast${quality === 'LQ' ? '--lq' : ''}.rss`;
+  return logUrl(audio.edition, 'podcast', filename);
 }
 
-export function logDownloadUrl(edition: Edition, type: ArtifactType): string {
+export function m4bDownloadUrl(audio: Audio, quality: AudioQuality): Url {
+  const filename = quality === 'HQ' ? audio.m4bFilenameHq : audio.m4bFilenameLq;
+  return logUrl(audio.edition, 'm4b', filename);
+}
+
+export function mp3ZipDownloadUrl(audio: Audio, quality: AudioQuality): Url {
+  const filename = quality === 'HQ' ? audio.zipFilenameHq : audio.zipFilenameLq;
+  return logUrl(audio.edition, 'mp3-zip', filename);
+}
+
+export function mp3PartDownloadUrl(
+  audio: Audio,
+  quality: AudioQuality,
+  index: number,
+): string {
+  return logUrl(audio.edition, 'mp3', audio.partFilename(index, quality));
+}
+
+type DownloadType = 'epub' | 'mobi' | 'web-pdf' | 'mp3-zip' | 'm4b' | 'mp3' | 'podcast';
+
+export function artifactDownloadUrl(
+  edition: Edition,
+  type: 'epub' | 'mobi' | 'web-pdf',
+): string {
+  return logUrl(edition, type, edition.filename(type));
+}
+
+function logUrl(edition: Edition, type: DownloadType, filename: string): string {
   return [
-    '/.netlify/functions/site/download/web',
+    '/.netlify/functions/site/log/download',
     edition.document.id,
     edition.path,
     type,
-    edition.filename(type),
+    filename,
   ].join('/');
 }

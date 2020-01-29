@@ -59,27 +59,4 @@ describe('site fn', () => {
     });
     expect(sendOrderConfirmationEmail).toHaveBeenCalled();
   });
-
-  it('returns redirect from `web/download` path', async () => {
-    const event = {
-      path:
-        '/site/download/web/fake-id/en/george-fox/journal/updated/pdf-web/Journal--updated.pdf',
-    };
-    const { err, res } = await invokeCb(router, event);
-    expect(err).toBeNull();
-    expect(res.body).toContain(
-      '/cloud/bucket/en/george-fox/journal/updated/Journal--updated.pdf',
-    );
-  });
-
-  test('`web/download` path works prefixed with `.netlify/functions', async () => {
-    const event = {
-      path:
-        '/.netlify/functions/site/download/web/fake-id/en/george-fox/journal/updated/pdf-web/Journal--updated.pdf',
-    };
-    const { res } = await invokeCb(router, event);
-    expect(res.body).toContain(
-      '/cloud/bucket/en/george-fox/journal/updated/Journal--updated.pdf',
-    );
-  });
 });

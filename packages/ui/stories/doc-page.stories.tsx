@@ -78,7 +78,17 @@ storiesOf('Doc Page', module)
     <ReadSampleBlock price={499} hasAudio={true} chapters={chapters} />
   ))
   .add('ListenBlock', () => (
-    <ListenBlock title="Sweet Track" trackId={6} numAudioParts={1} />
+    <ListenBlock
+      title="Sweet Track"
+      trackId={6}
+      numAudioParts={1}
+      m4bUrlHq={'/'}
+      mp3ZipUrlHq={'/'}
+      podcastUrlHq={'/'}
+      m4bUrlLq={'/'}
+      mp3ZipUrlLq={'/'}
+      podcastUrlLq={'/'}
+    />
   ))
   .add('DocBlock', () => (
     <DocBlock

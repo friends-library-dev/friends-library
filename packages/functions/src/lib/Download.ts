@@ -1,4 +1,16 @@
 import mongoose from 'mongoose';
+import connect from './db';
+import { EditionType, AudioQuality } from '@friends-library/types/src/types';
+
+export const format = [
+  'web-pdf',
+  'mobi',
+  'epub',
+  'mp3-zip',
+  'm4b',
+  'mp3',
+  'podcast',
+] as const;
 
 const schema = new mongoose.Schema(
   {
@@ -15,7 +27,16 @@ const schema = new mongoose.Schema(
     format: {
       type: String,
       required: true,
-      enum: ['web-pdf', 'mobi', 'epub'],
+      enum: format,
+    },
+    audio_quality: {
+      type: String,
+      required: false,
+      enum: ['LQ', 'HQ'],
+    },
+    audio_part_number: {
+      type: Number,
+      required: false,
     },
     is_mobile: {
       type: Boolean,
@@ -53,4 +74,28 @@ const schema = new mongoose.Schema(
 
 const Download = mongoose.model('download', schema);
 
+export type Format = typeof format[number];
+
+interface DownloadData {
+  document_id: string;
+  edition: EditionType;
+  format: Format;
+  audio_quality?: AudioQuality;
+  audio_part_number?: number;
+  is_mobile: boolean;
+  os?: string;
+  browser?: string;
+  platform?: string;
+  user_agent?: string;
+  referrer?: string;
+}
+
 export default Download;
+
+export async function create(data: DownloadData): Promise<string> {
+  const db = await connect();
+  const download = await Download.create(data);
+  await db.close();
+  await mongoose.disconnect();
+  return download.id;
+}

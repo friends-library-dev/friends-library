@@ -8,9 +8,26 @@ interface Props {
   trackId: number;
   numAudioParts: number;
   playlistId?: number | null;
+  m4bUrlLq: string;
+  mp3ZipUrlLq: string;
+  podcastUrlLq: string;
+  m4bUrlHq: string;
+  mp3ZipUrlHq: string;
+  podcastUrlHq: string;
 }
 
-const ListenBlock: React.FC<Props> = ({ trackId, numAudioParts, playlistId, title }) => {
+const ListenBlock: React.FC<Props> = ({
+  trackId,
+  numAudioParts,
+  playlistId,
+  title,
+  m4bUrlHq,
+  mp3ZipUrlHq,
+  podcastUrlHq,
+  m4bUrlLq,
+  mp3ZipUrlLq,
+  podcastUrlLq,
+}) => {
   return (
     <WaveBottomBlock color="blue" className="bg-flgray-100 px-0 py-10 sm:p-16">
       <h1 className="font-sans font-bold text-3xl text-center tracking-wider mb-8">
@@ -28,6 +45,32 @@ const ListenBlock: React.FC<Props> = ({ trackId, numAudioParts, playlistId, titl
         >
           ?
         </a>
+      </div>
+      <div>
+        <h3 className="text-lg font-sans flprimary mb-2">HI-FI Links (temp)</h3>
+        <ul className="ml-4 text-sm font-serif text-flblue underline list-disc list-inside">
+          <li>
+            <a href={mp3ZipUrlHq}>Download MP3s as zip</a>
+          </li>
+          <li>
+            <a href={m4bUrlHq}>Download M4B audiobook file</a>
+          </li>
+          <li>
+            <a href={podcastUrlHq}>Download as Podcast</a>
+          </li>
+        </ul>
+        <h3 className="text-lg font-sans flprimary mb-2 mt-4">LO-FI Links (temp)</h3>
+        <ul className="ml-4 text-sm font-serif text-flblue underline list-disc list-inside">
+          <li>
+            <a href={mp3ZipUrlLq}>Download MP3s as zip</a>
+          </li>
+          <li>
+            <a href={m4bUrlLq}>Download M4B audiobook file</a>
+          </li>
+          <li>
+            <a href={podcastUrlLq}>Download as Podcast</a>
+          </li>
+        </ul>
       </div>
       <div className="flex flex-col items-center shadow-xl mt-8 mx-6">
         <EmbeddedAudio
