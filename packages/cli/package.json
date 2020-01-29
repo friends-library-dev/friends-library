@@ -33,10 +33,10 @@
     "serve": "^11.2.0",
     "ts-node": "^8.3.0",
     "uuid": "^3.3.3",
-    "yargs": "^14.0.0"
+    "yargs": "^15.0.0"
   },
   "devDependencies": {
     "@types/puppeteer-core": "^1.9.0",
-    "@types/yargs": "^13.0.0"
+    "@types/yargs": "^15.0.0"
   }
 }

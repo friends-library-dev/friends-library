@@ -21,10 +21,10 @@
     "glob": "^7.1.4",
     "nodegit": "^0.26.1",
     "ts-node": "^8.0.3",
-    "yargs": "^12.0.1"
+    "yargs": "^15.0.0"
   },
   "devDependencies": {
     "@types/nodegit": "^0.24.13",
-    "@types/yargs": "^12.0.11"
+    "@types/yargs": "^15.0.0"
   }
 }
