@@ -106,9 +106,9 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           printSize,
           pages,
           downloadUrl: {
-            web_pdf: url.logDownloadUrl(edition, 'web-pdf'),
-            epub: url.logDownloadUrl(edition, 'epub'),
-            mobi: url.logDownloadUrl(edition, 'mobi'),
+            web_pdf: url.artifactDownloadUrl(edition, 'web-pdf'),
+            epub: url.artifactDownloadUrl(edition, 'epub'),
+            mobi: url.artifactDownloadUrl(edition, 'mobi'),
           },
           chapterHeadings: dpcData.headings,
           price: price(printSize, pages),
@@ -118,6 +118,10 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
             ? {
                 reader: edition.audio.reader,
                 parts: edition.audio.parts.map(part => part.toJSON()),
+                m4bUrlHq: url.m4bDownloadUrl(edition.audio, 'HQ'),
+                m4bUrlLq: url.m4bDownloadUrl(edition.audio, 'LQ'),
+                mp3ZipUrlHq: url.mp3ZipDownloadUrl(edition.audio, 'HQ'),
+                mp3ZipUrlLq: url.mp3ZipDownloadUrl(edition.audio, 'LQ'),
                 podcastUrlHq: url.podcastUrl(edition.audio, 'HQ'),
                 podcastUrlLq: url.podcastUrl(edition.audio, 'LQ'),
                 externalPlaylistIdHq: edition.audio.externalPlaylistIdHq || null,

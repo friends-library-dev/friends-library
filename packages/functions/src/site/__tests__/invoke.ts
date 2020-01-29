@@ -9,6 +9,7 @@ export async function invokeCb(
   res: {
     statusCode: number;
     body?: string;
+    headers?: Record<string, string>;
   };
   json: Record<string, any>;
 }> {

@@ -9,6 +9,7 @@ process.env.CLOUD_STORAGE_BUCKET_URL = '/cloud/bucket';
 process.env.CLOUD_STORAGE_BUCKET = 'bucket';
 process.env.STRIPE_SECRET_KEY = 'stripe-secret-key';
 process.env.SENDGRID_API_KEY = 'sendgrid-api-key';
+process.env.SLACK_DOWNLOADS_CHANNEL = 'downloads';
 
 module.exports = {
   preset: 'ts-jest',

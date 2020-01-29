@@ -54,6 +54,12 @@ interface Props {
         audio: null | {
           reader: string;
           externalPlaylistIdLq: null | number;
+          m4bUrlLq: string;
+          mp3ZipUrlLq: string;
+          podcastUrlLq: string;
+          m4bUrlHq: string;
+          mp3ZipUrlHq: string;
+          podcastUrlHq: string;
           parts: { externalIdLq: number }[];
         };
       }[];
@@ -80,7 +86,8 @@ interface Props {
 export default ({ data: { friend, document, otherDocuments } }: Props) => {
   const otherBooks = otherDocuments.nodes;
   const mainEdition = document.editions[0];
-  const hasAudio = !!mainEdition.audio;
+  const audio = mainEdition.audio;
+  const hasAudio = !!audio;
   const coverProps: CoverProps = {
     lang: process.env.GATSBY_LANG === 'en' ? 'en' : 'es',
     title: document.title,
@@ -124,12 +131,18 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
         hasAudio={hasAudio}
         chapters={mainEdition.chapterHeadings}
       />
-      {mainEdition.audio && (
+      {audio && (
         <ListenBlock
           title={document.title}
-          numAudioParts={mainEdition.audio.parts.length}
-          trackId={mainEdition.audio.parts[0].externalIdLq || 0}
-          playlistId={mainEdition.audio.externalPlaylistIdLq}
+          numAudioParts={audio.parts.length}
+          trackId={audio.parts[0].externalIdLq || 0}
+          playlistId={audio.externalPlaylistIdLq}
+          m4bUrlHq={audio.m4bUrlHq}
+          mp3ZipUrlHq={audio.mp3ZipUrlHq}
+          podcastUrlHq={audio.podcastUrlHq}
+          m4bUrlLq={audio.m4bUrlLq}
+          mp3ZipUrlLq={audio.mp3ZipUrlLq}
+          podcastUrlLq={audio.podcastUrlLq}
         />
       )}
       {otherBooks.length > 0 && (
@@ -140,6 +153,7 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
           <div className="xl:flex justify-center">
             {otherBooks.map(book => (
               <RelatedBookCard
+                key={book.url}
                 lang={friend.lang}
                 isbn={book.editions[0].isbn}
                 title={book.title}
@@ -203,6 +217,12 @@ export const query = graphql`
         audio {
           reader
           externalPlaylistIdLq
+          m4bUrlLq
+          mp3ZipUrlLq
+          podcastUrlLq
+          m4bUrlHq
+          mp3ZipUrlHq
+          podcastUrlHq
           parts {
             externalIdLq
           }
