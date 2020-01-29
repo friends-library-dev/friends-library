@@ -8,12 +8,7 @@ import {
   Lang,
 } from '@friends-library/types';
 import { Layout } from '../components';
-import {
-  DocBlock,
-  ListenBlock,
-  ReadSampleBlock,
-  RelatedBookCard,
-} from '@friends-library/ui';
+import { DocBlock, ListenBlock, RelatedBookCard } from '@friends-library/ui';
 
 interface Props {
   data: {
@@ -125,11 +120,6 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
           numPages: edition.pages,
           downloadUrl: edition.downloadUrl,
         }))}
-      />
-      <ReadSampleBlock
-        price={mainEdition.price}
-        hasAudio={hasAudio}
-        chapters={mainEdition.chapterHeadings}
       />
       {audio && (
         <ListenBlock
