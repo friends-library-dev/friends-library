@@ -6,6 +6,7 @@ interface Props {
   hasAudio: boolean;
   addToCart: () => void;
   download: () => any;
+  gotoAudio: () => any;
   className?: string;
 }
 
@@ -14,6 +15,7 @@ const DocActions: React.FC<Props> = ({
   addToCart,
   hasAudio,
   download,
+  gotoAudio,
   className = '',
 }) => {
   return (
@@ -30,7 +32,9 @@ const DocActions: React.FC<Props> = ({
           icon: 'book',
           onClick: addToCart,
         },
-        ...(hasAudio ? [{ text: 'Audio Book', icon: 'headphones' }] : []),
+        ...(hasAudio
+          ? [{ text: 'Audio Book', icon: 'headphones', onClick: gotoAudio }]
+          : []),
       ]}
     />
   );
