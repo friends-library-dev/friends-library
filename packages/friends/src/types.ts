@@ -15,6 +15,9 @@ export interface FriendData {
   name: Name;
   slug: Slug;
   gender: Gender;
+  born?: number;
+  died?: number;
+  quotes?: { source: string; text: string }[];
   description: Description;
   documents: DocumentData[];
   residences: {
@@ -33,6 +36,7 @@ export interface DocumentData {
   slug: Slug;
   filename: string;
   description: Description;
+  partial_description?: Description;
   tags: (
     | 'journal'
     | 'letters'
@@ -47,6 +51,7 @@ export interface DocumentData {
   published?: number;
   editions: EditionData[];
   alt_language_id?: Uuid;
+  related_documents?: { id: Uuid; description: Description }[];
 }
 
 export interface EditionData {

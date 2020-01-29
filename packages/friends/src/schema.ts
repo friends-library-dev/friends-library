@@ -12,6 +12,14 @@ export default {
     gender: { enum: ['male', 'female', 'mixed'], required: true },
     description: { type: 'string', required: true },
     slug: { $ref: '/slug', required: true },
+    born: { type: 'integer', required: false, minimum: 1600, maximum: 1900 },
+    died: { type: 'integer', required: false, minimum: 1640, maximum: 1950 },
+    quotes: {
+      type: 'array',
+      required: false,
+      minItems: 1,
+      items: { $ref: '/quote' },
+    },
     residences: {
       type: 'array',
       required: false,
@@ -49,6 +57,16 @@ const subSchemas: Record<string, Schema> = {
     minLength: 5,
   },
 
+  quote: {
+    type: 'object',
+    additionalProperties: false,
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
+    properties: {
+      source: { type: 'string', required: true },
+      text: { type: 'string', required: true, minLength: 30, maximumLength: 700 },
+    },
+  },
+
   'residence-duration': {
     type: 'object',
     additionalProperties: false,
@@ -71,6 +89,16 @@ const subSchemas: Record<string, Schema> = {
         required: true,
         items: { $ref: '/residence-duration', minItems: 1 },
       },
+    },
+  },
+
+  'related-document': {
+    type: 'object',
+    additionalProperties: false,
+    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
+    properties: {
+      id: { $ref: '/uuid', required: true },
+      description: { type: 'string', required: true, minLength: 85, maxLength: 450 },
     },
   },
 
@@ -145,12 +173,25 @@ const subSchemas: Record<string, Schema> = {
       original_title: { type: 'string', required: false },
       published: { type: 'integer', required: false },
       slug: { $ref: '/slug', required: true },
+      partial_description: {
+        type: 'string',
+        minLength: 150,
+        maxLength: 400,
+        required: false,
+      },
       filename: {
         type: 'string',
         pattern: /^[A-Z][A-Za-z0-9-_]+$/,
         required: true,
       },
       description: { type: 'string', required: true },
+      related_documents: {
+        type: 'array',
+        uniqueItems: true,
+        required: false,
+        minItems: 1,
+        items: { $ref: '/related-document' },
+      },
       tags: {
         type: 'array',
         uniqueItems: true,
