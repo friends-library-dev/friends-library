@@ -54,8 +54,8 @@ const subSchemas: Record<string, Schema> = {
     additionalProperties: false,
     // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
-      start: { type: 'integer', required: true },
-      end: { type: 'integer', required: true },
+      start: { type: 'integer', required: false, minimum: 1600, maximum: 1900 },
+      end: { type: 'integer', required: true, minimum: 1600, maximum: 1900 },
     },
   },
 
