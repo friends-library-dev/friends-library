@@ -7,7 +7,7 @@ import { DownloadWizard, AddToCartWizard } from '@friends-library/ui';
 import DocActions from './DocActions';
 import CartItem from '../../checkout/models/CartItem';
 import CartStore from '../../checkout/services/CartStore';
-import SpinBook from '../../images/spin-book.png';
+import Rotate from '../../icons/Rotate';
 import './DocBlock.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
@@ -172,7 +172,7 @@ const DocBlock: React.FC<Props> = props => {
             className="focus:outline-none pt-1"
             onClick={() => setPerspective(nextPerspective(perspective))}
           >
-            <img src={SpinBook} alt="Spin Book" />
+            <Rotate />
           </button>
         </div>
         <div className="Text mb-8 md:px-12 bg-white md:mr-6 xl:mr-10">
