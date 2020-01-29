@@ -251,6 +251,7 @@ function LinksAndMeta(
       <DocActions
         download={onClickDownload}
         addToCart={onClickAddToCart}
+        gotoAudio={scrollToAudio}
         className="mb-8 lg:mx-24 xl:mx-0"
         price={price}
         hasAudio={hasAudio}
@@ -309,4 +310,16 @@ function ensureWizardInViewport(): void {
   }
 }
 
+const FIXED_TOPNAV_HEIGHT = 70;
 const POPUNDER_TRIANGLE_HEIGHT = 16;
+
+function scrollToAudio(): void {
+  let audioBlock = document.querySelector('.ListenBlock');
+  if (audioBlock) {
+    const audioBlockRect = audioBlock.getBoundingClientRect();
+    window.scrollTo({
+      top: audioBlockRect.top - FIXED_TOPNAV_HEIGHT + window.scrollY,
+      behavior: 'smooth',
+    });
+  }
+}

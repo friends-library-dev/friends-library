@@ -76,6 +76,7 @@ const FakeInnerds: React.FC<{ price: number; hasAudio: boolean }> = ({
       <DocActions
         download={() => console.log('@TODO @BLOCKER')}
         addToCart={() => console.log('@TODO @BLOCKER')}
+        gotoAudio={() => console.log('@TODO @BLOCKER')}
         className="mt-8"
         price={price}
         hasAudio={hasAudio}

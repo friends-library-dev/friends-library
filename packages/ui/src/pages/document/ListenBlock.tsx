@@ -29,7 +29,10 @@ const ListenBlock: React.FC<Props> = ({
   podcastUrlLq,
 }) => {
   return (
-    <WaveBottomBlock color="blue" className="bg-flgray-100 px-0 py-10 sm:p-16">
+    <WaveBottomBlock
+      color="blue"
+      className="ListenBlock bg-flgray-100 px-0 py-10 sm:p-16"
+    >
       <h1 className="font-sans font-bold text-3xl text-center tracking-wider mb-8">
         Listen to the Book
       </h1>
