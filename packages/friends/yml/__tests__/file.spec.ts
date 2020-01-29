@@ -154,3 +154,26 @@ describe('document.alt_language_id', () => {
     });
   });
 });
+
+describe('document.related_documents', () => {
+  friends.forEach(friend => {
+    friend.documents.forEach(document => {
+      if (!document.related_documents) {
+        return;
+      }
+
+      test(`${document.filename} related_documents refer to known documents`, () => {
+        document.related_documents!.forEach(related => {
+          expect(docMap.has(related.id)).toBe(true);
+        });
+      });
+
+      test(`${document.filename} related_documents do not refer to friends own docs`, () => {
+        const friendDocs = friend.documents.map(doc => doc.id);
+        document.related_documents!.forEach(related => {
+          expect(friendDocs.includes(related.id)).toBe(false);
+        });
+      });
+    });
+  });
+});

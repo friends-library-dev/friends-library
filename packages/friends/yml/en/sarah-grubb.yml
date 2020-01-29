@@ -2,6 +2,19 @@ id: 7619ef92-d444-40cf-a8e9-7e7ffc36fe4d
 name: Sarah Grubb
 slug: sarah-grubb
 gender: female
+born: 1756
+died: 1790
+quotes:
+  - source: Samuel Neale
+    text:
+      I am ready to conclude that none in our day, from the time of the effectual
+      visitation of Christ in her soul, adhered with more steadiness to His guidance,
+      through a variety of probations.
+  - source: No Cross, No Crown, ch. 1
+    text:
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 residences:
   - city: York
     country: England
@@ -36,6 +49,10 @@ documents:
       public minister about the twenty-third year of her age. Some years later, she and
       her husband founded a girls school in Clonmel, Ireland, where she lived and
       ministered until her death in 1790, at only 34 years of age.
+    partial_description:
+      A journal of the life and religious travels of Sarah Grubb, including numerous
+      extracts from her letters, along with a short treatise on Christian Discipline in
+      the education of youth.
     tags:
       - journal
     editions:
@@ -43,3 +60,16 @@ documents:
         isbn: 978-1-64476-127-4
       - type: original
         isbn: 978-1-64476-128-1
+    related_documents:
+      - id: 45dca7c2-3ff9-4a83-acdf-55ec1630cb25
+        description:
+          During a lengthy ministry trip to Great Britain, Rebecca Jones spent many weeks
+          traveling and ministering with Sarah Grubb, many details of which she relates in
+          her journal. The two became cemented in a deep bond of friendship and kept up a
+          correspondence that lasted until Sarah's death.
+      - id: 9bd10df3-80aa-4623-b66a-61e00f112b47
+        description:
+          This is just to show you that there can be (and often will be) multiple related
+          documents. This should be deleted and replaced with something real, the id above
+          is Mary Neale, which I don't think should be attached to Sarah Grubb. Lorem
+          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
