@@ -56,8 +56,9 @@ const DocBlock: React.FC<Props> = props => {
     }
     // i should lose my React license for this
     let visibleBtnRect: DOMRect | undefined;
-    document.querySelectorAll('.DocBlock .MultiPill > button').forEach(btn => {
+    document.querySelectorAll('.DocBlock .MultiPill > button').forEach((btn, idx) => {
       if (visibleBtnRect && downloading) return;
+      if (visibleBtnRect && addingToCart && idx > 1) return;
       const rect = btn.getBoundingClientRect();
       if (rect.width && rect.height) {
         visibleBtnRect = rect;
@@ -77,7 +78,6 @@ const DocBlock: React.FC<Props> = props => {
     const left = visibleBtnRect.x + visibleBtnRect.width / 2;
     setWizardOffset({ top, left });
     setTimeout(ensureWizardInViewport, 0);
-    setTimeout(() => {}, 0);
   };
 
   useEffect(positionWizard, [downloading, addingToCart, wrap.current]);
@@ -127,6 +127,7 @@ const DocBlock: React.FC<Props> = props => {
           onSelect={editionType => {
             addToCart(editionType);
             setAddingToCart(false);
+            setWizardOffset({ top: -9999, left: -9999 });
           }}
         />
       )}
@@ -137,7 +138,10 @@ const DocBlock: React.FC<Props> = props => {
           onSelect={(editionType, fileType) => {
             const edition = props.editions.find(e => e.type === editionType);
             if (edition) {
-              setTimeout(() => setDownloading(false), 4000);
+              setTimeout(() => {
+                setDownloading(false);
+                setWizardOffset({ top: -9999, left: -9999 });
+              }, 4000);
               window.location.href = edition.downloadUrl[fileType];
             }
           }}
