@@ -7,7 +7,6 @@ import {
   BookByFriend,
   TestimonialsBlock,
   RelatedBookCard,
-  FriendMeta,
   MapBlock,
 } from '@friends-library/ui';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
@@ -69,24 +68,6 @@ export default ({ data: { friend } }: Props) => {
             );
           })}
         </div>
-      </div>
-      <div className="FriendMetaBlock bg-white p-8 md:flex md:justify-center lg:py-12">
-        <StyledFriendMeta color="green" title="Author Facts">
-          <li>Lived: 1801</li>
-          <li>Died: 1891</li>
-          <li>City: London</li>
-          <li>Country: Great Britain</li>
-          <li>Role: Elder</li>
-        </StyledFriendMeta>
-        <StyledFriendMeta color="blue" title="Mentions">
-          <li>The Journal of Ann Branson</li>
-          <li>The Journal of David Ferris</li>
-        </StyledFriendMeta>
-        <StyledFriendMeta color="gold" title="Friends of Ann">
-          <li>David Ferris</li>
-          <li>Ambrose Rigge</li>
-          <li>Charles Marshall</li>
-        </StyledFriendMeta>
       </div>
       <MapBlock
         friendName={friend.name}
@@ -198,9 +179,3 @@ export const query = graphql`
 
 const LOREM =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
-
-const StyledFriendMeta: typeof FriendMeta = ({ color, title, children }) => (
-  <FriendMeta className="mb-8 md:mb-0 md:w-1/3 md:mr-6" color={color} title={title}>
-    {children}
-  </FriendMeta>
-);
