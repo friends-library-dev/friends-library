@@ -30,6 +30,10 @@ const Layout: React.FC<Props> = ({ children }) => {
   const [itemJustAdded, setItemJustAdded] = useState<boolean>(false);
 
   useEffect(() => {
+    document.designMode = 'on';
+  }, []);
+
+  useEffect(() => {
     const setJustAdded: () => any = () => {
       setItemJustAdded(true);
       setTimeout(() => setItemJustAdded(false), 4000);
