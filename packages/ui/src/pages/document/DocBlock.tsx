@@ -2,13 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'gatsby-link';
 import { CoverProps, PrintSize, EditionType } from '@friends-library/types';
 import { bookDims } from '@friends-library/lulu';
-import { ThreeD } from '@friends-library/cover-component';
 import { DownloadWizard, AddToCartWizard } from '@friends-library/ui';
 import DocActions from './DocActions';
 import CartItem from '../../checkout/models/CartItem';
 import CartStore from '../../checkout/services/CartStore';
-import Rotate from '../../icons/Rotate';
 import './DocBlock.css';
+import RotatableCover from './RotatableCover';
 
 type Props = Omit<CoverProps, 'pages'> & {
   authorUrl: string;
@@ -35,8 +34,6 @@ type Props = Omit<CoverProps, 'pages'> & {
   }[];
 };
 
-type Perspective = 'back' | 'front' | 'spine' | 'angle-front' | 'angle-back';
-
 const store = CartStore.getSingleton();
 
 const DocBlock: React.FC<Props> = props => {
@@ -44,7 +41,6 @@ const DocBlock: React.FC<Props> = props => {
   const wrap = useRef<HTMLDivElement | null>(null);
   const [downloading, setDownloading] = useState<boolean>(false);
   const [addingToCart, setAddingToCart] = useState<boolean>(false);
-  const [perspective, setPerspective] = useState<Perspective>('angle-front');
   const [wizardOffset, setWizardOffset] = useState<{ top: number; left: number }>({
     top: -9999,
     left: -9999,
@@ -149,32 +145,7 @@ const DocBlock: React.FC<Props> = props => {
         />
       )}
       <div className="TopWrap md:flex">
-        <div className="flex flex-col items-center order-1">
-          <div className="hidden xl:block">
-            <ThreeD
-              {...props}
-              pages={pages[0]}
-              perspective={perspective}
-              scaler={4 / 5}
-              scope="4-5"
-            />
-          </div>
-          <div className="xl:hidden">
-            <ThreeD
-              {...props}
-              pages={pages[0]}
-              perspective={perspective}
-              scaler={3 / 5}
-              scope="3-5"
-            />
-          </div>
-          <button
-            className="focus:outline-none pt-1"
-            onClick={() => setPerspective(nextPerspective(perspective))}
-          >
-            <Rotate />
-          </button>
-        </div>
+        <RotatableCover className="order-1" coverProps={{ ...props, pages: pages[0] }} />
         <div className="Text mb-8 md:px-12 bg-white md:mr-6 xl:mr-10">
           <h1 className="font-sans text-3xl md:text-2-5xl font-bold leading-snug mt-8 tracking-wider mb-6">
             {title}
@@ -281,19 +252,6 @@ function dimensions(size: PrintSize, pages: number[]): string {
     .map(p => bookDims(size, p))
     .map(dims => `${dims.width} x ${dims.height} x ${dims.depth.toPrecision(2)} in`)
     .join(', ');
-}
-
-function nextPerspective(perspective: Perspective): Perspective {
-  switch (perspective) {
-    case 'angle-front':
-      return 'spine';
-    case 'spine':
-      return 'angle-back';
-    case 'angle-back':
-      return 'back';
-    default:
-      return 'angle-front';
-  }
 }
 
 function ensureWizardInViewport(): void {
