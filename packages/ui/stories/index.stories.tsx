@@ -87,7 +87,7 @@ storiesOf('Search', module)
   .add('minimized', () => <Search expanded={false} {...searchActions} />)
   .add('expanded', () => <Search expanded={true} {...searchActions} />)
   .add('with text', () => (
-    <Search value="William Penn" expanded={true} {...searchActions} />
+    <Search initialValue="William Penn" expanded={true} {...searchActions} />
   ));
 
 storiesOf('Home Blocks', module)
@@ -97,6 +97,7 @@ storiesOf('Home Blocks', module)
   .add('Hero', () => <Hero />);
 
 const searchActions = {
+  onSubmit: a('submit'),
   onClick: a('click'),
   onBlur: a('blur'),
 };

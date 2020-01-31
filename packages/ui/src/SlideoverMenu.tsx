@@ -14,7 +14,12 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           &#x2715;
         </span>
         <div className="flex-grow">
-          <FriendsLogo className="m-auto" />
+          <FriendsLogo
+            className="m-auto"
+            iconColor="white"
+            friendsColor="white"
+            libraryColor="white"
+          />
         </div>
         <i className="w-12" />
       </header>

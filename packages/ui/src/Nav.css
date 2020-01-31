@@ -1,0 +1,38 @@
+.Nav {
+  height: 70px;
+  padding: 0 20px 0 0;
+}
+
+html[lang='en'] .Nav .Logo {
+  width: 140px;
+}
+
+html[lang='es'] .Nav .Logo {
+  width: 190px;
+}
+
+@media (max-width: 670px) {
+  .Nav.searching .Logo {
+    width: 145px;
+  }
+}
+
+@media (max-width: 570px) {
+  .Nav.searching .Logo {
+    width: 100px;
+  }
+}
+
+@media (min-width: 545px) {
+  html[lang='en'] .Nav .Logo {
+    width: 150px;
+  }
+
+  html[lang='es'] .Nav .Logo {
+    width: 210px;
+  }
+
+  .Nav .Search {
+    display: block;
+  }
+}

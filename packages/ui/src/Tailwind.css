@@ -67,4 +67,8 @@
   transform: translateX(-50%);
 }
 
+.transition-ease-out-1\/4s {
+  transition: 0.25s ease-out;
+}
+
 @tailwind utilities;
