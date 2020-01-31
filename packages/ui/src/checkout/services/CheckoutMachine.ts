@@ -1,7 +1,6 @@
 import { EventEmitter } from 'events';
 import { checkoutErrors as Err } from '@friends-library/types';
 import CheckoutService from './CheckoutService';
-import { releaseFocus } from '../../focus';
 
 const states = {
   cart: {
@@ -147,7 +146,6 @@ export default class CheckoutMachine extends EventEmitter {
     this.emit('close');
     this.transitionTo('closed');
     this.dispatch('next');
-    releaseFocus();
   }
 
   public async transitionTo(state: StateKey): Promise<void> {

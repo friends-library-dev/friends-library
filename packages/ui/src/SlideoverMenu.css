@@ -25,7 +25,7 @@
   display: none;
 }
 
-.SlideoverMenu .Search {
+html[lang] .SlideoverMenu .Search {
   background: white;
   border-width: 0;
 }
