@@ -4,6 +4,7 @@ import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
 import DocBlock from '../src/pages/document/DocBlock';
 import ListenBlock from '../src/pages/document/ListenBlock';
+import QualitySwitch from '../src/pages/document/QualitySwitch';
 import ReadSampleBlock from '../src/pages/document/ReadSampleBlock';
 import { coverSizes } from './decorators';
 import Tablet from '../src/pages/document/Tablet';
@@ -23,6 +24,9 @@ storiesOf('Doc Page', module)
   .addDecorator(centered)
   .addDecorator(storyFn => (
     <div className="bg-gray-800 w-screen h-screen">{storyFn()}</div>
+  ))
+  .add('QualitySwitch', () => (
+    <QualitySwitch initialQuality="HQ" onChange={a('change quality')} />
   ))
   .add('TocHamburger', () => <TocHamburger />)
   .add('Tablet', () => <Tablet />)
