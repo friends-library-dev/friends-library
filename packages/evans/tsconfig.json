@@ -2,18 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    "types": ["node", "@emotion/core", "jest"],
+    "types": ["node", "jest"],
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "noEmit": true,
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin",
-        "lint": {
-          "validProperties": ["compose"]
-        }
-      }
-    ]
+    "noEmit": true
   },
   "include": ["./src"],
   "references": [

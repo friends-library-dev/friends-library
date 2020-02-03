@@ -17,14 +17,11 @@
     "test:integration": "cd ../../ && yarn test --config packages/ui/src/checkout/services/__tests__/jest.config.js --testRegex=packages/ui/.*/.*\\.integration\\.ts"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.14",
-    "@emotion/styled": "^10.0.14",
     "@friends-library/cover-component": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/lulu": "1.0.0",
     "@reach/dialog": "^0.7.0",
     "classnames": "^2.2.6",
-    "emotion-theming": "^10.0.14",
     "gatsby-link": "^2.2.2",
     "js-cookie": "^2.2.1",
     "react": "16.10.1",

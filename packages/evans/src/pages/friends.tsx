@@ -1,9 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import Block from '../components/Block';
-import PageTitle from '../components/PageTitle';
-import Divider from '../components/Divider';
-import Button from '../components/Button';
+import { Button } from '@friends-library/ui';
 import Layout from '../components/Layout';
 
 interface Props {
@@ -20,8 +17,8 @@ interface Props {
 
 export default ({ data }: Props) => (
   <Layout>
-    <Block>
-      <PageTitle>Friends</PageTitle>
+    <section>
+      <h1>Friends</h1>
 
       <p>
         <i>
@@ -37,8 +34,6 @@ export default ({ data }: Props) => (
         exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </p>
 
-      <Divider />
-
       <ul>
         {data.allFriend.friends.map(friend => (
           <li key={friend.slug}>
@@ -46,8 +41,6 @@ export default ({ data }: Props) => (
           </li>
         ))}
       </ul>
-
-      <Divider />
 
       <h2>Compilations</h2>
 
@@ -60,8 +53,8 @@ export default ({ data }: Props) => (
         spiritual growth. To view compilations, click below:
       </p>
 
-      <Button url="/compilations" text="See All Compilations »" />
-    </Block>
+      <Button to="/compilations">See All Compilations »</Button>
+    </section>
   </Layout>
 );
 

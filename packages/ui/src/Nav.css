@@ -3,11 +3,11 @@
   padding: 0 20px 0 0;
 }
 
-html[lang='en'] .Nav .Logo {
+.Nav .Logo:lang(en) {
   width: 140px;
 }
 
-html[lang='es'] .Nav .Logo {
+.Nav .Logo:lang(es) {
   width: 190px;
 }
 
@@ -24,11 +24,11 @@ html[lang='es'] .Nav .Logo {
 }
 
 @media (min-width: 545px) {
-  html[lang='en'] .Nav .Logo {
+  .Nav .Logo:lang(en) {
     width: 150px;
   }
 
-  html[lang='es'] .Nav .Logo {
+  .Nav .Logo:lang(es) {
     width: 210px;
   }
 

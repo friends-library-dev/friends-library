@@ -1,4 +1,5 @@
 import React from 'react';
+import { LANG } from './env';
 
 interface Props {
   title: string;
@@ -34,7 +35,7 @@ function src(
   const id = playlistId || trackId;
   const params: Record<string, string> = {
     url: `https://api.soundcloud.com/${resource}/${id}`,
-    color: process?.env?.GATSBY_LANG === 'es' ? 'C18C59' : '6C3142',
+    color: LANG === 'es' ? 'C18C59' : '6C3142',
     auto_play: 'false',
     hide_related: 'true',
     show_comments: 'false',

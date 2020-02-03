@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
-import { useEnglish, useSpanish, coverSizes } from './decorators';
+import { coverSizes } from './decorators';
 import Nav from '../src/Nav';
 import Search from '../src/Search';
 import Button from '../src/Button';
@@ -22,24 +22,36 @@ storiesOf('SlideoverMenu', module).add('default', () => (
 
 storiesOf('Hamburger', module)
   .addDecorator(centered)
-  .add('default', () => <Hamburger menuOpen={false} onClick={a('hamburger-clicked')} />);
+  .add('default', () => <Hamburger onClick={a('hamburger-clicked')} />);
 
 storiesOf('Button', module)
   .addDecorator(centered)
-  .add('primary + secondary', () => (
+  .add('various', () => (
     <>
-      <Button className="mb-6 bg-flblue">Find out more</Button>
-      <Button className="bg-flmaroon">Secondary</Button>
+      <Button className="mb-6" shadow bg="gold">
+        Shadow
+      </Button>
+      <Button className="mb-6">Click Me</Button>
+      <Button bg={null} className="bg-red-500 mb-6">
+        Custom BG
+      </Button>
+      <Button className="mb-6" bg="blue">
+        Find out more
+      </Button>
+      <Button disabled className="mb-6">
+        disabled
+      </Button>
+      <Button to="/" bg="green">
+        Secondary
+      </Button>
     </>
   ));
 
-storiesOf('Nav (en)', module)
-  .addDecorator(useEnglish)
+storiesOf('Nav', module)
   .add('default', () => (
     <Nav
       showCartBadge={false}
       onCartBadgeClick={a('cart badge clicked')}
-      menuOpen={false}
       onHamburgerClick={a('hamburger clicked')}
     />
   ))
@@ -47,42 +59,19 @@ storiesOf('Nav (en)', module)
     <Nav
       showCartBadge
       onCartBadgeClick={a('cart badge clicked')}
-      menuOpen={false}
       onHamburgerClick={a('hamburger clicked')}
     />
   ))
   .add('searching', () => (
     <Nav
-      menuOpen={false}
       initialSearching={true}
       showCartBadge={false}
       onCartBadgeClick={a('cart badge clicked')}
-      onHamburgerClick={a('hamburger clicked')}
-    />
-  ));
-
-storiesOf('Nav (es)', module)
-  .addDecorator(useSpanish)
-  .add('default', () => (
-    <Nav
-      menuOpen={false}
-      showCartBadge={false}
-      onCartBadgeClick={a('cart badge clicked')}
-      onHamburgerClick={a('hamburger clicked')}
-    />
-  ))
-  .add('searching', () => (
-    <Nav
-      menuOpen={false}
-      showCartBadge={false}
-      onCartBadgeClick={a('cart badge clicked')}
-      initialSearching={true}
       onHamburgerClick={a('hamburger clicked')}
     />
   ));
 
 storiesOf('Search', module)
-  .addDecorator(useEnglish)
   .addDecorator(centered)
   .add('minimized', () => <Search expanded={false} {...searchActions} />)
   .add('expanded', () => <Search expanded={true} {...searchActions} />)
@@ -103,7 +92,9 @@ const searchActions = {
 };
 
 storiesOf('MultiPill', module)
-  .addDecorator(centered)
+  .addDecorator(storyFn => (
+    <div style={{ maxWidth: 1000, padding: '3em' }}>{storyFn()}</div>
+  ))
   .add('3-part', () => (
     <MultiPill
       buttons={[

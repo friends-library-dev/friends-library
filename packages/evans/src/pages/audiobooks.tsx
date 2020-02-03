@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { Url, Title, Name } from '@friends-library/types';
-import { Layout, Block, PageTitle, Divider } from '../components';
+import { Layout } from '../components';
 
 interface Props {
   data: {
@@ -24,8 +24,8 @@ export default ({
   },
 }: Props) => (
   <Layout>
-    <Block>
-      <PageTitle>Audiobooks</PageTitle>
+    <section>
+      <h1>Audiobooks</h1>
       <p>
         <i>
           [The idea behind this page is a one-stop location to find every book that we
@@ -38,7 +38,6 @@ export default ({
         Below is a list of every book for which we currently have a completed audiobook
         edition. Check back often as we're frequently adding new recordings!
       </p>
-      <Divider />
       <ul>
         {friends
           .flatMap(f => f.documents.map(doc => ({ ...doc, friendName: f.name })))
@@ -51,7 +50,7 @@ export default ({
             </li>
           ))}
       </ul>
-    </Block>
+    </section>
   </Layout>
 );
 

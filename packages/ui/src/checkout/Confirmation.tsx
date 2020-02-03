@@ -16,7 +16,7 @@ const Confirmation: React.FC<{ onClose: () => void; email: string }> = ({
       your package once it ships. We really hope you enjoy and benefit from the book you
       ordered!
     </p>
-    <Button className="bg-flprimary mx-auto mt-10" onClick={onClose}>
+    <Button className="mx-auto mt-10" shadow onClick={onClose}>
       Close
     </Button>
   </div>

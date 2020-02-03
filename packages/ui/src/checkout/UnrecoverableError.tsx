@@ -26,10 +26,10 @@ const UnrecoverableError: React.FC<Props> = ({ onRetry, onClose }) => (
       to get help completing your order.
     </ErrorMsg>
     <div className="flex flex-col items-center mt-8 md:flex-row md:justify-center">
-      <Button className="bg-flprimary mb-6 md:mb-0 md:mr-6" onClick={onRetry}>
+      <Button className="mb-6 md:mb-0 md:mr-6" shadow onClick={onRetry}>
         Try again
       </Button>
-      <Button className="bg-gray-500" onClick={onClose}>
+      <Button className="bg-gray-500" bg={null} shadow onClick={onClose}>
         Close
       </Button>
     </div>

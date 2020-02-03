@@ -1,0 +1,10 @@
+.Btn {
+  @apply block rounded-full font-sans text-center uppercase tracking-wider text-white;
+  width: 280px;
+  height: 60px;
+  line-height: 60px;
+}
+
+.Btn:focus {
+  @apply outline-none shadow-outline;
+}

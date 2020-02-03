@@ -1,11 +1,13 @@
 .Footer {
-  background: linear-gradient(
-      rgba(theme('rgb.flprimary'), 0.925),
-      rgba(theme('rgb.flprimary'), 0.925)
-    ),
+  background-image: linear-gradient(rgba(108, 49, 66, 0.8), rgba(108, 49, 66, 0.8)),
     url(./images/mountains.jpg);
   background-size: cover;
   background-position: 0 40%;
+}
+
+.Footer:lang(es) {
+  background-image: linear-gradient(rgba(193, 140, 89, 0.8), rgba(193, 140, 89, 0.8)),
+    url(./images/mountains.jpg);
 }
 
 .Footer dt::before {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import CheckoutMachine from './services/CheckoutMachine';
+import { LANG } from '../env';
 import Cart from '../cart';
 import Delivery from './Delivery';
 import Payment from './Payment';
@@ -67,7 +68,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
     case 'capturePayment':
       return (
         <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
-          <Elements locale={process.env.GATSBY_LANG || 'en'}>
+          <Elements locale={LANG}>
             <Payment
               throbbing={state !== 'payment'}
               error={machine.service.popStripeError()}

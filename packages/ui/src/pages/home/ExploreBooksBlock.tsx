@@ -12,7 +12,9 @@ const ExploreBooksBlock: React.FC = () => (
       We currently have 113 books freely availble on this site. We'll help you find what
       you're looking for by searching, browsing authors, topics, genres, and more.
     </p>
-    <Button className="bg-flmaroon mx-auto mt-12">Explore More</Button>
+    <Button className="mx-auto mt-12" shadow>
+      Explore More
+    </Button>
   </MultiBookBgBlock>
 );
 

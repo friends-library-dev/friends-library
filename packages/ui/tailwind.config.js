@@ -27,6 +27,7 @@ module.exports = {
     extend: {
       colors: {
         flprimary: `rgb(${LANG === 'en' ? maroonRgb : goldRgb})`,
+        'flprimary-800': `rgb(${LANG === 'en' ? '88, 44, 56' : '162, 112, 67'})`,
         flgold: `rgb(${goldRgb})`,
         flmaroon: `rgb(${maroonRgb})`,
         flblue: `rgb(${blueRgb})`,
@@ -34,6 +35,7 @@ module.exports = {
         flgray: `rgb(${grayRgb})`,
         flblack: `rgb(${blackRgb})`,
         'flmaroon-600': `rgb(${maroonRgb})`,
+        'flmaroon-800': `rgb(88, 44, 56)`,
         'flmaroon-500': 'rgb(132, 60, 81)',
         'flmaroon-400': `rgb(147, 64, 89)`,
         'flgreen-800': 'rgb(142, 142, 113)',
@@ -56,6 +58,7 @@ module.exports = {
         '3-5xl': '2.0625rem',
       },
       boxShadow: {
+        btn: 'rgba(0, 0, 0, 0.15) 0px 0px 10px 4px',
         direct:
           '0 -7px 25px -5px rgba(0, 0, 0, 0.1), 0 15px 10px -5px rgba(0, 0, 0, 0.04)',
       },

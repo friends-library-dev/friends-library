@@ -155,10 +155,7 @@ const Delivery: React.FC<{
         <Back className={cx(throbbing && 'blur')} onClick={onBack}>
           Back to Order
         </Back>
-        <Button
-          className="bg-flprimary mx-auto"
-          disabled={!filledOutCompletely || throbbing}
-        >
+        <Button shadow className="mx-auto" disabled={!filledOutCompletely || throbbing}>
           Payment &nbsp;&rsaquo;
         </Button>
       </form>

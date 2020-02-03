@@ -1,10 +1,10 @@
 import React from 'react';
-import { Layout, Block, PageTitle, Divider } from '../components';
+import { Layout } from '../components';
 
 export default () => (
   <Layout>
-    <Block>
-      <PageTitle>Audio Help</PageTitle>
+    <section>
+      <h1>Audio Help</h1>
 
       <p>
         <i>
@@ -14,8 +14,6 @@ export default () => (
         </i>
       </p>
 
-      <Divider />
-
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -51,6 +49,6 @@ export default () => (
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
         officia deserunt mollit anim id est laborum.
       </p>
-    </Block>
+    </section>
   </Layout>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { Html } from '@friends-library/types';
-import { Layout, Block, PageTitle } from '../components';
+import { Layout } from '../components';
 
 interface Props {
   data: {
@@ -17,10 +17,10 @@ export default ({
   },
 }: Props) => (
   <Layout>
-    <Block>
-      <PageTitle>Contact Us</PageTitle>
+    <section>
+      <h1>Contact Us</h1>
       <div dangerouslySetInnerHTML={{ __html: html }} />
-    </Block>
+    </section>
   </Layout>
 );
 
