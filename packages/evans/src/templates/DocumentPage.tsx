@@ -9,7 +9,12 @@ import {
 } from '@friends-library/types';
 import { Layout } from '../components';
 import { LANG } from '../env';
-import { DocBlock, ListenBlock, RelatedBookCard } from '@friends-library/ui';
+import {
+  DocBlock,
+  ListenBlock,
+  RelatedBookCard,
+  ExploreBooksBlock,
+} from '@friends-library/ui';
 
 interface Props {
   data: {
@@ -165,6 +170,7 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
           </div>
         </div>
       )}
+      {(!audio || otherBooks.length === 0) && <ExploreBooksBlock />}
     </Layout>
   );
 };
