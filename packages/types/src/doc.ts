@@ -115,6 +115,12 @@ export interface EditionMeta {
   numSections: number;
   revision: Sha;
   productionRevision: Sha;
+  audioFilesizes?: {
+    mp3ZipHq: number;
+    mp3ZipLq: number;
+    m4bHq: number;
+    m4bLq: number;
+  };
   paperback: {
     size: PrintSize;
     volumes: number[];

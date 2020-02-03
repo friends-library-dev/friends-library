@@ -81,6 +81,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           pages = editionMeta.paperback.volumes;
         } else {
           red(`Edition meta not found for ${edition.path}`);
+          process.exit(1);
         }
 
         let dpcData: EditionCache = dpcCache.get(edition.path) || {
@@ -99,6 +100,10 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
             });
             persistDpcCache(dpcCache);
           }
+        }
+
+        if (edition.audio && !editionMeta.audioFilesizes) {
+          red(`Unexpected missing audio filesize data: ${edition.path}`);
         }
 
         return {
@@ -121,10 +126,10 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
             ? {
                 reader: edition.audio.reader,
                 parts: edition.audio.parts.map(part => part.toJSON()),
-                m4bFilesizeHq: humansize(37741752),
-                m4bFilesizeLq: humansize(14548650),
-                mp3ZipFilesizeHq: humansize(40711937),
-                mp3ZipFilesizeLq: humansize(13365726),
+                m4bFilesizeHq: humansize(editionMeta.audioFilesizes?.m4bHq || 0),
+                m4bFilesizeLq: humansize(editionMeta.audioFilesizes?.m4bLq || 0),
+                mp3ZipFilesizeHq: humansize(editionMeta.audioFilesizes?.mp3ZipHq || 0),
+                mp3ZipFilesizeLq: humansize(editionMeta.audioFilesizes?.mp3ZipLq || 0),
                 m4bUrlHq: url.m4bDownloadUrl(edition.audio, 'HQ'),
                 m4bUrlLq: url.m4bDownloadUrl(edition.audio, 'LQ'),
                 mp3ZipUrlHq: url.mp3ZipDownloadUrl(edition.audio, 'HQ'),

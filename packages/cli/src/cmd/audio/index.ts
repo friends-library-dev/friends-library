@@ -57,6 +57,12 @@ export const builder: CommandBuilder = function(yargs) {
       default: false,
       demand: false,
     })
+    .option('store-filesizes', {
+      type: 'boolean',
+      description: 'store audio filesize data in document meta',
+      default: false,
+      demand: false,
+    })
     .option('upload-mp3-zips', {
       type: 'boolean',
       description: 'upload local mp3s as aggregate zip files to cloud location',
