@@ -1,8 +1,11 @@
 .Block-quakers {
-  background: linear-gradient(
-      rgba(theme('rgb.flprimary'), 0.9),
-      rgba(theme('rgb.flprimary'), 0.9)
-    ),
+  background: linear-gradient(rgba(108, 49, 66, 0.9), rgba(108, 49, 66, 0.9)),
+    url(../images/london.jpg);
+  background-size: cover;
+}
+
+.Block-quakers:lang(es) {
+  background: linear-gradient(rgba(193, 140, 89, 0.9), rgba(193, 140, 89, 0.9)),
     url(../images/london.jpg);
   background-size: cover;
 }

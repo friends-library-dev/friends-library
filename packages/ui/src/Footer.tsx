@@ -1,22 +1,24 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import './Footer.css';
+import cx from 'classnames';
+import { LANG } from './env';
 import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';
-import { withTheme } from 'emotion-theming';
-import { Theme } from './theme';
-import cx from 'classnames';
+import './Footer.css';
 
-const Footer: React.FC<{ theme: Theme }> = ({ theme: { lang } }) => {
-  const Logo = lang === 'en' ? FriendsLogo : AmigosLogo;
+const Footer: React.FC = () => {
+  const Logo = LANG === 'en' ? FriendsLogo : AmigosLogo;
   return (
     <footer className="Footer text-gray-300 font-hairline mt-auto">
       <div className="flex flex-col items-center pt-16 pb-8 py-12 md:pt-16 md:pb-16 lg:py-16 xl:py-24">
         <div className="columns text-center md:flex md:text-left md:pt-2">
           <Logo
+            iconColor="white"
+            friendsColor="white"
+            libraryColor="white"
             className={cx(
               'fill-current w-48 lg:w-48  md:-mt-12 lg:ml-0 lg:mr-16 xl:-ml-16',
-              lang === 'en'
+              LANG === 'en'
                 ? 'mb-16 md:-ml-6 md:mr-8 md:w-32'
                 : 'mb-12 h-12 md:h-auto md:mb-16 -mr-6 md:mr-0 mt-4 md:mt-0',
             )}
@@ -57,7 +59,7 @@ const Footer: React.FC<{ theme: Theme }> = ({ theme: { lang } }) => {
   );
 };
 
-export default withTheme(Footer);
+export default Footer;
 
 const LinkList: React.FC<{ title: string; links: [string, string][] }> = ({
   title,

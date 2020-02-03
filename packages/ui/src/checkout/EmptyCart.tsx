@@ -38,7 +38,9 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
           </Link>
         ))}
       </div>
-      <Button className="bg-flprimary mx-auto mt-4">Explore Books</Button>
+      <Button className="mx-auto mt-4" shadow>
+        Explore Books
+      </Button>
     </div>
   );
 };

@@ -159,9 +159,9 @@ class Payment extends React.Component<Props, State> {
         <div className={cx(throbbing && 'blur pointer-events-none')}>
           <Back onClick={onBack}>Back to delivery</Back>
           <Button
+            bg={this.valid() ? 'primary' : null}
             className={cx('mx-auto', {
               'bg-gray-800': !this.valid(),
-              'bg-flprimary': this.valid(),
             })}
             disabled={!this.valid()}
           >

@@ -1,7 +1,20 @@
+.Menu--open .Slideover {
+  transform: none;
+}
+
 .Slideover {
+  transform: translate3d(-100%, 0, 0);
   z-index: 555;
   width: 375px;
   transition: transform 0.1s ease;
+}
+
+html[lang='en'] .Slideover > nav {
+  background: rgba(108, 49, 66, 0.985);
+}
+
+html[lang='es'] .Slideover > nav {
+  background: rgba(193, 140, 89, 0.985);
 }
 
 @screen md {

@@ -12,7 +12,7 @@ const GettingStartedBlock: React.FC = () => (
       Not sure where to begin? We've got a bunch recommendations adapted to various states
       and interests to help guide you.
     </p>
-    <Button to="/getting-started" className="bg-flmaroon mx-auto mt-10 md:mx-0">
+    <Button to="/getting-started" className="mx-auto mt-10 md:mx-0" shadow>
       Get Started
     </Button>
   </DuoToneWaveBlock>

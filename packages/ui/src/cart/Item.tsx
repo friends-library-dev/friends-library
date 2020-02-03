@@ -1,8 +1,8 @@
 import React from 'react';
-import { withTheme } from 'emotion-theming';
 import { Front as FrontCover } from '@friends-library/cover-component';
 import { EditionType } from '@friends-library/types';
 import ItemQuantity from './ItemQuantity';
+import { LANG } from '../env';
 import './Item.css';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
   remove: () => void;
 }
 
-const Component: React.FC<Props> = ({
+const Item: React.FC<Props> = ({
   title,
   author,
   price,
@@ -29,7 +29,7 @@ const Component: React.FC<Props> = ({
       <div className="w-2/3 md:w-3/5 flex">
         <div className="CoverWrap hidden mr-1 flex flex-col justify-center">
           <FrontCover
-            lang={process?.env?.GATSBY_LANG === 'es' ? 'es' : 'en'}
+            lang={LANG}
             isCompilation={false}
             size="s"
             author={author}
@@ -69,4 +69,4 @@ const Component: React.FC<Props> = ({
   );
 };
 
-export default withTheme(Component);
+export default Item;

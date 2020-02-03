@@ -1,33 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { styled } from '@friends-library/ui';
 import { Html } from '@friends-library/types';
-import { Layout, Block, PageTitle } from '../components';
-
-const Div = styled.div`
-  & dl {
-    margin-left: 1.5em;
-  }
-  & dt:before {
-    content: ' ';
-    white-space: pre-wrap;
-    display: block;
-    height: 0.5em;
-  }
-  & dt {
-    font-weight: 700;
-    display: inline;
-    margin: 0;
-  }
-  & dt:after {
-    content: ' - ';
-    font-weight: 400;
-  }
-  & dd {
-    display: inline;
-    margin: 0;
-  }
-`;
+import { Layout } from '../components';
 
 interface Props {
   data: {
@@ -43,10 +17,10 @@ export default ({
   },
 }: Props) => (
   <Layout>
-    <Block>
-      <PageTitle>Modernization</PageTitle>
-      <Div dangerouslySetInnerHTML={{ __html: html }} />
-    </Block>
+    <section>
+      <h1>Modernization</h1>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </section>
   </Layout>
 );
 

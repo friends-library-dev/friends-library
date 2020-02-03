@@ -8,6 +8,7 @@ import {
   Lang,
 } from '@friends-library/types';
 import { Layout } from '../components';
+import { LANG } from '../env';
 import { DocBlock, ListenBlock, RelatedBookCard } from '@friends-library/ui';
 
 interface Props {
@@ -84,7 +85,7 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
   const audio = mainEdition.audio;
   const hasAudio = !!audio;
   const coverProps: CoverProps = {
-    lang: process.env.GATSBY_LANG === 'en' ? 'en' : 'es',
+    lang: LANG,
     title: document.title,
     isCompilation: document.isCompilation,
     author: friend.name,

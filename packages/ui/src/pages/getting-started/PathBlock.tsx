@@ -48,9 +48,7 @@ const PathBlock: React.FC<Props> = ({ books, title, color }) => {
           </div>
         ))}
       </div>
-      <Button className="bg-flprimary mx-auto mt-12 xl:mb-2" shadow={false}>
-        View More
-      </Button>
+      <Button className="mx-auto mt-12 xl:mb-2">View More</Button>
     </WaveBottomBlock>
   );
 };

@@ -6,14 +6,6 @@
   --reach-dialog: 1;
 }
 
-.btn {
-  @apply block rounded-full font-sans text-center uppercase tracking-wider text-white;
-}
-
-.btn:focus {
-  @apply outline-none shadow-outline;
-}
-
 .subtle-focus:focus {
   @apply outline-none;
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.25);

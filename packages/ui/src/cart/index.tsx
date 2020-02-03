@@ -62,7 +62,7 @@ const CartComponent: React.FC<Props> = ({
         </span>
       </div>
       <Back onClick={onContinueBrowsing}>Continue Browsing</Back>
-      <Button className="bg-flmaroon mb-5 mx-auto" onClick={checkout}>
+      <Button className="mb-5 mx-auto" shadow onClick={checkout}>
         Delivery &nbsp;&rsaquo;
       </Button>
     </>

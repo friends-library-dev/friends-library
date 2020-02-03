@@ -1,0 +1,21 @@
+.Hamburger {
+  width: 70px;
+  height: 70px;
+  padding-left: 18px;
+}
+
+.Hamburger > div {
+  height: 2px;
+  width: 32px;
+  margin-bottom: 5px;
+  background: white;
+}
+
+.Hamburger div:nth-child(1) {
+  width: 27px;
+}
+
+.Hamburger div:nth-child(3) {
+  width: 18px;
+  margin-bottom: 0;
+}

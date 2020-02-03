@@ -15,7 +15,9 @@ const WhoWereTheQuakers: React.FC = () => (
       purifies and truly changes us from within.
     </p>
 
-    <Button className="mt-12 bg-flblue">Find out more</Button>
+    <Button className="mt-12" bg="blue" shadow>
+      Find out more
+    </Button>
   </section>
 );
 

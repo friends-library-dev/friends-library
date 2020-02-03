@@ -1,11 +1,11 @@
 import React from 'react';
-import { Layout, Block, PageTitle, Divider } from '../components';
+import { Layout } from '../components';
 import { original, modernized, updated } from '../descriptions';
 
 export default () => (
   <Layout>
-    <Block>
-      <PageTitle>About Book Editions</PageTitle>
+    <section>
+      <h1>About Book Editions</h1>
       <p>
         <i>
           [This page will have the main explanations for the three "tiers" of editions, to
@@ -16,14 +16,12 @@ export default () => (
         </i>
       </p>
 
-      <Divider />
-
       <h2>Original Editions</h2>
       <p dangerouslySetInnerHTML={{ __html: original }} />
       <h2>Modernized Editions</h2>
       <p dangerouslySetInnerHTML={{ __html: modernized }} />
       <h2>Updated Editions</h2>
       <p dangerouslySetInnerHTML={{ __html: updated }} />
-    </Block>
+    </section>
   </Layout>
 );

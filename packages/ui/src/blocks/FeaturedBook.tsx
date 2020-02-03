@@ -57,8 +57,9 @@ const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
           </a>
         </p>
         <Button
+          bg="blue"
           to={`/${book.friendSlug}/${book.docSlug}`}
-          className="bg-flblue mt-auto sm:mt-8 sm:mt-12 mx-auto md:mx-0"
+          className="mt-auto sm:mt-8 sm:mt-12 mx-auto md:mx-0"
         >
           Download &rarr;
         </Button>

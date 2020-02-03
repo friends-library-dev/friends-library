@@ -93,11 +93,7 @@ const BookByFriend: React.FC<Props> = props => {
           </li>
         </ul>
         <div className="flex flex-col items-center">
-          <Button
-            className="bg-flprimary mt-6 md:mt-10"
-            to={props.bookUrl}
-            shadow={false}
-          >
+          <Button className="mt-6 md:mt-10" to={props.bookUrl}>
             View Book
           </Button>
         </div>

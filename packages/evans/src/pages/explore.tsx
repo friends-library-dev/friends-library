@@ -1,6 +1,7 @@
 import React from 'react';
+import { Button } from '@friends-library/ui';
 import { Link, graphql } from 'gatsby';
-import { Layout, Block, PageTitle, Divider, Button } from '../components';
+import { Layout } from '../components';
 
 interface Props {
   data: { allFriend: { totalCount: number } };
@@ -8,8 +9,8 @@ interface Props {
 
 export default ({ data: { allFriend } }: Props) => (
   <Layout>
-    <Block>
-      <PageTitle>Explore Books</PageTitle>
+    <section>
+      <h1>Explore Books</h1>
 
       <p>
         <i>
@@ -23,8 +24,6 @@ export default ({ data: { allFriend } }: Props) => (
           don't know if we even want, so I left them as non-working links.]
         </i>
       </p>
-
-      <Divider />
 
       <h2>Explore by Author</h2>
 
@@ -48,9 +47,7 @@ export default ({ data: { allFriend } }: Props) => (
         </li>
       </ul>
 
-      <Button url="/friends" text={`See all ${allFriend.totalCount} friends »`} />
-
-      <Divider />
+      <Button to="/friends">{`See all ${allFriend.totalCount} friends »`}</Button>
 
       <h2>Explore by Genre</h2>
 
@@ -74,8 +71,6 @@ export default ({ data: { allFriend } }: Props) => (
         </li>
       </ul>
 
-      <Divider />
-
       <h2>Explore by Time Period</h2>
 
       <p>
@@ -96,8 +91,6 @@ export default ({ data: { allFriend } }: Props) => (
         </li>
       </ul>
 
-      <Divider />
-
       <h2>Explore by Format/Edition</h2>
 
       <p>
@@ -115,8 +108,6 @@ export default ({ data: { allFriend } }: Props) => (
         </li>
       </ul>
 
-      <Divider />
-
       <h2>Recommendations</h2>
 
       <p>
@@ -125,8 +116,8 @@ export default ({ data: { allFriend } }: Props) => (
         looked at those, that's a great place to start.
       </p>
 
-      <Button url="/getting-started" text="Getting Started »" />
-    </Block>
+      <Button to="/getting-started">Getting Started »</Button>
+    </section>
   </Layout>
 );
 

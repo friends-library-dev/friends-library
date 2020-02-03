@@ -1,9 +1,8 @@
-import { en as enTheme, es as esTheme } from './theme';
 export { default as Nav } from './Nav';
 export { default as Tailwind } from './Tailwind';
-export { default as styled } from './styled';
 export { default as WhoWereTheQuakers } from './blocks/WhoWereTheQuakers';
 export { default as Footer } from './Footer';
+export { default as Button } from './Button';
 export { default as PopUnder } from './PopUnder';
 export { default as SlideoverMenu } from './SlideoverMenu';
 export { default as RelatedBookCard } from './RelatedBookCard';
@@ -38,5 +37,3 @@ export { default as CartModel } from './checkout/models/Cart';
 export { default as Heading } from './Heading';
 export { default as EmbeddedAudio } from './EmbeddedAudio';
 export { t, useLocale } from './translation';
-export { enTheme, esTheme };
-export type Theme = typeof enTheme;

@@ -1,10 +1,8 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { useEnglish } from '../stories/decorators';
 import Tailwind from '../src/Tailwind';
 
-addDecorator(useEnglish);
 addDecorator(storyFn => (
   <React.Fragment>
     <Tailwind />

@@ -1,13 +1,10 @@
-import React from 'react';
 import path from 'path';
 import { flow } from 'lodash';
 import { readFileSync, existsSync } from 'fs-extra';
 import { sync as glob } from 'glob';
-import { renderToStaticMarkup } from 'react-dom/server';
 // @ts-ignore
 import Asciidoctor from '@asciidoctor/core';
 import { Html } from '@friends-library/types';
-import Divider from '../components/Divider';
 import { LANG } from '../env';
 
 export function getPartials(): { [key: string]: Html } {
@@ -26,15 +23,11 @@ export function getPartials(): { [key: string]: Html } {
       // @ts-ignore
       src => Asciidoctor().convert(src),
       cleanAsciidoctor,
-      replaceDividers,
     )(file);
   });
 
   return partials;
 }
-
-const replaceDividers = (html: Html): Html =>
-  html.replace('<Divider />', renderToStaticMarkup(<Divider />));
 
 const cleanAsciidoctor = (html: Html): Html => {
   return html
