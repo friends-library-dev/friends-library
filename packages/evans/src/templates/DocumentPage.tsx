@@ -238,6 +238,7 @@ export const query = graphql`
           podcastUrlHq
           parts {
             externalIdLq
+            externalIdHq
           }
         }
       }

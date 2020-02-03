@@ -6,6 +6,7 @@ import env from '@friends-library/env';
 import * as cloud from '@friends-library/cloud';
 import { c, log, red, green, yellow } from '@friends-library/cli-utils/color';
 import { getAllFriends, Audio, Friend } from '@friends-library/friends';
+import * as docMeta from '@friends-library/document-meta';
 import { isDefined } from '@friends-library/types';
 import Client from './SoundCloudClient';
 
@@ -23,6 +24,7 @@ interface Argv {
   verifyExternalTracks: boolean;
   createMissingPlaylists: boolean;
   recreateIndividualTitip: boolean;
+  storeFilesizes: boolean;
   pattern?: string;
 }
 
@@ -60,6 +62,12 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   let paths: string[] = [];
   if (shouldVerifyAudioPaths(argv)) {
     paths = verifyAudioPaths(audio);
+  }
+
+  if (argv.all || argv.storeFilesizes) {
+    const meta = await docMeta.fetchSingleton();
+    storeFilesizes(audio, paths, meta);
+    await docMeta.save(meta);
   }
 
   if (argv.all || argv.uploadMp3Files) {
@@ -253,6 +261,26 @@ async function uploadIndividualTitip(
   return trackId;
 }
 
+async function storeFilesizes(
+  audio: Audio,
+  paths: string[],
+  meta: docMeta.DocumentMeta,
+): Promise<void> {
+  const dir = path.dirname(paths[0]);
+  const editionMeta = meta.get(audio.edition.path);
+  if (!editionMeta) throw new Error(`Edition meta not found: ${audio.edition.path}`);
+  meta.set(audio.edition.path, {
+    ...editionMeta,
+    updated: new Date().toISOString(),
+    audioFilesizes: {
+      m4bHq: fs.statSync(`${dir}/${audio.m4bFilenameHq}`)['size'],
+      m4bLq: fs.statSync(`${dir}/${audio.m4bFilenameLq}`)['size'],
+      mp3ZipHq: fs.statSync(`${dir}/${audio.zipFilenameHq}`)['size'],
+      mp3ZipLq: fs.statSync(`${dir}/${audio.zipFilenameLq}`)['size'],
+    },
+  });
+}
+
 function isM4b(path: string): boolean {
   return path.endsWith('.m4b');
 }
@@ -276,7 +304,8 @@ function shouldVerifyAudioPaths(argv: Argv): boolean {
     argv.verifyLocalFilepaths ||
     argv.uploadM4BFiles ||
     argv.uploadMp3Files ||
-    argv.uploadMp3Zips
+    argv.uploadMp3Zips ||
+    argv.storeFilesizes
   );
 }
 
