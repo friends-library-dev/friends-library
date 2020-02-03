@@ -55,13 +55,18 @@ interface Props {
         audio: null | {
           reader: string;
           externalPlaylistIdLq: null | number;
+          externalPlaylistIdHq: null | number;
+          m4bFilesizeHq: string;
+          m4bFilesizeLq: string;
+          mp3ZipFilesizeHq: string;
+          mp3ZipFilesizeLq: string;
           m4bUrlLq: string;
           mp3ZipUrlLq: string;
           podcastUrlLq: string;
           m4bUrlHq: string;
           mp3ZipUrlHq: string;
           podcastUrlHq: string;
-          parts: { externalIdLq: number }[];
+          parts: { externalIdLq: number; externalIdHq: number }[];
         };
       }[];
     };
@@ -131,13 +136,19 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
         <ListenBlock
           title={document.title}
           numAudioParts={audio.parts.length}
-          trackId={audio.parts[0].externalIdLq || 0}
-          playlistId={audio.externalPlaylistIdLq}
+          trackIdHq={audio.parts[0].externalIdHq || 0}
+          playlistIdHq={audio.externalPlaylistIdHq}
+          trackIdLq={audio.parts[0].externalIdLq || 0}
+          playlistIdLq={audio.externalPlaylistIdLq}
+          m4bFilesizeHq={audio.m4bFilesizeHq}
+          m4bFilesizeLq={audio.m4bFilesizeLq}
+          mp3ZipFilesizeHq={audio.mp3ZipFilesizeHq}
+          mp3ZipFilesizeLq={audio.mp3ZipFilesizeLq}
           m4bUrlHq={audio.m4bUrlHq}
-          mp3ZipUrlHq={audio.mp3ZipUrlHq}
-          podcastUrlHq={audio.podcastUrlHq}
           m4bUrlLq={audio.m4bUrlLq}
+          mp3ZipUrlHq={audio.mp3ZipUrlHq}
           mp3ZipUrlLq={audio.mp3ZipUrlLq}
+          podcastUrlHq={audio.podcastUrlHq}
           podcastUrlLq={audio.podcastUrlLq}
         />
       )}
@@ -214,6 +225,11 @@ export const query = graphql`
         audio {
           reader
           externalPlaylistIdLq
+          externalPlaylistIdHq
+          m4bFilesizeHq
+          m4bFilesizeLq
+          mp3ZipFilesizeHq
+          mp3ZipFilesizeLq
           m4bUrlLq
           mp3ZipUrlLq
           podcastUrlLq

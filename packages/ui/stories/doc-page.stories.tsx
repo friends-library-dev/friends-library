@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
+import { AudioQuality } from '@friends-library/types';
 import DocBlock from '../src/pages/document/DocBlock';
 import ListenBlock from '../src/pages/document/ListenBlock';
 import QualitySwitch from '../src/pages/document/QualitySwitch';
@@ -25,9 +26,8 @@ storiesOf('Doc Page', module)
   .addDecorator(storyFn => (
     <div className="bg-gray-800 w-screen h-screen">{storyFn()}</div>
   ))
-  .add('QualitySwitch', () => (
-    <QualitySwitch initialQuality="HQ" onChange={a('change quality')} />
-  ))
+  .add('QualitySwitch', () => <StatefulSwitch />)
+
   .add('TocHamburger', () => <TocHamburger />)
   .add('Tablet', () => <Tablet />)
   .add('SampleToc', () => <SampleToc onClose={a('close')} chapters={chapters} />)
@@ -84,13 +84,18 @@ storiesOf('Doc Page', module)
   .add('ListenBlock', () => (
     <ListenBlock
       title="Sweet Track"
-      trackId={6}
+      trackIdLq={236087828}
+      trackIdHq={236087816}
       numAudioParts={1}
+      m4bFilesizeHq="36MB"
+      m4bFilesizeLq={'15MB'}
+      mp3ZipFilesizeHq={'42MB'}
+      mp3ZipFilesizeLq={'17MB'}
       m4bUrlHq={'/'}
-      mp3ZipUrlHq={'/'}
-      podcastUrlHq={'/'}
       m4bUrlLq={'/'}
+      mp3ZipUrlHq={'/'}
       mp3ZipUrlLq={'/'}
+      podcastUrlHq={'/'}
       podcastUrlLq={'/'}
     />
   ))
@@ -163,3 +168,8 @@ const chapters = [
     text: 'Epilogue',
   },
 ];
+
+const StatefulSwitch: React.FC = () => {
+  const [quality, setQuality] = useState<AudioQuality>('HQ');
+  return <QualitySwitch quality={quality} onChange={setQuality} />;
+};

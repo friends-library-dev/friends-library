@@ -1,0 +1,18 @@
+.DownloadLinks {
+  background-repeat: repeat-x;
+  background-position: center 70%;
+  background-size: auto 12rem;
+  background-image: linear-gradient(rgba(249, 249, 249, 0.55), rgba(249, 249, 249, 0.55)),
+    url('../../images/wave-form.png');
+}
+
+.ListenBlock .fl-underline {
+  padding-bottom: 0.35em;
+  background-image: linear-gradient(
+      to top,
+      rgba(249, 249, 249, 0.35) 0%,
+      rgba(249, 249, 249, 0.35) 0.15em,
+      transparent 0.15em
+    ),
+    linear-gradient(to top, currentColor 0%, currentColor 0.15em, transparent 0.15em);
+}
