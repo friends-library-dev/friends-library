@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Switch from 'react-switch';
 import cx from 'classnames';
 import { AudioQuality } from '@friends-library/types';
 
 interface Props {
-  initialQuality: AudioQuality;
+  quality: AudioQuality;
   onChange: (quality: AudioQuality) => any;
+  className?: string;
 }
 
-const QualitySwitch: React.FC<Props> = ({ initialQuality, onChange }) => {
-  const [quality, setQuality] = useState<AudioQuality>(initialQuality);
+const QualitySwitch: React.FC<Props> = ({ className, quality, onChange }) => {
   return (
     <Switch
+      className={className}
       checked={quality === 'HQ'}
       width={86}
-      offColor="#08f"
-      onChange={isLq => {
-        const newQuality = isLq ? 'HQ' : 'LQ';
-        setQuality(newQuality);
-        onChange(newQuality);
-      }}
+      offColor="#5f8c9e"
+      onChange={isLq => onChange(isLq ? 'HQ' : 'LQ')}
       uncheckedIcon={<Label className="pl-0 -ml-2">LO-FI</Label>}
       checkedIcon={<Label className="pl-4">HI-FI</Label>}
       aria-label="Audio download quality"

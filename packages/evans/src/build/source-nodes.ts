@@ -1,5 +1,6 @@
 import '@friends-library/env/load';
 import { GatsbyNode, SourceNodesArgs } from 'gatsby';
+import filesize from 'filesize';
 import { PrintSize } from '@friends-library/types';
 import { price } from '@friends-library/lulu';
 import { fetch } from '@friends-library/document-meta';
@@ -11,6 +12,8 @@ import residences from './residences';
 import * as url from '../lib/url';
 import { getPartials } from '../lib/partials';
 import { APP_ALT_URL, LANG } from '../env';
+
+const humansize = filesize.partial({ round: 0, spacer: '' });
 
 const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions: { createNode },
@@ -118,6 +121,10 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
             ? {
                 reader: edition.audio.reader,
                 parts: edition.audio.parts.map(part => part.toJSON()),
+                m4bFilesizeHq: humansize(37741752),
+                m4bFilesizeLq: humansize(14548650),
+                mp3ZipFilesizeHq: humansize(40711937),
+                mp3ZipFilesizeLq: humansize(13365726),
                 m4bUrlHq: url.m4bDownloadUrl(edition.audio, 'HQ'),
                 m4bUrlLq: url.m4bDownloadUrl(edition.audio, 'LQ'),
                 mp3ZipUrlHq: url.mp3ZipDownloadUrl(edition.audio, 'HQ'),

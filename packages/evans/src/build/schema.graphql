@@ -60,6 +60,10 @@ type Audio {
   m4bUrlLq: String!
   mp3ZipUrlHq: String!
   mp3ZipUrlLq: String!
+  m4bFilesizeHq: String!
+  m4bFilesizeLq: String!
+  mp3ZipFilesizeHq: String!
+  mp3ZipFilesizeLq: String!
   podcastUrlHq: String!
   podcastUrlLq: String!
   externalPlaylistIdHq: Int
