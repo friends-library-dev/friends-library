@@ -86,7 +86,7 @@ const subSchemas: Record<string, Schema> = {
       country: { type: 'string', required: true },
       durations: {
         type: 'array',
-        required: true,
+        required: false,
         items: { $ref: '/residence-duration', minItems: 1 },
       },
     },

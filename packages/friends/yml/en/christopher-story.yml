@@ -2,6 +2,11 @@ id: 515aac77-35be-4270-a803-9e5418a60e24
 name: Christopher Story
 slug: christopher-story
 gender: male
+born: 1648
+died: 1720
+residences:
+  - city: Carlisle
+    country: England
 description:
   Christopher Story (1648-1720) was inclined to piety from his youth. But when the Lord
   was pleased to open his understanding, he saw that his former religious building must be
@@ -28,6 +33,10 @@ documents:
       became a disciple and follower of Him. In time, he was endued with a large gift in
       the ministry which, though simple, was powerful and edifying, and was said to “often
       fall upon the people of God like a sweet shower upon the tender grass.”
+    partial_description:
+      The journal of the life of Christopher Story, containing several epistles to the
+      church, letters to friends and family, and a supplement describing his final
+      services in the church, his last illness, and decease.
     tags:
       - journal
     editions:

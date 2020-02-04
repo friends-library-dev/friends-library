@@ -2,6 +2,11 @@ id: 10648b95-063c-4d7f-a6a2-4cd3fd690196
 name: Ambrose Rigge
 slug: ambrose-rigge
 gender: male
+born: 1635
+died: 1705
+residences:
+  - city: Bampton
+    country: England
 description:
   Ambrose Rigge (1635-1705) was early convinced of the truth through the preaching of
   George Fox, and grew to be a powerful minister of the gospel, a faithful elder, and a
@@ -28,6 +33,10 @@ documents:
       and establish the flock. Ambrose Rigge was one of many in his generation who sold
       all to buy the Pearl of great price, and having found true treasure, he kept it till
       the end.
+    partial_description:
+      A journal of the life, sufferings, and Christian labors of Ambrose Rigge, including
+      a collection of epistles to the church, and treatises on the fall of man, the inward
+      and spiritual grace of God, the kingdom of Christ, and other important subjects.
     tags:
       - journal
       - letters

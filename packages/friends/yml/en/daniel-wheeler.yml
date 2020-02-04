@@ -2,6 +2,34 @@ id: e1eb432b-6ae5-4968-89e4-91af5b40bb17
 name: Daniel Wheeler
 slug: daniel-wheeler
 gender: male
+born: 1771
+died: 1840
+quotes:
+  - source: Sarah Lynes Grubb
+    text:
+      We found [Daniel Wheeler's] conversation truly edifying and interesting. He was all
+      resignation under his trials...That which dropped from his own lips was
+      heart-tendering, and abundantly satisfying. Oh! the dear servant of the Lord! He is
+      as humble as a child; while capable of ascribing glory, and power, and dominion to
+      the Lord God, and the Lamb that sitteth upon the throne.
+  - source: Rebecca Hubbs
+    text:
+      Daniel Wheeler had an excellent communication, in the course of which he said, "I
+      have left all that is nearest and dearest to me in this world, to come among you,
+      and willingly would I travel from east to west, and from north to south, old and
+      gray-headed as I am, if I might be made instrumental in turning any of my
+      fellow-mortals to the love of God."
+residences:
+  - city: Sheffield
+    country: England
+    durations:
+      - start: 1796
+        end: 1818
+  - city: St. Petersburg
+    country: Russia
+    durations:
+      - start: 1818
+        end: 1832
 description:
   The life of Daniel Wheeler (1771-1840) is a monument to the heart purifying power of the
   gospel of Jesus Christ. Left an orphan at a very young age, Wheeler was placed by a
@@ -39,6 +67,10 @@ documents:
       Wheeler moved his family to near St. Petersburg, where they lived for for a number
       of lonely but instructive years. Afterwards, he was led by the Lord to preach the
       gospel of Christ throughout the South Pacific Ocean.
+    partial_description:
+      The inspiring journal of Daniel Wheeler, relating his conversion and rapid growth in
+      the truth, his fourteen trying years in St. Petersburg, Russia, and his subsequent
+      missionary journeys to various of islands in Pacific Ocean.
     tags:
       - journal
     editions:
@@ -46,3 +78,11 @@ documents:
         isbn: 978-1-64476-017-8
       - type: modernized
         isbn: 978-1-64476-018-5
+    related_documents:
+      - id: 9511ab72-9a2e-4c6e-a102-1f46aebbd348
+        description:
+          In 1824, Thomas Shillitoe went to St. Petersburg, Russia, and frequently
+          attended the small meeting held in the home of his beloved friend Daniel
+          Wheeler. After speaking with the emperor on more than one occasion, and
+          surviving the historic flood of St. Petersburg that year, he and Daniel Wheeler
+          traveled by land 1600 miles to Rotterdam, Holland.
