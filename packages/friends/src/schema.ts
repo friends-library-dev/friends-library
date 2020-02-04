@@ -6,7 +6,7 @@ export default {
   properties: {
     id: { $ref: '/uuid', required: true },
     name: {
-      oneOf: [{ $ref: '/name' }, { enum: ['Compilations'] }],
+      oneOf: [{ $ref: '/name' }, { enum: ['Compilations', 'Compilaciones'] }],
       required: true,
     },
     gender: { enum: ['male', 'female', 'mixed'], required: true },

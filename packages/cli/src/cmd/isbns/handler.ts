@@ -40,7 +40,9 @@ function makeCsv(): void {
         ? document.title
         : `${document.title} (${edition.type})`,
       authorLast,
-      authorFirst === 'Compilations' ? '' : authorFirst,
+      authorFirst === 'Compilations' || authorFirst === 'Compilaciones'
+        ? ''
+        : authorFirst,
       editorLast,
       editorFirst,
     ]);

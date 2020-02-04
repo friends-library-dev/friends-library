@@ -6,6 +6,10 @@ export function friendUrl(friend: Friend): Url {
     return '/compilations';
   }
 
+  if (friend.slug === 'compilaciones') {
+    return '/compilaciones';
+  }
+
   if (friend.lang === 'en') {
     return `/friend/${friend.slug}`;
   }

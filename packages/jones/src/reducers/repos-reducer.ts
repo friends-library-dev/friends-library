@@ -16,7 +16,7 @@ export default createReducer([], {
       id: repo.id,
       slug: repo.name,
       friendName:
-        repo.name === 'compilations'
+        repo.name === 'compilations' || repo.name === 'compilaciones'
           ? 'Compilations'
           : repo.description.replace(/^.. (.+) \((\d{4}|d\. \d{4}).*$/, '$1'),
     }));

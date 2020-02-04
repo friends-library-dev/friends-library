@@ -13,6 +13,14 @@ describe('Document', () => {
   });
 
   describe('isCompilation', () => {
+    it('returns true if it belongs to the special spanish compilaciones "friend"', () => {
+      const doc = firstDoc(f => {
+        f.lang = 'es';
+        f.slug = 'compilaciones';
+      });
+      expect(doc.isCompilation).toBe(true);
+    });
+
     it('returns true if it belongs to the special compilations "friend"', () => {
       const doc = firstDoc(f => (f.slug = 'compilations'));
       expect(doc.isCompilation).toBe(true);
