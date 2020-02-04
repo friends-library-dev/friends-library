@@ -1,0 +1,18 @@
+id: 408cd536-ea96-4e0b-8086-bf72387e9df8
+name: Compilaciones
+slug: compilaciones
+gender: mixed
+description: TODO
+documents:
+  - id: 110bb5b7-267e-4d70-9b4d-64b6e46729f2
+    alt_language_id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
+    title: La Verdad en Lo Íntimo
+    slug: verdad-en-lo-intimo
+    filename: Verdad_en_Lo_Intimo
+    description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-189-2
+        draft: true

@@ -22,5 +22,6 @@ export function getAllFriends(
   if (withCompilations) {
     return friends;
   }
-  return friends.filter(friend => friend.slug !== 'compilations');
+  const compilations = lang === 'en' ? 'compilations' : 'compilaciones';
+  return friends.filter(friend => friend.slug !== compilations);
 }

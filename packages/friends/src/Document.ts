@@ -59,7 +59,10 @@ export default class Document {
   }
 
   public get isCompilation(): boolean {
-    return this.friend.slug === 'compilations';
+    if (this.friend.lang === 'es' && this.friend.slug === 'compilaciones') {
+      return true;
+    }
+    return this.friend.lang === 'en' && this.friend.slug === 'compilations';
   }
 
   public get hasNonDraftEdition(): boolean {
