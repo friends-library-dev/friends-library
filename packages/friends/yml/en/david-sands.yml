@@ -2,6 +2,11 @@ id: a0b9e8ae-f6af-4e12-a0b0-381a84387780
 name: David Sands
 slug: david-sands
 gender: male
+born: 1745
+died: 1816
+residences:
+  - city: Cornwall
+    country: New York
 description:
   David Sands (1745-1816) was an active and influential minister in the Society of Friends
   at a time when the minds of many Friends (particularly in Ireland) had been led astray
@@ -30,8 +35,19 @@ documents:
       deep conflicts, difficulties, and opposition, but he remained a faithful pillar in
       the church, and an example humility and self-denial, in the midst of a much
       deteriorated Society.
+    partial_description:
+      A journal of the life and gospel labors of David Sands, containing numerous extracts
+      from his letters to friends and fellow-ministers, and a short treatise on the
+      subject of silent worship, or waiting upon God.
     tags:
       - journal
     editions:
       - type: modernized
         isbn: 978-1-64476-021-5
+    related_documents:
+      - id: 25755480-7f1c-4f7f-8900-3f472001fae4
+        description:
+          In 1796, William Savery and David Sands travelled together in the work of the
+          ministry through Holland, Germany, France, and several other parts of Europe. In
+          France, the two of them had an unexpected encounter with the notorious Thomas
+          Paine, and ably defended the gospel against his "passionate railing."

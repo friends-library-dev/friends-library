@@ -2,6 +2,20 @@ id: 593f481a-d4e7-4fe0-8126-33d408baa19f
 name: Charles Marshall
 slug: charles-marshall
 gender: male
+born: 1637
+died: 1698
+quotes:
+  - source: Charles Marshall
+    text:
+      I have learned from the beginning of the work of restoration and redemption, that
+      every one's preservation is found in pure inward retiredness unto the Lord; and in
+      His pure fear, awe and dread to keep low, feeling after His soul-redeeming,
+      soul-preserving, holy power, which quickens and enlivens; and as it is abode with
+      and in, keeps alive in its own pure nature and quality, over the world, its spirit
+      and defilement.
+residences:
+  - city: Bristol
+    country: England
 description:
   Charles Marshall (1637-1698) was convinced of the Truth at age seventeen by the powerful
   ministry of John Audland and John Camm, and eventually became a worthy minister and
@@ -21,6 +35,10 @@ documents:
       instructive journal describes Marshall’s progressive experience of the light of
       Jesus Christ, both as his judge and teacher, and also uncovers the several snares
       and temptations of the enemy that he met with and overcame along the way.
+    partial_description:
+      This publication contains the full journal of Charles Marshall, a large collection
+      his letters and epistles to the churches, and a number of treatises and other
+      publications, including, The Way of Life Revealed and the Way of Death Discovered.
     tags:
       - journal
     editions:
@@ -48,11 +66,17 @@ documents:
       Restoration Out of the Fall, Into the Image of God Again, In Which Man Was Before
       the Fall.
     description:
-      The original title of this short work is perhaps the best description of its
-      contents--"The Way of Life Revealed and the Way of Death Discovered; Wherein is
-      Declared Man's Happy State Before the Fall, His Miserable State in the Fall, and the
-      Way of Restoration Out of the Fall, Into the Image of God Again, In Which Man Was
-      Before the Fall."
+      Charles Marshall (1637-1698) was convinced of the Truth at age seventeen by the
+      powerful ministry of John Audland and John Camm, and eventually became a worthy
+      minister and elder himself in the early Society of Friends. This short treatise,
+      written in 1673, describes the miserable condition of man in the fall, the means by
+      which God restores the penitent soul into the image of God, and many snares,
+      deceptions and temptations of the enemy of man's happiness.
+    partial_description:
+      The Way of Life Revealed and the Way of Death Discovered--Wherein is Declared Man's
+      Happy State Before the Fall, His Miserable State in the Fall, and the Way of
+      Restoration Out of the Fall, Into the Image of God Again, In Which Man Was Before
+      the Fall.
     tags:
       - treatise
     editions:

@@ -2,6 +2,19 @@ id: d0348949-78b6-4c14-932f-93e6d7825607
 name: Catherine Payton
 slug: catherine-payton
 gender: female
+born: 1727
+died: 1794
+quotes:
+  - source: Sarah R.Grubb
+    text:
+      About two years ago, to my humble admiration, in a season of great proving of spirit
+      it was so renewed and sealed to me (the inward attraction bing so strong, and the
+      evidence so undoubtable) that [Catherine Payton] was a faithful follower of the
+      Lamb; for a language sweetly flowed through my mind, "I have chosen her and she is
+      mine"--so that I not only rejoiced, but was strengthened.
+residences:
+  - city: Dudley
+    country: England
 description:
   Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips) was an
   eminently gifted minister in the Society of Friends, who traveled almost continually for
@@ -24,6 +37,10 @@ documents:
       North America. Her journal and letters clearly demonstrate a life entirely
       surrendered to the cross of Christ, a mind supplied with wisdom and utterance from
       on high, and a heart filled with love for God and for mankind.
+    partial_description:
+      A journal of the life and Christian labors of Catherine Payton (Phillips),
+      containing many letters of correspondence and an account of her ministerial travels
+      in England, Ireland, Holland, Wales, and the American colonies.
     tags:
       - journal
       - letters
@@ -32,11 +49,31 @@ documents:
         isbn: 978-1-64476-007-9
       - type: original
         isbn: 978-1-64476-008-6
+    related_documents:
+      - id: 53f21a86-f264-460f-b879-3cd4a7ddf615
+        description:
+          For many years an intimate friendship and frequent correspondence was maintained
+          between Samuel Fothergill and Catherine Payton. The Life of Samuel Fothergill
+          contains numerous letters to and from Payton, as well as accounts of several
+          experiences together in the work on the ministry.
+      - id: 9bd10df3-80aa-4623-b66a-61e00f112b47
+        description:
+          Until her death in 1757, Mary Peisley (Neale) was a frequent traveling companion
+          of Catherine Payton, and perhaps her most intimate friend in the work of the
+          ministry.
   - id: 08b94a0b-b96f-4525-bd46-79b0d60c4302
     title: Letter to a Backslidden Brother
     slug: letter-to-brother
     filename: Letter_to_Backslidden_Brother
     description:
+      Catherine Payton (1727-1794 — also known by her married name, Catherine Phillips)
+      was an eminently gifted minister in the Society of Friends, who traveled almost
+      continually for forty years in the service of Truth. Her journal and letters clearly
+      demonstrate a life entirely surrendered to the cross of Christ, a mind supplied with
+      wisdom and utterance from on high, and a heart filled with love for God and for
+      mankind. This short extract contains a serious and convincing letter to her brother
+      Henry, whom she feared had drifted away from the path of peace.
+    partial_description:
       This letter was written by Catherine Phillips in 1753 to her brother Henry Payton,
       who she feared had “strayed from the path of peace and safety, to seek satisfaction
       in the grasp of empty bubbles, which had assumed the form, in his sight, of

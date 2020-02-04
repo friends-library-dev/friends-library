@@ -2,6 +2,19 @@ id: 92751523-7fb2-4614-93ce-2b007403a7ce
 name: Ann Branson
 slug: ann-branson
 gender: female
+born: 1809
+died: 1891
+quotes:
+  - source: Ann Branson
+    text:
+      Dearest Lord, remember my affliction, and enable me to say in deed and in truth,
+      Your kingdom come, Your will be done in me, and by me, and through me, unworthy worm
+      as I am. Oh let not Your hand spare, nor Your eye pity me, until You cause me to
+      surrender my will in all things unto Your holy will!
+residences:
+  - city: Flushing
+    country: Ohio
+
 description:
   Ann Branson (1808-1891) was one of the very last, true ministers (having been prepared,
   called, and used of the Lord) in a greatly reduced and sadly degenerate Society. Her
@@ -26,6 +39,10 @@ documents:
       day who stood in the purity and power of the original Quakers, even while all around
       her the 200 year old lampstand of the Society of Friends slowly and tragically
       burned out.
+    partial_description:
+      The journal and letters of Ann Branson, a minister in the Society of Friends who
+      faithfully adhered to the principles and practices of Truth in a time of great
+      division and decadence.
     tags:
       - journal
       - letters
@@ -34,3 +51,10 @@ documents:
         isbn: 978-1-64476-005-5
       - type: original
         isbn: 978-1-64476-006-2
+    related_documents:
+      - id: 0451a301-8654-42e3-8701-6288579e5bbb
+        description:
+          In contending earnestly for the faith once delivered to the saints, Ann Branson
+          found a true friend and fellow-laborer in Joseph Edgerton, whose journal
+          contains many letters addressed to her, and several references to the value of
+          her ministry in that day.
