@@ -24,12 +24,6 @@ module.exports = {
         ignore: [`**/*.${process.env.GATSBY_LANG === 'en' ? 'es' : 'en'}.mdx`],
       },
     },
-    {
-      resolve: 'gatsby-plugin-emotion',
-      options: {
-        // Accepts all options defined by `babel-plugin-emotion` plugin.
-      },
-    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
