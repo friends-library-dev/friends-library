@@ -14,7 +14,7 @@ const FeaturedQuoteBlock: React.FC<Props> = ({ cite, quote }) => {
         <p className="relative max-w-4xl">
           <Quotes className="LeftQuote" />
           <Quotes className="hidden md:block RightQuote" />
-          <span className="relative block">{quote}</span>
+          <span className="relative block" dangerouslySetInnerHTML={{ __html: quote }} />
         </p>
         <cite className="not-italic block mt-4">- {cite}</cite>
       </div>

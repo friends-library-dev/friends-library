@@ -33,7 +33,10 @@ function position(residence: {
     case 'Ireland, Clonmel':
       return { top: 22, left: 62 };
     default:
-      return { top: 69, left: 66 };
+      return {
+        top: Number((Math.random() * 100).toFixed(2)),
+        left: Number((Math.random() * 100).toFixed(2)),
+      };
     // @TODO restore error once all residences added
     // throw new Error(`Unknown residence: ${place}`);
   }

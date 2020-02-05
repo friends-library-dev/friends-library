@@ -51,7 +51,10 @@ export interface DocumentData {
   published?: number;
   editions: EditionData[];
   alt_language_id?: Uuid;
-  related_documents?: { id: Uuid; description: Description }[];
+  related_documents?: {
+    id: Uuid;
+    description: Description;
+  }[];
 }
 
 export interface EditionData {
