@@ -15,11 +15,12 @@ type Props = CoverProps & {
   isAlone: boolean;
   pages: number;
   bookUrl: string;
+  description: string;
   className?: string;
 };
 
 const BookByFriend: React.FC<Props> = props => {
-  const { className, isAlone } = props;
+  const { className, isAlone, hasAudio, description } = props;
   return (
     <div
       className={cx(
@@ -64,10 +65,7 @@ const BookByFriend: React.FC<Props> = props => {
         >
           {props.title}
         </h4>
-        <p className="body-text mt-4 md:text-lg lg:text-base xl:text-lg">
-          This is the modern edition of this book title. This is an explanation of what
-          the difference is between the updated, modern and the real OG version.
-        </p>
+        <p className="body-text mt-4 md:text-lg lg:text-base xl:text-lg">{description}</p>
         <ul
           className={cx(
             'flex flex-wrap font-sans text-sm antialiased text-flgray-900 mt-4 leading-loose',
@@ -83,10 +81,12 @@ const BookByFriend: React.FC<Props> = props => {
             <TagsIcon className="mr-2" />
             {props.tags.join(', ')}
           </li>
-          <li className="text-sans w-1/2">
-            <AudioIcon className="mr-2" />
-            Audio Book
-          </li>
+          {hasAudio && (
+            <li className="text-sans w-1/2">
+              <AudioIcon className="mr-2" />
+              Audio Book
+            </li>
+          )}
           <li className="text-sans w-1/2">
             <DownloadIcon className="mr-2" />
             211 Downloads

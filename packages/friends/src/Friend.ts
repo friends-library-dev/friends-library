@@ -1,6 +1,6 @@
 import { FriendData } from './types';
 import Document from './Document';
-import { Name, Lang, Uuid, Slug, Description } from '@friends-library/types';
+import { Name, Lang, Uuid, Slug, Description, isDefined } from '@friends-library/types';
 
 export default class Friend {
   public documents: Document[] = [];
@@ -70,6 +70,14 @@ export default class Friend {
     );
   }
 
+  public get quotes(): FriendData['quotes'] {
+    return this.data.quotes;
+  }
+
+  public get relatedDocuments(): { id: Uuid; description: Description }[] {
+    return this.documents.flatMap(doc => doc.relatedDocuments).filter(isDefined);
+  }
+
   public toJSON(): Omit<Friend, 'toJSON' | 'documents'> {
     return {
       id: this.id,
@@ -86,6 +94,8 @@ export default class Friend {
       isFemale: this.isFemale,
       alphabeticalName: this.alphabeticalName,
       residences: this.residences,
+      quotes: this.quotes,
+      relatedDocuments: this.relatedDocuments,
     };
   }
 }

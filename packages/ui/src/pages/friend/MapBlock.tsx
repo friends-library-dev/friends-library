@@ -24,7 +24,7 @@ const MapBlock: React.FC<Props> = ({ friendName, residences, markers }) => {
           color="maroon"
         >
           {residences.map(residence => (
-            <li>{residence}</li>
+            <li key={residence}>{residence}</li>
           ))}
         </Meta>
         <div className="bg-white py-6 md:py-12 md:px-8 lg:px-32 xl:bg-flgray-100 xl:p-0">

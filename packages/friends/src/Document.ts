@@ -26,6 +26,10 @@ export default class Document {
     return this.data.title;
   }
 
+  public get partialDescription(): Description | undefined {
+    return this.data.partial_description;
+  }
+
   public get description(): Description {
     return this.data.description;
   }
@@ -59,10 +63,7 @@ export default class Document {
   }
 
   public get isCompilation(): boolean {
-    if (this.friend.lang === 'es' && this.friend.slug === 'compilaciones') {
-      return true;
-    }
-    return this.friend.lang === 'en' && this.friend.slug === 'compilations';
+    return this.friend.slug.startsWith('compila');
   }
 
   public get hasNonDraftEdition(): boolean {
@@ -83,6 +84,10 @@ export default class Document {
     return this.editions.map(edition => edition.type).includes('updated');
   }
 
+  public get relatedDocuments(): DocumentData['related_documents'] {
+    return this.data.related_documents;
+  }
+
   public toJSON(): Omit<Document, 'friend' | 'editions' | 'toJSON'> {
     return {
       id: this.id,
@@ -90,6 +95,7 @@ export default class Document {
       originalTitle: this.originalTitle,
       slug: this.slug,
       description: this.description,
+      partialDescription: this.partialDescription,
       filenameBase: this.filenameBase,
       hasNonDraftEdition: this.hasNonDraftEdition,
       published: this.published,
@@ -99,6 +105,7 @@ export default class Document {
       hasAudio: this.hasAudio,
       hasUpdatedEdition: this.hasUpdatedEdition,
       altLanguageId: this.altLanguageId,
+      relatedDocuments: this.relatedDocuments,
     };
   }
 }

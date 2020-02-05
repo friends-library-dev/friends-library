@@ -12,6 +12,12 @@
   }
 }
 
+@screen lg {
+  .RelatedBookCard .book-wrap {
+    transform: none;
+  }
+}
+
 @screen xl {
   .RelatedBookCard .book-wrap {
     transform: none;

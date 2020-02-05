@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { graphql } from 'gatsby';
+import { Name, Description } from '@friends-library/types';
 import {
   FriendBlock,
   FeaturedQuoteBlock,
@@ -8,21 +9,37 @@ import {
   TestimonialsBlock,
   RelatedBookCard,
   MapBlock,
+  Heading,
 } from '@friends-library/ui';
+import { LANG } from '../env';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
-import { Name, Description } from '@friends-library/types';
 import { Layout } from '../components';
 import './FriendPage.css';
 
 interface Props {
   data: {
+    relatedDocuments: {
+      nodes: (CoverData & {
+        id: string;
+        documentUrl: string;
+        authorUrl: string;
+      })[];
+    };
     friend: {
       gender: 'male' | 'female';
       name: Name;
       born: number | undefined;
       died: number | undefined;
       description: Description;
-      documents: (CoverData & { tags: string[]; url: string; hasAudio: boolean })[];
+      documents: (CoverData & {
+        tags: string[];
+        url: string;
+        hasAudio: boolean;
+        partialDescription?: string;
+        description: string;
+      })[];
+      quotes?: { source: string; text: string }[];
+      relatedDocuments: { id: string; description: string }[];
       residences: {
         city: string;
         region: string;
@@ -37,15 +54,15 @@ interface Props {
   };
 }
 
-export default ({ data: { friend } }: Props) => {
+export default ({ data: { friend, relatedDocuments } }: Props) => {
   const isOnlyBook = friend.documents.length === 1;
+  const quotes = friend.quotes || [];
   return (
     <Layout>
       <FriendBlock name={friend.name} gender={friend.gender} blurb={friend.description} />
-      <FeaturedQuoteBlock
-        quote="Humbling herself before God and men, she was exalted by the Lord as a powerful and prophetic minister, one of the few in her day who stood in the purity and power of the original Quakers, even while all around her the 200 year old lampstand of the Society of Friends slowly and tragically burned out."
-        cite="Ann Branson"
-      />
+      {quotes.length > 0 && (
+        <FeaturedQuoteBlock quote={quotes[0].text} cite={quotes[0].source} />
+      )}
       <div className="bg-flgray-100 px-8 pt-12 pb-4 lg:px-8">
         <h2 className="text-xl font-sans text-center tracking-wider font-bold mb-8">
           Books by {friend.name}
@@ -60,12 +77,22 @@ export default ({ data: { friend } }: Props) => {
             return (
               <BookByFriend
                 key={doc.url}
+                {...props}
                 isAlone={isOnlyBook}
                 className="mb-8 lg:mb-12"
                 tags={doc.tags}
                 hasAudio={doc.hasAudio}
                 bookUrl={doc.url}
-                {...props}
+                pages={doc.editions[0].pages.reduce((acc, pgs) => acc + pgs, 0)}
+                // @TODO: demand partialDescription vvv
+                description={
+                  doc.partialDescription ||
+                  doc.description
+                    .split(' ')
+                    .slice(0, 35)
+                    .concat(['[...]'])
+                    .join(' ')
+                }
               />
             );
           })}
@@ -92,80 +119,63 @@ export default ({ data: { friend } }: Props) => {
           left: r.top,
         }))}
       />
-      <TestimonialsBlock
-        testimonials={[
-          {
-            quote: LOREM,
-            cite: 'George Fox',
-          },
-          {
-            quote: LOREM,
-            cite: 'Rebecca Jones',
-          },
-          {
-            quote: LOREM,
-            cite: 'Comfort Collins',
-          },
-          {
-            quote: LOREM,
-            cite: 'Richard Hubberthorne',
-          },
-        ]}
-      />
-      <div className="RelatedBooks bg-flgray-100 p-8 lg:flex lg:flex-wrap lg:justify-center">
-        <RelatedBookCard
-          className="mb-8 lg:w-1/2 border-flgray-100"
-          lang="en"
-          title="The Journal of George Fox"
-          isCompilation={false}
-          author="George Fox"
-          edition="original"
-          isbn=""
-          customHtml=""
-          customCss=""
-          authorUrl="/friend/george-fox"
-          documentUrl="/george-fox/journal"
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
+      {quotes.length > 1 && (
+        <TestimonialsBlock
+          testimonials={quotes.slice(1).map(q => ({ cite: q.source, quote: q.text }))}
         />
-        <RelatedBookCard
-          className="mb-8 lg:w-1/2 border-flgray-100"
-          lang="en"
-          title="The Journal of Charles Marshall"
-          isCompilation={false}
-          author="Charles Marshall"
-          edition="updated"
-          isbn=""
-          customHtml=""
-          customCss=""
-          authorUrl="/friend/charles-marshall"
-          documentUrl="/charles-marshall/journal"
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
-        />
-        <RelatedBookCard
-          className="mb-8 lg:w-1/2 border-flgray-100"
-          lang="en"
-          title="Life and Letters of Samuel Fothergill"
-          isCompilation={false}
-          author="Samuel Fothergill"
-          edition="modernized"
-          isbn=""
-          customHtml=""
-          customCss=""
-          authorUrl="/friend/samuel-fothergill"
-          documentUrl="/samuel-fothergill/life-letters"
-          description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
-        />
-      </div>
+      )}
+      {relatedDocuments.nodes.length > 0 && (
+        <div className="RelatedBooks bg-flgray-100 p-8">
+          <Heading className="mt-2">Related Books</Heading>
+          <div className="lg:flex lg:flex-wrap lg:justify-center">
+            {relatedDocuments.nodes.map(relatedDoc => {
+              const friendDoc = friend.relatedDocuments.find(
+                doc => doc.id === relatedDoc.id,
+              );
+              if (!friendDoc) throw new Error('Missing related doc');
+              return (
+                <RelatedBookCard
+                  key={relatedDoc.editions[0].isbn}
+                  className="mb-8 lg:w-1/2 border-flgray-100"
+                  lang={LANG}
+                  {...relatedDoc}
+                  edition={relatedDoc.editions[0].type}
+                  isbn={relatedDoc.editions[0].isbn}
+                  customCss={relatedDoc.editions[0].code.css.cover || ''}
+                  customHtml={relatedDoc.editions[0].code.html.cover || ''}
+                  description={friendDoc.description}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )}
     </Layout>
   );
 };
 
 export const query = graphql`
-  query GetFriend($slug: String!) {
+  query GetFriend($slug: String!, $relatedDocumentIds: [String!]!) {
+    relatedDocuments: allDocument(filter: { documentId: { in: $relatedDocumentIds } }) {
+      nodes {
+        ...CoverProps
+        id: documentId
+        documentUrl: url
+        authorUrl
+      }
+    }
     friend(slug: { eq: $slug }) {
       name
       gender
       description
+      quotes {
+        source
+        text
+      }
+      relatedDocuments {
+        id
+        description
+      }
       born
       died
       documents: childrenDocument {
@@ -175,6 +185,8 @@ export const query = graphql`
         hasAudio
         tags
         url
+        partialDescription
+        description
       }
       residences {
         city
@@ -190,6 +202,3 @@ export const query = graphql`
     }
   }
 `;
-
-const LOREM =
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';

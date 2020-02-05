@@ -19,7 +19,7 @@ const RelatedBookCard: React.FC<Props> = props => {
     >
       <TitleSection {...props} className="hidden xl:block pt-6 pb-4 text-center" />
       <div className="md:flex md:px-8 md:bg-white">
-        <div className="book-wrap flex flex-col items-center xl:absolute">
+        <div className="book-wrap flex flex-col items-center lg:pt-12 xl:absolute xl:pt-0">
           <Front
             {...props}
             className="shadow-direct xl:hidden"
