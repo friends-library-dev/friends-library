@@ -11,6 +11,14 @@ export default class Friend {
     return this.data.id;
   }
 
+  public get died(): number | undefined {
+    return this.data.died;
+  }
+
+  public get born(): number | undefined {
+    return this.data.born;
+  }
+
   public get lang(): Lang {
     return this.data.lang;
   }
@@ -66,6 +74,8 @@ export default class Friend {
     return {
       id: this.id,
       lang: this.lang,
+      born: this.born,
+      died: this.died,
       description: this.description,
       hasNonDraftDocument: this.hasNonDraftDocument,
       name: this.name,

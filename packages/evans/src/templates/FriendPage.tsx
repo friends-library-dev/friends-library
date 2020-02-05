@@ -19,6 +19,8 @@ interface Props {
     friend: {
       gender: 'male' | 'female';
       name: Name;
+      born: number | undefined;
+      died: number | undefined;
       description: Description;
       documents: (CoverData & { tags: string[]; url: string; hasAudio: boolean })[];
       residences: {
@@ -26,7 +28,7 @@ interface Props {
         country: string;
         top: number;
         left: number;
-        durations: {
+        durations?: {
           start: number;
           end: number;
         }[];
@@ -71,9 +73,19 @@ export default ({ data: { friend } }: Props) => {
       </div>
       <MapBlock
         friendName={friend.name}
-        residences={friend.residences.flatMap(r =>
-          r.durations.map(d => `${r.city}, ${r.country} (${d.start} - ${d.end})`),
-        )}
+        residences={friend.residences.flatMap(r => {
+          const place = `${r.city}, ${r.country}`;
+          if (r.durations) {
+            return r.durations.map(d => `${place} (${d.start} - ${d.end})`);
+          }
+          let residence = place;
+          if (friend.born && friend.died) {
+            residence += ` (${friend.born} - ${friend.died})`;
+          } else if (friend.died) {
+            residence += ` (died: ${friend.died})`;
+          }
+          return residence;
+        })}
         markers={friend.residences.map(r => ({
           label: `${r.city}, ${r.country}`,
           top: r.top,
@@ -154,6 +166,8 @@ export const query = graphql`
       name
       gender
       description
+      born
+      died
       documents: childrenDocument {
         ...CoverProps
         slug
