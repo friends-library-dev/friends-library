@@ -7,7 +7,7 @@ export default function(friend: Friend): Record<string, any>[] {
     return [
       {
         city: 'London',
-        country: 'England',
+        region: 'England',
         map: 'UK',
         top: 69,
         left: 66,
@@ -24,9 +24,9 @@ export default function(friend: Friend): Record<string, any>[] {
 
 function position(residence: {
   city: string;
-  country: string;
+  region: string;
 }): { top: number; left: number } {
-  const place = `${residence.country}, ${residence.city}`;
+  const place = `${residence.region}, ${residence.city}`;
   switch (place) {
     case 'England, York':
       return { top: 55, left: 22 };

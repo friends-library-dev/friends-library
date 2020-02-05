@@ -17,12 +17,12 @@ quotes:
       exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 residences:
   - city: York
-    country: England
+    region: England
     durations:
       - start: 1756
         end: 1774
   - city: Clonmel
-    country: Ireland
+    region: Ireland
     durations:
       - start: 1774
         end: 1790
