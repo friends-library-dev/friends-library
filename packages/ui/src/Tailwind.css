@@ -31,6 +31,21 @@
   );
 }
 
+.diamonds li {
+  position: relative;
+}
+
+.diamonds li:before {
+  content: '\25c6';
+  position: absolute;
+  left: -1.35em;
+  color: rgb(108, 49, 66);
+}
+
+:lang(es) .diamonds li:before {
+  color: rgb(193, 140, 89);
+}
+
 .strong-link {
   @apply text-flprimary font-bold antialiased tracking-wider fl-underline font-sans;
 }
@@ -61,6 +76,11 @@
 
 .transition-ease-out-1\/4s {
   transition: 0.25s ease-out;
+}
+
+.MDX blockquote > p {
+  margin: 0;
+  padding: 0;
 }
 
 @tailwind utilities;

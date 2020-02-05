@@ -6,8 +6,8 @@ import { DownloadWizard, AddToCartWizard } from '@friends-library/ui';
 import DocActions from './DocActions';
 import CartItem from '../../checkout/models/CartItem';
 import CartStore from '../../checkout/services/CartStore';
-import './DocBlock.css';
 import RotatableCover from './RotatableCover';
+import './DocBlock.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
   authorUrl: string;
@@ -228,7 +228,7 @@ function LinksAndMeta(
         hasAudio={hasAudio}
       />
       <div className="DocMeta flex flex-col items-center">
-        <ul className="text-sans text-gray-600 leading-loose antialiased">
+        <ul className="diamonds text-sans text-gray-600 leading-loose antialiased">
           <li>{author}</li>
           <li className="capitalize">{edition} Edition</li>
           <li>{dimensions(size, pages)}</li>

@@ -10,7 +10,6 @@ import { allFriends, allDocsMap, cartItemData, justHeadings } from './helpers';
 import { getDpcCache, persistDpcCache, EditionCache } from './dpc-cache';
 import residences from './residences';
 import * as url from '../lib/url';
-import { getPartials } from '../lib/partials';
 import { APP_ALT_URL, LANG } from '../env';
 
 const humansize = filesize.partial({ round: 0, spacer: '' });
@@ -20,17 +19,6 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   createNodeId,
   createContentDigest,
 }: SourceNodesArgs) => {
-  Object.entries(getPartials()).forEach(([slug, html]) => {
-    createNode({
-      id: `partial:${slug}`,
-      html,
-      internal: {
-        type: 'Partial',
-        contentDigest: createContentDigest(html),
-      },
-    });
-  });
-
   const meta = await fetch();
   const friends = allFriends().filter(f => f.lang === LANG && f.hasNonDraftDocument);
   const docs = allDocsMap();
