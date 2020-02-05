@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "author": "Jared Henderson <jared@netrivet.com>",
   "dependencies": {
-    "@asciidoctor/core": "^2.0.0",
     "@babel/cli": "7.6.2",
     "@babel/core": "7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -16,6 +15,8 @@
     "@friends-library/friends": "1.0.0",
     "@friends-library/types": "1.0.0",
     "@friends-library/ui": "1.0.0",
+    "@mdx-js/mdx": "^1.5.5",
+    "@mdx-js/react": "^1.5.5",
     "babel-plugin-ttag": "^1.4.2",
     "babel-preset-gatsby": "^0.1.6",
     "babel-preset-gatsby-package": "^0.1.3",
@@ -30,6 +31,7 @@
     "gatsby-plugin-emotion": "^3.0.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-manifest": "^2.1.1",
+    "gatsby-plugin-mdx": "^1.0.70",
     "gatsby-plugin-offline": "^2.1.0",
     "gatsby-plugin-postcss": "^2.1.2",
     "gatsby-plugin-react-helmet": "^3.0.12",
@@ -72,6 +74,7 @@
   },
   "devDependencies": {
     "@types/he": "^1.1.0",
+    "@types/mdx-js__react": "^1.5.0",
     "@types/react": "16.9.11",
     "@types/react-dom": "^16.8.3",
     "@types/react-helmet": "^5.0.11",

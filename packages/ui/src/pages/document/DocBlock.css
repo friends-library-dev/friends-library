@@ -13,16 +13,6 @@
   cursor: pointer;
 }
 
-.DocMeta li:before {
-  content: '\25c6';
-  padding-right: 0.4em;
-  color: rgb(108, 49, 66);
-}
-
-:lang(es) .DocMeta li:before {
-  color: rgb(193, 140, 89);
-}
-
 @screen md {
   .DocMeta ul {
     width: 100%;

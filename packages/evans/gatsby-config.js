@@ -17,6 +17,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'mdx',
+        path: `${__dirname}/src/mdx`,
+        ignore: [`**/*.${process.env.GATSBY_LANG === 'en' ? 'es' : 'en'}.mdx`],
+      },
+    },
+    {
       resolve: 'gatsby-plugin-emotion',
       options: {
         // Accepts all options defined by `babel-plugin-emotion` plugin.
@@ -45,6 +53,14 @@ module.exports = {
       options: {
         fonts: ['cabin'],
         display: 'swap',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        defaultLayouts: {
+          default: require.resolve('./src/templates/StaticPage.tsx'),
+        },
       },
     },
   ],
