@@ -22,7 +22,7 @@ type Props = Pick<
 };
 
 const FrontInner: React.FC<Props> = props => {
-  const { lang, author, style, isCompilation, customHtml, customCss } = props;
+  const { lang, author, style, customHtml, customCss } = props;
   const fragments = getHtmlFragments(customHtml);
   return (
     <div className="front has-bg" style={style || {}}>
@@ -39,9 +39,7 @@ const FrontInner: React.FC<Props> = props => {
           fragments,
           <div className="author">
             <div className="author__line" />
-            <h2 className="author__name" style={isCompilation ? { opacity: 0 } : {}}>
-              {author}
-            </h2>
+            <h2 className="author__name">{author}</h2>
           </div>,
         )}
       </div>
