@@ -21,12 +21,12 @@ quotes:
       fellow-mortals to the love of God."
 residences:
   - city: Sheffield
-    country: England
+    region: England
     durations:
       - start: 1796
         end: 1818
   - city: St. Petersburg
-    country: Russia
+    region: Russia
     durations:
       - start: 1818
         end: 1832

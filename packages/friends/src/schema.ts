@@ -83,7 +83,7 @@ const subSchemas: Record<string, Schema> = {
     // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       city: { type: 'string', required: true },
-      country: { type: 'string', required: true },
+      region: { type: 'string', required: true },
       durations: {
         type: 'array',
         required: false,

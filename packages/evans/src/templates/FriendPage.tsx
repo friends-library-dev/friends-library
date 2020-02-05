@@ -25,7 +25,7 @@ interface Props {
       documents: (CoverData & { tags: string[]; url: string; hasAudio: boolean })[];
       residences: {
         city: string;
-        country: string;
+        region: string;
         top: number;
         left: number;
         durations?: {
@@ -74,7 +74,7 @@ export default ({ data: { friend } }: Props) => {
       <MapBlock
         friendName={friend.name}
         residences={friend.residences.flatMap(r => {
-          const place = `${r.city}, ${r.country}`;
+          const place = `${r.city}, ${r.region}`;
           if (r.durations) {
             return r.durations.map(d => `${place} (${d.start} - ${d.end})`);
           }
@@ -87,7 +87,7 @@ export default ({ data: { friend } }: Props) => {
           return residence;
         })}
         markers={friend.residences.map(r => ({
-          label: `${r.city}, ${r.country}`,
+          label: `${r.city}, ${r.region}`,
           top: r.top,
           left: r.top,
         }))}
@@ -178,7 +178,7 @@ export const query = graphql`
       }
       residences {
         city
-        country
+        region
         map
         top
         left
