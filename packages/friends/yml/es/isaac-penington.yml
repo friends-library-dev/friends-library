@@ -17,6 +17,12 @@ description:
   su vida. Buscando, encontró; llamando, la puerta se abrió delante de él. Buscó al Señor
   con todo su corazón, mente y fuerza, y no cabe duda de que el Señor fue encontrado por
   él.
+quotes:
+  - source: TODO
+    text:
+      TODO Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 documents:
   - id: 78ec9b39-f599-4842-b843-b02080972349
     alt_language_id: c248c2e7-947b-4629-8296-0cdff67a6d99
@@ -33,6 +39,10 @@ documents:
       anhelaba mucho más. Motivado por un insaciable apetito por la verdad, buscó al Señor
       con todo su corazón y descubrió un cristianismo que se centraba y fluía de la luz y
       la vida de Jesucristo reinando en el hombre interior.
+    partial_description:
+      TODO sLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
     tags:
       - devotional
       - doctrinal
