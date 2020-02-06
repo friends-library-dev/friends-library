@@ -9,18 +9,18 @@ import AudioIcon from '../../icons/Audio';
 import DownloadIcon from '../../icons/Download';
 import './BookByFriend.css';
 
-type Props = CoverProps & {
+type Props = Omit<CoverProps, 'pages'> & {
   tags: string[];
   hasAudio: boolean;
   isAlone: boolean;
-  pages: number;
+  pages: number[];
   bookUrl: string;
   description: string;
   className?: string;
 };
 
 const BookByFriend: React.FC<Props> = props => {
-  const { className, isAlone, hasAudio, description } = props;
+  const { className, isAlone, hasAudio, description, pages } = props;
   return (
     <div
       className={cx(
@@ -41,6 +41,7 @@ const BookByFriend: React.FC<Props> = props => {
         scaler={1 / 2}
         scope="1-2"
         className="-mt-20 md:mt-4 md:-ml-32"
+        pages={pages[0]}
         shadow={true}
       />
       {!isAlone && (
@@ -49,6 +50,7 @@ const BookByFriend: React.FC<Props> = props => {
           scaler={1 / 3}
           scope="1-3"
           className="mt-4 -ml-24"
+          pages={pages[0]}
           shadow={true}
         />
       )}
@@ -75,7 +77,10 @@ const BookByFriend: React.FC<Props> = props => {
         >
           <li className="text-sans w-1/2 pb-2">
             <ClockIcon className="mr-2" />
-            {props.pages} pages
+            {pages.reduce((sum, p) => sum + p, 0)} pages
+            {pages.length > 1 && (
+              <em className="italic pl-1 text-sm">({pages.length} vol)</em>
+            )}
           </li>
           <li className="text-sans w-1/2 capitalize">
             <TagsIcon className="mr-2" />
