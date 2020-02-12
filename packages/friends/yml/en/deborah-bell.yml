@@ -2,10 +2,15 @@ id: 130d2247-914f-4301-8f69-26ede577b7c0
 name: Deborah Bell
 slug: deborah-bell
 gender: female
+born: 1689
+died: 1738
+residences:
+  - city: Bromley
+    region: England
 description:
   Deborah Bell (1689-1738) was called to preach the everlasting gospel when only nineteen
   years old, and being faithful in little, she ​grew quickly ​both in​ the knowledge​ and
-  experience​ of God​.  Many who were unacquainted with the work of the Spirit of Truth in
+  experience​ of God​. Many who were unacquainted with the work of the Spirit of Truth in
   themselves, were reached​ and awakened​ by her powerful and liv​ing​ ministry​.​ She
   labored faithfully in word and doctrine,​ visiting many of the meetings of Friends in
   most parts of England, Wales, Scotland, and Ireland.
@@ -20,10 +25,14 @@ documents:
     description:
       Deborah Bell (1689-1738) was called to preach the everlasting gospel when only
       nineteen years old, and being faithful in little, she ​grew quickly ​both in​ the
-      knowledge​ and experience​ of God​.  Many who were unacquainted with the work of the
+      knowledge​ and experience​ of God​. Many who were unacquainted with the work of the
       Spirit of Truth in themselves, were reached​ and awakened​ by her powerful and
       liv​ing​ ministry​.​ She labored faithfully in word and doctrine,​ visiting many of
       the meetings of Friends in most parts of England, Wales, Scotland, and Ireland.
+    partial_description:
+      A journal of the life and gospel labors of Deborah Bell, containing an account of
+      her travels in the work of the ministry, a collection of letters between herself and
+      Joseph Pike, and a supplement to her journal written by her husband.
     tags:
       - journal
     editions:
@@ -31,3 +40,10 @@ documents:
         isbn: 978-1-64476-022-2
       - type: modernized
         isbn: 978-1-64476-023-9
+    related_documents:
+      - id: f9356ff3-a098-45b1-9ed2-022790240c01
+        description:
+          Towards the end of his life, the valuable elder Joseph Pike maintained an
+          ongoing written correspondence with Deborah Bell, finding in her one who rightly
+          discerned the condition of the church, and shared his burden to see all
+          believers walk in a way that adorned the gospel of Christ.

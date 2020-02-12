@@ -2,6 +2,17 @@ id: 2397ed74-df56-4c3d-8844-3b327bc2982f
 name: Elizabeth Stirredge
 slug: elizabeth-stirredge
 gender: female
+born: 1634
+died: 1706
+quotes:
+  - source: John Neale
+    text:
+      Much might be said concerning of friend [Elizabeth Stirredge]. She was a valiant
+      woman for truth on earth, a mother in Israel, and a worthy faithful elder in the
+      church of Christ in her time.
+residences:
+  - city: Hemel Hempstead
+    region: England
 description:
   Elizabeth Stirredge (1634-1706) was not a traveling minister in the Society of Friends.
   She was a wife, a mother, and an extraordinary woman of God. This short but fascinating
@@ -28,6 +39,10 @@ documents:
       for the Lord in her younger days, her discovery of the Truth as it in Jesus, and
       many of the trials, persecutions, and deliverances she met with in the way, as she
       took up the daily cross and faithfully followed her Lord.
+    partial_description:
+      An excerpt from the Life of Elizabeth Stirredge written for her children and
+      grandchildren, relating her earnest pursuit of the knowledge of God, and her
+      faithfulness to Him in difficulties caused by false brethren and bitter persecution.
     tags:
       - journal
     editions:
@@ -57,6 +72,11 @@ documents:
       for the Lord in her younger days, her discovery of the Truth as it in Jesus, and
       many of the trials, persecutions, and deliverances she met with in the way, as she
       took up the daily cross and faithfully followed her Lord.
+    partial_description:
+      An autobiographical account of the life of Elizabeth Stirredge written for her
+      children and grandchildren, relating her earnest pursuit of the knowledge of God,
+      and her faithfulness to Him in difficulties caused by false brethren and bitter
+      persecution.
     tags:
       - journal
     editions:

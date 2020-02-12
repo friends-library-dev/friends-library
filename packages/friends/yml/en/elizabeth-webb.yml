@@ -2,6 +2,25 @@ id: 826a979f-3e51-48cc-8399-4be3ac1a94c1
 name: Elizabeth Webb
 slug: elizabeth-webb
 gender: female
+born: 1663
+died: 1726
+quotes:
+  - source: John Richardson
+    text:
+      Sometimes I fell into company with Elizabeth Webb and Sarah Clement, who were
+      virtuous women, and lived near the kingdom, and were of good service in their
+      travels, and grew in the Truth, of which, while with them, I was sensible.
+residences:
+  - city: Gloucester
+    region: England
+    durations:
+      - start: 1663
+        end: 1700
+  - city: Philadelphia
+    region: Pennsylvania
+    durations:
+      - start: 1700
+        end: 1726
 description:
   Elizabeth Webb (1663-1726) was an early minister in the Society of Friends who travelled
   extensively in her service for the gospel. In the year 1712, while ministering in
@@ -23,6 +42,11 @@ documents:
       interview, Elizabeth Webb felt constrained in the love of God to write to Boehm and
       present him with the deeply instructive letter contained in this booklet, giving
       something of a summary of her spiritual pilgrimage.
+    partial_description:
+      A letter from Elizabeth Webb written to Anthony William Boehm (chaplain to Prince
+      George of Denmark), in which she describes her own spiritual journey, and her
+      experience of the Lord's judgments and mercies as she gave up resolutely to follow
+      Him.
     tags:
       - journal
       - letters

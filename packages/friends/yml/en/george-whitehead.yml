@@ -2,6 +2,11 @@ id: c7431c80-8321-4e4e-93a9-5e91993deabc
 name: George Whitehead
 slug: george-whitehead
 gender: male
+born: 1636
+died: 1723
+residences:
+  - city: Sedbergh
+    region: England
 description:
   George Whitehead (1636-1723) was one of the most well-known and influential ministers
   among the early Quakers. He was convinced of the Truth when only 17 years old, and
@@ -22,6 +27,11 @@ documents:
       persecuted, he kept close to the cross, and came to be a pillar and elder in the
       church of God, constantly laboring for the advancement of Truth and the welfare of
       the Society.
+    partial_description:
+      An excerpt from the Journal of George Whitehead, relating his pursuit of the living
+      God from a child, his growth in grace and usefulness to the church, and his many
+      appearances before kings and magistrates to plead the cause of his persecuted
+      brethren.
     tags:
       - journal
     editions:
@@ -58,6 +68,10 @@ documents:
       persecuted, he kept close to the cross, and came to be a pillar and elder in the
       church of God, constantly laboring for the advancement of Truth and the welfare of
       the Society.
+    partial_description:
+      The Journal of George Whitehead, relating his pursuit of the living God from a
+      child, his growth in grace and usefulness to the church, and his many appearances
+      before kings and magistrates to plead the cause of his persecuted brethren.
     tags:
       - journal
     editions:
