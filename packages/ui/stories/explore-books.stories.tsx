@@ -5,6 +5,7 @@ import ActiveFilters from '../src/pages/explore/ActiveFilters';
 import TimePicker from '../src/pages/explore/TimePicker';
 import FilterSelectDropdown from '../src/pages/explore/FilterSelectDropdown';
 import FilterControls from '../src/pages/explore/FilterControls';
+import NavBlock from '../src/pages/explore/NavBlock';
 
 storiesOf('Explore Books Page', module)
   .add('TimePicker', () => {
@@ -15,6 +16,7 @@ storiesOf('Explore Books Page', module)
       </div>
     );
   })
+  .add('NavBlock', () => <NavBlock />)
   .add('FilterControls', () => {
     const [selected, setSelected] = useState<string[]>(['edition.updated']);
     return <FilterControls activeFilters={selected} setActiveFilters={setSelected} />;
