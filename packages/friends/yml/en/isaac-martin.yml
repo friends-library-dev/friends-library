@@ -2,6 +2,18 @@ id: cac1edcf-7213-4a7a-92d6-e4f6faab6ff9
 name: Isaac Martin
 slug: isaac-martin
 gender: male
+born: 1758
+died: 1828
+quotes:
+  - source: Isaac Martin
+    text:
+      Preaching, under the influence of the Holy Spirit, is good, and is a blessing to the
+      church; but, I am persuaded, that if people generally were disposed to receive
+      strength from the pure Fountain of everlasting love opened in their own hearts,
+      there would be but little necessity for it.
+residences:
+  - city: Rahway
+    region: New Jersey
 description:
   ​Isaac Martin (1758-1828) was a sweet-spirited minister in the Society of Friends.
   Having fallen from a two-story window ​and cracked his skull when a small child, he
@@ -11,7 +23,7 @@ description:
   and direction of the Holy Spirit. On this subject he once wrote - "Unless I had felt
   ​the Lord's​ blessed presence to strengthen and qualify me, I would rather have laid
   down my life, than have attempted to minister to the people by virtue of any ​knowledge
-  or abilit​y​, natural or acquired, which, as a man, I might possess.​"​
+  or ability, natural or acquired, which, as a man, I might possess.​"​
 documents:
   - id: bed1a75e-bf7c-4bb4-9a84-1e6c908f6011
     title: The Journal of Isaac Martin
@@ -26,8 +38,12 @@ documents:
       power and direction of the Holy Spirit. On this subject he once wrote - "Unless I
       had felt ​the Lord's​ blessed presence to strengthen and qualify me, I would rather
       have laid down my life, than have attempted to minister to the people by virtue of
-      any ​knowledge or abilit​y​, natural or acquired, which, as a man, I might
-      possess.​"
+      any ​knowledge or ability​, natural or acquired, which, as a man, I might possess.​"
+    partial_description:
+      The journal of Isaac Martin, giving an account of his conversion and growth in the
+      truth, his daily sufferings of body due to a childhood accident, and his faithful
+      labor in the work of the ministry. Appended to this edition is his "Testimony to the
+      Silent Worship of God in Spirit and Truth."
     tags:
       - journal
     editions:

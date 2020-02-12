@@ -2,7 +2,29 @@ id: 920c904b-24e0-4e1c-9542-3a89cd97affe
 name: Elizabeth Ussher
 slug: elizabeth-ussher
 gender: female
-description: TODO
+born: 1749
+died: 1817
+quotes:
+  - source: William Savery
+    text:
+      I visited Elizabeth Ussher, and found her in much Christian resignation to the will
+      of the Lord, though her third lovely daughter was to be buried today; having lost
+      two others in a consumption, and a son in another way, within twelve months; her
+      father at this time lying a corpse, and her fourth and last daughter likely very
+      soon to follow her sisters in the same disease. Her state of mind, as well as that
+      of her dear remaining daughter, was truly instructive to me.
+residences:
+  - city: Waterford
+    region: Ireland
+description:
+  After a marriage of seventeen years, Elizabeth Ussher (1749-1817) was left a widow, and
+  soon after deprived of her two eldest sons by death on a foreign shore. Under the weight
+  of these trials, she and her four remaining daughters were powerfully awakened to the
+  cost of true discipleship and convinced of the principles professed by Friends. But in
+  the two years immediately following this great change, Elizabeth had to endure the death
+  of all four of her daughters by consumption. The letters of these extraordinary and
+  pious young women, written during the last few years of their short lives, were
+  collected and published by their mother after their decease.
 documents:
   - id: 4cde3c89-ab46-4f03-9346-5608a58e8393
     title: Letters of Elizabeth, Lucy, and Judith Ussher
@@ -11,7 +33,20 @@ documents:
       Waterford.
     slug: letters
     filename: Ussher_Letters
-    description: TODO
+    description:
+      After a union of seventeen years with her husband, Elizabeth Ussher (1749-1817) was
+      left a widow, and soon deprived of her two eldest sons by death on a foreign shore.
+      Under the weight of these trials, she and her four remaining daughters were
+      powerfully awakened to the cost of true discipleship and convinced of the principles
+      professed by Friends. But in the two years immediately following this great change,
+      Elizabeth was made to endure the death of all four of her daughters by consumption.
+      The letters of these extraordinary and pious young women, during the last few years
+      of their short lives, were collected and published by their mother after their
+      decease.
+    partial_description:
+      The letters of Eliza, Lucy, Judith, and Susanna, four daughters of Elizabeth Ussher,
+      written during a time of great spiritual awakening, and just prior to their untimely
+      deaths by consumption.
     tags:
       - letters
     editions:
@@ -19,3 +54,16 @@ documents:
         isbn: 978-1-64476-176-2
       - type: original
         isbn: 978-1-64476-177-9
+    related_documents:
+      - id: 25755480-7f1c-4f7f-8900-3f472001fae4
+        description:
+          During his travels in the work of the ministry, William Savery spent many months
+          in Ireland, and on several occasions very favorably mentions his encounters with
+          Elizabeth Ussher and her "excellent daughters." He was present at (or very near)
+          the death of Judith Ussher, and remarked that "all felt like peace around her
+          bed."
+      - id: 468770bf-aae5-4c4a-a2b3-41d978f3dd72
+        description:
+          Mary Dudley was one of ministers in the Society of Friends who befriended and
+          ministered to Elizabeth Ussher at a time when she was grieving the death of her
+          husband and sons, and seriously enquiring after the way of life and peace.

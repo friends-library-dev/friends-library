@@ -2,6 +2,32 @@ id: 4ec2e484-86d9-4ac6-b835-42bc1c1c16bc
 name: James Gough
 slug: james-gough
 gender: male
+born: 1712
+died: 1780
+quotes:
+  - source: Samuel Neale
+    text:
+      +++[+++James Gough] was a living minister, and well instructed in the mysteries of
+      the kingdom; he was adorned with the beautiful robes of love, and he eminently felt
+      peace on earth to abound in him, and goodwill towards men. He was a devoted faithful
+      labourer in the heavenly vineyard, and he delighted to see the youth under a
+      heavenly visitation, fitting and preparing for the Lord's vineyard.
+residences:
+  - city: Kendal
+    region: England
+    durations:
+      - start: 1712
+        end: 1737
+  - city: Cork
+    region: Ireland
+    durations:
+      - start: 1737
+        end: 1744
+  - city: Mountmelick
+    region: Ireland
+    durations:
+      - start: 1744
+        end: 1780
 description:
   ​As a boy, James Gough (1712-1780) was known for his genius intellect, having mastered
   the Greek and Latin tongues when still a young child. At one point, after conversing
@@ -31,6 +57,11 @@ documents:
       well-beloved minister among the Society of Friends, but having learned to live low
       at the feet of His Master, he was always remarkable for his deep humility, and low
       opinion of himself.
+    partial_description:
+      The journal of James Gough, relating his spiritual development, experiences in the
+      ministry, and insightful commentary about the state of the Society of Friends; also
+      containing a lengthy supplement to the journal complied by his brother John Gough
+      (the historian).
     tags:
       - journal
     editions:

@@ -2,6 +2,22 @@ id: 8b3a4f42-3f92-47c3-bfcd-303e6b95736e
 name: James Nayler
 slug: james-nayler
 gender: male
+born: 1616
+died: 1660
+quotes:
+  - source: An Officer under Oliver Cromwell
+    text:
+      When I came there, I found it was James Nayler preaching to the people; and with
+      such power and reaching energy, as I had not till then been witness of. I could not
+      help staying a little, although I was afraid to stay; for I was made a Quaker, being
+      forced to tremble at the sight of myself. I was struck with more terror by the
+      preaching of James Nayler, than I was at the battle of Dunbar, when we had nothing
+      else to expect, but to fall a prey to the swords of our enemies, without being able
+      to help ourselves. I clearly saw the cross to be submitted to, so I dared stay no
+      longer, but got off, and carried condemnation for it in my own breast.
+residences:
+  - city: Wakefield
+    region: England
 description:
   James Nayler was a prominent leader in the early Society of Friends in England. Though a
   farmer by trade, and a man of limited education, his deep spiritual understanding,
@@ -31,6 +47,13 @@ documents:
       man. The Lord, however, brought him to a clear sight and sense of his error, and
       having heartily renounced and repented for all wrong, he was restored to fellowship
       and usefulness in the body of Christ for the remainder of his days.
+    partial_description:
+      A selection of some of the greatest writings of James Nayler, together with a short
+      biographical sketch relating his early eminence in the Society of Friends, his fall
+      (evinced in the Bristol incident), his open acknowledgement of error and sincere
+      repentance, and his subsequent restoration to fellowship and usefulness in the body
+      of Christ.
+
     tags:
       - treatise
       - devotional

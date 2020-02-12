@@ -2,12 +2,34 @@ id: 6fc62584-d80d-44a9-8115-b09771517fb8
 name: Hannah Gibbons
 slug: hannah-gibbons
 gender: female
+born: 1771
+died: 1868
+quotes:
+  - source: William Evans
+    text:
+      The faculties of our aged friend [Hanna Gibbons, at 81 years of age] are remarkably
+      preserved; the staidness and solidity of her spirit are peculiar, and the constant
+      exercise of her mind, trained in the school of Christ and ornamented with the
+      garment of humility, makes her a striking example; showing the efficacy of Divine
+      grace, and the fruits of long dedication to her Lord in the path of self-denial and
+      daily watchfulness unto prayer. We felt nearly united to her, and esteemed it a
+      favor to have such a pillar and watch-woman continued in the militant church, to so
+      late a period of life.
+  - source: Ann Branson
+    text:
+      On the day following, we visited dear Hannah Gibbons, who was in her ninety-fifth
+      year. Truly it was a strengthening, encouraging visit to my mind. She was lively and
+      green in old age, remembered her visit to Ohio made in her eightieth year, and could
+      recollect much that was said and done in our Yearly Meeting at that time.
+residences:
+  - city: Philadelphia
+    region: Pennsylvania
 description:
   Hannah Gibbons (1771-1868) was a meek but truly living minister in the later period of
   the Society of Friends. Though she forever maintained a low view of herself and her
   spiritual attainments, she was considered by all to be a pillar in church, traveling in
   the capacity of a minister well into her eighties, and often being led of the Lord, in
-  old age, to visit hardened prisoners who were condemend to death. She remained
+  old age, to visit hardened prisoners who were condemned to death. She remained
   spiritually green and fruitful to the very end of her life, and died with a heart full
   of life, wisdom, and deep spiritual experience at 97 years of age.
 documents:
@@ -20,9 +42,14 @@ documents:
       of the Society of Friends. Though she forever maintained a low view of herself and
       her spiritual attainments, she was considered by all to be a pillar in church,
       traveling in the capacity of a minister well into her eighties, and often being led
-      of the Lord, in old age, to visit hardened prisoners who were condemend to death.
+      of the Lord, in old age, to visit hardened prisoners who were condemned to death.
       She remained spiritually green and fruitful to the very end of her life, and died
       with a heart full of life, wisdom, and deep spiritual experience at 97 years of age.
+    partial_description:
+      The journal, letters, and religious experiences of Hannah Gibbons, an unassuming but
+      valuable minister in the Society of Friends, who travelled in the work of the
+      ministry well into her eighties, and finished her race still "lively and green" in
+      the ninety-seventh year of her age.
     tags:
       - journal
     editions:
@@ -30,3 +57,10 @@ documents:
         isbn: 978-1-64476-033-8
       - type: modernized
         isbn: 978-1-64476-034-5
+    related_documents:
+      - id: bd22a3f4-51e1-45a5-9b65-2f0b21bde039
+        description:
+          On many occasions throughout his journal, William Evans mentions his great
+          respect and loving regard for that "mother in our Israel", Hannah Gibbons. A
+          letter of hers was included by Evans in his journal, which appears to have been
+          a great source of encouragement to him during a difficult time.

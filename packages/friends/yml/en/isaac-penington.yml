@@ -2,6 +2,29 @@ id: 88567a38-31e9-4bf0-8669-61355d8307d1
 name: Isaac Penington
 slug: isaac-penington
 gender: male
+born: 1616
+died: 1679
+quotes:
+  - source: William Penn
+    text:
+      I may say [Isaac Penington] was one in a thousand; zealous, yet tender; wise, yet
+      humble; a constant and early comer to meetings, and watchful and reverent in them.
+      He was one that ever loved power and life more than words; and because he waited for
+      this, so by it he would often be deeply affected and made to utter such testimonies
+      as were greatly to the help of the poor and needy, the weary and heavy-laden, the
+      true sojourners and travellers to the eternal rest and city of God.
+  - source: Thomas Ellwood
+    text:
+      Yet after it pleased the Father to reveal his Son in [Isaac Penington], thereby
+      giving him to see, and certainly to know, what was that good and acceptable and
+      perfect will of God; oh, how joyfully did he receive it! How willingly did he bow
+      unto it! How readily did he yield his neck to the yoke of Christ! And how constantly
+      and delightfully did he wear it! Did he then regard the pleasures of the times, or
+      value the preferments and honors of the world? No, no. he turned his back upon it
+      all; esteeming the reproach of Christ greater riches than the treasures of Egypt.
+residences:
+  - city: Jordans
+    region: England
 description:
   Isaac Penington (1616-1679) was the son of a prominent English politician, and the
   father-in-law of William Penn, founder of Pennsylvania. Though born into a family of
@@ -28,6 +51,10 @@ documents:
       by an insatiable hunger for truth, he sought the Lord with all his heart and
       discovered a Christianity that stood in, and flowed out from, the light and life of
       Jesus Christ reigning in the inner man.
+    partial_description:
+      Volume One of The Writings of Isaac Penington, a conscientiously abridged, and
+      slightly modernized and annotated edition of his four volume complete works (which
+      can also be found on this site.)
     tags:
       - devotional
       - doctrinal
@@ -208,6 +235,10 @@ documents:
       by an insatiable hunger for truth, he sought the Lord with all his heart and
       discovered a Christianity that stood in, and flowed out from, the light and life of
       Jesus Christ reigning in the inner man.
+    partial_description:
+      Volume Two of The Writings of Isaac Penington, a conscientiously abridged, and
+      slightly modernized and annotated edition of his four volume complete works (which
+      can also be found on this site.)
     tags:
       - devotional
       - doctrinal
@@ -365,6 +396,21 @@ documents:
               seconds: 2841
               chapters:
                 - 17
+    related_documents:
+      - id: 92d2a0ab-55d5-4fc1-aaf6-f003b172898d
+        description:
+          'In her Lives and Persecutions of the Primitive Quakers, Mary Ann Kelty shows a
+          particular affinity for the life and writings of Isaac Penington, saying of
+          him:  "Yes, good and faithful servant!--well-instructed scribe!--bringing forth
+          out of your treasures things new and old—-you have fed many! Be your just memory
+          blessed! And let a heart that owes you much, thus, in most true and tender love,
+          record its gratitude."'
+      - id: 2ff4c475-b7a6-411f-a960-75edf4bb79fd
+        description:
+          Knowing that Thomas Ellwood was reviled and abused by his father for his
+          adherence to the Truth, Isaac and Mary Penington took him into their home and
+          treated him as on of their own children. Much of the biographical information
+          that is known about the Peningtons comes from the Journal of Thomas Ellwood.
   - id: 491af758-8872-4de2-a958-d9059761a661
     title: The Unabridged Works of Isaac Penington -- Volume 1
     slug: unabridged-works-volume-1
@@ -381,6 +427,11 @@ documents:
       The Works of Isaac Penington (in four volumes) available through Friends Library
       Publishing are his unabridged works, which have not been edited, with the exception
       of some modernization of archaic words and spellings.
+    partial_description:
+      Volume One of the Complete Works of Isaac Penington. This edition not not been
+      abridged, edited, or annotated, but is a reproduction of the original work first
+      published in 1681, then again in 1761, 1794, 1863, and lately transcribed and
+      reprinted by Quaker Heritage Press.
     tags:
       - devotional
       - doctrinal
@@ -405,6 +456,11 @@ documents:
       The Works of Isaac Penington (in four volumes) available through Friends Library
       Publishing are his unabridged works, which have not been edited, with the exception
       of some modernization of archaic words and spellings.
+    partial_description:
+      Volume Two of the Complete Works of Isaac Penington. This edition not not been
+      abridged, edited, or annotated, but is a reproduction of the original work first
+      published in 1681, then again in 1761, 1794, 1863, and lately transcribed and
+      reprinted by Quaker Heritage Press.
     tags:
       - devotional
       - doctrinal
@@ -429,6 +485,11 @@ documents:
       The Works of Isaac Penington (in four volumes) available through Friends Library
       Publishing are his unabridged works, which have not been edited, with the exception
       of some modernization of archaic words and spellings.
+    partial_description:
+      Volume Three of the Complete Works of Isaac Penington. This edition not not been
+      abridged, edited, or annotated, but is a reproduction of the original work first
+      published in 1681, then again in 1761, 1794, 1863, and lately transcribed and
+      reprinted by Quaker Heritage Press.
     tags:
       - devotional
       - doctrinal
@@ -453,6 +514,11 @@ documents:
       The Works of Isaac Penington (in four volumes) available through Friends Library
       Publishing are his unabridged works, which have not been edited, with the exception
       of some modernization of archaic words and spellings.
+    partial_description:
+      Volume Four of the Complete Works of Isaac Penington. This edition not not been
+      abridged, edited, or annotated, but is a reproduction of the original work first
+      published in 1681, then again in 1761, 1794, 1863, and lately transcribed and
+      reprinted by Quaker Heritage Press.
     tags:
       - devotional
       - doctrinal

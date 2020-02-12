@@ -2,14 +2,39 @@ id: 5653f1ac-cc1a-4bc7-83ea-6923c783605c
 name: George Fox
 slug: george-fox
 gender: male
+born: 1624
+died: 1691
+quotes:
+  - source: Thomas Ellwood
+    text:
+      He was valiant for the truth, bold in asserting it, patient in suffering for it,
+      unwearied in labouring in it, steady in his testimony to it; immovable as a rock.
+      Deep he was in divine knowledge, clear in opening heavenly mysteries, plain and
+      powerful in preaching, fervent in prayer. He was richly endued with heavenly wisdom,
+      quick in discerning, sound in judgment, able and ready in giving, discreet in
+      keeping counsel; a lover of righteousness, an encourager of virtue, justice,
+      temperance, meekness, purity, chastity, modesty, humility, charity, and self-denial
+      in all, both by word and example.
+  - source: William Penn
+    text:
+      But above all he excelled in prayer. The inwardness and weight of his spirit, the
+      reverence and solemnity of his address and behavior, and the fewness and fulness of
+      his words, have often struck even strangers with admiration, as they often reached
+      others with consolation. The most awesome, living, reverent frame I ever felt or
+      beheld, I must say, was his in prayer. And truly it was a testimony that he knew and
+      lived nearer to the Lord than other men; for they that know Him most, see most
+      reason to approach him with reverence and fear.
+residences:
+  - city: Leicester
+    region: England
 description:
   George Fox (1624-1691) is generally considered the founder of the Society of Friends
   (Quakers). As a young man, Fox could find no rest in the lifeless, outward Christianity
-  of his day, seeing clearly that most believers professed far more than they tuly
+  of his day, seeing clearly that most believers professed far more than they truly
   possessed. This journal tells the story of his desperate search for the Truth, his
-  dicovery of a Christianity that stands in the life and light of Jesus Christ, and the
+  discovery of a Christianity that stands in the life and light of Jesus Christ, and the
   ensuing fifty years of powerful ministry that turned the world upside down. This is the
-  complete and unabridged Journal of Georged Fox, originally compiled and edited by Thomas
+  complete and unabridged Journal of George Fox, originally compiled and edited by Thomas
   Ellwood in 1694, and later divided into chapters, and supplied with numerous historical
   and biographical notes by William Armistead in 1852.
 documents:
@@ -21,11 +46,15 @@ documents:
       George Fox (1624-1691) is generally considered the founder of the Society of Friends
       (Quakers). As a young man, Fox could find no rest in the lifeless, outward
       Christianity of his day, seeing clearly that most believers professed far more than
-      they tuly possessed. This journal tells the story of his desperate search for the
-      Truth, his dicovery of a Christianity that stands in the life and light of Jesus
+      they truly possessed. This journal tells the story of his desperate search for the
+      Truth, his discovery of a Christianity that stands in the life and light of Jesus
       Christ, and the ensuing fifty years of powerful ministry that turned the world
       upside down. This excerpt contains only the first three chapters of Fox's journal,
       which focus on his early years, spiritual growth, and call to the ministry.
+    partial_description:
+      George Fox (1624-1691) is generally considered the founder of the Society of
+      Friends. This excerpt contains only the first three chapters of Fox's journal, which
+      focus on his early years, spiritual growth, and call to the ministry.
     tags:
       - journal
     editions:
@@ -60,13 +89,17 @@ documents:
       George Fox (1624-1691) is generally considered the founder of the Society of Friends
       (Quakers). As a young man, Fox could find no rest in the lifeless, outward
       Christianity of his day, seeing clearly that most believers professed far more than
-      they tuly possessed. This journal tells the story of his desperate search for the
-      Truth, his dicovery of a Christianity that stands in the life and light of Jesus
+      they truly possessed. This journal tells the story of his desperate search for the
+      Truth, his discovery of a Christianity that stands in the life and light of Jesus
       Christ, and the ensuing fifty years of powerful ministry that turned the world
-      upside down. This is the complete and unabridged Journal of Georged Fox, originally
+      upside down. This is the complete and unabridged Journal of George Fox, originally
       compiled and edited by Thomas Ellwood in 1694, and later divided into chapters, and
       supplied with numerous historical and biographical notes by William Armistead in
       1852.
+    partial_description:
+      The complete and unabridged Journal of George Fox, originally compiled and edited by
+      Thomas Ellwood in 1694, and later divided into chapters, and supplied with numerous
+      historical and biographical footnotes by William Armistead in 1852.
     tags:
       - journal
       - letters
@@ -75,3 +108,16 @@ documents:
         isbn: 978-1-64476-029-1
         splits:
           - 17
+    related_documents:
+      - id: 92d2a0ab-55d5-4fc1-aaf6-f003b172898d
+        description:
+          In her book The Lives and Persecutions of the Primitive Quakers, Mary Ann Kelty
+          recounts the first dealings of the Lord with the young George Fox, and
+          faithfully describes how God made use of this unschooled man to gather together
+          a society of Christians that exemplified true "obedience of faith."
+      - id: a1b1457c-3678-4659-916d-c7b66e465b7e
+        description:
+          In Primitive Christianity Revived, William Penn relates the rise, progress, and
+          principle doctrines of the people called Quakers, and also declares (from "his
+          own long and most inward acquaintance and intimate knowledge of him") the many
+          excellent qualifications that God bestowed on George Fox.

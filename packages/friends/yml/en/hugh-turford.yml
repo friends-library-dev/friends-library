@@ -2,11 +2,23 @@ id: 0f82b284-e156-4523-a9a1-7ddf8993bd63
 name: Hugh Turford
 slug: hugh-turford
 gender: male
+died: 1713
+residences:
+  - city: Bristol
+    region: England
+quotes:
+  - source: Hugh Turford
+    text:
+      Ever since men came to be persuaded that though they sow tares, they shall still
+      reap wheat, and though they go down to the grave sinners, they shall still rise
+      saints, and attain in another world what the primitive Christians attained in this
+      world; since then, I say, the citizenship of Christians has not been in heaven, but
+      in the earth. They have walked in darkness and not in the light.
 description:
   The primitive Christians built on a sure rock, a living foundation, on Christ as He was
-  in all ages, and still is--on His spiritual appeareance as the light of the world, and
+  in all ages, and still is--on His spiritual appearance as the light of the world, and
   the life of righteousness. His work of sanctification is inward, and is to be effected
-  by inward means. Nothing but inward light can expell inward darkness; nothing less than
+  by inward means. Nothing but inward light can expel inward darkness; nothing less than
   eternal life can deliver our souls from the power of death. But this way of God’s
   salvation has been so long rejected, that few in our present age know what His Spirit
   is, where they may become acquainted with it, or how they may walk in it.
@@ -23,13 +35,18 @@ documents:
       Christianity."
     description:
       The primitive Christians built on a sure rock, a living foundation, on Christ as He
-      was in all ages, and still is--on His spiritual appeareance as the light of the
+      was in all ages, and still is--on His spiritual appearance as the light of the
       world, and the life of righteousness. His work of sanctification is inward, and is
-      to be effected by inward means. Nothing but inward light can expell inward darkness;
+      to be effected by inward means. Nothing but inward light can expel inward darkness;
       nothing less than eternal life can deliver our souls from the power of death. But
       this way of God’s salvation has been so long rejected, that few in our present age
       know what His Spirit is, where they may become acquainted with it, or how they may
       walk in it.
+    partial_description:
+      A treatise by Hugh Turford first demonstrating the meaning and importance of Paul's
+      words to the Galatians, "Walk in the Spirit, and you shall not fulfill the lust of
+      the flesh," and then explaining the nature of grace, and how it saves from sin and
+      affects man's salvation.
     tags:
       - doctrinal
       - treatise

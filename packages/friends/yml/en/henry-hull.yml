@@ -2,6 +2,11 @@ id: 5ad0539b-cbaf-454f-86de-84f352ee8807
 name: Henry Hull
 slug: henry-hull
 gender: male
+born: 1765
+died: 1834
+residences:
+  - city: Stanford
+    region: New York
 description:
   Henry Hull (1765-1834) loved the Lord from a young age and desired to serve Him, but
   being diffident and shy by nature, was unwilling to give up to a call to the ministry
@@ -29,6 +34,11 @@ documents:
       met with a severe trial in the loss of his wife, son, and mother to a malignant
       fever, he was nevertheless enabled to say, “Though He slay me, yet I will trust in
       Him. It is the Lord, let Him do what seems good to Him.”
+    partial_description:
+      The journal of Henry Hull, giving an account of his childhood, convincement of the
+      truth, spiritual growth, and faithful service in the work of the ministry in the
+      United States and elsewhere. Also included are several of his personal letters and
+      an address to the youth of the Society of Friends.
     tags:
       - journal
     editions:

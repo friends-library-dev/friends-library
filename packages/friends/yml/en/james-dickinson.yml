@@ -2,6 +2,19 @@ id: a19be961-6cdd-42cb-864a-a280b60d2848
 name: James Dickinson
 slug: james-dickinson
 gender: male
+born: 1659
+died: 1741
+quotes:
+  - source: John Bell
+    text:
+      It may be truly said of [James Dickinson] that he went not about to publish the
+      gospel of life and salvation with enticing words which man's wisdom teaches, but in
+      the power and demonstration of the Spirit. It was by being obedient to the powerful
+      workings thereof in himself, and by waiting diligently for the movings and openings
+      of it, that he became well qualified for that service.
+residences:
+  - city: Moorside
+    region: England
 description:
   James Dickinson (1659-1741) was a well-known and much-beloved minister in the Society of
   Friends, whose long life was spent in tireless labor for the edification of the church
@@ -28,6 +41,11 @@ documents:
       and power, and was effectual to the convincing and gathering of many whose hearts
       became settled on the Rock Christ Jesus, knowing Him to be their true light and
       teacher.
+    partial_description:
+      The journal of James Dickinson, giving an account of the work of the Spirit in his
+      heart when a child, his growth in the truth, and travels in the work of the
+      ministry; also including several epistles written to churches in America and the
+      West Indies.
     tags:
       - journal
     editions:
@@ -35,3 +53,10 @@ documents:
         isbn: 978-1-64476-047-5
       - type: original
         isbn: 978-1-64476-048-2
+    related_documents:
+      - id: 9acb6df3-765e-47bd-b50c-bab6b3cd7239
+        description:
+          Thomas Wilson was James Dickinson's intimate friend and most frequent companion
+          in the work of the ministry. Together they traveled and labored in near gospel
+          fellowship throughout most parts of England, Ireland, Wales, West Indies, and
+          the American Colonies.
