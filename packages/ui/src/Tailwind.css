@@ -2,8 +2,9 @@
 @tailwind components;
 
 :root {
-  /* prevent js errors from @reach/dialog */
+  /* prevent js errors from not including @reach CSS */
   --reach-dialog: 1;
+  --reach-accordian: 1;
 }
 
 .subtle-focus:focus {
