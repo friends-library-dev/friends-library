@@ -50,6 +50,10 @@ module.exports = {
         'flgold-600': `rgb(${goldRgb})`,
         'flgold-400': 'rgb(172, 127, 85)',
         'flgray-900': 'rgb(44, 42, 41)',
+        'flgray-500': 'rgb(146, 146, 146)',
+        'flgray-400': 'rgb(218, 218, 218)',
+        'flgray-300': 'rgb(233, 233, 233)',
+        'flgray-200': 'rgb(241, 241, 241)',
         'flgray-100': 'rgb(249, 249, 249)',
       },
       fontSize: {

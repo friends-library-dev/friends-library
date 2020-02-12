@@ -20,6 +20,7 @@
     "@friends-library/cover-component": "1.0.0",
     "@friends-library/friends": "1.0.0",
     "@friends-library/lulu": "1.0.0",
+    "@reach/accordion": "^0.8.0",
     "@reach/dialog": "^0.7.0",
     "classnames": "^2.2.6",
     "gatsby-link": "^2.2.2",

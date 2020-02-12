@@ -3296,6 +3296,20 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
+"@reach/accordion@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@reach/accordion/-/accordion-0.8.0.tgz#4085b7a4dd05f5ce2c9d580ab71e2bddf351c8c0"
+  integrity sha512-8oI0NSshBHyCY7oRVOgTM25c9ZjwLkyb18El59j8e2m6/YDCqW936Jwfh9BBu+YXCGHE6HcE3rOIWJD1Uh1uLg==
+  dependencies:
+    "@reach/auto-id" "^0.8.0"
+    "@reach/utils" "^0.8.0"
+    warning "^4.0.3"
+
+"@reach/auto-id@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.8.0.tgz#13a73facfa42e78eea7f97aba675e15f386ec801"
+  integrity sha512-7Aazft/dB2/4NSGl2ixx2n4BKsQLFEiVtEiw3/GdFb6U7+bJ1qJLzWAsSkFc7ACeNtbkhM34RuBZTd44bOtzbQ==
+
 "@reach/dialog@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@reach/dialog/-/dialog-0.7.0.tgz#4bf1a47974861863cfc6fcbf3a79279d18e56352"
@@ -3327,6 +3341,11 @@
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.7.0.tgz#d089552bee11b9900cb8b54d4f151362a509eb54"
   integrity sha512-sqPUQzpA+ofGd+38kZ3PylG5NrsbPCP6U+W5+YOrrxGDobX04807ofNRrq30unGo1ueIBzwcm5C5pu33FshpmQ==
+
+"@reach/utils@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.8.0.tgz#8610590a42bf713d5686e357271609c713bb5c24"
+  integrity sha512-NjOjrFdf7VS6zyTAyXzYgRwLfluECrWe7XLb5Nh9HQA81+9lkvzkR5U9TP07lDDBCup/rFIF56S1XNB/StRrfA==
 
 "@sendgrid/client@^6.4.0":
   version "6.4.0"
