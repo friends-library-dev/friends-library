@@ -1,7 +1,7 @@
 import React from 'react';
-import './WhoWereTheQuakers.css';
 import Button from '../Button';
 import Heading from '../Heading';
+import './WhoWereTheQuakers.css';
 
 const WhoWereTheQuakers: React.FC = () => (
   <section className="Block-quakers bg-flmaroon text-white flex flex-col items-center py-12 sm:py-16 px-12  md:px-16 lg:px-20 lg:py-24">
