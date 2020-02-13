@@ -9,6 +9,7 @@ interface Props {
   onClick?: () => any;
   disabled?: boolean;
   shadow?: boolean;
+  textColor?: string;
   bg?: 'gold' | 'blue' | 'green' | 'maroon' | 'primary' | null;
 }
 
@@ -20,9 +21,10 @@ const Button: React.FC<Props> = ({
   children,
   shadow,
   bg,
+  textColor = 'white',
 }) => {
   const props = {
-    className: cx('Btn', className, {
+    className: cx('Btn', className, `text-${textColor}`, {
       [`bg-fl${bg || 'primary'}`]: bg !== null,
       [`hover:bg-fl${bg || 'primary'}-800`]: bg !== null,
       'shadow-btn': shadow,
