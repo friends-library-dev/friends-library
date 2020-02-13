@@ -6,6 +6,8 @@ import TimePicker from '../src/pages/explore/TimePicker';
 import FilterSelectDropdown from '../src/pages/explore/FilterSelectDropdown';
 import FilterControls from '../src/pages/explore/FilterControls';
 import NavBlock from '../src/pages/explore/NavBlock';
+import GettingStartedLinkBlock from '../src/pages/explore/GettingStartedLinkBlock';
+import SearchResultBack from '../src/pages/explore/SearchResultBack';
 
 storiesOf('Explore Books Page', module)
   .add('TimePicker', () => {
@@ -17,6 +19,16 @@ storiesOf('Explore Books Page', module)
     );
   })
   .add('NavBlock', () => <NavBlock />)
+  .add('GettingStartedLinkBlock', () => <GettingStartedLinkBlock />)
+  .add('SearchResultBack', () => (
+    <div className="mx-auto my-12" style={{ width: 290 }}>
+      <SearchResultBack
+        description="We have over 200 books to purchase or download. Here, you can view them all. This is a description of this book. It shouldn't be too long. Just an excerpt."
+        url="/"
+        hasAudio
+      />
+    </div>
+  ))
   .add('FilterControls', () => {
     const [selected, setSelected] = useState<string[]>(['edition.updated']);
     return <FilterControls activeFilters={selected} setActiveFilters={setSelected} />;

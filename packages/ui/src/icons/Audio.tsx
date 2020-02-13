@@ -4,14 +4,19 @@ import cx from 'classnames';
 interface Props {
   tailwindColor?: string;
   className?: string;
+  height?: number;
 }
 
-const AudioIcon: React.FC<Props> = ({ tailwindColor = 'flgray-900', className }) => {
+const AudioIcon: React.FC<Props> = ({
+  tailwindColor = 'flgray-900',
+  className,
+  height = 14,
+}) => {
   return (
     <svg
       className={cx(className, 'inline-block')}
-      width="16"
-      height="14"
+      width={(16 / 14) * height}
+      height={height}
       viewBox="0 0 16 14"
     >
       <path
