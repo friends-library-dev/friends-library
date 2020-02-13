@@ -21,7 +21,7 @@ const SearchResultBack: React.FC<Props> = ({ description, hasAudio, url }) => {
           <span>Audio Book</span>
         </p>
       )}
-      <Button to={url} bg={null} className="bg-white" textColor="gray-700">
+      <Button to={url} bg={null} className="bg-white" textColor="gray-700" width="100%">
         View Book
       </Button>
       <button className="mx-auto mt-4 block focus:outline-none subtle-focus">

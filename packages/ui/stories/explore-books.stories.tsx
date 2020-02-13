@@ -8,8 +8,13 @@ import FilterControls from '../src/pages/explore/FilterControls';
 import NavBlock from '../src/pages/explore/NavBlock';
 import GettingStartedLinkBlock from '../src/pages/explore/GettingStartedLinkBlock';
 import SearchResultBack from '../src/pages/explore/SearchResultBack';
+import SpanishSiteBlock from '../src/pages/explore/SpanishSiteBlock';
+import BookTeaserCard from '../src/BookTeaserCard';
+import { coverSizes } from './decorators';
+import { props as coverProps } from './cover.stories';
 
 storiesOf('Explore Books Page', module)
+  .addDecorator(coverSizes)
   .add('TimePicker', () => {
     const [date, setDate] = useState<number>(1650);
     return (
@@ -19,6 +24,7 @@ storiesOf('Explore Books Page', module)
     );
   })
   .add('NavBlock', () => <NavBlock />)
+  .add('SpanishSiteBlock', () => <SpanishSiteBlock numBooks={43} url="/" />)
   .add('GettingStartedLinkBlock', () => <GettingStartedLinkBlock />)
   .add('SearchResultBack', () => (
     <div className="mx-auto my-12" style={{ width: 290 }}>
@@ -41,6 +47,17 @@ storiesOf('Explore Books Page', module)
       ]}
       onClearAll={a('clear all')}
     />
+  ))
+  .add('BookTeaserCard', () => (
+    <div className="bg-flblue py-16">
+      <BookTeaserCard
+        {...coverProps}
+        description="This is the modern edition of this book title. This is an explanation of what the difference is between the updated, modern, and the real OG version..."
+        documentUrl="/"
+        authorUrl="/"
+        badgeText="Feb 10"
+      />
+    </div>
   ))
   .add('FilterSelectDropdown', () => {
     const [selected, setSelected] = useState<string[]>(['edition.updated']);
