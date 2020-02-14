@@ -5,7 +5,7 @@ import { Front } from '@friends-library/cover-component';
 import { CoverProps } from '@friends-library/types/src/types';
 import './BookTeaserCard.css';
 
-type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
+export type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
   documentUrl: string;
   authorUrl: string;
   description: string;
@@ -27,7 +27,7 @@ const BookTeaserCard: React.FC<Props> = props => {
       <div className="CoverWrap flex justify-center md:pt-10 md:pl-10">
         <div className="relative">
           {badgeText && <Badge>{badgeText}</Badge>}
-          <Front {...props} size="m" scaler={1 / 3} scope="1-3" shadow />
+          <Front {...props} className="" size="m" scaler={1 / 3} scope="1-3" shadow />
         </div>
       </div>
       <div
