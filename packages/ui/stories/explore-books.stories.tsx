@@ -10,10 +10,22 @@ import GettingStartedLinkBlock from '../src/pages/explore/GettingStartedLinkBloc
 import SearchResultBack from '../src/pages/explore/SearchResultBack';
 import SpanishSiteBlock from '../src/pages/explore/SpanishSiteBlock';
 import SelectableMap from '../src/pages/explore/SelectableMap';
+import NewBooksBlock from '../src/pages/explore/NewBooksBlock';
 import MapSlider from '../src/pages/explore/MapSlider';
-import BookTeaserCard from '../src/BookTeaserCard';
+import BookTeaserCard, { Props as TeaserProps } from '../src/BookTeaserCard';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
+
+storiesOf('Explore Books Page/NewBooksBlock', module)
+  .addDecorator(coverSizes)
+  .add('one', () => <NewBooksBlock books={[teaserProps()]} />)
+  .add('two', () => <NewBooksBlock books={[teaserProps(), teaserProps()]} />)
+  .add('four', () => (
+    <NewBooksBlock books={[teaserProps(), teaserProps(), teaserProps(), teaserProps()]} />
+  ))
+  .add('three', () => (
+    <NewBooksBlock books={[teaserProps(), teaserProps(), teaserProps()]} />
+  ));
 
 storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
@@ -57,13 +69,7 @@ storiesOf('Explore Books Page', module)
   ))
   .add('BookTeaserCard', () => (
     <div className="bg-flblue py-16">
-      <BookTeaserCard
-        {...coverProps}
-        description="This is the modern edition of this book title. This is an explanation of what the difference is between the updated, modern, and the real OG version..."
-        documentUrl="/"
-        authorUrl="/"
-        badgeText="Feb 10"
-      />
+      <BookTeaserCard {...teaserProps()} />
     </div>
   ))
   .add('FilterSelectDropdown', () => {
@@ -74,3 +80,15 @@ storiesOf('Explore Books Page', module)
       </div>
     );
   });
+
+function teaserProps(props: Partial<TeaserProps> = {}): TeaserProps {
+  return {
+    ...coverProps,
+    description:
+      'This is the modern edition of this book title. This is an explanation of what the difference is between the updated, modern, and the real OG version...',
+    authorUrl: '/',
+    documentUrl: '/',
+    badgeText: 'Feb 10',
+    ...props,
+  };
+}
