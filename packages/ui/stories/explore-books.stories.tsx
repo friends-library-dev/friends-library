@@ -9,6 +9,8 @@ import NavBlock from '../src/pages/explore/NavBlock';
 import GettingStartedLinkBlock from '../src/pages/explore/GettingStartedLinkBlock';
 import SearchResultBack from '../src/pages/explore/SearchResultBack';
 import SpanishSiteBlock from '../src/pages/explore/SpanishSiteBlock';
+import SelectableMap from '../src/pages/explore/SelectableMap';
+import MapSlider from '../src/pages/explore/MapSlider';
 import BookTeaserCard from '../src/BookTeaserCard';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
@@ -26,6 +28,11 @@ storiesOf('Explore Books Page', module)
   .add('NavBlock', () => <NavBlock />)
   .add('SpanishSiteBlock', () => <SpanishSiteBlock numBooks={43} url="/" />)
   .add('GettingStartedLinkBlock', () => <GettingStartedLinkBlock />)
+  .add('MapSlider', () => <MapSlider />)
+  .add('SelectableMap', () => {
+    const [region, selectRegion] = useState<string>('England');
+    return <SelectableMap selectedRegion={region} selectRegion={selectRegion} />;
+  })
   .add('SearchResultBack', () => (
     <div className="mx-auto my-12" style={{ width: 290 }}>
       <SearchResultBack

@@ -30,7 +30,8 @@
     "react-dom": "16.10.1",
     "react-stripe-elements": "^6.0.1",
     "react-switch": "^5.0.1",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.2.0",
+    "use-interval": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

@@ -1,0 +1,26 @@
+.SelectableMap label,
+.SelectableMap svg path,
+.SelectableMap svg {
+  cursor: pointer;
+  @apply text-gray-700;
+}
+
+.SelectableMap svg path {
+  opacity: 0.65;
+}
+
+.SelectableMap svg path,
+.SelectableMap svg {
+  cursor: pointer;
+  /* @apply text-flmaroon-400; */
+  @apply text-flblue-600;
+}
+
+.SelectableMap svg.selected path {
+  @apply text-flmaroon;
+  opacity: 1;
+}
+
+.SelectableMap svg:hover path {
+  opacity: 1;
+}
