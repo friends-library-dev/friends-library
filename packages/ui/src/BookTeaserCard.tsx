@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Link from 'gatsby-link';
 import { Front } from '@friends-library/cover-component';
-import { CoverProps } from '@friends-library/types/src/types';
+import { CoverProps } from '@friends-library/types';
 import './BookTeaserCard.css';
 
 export type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
