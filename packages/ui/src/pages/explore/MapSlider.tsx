@@ -1,28 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 import useInterval from 'use-interval';
+import { useWindowWidth } from '../../hooks/window-width';
+import { SCREEN_MD } from '../../lib/constants';
 import SelectableMap from './SelectableMap';
 import './MapSlider.css';
 
 const MapSlider: React.FC = () => {
-  const [winWidth, setWinWidth] = useState<number>(-1);
+  const winWidth = useWindowWidth();
   const [focus, setFocus] = useState<'UK' | 'US'>('UK');
   const [controlled, setControlled] = useState<boolean>(false);
   const [region, selectRegion] = useState<string>('Northern US');
   const toggleFocus: () => any = () => setFocus(focus === 'UK' ? 'US' : 'UK');
 
-  useEffect(() => {
-    setWinWidth(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    const updateWinWidth: () => any = () => setWinWidth(window.innerWidth);
-    window.addEventListener('resize', updateWinWidth);
-    return () => window.removeEventListener('resize', updateWinWidth);
-  });
-
   useInterval(() => {
-    if (winWidth < MD_SCREEN && !controlled) {
+    if (winWidth < SCREEN_MD && !controlled) {
       toggleFocus();
     }
   }, 12000);
@@ -62,7 +54,7 @@ const MapSlider: React.FC = () => {
 export default MapSlider;
 
 function position(area: 'US' | 'UK', winWidth: number): Record<string, number | string> {
-  if (winWidth >= MD_SCREEN) {
+  if (winWidth >= SCREEN_MD) {
     return {};
   }
   if (area === 'US') {
@@ -82,5 +74,3 @@ const DIMS = {
     left: -30,
   },
 };
-
-const MD_SCREEN = 768;

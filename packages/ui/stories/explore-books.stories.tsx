@@ -10,6 +10,7 @@ import GettingStartedLinkBlock from '../src/pages/explore/GettingStartedLinkBloc
 import SearchResultBack from '../src/pages/explore/SearchResultBack';
 import SpanishSiteBlock from '../src/pages/explore/SpanishSiteBlock';
 import SelectableMap from '../src/pages/explore/SelectableMap';
+import BookSlider from '../src/pages/explore/BookSlider';
 import NewBooksBlock from '../src/pages/explore/NewBooksBlock';
 import MapSlider from '../src/pages/explore/MapSlider';
 import BookTeaserCard, { Props as TeaserProps } from '../src/BookTeaserCard';
@@ -29,6 +30,29 @@ storiesOf('Explore Books Page/NewBooksBlock', module)
 
 storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
+  .add('BookSlider', () => (
+    <div className="p-6 md:p-12 bg-gray-100x flex justify-center">
+      <BookSlider
+        books={[
+          teaserProps(),
+          teaserProps({ author: 'Stephen Crisp', title: 'A Plain Pathway' }),
+          teaserProps({
+            author: 'Charles Marshall',
+            title: 'The Journal of Charles Marshall',
+          }),
+          teaserProps({ author: 'George Fox', title: 'The Journal of George Fox' }),
+          teaserProps({ author: 'William Penn', title: 'No Cross, No Crown' }),
+          teaserProps({ author: 'Hugh Turford', title: 'Walk in the Spirit' }),
+          teaserProps({ author: 'Robert Barclay', title: 'Saved to the Uttermost' }),
+          teaserProps({ author: 'Robert Barclay', title: 'Waiting Upon the Lord' }),
+          teaserProps({
+            author: 'Joseph Phipps',
+            title: 'The Original and Present State of Man',
+          }),
+        ]}
+      />
+    </div>
+  ))
   .add('TimePicker', () => {
     const [date, setDate] = useState<number>(1650);
     return (

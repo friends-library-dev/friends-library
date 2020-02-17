@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import connect from './db';
-import { EditionType, AudioQuality } from '@friends-library/types/src/types';
+import { EditionType, AudioQuality } from '@friends-library/types';
 
 export const format = [
   'web-pdf',
