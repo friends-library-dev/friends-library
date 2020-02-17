@@ -2,15 +2,10 @@ import React, { useState } from 'react';
 import cx from 'classnames';
 import Link from 'gatsby-link';
 import { Front } from '@friends-library/cover-component';
-import { CoverProps } from '@friends-library/types';
+import { Book } from './types';
 import { useWindowWidth } from '../../hooks/window-width';
 import { SCREEN_LG, SCREEN_XL } from '../../lib/constants';
 import './BookSlider.css';
-
-type Book = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
-  documentUrl: string;
-  authorUrl: string;
-};
 
 interface Props {
   books: Book[];
@@ -26,24 +21,10 @@ const BookSlider: React.FC<Props> = ({ books }) => {
   return (
     <div className="BookSlider md:overflow-hidden relative">
       {canGoLeft && (
-        <i
-          onClick={() => setCurrentPage(currentPage - 1)}
-          className={cx(
-            'fa fa-chevron-left z-50 cursor-pointer hover:text-black',
-            'fa absolute text-2xl text-gray-700 px-4 opacity-25 cursor-pointer',
-            'transform -translate-y-full',
-          )}
-        />
+        <Arrow direction="left" onClick={() => setCurrentPage(currentPage - 1)} />
       )}
       {canGoRight && (
-        <i
-          onClick={() => setCurrentPage(currentPage + 1)}
-          className={cx(
-            'fa fa-chevron-right z-50 cursor-pointer hover:text-black',
-            'fa absolute text-2xl text-gray-700 px-4 opacity-25 cursor-pointer',
-            'transform -translate-y-1/2',
-          )}
-        />
+        <Arrow direction="right" onClick={() => setCurrentPage(currentPage + 1)} />
       )}
       <div
         style={{
@@ -92,6 +73,21 @@ const BookSlider: React.FC<Props> = ({ books }) => {
 };
 
 export default BookSlider;
+
+const Arrow: React.FC<{ direction: 'left' | 'right'; onClick: () => any }> = ({
+  direction,
+  onClick,
+}) => (
+  <i
+    onClick={onClick}
+    className={cx(
+      `fa-chevron-${direction} hidden md:inline`,
+      'fa z-50 cursor-pointer hover:text-black',
+      'fa absolute text-2xl text-gray-700 px-4 opacity-25 cursor-pointer',
+      'transform -translate-y-1/2',
+    )}
+  />
+);
 
 function getNumPages(numBooks: number, winWidth: number): [number, number] {
   if (winWidth < 0) {
