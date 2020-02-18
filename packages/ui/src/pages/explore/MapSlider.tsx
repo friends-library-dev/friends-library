@@ -4,13 +4,19 @@ import useInterval from 'use-interval';
 import { useWindowWidth } from '../../hooks/window-width';
 import { SCREEN_MD } from '../../lib/constants';
 import SelectableMap from './SelectableMap';
+import { Region } from './types';
 import './MapSlider.css';
 
-const MapSlider: React.FC = () => {
+interface Props {
+  className?: string;
+  region: Region;
+  setRegion: (region: Region) => any;
+}
+
+const MapSlider: React.FC<Props> = ({ className, region, setRegion }) => {
   const winWidth = useWindowWidth();
   const [focus, setFocus] = useState<'UK' | 'US'>('UK');
   const [controlled, setControlled] = useState<boolean>(false);
-  const [region, selectRegion] = useState<string>('Northern US');
   const toggleFocus: () => any = () => setFocus(focus === 'UK' ? 'US' : 'UK');
 
   useInterval(() => {
@@ -22,6 +28,7 @@ const MapSlider: React.FC = () => {
   return (
     <div
       className={cx(
+        className,
         'MapSlider relative overflow-hidden',
         `focus--${focus}`,
         winWidth < 0 && 'blur',
@@ -31,7 +38,7 @@ const MapSlider: React.FC = () => {
         style={position(focus, winWidth)}
         className="transition-all duration-700 ease-in-out md:transition-none md:-mt-8"
         selectedRegion={region}
-        selectRegion={selectRegion}
+        selectRegion={setRegion}
       />
       <i
         onClick={() => {

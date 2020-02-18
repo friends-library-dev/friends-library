@@ -7,7 +7,7 @@ interface Props {
   label: string;
   className?: string;
   tailwindColor?: string;
-  onClick?: (label: string) => any;
+  onClick?: (label: any) => any;
 }
 
 const LocationMarker: React.FC<Props> = ({
