@@ -56,6 +56,7 @@ const BookSlider: React.FC<Props> = ({ books }) => {
         <div className="hidden md:flex justify-center pt-4">
           {Array.from({ length: numPages }).map((_, idx) => (
             <b
+              key={`page-${idx + 1}`}
               onClick={() => setCurrentPage(idx + 1)}
               className={cx(
                 'px-2 text-3xl',

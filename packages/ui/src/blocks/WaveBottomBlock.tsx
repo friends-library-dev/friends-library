@@ -4,11 +4,12 @@ import cx from 'classnames';
 interface Props {
   color: 'blue' | 'maroon' | 'green' | 'gold';
   className?: string;
+  id?: string;
 }
 
-const WaveBottomBlock: React.FC<Props> = ({ color, children, className }) => {
+const WaveBottomBlock: React.FC<Props> = ({ id, color, children, className }) => {
   return (
-    <section className={cx(className, 'overflow-hidden relative')}>
+    <section id={id} className={cx(className, 'overflow-hidden relative')}>
       <Bump colorClass={`text-fl${color}-400`} viewBox="100 -180 1200 600" />
       <Bump colorClass={`text-fl${color}-800`} viewBox="-0 -180 1010 600" />
       <Bump colorClass={`text-fl${color}-600`} viewBox="300 -245 1020 600" />

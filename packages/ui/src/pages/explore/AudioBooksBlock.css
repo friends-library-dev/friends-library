@@ -1,0 +1,29 @@
+.AudioBooksBlock__Hero {
+  background-position: 55% 70%, 60% 60%;
+  background-repeat: repeat-x, no-repeat;
+  background-size: 1400px auto, 1000px auto;
+  background-image: url('../../images/waveform.svg'), url('../../images/headphones.jpg');
+}
+
+.Album {
+  width: 1.83333333in;
+  height: 1.83333333in;
+  overflow: hidden;
+  border: 10px solid white;
+}
+
+.Album .Cover {
+  transform: translateY(-0.58in);
+}
+
+.AudioBooksBlock a:hover h4 {
+  text-decoration: underline;
+}
+
+@screen lg {
+  .AudioBooksBlock__Hero {
+    background-position: 55% 65%, 60% 60%;
+    background-size: 1800px auto, cover;
+    padding-bottom: 18rem;
+  }
+}
