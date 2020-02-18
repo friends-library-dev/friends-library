@@ -9,9 +9,10 @@ import './BookSlider.css';
 
 interface Props {
   books: Book[];
+  className?: string;
 }
 
-const BookSlider: React.FC<Props> = ({ books }) => {
+const BookSlider: React.FC<Props> = ({ books, className }) => {
   const winWidth = useWindowWidth();
   const [numPages, booksPerPage] = getNumPages(books.length, winWidth);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -19,7 +20,7 @@ const BookSlider: React.FC<Props> = ({ books }) => {
   const canGoLeft = numPages > 0 && currentPage > 1;
 
   return (
-    <div className="BookSlider md:overflow-hidden relative">
+    <div className={cx(className, 'BookSlider md:overflow-hidden relative')}>
       {canGoLeft && (
         <Arrow direction="left" onClick={() => setCurrentPage(currentPage - 1)} />
       )}

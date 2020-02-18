@@ -14,26 +14,33 @@ import BookSlider from '../src/pages/explore/BookSlider';
 import NewBooksBlock from '../src/pages/explore/NewBooksBlock';
 import UpdatedEditionsBlock from '../src/pages/explore/UpdatedEditionsBlock';
 import AudioBooksBlock from '../src/pages/explore/AudioBooksBlock';
+import RegionBlock from '../src/pages/explore/RegionBlock';
 import MapSlider from '../src/pages/explore/MapSlider';
 import BookTeaserCard, { Props as TeaserProps } from '../src/BookTeaserCard';
+import { Region } from '../src/pages/explore/types';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 
 storiesOf('Explore Books Page/NewBooksBlock', module)
   .addDecorator(coverSizes)
-  .add('one', () => <NewBooksBlock books={[teaserProps()]} />)
-  .add('two', () => <NewBooksBlock books={[teaserProps(), teaserProps()]} />)
-  .add('four', () => (
-    <NewBooksBlock books={[teaserProps(), teaserProps(), teaserProps(), teaserProps()]} />
-  ))
-  .add('three', () => (
-    <NewBooksBlock books={[teaserProps(), teaserProps(), teaserProps()]} />
-  ));
+  .add('one', () => <NewBooksBlock books={[book()]} />)
+  .add('two', () => <NewBooksBlock books={[book(), book()]} />)
+  .add('four', () => <NewBooksBlock books={[book(), book(), book(), book()]} />)
+  .add('three', () => <NewBooksBlock books={[book(), book(), book()]} />);
 
 storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
   .add('UpdatedEditionsBlock', () => <UpdatedEditionsBlock books={pileOfBooks} />)
   .add('AudioBooksBlock', () => <AudioBooksBlock books={pileOfBooks} />)
+  .add('RegionBlock', () => (
+    <RegionBlock
+      books={[
+        ...pileOfBooks,
+        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/2/${b.documentUrl}` })),
+        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/3/${b.documentUrl}` })),
+      ]}
+    />
+  ))
   .add('BookSlider', () => (
     <div className="p-6 md:p-12 flex justify-center">
       <BookSlider books={pileOfBooks} />
@@ -50,7 +57,10 @@ storiesOf('Explore Books Page', module)
   .add('NavBlock', () => <NavBlock />)
   .add('SpanishSiteBlock', () => <SpanishSiteBlock numBooks={43} url="/" />)
   .add('GettingStartedLinkBlock', () => <GettingStartedLinkBlock />)
-  .add('MapSlider', () => <MapSlider />)
+  .add('MapSlider', () => {
+    const [region, setRegion] = useState<Region>('England');
+    return <MapSlider region={region} setRegion={setRegion} />;
+  })
   .add('SelectableMap', () => {
     const [region, selectRegion] = useState<string>('England');
     return <SelectableMap selectedRegion={region} selectRegion={selectRegion} />;
@@ -79,7 +89,7 @@ storiesOf('Explore Books Page', module)
   ))
   .add('BookTeaserCard', () => (
     <div className="bg-flblue py-16">
-      <BookTeaserCard {...teaserProps()} />
+      <BookTeaserCard {...book()} />
     </div>
   ))
   .add('FilterSelectDropdown', () => {
@@ -91,32 +101,74 @@ storiesOf('Explore Books Page', module)
     );
   });
 
-function teaserProps(props: Partial<TeaserProps> = {}): TeaserProps {
+function book(
+  props: Partial<TeaserProps & { region: Region }> = {},
+): TeaserProps & { region: Region } {
   return {
     ...coverProps,
     description:
       'This is the modern edition of this book title. This is an explanation of what the difference is between the updated, modern, and the real OG version...',
     authorUrl: '/',
-    documentUrl: '/' + Math.random(),
+    documentUrl: '/',
+    region: 'England',
     badgeText: 'Feb 10',
     ...props,
   };
 }
 
 const pileOfBooks = [
-  teaserProps(),
-  teaserProps({ author: 'Stephen Crisp', title: 'A Plain Pathway' }),
-  teaserProps({
+  book({
+    region: 'England',
+    author: 'Samuel Rundell',
+    title: 'The Work of Vital Religion in the Soul',
+    documentUrl: '/rundell',
+  }),
+  book({
+    region: 'Ireland',
+    author: 'Stephen Crisp',
+    title: 'A Plain Pathway',
+    documentUrl: '/crisp/path',
+  }),
+  book({
+    region: 'Scotland',
     author: 'Charles Marshall',
     title: 'The Journal of Charles Marshall',
+    documentUrl: '/marshall/journal',
   }),
-  teaserProps({ author: 'George Fox', title: 'The Journal of George Fox' }),
-  teaserProps({ author: 'William Penn', title: 'No Cross, No Crown' }),
-  teaserProps({ author: 'Hugh Turford', title: 'Walk in the Spirit' }),
-  teaserProps({ author: 'Robert Barclay', title: 'Saved to the Uttermost' }),
-  teaserProps({ author: 'Robert Barclay', title: 'Waiting Upon the Lord' }),
-  teaserProps({
+  book({
+    region: 'Northern US',
+    author: 'George Fox',
+    title: 'The Journal of George Fox',
+    documentUrl: '/fox/journal',
+  }),
+  book({
+    region: 'Scotland',
+    author: 'William Penn',
+    title: 'No Cross, No Crown',
+    documentUrl: '/penn/no-cross',
+  }),
+  book({
+    region: 'England',
+    author: 'Hugh Turford',
+    title: 'Walk in the Spirit',
+    documentUrl: '/turford/walk',
+  }),
+  book({
+    region: 'Southern US',
+    author: 'Robert Barclay',
+    title: 'Saved to the Uttermost',
+    documentUrl: '/barclay/saved',
+  }),
+  book({
+    region: 'Ireland',
+    author: 'Robert Barclay',
+    title: 'Waiting Upon the Lord',
+    documentUrl: '/barclay/waiting',
+  }),
+  book({
+    region: 'Southern US',
     author: 'Joseph Phipps',
     title: 'The Original and Present State of Man',
+    documentUrl: '/phipps/state',
   }),
 ];

@@ -2,11 +2,12 @@ import React from 'react';
 import cx from 'classnames';
 import map from '../../images/full_map.png';
 import LocationMarker from '../../icons/LocationMarker';
+import { Region } from './types';
 import './SelectableMap.css';
 
 interface Props {
   selectedRegion: string;
-  selectRegion: (region: string) => any;
+  selectRegion: (region: Region) => any;
   className?: string;
   style?: Record<string, number | string>;
 }
