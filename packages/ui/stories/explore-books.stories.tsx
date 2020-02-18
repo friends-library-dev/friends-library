@@ -13,6 +13,7 @@ import SelectableMap from '../src/pages/explore/SelectableMap';
 import BookSlider from '../src/pages/explore/BookSlider';
 import NewBooksBlock from '../src/pages/explore/NewBooksBlock';
 import UpdatedEditionsBlock from '../src/pages/explore/UpdatedEditionsBlock';
+import AudioBooksBlock from '../src/pages/explore/AudioBooksBlock';
 import MapSlider from '../src/pages/explore/MapSlider';
 import BookTeaserCard, { Props as TeaserProps } from '../src/BookTeaserCard';
 import { coverSizes } from './decorators';
@@ -32,6 +33,7 @@ storiesOf('Explore Books Page/NewBooksBlock', module)
 storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
   .add('UpdatedEditionsBlock', () => <UpdatedEditionsBlock books={pileOfBooks} />)
+  .add('AudioBooksBlock', () => <AudioBooksBlock books={pileOfBooks} />)
   .add('BookSlider', () => (
     <div className="p-6 md:p-12 flex justify-center">
       <BookSlider books={pileOfBooks} />
@@ -95,7 +97,7 @@ function teaserProps(props: Partial<TeaserProps> = {}): TeaserProps {
     description:
       'This is the modern edition of this book title. This is an explanation of what the difference is between the updated, modern, and the real OG version...',
     authorUrl: '/',
-    documentUrl: '/',
+    documentUrl: '/' + Math.random(),
     badgeText: 'Feb 10',
     ...props,
   };
