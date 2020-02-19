@@ -1,0 +1,13 @@
+.PillDropdownDropdown::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-bottom-color: currentColor;
+  border-top: 0;
+  margin-left: -10px;
+  margin-top: -10px;
+}

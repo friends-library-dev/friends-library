@@ -1,0 +1,26 @@
+.TimelineBlock_Hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('../../images/castle.jpg');
+  background-size: 1200px auto;
+  background-position: center 0%;
+  overflow: visible;
+}
+
+.TimelineBlock_Hero::after {
+  padding-top: 75px;
+  color: white;
+  z-index: 3;
+  font-size: 90px;
+}
+
+@screen sm {
+  .TimelineBlock_Hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url('../../images/castle.jpg');
+    background-size: cover;
+  }
+  .TimelineBlock_Hero::after {
+    padding-top: 38px;
+    font-size: 130px;
+  }
+}
