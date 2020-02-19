@@ -2,6 +2,33 @@ id: ee39ba0e-b512-4920-9a88-33f687cb4680
 name: John Griffith
 slug: john-griffith
 gender: male
+born: 1713
+died: 1776
+quotes:
+  - source: John Griffith
+    text:
+      Very gross is the deception of those who imagine the whole work of regeneration to
+      be instantaneous. This can be nothing else but a delusion of Satan, to settle people
+      at rest in a state of self-security as soon as he can. Oh! what a length of time it
+      takes to work out that rebellious, stiff-necked, backsliding nature, which was born
+      in Egypt, before the new generation is raised up that is fit to enter the promised
+      land!
+residences:
+  - city: Radnorshire
+    region: Wales
+    durations:
+      - start: 1713
+        end: 1726
+  - city: Philadelphia
+    region: Pennsylvania
+    durations:
+      - start: 1726
+        end: 1750
+  - city: Chelmsford
+    region: England
+    durations:
+      - start: 1750
+        end: 1776
 description:
   From a wild and thoughtless youth, John Griffith (1713-1776) was made a wise and careful
   minister of the gospel. His journal is filled with heavenly wisdom gained from personal
@@ -25,6 +52,10 @@ documents:
       lifeless words amongst a people once distinguished by their adherence to the inward
       power and purity of the Holy Spirit. This instructive portion of his lengthy journal
       deals with his conversion, spiritual growth, and call to the ministry.
+    partial_description:
+      A selection from the journal of the life, travels, and labors in the work of the
+      ministry of John Griffith, providing great insight into the nature of true
+      Christianity, the work of the ministry, and the present condition of the church.
     tags:
       - journal
     editions:
@@ -59,6 +90,10 @@ documents:
       lifeless words amongst a people once distinguished by their adherence to the inward
       power and purity of the Holy Spirit. Doubtless his life and experiences will be read
       with great interest by every sincere seeker of God.
+    partial_description:
+      A journal of the life, travels, and labors in the work of the ministry of John
+      Griffith, providing great insight into the nature of true Christianity, the work of
+      the ministry, and the present condition of the church.
     tags:
       - journal
     editions:
@@ -68,15 +103,21 @@ documents:
     title: The Ancient Path
     slug: ancient-path
     filename: Ancient_Path
-    published: 1764
+    published: 1762
     original_title:
       Some Brief Remarks Upon Sundry Important Subjects, Necessary to be understood and
       attended to by all professing the Christian Religion. Principally Addressed to the
       People called Quakers
     description:
-      This treatise, written by John Griffith in 1762, contains weighty and helpful
-      counsel on the subjects of parenting, the new birth, the nature of true worship,
-      true and false ministry, and the nature and usefulness of Christian discipline.
+      This treatise, written by John Griffith in 1762, contains insightful commentary and
+      valuable counsel on the subjects of parenting, the new birth, the nature of true
+      worship, true and false ministry, and the right understanding and practice of
+      discipline in the Church.
+    partial_description:
+      This treatise, written by John Griffith in 1762, contains insightful commentary and
+      valuable counsel on the subjects of parenting, the new birth, the nature of true
+      worship, true and false ministry, and the right understanding and practice of
+      discipline in the Church.
     tags:
       - treatise
     editions:

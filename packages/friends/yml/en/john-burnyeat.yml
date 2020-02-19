@@ -2,6 +2,25 @@ id: 6fb10f70-2783-4779-afa3-8376795d3879
 name: John Burnyeat
 slug: john-burnyeat
 gender: male
+born: 1631
+died: 1690
+quotes:
+  - source: George Fox
+    text:
+      +++[+++John Burnyeat] was a faithful friend and brother, and an able minister of
+      Christ Jesus...an elder, and a pillar in the house of God...a true apostle of Jesus
+      Christ, who preached Him freely, both by sea and land.
+residences:
+  - city: Broughton
+    region: England
+    durations:
+      - start: 1631
+        end: 1673
+  - city: Dublin
+    region: Ireland
+    durations:
+      - start: 1673
+        end: 1690
 description:
   John Burnyeat (1631-1690) was an elder and pillar in the early Society of Friends, whose
   powerful ministry turned many from darkness to light, and from the power of Satan to the
@@ -28,6 +47,11 @@ documents:
       for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he
       followed the Lord fully in his generation, putting his hand to the plow and never
       looking back.
+    partial_description:
+      A selection from the Journal and Letters of John Burnyeat, showing how the Lord
+      prepared him for his extensive work in the ministry and sent him forth in the power
+      of the Spirit to preach the gospel in England, Ireland, Barbados, and the American
+      Colonies.
     tags:
       - journal
     editions:
@@ -64,6 +88,10 @@ documents:
       for His faithfulness to Jesus Christ. Truly it can be said of John Burnyeat that he
       followed the Lord fully in his generation, putting his hand to the plow and never
       looking back.
+    partial_description:
+      The Journal and Letters of John Burnyeat, showing how the Lord prepared him for his
+      extensive work in the ministry and sent him forth in the power of the Spirit to
+      preach the gospel in England, Ireland, Barbados, and the American Colonies.
     tags:
       - journal
       - letters

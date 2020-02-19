@@ -2,6 +2,18 @@ id: 6d57baa9-9a9d-434c-b41b-68adfcce02d3
 name: John Churchman
 slug: john-churchman
 gender: male
+born: 1705
+died: 1775
+quotes:
+  - source: Joseph Oxley
+    text:
+      We were met here by our worthy friend, that good man, John Churchman, an eminent
+      minister of the Gospel, whose services are well known to many in England, Wales,
+      Scotland, Ireland, Holland, Germany, etc.; his labour was great, instructing,
+      convincing, and edifying to many, by whom he is had in sweet remembrance.
+residences:
+  - city: Nottingham
+    region: Pennsylvania
 description:
   ​John Churchman (1705-1775) was a man whose entire life was devoted to the increase of
   Christ's kingdom in the hearts of men. Having experienced the spiritual baptism which
@@ -29,6 +41,11 @@ documents:
       light, more love and sweetness than ever before," and then speaking more of the
       divine refreshment and comfort he felt flowing like a pure stream to his inward man,
       he said, "I feel that which lives beyond death and the grave."
+    partial_description:
+      The Journal of John Churchman, an eminent minister in the Society of Friends, who
+      became a qualified instrument in the hand of the Lord for the instruction and
+      edification of the church, and a father in the faith to many prominent ministers of
+      the succeeding generation.
     tags:
       - journal
     editions:
@@ -36,3 +53,11 @@ documents:
         isbn: 978-1-64476-064-2
       - type: original
         isbn: 978-1-64476-065-9
+    related_documents:
+      - id: 06d0660f-5f23-4e27-a13d-5c670dbb41e6
+        description:
+          In 1750, John Pemberton crossed the Atlantic intending to spend time in Europe
+          for purposes of business and for the benefit of his health. But finding his
+          heart nearly attached to his fellow-passanger, John Churchman, he "found no
+          liberty to leave him," and spent the next three years travelling with him
+          throughout Europe in the work of the ministry.

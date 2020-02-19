@@ -2,6 +2,18 @@ id: ac06ca75-a9eb-44f3-9c9b-bca7c3369186
 name: John Barclay
 slug: john-barclay
 gender: male
+born: 1797
+died: 1838
+quotes:
+  - source: John Barclay
+    text:
+      Oh how He touches, softens, and humbles these proud, hard hearts of ours, these
+      fallen, but aspiring natures, these froward, wayward tendencies; and woos us to be
+      wise indeed, by learning of Him how to be simple as little children,—-submitting,
+      bearing, and taking His yoke upon our spirits.
+residences:
+  - city: London
+    region: England
 description:
   Although John Barclay (1797-1838) was a descendent of the well-known apologist Robert
   Barclay, he was a complete stranger to the life and power of Truth until he began to
@@ -27,6 +39,11 @@ documents:
       lived only 41 years, but his short life was wholly dedicated to his Master's cause,
       and many of the journals, memoirs, and biographies of Early Friends that we possess
       now are the fruit of his arduous and faithful labor with the original documents.
+    partial_description:
+      Selections from the journal, papers, and letters of John Barclay, compiled and
+      published by his brother A. R. Barclay, showing his full surrender to the Lord when
+      young, and his remarkable growth in grace, wisdom, and usefulness in the church of
+      Christ.
     tags:
       - journal
       - letters
