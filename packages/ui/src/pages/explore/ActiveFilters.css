@@ -1,0 +1,11 @@
+.ActiveFilters__Group + .ActiveFilters__Group {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 0.65rem;
+}
+
+@screen md {
+  .ActiveFilters__Group + .ActiveFilters__Group {
+    border-top-width: 0;
+    padding-top: 0;
+  }
+}
