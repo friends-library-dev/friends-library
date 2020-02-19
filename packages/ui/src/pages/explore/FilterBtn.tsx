@@ -2,16 +2,19 @@ import React from 'react';
 import cx from 'classnames';
 
 interface Props {
+  className?: string;
   dismissable?: boolean;
   onClick: () => any;
 }
 
-const FilterPill: React.FC<Props> = ({ children, dismissable }) => (
+const FilterBtn: React.FC<Props> = ({ children, dismissable, className, onClick }) => (
   <button
+    onClick={onClick}
     className={cx(
-      'bg-white rounded-full border border-flgray-400 subtle-focus',
-      'font-sans text-flgray-500 text-sm tracking-wider antialiased',
-      'px-4 py-1 mr-4',
+      className,
+      'bg-white rounded-full border border-flgray-400 subtle-focus h-8',
+      'font-sans text-flgray-500 whitespace-no-wrap text-sm tracking-wider antialiased',
+      'px-4 py-1 select-none',
       'hover:bg-flgray-100',
       dismissable && 'pr-2',
     )}
@@ -26,4 +29,4 @@ const FilterPill: React.FC<Props> = ({ children, dismissable }) => (
   </button>
 );
 
-export default FilterPill;
+export default FilterBtn;

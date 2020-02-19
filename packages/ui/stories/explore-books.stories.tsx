@@ -15,6 +15,7 @@ import NewBooksBlock from '../src/pages/explore/NewBooksBlock';
 import UpdatedEditionsBlock from '../src/pages/explore/UpdatedEditionsBlock';
 import AudioBooksBlock from '../src/pages/explore/AudioBooksBlock';
 import RegionBlock from '../src/pages/explore/RegionBlock';
+import SearchBlock from '../src/pages/explore/SearchBlock';
 import TimelineBlock from '../src/pages/explore/TimelineBlock';
 import MapSlider from '../src/pages/explore/MapSlider';
 import BookTeaserCard from '../src/BookTeaserCard';
@@ -33,6 +34,7 @@ storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
   .add('UpdatedEditionsBlock', () => <UpdatedEditionsBlock books={pileOfBooks} />)
   .add('AudioBooksBlock', () => <AudioBooksBlock books={pileOfBooks} />)
+  .add('SearchBlock', () => <SearchBlock books={pileOfBooks} />)
   .add('TimelineBlock', () => (
     <TimelineBlock
       books={[
@@ -86,17 +88,41 @@ storiesOf('Explore Books Page', module)
   ))
   .add('FilterControls', () => {
     const [selected, setSelected] = useState<string[]>(['edition.updated']);
-    return <FilterControls activeFilters={selected} setActiveFilters={setSelected} />;
+    const [query, setQuery] = useState<string>('');
+    return (
+      <FilterControls
+        activeFilters={selected}
+        setActiveFilters={setSelected}
+        searchQuery={query}
+        setSearchQuery={setQuery}
+      />
+    );
   })
-  .add('ActiveFilters', () => (
-    <ActiveFilters
-      filters={[
-        { text: 'Updated (112)', dismissable: true },
-        { text: 'Original (24)', dismissable: true },
-      ]}
-      onClearAll={a('clear all')}
-    />
-  ))
+  .add('ActiveFilters', () => {
+    return (
+      <ActiveFilters
+        groups={[
+          {
+            label: 'Editions',
+            filters: [
+              { clear: a('clear'), text: 'Updated (33)' },
+              { clear: a('clear'), text: 'Original (14)' },
+              { clear: a('clear'), text: 'Modernized (53)' },
+            ],
+          },
+          {
+            label: 'Tags',
+            filters: [{ clear: a('clear'), text: 'Journal (54)' }],
+          },
+          {
+            label: 'Region',
+            filters: [{ clear: a('clear'), text: 'Scotland (3)' }],
+          },
+        ]}
+        clearAll={a('clear all')}
+      />
+    );
+  })
   .add('BookTeaserCard', () => (
     <div className="bg-flblue py-16">
       <BookTeaserCard {...book()} />
@@ -114,6 +140,8 @@ storiesOf('Explore Books Page', module)
 type KitchenSinkBook = Book & {
   region: Region;
   date: number;
+  tags: string[];
+  period: 'early' | 'mid' | 'late';
   badgeText: string;
   description: string;
 };
@@ -125,6 +153,8 @@ function book(props: Partial<KitchenSinkBook> = {}): KitchenSinkBook {
       'This is the modern edition of this book title. This is an explanation of what the difference is between the updated, modern, and the real OG version...',
     authorUrl: '/',
     documentUrl: '/',
+    tags: ['journal', 'letters'],
+    period: 'early',
     date: 1680,
     region: 'England',
     badgeText: 'Feb 10',

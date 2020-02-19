@@ -7,7 +7,7 @@ interface Props {
 }
 
 const PillDropdown: React.FC<Props> = ({ className, pillText, children }) => {
-  const [dropdownVisible, setDropdownVisible] = useState<boolean>(true);
+  const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   return (
     <div
       className={cx(className, 'rounded-full w-64 bg-white relative h-12 cursor-pointer')}
