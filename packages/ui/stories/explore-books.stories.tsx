@@ -15,9 +15,10 @@ import NewBooksBlock from '../src/pages/explore/NewBooksBlock';
 import UpdatedEditionsBlock from '../src/pages/explore/UpdatedEditionsBlock';
 import AudioBooksBlock from '../src/pages/explore/AudioBooksBlock';
 import RegionBlock from '../src/pages/explore/RegionBlock';
+import TimelineBlock from '../src/pages/explore/TimelineBlock';
 import MapSlider from '../src/pages/explore/MapSlider';
-import BookTeaserCard, { Props as TeaserProps } from '../src/BookTeaserCard';
-import { Region } from '../src/pages/explore/types';
+import BookTeaserCard from '../src/BookTeaserCard';
+import { Region, Book } from '../src/pages/explore/types';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 
@@ -32,6 +33,15 @@ storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
   .add('UpdatedEditionsBlock', () => <UpdatedEditionsBlock books={pileOfBooks} />)
   .add('AudioBooksBlock', () => <AudioBooksBlock books={pileOfBooks} />)
+  .add('TimelineBlock', () => (
+    <TimelineBlock
+      books={[
+        ...pileOfBooks,
+        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/2/${b.documentUrl}` })),
+        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/3/${b.documentUrl}` })),
+      ]}
+    />
+  ))
   .add('RegionBlock', () => (
     <RegionBlock
       books={[
@@ -101,15 +111,21 @@ storiesOf('Explore Books Page', module)
     );
   });
 
-function book(
-  props: Partial<TeaserProps & { region: Region }> = {},
-): TeaserProps & { region: Region } {
+type KitchenSinkBook = Book & {
+  region: Region;
+  date: number;
+  badgeText: string;
+  description: string;
+};
+
+function book(props: Partial<KitchenSinkBook> = {}): KitchenSinkBook {
   return {
     ...coverProps,
     description:
       'This is the modern edition of this book title. This is an explanation of what the difference is between the updated, modern, and the real OG version...',
     authorUrl: '/',
     documentUrl: '/',
+    date: 1680,
     region: 'England',
     badgeText: 'Feb 10',
     ...props,
@@ -122,53 +138,62 @@ const pileOfBooks = [
     author: 'Samuel Rundell',
     title: 'The Work of Vital Religion in the Soul',
     documentUrl: '/rundell',
+    date: 1650,
   }),
   book({
     region: 'Ireland',
     author: 'Stephen Crisp',
     title: 'A Plain Pathway',
     documentUrl: '/crisp/path',
+    date: 1650,
   }),
   book({
     region: 'Scotland',
     author: 'Charles Marshall',
     title: 'The Journal of Charles Marshall',
     documentUrl: '/marshall/journal',
+    date: 1650,
   }),
   book({
     region: 'Northern US',
     author: 'George Fox',
     title: 'The Journal of George Fox',
     documentUrl: '/fox/journal',
+    date: 1700,
   }),
   book({
     region: 'Scotland',
     author: 'William Penn',
     title: 'No Cross, No Crown',
     documentUrl: '/penn/no-cross',
+    date: 1700,
   }),
   book({
     region: 'England',
     author: 'Hugh Turford',
     title: 'Walk in the Spirit',
     documentUrl: '/turford/walk',
+    date: 1700,
   }),
   book({
     region: 'Southern US',
     author: 'Robert Barclay',
     title: 'Saved to the Uttermost',
     documentUrl: '/barclay/saved',
+    date: 1850,
   }),
   book({
     region: 'Ireland',
     author: 'Robert Barclay',
     title: 'Waiting Upon the Lord',
     documentUrl: '/barclay/waiting',
+    date: 1850,
   }),
   book({
     region: 'Southern US',
     author: 'Joseph Phipps',
     title: 'The Original and Present State of Man',
     documentUrl: '/phipps/state',
+    date: 1850,
   }),
 ];

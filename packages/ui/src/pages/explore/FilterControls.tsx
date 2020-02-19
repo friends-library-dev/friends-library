@@ -8,16 +8,14 @@ interface Props {
   setActiveFilters: (selected: string[]) => any;
 }
 
-const FilterControls: React.FC<Props> = ({ activeFilters, setActiveFilters }) => {
-  return (
-    <div className="bg-flgray-100 p-8 flex justify-center items-center">
-      <Label>Filter</Label>
-      <FilterSelect selected={activeFilters} setSelected={setActiveFilters} />
-      <Label className="ml-10">Search</Label>
-      <SearchInput onSubmit={() => {}} />
-    </div>
-  );
-};
+const FilterControls: React.FC<Props> = ({ activeFilters, setActiveFilters }) => (
+  <div className="bg-flgray-100 p-8 flex justify-center items-center">
+    <Label>Filter</Label>
+    <FilterSelect selected={activeFilters} setSelected={setActiveFilters} />
+    <Label className="ml-10">Search</Label>
+    <SearchInput onSubmit={() => {}} />
+  </div>
+);
 
 export default FilterControls;
 
