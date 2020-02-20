@@ -2,6 +2,27 @@ id: dbc9b5c7-f762-4c61-8b64-65d8200a68b2
 name: James Parnell
 slug: james-parnell
 gender: male
+born: 1637
+died: 1656
+quotes:
+  - source: Stephen Crisp
+    text:
+      And among these babes who thus came to receive a knowledge of the mysteries of the
+      kingdom of God by the working of His divine power, was this noble child, James
+      Parnell, who was a vessel of honor indeed, and mighty in the power and Spirit of
+      Emmanuel. Much might be spoken of this young man, and a large testimony does live in
+      my heart to his blessed life, and to the power and wisdom that abounded in him.
+  - source: James Parnell
+    text:
+      Friend, stand in, and keep your mind to that which lets you see your enemies to be
+      of your own house. Your imagination is an enemy; your wisdom is an enemy; that which
+      has been precious to you is now your greatest enemy. Therefore, you must now
+      sacrifice what you have called precious and yield it up to death, that the Just One
+      may be raised to life, and the righteous Seed be brought forth to reign in you and
+      be your Head.
+residences:
+  - city: Retford
+    region: England
 description:
   James Parnell (1637-1656) is said to have been “young, small of stature, and poor in
   appearance, but thousands were obliged to confess that “he spoke as one having
@@ -28,6 +49,11 @@ documents:
       confined to a small hole in the thick castle wall, twelve feet above the ground, and
       died from sickness and ill-treatment after ten months imprisonment at nineteen years
       of age.
+    partial_description:
+      The Life and Writings of James Parnell, containing a narrative of his life,
+      ministry, and sufferings, with extracts from his writings and epistles to the
+      church, and an account of his imprisonment and death in Colchester Castle at the age
+      of nineteen.
     tags:
       - journal
       - letters

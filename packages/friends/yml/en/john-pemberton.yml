@@ -2,6 +2,17 @@ id: 8edf8070-2cfd-4a55-82f4-2bcf4ddbdb47
 name: John Pemberton
 slug: john-pemberton
 gender: male
+born: 1727
+died: 1795
+quotes:
+  - source: Rebecca Jones
+    text:
+      George Dillwyn has sometimes made a comparison between some of us and John
+      Pemberton, that we are as fishing with a crooked pin and thread, while John is
+      casting his net into the sea.
+residences:
+  - city: Philadelphia
+    region: Pennsylvania
 description:
   The humility and simplicity of John Pemberton (1727-1795), united with an ardent love
   for his fellow creatures and a desire for their everlasting welfare, made him an eminent
@@ -32,6 +43,10 @@ documents:
       thread, while John is casting his net into the sea.” The reader will be amply repaid
       for tracing the footsteps of a man much weaned from the spirit and ways of the
       world, who eagerly endeavoured to perform his day’s work in the day time.
+    partial_description:
+      The journal and letters of John Pemberton, showing his early surrender to the yoke
+      of Christ, his great usefulness in the church (despite having a low opinion of
+      himself), and his four lengthy trips to Europe in the work of the ministry.
     tags:
       - journal
       - letters
@@ -40,3 +55,18 @@ documents:
         isbn: 978-1-64476-075-8
       - type: original
         isbn: 978-1-64476-076-5
+    related_documents:
+      - id: 45dca7c2-3ff9-4a83-acdf-55ec1630cb25
+        description:
+          Residing in the same home city of Philadelphia, and sometimes traveling together
+          in the work of the ministry, Rebecca Jones was often in the company of her dear
+          and highly respected friend John Pemberton. Her journal contains many letters
+          both to and from him, along with several anecdotes related to his travels and
+          trials.
+      - id: 54d7505f-a7af-40fd-a21b-33cb6ad5b0a0
+        description:
+          Having crossed the Atlantic in 1750, John Churchman was surprised to find that
+          one of his shipmates--twenty-three year old John Pemberton--concluded to keep
+          him company "for a few days." But finding his heart nearly bound to this father
+          in Israel, Pemberton "found no liberty to leave him" and continued his companion
+          in the ministry for the next three years.

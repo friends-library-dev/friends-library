@@ -2,6 +2,21 @@ id: ee467431-a18f-465e-aa3e-751dde01f9a6
 name: John Conran
 slug: john-conran
 gender: male
+born: 1737
+died: 1827
+quotes:
+  - source: John Conran
+    text:
+      Yet those things which I had suffered were only as a beginning of sorrows; the
+      ground of the heart was not to be lightly turned up, the gospel plough was to be
+      introduced, and the fallow ground broken up, and I was to sow no more among thorns.
+      The terrors of God's judgments were often set before my mind, and made such deep
+      impressions as I believe will never be erased. It is a truth past all contradiction
+      with me, that the Divine Spirit will not dwell in a temple which He has not
+      previously cleansed in a great degree.
+residences:
+  - city: Dublin
+    region: Ireland
 description:
   Until his mid 30's, John Conran (1739-1827) was a faithful and zealous member of the
   Church of England, but longing for true inward purity and transformation of soul, he
@@ -30,6 +45,11 @@ documents:
       His struggles were many and painful, both with the enemies of his own soul, and with
       the declining condition of the Society of Friends. But John Conran kept the faith,
       and finished his race a monument to the heart-cleansing power of grace.
+    partial_description:
+      The Journal of John Conran, giving an account of his remarkable conversion from
+      nominal Christianity to become an unreserved follower of Christ, his powerful
+      experiences of the Lord's judgments mixed with mercy, and his travels and trials in
+      the work of the ministry.
     tags:
       - journal
     editions:

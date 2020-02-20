@@ -2,6 +2,25 @@ id: 565bd2bc-7a25-4ca8-8b95-5e2fa5ee3142
 name: Jane Pearson
 slug: jane-pearson
 gender: female
+born: 1734
+died: 1816
+quotes:
+  - source: Jane Pearson
+    text:
+      Dear Friends, nothing will do but keeping near to God, and dwelling always as in His
+      presence! Do nothing in His sight that you would be afraid any mortal should see.
+      Keep a pure heart and clean hands, and the end will be peace.
+residences:
+  - city: Carlisle
+    region: England
+    durations:
+      - start: 1734
+        end: 1791
+  - city: Whitehaven
+    region: England
+    durations:
+      - start: 1791
+        end: 1816
 description:
   The story of Jane Pearson (1735–1816) is both heartbreaking and deeply inspiring. Her
   life was fraught with inward and outward trials beyond description. For fourteen years
@@ -25,6 +44,10 @@ documents:
       husband and seven children to a variety of illnesses. But the more she lost of the
       world, the more she seemed to gain of Christ, and her experiences of God's power and
       mercy in her latter years are indescribably beautiful.
+    partial_description:
+      The Journal of Jane Pearson, giving and account of her early dedication to the Lord,
+      her uncommon trials (both inward and outward), her labors as a minister in the
+      Society of Friends, and her extraordinary religious experiences in later years.
     tags:
       - journal
     editions:
