@@ -23,6 +23,13 @@ import { Region, Book } from '../src/pages/explore/types';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 
+storiesOf('Explore Books Page/SearchBlock', module)
+  .addDecorator(coverSizes)
+  .add('unused', () => <SearchBlock books={[]} initialUsed={false} />)
+  .add('some results', () => (
+    <SearchBlock books={pileOfBooks} initialFilters={['edition.updated']} />
+  ));
+
 storiesOf('Explore Books Page/NewBooksBlock', module)
   .addDecorator(coverSizes)
   .add('one', () => <NewBooksBlock books={[book()]} />)
@@ -34,7 +41,6 @@ storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
   .add('UpdatedEditionsBlock', () => <UpdatedEditionsBlock books={pileOfBooks} />)
   .add('AudioBooksBlock', () => <AudioBooksBlock books={pileOfBooks} />)
-  .add('SearchBlock', () => <SearchBlock books={pileOfBooks} />)
   .add('TimelineBlock', () => (
     <TimelineBlock
       books={[

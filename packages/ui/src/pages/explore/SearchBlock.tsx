@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Book, Region } from './types';
 import SearchControls from './SearchControls';
 import SearchResult from './SearchResult';
+import './SearchBlock.css';
 
 interface Props {
+  initialFilters?: string[];
+  initialUsed?: boolean;
   books: (Book & {
     tags: string[];
     period: 'early' | 'mid' | 'late';
@@ -11,10 +14,18 @@ interface Props {
   })[];
 }
 
-const SearchBlock: React.FC<Props> = ({ books }) => {
-  const [filters, setFilters] = useState<string[]>(['edition.updated']);
+const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) => {
+  const [filters, setFilters] = useState<string[]>(initialFilters || []);
+  const [used, setUsed] = useState<boolean>(initialUsed || false);
   const [query, setQuery] = useState<string>('');
   const matches = match(books, filters, query.toLowerCase().trim());
+
+  useEffect(() => {
+    if (!used && userHasInteractedWithSearch(query, filters, initialFilters)) {
+      setUsed(true);
+    }
+  }, [filters, query, initialFilters]);
+
   return (
     <div className="">
       <SearchControls
@@ -25,10 +36,19 @@ const SearchBlock: React.FC<Props> = ({ books }) => {
         setSearchQuery={setQuery}
       />
       {matches.length > 0 && (
-        <div className="flex flex-wrap justify-center my-8">
+        <div className="SearchBlock__Results flex flex-wrap justify-center my-8">
           {matches.map(book => (
             <SearchResult {...book} />
           ))}
+        </div>
+      )}
+      {matches.length === 0 && (
+        <div className="SearchBlock__Results SearchBlock__Results--empty bg-cover px-32 flex flex-col justify-center bg-bottom">
+          <p className="text-white text-3xl sans-wider text-center">
+            {used
+              ? 'Your search returned no results'
+              : '^ Select a filter or search to get started!'}
+          </p>
         </div>
       )}
     </div>
@@ -69,4 +89,15 @@ function match(books: Props['books'], filters: string[], search: string): Props[
     }
     return true;
   });
+}
+
+function userHasInteractedWithSearch(
+  query: string,
+  filters: string[],
+  initialFilters?: string[],
+): boolean {
+  return !!(
+    query !== '' ||
+    (initialFilters && JSON.stringify(filters) !== JSON.stringify(initialFilters))
+  );
 }
