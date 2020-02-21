@@ -37,7 +37,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-030-7
-        draft: true
   - id: 8e77ebe3-8678-44d2-9826-8c1be2633dcc
     title: Piety Promoted, Volume II
     slug: piety-promoted-v2
