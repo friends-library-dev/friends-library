@@ -44,7 +44,9 @@ const AudioBooksBlock: React.FC<Props> = ({ books }) => (
         </Link>
       ))}
     </div>
-    <Button className="mx-auto mt-12 md:mt-6">View {books.length - 4} More &rarr;</Button>
+    <Button className="mx-auto mt-12 md:mt-6" to="/audiobooks">
+      View {books.length - 4} More &rarr;
+    </Button>
   </div>
 );
 
