@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import useInterval from 'use-interval';
+import { Swipeable } from 'react-swipeable';
 import { useWindowWidth } from '../../hooks/window-width';
 import { SCREEN_MD } from '../../lib/constants';
 import SelectableMap from './SelectableMap';
@@ -26,7 +27,13 @@ const MapSlider: React.FC<Props> = ({ className, region, setRegion }) => {
   }, 12000);
 
   return (
-    <div
+    <Swipeable
+      onSwiped={({ dir }) => {
+        if (['Right', 'Left'].includes(dir) && winWidth < SCREEN_MD) {
+          setControlled(true);
+          setFocus(dir === 'Right' ? 'US' : 'UK');
+        }
+      }}
       className={cx(
         className,
         'MapSlider relative overflow-hidden',
@@ -54,7 +61,7 @@ const MapSlider: React.FC<Props> = ({ className, region, setRegion }) => {
           },
         )}
       />
-    </div>
+    </Swipeable>
   );
 };
 
