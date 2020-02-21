@@ -55,7 +55,11 @@
   @apply font-serif antialiased text-gray-800 text-base tracking-wide leading-relaxed;
 }
 
-.ui-sans {
+.sans-wide {
+  @apply font-sans tracking-wide;
+}
+
+.sans-wider {
   @apply font-sans tracking-wider;
 }
 

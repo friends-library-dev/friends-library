@@ -32,7 +32,7 @@ const ActiveFilters: React.FC<Props> = ({ groups, clearAll }) => {
             key={group.label}
           >
             <div className="flex items-center">
-              <h5 className="ui-sans antialiased text-right text-flgray-500 mr-1 pr-2 md:pr-0 w-1/4 sm:w-1/5 md:w-auto">
+              <h5 className="sans-wider antialiased text-right text-flgray-500 mr-1 pr-2 md:pr-0 w-1/4 sm:w-1/5 md:w-auto">
                 {group.label}:
               </h5>
               <div className="w-3/4 sm:w-4/5 md:flex md:w-auto">

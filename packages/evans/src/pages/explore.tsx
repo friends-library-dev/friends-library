@@ -1,130 +1,189 @@
 import React from 'react';
-import { Button } from '@friends-library/ui';
-import { Link, graphql } from 'gatsby';
+import {
+  MultiBookBgBlock,
+  ExploreNavBlock,
+  ExploreUpdatedEditionsBlock,
+  ExploreGettingStartedLinkBlock,
+  ExploreAudioBooksBlock,
+  ExploreNewBooksBlock,
+  ExploreTimelineBlock,
+  ExploreRegionBlock,
+  ExploreSpanishSiteBlock,
+  ExploreSearchBlock,
+} from '@friends-library/ui';
+import { graphql } from 'gatsby';
 import { Layout } from '../components';
+import { coverPropsFromQueryData, CoverData } from '../lib/covers';
+import { APP_ALT_URL } from '../env';
 
-interface Props {
-  data: { allFriend: { totalCount: number } };
-}
-
-export default ({ data: { allFriend } }: Props) => (
+export default ({
+  data: {
+    updatedEditions,
+    audioBooks,
+    newBooks,
+    booksByDate,
+    regionBooks,
+    searchBooks,
+    site,
+  },
+}: Props) => (
   <Layout>
-    <section>
-      <h1>Explore Books</h1>
-
-      <p>
-        <i>
-          [This page is meant to help someone get a birds-eye view of the books on the
-          site and how they might find them. This will probably include listing/sorting by
-          various attributes, like author, whether it has a modernized or audio version,
-          by genre/tag/whatever, search, etc. Like the /getting-started page, this is a
-          pretty important page that will likely need lots of iterations to get right, and
-          will hopefully always be in a state of slow, incremental improvement. NOTE: not
-          all the links on this page work, some of them are for quasi-features that I
-          don't know if we even want, so I left them as non-working links.]
-        </i>
-      </p>
-
-      <h2>Explore by Author</h2>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua.
-      </p>
-
-      <ul>
-        <li>
-          <Link to="/friend/george-fox">George Fox</Link>
-        </li>
-        <li>
-          <Link to="/friend/isaac-penington">Isaac Penington</Link>
-        </li>
-        <li>
-          <Link to="/friend/sarah-grubb">Sarah Grubb</Link>
-        </li>
-        <li>
-          <Link to="/friend/robert-barclay">Robert Barclay</Link>
-        </li>
-      </ul>
-
-      <Button to="/friends">{`See all ${allFriend.totalCount} friends »`}</Button>
-
-      <h2>Explore by Genre</h2>
-
-      <p>For those times when you really want to go genre by genre.</p>
-
-      <ul>
-        <li>
-          <Link to="/genre/journal">Journals (57)</Link>
-        </li>
-        <li>
-          <Link to="/genre/devotional">Devotional (7)</Link>
-        </li>
-        <li>
-          <Link to="/genre/history">History (6)</Link>
-        </li>
-        <li>
-          <Link to="/genre/doctrinal">Doctrine (11)</Link>
-        </li>
-        <li>
-          <Link to="/genre/letters">Letters (43)</Link>
-        </li>
-      </ul>
-
-      <h2>Explore by Time Period</h2>
-
-      <p>
-        All the writings on this site are from the <i>early</i> members of the Religious
-        Society of Friends -- none are from modern times whatsoever. However, the early
-        period between 1640 and 1880 can be further sub-divided:
-      </p>
-
-      <ul>
-        <li>
-          <Link to="/period/early">Early (1640 - 1720)</Link>
-        </li>
-        <li>
-          <Link to="/period/mid">Mid (1720 - 1800)</Link>
-        </li>
-        <li>
-          <Link to="/period/late">Late (1800 - 1880)</Link>
-        </li>
-      </ul>
-
-      <h2>Explore by Format/Edition</h2>
-
-      <p>
-        Not all the books on this site are available in all formats or editions. In
-        particular, we find many people are most interested in our <i>updated</i> editions
-        and in books that have been converted into <i>audiobooks</i>.
-      </p>
-
-      <ul>
-        <li>
-          <Link to="/audiobooks">Audiobooks</Link>
-        </li>
-        <li>
-          <Link to="/updated">Updated editions</Link>
-        </li>
-      </ul>
-
-      <h2>Recommendations</h2>
-
-      <p>
-        We also have a number of carefully selected recommendations for new readers on our{' '}
-        <Link to="/getting-started">Getting Started</Link> page, so you if you haven't
-        looked at those, that's a great place to start.
-      </p>
-
-      <Button to="/getting-started">Getting Started »</Button>
-    </section>
+    <MultiBookBgBlock bright>
+      <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-16 my-6 max-w-screen-md mx-auto">
+        <h1 className="sans-wider text-3xl mb-6">Explore Books</h1>
+        <p className="body-text">
+          Here's the intro text to the new explore books page. We have 200 books that
+          explores a variety of topcs about the Friends Library. From journals, to
+          required reading, here you'll find the entire collection to browse and explore
+        </p>
+      </div>
+    </MultiBookBgBlock>
+    <ExploreNavBlock />
+    <ExploreUpdatedEditionsBlock
+      books={updatedEditions.nodes.map(data => ({
+        ...coverPropsFromQueryData(data),
+        documentUrl: data.documentUrl,
+        authorUrl: data.authorUrl,
+      }))}
+    />
+    <ExploreGettingStartedLinkBlock />
+    <ExploreAudioBooksBlock
+      books={audioBooks.nodes.map(data => ({
+        ...coverPropsFromQueryData(data),
+        documentUrl: data.documentUrl,
+      }))}
+    />
+    <ExploreNewBooksBlock
+      books={newBooks.nodes.map(data => ({
+        ...coverPropsFromQueryData(data),
+        documentUrl: data.documentUrl,
+        authorUrl: data.authorUrl,
+        badgeText: data.badgeText,
+        description:
+          data.description ||
+          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.',
+      }))}
+    />
+    <ExploreRegionBlock
+      books={regionBooks.nodes.map(data => ({
+        ...coverPropsFromQueryData(data),
+        region: data.region as any,
+        documentUrl: data.documentUrl,
+        authorUrl: data.authorUrl,
+      }))}
+    />
+    <ExploreTimelineBlock
+      books={booksByDate.nodes.map(data => ({
+        ...coverPropsFromQueryData(data),
+        date: data.date,
+        documentUrl: data.documentUrl,
+        authorUrl: data.authorUrl,
+      }))}
+    />
+    <ExploreSpanishSiteBlock url={APP_ALT_URL} numBooks={site.meta.numSpanishBooks} />
+    <ExploreSearchBlock
+      books={searchBooks.nodes.map(data => ({
+        ...coverPropsFromQueryData(data),
+        tags: data.tags,
+        period: data.period as any,
+        region: data.region as any,
+        documentUrl: data.documentUrl,
+        authorUrl: data.authorUrl,
+      }))}
+    />
   </Layout>
 );
 
+interface Props {
+  data: {
+    site: { meta: { numSpanishBooks: number } };
+    searchBooks: {
+      nodes: (CoverData & {
+        documentUrl: string;
+        authorUrl: string;
+        tags: string[];
+        period: string;
+        region: string;
+      })[];
+    };
+    newBooks: {
+      nodes: (CoverData & {
+        documentUrl: string;
+        authorUrl: string;
+        badgeText: string;
+        description?: string;
+      })[];
+    };
+    audioBooks: {
+      nodes: (CoverData & { documentUrl: string })[];
+    };
+    regionBooks: {
+      nodes: (CoverData & { authorUrl: string; documentUrl: string; region: string })[];
+    };
+    updatedEditions: {
+      nodes: (CoverData & { documentUrl: string; authorUrl: string })[];
+    };
+    booksByDate: {
+      nodes: (CoverData & { documentUrl: string; authorUrl: string; date: number })[];
+    };
+  };
+}
+
 export const query = graphql`
-  query {
-    allFriend {
-      totalCount
+  query ExplorePage {
+    site {
+      meta: siteMetadata {
+        numSpanishBooks
+      }
+    }
+    searchBooks: allDocument {
+      nodes {
+        ...CoverProps
+        tags
+        period
+        authorUrl
+        documentUrl: url
+        region
+      }
+    }
+    regionBooks: allDocument {
+      nodes {
+        ...CoverProps
+        documentUrl: url
+        region
+      }
+    }
+    booksByDate: allDocument {
+      nodes {
+        ...CoverProps
+        authorUrl
+        documentUrl: url
+        date
+      }
+    }
+    newBooks: allDocument(sort: { fields: addedTimestamp, order: DESC }, limit: 4) {
+      nodes {
+        ...CoverProps
+        badgeText: addedDate
+        description: partialDescription
+        authorUrl
+        documentUrl: url
+      }
+    }
+    audioBooks: allDocument(filter: { hasAudio: { eq: true } }) {
+      nodes {
+        ...CoverProps
+        documentUrl: url
+      }
+    }
+    updatedEditions: allDocument(
+      filter: { editions: { elemMatch: { type: { eq: "updated" } } } }
+    ) {
+      nodes {
+        ...CoverProps
+        authorUrl
+        documentUrl: url
+      }
     }
   }
 `;
