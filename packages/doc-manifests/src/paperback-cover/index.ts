@@ -7,7 +7,7 @@ import {
   DocPrecursor,
 } from '@friends-library/types';
 import { PrintPdf, css } from '@friends-library/cover-component';
-import wrapBodyHtml from '../wrap-html';
+import wrapHtmlBody from '../wrap-html';
 import { addVolumeSuffix } from '../faux-volumes';
 
 export default async function paperbackCover(
@@ -42,10 +42,10 @@ export function paperbackCoverFromProps(props: CoverProps): FileManifest[] {
   const html = ReactDOMServer.renderToStaticMarkup(el);
   return [
     {
-      'doc.html': wrapBodyHtml(html, {
+      'doc.html': wrapHtmlBody(html, {
         isUtf8: true,
         css: ['doc.css'],
-        htmlAttrs: `lang="en" class="prince pdf trim--${props.size}"`,
+        htmlAttrs: `lang="${props.lang}" class="prince pdf trim--${props.size}"`,
       }),
       'doc.css': `
         ${css.common().join('\n')}

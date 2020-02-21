@@ -39,6 +39,7 @@ const wrapHtml: HtmlStep = ([html, dpc, conf, volIdx]) => {
     title: dpc.meta.title,
     css: ['doc.css'],
     bodyClass: 'body',
+    htmlAttrs: `lang="${dpc.lang}"`,
   });
   return [wrapped, dpc, conf, volIdx];
 };

@@ -81,6 +81,7 @@ const wrapHtml: HtmlStep = ([html, dpc, conf, volIdx]) => {
     title: dpc.meta.title,
     css: ['doc.css'],
     bodyClass: `body trim--${abbrev}`,
+    htmlAttrs: `lang="${dpc.lang}"`,
   });
   return [wrapped, dpc, conf, volIdx];
 };
