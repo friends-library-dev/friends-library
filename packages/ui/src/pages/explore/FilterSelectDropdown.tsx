@@ -110,7 +110,7 @@ const Option: React.FC<Props & { value: string }> = ({
         setSelected(
           isSelected
             ? selected.filter(existing => existing !== value)
-            : selected.concat(value),
+            : addFilter(value, selected),
         );
         e.stopPropagation();
       }}
@@ -135,3 +135,19 @@ const Category: React.FC<{ label: string }> = ({ label }) => (
     </Item>
   </AccordionButton>
 );
+
+/**
+ * Tags are the only filter type that can have more than one selected at a time
+ */
+function addFilter(toAdd: string, current: string[]): string[] {
+  const toAddType = toAdd.split('.')[0];
+  if (toAddType === 'tag') {
+    return current.concat(toAdd);
+  }
+  return current
+    .filter(existing => {
+      const existingType = existing.split('.')[0];
+      return existingType !== toAddType;
+    })
+    .concat([toAdd]);
+}
