@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 import Link from 'gatsby-link';
+import { Swipeable } from 'react-swipeable';
 import { Front } from '@friends-library/cover-component';
 import { Book } from './types';
 import { useWindowWidth } from '../../hooks/window-width';
-import { SCREEN_LG, SCREEN_XL } from '../../lib/constants';
+import { SCREEN_MD, SCREEN_LG, SCREEN_XL } from '../../lib/constants';
 import './BookSlider.css';
 
 interface Props {
@@ -20,7 +21,15 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
   const canGoLeft = numPages > 0 && currentPage > 1;
 
   return (
-    <div className={cx(className, 'BookSlider md:overflow-hidden relative')}>
+    <Swipeable
+      onSwipedRight={() =>
+        winWidth >= SCREEN_MD && canGoLeft && setCurrentPage(currentPage - 1)
+      }
+      onSwipedLeft={() =>
+        winWidth >= SCREEN_MD && canGoRight && setCurrentPage(currentPage + 1)
+      }
+      className={cx(className, 'BookSlider md:overflow-hidden relative')}
+    >
       {canGoLeft && (
         <Arrow direction="left" onClick={() => setCurrentPage(currentPage - 1)} />
       )}
@@ -70,7 +79,7 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
           ))}
         </div>
       )}
-    </div>
+    </Swipeable>
   );
 };
 

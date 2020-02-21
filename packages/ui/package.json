@@ -29,6 +29,7 @@
     "react-country-region-selector": "^1.4.7",
     "react-dom": "16.10.1",
     "react-stripe-elements": "^6.0.1",
+    "react-swipeable": "^5.5.1",
     "react-switch": "^5.0.1",
     "tailwindcss": "^1.2.0",
     "use-interval": "^1.2.1"
