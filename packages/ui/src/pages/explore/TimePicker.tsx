@@ -21,6 +21,7 @@ const TimePicker: React.FC<Props> = ({ className, selected, setSelected }) => (
   >
     {dates.map((date, idx) => (
       <div
+        key={date}
         onClick={() => setSelected(date)}
         className={cx(
           'Date relative cursor-pointer pt-6 pb-1 px-2 sm:block',

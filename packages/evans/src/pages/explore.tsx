@@ -150,6 +150,7 @@ export const query = graphql`
       nodes {
         ...CoverProps
         documentUrl: url
+        authorUrl
         region
       }
     }
