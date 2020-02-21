@@ -4,7 +4,7 @@ import './NavBlock.css';
 
 const NavBlock: React.FC = () => {
   const links: Omit<LinkProps, 'index'>[] = [
-    { label: 'Updated editions', bg: 'maroon', block: 'UpdatedEditions' },
+    { label: 'Updated Editions', bg: 'maroon', block: 'UpdatedEditions' },
     { label: 'Audio Books', bg: 'blue', block: 'AudioBooks' },
     { label: 'Region', bg: 'gold', block: 'Region' },
     { label: 'New Books', bg: 'green', block: 'NewBooks' },

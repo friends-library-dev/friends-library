@@ -80,10 +80,10 @@ const StaticPage: React.FC<Props> = ({ data }) => {
   const { body, frontmatter } = mdx;
   return (
     <Layout>
-      <MultiBookBgBlock>
+      <MultiBookBgBlock bright>
         <h1
-          className="max-w-6xl mx-auto py-16 heading-text text-4xl bracketed text-flprimary"
-          style={{ backgroundColor: 'rgba(255, 255, 255, 0.75)' }}
+          className="max-w-screen-md mx-auto py-16 heading-text text-4xl bracketed text-flprimary"
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)' }}
         >
           {frontmatter.title}
         </h1>

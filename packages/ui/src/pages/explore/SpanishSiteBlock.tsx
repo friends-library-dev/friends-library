@@ -13,7 +13,7 @@ const SpanishSiteBlock: React.FC<{ numBooks: number; url: string }> = ({
       iconColor="white"
       friendsColor="white"
     />
-    <h3>
+    <h3 className="relative z-50">
       We also have {numBooks} books available in Spanish! Switch to our{' '}
       <a className="fl-underline" href={url}>
         Spanish site here.

@@ -1,11 +1,18 @@
 const path = require('path');
 const proxy = require('http-proxy-middleware');
+const { getAllFriends } = require('@friends-library/friends');
 
 require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
+    numSpanishBooks: getAllFriends('es', true)
+      .flatMap(friend => friend.documents)
+      .filter(document => document.hasNonDraftEdition).length,
+    numEnglishBooks: getAllFriends('en', true)
+      .flatMap(friend => friend.documents)
+      .filter(document => document.hasNonDraftEdition).length,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
