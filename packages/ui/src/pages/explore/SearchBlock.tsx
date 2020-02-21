@@ -38,7 +38,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) =>
       {matches.length > 0 && (
         <div className="SearchBlock__Results flex flex-wrap justify-center my-8">
           {matches.map(book => (
-            <SearchResult {...book} />
+            <SearchResult key={book.documentUrl} {...book} />
           ))}
         </div>
       )}
@@ -80,7 +80,7 @@ function match(books: Props['books'], filters: string[], search: string): Props[
       if (type === 'period' && book.period !== value) {
         return false;
       }
-      if (type === 'region' && book.region !== value) {
+      if (type === 'region' && !regionMatches(value, book)) {
         return false;
       }
       if (type === 'tag' && !book.tags.includes(value)) {
@@ -89,6 +89,11 @@ function match(books: Props['books'], filters: string[], search: string): Props[
     }
     return true;
   });
+}
+
+function regionMatches(region: string, book: Props['books'][0]): boolean {
+  const compare = book.region.toLowerCase().replace(/ /g, '-');
+  return region === compare;
 }
 
 function userHasInteractedWithSearch(
