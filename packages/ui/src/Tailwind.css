@@ -55,6 +55,18 @@
   @apply font-serif antialiased text-gray-800 text-base tracking-wide leading-relaxed;
 }
 
+.body-text i,
+.body-text em,
+.MDX blockquote.italic p {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 0.825em;
+  @apply tracking-wider subpixel-antialiased;
+}
+
+.MDX blockquote.italic p {
+  font-size: 1em;
+}
+
 .sans-wide {
   @apply font-sans tracking-wide;
 }

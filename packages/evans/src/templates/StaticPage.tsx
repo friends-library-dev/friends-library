@@ -8,6 +8,9 @@ import Layout from '../components/Layout';
 
 interface Props {
   data: {
+    audioBooks: {
+      totalCount: number;
+    };
     mdx: {
       body: string;
       frontmatter: {
@@ -22,7 +25,7 @@ const components: { [key: string]: React.FC } = {
     <h2
       className={cx(
         'bg-flprimary text-white font-sans text-2xl bracketed tracking-widest',
-        'mb-6 mt-12 -mx-10 py-4 px-10',
+        'my-12 -mx-10 py-4 px-10',
         'sm:text-3xl',
         'md:-mx-16 md:px-16 ',
         'lg:-mx-24 lg:px-24',
@@ -76,7 +79,7 @@ const components: { [key: string]: React.FC } = {
 };
 
 const StaticPage: React.FC<Props> = ({ data }) => {
-  const { mdx } = data;
+  const { mdx, audioBooks } = data;
   const { body, frontmatter } = mdx;
   return (
     <Layout>
@@ -90,7 +93,11 @@ const StaticPage: React.FC<Props> = ({ data }) => {
       </MultiBookBgBlock>
       <div className="MDX p-10 md:px-16 lg:px-24 body-text max-w-6xl mx-auto mt-4">
         <MDXProvider components={components}>
-          <MDXRenderer>{body}</MDXRenderer>
+          <MDXRenderer>
+            {body
+              .replace(/%AUDIOBOOK_COUNT%/g, String(audioBooks.totalCount))
+              .replace(/ -- /g, ' — ')}
+          </MDXRenderer>
         </MDXProvider>
       </div>
     </Layout>
@@ -101,6 +108,9 @@ export default StaticPage;
 
 export const pageQuery = graphql`
   query($path: String!) {
+    audioBooks: allDocument(filter: { hasAudio: { eq: true } }) {
+      totalCount
+    }
     mdx(frontmatter: { path: { eq: $path } }) {
       body
       frontmatter {
