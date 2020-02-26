@@ -6,6 +6,7 @@ import { Front } from '@friends-library/cover-component';
 import { Book } from './types';
 import { useWindowWidth } from '../../hooks/window-width';
 import { SCREEN_MD, SCREEN_LG, SCREEN_XL } from '../../lib/constants';
+import Button from '../../Button';
 import './BookSlider.css';
 
 interface Props {
@@ -15,40 +16,49 @@ interface Props {
 
 const BookSlider: React.FC<Props> = ({ books, className }) => {
   const winWidth = useWindowWidth();
-  const [numPages, booksPerPage] = getNumPages(books.length, winWidth);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const canGoRight = numPages > 0 && currentPage < numPages;
-  const canGoLeft = numPages > 0 && currentPage > 1;
+  const [numHorizPages, booksPerHorizPage] = horizPages(books.length, winWidth);
+  const [currentHorizPage, setCurrentHorizPage] = useState<number>(1);
+  const [vertCutoff, setVertCutoff] = useState<number>(4);
+  const canGoRight = numHorizPages > 0 && currentHorizPage < numHorizPages;
+  const canGoLeft = numHorizPages > 0 && currentHorizPage > 1;
 
   return (
     <Swipeable
       onSwipedRight={() =>
-        winWidth >= SCREEN_MD && canGoLeft && setCurrentPage(currentPage - 1)
+        winWidth >= SCREEN_MD && canGoLeft && setCurrentHorizPage(currentHorizPage - 1)
       }
       onSwipedLeft={() =>
-        winWidth >= SCREEN_MD && canGoRight && setCurrentPage(currentPage + 1)
+        winWidth >= SCREEN_MD && canGoRight && setCurrentHorizPage(currentHorizPage + 1)
       }
-      className={cx(className, 'BookSlider md:overflow-hidden relative')}
+      className={cx(className, 'BookSlider md:overflow-hidden md:relative')}
     >
       {canGoLeft && (
-        <Arrow direction="left" onClick={() => setCurrentPage(currentPage - 1)} />
+        <Arrow
+          direction="left"
+          onClick={() => setCurrentHorizPage(currentHorizPage - 1)}
+        />
       )}
       {canGoRight && (
-        <Arrow direction="right" onClick={() => setCurrentPage(currentPage + 1)} />
+        <Arrow
+          direction="right"
+          onClick={() => setCurrentHorizPage(currentHorizPage + 1)}
+        />
       )}
       <div
+        className="md:flex transition-all duration-500 ease-in-out"
         style={{
-          transform: `translateX(-${(currentPage - 1) *
-            WIDTH_OF_BOOK_DIV *
-            booksPerPage}px`,
+          transform: `translateX(-${viewportOffset(
+            currentHorizPage,
+            winWidth,
+            booksPerHorizPage,
+          )}px`,
         }}
-        className="BookSlider__viewport md:flex transition-all duration-500 ease-in-out"
       >
         {books.map((book, idx) => (
           <div
             key={book.documentUrl}
             className={cx(
-              idx < 4 ? 'flex' : 'hidden md:flex', // TEMP
+              idx < vertCutoff ? 'flex' : 'hidden md:flex',
               'BookSlider__Book max-w-xs flex-col items-center mb-12 px-10 text-center',
               'md:px-6 md:mb-0',
             )}
@@ -63,22 +73,30 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
           </div>
         ))}
       </div>
-      {numPages > 1 && (
+      {numHorizPages > 1 && (
         <div className="hidden md:flex justify-center pt-4">
-          {Array.from({ length: numPages }).map((_, idx) => (
+          {Array.from({ length: numHorizPages }).map((_, idx) => (
             <b
               key={`page-${idx + 1}`}
-              onClick={() => setCurrentPage(idx + 1)}
+              onClick={() => setCurrentHorizPage(idx + 1)}
               className={cx(
                 'px-2 text-3xl',
-                currentPage === idx + 1 && 'text-flgray-600',
-                currentPage !== idx + 1 && 'text-flgray-400 cursor-pointer',
+                currentHorizPage === idx + 1 && 'text-flgray-600',
+                currentHorizPage !== idx + 1 && 'text-flgray-400 cursor-pointer',
               )}
             >
               •
             </b>
           ))}
         </div>
+      )}
+      {vertCutoff < books.length && (
+        <Button
+          className="mx-auto md:hidden mb-6"
+          onClick={() => setVertCutoff(vertCutoff + 4)}
+        >
+          Show more
+        </Button>
       )}
     </Swipeable>
   );
@@ -93,7 +111,7 @@ const Arrow: React.FC<{ direction: 'left' | 'right'; onClick: () => any }> = ({
   <i
     onClick={onClick}
     className={cx(
-      `fa-chevron-${direction} hidden md:inline`,
+      `fa-chevron-${direction}`,
       'fa z-50 cursor-pointer hover:text-black',
       'fa absolute text-2xl text-gray-700 px-4 opacity-25 cursor-pointer',
       'transform -translate-y-1/2',
@@ -101,7 +119,7 @@ const Arrow: React.FC<{ direction: 'left' | 'right'; onClick: () => any }> = ({
   />
 );
 
-function getNumPages(numBooks: number, winWidth: number): [number, number] {
+function horizPages(numBooks: number, winWidth: number): [number, number] {
   if (winWidth < 0) {
     return [0, 500];
   }
@@ -116,6 +134,17 @@ function getNumPages(numBooks: number, winWidth: number): [number, number] {
     booksPerPage = 6;
   }
   return [Math.ceil(numBooks / booksPerPage), booksPerPage];
+}
+
+function viewportOffset(
+  currentHorizPage: number,
+  winWidth: number,
+  booksPerHorizPage: number,
+): number {
+  if (winWidth < SCREEN_MD) {
+    return 0;
+  }
+  return (currentHorizPage - 1) * WIDTH_OF_BOOK_DIV * booksPerHorizPage;
 }
 
 const WIDTH_OF_BOOK_DIV = 224;

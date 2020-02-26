@@ -8,6 +8,7 @@
 
 .MapSlider .fa {
   top: 50%;
+  font-size: 4rem;
 }
 
 .MapSlider.focus--UK .SelectableMap {

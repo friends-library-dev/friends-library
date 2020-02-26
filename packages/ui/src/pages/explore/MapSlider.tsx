@@ -53,7 +53,7 @@ const MapSlider: React.FC<Props> = ({ className, region, setRegion }) => {
           setControlled(true);
         }}
         className={cx(
-          `fa absolute text-6xl text-white px-4 opacity-25 cursor-pointer md:hidden`,
+          `fa absolute text-white px-4 opacity-25 cursor-pointer md:hidden`,
           'transform -translate-y-1/2',
           {
             'fa-chevron-left left-0': focus === 'UK',
