@@ -85,14 +85,16 @@ export default ({
     />
     <ExploreSpanishSiteBlock url={APP_ALT_URL} numBooks={site.meta.numSpanishBooks} />
     <ExploreSearchBlock
-      books={searchBooks.nodes.map(data => ({
-        ...coverPropsFromQueryData(data),
-        tags: data.tags,
-        period: data.period as any,
-        region: data.region as any,
-        documentUrl: data.documentUrl,
-        authorUrl: data.authorUrl,
-      }))}
+      books={searchBooks.nodes.flatMap(data =>
+        data.editions.map(edition => ({
+          ...coverPropsFromQueryData({ ...data, editions: [edition] }),
+          tags: data.tags,
+          period: data.period as any,
+          region: data.region as any,
+          documentUrl: data.documentUrl,
+          authorUrl: data.authorUrl,
+        })),
+      )}
     />
   </Layout>
 );
