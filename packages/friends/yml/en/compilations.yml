@@ -61,7 +61,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-173-1
-        draft: true
   - id: 951f52bb-fc11-4e76-a08d-c3dc52b8a07c
     title: Piety Promoted, Volume III
     slug: piety-promoted-v3
@@ -86,7 +85,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-174-8
-        draft: true
   - id: 46cffe12-7fac-486d-8597-afecee546baa
     title: Piety Promoted, Volume IV
     slug: piety-promoted-v4

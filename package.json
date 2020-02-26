@@ -36,7 +36,7 @@
     "ui:start": "cd packages/ui && yarn storybook",
     "ts:check": "yarn evans:ts:check && yarn cover:ts:check && yarn compile all",
     "kick:tires": "yarn lint && yarn test && yarn ts:check",
-    "preflight": "yarn lint && yarn fl make en/robert-barclay/recreation-entertainment/updated --target all -o && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build"
+    "preflight": "yarn lint && yarn fl make en/robert-barclay/recreation-entertainment/updated --target all -o && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build && yarn fl check-intake"
   },
   "dependencies": {
     "lodash": "^4.17.15",
