@@ -8,11 +8,11 @@ import Search from '../src/Search';
 import Button from '../src/Button';
 import Hamburger from '../src/Hamburger';
 import SlideoverMenu from '../src/SlideoverMenu';
-import Hero from '../src/blocks/Hero';
-import FeaturedBooks from '../src/blocks/FeaturedBooks';
 import Footer from '../src/Footer';
 import MultiPill from '../src/MultiPill';
-import WhoWereTheQuakers from '../src/blocks/WhoWereTheQuakers';
+import HomeHeroBlock from '../src/pages/home/HeroBlock';
+import HomeFeaturedBooksBlock from '../src/pages/home/FeaturedBooksBlock';
+import HomeWhoWereTheQuakersBlock from '../src/pages/home/WhoWereTheQuakersBlock';
 
 storiesOf('Footer', module).add('default', () => <Footer />);
 
@@ -81,9 +81,9 @@ storiesOf('Search', module)
 
 storiesOf('Home Blocks', module)
   .addDecorator(coverSizes)
-  .add('Who Were Quakers?', () => <WhoWereTheQuakers />)
-  .add('Featured Books', () => <FeaturedBooks />)
-  .add('Hero', () => <Hero />);
+  .add('Who Were Quakers?', () => <HomeWhoWereTheQuakersBlock />)
+  .add('Featured Books', () => <HomeFeaturedBooksBlock />)
+  .add('Hero', () => <HomeHeroBlock />);
 
 const searchActions = {
   onSubmit: a('submit'),

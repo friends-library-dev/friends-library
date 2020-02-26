@@ -28,3 +28,12 @@ export const CoverProps = graphql`
     }
   }
 `;
+
+export const SiteMetadata = graphql`
+  fragment SiteMetadata on Site {
+    meta: siteMetadata {
+      numSpanishBooks
+      numEnglishBooks
+    }
+  }
+`;

@@ -11,14 +11,14 @@ const ChooseFormat: React.FC<Props> = ({ onChoose }) => (
   <ChoiceStep title="Choose Book Type">
     <ChoiceItem
       label="E-Book"
-      description="Best quality, best experience. Best everything."
+      description="Best for reading on a computer, phone, or tablet."
       recommended
       Icon={Ebook}
       onChoose={() => onChoose('ebook')}
     />
     <ChoiceItem
       label="PDF"
-      description="Works on any device. Lowest quality."
+      description="Best for printing out your own copy."
       Icon={Pdf}
       onChoose={() => onChoose('pdf')}
     />

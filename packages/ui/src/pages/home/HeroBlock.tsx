@@ -1,9 +1,9 @@
 import React from 'react';
-import './Hero.css';
+import './HeroBlock.css';
 
-const Hero: React.FC = () => (
-  <section className="Hero flex w-full">
-    <div className="Hero__text md:w-2/3 xl:w-3/5 px-12 sm:px-16 py-12 sm:py-20 md:px-20 lg:p-24 text-white md:text-gray-900">
+const HeroBlock: React.FC = () => (
+  <section className="HeroBlock flex w-full">
+    <div className="HeroBlock__text md:w-2/3 xl:w-3/5 px-12 sm:px-16 py-12 sm:py-20 md:px-20 lg:p-24 text-white md:text-gray-900">
       <h1 className="font-sans text-2xl sm:text-3xl mb-8 md:mb-6 font-bold tracking-wider">
         Dedicated to the preservation and free distribution of early Quaker writings
       </h1>
@@ -14,8 +14,8 @@ const Hero: React.FC = () => (
         soul-transforming power of the gospel of Jesus Christ.
       </p>
     </div>
-    <div className="Hero__bg md:w-1/3 xl:w-2/5 hidden md:block" />
+    <div className="HeroBlock__bg md:w-1/3 xl:w-2/5 hidden md:block" />
   </section>
 );
 
-export default Hero;
+export default HeroBlock;

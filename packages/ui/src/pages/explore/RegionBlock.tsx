@@ -13,7 +13,7 @@ const RegionBlock: React.FC<Props> = ({ books }) => {
   return (
     <BgWordBlock word="Geography" className="p-10" title="Geography">
       <p className="body-text pb-12">
-        Browse books by geography. Start by clicking one of the map icons below.
+        Browse books by region. Start by clicking one of the map icons below.
       </p>
       <MapSlider className="-mx-10" region={region} setRegion={setRegion} />
       <div className="-mt-12 flex flex-col items-center">

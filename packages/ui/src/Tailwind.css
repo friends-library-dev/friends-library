@@ -32,6 +32,11 @@
   );
 }
 
+.subtle-link {
+  @apply text-flprimary;
+  border-bottom: 1px dotted currentColor;
+}
+
 .diamonds li {
   position: relative;
 }
@@ -59,6 +64,7 @@
 .body-text em,
 .MDX blockquote.italic p {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  opacity: 0.875;
   font-size: 0.825em;
   @apply tracking-wider subpixel-antialiased;
 }

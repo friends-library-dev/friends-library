@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { ThreeD as Front } from '@friends-library/cover-component';
-import { FeaturedBook } from './FeaturedBooks';
-import Button from '../Button';
+import { FeaturedBook } from './FeaturedBooksBlock';
+import Button from '../../Button';
 import { Lang } from '@friends-library/types';
 
 const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({

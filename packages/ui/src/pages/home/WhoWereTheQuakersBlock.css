@@ -1,0 +1,10 @@
+.WhoWereTheQuakersBlock {
+  background-image: linear-gradient(rgba(108, 49, 66, 0.9), rgba(108, 49, 66, 0.9)),
+    url(../../images/london.jpg);
+  background-size: cover;
+}
+
+.WhoWereTheQuakersBlock:lang(es) {
+  background-image: linear-gradient(rgba(193, 140, 89, 0.9), rgba(193, 140, 89, 0.9)),
+    url(../../images/london.jpg);
+}

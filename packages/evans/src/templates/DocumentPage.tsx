@@ -7,17 +7,19 @@ import {
   Heading,
   Lang,
 } from '@friends-library/types';
-import { Layout } from '../components';
-import { LANG } from '../env';
 import {
   DocBlock,
   ListenBlock,
   RelatedBookCard,
-  ExploreBooksBlock,
+  HomeExploreBooksBlock,
 } from '@friends-library/ui';
+import { Layout } from '../components';
+import { SiteMetadata } from '../types';
+import { LANG } from '../env';
 
 interface Props {
   data: {
+    site: SiteMetadata;
     friend: {
       lang: Lang;
       name: string;
@@ -89,7 +91,8 @@ interface Props {
   };
 }
 
-export default ({ data: { friend, document, otherDocuments } }: Props) => {
+export default ({ data: { site, friend, document, otherDocuments } }: Props) => {
+  const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
   const otherBooks = otherDocuments.nodes;
   const mainEdition = document.editions[0];
   const audio = mainEdition.audio;
@@ -181,13 +184,18 @@ export default ({ data: { friend, document, otherDocuments } }: Props) => {
           </div>
         </div>
       )}
-      {(!audio || otherBooks.length === 0) && <ExploreBooksBlock />}
+      {(!audio || otherBooks.length === 0) && (
+        <HomeExploreBooksBlock numTotalBooks={numBooks} />
+      )}
     </Layout>
   );
 };
 
 export const query = graphql`
   query DocumentPage($documentSlug: String!, $friendSlug: String!) {
+    site {
+      ...SiteMetadata
+    }
     friend(slug: { eq: $friendSlug }) {
       id: friendId
       lang
