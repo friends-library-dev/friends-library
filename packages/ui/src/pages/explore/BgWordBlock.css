@@ -1,5 +1,5 @@
 .BgWordBlock::after {
-  z-index: -1;
+  z-index: 0;
   font-weight: bold;
   opacity: 0.35;
   letter-spacing: 0.04em;
@@ -11,4 +11,8 @@
   padding-top: 3.5rem;
   font-size: 130px;
   color: #eaeaea;
+}
+
+.BgWordBlock > * {
+  z-index: 1;
 }
