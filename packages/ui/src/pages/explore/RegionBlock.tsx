@@ -17,7 +17,10 @@ const RegionBlock: React.FC<Props> = ({ books }) => {
       </p>
       <MapSlider className="-mx-10" region={region} setRegion={setRegion} />
       <div className="-mt-12 flex flex-col items-center">
-        <BookSlider books={books.filter(book => book.region === region)} />
+        <BookSlider
+          className="z-10"
+          books={books.filter(book => book.region === region)}
+        />
       </div>
     </BgWordBlock>
   );
