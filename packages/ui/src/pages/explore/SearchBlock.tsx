@@ -102,7 +102,6 @@ function userHasInteractedWithSearch(
   initialFilters?: string[],
 ): boolean {
   return !!(
-    query !== '' ||
-    (initialFilters && JSON.stringify(filters) !== JSON.stringify(initialFilters))
+    query !== '' || JSON.stringify(filters) !== JSON.stringify(initialFilters || [])
   );
 }
