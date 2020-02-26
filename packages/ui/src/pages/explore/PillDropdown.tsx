@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import cx from 'classnames';
 
 interface Props {
@@ -7,9 +7,31 @@ interface Props {
 }
 
 const PillDropdown: React.FC<Props> = ({ className, pillText, children }) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    const click: (event: any) => any = event => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setDropdownVisible(false);
+      }
+    };
+
+    const escape: (e: KeyboardEvent) => any = ({ keyCode }) => {
+      keyCode === 27 && setDropdownVisible(false);
+    };
+
+    document.addEventListener('click', click);
+    document.addEventListener('keydown', escape);
+    return () => {
+      document.removeEventListener('click', click);
+      window.removeEventListener('keydown', escape);
+    };
+  }, []);
+
   return (
     <div
+      ref={ref}
       className={cx(className, 'rounded-full w-64 bg-white relative h-12 cursor-pointer')}
     >
       <div
