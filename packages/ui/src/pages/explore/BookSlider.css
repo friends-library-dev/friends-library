@@ -1,16 +1,21 @@
-.fa {
+.BookSlider .fa {
   top: 35%;
+  display: none;
 }
 
-.fa-chevron-left {
+.BookSlider .fa-chevron-left {
   left: -12px;
 }
 
-.fa-chevron-right {
+.BookSlider .fa-chevron-right {
   right: -12px;
 }
 
 @screen md {
+  .BookSlider .fa {
+    display: inline;
+  }
+
   .BookSlider {
     width: 670px;
     height: 400px;
