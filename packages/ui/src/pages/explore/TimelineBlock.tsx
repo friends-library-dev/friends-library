@@ -15,7 +15,7 @@ interface Props {
 const TimelineBlock: React.FC<Props> = ({ books }) => {
   const [date, setDate] = useState<number>(1650);
   return (
-    <div className="TimelineBlock">
+    <div id="TimelineBlock" className="TimelineBlock">
       <BgWordBlock
         word="Timeline"
         className="TimelineBlock_Hero px-12 pt-40 pb-24 sm:pb-32"

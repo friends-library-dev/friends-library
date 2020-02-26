@@ -11,6 +11,7 @@ interface Props {
 
 const UpdatedEditionsBlock: React.FC<Props> = ({ books }) => (
   <BgWordBlock
+    id="UpdatedEditionsBlock"
     className="UpdatedEditionsBlock p-10 flex flex-col items-center md:py-16"
     word="Updated"
     title="Updated Editions"

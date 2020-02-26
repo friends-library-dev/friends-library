@@ -1,22 +1,23 @@
 import React from 'react';
 import cx from 'classnames';
+import { makeScroller } from '../../lib/scroll';
 import './NavBlock.css';
 
 const NavBlock: React.FC = () => {
   const links: Omit<LinkProps, 'index'>[] = [
-    { label: 'Updated Editions', bg: 'maroon', block: 'UpdatedEditions' },
-    { label: 'Audio Books', bg: 'blue', block: 'AudioBooks' },
-    { label: 'Region', bg: 'gold', block: 'Region' },
-    { label: 'New Books', bg: 'green', block: 'NewBooks' },
-    { label: 'Time Period', bg: 'maroon', block: 'TimePeriod' },
-    { label: 'Search', bg: 'blue', block: 'Search' },
+    { label: 'Updated Editions', bg: 'maroon', block: 'UpdatedEditionsBlock' },
+    { label: 'Audio Books', bg: 'blue', block: 'AudioBooksBlock' },
+    { label: 'Region', bg: 'gold', block: 'RegionBlock' },
+    { label: 'New Books', bg: 'green', block: 'NewBooksBlock' },
+    { label: 'Time Period', bg: 'maroon', block: 'TimelineBlock' },
+    { label: 'Search', bg: 'blue', block: 'SearchBlock' },
   ];
   return (
-    <ul className="ExploreNav select-none tracking-wide text-white text-center flex-wrap sm:flex">
+    <div className="ExploreNav select-none tracking-wide text-white text-center flex-wrap sm:flex">
       {links.map((props, idx) => (
         <Link key={props.label} index={idx} {...props} />
       ))}
-    </ul>
+    </div>
   );
 };
 
@@ -30,15 +31,21 @@ interface LinkProps {
 }
 
 const Link: React.FC<LinkProps> = ({ label, index, bg, block }) => (
-  <li
+  <a
     className={cx(
+      'block',
       `bg-fl${bg} hover:bg-fl${bg}-800 py-6`,
       'sm:w-1/2 sm:bg-flmaroon sm:border-flmaroon-800',
       index % 2 && 'sm:border-l',
       index > 1 && 'sm:border-t',
       `lg:bg-fl${bg} lg:w-1/6 lg:flex-grow lg:border-0`,
     )}
+    href={`#${block}`}
+    onClick={e => {
+      e.preventDefault();
+      makeScroller(`#${block}`)();
+    }}
   >
-    <a href={`#${block}`}>{label}</a>
-  </li>
+    {label}
+  </a>
 );
