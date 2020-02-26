@@ -27,7 +27,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) =>
   }, [filters, query, initialFilters]);
 
   return (
-    <div className="">
+    <div id="SearchBlock">
       <SearchControls
         books={books}
         filters={filters}

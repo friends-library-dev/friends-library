@@ -3,13 +3,15 @@ import cx from 'classnames';
 import './BgWordBlock.css';
 
 interface Props {
+  id?: string;
   word: string;
   title?: string;
   className?: string;
 }
 
-const BgWordBlock: React.FC<Props> = ({ word, className, children, title }) => (
+const BgWordBlock: React.FC<Props> = ({ word, id, className, children, title }) => (
   <div
+    {...(id ? { id } : {})}
     className={cx(
       className,
       'BgWordBlock text-center relative overflow-x-hidden font-sans',

@@ -8,6 +8,7 @@ interface Props {
 
 const NewBooksBlock: React.FC<Props> = ({ books }) => (
   <div
+    id="NewBooksBlock"
     className={cx(
       'NewBooksBlock bg-flblue pb-16',
       'md:pt-16 md:pb-1',

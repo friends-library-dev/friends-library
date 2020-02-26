@@ -7,6 +7,7 @@ import DocActions from './DocActions';
 import CartItem from '../../checkout/models/CartItem';
 import CartStore from '../../checkout/services/CartStore';
 import RotatableCover from './RotatableCover';
+import { makeScroller } from '../../lib/scroll';
 import './DocBlock.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
@@ -222,7 +223,7 @@ function LinksAndMeta(
       <DocActions
         download={onClickDownload}
         addToCart={onClickAddToCart}
-        gotoAudio={scrollToAudio}
+        gotoAudio={makeScroller('#ListenBlock')}
         className="mb-8 lg:mx-24 xl:mx-0"
         price={price}
         hasAudio={hasAudio}
@@ -268,16 +269,4 @@ function ensureWizardInViewport(): void {
   }
 }
 
-const FIXED_TOPNAV_HEIGHT = 70;
 const POPUNDER_TRIANGLE_HEIGHT = 16;
-
-function scrollToAudio(): void {
-  let audioBlock = document.querySelector('.ListenBlock');
-  if (audioBlock) {
-    const audioBlockRect = audioBlock.getBoundingClientRect();
-    window.scrollTo({
-      top: audioBlockRect.top - FIXED_TOPNAV_HEIGHT + window.scrollY,
-      behavior: 'smooth',
-    });
-  }
-}
