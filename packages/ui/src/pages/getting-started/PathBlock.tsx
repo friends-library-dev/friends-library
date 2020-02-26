@@ -14,15 +14,11 @@ interface Props {
   books: (CoverProps & { documentUrl: string; authorUrl: string })[];
 }
 
-const PathBlock: React.FC<Props> = ({ books, title, color }) => {
+const PathBlock: React.FC<Props> = ({ books, title, color, children }) => {
   return (
     <WaveBottomBlock color={color} className={`PathBlock p-12 text-fl${color}`}>
       <h2 className="heading-text mb-6">{title}</h2>
-      <p className="body-text mb-12 max-w-4xl mx-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi quibusdam qui
-        voluptates deleniti aliquam omnis beatae magnam. Ut illum mollitia, eius
-        molestiae, ratione distinctio, tenetur recusandae ab voluptatem dolor quod.
-      </p>
+      <p className="body-text mb-12 max-w-4xl mx-auto">{children}</p>
       <div className="PathBooks md:flex flex-wrap text-gray-500 antialiased font-sans tracking-wider text-center relative">
         {books.map(book => (
           <div

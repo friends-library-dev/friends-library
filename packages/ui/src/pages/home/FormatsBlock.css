@@ -1,11 +1,11 @@
-.Formats .Books--lg {
+.FormatsBlock .Books--lg {
   width: 380px;
   right: 0;
   top: -100px;
   position: absolute;
 }
 
-.Formats .Books--sm {
+.FormatsBlock .Books--sm {
   width: 180px;
   right: -15px;
   position: absolute;
@@ -35,7 +35,7 @@
 }
 
 @media (min-width: 400px) {
-  .Formats .Books--sm {
+  .FormatsBlock .Books--sm {
     top: -70px;
   }
   .BookMask--sm {
@@ -51,7 +51,7 @@
 }
 
 @media (min-width: 500px) {
-  .Formats .Books--sm {
+  .FormatsBlock .Books--sm {
     right: 0;
   }
   .BookMask--sm {
@@ -67,7 +67,7 @@
 }
 
 @media (min-width: 600px) {
-  .Formats .Books--sm {
+  .FormatsBlock .Books--sm {
     width: 200px;
     top: -140px;
   }
@@ -112,7 +112,7 @@
 }
 
 @media (min-width: 1500px) {
-  .Formats {
+  .FormatsBlock {
     padding-left: 10%;
   }
 }

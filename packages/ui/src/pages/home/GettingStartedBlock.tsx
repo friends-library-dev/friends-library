@@ -9,11 +9,11 @@ const GettingStartedBlock: React.FC = () => (
       Getting started
     </Heading>
     <p className="font-serif antialiased text-xl sm:text-2xl px-2 text-gray-700 leading-relaxed text-center md:text-left md:max-w-2xl">
-      Not sure where to begin? We've got a bunch recommendations adapted to various states
-      and interests to help guide you.
+      Not sure where to begin? We've hand-picked a small number of our favorite books and
+      split them up into four different categories to help you decide what to read first.
     </p>
-    <Button to="/getting-started" className="mx-auto mt-10 md:mx-0" shadow>
-      Get Started
+    <Button to="/getting-started" width={330} className="mx-auto mt-10 md:mx-0" shadow>
+      Recommendations &rarr;
     </Button>
   </DuoToneWaveBlock>
 );

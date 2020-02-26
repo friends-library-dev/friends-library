@@ -14,8 +14,8 @@ const AudioBooksBlock: React.FC<Props> = ({ books }) => (
   <div className="AudioBooksBlock text-center pb-16">
     <div className="AudioBooksBlock__Hero p-10 pb-56 md:pb-64">
       <h2 className="font-sans text-3xl tracking-wider text-white mb-6">Audio Books</h2>
-      <p className="body-text text-white">
-        We currently offer {books.length} books with audio.
+      <p className="body-text text-white text-lg">
+        We currently have {books.length} titles recorded as audiobooks.
       </p>
     </div>
     <div

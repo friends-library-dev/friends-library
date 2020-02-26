@@ -13,8 +13,9 @@ import {
 } from '@friends-library/ui';
 import { graphql } from 'gatsby';
 import { Layout } from '../components';
+import { SiteMetadata } from '../types';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
-import { APP_ALT_URL } from '../env';
+import { APP_ALT_URL, LANG } from '../env';
 
 export default ({
   data: {
@@ -32,9 +33,11 @@ export default ({
       <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-16 my-6 max-w-screen-md mx-auto">
         <h1 className="sans-wider text-3xl mb-6">Explore Books</h1>
         <p className="body-text">
-          Here's the intro text to the new explore books page. We have 200 books that
-          explores a variety of topcs about the Friends Library. From journals, to
-          required reading, here you'll find the entire collection to browse and explore
+          We currently have{' '}
+          {site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks']} books freely
+          available on this site. Overwhelmed? On this page you can browse all the titles
+          by edition, region, time period, tags, and more&mdash;or search the full library
+          to find exactly what you're looking for.
         </p>
       </div>
     </MultiBookBgBlock>
@@ -96,7 +99,7 @@ export default ({
 
 interface Props {
   data: {
-    site: { meta: { numSpanishBooks: number } };
+    site: SiteMetadata;
     searchBooks: {
       nodes: (CoverData & {
         documentUrl: string;
@@ -132,9 +135,7 @@ interface Props {
 export const query = graphql`
   query ExplorePage {
     site {
-      meta: siteMetadata {
-        numSpanishBooks
-      }
+      ...SiteMetadata
     }
     searchBooks: allDocument {
       nodes {

@@ -1,39 +1,47 @@
 import React from 'react';
 import cx from 'classnames';
+import { graphql } from 'gatsby';
 import {
   MultiBookBgBlock,
   EmbeddedAudio,
   DuoToneWaveBlock,
   Heading,
 } from '@friends-library/ui';
+import { SiteMetadata } from '../types';
+import { LANG } from '../env';
 import { Layout } from '../components';
 import GettingStartedPaths from '../components/GettingStartedPaths';
 
-export default () => (
+interface Props {
+  data: { site: SiteMetadata };
+}
+
+const GettingStartedPage: React.FC<Props> = ({
+  data: {
+    site: { meta },
+  },
+}) => (
   <Layout>
     <MultiBookBgBlock className="flex flex-col items-center">
       <Heading darkBg className="text-white">
         Not sure where to get started?
       </Heading>
       <p className="text-center body-text text-white text-lg leading-loose max-w-4xl md:text-left">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium ea ullam
-        culpa eveniet? Facere enim tempora consequuntur recusandae adipisci fugiat itaque
-        sit dolorum? Sunt, perspiciatis quasi. Dolorem recusandae temporibus cupiditate.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit neque
-        necessitatibus, asperiores tenetur, sint est doloribus repudiandae assumenda
-        corporis provident, nisi nam eum aliquam ratione tempora enim! Corporis, quasi
-        doloremque.
+        Interested in reading something from the early Quakers, but picking from{' '}
+        {LANG === 'en' ? meta.numEnglishBooks : meta.numSpanishBooks} books seem daunting?
+        No worries&mdash;on this page we've pre-selected our favorites from all the books
+        in our library and arranged them into four topics. Plus we've got an introductory
+        audio to help introduce you to the early Friends.
       </p>
     </MultiBookBgBlock>
     <DuoToneWaveBlock className="p-12 pb-32">
       <div className="flex flex-col items-center">
         <h2 className="font-sans text-3xl text-center mb-6 tracking-wide md:text-left">
-          Listen to the Beginnings
+          Step 1: Audio Introduction
         </h2>
-        <p className="body-text text-center mb-10 max-w-3xl md:text-left md:pr-20">
-          First, if you haven't listened to our introductory audio explaining who the
-          early Quakers were, we recommend you start there by clicking the play button
-          below:
+        <p className="body-text text-center mb-10 text-lg leading-loose max-w-3xl md:text-left md:pr-20">
+          If you haven't listened to our introductory audio explaining who the early
+          Quakers were, we recommend you start there by clicking the play button below:
         </p>
         <div className="max-w-3xl w-3/4">
           <EmbeddedAudio
@@ -44,43 +52,37 @@ export default () => (
         </div>
       </div>
     </DuoToneWaveBlock>
-    <div className="bg-flgray-100 p-12">
-      <h2 className="font-sans text-3xl text-center mb-6 tracking-wide">Choose A Path</h2>
+    <div className="bg-flgray-100 py-12 px-16">
+      <h2 className="font-sans text-3xl text-center mb-6 tracking-wide">
+        Step 2: Choose A Path
+      </h2>
       <p className="body-text text-lg text-center">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla reprehenderit nemo,
-        eaque, officia mollitia provident repellendus sit nesciunt dicta et voluptatibus
-        vero voluptate, necessitatibus voluptatem explicabo. Voluptatum officia minus
-        aliquam.
+        Now for the only decision you need to make: of the four categories below, what
+        interests you the most? Click the one that stands out to see recommendations for
+        just that category.
       </p>
     </div>
     <div className="md:flex flex-wrap">
       <PathIntro title="History" color="maroon" onClick={() => {}}>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
-        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
-        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+        <HistoryBlurb />
       </PathIntro>
       <PathIntro title="Doctrine" color="blue" onClick={() => {}}>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
-        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
-        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
-        e pluribus unum.
+        <DoctrineBlurb />
       </PathIntro>
       <PathIntro title="Devotional" color="green" onClick={() => {}}>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
-        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
-        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
-        Tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+        <DevotionalBlurb />
       </PathIntro>
       <PathIntro title="Journals" color="gold" onClick={() => {}}>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus veritatis
-        sapiente obcaecati, aut officia illum in, cumque consequuntur est repellendus,
-        tempora voluptatibus dignissimos ad mollitia aliquam ratione minima maiores eum.
+        <JournalsBlurb />
       </PathIntro>
     </div>
-    <GettingStartedPaths />
+    <GettingStartedPaths
+      {...{ HistoryBlurb, DoctrineBlurb, DevotionalBlurb, JournalsBlurb }}
+    />
   </Layout>
 );
+
+export default GettingStartedPage;
 
 interface PathIntroProps {
   title: string;
@@ -108,4 +110,48 @@ const PathIntro: React.FC<PathIntroProps> = ({ className, color, title, children
       <i className="fa fa-chevron-down text-white antialiased pt-2" />
     </div>
   </section>
+);
+
+export const query = graphql`
+  query GettingStartedPage {
+    site {
+      ...SiteMetadata
+    }
+  }
+`;
+
+export const DevotionalBlurb: React.FC = () => (
+  <>
+    The early Friends left behind a precious treasury of devotional writings which, when
+    read by a hungry soul, help kindle the heart with love towards God, faithfulness in
+    obedience, meekness towards all fellow-creatures, and a deep humility and watchfulness
+    during the time of our sojourning in the body.
+  </>
+);
+
+export const JournalsBlurb: React.FC = () => (
+  <>
+    Most common of all the Quaker writings are their journals. These are incredibly
+    weighty and helpful records of real women and men walking in the "ancient path" of
+    obedience, humility, faith, and love&mdash;overcoming the world not by their own
+    strength, but by clinging to the grace of Jesus Christ springing up in the heart.
+  </>
+);
+
+export const DoctrineBlurb: React.FC = () => (
+  <>
+    Although they hold much in common with many other biblically Christian groups, there
+    are a number of significant distinctive doctrines, principles and testimonies held
+    forth by early Friends which set them apart from other Christian communities.
+  </>
+);
+
+export const HistoryBlurb: React.FC = () => (
+  <>
+    Get a feel for the history of the early Society of Friends from their own contemporary
+    historians. Learn about the context in which they emerged, the great sufferings of the
+    early generations, the spread and progress of Truth in Great Britain, colonial
+    America, and beyond, and become familiar with many of the notable figures of early
+    Quakerism.
+  </>
 );

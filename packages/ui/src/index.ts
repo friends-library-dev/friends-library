@@ -5,21 +5,21 @@ export { default as Button } from './Button';
 export { default as PopUnder } from './PopUnder';
 export { default as SlideoverMenu } from './SlideoverMenu';
 export { default as RelatedBookCard } from './RelatedBookCard';
-export { default as ExploreBooksBlock } from './pages/home/ExploreBooksBlock';
 export { default as MultiBookBgBlock } from './blocks/MultiBookBgBlock';
 export { default as DuoToneWaveBlock } from './blocks/DuoToneWaveBlock';
-export { default as Formats } from './blocks/Formats';
 export { default as PathBlock } from './pages/getting-started/PathBlock';
 export { default as Heading } from './Heading';
 export { default as EmbeddedAudio } from './EmbeddedAudio';
 export { t, useLocale } from './translation';
 
 // home page
-export { default as GettingStartedBlock } from './pages/home/GettingStartedBlock';
-export { default as FeaturedBooks } from './blocks/FeaturedBooks';
-export { default as WhoWereTheQuakers } from './blocks/WhoWereTheQuakers';
-export { default as Hero } from './blocks/Hero';
-export { default as SubHero } from './blocks/SubHero';
+export { default as HomeGettingStartedBlock } from './pages/home/GettingStartedBlock';
+export { default as HomeFormatsBlock } from './pages/home/FormatsBlock';
+export { default as HomeFeaturedBooksBlock } from './pages/home/FeaturedBooksBlock';
+export { default as HomeWhoWereTheQuakersBlock } from './pages/home/WhoWereTheQuakersBlock';
+export { default as HomeHeroBlock } from './pages/home/HeroBlock';
+export { default as HomeSubHeroBlock } from './pages/home/SubHeroBlock';
+export { default as HomeExploreBooksBlock } from './pages/home/ExploreBooksBlock';
 
 // document page
 export { default as ReadSampleBlock } from './pages/document/ReadSampleBlock';

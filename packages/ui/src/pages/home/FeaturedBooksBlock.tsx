@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
-import Heading from '../Heading';
-import FeaturedBook from './FeaturedBook';
-import './FeaturedBooks.css';
 import { EditionType } from '@friends-library/types';
+import Heading from '../../Heading';
+import FeaturedBook from './FeaturedBook';
+import './FeaturedBooksBlock.css';
 
-const FeaturedBooks: React.FC = () => {
+const FeaturedBooksBlock: React.FC = () => {
   const [index, setIndex] = useState<number>(0);
   const [controlled, setControlled] = useState<boolean>(false);
 
@@ -18,7 +18,7 @@ const FeaturedBooks: React.FC = () => {
   });
 
   return (
-    <section className="FeaturedBooks py-10 sm:py-12 md:py-20">
+    <section className="FeaturedBooksBlock py-10 sm:py-12 md:py-20">
       <Heading className="text-gray-800">Featured Books</Heading>
       <div className="BooksViewer overflow-hidden">
         <div className="BookWrap flex">
@@ -46,7 +46,7 @@ const FeaturedBooks: React.FC = () => {
   );
 };
 
-export default FeaturedBooks;
+export default FeaturedBooksBlock;
 
 // @TODO vary by LANG, possibly pull in data dynamically from friends/*.yml
 const FEATURED_BOOKS = [

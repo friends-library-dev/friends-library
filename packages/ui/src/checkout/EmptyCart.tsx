@@ -17,7 +17,16 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
     <div>
       <Header>Empty Cart</Header>
       <p className="body-text text-center">
-        There's nothing in your cart! See our wide variety of books available on our site.
+        There's nothing in your cart! Below are a few recommendations, or you can check
+        out our{' '}
+        <Link to="/getting-started" className="subtle-link">
+          getting started picks
+        </Link>
+        , or{' '}
+        <Link to="/explore" className="subtle-link">
+          explore all the books
+        </Link>
+        .
       </p>
       <div className="flex flex-col items-center md:flex-row md:justify-center md:items-start mt-8 px-6">
         {recommendedBooks.map(({ Cover, title, path }, idx) => (
@@ -38,7 +47,7 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
           </Link>
         ))}
       </div>
-      <Button className="mx-auto mt-4" shadow>
+      <Button to="/explore" className="mx-auto mt-4" shadow>
         Explore Books
       </Button>
     </div>
