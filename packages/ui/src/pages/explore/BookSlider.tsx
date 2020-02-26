@@ -44,11 +44,12 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
         }}
         className="BookSlider__viewport md:flex transition-all duration-500 ease-in-out"
       >
-        {books.map(book => (
+        {books.map((book, idx) => (
           <div
             key={book.documentUrl}
             className={cx(
-              'BookSlider__Book max-w-xs flex flex-col items-center mb-12 px-10 text-center',
+              idx < 4 ? 'flex' : 'hidden md:flex', // TEMP
+              'BookSlider__Book max-w-xs flex-col items-center mb-12 px-10 text-center',
               'md:px-6 md:mb-0',
             )}
           >
