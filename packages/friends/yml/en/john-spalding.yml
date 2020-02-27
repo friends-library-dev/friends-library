@@ -2,6 +2,11 @@ id: 14754ae5-720e-45a3-bb45-3e227a7b4d65
 name: John Spalding
 slug: john-spalding
 gender: male
+born: 1765
+died: 1795
+residences:
+  - city: Reading
+    region: England
 description:
   Though raised in the Church of England, John Spalding's (1765-1795) pursuit of truth
   left him dissatisfied with the traditional worship of his day, concluding that, in many
@@ -27,6 +32,10 @@ documents:
       profession, but knew not the power, till it pleased the Lord, by the ministry and
       writings of the people called Quakers, to direct him to where alone the power is to
       be known, that is, within."
+    partial_description:
+      A short account of the convincement and religious progress of John Spalding,
+      including his reasons for leaving the established Church of England and joining in
+      fellowship with the Society of Friends.
     filename: Convincement_and_Religious_Progress_of_John_Spalding
     original_title:
       Some Account of the Convincement and Religious Progress, of John Spalding, Late of
@@ -53,6 +62,10 @@ documents:
       profession, but knew not the power, till it pleased the Lord, by the ministry and
       writings of the people called Quakers, to direct him to where alone the power is to
       be known, that is, within."
+    partial_description:
+      An epistle of John Spalding, addressed to family and friends attending St. Giles
+      church, advancing several well-grounded reasons for leaving the Church of England
+      and joining in fellowship with the Society of Friends.
     tags:
       - letters
       - treatise

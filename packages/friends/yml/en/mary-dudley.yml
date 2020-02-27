@@ -2,6 +2,32 @@ id: 55dab152-9cb3-4e80-839e-40fe0ebbdd78
 name: Mary Dudley
 slug: mary-dudley
 gender: female
+born: 1750
+died: 1823
+quotes:
+  - source: Mary Dudley
+    text:
+      His name was called Jesus, because He should save His people from their sins, not in
+      them; so that, notwithstanding all that Christ Jesus has done and suffered for us,
+      and that His love is offered to us universally, we really know Him not as a Savior
+      and Redeemer, but in proportion as we are saved by Him from that evil seed which
+      leads into transgression.
+residences:
+  - city: Bristol
+    region: England
+    durations:
+      - start: 1750
+        end: 1777
+  - city: Clonmel
+    region: Ireland
+    durations:
+      - start: 1777
+        end: 1810
+  - city: London
+    region: England
+    durations:
+      - start: 1810
+        end: 1823
 description:
   Mary Dudley (1750-1823) was a seeker of truth and righteousness from her earliest days.
   When around 20 years old, she joined the Methodists for two or three years, and was much
@@ -27,6 +53,10 @@ documents:
       ministry. Finding a home among the Quakers, she grew to become a powerful minister
       and a "mother in Israel," traveling often, and pointing many hearts to the covenant
       of light and life in Jesus Christ.
+    partial_description:
+      A journal of the life of Mary Dudley, including a relation of her many services in
+      the work of the gospel, extracts from her letters, and an account of the last
+      illness and death of her daughter Hannah.
     tags:
       - journal
       - letters
@@ -35,3 +65,11 @@ documents:
         isbn: 978-1-64476-102-1
       - type: original
         isbn: 978-1-64476-103-8
+    related_documents:
+      - id: 0af1efec-461d-4936-bf91-cc0f44a60bd9
+        description:
+          Though not mentioned in her journal, Thomas Scattergood was an intimate friend
+          and frequent companion of Mary Dudley during his six years of ministerial labor
+          in Europe. Scattergood's journal contains several letters from Mary, and
+          frequently mentions being encouraged by her words and assisted by her sympathy
+          in his uncommon trials.

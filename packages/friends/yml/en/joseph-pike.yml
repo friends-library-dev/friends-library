@@ -2,6 +2,21 @@ id: 07ceda74-7afb-4bc8-949c-195cb3a63338
 name: Joseph Pike
 slug: joseph-pike
 gender: male
+born: 1657
+died: 1729
+quotes:
+  - source: Joseph Pike
+    text:
+      “That which may be known of God, is manifest within man.” It is there that Christ
+      teaches His people Himself. The more we keep inward to this school, the more we
+      learn of Christ. The less we keep inward, even when involved in lawful things, the
+      less we learn of Christ. Oh read, you that can read in the mystery of life! There is
+      no safety, no preservation, no growing in the Truth, but in true humility, keeping
+      inward to the gift of the Holy Spirit of Christ, continually watching in the light
+      against the temptations of the enemy.
+residences:
+  - city: Cork
+    region: Ireland
 description:
   Joseph Pike (1657-1729) was convinced of the truth through the powerful preaching of
   William Edmundson, and grew to become a wise and faithful elder in the Society of
@@ -23,6 +38,10 @@ documents:
       this short but valuable history, he relates (in helpful detail) the Lord's dealings
       to Him, first as a judge, then as a refiner of silver, and eventually as the
       comforter and strengthener of Zion.
+    partial_description:
+      A selection from the journal and writings of Joseph Pike, giving an account of his
+      spiritual travels and the various exercises of soul that he passed through and
+      experienced in the way of regeneration.
     tags:
       - journal
     editions:
@@ -40,3 +59,10 @@ documents:
               seconds: 2213
               chapters:
                 - 0
+    related_documents:
+      - id: 14f4fcbb-1027-4364-977e-5a2aba92a827
+        description:
+          Towards the end of his life, Joseph Pike maintained an ongoing written
+          correspondence with Deborah Bell, finding in her one who rightly discerned the
+          condition of the church, and shared his burden to see all believers walk in a
+          way that adorned the gospel of Christ.

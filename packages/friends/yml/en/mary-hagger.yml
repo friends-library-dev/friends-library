@@ -2,14 +2,50 @@ id: 7390bce7-827a-4885-98bb-ec22579c5adb
 name: Mary Hagger
 slug: mary-hagger
 gender: female
-description: TODO
+born: 1758
+died: 1840
+quotes:
+  - source: Mary Hagger (upon her deathbed)
+    text:
+      Oh my dear children, may you never rest but in the wrestling of the soul, until He
+      has fully redeemed you, until He has finished the work He has begun in you. Oh! from
+      my dying bed, I beg of you, that it may be the earnest breathing of your souls, that
+      you may be redeemed from the perishing things of time, and that your affections may
+      be fixed upon eternity. Oh, eternity! Oh, the length of eternity! Oh, that it may be
+      impressed on every heart the length of eternity! There is no end!
+residences:
+  - city: Ashford
+    region: England
+description:
+  Mary Hagger (1758-1840) was raised by pious parents, and being of a meek and humble
+  disposition, was early visited by the power of the Lord, though at the time she says, "I
+  knew not what it was that so sweetened and tendered my heart." Faithfully yielding to
+  the convictions and instructions of grace, she was prepared by the Lord as a vessel for
+  His service. But when she felt it required of her to bear public testimony to the
+  goodness of the Lord, for many years the language of her heart was, "Send by whom you
+  will send, but not by me." However, in the latter part of her life she was at last made
+  willing to speak as the Lord enabled her, and became an instrument of usefulness in the
+  church.
 documents:
   - id: 53f7cdb3-6c11-47d2-9a5d-0fcd41b5ab57
     title: Life of Mary Hagger
     original_title: Extracts from the Memoranda of Mary Hagger, Ashford, Kent.
     slug: life
     filename: Life_of_Mary_Hagger
-    description: TODO
+    description:
+      Mary Hagger (1758-1840) was raised by pious parents, and being of a meek and humble
+      disposition, was early visited by the power of the Lord, though at the time she
+      says, "I knew not what it was that so sweetened and tendered my heart." Faithfully
+      yielding to the convictions and instructions of grace, she was prepared by the Lord
+      as a vessel for His service. But when she felt it required of her to bear public
+      testimony to the goodness of the Lord, for many years the language of her heart was,
+      "Send by whom you will send, but not by me." However, in the latter part of her life
+      she was at last made willing to speak as the Lord enabled her, and became an
+      instrument of usefulness in the church.
+    partial_description:
+      The journal and letters of Mary Hagger, relating some early impressions and
+      convictions of the Spirit, her reluctance to be used of the Lord in the work of the
+      ministry, and her happy surrender to His call in the evening of her day.
     tags:
       - journal
       - letters

@@ -2,13 +2,30 @@ id: 2fc07cca-624d-435e-9a48-d7dc28edff9f
 name: John Woolman
 slug: john-woolman
 gender: male
+born: 1720
+died: 1772
+quotes:
+  - source: Job Scott
+    text:
+      Disappointment has a tendency, if we are well-disposed, to drive us nearer to God by
+      weaning us, little by little, from other things. Thus came that wonder of his age,
+      the blessed John Woolman, to witness his works go so fully beforehand to judgment,
+      that he was dead whilst yet alive in the body.
+  - source: Samuel Neale
+    text:
+      Here I saw John Woolman for the first time; I take him to be a sweet, clean-spirited
+      Friend; his unity with the true Seed may be felt by his savory conversation and
+      pious self-denying life.
+residences:
+  - city: York
+    region: England
 description:
   Because of his writings against slavery and other social evils, John Woolman (1720-1772)
   is one of the most well-known Quakers from the 18th century. Unfortunately, several
   heavily edited versions of his journal exist today which have removed important aspects
-  of his Christian faith and experience, rendering him little more than a philanthropist
-  and abolitionist. The truth is that John Woolman was a devoted servant of Jesus Christ,
-  a preacher of truth and righteousness, and a man filled with the Spirit and love of God
+  of his Christian faith and experience, rendering him only a philanthropist and
+  abolitionist. The truth is that John Woolman was a devoted servant of Jesus Christ, a
+  preacher of truth and righteousness, and a man filled with the Spirit and love of God
   that overflowed towards his fellow creatures. This edition contains his unabridged
   journal and works.
 documents:
@@ -24,11 +41,15 @@ documents:
       Because of his writings against slavery and other social evils, John Woolman
       (1720-1772) is one of the most well-known Quakers from the 18th century.
       Unfortunately, several heavily edited versions of his journal exist today which have
-      removed important aspects of his Christian faith and experience, rendering him
-      little more than a philanthropist and abolitionist. The truth is that John Woolman
-      was a devoted servant of Jesus Christ, a preacher of truth and righteousness, and a
-      man filled with the Spirit and love of God that overflowed towards his fellow
-      creatures. This edition contains his unabridged journal and works.
+      removed important aspects of his Christian faith and experience, rendering him only
+      a philanthropist and abolitionist. The truth is that John Woolman was a devoted
+      servant of Jesus Christ, a preacher of truth and righteousness, and a man filled
+      with the Spirit and love of God that overflowed towards his fellow creatures. This
+      edition contains his unabridged journal and works.
+    partial_description:
+      The journal, life, gospel labors, and Christian experiences of that faithful
+      minister of Jesus Christ, John Woolman; to which are added his last epistle to
+      Friends, and his writings on slavery, love, and several other important subjects.
     tags:
       - journal
       - treatise

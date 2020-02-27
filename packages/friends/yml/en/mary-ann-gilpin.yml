@@ -2,6 +2,17 @@ id: cad036aa-1c1f-4c3c-b3e6-83101a2b9192
 name: Mary Ann Gilpin
 slug: mary-ann-gilpin
 gender: female
+born: 1813
+died: 1838
+quotes:
+  - source: Mary Ann Gilpin (on her deathbed)
+    text:
+      Oh let me once more entreat you to live as strangers and pilgrims here; and to seek,
+      with increasing earnestness, a preparation for an enduring inheritance in that happy
+      land, where, I humbly trust, through redeeming mercy, I am hastening.
+residences:
+  - city: Bristol
+    region: England
 description:
   The short life of Mary Ann Gilpin (1813-1838) is a beautiful and compelling testimony to
   the powerful operation of the Spirit of Truth upon any heart that is “humble, contrite,
@@ -15,7 +26,7 @@ documents:
   - id: 8e66ed6c-5a9f-4842-91c3-4d2b32b02e93
     title: Journal of Mary Ann Gilpin
     original_title:
-      Memoir of Mary Ann Gilpin, of Bristol; consisting cheifly of extracts from her diary
+      Memoir of Mary Ann Gilpin, of Bristol; consisting chiefly of extracts from her diary
       and letters.
     slug: journal
     filename: Journal_of_Mary_Ann_Gilpin
@@ -28,6 +39,11 @@ documents:
       growth in grace and a steadfastness in faith. She finished her race in her 25th
       year, having fought the good fight, kept the faith, and left behind her an “aroma of
       life”--the sweet fragrance of the knowledge of her Lord and Savior Jesus Christ.
+    partial_description:
+      The journal and letters of Mary Ann Gilpin, written in the final years of her short
+      but valuable life, relating her earnest desires to be thoroughly purified, her
+      faithfulness and submission in times of great bodily suffering, and her joyful
+      victory over sin and the grave.
     tags:
       - journal
     editions:
