@@ -10,6 +10,7 @@ import { allFriends, allDocsMap, cartItemData, justHeadings } from './helpers';
 import { getDpcCache, persistDpcCache, EditionCache } from './dpc-cache';
 import residences from './residences';
 import * as url from '../lib/url';
+import { documentDate, periodFromDate } from '../lib/timeline';
 import { APP_ALT_URL, LANG } from '../env';
 
 const humansize = filesize.partial({ round: 0, spacer: '' });
@@ -47,6 +48,8 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
       const documentProps: Record<string, any> = {
         ...document.toJSON(),
         ...fakedExploreData(),
+        date: documentDate(document),
+        period: periodFromDate(documentDate(document)),
         url: url.documentUrl(document),
         authorUrl: url.friendUrl(friend),
         documentId: document.id,
@@ -159,31 +162,6 @@ function fakedExploreData(): { [k in string]: string | number } {
       'Scotland',
       'Ireland',
       'Other',
-    ]),
-    period: sample(['early', 'mid', 'late']),
-    date: sample([
-      1650,
-      1660,
-      1670,
-      1680,
-      1690,
-      1700,
-      1710,
-      1720,
-      1730,
-      1730,
-      1740,
-      1750,
-      1760,
-      1770,
-      1780,
-      1790,
-      1800,
-      1810,
-      1820,
-      1830,
-      1840,
-      1850,
     ]),
   };
 }
