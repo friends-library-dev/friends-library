@@ -61,7 +61,13 @@ const TimelineBlock: React.FC<Props> = ({ books }) => {
       <div className="bg-flgold text-center text-white text-2xl p-3 tracking-widest sm:hidden">
         {date}
       </div>
-      <div className="flex flex-col items-center pt-12 sm:-mt-32">
+      <div className="flex flex-col md:flex-row md:justify-center items-center pt-12 sm:-mt-32 mb-8">
+        <div
+          className="hidden md:block bg-flgold text-white box-content h-48 py-2 px-2 mr-4 -mt-48 text-center text-xl transform rotate-180"
+          style={{ writingMode: 'vertical-rl' }}
+        >
+          {date}
+        </div>
         <BookSlider books={books.filter(b => b.date === date)} />
       </div>
     </div>

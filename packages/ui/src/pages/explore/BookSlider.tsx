@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import Link from 'gatsby-link';
 import { Swipeable } from 'react-swipeable';
@@ -21,14 +21,21 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
   const [vertCutoff, setVertCutoff] = useState<number>(4);
   const canGoRight = numHorizPages > 0 && currentHorizPage < numHorizPages;
   const canGoLeft = numHorizPages > 0 && currentHorizPage > 1;
+  const notMobile = winWidth >= SCREEN_MD;
+
+  // reset position when books are updated
+  useEffect(() => {
+    setCurrentHorizPage(1);
+    setVertCutoff(4);
+  }, [books]);
 
   return (
     <Swipeable
       onSwipedRight={() =>
-        winWidth >= SCREEN_MD && canGoLeft && setCurrentHorizPage(currentHorizPage - 1)
+        notMobile && canGoLeft && setCurrentHorizPage(currentHorizPage - 1)
       }
       onSwipedLeft={() =>
-        winWidth >= SCREEN_MD && canGoRight && setCurrentHorizPage(currentHorizPage + 1)
+        notMobile && canGoRight && setCurrentHorizPage(currentHorizPage + 1)
       }
       className={cx(className, 'BookSlider md:overflow-hidden md:relative')}
     >
