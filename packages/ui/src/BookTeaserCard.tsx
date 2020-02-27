@@ -21,10 +21,10 @@ const BookTeaserCard: React.FC<Props> = props => {
         className,
         'BookTeaserCard text-white items-start',
         'sm:mx-24',
-        'md:mx-0 md:flex md:max-w-screen-sm md:mx-auto',
+        'md:mx-0 md:flex md:mx-auto',
       )}
     >
-      <div className="CoverWrap flex justify-center md:pt-10 md:pl-10">
+      <div className="CoverWrap flex justify-center md:pt-12 md:pl-10">
         <div className="relative">
           {badgeText && <Badge>{badgeText}</Badge>}
           <Front {...props} className="" size="m" scaler={1 / 3} scope="1-3" shadow />

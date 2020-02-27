@@ -27,7 +27,7 @@ const Button: React.FC<Props> = ({
 }) => {
   const props = {
     style: { width },
-    className: cx('Btn', className, `text-${textColor}`, {
+    className: cx('Btn block', className, `text-${textColor}`, {
       [`bg-fl${bg || 'primary'}`]: bg !== null,
       [`hover:bg-fl${bg || 'primary'}-800`]: bg !== null,
       'shadow-btn': shadow,
