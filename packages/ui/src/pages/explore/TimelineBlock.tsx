@@ -6,6 +6,8 @@ import PillDropdownItem from './PillDropdownItem';
 import PillDropdownDropdown from './PillDropdownDropdown';
 import BookSlider from './BookSlider';
 import TimePicker from './TimePicker';
+import { useWindowWidth } from '../../hooks/window-width';
+import { SCREEN_MD } from '../../lib/constants';
 import './TimelineBlock.css';
 
 interface Props {
@@ -14,6 +16,8 @@ interface Props {
 
 const TimelineBlock: React.FC<Props> = ({ books }) => {
   const [date, setDate] = useState<number>(1650);
+  const windowWidth = useWindowWidth();
+  const nextDate = date + (windowWidth < SCREEN_MD ? 50 : 25);
   return (
     <div id="TimelineBlock" className="TimelineBlock">
       <BgWordBlock
@@ -68,7 +72,11 @@ const TimelineBlock: React.FC<Props> = ({ books }) => {
         >
           {date}
         </div>
-        <BookSlider books={books.filter(b => b.date === date)} />
+        <BookSlider
+          books={books
+            .filter(b => b.date >= date && b.date <= nextDate)
+            .sort((a, b) => (a.date < b.date ? -1 : 1))}
+        />
       </div>
     </div>
   );
