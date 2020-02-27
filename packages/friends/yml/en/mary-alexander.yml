@@ -2,6 +2,11 @@ id: e0af1dbc-cf6c-41ad-b342-067583ae1867
 name: Mary Alexander
 slug: mary-alexander
 gender: female
+born: 1760
+died: 1809
+residences:
+  - city: Needham Market
+    region: England
 description:
   Before Mary Alexander (1760-1809) had attained to the age of seventeen years, she was
   impressed with a strong apprehension that, if faithful to the manifestations of the Holy
@@ -32,6 +37,11 @@ documents:
       and Wales as the Lord gave her utterance. Mary Alexander was known to be a woman of
       deep humility and uncommon spiritual understanding, and one whose life was
       unreservedly dedicated to her Master’s cause.
+    partial_description:
+      A journal of the life of Mary Alexander begun in the thirty-eighth year of her age,
+      relating her early experiences of "the heart-tendering power of the Lord," her
+      notable call to preach the gospel, and her frequent and diligent travels in the work
+      of the ministry.
     tags:
       - journal
     editions:

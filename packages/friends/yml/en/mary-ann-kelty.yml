@@ -2,6 +2,21 @@ id: 5b448161-953f-4196-a1e4-e07fd5d48412
 name: Mary Ann Kelty
 slug: mary-ann-kelty
 gender: female
+born: 1789
+died: 1873
+quotes:
+  - source: Mary Ann Kelty
+    text:
+      Permit the word of exhortation, upon a point wherein it seems to me you are in some
+      danger--it is that of mixing up the pure, distinct, interior principle of faith in
+      the gift of God, as an invisible and spiritual thing, only to be known, apprehended,
+      believed in, felt, and obeyed, by the inward senses of the new-born creature—-I say,
+      it is to be feared, that you mix and confound this precious, living thing, with the
+      notional, historical knowledge, which is to be picked up from the letter that
+      describes it.
+residences:
+  - city: Peckham
+    region: England
 description:
   Mary Ann Kelty (1789-1873) was a teacher and author in England who appears to have
   discovered the writings of early Friends later in her life. Though she plainly shows
@@ -30,6 +45,11 @@ documents:
       house at Peckham). Her book "The Lives and Persecutions of the Primitive Quakers" is
       a very well-written, short history of the early Society of Friends, highlighting the
       most noteworthy figures and remarkable events of that time.
+    partial_description:
+      A short history of the remarkable lives and relentless persecutions of the primitive
+      Quakers, demonstrating their deep root in the life and substance of true
+      Christianity, and their willingness to "spend and be spent" for the Truth as it is
+      in Jesus.
     tags:
       - history
     editions:
@@ -37,3 +57,9 @@ documents:
         isbn: 978-1-64476-100-7
       - type: original
         isbn: 978-1-64476-101-4
+    related_documents:
+      - id: 69c5fc26-76e3-4302-964e-ba46d889003b
+        description:
+          Both the lives and the sufferings of the Friends mentioned in Mary Ann Kelty's
+          history, are related in much greater detail in William Sewel's classic "History
+          of the Rise, Increase, and Progress of that Christian People Called Quakers."

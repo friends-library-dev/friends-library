@@ -2,6 +2,11 @@ id: c37e8c43-d3b0-4cff-856c-c6981f841528
 name: Martha Routh
 slug: martha-routh
 gender: female
+born: 1743
+died: 1817
+residences:
+  - city: Stourbridge
+    region: England
 description:
   ​Martha Routh (1743-1817) was working as the principal of a Friend's boarding school in
   Nottingham, England when, at age of 30, she was called by the Lord to travel in the work
@@ -27,6 +32,10 @@ documents:
       returned to America in 1801 with her husband (who died shortly after his arrival in
       New York). Martha Routh's life and ministry were exemplary in every respect, and her
       preaching was "in demonstration of the Spirit and of power."
+    partial_description:
+      A journal of the life, travels, and religious experiences of Martha Routh, giving a
+      relation of her forty years of tireless service in the work of the ministry
+      throughout many parts of England, Ireland, Scotland, and America.
     tags:
       - journal
     editions:
@@ -34,3 +43,17 @@ documents:
         isbn: 978-1-64476-094-9
       - type: original
         isbn: 978-1-64476-095-6
+    related_documents:
+      - id: 84ca0ff5-f17c-49ff-9bde-6c9f67a6a352
+        description:
+          During a great part of her first trip to the United States, Martha Routh was
+          often a companion in the work of the ministry to John Wigham, whom she
+          frequently mentions with great esteem in her journal, calling him her "valued
+          friend and brother in gospel fellowship."
+      - id: 45dca7c2-3ff9-4a83-acdf-55ec1630cb25
+        description:
+          Though a native of England, Martha Routh spent many years in America in the
+          service of the gospel, where she met and befriended that humble but
+          highly-esteemed minister of Christ, Rebecca Jones. Rebecca's journal makes many
+          reference to Martha Routh, and includes several letters written to her on
+          various occasions.

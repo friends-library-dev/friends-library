@@ -2,6 +2,19 @@ id: 2e0d8f1c-b8e6-493f-b1a5-15980df87929
 name: Joseph Phipps
 slug: joseph-phipps
 gender: male
+born: 1708
+died: 1787
+quotes:
+  - source: Joseph Phipps
+    text:
+      Perfect redemption then consists, first, in paying the price of ransom; and second,
+      in bringing out of bondage, and setting the prisoner at liberty. Our Savior paid the
+      first by His suffering and sacrifice, and He performs the last by the effectual
+      operation of His Spirit in the hearts of those who receive Him and resign wholly to
+      Him.
+residences:
+  - city: Norwich
+    region: England
 description:
   Though a shoe maker by trade, Joseph Phipps (1708–1787) was the author of several
   scholarly publications explaining and defending the tenets of Early Friends. In 1772, in
@@ -33,6 +46,10 @@ documents:
       "The nature of man's fall, and the necessity, means, and manner of his restoration
       through the sacrifice of Christ, and the discernible operation of that Divine Spirit
       of grace and truth."
+    partial_description:
+      The Original and Present State of Man, demonstrating the nature of man's fall, the
+      necessity, means, and manner of his restoration through the sacrifice of Christ, and
+      the discernible operation of that Divine Spirit of grace and truth.
     tags:
       - doctrinal
     editions:
@@ -100,3 +117,10 @@ documents:
               chapters:
                 - 12
                 - 13
+    related_documents:
+      - id: a8da908c-c9b4-4583-a2a3-ee460a90a4b9
+        description:
+          Those who appreciate the solid and biblical arguments of Joseph Phipps in the
+          "The Original and Preset State of Man," will most certainly enjoy Robert
+          Barclay's famous "Apology for the True Christian Divinity," which is doubtless
+          the most well-known of all Friends' theological writings.

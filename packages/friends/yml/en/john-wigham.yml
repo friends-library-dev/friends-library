@@ -2,6 +2,19 @@ id: c142b031-4632-4730-96cd-2c0e3efb76f5
 name: John Wigham
 slug: john-wigham
 gender: male
+born: 1749
+died: 1839
+residences:
+  - city: Haltwhistle
+    region: England
+    durations:
+      - start: 1749
+        end: 1774
+  - city: Aberdeen
+    region: Ireland
+    durations:
+      - start: 1784
+        end: 1839
 description:
   John Wigham (1749-1839) had strong desires raised in his heart to be the Lord's servant
   when only eight years old, and feeling that he could not serve Him acceptably without
@@ -28,6 +41,10 @@ documents:
       the Lord to move their family (of seven children) from England to Scotland, where he
       served the declining church for the remainder of his long and fruitful life, dying
       in Aberdeen at the age of 91.
+    partial_description:
+      A journal of the life, gospel labors, and religious experiences of John Wigham,
+      chiefly written by himself; to which are added some biographical comments and
+      concluding remarks by his son, Anthony Wigham.
     tags:
       - journal
     editions:
@@ -35,3 +52,10 @@ documents:
         isbn: 978-1-64476-084-0
       - type: modernized
         isbn: 978-1-64476-085-7
+    related_documents:
+      - id: 932ed314-b6c2-48c4-b4d8-19ca31d0db49
+        description:
+          During an extended ministry trip in the United States between the years 1794 and
+          1797, John Wigham was often in the company of his esteemed friend Martha Routh
+          visiting meetings of Friends and preaching the gospel among students, prisoners,
+          slaves, and other Christian denominations.
