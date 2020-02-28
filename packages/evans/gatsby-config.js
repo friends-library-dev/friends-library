@@ -1,11 +1,20 @@
 const path = require('path');
 const proxy = require('http-proxy-middleware');
+const { getAllFriends } = require('@friends-library/friends');
 
 require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
+const LANG = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
+
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: LANG === 'en' ? 'Friends Library' : 'La Biblioteca de los Amigos',
+    numSpanishBooks: getAllFriends('es', true)
+      .flatMap(friend => friend.documents)
+      .filter(document => document.hasNonDraftEdition).length,
+    numEnglishBooks: getAllFriends('en', true)
+      .flatMap(friend => friend.documents)
+      .filter(document => document.hasNonDraftEdition).length,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -21,7 +30,7 @@ module.exports = {
       options: {
         name: 'mdx',
         path: `${__dirname}/src/mdx`,
-        ignore: [`**/*.${process.env.GATSBY_LANG === 'en' ? 'es' : 'en'}.mdx`],
+        ignore: [`**/*.${LANG === 'en' ? 'es' : 'en'}.mdx`],
       },
     },
     'gatsby-transformer-sharp',

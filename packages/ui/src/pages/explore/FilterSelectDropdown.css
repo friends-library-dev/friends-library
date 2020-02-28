@@ -1,0 +1,27 @@
+[data-reach-accordion-panel] {
+  outline: none;
+}
+
+[data-reach-accordion-button][data-disabled] {
+  cursor: not-allowed;
+}
+
+[data-reach-accordion-item] {
+  @apply border-flgray-200;
+}
+
+[data-reach-accordion-item][data-state='collapsed'] + [data-reach-accordion-item] {
+  @apply border-t;
+}
+[data-reach-accordion-button][data-state='collapsed'] .fa-chevron-down {
+  display: none;
+}
+
+[data-reach-accordion-button][data-state='open'] .fa-chevron-up {
+  display: none;
+}
+
+.FilterSelectDropdown .PillDropdownItem:hover .fa-times-circle {
+  /* background-color:  */
+  @apply text-flgray-500;
+}

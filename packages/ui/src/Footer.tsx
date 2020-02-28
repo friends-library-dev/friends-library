@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
             title="Help"
             links={[
               ['/audio-help', 'Audio help'],
-              ['/ebook-helpo', 'E-book help'],
+              ['/ebook-help', 'E-book help'],
               ['/contact', 'Contact us'],
             ]}
           />

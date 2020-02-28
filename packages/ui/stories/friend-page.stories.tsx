@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import centered from '@storybook/addon-centered/react';
-import { Female1, Male1 } from '../src/pages/friend/Avatars';
 import { coverSizes } from './decorators';
 import Quotes from '../src/pages/friend/Quotes';
 import FeaturedQuoteBlock from '../src/pages/friend/FeaturedQuoteBlock';
@@ -43,9 +42,7 @@ storiesOf('Friend Page', module)
       <li>Country: Great Britain</li>
       <li>Role: Elder</li>
     </FriendMeta>
-  ))
-  .add('Male avatar', () => <Male1 />)
-  .add('Female avatar', () => <Female1 />);
+  ));
 
 storiesOf('Friend page', module)
   .addDecorator(coverSizes)
@@ -63,7 +60,8 @@ storiesOf('Friend page', module)
         bookUrl="/"
         tags={['journal', 'letters']}
         hasAudio
-        pages={187}
+        description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        pages={[187]}
       />
     </div>
   ));

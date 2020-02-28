@@ -1,0 +1,5 @@
+.GettingStartedLinkBlock {
+  background-position: center bottom;
+  background-image: linear-gradient(rgba(95, 140, 158, 0.8), rgba(95, 140, 158, 0.8)),
+    url('../../images/Books3.jpg');
+}

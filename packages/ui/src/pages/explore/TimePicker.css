@@ -1,0 +1,46 @@
+.TimePicker {
+  max-width: 1000px;
+}
+
+.TimePicker .Date::after {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 0.85rem;
+  width: 0.85rem;
+  @apply rounded-full bg-white;
+}
+
+.TimePicker .Date:hover::after {
+  @apply bg-white border-2 border-flgold;
+  transform: translateX(-50%) scale(1.21);
+}
+
+.TimePicker .Date.Date--selected::after {
+  @apply bg-flgold border-2 border-white;
+  transform: translateX(-50%) scale(1.21);
+}
+
+.TimePicker .Date:nth-of-type(1) {
+  transform: translateX(-50%);
+}
+
+.TimePicker .Date:last-of-type {
+  transform: translateX(50%);
+}
+
+@media (max-width: 420px) {
+  .TimePicker .Date {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  /* .TimePicker .Date:nth-of-type(1) {
+    transform: none;
+  }
+
+  .TimePicker .Date:last-of-type {
+    transform: translateX(50%);
+  } */
+}

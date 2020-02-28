@@ -1,0 +1,22 @@
+.HeroBlock__text {
+  background-image: linear-gradient(rgba(45, 42, 41, 0.75), rgba(45, 42, 41, 0.75)),
+    url(../../images/tree-roots.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+@screen md {
+  .HeroBlock__text {
+    background: none;
+  }
+  .HeroBlock__bg {
+    background-image: linear-gradient(rgba(108, 49, 66, 0.5), rgba(108, 49, 66, 0.5)),
+      url(../../images/tree-roots.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  .HeroBlock__bg:lang(es) {
+    background-image: linear-gradient(rgba(193, 140, 89, 0.5), rgba(193, 140, 89, 0.5)),
+      url(../../images/tree-roots.jpg);
+  }
+}

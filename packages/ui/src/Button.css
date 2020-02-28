@@ -1,6 +1,5 @@
 .Btn {
-  @apply block rounded-full font-sans text-center uppercase tracking-wider text-white;
-  width: 280px;
+  @apply block rounded-full font-sans text-center uppercase tracking-wider;
   height: 60px;
   line-height: 60px;
 }

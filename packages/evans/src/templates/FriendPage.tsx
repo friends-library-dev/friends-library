@@ -83,7 +83,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
                 tags={doc.tags}
                 hasAudio={doc.hasAudio}
                 bookUrl={doc.url}
-                pages={doc.editions[0].pages.reduce((acc, pgs) => acc + pgs, 0)}
+                pages={doc.editions[0].pages}
                 // @TODO: demand partialDescription vvv
                 description={
                   doc.partialDescription ||

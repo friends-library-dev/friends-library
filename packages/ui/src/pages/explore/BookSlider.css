@@ -1,0 +1,40 @@
+.fa {
+  top: 35%;
+}
+
+.fa-chevron-left {
+  left: -12px;
+}
+
+.fa-chevron-right {
+  right: -12px;
+}
+
+@screen md {
+  .BookSlider {
+    width: 670px;
+    height: 400px;
+  }
+
+  .BookSlider__Book {
+    min-width: 224px;
+  }
+}
+
+@screen lg {
+  .BookSlider {
+    width: 894px;
+  }
+}
+
+@screen xl {
+  .BookSlider {
+    width: 1118px;
+  }
+}
+
+@media (min-width: 1504px) {
+  .BookSlider {
+    width: 1342px;
+  }
+}

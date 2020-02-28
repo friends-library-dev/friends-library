@@ -2,8 +2,9 @@
 @tailwind components;
 
 :root {
-  /* prevent js errors from @reach/dialog */
+  /* prevent js errors from not including @reach CSS */
   --reach-dialog: 1;
+  --reach-accordian: 1;
 }
 
 .subtle-focus:focus {
@@ -31,6 +32,11 @@
   );
 }
 
+.subtle-link {
+  @apply text-flprimary;
+  border-bottom: 1px dotted currentColor;
+}
+
 .diamonds li {
   position: relative;
 }
@@ -52,6 +58,27 @@
 
 .body-text {
   @apply font-serif antialiased text-gray-800 text-base tracking-wide leading-relaxed;
+}
+
+.body-text i,
+.body-text em,
+.MDX blockquote.italic p {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  opacity: 0.875;
+  font-size: 0.825em;
+  @apply tracking-wider subpixel-antialiased;
+}
+
+.MDX blockquote.italic p {
+  font-size: 1em;
+}
+
+.sans-wide {
+  @apply font-sans tracking-wide;
+}
+
+.sans-wider {
+  @apply font-sans tracking-wider;
 }
 
 .heading-text {

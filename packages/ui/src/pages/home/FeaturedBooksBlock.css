@@ -1,0 +1,25 @@
+.FeaturedBooksBlock {
+  background: #f9f9f9 url(../../images/woodgrain.svg) repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.FeaturedBooksBlock .BooksViewer {
+  width: calc(100vw - (100vw - 100%));
+}
+
+.FeaturedBooksBlock .BookWrap {
+  width: 500vw;
+}
+
+@screen md {
+  .FeaturedBooksBlock {
+    background-size: 200%;
+  }
+}
+
+@screen lg {
+  .FeaturedBooksBlock {
+    background-size: 150%;
+  }
+}

@@ -1,0 +1,41 @@
+.MapSlider {
+  height: 40vh;
+}
+
+.MapSlider .SelectableMap {
+  position: absolute;
+}
+
+.MapSlider .fa {
+  top: 50%;
+}
+
+.MapSlider.focus--UK .SelectableMap {
+  top: -50px;
+}
+
+.MapSlider.focus--US .SelectableMap {
+  top: -266px;
+}
+
+.MapSlider .SelectableMap img {
+  width: 1200px;
+  max-width: none;
+}
+
+@screen md {
+  .MapSlider {
+    height: auto;
+  }
+
+  .MapSlider.focus--US .SelectableMap,
+  .MapSlider.focus--UK .SelectableMap {
+    top: 0;
+    left: 0;
+    position: relative;
+  }
+
+  .MapSlider .SelectableMap img {
+    width: 100%;
+  }
+}

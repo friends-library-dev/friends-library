@@ -1,0 +1,80 @@
+.SubHeroBlock .Paperback {
+  left: -28px;
+  bottom: -110px;
+  width: 220px;
+}
+
+.SubHeroBlock .Devices {
+  width: 45vw;
+  top: -5%;
+  right: -9%;
+}
+
+@screen md {
+  .SubHeroBlock .Devices {
+    top: -13%;
+  }
+}
+
+@screen lg {
+  .SubHeroBlock .Devices {
+    width: 35vw;
+    top: -15%;
+    right: -5%;
+  }
+}
+
+@screen xl {
+  .SubHeroBlock .Devices {
+    top: -21%;
+    width: 30vw;
+    max-width: 460px;
+    right: 0;
+  }
+}
+
+@media (min-width: 1540px) {
+  .SubHeroBlock .Devices {
+    top: -27%;
+    width: 26vw;
+  }
+}
+
+.SubHeroBlock .iPhone {
+  width: 350px;
+  left: 56%;
+  bottom: -340px;
+  transform: translateX(-50%);
+}
+
+.SubHeroBlock .iPad {
+  right: -85px;
+  width: 300px;
+}
+
+.SubHeroBlock .Format {
+  padding-left: 28px;
+  line-height: 34px;
+  height: 34px;
+  margin-right: 30px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.SubHeroBlock .Format--audio {
+  padding-left: 38px;
+  background: url(../../images/icon-headphones.svg) no-repeat 0px 0;
+  background-size: 30px;
+}
+
+.SubHeroBlock .Format--paperback {
+  padding-left: 36px;
+  background: url(../../images/icon-book.svg) no-repeat -2px 0;
+  background-size: 34px;
+}
+
+.SubHeroBlock .Format--ebook {
+  background: url(../../images/icon-phone.svg) no-repeat -8px 0;
+  background-size: 34px;
+  margin-right: 0;
+}

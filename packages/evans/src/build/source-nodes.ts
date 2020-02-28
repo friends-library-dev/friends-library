@@ -46,6 +46,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     documents.forEach(document => {
       const documentProps: Record<string, any> = {
         ...document.toJSON(),
+        ...fakedExploreData(),
         url: url.documentUrl(document),
         authorUrl: url.friendUrl(friend),
         documentId: document.id,
@@ -146,3 +147,47 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 };
 
 export default sourceNodes;
+
+function fakedExploreData(): { [k in string]: string | number } {
+  return {
+    addedTimestamp: Math.floor(Math.random() * 10000),
+    addedDate: sample(['Feb 10', 'Oct 23', 'Jun 15', 'Dec 22', 'May 4', 'Aug 30']),
+    region: sample([
+      'Northern US',
+      'Southern US',
+      'England',
+      'Scotland',
+      'Ireland',
+      'Other',
+    ]),
+    period: sample(['early', 'mid', 'late']),
+    date: sample([
+      1650,
+      1660,
+      1670,
+      1680,
+      1690,
+      1700,
+      1710,
+      1720,
+      1730,
+      1730,
+      1740,
+      1750,
+      1760,
+      1770,
+      1780,
+      1790,
+      1800,
+      1810,
+      1820,
+      1830,
+      1840,
+      1850,
+    ]),
+  };
+}
+
+function sample<T>(array: T[]): T {
+  return array[Math.floor(Math.random() * array.length)];
+}

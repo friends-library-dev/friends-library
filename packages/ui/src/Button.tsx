@@ -9,6 +9,8 @@ interface Props {
   onClick?: () => any;
   disabled?: boolean;
   shadow?: boolean;
+  width?: number | string;
+  textColor?: string;
   bg?: 'gold' | 'blue' | 'green' | 'maroon' | 'primary' | null;
 }
 
@@ -20,9 +22,12 @@ const Button: React.FC<Props> = ({
   children,
   shadow,
   bg,
+  textColor = 'white',
+  width = 280,
 }) => {
   const props = {
-    className: cx('Btn', className, {
+    style: { width },
+    className: cx('Btn', className, `text-${textColor}`, {
       [`bg-fl${bg || 'primary'}`]: bg !== null,
       [`hover:bg-fl${bg || 'primary'}-800`]: bg !== null,
       'shadow-btn': shadow,

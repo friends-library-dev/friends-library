@@ -1,0 +1,21 @@
+.BookTeaserCard {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 210px,
+    currentColor 210px,
+    currentColor 100%
+  );
+}
+
+@screen md {
+  .BookTeaserCard {
+    background-image: linear-gradient(
+      to top,
+      transparent 0,
+      transparent 45px,
+      currentColor 45px,
+      currentColor 100%
+    );
+  }
+}

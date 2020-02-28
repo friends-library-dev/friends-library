@@ -3,7 +3,19 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { PathBlock } from '@friends-library/ui';
 import { coverPropsFromQueryData } from '../lib/covers';
 
-const GettingStartedPaths: React.FC = () => {
+interface Props {
+  HistoryBlurb: React.FC;
+  JournalsBlurb: React.FC;
+  DevotionalBlurb: React.FC;
+  DoctrineBlurb: React.FC;
+}
+
+const GettingStartedPaths: React.FC<Props> = ({
+  HistoryBlurb,
+  DoctrineBlurb,
+  DevotionalBlurb,
+  JournalsBlurb,
+}) => {
   const data = useStaticQuery(graphql`
     query PathBooks {
       doc1: document(
@@ -77,10 +89,18 @@ const GettingStartedPaths: React.FC = () => {
 
   return (
     <>
-      <PathBlock title="History of the Quakers" books={books} color="maroon" />
-      <PathBlock title="The Quaker Doctrine" books={books} color="blue" />
-      <PathBlock title="Devotional" books={books} color="green" />
-      <PathBlock title="Journals" books={books} color="gold" />
+      <PathBlock title="History of the Quakers" books={books} color="maroon">
+        <HistoryBlurb />
+      </PathBlock>
+      <PathBlock title="The Quaker Doctrine" books={books} color="blue">
+        <DoctrineBlurb />
+      </PathBlock>
+      <PathBlock title="Devotional" books={books} color="green">
+        <DevotionalBlurb />
+      </PathBlock>
+      <PathBlock title="Journals" books={books} color="gold">
+        <JournalsBlurb />
+      </PathBlock>
     </>
   );
 };
