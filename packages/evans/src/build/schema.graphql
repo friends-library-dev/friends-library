@@ -25,6 +25,8 @@ type Edition @dontInfer {
   cartItemInteriorPdfUrls: [String!]!
   cartItemCoverPdfUrls: [String!]!
   downloadUrl: EditionDownloadUrl!
+  publishedTimestamp: Int!
+  publishedDate: String!
 }
 
 type EditionDownloadUrl {

@@ -111,6 +111,7 @@ export interface EbookConfig {
 
 export interface EditionMeta {
   updated: string;
+  published: string;
   adocLength: number;
   numSections: number;
   revision: Sha;
