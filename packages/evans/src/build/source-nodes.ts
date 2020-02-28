@@ -10,7 +10,7 @@ import { allFriends, allDocsMap, cartItemData, justHeadings } from './helpers';
 import { getDpcCache, persistDpcCache, EditionCache } from './dpc-cache';
 import residences from './residences';
 import * as url from '../lib/url';
-import { documentDate, periodFromDate } from '../lib/timeline';
+import { documentDate, periodFromDate, published } from '../lib/date';
 import { APP_ALT_URL, LANG } from '../env';
 
 const humansize = filesize.partial({ round: 0, spacer: '' });
@@ -101,6 +101,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         return {
           ...edition.toJSON(),
           ...cartItemData(edition, pages),
+          ...published(editionMeta.published, LANG),
           friendSlug: friend.slug,
           documentSlug: document.slug,
           printSize,
@@ -153,8 +154,6 @@ export default sourceNodes;
 
 function fakedExploreData(): { [k in string]: string | number } {
   return {
-    addedTimestamp: Math.floor(Math.random() * 10000),
-    addedDate: sample(['Feb 10', 'Oct 23', 'Jun 15', 'Dec 22', 'May 4', 'Aug 30']),
     region: sample([
       'Northern US',
       'Southern US',

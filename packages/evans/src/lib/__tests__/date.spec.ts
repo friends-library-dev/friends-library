@@ -1,4 +1,4 @@
-import { documentDate, DateableDocument } from '../timeline';
+import { documentDate, DateableDocument } from '../date';
 
 describe('documentDate()', () => {
   let doc: DateableDocument = { friend: {} };

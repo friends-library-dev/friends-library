@@ -38,8 +38,11 @@ export default async function publish(argv: PublishOptions): Promise<void> {
 
     logDocStart(dpc, progress);
     hydrate.all([dpc]);
-    await validate(dpc);
+    if (dpc.edition?.isDraft) {
+      continue;
+    }
 
+    await validate(dpc);
     const uploads = new Map<string, string>();
     const fileId = getFileId(dpc);
     const namespace = `fl-publish/${fileId}`;
@@ -106,7 +109,10 @@ async function handlePaperbackAndCover(
     uploads.set(path, cloudPath(dpc, 'paperback-interior', fauxVolNum));
   });
 
+  const existingMeta = meta.get(dpc.path);
   meta.set(dpc.path, {
+    ...(existingMeta ? { ...existingMeta } : {}),
+    published: existingMeta?.published || new Date().toISOString(),
     updated: new Date().toISOString(),
     adocLength: dpc.asciidoc.length,
     numSections: dpc.sections.length,

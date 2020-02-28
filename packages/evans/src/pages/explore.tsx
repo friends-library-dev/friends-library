@@ -61,7 +61,7 @@ export default ({
         ...coverPropsFromQueryData(data),
         documentUrl: data.documentUrl,
         authorUrl: data.authorUrl,
-        badgeText: data.badgeText,
+        badgeText: data.editions[0].badgeText.toLocaleUpperCase(),
         description:
           data.description ||
           'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.',
@@ -115,7 +115,9 @@ interface Props {
       nodes: (CoverData & {
         documentUrl: string;
         authorUrl: string;
-        badgeText: string;
+        editions: {
+          badgeText: string;
+        }[];
         description?: string;
       })[];
     };
@@ -165,10 +167,15 @@ export const query = graphql`
         date
       }
     }
-    newBooks: allDocument(sort: { fields: addedTimestamp, order: DESC }, limit: 4) {
+    newBooks: allDocument(
+      sort: { fields: editions___publishedTimestamp, order: DESC }
+      limit: 4
+    ) {
       nodes {
         ...CoverProps
-        badgeText: addedDate
+        editions {
+          badgeText: publishedDate
+        }
         description: partialDescription
         authorUrl
         documentUrl: url

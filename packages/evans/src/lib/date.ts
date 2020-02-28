@@ -1,9 +1,4 @@
-/* 
-    if the book has a `timeline_date` field, prefer that
-    else, if the book has a 'published' date, use that
-    else, if friend lived to be less than 30, use death date
-    else, use 75% of author age, rounded to nearest 5
-    */
+import { Lang } from '@friends-library/types';
 
 export interface DateableDocument {
   timelineDate?: number;
@@ -53,4 +48,17 @@ export function periodFromDate(date: number): 'early' | 'mid' | 'late' {
     return 'mid';
   }
   return 'late';
+}
+
+export function published(
+  dateStr: string,
+  lang: Lang,
+): { publishedTimestamp: number; publishedDate: string } {
+  const date = new Date(dateStr);
+  const formatter = new Intl.DateTimeFormat(lang, { month: 'short' });
+  const month = formatter.format(date);
+  return {
+    publishedTimestamp: date.getTime(),
+    publishedDate: `${month} ${date.getDate()}`,
+  };
 }
