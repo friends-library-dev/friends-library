@@ -81,6 +81,10 @@
   @apply font-sans tracking-wider;
 }
 
+.sans-widest {
+  @apply font-sans tracking-widest;
+}
+
 .heading-text {
   @apply font-sans text-flgray-900 text-2xl tracking-widest font-bold antialiased text-center;
 }

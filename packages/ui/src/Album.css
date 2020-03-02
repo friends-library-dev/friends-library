@@ -1,0 +1,10 @@
+.Album {
+  width: 1.83333333in;
+  height: 1.83333333in;
+  overflow: hidden;
+  border: 10px solid white;
+}
+
+.Album .Cover {
+  transform: translateY(-0.58in);
+}

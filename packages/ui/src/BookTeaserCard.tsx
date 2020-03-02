@@ -3,9 +3,13 @@ import cx from 'classnames';
 import Link from 'gatsby-link';
 import { Front } from '@friends-library/cover-component';
 import { CoverProps } from '@friends-library/types';
+import Button from './Button';
+import Album from './Album';
+import AudioDuration from './AudioDuration';
 import './BookTeaserCard.css';
 
 export type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
+  audioDuration?: string;
   documentUrl: string;
   authorUrl: string;
   description: string;
@@ -14,20 +18,38 @@ export type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
 };
 
 const BookTeaserCard: React.FC<Props> = props => {
-  const { title, author, className, authorUrl, description, badgeText } = props;
+  const {
+    title,
+    author,
+    audioDuration,
+    className,
+    authorUrl,
+    description,
+    badgeText,
+  } = props;
+  const isAudio = typeof audioDuration === 'string';
   return (
     <div
       className={cx(
         className,
         'BookTeaserCard text-white items-start',
+        isAudio && 'BookTeaserCard__Audio',
         'sm:mx-24',
-        'md:mx-0 md:flex md:mx-auto',
+        'md:flex md:mx-auto',
       )}
     >
-      <div className="CoverWrap flex justify-center md:pt-12 md:pl-10">
+      <div
+        className={cx(
+          'CoverWrap flex justify-center md:pt-12 md:pl-10',
+          isAudio && 'md:-ml-10',
+        )}
+      >
         <div className="relative">
           {badgeText && <Badge>{badgeText}</Badge>}
-          <Front {...props} className="" size="m" scaler={1 / 3} scope="1-3" shadow />
+          {isAudio && <Album {...props} className="" />}
+          {!isAudio && (
+            <Front {...props} className="" size="m" scaler={1 / 3} scope="1-3" shadow />
+          )}
         </div>
       </div>
       <div
@@ -40,7 +62,22 @@ const BookTeaserCard: React.FC<Props> = props => {
         <Link to={authorUrl} className="fl-underline text-sm text-flprimary">
           {author}
         </Link>
-        <p className="body-text text-left mt-6 md:pb-10">{description}</p>
+        {isAudio && (
+          <AudioDuration className="mt-8 md:justify-start text-flprimary">
+            45:00
+          </AudioDuration>
+        )}
+        <p className={cx('body-text text-left mt-6', !isAudio && 'md:pb-10')}>
+          {description}
+        </p>
+        {isAudio && (
+          <Button
+            to={`${props.documentUrl}#ListenBlock`}
+            className="mx-auto md:mx-0 mt-6 max-w-full"
+          >
+            Listen
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,9 @@
+.Audiobook {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 80px,
+    currentColor 80px,
+    currentColor 100%
+  );
+}

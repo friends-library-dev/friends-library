@@ -1,0 +1,14 @@
+.AudiobooksHero {
+  background-position: 55% 70%, 60% 60%;
+  background-repeat: repeat-x, no-repeat;
+  background-size: 1400px auto, 1000px auto;
+  background-image: url('../images/waveform.svg'), url('../images/headphones.jpg');
+}
+
+@screen lg {
+  .AudiobooksHero {
+    background-position: 55% 65%, 60% 60%;
+    background-size: 1800px auto, cover;
+    padding-bottom: 18rem;
+  }
+}
