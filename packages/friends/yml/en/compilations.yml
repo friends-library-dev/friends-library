@@ -109,7 +109,6 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-175-5
-        draft: true
   - id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
     alt_language_id: 110bb5b7-267e-4d70-9b4d-64b6e46729f2
     title: Truth in the Inward Parts
