@@ -8,6 +8,16 @@
   );
 }
 
+.BookTeaserCard__Audio {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 100px,
+    currentColor 100px,
+    currentColor 100%
+  );
+}
+
 @screen md {
   .BookTeaserCard {
     max-width: 700px;
@@ -18,5 +28,22 @@
       currentColor 45px,
       currentColor 100%
     );
+  }
+
+  .BookTeaserCard__Audio {
+    /* max-width: 800px; */
+    background-image: linear-gradient(
+      to right,
+      transparent 0,
+      transparent 85px,
+      currentColor 85px,
+      currentColor 100%
+    );
+  }
+}
+
+@screen xl {
+  .BookTeaserCard {
+    min-width: 550px;
   }
 }

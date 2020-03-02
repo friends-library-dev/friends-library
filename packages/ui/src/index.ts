@@ -7,8 +7,11 @@ export { default as SlideoverMenu } from './SlideoverMenu';
 export { default as RelatedBookCard } from './RelatedBookCard';
 export { default as MultiBookBgBlock } from './blocks/MultiBookBgBlock';
 export { default as DuoToneWaveBlock } from './blocks/DuoToneWaveBlock';
+export { default as AudiobooksHero } from './blocks/AudiobooksHero';
 export { default as PathBlock } from './pages/getting-started/PathBlock';
 export { default as Heading } from './Heading';
+export { default as Stack } from './layout/Stack';
+export { default as BookTeaserCard } from './BookTeaserCard';
 export { default as EmbeddedAudio } from './EmbeddedAudio';
 export { t, useLocale } from './translation';
 
@@ -56,3 +59,6 @@ export { default as ExploreRegionBlock } from './pages/explore/RegionBlock';
 export { default as ExploreTimelineBlock } from './pages/explore/TimelineBlock';
 export { default as ExploreSpanishSiteBlock } from './pages/explore/SpanishSiteBlock';
 export { default as ExploreSearchBlock } from './pages/explore/SearchBlock';
+
+// Audiobooks page
+export { default as Audiobook } from './pages/audiobooks/Audiobook';

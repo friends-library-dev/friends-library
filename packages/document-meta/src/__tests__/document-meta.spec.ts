@@ -9,6 +9,7 @@ describe('DocumentMeta()', () => {
     meta = new DocumentMeta({
       [testId]: {
         updated: new Date().toLocaleString(),
+        published: new Date().toLocaleString(),
         adocLength: 291357,
         numSections: 18,
         revision: '',
@@ -71,6 +72,7 @@ describe('DocumentMeta()', () => {
       const newId = 'foo/bar';
       const newMeta = {
         updated: new Date().toLocaleString(),
+        published: new Date().toLocaleString(),
         adocLength: 111,
         numSections: 2,
         revision: '',

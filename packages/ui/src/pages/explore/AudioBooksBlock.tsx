@@ -1,10 +1,11 @@
 import React from 'react';
-import { Front } from '@friends-library/cover-component';
 import Link from 'gatsby-link';
 import cx from 'classnames';
 import { Book } from './types';
-import './AudioBooksBlock.css';
+import AudiobooksHero from '../../blocks/AudiobooksHero';
 import Button from '../../Button';
+import Album from '../../Album';
+import './AudioBooksBlock.css';
 
 interface Props {
   books: Omit<Book, 'authorUrl'>[];
@@ -12,12 +13,7 @@ interface Props {
 
 const AudioBooksBlock: React.FC<Props> = ({ books }) => (
   <div id="AudioBooksBlock" className="AudioBooksBlock text-center pb-16">
-    <div className="AudioBooksBlock__Hero p-10 pb-56 md:pb-64">
-      <h2 className="font-sans text-3xl tracking-wider text-white mb-6">Audio Books</h2>
-      <p className="body-text text-white text-lg">
-        We currently have {books.length} titles recorded as audiobooks.
-      </p>
-    </div>
+    <AudiobooksHero className="p-10 pb-56 md:pb-64" numBooks={books.length} />
     <div
       className={cx(
         '-mt-16 mx-16 flex flex-col items-center',
@@ -35,9 +31,7 @@ const AudioBooksBlock: React.FC<Props> = ({ books }) => (
           )}
           key={book.documentUrl}
         >
-          <div className="Album box-content shadow-xl mb-8">
-            <Front {...book} className="" size="m" scaler={1 / 3} scope="1-3" />
-          </div>
+          <Album className="mb-8" {...book} />
           <h4 className="font-sans text-flgray-900 text-base tracking-wider">
             {book.title}
           </h4>

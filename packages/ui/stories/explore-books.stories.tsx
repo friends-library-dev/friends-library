@@ -134,6 +134,17 @@ storiesOf('Explore Books Page', module)
       <BookTeaserCard {...book()} />
     </div>
   ))
+  .add('BookTeaserCard (audio)', () => (
+    <div className="bg-flblue py-16">
+      <BookTeaserCard className="mb-16" audioDuration="45:00" {...book()} />
+    </div>
+  ))
+  .add('BookTeaserCard (both)', () => (
+    <div className="bg-flblue py-16">
+      <BookTeaserCard className="mb-16" audioDuration="45:00" {...book()} />
+      <BookTeaserCard {...book()} />
+    </div>
+  ))
   .add('FilterSelectDropdown', () => {
     const [selected, setSelected] = useState<string[]>(['edition.updated']);
     return (

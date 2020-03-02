@@ -1,69 +1,75 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { Url, Title, Name } from '@friends-library/types';
+import { graphql } from 'gatsby';
+import { coverPropsFromQueryData, CoverData } from '../lib/covers';
+import { Stack, Audiobook, AudiobooksHero, BookTeaserCard } from '@friends-library/ui';
 import { Layout } from '../components';
 
 interface Props {
   data: {
-    allFriend: {
-      nodes: {
-        name: Name;
-        documents: {
-          url: Url;
-          title: Title;
-          hasAudio: boolean;
-        }[];
-      }[];
+    audioBooks: {
+      nodes: (CoverData & {
+        authorUrl: string;
+        documentUrl: string;
+        description: string;
+      })[];
     };
   };
 }
 
-export default ({
-  data: {
-    allFriend: { nodes: friends },
-  },
-}: Props) => (
+const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks } }: Props) => (
   <Layout>
-    <section>
-      <h1>Audiobooks</h1>
-      <p>
-        <i>
-          [The idea behind this page is a one-stop location to find every book that we
-          currently have audio for. It's possible (likely?) that as we expand the amount
-          of audiobooks more and more, the utility of this page will diminish, and we
-          might at some point no longer need it.]
-        </i>
-      </p>
-      <p>
-        Below is a list of every book for which we currently have a completed audiobook
-        edition. Check back often as we're frequently adding new recordings!
-      </p>
-      <ul>
-        {friends
-          .flatMap(f => f.documents.map(doc => ({ ...doc, friendName: f.name })))
-          .filter(d => d.hasAudio)
-          .map(doc => (
-            <li key={doc.url}>
-              <Link to={doc.url}>
-                {doc.friendName}: {doc.title}
-              </Link>
-            </li>
-          ))}
-      </ul>
-    </section>
+    <AudiobooksHero className="p-16 pb-48 md:pb-56" numBooks={audioBooks.nodes.length} />
+    <div className="bg-flgray-200 py-12 xl:pb-6">
+      <h2 className="sans-wider text-center text-2xl md:text-3xl mb-12">
+        Recently Added Audio Books
+      </h2>
+      <Stack
+        space="16"
+        xl="0"
+        className="md:px-6 lg:px-24 xl:px-0 xl:flex flex-wrap justify-center"
+      >
+        {audioBooks.nodes.slice(0, 4).map(recent => (
+          <BookTeaserCard
+            className="xl:w-2/5 xl:mx-8 xl:mb-12"
+            {...coverPropsFromQueryData(recent)}
+            audioDuration="45:00"
+            badgeText="Nov 22"
+            authorUrl={recent.authorUrl}
+            documentUrl={recent.documentUrl}
+            description={
+              recent.description ||
+              'shoLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
+            }
+          />
+        ))}
+      </Stack>
+    </div>
+    {audioBooks.nodes.map(book => (
+      <Audiobook
+        {...coverPropsFromQueryData(book)}
+        bgColor="blue"
+        duration="45:00"
+        authorUrl={book.authorUrl}
+        documentUrl={book.documentUrl}
+        description={
+          book.description ||
+          'shoLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
+        }
+      />
+    ))}
   </Layout>
 );
 
+export default AudiobooksPage;
+
 export const query = graphql`
   {
-    allFriend(filter: { childrenDocument: { elemMatch: { hasAudio: { eq: true } } } }) {
+    audioBooks: allDocument(filter: { hasAudio: { eq: true } }) {
       nodes {
-        name
-        documents: childrenDocument {
-          url
-          title
-          hasAudio
-        }
+        ...CoverProps
+        documentUrl: url
+        authorUrl
+        description: partialDescription
       }
     }
   }
