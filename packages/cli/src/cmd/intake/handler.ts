@@ -27,11 +27,6 @@ export default function handler(): void {
       log(c`{yellow ${dpc.path}} {gray likely not intaken}`);
       err = true;
     }
-
-    if (rate <= 650 && dpc.edition.isDraft) {
-      log(c`{green ${dpc.path}} {yellow likely no longer a draft}`);
-      err = true;
-    }
   });
 
   if (err) {
