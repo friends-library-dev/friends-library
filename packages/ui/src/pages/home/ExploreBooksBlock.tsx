@@ -9,7 +9,7 @@ const ExploreBooksBlock: React.FC<{ numTotalBooks: number }> = ({ numTotalBooks 
       Explore Books
     </Heading>
     <p className="font-serif text-white text-xl opacity-75 leading-loose max-w-3xl text-center mx-auto">
-      We currently have {numTotalBooks} books freely available on this site. On our
+      We currently have {numTotalBooks} books available for free on this site. On our
       "Explore" page you can browse all the titles by edition, region, time period, tags,
       and more, or search the full library to find exactly what you're looking for.
     </p>

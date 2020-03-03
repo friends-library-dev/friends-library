@@ -18,8 +18,9 @@ const UpdatedEditionsBlock: React.FC<Props> = ({ books }) => (
   >
     <p className="body-text pb-12 max-w-screen-md leading-loose">
       We currently have <b>{books.length}</b> books available in an{' '}
-      <em>updated edition</em>, with more being added regularly. For more information
-      about our editions,{' '}
+      <em>updated edition</em>, with more being added regularly. Our updated editions are
+      our top recommendation for most visitors to this site. For more information about
+      our editions,{' '}
       <Link to="/editions" className="subtle-link">
         see here
       </Link>
