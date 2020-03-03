@@ -28,10 +28,10 @@ const GettingStartedPage: React.FC<Props> = ({
       </Heading>
       <p className="text-center body-text text-white text-lg leading-loose max-w-4xl md:text-left">
         Interested in reading something from the early Quakers, but picking from{' '}
-        {LANG === 'en' ? meta.numEnglishBooks : meta.numSpanishBooks} books seem daunting?
-        No worries&mdash;on this page we've pre-selected our favorites from all the books
-        in our library and arranged them into four topics. Plus we've got an introductory
-        audio to help introduce you to the early Friends.
+        {LANG === 'en' ? meta.numEnglishBooks : meta.numSpanishBooks} books seems
+        daunting? No worries&mdash;on this page we've selected some of our favorite books
+        and arranged them into four categories. Plus we've got an introductory audio to
+        help introduce you to the early Friends.
       </p>
     </MultiBookBgBlock>
     <DuoToneWaveBlock className="p-12 pb-32">
@@ -41,7 +41,7 @@ const GettingStartedPage: React.FC<Props> = ({
         </h2>
         <p className="body-text text-center mb-10 text-lg leading-loose max-w-3xl md:text-left md:pr-20">
           If you haven't listened to our introductory audio explaining who the early
-          Quakers were, we recommend you start there by clicking the play button below:
+          Quakers were, we recommend you start here by clicking the play button below:
         </p>
         <div className="max-w-3xl w-3/4">
           <EmbeddedAudio
@@ -57,9 +57,9 @@ const GettingStartedPage: React.FC<Props> = ({
         Step 2: Choose A Path
       </h2>
       <p className="body-text text-lg text-center">
-        Now for the only decision you need to make: of the four categories below, what
-        interests you the most? Click the one that stands out to see recommendations for
-        just that category.
+        Now for the only decision you need to make: of the four categories below, which
+        one interests you the most? Click one of the colored boxes below to see our
+        recommendations for that particular category.
       </p>
     </div>
     <div className="md:flex flex-wrap">
@@ -122,27 +122,29 @@ export const query = graphql`
 
 export const DevotionalBlurb: React.FC = () => (
   <>
-    The early Friends left behind a precious treasury of devotional writings which, when
-    read by a hungry soul, help kindle the heart with love towards God, faithfulness in
-    obedience, meekness towards all fellow-creatures, and a deep humility and watchfulness
-    during the time of our sojourning in the body.
+    Early Friends left behind a precious treasury of devotional writings which, when read
+    by hungry hearts, greatly tend to kindle love towards God, faithfulness in obedience,
+    meekness towards all fellow-creatures, and a deep sense of humility and sobriety
+    during this time of our sojourning in the body.
   </>
 );
 
 export const JournalsBlurb: React.FC = () => (
   <>
-    Most common of all the Quaker writings are their journals. These are incredibly
-    weighty and helpful records of real women and men walking in the "ancient path" of
-    obedience, humility, faith, and love&mdash;overcoming the world not by their own
-    strength, but by clinging to the grace of Jesus Christ springing up in the heart.
+    The most common of all Quaker writings are their journals. These are incredibly
+    inspiring and instructive records of real men and women who walked in the
+    &ldquo;ancient path&rdquo; of obedience, humility, faith, and love&emdash;overcoming
+    the world not by their own strength, but by clinging to the grace of Jesus Christ that
+    springs up in the heart.
   </>
 );
 
 export const DoctrineBlurb: React.FC = () => (
   <>
-    Although they hold much in common with many other biblically Christian groups, there
-    are a number of significant distinctive doctrines, principles and testimonies held
-    forth by early Friends which set them apart from other Christian communities.
+    Although they hold much in common with other Bible-believing Christian groups, there
+    are a number of distinctive doctrines, principles, and testimonies that they were led
+    by the Spirit of Truth to embrace and maintain, and which set them apart from other
+    Christian communities.
   </>
 );
 
@@ -151,7 +153,7 @@ export const HistoryBlurb: React.FC = () => (
     Get a feel for the history of the early Society of Friends from their own contemporary
     historians. Learn about the context in which they emerged, the great sufferings of the
     early generations, the spread and progress of Truth in Great Britain, colonial
-    America, and beyond, and become familiar with many of the notable figures of early
-    Quakerism.
+    America, and beyond, and become familiar with many of the notable figures among early
+    Friends.
   </>
 );

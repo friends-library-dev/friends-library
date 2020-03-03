@@ -14,21 +14,22 @@ const FormatsBlock: React.FC = () => (
     <div className="md:hidden BookMask--sm"></div>
     <p className="font-serif antialiased text-lg sm:text-xl text-gray-700 leading-relaxed">
       On this site you will find many books available in multiple formats. Our desire is
-      to make these precious writings as accessible as possible to the modern seeker after
+      to make these precious writings as accessible as possible to today&rsquo;s seeker of
       truth&mdash;therefore, each book has been converted to 3 digital formats: pdf, mobi
-      (for Kindle), and epub (all other e-readers including iBooks). A growing number of
-      our books also have an{' '}
+      (for Kindle), and epub (all other e-readers including Apple Books). A growing number
+      of our books are also available{' '}
       <Link to="/audiobooks" className="subtle-link">
-        audiobook version
+        as audiobooks
       </Link>
-      . In addition to these formats, all of which are 100% free to download, any of our
-      books may be ordered <em>at cost</em> as a paperback edition.
+      . And in addition to these formats (which are 100% free to download), paperback
+      books are available <em>at cost</em> for every title offered on our site.
     </p>
     <p className="mt-8 font-serif antialiased text-lg sm:text-xl text-gray-700 leading-relaxed">
-      In addition to the various formats of the book, we also offer minimally and
-      carefully modernized versions of each book, because most modern readers find some of
-      the antiquated grammer and vocabulary to be a stumbling block to comprehension. For
-      more info on modernization,{' '}
+      Besides offering these books in digital, audio, and printed <em>formats,</em> most
+      of these publications are available in different <em>editions</em> as well. We offer
+      an original, unedited edition for those who enjoy the archaic language and style.
+      But because most readers find the older English somewhat challenging, we offer
+      minimally and carefully modernized editions as well. For more information{' '}
       <Link to="/modernization" className="subtle-link">
         click here
       </Link>

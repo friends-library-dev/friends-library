@@ -27,9 +27,9 @@ const TimelineBlock: React.FC<Props> = ({ books }) => {
         <div className="bg-white px-10 py-12 text-center max-w-screen-md mx-auto">
           <h2 className="font-sans text-flblack tracking-wide text-3xl mb-6">Timeline</h2>
           <p className="body-text leading-loose">
-            The books in our library span a time period of approximately 200 years. Use
-            the timeline picker below to view books from a particular slice of that
-            overall period.
+            The books in our library were written over the course of approximately 200
+            years. Use the timeline picker below to view books from the time period of
+            your choice.
           </p>
         </div>
         <div className="sm:hidden">
