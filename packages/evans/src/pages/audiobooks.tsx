@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { Stack, Audiobook, AudiobooksHero, BookTeaserCard } from '@friends-library/ui';
 import { Layout } from '../components';
@@ -38,25 +38,38 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks } }: Props) => (
             documentUrl={recent.documentUrl}
             description={
               recent.description ||
-              'shoLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
             }
           />
         ))}
       </Stack>
     </div>
-    {audioBooks.nodes.map(book => (
-      <Audiobook
-        {...coverPropsFromQueryData(book)}
-        bgColor="blue"
-        duration="45:00"
-        authorUrl={book.authorUrl}
-        documentUrl={book.documentUrl}
-        description={
-          book.description ||
-          'shoLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
-        }
-      />
-    ))}
+    <div className="pt-16">
+      <h2 className="sans-wider text-center text-3xl mb-8">All Audio Books</h2>
+      <p className="body-text text-center text-lg mb-12">
+        Browse all {audioBooks.nodes.length} audiobooks below, or{' '}
+        <Link to="/audio-help" className="subtle-link">
+          get help with listening here
+        </Link>
+        .
+      </p>
+      <div className="flex flex-col md:flex-row flex-wrap items-center md:items-stretch justify-center">
+        {audioBooks.nodes.map((book, idx) => (
+          <Audiobook
+            className="mb-12 sm:w-4/5 md:w-2/5 md:box-content md:mx-4 xl:w-1/4 xl:max-w-3xl"
+            {...coverPropsFromQueryData(book)}
+            bgColor={['blue', 'green', 'gold'][idx % 3] as 'blue' | 'green' | 'gold'}
+            duration="45:00"
+            authorUrl={book.authorUrl}
+            documentUrl={book.documentUrl}
+            description={
+              book.description ||
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
+            }
+          />
+        ))}
+      </div>
+    </div>
   </Layout>
 );
 
