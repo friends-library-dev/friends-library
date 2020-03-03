@@ -63,9 +63,7 @@ const BookTeaserCard: React.FC<Props> = props => {
           {author}
         </Link>
         {isAudio && (
-          <AudioDuration className="mt-8 md:justify-start text-flprimary">
-            45:00
-          </AudioDuration>
+          <AudioDuration className="mt-8 md:justify-start">45:00</AudioDuration>
         )}
         <p className={cx('body-text text-left mt-6', !isAudio && 'md:pb-10')}>
           {description}

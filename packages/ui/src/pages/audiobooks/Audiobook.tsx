@@ -28,7 +28,7 @@ const Audiobook: React.FC<Props> = props => (
     <Album {...props} className="" />
     <Stack
       space="8"
-      className="text-white sans-wide text-center -mt-6 antialiased py-16 px-10"
+      className="flex-grow text-white sans-wide text-center -mt-6 antialiased pt-16 pb-12 px-10 flex flex-col"
     >
       <h3 className="text-lg sans-wider">{props.title}</h3>
       <h4 className="-mt-3">
@@ -36,13 +36,13 @@ const Audiobook: React.FC<Props> = props => (
           {props.author}
         </Link>
       </h4>
-      <AudioDuration>{props.duration}</AudioDuration>
+      <AudioDuration textColor="white">{props.duration}</AudioDuration>
       <p className="body-text text-white -mt-2">{props.description}</p>
       <Button
         to={`${props.documentUrl}#ListenBlock`}
         bg={null}
         textColor="black"
-        className="bg-flgray-200 mx-auto"
+        className="bg-flgray-200 hover:bg-white mx-auto mt-auto"
       >
         Listen
       </Button>

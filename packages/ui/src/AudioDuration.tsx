@@ -1,9 +1,25 @@
 import React from 'react';
 import cx from 'classnames';
+import PlayTriangle from './icons/PlayTriangle';
 
-const AudioDuration: React.FC<{ className?: string }> = ({ children, className }) => (
-  <div className={cx(className, 'text-sm flex items-center justify-center')}>
-    <i className="fa fa-play text-lg mr-2" />
+interface Props {
+  textColor?: string;
+  className?: string;
+}
+
+const AudioDuration: React.FC<Props> = ({
+  children,
+  textColor = 'flprimary',
+  className,
+}) => (
+  <div
+    className={cx(
+      className,
+      `text-${textColor}`,
+      'text-sm flex items-center justify-center',
+    )}
+  >
+    <PlayTriangle className="h-5 w-5 mr-1" tailwindColor={textColor} />
     {children} minutes
   </div>
 );

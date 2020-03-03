@@ -2,6 +2,7 @@
   @apply rounded-full font-sans text-center uppercase tracking-wider;
   height: 60px;
   line-height: 60px;
+  transition: background-color 240ms ease-out;
 }
 
 .Btn:focus {
