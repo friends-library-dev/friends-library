@@ -1,6 +1,6 @@
 import React from 'react';
 import FilterSelectDropdown from './FilterSelectDropdown';
-import PillDropdown from './PillDropdown';
+import PillDropdown from '../../PillDropdown';
 
 interface Props {
   selected: string[];

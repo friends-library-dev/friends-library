@@ -62,3 +62,12 @@ export { default as ExploreSearchBlock } from './pages/explore/SearchBlock';
 
 // Audiobooks page
 export { default as Audiobook } from './pages/audiobooks/Audiobook';
+
+// all friends page
+export { default as FriendsPageHero } from './pages/friends/FriendsPageHero';
+export { default as FriendsPageCompilationsBlock } from './pages/friends/CompilationsBlock';
+export { default as FriendsPageControlsBlock } from './pages/friends/ControlsBlock';
+export {
+  default as FriendCard,
+  Props as FriendCardProps,
+} from './pages/friends/FriendCard';

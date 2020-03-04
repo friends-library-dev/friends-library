@@ -1,0 +1,13 @@
+.FriendsPageHero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),
+    url(../../images/street.jpg);
+  background-size: 1500px;
+  background-position: center 500px;
+}
+
+@screen xl {
+  .FriendsPageHero {
+    background-size: cover;
+    background-position: center 570px;
+  }
+}

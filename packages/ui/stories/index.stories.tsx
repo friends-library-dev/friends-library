@@ -32,6 +32,7 @@ storiesOf('Button', module)
         Shadow
       </Button>
       <Button className="mb-6">Click Me</Button>
+      <Button className="mb-6 border-4 border-green-300">With Border</Button>
       <Button bg={null} className="bg-red-500 mb-6">
         Custom BG
       </Button>

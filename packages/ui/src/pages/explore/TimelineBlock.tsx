@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Book } from './types';
 import BgWordBlock from './BgWordBlock';
-import PillDropdown from './PillDropdown';
-import PillDropdownItem from './PillDropdownItem';
-import PillDropdownDropdown from './PillDropdownDropdown';
+import PillDropdown from '../../PillDropdown';
+import PillDropdownItem from '../../PillDropdownItem';
+import PillDropdownDropdown from '../../PillDropdownDropdown';
 import BookSlider from './BookSlider';
 import TimePicker from './TimePicker';
 import { useWindowWidth } from '../../hooks/window-width';

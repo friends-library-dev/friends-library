@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import SearchInput from './SearchInput';
+import SearchInput from '../../SearchInput';
 import FilterSelect from './FilterSelect';
 
 interface Props {
