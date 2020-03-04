@@ -18,7 +18,10 @@ const ControlsBlock: React.FC<Props> = ({
   searchQuery,
   setSearchQuery,
 }) => (
-  <div className="bg-flgray-100 p-6 pb-12 md:p-8 flex flex-col md:flex-row justify-center items-center">
+  <div
+    id="ControlsBlock"
+    className="bg-flgray-100 p-6 pb-12 md:p-8 flex flex-col md:flex-row justify-center items-center"
+  >
     <Label>Sort</Label>
     <PillDropdown pillText={sortOption} autoHide>
       <PillDropdownDropdown>
