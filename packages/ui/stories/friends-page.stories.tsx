@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action as a } from '@storybook/addon-actions';
 import { coverSizes } from './decorators';
 import FriendPageHero from '../src/pages/friends/FriendsPageHero';
 import CircleSilhouette from '../src/pages/friends/CircleSilhouette';
 import CompilationsBlock from '../src/pages/friends/CompilationsBlock';
 import FriendCard from '../src/pages/friends/FriendCard';
+import ControlsBlock from '../src/pages/friends/ControlsBlock';
 import Stack from '../src/layout/Stack';
 
 storiesOf('Friends Page', module)
   .addDecorator(coverSizes)
+  .add('ControlsBlock', () => {
+    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [sortOption, setSortOption] = useState<string>('A-Z');
+    return (
+      <ControlsBlock
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        sortOption={sortOption}
+        setSortOption={setSortOption}
+      />
+    );
+  })
   .add('FriendCard', () => (
     <div>
       <FriendCard

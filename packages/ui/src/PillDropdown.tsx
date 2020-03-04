@@ -4,15 +4,24 @@ import cx from 'classnames';
 interface Props {
   pillText: string;
   className?: string;
+  autoHide?: boolean;
 }
 
-const PillDropdown: React.FC<Props> = ({ className, pillText, children }) => {
+const PillDropdown: React.FC<Props> = ({
+  className,
+  pillText,
+  children,
+  autoHide = false,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const click: (event: any) => any = event => {
-      if (ref.current && !ref.current.contains(event.target)) {
+      if (
+        ref.current &&
+        (!ref.current.contains(event.target) || (autoHide && dropdownVisible))
+      ) {
         setDropdownVisible(false);
       }
     };
@@ -27,7 +36,7 @@ const PillDropdown: React.FC<Props> = ({ className, pillText, children }) => {
       document.removeEventListener('click', click);
       window.removeEventListener('keydown', escape);
     };
-  }, []);
+  }, [dropdownVisible]);
 
   return (
     <div
