@@ -1,0 +1,41 @@
+.FriendCard > * {
+  transform: translateY(31px);
+}
+
+.FriendCard--not-featured > * {
+  transform: translateY(36px);
+}
+
+.FriendCard h3::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background-color: currentColor;
+  width: 100px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.FriendCard--not-featured {
+  min-width: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 140px,
+    white 140px,
+    white 100%
+  );
+}
+
+@screen sm {
+  .FriendCard--not-featured {
+    min-width: 330px;
+  }
+}
+
+@screen md {
+  .FriendCard--featured > * {
+    transform: none;
+  }
+}

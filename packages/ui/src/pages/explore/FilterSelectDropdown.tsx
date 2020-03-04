@@ -1,7 +1,7 @@
 import React from 'react';
 import { AccordionItem, AccordionButton, AccordionPanel } from '@reach/accordion';
-import PillDropdownDropdown from './PillDropdownDropdown';
-import Item from './PillDropdownItem';
+import PillDropdownDropdown from '../../PillDropdownDropdown';
+import Item from '../../PillDropdownItem';
 import './FilterSelectDropdown.css';
 
 interface Props {

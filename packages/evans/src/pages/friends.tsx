@@ -1,70 +1,128 @@
-import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { Button } from '@friends-library/ui';
+import React, { useState } from 'react';
+import { graphql } from 'gatsby';
+import {
+  FriendsPageHero,
+  FriendsPageCompilationsBlock,
+  FriendsPageControlsBlock,
+  FriendCard,
+  FriendCardProps,
+  Stack,
+} from '@friends-library/ui';
 import Layout from '../components/Layout';
+
+export default ({ data: { allFriend } }: Props) => {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [sortOption, setSortOption] = useState<string>('Alphabetical');
+  const filteredFriends = allFriend.nodes
+    .sort(makeSorter(sortOption))
+    .filter(makeFilter(searchQuery, sortOption));
+  return (
+    <Layout>
+      <FriendsPageHero numFriends={allFriend.nodes.length} />
+      <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">
+        <h2 className="text-center pb-8 sans-wider text-2xl">Recently Added Authors</h2>
+        <Stack space="20" md="12" xl="0" className="xl:flex justify-center">
+          {allFriend.nodes.slice(-2).map((friend, idx) => (
+            <FriendCard
+              featured
+              className="xl:w-1/2 xl:mx-6 xl:max-w-screen-sm"
+              {...cardProps(friend, idx)}
+            />
+          ))}
+        </Stack>
+      </div>
+      <FriendsPageControlsBlock
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        sortOption={sortOption}
+        setSortOption={setSortOption}
+      />
+      <div className="bg-flgray-200 flex justify-center">
+        <div className="flex flex-wrap max-w-screen-xl justify-center pb-12 lg:pb-20">
+          {filteredFriends.length > 0 &&
+            filteredFriends.map((friend, idx) => (
+              <FriendCard
+                className="w-lg mb-12 mx-4 xl:mx-10"
+                {...cardProps(friend, idx)}
+              />
+            ))}
+        </div>
+      </div>
+      <FriendsPageCompilationsBlock />
+    </Layout>
+  );
+};
+
+function cardProps(friend: FriendData, idx: number): FriendCardProps & { key: string } {
+  return {
+    key: friend.url,
+    color: ['flblue', 'flgreen', 'flmaroon', 'flgold'][idx % 4],
+    name: friend.name,
+    region: 'London, England',
+    born: friend.born || undefined,
+    died: friend.died || undefined,
+    gender: friend.gender,
+    url: friend.url,
+    numBooks: friend.documents.filter(doc => doc.hasNonDraftEdition).length,
+  };
+}
+
+function makeSorter(
+  sortOption: string,
+): (friendA: FriendData, friendB: FriendData) => 1 | 0 | -1 {
+  switch (sortOption) {
+    case 'Death Date':
+      return (a, b) => ((a?.died || 0) < (b?.died || 0) ? -1 : 1);
+    case 'Birth Date':
+      return (a, b) => ((a?.born || 0) < (b?.born || 0) ? -1 : 1);
+  }
+  return () => 1;
+}
+
+function makeFilter(query: string, sortOption: string): (friend: FriendData) => boolean {
+  return friend => {
+    if (sortOption === 'Death Date' && !friend.died) {
+      return false;
+    }
+    if (sortOption === 'Birth Date' && !friend.born) {
+      return false;
+    }
+    return (
+      query.trim() === '' ||
+      friend.name.toLowerCase().includes(query.trim().toLowerCase())
+    );
+  };
+}
 
 interface Props {
   data: {
     allFriend: {
-      friends: {
-        slug: string;
+      nodes: {
         name: string;
+        gender: 'male' | 'female';
         url: string;
+        born?: number | null;
+        died?: number | null;
+        documents: { hasNonDraftEdition: boolean }[];
       }[];
     };
   };
 }
 
-export default ({ data }: Props) => (
-  <Layout>
-    <section>
-      <h1>Friends</h1>
-
-      <p>
-        <i>
-          [We're going to need some page to list EVERY Friend, so this is that for now.
-          Eventually it would probably be cool to be able to sort or group these in
-          interesting/helpful ways, display the dates, etc.]
-        </i>
-      </p>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </p>
-
-      <ul>
-        {data.allFriend.friends.map(friend => (
-          <li key={friend.slug}>
-            <Link to={friend.url}>{friend.name}</Link>
-          </li>
-        ))}
-      </ul>
-
-      <h2>Compilations</h2>
-
-      <p>
-        We also have a number of books comprised of the writings of more than one author.
-        Some of these were compiled and published during the time of the early Quakers,
-        and some were compiled recently by the editors of this website. Among the latter
-        is <Link to="/">Truth in the Inward Parts</Link>, a work containing extracts from
-        the journals and letters of 10 early friends describing their convincement and
-        spiritual growth. To view compilations, click below:
-      </p>
-
-      <Button to="/compilations">See All Compilations »</Button>
-    </section>
-  </Layout>
-);
+type FriendData = Props['data']['allFriend']['nodes'][0];
 
 export const query = graphql`
-  query {
-    allFriend {
-      friends: nodes {
-        slug
+  {
+    allFriend(filter: { hasNonDraftDocument: { eq: true } }) {
+      nodes {
         name
+        gender
+        born
+        died
         url
+        documents: childrenDocument {
+          hasNonDraftEdition
+        }
       }
     }
   }

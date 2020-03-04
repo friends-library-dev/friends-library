@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import Search from '../../icons/Search';
+import Search from './icons/Search';
 
 interface Props {
   query: string;
