@@ -38,7 +38,15 @@ export default ({ data: { allFriend } }: Props) => {
         setSortOption={setSortOption}
       />
       <div className="bg-flgray-200 flex justify-center">
-        <div className="flex flex-wrap max-w-screen-xl justify-center pb-12 lg:pb-20">
+        <div
+          className="flex flex-wrap max-w-screen-xl justify-center pb-12 lg:pb-20"
+          style={{ minHeight: '30vh' }}
+        >
+          {filteredFriends.length === 0 && (
+            <p className="self-center sans-wide text-lg pt-10 text-gray-800">
+              Your search returned no results.
+            </p>
+          )}
           {filteredFriends.length > 0 &&
             filteredFriends.map((friend, idx) => (
               <FriendCard
