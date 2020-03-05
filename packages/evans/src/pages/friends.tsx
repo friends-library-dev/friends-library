@@ -5,14 +5,13 @@ import {
   FriendsPageCompilationsBlock,
   FriendsPageControlsBlock,
   FriendCard,
-  FriendCardProps,
   Stack,
 } from '@friends-library/ui';
 import Layout from '../components/Layout';
 
 export default ({ data: { allFriend } }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortOption, setSortOption] = useState<string>('Alphabetical');
+  const [sortOption, setSortOption] = useState<string>('First Name');
   const filteredFriends = allFriend.nodes
     .sort(makeSorter(sortOption))
     .filter(makeFilter(searchQuery, sortOption));
@@ -61,7 +60,10 @@ export default ({ data: { allFriend } }: Props) => {
   );
 };
 
-function cardProps(friend: FriendData, idx: number): FriendCardProps & { key: string } {
+function cardProps(
+  friend: FriendData,
+  idx: number,
+): React.ComponentProps<typeof FriendCard> & { key: string } {
   return {
     key: friend.url,
     color: ['flblue', 'flgreen', 'flmaroon', 'flgold'][idx % 4],
@@ -83,8 +85,12 @@ function makeSorter(
       return (a, b) => ((a?.died || 0) < (b?.died || 0) ? -1 : 1);
     case 'Birth Date':
       return (a, b) => ((a?.born || 0) < (b?.born || 0) ? -1 : 1);
+    case 'Last Name':
+      return (a, b) =>
+        (a.name.split(' ').pop() || '') < (b.name.split(' ').pop() || '') ? -1 : 1;
+    default:
+      return (a, b) => (a.name < b.name ? -1 : 1);
   }
-  return () => 1;
 }
 
 function makeFilter(query: string, sortOption: string): (friend: FriendData) => boolean {

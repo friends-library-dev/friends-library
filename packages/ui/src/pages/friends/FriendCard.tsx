@@ -8,7 +8,7 @@ import Calendar from '../../icons/Calendar';
 import ThinLogo from '../../icons/ThinLogo';
 import './FriendCard.css';
 
-export interface Props {
+interface Props {
   className?: string;
   gender: 'male' | 'female';
   name: string;
