@@ -51,6 +51,36 @@ export default class Friend {
     return !this.isMale;
   }
 
+  public get primaryResidence(): Omit<FriendData['residences'][0], 'duration'> {
+    if (this.residences.length === 0) {
+      // @TODO BLOCKER should throw, or this should be prohibited by schema
+      // once we have data entry finished
+      return {
+        city: 'London',
+        region: 'England',
+      };
+    }
+
+    return this.residences.reduce((primary, res) => {
+      if (
+        res.durations &&
+        this.totalAdultYears(res.durations) >
+          this.totalAdultYears(primary.durations || [])
+      ) {
+        return res;
+      }
+      return primary;
+    });
+  }
+
+  private totalAdultYears(durations: { start: number; end: number }[]): number {
+    const START_OF_ADULTHOOD = 16;
+    return durations.reduce((total, { start, end }) => {
+      const adultStart = start === this.born ? start + START_OF_ADULTHOOD : start;
+      return total + end - adultStart;
+    }, 0);
+  }
+
   public get residences(): FriendData['residences'] {
     if (!this.data.residences) {
       return [];
@@ -96,6 +126,7 @@ export default class Friend {
       residences: this.residences,
       quotes: this.quotes,
       relatedDocuments: this.relatedDocuments,
+      primaryResidence: this.primaryResidence,
     };
   }
 }

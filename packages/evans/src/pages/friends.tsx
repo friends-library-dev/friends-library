@@ -68,7 +68,7 @@ function cardProps(
     key: friend.url,
     color: ['flblue', 'flgreen', 'flmaroon', 'flgold'][idx % 4],
     name: friend.name,
-    region: 'London, England',
+    region: `${friend.primaryResidence.city}, ${friend.primaryResidence.region}`,
     born: friend.born || undefined,
     died: friend.died || undefined,
     gender: friend.gender,
@@ -117,6 +117,7 @@ interface Props {
         url: string;
         born?: number | null;
         died?: number | null;
+        primaryResidence: { city: string; region: string };
         documents: { hasNonDraftEdition: boolean }[];
       }[];
     };
@@ -134,6 +135,10 @@ export const query = graphql`
         born
         died
         url
+        primaryResidence {
+          city
+          region
+        }
         documents: childrenDocument {
           hasNonDraftEdition
         }
