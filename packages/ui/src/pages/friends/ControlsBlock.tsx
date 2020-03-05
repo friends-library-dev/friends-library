@@ -26,10 +26,16 @@ const ControlsBlock: React.FC<Props> = ({
     <PillDropdown pillText={sortOption} autoHide>
       <PillDropdownDropdown>
         <PillDropdownItem
-          onClick={() => setSortOption('Alphabetical')}
-          selected={sortOption === 'Alphabetical'}
+          onClick={() => setSortOption('First Name')}
+          selected={sortOption === 'First Name'}
         >
-          Alphabetical
+          First Name
+        </PillDropdownItem>
+        <PillDropdownItem
+          onClick={() => setSortOption('Last Name')}
+          selected={sortOption === 'Last Name'}
+        >
+          Last Name
         </PillDropdownItem>
         <PillDropdownItem
           onClick={() => setSortOption('Birth Date')}
