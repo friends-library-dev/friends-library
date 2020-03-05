@@ -23,7 +23,7 @@ export interface FriendData {
   residences: {
     city: string;
     region: string;
-    durations: {
+    durations?: {
       start: number;
       end: number;
     }[];
