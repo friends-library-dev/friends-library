@@ -19,6 +19,10 @@ export default class Friend {
     return this.data.born;
   }
 
+  public get added(): Date | undefined {
+    return this.data.added;
+  }
+
   public get lang(): Lang {
     return this.data.lang;
   }
@@ -127,6 +131,7 @@ export default class Friend {
       quotes: this.quotes,
       relatedDocuments: this.relatedDocuments,
       primaryResidence: this.primaryResidence,
+      added: this.added,
     };
   }
 }

@@ -74,6 +74,18 @@ files.forEach(file => {
       expect(friend.name).not.toContain(' y ');
     });
 
+    test('should have `friend.added` if a non-draft document exists', () => {
+      let hasNonDraftEdition = false;
+      editions(friend).forEach(edition => {
+        if (edition.draft === false || edition.draft === undefined) {
+          hasNonDraftEdition = true;
+        }
+      });
+      if (hasNonDraftEdition) {
+        expect(friend.added).toBeInstanceOf(Date);
+      }
+    });
+
     test('document slugs are unique', () => {
       const slugs: string[] = [];
       documents.forEach((doc: any) => {

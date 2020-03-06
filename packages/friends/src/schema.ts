@@ -14,6 +14,7 @@ export default {
     slug: { $ref: '/slug', required: true },
     born: { type: 'integer', required: false, minimum: 1600, maximum: 1900 },
     died: { type: 'integer', required: false, minimum: 1640, maximum: 1950 },
+    added: { type: 'date', required: false },
     quotes: {
       type: 'array',
       required: false,
