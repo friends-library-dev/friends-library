@@ -118,6 +118,9 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           audio: edition.audio
             ? {
                 reader: edition.audio.reader,
+                added: edition.audio.added.toISOString(),
+                publishedDate: published(edition.audio.added.toISOString(), LANG)
+                  .publishedDate,
                 parts: edition.audio.parts.map(part => part.toJSON()),
                 m4bFilesizeHq: humansize(editionMeta.audioFilesizes?.m4bHq || 0),
                 m4bFilesizeLq: humansize(editionMeta.audioFilesizes?.m4bLq || 0),

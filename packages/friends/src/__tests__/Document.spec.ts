@@ -48,6 +48,7 @@ describe('Document', () => {
       const doc = firstDoc(f => {
         f.documents[0].editions[0].audio = {
           reader: 'Jason Henderson',
+          added: new Date(),
           parts: [],
         };
       });
