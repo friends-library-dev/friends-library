@@ -15,6 +15,7 @@ export interface FriendData {
   name: Name;
   slug: Slug;
   gender: Gender;
+  added?: Date;
   born?: number;
   died?: number;
   quotes?: { source: string; text: string }[];
