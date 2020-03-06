@@ -34,6 +34,7 @@ documents:
         isbn: 978-1-64476-129-8
         editor: Jason R. Henderson
         audio:
+          added: 2016-08-03T04:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: Journal of Stephen Crisp
@@ -62,6 +63,7 @@ documents:
         isbn: 978-1-64476-130-4
         editor: Jason R. Henderson
         audio:
+          added: 2017-07-15T04:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: A Plain Pathway
@@ -87,6 +89,7 @@ documents:
       - type: modernized
         isbn: 978-1-64476-131-1
         audio:
+          added: 2018-04-28T04:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: A Short History of a Long Travel from Babylon to Bethel

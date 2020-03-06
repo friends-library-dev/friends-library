@@ -35,6 +35,7 @@ documents:
         isbn: 978-1-64476-141-0
         editor: Jason R. Henderson
         audio:
+          added: 2016-08-03T04:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: Journal of Thomas Story

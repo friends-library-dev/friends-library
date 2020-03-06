@@ -60,6 +60,7 @@ documents:
         isbn: 978-1-64476-061-1
         editor: Jason R. Henderson
         audio:
+          added: 2016-08-03T04:00:00.000Z
           reader: Jason R. Henderson
           parts:
             - title: Selection from the Journal of John Burnyeat

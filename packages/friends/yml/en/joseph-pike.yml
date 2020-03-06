@@ -50,6 +50,7 @@ documents:
         isbn: 978-1-64476-093-2
         editor: Jason R. Henderson
         audio:
+          added: 2016-08-03T04:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: The Life of Joseph Pike

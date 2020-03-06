@@ -56,6 +56,7 @@ documents:
         isbn: 978-1-64476-056-7
         draft: true
         audio:
+          added: 2019-07-29T04:00:00.000Z
           reader: Jason R. Henderson
           parts:
             - title: Selection from the Journal of John Banks

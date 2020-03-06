@@ -30,6 +30,7 @@ documents:
       - type: modernized
         isbn: 978-1-64476-120-5
         audio:
+          added: 2018-03-22T04:00:00.000Z
           reader: Jason Henderson
           external_playlist_id_hq: 971895424
           external_playlist_id_lq: 971902252
