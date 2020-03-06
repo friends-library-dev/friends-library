@@ -4,19 +4,30 @@ import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { Stack, Audiobook, AudiobooksHero, BookTeaserCard } from '@friends-library/ui';
 import { Layout } from '../components';
 
+type AudioBookNode = CoverData & {
+  authorUrl: string;
+  documentUrl: string;
+  description: string;
+};
+
 interface Props {
   data: {
     audioBooks: {
-      nodes: (CoverData & {
-        authorUrl: string;
-        documentUrl: string;
-        description: string;
+      nodes: AudioBookNode[];
+    };
+    recent: {
+      nodes: (AudioBookNode & {
+        editions: {
+          audio: {
+            publishedDate: string;
+          };
+        }[];
       })[];
     };
   };
 }
 
-const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks } }: Props) => (
+const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props) => (
   <Layout>
     <AudiobooksHero className="p-16 pb-48 md:pb-56" numBooks={audioBooks.nodes.length} />
     <div className="bg-flgray-200 py-12 xl:pb-6">
@@ -28,16 +39,16 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks } }: Props) => (
         xl="0"
         className="md:px-6 lg:px-24 xl:px-0 xl:flex flex-wrap justify-center"
       >
-        {audioBooks.nodes.slice(0, 4).map(recent => (
+        {recent.nodes.map(book => (
           <BookTeaserCard
             className="xl:w-2/5 xl:mx-8 xl:mb-12"
-            {...coverPropsFromQueryData(recent)}
+            {...coverPropsFromQueryData(book)}
             audioDuration="45:00"
-            badgeText="Nov 22"
-            authorUrl={recent.authorUrl}
-            documentUrl={recent.documentUrl}
+            badgeText={book.editions[0].audio.publishedDate}
+            authorUrl={book.authorUrl}
+            documentUrl={book.documentUrl}
             description={
-              recent.description ||
+              book.description ||
               'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
             }
           />
@@ -83,6 +94,23 @@ export const query = graphql`
         documentUrl: url
         authorUrl
         description: partialDescription
+      }
+    }
+    recent: allDocument(
+      filter: { hasAudio: { eq: true } }
+      sort: { fields: editions___audio___added, order: DESC }
+      limit: 2
+    ) {
+      nodes {
+        ...CoverProps
+        documentUrl: url
+        authorUrl
+        description: partialDescription
+        editions {
+          audio {
+            publishedDate
+          }
+        }
       }
     }
   }

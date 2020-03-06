@@ -31,6 +31,7 @@ describe('friendFromJS()', () => {
               isbn: '978-1-64476-000-0',
               splits: [2],
               audio: {
+                added: new Date(),
                 reader: 'Harriet Henderson',
                 parts: [
                   {
