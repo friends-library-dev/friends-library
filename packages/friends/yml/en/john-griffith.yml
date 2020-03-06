@@ -64,6 +64,7 @@ documents:
         isbn: 978-1-64476-072-7
         editor: Jason R. Henderson
         audio:
+          added: 2016-08-03T04:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: Selection from the Journal of John Griffith
@@ -126,6 +127,7 @@ documents:
         isbn: 978-1-64476-074-1
         editor: Jason R. Henderson
         audio:
+          added: 2018-03-02T05:00:00.000Z
           reader: Jason Henderson
           external_playlist_id_hq: 971890846
           external_playlist_id_lq: 971900905

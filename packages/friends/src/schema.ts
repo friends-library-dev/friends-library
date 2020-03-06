@@ -128,6 +128,7 @@ const subSchemas: Record<string, Schema> = {
       reader: { $ref: '/name', required: true },
       external_playlist_id_hq: { type: 'integer', required: false },
       external_playlist_id_lq: { type: 'integer', required: false },
+      added: { type: 'date', required: true },
       parts: {
         type: 'array',
         required: true,

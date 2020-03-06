@@ -65,6 +65,7 @@ documents:
         isbn: 978-1-64476-041-3
         editor: Jason R. Henderson
         audio:
+          added: 2015-12-04T05:00:00.000Z
           reader: Jason Henderson
           external_playlist_id_hq: 971887117
           external_playlist_id_lq: 971899285
@@ -249,6 +250,7 @@ documents:
         isbn: 978-1-64476-042-0
         editor: Jason R. Henderson
         audio:
+          added: 2016-03-11T05:00:00.000Z
           reader: Jason Henderson
           external_playlist_id_hq: 971887858
           external_playlist_id_lq: 971900077

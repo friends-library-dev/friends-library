@@ -99,6 +99,10 @@ export default class Audio {
     return `${path}/podcast.rss`;
   }
 
+  public get added(): Date {
+    return this.data.added;
+  }
+
   public toJSON(): Omit<
     Audio,
     | 'edition'
@@ -123,6 +127,7 @@ export default class Audio {
       zipFilepathLq: this.zipFilepathLq,
       m4bFilenameLq: this.m4bFilenameLq,
       m4bFilenameHq: this.m4bFilenameHq,
+      added: this.added,
     };
   }
 }

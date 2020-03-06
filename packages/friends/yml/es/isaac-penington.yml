@@ -52,6 +52,7 @@ documents:
       - type: updated
         isbn: 978-1-64476-163-2
         audio:
+          added: 2018-05-01T04:00:00.000Z
           reader: Jason Henderson
           external_playlist_id_hq: 972576583
           external_playlist_id_lq: 972576892

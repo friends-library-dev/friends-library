@@ -134,6 +134,7 @@ documents:
         draft: true
         editor: Jason R. Henderson
         audio:
+          added: 2016-08-03T04:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: Introduction

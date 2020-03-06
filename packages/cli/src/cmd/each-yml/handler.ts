@@ -2,7 +2,7 @@ import fs from 'fs';
 import { getAllFriends, Friend } from '@friends-library/friends';
 import env from '@friends-library/env';
 
-export default function handler(): void {
+export default async function handler(): Promise<void> {
   const ymls = getYmls();
   console.log(ymls.length);
 }

@@ -36,6 +36,7 @@ documents:
         isbn: 978-1-64476-114-4
         editor: Jason R. Henderson
         audio:
+          added: 2016-04-11T04:00:00.000Z
           reader: Jason Henderson
           external_playlist_id_hq: 971894755
           external_playlist_id_lq: 971901652
@@ -75,6 +76,7 @@ documents:
         isbn: 978-1-64476-115-1
         editor: Jason R. Henderson
         audio:
+          added: 2017-04-18T04:00:00.000Z
           reader: Jason Henderson
           external_playlist_id_hq: 971895049
           external_playlist_id_lq: 971901967
@@ -163,6 +165,7 @@ documents:
         isbn: 978-1-64476-117-5
         editor: Jason R. Henderson
         audio:
+          added: 2018-03-07T05:00:00.000Z
           reader: Jason Henderson
           parts:
             - title: Part 1

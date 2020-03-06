@@ -51,6 +51,7 @@ documents:
         isbn: 978-1-64476-024-6
         editor: Jason R. Henderson
         audio:
+          added: 2016-08-03T04:00:00.000Z
           reader: Jason R. Henderson
           parts:
             - title: The Life of Elizabeth Stirredge
