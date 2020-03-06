@@ -9,7 +9,7 @@ import {
 } from '@friends-library/ui';
 import Layout from '../components/Layout';
 
-export default ({ data: { allFriend } }: Props) => {
+export default ({ data: { allFriend, recent } }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOption, setSortOption] = useState<string>('First Name');
   const filteredFriends = allFriend.nodes
@@ -21,7 +21,7 @@ export default ({ data: { allFriend } }: Props) => {
       <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">
         <h2 className="text-center pb-8 sans-wider text-2xl">Recently Added Authors</h2>
         <Stack space="20" md="12" xl="0" className="xl:flex justify-center">
-          {allFriend.nodes.slice(-2).map((friend, idx) => (
+          {recent.nodes.map((friend, idx) => (
             <FriendCard
               featured
               className="xl:w-1/2 xl:mx-6 xl:max-w-screen-sm"
@@ -108,18 +108,23 @@ function makeFilter(query: string, sortOption: string): (friend: FriendData) => 
   };
 }
 
+interface FriendNode {
+  name: string;
+  gender: 'male' | 'female';
+  url: string;
+  born?: number | null;
+  died?: number | null;
+  primaryResidence: { city: string; region: string };
+  documents: { hasNonDraftEdition: boolean }[];
+}
+
 interface Props {
   data: {
     allFriend: {
-      nodes: {
-        name: string;
-        gender: 'male' | 'female';
-        url: string;
-        born?: number | null;
-        died?: number | null;
-        primaryResidence: { city: string; region: string };
-        documents: { hasNonDraftEdition: boolean }[];
-      }[];
+      nodes: FriendNode[];
+    };
+    recent: {
+      nodes: FriendNode[];
     };
   };
 }
@@ -129,6 +134,22 @@ type FriendData = Props['data']['allFriend']['nodes'][0];
 export const query = graphql`
   {
     allFriend(filter: { hasNonDraftDocument: { eq: true } }) {
+      nodes {
+        name
+        gender
+        born
+        died
+        url
+        primaryResidence {
+          city
+          region
+        }
+        documents: childrenDocument {
+          hasNonDraftEdition
+        }
+      }
+    }
+    recent: allFriend(sort: { fields: added, order: DESC }, limit: 2) {
       nodes {
         name
         gender
