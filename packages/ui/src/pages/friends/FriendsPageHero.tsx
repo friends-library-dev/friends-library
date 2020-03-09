@@ -8,7 +8,7 @@ const FriendsPageHero: React.FC<{ numFriends: number }> = ({ numFriends }) => (
     <p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       Friends Library currently contains books written by{' '}
       <span className="font-bold">{numFriends}</span> early Friends, and more authors are
-      being regularly added. Check out our recently-added authors, or browse the full list
+      being added regularly. Check out our recently-added authors, or browse the full list
       below. You can also{' '}
       <a
         href="#ControlsBlock"
