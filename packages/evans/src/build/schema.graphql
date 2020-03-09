@@ -58,6 +58,7 @@ type ChapterHeadingSequence {
 type Audio {
   reader: String!
   added: String!
+  duration: String!
   publishedDate: String!
   parts: [AudioPart!]!
   m4bUrlHq: String!
