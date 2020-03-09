@@ -20,7 +20,7 @@ const AudioDuration: React.FC<Props> = ({
     )}
   >
     <PlayTriangle className="h-5 w-5 mr-1" tailwindColor={textColor} />
-    {children} minutes
+    {children}
   </div>
 );
 
