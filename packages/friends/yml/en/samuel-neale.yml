@@ -3,6 +3,27 @@ name: Samuel Neale
 slug: samuel-neale
 gender: male
 added: 2018-12-27T14:45:57.000Z
+born: 1729
+died: 1792
+quotes:
+  - source: Mary Leadbeater (daughter of Richard and Elizabeth Shackleton)
+    text:
+      Samuel Neale, who had been forgiven much, loved much; and having been obedient to
+      the heavenly vision, became a vessel of honour, replenished with good, and pouring
+      it forth for the refreshment of ethers. He was one, who, remembering the trials
+      which attend youth, felt compassion for them; and in advanced life, his winning
+      affability towards young persons, his fatherly love and care, his heart and house
+      open to receive them, made a deep impression on their minds, from which many
+      received lasting advantage.
+  - source: Abraham Shackleton (in a letter to Samuel Neale)
+    text:
+      I have been greatly pleased formerly, when favoured with your company, to observe
+      the watchful care that clothed you, even in the times of enlargement and liberty of
+      spirit, lest any word or unguarded expression should inadvertently pass from you, to
+      wound or administer offence, in any way, to the least babe in Christ.
+residences:
+  - city: Cork
+    region: Ireland
 description:
   ​At the age of twenty-two, Samuel Neale (1729-1792) was powerfully impacted by the
   ministry of Catharine Payton and Mary Peisley (his future wife) while they were
@@ -27,6 +48,11 @@ documents:
       ministry, and labored diligently for the remainder of his life. His journal and
       letters demonstrate all of the sweetness, humility, and wisdom of a true disciple of
       Jesus Christ.
+    partial_description:
+      A journal of the life and Christian labors in the work of the gospel of Samuel
+      Neale, relating his awakening to truth through the powerful ministry of Catherine
+      Payton, his careful subjection to the cross of Christ, and his growth in grace and
+      usefulness to the body of Christ.
     tags:
       - journal
     editions:
@@ -34,3 +60,17 @@ documents:
         isbn: 978-1-64476-123-6
       - type: original
         isbn: 978-1-64476-124-3
+    related_documents:
+      - id: 9bd10df3-80aa-4623-b66a-61e00f112b47
+        description:
+          When twenty-two years of age, Samuel Neale was powerfully impacted by the
+          ministry of Catherine Payton and Mary Peisley at a meeting in Dublin. Spending
+          much time with these "heavenly messengers", Mary Peisley became a beloved friend
+          and spiritual confidant, and the two were married in 1757.
+      - id: 20c95c47-62dd-4181-b6e7-dcd8142626ca
+        description:
+          Meeting Joseph Oxley as he passed through Ireland in the work of the ministry,
+          Samuel Neale "felt an attracting draft of uniting love draw me to accompany him"
+          in some further gospel labors. Neale became closely bound to this "agreeable,
+          sweet-spirited friend," and the two of them were later companions in the
+          ministry during an extended trip to America.

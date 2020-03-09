@@ -3,6 +3,17 @@ name: Samuel Bownas
 slug: samuel-bownas
 gender: male
 added: 2019-09-24T23:19:00.000Z
+born: 1676
+died: 1753
+quotes:
+  - source: Thomas Story
+    text:
+      Our friend Samuel Bownas, that able and experienced minister of the gospel, being
+      there, I was also comforted in his ministry, as were many more both there and at
+      Bristol.
+residences:
+  - city: Bridport
+    region: England
 description:
   As a young man, Samuel Bownas (1676-1753) was awakened to his lost condition through the
   powerful ministry of a young woman named Anne Wilson who, pointing to him in a meeting,
@@ -36,6 +47,11 @@ documents:
       understanding concerning the work of the ministry, and became the author of a
       highly-regarded book entitled, “A Description of the Qualifications Necessary to a
       Gospel Minister.”
+    partial_description:
+      A journal of the life, travels, and Christian experiences of Samuel Bownas, giving
+      an account of his sudden awakening to the truth of the gospel, his call to the
+      ministry, his imprisonment in America, and his long and fruitful life in the service
+      of Christ.
     tags:
       - journal
     editions:

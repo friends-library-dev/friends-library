@@ -3,6 +3,8 @@ name: Samuel Fothergill
 slug: samuel-fothergill
 gender: male
 added: 2018-12-14T17:42:45.000Z
+born: 1715
+died: 1772
 quotes:
   - source: James Gough
     text:
@@ -11,6 +13,16 @@ quotes:
       lively hopes of his proving, as he did, through the succeeding stages of his life, a
       bright and shining light, a vessel of honour indeed, of eminent service in the
       church of Christ.
+  - source: Samuel Fothergill
+    text:
+      The passionate preacher has affected the passionate hearer; both have been in
+      raptures, and neither of them edified. Mistake not the warmth of the passions for
+      the gospel authority. The first is like the rattling thunder, which frights, but
+      never hurts; the last is like the lightning from the east, which illuminates, and,
+      at times, breaks through all opposition and melts every obstruction.
+residences:
+  - city: Warrington
+    region: England
 description:
   ​Samuel Fothergill (1715-1772) was the youngest son of eminent Quaker minister, John
   Fothergill. As a young man, Samuel yielded to various temptations, "giving way to the
@@ -45,6 +57,11 @@ documents:
       abide under His righteous judgments, and so yielded to the transforming power of
       divine grace that, in time, he became one of the most distinguished and influential
       ministers of his day.
+    partial_description:
+      A memoir of the life and gospel labors of Samuel Fothergill, consisting chiefly of
+      extracts from his written correspondence and journal entries of his travels, with
+      biographical and historical information supplied by George Crosfield; also
+      containing a short account of the life and travels of his father, John Fothergill.
     tags:
       - journal
     editions:
@@ -52,3 +69,11 @@ documents:
         isbn: 978-1-64476-121-2
       - type: original
         isbn: 978-1-64476-122-9
+    related_documents:
+      - id: b74bd655-8907-4484-a3bd-a658b3267dea
+        description:
+          Samuel Fothergill was the son of the well-known and much beloved minister of the
+          gospel, John Fothergill. Some account of his father is prefixed to Samuel's
+          memoir, but "The Life and Letters of John Fothergill" has a larger
+          autobiographical portion, and a sizable collection of letters to friends and
+          epistles to churches.

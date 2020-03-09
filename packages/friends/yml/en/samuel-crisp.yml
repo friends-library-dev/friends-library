@@ -3,6 +3,17 @@ name: Samuel Crisp
 slug: samuel-crisp
 gender: male
 added: 2018-12-14T12:37:47.000Z
+born: 1670
+died: 1704
+quotes:
+  - source: Samuel Bownas
+    text:
+      I set out, having in company a young man who had been bred at college, whose name
+      was Samuel Crisp; a meek spirited youth, having received the knowledge of the truth
+      the right way.
+residences:
+  - city: London
+    region: England
 description:
   Samuel Crisp (1670—1704) was a brilliant young priest in the Church of England who's
   hunger for truth and righteousness led him to leave off all formal, shadowy religion and
@@ -24,6 +35,10 @@ documents:
       reasons for leaving the national worship, and describing how the Lord revealed His
       Son in him, "at the brightness of whose appearance the clouds are scattered and the
       shadows flee away."
+    partial_description:
+      Two valuable letters of Samuel Crisp, with extracts from his work entitled "A
+      Vindication of the People Called Quakers," to which is prefixed a short memoir of
+      his life.
     tags:
       - letters
     editions:

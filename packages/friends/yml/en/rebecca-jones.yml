@@ -3,6 +3,24 @@ name: Rebecca Jones
 slug: rebecca-jones
 gender: female
 added: 2018-11-16T20:22:25.000Z
+born: 1739
+died: 1818
+quotes:
+  - source: William Evans
+    text:
+      Rebecca Jones, a minister and mother in Israel (who had paid a religious visit to
+      Friends in England and was highly esteemed by her contemporaries for religious
+      experience, sound judgment and spiritual discernment) resided in this city, and her
+      house was frequented by ministers and elders, and by younger members coming under
+      the love of the Truth, who sought the benefit of her counsel and instructive
+      conversation.
+  - source: Captain Thomas Truxton (after crossing the Atlantic with Rebecca Jones)
+    text:
+      I have brought over an American Quaker lady who possessed more sense than both
+      Houses of Parliament.
+residences:
+  - city: Philadelphia
+    region: Pennsylvania
 description:
   Words fail to describe the beautiful life and heart-tendering ministry of Rebecca Jones
   (1739-1818). When still a child, her eyes were opened to see the "ancient path" through
@@ -25,6 +43,10 @@ documents:
       both endearing and instructive, telling the story of a meek disciple, a tireless
       minister, a loving "mother in Israel", a powerful preacher, and a shining example of
       every Christian virtue.
+    partial_description:
+      An account of the life, Christian experiences, and gospel labors of Rebecca Jones,
+      containing an autobiographical portion, letters to friends and fellow-ministers, and
+      journal entries kept during her travels in Europe in the work of the ministry.
     tags:
       - journal
       - letters
@@ -33,3 +55,16 @@ documents:
         isbn: 978-1-64476-108-3
       - type: original
         isbn: 978-1-64476-109-0
+    related_documents:
+      - id: 0af1efec-461d-4936-bf91-cc0f44a60bd9
+        description:
+          Thomas Scattergood and Rebecca Jones, both natives of Philadelphia, were
+          intimate friends and esteemed companions in the work of the ministry. Thomas's
+          journal contains several letters from this valued friend, and mentions the help
+          received from her deep understanding and sometimes prophetic counsel.
+      - id: d106a18d-6092-4628-a1ec-822f68127743
+        description:
+          During a lengthy ministry trip to Great Britain, Sarah Grubb spent many weeks
+          traveling and ministering with Rebecca Jones, many details of which she relates
+          in her journal. The two became cemented in a deep bond of friendship and kept up
+          a correspondence that lasted until Sarah's death.

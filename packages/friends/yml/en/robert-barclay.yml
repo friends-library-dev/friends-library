@@ -3,6 +3,26 @@ name: Robert Barclay
 slug: robert-barclay
 gender: male
 added: 2018-12-14T17:34:40.000Z
+born: 1648
+died: 1690
+quotes:
+  - source: William Sewel
+    text:
+      Though [Robert Barclay's] natural abilities were great enough to have made him
+      surpass others in human learning, and so to have become famous among men, yet he so
+      little valued that knowledge, that he in no way endeavored to be distinguished on
+      that account. But his chief aim was to advance in real godliness, as the fellowship
+      I had with him has undoubtedly assured me; for I was well acquainted with him.
+  - source: Robert Barclay
+    text:
+      For what I have written comes more from my heart than from my head; from what I have
+      heard with the ears of my soul and seen with my inward eyes, and my hands have
+      handled of the Word of Life. What has been inwardly manifested to me of the things
+      of God, that do I declare; not so much minding the eloquence and excellency of
+      speech, as desiring to demonstrate the efficacy and operation of Truth.
+residences:
+  - city: Ury
+    region: Scotland
 description:
   Robert Barclay (1648–1690) was born into opulence and educated in some of the finest
   schools of the time, where his natural genius gained the admiration of both teachers and
@@ -29,6 +49,11 @@ documents:
       and obeyed His inward stirrings and teachings, or does the Seed of God lay buried in
       Christian hearts beneath a mass of superstition, assumption, and fleshy, religious
       activity?
+    partial_description:
+      This treatise is a carefully modernized edition of the eleventh proposition of
+      Robert Barclay's "Apology for the True Christian Divinity", showing the necessity
+      and benefit of waiting upon the Lord for ability to worship, pray, and minister
+      acceptably.
     tags:
       - doctrinal
     editions:
@@ -69,6 +94,10 @@ documents:
       most vital and misunderstood aspects of Christianity, plainly manifesting the true
       nature, experience, and extent of the salvation that God offers the soul through
       Jesus Christ.
+    partial_description:
+      This book is a carefully modernized edition of propositions four through eight of
+      Robert Barclay's "Apology for the True Christian Divinity," treating upon the fall,
+      redemption, justification, and perfection of man.
     tags:
       - doctrinal
     editions:
@@ -144,6 +173,10 @@ documents:
       Barclay's Apology for the True Christian Divinity was first published in 1675, and
       came to be considered the definitive exposition and defense of Quaker principles for
       the next 200 years.
+    partial_description:
+      The Apology for the True Christian Divinity is perhaps the most well-known of all
+      Friends publications, and has been considered the definitive exposition and defense
+      of Quaker principles since the rise of their Society.
     tags:
       - doctrinal
     editions:
@@ -156,8 +189,16 @@ documents:
     slug: recreation-entertainment
     filename: Recreation_and_Entertainment
     description:
-      This is a short extract from the fifteenth proposition of Robert Barclay's "Apology
-      for the True Christian Divinity" regarding entertainment and recreation.
+      This publication is a short extract from the fifteenth proposition of Robert
+      Barclay's "Apology for the True Christian Divinity," showing how most common forms
+      of entertainment and recreation do but stifle the soul's longings after God, and
+      serve only to draw men out from His fear, making them forget heaven, death, and
+      judgment, while at the same time fostering lust, vanity, and carelessness.
+    partial_description:
+      This publication is an extract from the fifteenth proposition of Robert Barclay's
+      "Apology for the True Christian Divinity," showing how many common forms of
+      entertainment and recreation war against the purpose of God for the immortal soul of
+      man.
     tags:
       - doctrinal
     editions:

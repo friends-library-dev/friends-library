@@ -3,6 +3,18 @@ name: Thomas Kite
 slug: thomas-kite
 gender: male
 added: 2019-04-05T19:47:16.000Z
+born: 1785
+died: 1845
+quotes:
+  - source: Thomas Kite
+    text:
+      We were not sent into the world to amuse ourselves, nor to accumulate earthly
+      treasures, nor to gratify our own wills, nor the will of others, but to work out our
+      own salvation with fear and trembling, and to stand devoted to the Lord’s cause in
+      our day and generation.
+residences:
+  - city: Philadelphia
+    region: Pennsylvania
 description:
   Thomas Kite (1785-1845) lived in Philadelphia, Pennsylvania, and was a printer by trade.
   His early years, he says, "were exposed to the influence of bad example, and were marked
@@ -31,6 +43,11 @@ documents:
       of both childlike humility and unflinching boldness, contending earnestly for the
       faith which was once for all delivered to the saints, and remaining faithful to it
       during the troublesome times of the Hicksite and Gurneyite separations.
+    partial_description:
+      The journal and letters of Thomas Kite, giving a relation of his growth in the
+      truth, his steadfastness in contending for the original principals and practices of
+      Friends, and his labors in the ministry during a time of trouble and declension in
+      the Society.
     tags:
       - journal
     editions:

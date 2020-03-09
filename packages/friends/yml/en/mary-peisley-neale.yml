@@ -3,13 +3,29 @@ name: Mary Peisley Neale
 slug: mary-peisley-neale
 gender: female
 added: 2018-11-16T20:25:28.000Z
+born: 1717
+died: 1757
+quotes:
+  - source: James Gough
+    text:
+      I am ready to conclude that no one in our day, from the time of the effectual
+      visitation of Christ in her soul, adhered with more steadiness to His guidance,
+      through a variety of probations.
+  - source: Mary Peisley
+    text:
+      I know there is a kingdom of heaven, because I already feel it within me,--Christ in
+      me, as said the apostle, the hope of glory; and because He lives, I live also; not
+      merely an animal life which must perish, but a life hid with Christ in God.
+residences:
+  - city: Ballymore
+    region: Ireland
 description:
   Mary Neale (1717-1757), dying suddenly only three days after her marriage to Samuel
   Neale, is best known by her maiden name, Mary Peisley. Having been early turned from the
   pursuit of worldly pleasures and vanities by the inward appearing of the Lord Jesus,
   Mary Neale surrendered all to the cross of Christ and was made by Him a shining example
   of a true gospel minister. Of her life, James Gough (another highly esteemed minister in
-  the Society of Friends) wrote, "I am ready to conclude that none in our day, from the
+  the Society of Friends) wrote, "I am ready to conclude that no one in our day, from the
   time of the effectual visitation of Christ in her soul, adhered with more steadiness to
   His guidance, through a variety of probations."
 documents:
@@ -23,9 +39,13 @@ documents:
       the pursuit of worldly pleasures and vanities by the inward appearing of the Lord
       Jesus, Mary Neale surrendered all to the cross of Christ and was made by Him a
       shining example of a true gospel minister. Of her life, James Gough (another highly
-      esteemed minister in the Society of Friends) wrote, "I am ready to conclude that
-      none in our day, from the time of the effectual visitation of Christ in her soul,
+      esteemed minister in the Society of Friends) wrote, "I am ready to conclude that no
+      one in our day, from the time of the effectual visitation of Christ in her soul,
       adhered with more steadiness to His guidance, through a variety of probations."
+    partial_description:
+      An account of the life, Christian experiences, and work in the ministry of Mary
+      Peisley Neale, chiefly comprised of her own memorandums and letters, compiled and
+      published by her husband Samuel Neale.
     tags:
       - journal
       - letters
@@ -34,3 +54,10 @@ documents:
         isbn: 978-1-64476-104-5
       - type: original
         isbn: 978-1-64476-105-2
+    related_documents:
+      - id: 0e7ca047-14ff-4883-8977-877d36632d11
+        description:
+          Mary Peisley and Catherine Payton were companions together in the bonds of the
+          gospel, and their unity in the living Truth was strong and deep. They often
+          travelled together in the work of the ministry, and were considered by many to
+          be two of the most eminent ministers of their time.

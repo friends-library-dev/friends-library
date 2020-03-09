@@ -3,6 +3,19 @@ name: Rebecca Hubbs
 slug: rebecca-hubbs
 gender: female
 added: 2019-05-29T17:20:33.000Z
+born: 1772
+died: 1852
+quotes:
+  - source: William Evans
+    text:
+      Set off for Woodbury, and called to see our aged friend Rebecca Hubbs; confined from
+      the effects of paralysis. She is an extraordinary instance of the power of Divine
+      grace, in preparing one of little knowledge, who has been faithful to its teachings,
+      for usefulness in the church; and having received a gift in the ministry, enabling
+      her at times to exercise it in an extraordinary manner.
+residences:
+  - city: Woodstown
+    region: New Jersey
 description:
   It is said of Rebecca Hubbs (1772-1852), that though she was not highly educated or
   gifted for literary conversation, and though she had a very humble view of herself in
@@ -25,6 +38,11 @@ documents:
       weakness, and was used of the Lord in some remarkable ways, including a personal
       visit to president James Madison, to declare unto him the burden of word of the Lord
       that weighed heavily on her heart.
+    partial_description:
+      A journal of the life of Rebecca Hubbs, showing how she was early awakened from the
+      seductive vanities of time, willingly brought under the teaching and sanctifying
+      power of grace, and made a worthy instrument in the Lord's hand for the promotion of
+      His kingdom.
     tags:
       - journal
     editions:

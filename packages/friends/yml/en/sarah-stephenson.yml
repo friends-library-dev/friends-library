@@ -3,7 +3,27 @@ name: Sarah Stephenson
 slug: sarah-stephenson
 gender: female
 added: 2019-11-25T17:48:27.000Z
-description: TODO
+born: 1738
+died: 1802
+quotes:
+  - source: Sarah Stephenson (when a child)
+    text:
+      Often have I been led to make a pause, and crave of my heavenly Father, be pleased
+      to make me like unto these your servants, whatever my sufferings in this life may
+      be. If You will be with me in the way that I go, give me bread to eat and raiment to
+      put on, You shall be my God, and I will serve You.
+residences:
+  - city: Liverpool
+    region: England
+description:
+  The heart of Sarah Stephenson (1738-1802) was turned to the Lord at a very young age.
+  Though raised in a wealthy family where many of the world's treasures were within reach,
+  she says, "The Lord looked down upon me in love, and and so enamoured my soul with His
+  beauty, that I loved to be alone with Him. O how sweet was His presence!" Submitting
+  herself to the forming hand of grace, she grew deep in heavenly life and spiritual
+  experience, and in addition to ministering in larger gatherings of the Lord's people,
+  she was used more particularly in visiting individual families, going from house to
+  house and speaking to the conditions of people as the Lord gave her utterance.
 documents:
   - id: 8b8604f4-042c-46b9-bdf6-a3ad6921164a
     title: Life of Sarah Stephenson
@@ -11,7 +31,21 @@ documents:
       Memoirs Life and Travels in the Service of the Gospel of Sarah Stephenson
     slug: life
     filename: Life_of_Sarah_Stephenson
-    description: TODO
+    description:
+      The heart of Sarah Stephenson (1738-1802) was turned to the Lord at a very young
+      age. Though raised in a wealthy family where many of the world's treasures were
+      within reach, she says, "The Lord looked down upon me in love, and and so enamoured
+      my soul with His beauty, that I loved to be alone with Him. O how sweet was His
+      presence!" Submitting herself to the forming hand of grace, she grew deep in
+      heavenly life and spiritual experience, and in addition to ministering in larger
+      gatherings of the Lord's people, she was used more particularly in visiting
+      individual families, going from house to house and speaking to the conditions of
+      people as the Lord gave her utterance.
+    partial_description:
+      A journal of the life and travels in the service of the gospel of Sarah Stephenson,
+      relating her whole-hearted surrender to the Lord at a young age, her growth in the
+      truth, and her extensive ministry among individual families in England, Wales,
+      Ireland, Scotland, and America.
     tags:
       - letters
       - journal

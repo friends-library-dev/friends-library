@@ -3,6 +3,24 @@ name: Stephen Crisp
 slug: stephen-crisp
 gender: male
 added: 2019-01-02T15:25:40.000Z
+born: 1628
+died: 1692
+quotes:
+  - source: Samuel Tuke
+    text:
+      There was perhaps, with the exception of George Fox, no individual who had upon him
+      a greater share of the weight and charge of the new Society [of Friends] than
+      Stephen Crisp.
+  - source: Stephen Crisp
+    text:
+      For though it is true that none can obey the Lord but by His grace and power given
+      unto them, yet He has made His grace—-even that grace which brings salvation—-appear
+      unto all men, as is said in Titus 2:11. And this grace has appeared unto you, and in
+      you, to whom I write, and is a reprover in you. You must therefore turn to that
+      which smites you, and then you turn to the grace of God.
+residences:
+  - city: Colchester
+    region: England
 description:
   Stephen Crisp (1628-1692) is an example of one whose desperate search for Truth (lasting
   twenty long years) at last brought him to an experiential knowledge of the grace and
@@ -26,6 +44,11 @@ documents:
       the power and wisdom of the Spirit, traveling throughout England, Scotland, Holland,
       and Germany, and writing many valuable epistles and treatises to the church in both
       the English and Dutch languages.
+    partial_description:
+      A selection from the journal of Stephen Crisp, giving an account of his strong
+      desires after purity when young, his convincement of the truth through the ministry
+      of James Parnell, and his subsequent ministry and fatherly oversight in the early
+      Society of Friends.
     tags:
       - journal
       - letters
@@ -52,10 +75,14 @@ documents:
     filename: Plain_Pathway
     description:
       The Plain Pathway is a short treatise written by Stephen Crisp concerning the
-      appearance of Christ's light in the heart. According to Crisp, it was written "for
-      the answering of all doubts and objections which arise against Christ's light and
-      truth in the inward parts; by which many are kept from obedience, and so from peace
-      to their panting souls."
+      appearance of Christ's light in the heart. In the words of the author, it was
+      written "for the answering of all doubts and objections which arise against Christ's
+      light and truth in the inward parts, by which many are kept from obedience, and so
+      from peace to their panting souls."
+    partial_description:
+      A treatise describing the nature of Christ's appearance in the heart as a reprover
+      for sin and transgression, and the necessity and benefit of submitting to His light
+      and grace in order to be washed from from within, and transformed into His likeness.
     tags:
       - exhortation
     editions:
@@ -80,9 +107,16 @@ documents:
     slug: babylon-to-bethel
     filename: Babylon_to_Bethel
     description:
-      This short but instructive allegory by Stephen Crisp was written to illustrate the
-      perilous journey of the Christian soul from Babylon (the man-made city of religious
-      confusion) to Bethel, the true house of God.
+      In this short allegory, Stephen Crisp relates a young man's desperate search for the
+      true house of God. Beginning his journey with genuine hunger and zeal, he is soon
+      lost in a labyrinth of false religion and man-made imitations. But feeling
+      dissatisfied with Babylon's many images and facades, he is met by a new Guide who
+      enlightens his path, and leads him through deserts, bogs, and dangerous valleys to
+      the true dwelling place of God.
+    partial_description:
+      A short but instructive allegory by Stephen Crisp written to illustrate the perilous
+      journey of the Christian soul from Babylon (the man-made city of religious
+      confusion) to Bethel, the true dwelling place of God.
     tags:
       - allegory
     editions:
