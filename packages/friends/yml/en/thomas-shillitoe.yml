@@ -3,6 +3,27 @@ name: Thomas Shillitoe
 slug: thomas-shillitoe
 gender: male
 added: 2019-06-25T19:28:43.000Z
+born: 1748
+died: 1814
+quotes:
+  - source: Lydia Barclay
+    text:
+      There is a nice book in the bookcase that I know would interest you, "The Life of
+      Thomas Shillitoe," who was a poor shoemaker, but a faithful minister of the Gospel,
+      who out of much weakness (naturally) was made strong in his Lord, to go through many
+      dangers and labours, and out of a very timid, fearful disposition was made bold as a
+      lion, to stand before kings and princes and the fiercest looking of men.
+  - source: Sarah L. Grubb
+    text:
+      What a journal is Thomas Shillitoe's! I never found in any one more of attention to
+      Divine guidance in all things, and always; nor more plentiful, blessed results and
+      precious fruit, from being wholly given up to the Lord in body, soul, and spirit;
+      through all perplexity, trouble, and sore exercise of faith and patience. How
+      unspeakably glorious must be the crown he now inherits forever and ever, after
+      bearing his cross so faithfully to the end of time!
+residences:
+  - city: Tottenham
+    region: England
 description:
   Thomas Shillitoe (1754-1836) was a man who knew the voice of the Good Shepherd, and
   followed it unreservedly through even the most trying and perplexing circumstances. For
@@ -28,6 +49,11 @@ documents:
       United States, where he spent several years laboring to uphold the original
       principles and practices of Friends against the erroneous doctrines and disorderly
       conduct of Elias Hicks and his adherents.
+    partial_description:
+      A journal of the life, labors, and travels of Thomas Shillitoe in the service of the
+      gospel, giving an account of his extensive travels in Europe and America in the work
+      of the ministry, his relentless adherence to the light of Christ, and his arduous
+      struggle against the unsound principles of Elias Hicks.
     tags:
       - journal
     editions:
@@ -39,3 +65,10 @@ documents:
         isbn: 978-1-64476-140-3
         splits:
           - 23
+    related_documents:
+      - id: 3c1f4d2b-cefb-4a8f-a0aa-ad9de657b15f
+        description:
+          In 1824, Thomas Shillitoe went to St. Petersburg, Russia, and frequently
+          attended the small meeting held in the home of his beloved friend Daniel
+          Wheeler. After spending several months in the city, he and Daniel Wheeler
+          traveled together by land some 1600 miles to Rotterdam, Holland.

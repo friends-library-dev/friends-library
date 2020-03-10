@@ -3,6 +3,11 @@ name: Thomas Ellwood
 slug: thomas-ellwood
 gender: male
 added: 2019-01-02T15:35:33.000Z
+born: 1639
+died: 1714
+residences:
+  - city: Oxford
+    region: England
 description:
   ​Thomas Ellwood (1639-1714) was a beloved elder and an eminent writer in the early
   Society of Friends. When a young man, his father took great offense at his joining in
@@ -25,6 +30,11 @@ documents:
       served as tutor to the Penington's young children. Thomas Ellwood is best known
       among Friends for his many publications in defense of the Truth, and for being the
       editor of George Fox's journal.
+    partial_description:
+      A journal of the life of Thomas Ellwood, relating his early submission to the
+      dictates of Truth in the midst of suffering and persecution, the great benefit
+      received from his residing in the home of Isaac and Mary Penington, and his many
+      labors for the defence and promulgation of the gospel of Jesus Christ.
     tags:
       - journal
       - letters
@@ -33,3 +43,11 @@ documents:
         isbn: 978-1-64476-133-5
       - type: original
         isbn: 978-1-64476-134-2
+    related_documents:
+      - id: c248c2e7-947b-4629-8296-0cdff67a6d99
+        description:
+          Knowing that he was being abused by his father for his obedience to the Truth,
+          Isaac Penington invited young Thomas Ellwood to live in his home and tutor his
+          children. Ellwood remained in this family for several years, and grew to love,
+          esteem, and honor Isaac Penington as an intimate friend and a tender father in
+          the faith.

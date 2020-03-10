@@ -3,6 +3,18 @@ name: Oliver Sansom
 slug: oliver-sansom
 gender: male
 added: 2019-11-25T17:13:11.000Z
+born: 1636
+died: 1710
+quotes:
+  - source: Thomas Ellwood
+    text:
+      +++[+++Oliver Sansom] was a good steward of his Master’s treasures; a faithful
+      dispenser of the divine mysteries committed to him; an inward and heavenly-minded
+      man, more in substance than in show; greater in power than in expression; a man meek
+      and quiet in spirit, yet full in zeal.
+residences:
+  - city: Abingdon
+    region: England
 description:
   Oliver Sansom (1636-1710) was an early minister in the Society of Friends, whose heart
   was first awakened to the Truth while reading a work of Isaac Penington’s entitled, “The
@@ -36,6 +48,10 @@ documents:
       inward and heavenly-minded man. He was more in substance than in show, greater in
       power than in expression, a man of a meek and quiet spirit, yet full zeal—who lived
       and died a servant of the Lord.”
+    partial_description:
+      The life of Oliver Sansom, giving an account of his convincement of the Truth, and
+      the many trials, sufferings, and imprisonments which befell him for his obedience to
+      it; also relating some of his travels and labors in the work of the ministry.
     tags:
       - journal
       - letters

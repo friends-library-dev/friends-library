@@ -6,26 +6,22 @@ added: 2018-12-31T17:51:09.000Z
 born: 1756
 died: 1790
 quotes:
-  - source: James Gough
+  - source: George Dillwyn (upon the death of Sarah Grubb)
     text:
-      I am ready to conclude that none in our day, from the time of the effectual
-      visitation of Christ in her soul, adhered with more steadiness to His guidance,
-      through a variety of probations.
-  - source: No Cross, No Crown, ch. 1
-    text:
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Thus fell a valiant in the church militant, whose endowments and dedication are
+      equalled by few of the present generation, and to whose memory, I believe, as
+      general a tribute of tears has been paid, as to any person with whom I was ever
+      acquainted.
 residences:
   - city: York
     region: England
     durations:
       - start: 1756
-        end: 1774
+        end: 1787
   - city: Clonmel
     region: Ireland
     durations:
-      - start: 1774
+      - start: 1787
         end: 1790
 description:
   ​​Sarah R. Grubb (1756-1790) was a woman of extraordinary natural abilities, strength of
@@ -70,7 +66,6 @@ documents:
           correspondence that lasted until Sarah's death.
       - id: 9bd10df3-80aa-4623-b66a-61e00f112b47
         description:
-          This is just to show you that there can be (and often will be) multiple related
-          documents. This should be deleted and replaced with something real, the id above
-          is Mary Neale, which I don't think should be attached to Sarah Grubb. Lorem
-          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
+          Mary Dudley was the beloved traveling companion of Sarah Grubb, with whom she
+          "often mingled sighs and tears," during a lengthy ministry trip through parts of
+          Holland, Germany, and France.

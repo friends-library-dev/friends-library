@@ -3,6 +3,19 @@ name: Thomas Story
 slug: thomas-story
 gender: male
 added: 2019-01-02T16:15:47.000Z
+born: 1748
+died: 1814
+quotes:
+  - source: Thomas Story
+    text:
+      But, as the diadem of all, and the only true and certain way, when it pleased the
+      Most High (by the effusion of His own goodness) to reveal in me the Son of His love,
+      even His wisdom and power, by whom He designed and effected all things, then I was
+      taught to fear Him; then I was taught to love him; then, and not rightly till then,
+      was my soul instructed and informed indeed.
+residences:
+  - city: Carlisle
+    region: England
 description:
   Thomas Story (1662-1742) was an extremely gifted and serviceable minister in the Society
   of Friends, who traveled all over England, Ireland, Scotland, Holland, Jamaica,
@@ -28,6 +41,11 @@ documents:
       slander and oppose the teachings of early Friends. The many compelling doctrinal
       arguments found in his journal became very influential among Quakers, and will still
       be read with great benefit by every genuine seeker of truth.
+    partial_description:
+      A selection from the journal of Thomas Story, giving an account of his dramatic
+      awakening to the truth apart from any human agency, and his subsequent usefulness in
+      the church as a minister of the gospel, being one in whom there was an unusual
+      combination of child-like humility and extraordinary intellectual discernment.
     tags:
       - journal
     editions:
@@ -60,6 +78,11 @@ documents:
       slander and oppose the teachings of early Friends. The many compelling doctrinal
       arguments found in his journal became very influential among Quakers, and will still
       be read with great benefit by every genuine seeker of truth.
+    partial_description:
+      A selection from the journal of Thomas Story, giving an account of his dramatic
+      awakening to the truth apart from any human agency, and his subsequent usefulness in
+      the church as a minister of the gospel, being a man in whom there was an unusual
+      blend of child-like humility and extraordinary intellectual discernment.
     tags:
       - journal
     editions:
@@ -74,9 +97,14 @@ documents:
     filename: Salvation_by_Christ
     description:
       An excerpt from the journal of Thomas Story concerning the nature of salvation,
-      showing it to depend upon both the outward work of Christ as a sacrifice for sin, in
-      conjunction with the inward work of Christ in the heart as the light, life, and
-      redemption of the soul.
+      showing it to depend upon both the outward work of Christ as a sacrifice for sin,
+      and the inward work of Christ in the heart as the light, life, and leader of man in
+      the path of regeneration.
+    partial_description:
+      An excerpt from the journal of Thomas Story concerning the nature of salvation,
+      showing it to depend upon both the outward work of Christ as a sacrifice for sin,
+      and the inward work of Christ in the heart as the light, life, and leader of man in
+      the path of regeneration.
     tags:
       - doctrinal
     editions:
@@ -87,6 +115,11 @@ documents:
     slug: letter-to-a-doubter
     filename: Letter_to_a_Doubter
     description:
+      An excerpt from the journal of Thomas Story containing an impressive and convincing
+      letter, treating upon the true meaning and nature of the Lord's Supper and baptism,
+      along with questions relating to sin and perfection, salvation, love, and the
+      outward adornment of the gospel.
+    partial_description:
       An excerpt from the journal of Thomas Story containing a remarkably compelling
       response written to one who, through misunderstanding, had charged Story and the
       Society of Friends with error.

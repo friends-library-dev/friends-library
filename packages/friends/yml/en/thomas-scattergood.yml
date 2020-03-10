@@ -3,10 +3,33 @@ name: Thomas Scattergood
 slug: thomas-scattergood
 gender: male
 added: 2019-01-02T15:59:32.000Z
+born: 1748
+died: 1814
+quotes:
+  - source: William Evans
+    text:
+      My uncle Thomas Scattergood... was not only remarkable for the gift of the ministry
+      of the gospel of life and salvation, but also for the spirit of prophecy, with which
+      he was at times clearly endowed, and under which he often foretold coming events;
+      being a man who lived in the Spirit and walked in the Spirit, and to whom the Lord
+      condescended to make known his secrets relating to the spiritual condition of
+      others, and of his works among the children of men.
+  - source: Ann Branson
+    text:
+      Spent some time this evening reading in the Journal of Thomas Scattergood; and it is
+      renewedly sealed upon my mind that the great exercise and travail of soul that he
+      passed though in England and America, in his ministerial labors, were designed as a
+      particular call and warning to those amongst us in the ministry, not to trust to, or
+      lean to our own understandings in our religious movements. Oh! how abased, how shut
+      up, how exceedingly stripped, tried and tempted, did our Heavenly Father permit him
+      to become, not only for a day or a month, but for months together!
+residences:
+  - city: Philadelphia
+    region: Pennsylvania
 description:
   Thomas Scattergood (1748 - 1814) was a minister in the Society of Friends who knew what
   it meant to be “in deaths often”, to be "hard-pressed on every side, yet not crushed;
-  perplexed but not in dispair." But his many seasons of conflict and suffering were
+  perplexed but not in despair." But his many seasons of conflict and suffering were
   clearly made a blessing to him, both as a means of personal preservation from the snares
   of the enemy, and of preparing him to minister in remarkable power and authority in the
   presence of large assemblies. Few persons, it is believed, were preserved more steadily
@@ -27,7 +50,7 @@ documents:
     description:
       Thomas Scattergood (1748 - 1814) was a minister in the Society of Friends who knew
       what it meant to be “in deaths often”, to be "hard-pressed on every side, yet not
-      crushed; perplexed but not in dispair." But his many seasons of conflict and
+      crushed; perplexed but not in despair." But his many seasons of conflict and
       suffering were clearly made a blessing to him, both as a means of personal
       preservation from the snares of the enemy, and of preparing him to minister in
       remarkable power and authority in the presence of large assemblies. Few persons, it
@@ -37,6 +60,11 @@ documents:
       Though he always maintained a low opinion of himself, and spoke rarely and
       diffidently of the fruits of his ministry, all who knew him heartily testified to
       the baptizing and convincing power of his gospel labors.
+    partial_description:
+      The journal and letters of Thomas Scattergood, showing his humility and
+      steadfastness in the way of the cross while wading through deep trials, sorrows and
+      perplexities; also relating his early travels in America in the work of the gospel,
+      and his six years of arduous labor in several European countries.
     tags:
       - journal
     editions:
@@ -44,3 +72,12 @@ documents:
         isbn: 978-1-64476-137-3
       - type: original
         isbn: 978-1-64476-138-0
+    related_documents:
+      - id: 45dca7c2-3ff9-4a83-acdf-55ec1630cb25
+        description:
+          The name Rebecca Jones appears many times throughout the journal of Thomas
+          Scattergood, and it is clear that she played a vital role in his life, both as
+          an intimate friend and sister in the faith, and an encourager in the work of the
+          ministry. It was Rebecca Jones (when bedridden with the Yellow Fever) who
+          confirmed Scattergood's call to "go over the great waters" to minister to the
+          church in Europe.

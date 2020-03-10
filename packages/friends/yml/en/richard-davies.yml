@@ -3,8 +3,21 @@ name: Richard Davies
 slug: richard-davies
 gender: male
 added: 2018-11-16T20:33:16.000Z
+born: 1635
+died: 1708
+quotes:
+  - source: George Whitehead
+    text:
+      +++[+++Richard Davies] was not only a professor of the name, power, and spirit of
+      our blessed Lord and Saviour Jesus Christ, but also made a partaker of Christ, in
+      spirit, life, and conduct; a plain, meek, and humble man of integrity; a man fearing
+      God and hating iniquity; a man sanctified by the Holy Spirit, unto unfeigned and
+      constant love of his brethren in Christ.
+residences:
+  - city: Welshpool
+    region: Wales
 description:
-  Richard Davies (1635–1708) was another who desperately sought after Truth from his
+  Richard Davies (1635–1708) was a man who desperately sought after Truth from his
   earliest days, and became the first Welshmen to be convinced of the principles preached
   by the Early Quakers. Through many hardships (beatings, mockings, long imprisonments,
   etc.) he grew up in the Lord and became a eminent minister in the Society of Friends,
@@ -16,12 +29,16 @@ documents:
     slug: journal
     filename: Journal_of_Richard_Davies
     description:
-      Richard Davies (1635–1708) was another who desperately sought after Truth from his
+      Richard Davies (1635–1708) was a man who desperately sought after Truth from his
       earliest days, and became the first Welshmen to be convinced of the principles
       preached by the Early Quakers. Through many hardships (beatings, mockings, long
       imprisonments, etc.) he grew up in the Lord and became a eminent minister in the
       Society of Friends, being so filled with the Lord's humility and love that even his
       enemies respected and admired him.
+    partial_description:
+      An account of the convincement, sufferings, services, and travels of that valuable
+      servant of the Lord, Richard Davies; also containing some information relative to
+      the spreading of Truth in Wales.
     tags:
       - journal
     editions:

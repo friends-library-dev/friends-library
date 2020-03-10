@@ -3,6 +3,11 @@ name: Richard Jordan
 slug: richard-jordan
 gender: male
 added: 2019-04-29T15:46:54.000Z
+born: 1756
+died: 1826
+residences:
+  - city: Newton
+    region: New Jersey
 description:
   Richard Jordan (1756-1826) was awakened by a tenderizing visitation of the Holy Spirit
   when only twelve years old, and enabled to surrender himself entirely to the
@@ -11,7 +16,7 @@ description:
   short and infrequent, feeling a dread lest he should "shoot out into the branches"
   without first knowing "an establishment in the Root of immortal life." Being faithful in
   the little, his gift in the ministry grew, and he became one who preached in the
-  demonostration of the Spirit and of power, clearly opening to individuals their states
+  demonstration of the Spirit and of power, clearly opening to individuals their states
   and conditions, and inviting all to peace with God through the effectual operation of
   the cross of Jesus Christ.
 documents:
@@ -30,9 +35,13 @@ documents:
       ministry were short and infrequent, feeling a dread lest he should "shoot out into
       the branches" without first knowing "an establishment in the Root of immortal life."
       Being faithful in the little, his gift in the ministry grew, and he became one who
-      preached in the demonostration of the Spirit and of power, clearly opening to
+      preached in the demonstration of the Spirit and of power, clearly opening to
       individuals their states and conditions, and inviting all to peace with God through
       the effectual operation of the cross of Jesus Christ.
+    partial_description:
+      A journal of the life, Christian labors, and travels in the work of the ministry of
+      Richard Jordan, with several notes and anecdotes appended from a publication
+      entitled "A Biographical Memoir of Richard Jordan."
     tags:
       - journal
     editions:

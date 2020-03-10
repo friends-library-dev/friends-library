@@ -3,6 +3,21 @@ name: Samuel Rundell
 slug: samuel-rundell
 gender: male
 added: 2018-07-24T15:15:44.000Z
+born: 1762
+died: 1848
+quotes:
+  - source: Samuel Rundell
+    text:
+      Let then every professed Christian be stimulated, not to place his dependence on his
+      being a member of any religious community, but with an anxiety in some degree
+      adequate to the importance of the subject, seek an experiential knowledge of the
+      power of God inwardly revealed; that by submission to its humbling operation, “every
+      mountain and hill (of self-exaltation,) may be brought low;” that so every obstacle
+      to his coming unto Christ, and his partaking of the salvation which is by Him, may
+      be effectually removed.
+residences:
+  - city: Liskeard
+    region: England
 description:
   Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in
   southwest England. When young he befriended that worthy elder and "mother in Israel"
@@ -33,6 +48,10 @@ documents:
       witnessed its effectual operation in his own soul, he greatly desired to see this
       scriptural doctrine both upheld amongst his fellow Quakers and more widely known
       among sincere Christians of every denomination.
+    partial_description:
+      A treatise containing valuable observations upon the commencement and progress of
+      the work of grace in the soul, upon the true nature and performance of spiritual
+      worship, and upon the baptism and supper that are essential to the new covenant.
     tags:
       - treatise
       - exhortation
