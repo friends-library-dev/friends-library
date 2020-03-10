@@ -131,7 +131,6 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-016-1
-        draft: true
         editor: Jason R. Henderson
         audio:
           added: 2016-08-03T04:00:00.000Z
