@@ -1,0 +1,19 @@
+.ContactForm textarea {
+  min-height: 10rem;
+}
+
+.ContactForm [type='radio'] + span::before {
+  content: '';
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  @apply bg-flgray-400 text-flgray-400;
+  margin-right: 8px;
+  border-radius: 100%;
+  transform: translateY(1px);
+  transition: 0.5s ease all;
+}
+
+.ContactForm [type='radio']:checked + span::before {
+  @apply bg-flprimary;
+}
