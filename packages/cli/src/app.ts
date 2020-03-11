@@ -13,6 +13,7 @@ import * as isbns from './cmd/isbns';
 import * as intake from './cmd/intake';
 import * as audio from './cmd/audio';
 import * as eachYml from './cmd/each-yml';
+import * as eachAdoc from './cmd/each-adoc';
 import * as publishRef from './cmd/publish-ref';
 
 prettifyErrors();
@@ -34,4 +35,5 @@ yargs
   .command(convert)
   .command(audio)
   .command(eachYml)
+  .command(eachAdoc)
   .help().argv;
