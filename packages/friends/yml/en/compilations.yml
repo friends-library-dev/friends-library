@@ -37,8 +37,10 @@ documents:
         isbn: 978-1-64476-016-1
         editor: Jason R. Henderson
         audio:
-          added: 2016-08-03T04:00:00.000Z
           reader: Jason Henderson
+          external_playlist_id_hq: 1009946857
+          external_playlist_id_lq: 1009947181
+          added: 2016-08-03T04:00:00.000Z
           parts:
             - title: Introduction
               external_id_hq: 276638170
