@@ -14,102 +14,6 @@ description:
   effects of Christ's reign in the soul, and to the consolation and support it furnishes
   on a death bed.
 documents:
-  - id: 1613ce28-3ff2-4802-b22f-111039e6e0ac
-    title: Piety Promoted, Volume I
-    slug: piety-promoted-v1
-    filename: Piety_Promoted_v1
-    description:
-      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
-      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
-      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
-      of more than one hundred and seventy years, and contain concise accounts of the
-      godly lives and remarkable deaths of more than six hundred persons. Among these
-      there is found a great variety in age, condition in life, station in the Church, and
-      growth in spiritual knowledge and experience; but they all agree in a united
-      testimony to the blessed effects of Christ's reign in the soul, and to the
-      consolation and support it furnishes on a death bed.
-    partial_description:
-      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
-      Quakers, containing concise accounts of the godly lives and remarkable deaths of
-      more than six hundred persons, over a period of more than one hundred and seventy
-      years.
-    tags:
-      - devotional
-    editions:
-      - type: modernized
-        isbn: 978-1-64476-030-7
-  - id: 8e77ebe3-8678-44d2-9826-8c1be2633dcc
-    title: Piety Promoted, Volume II
-    slug: piety-promoted-v2
-    filename: Piety_Promoted_v2
-    description:
-      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
-      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
-      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
-      of more than one hundred and seventy years, and contain concise accounts of the
-      godly lives and remarkable deaths of more than six hundred persons. Among these
-      there is found a great variety in age, condition in life, station in the Church, and
-      growth in spiritual knowledge and experience; but they all agree in a united
-      testimony to the blessed effects of Christ's reign in the soul, and to the
-      consolation and support it furnishes on a death bed.
-    partial_description:
-      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
-      Quakers, containing concise accounts of the godly lives and remarkable deaths of
-      more than six hundred persons, over a period of more than one hundred and seventy
-      years.
-    tags:
-      - devotional
-    editions:
-      - type: modernized
-        isbn: 978-1-64476-173-1
-  - id: 951f52bb-fc11-4e76-a08d-c3dc52b8a07c
-    title: Piety Promoted, Volume III
-    slug: piety-promoted-v3
-    filename: Piety_Promoted_v3
-    description:
-      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
-      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
-      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
-      of more than one hundred and seventy years, and contain concise accounts of the
-      godly lives and remarkable deaths of more than six hundred persons. Among these
-      there is found a great variety in age, condition in life, station in the Church, and
-      growth in spiritual knowledge and experience; but they all agree in a united
-      testimony to the blessed effects of Christ's reign in the soul, and to the
-      consolation and support it furnishes on a death bed.
-    partial_description:
-      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
-      Quakers, containing concise accounts of the godly lives and remarkable deaths of
-      more than six hundred persons, over a period of more than one hundred and seventy
-      years.
-    tags:
-      - devotional
-    editions:
-      - type: modernized
-        isbn: 978-1-64476-174-8
-  - id: 46cffe12-7fac-486d-8597-afecee546baa
-    title: Piety Promoted, Volume IV
-    slug: piety-promoted-v4
-    filename: Piety_Promoted_v4
-    description:
-      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
-      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
-      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
-      of more than one hundred and seventy years, and contain concise accounts of the
-      godly lives and remarkable deaths of more than six hundred persons. Among these
-      there is found a great variety in age, condition in life, station in the Church, and
-      growth in spiritual knowledge and experience; but they all agree in a united
-      testimony to the blessed effects of Christ's reign in the soul, and to the
-      consolation and support it furnishes on a death bed.
-    partial_description:
-      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
-      Quakers, containing concise accounts of the godly lives and remarkable deaths of
-      more than six hundred persons, over a period of more than one hundred and seventy
-      years.
-    tags:
-      - devotional
-    editions:
-      - type: modernized
-        isbn: 978-1-64476-175-5
   - id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
     alt_language_id: 110bb5b7-267e-4d70-9b4d-64b6e46729f2
     title: Truth in the Inward Parts
@@ -224,3 +128,99 @@ documents:
               seconds: 3760
               chapters:
                 - 10
+  - id: 1613ce28-3ff2-4802-b22f-111039e6e0ac
+    title: Piety Promoted, Volume I
+    slug: piety-promoted-v1
+    filename: Piety_Promoted_v1
+    description:
+      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
+      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
+      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
+      of more than one hundred and seventy years, and contain concise accounts of the
+      godly lives and remarkable deaths of more than six hundred persons. Among these
+      there is found a great variety in age, condition in life, station in the Church, and
+      growth in spiritual knowledge and experience; but they all agree in a united
+      testimony to the blessed effects of Christ's reign in the soul, and to the
+      consolation and support it furnishes on a death bed.
+    partial_description:
+      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
+      Quakers, containing concise accounts of the godly lives and remarkable deaths of
+      more than six hundred persons, over a period of more than one hundred and seventy
+      years.
+    tags:
+      - devotional
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-030-7
+  - id: 8e77ebe3-8678-44d2-9826-8c1be2633dcc
+    title: Piety Promoted, Volume II
+    slug: piety-promoted-v2
+    filename: Piety_Promoted_v2
+    description:
+      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
+      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
+      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
+      of more than one hundred and seventy years, and contain concise accounts of the
+      godly lives and remarkable deaths of more than six hundred persons. Among these
+      there is found a great variety in age, condition in life, station in the Church, and
+      growth in spiritual knowledge and experience; but they all agree in a united
+      testimony to the blessed effects of Christ's reign in the soul, and to the
+      consolation and support it furnishes on a death bed.
+    partial_description:
+      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
+      Quakers, containing concise accounts of the godly lives and remarkable deaths of
+      more than six hundred persons, over a period of more than one hundred and seventy
+      years.
+    tags:
+      - devotional
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-173-1
+  - id: 951f52bb-fc11-4e76-a08d-c3dc52b8a07c
+    title: Piety Promoted, Volume III
+    slug: piety-promoted-v3
+    filename: Piety_Promoted_v3
+    description:
+      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
+      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
+      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
+      of more than one hundred and seventy years, and contain concise accounts of the
+      godly lives and remarkable deaths of more than six hundred persons. Among these
+      there is found a great variety in age, condition in life, station in the Church, and
+      growth in spiritual knowledge and experience; but they all agree in a united
+      testimony to the blessed effects of Christ's reign in the soul, and to the
+      consolation and support it furnishes on a death bed.
+    partial_description:
+      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
+      Quakers, containing concise accounts of the godly lives and remarkable deaths of
+      more than six hundred persons, over a period of more than one hundred and seventy
+      years.
+    tags:
+      - devotional
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-174-8
+  - id: 46cffe12-7fac-486d-8597-afecee546baa
+    title: Piety Promoted, Volume IV
+    slug: piety-promoted-v4
+    filename: Piety_Promoted_v4
+    description:
+      The full title of this work is, "Piety Promoted in a Collection of the Dying Sayings
+      of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
+      in the Gospel, and Sufferings for the Same." These four volumes extend over a period
+      of more than one hundred and seventy years, and contain concise accounts of the
+      godly lives and remarkable deaths of more than six hundred persons. Among these
+      there is found a great variety in age, condition in life, station in the Church, and
+      growth in spiritual knowledge and experience; but they all agree in a united
+      testimony to the blessed effects of Christ's reign in the soul, and to the
+      consolation and support it furnishes on a death bed.
+    partial_description:
+      Piety Promoted in a Collection of the Dying Sayings of Many of the People Called
+      Quakers, containing concise accounts of the godly lives and remarkable deaths of
+      more than six hundred persons, over a period of more than one hundred and seventy
+      years.
+    tags:
+      - devotional
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-175-5

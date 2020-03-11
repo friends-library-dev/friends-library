@@ -63,7 +63,7 @@ export default class Document {
   }
 
   public get isCompilation(): boolean {
-    return this.friend.slug.startsWith('compila');
+    return this.friend.isCompilationsQuasiFriend;
   }
 
   public get hasNonDraftEdition(): boolean {

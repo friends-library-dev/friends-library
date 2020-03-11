@@ -27,6 +27,7 @@ interface Props {
     };
     friend: {
       gender: 'male' | 'female';
+      isCompilationsQuasiFriend: boolean;
       name: Name;
       born: number | undefined;
       died: number | undefined;
@@ -65,7 +66,9 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
       )}
       <div className="bg-flgray-100 px-8 pt-12 pb-4 lg:px-8">
         <h2 className="text-xl font-sans text-center tracking-wider font-bold mb-8">
-          Books by {friend.name}
+          {friend.isCompilationsQuasiFriend
+            ? `All Compilations (${friend.documents.length})`
+            : `Books by ${friend.name}`}
         </h2>
         <div
           className={cx('flex flex-col items-center ', 'xl:justify-center', {
@@ -98,27 +101,29 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
           })}
         </div>
       </div>
-      <MapBlock
-        friendName={friend.name}
-        residences={friend.residences.flatMap(r => {
-          const place = `${r.city}, ${r.region}`;
-          if (r.durations) {
-            return r.durations.map(d => `${place} (${d.start} - ${d.end})`);
-          }
-          let residence = place;
-          if (friend.born && friend.died) {
-            residence += ` (${friend.born} - ${friend.died})`;
-          } else if (friend.died) {
-            residence += ` (died: ${friend.died})`;
-          }
-          return residence;
-        })}
-        markers={friend.residences.map(r => ({
-          label: `${r.city}, ${r.region}`,
-          top: r.top,
-          left: r.top,
-        }))}
-      />
+      {!friend.isCompilationsQuasiFriend && (
+        <MapBlock
+          friendName={friend.name}
+          residences={friend.residences.flatMap(r => {
+            const place = `${r.city}, ${r.region}`;
+            if (r.durations) {
+              return r.durations.map(d => `${place} (${d.start} - ${d.end})`);
+            }
+            let residence = place;
+            if (friend.born && friend.died) {
+              residence += ` (${friend.born} - ${friend.died})`;
+            } else if (friend.died) {
+              residence += ` (died: ${friend.died})`;
+            }
+            return residence;
+          })}
+          markers={friend.residences.map(r => ({
+            label: `${r.city}, ${r.region}`,
+            top: r.top,
+            left: r.top,
+          }))}
+        />
+      )}
       {quotes.length > 1 && (
         <TestimonialsBlock
           testimonials={quotes.slice(1).map(q => ({ cite: q.source, quote: q.text }))}
@@ -167,6 +172,7 @@ export const query = graphql`
     friend(slug: { eq: $slug }) {
       name
       gender
+      isCompilationsQuasiFriend
       description
       quotes {
         source

@@ -55,6 +55,10 @@ export default class Friend {
     return !this.isMale;
   }
 
+  public get isCompilationsQuasiFriend(): boolean {
+    return this.slug.startsWith('compila');
+  }
+
   public get primaryResidence(): Omit<FriendData['residences'][0], 'duration'> {
     if (this.residences.length === 0) {
       // @TODO BLOCKER should throw, or this should be prohibited by schema
@@ -126,6 +130,7 @@ export default class Friend {
       path: this.path,
       isMale: this.isMale,
       isFemale: this.isFemale,
+      isCompilationsQuasiFriend: this.isCompilationsQuasiFriend,
       alphabeticalName: this.alphabeticalName,
       residences: this.residences,
       quotes: this.quotes,

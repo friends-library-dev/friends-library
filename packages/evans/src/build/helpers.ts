@@ -34,8 +34,8 @@ let friends: Friend[] = [];
 
 export function allFriends(): Friend[] {
   if (!friends.length) {
-    friends = getAllFriends('en')
-      .concat(getAllFriends('es'))
+    friends = getAllFriends('en', true)
+      .concat(getAllFriends('es', true))
       .filter(f => !['Jane Doe', 'John Doe'].includes(f.name));
   }
   return friends;
