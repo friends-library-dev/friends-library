@@ -42,6 +42,7 @@ const DocBlock: React.FC<Props> = props => {
   const wrap = useRef<HTMLDivElement | null>(null);
   const [downloading, setDownloading] = useState<boolean>(false);
   const [addingToCart, setAddingToCart] = useState<boolean>(false);
+  const [recoEbookType, setRecoEbookType] = useState<'epub' | 'mobi'>('epub');
   const [wizardOffset, setWizardOffset] = useState<{ top: number; left: number }>({
     top: -9999,
     left: -9999,
@@ -76,6 +77,13 @@ const DocBlock: React.FC<Props> = props => {
     setWizardOffset({ top, left });
     setTimeout(ensureWizardInViewport, 0);
   };
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    if (userAgent.match(/\b(android|kindle|silk)\b/)) {
+      setRecoEbookType('mobi');
+    }
+  }, []);
 
   useEffect(positionWizard, [downloading, addingToCart, wrap.current]);
   useEffect(() => {
@@ -131,7 +139,7 @@ const DocBlock: React.FC<Props> = props => {
       {downloading && (
         <DownloadWizard
           {...wizardOffset}
-          eBookTypeRecommendation="epub"
+          eBookTypeRecommendation={recoEbookType}
           onSelect={(editionType, fileType) => {
             const edition = props.editions.find(e => e.type === editionType);
             if (edition) {
