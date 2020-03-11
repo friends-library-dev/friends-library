@@ -3,6 +3,32 @@ name: William Edmundson
 slug: william-edmundson
 gender: male
 added: 2019-03-22T12:49:22.000Z
+born: 1627
+died: 1712
+quotes:
+  - source: John Wesley
+    text:
+      I met here with the Journal of William Edmundson, one of their preachers in the last
+      century. If the original equaled the picture, (which I see no reason to doubt,) what
+      an amiable man was this! What faith, love, gentleness, long-suffering! I scruple not
+      to say, “Let my soul be with the soul of William Edmundson!”
+  - source: John Fothergill
+    text:
+      Here I met with our ancient and honourable friend William Edmundson, whom I had a
+      great desire to see, having a deep and reverent value for him from seeing him before
+      in England, though he knew little or nothing of me. I believed, if I was not what I
+      should be, he would not only observe wherein, but would deal plainly with me.
+residences:
+  - city: Little Musgrave
+    region: England
+    durations:
+      - start: 1627
+        end: 1652
+  - city: Mountmellick
+    region: Ireland
+    durations:
+      - start: 1652
+        end: 1712
 description:
   William Edmundson (1627—1712) is generally considered to be both the first and the most
   distinguished member of Society of Friends in Ireland. He was convinced of the truth in
@@ -30,6 +56,11 @@ documents:
       obedience to Christ. But through all he remained faithful, and was preserved in
       strength of body and mind to a good old age, tirelessly serving the church and
       bearing much fruit to the end of his days.
+    partial_description:
+      The journal, epistles, and papers of William Edmundson, giving an account of his
+      convincement of the truth through the preaching of James Nayler, his trials and
+      sufferings for the gospel in Ireland, and his extensive ministerial labors in
+      America, the West Indies, and elsewhere.
     tags:
       - journal
       - letters

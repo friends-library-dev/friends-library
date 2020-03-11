@@ -3,6 +3,19 @@ name: William Shewen
 slug: william-shewen
 gender: male
 added: 2019-12-17T18:57:27.000Z
+born: 1631
+died: 1695
+quotes:
+  - source: William Shewen
+    text:
+      It is a precious thing to know what the cross of Christ is, and how to take it up
+      and make use of it; for indeed, it is no less than the power that crucifies sin, and
+      saves from it. Of this power Christendom is generally ignorant, having set up
+      something else in its stead, and so sin remains alive, uncrucified, and salvation is
+      lacking.
+residences:
+  - city: London
+    region: England
 description:
   William Shewen (1631–1695) was an early member of the Society of Friends who lived in
   London. He does not appear to have been a traveling minister in the society, but was a
@@ -11,7 +24,7 @@ description:
   Meditations and Experiences, is a collection of paragraphs and short treatises, penned
   throughout Shewen's life, describing his own openings and experiences of important
   subjects such as the light of Christ, the kingdom of God, waiting upon the Lord, and
-  overcoming fleshly thoughts and imaginations.
+  overcoming sinful thoughts and imaginations.
 documents:
   - id: 5eae7905-1c99-45ba-8ecd-ffd1cba8be47
     title: Meditations and Experiences
@@ -25,7 +38,12 @@ documents:
       publication, Meditations and Experiences, is a collection of paragraphs and short
       treatises, penned throughout Shewen's life, describing his own openings and
       experiences of important subjects such as the light of Christ, the kingdom of God,
-      waiting upon the Lord, and overcoming fleshly thoughts and imaginations.
+      waiting upon the Lord, and overcoming sinful thoughts and imaginations.
+    partial_description:
+      A collection of writings by William Shewen, including his "Mediations and
+      Experiences" concerning the right way to God, with treatises on several subjects,
+      such as thoughts and imaginations, the nature of true Christian worship, and the
+      life, state, and enjoyment of a true Christian.
     tags:
       - devotional
       - doctrinal

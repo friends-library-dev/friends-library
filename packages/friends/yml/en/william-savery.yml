@@ -3,6 +3,27 @@ name: William Savery
 slug: william-savery
 gender: male
 added: 2019-02-14T16:55:00.000Z
+born: 1750
+died: 1804
+quotes:
+  - source: Jonathan Evans
+    text:
+      I was intimately acquainted with William Savery, and esteemed him as a brother
+      beloved. His submission to the power of Divine love in his own heart, by which he
+      was brought out of sin and corruption, and his indefatigable devotion to the cause
+      of Christ, present an instructive example, calculated to invite old and young to
+      diligence and faithfulness in the path of manifested duty.
+  - source: Thomas Scattergood
+    text:
+      William Savery closed the meeting in solemn prayer, in which I united with tears,
+      and perhaps I never felt greater love for him at any time in my life than in this
+      meeting. I spent the evening with him, and took an affectionate farewell; and this
+      was the language of my soul when I left him; O Fountain of mercy, be with my dear
+      fellow servant, and safely waft him over the great deep to his family and friends in
+      peace.
+residences:
+  - city: Philadelphia
+    region: Pennsylvania
 description:
   Though raised by godly parents, William Savery (1750-1804) turned aside from the path of
   peace and joined in company with vain and careless youth until the twenty-eighth year of
@@ -18,7 +39,7 @@ documents:
   - id: 25755480-7f1c-4f7f-8900-3f472001fae4
     title: The Journal of William Savery
     original_title:
-      A Journal Of the Life, Travels and Religious Labours of William Savery, A Minister
+      A Journal of the Life, Travels and Religious Labours of William Savery, A Minister
       of the Gospel of Christ, In the Society of Friends, Late of Philadelphia Compiled
       From His Original Memoranda, by Jonathan Evans.
     slug: journal
@@ -35,6 +56,11 @@ documents:
       accompanying them in their treaties and negotiations with the United States
       government, doing all in his power to ensure that they were not misled or
       mistreated.
+    partial_description:
+      A journal of the life, travels, and Christian labors of William Savery, giving a
+      relation of his awakening to truth when twenty-eight years of age, his call to the
+      ministry, his involvement as an advocate for the Native Americans, and his services
+      as a minister of the gospel in America, Canada, and Europe.
     tags:
       - journal
     editions:

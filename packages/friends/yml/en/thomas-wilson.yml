@@ -3,6 +3,32 @@ name: Thomas Wilson
 slug: thomas-wilson
 gender: male
 added: 2019-03-22T01:44:33.000Z
+born: 1654
+died: 1725
+quotes:
+  - source: James Dickinson
+    text:
+      Though [Thomas Wilson] had a large gift [in the ministry], beyond many, yet he was
+      glad to hear the least child who spoke from the motion of God's Spirit, having
+      learned to cast down his crown at the feet of the Lamb, for whose exaltation he was
+      given up to spend and be spent.
+  - source: Thomas Story
+    text:
+      In a particular manner, I became nearly united in the divine love and life of truth
+      with my much esteemed friend Thomas Wilson, then of Cumberland, and afterwards of
+      Ireland; who was to me the most able and powerful minister of the Word of Life in
+      the age.
+residences:
+  - city: Whitehaven
+    region: England
+    durations:
+      - start: 1654
+        end: 1695
+  - city: Edenderry
+    region: Ireland
+    durations:
+      - start: 1695
+        end: 1725
 description:
   Thomas Wilson (1654-1725) was an esteemed minister in the early Society of Friends,
   whose dedicated life manifested the "sweet savor of the knowledge of Christ in every
@@ -28,6 +54,11 @@ documents:
       the humble and confounded the minds of adversaries. His godly example in life, great
       humility, and self-denial greatly adorned his ministry, and he was made a watchful
       shepherd over the flock of Christ in England, Ireland, Scotland, and America.
+    partial_description:
+      A journal of the life, travels, and gospel labors of Thomas Wilson, relating his
+      experiences when young of the "ingrafted Word," his call to preach the gospel, first
+      at home and then elsewhere, and his diligence and effectiveness in the work of the
+      ministry.
     tags:
       - journal
       - letters
@@ -36,3 +67,10 @@ documents:
         isbn: 978-1-64476-146-5
       - type: original
         isbn: 978-1-64476-147-2
+    related_documents:
+      - id: d0d15232-db51-48fc-a8ed-5e0b206f9a3f
+        description:
+          James Dickinson was Thomas Wilson's intimate friend and most frequent companion
+          in the work of the ministry. Together they traveled and labored in near gospel
+          fellowship throughout most parts of England, Ireland, Wales, West Indies, and
+          the American Colonies.

@@ -3,6 +3,17 @@ name: William Caton
 slug: william-caton
 gender: male
 added: 2019-05-06T17:44:17.000Z
+born: 1636
+died: 1665
+quotes:
+  - source: George Fox
+    text:
+      +++[William Caton] was like unto Timothy, who, after he was converted, was an
+      example both in innocency, simplicity and purity in his life and conduct; for they
+      did preach, as well as his doctrine, in the churches of Christ.
+residences:
+  - city: Ulverstone
+    region: England
 description:
   William Caton (1636-1665) was just sixteen years old, and residing in the home of
   Margaret Fell in Swarthmore, when George Fox first came and preached the everlasting
@@ -32,6 +43,11 @@ documents:
       the spreading of the Truth and the prosperity of it. He had many trials and
       exercises by false brethren, backsliders, and apostates, and among priests and
       professors, but the Lord gave him dominion over all."
+    partial_description:
+      A journal of the life of that faithful minister of the gospel, William Caton,
+      relating his convincement of the truth while residing at Swarthmore (the home of
+      Margaret Fell), his growth in the truth and travels in England and Holland; to which
+      are appended a section of his letters.
     tags:
       - journal
       - letters
