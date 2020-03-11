@@ -159,12 +159,14 @@ const DocBlock: React.FC<Props> = props => {
           <h1 className="font-sans text-3xl md:text-2-5xl font-bold leading-snug mt-8 tracking-wider mb-6">
             {title}
           </h1>
-          <h2 className="font-sans text-1-5xl md:text-xl subpixel-antialiased leading-loose mb-8">
-            <i className="font-serif tracking-widest pr-1">by:</i>{' '}
-            <Link className="strong-link" to={authorUrl}>
-              {author}
-            </Link>
-          </h2>
+          {!props.isCompilation && (
+            <h2 className="font-sans text-1-5xl md:text-xl subpixel-antialiased leading-loose mb-8">
+              <i className="font-serif tracking-widest pr-1">by:</i>{' '}
+              <Link className="strong-link" to={authorUrl}>
+                {author}
+              </Link>
+            </h2>
+          )}
           <p className="font-serif text-xl md:text-lg antialiased leading-relaxed">
             {description}
           </p>

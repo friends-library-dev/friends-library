@@ -158,7 +158,7 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
       {otherBooks.length > 0 && (
         <div className="p-8 pt-12 bg-flgray-100">
           <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
-            Other Books by this Author
+            {document.isCompilation ? 'Other Compilations' : 'Other Books by this Author'}
           </h1>
           <div className="xl:flex justify-center">
             {otherBooks.map(book => (

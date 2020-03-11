@@ -98,6 +98,11 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           red(`Unexpected missing audio filesize data: ${edition.path}`);
         }
 
+        if (!editionMeta.published) {
+          red(`Unexpected missing publish date for edition: ${edition.path}`);
+          process.exit(1);
+        }
+
         return {
           ...edition.toJSON(),
           ...cartItemData(edition, pages),

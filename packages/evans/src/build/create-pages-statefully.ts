@@ -16,7 +16,7 @@ const createPagesStatefully: GatsbyNode['createPagesStatefully'] = ({
     .filter(f => f.hasNonDraftDocument)
     .forEach(friend => {
       createPage({
-        path: friendUrl(friend),
+        path: friend.isCompilationsQuasiFriend ? friend.slug : friendUrl(friend),
         component: FriendPage,
         context: {
           slug: friend.slug,
