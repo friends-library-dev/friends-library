@@ -6,6 +6,7 @@ export { default as PopUnder } from './PopUnder';
 export { default as SlideoverMenu } from './SlideoverMenu';
 export { default as RelatedBookCard } from './RelatedBookCard';
 export { default as MultiBookBgBlock } from './blocks/MultiBookBgBlock';
+export { default as NotFoundHeroBlock } from './blocks/NotFoundHeroBlock';
 export { default as DuoToneWaveBlock } from './blocks/DuoToneWaveBlock';
 export { default as AudiobooksHero } from './blocks/AudiobooksHero';
 export { default as PathBlock } from './pages/getting-started/PathBlock';

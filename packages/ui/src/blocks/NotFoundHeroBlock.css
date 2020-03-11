@@ -1,0 +1,14 @@
+.NotFoundHeroBlock {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),
+    url(../images/sheep.jpg);
+  background-size: 1500px;
+  background-position: center 700px;
+}
+
+.NotFoundHeroBlock form {
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.NotFoundHeroBlock input {
+  background-color: rgba(255, 255, 255, 0.75);
+}
