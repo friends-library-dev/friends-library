@@ -46,7 +46,7 @@ const Spine: React.FC<Props> = ({
         fragments,
         <div
           className="spine__title"
-          dangerouslySetInnerHTML={{ __html: prepareTitle(title, author) }}
+          dangerouslySetInnerHTML={{ __html: prepareTitle(title, author, 'spine') }}
         />,
       )}
       {overridable(

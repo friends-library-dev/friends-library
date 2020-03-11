@@ -66,7 +66,7 @@ const FrontMain: React.FC<Props> = ({
         <div className="title-wrap">
           <h1
             className="title"
-            dangerouslySetInnerHTML={{ __html: prepareTitle(title, author) }}
+            dangerouslySetInnerHTML={{ __html: prepareTitle(title, author, 'front') }}
           />
         </div>,
       )}
