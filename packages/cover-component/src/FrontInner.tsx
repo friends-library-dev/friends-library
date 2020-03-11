@@ -1,6 +1,6 @@
 import React from 'react';
 import { CoverProps } from '@friends-library/types';
-import { overridable, getHtmlFragments } from './helpers';
+import { overridable, getHtmlFragments, prepareAuthor } from './helpers';
 import { dynamifyCss } from './css/helpers';
 import LogoIcon from './LogoIcon';
 import FrontMain from './FrontMain';
@@ -22,7 +22,7 @@ type Props = Pick<
 };
 
 const FrontInner: React.FC<Props> = props => {
-  const { lang, author, style, customHtml, customCss } = props;
+  const { lang, author, style, customHtml, customCss, title, isCompilation } = props;
   const fragments = getHtmlFragments(customHtml);
   return (
     <div className="front has-bg" style={style || {}}>
@@ -39,7 +39,9 @@ const FrontInner: React.FC<Props> = props => {
           fragments,
           <div className="author">
             <div className="author__line" />
-            <h2 className="author__name">{author}</h2>
+            <h2 className="author__name">
+              {prepareAuthor(author, title, isCompilation, lang)}
+            </h2>
           </div>,
         )}
       </div>
