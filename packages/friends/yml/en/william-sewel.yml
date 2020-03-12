@@ -2,6 +2,18 @@ id: 045aa005-fac5-43ac-91b6-3f6e6ed87498
 name: William Sewel
 slug: william-sewel
 gender: male
+born: 1653
+died: 1720
+quotes:
+  - source: John Spalding
+    text:
+      About this time I read Sewel's "History of the Quakers," which I think removed every
+      objection, and confirmed me in my opinion of the truth of their principles. Their
+      severe sufferings, their patience under them, and honest boldness before kings and
+      rulers, convinced me that nothing but a divine power could have supported them.
+residences:
+  - city: Amsterdam
+    region: Netherlands
 description:
   William Sewel (1653-1720), being a Quaker himself, an honest and meticulous researcher,
   and an eye-witness to many of the events described in his writings, has long been
@@ -25,6 +37,10 @@ documents:
       who awoke from the lifeless and formal religion of their day, submitted
       whole-heartedly to the teachings of the Spirit of truth, and so returned to the
       original life, light, power, and purity of primitive Christianity.
+    partial_description:
+      The most accurate and exhaustive history of the Society of Friends, long considered
+      the foremost authority on the true rise, increase, and progress of this Christian
+      people during their first sixty-five years.
     tags:
       - journal
     editions:
@@ -48,6 +64,11 @@ documents:
       were placed under house arrest. After three months, they were moved to a local
       prison where they endured nearly four years of cruel treatment at the hands of the
       Inquisition in attempting to force their conversion to Catholicism.
+    partial_description:
+      A selection from William Sewel's History of the Christian People called Quakers,
+      giving an account of the sufferings, faithfulness, and Christian experiences of
+      Catherine Evans and Sarah Cheevers, during their four years of imprisonment under
+      the Catholic Inquisition.
     tags:
       - history
       - letters
