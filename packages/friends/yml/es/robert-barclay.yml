@@ -3,6 +3,11 @@ name: Robert Barclay
 slug: robert-barclay
 gender: male
 added: 2019-05-08T14:50:59.000Z
+born: 1648
+died: 1690
+residences:
+  - city: Ury
+    region: Scotland
 description: TODO
 documents:
   - id: 398c7f5a-3fa4-4a29-a275-a0f33920ce08

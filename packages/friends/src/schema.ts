@@ -1,5 +1,7 @@
 import { Schema } from 'jsonschema';
 
+const STRICT = process.env.SCHEMA === 'strict';
+
 export default {
   type: 'object',
   additionalProperties: false,
@@ -13,7 +15,7 @@ export default {
     description: { type: 'string', required: true },
     slug: { $ref: '/slug', required: true },
     born: { type: 'integer', required: false, minimum: 1600, maximum: 1900 },
-    died: { type: 'integer', required: false, minimum: 1640, maximum: 1950 },
+    died: { type: 'integer', required: STRICT, minimum: 1640, maximum: 1950 },
     added: { type: 'date', required: false },
     quotes: {
       type: 'array',
@@ -23,7 +25,7 @@ export default {
     },
     residences: {
       type: 'array',
-      required: false,
+      required: STRICT,
       minItems: 1,
       items: { $ref: '/residence' },
     },
@@ -179,7 +181,7 @@ const subSchemas: Record<string, Schema> = {
         type: 'string',
         minLength: 150,
         maxLength: 400,
-        required: false,
+        required: STRICT,
       },
       filename: {
         type: 'string',

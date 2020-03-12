@@ -2,7 +2,12 @@ id: b435f143-71fa-4761-afa6-15a730c06e35
 name: Thomas Story
 slug: thomas-story
 gender: male
+born: 1748
+died: 1814
 added: 2019-05-08T15:02:02.000Z
+residences:
+  - city: Carlisle
+    region: England
 description: TODO
 documents:
   - id: 17d5addc-df02-450b-8fc8-f845292af618

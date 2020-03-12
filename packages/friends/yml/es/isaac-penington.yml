@@ -5,6 +5,9 @@ gender: male
 added: 2019-05-08T13:27:08.000Z
 born: 1616
 died: 1679
+residences:
+  - city: Jordans
+    region: England
 description:
   Isaac Penington (1616–1679) fue criado en una familia rica e influyente, y cultivado y
   pulido con una buena y amplia educación. Sin embargo, las aspiraciones de Penington,

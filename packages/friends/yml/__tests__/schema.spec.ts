@@ -22,9 +22,18 @@ const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'))
   .map(({ path, contents }) => ({ path, json: safeLoad(contents) }));
 
 files.forEach(({ path, json }) => {
-  it(`${path} should validate against schema`, () => {
+  const lang = path.startsWith('en') ? '(english)' : '(spanish)';
+
+  it(`${path} ${lang} should validate against schema`, () => {
+    let useSchema = schema;
+    if (path.match(/^e(n|s)\/compila(tions|ciones)\.yml$/)) {
+      useSchema = JSON.parse(JSON.stringify(schema));
+      useSchema.properties.residences.required = false;
+      useSchema.properties.died.required = false;
+    }
+
     // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
-    const result = validator.validate(json, schema);
+    const result = validator.validate(json, useSchema);
     if (result.errors.length) {
       throw new Error(`${result.errors.map(e => e.stack).join('\n')}`);
     }

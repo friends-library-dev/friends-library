@@ -4,12 +4,21 @@ slug: george-fox
 added: 2018-05-01T04:00:00.000Z
 gender: male
 description: Description here.
+born: 1650
+died: 1700
+residences:
+  - city: London
+    region: England
 documents:
   - id: d3f5e306-433f-40e5-ab8c-68f9c0486713
     title: The Journal of George Fox
     slug: journal
     filename: Journal_of_George_Fox
     description: Document description.
+    partial_description:
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     tags:
       - journal
     editions:
