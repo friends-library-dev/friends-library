@@ -60,12 +60,10 @@ export default class Friend {
   }
 
   public get primaryResidence(): Omit<FriendData['residences'][0], 'duration'> {
-    if (this.residences.length === 0) {
-      // @TODO BLOCKER should throw, or this should be prohibited by schema
-      // once we have data entry finished
+    if (this.isCompilationsQuasiFriend) {
       return {
-        city: 'London',
-        region: 'England',
+        city: 'mixed (compilation)',
+        region: 'mixed (compilation)',
       };
     }
 

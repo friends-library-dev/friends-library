@@ -3,6 +3,24 @@ name: William Penn
 slug: william-penn
 gender: male
 added: 2019-03-06T20:45:49.000Z
+born: 1644
+died: 1718
+residences:
+  - city: London
+    region: England
+    durations:
+      - start: 1644
+        end: 1682
+  - city: Philadelphia
+    region: Pennsylvania
+    durations:
+      - start: 1682
+        end: 1701
+  - city: Ruscombe
+    region: England
+    durations:
+      - start: 1701
+        end: 1718
 description: TODO
 documents:
   - id: 0089dff8-b287-4b8f-9418-543fa4cc6ffb
