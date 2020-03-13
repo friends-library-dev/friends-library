@@ -30,7 +30,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     const friendProps = {
       ...friend.toJSON(),
       friendId: friend.id,
-      residences: residences(friend),
+      residences: residences(friend.residences),
       url: url.friendUrl(friend),
     };
 

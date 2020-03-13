@@ -2,6 +2,11 @@ id: f4205691-c59f-46a7-a6b4-945a0f0b99e8
 name: John Kendall
 slug: john-kendall
 gender: male
+born: 1726
+died: 1815
+residences:
+  - city: Colchester
+    region: England
 description: TODO
 documents:
   - id: 671213db-60a7-42ed-9c07-4785e321de26

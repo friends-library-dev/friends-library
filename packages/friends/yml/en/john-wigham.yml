@@ -12,7 +12,7 @@ residences:
       - start: 1749
         end: 1774
   - city: Aberdeen
-    region: Ireland
+    region: Scotland
     durations:
       - start: 1784
         end: 1839

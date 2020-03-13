@@ -14,6 +14,14 @@ quotes:
 residences:
   - city: Ulverstone
     region: England
+    durations:
+      - start: 1636
+        end: 1660
+  - city: Amsterdam
+    region: Netherlands
+    durations:
+      - start: 1660
+        end: 1665
 description:
   William Caton (1636-1665) was just sixteen years old, and residing in the home of
   Margaret Fell in Swarthmore, when George Fox first came and preached the everlasting
