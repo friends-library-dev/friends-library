@@ -35,7 +35,7 @@ const LocationMarker: React.FC<Props> = ({
     </svg>
     <label
       onClick={() => onClick(label)}
-      className={`text-${tailwindColor} uppercase sans text-xs font-bold absolute`}
+      className={`text-${tailwindColor} uppercase whitespace-no-wrap sans text-xs font-bold absolute`}
       style={{
         top: `${top}%`,
         left: `${left}%`,

@@ -24,7 +24,7 @@ residences:
     durations:
       - start: 1737
         end: 1744
-  - city: Mountmelick
+  - city: Mountmellick
     region: Ireland
     durations:
       - start: 1744

@@ -46,6 +46,7 @@ interface Props {
         region: string;
         top: number;
         left: number;
+        map: 'UK' | 'US' | 'Europe';
         durations?: {
           start: number;
           end: number;
@@ -117,10 +118,11 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
             }
             return residence;
           })}
+          map={friend.residences[0].map}
           markers={friend.residences.map(r => ({
             label: `${r.city}, ${r.region}`,
             top: r.top,
-            left: r.top,
+            left: r.left,
           }))}
         />
       )}
