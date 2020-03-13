@@ -6,7 +6,6 @@ import Button from '../../Button';
 import ClockIcon from '../../icons/Clock';
 import TagsIcon from '../../icons/Tags';
 import AudioIcon from '../../icons/Audio';
-import DownloadIcon from '../../icons/Download';
 import './BookByFriend.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
@@ -92,10 +91,6 @@ const BookByFriend: React.FC<Props> = props => {
               Audio Book
             </li>
           )}
-          <li className="text-sans w-1/2">
-            <DownloadIcon className="mr-2" />
-            211 Downloads
-          </li>
         </ul>
         <div className="flex flex-col items-center">
           <Button className="mt-6 md:mt-10" to={props.bookUrl}>
