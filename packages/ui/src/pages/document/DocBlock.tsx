@@ -54,11 +54,16 @@ const DocBlock: React.FC<Props> = props => {
     }
     // i should lose my React license for this
     let visibleBtnRect: DOMRect | undefined;
-    document.querySelectorAll('.DocBlock .MultiPill > button').forEach((btn, idx) => {
-      if (visibleBtnRect && downloading) return;
-      if (visibleBtnRect && addingToCart && idx > 1) return;
+    document.querySelectorAll('.DocBlock .MultiPill > button').forEach(btn => {
       const rect = btn.getBoundingClientRect();
-      if (rect.width && rect.height) {
+      if (!rect.width && !rect.height) {
+        return;
+      }
+      const text = (btn.textContent || '').toLowerCase();
+      if (
+        (downloading && text.match(/download|descargar/)) || // @TODO check spanish!
+        (addingToCart && text.includes('.'))
+      ) {
         visibleBtnRect = rect;
       }
     });
