@@ -70,3 +70,17 @@ documents:
         isbn: 978-1-64476-049-9
       - type: original
         isbn: 978-1-64476-050-5
+  - id: 6f47a04b-de86-4646-ba0f-52c7bdbd2ae3
+    title: History of the Quakers, Volume I
+    original_title:
+      A History of the People called Quakers, from their First Rise to the Present Time,
+      Volume I
+    slug: history-of-the-quakers
+    filename: History_of_the_Quakers_v1
+    description: TODO
+    tags:
+      - history
+    editions:
+      - type: original
+        draft: true
+        isbn: 978-1-64476-192-2
