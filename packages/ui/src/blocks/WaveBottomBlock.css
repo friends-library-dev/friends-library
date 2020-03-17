@@ -1,0 +1,22 @@
+.WaveBottomBlock {
+  background-image: url('../images/waves/blue-600.svg'),
+    url('../images/waves/blue-800.svg'), url('../images/waves/blue-400.svg');
+  background-repeat: no-repeat;
+  background-position: left 53% bottom -70px, left 45% bottom -44px, left 58% bottom -10px;
+  background-size: 5900px 305px, 5000px 405px, 5000px 405px;
+}
+
+.WaveBottomBlock--gold {
+  background-image: url('../images/waves/gold-600.svg'),
+    url('../images/waves/gold-800.svg'), url('../images/waves/gold-400.svg');
+}
+
+.WaveBottomBlock--green {
+  background-image: url('../images/waves/green-600.svg'),
+    url('../images/waves/green-800.svg'), url('../images/waves/green-400.svg');
+}
+
+.WaveBottomBlock--maroon {
+  background-image: url('../images/waves/maroon-600.svg'),
+    url('../images/waves/maroon-800.svg'), url('../images/waves/maroon-400.svg');
+}

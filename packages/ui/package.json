@@ -7,6 +7,7 @@
   "author": "jared@netrivet.com",
   "license": "MIT",
   "scripts": {
+    "make:waves": "node ./make-waves.js",
     "compile": "cd ../../ && yarn compile ui",
     "storybook": "node ./pre-build.js && start-storybook -p 6006 --ci",
     "start": "yarn storybook",

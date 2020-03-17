@@ -140,6 +140,7 @@ storiesOf('Friend page/MapBlock', module).add('basic', () => (
       'Scotland (1825 - 1829)',
       'Ireland (1829 - 1891)',
     ]}
+    map="UK"
     markers={[
       {
         label: 'London, England',
