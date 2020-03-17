@@ -49,6 +49,7 @@ const addressSchema = {
 const UUID = /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i;
 
 validator.addSchema(addressSchema, '/address');
+validator.addSchema({ enum: ['en', 'es'] }, '/lang');
 validator.addSchema({ enum: ['s', 'm', 'xl'] }, '/print-size');
 validator.addSchema({ enum: ['original', 'modernized', 'updated'] }, '/edition');
 validator.addSchema({ type: 'integer', minimum: 4 }, '/pages');

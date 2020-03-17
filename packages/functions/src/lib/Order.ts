@@ -58,6 +58,10 @@ const schema = new mongoose.Schema(
     },
     items: [
       {
+        title: {
+          type: String,
+          required: true,
+        },
         document_id: {
           type: String,
           required: true,
@@ -110,6 +114,11 @@ const schema = new mongoose.Schema(
         maxlength: 2,
         minLength: 2,
       },
+    },
+    lang: {
+      type: String,
+      required: true,
+      enum: ['en', 'es'],
     },
   },
   { timestamps: true },

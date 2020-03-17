@@ -17,6 +17,7 @@ export default async function createOrder(
   }
 
   const order = new Order({
+    lang: data.lang,
     email: data.email,
     items: data.items.map(i => ({
       ...i,
@@ -80,30 +81,34 @@ export const schema = {
     taxes: { type: 'integer' },
     shipping: { type: 'integer' },
     ccFeeOffset: { type: 'integer' },
+    lang: { $ref: '/lang' },
     items: {
       type: 'array',
       minItems: 1,
       items: {
         type: 'object',
         properties: {
+          title: { type: 'string' },
           documentId: { $ref: '/uuid' },
           printSize: { $ref: '/print-size' },
           quantity: { $ref: '/book-qty' },
           unitPrice: { type: 'integer' },
         },
-        required: ['documentId', 'edition', 'quantity', 'unitPrice'],
+        required: ['documentId', 'title', 'edition', 'quantity', 'unitPrice'],
       },
     },
   },
-  required: ['amount', 'email', 'address', 'items'],
+  required: ['amount', 'email', 'address', 'items', 'lang'],
   example: {
     amount: 1111,
     taxes: 0,
     shipping: 399,
     ccFeeOffset: 42,
     email: 'user@example.com',
+    lang: 'en',
     items: [
       {
+        title: 'Journal of George Fox (modernized)',
         documentId: '6b0e134d-8d2e-48bc-8fa3-e8fc79793804',
         edition: 'modernized',
         quantity: 1,

@@ -2,12 +2,13 @@ import fetch from 'node-fetch';
 import mailer from '@sendgrid/mail';
 import { APIGatewayEvent } from 'aws-lambda';
 import { CheckoutError, checkoutErrors as Err } from '@friends-library/types';
+import env from '@friends-library/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import mongoose from 'mongoose';
 import { find, persistAll } from '../lib/Order';
 import { getAuthToken } from '../lib/lulu';
-import env from '@friends-library/env';
+import { orderShippedEmail } from '../lib/email';
 
 type Orders = mongoose.Document[];
 
@@ -93,10 +94,9 @@ async function sendShipmentTrackingEmails(
     // for a huge order, this just gets the first tracking url, but probably good enough
     const trackingUrl = job.line_items[0].tracking_urls[0];
     return {
+      ...orderShippedEmail(order, trackingUrl),
       to: order.get('email'),
       from: 'app@friendslibrary.com',
-      subject: 'Your Friends Library order has shipped!',
-      text: `Here is your tracking url: \n${trackingUrl}`,
       mailSettings: { sandboxMode: { enable: process.env.NODE_ENV !== 'production' } },
     };
   });

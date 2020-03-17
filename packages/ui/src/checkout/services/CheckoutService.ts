@@ -2,6 +2,7 @@ import { checkoutErrors as Err } from '@friends-library/types';
 import CheckoutApi, { ApiResponse } from './CheckoutApi';
 import Cart from '../models/Cart';
 import { PrintJobStatus } from '@friends-library/types';
+import { LANG } from '../../env';
 
 /**
  * CheckoutService exists to orchestrate the series of lambda invocations
@@ -225,7 +226,9 @@ export default class CheckoutService {
       ccFeeOffset,
       email: this.cart.email,
       address: this.cart.address,
+      lang: LANG,
       items: this.cart.items.map(item => ({
+        title: item.printJobTitle(0),
         documentId: item.documentId,
         edition: item.edition,
         quantity: item.quantity,
