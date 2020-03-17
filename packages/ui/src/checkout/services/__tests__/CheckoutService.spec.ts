@@ -84,6 +84,7 @@ describe('CheckoutService()', () => {
       await service.createOrder();
 
       expect(createOrder).toHaveBeenCalledWith({
+        lang: 'en',
         amount: service.cart.subTotal() + 2, // 2 = sum of all fees
         shipping: 1,
         taxes: 0,
@@ -91,6 +92,7 @@ describe('CheckoutService()', () => {
         email: service.cart.email,
         address: service.cart.address,
         items: service.cart.items.map(i => ({
+          title: i.printJobTitle(0),
           documentId: i.documentId,
           edition: i.edition,
           quantity: i.quantity,

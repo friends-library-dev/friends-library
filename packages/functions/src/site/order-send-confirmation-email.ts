@@ -2,11 +2,11 @@ import { APIGatewayEvent } from 'aws-lambda';
 import * as slack from '@friends-library/slack';
 import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
-import stripIndent from 'strip-indent';
 import env from '@friends-library/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { findById } from '../lib/Order';
+import { orderConfirmationEmail } from '../lib/email';
 
 export default async function sendOrderConfirmationEmail(
   { path }: APIGatewayEvent,
@@ -43,10 +43,9 @@ export default async function sendOrderConfirmationEmail(
   const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');
   mailer.setApiKey(SENDGRID_API_KEY);
   const [res] = await mailer.send({
+    ...orderConfirmationEmail(order),
     to: order.get('email'),
     from: 'app@friendslibrary.com',
-    subject: `[,] -- Order: ${orderId}`,
-    text: emailText(order.id),
     mailSettings: {
       sandboxMode: {
         enable: process.env.NODE_ENV !== 'production',
@@ -59,19 +58,4 @@ export default async function sendOrderConfirmationEmail(
   }
 
   respond.noContent();
-}
-
-function emailText(orderId: string): string {
-  return stripIndent(`
-    Thanks for ordering from Friends Library Publishing!
-
-    For your reference, your order id is
-
-    ${orderId}
-
-    We'll be sending you one more email in a few days with your tracking number, as soon as it ships.
-
-    Please don't hesitate to let us know if you have any questions!
-
-    - Friends Library Publishing`);
 }

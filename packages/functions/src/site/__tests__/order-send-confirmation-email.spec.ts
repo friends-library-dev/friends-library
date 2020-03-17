@@ -13,7 +13,15 @@ jest.mock('@sendgrid/mail', () => ({
 
 const mockOrder = {
   id: '123',
-  get: jest.fn(() => 'test@foo.com'),
+  get: jest.fn((what: any) => {
+    switch (what) {
+      case 'items':
+        return [];
+      case 'address.name':
+        return 'Jared Henderson';
+    }
+    return 'test@foo.com';
+  }),
 };
 jest.mock('../../lib/Order', () => ({
   __esModule: true,
@@ -53,13 +61,12 @@ describe('sendOrderConfirmationEmail()', () => {
   it('should send custom email data', async () => {
     (<jest.Mock>findById).mockResolvedValueOnce({
       id: '345',
-      get: () => 'foo@bar.com',
+      get: (what: any) => (what === 'email' ? 'foo@bar.com' : undefined),
     });
     await invokeCb(sendConfirmation, {
       path: '/site/orders/345/confirmation-email',
     });
     expect((<jest.Mock>mailer.send).mock.calls[0][0].to).toBe('foo@bar.com');
-    expect((<jest.Mock>mailer.send).mock.calls[0][0].subject).toContain('345');
     expect((<jest.Mock>mailer.send).mock.calls[0][0].text).toContain('345');
   });
 });
