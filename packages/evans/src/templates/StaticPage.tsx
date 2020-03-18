@@ -5,9 +5,11 @@ import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MultiBookBgBlock } from '@friends-library/ui';
 import Layout from '../components/Layout';
+import { SiteMetadata } from '../types';
 
 interface Props {
   data: {
+    site: SiteMetadata;
     audioBooks: {
       totalCount: number;
     };
@@ -79,7 +81,7 @@ const components: { [key: string]: React.FC } = {
 };
 
 const StaticPage: React.FC<Props> = ({ data }) => {
-  const { mdx, audioBooks } = data;
+  const { mdx, audioBooks, site } = data;
   const { body, frontmatter } = mdx;
   return (
     <Layout>
@@ -96,6 +98,8 @@ const StaticPage: React.FC<Props> = ({ data }) => {
           <MDXRenderer>
             {body
               .replace(/%AUDIOBOOK_COUNT%/g, String(audioBooks.totalCount))
+              .replace(/%NUM_SPANISH_BOOKS%/g, String(site.meta.numSpanishBooks))
+              .replace(/%NUM_ENGLISH_BOOKS%/g, String(site.meta.numEnglishBooks))
               .replace(/ -- /g, ' — ')}
           </MDXRenderer>
         </MDXProvider>
@@ -108,6 +112,9 @@ export default StaticPage;
 
 export const pageQuery = graphql`
   query($path: String!) {
+    site {
+      ...SiteMetadata
+    }
     audioBooks: allDocument(filter: { hasAudio: { eq: true } }) {
       totalCount
     }
