@@ -173,6 +173,10 @@ const subSchemas: Record<string, Schema> = {
     properties: {
       id: { $ref: '/uuid', required: true },
       alt_language_id: { $ref: '/uuid', required: false },
+      region: {
+        enum: ['England', 'Ireland', 'Scotland', 'Western US', 'Eastern US'],
+        required: false,
+      },
       title: { type: 'string', required: true },
       original_title: { type: 'string', required: false },
       published: { type: 'integer', required: false },

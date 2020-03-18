@@ -202,7 +202,7 @@ const pileOfBooks = [
     date: 1650,
   }),
   book({
-    region: 'Northern US',
+    region: 'Eastern US',
     author: 'George Fox',
     title: 'The Journal of George Fox',
     documentUrl: '/fox/journal',
@@ -223,7 +223,7 @@ const pileOfBooks = [
     date: 1700,
   }),
   book({
-    region: 'Southern US',
+    region: 'Eastern US',
     author: 'Robert Barclay',
     title: 'Saved to the Uttermost',
     documentUrl: '/barclay/saved',
@@ -237,7 +237,7 @@ const pileOfBooks = [
     date: 1850,
   }),
   book({
-    region: 'Southern US',
+    region: 'Western US',
     author: 'Joseph Phipps',
     title: 'The Original and Present State of Man',
     documentUrl: '/phipps/state',

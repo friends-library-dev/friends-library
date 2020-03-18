@@ -21,18 +21,18 @@ const SelectableMap: React.FC<Props> = ({
   return (
     <div className={cx(className, 'SelectableMap relative')} style={style}>
       <LocationMarker
-        className={selectedRegion === 'Southern US' ? 'selected' : ''}
+        className={selectedRegion === 'Eastern US' ? 'selected' : ''}
         onClick={selectRegion}
-        label="Southern US"
-        top={75.5}
-        left={12.5}
+        label="Eastern US"
+        top={64.0}
+        left={17.5}
       />
       <LocationMarker
-        className={selectedRegion === 'Northern US' ? 'selected' : ''}
+        className={selectedRegion === 'Western US' ? 'selected' : ''}
         onClick={selectRegion}
-        label="Northern US"
-        top={65}
-        left={16}
+        label="Western US"
+        top={62}
+        left={11}
       />
       <LocationMarker
         className={selectedRegion === 'England' ? 'selected' : ''}
