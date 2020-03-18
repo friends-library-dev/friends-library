@@ -74,7 +74,7 @@ const TimelineBlock: React.FC<Props> = ({ books }) => {
         </div>
         <BookSlider
           books={books
-            .filter(b => b.date >= date && b.date <= nextDate)
+            .filter(b => b.date >= date && b.date < nextDate)
             .sort((a, b) => (a.date < b.date ? -1 : 1))}
         />
       </div>
