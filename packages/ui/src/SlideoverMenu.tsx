@@ -38,6 +38,7 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             ['/quakers', 'About the Quakers'],
             ['/modernization', 'About Modernization'],
             ['/editions', 'About Book Editions'],
+            ['/spanish-translations', 'About Spanish Books'],
             ['/about', 'About This Site'],
           ]}
         />
