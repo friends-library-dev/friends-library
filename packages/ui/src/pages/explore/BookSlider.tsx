@@ -70,7 +70,9 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
               'md:px-6 md:mb-0',
             )}
           >
-            <Front {...book} className="" size="m" scaler={1 / 4} scope="1-4" shadow />
+            <Link to={book.documentUrl}>
+              <Front {...book} className="" size="m" scaler={1 / 4} scope="1-4" shadow />
+            </Link>
             <h3 className="my-4 tracking-wider text-base text-flgray-900 md:mb-2 md:pb-1">
               {book.title}
             </h3>

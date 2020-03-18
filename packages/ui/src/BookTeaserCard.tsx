@@ -46,9 +46,15 @@ const BookTeaserCard: React.FC<Props> = props => {
       >
         <div className="relative">
           {badgeText && <Badge>{badgeText}</Badge>}
-          {isAudio && <Album {...props} className="" />}
+          {isAudio && (
+            <Link to={`${props.documentUrl}#ListenBlock`}>
+              <Album {...props} className="" />
+            </Link>
+          )}
           {!isAudio && (
-            <Front {...props} className="" size="m" scaler={1 / 3} scope="1-3" shadow />
+            <Link to={props.documentUrl}>
+              <Front {...props} className="" size="m" scaler={1 / 3} scope="1-3" shadow />
+            </Link>
           )}
         </div>
       </div>
@@ -58,7 +64,11 @@ const BookTeaserCard: React.FC<Props> = props => {
           'md:text-left md:bg-transparent md:pt-10',
         )}
       >
-        <h3 className="mb-4 text-base text-flgray-900 md:mb-2 md:pb-1">{title}</h3>
+        <h3 className="mb-4 text-base text-flgray-900 md:mb-2 md:pb-1">
+          <Link to={props.documentUrl} className="hover:underline">
+            {title}
+          </Link>
+        </h3>
         <Link to={authorUrl} className="fl-underline text-sm text-flprimary">
           {author}
         </Link>
