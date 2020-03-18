@@ -78,15 +78,19 @@ const DownloadLinks: React.FC<Props> = props => {
         </dl>
       </div>
       <Stack space="6" className="flex flex-col items-center mt-6 mb-4">
-        <QualitySwitch quality={props.quality} onChange={props.setQuality} />
-        <p className="text-flgray-500 text-base antialiased tracking-wider">
+        <QualitySwitch key="switch" quality={props.quality} onChange={props.setQuality} />
+        <p key="text" className="text-flgray-500 text-base antialiased tracking-wider">
           (
           {props.quality === 'HQ'
             ? 'Higher quality, larger file size'
             : 'Lower quality, faster download'}
           )
         </p>
-        <Link className="text-flprimary text-sm tracking-wider" to="/audio-help">
+        <Link
+          key="help"
+          className="text-flprimary text-sm tracking-wider"
+          to="/audio-help"
+        >
           <span className="fl-underline">Need Help?</span>{' '}
           <i className="fa fa-life-ring opacity-75 pl-1" />
         </Link>
