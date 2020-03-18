@@ -53,7 +53,10 @@ const PillDropdown: React.FC<Props> = ({
       >
         {pillText}
       </div>
-      <div className="h-12 w-12 absolute top-0 right-0 flex justify-center items-center">
+      <div
+        onClick={() => setDropdownVisible(!dropdownVisible)}
+        className="h-12 w-12 absolute top-0 right-0 flex justify-center items-center"
+      >
         <i
           className={`fa fa-chevron-${dropdownVisible ? 'up' : 'down'} text-flgray-400`}
         />
