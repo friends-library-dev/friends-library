@@ -128,7 +128,7 @@ const DocBlock: React.FC<Props> = props => {
   return (
     <section
       ref={wrap}
-      className="DocBlock relative bg-white pt-8 pb-12 px-10 md:px-12 xl:flex xl:flex-col xl:items-center"
+      className="DocBlock relative bg-white pt-8 pb-12 px-10 md:px-12 lg:pb-24 xl:flex xl:flex-col xl:items-center"
     >
       {addingToCart && (
         <AddToCartWizard

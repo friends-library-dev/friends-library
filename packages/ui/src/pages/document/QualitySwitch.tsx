@@ -14,11 +14,13 @@ const QualitySwitch: React.FC<Props> = ({ className, quality, onChange }) => {
     <Switch
       className={className}
       checked={quality === 'HQ'}
-      width={86}
+      width={106}
+      height={36}
       offColor="#5f8c9e"
+      onColor="#6c3142"
       onChange={isLq => onChange(isLq ? 'HQ' : 'LQ')}
       uncheckedIcon={<Label className="pl-0 -ml-2">LO-FI</Label>}
-      checkedIcon={<Label className="pl-4">HI-FI</Label>}
+      checkedIcon={<Label className="pl-6">HI-FI</Label>}
       aria-label="Audio download quality"
     />
   );
@@ -30,7 +32,7 @@ const Label: React.FC<{ className: string }> = ({ className, children }) => (
   <span
     className={cx(
       className,
-      'leading-snug text-white font-sans text-base py-1 w-16 inline-block',
+      'leading-snug text-white font-sans text-base py-2 w-16 inline-block',
     )}
   >
     {children}

@@ -17,6 +17,7 @@ import ChooseFormat from '../src/pages/document/ChooseFormat';
 import ChooseEbookType from '../src/pages/document/ChooseEbookType';
 import Downloading from '../src/pages/document/Downloading';
 import DownloadWizard from '../src/pages/document/DownloadWizard';
+import DownloadAudiobook from '../src/pages/document/DownloadAudiobook';
 import DownloadOptions from '../src/DownloadOptions';
 import PopUnder from '../src/PopUnder';
 
@@ -27,7 +28,6 @@ storiesOf('Doc Page', module)
     <div className="bg-gray-800 w-screen h-screen">{storyFn()}</div>
   ))
   .add('QualitySwitch', () => <StatefulSwitch />)
-
   .add('TocHamburger', () => <TocHamburger />)
   .add('Tablet', () => <Tablet />)
   .add('SampleToc', () => <SampleToc onClose={a('close')} chapters={chapters} />)
@@ -78,12 +78,35 @@ storiesOf('Doc Page', module)
 
 storiesOf('Doc Page', module)
   .addDecorator(coverSizes)
+  .add('DownloadAudiobook', () => {
+    const [quality, setQuality] = useState<AudioQuality>('HQ');
+    return (
+      <div className="p-6 bg-flgray-200">
+        <DownloadAudiobook
+          quality={quality}
+          setQuality={setQuality}
+          mp3ZipFilesizeHq="345MB"
+          mp3ZipFilesizeLq="118MB"
+          m4bFilesizeHq="413MB"
+          m4bFilesizeLq="154MB"
+          mp3ZipUrlHq="/"
+          mp3ZipUrlLq="/"
+          m4bUrlHq="/"
+          m4bUrlLq="/"
+          podcastUrlHq="/"
+          podcastUrlLq="/"
+        />
+      </div>
+    );
+  })
   .add('ReadSampleBlock', () => (
     <ReadSampleBlock price={499} hasAudio={true} chapters={chapters} />
   ))
   .add('ListenBlock', () => (
     <ListenBlock
       title="Sweet Track"
+      // playlistIdHq={971887117}
+      // playlistIdLq={971899285}
       trackIdLq={236087828}
       trackIdHq={236087816}
       numAudioParts={1}
