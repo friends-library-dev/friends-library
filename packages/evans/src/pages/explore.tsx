@@ -151,7 +151,7 @@ export const query = graphql`
         region
       }
     }
-    regionBooks: allDocument {
+    regionBooks: allDocument(filter: { region: { ne: "Other" } }) {
       nodes {
         ...CoverProps
         documentUrl: url

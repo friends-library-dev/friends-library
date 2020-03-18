@@ -37,6 +37,7 @@ export interface DocumentData {
   slug: Slug;
   filename: string;
   description: Description;
+  region?: string;
   partial_description?: Description;
   tags: (
     | 'journal'

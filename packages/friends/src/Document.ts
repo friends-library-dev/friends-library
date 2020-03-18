@@ -34,6 +34,10 @@ export default class Document {
     return this.data.description;
   }
 
+  public get region(): string | undefined {
+    return this.data.region;
+  }
+
   public get filenameBase(): string {
     return this.data.filename;
   }
@@ -106,6 +110,7 @@ export default class Document {
       hasUpdatedEdition: this.hasUpdatedEdition,
       altLanguageId: this.altLanguageId,
       relatedDocuments: this.relatedDocuments,
+      region: this.region,
     };
   }
 }

@@ -80,11 +80,11 @@ const FilterSelectDropdown: React.FC<Props> = props => (
         <Option value="region.ireland" {...props}>
           Ireland
         </Option>
-        <Option value="region.southern-us" {...props}>
-          Southern US
+        <Option value="region.eastern-us" {...props}>
+          Eastern US
         </Option>
-        <Option value="region.northern-us" {...props}>
-          Northern US
+        <Option value="region.western-us" {...props}>
+          Western US
         </Option>
         <Option value="region.scotland" {...props}>
           Scotland

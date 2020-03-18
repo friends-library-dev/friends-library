@@ -72,7 +72,7 @@ function groupify(
     const [type, value] = filter.split('.') as [FilterType, string];
 
     const makeItem: (fn: (book: Props['books'][0]) => boolean) => Filter = fn => ({
-      text: `${value} (${books.filter(fn).length})`,
+      text: `${value.replace(/-us$/, ' US')} (${books.filter(fn).length})`,
       clear: () => setFilters(filters.filter(f => f !== filter)),
     });
 
@@ -87,7 +87,9 @@ function groupify(
         groups.period.filters.push(makeItem(b => b.period === value));
         break;
       case 'region':
-        groups.region.filters.push(makeItem(b => b.region === value));
+        groups.region.filters.push(
+          makeItem(b => b.region.toLowerCase().replace(/ /, '-') === value),
+        );
         break;
     }
   });

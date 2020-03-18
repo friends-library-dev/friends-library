@@ -11,6 +11,7 @@ import { getDpcCache, persistDpcCache, EditionCache } from './dpc-cache';
 import residences from './residences';
 import * as url from '../lib/url';
 import { documentDate, periodFromDate, published } from '../lib/date';
+import { documentRegion } from '../lib/region';
 import { APP_ALT_URL, LANG } from '../env';
 
 const humansize = filesize.partial({ round: 0, spacer: '' });
@@ -47,7 +48,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     documents.forEach(document => {
       const documentProps: Record<string, any> = {
         ...document.toJSON(),
-        ...fakedExploreData(),
+        region: documentRegion(document),
         date: documentDate(document),
         period: periodFromDate(documentDate(document)),
         url: url.documentUrl(document),
@@ -160,20 +161,3 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 };
 
 export default sourceNodes;
-
-function fakedExploreData(): { [k in string]: string | number } {
-  return {
-    region: sample([
-      'Northern US',
-      'Southern US',
-      'England',
-      'Scotland',
-      'Ireland',
-      'Other',
-    ]),
-  };
-}
-
-function sample<T>(array: T[]): T {
-  return array[Math.floor(Math.random() * array.length)];
-}
