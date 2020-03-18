@@ -38,7 +38,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) =>
       {matches.length > 0 && (
         <div className="SearchBlock__Results flex flex-wrap justify-center my-8">
           {matches.map(book => (
-            <SearchResult key={book.documentUrl} {...book} />
+            <SearchResult key={`${book.documentUrl}/${book.edition}`} {...book} />
           ))}
         </div>
       )}

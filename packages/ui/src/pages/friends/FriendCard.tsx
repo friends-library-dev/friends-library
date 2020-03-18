@@ -45,7 +45,10 @@ const FriendCard: React.FC<Props> = ({
         'FriendCard--not-featured': !featured,
       })}
     >
-      <div className={cx(featured && 'md:order-2 md:flex', 'flex-col items-center')}>
+      <div
+        key="img"
+        className={cx(featured && 'md:order-2 md:flex', 'flex-col items-center')}
+      >
         <CircleSilhouette gender={gender} fgColor="white" bgColor={color} />
         <Button
           to={url}
@@ -59,6 +62,7 @@ const FriendCard: React.FC<Props> = ({
         </Button>
       </div>
       <div
+        key="meta"
         className={cx(
           featured && 'md:mr-16 md:self-stretch md:flex md:flex-col md:justify-center',
         )}
@@ -72,14 +76,19 @@ const FriendCard: React.FC<Props> = ({
           {name}
         </h3>
         <Stack space="4" el="ul" className={cx('body-text pb-2', textColorClass)}>
-          <Item Icon={Calendar}>{lifespan(born, died)}</Item>
-          <Item Icon={Flag}>{region}</Item>
-          <Item Icon={ThinLogo}>
+          <Item key="cal" Icon={Calendar}>
+            {lifespan(born, died)}
+          </Item>
+          <Item key="flag" Icon={Flag}>
+            {region}
+          </Item>
+          <Item key="logo" Icon={ThinLogo}>
             {numBooks} book{numBooks > 1 ? 's' : ''} available
           </Item>
         </Stack>
       </div>
       <Button
+        key="button"
         to={url}
         width={220}
         className={cx('box-content', {
