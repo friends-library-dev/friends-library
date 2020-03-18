@@ -1,10 +1,12 @@
 import React from 'react';
 import Meta from './FriendMeta';
-import Uk from '../../images/maps/UK--temp.png';
-import Us from '../../images/maps/US--temp.png';
-import Europe from '../../images/maps/Europe--temp.png';
+import Uk from '../../images/maps/UK--2x.png';
+import Us from '../../images/maps/US.png';
+import Europe from '../../images/maps/Europe--2x.png';
 import LocationMarker from '../../icons/LocationMarker';
 import './MapBlock.css';
+
+// @see packages/ui/src/images/maps/readme.md for info on modifying map PNGs
 
 interface Props {
   friendName: string;
