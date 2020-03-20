@@ -5,6 +5,18 @@ gender: male
 added: 2019-09-04T17:50:40.000Z
 born: 1618
 died: 1669
+quotes:
+  - source: Francis Howgill
+    text:
+      He buscado el camino del Señor desde que era un niño, y he vivido inocentemente
+      entre los hombres; y si alguno quiere saber respecto a mi fin, háganle saber que
+      morí en la fe en la que viví, y por la cual sufrí.
+  - source: George Fox
+    text:
+      Y aunque su sangre clama por venganza, él podía decir “el Señor perdone a todos mis
+      perseguidores;” porque teniendo la mente de Cristo, deseaba el bien de todos, sí,
+      incluso del peor de sus enemigos, y en ese deseo por el bien de todos él se esforzó
+      y luchó, buscando el bien de ellos y su eterno bienestar en la herencia de la vida.
 residences:
   - city: Sedbergh
     region: England
@@ -29,6 +41,11 @@ documents:
       grande y finalmente murió en prisión por "la Palabra de Dios y por el testimonio de
       Jesús." Este corto libro contiene una increíble explicación del Día del Señor, y una
       poderosa descripción de la obra del Espíritu Santo en el corazón del hombre.
+    partial_description:
+      Un corto tratado escrito por Francis Howgill, el cual describe la naturaleza del Día
+      del Señor, el efecto de su amanecer en el corazón, y la necesidad de rendirnos
+      completamente a los descubrimientos de la Verdad a medida que llegan a ser vistos en
+      la luz.
     tags:
       - treatise
       - exhortation

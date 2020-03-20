@@ -5,10 +5,26 @@ gender: male
 born: 1653
 died: 1720
 added: 2019-05-07T20:13:22.000Z
+quotes:
+  - source: John Spalding
+    text:
+      En este tiempo leí la “Historia de los Quakers” de Sewel, que creo que eliminó todas
+      las objeciones, y me afirmó en mi opinión de la verdad de sus principios. Sus
+      severos sufrimientos, su paciencia en ellos, y su honesto denuedo ante reyes y
+      gobernantes, me convencieron de que nada más que el poder divino podría haberlos
+      sostenido.
 residences:
   - city: Amsterdam
     region: Netherlands
-description: TODO
+description:
+  Siendo un Cuáquero, un investigador honesto y meticuloso, y un testigo presencial de
+  muchos de los eventos descritos en su libro, William Sewell (1653-1720) ha sido
+  considerado durante mucho tiempo la principal autoridad de la antigua historia de la
+  Sociedad de Amigos. Esta larga pero invaluable publicación (primero escrita en holandés
+  en 1717, y luego traducida por Sewel al inglés) cuenta la historia asombrosa de un
+  pueblo que despertó de la religión formal y sin vida de su época, se sometió de todo
+  corazón a las enseñanzas del Espíritu de la verdad y regresó a la vida, luz, poder y
+  pureza originales del Cristianismo primitivo.
 documents:
   - id: 184123b9-03ca-44aa-9242-50f339d8c711
     alt_language_id: 2c64c45a-02b0-406d-935f-c90a42daf5a7
@@ -25,6 +41,11 @@ documents:
       fueron trasladadas a una prisión local donde soportaron casi cuatro años de trato
       cruel a manos de la Inquisición en un intento por forzar su conversión al
       catolicismo.
+    partial_description:
+      Una selección de "La Historia del Pueblo Cristiano llamado Cuáqueros" de William
+      Sewel, que relata los sufrimientos, la fidelidad y las experiencias cristianas de
+      Catherine Evans y Sarah Cheevers, durante sus cuatro años de encarcelamiento en
+      manos de la inquisición Católica.
     tags:
       - history
     editions:

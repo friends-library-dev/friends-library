@@ -3,7 +3,11 @@ name: Compilaciones
 slug: compilaciones
 gender: mixed
 added: 2020-02-04T21:06:05.000Z
-description: TODO
+description:
+  Hay unos pocos de nuestros libros que no fueron escritos por una sola persona, sino que
+  son una colección de escritos o cartas de diferentes autores. Algunos de estos libros
+  fueron compilados y publicados hace mucho tiempo por antiguos Amigos, y algunos fueron
+  compilados más recientemente por los autores de este sitio web.
 documents:
   - id: 110bb5b7-267e-4d70-9b4d-64b6e46729f2
     alt_language_id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
@@ -19,6 +23,9 @@ documents:
       purificadas. No sólo encontraron la “Perla preciosa” cuando apareció en sus
       corazones, sino que luego lo vendieron todo para comprar este tesoro, estimando como
       pérdida todas las cosas por la excelencia del conocimiento de Cristo Jesús su Señor.
+    partial_description:
+      Este libro contiene los relatos autobiográficos de diez hombres y mujeres que
+      experimentaron el poder transformador de “La Verdad en lo íntimo.” (Salmo 51:6)
     tags:
       - journal
     editions:

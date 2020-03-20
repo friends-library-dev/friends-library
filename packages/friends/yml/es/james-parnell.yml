@@ -5,6 +5,21 @@ gender: male
 added: 2019-05-08T13:37:09.000Z
 born: 1637
 died: 1656
+quotes:
+  - source: Stephen Crisp
+    text:
+      Entre estos bebés, que llegaron a recibir el conocimiento de los misterios del Reino
+      de Dios mediante la operación de Su divino poder, estaba este noble niño, James
+      Parnell. En verdad, él era una vasija de honor, y estaba fortalecido en el poder y
+      Espíritu de Emanuel. Se podría decir mucho de este hombre, y en mi corazón vive un
+      gran testimonio de su bendita vida, y del poder y sabiduría que abundaban en él.
+  - source: James Parnell
+    text:
+      Amigo, permanece y mantén tu mente hacia lo que te deja ver que tus enemigos están
+      en tu propia casa. Tu imaginación es un enemigo, tu sabiduría es un enemigo; eso que
+      ha sido precioso para ti, ahora es tu mayor enemigo. Por esa razón, debes sacrificar
+      lo que has llamado precioso y entregarlo a la muerte, para que el Justo pueda
+      levantarse para vida, y la Semilla justa germinar para reinar en ti y ser tu Cabeza.
 residences:
   - city: Retford
     region: England
@@ -34,6 +49,11 @@ documents:
       encarcelado en el Castillo de Colchester. Allí fue encerrado en un pequeño hueco en
       la pared del castillo, a cuatro metros del suelo. Murió de enfermedad y maltrato
       después de diez meses de encarcelamiento, a la temprana edad de diecinueve.
+    partial_description:
+      La Vida y Escritos de James Parnell, que contienen la historia de su vida,
+      ministerio y sufrimientos, con extractos de sus escritos y epístolas a la iglesia, y
+      un relato de su encarcelamiento y muerte en el castillo de Colchester a los
+      diecinueve años de edad.
     tags:
       - exhortation
     editions:
