@@ -5,6 +5,20 @@ gender: male
 born: 1628
 died: 1692
 added: 2019-05-08T14:57:06.000Z
+quotes:
+  - source: Samuel Tuke
+    text:
+      Con la excepción de George Fox, no creo que haya nadie que haya tenido una mayor
+      parte en el liderazgo y responsabilidad de la nueva Sociedad [de Amigos] que Stephen
+      Crisp.
+  - source: Stephen Crisp
+    text:
+      Porque, aunque es verdad que nadie puede obedecer al Señor excepto por medio de Su
+      gracia y poder dados a ellos, sin embargo, Él ha hecho que Su gracia—aquella gracia
+      que trae salvación—se manifieste a todos los hombres, como es dicho en Tito 2:11. Y
+      esta gracia se ha manifestado a ustedes, y en ustedes, a quienes escribo, y ella es
+      eso que reprueba dentro de ustedes. Por lo tanto, deben volverse hacia aquello que
+      los golpea, porque así se vuelven a la gracia de Dios.
 residences:
   - city: Colchester
     region: England
@@ -29,6 +43,11 @@ documents:
       las dudas y objeciones que se levantan en contra de la aparición de la luz y de la
       verdad de Cristo internamente; por las cuales muchos han dejado la obediencia, y así
       la paz de sus almas anhelantes.”
+    partial_description:
+      Un tratado que describe la naturaleza de la aparición de Cristo en el corazón como
+      uno que reprueba por el pecado y la transgresión, y la necesidad y beneficio de
+      someterse a Su luz y gracia para poder ser lavados desde el interior, y
+      transformados a Su semejanza.
     tags:
       - exhortation
     editions:
@@ -46,6 +65,10 @@ documents:
       cristiano es sacado de todo falso descanso, llevado a través de las diversas trampas
       y enemigos en el desierto, e introducido en la morada de Dios, donde hereda
       justicia, paz y alegría para siempre.
+    partial_description:
+      Una corta pero instructiva alegoría escrita por Stephen Crisp para ilustrar los
+      peligros del viaje que el alma cristiana emprende desde Babilonia (la ciudad de
+      confusión religiosa hecha por el hombre) hasta Bethel, la verdadera morada de Dios.
     tags:
       - allegory
     editions:

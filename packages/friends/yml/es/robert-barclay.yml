@@ -5,10 +5,38 @@ gender: male
 added: 2019-05-08T14:50:59.000Z
 born: 1648
 died: 1690
+quotes:
+  - source: William Sewel
+    text:
+      Aunque las habilidades naturales [de Robert Barclay] eran suficientemente grandes
+      como para haberle hecho superar a otros en el aprendizaje humano, y así haberse
+      hecho famoso entre los hombres, aun así, él tuvo tan poca estima de ese tipo de
+      conocimiento, que de ninguna manera buscó ser distinguido por ello, siendo su
+      principal objetivo crecer en la verdadera piedad; como la amistad que tenía con él
+      me ha asegurado sin duda alguna, ya que lo conocía bien.
+  - source: Robert Barclay
+    text:
+      Porque lo que he escrito procede más de mi corazón que de mi cabeza; surge de lo que
+      he escuchado con los oídos de mi alma y visto con los ojos de mi corazón, y de lo
+      que mis manos han tocado de la Palabra de Vida. Yo declaro eso que se me ha revelado
+      internamente acerca de las cosas de Dios; no preocupándome mucho por la elocuencia y
+      excelencia de mis palabras, sino deseando demostrar la eficacia y la operación de la
+      Verdad.
 residences:
   - city: Aberdeenshire
     region: Scotland
-description: TODO
+description:
+  Robert Barclay (1648-1690) fue educado en algunas de las mejores escuelas de la época,
+  en las que su ingenio natural ganó la admiración de maestros y compañeros. Además del
+  inglés, cuando era muy joven ya era un experto en los idiomas griego, hebreo, francés y
+  latín. Pero a los diecisiete años de edad, al entrar a una reunión del pueblo llamado
+  Cuáqueros, Robert Barclay dijo, “Sentí un poder secreto entre ellos que tocó mi
+  corazón.” Y continuando con ellos, llegó “a recibir y a dar testimonio de la Verdad.”
+  Sobre sus libros, dice--“No he tratado de acomodar mi obra para los que tienen comezón
+  de oír, quienes desean comprender en su cabeza los conocimientos sublimes de la Verdad,
+  en lugar de abrazarlos en su corazón. Porque lo que he escrito procede más de mi corazón
+  que de mi cabeza; surge de lo que he escuchado con los oídos de mi alma y visto con los
+  ojos de mi corazón, y de lo que mis manos han tocado de la Palabra de Vida.
 documents:
   - id: 398c7f5a-3fa4-4a29-a275-a0f33920ce08
     alt_language_id: f869e6e5-c5a2-4bdf-96bb-1c4dc13dad2f
@@ -24,6 +52,10 @@ documents:
       verdaderamente conocido y obedecido Sus movimientos y enseñanzas internos, o la
       Semilla de Dios yace enterrada en los corazones cristianos, debajo de un montón de
       superstición, presunción, y actividad carnal y religiosa?
+    partial_description:
+      Este tratado es tomado de la onceava proposición de la “Apología de la Verdadera
+      Teología Cristiana” de Robert Barclay, el cual demuestra la necesidad y beneficio de
+      esperar en el Señor para poder adorar, orar y ministrar aceptablemente.
     tags:
       - doctrinal
     editions:
@@ -34,7 +66,17 @@ documents:
     title: Consideraciones sobre el Entretenimiento y la Recreacion
     slug: entretenimiento-y-recreacion
     filename: Consideraciones_sobre_el_Entretenimiento_y_la_Recreacion
-    description: TODO
+    description:
+      Está publicación es un corto extracto de la quinceava proposición de la “Apología de
+      la Verdadera Teología Cristiana,” el cual demuestra cómo las más comunes formas de
+      entretenimiento y recreación no hacen más que sofocar los deseos del alma por Dios,
+      sacar a los hombres de Su temor, y hacer que olviden el cielo, la muerte y el
+      juicio, mientras al mismo tiempo fomentan la concupiscencia, vanidad y ligereza.
+    partial_description:
+      Está publicación es un corto extracto de la quinceava proposición de la “Apología de
+      la Verdadera Teología Cristiana,” el cual demuestra como muchas formas de
+      entretenimiento y recreación batallan contra el propósito de Dios para el alma
+      inmortal del hombre.
     tags:
       - doctrinal
     editions:
@@ -46,25 +88,16 @@ documents:
     slug: esta-grande-salvacion
     filename: Esta_Grande_Salvacion
     description:
-      'Robert Barclay (1648-1690) fue educado en algunas de las mejores escuelas de la
-      época, en las que su ingenio natural ganó la admiración de maestros y compañeros.
-      Además del inglés, cuando era muy joven ya era un experto en los idiomas griego,
-      hebreo, francés y latín. Pero a los diecisiete años de edad, al entrar a una reunión
-      del pueblo llamado Cuáqueros, Robert Barclay dijo, “Sentí un poder secreto entre
-      ellos que tocó mi corazón.” Y continuando con ellos, llegó “a recibir y a dar
-      testimonio de la Verdad.” Sobre este libro, dice: “No he tratado de acomodar mi obra
-      para los que tienen comezón de oír, quienes desean comprender en su cabeza los
-      conocimientos sublimes de la Verdad, en lugar de abrazarlos en su corazón. Porque lo
-      que he escrito procede más de mi corazón que de mi cabeza; surge de lo que he
-      escuchado con los oídos de mi alma y visto con los ojos de mi corazón, y de lo que
-      mis manos han tocado de la Palabra de Vida.'
-    related_documents:
-      - id: 55d322b1-0e53-4281-9c7b-cf50547d8221
-        description:
-          TODO shorLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          conseq
+      La "Apología de la Verdadera Teología Cristiana" es quizás el libro más conocido de
+      todos los escritos de los Amigos. El libro "Esta Grande Salvación" (que es tomado de
+      la proposición cuarta hasta la octava de la Apología) expone de manera brillante
+      algunos de los aspectos más vitales y malentendidos del Cristianismo, manifestando
+      claramente la verdadera naturaleza, experiencia y alcance de la salvación que Dios
+      ofrece al alma a través de Jesucristo.
+    partial_description:
+      Este libro contiene las proposiciones cuatro a la ocho de la “Apología de la
+      Verdadera Teología Cristiana,” las cuales tratan sobre la caída, redención,
+      justificación y perfección del hombre.
     tags:
       - doctrinal
     editions:

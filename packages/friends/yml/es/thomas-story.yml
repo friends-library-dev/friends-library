@@ -5,17 +5,44 @@ gender: male
 born: 1748
 died: 1814
 added: 2019-05-08T15:02:02.000Z
+quotes:
+  - source: Thomas Story
+    text:
+      Pero, como la corona de todo, y el único camino verdadero y seguro, le plació al
+      Altísimo (por la expresión de Su propia bondad) revelar en mí al Hijo de Su amor, es
+      decir, a Su sabiduría y poder, por quien Él diseñó y efectuó todas las cosas.
+      Entonces fui enseñado a temerle; entonces fui enseñado a amarlo; entonces, y no
+      antes, mi alma fue, en efecto, correctamente instruida e informada.
 residences:
   - city: Carlisle
     region: England
-description: TODO
+description:
+  Thomas Story (1662-1742) fue un ministro increíblemente dotado y útil en la Sociedad de
+  Amigos, que viajó por toda Inglaterra, Irlanda, Escocia, Holanda, Jamaica, Barbados y
+  las colonias americanas en su servicio por el Evangelio. Era conocido tanto por su
+  profundidad espiritual como por sus capacidades intelectuales. Su clara percepción de la
+  verdad espiritual, su profundo conocimiento de la Escritura, y su facilidad para
+  expresarse hicieron que fuera demasiado fuerte para los enemigos de la verdad, que
+  intentaban difamar y oponerse a las enseñanzas de los primeros Amigos. Los muchos y
+  convincentes argumentos doctrinales que se encuentran en su diario se volvieron muy
+  influyentes entre los cuáqueros, y siguen siendo de gran beneficio para todo buscador
+  genuino de la verdad.
 documents:
   - id: 17d5addc-df02-450b-8fc8-f845292af618
     alt_language_id: 91c346f7-2909-4aca-8987-a96cc41683d1
     title: La Salvación por medio de Cristo
     slug: salvacion-por-medio-de-cristo
     filename: Salvacion_por_medio_de_Cristo
-    description: TODO
+    description:
+      Un extracto del diario de Thomas Story concerniente a la naturaleza de la salvación,
+      demostrando que depende tanto de la obra externa de Cristo como un sacrificio por el
+      pecado, como también de Su obra interna en el corazón como la luz, vida y guía del
+      hombre en la senda de la regeneración.
+    partial_description:
+      Un extracto del diario de Thomas Story concerniente a la naturaleza de la salvación,
+      demostrando que depende tanto de la obra externa de Cristo como un sacrificio por el
+      pecado, como también de Su obra interna en el corazón como la luz, vida y guía del
+      hombre en la senda de la regeneración.
     tags:
       - doctrinal
     editions:

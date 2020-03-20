@@ -5,6 +5,25 @@ gender: male
 added: 2019-05-08T13:27:08.000Z
 born: 1616
 died: 1679
+quotes:
+  - source: William Penn
+    text:
+      tiendo constantemente a las reuniones, y llegando temprano a ellas, y siendo
+      vigilante y reverente en ellas. Él era uno que siempre amaba el poder y la vida más
+      que las palabras; y debido a que esperaba esto, a menudo era alcanzado por ello, y
+      llevado a declarar tales testimonios que eran de gran ayuda para el pobre y
+      necesitado, el cansado y cargado, para los verdaderos peregrinos y viajeros hacia el
+      eterno descanso y ciudad de Dios.
+  - source: Thomas Ellwood
+    text:
+      Sin embargo, después de que al Padre le plació revelar a Su hijo en [Isaac
+      Penington], dándole así a ver y conocer certeramente, cuál era la buena y agradable
+      y perfecta voluntad de Dios; ¡Oh, cuán alegremente él la recibió! ¡Con qué gusto se
+      rindió ante ella! ¡Cuán resueltamente entregó su cuello al yugo de Cristo! ¡Y cuán
+      constante y gozosamente lo llevó! ¿Consideró él los placeres de los tiempos, o
+      valoró las preferencias y honores del mundo? No, no, le dio la espalda a todo eso;
+      teniendo por mayores riquezas el vituperio de Cristo que los tesoros de los
+      egipcios.
 residences:
   - city: Jordans
     region: England
@@ -21,12 +40,6 @@ description:
   su vida. Buscando, encontró; llamando, la puerta se abrió delante de él. Buscó al Señor
   con todo su corazón, mente y fuerza, y no cabe duda de que el Señor fue encontrado por
   él.
-quotes:
-  - source: TODO
-    text:
-      TODO Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 documents:
   - id: 78ec9b39-f599-4842-b843-b02080972349
     alt_language_id: c248c2e7-947b-4629-8296-0cdff67a6d99
@@ -44,9 +57,11 @@ documents:
       con todo su corazón y descubrió un cristianismo que se centraba y fluía de la luz y
       la vida de Jesucristo reinando en el hombre interior.
     partial_description:
-      TODO sLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+      Una colección de los escritos de Isaac Penington sobre una variedad de temas
+      espirituales, que incluyen el verdadero conocimiento y experiencia de Cristo, la
+      obra de la semilla, luz o gracia de Dios en el corazón, la verdadera iglesia y la
+      falsa, la revelación y formación de Cristo en el interior, la adoración en Espíritu
+      y verdad, etc.
     tags:
       - devotional
       - doctrinal
@@ -227,6 +242,12 @@ documents:
       anhelaba mucho más. Motivado por un insaciable apetito por la verdad, buscó al Señor
       con todo su corazón y descubrió un cristianismo que se centraba y fluía de la luz y
       la vida de Jesucristo reinando en el hombre interior.
+    partial_description:
+      Otra colección de los escritos de Isaac Penington sobre una variedad de temas
+      espirituales, que incluyen el verdadero conocimiento y experiencia de Cristo, la
+      obra de la semilla, luz o gracia de Dios en el corazón, la verdadera iglesia y la
+      falsa, la revelación y formación de Cristo en el interior, la adoración en Espíritu
+      y verdad, etc.
     tags:
       - devotional
       - doctrinal

@@ -5,6 +5,20 @@ gender: male
 added: 2019-03-06T20:45:49.000Z
 born: 1644
 died: 1718
+quotes:
+  - source: Thomas Story
+    text:
+      Y lo que más me animó era el cuidado y comportamiento paternal de los ministros en
+      general, pero especialmente el de ese gran ministro del evangelio, y fiel siervo de
+      Cristo, William Penn; que abundaba en sabiduría, discreción, prudencia, amor y
+      tierno afecto, con toda sinceridad, más que la mayoría en esta generación; y en
+      verdad nunca conocí a nadie igual a él.
+  - source: William Penn
+    text:
+      Ven, lector, escúchame por un momento; busco tu salvación; esa es mi intención. Un
+      Refinador se te ha acercado, Su gracia se te ha aparecido, una gracia que te muestra
+      los deseos mundanos y te enseña a negarlos. Recibe Su levadura y ella te cambiará;
+      Su medicina y ella te curará.
 residences:
   - city: London
     region: England
@@ -21,7 +35,16 @@ residences:
     durations:
       - start: 1701
         end: 1718
-description: TODO
+description:
+  William Penn (1644-1718), mejor conocido como el fundador de la Provincia de
+  Pensilvania, fue un hombre cortejado por sus talentos y logros, admirado por su
+  increíble intelecto, y amado por su amabilidad y buenos modales. Nació en una familia
+  adinerada y prominente, fue educado en las mejores escuelas de Londres, y cuando era un
+  joven tenía el camino del honor y la preferencia abierto delante de él. Pero, habiendo
+  probado algo del verdadero poder y pureza de Cristo en una reunión del menospreciado
+  pueblo llamado Cuáqueros, abandonó sus oportunidades de honor y ventaja, renunció a las
+  modas y costumbres del mundo, y vivió una vida de abnegación como un manso y fiel
+  seguidor de Jesucristo.
 documents:
   - id: 0089dff8-b287-4b8f-9418-543fa4cc6ffb
     alt_language_id: 53561891-6761-41b8-b5f8-a1ed91e5dde8
@@ -38,6 +61,11 @@ documents:
       gracia se te ha aparecido, una gracia que te muestra los deseos mundanos y te enseña
       a negarlos. Recibe Su levadura y ella te cambiará; Su medicina y ella te curará. La
       cruz de Cristo es el camino de Cristo a la Corona de Cristo.
+    partial_description:
+      El clásico tratado de William Penn, escrito por primera vez cuando fue un prisionero
+      en la Torre de Londres en 1688; el cual demuestra la naturaleza, poder y experiencia
+      de la cruz diaria de Cristo, explicando qué es, cómo se debe tomar, y la manera en
+      que opera en el verdadero discípulo de Cristo.
     tags:
       - treatise
       - exhortation

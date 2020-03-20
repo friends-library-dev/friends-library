@@ -4,11 +4,28 @@ slug: joseph-phipps
 gender: male
 born: 1708
 died: 1787
+quotes:
+  - source: Joseph Phipps
+    text:
+      En fin, la redención perfecta consiste, primero, en pagar el precio del rescate, el
+      cual nuestro Salvador pagó a través de Su sufrimiento y sacrificio; y segundo, en
+      sacar al prisionero de la servidumbre y ponerlo en libertad, algo que Él mismo
+      realiza por medio de la operación eficaz de Su Espíritu en los corazones de aquellos
+      que lo reciben y se entregan totalmente a Él.
 added: 2019-05-08T13:56:46.000Z
 residences:
   - city: Norwich
     region: England
-description: TODO
+description:
+  Aunque su oficio era zapatero, Joseph Phipps (1708-1787) fue el autor de varias
+  publicaciones académicas que explicaban y defendían los principios de los primeros
+  Amigos. En 1772, en respuesta a una publicación que un hombre llamado Samuel Newton
+  escribió para criticar la Sociedad, Phipps escribió “El Estado Original y Presente del
+  Hombre,” en el cual absolvió a la Sociedad de muchos cargos injustos y falsos, y además
+  defendió y aclaró los principios y prácticas principales de los Cuáqueros. Este pequeño
+  y extraordinario libro habla sobre la naturaleza del hombre caído, y la necesidad, los
+  medios y la manera de su restauración a través del sacrificio de Cristo y de la
+  operación perceptible de ese Espíritu Divino de gracia y verdad.
 documents:
   - id: 55d322b1-0e53-4281-9c7b-cf50547d8221
     alt_language_id: b7fb02eb-f804-431a-9c0c-7ead12400bf5
@@ -25,8 +42,19 @@ documents:
       también expresó las doctrinas del evangelio con tanta sabiduría celestial e
       irresistible claridad, que demostraron que el autor era un hombre de profundo
       entendimiento y experiencia espirituales.
+    partial_description:
+      El Estado Original y Presente del Hombre, el cual demuestra la naturaleza del hombre
+      en la caída, la necesidad, medio y manera para ser restaurado mediante el sacrificio
+      de Cristo, y la operación discernible del Espíritu Divino de gracia y verdad.
     tags:
       - doctrinal
     editions:
       - type: updated
         isbn: 978-1-64476-166-3
+    related_documents:
+      - id: a0aa67e3-e96e-44ea-a90c-db739d54eba6
+        description:
+          Aquellos que aprecian los argumentos sólidos y bíblicos de Joseph Phipps en “El
+          Estado Original y Presente del Hombre” sin ninguna duda disfrutarán “Esta Grande
+          Salvación” de Robert Barclay, que contiene las proposiciones cuatro a la ocho de
+          su famosa “Apología de la Verdadera Teología Cristiana.”
