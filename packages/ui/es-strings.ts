@@ -44,6 +44,8 @@ const strings: { [k: string]: string } = {
   // searching, filters
   Filters: 'Filtros',
   'All Books': 'Todos los Libros',
+  'Select a filter or search to get started!':
+    '¡Selecciona un filtro o realiza una búsqueda para empezar!',
 
   // Home Page
   'Our Books': 'Nuestros Libros',
@@ -79,6 +81,7 @@ const strings: { [k: string]: string } = {
   '/audio-help': '/audio-ayuda',
   '/ebook-help': '/ebook-ayuda',
   '/contact': '/contactanos',
+  '/spanish-translations': '/nuestras-traducciones',
 
   // contact
   Submit: 'Enviar',

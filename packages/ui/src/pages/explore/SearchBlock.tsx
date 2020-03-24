@@ -48,7 +48,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) =>
           <p className="text-white text-3xl sans-wider text-center">
             {used
               ? t`Your search returned no results`
-              : '^ Select a filter or search to get started!'}
+              : `^ ${t`Select a filter or search to get started!`}`}
           </p>
         </div>
       )}
