@@ -1,9 +1,11 @@
 import { Lang } from '@friends-library/types';
 
 export interface DateableDocument {
+  path: string;
   timelineDate?: number;
   published?: number;
   friend: {
+    isCompilationsQuasiFriend: boolean;
     born?: number;
     died?: number;
   };
@@ -12,8 +14,10 @@ export interface DateableDocument {
 export function documentDate({
   timelineDate,
   published,
-  friend: { born, died },
+  path,
+  friend,
 }: DateableDocument): number {
+  const { born, died, isCompilationsQuasiFriend } = friend;
   if (timelineDate) {
     return timelineDate;
   }
@@ -35,9 +39,13 @@ export function documentDate({
     return Math.floor(born + 0.75 * (died - born));
   }
 
-  // @TODO @BLOCKER throw an error here to ensure that we can
-  // at least have a reasonable date guess for every book
-  return 1700;
+  if (!isCompilationsQuasiFriend) {
+    throw new Error(`Unexpected failure to determine document date: ${path}`);
+  }
+
+  // compilations don't need a date, this will cause them
+  // to not show up on the /explore page timeline picker
+  return -1;
 }
 
 export function periodFromDate(date: number): 'early' | 'mid' | 'late' {
