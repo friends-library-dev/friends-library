@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import Link from 'gatsby-link';
+import { t, Dual } from '../translation';
 import Header from './Header';
 import Button from '../Button';
 
@@ -15,19 +16,38 @@ export interface Props {
 const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
   return (
     <div>
-      <Header>Empty Cart</Header>
-      <p className="body-text text-center">
-        There's nothing in your cart! Below are a few recommendations, or you can check
-        out our{' '}
-        <Link to="/getting-started" className="subtle-link">
-          getting started picks
-        </Link>
-        , or{' '}
-        <Link to="/explore" className="subtle-link">
-          explore all the books
-        </Link>
-        .
-      </p>
+      <Header>
+        <Dual.frag>
+          <>Empty Cart</>
+          <>Tu carrito está vacío</>
+        </Dual.frag>
+      </Header>
+      <Dual.p className="body-text text-center">
+        <>
+          There's nothing in your cart! Below are a few recommendations, or you can check
+          out our{' '}
+          <Link to={t`/getting-started`} className="subtle-link">
+            getting started picks
+          </Link>
+          , or{' '}
+          <Link to={t`/explore`} className="subtle-link">
+            explore all the books
+          </Link>
+          .
+        </>
+        <>
+          ¡No hay nada en tu carrito! Abajo encontrarás algunas recomendaciones, también
+          puedes ver nuestra{' '}
+          <Link to={t`/getting-started`} className="subtle-link">
+            selección de libros para comenzar
+          </Link>
+          , o{' '}
+          <Link to={t`/explore`} className="subtle-link">
+            explorar todos nuestros libros
+          </Link>
+          .
+        </>
+      </Dual.p>
       <div className="flex flex-col items-center md:flex-row md:justify-center md:items-start mt-8 px-6">
         {recommendedBooks.map(({ Cover, title, path }, idx) => (
           <Link
@@ -47,8 +67,8 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
           </Link>
         ))}
       </div>
-      <Button to="/explore" className="mx-auto mt-4" shadow>
-        Explore Books
+      <Button to={t`/explore`} className="mx-auto mt-4" shadow>
+        {t`Explore Books`}
       </Button>
     </div>
   );

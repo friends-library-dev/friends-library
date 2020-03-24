@@ -1,6 +1,7 @@
 import React from 'react';
 import { EditionType } from '@friends-library/types';
 import { Region } from './types';
+import { t } from '../../translation';
 import FilterControls from './FilterControls';
 import ActiveFilters from './ActiveFilters';
 
@@ -63,7 +64,7 @@ function groupify(
 ): { label: string; filters: { text: string; clear: () => any }[] }[] {
   const groups: { [k in FilterType]: Group } = {
     edition: { label: 'Editions', filters: [] },
-    tag: { label: 'Tags', filters: [] },
+    tag: { label: t`Tags`, filters: [] },
     period: { label: 'Periods', filters: [] },
     region: { label: 'Regions', filters: [] },
   };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { EditionType } from '@friends-library/types';
+import { t } from '../../translation';
 import Heading from '../../Heading';
 import FeaturedBook from './FeaturedBook';
 import './FeaturedBooksBlock.css';
@@ -19,7 +20,7 @@ const FeaturedBooksBlock: React.FC = () => {
 
   return (
     <section className="FeaturedBooksBlock py-10 sm:py-12 md:py-20">
-      <Heading className="text-gray-800">Featured Books</Heading>
+      <Heading className="text-gray-800">{t`Featured Books`}</Heading>
       <div className="BooksViewer overflow-hidden">
         <div className="BookWrap flex">
           {FEATURED_BOOKS.map((book, bkIdx) => (

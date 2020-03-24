@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { CoverProps } from '@friends-library/types';
 import { ThreeD } from '@friends-library/cover-component';
+import { t } from '../../translation';
 import Button from '../../Button';
 import ClockIcon from '../../icons/Clock';
 import TagsIcon from '../../icons/Tags';
@@ -94,7 +95,7 @@ const BookByFriend: React.FC<Props> = props => {
         </ul>
         <div className="flex flex-col items-center">
           <Button className="mt-6 md:mt-10" to={props.bookUrl}>
-            View Book
+            {t`View Book`}
           </Button>
         </div>
       </div>

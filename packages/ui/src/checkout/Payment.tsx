@@ -7,6 +7,7 @@ import {
   CardCvcElement,
   ReactStripeElements,
 } from 'react-stripe-elements';
+import { t } from '../translation';
 import Back from './Back';
 import Header from './Header';
 import Progress from './Progress';
@@ -99,7 +100,7 @@ class Payment extends React.Component<Props, State> {
             />
             <div className="md:w-1/2 mt-4 md:mt-0">
               <h3 className="hidden md:block pt-0 mt-2 mb-6 text-gray-600 antialiased tracking-wider font-sans font-normal text-lg">
-                Enter credit card details:
+                {t`Enter credit card details`}:
               </h3>
               <div className="relative">
                 <CardNumberElement
@@ -157,7 +158,7 @@ class Payment extends React.Component<Props, State> {
           </div>
         </div>
         <div className={cx(throbbing && 'blur pointer-events-none')}>
-          <Back onClick={onBack}>Back to delivery</Back>
+          <Back onClick={onBack}>{t`Back to Delivery`}</Back>
           <Button
             bg={this.valid() ? 'primary' : null}
             className={cx('mx-auto', {
@@ -165,7 +166,7 @@ class Payment extends React.Component<Props, State> {
             })}
             disabled={!this.valid()}
           >
-            Purchase
+            {t`Purchase`}
           </Button>
         </div>
       </form>

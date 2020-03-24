@@ -28,6 +28,9 @@ module.exports = {
       colors: {
         flprimary: `rgb(${LANG === 'en' ? maroonRgb : goldRgb})`,
         'flprimary-800': `rgb(${LANG === 'en' ? '88, 44, 56' : '162, 112, 67'})`,
+        'flprimary-600': `rgb(${LANG === 'en' ? maroonRgb : goldRgb})`,
+        'flprimary-500': `rgb(${LANG === 'en' ? '132, 60, 81' : '152, 115, 79'})`,
+        'flprimary-400': `rgb(${LANG === 'en' ? '147, 64, 89' : '172, 127, 85'})`,
         flgold: `rgb(${goldRgb})`,
         flmaroon: `rgb(${maroonRgb})`,
         flblue: `rgb(${blueRgb})`,
@@ -48,6 +51,7 @@ module.exports = {
         'flblue-400': 'rgb(152, 200, 220)',
         'flgold-800': 'rgb(162, 112, 67)',
         'flgold-600': `rgb(${goldRgb})`,
+        'flgold-500': `rgb(152, 115, 79)`, // made this one up ¯\_(ツ)_/¯
         'flgold-400': 'rgb(172, 127, 85)',
         'flgray-900': 'rgb(44, 42, 41)',
         'flgray-500': 'rgb(146, 146, 146)',

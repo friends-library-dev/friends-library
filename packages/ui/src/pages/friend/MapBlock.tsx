@@ -1,5 +1,6 @@
 import React from 'react';
 import Meta from './FriendMeta';
+import { t } from '../../translation';
 import Uk from '../../images/maps/UK--2x.png';
 import Us from '../../images/maps/US.png';
 import Europe from '../../images/maps/Europe--2x.png';
@@ -24,7 +25,7 @@ const MapBlock: React.FC<Props> = ({ friendName, markers, residences, map }) => 
     <div className="relative items-start justify-center xl:flex xl:bg-flgray-100 xl:mx-auto xl:mt-12 xl:py-10">
       <Meta
         className="mx-6 z-10 max-w-xs md:mt-8 xl:w-64 xl:py-24"
-        title={`Where did ${friendName} live?`}
+        title={t`Where did ${friendName} live?`}
         color="maroon"
       >
         {residences.map(residence => (

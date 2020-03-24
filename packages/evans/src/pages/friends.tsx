@@ -6,6 +6,7 @@ import {
   FriendsPageControlsBlock,
   FriendCard,
   Stack,
+  t,
 } from '@friends-library/ui';
 import Layout from '../components/Layout';
 
@@ -19,7 +20,7 @@ export default ({ data: { allFriend, recent } }: Props) => {
     <Layout>
       <FriendsPageHero numFriends={allFriend.nodes.length} />
       <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">
-        <h2 className="text-center pb-8 sans-wider text-2xl">Recently Added Authors</h2>
+        <h2 className="text-center pb-8 sans-wider text-2xl">{t`Recently Added Authors`}</h2>
         <Stack space="20" md="12" xl="0" className="xl:flex justify-center">
           {recent.nodes.map((friend, idx) => (
             <FriendCard
@@ -43,7 +44,7 @@ export default ({ data: { allFriend, recent } }: Props) => {
         >
           {filteredFriends.length === 0 && (
             <p className="self-center sans-wide text-lg pt-10 text-gray-800">
-              Your search returned no results.
+              {t`Your search returned no results`}.
             </p>
           )}
           {filteredFriends.length > 0 &&
@@ -133,7 +134,12 @@ type FriendData = Props['data']['allFriend']['nodes'][0];
 
 export const query = graphql`
   {
-    allFriend(filter: { hasNonDraftDocument: { eq: true } }) {
+    allFriend(
+      filter: {
+        hasNonDraftDocument: { eq: true }
+        slug: { nin: ["compilations", "compilaciones"] }
+      }
+    ) {
       nodes {
         name
         gender
@@ -149,7 +155,11 @@ export const query = graphql`
         }
       }
     }
-    recent: allFriend(sort: { fields: added, order: DESC }, limit: 2) {
+    recent: allFriend(
+      sort: { fields: added, order: DESC }
+      limit: 2
+      filter: { slug: { nin: ["compilations", "compilaciones"] } }
+    ) {
       nodes {
         name
         gender

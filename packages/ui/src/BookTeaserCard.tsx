@@ -3,6 +3,8 @@ import cx from 'classnames';
 import Link from 'gatsby-link';
 import { Front } from '@friends-library/cover-component';
 import { CoverProps } from '@friends-library/types';
+import { t } from './translation';
+import { LANG } from './env';
 import Button from './Button';
 import Album from './Album';
 import AudioDuration from './AudioDuration';
@@ -83,7 +85,7 @@ const BookTeaserCard: React.FC<Props> = props => {
             to={`${props.documentUrl}#ListenBlock`}
             className="mx-auto md:mx-0 mt-6 max-w-full"
           >
-            Listen
+            {t`Listen`}
           </Button>
         )}
       </div>
@@ -94,7 +96,11 @@ const BookTeaserCard: React.FC<Props> = props => {
 export default BookTeaserCard;
 
 const Badge: React.FC = ({ children }) => (
-  <div className="absolute antialiased top-0 left-0 bg-flgold flex flex-col items-center justify-center tracking-wide font-sans text-white rounded-full w-16 h-16 z-10 transform -translate-y-6 -translate-x-4">
+  <div
+    className={`absolute antialiased top-0 left-0 bg-fl${
+      LANG === 'en' ? 'gold' : 'maroon'
+    } flex flex-col items-center justify-center tracking-wide font-sans text-white rounded-full w-16 h-16 z-10 transform -translate-y-6 -translate-x-4`}
+  >
     <span>{children}</span>
   </div>
 );

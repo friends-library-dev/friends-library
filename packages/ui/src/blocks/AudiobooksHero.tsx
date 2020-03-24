@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { t, Dual } from '../translation';
 import './AudiobooksHero.css';
 
 interface Props {
@@ -9,10 +10,11 @@ interface Props {
 
 const AudiobooksHero: React.FC<Props> = ({ className, numBooks }) => (
   <div className={cx(className, 'AudiobooksHero text-center')}>
-    <h2 className="font-sans text-4xl tracking-wider text-white mb-6">Audio Books</h2>
-    <p className="body-text text-white text-lg">
-      We currently have {numBooks} titles recorded as audiobooks.
-    </p>
+    <h2 className="font-sans text-4xl tracking-wider text-white mb-6">{t`Audio Books`}</h2>
+    <Dual.p className="body-text text-white text-lg">
+      <>We currently have {numBooks} titles recorded as audiobooks.</>
+      <>Actualmente tenemos {numBooks} títulos grabados como audiolibros.</>
+    </Dual.p>
   </div>
 );
 

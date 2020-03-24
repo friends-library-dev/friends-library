@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
+import { t, Dual } from '../../translation';
 import Button from '../../Button';
 import { makeScroller } from '../../lib/scroll';
 import './Form.css';
@@ -34,24 +35,38 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
         className="bg-white p-8 sm:p-10"
       >
         {state === 'submitted' && success && (
-          <p className="FormResultMsg bg-green-700 text-white py-4 px-6 mb-6">
-            Success! You should hear back from us shortly.
-          </p>
+          <Dual.p className="FormResultMsg bg-green-700 text-white py-4 px-6 mb-6">
+            <>Success! You should hear back from us shortly.</>
+            <>¡Enviado exitosamente! Pronto recibirás una respuesta de nosotros.</>
+          </Dual.p>
         )}
         {state === 'submitted' && !success && (
-          <p className="FormResultMsg bg-red-800 text-white py-4 px-6 mb-6">
-            Sorry! There was a problem sending your request. Please try again, or{' '}
-            <a
-              href={`mailto:${fallbackEmail}?body=${encodeURIComponent(message)}`}
-              className="border-b border-white border-dotted"
-            >
-              email us directly
-            </a>{' '}
-            if the problem persists.
-          </p>
+          <Dual.p className="FormResultMsg bg-red-800 text-white py-4 px-6 mb-6">
+            <>
+              Sorry! There was a problem sending your request. Please try again, or{' '}
+              <a
+                href={`mailto:${fallbackEmail}?body=${encodeURIComponent(message)}`}
+                className="border-b border-white border-dotted"
+              >
+                email us directly
+              </a>{' '}
+              if the problem persists.
+            </>
+            <>
+              ¡Lo sentimos! Hubo un problema al enviar tu solicitud. Por favor intenta
+              nuevamente, o, si el problema persiste,{' '}
+              <a
+                href={`mailto:${fallbackEmail}?body=${encodeURIComponent(message)}`}
+                className="border-b border-white border-dotted"
+              >
+                envíanos un correo directamente
+              </a>
+              .
+            </>
+          </Dual.p>
         )}
         <fieldset>
-          <Label htmlFor="name">Name</Label>
+          <Label htmlFor="name">{t`Name`}</Label>
           <input
             value={name}
             required
@@ -65,7 +80,7 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
           />
         </fieldset>
         <fieldset>
-          <Label htmlFor="email">Email</Label>
+          <Label htmlFor="email">{t`Email`}</Label>
           <input
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -86,7 +101,10 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
               className="sr-only"
               onChange={() => setSubject('tech')}
             />
-            <span>Website / technical questions</span>
+            <Dual.span>
+              <>Website / technical questions</>
+              <>Sitio Web / Preguntas técnicas</>
+            </Dual.span>
           </label>
           <label htmlFor="subject-other" className="cursor-pointer">
             <input
@@ -96,11 +114,14 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
               id="subject-other"
               className="sr-only"
             />
-            <span>All other subjects</span>
+            <Dual.span>
+              <>All other subjects</>
+              <>Cualquier otro asunto</>
+            </Dual.span>
           </label>
         </div>
         <fieldset>
-          <Label htmlFor="message">Message</Label>
+          <Label htmlFor="message">{t`Message`}</Label>
           <textarea
             required
             value={message}
@@ -111,7 +132,7 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
           ></textarea>
         </fieldset>
         <Button className="my-2" width="100%" disabled={state === 'submitting'}>
-          {state === 'submitting' ? 'Submitting...' : 'Submit'}
+          {state === 'submitting' ? `${t`Submitting`}...` : t`Submit`}
         </Button>
       </form>
     </div>

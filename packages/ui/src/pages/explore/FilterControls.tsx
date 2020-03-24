@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { t } from '../../translation';
 import SearchInput from '../../SearchInput';
 import FilterSelect from './FilterSelect';
 
@@ -17,9 +18,9 @@ const FilterControls: React.FC<Props> = ({
   setSearchQuery,
 }) => (
   <div className="bg-flgray-100 p-6 pb-12 md:p-8 flex flex-col md:flex-row justify-center items-center">
-    <Label>Filters</Label>
+    <Label>{t`Filters`}</Label>
     <FilterSelect selected={activeFilters} setSelected={setActiveFilters} />
-    <Label className="mt-4 md:mt-0 md:ml-10">Search</Label>
+    <Label className="mt-4 md:mt-0 md:ml-10">{t`Search`}</Label>
     <SearchInput query={searchQuery} setQuery={setSearchQuery} />
   </div>
 );

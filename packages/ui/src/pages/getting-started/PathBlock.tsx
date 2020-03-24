@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import { CoverProps } from '@friends-library/types';
 import { Front } from '@friends-library/cover-component';
+import { t } from '../../translation';
 import WaveBottomBlock from '../../blocks/WaveBottomBlock';
 import Button from '../../Button';
 import DownloadIcon from '../../icons/Download';
@@ -44,7 +45,7 @@ const PathBlock: React.FC<Props> = ({ books, title, color, children }) => {
           </div>
         ))}
       </div>
-      <Button className="mx-auto mt-12 xl:mb-2">View More</Button>
+      <Button className="mx-auto mt-12 xl:mb-2">{t`View More`}</Button>
     </WaveBottomBlock>
   );
 };

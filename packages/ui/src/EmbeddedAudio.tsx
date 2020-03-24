@@ -43,6 +43,7 @@ function src(
     show_reposts: 'false',
     show_artwork: showArtwork ? 'true' : 'false',
     show_teaser: 'false',
+    locale: LANG,
   };
 
   const query = Object.keys(params)

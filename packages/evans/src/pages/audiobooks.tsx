@@ -1,7 +1,14 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
-import { Stack, Audiobook, AudiobooksHero, BookTeaserCard } from '@friends-library/ui';
+import {
+  t,
+  Dual,
+  Stack,
+  Audiobook,
+  AudiobooksHero,
+  BookTeaserCard,
+} from '@friends-library/ui';
 import { Layout } from '../components';
 
 type AudioBookNode = CoverData & {
@@ -36,9 +43,10 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
   <Layout>
     <AudiobooksHero className="p-16 pb-48 md:pb-56" numBooks={audioBooks.nodes.length} />
     <div className="bg-flgray-200 py-12 xl:pb-6">
-      <h2 className="sans-wider text-center text-2xl md:text-3xl mb-12">
-        Recently Added Audio Books
-      </h2>
+      <Dual.h2 className="sans-wider text-center text-2xl md:text-3xl mb-12">
+        <>Recently Added Audio Books</>
+        <>Audiolibros añadidos recientemente</>
+      </Dual.h2>
       <Stack
         space="16"
         xl="0"
@@ -61,14 +69,23 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
       </Stack>
     </div>
     <div className="pt-16">
-      <h2 className="sans-wider text-center text-3xl mb-8">All Audio Books</h2>
-      <p className="body-text text-center text-lg mb-12">
-        Browse all {audioBooks.nodes.length} audiobooks below, or{' '}
-        <Link to="/audio-help" className="subtle-link">
-          get help with listening here
-        </Link>
-        .
-      </p>
+      <h2 className="sans-wider text-center text-3xl mb-8">{t`All Audio Books`}</h2>
+      <Dual.p className="body-text text-center text-lg mb-12">
+        <>
+          Browse all {audioBooks.nodes.length} audiobooks below, or{' '}
+          <Link to={t`/audio-help`} className="subtle-link">
+            get help with listening here
+          </Link>
+          .
+        </>
+        <>
+          Explora los {audioBooks.nodes.length} audiolibros a continuación u{' '}
+          <Link to={t`/audio-help`} className="subtle-link">
+            obtén ayuda aquí para escuchar
+          </Link>
+          .
+        </>
+      </Dual.p>
       <div className="flex flex-col md:flex-row flex-wrap items-center md:items-stretch justify-center">
         {audioBooks.nodes.map((book, idx) => (
           <Audiobook

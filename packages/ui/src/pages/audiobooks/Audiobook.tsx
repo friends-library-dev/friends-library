@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Link from 'gatsby-link';
 import { CoverProps } from '@friends-library/types';
+import { t } from '../../translation';
 import Album from '../../Album';
 import AudioDuration from '../../AudioDuration';
 import Button from '../../Button';
@@ -44,7 +45,7 @@ const Audiobook: React.FC<Props> = props => (
         textColor="black"
         className="bg-flgray-200 hover:bg-white mx-auto mt-auto"
       >
-        Listen
+        {t`Listen`}
       </Button>
     </Stack>
   </div>

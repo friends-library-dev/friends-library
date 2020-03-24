@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import cx from 'classnames';
+import { t } from '../../translation';
 import { Book } from './types';
 import AudiobooksHero from '../../blocks/AudiobooksHero';
 import Button from '../../Button';
@@ -38,9 +39,11 @@ const AudioBooksBlock: React.FC<Props> = ({ books }) => (
         </Link>
       ))}
     </div>
-    <Button className="mx-auto mt-12 md:mt-6" to="/audiobooks">
-      View {books.length - 4} More &rarr;
-    </Button>
+    {books.length - 4 > 0 && (
+      <Button className="mx-auto mt-12 md:mt-6" to={t`/audiobooks`}>
+        {t`View ${books.length - 4} More`} &rarr;
+      </Button>
+    )}
   </div>
 );
 
