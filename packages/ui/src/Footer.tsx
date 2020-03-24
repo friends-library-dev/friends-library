@@ -40,7 +40,8 @@ const Footer: React.FC = () => {
               [t`/quakers`, t`About the Quakers`],
               [t`/modernization`, t`About modernization`, 'en'],
               [t`/editions`, t`About book editions`, 'en'],
-              [t`/spanish-translations`, t`About Spanish translations`, 'en'],
+              ['/spanish-translations', 'About Spanish translations', 'en'],
+              ['/nuestras-traducciones', 'Nuestras Traducciones', 'es'],
               [t`/about`, t`About this Site`],
             ]}
           />
