@@ -1,9 +1,9 @@
 import { documentDate, DateableDocument } from '../date';
 
 describe('documentDate()', () => {
-  let doc: DateableDocument = { friend: {} };
+  let doc: DateableDocument;
   beforeEach(() => {
-    doc = { friend: {} };
+    doc = { path: 'en/george-fox/journal', friend: { isCompilationsQuasiFriend: false } };
   });
 
   it('should use timelineDate if present', () => {
@@ -32,5 +32,14 @@ describe('documentDate()', () => {
     doc.friend.born = 1700;
     doc.friend.died = 1800;
     expect(documentDate(doc)).toBe(1775);
+  });
+
+  test('compilations can have no determinable date', () => {
+    doc.friend.isCompilationsQuasiFriend = true;
+    expect(documentDate(doc)).toBe(-1);
+  });
+
+  test('non compilations should throw if no date can be found', () => {
+    expect(() => documentDate(doc)).toThrow();
   });
 });
