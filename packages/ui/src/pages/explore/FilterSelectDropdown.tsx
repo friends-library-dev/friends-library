@@ -2,6 +2,8 @@ import React from 'react';
 import { AccordionItem, AccordionButton, AccordionPanel } from '@reach/accordion';
 import PillDropdownDropdown from '../../PillDropdownDropdown';
 import Item from '../../PillDropdownItem';
+import { t } from '../../translation';
+import { LANG } from '../../env';
 import './FilterSelectDropdown.css';
 
 interface Props {
@@ -11,89 +13,95 @@ interface Props {
 
 const FilterSelectDropdown: React.FC<Props> = props => (
   <PillDropdownDropdown className="FilterSelectDropdown" accordion>
-    <AccordionItem className="border-tx">
-      <Category label="Editions" />
-      <AccordionPanel>
-        <Option value="edition.updated" {...props}>
-          Updated
-        </Option>
-        <Option value="edition.modernized" {...props}>
-          Modernized
-        </Option>
-        <Option value="edition.original" {...props}>
-          Original
-        </Option>
-      </AccordionPanel>
-    </AccordionItem>
+    {LANG === 'en' && (
+      <AccordionItem className="border-tx">
+        <Category label="Editions" />
+        <AccordionPanel>
+          <Option value="edition.updated" {...props}>
+            Updated
+          </Option>
+          <Option value="edition.modernized" {...props}>
+            Modernized
+          </Option>
+          <Option value="edition.original" {...props}>
+            Original
+          </Option>
+        </AccordionPanel>
+      </AccordionItem>
+    )}
     <AccordionItem>
-      <Category label="Tags" />
+      <Category label={t`Tags`} />
       <AccordionPanel>
         <Option value="tag.journal" {...props}>
-          Journal
+          {t`Journal`}
         </Option>
         <Option value="tag.letters" {...props}>
-          Letters
+          {t`Letters`}
         </Option>
         <Option value="tag.exhortation" {...props}>
-          Exhortation
+          {t`Exhortation`}
         </Option>
         <Option value="tag.doctrinal" {...props}>
-          Doctrinal
+          {t`Doctrinal`}
         </Option>
         <Option value="tag.treatise" {...props}>
-          Treatise
+          {t`Treatise`}
         </Option>
         <Option value="tag.history" {...props}>
-          History
+          {t`History`}
         </Option>
         <Option value="tag.allegory" {...props}>
-          Allegory
+          {t`Allegory`}
         </Option>
         <Option value="tag.devotional" {...props}>
-          Devotional
+          {t`Devotional`}
         </Option>
       </AccordionPanel>
     </AccordionItem>
-    <AccordionItem>
-      <Category label="Time Period" />
-      <AccordionPanel>
-        <Option value="period.early" {...props}>
-          Early
-          <span className="uppercase text-xs pl-2 text-flgray-500">(1650-1725)</span>
-        </Option>
-        <Option value="period.mid" {...props}>
-          Mid
-          <span className="uppercase text-xs pl-2 text-flgray-500">(1725-1815)</span>
-        </Option>
-        <Option value="period.late" {...props}>
-          Late
-          <span className="uppercase text-xs pl-2 text-flgray-500">(1815-1895)</span>
-        </Option>
-      </AccordionPanel>
-    </AccordionItem>
-    <AccordionItem className="border-b">
-      <Category label="Region" />
-      <AccordionPanel>
-        <Option value="region.england" {...props}>
-          England
-        </Option>
-        <Option value="region.ireland" {...props}>
-          Ireland
-        </Option>
-        <Option value="region.eastern-us" {...props}>
-          Eastern US
-        </Option>
-        <Option value="region.western-us" {...props}>
-          Western US
-        </Option>
-        <Option value="region.scotland" {...props}>
-          Scotland
-        </Option>
-        <Option value="region.other" {...props}>
-          Other
-        </Option>
-      </AccordionPanel>
-    </AccordionItem>
+    {LANG === 'en' && (
+      <AccordionItem>
+        <Category label="Time Period" />
+        <AccordionPanel>
+          <Option value="period.early" {...props}>
+            Early
+            <span className="uppercase text-xs pl-2 text-flgray-500">(1650-1725)</span>
+          </Option>
+          <Option value="period.mid" {...props}>
+            Mid
+            <span className="uppercase text-xs pl-2 text-flgray-500">(1725-1815)</span>
+          </Option>
+          <Option value="period.late" {...props}>
+            Late
+            <span className="uppercase text-xs pl-2 text-flgray-500">(1815-1895)</span>
+          </Option>
+        </AccordionPanel>
+      </AccordionItem>
+    )}
+    {LANG === 'en' && (
+      <AccordionItem className="border-b">
+        <Category label="Region" />
+        <AccordionPanel>
+          <Option value="region.england" {...props}>
+            England
+          </Option>
+          <Option value="region.ireland" {...props}>
+            Ireland
+          </Option>
+          <Option value="region.eastern-us" {...props}>
+            Eastern US
+          </Option>
+          <Option value="region.western-us" {...props}>
+            Western US
+          </Option>
+          <Option value="region.scotland" {...props}>
+            Scotland
+          </Option>
+          <Option value="region.other" {...props}>
+            Other
+          </Option>
+        </AccordionPanel>
+      </AccordionItem>
+    )}
   </PillDropdownDropdown>
 );
 

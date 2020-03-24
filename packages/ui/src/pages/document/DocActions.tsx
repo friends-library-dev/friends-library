@@ -1,4 +1,5 @@
 import React from 'react';
+import { t } from '../../translation';
 import MultiPill from '../../MultiPill';
 
 interface Props {
@@ -23,17 +24,17 @@ const DocActions: React.FC<Props> = ({
       className={className}
       buttons={[
         {
-          text: 'Download',
+          text: t`Download`,
           icon: 'cloud',
           onClick: download,
         },
         {
-          text: `Paperback $${(price / 100).toFixed(2)}`,
+          text: `${t`Paperback`} $${(price / 100).toFixed(2)}`,
           icon: 'book',
           onClick: addToCart,
         },
         ...(hasAudio
-          ? [{ text: 'Audio Book', icon: 'headphones', onClick: gotoAudio }]
+          ? [{ text: t`Audiobook`, icon: 'headphones', onClick: gotoAudio }]
           : []),
       ]}
     />

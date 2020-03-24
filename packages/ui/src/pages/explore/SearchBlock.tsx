@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Book, Region } from './types';
 import SearchControls from './SearchControls';
 import SearchResult from './SearchResult';
+import { t } from '../../translation';
 import './SearchBlock.css';
 
 interface Props {
@@ -46,7 +47,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) =>
         <div className="SearchBlock__Results SearchBlock__Results--empty bg-cover px-32 flex flex-col justify-center bg-bottom">
           <p className="text-white text-3xl sans-wider text-center">
             {used
-              ? 'Your search returned no results'
+              ? t`Your search returned no results`
               : '^ Select a filter or search to get started!'}
           </p>
         </div>

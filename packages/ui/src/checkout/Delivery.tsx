@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CountryDropdown } from 'react-country-region-selector';
 import Link from 'gatsby-link';
 import cx from 'classnames';
+import { t, Dual } from '../translation';
 import Button from '../Button';
 import Header from './Header';
 import Progress from './Progress';
@@ -41,7 +42,7 @@ const Delivery: React.FC<{
 
   return (
     <div className={cx(throbbing && 'pointer-events-none')}>
-      <Header>Delivery</Header>
+      <Header>{t`Delivery`}</Header>
       {!error && <NoProfit className="hidden md:block" />}
       <Progress step="Delivery" />
       {error && <ShippingError />}
@@ -78,8 +79,8 @@ const Delivery: React.FC<{
             onFocus={() => setNameBlurred(false)}
             value={name}
             valid={!nameBlurred || !!name}
-            placeholder="Full name"
-            invalidMsg="Name is required"
+            placeholder={t`Full name`}
+            invalidMsg={t`Name is required`}
           />
           <Input
             className="order-3"
@@ -87,8 +88,8 @@ const Delivery: React.FC<{
             onFocus={() => setStreetBlurred(false)}
             onBlur={() => setStreetBlurred(true)}
             value={street}
-            placeholder="Street address, P.O. Box, C/O"
-            invalidMsg="Street address is required"
+            placeholder={t`Street address, P.O. Box, C/O`}
+            invalidMsg={t`Street address is required`}
             valid={!streetBlurred || !!street}
           />
           <Input
@@ -97,43 +98,46 @@ const Delivery: React.FC<{
             valid={true}
             onChange={val => setStreet2(val)}
             value={street2}
-            placeholder="Apartment, suite, unit, etc."
+            placeholder={t`Apartment, suite, unit, etc.`}
           />
           <Input
             className="order-5"
-            invalidMsg="City is required"
+            invalidMsg={t`City is required`}
             valid={!cityBlurred || !!city}
             onChange={val => setCity(val)}
             onFocus={() => setCityBlurred(false)}
             onBlur={() => setCityBlurred(true)}
             value={city}
-            placeholder="City"
+            placeholder={t`City`}
           />
           <Input
             className="order-6"
-            invalidMsg="State / Province / Region is required"
+            invalidMsg={t`State / Province / Region is required`}
             valid={!stateBlurred || !!state}
             onChange={val => setState(val)}
             onFocus={() => setStateBlurred(false)}
             onBlur={() => setStateBlurred(true)}
             value={state}
-            placeholder="State / Province / Region"
+            placeholder={t`State / Province / Region`}
           />
           <Input
             className="order-7"
-            invalidMsg="ZIP / Postal Code is required"
+            invalidMsg={t`ZIP / Postal Code is required`}
             valid={!zipBlurred || !!zip}
             onChange={val => setZip(val)}
             onFocus={() => setZipBlurred(false)}
             onBlur={() => setZipBlurred(true)}
             value={zip}
-            placeholder="ZIP / Postal Code"
+            placeholder={t`ZIP / Postal Code`}
           />
           <CountryDropdown
             classes={cx(
               'CartInput text-gray-500 order-8',
               countryBlurred && !country && 'invalid text-red-600',
             )}
+            defaultOptionLabel={
+              !countryBlurred || country ? t`Select Country` : t`Select a Country`
+            }
             value={country}
             valueType="short"
             onChange={(country: string) => setCountry(country)}
@@ -142,21 +146,21 @@ const Delivery: React.FC<{
           />
           <Input
             className="order-2"
-            invalidMsg={email ? 'Valid email is required' : 'Email is required'}
+            invalidMsg={email ? t`Valid email is required` : t`Email is required`}
             valid={!emailBlurred || !!email.match(/^\S+@\S+$/)}
             onChange={val => setEmail(val)}
             onFocus={() => setEmailBlurred(false)}
             onBlur={() => setEmailBlurred(true)}
             value={email}
-            placeholder="Email"
+            placeholder={t`Email`}
             type="email"
           />
         </div>
         <Back className={cx(throbbing && 'blur')} onClick={onBack}>
-          Back to Order
+          {t`Back to Order`}
         </Back>
         <Button shadow className="mx-auto" disabled={!filledOutCompletely || throbbing}>
-          Payment &nbsp;&rsaquo;
+          {t`Payment`} &nbsp;&rsaquo;
         </Button>
       </form>
     </div>
@@ -167,12 +171,27 @@ export default Delivery;
 
 const ShippingError: React.FC = () => (
   <ErrorMsg>
-    Sorry, we're not able to ship to that address. Please double-check for any{' '}
-    <i>errors,</i> or try an <i>alternate address</i> where you could receive a shipment.
-    Still no luck? We might not be able to ship directly to your location, but you can{' '}
-    <Link to="/contact-us" className="underline">
-      contact us
-    </Link>{' '}
-    to arrange an alternate shipment.
+    <Dual.frag>
+      <>
+        Sorry, we're not able to ship to that address. Please double-check for any{' '}
+        <i>errors,</i> or try an <i>alternate address</i> where you could receive a
+        shipment. Still no luck? We might not be able to ship directly to your location,
+        but you can{' '}
+        <Link to={t`/contact`} className="underline">
+          contact us
+        </Link>{' '}
+        to arrange an alternate shipment.
+      </>
+      <>
+        Lo sentimos, no podemos hacer envíos a esa dirección. Por favor, comprueba si hay
+        algún <em>error,</em> o intenta una <em>dirección alternativa</em> donde puedas
+        recibir el envío. ¿Todavía no lo has logrado? Es posible que no podamos enviar
+        directamente a esa ubicación, pero{' '}
+        <Link to={t`/contact`} className="underline">
+          contáctanos
+        </Link>{' '}
+        para acordar un envío alternativo.
+      </>
+    </Dual.frag>
   </ErrorMsg>
 );

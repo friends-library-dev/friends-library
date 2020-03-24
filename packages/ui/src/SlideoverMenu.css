@@ -1,13 +1,13 @@
-.SlideoverMenu header {
-  border-color: rgba(95, 43, 58, 1);
-}
-
 .SlideoverMenu .Logo {
-  fill: white;
   width: 140px;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.SlideoverMenu .Logo:lang(es) {
+  width: 190px;
+  height: 45px;
 }
 
 .SlideoverMenu ul::after {
@@ -33,6 +33,10 @@ html[lang] .SlideoverMenu .Search {
 .SlideoverMenu .LinkGroup a:hover {
   opacity: 0.6;
   color: rgb(200, 129, 151);
+}
+
+.SlideoverMenu:lang(es) .LinkGroup a:hover {
+  @apply text-flgold-800;
 }
 
 .SlideoverMenu .LinkGroup a::after {

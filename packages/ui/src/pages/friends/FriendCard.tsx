@@ -6,6 +6,7 @@ import CircleSilhouette from './CircleSilhouette';
 import Flag from '../../icons/Flag';
 import Calendar from '../../icons/Calendar';
 import ThinLogo from '../../icons/ThinLogo';
+import { t, Dual } from '../../translation';
 import './FriendCard.css';
 
 interface Props {
@@ -58,7 +59,7 @@ const FriendCard: React.FC<Props> = ({
           })}
           bg={buttonBgColor}
         >
-          Learn More
+          {t`Learn More`}
         </Button>
       </div>
       <div
@@ -83,7 +84,15 @@ const FriendCard: React.FC<Props> = ({
             {region}
           </Item>
           <Item key="logo" Icon={ThinLogo}>
-            {numBooks} book{numBooks > 1 ? 's' : ''} available
+            <Dual.frag>
+              <>
+                {numBooks} book{numBooks > 1 ? 's' : ''} available
+              </>
+              <>
+                {numBooks} libro{numBooks > 1 ? 's' : ''} disponible
+                {numBooks > 1 ? 's' : ''}
+              </>
+            </Dual.frag>
           </Item>
         </Stack>
       </div>
@@ -96,7 +105,7 @@ const FriendCard: React.FC<Props> = ({
         })}
         bg={buttonBgColor}
       >
-        Learn More
+        {t`Learn More`}
       </Button>
     </Stack>
   );

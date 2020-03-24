@@ -1,4 +1,5 @@
 import React from 'react';
+import { t } from '../../translation';
 import ChoiceStep from './ChoiceStep';
 import ChoiceItem from './ChoiceItem';
 import Ebook from '../../icons/Ebook';
@@ -8,17 +9,17 @@ interface Props {
   onChoose: (choice: 'ebook' | 'pdf') => any;
 }
 const ChooseFormat: React.FC<Props> = ({ onChoose }) => (
-  <ChoiceStep title="Choose Book Type">
+  <ChoiceStep title={t`Choose Book Type`}>
     <ChoiceItem
-      label="E-Book"
-      description="Best for reading on a computer, phone, or tablet."
+      label={t`E-Book`}
+      description={t`Best for reading on a computer, phone, or tablet.`}
       recommended
       Icon={Ebook}
       onChoose={() => onChoose('ebook')}
     />
     <ChoiceItem
       label="PDF"
-      description="Best for printing out your own copy."
+      description={t`Best for printing out your own copy.`}
       Icon={Pdf}
       onChoose={() => onChoose('pdf')}
     />

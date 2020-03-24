@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import cx from 'classnames';
+import { Lang } from '@friends-library/types';
+import { t } from '@friends-library/ui';
 import { LANG } from './env';
 import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';
@@ -24,37 +26,37 @@ const Footer: React.FC = () => {
             )}
           />
           <LinkList
-            title="Books"
+            title={t`Books`}
             links={[
-              ['/getting-started', 'Getting Started'],
-              ['/explore', 'Explore books'],
-              ['/audiobooks', 'Audiobooks'],
-              ['/friends', 'All Friends'],
+              [t`/getting-started`, t`Getting Started`],
+              [t`/explore`, t`Explore Books`],
+              [t`/audiobooks`, t`Audiobooks`],
+              [t`/friends`, t`All Friends`],
             ]}
           />
           <LinkList
-            title="About"
+            title={t`About`}
             links={[
-              ['/quakers', 'About the Quakers'],
-              ['/modernization', 'About modernization'],
-              ['/editions', 'About book editions'],
-              ['/spanish-translations', 'About Spanish translations'],
-              ['/about', 'About this site'],
+              [t`/quakers`, t`About the Quakers`],
+              [t`/modernization`, t`About modernization`, 'en'],
+              [t`/editions`, t`About book editions`, 'en'],
+              [t`/spanish-translations`, t`About Spanish translations`, 'en'],
+              [t`/about`, t`About this Site`],
             ]}
           />
           <LinkList
-            title="Help"
+            title={t`Help`}
             links={[
-              ['/audio-help', 'Audio help'],
-              ['/ebook-help', 'E-book help'],
-              ['/contact', 'Contact us'],
+              [t`/audio-help`, t`Audio Help`],
+              [t`/ebook-help`, t`E-book Help`],
+              [t`/contact`, t`Contact Us`],
             ]}
           />
         </div>
       </div>
 
       <p className="bg-gray-900 text-gray-500 p-6 text-center text-xs font-hairline font-serif">
-        &copy; {new Date().getFullYear()} Friends Library Publishing <b>[,]</b>
+        &copy; {new Date().getFullYear()} {t`Friends Library Publishing`} <b>[,]</b>
       </p>
     </footer>
   );
@@ -62,20 +64,22 @@ const Footer: React.FC = () => {
 
 export default Footer;
 
-const LinkList: React.FC<{ title: string; links: [string, string][] }> = ({
-  title,
-  links,
-}) => {
+const LinkList: React.FC<{
+  title: string;
+  links: [string, string, Lang?][];
+}> = ({ title, links }) => {
   return (
     <dl className="flex-grow mb-12 md:mb-0 md:ml-12 lg:ml-24 xl:ml-32">
       <dt className="text-xl font-semibold mb-5 tracking-widest">{title}</dt>
       <dd>
         <ul className="text-gray-300">
-          {links.map(([href, text]) => (
-            <li key={href} className="mb-2 tracking-wider opacity-75 text-md">
-              <Link to={href}>{text}</Link>
-            </li>
-          ))}
+          {links
+            .filter(([, , lang]) => !lang || lang === LANG)
+            .map(([href, text]) => (
+              <li key={href} className="mb-2 tracking-wider opacity-75 text-md">
+                <Link to={href}>{text}</Link>
+              </li>
+            ))}
         </ul>
       </dd>
     </dl>

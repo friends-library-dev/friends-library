@@ -1,4 +1,5 @@
 import React from 'react';
+import { t } from '../../translation';
 import FilterSelectDropdown from './FilterSelectDropdown';
 import PillDropdown from '../../PillDropdown';
 
@@ -8,7 +9,7 @@ interface Props {
 }
 
 const FilterSelect: React.FC<Props> = ({ selected, setSelected }) => (
-  <PillDropdown pillText="All Books">
+  <PillDropdown pillText={t`All Books`}>
     <FilterSelectDropdown selected={selected} setSelected={setSelected} />
   </PillDropdown>
 );

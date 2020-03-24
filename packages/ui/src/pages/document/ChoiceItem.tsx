@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { t } from '../../translation';
 
 interface Props {
   label: string;
@@ -31,7 +32,7 @@ const ChoiceItem: React.FC<Props> = ({
       <p className="text-sm tracking-wide">{description}</p>
       {recommended && (
         <div className="rounded-full bg-black text-center text-xs py-1 bg-flblue mt-2 uppercase w-40">
-          Recommended
+          {t`Recommended`}
         </div>
       )}
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import { Diamonds } from '@friends-library/cover-component';
+import { t } from '../../translation';
 import ChoiceStep from './ChoiceStep';
 import ChoiceItem from './ChoiceItem';
 import { EditionType } from '@friends-library/types';
@@ -40,7 +41,7 @@ const ChooseEdition: React.FC<Props> = ({ editions, onSelect }) => (
     )}
     <div className="flex flex-col items-center">
       <Link
-        to="/editions"
+        to={t`/editions`}
         className="inline-block pb-1 mt-8 opacity-75 border-flblue-700 border-b-4"
       >
         Learn more about editions

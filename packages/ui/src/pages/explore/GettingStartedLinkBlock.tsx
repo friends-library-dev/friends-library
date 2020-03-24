@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import { t } from '../../translation';
 import './GettingStartedLinkBlock.css';
 
 const GettingStartedLinkBlock: React.FC = () => {
@@ -7,7 +8,7 @@ const GettingStartedLinkBlock: React.FC = () => {
     <div className="GettingStartedLinkBlock p-16 bg-cover sm:p-20 md:p-24">
       <h3 className="text-white text-center font-sans leading-loose tracking-wider text-lg antialiased">
         Looking for just a few hand-picked recommendations? Head on over to our{' '}
-        <Link className="fl-underline" to="/getting-started">
+        <Link className="fl-underline" to={t`/getting-started`}>
           getting started
         </Link>{' '}
         page!

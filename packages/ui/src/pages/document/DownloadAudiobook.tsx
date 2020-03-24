@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { AudioQuality } from '@friends-library/types';
 import Link from 'gatsby-link';
+import { t, Dual } from '../../translation';
 import QualitySwitch from './QualitySwitch';
 import Stack from '../../layout/Stack';
 
@@ -40,15 +41,15 @@ const DownloadLinks: React.FC<Props> = props => {
   }
   return (
     <div className={cx(props.className, 'bg-white font-sans p-8')}>
-      <h3 className="text-2xl text-center mb-6">Download Audiobook</h3>
+      <h3 className="text-2xl text-center mb-6">{t`Download Audiobook`}</h3>
       <div className="tracking-widest antialiased flex flex-col items-center">
         <dl className="text-flgray-900 inline-block">
           <dt className="uppercase text-md mb-1">
             <a href={links.podcast} className="hover:underline">
-              <span className="hidden sm:inline">Download as </span>Podcast
+              <span className="hidden sm:inline">{t`Download as`} </span>Podcast
             </a>
             <span className="text-xs normal-case bg-flprimary text-white rounded-full -mt-1 ml-4 px-6 py-1">
-              Recommended
+              {t`Recommended`}
             </span>
           </dt>
           <dd className="text-flgray-500 text-xs mb-4 pb-1">
@@ -58,22 +59,43 @@ const DownloadLinks: React.FC<Props> = props => {
           </dd>
           <dt className="uppercase text-md mb-1">
             <a href={links.mp3Zip} className="hover:underline">
-              Download mp3 Files as Zip -{' '}
+              {t`Download mp3 Files as Zip`} -{' '}
               <span className="text-flprimary">({links.zipSize})</span>
             </a>
           </dt>
           <dd className="text-flgray-500 text-xs mb-4 pb-1">
-            (use in iTunes, or any music app)
+            <Dual.frag>
+              <>(use in iTunes, or any music app)</>
+              <>(Para usar en iTunes, o en cualquier aplicación de música)</>
+            </Dual.frag>
           </dd>
           <dt className="uppercase text-md mb-1">
             <a href={links.m4b} className="hover:underline">
-              Download .M4B Audiobook <span className="hidden sm:inline">File</span> -{' '}
+              <Dual.frag>
+                <>
+                  Download .M4B Audiobook <span className="hidden sm:inline">File</span> -{' '}
+                </>
+                <>
+                  Descargar Audiolibro{' '}
+                  <span className="hidden sm:inline">en archivo</span> M4b -{' '}
+                </>
+              </Dual.frag>
               <span className="text-flprimary">({links.m4bSize})</span>
             </a>
           </dt>
           <dd className="text-flgray-500 text-xs mb-4 pb-1">
-            (Audiobook format for <span className="hidden sm:inline">Apple Books, </span>
-            iTunes, etc.)
+            <Dual.frag>
+              <>
+                (Audiobook format for{' '}
+                <span className="hidden sm:inline">Apple Books, </span>
+                iTunes, etc.)
+              </>
+              <>
+                (Formato de Audiolibro para{' '}
+                <span className="hidden sm:inline">Aplicación de Libros, </span>
+                iTunes, etc.)
+              </>
+            </Dual.frag>
           </dd>
         </dl>
       </div>
@@ -82,16 +104,16 @@ const DownloadLinks: React.FC<Props> = props => {
         <p key="text" className="text-flgray-500 text-base antialiased tracking-wider">
           (
           {props.quality === 'HQ'
-            ? 'Higher quality, larger file size'
-            : 'Lower quality, faster download'}
+            ? t`Higher quality, larger file size`
+            : t`Lower quality, faster download`}
           )
         </p>
         <Link
           key="help"
           className="text-flprimary text-sm tracking-wider"
-          to="/audio-help"
+          to={t`/audio-help`}
         >
-          <span className="fl-underline">Need Help?</span>{' '}
+          <span className="fl-underline">{t`Need Help?`}</span>{' '}
           <i className="fa fa-life-ring opacity-75 pl-1" />
         </Link>
       </Stack>

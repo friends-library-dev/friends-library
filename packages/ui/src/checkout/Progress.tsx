@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { t } from '../translation';
 
 interface Props {
   step: 'Order' | 'Delivery' | 'Payment' | 'Confirmation';
@@ -8,15 +9,15 @@ interface Props {
 const Progress: React.FC<Props> = ({ step }) => {
   return (
     <ol className="flex antialiased font-hairline tracking-wider justify-center font-sans text-center text-md md:text-lg">
-      <Step step="Order" active={step === 'Order'} complete={true} />
-      <Step step="Delivery" active={step === 'Delivery'} complete={step !== 'Order'} />
+      <Step step={t`Order`} active={step === 'Order'} complete={true} />
+      <Step step={t`Delivery`} active={step === 'Delivery'} complete={step !== 'Order'} />
       <Step
-        step="Payment"
+        step={t`Payment`}
         active={step === 'Payment'}
         complete={['Payment', 'Confirmation'].includes(step)}
       />
       <Step
-        step="Confirmation"
+        step={t`Confirmation`}
         active={step === 'Confirmation'}
         complete={step === 'Confirmation'}
       />

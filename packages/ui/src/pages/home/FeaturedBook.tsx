@@ -1,9 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 import { ThreeD as Front } from '@friends-library/cover-component';
+import { Lang } from '@friends-library/types';
+import { t } from '../../translation';
+import { LANG } from '../../env';
 import { FeaturedBook } from './FeaturedBooksBlock';
 import Button from '../../Button';
-import { Lang } from '@friends-library/types';
 
 const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
   isCurrent,
@@ -41,14 +43,16 @@ const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
         <h2 className="font-sans text-gray-800 text-2xl mb-4 md:mb-6 leading-relaxed tracking-wider font-bold">
           {book.title}
         </h2>
-        <p className="hidden sm:block font-sans uppercase text-gray-800 text-lg tracking-widest font-black mb-6">
-          Modernized Edition
-        </p>
+        {LANG === 'en' && (
+          <p className="hidden sm:block font-sans uppercase text-gray-800 text-lg tracking-widest font-black mb-6">
+            Modernized Edition
+          </p>
+        )}
         <p className="font-serif text-lg md:text-xl opacity-75 leading-relaxed max-w-2xl">
           {book.description}
         </p>
         <p className="mb-10 md:mb-0 my-6">
-          <em className="font-serif font-black text-lg antialiased pr-2">by:</em>{' '}
+          <em className="font-serif font-black text-lg antialiased pr-2">{t`by`}:</em>{' '}
           <a
             href={`/friend/${book.friendSlug}`}
             className="font-serif uppercase text-lg antialiased font-bold text-flblue bracketed"
@@ -61,7 +65,7 @@ const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
           to={`/${book.friendSlug}/${book.docSlug}`}
           className="mt-auto sm:mt-8 sm:mt-12 mx-auto md:mx-0"
         >
-          Download &rarr;
+          {t`Download`} &rarr;
         </Button>
       </div>
     </div>

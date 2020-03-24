@@ -1,7 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { PathBlock } from '@friends-library/ui';
+import { PathBlock, t } from '@friends-library/ui';
 import { coverPropsFromQueryData } from '../lib/covers';
+import { LANG } from '../env';
 
 interface Props {
   HistoryBlurb: React.FC;
@@ -95,10 +96,14 @@ const GettingStartedPaths: React.FC<Props> = ({
       <PathBlock title="The Quaker Doctrine" books={books} color="blue">
         <DoctrineBlurb />
       </PathBlock>
-      <PathBlock title="Devotional" books={books} color="green">
+      <PathBlock title={t`Spiritual Life`} books={books} color="green">
         <DevotionalBlurb />
       </PathBlock>
-      <PathBlock title="Journals" books={books} color="gold">
+      <PathBlock
+        title={LANG === 'en' ? 'Journals' : 'Biográfico'}
+        books={books}
+        color="gold"
+      >
         <JournalsBlurb />
       </PathBlock>
     </>

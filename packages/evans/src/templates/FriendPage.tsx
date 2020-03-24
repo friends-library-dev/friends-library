@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { graphql } from 'gatsby';
 import { Name, Description } from '@friends-library/types';
 import {
+  t,
   FriendBlock,
   FeaturedQuoteBlock,
   BookByFriend,
@@ -68,8 +69,8 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
       <div className="bg-flgray-100 px-8 pt-12 pb-4 lg:px-8">
         <h2 className="text-xl font-sans text-center tracking-wider font-bold mb-8">
           {friend.isCompilationsQuasiFriend
-            ? `All Compilations (${friend.documents.length})`
-            : `Books by ${friend.name}`}
+            ? t`All Compilations (${friend.documents.length})`
+            : t`Books by ${friend.name}`}
         </h2>
         <div
           className={cx('flex flex-col items-center ', 'xl:justify-center', {
@@ -133,7 +134,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
       )}
       {relatedDocuments.nodes.length > 0 && (
         <div className="RelatedBooks bg-flgray-100 p-8">
-          <Heading className="mt-2">Related Books</Heading>
+          <Heading className="mt-2">{t`Related Books`}</Heading>
           <div className="lg:flex lg:flex-wrap lg:justify-center">
             {relatedDocuments.nodes.map(relatedDoc => {
               const friendDoc = friend.relatedDocuments.find(

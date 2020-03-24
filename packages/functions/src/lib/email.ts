@@ -4,9 +4,14 @@ export function orderShippedEmail(
   order: Document,
   trackingUrl: string,
 ): { subject: string; text: string } {
+  const lang = order.get('lang');
   return {
-    subject: '[,] Friends Library Order Shipped',
-    text: ORDER_SHIPPED_EMAIL_EN.replace('{{salutation}}', salutation(order, 'Hello!'))
+    subject:
+      lang === 'es'
+        ? '[,] Pedido Enviado – Biblioteca de Amigos'
+        : '[,] Friends Library Order Shipped',
+    text: (lang === 'es' ? ORDER_SHIPPED_EMAIL_ES : ORDER_SHIPPED_EMAIL_EN)
+      .replace('{{salutation}}', salutation(order, lang === 'es' ? '¡Hola!' : 'Hello!'))
       .replace('{{lineItems}}', lineItems(order))
       .replace('{{trackingUrl}}', trackingUrl)
       .replace('{{orderId}}', order.id),
@@ -16,9 +21,14 @@ export function orderShippedEmail(
 export function orderConfirmationEmail(
   order: Document,
 ): { subject: string; text: string } {
+  const lang = order.get('lang');
   return {
-    subject: '[,] Friends Library Order Confirmation',
-    text: CONFIRMATION_EMAIL_EN.replace('{{salutation}}', salutation(order, 'Hello!'))
+    subject:
+      lang === 'es'
+        ? '[,] Confirmación de Pedido - Biblioteca de Amigos'
+        : '[,] Friends Library Order Confirmation',
+    text: (lang === 'es' ? CONFIRMATION_EMAIL_ES : CONFIRMATION_EMAIL_EN)
+      .replace('{{salutation}}', salutation(order, lang === 'es' ? '¡Hola!' : 'Hello!'))
       .replace('{{lineItems}}', lineItems(order))
       .replace('{{orderId}}', order.id),
   };
@@ -51,6 +61,20 @@ Please don't hesitate to let us know if you have any questions!
 - Friends Library Publishing
 `.trim();
 
+const CONFIRMATION_EMAIL_ES = `
+{{salutation}}
+
+¡Gracias por realizar un pedido de la Biblioteca de Amigos!  Tu pedido ha sido registrado exitosamente con los siguientes artículos: 
+
+{{lineItems}}
+
+Para tu información, el número de referencia de tu pedido es: {{orderId}}. Dentro de unos pocos días, cuando el envío sea realizado, vamos a enviarte otro correo electrónico con tu número de rastreo. En la mayoría de los casos, el tiempo normal de entrega es de unos 7 a 14 días después de la compra.
+
+¡Por favor no dudes en hacernos saber si tienes alguna pregunta! 
+
+- Biblioteca de Amigos
+`.trim();
+
 const ORDER_SHIPPED_EMAIL_EN = `
 {{salutation}}
 
@@ -65,4 +89,20 @@ To track your package, you can use the below link:
 Please don't hesitate to let us know if you have any questions!
 
 - Friends Library Publishing
+`.trim();
+
+const ORDER_SHIPPED_EMAIL_ES = `
+{{salutation}}
+
+¡Buenas noticias! Tu pedido ({{orderId}}) que contiene los siguientes artículos ha sido enviado: 
+
+{{lineItems}}
+
+Puedes usar el enlace a continuación para rastrear tu paquete: 
+
+{{trackingUrl}}
+
+¡Por favor no dudes en hacernos saber si tienes alguna pregunta! 
+
+- Biblioteca de Amigos
 `.trim();

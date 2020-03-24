@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import cx from 'classnames';
 import { useNumCartItems, CartStore } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
-import { Nav, PopUnder, Tailwind, Footer } from '@friends-library/ui';
+import { Dual, Nav, PopUnder, Tailwind, Footer } from '@friends-library/ui';
 import {
   CoverWebStylesAllStatic,
   CoverWebStylesSizes,
@@ -58,9 +58,10 @@ const Layout: React.FC = ({ children }) => {
           style={{ position: 'fixed', right: 7, top: 73, zIndex: 1000 }}
           tailwindBgColor="flprimary"
         >
-          <p className="text-white px-8 py-4 font-sans antialiased">
-            An item was added to your cart
-          </p>
+          <Dual.p className="text-white px-8 py-4 font-sans antialiased">
+            <>An item was added to your cart</>
+            <>Un artículo fue añadido a tu carrito</>
+          </Dual.p>
         </PopUnder>
       )}
       <CoverWebStylesAllStatic />
