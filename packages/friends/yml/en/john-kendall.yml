@@ -4,23 +4,44 @@ slug: john-kendall
 gender: male
 born: 1726
 died: 1815
+added: 2020-03-24T19:29:25.228Z
 residences:
   - city: Colchester
     region: England
-description: TODO
+description:
+  John Kendall (1726-1815) lived a long and fruitful life in the service of his Master.
+  Through submission to pious parents, he learned to walk in the narrow and safe path when
+  still very young, and was called to the work of the ministry in his twenty-first year.
+  His travels for the Lord were first in the northern parts of England and Scotland, but
+  in subsequent years he made five trips to Holland, one to Germany, and was often engaged
+  in gospel labors in Great Britain. When older and less able to travel, much of his time
+  was dedicated to the publication of valuable Christian writings, some written by
+  himself, and some collected and compiled from other pious authors.
 documents:
   - id: 671213db-60a7-42ed-9c07-4785e321de26
     title: Letters on Religious Subjects
     original_title: Letters on Religious Subjects, Written by Various Friends, Deceased
     slug: letters
     filename: Letters
-    description: TODO
+    description:
+      Kendall’s Collection of Letters is a complication of letters composed by various
+      members of the Society of Friends over the course of several decades. A few of the
+      letters may have been addressed to John Kendall himself, but the great majority were
+      written to other recipients, and were later collected and published by Kendall in
+      1802, after the decease of their authors. Two lengthy sections of this publication
+      are taken exclusively from the letters of that truly wise and devoted man, Richard
+      Shackleton. But there are letters from many other eminent Friends as well, including
+      Catherine Payton, Samuel Fothergill, Sophia Hume, Tabitha Ecroyd, Mary Peisley, John
+      Woolman, and many more.
+    partial_description:
+      A compilation of letters composed by various members of the Society of Friends over
+      the course of several decades; including a large collection of excepts penned by
+      Richard Shackleton, and many other worthy ministers, elders, and disciples of
+      Christ.
     tags:
       - letters
     editions:
       - type: modernized
         isbn: 978-1-64476-190-8
-        draft: true
       - type: original
         isbn: 978-1-64476-191-5
-        draft: true
