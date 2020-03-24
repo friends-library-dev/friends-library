@@ -75,7 +75,7 @@ const strings: { [k: string]: string } = {
   '/audiobooks': '/audiolibros',
   '/friends': '/amigos',
   '/quakers': '/cuaqueros',
-  '/about-this-site': '/acerca-de-este-sitio',
+  '/about': '/acerca-de-este-sitio',
   '/audio-help': '/audio-ayuda',
   '/ebook-help': '/ebook-ayuda',
   '/contact': '/contactanos',
