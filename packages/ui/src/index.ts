@@ -14,7 +14,7 @@ export { default as Heading } from './Heading';
 export { default as Stack } from './layout/Stack';
 export { default as BookTeaserCard } from './BookTeaserCard';
 export { default as EmbeddedAudio } from './EmbeddedAudio';
-export { t, Dual, useLocale } from './translation';
+export { t, translate, Dual, useLocale } from './translation';
 
 // home page
 export { default as HomeGettingStartedBlock } from './pages/home/GettingStartedBlock';

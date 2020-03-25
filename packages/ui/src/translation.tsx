@@ -6,13 +6,17 @@ import { LANG } from './env';
 let locale: Lang = 'en';
 
 export function t(strings: TemplateStringsArray, ...vars: (string | number)[]): string {
-  let string = strings.join('%s');
+  let string = translate(strings.join('%s'));
+  return string.replace('%s', String(vars[0]));
+}
+
+export function translate(str: string): string {
   if (shouldResolveSpanish()) {
-    if (spanish[string] !== undefined) {
-      string = spanish[string];
+    if (spanish[str] !== undefined) {
+      return spanish[str];
     }
   }
-  return string.replace('%s', String(vars[0]));
+  return str;
 }
 
 export function useLocale(lang: Lang): void {

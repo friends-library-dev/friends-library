@@ -29,32 +29,32 @@ const FilterSelectDropdown: React.FC<Props> = props => (
         </AccordionPanel>
       </AccordionItem>
     )}
-    <AccordionItem>
+    <AccordionItem className="capitalize">
       <Category label={t`Tags`} />
       <AccordionPanel>
         <Option value="tag.journal" {...props}>
-          {t`Journal`}
+          {t`journal`}
         </Option>
         <Option value="tag.letters" {...props}>
-          {t`Letters`}
+          {t`letters`}
         </Option>
         <Option value="tag.exhortation" {...props}>
-          {t`Exhortation`}
+          {t`exhortation`}
         </Option>
         <Option value="tag.doctrinal" {...props}>
-          {t`Doctrinal`}
+          {t`doctrinal`}
         </Option>
         <Option value="tag.treatise" {...props}>
-          {t`Treatise`}
+          {t`treatise`}
         </Option>
         <Option value="tag.history" {...props}>
-          {t`History`}
+          {t`history`}
         </Option>
         <Option value="tag.allegory" {...props}>
-          {t`Allegory`}
+          {t`allegory`}
         </Option>
         <Option value="tag.devotional" {...props}>
-          {t`Devotional`}
+          {t`spiritual life`}
         </Option>
       </AccordionPanel>
     </AccordionItem>
