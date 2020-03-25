@@ -15,6 +15,7 @@ export { default as Stack } from './layout/Stack';
 export { default as BookTeaserCard } from './BookTeaserCard';
 export { default as EmbeddedAudio } from './EmbeddedAudio';
 export { t, translate, Dual, useLocale } from './translation';
+export { makeScroller } from './lib/scroll';
 
 // home page
 export { default as HomeGettingStartedBlock } from './pages/home/GettingStartedBlock';

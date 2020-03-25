@@ -55,6 +55,7 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
       >
         {recent.nodes.map(book => (
           <BookTeaserCard
+            key={book.documentUrl}
             className="xl:w-2/5 xl:mx-8 xl:mb-12"
             {...coverPropsFromQueryData(book)}
             htmlShortTitle={book.htmlShortTitle}

@@ -44,7 +44,7 @@ const Audiobook: React.FC<Props> = props => (
       <AudioDuration textColor="white">{props.duration}</AudioDuration>
       <p className="body-text text-white -mt-2">{props.description}</p>
       <Button
-        to={`${props.documentUrl}#ListenBlock`}
+        to={`${props.documentUrl}#audiobook`}
         bg={null}
         textColor="black"
         className="bg-flgray-200 hover:bg-white mx-auto mt-auto"

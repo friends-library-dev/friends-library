@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
 import {
   EditionType,
@@ -13,6 +13,7 @@ import {
   ListenBlock,
   RelatedBookCard,
   HomeExploreBooksBlock,
+  makeScroller,
 } from '@friends-library/ui';
 import { Layout } from '../components';
 import { SiteMetadata } from '../types';
@@ -96,6 +97,11 @@ interface Props {
 }
 
 export default ({ data: { site, friend, document, otherDocuments } }: Props) => {
+  useEffect(() => {
+    if (window.location.hash === '#audiobook') {
+      makeScroller('#audiobook')();
+    }
+  }, []);
   const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
   const otherBooks = otherDocuments.nodes;
   const mainEdition = document.editions[0];

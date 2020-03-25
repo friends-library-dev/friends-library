@@ -242,7 +242,7 @@ function LinksAndMeta(
       <DocActions
         download={onClickDownload}
         addToCart={onClickAddToCart}
-        gotoAudio={makeScroller('#ListenBlock')}
+        gotoAudio={makeScroller('#audiobook')}
         className="mb-8 lg:mx-24 xl:mx-0"
         price={price}
         hasAudio={hasAudio}

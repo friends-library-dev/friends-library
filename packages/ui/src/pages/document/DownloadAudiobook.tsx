@@ -40,7 +40,7 @@ const DownloadLinks: React.FC<Props> = props => {
     };
   }
   return (
-    <div className={cx(props.className, 'bg-white font-sans p-8')}>
+    <div id="audiobook" className={cx(props.className, 'bg-white font-sans p-8')}>
       <h3 className="text-2xl text-center mb-6">{t`Download Audiobook`}</h3>
       <div className="tracking-widest antialiased flex flex-col items-center">
         <dl className="text-flgray-900 inline-block">
