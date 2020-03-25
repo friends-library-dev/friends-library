@@ -47,7 +47,7 @@ export interface DocumentData {
     | 'treatise'
     | 'history'
     | 'allegory'
-    | 'devotional'
+    | 'spiritual life'
   )[];
   original_title?: string;
   published?: number;
