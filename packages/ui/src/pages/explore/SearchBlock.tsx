@@ -44,8 +44,8 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) =>
         </div>
       )}
       {matches.length === 0 && (
-        <div className="SearchBlock__Results SearchBlock__Results--empty bg-cover px-32 flex flex-col justify-center bg-bottom">
-          <p className="text-white text-3xl sans-wider text-center">
+        <div className="SearchBlock__Results SearchBlock__Results--empty bg-cover px-16 sm:px-32 flex flex-col justify-center bg-bottom">
+          <p className="text-white text-2xl sm:text-3xl sans-wider text-center">
             {used
               ? t`Your search returned no results`
               : `^ ${t`Select a filter or search to get started!`}`}
