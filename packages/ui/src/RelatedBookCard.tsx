@@ -6,6 +6,7 @@ import Link from 'gatsby-link';
 import './RelatedBookCard.css';
 
 type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
+  htmlShortTitle: string;
   description: string;
   authorUrl: string;
   documentUrl: string;
@@ -48,12 +49,15 @@ const RelatedBookCard: React.FC<Props> = props => {
 
 export default RelatedBookCard;
 
-const TitleSection: React.FC<Pick<Props, 'title' | 'authorUrl' | 'author'> & {
+const TitleSection: React.FC<Pick<Props, 'htmlShortTitle' | 'authorUrl' | 'author'> & {
   className: string;
-}> = ({ title, authorUrl, author, className }) => {
+}> = ({ htmlShortTitle, authorUrl, author, className }) => {
   return (
     <div className={cx(className)}>
-      <h4 className="tracking-wider mb-2">{title}</h4>
+      <h4
+        className="tracking-wider mb-2"
+        dangerouslySetInnerHTML={{ __html: htmlShortTitle }}
+      />
       <h5 className="text-flprimary mb-6 font-bold antialiased text-sm">
         <Link className="fl-underline" to={authorUrl}>
           {author}

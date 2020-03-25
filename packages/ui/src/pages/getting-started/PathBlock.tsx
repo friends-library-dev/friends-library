@@ -12,7 +12,11 @@ import './PathBlock.css';
 interface Props {
   color: 'blue' | 'gold' | 'maroon' | 'green';
   title: string;
-  books: (CoverProps & { documentUrl: string; authorUrl: string })[];
+  books: (CoverProps & {
+    documentUrl: string;
+    authorUrl: string;
+    htmlShortTitle: string;
+  })[];
 }
 
 const PathBlock: React.FC<Props> = ({ books, title, color, children }) => {
@@ -26,7 +30,10 @@ const PathBlock: React.FC<Props> = ({ books, title, color, children }) => {
             key={book.documentUrl}
             className="bg-red-100x pt-4 mb-6 md:mb-20 lg:mb-0 md:w-1/2 xl:w-1/4 relative"
           >
-            <h3 className="heading-text text-base mb-2 font-normal">{book.title}</h3>
+            <h3
+              className="heading-text text-base mb-2 font-normal"
+              dangerouslySetInnerHTML={{ __html: book.htmlShortTitle }}
+            />
             <p className="text-center">
               <Link
                 className="inline-block text-center strong-link text-sm mb-4"

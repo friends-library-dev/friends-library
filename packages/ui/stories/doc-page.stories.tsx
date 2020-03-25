@@ -37,6 +37,7 @@ storiesOf('Doc Page', module)
         lang="en"
         isbn=""
         title="The Journal of Charles&nbsp;Marshall"
+        htmlShortTitle="The Journal of Charles&nbsp;Marshall"
         author="Charles Marshall"
         isCompilation={false}
         edition="updated"
@@ -126,6 +127,8 @@ storiesOf('Doc Page', module)
     <DocBlock
       lang="en"
       title="The Journal and Writings of Ambrose Rigge"
+      htmlTitle="The Journal and Writings of Ambrose Rigge"
+      htmlShortTitle="The Journal and Writings of Ambrose Rigge"
       author="Ambrose Rigge"
       size="s"
       pages={[222]}

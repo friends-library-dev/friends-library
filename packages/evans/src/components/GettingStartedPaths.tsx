@@ -25,6 +25,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
       doc2: document(
@@ -33,11 +34,13 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
       doc3: document(slug: { eq: "journal" }, friendSlug: { eq: "george-fox" }) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
       doc4: document(
@@ -46,6 +49,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
       doc5: document(
@@ -54,6 +58,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
       doc6: document(
@@ -62,6 +67,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
       doc7: document(
@@ -70,11 +76,13 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
       doc8: document(slug: { eq: "vida" }, friendSlug: { eq: "james-parnell" }) {
         url
         authorUrl
+        htmlShortTitle
         ...CoverProps
       }
     }
@@ -86,6 +94,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       size: 's' as const,
       documentUrl: doc.url,
       authorUrl: doc.authorUrl,
+      htmlShortTitle: doc.htmlShortTitle,
     }));
 
   return (

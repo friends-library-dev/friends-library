@@ -9,6 +9,7 @@ export type Region =
   | 'Other';
 
 export type Book = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
+  htmlShortTitle: string;
   documentUrl: string;
   authorUrl: string;
 };

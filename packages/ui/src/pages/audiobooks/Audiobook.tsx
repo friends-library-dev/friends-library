@@ -13,6 +13,7 @@ type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
   bgColor: 'blue' | 'maroon' | 'gold' | 'green';
   duration: string;
   documentUrl: string;
+  htmlShortTitle: string;
   authorUrl: string;
   description: string;
   className?: string;
@@ -31,7 +32,10 @@ const Audiobook: React.FC<Props> = props => (
       space="8"
       className="flex-grow text-white sans-wide text-center -mt-6 antialiased pt-16 pb-12 px-10 flex flex-col"
     >
-      <h3 className="text-lg sans-wider">{props.title}</h3>
+      <h3
+        className="text-lg sans-wider"
+        dangerouslySetInnerHTML={{ __html: props.htmlShortTitle }}
+      />
       <h4 className="-mt-3">
         <Link to={props.authorUrl} className="fl-underline">
           {props.author}

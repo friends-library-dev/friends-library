@@ -2,6 +2,7 @@ import { price } from '@friends-library/lulu';
 import { EditionType, PrintSize } from '@friends-library/types';
 
 export interface CartItemData {
+  displayTitle: string;
   title: string[];
   interiorPdfUrl: string[];
   coverPdfUrl: string[];
@@ -14,6 +15,7 @@ export interface CartItemData {
 }
 
 export default class CartItem {
+  public displayTitle: string;
   public title: string[];
   public documentId: string;
   public edition: EditionType;
@@ -25,6 +27,7 @@ export default class CartItem {
   public coverPdfUrl: string[];
 
   public constructor(config: CartItemData) {
+    this.displayTitle = config.displayTitle;
     this.title = config.title;
     this.documentId = config.documentId;
     this.edition = config.edition;
@@ -54,6 +57,7 @@ export default class CartItem {
 
   public toJSON(): CartItemData {
     return {
+      displayTitle: this.displayTitle,
       title: this.title,
       author: this.author,
       documentId: this.documentId,

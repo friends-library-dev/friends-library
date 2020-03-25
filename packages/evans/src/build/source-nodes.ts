@@ -6,7 +6,14 @@ import { price } from '@friends-library/lulu';
 import { fetch } from '@friends-library/document-meta';
 import { query, hydrate } from '@friends-library/dpc-fs';
 import { red } from '@friends-library/cli-utils/color';
-import { allFriends, allDocsMap, cartItemData, justHeadings } from './helpers';
+import {
+  allFriends,
+  allDocsMap,
+  cartItemData,
+  justHeadings,
+  htmlTitle,
+  htmlShortTitle,
+} from './helpers';
 import { getDpcCache, persistDpcCache, EditionCache } from './dpc-cache';
 import residences from './residences';
 import * as url from '../lib/url';
@@ -48,6 +55,8 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     documents.forEach(document => {
       const documentProps: Record<string, any> = {
         ...document.toJSON(),
+        htmlTitle: htmlTitle(document.title),
+        htmlShortTitle: htmlShortTitle(document.title),
         region: documentRegion(document),
         date: documentDate(document),
         period: periodFromDate(documentDate(document)),

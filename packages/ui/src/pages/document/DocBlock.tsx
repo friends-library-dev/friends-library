@@ -11,6 +11,8 @@ import { makeScroller } from '../../lib/scroll';
 import './DocBlock.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
+  htmlTitle: string;
+  htmlShortTitle: string;
   authorUrl: string;
   documentId: string;
   author: string;
@@ -38,7 +40,7 @@ type Props = Omit<CoverProps, 'pages'> & {
 const store = CartStore.getSingleton();
 
 const DocBlock: React.FC<Props> = props => {
-  const { title, authorUrl, pages, author, description, editions } = props;
+  const { authorUrl, pages, author, description, editions } = props;
   const wrap = useRef<HTMLDivElement | null>(null);
   const [downloading, setDownloading] = useState<boolean>(false);
   const [addingToCart, setAddingToCart] = useState<boolean>(false);
@@ -112,6 +114,7 @@ const DocBlock: React.FC<Props> = props => {
     if (!edition) throw new Error(`Error selecting edition: ${editionType}`);
     store.cart.addItem(
       new CartItem({
+        displayTitle: props.htmlShortTitle,
         title: edition.title,
         documentId: props.documentId,
         edition: edition.type,
@@ -161,9 +164,10 @@ const DocBlock: React.FC<Props> = props => {
       <div className="TopWrap md:flex">
         <RotatableCover className="order-1" coverProps={{ ...props, pages: pages[0] }} />
         <div className="Text mb-8 md:px-12 bg-white md:mr-6 xl:mr-10">
-          <h1 className="font-sans text-3xl md:text-2-5xl font-bold leading-snug mt-8 tracking-wider mb-6">
-            {title}
-          </h1>
+          <h1
+            className="font-sans text-3xl md:text-2-5xl font-bold leading-snug mt-8 tracking-wider mb-6"
+            dangerouslySetInnerHTML={{ __html: props.htmlTitle }}
+          />
           {!props.isCompilation && (
             <h2 className="font-sans text-1-5xl md:text-xl subpixel-antialiased leading-loose mb-8">
               <i className="font-serif tracking-widest pr-1">by:</i>{' '}

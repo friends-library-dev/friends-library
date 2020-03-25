@@ -45,6 +45,7 @@ export default ({
     <ExploreUpdatedEditionsBlock
       books={updatedEditions.nodes.map(data => ({
         ...coverPropsFromQueryData(data),
+        htmlShortTitle: data.htmlShortTitle,
         documentUrl: data.documentUrl,
         authorUrl: data.authorUrl,
       }))}
@@ -53,6 +54,7 @@ export default ({
     <ExploreAudioBooksBlock
       books={audioBooks.nodes.map(data => ({
         ...coverPropsFromQueryData(data),
+        htmlShortTitle: data.htmlShortTitle,
         documentUrl: data.documentUrl,
       }))}
     />
@@ -60,6 +62,7 @@ export default ({
       books={newBooks.nodes.map(data => ({
         ...coverPropsFromQueryData(data),
         documentUrl: data.documentUrl,
+        htmlShortTitle: data.htmlShortTitle,
         authorUrl: data.authorUrl,
         badgeText: data.editions[0].badgeText,
         description:
@@ -70,6 +73,7 @@ export default ({
     <ExploreRegionBlock
       books={regionBooks.nodes.map(data => ({
         ...coverPropsFromQueryData(data),
+        htmlShortTitle: data.htmlShortTitle,
         region: data.region as any,
         documentUrl: data.documentUrl,
         authorUrl: data.authorUrl,
@@ -78,6 +82,7 @@ export default ({
     <ExploreTimelineBlock
       books={booksByDate.nodes.map(data => ({
         ...coverPropsFromQueryData(data),
+        htmlShortTitle: data.htmlShortTitle,
         date: data.date,
         documentUrl: data.documentUrl,
         authorUrl: data.authorUrl,
@@ -88,6 +93,7 @@ export default ({
       books={searchBooks.nodes.flatMap(data =>
         data.editions.map(edition => ({
           ...coverPropsFromQueryData({ ...data, editions: [edition] }),
+          htmlShortTitle: data.htmlShortTitle,
           tags: data.tags,
           period: data.period as any,
           region: data.region as any,
@@ -105,6 +111,7 @@ interface Props {
     searchBooks: {
       nodes: (CoverData & {
         documentUrl: string;
+        htmlShortTitle: string;
         authorUrl: string;
         tags: string[];
         period: string;
@@ -114,6 +121,7 @@ interface Props {
     newBooks: {
       nodes: (CoverData & {
         documentUrl: string;
+        htmlShortTitle: string;
         authorUrl: string;
         editions: {
           badgeText: string;
@@ -122,16 +130,30 @@ interface Props {
       })[];
     };
     audioBooks: {
-      nodes: (CoverData & { documentUrl: string })[];
+      nodes: (CoverData & { documentUrl: string; htmlShortTitle: string })[];
     };
     regionBooks: {
-      nodes: (CoverData & { authorUrl: string; documentUrl: string; region: string })[];
+      nodes: (CoverData & {
+        authorUrl: string;
+        documentUrl: string;
+        region: string;
+        htmlShortTitle: string;
+      })[];
     };
     updatedEditions: {
-      nodes: (CoverData & { documentUrl: string; authorUrl: string })[];
+      nodes: (CoverData & {
+        documentUrl: string;
+        authorUrl: string;
+        htmlShortTitle: string;
+      })[];
     };
     booksByDate: {
-      nodes: (CoverData & { documentUrl: string; authorUrl: string; date: number })[];
+      nodes: (CoverData & {
+        documentUrl: string;
+        authorUrl: string;
+        date: number;
+        htmlShortTitle: string;
+      })[];
     };
   };
 }
@@ -148,6 +170,7 @@ export const query = graphql`
         period
         authorUrl
         documentUrl: url
+        htmlShortTitle
         region
       }
     }
@@ -155,6 +178,7 @@ export const query = graphql`
       nodes {
         ...CoverProps
         documentUrl: url
+        htmlShortTitle
         authorUrl
         region
       }
@@ -164,6 +188,7 @@ export const query = graphql`
         ...CoverProps
         authorUrl
         documentUrl: url
+        htmlShortTitle
         date
       }
     }
@@ -179,12 +204,14 @@ export const query = graphql`
         description: partialDescription
         authorUrl
         documentUrl: url
+        htmlShortTitle
       }
     }
     audioBooks: allDocument(filter: { hasAudio: { eq: true } }) {
       nodes {
         ...CoverProps
         documentUrl: url
+        htmlShortTitle
       }
     }
     updatedEditions: allDocument(
@@ -194,6 +221,7 @@ export const query = graphql`
         ...CoverProps
         authorUrl
         documentUrl: url
+        htmlShortTitle
       }
     }
   }
