@@ -33,6 +33,24 @@ const Layout: React.FC = ({ children }) => {
     };
   });
 
+  useEffect(() => {
+    const menuNode = document.querySelector('.Slideover');
+    const click: (event: any) => any = event => {
+      if (menuOpen && menuNode && !menuNode.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+    const escape: (e: KeyboardEvent) => any = ({ keyCode }) => {
+      menuOpen && keyCode === 27 && setMenuOpen(false);
+    };
+    document.addEventListener('click', click);
+    document.addEventListener('keydown', escape);
+    return () => {
+      document.removeEventListener('click', click);
+      window.removeEventListener('keydown', escape);
+    };
+  }, [menuOpen, setMenuOpen]);
+
   return (
     <Fragment>
       <Tailwind />
