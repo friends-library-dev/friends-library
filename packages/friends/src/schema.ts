@@ -214,7 +214,7 @@ const subSchemas: Record<string, Schema> = {
             'treatise',
             'history',
             'allegory',
-            'devotional',
+            'spiritual life',
           ],
         },
       },
