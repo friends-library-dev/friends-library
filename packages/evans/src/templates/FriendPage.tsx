@@ -22,6 +22,7 @@ interface Props {
     relatedDocuments: {
       nodes: (CoverData & {
         id: string;
+        htmlShortTitle: string;
         documentUrl: string;
         authorUrl: string;
       })[];
@@ -34,6 +35,7 @@ interface Props {
       died: number | undefined;
       description: Description;
       documents: (CoverData & {
+        htmlShortTitle: string;
         tags: string[];
         url: string;
         hasAudio: boolean;
@@ -82,6 +84,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
             return (
               <BookByFriend
                 key={doc.url}
+                htmlShortTitle={doc.htmlShortTitle}
                 {...props}
                 isAlone={isOnlyBook}
                 className="mb-8 lg:mb-12"
@@ -89,15 +92,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
                 hasAudio={doc.hasAudio}
                 bookUrl={doc.url}
                 pages={doc.editions[0].pages}
-                // @TODO: demand partialDescription vvv
-                description={
-                  doc.partialDescription ||
-                  doc.description
-                    .split(' ')
-                    .slice(0, 35)
-                    .concat(['[...]'])
-                    .join(' ')
-                }
+                description={doc.partialDescription || ''}
               />
             );
           })}
@@ -169,6 +164,7 @@ export const query = graphql`
         ...CoverProps
         id: documentId
         documentUrl: url
+        htmlShortTitle
         authorUrl
       }
     }
@@ -196,6 +192,7 @@ export const query = graphql`
         url
         partialDescription
         description
+        htmlShortTitle
       }
       residences {
         city

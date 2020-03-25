@@ -15,6 +15,7 @@ type AudioBookNode = CoverData & {
   authorUrl: string;
   documentUrl: string;
   description: string;
+  htmlShortTitle: string;
   editions: {
     audio: {
       duration: string;
@@ -56,6 +57,7 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
           <BookTeaserCard
             className="xl:w-2/5 xl:mx-8 xl:mb-12"
             {...coverPropsFromQueryData(book)}
+            htmlShortTitle={book.htmlShortTitle}
             audioDuration={book.editions[0].audio.duration}
             badgeText={book.editions[0].audio.publishedDate}
             authorUrl={book.authorUrl}
@@ -91,6 +93,7 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
           <Audiobook
             className="mb-12 sm:w-4/5 md:w-2/5 md:box-content md:mx-4 xl:w-1/4 xl:max-w-3xl"
             {...coverPropsFromQueryData(book)}
+            htmlShortTitle={book.htmlShortTitle}
             bgColor={['blue', 'green', 'gold'][idx % 3] as 'blue' | 'green' | 'gold'}
             duration={(book.editions[0].audio || { duration: book.documentUrl }).duration}
             authorUrl={book.authorUrl}
@@ -114,6 +117,7 @@ export const query = graphql`
       nodes {
         ...CoverProps
         documentUrl: url
+        htmlShortTitle
         authorUrl
         description: partialDescription
         editions {
@@ -131,6 +135,7 @@ export const query = graphql`
       nodes {
         ...CoverProps
         documentUrl: url
+        htmlShortTitle
         authorUrl
         description: partialDescription
         editions {

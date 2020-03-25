@@ -33,9 +33,10 @@ const AudioBooksBlock: React.FC<Props> = ({ books }) => (
           key={book.documentUrl}
         >
           <Album className="mb-8" {...book} />
-          <h4 className="font-sans text-flgray-900 text-base tracking-wider">
-            {book.title}
-          </h4>
+          <h4
+            className="font-sans text-flgray-900 text-base tracking-wider"
+            dangerouslySetInnerHTML={{ __html: book.htmlShortTitle }}
+          />
         </Link>
       ))}
     </div>

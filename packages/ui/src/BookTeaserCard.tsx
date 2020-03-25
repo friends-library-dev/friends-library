@@ -12,6 +12,7 @@ import './BookTeaserCard.css';
 
 export type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
   audioDuration?: string;
+  htmlShortTitle: string;
   documentUrl: string;
   authorUrl: string;
   description: string;
@@ -21,7 +22,7 @@ export type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
 
 const BookTeaserCard: React.FC<Props> = props => {
   const {
-    title,
+    htmlShortTitle,
     author,
     audioDuration,
     className,
@@ -67,9 +68,11 @@ const BookTeaserCard: React.FC<Props> = props => {
         )}
       >
         <h3 className="mb-4 text-base text-flgray-900 md:mb-2 md:pb-1">
-          <Link to={props.documentUrl} className="hover:underline">
-            {title}
-          </Link>
+          <Link
+            to={props.documentUrl}
+            className="hover:underline"
+            dangerouslySetInnerHTML={{ __html: htmlShortTitle }}
+          />
         </h3>
         <Link to={authorUrl} className="fl-underline text-sm text-flprimary">
           {author}

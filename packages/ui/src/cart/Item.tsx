@@ -7,6 +7,7 @@ import './Item.css';
 
 interface Props {
   title: string;
+  displayTitle: string;
   edition: EditionType;
   author: string;
   quantity: number;
@@ -17,6 +18,7 @@ interface Props {
 
 const Item: React.FC<Props> = ({
   title,
+  displayTitle,
   author,
   price,
   quantity,
@@ -43,9 +45,10 @@ const Item: React.FC<Props> = ({
           />
         </div>
         <dl className="border-r border-gray-300 p-2 md:px-6 flex-grow">
-          <dt className="max-w-sm font-sans font-bold text-md md:text-lg tracking-wide md:tracking-widest pb-2 pt-2">
-            {title}
-          </dt>
+          <dt
+            className="max-w-sm font-sans font-bold text-md md:text-lg tracking-wide md:tracking-widest pb-2 pt-2"
+            dangerouslySetInnerHTML={{ __html: displayTitle }}
+          />
           <dd className="font-serif font-thin text-gray-700 antialiased text-md md:text-lg md:tracking-wide">
             {author}
           </dd>

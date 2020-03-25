@@ -10,6 +10,7 @@ import AudioIcon from '../../icons/Audio';
 import './BookByFriend.css';
 
 type Props = Omit<CoverProps, 'pages'> & {
+  htmlShortTitle: string;
   tags: string[];
   hasAudio: boolean;
   isAlone: boolean;
@@ -64,9 +65,8 @@ const BookByFriend: React.FC<Props> = props => {
               'xl:text-xl': !isAlone,
             },
           )}
-        >
-          {props.title}
-        </h4>
+          dangerouslySetInnerHTML={{ __html: props.htmlShortTitle }}
+        />
         <p className="body-text mt-4 md:text-lg lg:text-base xl:text-lg">{description}</p>
         <ul
           className={cx(

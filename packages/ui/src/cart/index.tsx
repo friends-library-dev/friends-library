@@ -45,6 +45,7 @@ const CartComponent: React.FC<Props> = ({
           edition={item.edition}
           price={new CartItem(item).price()}
           {...item}
+          displayTitle={item.displayTitle}
           title={item.title[0]}
           changeQty={(qty: number) => {
             items[index].quantity = qty;

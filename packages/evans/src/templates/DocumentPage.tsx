@@ -31,6 +31,8 @@ interface Props {
       id: string;
       slug: string;
       title: string;
+      htmlTitle: string;
+      htmlShortTitle: string;
       description: string;
       altLanguageUrl: string | null;
       isCompilation: boolean;
@@ -79,6 +81,7 @@ interface Props {
         url: string;
         description: string;
         isCompilation: boolean;
+        htmlShortTitle: string;
         editions: {
           code: {
             css: { cover: null | string };
@@ -115,6 +118,8 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
     <Layout>
       <DocBlock
         description={document.description}
+        htmlTitle={document.htmlTitle}
+        htmlShortTitle={document.htmlShortTitle}
         isbn={mainEdition.isbn}
         customHtml=""
         authorUrl={friend.url}
@@ -170,6 +175,7 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
                 lang={friend.lang}
                 isbn={book.editions[0].isbn}
                 title={book.title}
+                htmlShortTitle={book.htmlShortTitle}
                 isCompilation={book.isCompilation}
                 author={friend.name}
                 edition={book.editions[0].type}
@@ -207,6 +213,8 @@ export const query = graphql`
       url
     }
     document(slug: { eq: $documentSlug }, friendSlug: { eq: $friendSlug }) {
+      htmlTitle
+      htmlShortTitle
       editions {
         type
         isbn
@@ -268,6 +276,7 @@ export const query = graphql`
         url
         description
         isCompilation
+        htmlShortTitle
         editions {
           isbn
           type
