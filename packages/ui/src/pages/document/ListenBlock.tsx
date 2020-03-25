@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { t } from '../../translation';
+import { LANG } from '../../env';
 import { AudioQuality } from '@friends-library/types';
 import EmbeddedAudio from '../../EmbeddedAudio';
 import WaveBottomBlock from '../../blocks/WaveBottomBlock';
@@ -70,7 +71,9 @@ const ListenBlock: React.FC<Props> = props => {
             },
           )}
         >
-          <span className="italic lowercase font-serif font-normal pr-1">{t`Or`}</span>
+          {LANG === 'en' && (
+            <span className="italic lowercase font-serif font-normal pr-1">Or</span>
+          )}
           {t`Listen online`}
         </h3>
         <div className="flex flex-col items-center shadow-xl mt-8 mx-6 sm:mb-8 lg:ml-0">

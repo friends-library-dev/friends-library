@@ -66,6 +66,7 @@ const strings: { [k: string]: string } = {
   'Download as': 'Descargar como',
   'Download mp3 Files as Zip': 'Descargar archivos Mp3 como Zip',
   'Higher quality, larger file size': 'Mayor Calidad, mayor tamaño del archivo',
+  'Lower quality, faster download': 'Menor calidad, pero se descarga más rápido',
   'Need Help?': '¿Necesitas Ayuda?',
   'Listen online': 'Escuchar en línea',
   'Other Compilations': 'Otras Compilaciones',
