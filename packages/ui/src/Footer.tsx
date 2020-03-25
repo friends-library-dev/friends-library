@@ -12,47 +12,56 @@ const Footer: React.FC = () => {
   const Logo = LANG === 'en' ? FriendsLogo : AmigosLogo;
   return (
     <footer className="Footer text-gray-300 font-hairline mt-auto">
-      <div className="flex flex-col items-center pt-16 pb-8 py-12 md:pt-16 md:pb-16 lg:py-16 xl:py-24">
-        <div className="columns text-center md:flex md:text-left md:pt-2">
+      <div className="Footer__main">
+        <div
+          className={cx(
+            'text-center flex flex-col items-center px-8 py-12',
+            'md:text-left md:flex-row md:items-start md:justify-between',
+            LANG === 'es' && 'md:pr-0',
+            'lg:p-20',
+            'xl:px-40 xl:py-24',
+          )}
+        >
           <Logo
             iconColor="white"
             friendsColor="white"
             libraryColor="white"
-            className={cx(
-              'fill-current w-48 lg:w-48  md:-mt-12 lg:ml-0 lg:mr-16 xl:-ml-16',
-              LANG === 'en'
-                ? 'mb-16 md:-ml-6 md:mr-8 md:w-32'
-                : 'mb-12 h-12 md:h-auto md:mb-16 -mr-6 md:mr-0 mt-4 md:mt-0',
-            )}
+            className={cx('fill-current', 'mb-10 py-2', 'md:mr-4', {
+              'w-48': LANG === 'es',
+              'w-40': LANG === 'en',
+            })}
           />
-          <LinkList
-            title={t`Books`}
-            links={[
-              [t`/getting-started`, t`Getting Started`],
-              [t`/explore`, t`Explore Books`],
-              [t`/audiobooks`, t`Audiobooks`],
-              [t`/friends`, t`All Friends`],
-            ]}
-          />
-          <LinkList
-            title={t`About`}
-            links={[
-              [t`/quakers`, t`About the Quakers`],
-              [t`/modernization`, t`About modernization`, 'en'],
-              [t`/editions`, t`About book editions`, 'en'],
-              ['/spanish-translations', 'About Spanish translations', 'en'],
-              ['/nuestras-traducciones', 'Nuestras Traducciones', 'es'],
-              [t`/about`, t`About this Site`],
-            ]}
-          />
-          <LinkList
-            title={t`Help`}
-            links={[
-              [t`/audio-help`, t`Audio Help`],
-              [t`/ebook-help`, t`E-book Help`],
-              [t`/contact`, t`Contact Us`],
-            ]}
-          />
+          <div className="columns flex-grow md:flex md:ml-8 lg:ml-20 max-w-screen-lg">
+            <LinkList
+              title={t`Books`}
+              links={[
+                [t`/getting-started`, t`Getting Started`],
+                [t`/explore`, t`Explore Books`],
+                [t`/audiobooks`, t`Audiobooks`],
+                [t`/friends`, t`All Friends`],
+              ]}
+            />
+            <LinkList
+              title={t`About`}
+              links={[
+                [t`/quakers`, t`About the Quakers`],
+                [t`/modernization`, t`About modernization`, 'en'],
+                [t`/editions`, t`About book editions`, 'en'],
+                ['/spanish-translations', 'About Spanish translations', 'en'],
+                ['/nuestras-traducciones', 'Nuestras Traducciones', 'es'],
+                [t`/about`, t`About this Site`],
+              ]}
+            />
+            <LinkList
+              last
+              title={t`Help`}
+              links={[
+                [t`/audio-help`, t`Audio Help`],
+                [t`/ebook-help`, t`E-book Help`],
+                [t`/contact`, t`Contact Us`],
+              ]}
+            />
+          </div>
         </div>
       </div>
 
@@ -68,16 +77,20 @@ export default Footer;
 const LinkList: React.FC<{
   title: string;
   links: [string, string, Lang?][];
-}> = ({ title, links }) => {
+  last?: boolean;
+}> = ({ title, links, last }) => {
   return (
-    <dl className="flex-grow mb-12 md:mb-0 md:ml-12 lg:ml-24 xl:ml-32">
+    <dl className={cx(!last && 'mb-10 md:mb-0 md:pr-8', 'md:flex-grow')}>
       <dt className="text-xl font-semibold mb-5 tracking-widest">{title}</dt>
       <dd>
         <ul className="text-gray-300">
           {links
             .filter(([, , lang]) => !lang || lang === LANG)
             .map(([href, text]) => (
-              <li key={href} className="mb-2 tracking-wider opacity-75 text-md">
+              <li
+                key={href}
+                className="mb-2 tracking-wider leading-tight pb-1 opacity-75 text-md"
+              >
                 <Link to={href}>{text}</Link>
               </li>
             ))}

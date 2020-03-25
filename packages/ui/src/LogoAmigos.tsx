@@ -14,7 +14,7 @@ const AmigosLogo: React.FC<Props> = ({
   friendsColor = 'flprimary',
   iconColor = 'flprimary',
 }) => (
-  <svg className={cx('Logo', className)} viewBox="0 0 554 98">
+  <svg className={cx('Logo', className)} viewBox="0 0 554 116">
     <g className={cx('Library fill-current', `text-${libraryColor}`)}>
       <path d="M122.3 19.2c.7-.7 1-1.6 1-2.8 0-2.6-1.3-3.9-4-3.9h-5.1v7.6h5.1c1.3 0 2.3-.3 3-1zm-8.1-9.4h3.6c1.2 0 2.1-.3 2.7-.8.7-.4 1-1.3 1-2.5 0-1.3-.3-2.1-1-2.6-.6-.5-1.5-.7-2.7-.7h-3.6zm11.4 2.8c.7 1 1.1 2.3 1.1 3.9a6 6 0 0 1-2 4.6 7.5 7.5 0 0 1-5.1 1.8H111V.5h7c2.1 0 3.7.4 4.8 1.3 1.2 1 1.7 2.3 1.7 4.1 0 1-.2 2-.6 2.9a4 4 0 0 1-1.7 1.9c1.5.3 2.5 1 3.3 2" />
       <path d="M136.6 22.9h3V.5h-3z" />
