@@ -67,8 +67,12 @@ const GettingStartedPage: React.FC<Props> = ({
         </Dual.p>
         <div className="max-w-3xl w-3/4">
           <EmbeddedAudio
-            trackId={242345955}
-            title="Introduction to the Early Quakers"
+            trackId={LANG === 'es' ? 783137959 : 242345955}
+            title={
+              LANG === 'es'
+                ? '¿Quienes Eran Los Primeros Cuáqueros?'
+                : 'Introduction to the Early Quakers'
+            }
             showArtwork={false}
           />
         </div>
