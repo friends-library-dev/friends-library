@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { CoverProps } from '@friends-library/types';
 import { ThreeD } from '@friends-library/cover-component';
-import { t } from '../../translation';
+import { t, translate } from '../../translation';
 import Button from '../../Button';
 import ClockIcon from '../../icons/Clock';
 import TagsIcon from '../../icons/Tags';
@@ -84,12 +84,12 @@ const BookByFriend: React.FC<Props> = props => {
           </li>
           <li className="text-sans w-1/2 capitalize">
             <TagsIcon className="mr-2" />
-            {props.tags.join(', ')}
+            {props.tags.map(translate).join(', ')}
           </li>
           {hasAudio && (
             <li className="text-sans w-1/2">
               <AudioIcon className="mr-2" />
-              Audio Book
+              {t`Audio Book`}
             </li>
           )}
         </ul>

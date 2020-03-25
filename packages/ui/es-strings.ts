@@ -14,6 +14,7 @@ const strings: { [k: string]: string } = {
   Listen: 'Eschuchar',
   Paperback: 'Libro Impreso',
   by: 'por',
+  'Audio Book': 'Audio Libro',
   'All Audio Books': 'Todos los Audiolibros',
   'Audio Books': 'Audio Libros',
   'Recently Added Books': 'Libros Añadidos Recientemente',
@@ -35,11 +36,19 @@ const strings: { [k: string]: string } = {
   'Your search returned no results': 'Tú búsqueda no obtuvo resultados',
 
   // tags, tag-like
-  Doctrinal: 'Doctrinal',
-  History: 'Historia',
   'Spiritual Life': 'Vida Espiritual',
+  'spiritual life': 'vida espiritual',
+  doctrinal: 'doctrinal',
+  history: 'historia',
   Biographical: 'Biográfico',
+  biographical: 'biográfico',
   Tags: 'Etiquetas',
+  journal: 'diario',
+  letters: 'cartas',
+  exhortation: 'exhortación',
+  treatise: 'tratado',
+  allegory: 'alegoría',
+  devotional: 'devocional',
 
   // searching, filters
   Filters: 'Filtros',

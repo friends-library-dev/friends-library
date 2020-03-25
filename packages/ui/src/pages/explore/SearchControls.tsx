@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditionType } from '@friends-library/types';
 import { Region } from './types';
-import { t } from '../../translation';
+import { t, translate } from '../../translation';
 import FilterControls from './FilterControls';
 import ActiveFilters from './ActiveFilters';
 
@@ -73,7 +73,7 @@ function groupify(
     const [type, value] = filter.split('.') as [FilterType, string];
 
     const makeItem: (fn: (book: Props['books'][0]) => boolean) => Filter = fn => ({
-      text: `${value.replace(/-us$/, ' US')} (${books.filter(fn).length})`,
+      text: `${translate(value.replace(/-us$/, ' US'))} (${books.filter(fn).length})`,
       clear: () => setFilters(filters.filter(f => f !== filter)),
     });
 
