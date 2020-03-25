@@ -47,7 +47,6 @@ const ListenBlock: React.FC<Props> = props => {
   return (
     <WaveBottomBlock
       color="maroon"
-      id="ListenBlock"
       className={cx(
         'ListenBlock z-10 bg-flgray-100 pt-8 pb-12 py-12',
         'sm:p-16 lg:flex items-start lg:p-0',

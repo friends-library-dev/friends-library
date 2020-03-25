@@ -24,7 +24,7 @@ const AudioBooksBlock: React.FC<Props> = ({ books }) => (
     >
       {books.slice(0, 4).map(book => (
         <Link
-          to={`${book.documentUrl}#ListenBlock`}
+          to={`${book.documentUrl}#audiobook`}
           className={cx(
             'flex flex-col items-center mb-10',
             'md:w-64 md:mx-12',

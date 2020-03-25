@@ -50,7 +50,7 @@ const BookTeaserCard: React.FC<Props> = props => {
         <div className="relative">
           {badgeText && <Badge>{badgeText}</Badge>}
           {isAudio && (
-            <Link to={`${props.documentUrl}#ListenBlock`}>
+            <Link to={`${props.documentUrl}#audiobook`}>
               <Album {...props} className="" />
             </Link>
           )}
@@ -85,7 +85,7 @@ const BookTeaserCard: React.FC<Props> = props => {
         </p>
         {isAudio && (
           <Button
-            to={`${props.documentUrl}#ListenBlock`}
+            to={`${props.documentUrl}#audiobook`}
             className="mx-auto md:mx-0 mt-6 max-w-full"
           >
             {t`Listen`}
