@@ -1,8 +1,15 @@
 .NotFoundHeroBlock {
   background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),
     url(../images/sheep.jpg);
-  background-size: 1500px;
-  background-position: center 700px;
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (min-width: 500px) {
+  .NotFoundHeroBlock {
+    background-size: 1500px;
+    background-position: center 700px;
+  }
 }
 
 .NotFoundHeroBlock form {
