@@ -9,6 +9,7 @@
 
 .Nav .Logo:lang(es) {
   width: 190px;
+  transform: translateY(4px);
 }
 
 @media (max-width: 670px) {

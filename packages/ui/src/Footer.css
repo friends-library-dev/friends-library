@@ -19,3 +19,27 @@
   content: ']';
   @apply pl-2 opacity-50;
 }
+
+@media (min-width: 930px) and (max-width: 1024px) {
+  .Footer__main {
+    @apply pl-12;
+  }
+  .Footer__main .columns:lang(es) {
+    max-width: 680px;
+  }
+  .Footer__main .columns:lang(en) {
+    max-width: 620px;
+  }
+}
+
+@screen lg {
+  .Footer__main {
+    @apply pl-0;
+  }
+  .Footer__main .columns:lang(es) {
+    max-width: none;
+  }
+  .Footer__main .columns:lang(en) {
+    max-width: none;
+  }
+}
