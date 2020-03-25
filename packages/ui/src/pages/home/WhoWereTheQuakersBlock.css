@@ -8,3 +8,9 @@
   background-image: linear-gradient(rgba(193, 140, 89, 0.9), rgba(193, 140, 89, 0.9)),
     url(../../images/london.jpg);
 }
+
+@screen xl {
+  .WhoWereTheQuakersBlock {
+    background-position: center 20%;
+  }
+}
