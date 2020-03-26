@@ -80,6 +80,8 @@ const strings: { [k: string]: string } = {
   'Listen online': 'Escuchar en línea',
   'Other Compilations': 'Otras Compilaciones',
   'Other Books by this Author': 'Otros libros de este Autor',
+  '%s chapters': '%s capítulos',
+  '%s pages': '%s páginas',
 
   // urls
   '/getting-started': '/comenzar',

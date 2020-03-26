@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'gatsby-link';
 import { CoverProps, PrintSize, EditionType } from '@friends-library/types';
 import { bookDims } from '@friends-library/lulu';
-import { DownloadWizard, AddToCartWizard } from '@friends-library/ui';
+import { DownloadWizard, AddToCartWizard, t, Dual } from '@friends-library/ui';
+import { LANG } from '../../env';
 import DocActions from './DocActions';
 import CartItem from '../../checkout/models/CartItem';
 import CartStore from '../../checkout/services/CartStore';
@@ -170,7 +171,7 @@ const DocBlock: React.FC<Props> = props => {
           />
           {!props.isCompilation && (
             <h2 className="font-sans text-1-5xl md:text-xl subpixel-antialiased leading-loose mb-8">
-              <i className="font-serif tracking-widest pr-1">by:</i>{' '}
+              <i className="font-serif tracking-widest pr-1">{t`by`}:</i>{' '}
               <Link className="strong-link" to={authorUrl}>
                 {author}
               </Link>
@@ -250,15 +251,22 @@ function LinksAndMeta(
       <div className="DocMeta flex flex-col items-center">
         <ul className="diamonds text-sans text-gray-600 leading-loose antialiased">
           <li>{author}</li>
-          <li className="capitalize">{edition} Edition</li>
+          {LANG === 'en' && <li className="capitalize">{edition} Edition</li>}
           <li>{dimensions(size, pages)}</li>
-          <li>{numChapters} Chapters</li>
-          <li>{pages.map(p => `${p} pages`).join(', ')}</li>
-          <li>112 Downloads</li>
-          <li>English Language</li>
+          <li>{t`${numChapters} chapters`}</li>
+          <li>{pages.map(p => t`${p} pages`).join(', ')}</li>
+          <li>
+            <Dual.frag>
+              <>Language: English</>
+              <>Idioma: Español</>
+            </Dual.frag>
+          </li>
           {altLanguageUrl && (
             <li>
-              <a href={altLanguageUrl}>Spanish Version</a>
+              <Dual.a href={altLanguageUrl}>
+                <>Spanish Version</>
+                <>Versión en inglés</>
+              </Dual.a>
             </li>
           )}
         </ul>
