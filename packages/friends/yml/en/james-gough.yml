@@ -77,7 +77,22 @@ documents:
       Volume I
     slug: history-of-the-quakers
     filename: History_of_the_Quakers_v1
-    description: TODO
+    description:
+      Like his older brother James, John Gough (1721-1791) was gifted with a keen
+      intellect and so excelled in his studies that he became an assistant to a Friends
+      school in Wiltshire when only sixteen years of age. As an adult he became master of
+      boarding schools in Cork, Dublin, and Lisburn, but was also very active in the work
+      of the ministry, both preaching and writing for the advancement of the gospel. In
+      1782, when sixty-one years of age, he commenced his four-volume History of the
+      Society of Friends, which occupied him for eight years, and was published in 1790.
+      This immense work gave a full, clear, and accurate portrayal of the history of
+      Friends, adding valuable information to what had already been recorded in Sewel’s
+      “History,” and continuing the history of this people until 1764.
+    partial_description:
+      Volume 1 of The History of the People Called Quakers, beginning with an overview of
+      the various dispensations whereby God has revealed Himself to mankind, then giving
+      an account the early ministry of George Fox and the rise of the Society of Friends
+      to the year 1661.
     tags:
       - history
     editions:

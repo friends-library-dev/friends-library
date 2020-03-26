@@ -50,7 +50,7 @@ files.forEach(file => {
     }
 
     // @TODO re-enable this test when things stabilize
-    xtest('no todo or lorem text', () => {
+    test('no todo or lorem text', () => {
       // eslint-disable-line no-undef
       expect(fileContents).not.toContain(': TODO');
       expect(fileContents).not.toContain('Lorem');
