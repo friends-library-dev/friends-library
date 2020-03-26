@@ -16,7 +16,7 @@ const NewBooksBlock: React.FC<Props> = ({ books }) => (
       'xl:flex xl:flex-wrap xl:justify-center',
     )}
   >
-    <h2 className="text-white sans-wider text-2xl text-center mt-10 md:-mt-2 md:mb-12 xl:w-full">
+    <h2 className="text-white sans-wider px-6 text-2xl text-center mt-10 md:-mt-2 md:mb-12 xl:w-full">
       {t`Recently Added Books`}
     </h2>
     {books.map(book => (

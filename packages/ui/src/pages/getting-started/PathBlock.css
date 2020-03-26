@@ -3,6 +3,10 @@
   content: 'Start Here';
 }
 
+.PathBooks:lang(es)::before {
+  content: 'Empezar Aquí';
+}
+
 .PathBooks > div::before {
   content: '';
   width: 30px;
