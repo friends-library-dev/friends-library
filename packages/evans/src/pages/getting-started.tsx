@@ -8,6 +8,7 @@ import {
   Heading,
   t,
   Dual,
+  makeScroller,
 } from '@friends-library/ui';
 import { SiteMetadata } from '../types';
 import { LANG } from '../env';
@@ -97,19 +98,31 @@ const GettingStartedPage: React.FC<Props> = ({
       </Dual.p>
     </div>
     <div className="md:flex flex-wrap">
-      <PathIntro title={t`History`} color="maroon" onClick={() => {}}>
+      <PathIntro
+        title={t`History`}
+        color="maroon"
+        onClick={() => makeScroller('.PathBlock--history')()}
+      >
         <HistoryBlurb />
       </PathIntro>
-      <PathIntro title={t`Doctrine`} color="blue" onClick={() => {}}>
+      <PathIntro
+        title={t`Doctrine`}
+        color="blue"
+        onClick={() => makeScroller('.PathBlock--doctrinal')()}
+      >
         <DoctrineBlurb />
       </PathIntro>
-      <PathIntro title={t`Spiritual Life`} color="green" onClick={() => {}}>
+      <PathIntro
+        title={t`Spiritual Life`}
+        color="green"
+        onClick={() => makeScroller('.PathBlock--spiritual-life')()}
+      >
         <DevotionalBlurb />
       </PathIntro>
       <PathIntro
         title={LANG === 'en' ? 'Journals' : 'Biográfico'}
         color="gold"
-        onClick={() => {}}
+        onClick={() => makeScroller('.PathBlock--journal')()}
       >
         <JournalsBlurb />
       </PathIntro>
@@ -129,11 +142,18 @@ interface PathIntroProps {
   onClick: () => void;
 }
 
-const PathIntro: React.FC<PathIntroProps> = ({ className, color, title, children }) => (
+const PathIntro: React.FC<PathIntroProps> = ({
+  className,
+  color,
+  title,
+  children,
+  onClick,
+}) => (
   <section
+    onClick={onClick}
     className={cx(
       className,
-      `bg-fl${color}`,
+      `cursor-pointer bg-fl${color}`,
       'p-8 pb-4 md:w-1/2 lg:w-1/4 flex flex-col justify-start',
     )}
   >

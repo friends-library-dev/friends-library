@@ -11,6 +11,7 @@ import AudioIcon from '../../icons/Audio';
 import './PathBlock.css';
 
 interface Props {
+  slug: 'history' | 'doctrinal' | 'spiritual-life' | 'journal';
   color: 'blue' | 'gold' | 'maroon' | 'green';
   title: string;
   books: (CoverProps & {
@@ -23,14 +24,14 @@ interface Props {
 
 const PAGE_SIZE = 4;
 
-const PathBlock: React.FC<Props> = ({ books, title, color, children }) => {
+const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => {
   const [page, setPage] = useState<number>(1);
   if (books.length === 0) return null;
   return (
     <WaveBottomBlock
       color={color}
       className={cx(
-        `PathBlock p-12 text-fl${color}`,
+        `PathBlock PathBlock--${slug} p-12 text-fl${color}`,
         books.length <= page * PAGE_SIZE && 'pb-20',
       )}
     >

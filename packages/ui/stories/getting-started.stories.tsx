@@ -7,7 +7,12 @@ import { props as coverProps } from './cover.stories';
 storiesOf('Getting Started Page', module)
   .addDecorator(coverSizes)
   .add('PathBlock', () => (
-    <PathBlock title="Devotional" books={[...books]} color="blue" />
+    <PathBlock
+      slug="spiritual-life"
+      title="Spiritual Life"
+      books={[...books]}
+      color="blue"
+    />
   ));
 
 const books = [
