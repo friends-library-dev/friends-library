@@ -242,6 +242,7 @@ const GettingStartedPaths: React.FC<Props> = ({
   return (
     <>
       <PathBlock
+        slug="history"
         title="History of the Quakers"
         books={prepareBooks([data.en_penn_pcr, data.en_kelty])}
         color="maroon"
@@ -249,6 +250,7 @@ const GettingStartedPaths: React.FC<Props> = ({
         <HistoryBlurb />
       </PathBlock>
       <PathBlock
+        slug="doctrinal"
         title="The Quaker Doctrine"
         books={prepareBooks([
           data.en_barclay_uttermost,
@@ -271,6 +273,7 @@ const GettingStartedPaths: React.FC<Props> = ({
         <DoctrineBlurb />
       </PathBlock>
       <PathBlock
+        slug="spiritual-life"
         title={t`Spiritual Life`}
         books={prepareBooks([
           data.en_turford,
@@ -294,6 +297,7 @@ const GettingStartedPaths: React.FC<Props> = ({
         <DevotionalBlurb />
       </PathBlock>
       <PathBlock
+        slug="journal"
         title={LANG === 'en' ? 'Journals' : 'Biográfico'}
         books={prepareBooks([
           data.en_titip,
