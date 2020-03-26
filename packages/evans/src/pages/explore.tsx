@@ -8,8 +8,9 @@ import {
   ExploreNewBooksBlock,
   ExploreTimelineBlock,
   ExploreRegionBlock,
-  ExploreSpanishSiteBlock,
+  ExploreAltSiteBlock,
   ExploreSearchBlock,
+  Dual,
 } from '@friends-library/ui';
 import { graphql } from 'gatsby';
 import { Layout } from '../components';
@@ -31,14 +32,24 @@ export default ({
   <Layout>
     <MultiBookBgBlock bright>
       <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-16 my-6 max-w-screen-md mx-auto">
-        <h1 className="sans-wider text-3xl mb-6">Explore Books</h1>
-        <p className="body-text">
-          We currently have{' '}
-          {site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks']} books freely
-          available on this site. Overwhelmed? On this page you can browse all the titles
-          by edition, region, time period, tags, and more&mdash;or search the full library
-          to find exactly what you're looking for.
-        </p>
+        <Dual.h1 className="sans-wider text-3xl mb-6">
+          <>Explore Books</>
+          <>Explorar Libros</>
+        </Dual.h1>
+        <Dual.p className="body-text">
+          <>
+            We currently have {site.meta.numEnglishBooks} books freely available on this
+            site. Overwhelmed? On this page you can browse all the titles by edition,
+            region, time period, tags, and more&mdash;or search the full library to find
+            exactly what you're looking for.
+          </>
+          <>
+            Actualmente tenemos {site.meta.numSpanishBooks} libros disponibles de forma
+            gratuita en este sitio, y más están siendo traducidos y añadidos regularmente.
+            En nuestra página de “Explorar” puedes navegar por todos nuestros libros y
+            audiolibros, o buscar libros en la categoría particular que más te interese.
+          </>
+        </Dual.p>
       </div>
     </MultiBookBgBlock>
     <ExploreNavBlock />
@@ -59,7 +70,7 @@ export default ({
       }))}
     />
     <ExploreNewBooksBlock
-      books={newBooks.nodes.map(data => ({
+      books={newBooks.nodes.slice(0, LANG === 'es' ? 2 : 4).map(data => ({
         ...coverPropsFromQueryData(data),
         documentUrl: data.documentUrl,
         htmlShortTitle: data.htmlShortTitle,
@@ -70,25 +81,32 @@ export default ({
           'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.',
       }))}
     />
-    <ExploreRegionBlock
-      books={regionBooks.nodes.map(data => ({
-        ...coverPropsFromQueryData(data),
-        htmlShortTitle: data.htmlShortTitle,
-        region: data.region as any,
-        documentUrl: data.documentUrl,
-        authorUrl: data.authorUrl,
-      }))}
+    {LANG === 'en' && (
+      <ExploreRegionBlock
+        books={regionBooks.nodes.map(data => ({
+          ...coverPropsFromQueryData(data),
+          htmlShortTitle: data.htmlShortTitle,
+          region: data.region as any,
+          documentUrl: data.documentUrl,
+          authorUrl: data.authorUrl,
+        }))}
+      />
+    )}
+    {LANG === 'en' && (
+      <ExploreTimelineBlock
+        books={booksByDate.nodes.map(data => ({
+          ...coverPropsFromQueryData(data),
+          htmlShortTitle: data.htmlShortTitle,
+          date: data.date,
+          documentUrl: data.documentUrl,
+          authorUrl: data.authorUrl,
+        }))}
+      />
+    )}
+    <ExploreAltSiteBlock
+      url={APP_ALT_URL}
+      numBooks={site.meta[LANG === 'en' ? 'numSpanishBooks' : 'numEnglishBooks']}
     />
-    <ExploreTimelineBlock
-      books={booksByDate.nodes.map(data => ({
-        ...coverPropsFromQueryData(data),
-        htmlShortTitle: data.htmlShortTitle,
-        date: data.date,
-        documentUrl: data.documentUrl,
-        authorUrl: data.authorUrl,
-      }))}
-    />
-    <ExploreSpanishSiteBlock url={APP_ALT_URL} numBooks={site.meta.numSpanishBooks} />
     <ExploreSearchBlock
       books={searchBooks.nodes.flatMap(data =>
         data.editions.map(edition => ({

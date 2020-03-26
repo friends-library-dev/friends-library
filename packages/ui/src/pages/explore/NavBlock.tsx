@@ -1,10 +1,12 @@
 import React from 'react';
 import cx from 'classnames';
+import { LANG } from '../../env';
+import { t } from '../../translation';
 import { makeScroller } from '../../lib/scroll';
 import './NavBlock.css';
 
 const NavBlock: React.FC = () => {
-  const links: Omit<LinkProps, 'index'>[] = [
+  const enLinks: Omit<LinkProps, 'index'>[] = [
     { label: 'Updated Editions', bg: 'maroon', block: 'UpdatedEditionsBlock' },
     { label: 'Audio Books', bg: 'blue', block: 'AudioBooksBlock' },
     { label: 'Region', bg: 'gold', block: 'RegionBlock' },
@@ -12,9 +14,15 @@ const NavBlock: React.FC = () => {
     { label: 'Time Period', bg: 'maroon', block: 'TimelineBlock' },
     { label: 'Search', bg: 'blue', block: 'SearchBlock' },
   ];
+  const esLinks: Omit<LinkProps, 'index'>[] = [
+    { label: 'Libros', bg: 'maroon', block: 'UpdatedEditionsBlock' },
+    { label: t`Audio Books`, bg: 'blue', block: 'AudioBooksBlock' },
+    { label: 'Libros Nuevos', bg: 'green', block: 'NewBooksBlock' },
+    { label: t`Search`, bg: 'gold', block: 'SearchBlock' },
+  ];
   return (
     <div className="ExploreNav select-none tracking-wide text-white text-center flex-wrap sm:flex">
-      {links.map((props, idx) => (
+      {(LANG === 'en' ? enLinks : esLinks).map((props, idx) => (
         <Link key={props.label} index={idx} {...props} />
       ))}
     </div>

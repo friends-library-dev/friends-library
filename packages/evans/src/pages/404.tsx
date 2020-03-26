@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import {
   HomeExploreBooksBlock,
   HomeGettingStartedBlock,
-  ExploreSpanishSiteBlock,
+  ExploreAltSiteBlock,
   NotFoundHeroBlock,
 } from '@friends-library/ui';
 import Layout from '../components/Layout';
@@ -16,13 +16,12 @@ interface Props {
 
 const NotFoundPage: React.FC<Props> = ({ data: { site } }) => {
   const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
+  const numAltBooks = site.meta[LANG === 'es' ? 'numEnglishBooks' : 'numSpanishBooks'];
   return (
     <Layout>
       <NotFoundHeroBlock />
       <HomeGettingStartedBlock />
-      {LANG === 'en' && (
-        <ExploreSpanishSiteBlock url={APP_ALT_URL} numBooks={site.meta.numSpanishBooks} />
-      )}
+      <ExploreAltSiteBlock url={APP_ALT_URL} numBooks={numAltBooks} />
       <HomeExploreBooksBlock numTotalBooks={numBooks} />
     </Layout>
   );

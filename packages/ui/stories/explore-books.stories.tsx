@@ -8,7 +8,7 @@ import FilterControls from '../src/pages/explore/FilterControls';
 import NavBlock from '../src/pages/explore/NavBlock';
 import GettingStartedLinkBlock from '../src/pages/explore/GettingStartedLinkBlock';
 import SearchResultBack from '../src/pages/explore/SearchResultBack';
-import SpanishSiteBlock from '../src/pages/explore/SpanishSiteBlock';
+import AltSiteBlock from '../src/pages/explore/AltSiteBlock';
 import SelectableMap from '../src/pages/explore/SelectableMap';
 import BookSlider from '../src/pages/explore/BookSlider';
 import NewBooksBlock from '../src/pages/explore/NewBooksBlock';
@@ -73,7 +73,7 @@ storiesOf('Explore Books Page', module)
     );
   })
   .add('NavBlock', () => <NavBlock />)
-  .add('SpanishSiteBlock', () => <SpanishSiteBlock numBooks={43} url="/" />)
+  .add('AltSiteBlock', () => <AltSiteBlock numBooks={43} url="/" />)
   .add('GettingStartedLinkBlock', () => <GettingStartedLinkBlock />)
   .add('MapSlider', () => {
     const [region, setRegion] = useState<Region>('England');

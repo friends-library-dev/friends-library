@@ -59,7 +59,7 @@ export { default as ExploreAudioBooksBlock } from './pages/explore/AudioBooksBlo
 export { default as ExploreNewBooksBlock } from './pages/explore/NewBooksBlock';
 export { default as ExploreRegionBlock } from './pages/explore/RegionBlock';
 export { default as ExploreTimelineBlock } from './pages/explore/TimelineBlock';
-export { default as ExploreSpanishSiteBlock } from './pages/explore/SpanishSiteBlock';
+export { default as ExploreAltSiteBlock } from './pages/explore/AltSiteBlock';
 export { default as ExploreSearchBlock } from './pages/explore/SearchBlock';
 
 // Audiobooks page
