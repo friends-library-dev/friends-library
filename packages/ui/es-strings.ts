@@ -87,6 +87,7 @@ const strings: { [k: string]: string } = {
   '/getting-started': '/comenzar',
   '/explore': '/explorar',
   '/audiobooks': '/audiolibros',
+  '/compilations': '/compilaciones',
   '/friends': '/amigos',
   '/quakers': '/cuaqueros',
   '/about': '/acerca-de-este-sitio',
