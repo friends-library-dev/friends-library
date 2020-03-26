@@ -29,6 +29,16 @@ export const CoverProps = graphql`
   }
 `;
 
+export const RecommendedBook = graphql`
+  fragment RecommendedBook on Document {
+    url
+    authorUrl
+    hasAudio
+    htmlShortTitle
+    ...CoverProps
+  }
+`;
+
 export const SiteMetadata = graphql`
   fragment SiteMetadata on Site {
     meta: siteMetadata {

@@ -17,6 +17,7 @@ const books = [
     author: 'William Penn',
     documentUrl: '/no-cross-no-crown',
     authorUrl: '/',
+    hasAudio: true,
   },
   {
     ...coverProps,
@@ -24,6 +25,7 @@ const books = [
     author: 'Charles Marshall',
     documentUrl: '/charles-marshall/journal',
     authorUrl: '/',
+    hasAudio: true,
   },
   {
     ...coverProps,
@@ -32,10 +34,12 @@ const books = [
     edition: 'modernized' as const,
     documentUrl: '/catherine-payton/life-letters',
     authorUrl: '/',
+    hasAudio: false,
   },
   {
     ...coverProps,
     documentUrl: '/',
     authorUrl: '/',
+    hasAudio: true,
   },
 ];

@@ -12,9 +12,9 @@ describe('htmlTitle', () => {
 
 describe('htmlShortTitle', () => {
   it('should shorten volume to Vol.', () => {
-    expect(htmlShortTitle('Foo -- Volume 1')).toBe('Foo &mdash; Vol. I');
+    expect(htmlShortTitle('Foo -- Volume 1')).toBe('Foo &mdash; Vol.&nbsp;I');
   });
   it('should shorten spanish volumen to Vol.', () => {
-    expect(htmlShortTitle('Foo -- volumen 4')).toBe('Foo &mdash; Vol. IV');
+    expect(htmlShortTitle('Foo -- volumen 4')).toBe('Foo &mdash; Vol.&nbsp;IV');
   });
 });
