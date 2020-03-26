@@ -27,7 +27,10 @@ const ExploreBooksBlock: React.FC<{ numTotalBooks: number }> = ({ numTotalBooks 
       </>
     </Dual.p>
     <Button to={t`/explore`} className="mx-auto mt-12" shadow>
-      Start Exploring
+      <Dual.frag>
+        <>Start Exploring</>
+        <>Comenzar a Explorar</>
+      </Dual.frag>
     </Button>
   </MultiBookBgBlock>
 );

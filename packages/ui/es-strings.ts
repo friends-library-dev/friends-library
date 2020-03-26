@@ -7,6 +7,7 @@ const strings: { [k: string]: string } = {
   About: 'Acerca de',
   Help: 'Ayuda',
   Recommended: 'Recomendado',
+  Recommendations: 'Recomendaciones',
   Cart: 'Carrito',
   Download: 'Descargar',
   Audiobooks: 'Audiolibros',

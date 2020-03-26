@@ -100,6 +100,7 @@ const GettingStartedPage: React.FC<Props> = ({
     <div className="md:flex flex-wrap">
       <PathIntro
         title={t`History`}
+        noBooks={LANG === 'es'}
         color="maroon"
         onClick={() => makeScroller('.PathBlock--history')()}
       >
@@ -140,6 +141,7 @@ interface PathIntroProps {
   className?: string;
   color: 'blue' | 'maroon' | 'gold' | 'green';
   onClick: () => void;
+  noBooks?: boolean;
 }
 
 const PathIntro: React.FC<PathIntroProps> = ({
@@ -148,12 +150,14 @@ const PathIntro: React.FC<PathIntroProps> = ({
   title,
   children,
   onClick,
+  noBooks,
 }) => (
   <section
     onClick={onClick}
     className={cx(
       className,
-      `cursor-pointer bg-fl${color}`,
+      !noBooks && 'cursor-pointer',
+      `bg-fl${color}`,
       'p-8 pb-4 md:w-1/2 lg:w-1/4 flex flex-col justify-start',
     )}
   >
@@ -161,12 +165,14 @@ const PathIntro: React.FC<PathIntroProps> = ({
       {title}
     </h3>
     <p className="body-text text-white text-md mb-8">{children}</p>
-    <div className="flex flex-col items-center mb-10 text-xl mt-auto">
-      <button className="text-white uppercase font-sans tracking-wider text-base">
-        {t`Learn More`}
-      </button>
-      <i className="fa fa-chevron-down text-white antialiased pt-2" />
-    </div>
+    {!noBooks && (
+      <div className="flex flex-col items-center mb-10 text-xl mt-auto">
+        <button className="text-white uppercase font-sans tracking-wider text-base">
+          {t`Learn More`}
+        </button>
+        <i className="fa fa-chevron-down text-white antialiased pt-2" />
+      </div>
+    )}
   </section>
 );
 

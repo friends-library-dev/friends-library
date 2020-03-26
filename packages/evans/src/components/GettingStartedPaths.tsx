@@ -1,9 +1,9 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import { CoverProps } from '@friends-library/types';
 import { PathBlock, t } from '@friends-library/ui';
 import { coverPropsFromQueryData } from '../lib/covers';
 import { LANG } from '../env';
-import { CoverProps } from '@friends-library/types/src/types';
 
 interface Props {
   HistoryBlurb: React.FC;
@@ -243,7 +243,7 @@ const GettingStartedPaths: React.FC<Props> = ({
     <>
       <PathBlock
         slug="history"
-        title="History of the Quakers"
+        title={LANG === 'en' ? 'History of the Quakers' : 'Historia de los Cuáqueros'}
         books={prepareBooks([data.en_penn_pcr, data.en_kelty])}
         color="maroon"
       >
@@ -251,7 +251,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       </PathBlock>
       <PathBlock
         slug="doctrinal"
-        title="The Quaker Doctrine"
+        title={LANG === 'en' ? 'The Quaker Doctrine' : 'La Doctrina de los Cuáqueros'}
         books={prepareBooks([
           data.en_barclay_uttermost,
           data.en_phipps,
