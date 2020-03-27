@@ -30,6 +30,10 @@ export default class Document {
     return this.data.partial_description;
   }
 
+  public get featuredDescription(): Description | undefined {
+    return this.data.featured_description;
+  }
+
   public get description(): Description {
     return this.data.description;
   }
@@ -99,6 +103,7 @@ export default class Document {
       originalTitle: this.originalTitle,
       slug: this.slug,
       description: this.description,
+      featuredDescription: this.featuredDescription,
       partialDescription: this.partialDescription,
       filenameBase: this.filenameBase,
       hasNonDraftEdition: this.hasNonDraftEdition,

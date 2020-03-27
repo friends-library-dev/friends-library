@@ -191,6 +191,7 @@ const subSchemas: Record<string, Schema> = {
         required: true,
       },
       description: { type: 'string', required: true },
+      featured_description: { type: 'string', required: false },
       related_documents: {
         type: 'array',
         uniqueItems: true,
