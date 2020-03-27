@@ -15,7 +15,7 @@ import {
   HomeExploreBooksBlock,
   makeScroller,
 } from '@friends-library/ui';
-import { Layout } from '../components';
+import { Layout, Seo } from '../components';
 import { SiteMetadata } from '../types';
 import { LANG } from '../env';
 
@@ -122,6 +122,7 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
   };
   return (
     <Layout>
+      <Seo title={document.title} />
       <DocBlock
         description={document.description}
         htmlTitle={document.htmlTitle}

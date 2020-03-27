@@ -4,7 +4,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MultiBookBgBlock } from '@friends-library/ui';
-import Layout from '../components/Layout';
+import { Layout, Seo } from '../components';
 import { SiteMetadata } from '../types';
 
 interface Props {
@@ -85,6 +85,7 @@ const StaticPage: React.FC<Props> = ({ data }) => {
   const { body, frontmatter } = mdx;
   return (
     <Layout>
+      <Seo title={frontmatter.title} />
       <MultiBookBgBlock bright>
         <h1
           className="max-w-screen-md mx-auto px-6 py-16 heading-text text-2xl sm:text-4xl bracketed text-flprimary"

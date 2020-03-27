@@ -12,7 +12,7 @@ import {
 } from '@friends-library/ui';
 import { SiteMetadata } from '../types';
 import { LANG } from '../env';
-import { Layout } from '../components';
+import { Layout, Seo } from '../components';
 import GettingStartedPaths from '../components/GettingStartedPaths';
 
 interface Props {
@@ -25,6 +25,7 @@ const GettingStartedPage: React.FC<Props> = ({
   },
 }) => (
   <Layout>
+    <Seo title={t`Getting Started`} />
     <MultiBookBgBlock className="flex flex-col items-center">
       <Heading darkBg className="text-white">
         <Dual.frag>

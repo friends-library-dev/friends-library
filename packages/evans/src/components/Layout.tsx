@@ -2,14 +2,14 @@ import React, { useState, useEffect, Fragment } from 'react';
 import cx from 'classnames';
 import { useNumCartItems, CartStore } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
-import { Dual, Nav, PopUnder, Tailwind, Footer } from '@friends-library/ui';
+import { Dual, Nav, PopUnder, Tailwind, Footer, t } from '@friends-library/ui';
 import {
   CoverWebStylesAllStatic,
   CoverWebStylesSizes,
 } from '@friends-library/cover-component';
 import Checkout from './Checkout';
 import Slideover from './Slideover';
-import { LANG } from '../env';
+import { LANG, APP_URL } from '../env';
 import './Layout.css';
 
 const store = CartStore.getSingleton();
@@ -62,8 +62,10 @@ const Layout: React.FC = ({ children }) => {
             'Site--blur': menuOpen || checkoutModalOpen,
           })}
         />
-        <title>Friends Library</title>
-        <meta name="robots" content="noindex, nofollow" />
+        <title>{t`Friends Library`}</title>
+        {APP_URL.includes('netlify') && (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
         <script src="https://js.stripe.com/v3/" async></script>
         <link
           href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"

@@ -8,7 +8,7 @@ import {
   Stack,
   t,
 } from '@friends-library/ui';
-import Layout from '../components/Layout';
+import { Seo, Layout } from '../components';
 
 export default ({ data: { allFriend, recent } }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -18,6 +18,7 @@ export default ({ data: { allFriend, recent } }: Props) => {
     .filter(makeFilter(searchQuery, sortOption));
   return (
     <Layout>
+      <Seo title={t`All Friends`} />
       <FriendsPageHero numFriends={allFriend.nodes.length} />
       <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">
         <h2 className="text-center pb-8 sans-wider text-2xl px-8">{t`Recently Added Authors`}</h2>
