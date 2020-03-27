@@ -51,3 +51,41 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-172-4
+        audio:
+          reader: Keren Alvaredo
+          added: 2019-07-10T04:00:00.000Z
+          external_playlist_id_hq: 1019854648
+          external_playlist_id_lq: 1019854771
+          parts:
+            - title: Sufrimientos de Catherine Evans Sarah Cheevers, pt. 1
+              external_id_lq: 783194737
+              external_id_hq: 783198235
+              filesize_lq: 10864926
+              filesize_hq: 39674234
+              seconds: 2172
+              chapters:
+                - 0
+            - title: Sufrimientos de Catherine Evans Sarah Cheevers, pt. 2
+              external_id_lq: 783194773
+              external_id_hq: 783198256
+              filesize_lq: 9855246
+              filesize_hq: 35059327
+              seconds: 1970
+              chapters:
+                - 0
+            - title: Sufrimientos de Catherine Evans Sarah Cheevers, pt. 3
+              external_id_lq: 783194797
+              external_id_hq: 783198271
+              filesize_lq: 8311326
+              filesize_hq: 29061269
+              seconds: 1662
+              chapters:
+                - 0
+            - title: Sufrimientos de Catherine Evans Sarah Cheevers, pt. 4
+              external_id_lq: 783194842
+              external_id_hq: 783198307
+              filesize_lq: 7310166
+              filesize_hq: 25489522
+              seconds: 1461
+              chapters:
+                - 0

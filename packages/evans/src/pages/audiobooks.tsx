@@ -92,6 +92,7 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
       <div className="flex flex-col md:flex-row flex-wrap items-center md:items-stretch justify-center">
         {audioBooks.nodes.map((book, idx) => (
           <Audiobook
+            key={book.documentUrl}
             className="mb-12 sm:w-4/5 md:w-2/5 md:box-content md:mx-4 xl:w-1/4 xl:max-w-3xl"
             {...coverPropsFromQueryData(book)}
             htmlShortTitle={book.htmlShortTitle}

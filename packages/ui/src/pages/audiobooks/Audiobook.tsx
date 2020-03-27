@@ -33,17 +33,23 @@ const Audiobook: React.FC<Props> = props => (
       className="flex-grow text-white sans-wide text-center -mt-6 antialiased pt-16 pb-12 px-10 flex flex-col"
     >
       <h3
+        key="title"
         className="text-lg sans-wider"
         dangerouslySetInnerHTML={{ __html: props.htmlShortTitle }}
       />
-      <h4 className="-mt-3">
+      <h4 className="-mt-3" key="author">
         <Link to={props.authorUrl} className="fl-underline">
           {props.author}
         </Link>
       </h4>
-      <AudioDuration textColor="white">{props.duration}</AudioDuration>
-      <p className="body-text text-white -mt-2">{props.description}</p>
+      <AudioDuration textColor="white" key="duration">
+        {props.duration}
+      </AudioDuration>
+      <p className="body-text text-white -mt-2" key="desc">
+        {props.description}
+      </p>
       <Button
+        key="button"
         to={`${props.documentUrl}#audiobook`}
         bg={null}
         textColor="black"
