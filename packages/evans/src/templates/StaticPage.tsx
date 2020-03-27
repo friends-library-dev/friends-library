@@ -76,7 +76,7 @@ const components: { [key: string]: React.FC } = {
   ),
 
   Lead: ({ children }) => (
-    <p className={cx('text-2xl pb-4 pt-2 leading-loose')}>{children}</p>
+    <p className={cx('text-xl sm:text-2xl pb-4 pt-2 leading-loose')}>{children}</p>
   ),
 };
 
@@ -87,7 +87,7 @@ const StaticPage: React.FC<Props> = ({ data }) => {
     <Layout>
       <MultiBookBgBlock bright>
         <h1
-          className="max-w-screen-md mx-auto px-8 py-16 heading-text text-3xl sm:text-4xl bracketed text-flprimary"
+          className="max-w-screen-md mx-auto px-6 py-16 heading-text text-2xl sm:text-4xl bracketed text-flprimary"
           style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)' }}
         >
           {frontmatter.title}

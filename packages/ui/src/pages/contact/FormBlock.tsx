@@ -23,7 +23,7 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit }) => (
             </>
             <>
               ¿Tienes alguna pregunta? &mdash; ¿o estás teniendo algún tipo de problema
-              técnico con nuestros libros o con el
+              técnico con nuestros libros o con el sitio?
             </>
           </Dual.p>
           <Dual.p key="p2">
