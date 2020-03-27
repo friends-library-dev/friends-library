@@ -1,29 +1,21 @@
 import React from 'react';
 import cx from 'classnames';
+import Link from 'gatsby-link';
 import { ThreeD as Front } from '@friends-library/cover-component';
-import { Lang } from '@friends-library/types';
 import { t } from '../../translation';
 import { LANG } from '../../env';
-import { FeaturedBook } from './FeaturedBooksBlock';
 import Button from '../../Button';
+import { FeaturedBookProps } from './FeaturedBooksBlock';
 
-const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
-  isCurrent,
-  book,
-}) => {
-  const coverProps = {
-    lang: 'en' as Lang,
-    edition: book.edition,
-    isCompilation: false,
-    author: book.friendName,
-    title: book.title,
-    isbn: '',
-    blurb: '',
-    pages: 222,
-    customCss: '',
-    customHtml: '',
-    perspective: 'angle-front' as const,
-  };
+const Book: React.FC<FeaturedBookProps & { isCurrent: boolean }> = props => {
+  const {
+    featuredDesc,
+    documentUrl,
+    authorUrl,
+    htmlShortTitle,
+    isCurrent,
+    ...coverProps
+  } = props;
   return (
     <div
       className={cx(
@@ -40,29 +32,32 @@ const Book: React.FC<{ isCurrent: boolean; book: FeaturedBook }> = ({
         </div>
       </div>
       <div className="Text md:w-3/5 flex-grow flex flex-col justify-start">
-        <h2 className="font-sans text-gray-800 text-2xl mb-4 md:mb-6 leading-relaxed tracking-wider font-bold">
-          {book.title}
-        </h2>
+        <h2
+          className="font-sans text-gray-800 text-2xl mb-4 md:mb-6 leading-relaxed tracking-wider font-bold"
+          dangerouslySetInnerHTML={{ __html: htmlShortTitle }}
+        />
         {LANG === 'en' && (
           <p className="hidden sm:block font-sans uppercase text-gray-800 text-lg tracking-widest font-black mb-6">
             Modernized Edition
           </p>
         )}
         <p className="font-serif text-lg md:text-xl opacity-75 leading-relaxed max-w-2xl">
-          {book.description}
+          {featuredDesc}
         </p>
-        <p className="mb-10 md:mb-0 my-6">
-          <em className="font-serif font-black text-lg antialiased pr-2">{t`by`}:</em>{' '}
-          <a
-            href={`/friend/${book.friendSlug}`}
-            className="font-serif uppercase text-lg antialiased font-bold text-flblue bracketed"
-          >
-            {book.friendName}
-          </a>
-        </p>
+        {!props.author.startsWith('Compila') && (
+          <p className="mb-10 md:mb-0 my-6">
+            <em className="font-serif font-black text-lg antialiased pr-2">{t`by`}:</em>{' '}
+            <Link
+              to={authorUrl}
+              className="font-serif uppercase text-lg antialiased font-bold text-flblue bracketed"
+            >
+              {props.author}
+            </Link>
+          </p>
+        )}
         <Button
           bg="blue"
-          to={`/${book.friendSlug}/${book.docSlug}`}
+          to={documentUrl}
           className="mt-auto sm:mt-8 sm:mt-12 mx-auto md:mx-0"
         >
           {t`Download`} &rarr;
