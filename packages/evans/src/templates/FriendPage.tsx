@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import { Name, Description } from '@friends-library/types';
 import {
   t,
+  translate,
   FriendBlock,
   FeaturedQuoteBlock,
   BookByFriend,
@@ -102,7 +103,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
         <MapBlock
           friendName={friend.name}
           residences={friend.residences.flatMap(r => {
-            const place = `${r.city}, ${r.region}`;
+            const place = `${translate(r.city)}, ${translate(r.region)}`;
             if (r.durations) {
               return r.durations.map(d => `${place} (${d.start} - ${d.end})`);
             }
@@ -116,7 +117,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
           })}
           map={friend.residences[0].map}
           markers={friend.residences.map(r => ({
-            label: `${r.city}, ${r.region}`,
+            label: `${translate(r.city)}, ${translate(r.region)}`,
             top: r.top,
             left: r.left,
           }))}
