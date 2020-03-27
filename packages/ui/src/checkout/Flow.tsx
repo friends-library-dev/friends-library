@@ -67,7 +67,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
     case 'updateOrderPrintJobStatus':
     case 'capturePayment':
       return (
-        <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
+        <StripeProvider apiKey="pk_live_I2KfuXIAFCuGGTuMcb0hjg1f">
           <Elements locale={LANG}>
             <Payment
               throbbing={state !== 'payment'}
