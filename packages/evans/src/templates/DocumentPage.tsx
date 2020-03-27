@@ -175,10 +175,10 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
               ? t`Other Compilations`
               : t`Other Books by this Author`}
           </h1>
-          <div className="xl:flex justify-center">
+          <div className="xl:flex xl:flex-wrap justify-center">
             {otherBooks.map(book => (
               <RelatedBookCard
-                className="sm:mb-12"
+                className="mb-12"
                 key={book.url}
                 lang={friend.lang}
                 isbn={book.editions[0].isbn}
