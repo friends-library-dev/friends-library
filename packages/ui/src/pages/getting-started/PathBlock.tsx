@@ -56,7 +56,9 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
               </Link>
             </p>
             <div className="flex flex-col items-center mt-6">
-              <Front {...book} shadow={true} scaler={1 / 3} scope="1-3" />
+              <Link to={book.documentUrl}>
+                <Front {...book} shadow={true} scaler={1 / 3} scope="1-3" />
+              </Link>
               <div className="mt-2">
                 {book.hasAudio && <AudioIcon className="mr-2" />}
                 <DownloadIcon />
