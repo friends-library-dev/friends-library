@@ -5,3 +5,9 @@
 .MultiPill.inline > button {
   width: 280px;
 }
+
+@media (max-width: 768px) {
+  .MultiPill > button:lang(es) {
+    width: 300px !important;
+  }
+}

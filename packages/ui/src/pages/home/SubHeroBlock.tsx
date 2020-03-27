@@ -31,7 +31,7 @@ const SubHeroBlock: React.FC<{ numTotalBooks: number }> = ({ numTotalBooks }) =>
         impreso; vas a pagar única y exactamente el costo de impresión y envío.
       </>
     </Dual.p>
-    <ul className="flex flex-wrap font-sans text-white uppercase tracking-wider mt-8 mb-12 justify-center antialiased md:justify-start">
+    <ul className="flex flex-wrap font-sans text-white uppercase tracking-wider mt-8 mb-12 justify-center antialiased md:justify-start md:max-w-xl lg:max-w-none">
       <li className="Format Format--audio">{t`Audiobooks`}</li>
       <li className="Format Format--paperback">{t`Paperbacks`}</li>
       <li className="Format Format--ebook">{t`E-Books`}</li>

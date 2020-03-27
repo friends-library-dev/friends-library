@@ -31,7 +31,7 @@ export default ({
 }: Props) => (
   <Layout>
     <MultiBookBgBlock bright>
-      <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-16 my-6 max-w-screen-md mx-auto">
+      <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-10 sm:px-16 my-6 max-w-screen-md mx-auto">
         <Dual.h1 className="sans-wider text-3xl mb-6">
           <>Explore Books</>
           <>Explorar Libros</>

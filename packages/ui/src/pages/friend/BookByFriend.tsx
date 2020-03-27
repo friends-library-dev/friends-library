@@ -77,7 +77,7 @@ const BookByFriend: React.FC<Props> = props => {
         >
           <li className="text-sans w-1/2 pb-2">
             <ClockIcon className="mr-2" />
-            {pages.reduce((sum, p) => sum + p, 0)} pages
+            {t`${pages.reduce((sum, p) => sum + p, 0)} pages`}
             {pages.length > 1 && (
               <em className="italic pl-1 text-sm">({pages.length} vol)</em>
             )}

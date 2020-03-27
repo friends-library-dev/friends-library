@@ -8,7 +8,7 @@ import BooksMobile from '../../images/formats-books-mobile.png';
 import './FormatsBlock.css';
 
 const FormatsBlock: React.FC = () => (
-  <section className="FormatsBlock py-16 px-12 relative xl:pl-24 xl:py-24">
+  <section className="FormatsBlock py-16 px-12 sm:px-16 relative xl:pl-24 xl:py-24">
     <Heading left={['md']} className="text-gray-900 md:text-left">
       <Dual.frag>
         <>Formats &amp; Editions</>
@@ -17,7 +17,7 @@ const FormatsBlock: React.FC = () => (
     </Heading>
     <div className="hidden md:block BookMask--lg"></div>
     <div className="md:hidden BookMask--sm"></div>
-    <Dual.p className="font-serif antialiased text-lg sm:text-xl text-gray-700 leading-relaxed">
+    <Dual.p className="font-serif antialiased text-lg sm:text-xl text-gray-700 leading-relaxed max-w-screen-lg">
       <>
         On this site you will find many books available in multiple formats. Our desire is
         to make these precious writings as accessible as possible to today&rsquo;s seeker
@@ -47,7 +47,7 @@ const FormatsBlock: React.FC = () => (
       </>
     </Dual.p>
     {LANG === 'en' && (
-      <p className="mt-8 font-serif antialiased text-lg sm:text-xl text-gray-700 leading-relaxed">
+      <p className="mt-8 font-serif antialiased text-lg sm:text-xl text-gray-700 leading-relaxed max-w-screen-lg">
         Besides offering these books in digital, audio, and printed <em>formats,</em> most
         of these publications are available in different <em>editions</em> as well. We
         offer an original, unedited edition for those who enjoy the archaic language and

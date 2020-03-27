@@ -10,7 +10,7 @@ interface Props {
 
 const FriendBlock: React.FC<Props> = ({ name, gender, blurb }) => {
   return (
-    <div className="p-6 px-12 pb-10 md:p-16 xl:p-24 flex flex-col justify-center items-center md:items-start md:flex-row">
+    <div className="p-6 px-12 pb-10 md:p-16 xl:p-24 flex flex-col justify-center items-center md:items-start md:flex-row xl:mx-auto">
       <div className="flex flex-col items-center mb-8">
         {gender === 'female' && <Female />}
         {gender === 'male' && <Male />}

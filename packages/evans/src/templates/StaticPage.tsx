@@ -87,7 +87,7 @@ const StaticPage: React.FC<Props> = ({ data }) => {
     <Layout>
       <MultiBookBgBlock bright>
         <h1
-          className="max-w-screen-md mx-auto py-16 heading-text text-4xl bracketed text-flprimary"
+          className="max-w-screen-md mx-auto px-8 py-16 heading-text text-3xl sm:text-4xl bracketed text-flprimary"
           style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)' }}
         >
           {frontmatter.title}

@@ -36,6 +36,13 @@ const strings: { [k: string]: string } = {
   'View More': 'Ver más',
   'Your search returned no results': 'Tú búsqueda no obtuvo resultados',
 
+  // all friends filters
+  Sort: 'Ordenar por',
+  'First Name': 'Nombre',
+  'Last Name': 'Apellido',
+  'Birth Date': 'Fecha de Nacimiento',
+  'Death Date': 'Fecha de Muerte',
+
   // tags, tag-like
   'Spiritual Life': 'Vida Espiritual',
   'spiritual life': 'vida espiritual',

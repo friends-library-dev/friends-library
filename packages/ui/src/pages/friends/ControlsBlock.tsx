@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { t, translate } from '../../translation';
 import SearchInput from '../../SearchInput';
 import PillDropdown from '../../PillDropdown';
 import PillDropdownDropdown from '../../PillDropdownDropdown';
@@ -22,36 +23,36 @@ const ControlsBlock: React.FC<Props> = ({
     id="ControlsBlock"
     className="bg-flgray-100 p-6 pb-12 md:p-8 flex flex-col md:flex-row justify-center items-center"
   >
-    <Label>Sort</Label>
-    <PillDropdown pillText={sortOption} autoHide>
+    <Label>{t`Sort`}</Label>
+    <PillDropdown pillText={translate(sortOption)} autoHide>
       <PillDropdownDropdown>
         <PillDropdownItem
           onClick={() => setSortOption('First Name')}
           selected={sortOption === 'First Name'}
         >
-          First Name
+          {t`First Name`}
         </PillDropdownItem>
         <PillDropdownItem
           onClick={() => setSortOption('Last Name')}
           selected={sortOption === 'Last Name'}
         >
-          Last Name
+          {t`Last Name`}
         </PillDropdownItem>
         <PillDropdownItem
           onClick={() => setSortOption('Birth Date')}
           selected={sortOption === 'Birth Date'}
         >
-          Birth Date
+          {t`Birth Date`}
         </PillDropdownItem>
         <PillDropdownItem
           onClick={() => setSortOption('Death Date')}
           selected={sortOption === 'Death Date'}
         >
-          Death Date
+          {t`Death Date`}
         </PillDropdownItem>
       </PillDropdownDropdown>
     </PillDropdown>
-    <Label className="mt-4 md:mt-0 md:ml-10">Search</Label>
+    <Label className="mt-4 md:mt-0 md:ml-10">{t`Search`}</Label>
     <SearchInput query={searchQuery} setQuery={setSearchQuery} />
   </div>
 );
