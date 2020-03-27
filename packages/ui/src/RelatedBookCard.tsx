@@ -16,7 +16,10 @@ type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
 const RelatedBookCard: React.FC<Props> = props => {
   return (
     <div
-      className={cx(props.className, 'RelatedBookCard md:mb-24 xl:bg-white xl:max-w-xl')}
+      className={cx(
+        props.className,
+        'RelatedBookCard md:mb-24 xl:bg-white lg:max-w-3xl lg:mx-auto xl:max-w-xl',
+      )}
     >
       <TitleSection {...props} className="hidden xl:block pt-6 pb-4 text-center" />
       <div className="md:flex md:px-8 md:bg-white">

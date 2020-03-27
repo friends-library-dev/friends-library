@@ -177,6 +177,7 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
           <div className="xl:flex justify-center">
             {otherBooks.map(book => (
               <RelatedBookCard
+                className="sm:mb-12"
                 key={book.url}
                 lang={friend.lang}
                 isbn={book.editions[0].isbn}

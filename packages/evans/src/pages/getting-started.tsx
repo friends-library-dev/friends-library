@@ -232,7 +232,7 @@ export const DoctrineBlurb: React.FC = () => (
       Aunque ellos tienen mucho en común con otros grupos cristianos que creen en la
       Biblia, hay una cantidad de doctrinas, principios y testimonios distintivos que los
       Cuáqueros fueron llevados por el Espíritu de la Verdad a abrazar y mantener, cosas
-      que los diferenciaban de otras comunidades cristianas. .
+      que los diferenciaban de otras comunidades cristianas.
     </>
   </Dual.frag>
 );

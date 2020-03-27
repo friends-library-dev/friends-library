@@ -19,7 +19,7 @@ const Book: React.FC<FeaturedBookProps & { isCurrent: boolean }> = props => {
   return (
     <div
       className={cx(
-        'Book px-8 sm:px-12 md:px-16 flex flex-col md:flex-row w-screen',
+        'Book px-12 md:px-16 flex flex-col md:flex-row w-screen',
         isCurrent && 'order-first',
       )}
     >
@@ -56,9 +56,12 @@ const Book: React.FC<FeaturedBookProps & { isCurrent: boolean }> = props => {
           </p>
         )}
         <Button
-          bg="blue"
+          bg="green"
           to={documentUrl}
-          className="mt-auto sm:mt-8 sm:mt-12 mx-auto md:mx-0"
+          className={cx('mx-auto md:mx-0', {
+            'mt-12': props.author.startsWith('Compila'),
+            'sm:mt-0 md:mt-10': !props.author.startsWith('Compila'),
+          })}
         >
           {t`Download`} &rarr;
         </Button>

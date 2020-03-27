@@ -44,7 +44,7 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
   <Layout>
     <AudiobooksHero className="p-16 pb-48 md:pb-56" numBooks={audioBooks.nodes.length} />
     <div className="bg-flgray-200 py-12 xl:pb-6">
-      <Dual.h2 className="sans-wider text-center text-2xl md:text-3xl mb-12">
+      <Dual.h2 className="sans-wider text-center text-2xl md:text-3xl mb-12 px-10">
         <>Recently Added Audio Books</>
         <>Audiolibros añadidos recientemente</>
       </Dual.h2>
@@ -72,8 +72,8 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
       </Stack>
     </div>
     <div className="pt-16">
-      <h2 className="sans-wider text-center text-3xl mb-8">{t`All Audio Books`}</h2>
-      <Dual.p className="body-text text-center text-lg mb-12">
+      <h2 className="sans-wider text-center text-3xl mb-8 px-8">{t`All Audio Books`}</h2>
+      <Dual.p className="body-text text-center text-lg mb-12 px-8 sm:px-10">
         <>
           Browse all {audioBooks.nodes.length} audiobooks below, or{' '}
           <Link to={t`/audio-help`} className="subtle-link">
@@ -100,10 +100,7 @@ const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props
             duration={(book.editions[0].audio || { duration: book.documentUrl }).duration}
             authorUrl={book.authorUrl}
             documentUrl={book.documentUrl}
-            description={
-              book.description ||
-              'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
-            }
+            description={book.description}
           />
         ))}
       </div>

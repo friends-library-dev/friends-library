@@ -3,8 +3,9 @@
   content: 'Start Here';
 }
 
-.PathBooks:lang(es)::before {
-  content: 'Empezar Aquí';
+body .PathBooks:lang(es)::before {
+  content: '\00a0\00a0 Empezar Aquí';
+  transform: rotate(-90deg) translateX(10px) translateY(-18px);
 }
 
 .PathBooks > div::before {
@@ -77,6 +78,13 @@
     right: 0;
     top: 58%;
     left: auto;
+  }
+
+  .PathBooks > div:nth-child(4n)::before {
+    transform: rotate(155deg);
+    right: auto;
+    left: -109%;
+    top: 100%;
   }
 
   .PathBooks > div:nth-last-child(-n + 4) svg path {

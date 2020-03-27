@@ -20,7 +20,7 @@ export default ({ data: { allFriend, recent } }: Props) => {
     <Layout>
       <FriendsPageHero numFriends={allFriend.nodes.length} />
       <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">
-        <h2 className="text-center pb-8 sans-wider text-2xl">{t`Recently Added Authors`}</h2>
+        <h2 className="text-center pb-8 sans-wider text-2xl px-8">{t`Recently Added Authors`}</h2>
         <Stack space="20" md="12" xl="0" className="xl:flex justify-center">
           {recent.nodes.map((friend, idx) => (
             <FriendCard

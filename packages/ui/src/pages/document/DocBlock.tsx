@@ -244,7 +244,7 @@ function LinksAndMeta(
         download={onClickDownload}
         addToCart={onClickAddToCart}
         gotoAudio={makeScroller('#audiobook')}
-        className="mb-8 lg:mx-24 xl:mx-0"
+        className="mb-8 flex flex-col md:flex-row items-center md:items-start lg:mx-24 xl:mx-0"
         price={price}
         hasAudio={hasAudio}
       />

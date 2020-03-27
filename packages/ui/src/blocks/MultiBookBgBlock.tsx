@@ -12,7 +12,7 @@ const MultiBookBgBlock: React.FC<Props> = ({ children, className, bright }) => (
     className={cx(
       className,
       bright && 'MultiBookBgBlock--bright',
-      'MultiBookBgBlock py-20 sm:py-32 px-8 sm:px-16 bg-black',
+      'MultiBookBgBlock py-20 sm:py-32 px-10 sm:px-16 bg-black',
     )}
   >
     {children}
