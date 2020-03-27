@@ -31,3 +31,41 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-189-2
+        audio:
+          reader: Keren Alvaredo
+          added: 2019-07-29T04:00:00.000Z
+          external_playlist_id_hq: 1019884402
+          external_playlist_id_lq: 1019884525
+          parts:
+            - title: Introduccíon
+              external_id_lq: 783183304
+              external_id_hq: 783185221
+              filesize_lq: 5865706
+              filesize_hq: 20675657
+              seconds: 1172
+              chapters:
+                - 0
+            - title: La Vida de Stephen Crisp
+              external_id_lq: 783183337
+              external_id_hq: 783188566
+              filesize_lq: 18058098
+              filesize_hq: 60636768
+              seconds: 3611
+              chapters:
+                - 1
+            - title: La Vida de John Richardson
+              external_id_lq: 783183361
+              external_id_hq: 783188599
+              filesize_lq: 18858786
+              filesize_hq: 62639083
+              seconds: 3771
+              chapters:
+                - 2
+            - title: La Carta de Elizabeth Webb
+              external_id_lq: 783183415
+              external_id_hq: 783188656
+              filesize_lq: 17074778
+              filesize_hq: 56493284
+              seconds: 3414
+              chapters:
+                - 3

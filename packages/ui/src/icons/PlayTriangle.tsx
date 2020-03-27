@@ -15,8 +15,8 @@ const PlayTriangle: React.FC<Props> = ({ tailwindColor = 'flprimary', className 
   >
     <polygon
       className={cx(`text-${tailwindColor}`, 'stroke-current')}
-      stroke-width="9"
-      stroke-linejoin="round"
+      strokeWidth="9"
+      strokeLinejoin="round"
       fill="transparent"
       points="5, 5 60, 50 5, 95"
     />
