@@ -32,7 +32,7 @@ const Item: React.FC<Props> = ({
         <div className="CoverWrap hidden mr-1 flex flex-col justify-center">
           <FrontCover
             lang={LANG}
-            isCompilation={false}
+            isCompilation={author.startsWith('Compila')} // TODO
             size="s"
             author={author}
             title={title}
