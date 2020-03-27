@@ -165,6 +165,23 @@ const strings: { [k: string]: string } = {
   'Try Again': 'Intentar Nuevamente',
   Close: 'Cerrar',
   'Confirmed!': '¡Confirmado!',
+
+  // geography
+  Sedbergh: 'Sedbergh',
+  Jordans: 'Jordans',
+  Retford: 'Retford',
+  Norwich: 'Norwich',
+  Colchester: 'Colchester',
+  Carlisle: 'Carlisle',
+  England: 'Inglaterra',
+  Scotland: 'Escocia',
+  London: 'Londres',
+  Philadelphia: 'Filadelfia',
+  Ruscombe: 'Ruscombe',
+  Pennsylvania: 'Pensilvania',
+  Amsterdam: 'Ámsterdam',
+  Netherlands: 'Holanda',
+  Aberdeenshire: 'Aberdeenshire',
 };
 
 export default strings;
