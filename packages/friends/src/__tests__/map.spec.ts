@@ -23,6 +23,7 @@ describe('friendFromJS()', () => {
           slug: 'diary-and-letters',
           filename: 'Journal_of_Rebecca_Jones',
           description: 'doc desc',
+          partial_description: 'doc partial desc',
           tags: ['journal', 'letters'],
           editions: [
             {

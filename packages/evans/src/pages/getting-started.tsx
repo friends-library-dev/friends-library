@@ -55,7 +55,7 @@ const GettingStartedPage: React.FC<Props> = ({
           <>Step 1: Audio Introduction</>
           <>Paso 1: Audio Introductorio</>
         </Dual.h2>
-        <Dual.p className="body-text text-center mb-10 text-lg leading-loose max-w-3xl md:text-left md:pr-20">
+        <Dual.p className="body-text text-center mb-10 text-lg leading-loose max-w-3xl md:pr-20">
           <>
             If you haven't listened to our introductory audio explaining who the early
             Quakers were, we recommend you start here by clicking the play button below:
@@ -84,7 +84,7 @@ const GettingStartedPage: React.FC<Props> = ({
         <>Step 2: Choose A Path</>
         <>Paso 2: Escoge un Camino</>
       </Dual.h2>
-      <Dual.p className="body-text text-lg text-center">
+      <Dual.p className="body-text text-lg text-center max-w-3xl mx-auto">
         <>
           Now for the only decision you need to make: of the four categories below, which
           one interests you the most? Click one of the colored boxes below to see our
