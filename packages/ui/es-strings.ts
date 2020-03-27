@@ -29,7 +29,7 @@ const strings: { [k: string]: string } = {
   'About the Quakers': 'Acerca de los Cuáqueros',
   'About this Site': 'Acerca de este sitio',
   'Audio Help': 'Ayuda con los Audios',
-  'E-book Help': 'Ayuda con los Libros Electrónicos',
+  'E-Book Help': 'Ayuda con los Libros Electrónicos',
   'Contact Us': 'Contáctanos',
   'Friends Library Publishing': 'La Biblioteca de los Amigos',
   'View %s More': 'Ver %s más',
