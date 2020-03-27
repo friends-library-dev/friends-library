@@ -9,7 +9,7 @@ import {
   AudiobooksHero,
   BookTeaserCard,
 } from '@friends-library/ui';
-import { Layout } from '../components';
+import { Layout, Seo } from '../components';
 
 type AudioBookNode = CoverData & {
   authorUrl: string;
@@ -42,6 +42,7 @@ interface Props {
 
 const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props) => (
   <Layout>
+    <Seo title={t`Audio Books`} />
     <AudiobooksHero className="p-16 pb-48 md:pb-56" numBooks={audioBooks.nodes.length} />
     <div className="bg-flgray-200 py-12 xl:pb-6">
       <Dual.h2 className="sans-wider text-center text-2xl md:text-3xl mb-12 px-10">

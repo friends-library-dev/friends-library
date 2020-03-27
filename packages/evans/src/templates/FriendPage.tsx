@@ -15,7 +15,7 @@ import {
 } from '@friends-library/ui';
 import { LANG } from '../env';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
-import { Layout } from '../components';
+import { Layout, Seo } from '../components';
 import './FriendPage.css';
 
 interface Props {
@@ -65,6 +65,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
   const quotes = friend.quotes || [];
   return (
     <Layout>
+      <Seo title={friend.name} />
       <FriendBlock name={friend.name} gender={friend.gender} blurb={friend.description} />
       {quotes.length > 0 && (
         <FeaturedQuoteBlock quote={quotes[0].text} cite={quotes[0].source} />

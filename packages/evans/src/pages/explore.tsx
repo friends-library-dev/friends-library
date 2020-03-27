@@ -11,9 +11,10 @@ import {
   ExploreAltSiteBlock,
   ExploreSearchBlock,
   Dual,
+  t,
 } from '@friends-library/ui';
 import { graphql } from 'gatsby';
-import { Layout } from '../components';
+import { Layout, Seo } from '../components';
 import { SiteMetadata } from '../types';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { APP_ALT_URL, LANG } from '../env';
@@ -30,6 +31,7 @@ export default ({
   },
 }: Props) => (
   <Layout>
+    <Seo title={t`Explore Books`} />
     <MultiBookBgBlock bright>
       <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-10 sm:px-16 my-6 max-w-screen-md mx-auto">
         <Dual.h1 className="sans-wider text-3xl mb-6">
