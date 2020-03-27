@@ -16,7 +16,7 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit }) => (
           {t`Contact`}
         </h1>
         <Stack space="6" lg="8">
-          <Dual.p>
+          <Dual.p key="p1">
             <>
               Got a question? &mdash; or are you having any sort of technical trouble with
               our books or website?
@@ -26,11 +26,11 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit }) => (
               técnico con nuestros libros o con el
             </>
           </Dual.p>
-          <Dual.p>
+          <Dual.p key="p2">
             <>Want to reach out for any other reason?</>
             <>¿Quieres ponerte en contacto por alguna otra razón?</>
           </Dual.p>
-          <Dual.p>
+          <Dual.p key="p3">
             <>
               We'd love to hear from you! You can expect to hear back within a day or two.
             </>
