@@ -41,8 +41,8 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <LinkGroup
           links={[
             [t`/quakers`, t`About the Quakers`],
-            [t`/modernization`, 'About Modernization', 'en'],
-            [t`/editions`, 'About Book Editions', 'en'],
+            ['/modernization', 'About Modernization', 'en'],
+            ['/editions', 'About Book Editions', 'en'],
             ['/spanish-translations', 'About Spanish Books', 'en'],
             ['/nuestras-traducciones', 'Nuestras Traducciones', 'es'],
             [t`/about`, t`About this Site`],

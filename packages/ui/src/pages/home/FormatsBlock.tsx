@@ -53,7 +53,7 @@ const FormatsBlock: React.FC = () => (
         offer an original, unedited edition for those who enjoy the archaic language and
         style. But because most readers find the older English somewhat challenging, we
         offer minimally and carefully modernized editions as well. For more information{' '}
-        <Link to={t`/modernization`} className="subtle-link">
+        <Link to="/modernization" className="subtle-link">
           click here
         </Link>
         .

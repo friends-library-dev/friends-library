@@ -14,6 +14,8 @@ export function translate(str: string): string {
   if (shouldResolveSpanish()) {
     if (spanish[str] !== undefined) {
       return spanish[str];
+    } else {
+      throw new Error(`Missing translation for string: ${str}`);
     }
   }
   return str;

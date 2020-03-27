@@ -45,8 +45,8 @@ const Footer: React.FC = () => {
               title={t`About`}
               links={[
                 [t`/quakers`, t`About the Quakers`],
-                [t`/modernization`, t`About modernization`, 'en'],
-                [t`/editions`, t`About book editions`, 'en'],
+                ['/modernization', 'About modernization', 'en'],
+                ['/editions', 'About book editions', 'en'],
                 ['/spanish-translations', 'About Spanish translations', 'en'],
                 ['/nuestras-traducciones', 'Nuestras Traducciones', 'es'],
                 [t`/about`, t`About this Site`],
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
               title={t`Help`}
               links={[
                 [t`/audio-help`, t`Audio Help`],
-                [t`/ebook-help`, t`E-book Help`],
+                [t`/ebook-help`, t`E-Book Help`],
                 [t`/contact`, t`Contact Us`],
               ]}
             />
