@@ -33,6 +33,12 @@ export const APP_ALT_URL: Url = (() => {
 
 // @TODO this is hinky
 function swapAltUrl(url: Url): Url {
+  if (url === 'undefined') {
+    return LANG === 'en'
+      ? 'https://www.bibliotecadelosamigos.org'
+      : 'https://www.friendslibrary.com';
+  }
+
   if (url.includes('.netlify.com')) {
     return url.replace('en-evans.', 'es-evans.').replace('es-evans.', 'en-evans.');
   }
