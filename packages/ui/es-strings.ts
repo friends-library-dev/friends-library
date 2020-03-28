@@ -91,7 +91,9 @@ const strings: { [k: string]: string } = {
   'Listen online': 'Escuchar en línea',
   'Other Compilations': 'Otras Compilaciones',
   'Other Books by this Author': 'Otros libros de este Autor',
+  '1 chapter': '1 capitulo',
   '%s chapters': '%s capítulos',
+  '1 page': '1 pagina',
   '%s pages': '%s páginas',
 
   // urls
