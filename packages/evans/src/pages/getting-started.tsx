@@ -207,7 +207,7 @@ export const JournalsBlurb: React.FC = () => (
     <>
       The most common of all Quaker writings are their journals. These are incredibly
       inspiring and instructive records of real men and women who walked in the
-      &ldquo;ancient path&rdquo; of obedience, humility, faith, and love&emdash;overcoming
+      &ldquo;ancient path&rdquo; of obedience, humility, faith, and love&mdash;overcoming
       the world not by their own strength, but by clinging to the grace of Jesus Christ
       that springs up in the heart.
     </>
