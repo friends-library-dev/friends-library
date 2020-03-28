@@ -83,7 +83,7 @@ storiesOf('Search', module)
 storiesOf('Home Blocks', module)
   .addDecorator(coverSizes)
   .add('Who Were Quakers?', () => <HomeWhoWereTheQuakersBlock />)
-  .add('Featured Books', () => <HomeFeaturedBooksBlock />)
+  .add('Featured Books', () => <HomeFeaturedBooksBlock books={[]} />)
   .add('Hero', () => <HomeHeroBlock />);
 
 const searchActions = {

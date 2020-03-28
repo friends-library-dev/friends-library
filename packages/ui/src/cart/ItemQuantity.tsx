@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cx from 'classnames';
 
 interface Props {
@@ -7,6 +7,7 @@ interface Props {
 }
 
 const Component: React.FC<Props> = ({ quantity, changeQuantity }) => {
+  const [strQty, setStrQty] = useState<string>(String(quantity));
   return (
     <div className="w-1/2 md:w-1/3 flex flex-col justify-center md:order-1">
       <div>
@@ -17,6 +18,7 @@ const Component: React.FC<Props> = ({ quantity, changeQuantity }) => {
           })}
           onClick={() => {
             if (quantity > 1) {
+              setStrQty(String(quantity - 1));
               changeQuantity(quantity - 1);
             }
           }}
@@ -25,16 +27,28 @@ const Component: React.FC<Props> = ({ quantity, changeQuantity }) => {
         </span>
         <input
           className="bg-gray-100 w-8 md:w-10 py-2 text-center font-sans text-gray-700 text-md md:text-lg subtle-focus"
-          type="number"
-          value={quantity}
+          type="input"
+          value={strQty}
           onChange={evt => {
-            const newQty = Number(evt.target.value);
-            newQty > 0 && changeQuantity(newQty);
+            let val = evt.target.value.trim();
+            if (val !== '' && !val.match(/^\d+$/)) {
+              val = '1';
+            }
+            setStrQty(val);
+            if (val === '') return;
+            let numQty = Number(val);
+            if (Number.isNaN(numQty)) {
+              numQty = 1;
+            }
+            changeQuantity(numQty);
           }}
         />
         <span
           className="hidden md:inline pl-2 select-none"
-          onClick={() => changeQuantity(quantity + 1)}
+          onClick={() => {
+            setStrQty(String(quantity + 1));
+            changeQuantity(quantity + 1);
+          }}
         >
           &gt;
         </span>
