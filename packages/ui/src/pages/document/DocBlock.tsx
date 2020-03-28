@@ -253,7 +253,7 @@ function LinksAndMeta(
           <li>{author}</li>
           {LANG === 'en' && <li className="capitalize">{edition} Edition</li>}
           <li>{dimensions(size, pages)}</li>
-          <li>{t`${numChapters} chapters`}</li>
+          <li>{numChapters > 1 ? t`${numChapters} chapters` : t`1 chapter`}</li>
           <li>{pages.map(p => t`${p} pages`).join(', ')}</li>
           <li>
             <Dual.frag>
