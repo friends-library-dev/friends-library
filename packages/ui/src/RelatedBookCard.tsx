@@ -23,7 +23,10 @@ const RelatedBookCard: React.FC<Props> = props => {
     >
       <TitleSection {...props} className="hidden xl:block pt-6 pb-4 text-center" />
       <div className="md:flex md:px-8 md:bg-white">
-        <div className="book-wrap flex flex-col items-center lg:pt-12 xl:absolute xl:pt-0">
+        <Link
+          to={props.documentUrl}
+          className="book-wrap flex flex-col items-center lg:pt-12 xl:absolute xl:pt-0"
+        >
           <Front
             {...props}
             className="shadow-direct xl:hidden"
@@ -38,7 +41,7 @@ const RelatedBookCard: React.FC<Props> = props => {
             scope="1-4"
             scaler={1 / 4}
           />
-        </div>
+        </Link>
         <div className="p-8 bg-white xl:pt-0">
           <TitleSection {...props} className="xl:hidden" />
           <p className="description font-serif antialiased text-sm leading-relaxed">
@@ -52,15 +55,21 @@ const RelatedBookCard: React.FC<Props> = props => {
 
 export default RelatedBookCard;
 
-const TitleSection: React.FC<Pick<Props, 'htmlShortTitle' | 'authorUrl' | 'author'> & {
+const TitleSection: React.FC<Pick<
+  Props,
+  'htmlShortTitle' | 'authorUrl' | 'documentUrl' | 'author'
+> & {
   className: string;
-}> = ({ htmlShortTitle, authorUrl, author, className }) => {
+}> = ({ htmlShortTitle, authorUrl, author, className, documentUrl }) => {
   return (
     <div className={cx(className)}>
-      <h4
-        className="tracking-wider mb-2"
-        dangerouslySetInnerHTML={{ __html: htmlShortTitle }}
-      />
+      <h4 className="tracking-wider mb-2">
+        <Link
+          className="hover:underline"
+          to={documentUrl}
+          dangerouslySetInnerHTML={{ __html: htmlShortTitle }}
+        />
+      </h4>
       <h5 className="text-flprimary mb-6 font-bold antialiased text-sm">
         <Link className="fl-underline" to={authorUrl}>
           {author}
