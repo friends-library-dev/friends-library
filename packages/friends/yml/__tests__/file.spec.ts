@@ -49,11 +49,13 @@ files.forEach(file => {
       throw new Error(err.message);
     }
 
-    // @TODO re-enable this test when things stabilize
     test('no todo or lorem text', () => {
-      // eslint-disable-line no-undef
-      expect(fileContents).not.toContain(': TODO');
+      expect(fileContents).not.toContain('TODO');
       expect(fileContents).not.toContain('Lorem');
+    });
+
+    test('no asciidoc-style escaping', () => {
+      expect(fileContents).not.toContain('+++[+++');
     });
 
     test('ids must be unique', done => {
