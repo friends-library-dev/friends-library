@@ -50,7 +50,7 @@ function lineItems(order: Document): string {
 const CONFIRMATION_EMAIL_EN = `
 {{salutation}}
 
-'Thanks for ordering from Friends Library Publishing! Your order was successfully created with the following item(s):'
+Thanks for ordering from Friends Library Publishing! Your order was successfully created with the following item(s):
 
 {{lineItems}}
 
