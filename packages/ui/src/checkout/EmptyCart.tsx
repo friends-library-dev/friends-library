@@ -61,9 +61,10 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
             )}
           >
             {Cover}
-            <h3 className="font-sans text-center mt-4 text-lg text-gray-800 tracking-wide">
-              {title}
-            </h3>
+            <h3
+              className="font-sans text-center mt-4 text-lg text-gray-800 tracking-wide"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
           </Link>
         ))}
       </div>

@@ -26,32 +26,52 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
   const data = useStaticQuery(graphql`
     query EmptyCartBooks {
       doc1: document(
-        slug: { eq: "no-cross-no-crown" }
-        friendSlug: { eq: "william-penn" }
+        slug: { eq: "truth-in-the-inward-parts" }
+        friendSlug: { eq: "compilations" }
       ) {
         url
         ...CoverProps
+        htmlShortTitle
       }
       doc2: document(
-        slug: { eq: "life-letters" }
-        friendSlug: { eq: "samuel-fothergill" }
+        slug: { eq: "walk-in-the-spirit" }
+        friendSlug: { eq: "hugh-turford" }
       ) {
         url
         ...CoverProps
+        htmlShortTitle
       }
       doc3: document(
-        slug: { eq: "vital-religion" }
-        friendSlug: { eq: "samuel-rundell" }
+        slug: { eq: "writings-volume-1" }
+        friendSlug: { eq: "isaac-penington" }
       ) {
         url
         ...CoverProps
+        htmlShortTitle
       }
       doc4: document(
+        slug: { eq: "verdad-en-lo-intimo" }
+        friendSlug: { eq: "compilaciones" }
+      ) {
+        url
+        ...CoverProps
+        htmlShortTitle
+      }
+      doc5: document(
+        slug: { eq: "escritos-volumen-1" }
+        friendSlug: { eq: "isaac-penington" }
+      ) {
+        url
+        ...CoverProps
+        htmlShortTitle
+      }
+      doc6: document(
         slug: { eq: "no-cruz-no-corona" }
         friendSlug: { eq: "william-penn" }
       ) {
         url
         ...CoverProps
+        htmlShortTitle
       }
     }
   `);
@@ -60,7 +80,7 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
     .filter(Boolean)
     .map((docData: any) => ({
       Cover: cover3dFromQuery(docData, { scaler: 0.25, scope: '1-4', size: 'm' }),
-      title: docData.title,
+      title: docData.htmlShortTitle,
       path: docData.url,
     }));
 
