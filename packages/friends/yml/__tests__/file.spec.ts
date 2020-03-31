@@ -55,7 +55,7 @@ files.forEach(file => {
     });
 
     test('no asciidoc-style escaping', () => {
-      expect(fileContents).not.toContain('+++[+++');
+      expect(fileContents).not.toContain('+++[');
     });
 
     test('ids must be unique', done => {
@@ -88,6 +88,16 @@ files.forEach(file => {
       }
     });
 
+    test('friend quotes have no straight quotes or double-dash', () => {
+      (friend.quotes || []).forEach(quote => {
+        expect(quote.text).not.toMatch(/'|"|--/);
+      });
+    });
+
+    test('friend description has no straight quotes or double-dash', () => {
+      expect(friend.description).not.toMatch(/'|"|--/);
+    });
+
     test('document slugs are unique', () => {
       const slugs: string[] = [];
       documents.forEach((doc: any) => {
@@ -103,6 +113,19 @@ files.forEach(file => {
       });
     });
 
+    test('document fields must not have straight quotes or double-dash', () => {
+      documents.forEach(doc => {
+        expect(doc.description).not.toMatch(/'|"|--/);
+        expect(doc.title).not.toMatch(/'|"/);
+        expect(doc.partial_description).not.toMatch(/'|"|--/);
+        expect(doc.original_title || '').not.toMatch(/'|"|--/);
+        expect(doc.featured_description || '').not.toMatch(/'|"|--/);
+        (doc.related_documents || []).forEach(related => {
+          expect(related.description).not.toMatch(/'|"|--/);
+        });
+      });
+    });
+
     test('document ids must be unique', done => {
       documents.forEach(doc => {
         if (ids.indexOf(doc.id) !== -1) {
@@ -112,6 +135,14 @@ files.forEach(file => {
         ids.push(doc.id);
         docMap.set(doc.id, { ...doc, lang: friend.lang });
         done();
+      });
+    });
+
+    test('audio part titles must not have straight quotes or double-dash', () => {
+      editions(friend).forEach(edition => {
+        (edition.audio || { parts: [] }).parts.forEach((part: any) => {
+          expect(part.title).not.toMatch(/'|"|--/);
+        });
       });
     });
 
