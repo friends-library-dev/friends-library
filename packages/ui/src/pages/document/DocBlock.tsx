@@ -276,10 +276,18 @@ function LinksAndMeta(
 }
 
 function dimensions(size: PrintSize, pages: number[]): string {
-  return pages
-    .map(p => bookDims(size, p))
-    .map(dims => `${dims.width} x ${dims.height} x ${dims.depth.toPrecision(2)} in`)
-    .join(', ');
+  return (
+    pages
+      .map(p => bookDims(size, p))
+      .map(dims =>
+        [dims.width, dims.height, dims.depth]
+          .map(n => (LANG === 'en' ? n : n * CENTIMETERS_IN_INCH))
+          .map(n => n.toPrecision(2))
+          .map(s => s.replace(/\.0+$/, ''))
+          .join(' x '),
+      )
+      .join(', ') + `${LANG === 'en' ? ' in' : ' cm'}`
+  );
 }
 
 function ensureWizardInViewport(): void {
@@ -297,3 +305,4 @@ function ensureWizardInViewport(): void {
 }
 
 const POPUNDER_TRIANGLE_HEIGHT = 16;
+const CENTIMETERS_IN_INCH = 2.54;
