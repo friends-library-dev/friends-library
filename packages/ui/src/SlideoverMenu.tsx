@@ -66,6 +66,12 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             ),
           ]}
         />
+        <LinkGroup
+          links={[
+            ['https://www.bibliotecadelosamigos.org', 'Biblioteca de los Amigos', 'en'],
+            ['https://www.friendslibrary.com', 'Friends Library', 'es'],
+          ]}
+        />
       </div>
     </nav>
   );
@@ -88,7 +94,11 @@ const LinkGroup: React.FC<{ links: LinkItem[] }> = ({ links }) => (
         const [href, text] = link;
         return (
           <li className="py-2" key={href}>
-            <Link to={href}>{text}</Link>
+            {href.startsWith('https') ? (
+              <a href={href}>{text}</a>
+            ) : (
+              <Link to={href}>{text}</Link>
+            )}
           </li>
         );
       })}
