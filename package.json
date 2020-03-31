@@ -20,6 +20,8 @@
     "evans:develop:es": "cd packages/evans && yarn develop:es",
     "evans:develop:en:site": "cd packages/evans && yarn develop:en:site",
     "evans:develop:es:site": "cd packages/evans && yarn develop:es:site",
+    "en": "yarn evans:develop:en:site",
+    "es": "yarn evans:develop:es:site",
     "evans:ts:check": "cd packages/evans && yarn ts:check",
     "jones:develop": "cd packages/jones && yarn develop",
     "jones:build": "cd packages/jones && yarn build",
