@@ -1,6 +1,6 @@
 .ContactFormBlock {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url(../../images/Books7.jpg);
+    url(../../images/Books7.jpg), linear-gradient(#666, #666);
 }
 
 .ContactFormBlock button {

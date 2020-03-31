@@ -1,6 +1,6 @@
 .CompilationsBlock {
   background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),
-    url(../../images/village.jpg);
+    url(../../images/village.jpg), linear-gradient(#333, #333);
   background-size: cover;
   background-position: center center;
 }
