@@ -19,23 +19,8 @@
   }
 }
 
-@screen lg {
-  .RelatedBooks .RelatedBookCard:nth-of-type(odd) {
-    border-right-width: 2em;
-    border-style: solid;
-  }
-}
-
 @screen xl {
   .FriendMetaBlock .FriendMeta {
     width: 22rem;
-  }
-
-  .RelatedBooks .RelatedBookCard:nth-of-type(odd) {
-    border-right-width: 0;
-  }
-
-  .RelatedBooks .RelatedBookCard {
-    max-width: 30rem;
   }
 }

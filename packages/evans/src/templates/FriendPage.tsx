@@ -9,11 +9,9 @@ import {
   FeaturedQuoteBlock,
   BookByFriend,
   TestimonialsBlock,
-  RelatedBookCard,
+  BookTeaserCards,
   MapBlock,
-  Heading,
 } from '@friends-library/ui';
-import { LANG } from '../env';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { Layout, Seo } from '../components';
 import './FriendPage.css';
@@ -129,32 +127,21 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
           testimonials={quotes.slice(1).map(q => ({ cite: q.source, quote: q.text }))}
         />
       )}
-      {relatedDocuments.nodes.length > 0 && (
-        <div className="RelatedBooks bg-flgray-100 p-8">
-          <Heading className="mt-2">{t`Related Books`}</Heading>
-          <div className="lg:flex lg:flex-wrap lg:justify-center">
-            {relatedDocuments.nodes.map(relatedDoc => {
-              const friendDoc = friend.relatedDocuments.find(
-                doc => doc.id === relatedDoc.id,
-              );
-              if (!friendDoc) throw new Error('Missing related doc');
-              return (
-                <RelatedBookCard
-                  key={relatedDoc.editions[0].isbn}
-                  className="mb-8 lg:w-1/2 border-flgray-100"
-                  lang={LANG}
-                  {...relatedDoc}
-                  edition={relatedDoc.editions[0].type}
-                  isbn={relatedDoc.editions[0].isbn}
-                  customCss={relatedDoc.editions[0].code.css.cover || ''}
-                  customHtml={relatedDoc.editions[0].code.html.cover || ''}
-                  description={friendDoc.description}
-                />
-              );
-            })}
-          </div>
-        </div>
-      )}
+      <BookTeaserCards
+        bgColor="flgray-100"
+        titleTextColor="flblack"
+        title={t`Related Books`}
+        titleEl="h3"
+        books={relatedDocuments.nodes.map(relatedDoc => {
+          const friendDoc = friend.relatedDocuments.find(doc => doc.id === relatedDoc.id);
+          if (!friendDoc) throw new Error('Missing related doc');
+          return {
+            ...relatedDoc,
+            ...coverPropsFromQueryData(relatedDoc),
+            description: friendDoc.description,
+          };
+        })}
+      />
     </Layout>
   );
 };
