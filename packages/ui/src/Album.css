@@ -8,3 +8,7 @@
 .Album .Cover {
   transform: translateY(-0.58in);
 }
+
+.Album .Cover .author {
+  opacity: 0;
+}
