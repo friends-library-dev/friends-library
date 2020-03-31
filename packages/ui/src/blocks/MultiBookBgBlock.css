@@ -6,5 +6,5 @@
 
 .MultiBookBgBlock--bright {
   background: radial-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.6) 65%),
-    url(../images/explore-books.jpg);
+    url(../images/explore-books.jpg), linear-gradient(#444, #444);
 }

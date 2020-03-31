@@ -1,6 +1,6 @@
 .FriendsPageHero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),
-    url(../../images/street.jpg);
+    url(../../images/street.jpg), linear-gradient(#666, #666);
   background-size: cover;
 }
 

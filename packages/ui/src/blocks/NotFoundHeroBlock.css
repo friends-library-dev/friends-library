@@ -1,6 +1,6 @@
 .NotFoundHeroBlock {
   background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),
-    url(../images/sheep.jpg);
+    url(../images/sheep.jpg), linear-gradient(#444, #444);
   background-size: cover;
   background-position: center center;
 }
