@@ -50,13 +50,13 @@ const GettingStartedPage: React.FC<Props> = ({
         </>
       </Dual.p>
     </MultiBookBgBlock>
-    <DuoToneWaveBlock className="p-12 pb-32">
-      <div className="flex flex-col items-center">
-        <Dual.h2 className="font-sans text-3xl text-center mb-6 tracking-wide md:text-left">
+    <DuoToneWaveBlock className="pt-12 px-6 pb-32">
+      <div className="flex flex-col sm:items-center">
+        <Dual.h2 className="font-sans text-3xl px-6 text-center mb-6 tracking-wide md:text-left">
           <>Step 1: Audio Introduction</>
           <>Paso 1: Audio Introductorio</>
         </Dual.h2>
-        <Dual.p className="body-text text-center mb-10 text-lg leading-loose max-w-3xl md:pr-20">
+        <Dual.p className="body-text text-center px-6 mb-10 text-lg leading-loose max-w-3xl md:pr-20">
           <>
             If you haven't listened to our introductory audio explaining who the early
             Quakers were, we recommend you start here by clicking the play button below:
@@ -67,7 +67,7 @@ const GettingStartedPage: React.FC<Props> = ({
             al botón de reproducir a continuación:
           </>
         </Dual.p>
-        <div className="max-w-3xl w-3/4">
+        <div className="max-w-3xl sm:w-3/4">
           <EmbeddedAudio
             trackId={LANG === 'es' ? 783137959 : 242345955}
             title={
