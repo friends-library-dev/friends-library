@@ -2,6 +2,7 @@ import React from 'react';
 import { LANG } from './env';
 
 interface Props {
+  className?: string;
   title: string;
   trackId: number;
   playlistId?: number | null;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default ({
+  className = '',
   trackId,
   playlistId,
   showArtwork = true,
@@ -17,6 +19,7 @@ export default ({
   title,
 }: Props) => (
   <iframe
+    className={className}
     title={title}
     width="100%"
     height={String(height)}
