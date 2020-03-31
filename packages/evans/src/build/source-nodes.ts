@@ -134,6 +134,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
             ? {
                 reader: edition.audio.reader,
                 added: edition.audio.added.toISOString(),
+                complete: edition.audio.complete,
                 duration: edition.audio.duration,
                 publishedDate: published(edition.audio.added.toISOString(), LANG)
                   .publishedDate,

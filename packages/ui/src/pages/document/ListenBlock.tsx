@@ -8,6 +8,7 @@ import WaveBottomBlock from '../../blocks/WaveBottomBlock';
 import DownloadAudiobook from './DownloadAudiobook';
 
 interface Props {
+  complete: boolean;
   m4bFilesizeLq: string;
   m4bFilesizeHq: string;
   mp3ZipFilesizeLq: string;

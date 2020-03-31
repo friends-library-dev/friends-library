@@ -73,6 +73,7 @@ export interface EditionData {
 export interface AudioData {
   reader: Name;
   added: Date;
+  incomplete?: true;
   external_playlist_id_lq?: number;
   external_playlist_id_hq?: number;
   parts: AudioPartData[];

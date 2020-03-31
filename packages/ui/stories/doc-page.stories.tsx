@@ -84,6 +84,7 @@ storiesOf('Doc Page', module)
     return (
       <div className="p-6 bg-flgray-200">
         <DownloadAudiobook
+          complete={true}
           quality={quality}
           setQuality={setQuality}
           mp3ZipFilesizeHq="345MB"
@@ -105,6 +106,7 @@ storiesOf('Doc Page', module)
   ))
   .add('ListenBlock', () => (
     <ListenBlock
+      complete={true}
       title="Sweet Track"
       // playlistIdHq={971887117}
       // playlistIdLq={971899285}
