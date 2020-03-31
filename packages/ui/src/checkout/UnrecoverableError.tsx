@@ -19,8 +19,8 @@ const UnrecoverableError: React.FC<Props> = ({ onRetry, onClose }) => (
       </span>{' '}
       <Dual.frag>
         <>
-          Whoops! We're very sorry &mdash; the checkout process encountered a rare and
-          unexpected error. Don't worry, your credit card <i>was not charged.</i> Please
+          Whoops! We’re very sorry &mdash; the checkout process encountered a rare and
+          unexpected error. Don’t worry, your credit card <i>was not charged.</i> Please
           try your order again in a few moments. Our team has already been notified of the
           error. If the problem persists, please{' '}
           <Link to={t`/contact`} className="underline">

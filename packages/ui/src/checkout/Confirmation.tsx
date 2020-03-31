@@ -13,8 +13,8 @@ const Confirmation: React.FC<{ onClose: () => void; email: string }> = ({
     <Progress step="Confirmation" />
     <Dual.p className="body-text text-center mt-10">
       <>
-        We've processed your order. You will receive an email to <code>{email}</code> with
-        a confirmation shortly, and in a few days we'll also send you a tracking number
+        We’ve processed your order. You will receive an email to <code>{email}</code> with
+        a confirmation shortly, and in a few days we’ll also send you a tracking number
         for your package once it ships. We really hope you enjoy and benefit from the book
         you ordered!
       </>
