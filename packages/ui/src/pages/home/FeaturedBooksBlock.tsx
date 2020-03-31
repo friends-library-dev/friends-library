@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
+import { Swipeable } from 'react-swipeable';
 import { CoverProps } from '@friends-library/types';
 import { t } from '../../translation';
 import Heading from '../../Heading';
@@ -30,7 +31,18 @@ const FeaturedBooksBlock: React.FC<Props> = ({ books }) => {
   });
 
   return (
-    <section className="FeaturedBooksBlock py-10 sm:py-12 md:py-20">
+    <Swipeable
+      nodeName="section"
+      className="FeaturedBooksBlock py-10 sm:py-12 md:py-20"
+      onSwipedRight={() => {
+        setControlled(true);
+        setIndex(index === 0 ? books.length - 1 : index - 1);
+      }}
+      onSwipedLeft={() => {
+        setControlled(true);
+        setIndex(index === books.length - 1 ? 0 : index + 1);
+      }}
+    >
       <Heading className="text-gray-800">{t`Featured Books`}</Heading>
       <div className="BooksViewer overflow-hidden">
         <div className="BookWrap flex">
@@ -54,7 +66,7 @@ const FeaturedBooksBlock: React.FC<Props> = ({ books }) => {
           />
         ))}
       </div>
-    </section>
+    </Swipeable>
   );
 };
 
