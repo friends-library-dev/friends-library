@@ -11,13 +11,14 @@ import {
   t,
   DocBlock,
   ListenBlock,
-  RelatedBookCard,
   HomeExploreBooksBlock,
+  BookTeaserCards,
   makeScroller,
 } from '@friends-library/ui';
 import { Layout, Seo } from '../components';
 import { SiteMetadata } from '../types';
 import { LANG } from '../env';
+import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 
 interface Props {
   data: {
@@ -78,21 +79,13 @@ interface Props {
       }[];
     };
     otherDocuments: {
-      nodes: {
-        title: string;
-        url: string;
+      nodes: (CoverData & {
+        id: string;
         description: string;
-        isCompilation: boolean;
         htmlShortTitle: string;
-        editions: {
-          code: {
-            css: { cover: null | string };
-            html: { cover: null | string };
-          };
-          isbn: string;
-          type: EditionType;
-        }[];
-      }[];
+        documentUrl: string;
+        authorUrl: string;
+      })[];
     };
   };
 }
@@ -170,39 +163,18 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
           podcastUrlLq={audio.podcastUrlLq}
         />
       )}
-      {otherBooks.length > 0 && (
-        <div className="p-8 pt-12 bg-flgray-100">
-          <h1 className="font-sans font-bold text-2xl text-center mb-8 tracking-wider">
-            {document.isCompilation
-              ? t`Other Compilations`
-              : t`Other Books by this Author`}
-          </h1>
-          <div className="xl:flex xl:flex-wrap justify-center">
-            {otherBooks.map(book => (
-              <RelatedBookCard
-                className="mb-12"
-                key={book.url}
-                lang={friend.lang}
-                isbn={book.editions[0].isbn}
-                title={book.title}
-                htmlShortTitle={book.htmlShortTitle}
-                isCompilation={book.isCompilation}
-                author={friend.name}
-                edition={book.editions[0].type}
-                description={(book.description || '')
-                  .split(' ')
-                  .slice(0, 30)
-                  .concat(['...'])
-                  .join(' ')}
-                customCss={book.editions[0].code.css.cover || ''}
-                customHtml={book.editions[0].code.html.cover || ''}
-                authorUrl={friend.url}
-                documentUrl={book.url}
-              />
-            ))}
-          </div>
-        </div>
-      )}
+      <BookTeaserCards
+        title={
+          document.isCompilation ? t`Other Compilations` : t`Other Books by this Author`
+        }
+        titleEl="h2"
+        bgColor="flgray-100"
+        titleTextColor="flblack"
+        books={otherBooks.map(book => ({
+          ...book,
+          ...coverPropsFromQueryData(book),
+        }))}
+      />
       {(!audio || otherBooks.length === 0) && (
         <HomeExploreBooksBlock numTotalBooks={numBooks} />
       )}
@@ -283,16 +255,12 @@ export const query = graphql`
       filter: { friendSlug: { eq: $friendSlug }, slug: { ne: $documentSlug } }
     ) {
       nodes {
-        title
-        url
-        description
-        isCompilation
+        ...CoverProps
+        id: documentId
+        documentUrl: url
         htmlShortTitle
-        editions {
-          isbn
-          type
-          ...CoverCode
-        }
+        description: partialDescription
+        authorUrl
       }
     }
   }

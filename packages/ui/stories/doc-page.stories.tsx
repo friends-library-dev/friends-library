@@ -10,7 +10,6 @@ import ReadSampleBlock from '../src/pages/document/ReadSampleBlock';
 import { coverSizes } from './decorators';
 import Tablet from '../src/pages/document/Tablet';
 import SampleToc from '../src/pages/document/SampleToc';
-import RelatedBookCard from '../src/RelatedBookCard';
 import TocHamburger from '../src/pages/document/TocHamburger';
 import ChooseEdition from '../src/pages/document/ChooseEdition';
 import ChooseFormat from '../src/pages/document/ChooseFormat';
@@ -30,25 +29,7 @@ storiesOf('Doc Page', module)
   .add('QualitySwitch', () => <StatefulSwitch />)
   .add('TocHamburger', () => <TocHamburger />)
   .add('Tablet', () => <Tablet />)
-  .add('SampleToc', () => <SampleToc onClose={a('close')} chapters={chapters} />)
-  .add('RelatedBookCard', () => (
-    <div style={{ minWidth: 300 }}>
-      <RelatedBookCard
-        lang="en"
-        isbn=""
-        title="The Journal of Charles&nbsp;Marshall"
-        htmlShortTitle="The Journal of Charles&nbsp;Marshall"
-        author="Charles Marshall"
-        isCompilation={false}
-        edition="updated"
-        description={shortBlurb}
-        customCss=""
-        customHtml=""
-        authorUrl="charles-marshall"
-        documentUrl="journal"
-      />
-    </div>
-  ));
+  .add('SampleToc', () => <SampleToc onClose={a('close')} chapters={chapters} />);
 
 storiesOf('Doc Page', module)
   .addDecorator(centered)
@@ -162,8 +143,6 @@ storiesOf('Doc Page', module)
   ));
 
 const blurb = `Ambrose Rigge (1635-1705) was early convinced of the truth through the preaching of George Fox, and grew to be a powerful minister of the gospel, a faithful elder, and a great sufferer for the cause of Christ. In one of his letters, he writes, "I have been in eleven prisons in this county, one of which held me ten years, four months and upward, besides twice premunired, and once publicly lashed, and many other sufferings too long to relate here." Yet through all he kept the faith, and served the Lord's body even while in bonds, through letters and papers given to encourage and establish the flock. Ambrose Rigge was one of many in his generation who sold all to buy the Pearl of great price, and having found true treasure, he kept it till the end.`;
-
-const shortBlurb = `Ambrose Rigge (1635-1705) was early convinced of the truth through the preaching of George Fox, and grew to be a powerful minister of the gospel, a faithful elder, and a great sufferer for the cause of Christ. In one of his letters, he writes, "I have been in eleven prisons in this county, one of which held me ten years, four months and upward, besides twice premunired, and once publicly lashed, and many other sufferings too long to relate here."`;
 
 const chapters = [
   {
