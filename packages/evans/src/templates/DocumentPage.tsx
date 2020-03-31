@@ -60,6 +60,7 @@ interface Props {
         pages: number[];
         audio: null | {
           reader: string;
+          complete: boolean;
           externalPlaylistIdLq: null | number;
           externalPlaylistIdHq: null | number;
           m4bFilesizeHq: string;
@@ -151,6 +152,7 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
       {audio && (
         <ListenBlock
           title={document.title}
+          complete={audio.complete}
           numAudioParts={audio.parts.length}
           trackIdHq={audio.parts[0].externalIdHq || 0}
           playlistIdHq={audio.externalPlaylistIdHq}
@@ -251,6 +253,7 @@ export const query = graphql`
         numChapters
         audio {
           reader
+          complete
           externalPlaylistIdLq
           externalPlaylistIdHq
           m4bFilesizeHq

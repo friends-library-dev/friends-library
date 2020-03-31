@@ -39,6 +39,7 @@ documents:
         isbn: 978-1-64476-189-2
         audio:
           reader: Keren Alvaredo
+          incomplete: true
           added: 2019-07-29T04:00:00.000Z
           external_playlist_id_hq: 1019884402
           external_playlist_id_lq: 1019884525

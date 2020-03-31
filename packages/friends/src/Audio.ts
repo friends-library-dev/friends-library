@@ -22,6 +22,10 @@ export default class Audio {
     return this.data.reader;
   }
 
+  public get complete(): boolean {
+    return !this.data.incomplete;
+  }
+
   public get m4bFilenameHq(): string {
     return this.m4bFilenameLq.replace(/--lq\.m4b$/, '.m4b');
   }
@@ -134,6 +138,7 @@ export default class Audio {
     return {
       reader: this.reader,
       parts: this.parts,
+      complete: this.complete,
       imageFilename: this.imageFilename,
       imagePath: this.imagePath,
       externalPlaylistId: this.externalPlaylistId,

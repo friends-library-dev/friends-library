@@ -8,6 +8,7 @@ import Stack from '../../layout/Stack';
 
 interface Props {
   className?: string;
+  complete: boolean;
   m4bFilesizeLq: string;
   m4bFilesizeHq: string;
   mp3ZipFilesizeLq: string;
@@ -42,6 +43,18 @@ const DownloadLinks: React.FC<Props> = props => {
   return (
     <div id="audiobook" className={cx(props.className, 'bg-white font-sans p-8')}>
       <h3 className="text-2xl text-center mb-6">{t`Download Audiobook`}</h3>
+      {!props.complete && (
+        <Dual.p className="text-center sm:pl-10 max-w-sm mx-auto -mt-2 italic font-serif mb-6 text-flblue">
+          <>
+            <sup>*</sup> The audio for this book is incomplete. The remaining chapters
+            will be added soon.
+          </>
+          <>
+            <sup>*</sup> El audio de este libro está incompleto. Los capítulos que faltan
+            serán añadidios pronto.
+          </>
+        </Dual.p>
+      )}
       <div className="tracking-widest antialiased flex flex-col items-center">
         <dl className="text-flgray-900 inline-block">
           <dt className="uppercase text-md mb-1">
