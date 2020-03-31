@@ -100,7 +100,7 @@ interface Props {
 export default ({ data: { site, friend, document, otherDocuments } }: Props) => {
   useEffect(() => {
     if (window.location.hash === '#audiobook') {
-      makeScroller('#audiobook')();
+      setTimeout(makeScroller('#audiobook'), 10);
     }
   }, []);
   const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
