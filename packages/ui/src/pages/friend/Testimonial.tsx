@@ -37,7 +37,11 @@ const Testimonial: React.FC<Props> = ({
           !isFullWidth && 'lg:max-w-sm',
         )}
       >
-        <p dangerouslySetInnerHTML={{ __html: `&ldquo;${quote}&rdquo;` }} />
+        <p
+          dangerouslySetInnerHTML={{
+            __html: `&ldquo;${quote.replace(/“/g, '‘').replace(/”/g, '’')}&rdquo;`,
+          }}
+        />
         <cite className="not-italic font-sans mt-4 block font-bold tracking-tight">
           &mdash; {cite}
         </cite>

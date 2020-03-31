@@ -16,7 +16,9 @@ const FeaturedQuoteBlock: React.FC<Props> = ({ cite, quote }) => {
           <Quotes className="hidden md:block RightQuote" />
           <span
             className="relative block font-serif text-lg"
-            dangerouslySetInnerHTML={{ __html: quote }}
+            dangerouslySetInnerHTML={{
+              __html: quote.replace(/“/g, '‘').replace(/”/g, '’'),
+            }}
           />
         </p>
         <cite className="not-italic block mt-4">- {cite}</cite>
