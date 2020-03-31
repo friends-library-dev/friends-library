@@ -43,10 +43,13 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
             key={book.documentUrl}
             className="bg-red-100x pt-4 mb-6 md:mb-20 md:w-1/2 xl:w-1/4 relative"
           >
-            <h3
-              className="heading-text text-base mb-2 font-normal max-w-xs mx-auto"
-              dangerouslySetInnerHTML={{ __html: book.htmlShortTitle }}
-            />
+            <h3 className="heading-text text-base mb-2 font-normal max-w-xs mx-auto">
+              <Link
+                className="hover:underline"
+                to={book.documentUrl}
+                dangerouslySetInnerHTML={{ __html: book.htmlShortTitle }}
+              />
+            </h3>
             <p className="text-center">
               <Link
                 className="inline-block text-center strong-link text-sm mb-4"
