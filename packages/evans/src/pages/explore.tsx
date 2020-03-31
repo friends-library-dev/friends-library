@@ -43,7 +43,7 @@ export default ({
             We currently have {site.meta.numEnglishBooks} books freely available on this
             site. Overwhelmed? On this page you can browse all the titles by edition,
             region, time period, tags, and more&mdash;or search the full library to find
-            exactly what you're looking for.
+            exactly what you’re looking for.
           </>
           <>
             Actualmente tenemos {site.meta.numSpanishBooks} libros disponibles de forma

@@ -37,8 +37,8 @@ const GettingStartedPage: React.FC<Props> = ({
         <>
           Interested in reading something from the early Quakers, but picking from{' '}
           {LANG === 'en' ? meta.numEnglishBooks : meta.numSpanishBooks} books seems
-          daunting? No worries&mdash;on this page we've selected some of our favorite
-          books and arranged them into four categories. Plus we've got an introductory
+          daunting? No worries&mdash;on this page we’ve selected some of our favorite
+          books and arranged them into four categories. Plus we’ve got an introductory
           audio to help introduce you to the early Friends.
         </>
         <>
@@ -58,7 +58,7 @@ const GettingStartedPage: React.FC<Props> = ({
         </Dual.h2>
         <Dual.p className="body-text text-center px-6 mb-10 text-lg leading-loose max-w-3xl md:pr-20">
           <>
-            If you haven't listened to our introductory audio explaining who the early
+            If you haven’t listened to our introductory audio explaining who the early
             Quakers were, we recommend you start here by clicking the play button below:
           </>
           <>

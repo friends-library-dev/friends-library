@@ -24,7 +24,7 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
       </Header>
       <Dual.p className="body-text text-center">
         <>
-          There's nothing in your cart! Below are a few recommendations, or you can check
+          There’s nothing in your cart! Below are a few recommendations, or you can check
           out our{' '}
           <Link to={t`/getting-started`} className="subtle-link">
             getting started picks

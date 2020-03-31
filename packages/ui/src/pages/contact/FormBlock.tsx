@@ -32,7 +32,7 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit }) => (
           </Dual.p>
           <Dual.p key="p3">
             <>
-              We'd love to hear from you! You can expect to hear back within a day or two.
+              We’d love to hear from you! You can expect to hear back within a day or two.
             </>
             <>
               ¡Nos encantaría escucharte! Puedes contar con nuestra respuesta en un día o

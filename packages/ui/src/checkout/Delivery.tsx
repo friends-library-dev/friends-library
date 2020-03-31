@@ -173,7 +173,7 @@ const ShippingError: React.FC = () => (
   <ErrorMsg>
     <Dual.frag>
       <>
-        Sorry, we're not able to ship to that address. Please double-check for any{' '}
+        Sorry, we’re not able to ship to that address. Please double-check for any{' '}
         <i>errors,</i> or try an <i>alternate address</i> where you could receive a
         shipment. Still no luck? We might not be able to ship directly to your location,
         but you can{' '}

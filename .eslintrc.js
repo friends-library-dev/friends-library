@@ -10,6 +10,7 @@ module.exports = {
   ],
   rules: {
     'default-case': 'off',
+    'react/no-unescaped-entities': 'error',
     'no-only-tests/no-only-tests': 'error',
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
@@ -62,12 +63,14 @@ module.exports = {
       files: ['**/packages/styleguide/**', '**/packages/ui/stories/**'],
       rules: {
         'jsx-a11y/accessible-emoji': 'off',
+        'react/no-unescaped-entities': 'off',
       },
     },
     {
       files: ['**/packages/jones/**'],
       rules: {
         'jsx-a11y/accessible-emoji': 'off',
+        'react/no-unescaped-entities': 'off',
       },
     },
   ],

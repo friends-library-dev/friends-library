@@ -9,9 +9,9 @@ const NotFoundHeroBlock: React.FC = () => (
     <h1 className="sans-wider text-4xl font-bold">{t`Not Found`}</h1>
     <Dual.p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       <>
-        Sorry, it looks like you followed a broken link, or tried a URL that doesn't
-        exist. try searching below for what you're looking for, or you can contact us if
-        you believe you've found a problem with the website &mdash; we'd love to know
+        Sorry, it looks like you followed a broken link, or tried a URL that doesn’t
+        exist. try searching below for what you’re looking for, or you can contact us if
+        you believe you’ve found a problem with the website &mdash; we’d love to know
         about so we can fix it as soon as possible!
       </>
       <>
