@@ -83,7 +83,7 @@ const Back: React.FC<Props> = ({
             {lang === 'es' ? (
               <>
                 Descarga este y otros libros gratis en{' '}
-                <b>www.labibliotecadelosamigos.com</b>.
+                <b>www.bibliotecadelosamigos.org</b>.
               </>
             ) : (
               <>
