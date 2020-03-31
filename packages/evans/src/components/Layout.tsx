@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import cx from 'classnames';
+import smoothscroll from 'smoothscroll-polyfill';
 import { useNumCartItems, CartStore } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
 import { Dual, Nav, PopUnder, Tailwind, Footer, t } from '@friends-library/ui';
@@ -19,6 +20,8 @@ const Layout: React.FC = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState<boolean>(false);
   const [itemJustAdded, setItemJustAdded] = useState<boolean>(false);
+
+  useEffect(() => smoothscroll.polyfill(), []);
 
   useEffect(() => {
     const setJustAdded: () => any = () => {
