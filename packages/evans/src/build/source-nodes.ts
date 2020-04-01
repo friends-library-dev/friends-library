@@ -96,10 +96,11 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
             hydrate.asciidoc(dpc, undefined, justHeadings);
             hydrate.process(dpc);
             hydrate.customCode(dpc);
-            dpcCache.set(edition.path, {
+            dpcData = {
               headings: dpc.sections.map(sect => sect.heading),
               customCode: dpc.customCode,
-            });
+            };
+            dpcCache.set(edition.path, dpcData);
             persistDpcCache(dpcCache);
           }
         }
