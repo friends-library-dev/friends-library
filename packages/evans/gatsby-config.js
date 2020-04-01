@@ -8,6 +8,10 @@ const LANG = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
 
 module.exports = {
   siteMetadata: {
+    siteUrl:
+      LANG === 'en'
+        ? 'https://www.friendslibrary.com'
+        : 'https://bibliotecadelosamigos.org',
     title: LANG === 'en' ? 'Friends Library' : 'La Biblioteca de los Amigos',
     numSpanishBooks: getAllFriends('es', true)
       .flatMap(friend => friend.documents)
@@ -35,6 +39,7 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
