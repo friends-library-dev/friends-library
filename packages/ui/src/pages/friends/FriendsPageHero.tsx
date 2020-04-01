@@ -38,8 +38,8 @@ const FriendsPageHero: React.FC<{ numFriends: number }> = ({ numFriends }) => (
       <>
         Actualmente la Biblioteca de Amigos contiene libros escritos por{' '}
         <span className="font-bold">{numFriends}</span> antiguos Amigos, y constantemente
-        estamos añadiendo nuevos autores. Dale un vistazo a nuestra sección, Autores
-        Añadidos Recientemente, o explora la lista completa que está a continuación.
+        estamos añadiendo nuevos autores. Dale un vistazo a nuestra sección, “Autores
+        Añadidos Recientemente,” o explora la lista completa que está a continuación.
         También puedes utilizar las herramientas{' '}
         <a
           href="#ControlsBlock"
