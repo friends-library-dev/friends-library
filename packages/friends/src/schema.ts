@@ -61,17 +61,15 @@ const subSchemas: Record<string, Schema> = {
   quote: {
     type: 'object',
     additionalProperties: false,
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       source: { type: 'string', required: true },
-      text: { type: 'string', required: true, minLength: 30, maximumLength: 700 },
+      text: { type: 'string', required: true, minLength: 30, maxLength: 700 },
     },
   },
 
   'residence-duration': {
     type: 'object',
     additionalProperties: false,
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       start: { type: 'integer', required: false, minimum: 1600, maximum: 1900 },
       end: { type: 'integer', required: true, minimum: 1600, maximum: 1900 },
@@ -81,7 +79,6 @@ const subSchemas: Record<string, Schema> = {
   residence: {
     type: 'object',
     additionalProperties: false,
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       city: { type: 'string', required: true },
       region: { type: 'string', required: true },
@@ -96,7 +93,6 @@ const subSchemas: Record<string, Schema> = {
   'related-document': {
     type: 'object',
     additionalProperties: false,
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       id: { $ref: '/uuid', required: true },
       description: { type: 'string', required: true, minLength: 85, maxLength: 450 },
@@ -123,7 +119,6 @@ const subSchemas: Record<string, Schema> = {
   audio: {
     type: 'object',
     additionalProperties: false,
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       reader: { $ref: '/name', required: true },
       incomplete: { enum: [true], required: false },
@@ -143,7 +138,6 @@ const subSchemas: Record<string, Schema> = {
   edition: {
     type: 'object',
     additionalProperties: false,
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       type: { enum: ['original', 'modernized', 'updated'], required: true },
       editor: { $ref: '/name', required: false },
@@ -168,7 +162,6 @@ const subSchemas: Record<string, Schema> = {
   document: {
     type: 'object',
     additionalProperties: false,
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     properties: {
       id: { $ref: '/uuid', required: true },
       alt_language_id: { $ref: '/uuid', required: false },
