@@ -43,10 +43,10 @@ const GettingStartedPage: React.FC<Props> = ({
         </>
         <>
           ¿Estás interesado en leer algo de los primeros Cuáqueros, pero no estás seguro
-          de donde empezar? ¡No hay problema! En esta página hemos seleccionado algunos de
+          de dónde empezar? ¡No hay problema! En esta página hemos seleccionado algunos de
           nuestros libros favoritos y los hemos organizado en categorías para ayudarte a
           decidir. Además, hemos puesto un audio introductorio para ayudarte a conocer
-          quienes fueron los primero Amigos..
+          quienes fueron los primeros Amigos.
         </>
       </Dual.p>
     </MultiBookBgBlock>
