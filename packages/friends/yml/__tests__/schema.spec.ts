@@ -32,7 +32,6 @@ files.forEach(({ path, json }) => {
       useSchema.properties.died.required = false;
     }
 
-    // @ts-ignore until https://github.com/tdegrunt/jsonschema/pull/293 merged
     const result = validator.validate(json, useSchema);
     if (result.errors.length) {
       throw new Error(`${result.errors.map(e => e.stack).join('\n')}`);
