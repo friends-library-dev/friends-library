@@ -7,6 +7,7 @@ import { LANG } from '../../env';
 import DocActions from './DocActions';
 import CartItem from '../../checkout/models/CartItem';
 import CartStore from '../../checkout/services/CartStore';
+import SpanishFreeBooksNote from '../../SpanishFreeBooksNote';
 import RotatableCover from './RotatableCover';
 import { makeScroller } from '../../lib/scroll';
 import './DocBlock.css';
@@ -271,6 +272,7 @@ function LinksAndMeta(
           )}
         </ul>
       </div>
+      <SpanishFreeBooksNote className="body-text mt-8 md:mt-10 sm:px-8 md:px-16 mx-auto max-w-screen-md opacity-75" />
     </div>
   );
 }
