@@ -32,7 +32,7 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
       color={color}
       className={cx(
         `PathBlock PathBlock--${slug} p-12 text-fl${color}`,
-        books.length <= page * PAGE_SIZE && 'pb-20',
+        books.length <= page * PAGE_SIZE && 'pb-10',
       )}
     >
       <h2 className="heading-text mb-6">{title}</h2>
@@ -41,7 +41,7 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
         {books.slice(0, page * PAGE_SIZE).map(book => (
           <div
             key={book.documentUrl}
-            className="bg-red-100x pt-4 mb-6 md:mb-20 md:w-1/2 xl:w-1/4 relative"
+            className="pt-4 mb-6 md:mb-20 md:w-1/2 xl:w-1/4 relative flex flex-col justify-start"
           >
             <h3 className="heading-text text-base mb-2 font-normal max-w-xs mx-auto">
               <Link
@@ -52,13 +52,13 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
             </h3>
             <p className="text-center">
               <Link
-                className="inline-block text-center strong-link text-sm mb-4"
+                className="inline-block text-center strong-link text-sm mb-10"
                 to={book.authorUrl}
               >
                 {book.author}
               </Link>
             </p>
-            <div className="flex flex-col items-center mt-6">
+            <div className="flex flex-col items-center mt-auto">
               <Link to={book.documentUrl}>
                 <Front {...book} shadow={true} scaler={1 / 3} scope="1-3" />
               </Link>
