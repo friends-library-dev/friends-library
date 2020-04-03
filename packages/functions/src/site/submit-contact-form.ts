@@ -20,7 +20,10 @@ export default async function submitContactForm(
   mailer.setApiKey(SENDGRID_API_KEY);
   const [res] = await mailer.send({
     to: emailTo(data),
-    from: 'app@friendslibrary.com',
+    from: `${
+      data.lang === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos'
+    } <app@friendslibrary.com>`,
+    replyTo: `${data.name} <${data.email}>`,
     subject: `${
       data.lang === 'en'
         ? 'friendslibrary.com contact form'
