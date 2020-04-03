@@ -43,13 +43,15 @@ export default class CheckoutService {
   public async calculateFees(): Promise<string | void> {
     const payload = {
       address: this.cart.address,
-      items: this.cart.items.flatMap(item =>
-        item.numPages.map(pages => ({
-          pages,
-          printSize: item.printSize,
-          quantity: item.quantity,
-        })),
-      ),
+      items: this.cart.items
+        .filter(i => i.quantity > 0)
+        .flatMap(item =>
+          item.numPages.map(pages => ({
+            pages,
+            printSize: item.printSize,
+            quantity: item.quantity,
+          })),
+        ),
     };
 
     if (!this.cart.address) throw new Error('Missing address');
@@ -100,16 +102,18 @@ export default class CheckoutService {
       shippingLevel: this.shippingLevel,
       email: this.cart.email,
       address: this.cart.address,
-      items: this.cart.items.flatMap(i =>
-        i.numPages.map((pages, idx) => ({
-          title: i.printJobTitle(idx),
-          coverUrl: i.coverPdfUrl[idx],
-          interiorUrl: i.interiorPdfUrl[idx],
-          printSize: i.printSize,
-          pages,
-          quantity: i.quantity,
-        })),
-      ),
+      items: this.cart.items
+        .filter(i => i.quantity > 0)
+        .flatMap(i =>
+          i.numPages.map((pages, idx) => ({
+            title: i.printJobTitle(idx),
+            coverUrl: i.coverPdfUrl[idx],
+            interiorUrl: i.interiorPdfUrl[idx],
+            printSize: i.printSize,
+            pages,
+            quantity: i.quantity,
+          })),
+        ),
     };
 
     const res = await this.api.createPrintJob(payload);
@@ -227,13 +231,15 @@ export default class CheckoutService {
       email: this.cart.email,
       address: this.cart.address,
       lang: LANG,
-      items: this.cart.items.map(item => ({
-        title: item.printJobTitle(0),
-        documentId: item.documentId,
-        edition: item.edition,
-        quantity: item.quantity,
-        unitPrice: item.price(),
-      })),
+      items: this.cart.items
+        .filter(i => i.quantity > 0)
+        .map(item => ({
+          title: item.printJobTitle(0),
+          documentId: item.documentId,
+          edition: item.edition,
+          quantity: item.quantity,
+          unitPrice: item.price(),
+        })),
     };
   }
 
