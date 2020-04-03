@@ -26,7 +26,10 @@ const Component: React.FC<Props> = ({ quantity, changeQuantity }) => {
           &lt;
         </span>
         <input
-          className="bg-gray-100 w-8 md:w-10 py-2 text-center font-sans text-gray-700 text-md md:text-lg subtle-focus"
+          className={cx(
+            'bg-gray-100 w-8 md:w-10 py-2 text-center font-sans text-md md:text-lg subtle-focus',
+            strQty.trim() === '0' ? 'text-red-700' : 'text-gray-700',
+          )}
           type="input"
           value={strQty}
           onChange={evt => {

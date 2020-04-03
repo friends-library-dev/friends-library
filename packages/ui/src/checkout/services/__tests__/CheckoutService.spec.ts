@@ -25,6 +25,10 @@ describe('CheckoutService()', () => {
   });
 
   describe('.calculateFees()', () => {
+    beforeEach(() => {
+      calculateFees.mockClear();
+    });
+
     it('passes correct payload to api', async () => {
       calculateFees.mockResolvedValue({ ok: true, data: {} });
 
@@ -64,6 +68,15 @@ describe('CheckoutService()', () => {
       });
     });
 
+    it('should not send data about item with quantity = 0', async () => {
+      calculateFees.mockResolvedValue({ ok: true, data: {} });
+      service.cart.items[0].quantity = 0;
+      await service.calculateFees();
+      const payloadItems = calculateFees.mock.calls[0][0].items;
+      expect(payloadItems[0].quantity).not.toBe(0);
+      expect(payloadItems).toHaveLength(2);
+    });
+
     it('returns error if error', async () => {
       calculateFees.mockResolvedValue({
         ok: false,
@@ -76,7 +89,9 @@ describe('CheckoutService()', () => {
     });
   });
 
-  describe('createOrderAndAuthorizePayment()', () => {
+  describe('createOrder()', () => {
+    beforeEach(() => createOrder.mockClear());
+
     it('passes correct payload to api', async () => {
       service.fees = { shipping: 1, taxes: 0, ccFeeOffset: 1 };
       createOrder.mockResolvedValue({ ok: true, data: {} });
@@ -99,6 +114,15 @@ describe('CheckoutService()', () => {
           unitPrice: i.price(),
         })),
       });
+    });
+
+    it('should not send item with quantity = 0', async () => {
+      service.cart.items[0].quantity = 0;
+      createOrder.mockResolvedValue({ ok: true, data: {} });
+      await service.createOrder();
+      const payloadItems = createOrder.mock.calls[0][0].items;
+      expect(payloadItems[0].quantity).not.toBe(0);
+      expect(payloadItems).toHaveLength(1);
     });
 
     it('should return null error and set internal state if success', async () => {
@@ -132,6 +156,11 @@ describe('CheckoutService()', () => {
   });
 
   describe('createPrintJob()', () => {
+    beforeEach(() => {
+      createPrintJob.mockClear();
+      createPrintJob.mockResolvedValue({ ok: true, data: { printJobId: 6 } });
+    });
+
     it('passes correct payload to api and sets internal state', async () => {
       service.orderId = 'order_id';
       service.paymentIntentId = 'pi_id';
@@ -159,6 +188,14 @@ describe('CheckoutService()', () => {
       });
 
       expect(service.printJobId).toBe(6);
+    });
+
+    it('should not send item with quantity of zero', async () => {
+      service.cart.items[0].quantity = 0;
+      await service.createPrintJob();
+      const payloadItems = createPrintJob.mock.calls[0][0].items;
+      expect(payloadItems[0].quantity).not.toBe(0);
+      expect(payloadItems).toHaveLength(2);
     });
   });
 
