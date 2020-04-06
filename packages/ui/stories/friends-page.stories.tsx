@@ -89,7 +89,7 @@ storiesOf('Friends Page', module)
     </div>
   ))
   .add('CircleSilhouettes', () => (
-    <Stack space={'6'} className="p-8 bg-gray-400">
+    <Stack space="6" className="p-8 bg-gray-400">
       <CircleSilhouette bgColor="white" gender="male" fgColor="flgreen" />
       <CircleSilhouette bgColor="flgreen" gender="male" fgColor="white" />
       <CircleSilhouette bgColor="white" gender="female" fgColor="flgreen" />
