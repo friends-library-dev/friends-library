@@ -71,6 +71,19 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-purgecss',
+      options: {
+        tailwind: true,
+        printRejected: true,
+        purgeOnly: [path.join(__dirname, '../ui/src/Tailwind.css')],
+        whitelistPatterns: [/:lang/],
+        content: [
+          path.join(__dirname, './src/**/!(*.d).{ts,tsx,mdx}'),
+          path.join(__dirname, '../ui/src/**/!(*.d).{ts,tsx}'),
+        ],
+      },
+    },
   ],
 
   // for avoiding CORS while developing Netlify Functions locally

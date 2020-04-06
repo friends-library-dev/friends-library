@@ -3,7 +3,7 @@ import cx from 'classnames';
 import smoothscroll from 'smoothscroll-polyfill';
 import { useNumCartItems, CartStore } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
-import { Dual, Nav, PopUnder, Tailwind, Footer, t } from '@friends-library/ui';
+import { Dual, Nav, PopUnder, Footer, t } from '@friends-library/ui';
 import {
   CoverWebStylesAllStatic,
   CoverWebStylesSizes,
@@ -57,7 +57,6 @@ const Layout: React.FC = ({ children }) => {
 
   return (
     <Fragment>
-      <Tailwind />
       <Helmet>
         <html
           lang={LANG}

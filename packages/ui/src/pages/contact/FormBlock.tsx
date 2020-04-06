@@ -15,6 +15,7 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit }) => (
         <h1 className="sans-widest text-2xl pb-3 mb-10 uppercase border-flprimary border-b-4 self-center">
           {t`Contact`}
         </h1>
+        {/* purgeCSS: mb-6 lg:mb-8 */}
         <Stack space="6" lg="8">
           <Dual.p key="p1">
             <>

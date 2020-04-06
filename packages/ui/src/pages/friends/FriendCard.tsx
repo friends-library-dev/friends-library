@@ -76,6 +76,7 @@ const FriendCard: React.FC<Props> = ({
         >
           {name}
         </h3>
+        {/* purgeCSS: mb-4 */}
         <Stack space="4" el="ul" className={cx('body-text pb-2', textColorClass)}>
           <Item key="cal" Icon={Calendar}>
             {lifespan(born, died)}
