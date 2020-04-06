@@ -17,28 +17,46 @@ export default async function checkOrders(
   respond: Responder,
 ): Promise<void> {
   const orders = await find({ 'print_job.status': 'accepted' });
-  if (orders.length === 0) return respond.noContent();
+  if (orders.length === 0) {
+    log('No accepted print jobs to process');
+    return respond.json({ msg: 'No accepted print jobs to process' });
+  }
 
   const [err, jobs] = await getPrintJobs(orders);
   if (err) return respond.json({ msg: err }, 500);
 
-  const updatedOrders = [] as Orders;
+  const updatedOrders: Orders = [];
+  const recentlyShippedOrders: Orders = [];
+
   jobs.forEach((job: Record<string, any>) => {
     const status = job.status.name as string;
-    if (status === 'IN_PRODUCTION') return;
+    if (status === 'IN_PRODUCTION') {
+      return;
+    }
+
     const order = orders.find(o => o.get('print_job.id') === job.id);
-    if (!order) return;
+    if (!order) {
+      return;
+    }
+
     switch (status) {
       case 'UNPAID': {
         log.error(`order ${order.id} is unpaid!`);
         break;
       }
+
       case 'REJECTED':
+      case 'CANCELLED':
       case 'CANCELED':
         log.error(`order ${order.id} was ${status}!`);
-      case 'SHIPPED': // eslint-disable-line no-fallthrough
         order.set('print_job.status', status.toLowerCase());
         updatedOrders.push(order);
+        break;
+
+      case 'SHIPPED':
+        order.set('print_job.status', status.toLowerCase());
+        updatedOrders.push(order);
+        recentlyShippedOrders.push(order);
     }
   });
 
@@ -51,8 +69,16 @@ export default async function checkOrders(
     }
   }
 
-  await sendShipmentTrackingEmails(jobs, orders);
-  respond.noContent();
+  if (recentlyShippedOrders.length) {
+    await sendShipmentTrackingEmails(jobs, recentlyShippedOrders);
+  }
+
+  const summary = {
+    num_updated_orders: updatedOrders.length,
+    num_tracking_emails_sent: recentlyShippedOrders.length,
+  };
+  log('/orders/check summary:', summary);
+  respond.json(summary);
 }
 
 async function getPrintJobs(

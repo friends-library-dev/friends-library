@@ -31,7 +31,7 @@ export const APP_ALT_URL: Url = (() => {
   return swapAltUrl(String(process.env.DEPLOY_PRIME_URL));
 })();
 
-// @TODO this is hinky
+// @TODO this should be improved
 function swapAltUrl(url: Url): Url {
   if (url === 'undefined') {
     return LANG === 'en'
