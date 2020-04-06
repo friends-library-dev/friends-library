@@ -16,6 +16,7 @@ import './Layout.css';
 const store = CartStore.getSingleton();
 
 const Layout: React.FC = ({ children }) => {
+  // force netlify deploy
   const [numCartItems] = useNumCartItems();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState<boolean>(false);

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { CountryDropdown } from 'react-country-region-selector';
+// import { CountryDropdown } from 'react-country-region-selector';
 import Link from 'gatsby-link';
 import cx from 'classnames';
 import { t, Dual } from '../translation';
+import { LANG } from '../env';
 import Button from '../Button';
 import Header from './Header';
 import Progress from './Progress';
@@ -36,8 +37,12 @@ const Delivery: React.FC<{
   const [stateBlurred, setStateBlurred] = useState<boolean>(false);
   const [zip, setZip] = useState<string>(stored.zip || '');
   const [zipBlurred, setZipBlurred] = useState<boolean>(false);
-  const [country, setCountry] = useState<string>(stored.country || '');
-  const [countryBlurred, setCountryBlurred] = useState<boolean>(false);
+
+  // temp, during COVID-19 restrictions
+  // const [country, setCountry] = useState<string>(stored.country || '');
+  // const [countryBlurred, setCountryBlurred] = useState<boolean>(false);
+  const country = 'US';
+
   const filledOutCompletely = !!(name && street && city && state && zip && country);
 
   return (
@@ -130,7 +135,7 @@ const Delivery: React.FC<{
             value={zip}
             placeholder={t`ZIP / Postal Code`}
           />
-          <CountryDropdown
+          {/* <CountryDropdown
             classes={cx(
               'CartInput text-gray-500 order-8',
               countryBlurred && !country && 'invalid text-red-600',
@@ -143,7 +148,7 @@ const Delivery: React.FC<{
             onChange={(country: string) => setCountry(country)}
             onBlur={() => setCountryBlurred(true)}
             priorityOptions={['US', 'GB']}
-          />
+          /> */}
           <Input
             className="order-2"
             invalidMsg={email ? t`Valid email is required` : t`Email is required`}
@@ -155,6 +160,27 @@ const Delivery: React.FC<{
             placeholder={t`Email`}
             type="email"
           />
+          <div className="order-8">
+            <Input
+              invalidMsg=""
+              valid
+              onChange={() => {}}
+              onFocus={() => {}}
+              onBlur={() => {}}
+              value={LANG === 'en' ? '*United States' : '*Estados Unidos'}
+              disabled
+              placeholder=""
+            />
+            <Dual.p className="text-orange-700 text-sm italic -mt-2 mb-4 text-center">
+              <>
+                <sup>*</sup> Only shipping to US during COVID-19 restrictions.
+              </>
+              <>
+                <sup>*</sup> Sólo podemos enviar a EE.UU. durante las restricciones de
+                COVID-19.
+              </>
+            </Dual.p>
+          </div>
         </div>
         <Back className={cx(throbbing && 'blur')} onClick={onBack}>
           {t`Back to Order`}

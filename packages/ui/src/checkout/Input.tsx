@@ -13,6 +13,7 @@ interface Props {
   onFocus?: () => void;
   autofocus?: boolean;
   type?: string;
+  disabled?: boolean;
 }
 
 const Input: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const Input: React.FC<Props> = ({
   onBlur,
   onFocus,
   className,
+  disabled,
   type = 'text',
 }) => (
   <div className="relative">
@@ -37,6 +39,7 @@ const Input: React.FC<Props> = ({
       onChange={e => onChange(e.target.value)}
       onBlur={onBlur || (() => {})}
       onFocus={onFocus || (() => {})}
+      disabled={disabled || false}
     />
     {!valid && value && <InvalidOverlay>{invalidMsg}</InvalidOverlay>}
   </div>
