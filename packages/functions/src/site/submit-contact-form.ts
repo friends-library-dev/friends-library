@@ -4,6 +4,7 @@ import mailer from '@sendgrid/mail';
 import env from '@friends-library/env';
 import Responder from '../lib/Responder';
 import validateJson from '../lib/validate-json';
+import { emailFrom } from '../lib/email';
 import log from '../lib/log';
 
 export default async function submitContactForm(
@@ -20,9 +21,7 @@ export default async function submitContactForm(
   mailer.setApiKey(SENDGRID_API_KEY);
   const [res] = await mailer.send({
     to: emailTo(data),
-    from: `${
-      data.lang === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos'
-    } <app@friendslibrary.com>`,
+    from: emailFrom(data.lang),
     replyTo: `${data.name} <${data.email}>`,
     subject: `${
       data.lang === 'en'

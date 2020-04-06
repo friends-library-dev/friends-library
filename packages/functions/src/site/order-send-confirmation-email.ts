@@ -6,7 +6,7 @@ import env from '@friends-library/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { findById } from '../lib/Order';
-import { orderConfirmationEmail } from '../lib/email';
+import { orderConfirmationEmail, emailFrom } from '../lib/email';
 
 export default async function sendOrderConfirmationEmail(
   { path }: APIGatewayEvent,
@@ -45,7 +45,7 @@ export default async function sendOrderConfirmationEmail(
   const [res] = await mailer.send({
     ...orderConfirmationEmail(order),
     to: order.get('email'),
-    from: 'app@friendslibrary.com',
+    from: emailFrom(order.get('lang')),
     mailSettings: {
       sandboxMode: {
         enable: process.env.NODE_ENV !== 'production',
