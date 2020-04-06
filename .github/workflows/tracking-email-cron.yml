@@ -1,0 +1,15 @@
+name: Send Order Tracking Emails
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    env:
+      ENDPOINT: ${{ secrets.TRACKING_EMAILS_CRON_URL }}
+    steps:
+      # send HTTP request, exit 0 only if status code = 200
+      - name: Send HTTP request
+        run: curl -s -o /dev/null -w "%{http_code}" -X POST $ENDPOINT -d "" | grep -q 200

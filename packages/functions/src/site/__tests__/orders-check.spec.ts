@@ -32,10 +32,11 @@ mockFetch.mockResolvedValue(new Response('{"results":[]}'));
 describe('checkOrders()', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it('returns 204 without doing anything when no orders in accepted state', async () => {
+  it('returns 200 w/ message without doing anything when no orders in accepted state', async () => {
     (<jest.Mock>find).mockResolvedValueOnce([]);
-    const { res } = await invokeCb(checkOrders, {});
-    expect(res.statusCode).toBe(204);
+    const { res, json } = await invokeCb(checkOrders, {});
+    expect(res.statusCode).toBe(200);
+    expect(json).toMatchObject({ msg: 'No accepted print jobs to process' });
     expect(mockFetch).not.toHaveBeenCalled();
   });
 
@@ -62,6 +63,27 @@ describe('checkOrders()', () => {
     const { res, json } = await invokeCb(checkOrders, {});
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe(Err.ERROR_RETRIEVING_PRINT_JOB_DATA);
+  });
+
+  it('does not try to send empty email list', async () => {
+    (<jest.Mock>find).mockResolvedValueOnce([
+      new Order({ print_job: { id: 123 }, email: 'foo@bar.com' }),
+    ]);
+    mockFetch.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          results: [
+            {
+              id: 123,
+              status: { name: 'IN_PRODUCTION' },
+              line_items: [],
+            },
+          ],
+        }),
+      ),
+    );
+    await invokeCb(checkOrders, {});
+    expect(<jest.Mock>mailer.send).not.toHaveBeenCalled();
   });
 
   it('sends emails with tracking links', async () => {
@@ -112,7 +134,7 @@ describe('checkOrders()', () => {
     expect(emails[0].text).toContain('track.me/123456');
     expect(emails[1].to).toBe('rofl@lol.com');
     expect(emails[1].text).toContain('track.me/234567');
-    expect(res.statusCode).toBe(204);
+    expect(res.statusCode).toBe(200);
   });
 
   it('should update order print status to shipped for shipped order', async () => {
