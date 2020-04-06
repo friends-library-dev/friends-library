@@ -73,12 +73,14 @@ export default async function checkOrders(
     await sendShipmentTrackingEmails(jobs, recentlyShippedOrders);
   }
 
-  const summary = {
+  log(
+    `Updated ${updatedOrders.length} orders, and sent ${recentlyShippedOrders.length} tracking emails`,
+  );
+
+  respond.json({
     num_updated_orders: updatedOrders.length,
     num_tracking_emails_sent: recentlyShippedOrders.length,
-  };
-  log('/orders/check summary:', summary);
-  respond.json(summary);
+  });
 }
 
 async function getPrintJobs(
