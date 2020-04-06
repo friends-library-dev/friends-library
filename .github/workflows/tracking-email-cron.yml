@@ -1,0 +1,14 @@
+name: Send Order Tracking Emails
+
+on:
+  schedule:
+    - cron: "* * * * *"
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    env:
+      TRACKING_EMAILS_CRON_URL: ${{ secrets.TRACKING_EMAILS_CRON_URL }}
+    steps:
+    - name: Send HTTP request
+      run: curl -X POST $TRACKING_EMAILS_CRON_URL
