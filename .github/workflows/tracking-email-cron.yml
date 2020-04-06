@@ -2,7 +2,8 @@ name: Send Order Tracking Emails
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    # every six hours
+    - cron: '0 0,6,12,18 * * *'
 
 jobs:
   trigger:
