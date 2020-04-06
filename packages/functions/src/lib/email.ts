@@ -1,4 +1,10 @@
 import { Document } from 'mongoose';
+import { Lang } from '@friends-library/types';
+
+export function emailFrom(lang: Lang): string {
+  const name = lang === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos';
+  return `${name} <app@friendslibrary.com>`;
+}
 
 export function orderShippedEmail(
   order: Document,

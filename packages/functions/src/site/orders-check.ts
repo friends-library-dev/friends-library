@@ -8,7 +8,7 @@ import log from '../lib/log';
 import mongoose from 'mongoose';
 import { find, persistAll } from '../lib/Order';
 import { getAuthToken } from '../lib/lulu';
-import { orderShippedEmail } from '../lib/email';
+import { orderShippedEmail, emailFrom } from '../lib/email';
 
 type Orders = mongoose.Document[];
 
@@ -124,7 +124,7 @@ async function sendShipmentTrackingEmails(
     return {
       ...orderShippedEmail(order, trackingUrl),
       to: order.get('email'),
-      from: 'app@friendslibrary.com',
+      from: emailFrom(order.get('lang')),
       mailSettings: { sandboxMode: { enable: process.env.NODE_ENV !== 'production' } },
     };
   });
