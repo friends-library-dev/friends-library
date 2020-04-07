@@ -2,7 +2,7 @@ import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err } from '@friends-library/types';
 import fetch from 'node-fetch';
 import Responder from '../lib/Responder';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import log from '../lib/log';
 import { getAuthToken } from '../lib/lulu';
 
@@ -26,13 +26,15 @@ export default async function getPrintJobStatus(
     return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
-  const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
-  const res = await fetch(`${LULU_API_ENDPOINT}/print-jobs/${printJobId}/status/`, {
-    headers: {
-      'Cache-Control': 'no-cache',
-      Authorization: `Bearer ${token}`,
+  const res = await fetch(
+    `${env('LULU_API_ENDPOINT')}/print-jobs/${printJobId}/status/`,
+    {
+      headers: {
+        'Cache-Control': 'no-cache',
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
 
   if (res.status !== 200) {
     log.error(`${res.status} error fetching print job status`, {

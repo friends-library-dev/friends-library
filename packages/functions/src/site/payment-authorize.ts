@@ -3,6 +3,7 @@ import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
+import env from '../lib/env';
 
 /**
  * This function is only required for local server-side integration testing.
@@ -75,7 +76,7 @@ const schema = {
 };
 
 function isTestInvocation(): boolean {
-  if ((process.env.STRIPE_SECRET_KEY || '').match(/^sk_test_/) === null) {
+  if (env('STRIPE_SECRET_KEY').match(/^sk_test_/) === null) {
     return false;
   }
   return process.env.NODE_ENV === 'development';

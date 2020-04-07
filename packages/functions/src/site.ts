@@ -2,12 +2,15 @@ import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
 import Responder from './lib/Responder';
 import router from './site/router';
 import log from './lib/log';
+import env from './lib/env';
 
 const handler: Handler = (
   event: APIGatewayEvent,
   context: Context,
   callback: Callback,
 ) => {
+  // @ts-ignore
+  env.setContext(context);
   log('*/site fn invocation*', {
     event: {
       path: event.path,

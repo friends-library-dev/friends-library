@@ -1,8 +1,12 @@
 import { Document } from 'mongoose';
 import { Lang } from '@friends-library/types';
+import env from './env';
 
 export function emailFrom(lang: Lang): string {
-  const name = lang === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos';
+  let name = lang === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos';
+  if (env.getContext() === 'TEST') {
+    name += ' [TEST]';
+  }
   return `${name} <app@friendslibrary.com>`;
 }
 

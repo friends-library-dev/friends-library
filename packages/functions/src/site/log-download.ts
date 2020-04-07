@@ -1,6 +1,6 @@
 import '@friends-library/env/load';
 import { APIGatewayEvent } from 'aws-lambda';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import { EditionType, AudioQuality } from '@friends-library/types';
 import * as slack from '@friends-library/slack';
 import useragent from 'express-useragent';
@@ -19,9 +19,8 @@ async function logDownload(
   const format = (pathParts.pop() || '') as Format;
   const editionPath = pathParts.join('/');
   const editionType = (editionPath || '').split('/').pop() as EditionType;
-  const { CLOUD_STORAGE_BUCKET_URL } = env.require('CLOUD_STORAGE_BUCKET_URL');
   const cloudPath = `${editionPath}/${filename}`;
-  let redirUri = `${CLOUD_STORAGE_BUCKET_URL}/${cloudPath}`;
+  let redirUri = `${env('CLOUD_STORAGE_BUCKET_URL')}/${cloudPath}`;
 
   if (!['original', 'modernized', 'updated'].includes(editionType)) {
     respond.clientError(`Bad editionType to /log/download: ${editionType}`);
@@ -98,10 +97,9 @@ function sendSlack(ua: useragent.UserAgent, referrer: string, cloudPath: string)
   ].join(' / ');
 
   const from = referrer ? ` from url: ${referrer}` : '';
-  const { SLACK_DOWNLOADS_CHANNEL } = env.require('SLACK_DOWNLOADS_CHANNEL');
 
   slack.send(
     `Download: \`${cloudPath}\`, device: \`${device}\`${from}`,
-    SLACK_DOWNLOADS_CHANNEL,
+    env('SLACK_DOWNLOADS_CHANNEL'),
   );
 }

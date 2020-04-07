@@ -1,4 +1,4 @@
-import env from '@friends-library/env';
+import env from './env';
 import * as slack from '@friends-library/slack';
 
 function log(msg: string, data?: Record<string, any>): void {
@@ -16,7 +16,7 @@ function error(msg: string, data?: Record<string, any>): void {
 }
 
 function sendSlack(msg: string, data?: Record<string, any>, emoji?: string): void {
-  const { SLACK_FNS_LOGS_CHANNEL } = env.get('SLACK_FNS_LOGS_CHANNEL');
+  const SLACK_FNS_LOGS_CHANNEL = env('SLACK_FNS_LOGS_CHANNEL');
   if (data) {
     slack.sendJson(msg, data, SLACK_FNS_LOGS_CHANNEL, emoji);
     return;
@@ -28,7 +28,7 @@ function shouldLog(): boolean {
   if (typeof process.env.JEST_WORKER_ID !== 'undefined') {
     return false;
   }
-  return process.env.NODE_ENV === 'production';
+  return process.env.NODE_ENV === undefined || process.env.NODE_ENV === 'production';
 }
 
 export default log;

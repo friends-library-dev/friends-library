@@ -3,7 +3,11 @@ function getEnv<T extends string>(required: boolean, ...keys: T[]): { [k in T]: 
   const obj = {} as { [k in T]: string };
   keys.forEach(key => {
     let val = process.env[key];
-    if (required && typeof val !== 'string') {
+    if (
+      required &&
+      typeof val !== 'string' &&
+      typeof process.env.JEST_WORKER_ID === 'undefined'
+    ) {
       throw new Error(`Env var \`${key}\` is required.`);
     }
     obj[key] = typeof val === 'string' ? val : '';
