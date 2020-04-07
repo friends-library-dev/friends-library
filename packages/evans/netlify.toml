@@ -1,5 +1,5 @@
 [build]
-  command = "yarn build:netlify"
+  command = "export GATSBY_NETLIFY_CONTEXT=$CONTEXT && yarn build:netlify"
   publish = "public"
   functions = "functions"
 
