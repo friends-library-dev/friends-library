@@ -26,7 +26,7 @@ export function useLocale(lang: Lang): void {
 }
 
 function shouldResolveSpanish(): boolean {
-  if (typeof process !== 'undefined' && process.env && process.env.GATSBY_LANG === 'es') {
+  if (typeof process !== 'undefined' && process?.env?.GATSBY_LANG === 'es') {
     return true;
   }
 

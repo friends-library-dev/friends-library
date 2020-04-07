@@ -67,7 +67,13 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
     case 'updateOrderPrintJobStatus':
     case 'capturePayment':
       return (
-        <StripeProvider apiKey="pk_live_I2KfuXIAFCuGGTuMcb0hjg1f">
+        <StripeProvider
+          apiKey={
+            (process.env.GATSBY_NETLIFY_CONTEXT === 'production'
+              ? process.env.GATSBY_PROD_STRIPE_PUBLISHABLE_KEY
+              : process.env.GATSBY_TEST_STRIPE_PUBLISHABLE_KEY) || ''
+          }
+        >
           <Elements locale={LANG}>
             <Payment
               throbbing={state !== 'payment'}
