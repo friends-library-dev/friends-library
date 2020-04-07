@@ -1,5 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import * as slack from '@friends-library/slack';
 import stripeClient from '../lib/stripe';
 import Responder from '../lib/Responder';
@@ -29,11 +29,10 @@ export default async function brickOrder(
     // https://feedback.lulu.com/ideas/L2-I-168
   }
 
-  const { SLACK_ERROR_CHANNEL } = env.get('SLACK_ERROR_CHANNEL');
   await slack.sendJson(
     '*Bricked Order*',
     { data },
-    SLACK_ERROR_CHANNEL || 'errors',
+    env('SLACK_ERROR_CHANNEL') || 'errors',
     ':fire_engine:',
   );
 

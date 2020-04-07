@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import mailer from '@sendgrid/mail';
 import { APIGatewayEvent } from 'aws-lambda';
 import { CheckoutError, checkoutErrors as Err } from '@friends-library/types';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import mongoose from 'mongoose';
@@ -93,9 +93,8 @@ async function getPrintJobs(
     return [Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN, []];
   }
 
-  const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
   const query = orders.map(o => o.get('print_job.id')).join('&id=');
-  const res = await fetch(`${LULU_API_ENDPOINT}/print-jobs/?id=${query}`, {
+  const res = await fetch(`${env('LULU_API_ENDPOINT')}/print-jobs/?id=${query}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
@@ -112,7 +111,6 @@ async function sendShipmentTrackingEmails(
   jobs: Record<string, any>[],
   orders: Orders,
 ): Promise<void> {
-  const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');
   const shippedJobs = jobs.filter(job => job.status.name === 'SHIPPED');
 
   const emails = shippedJobs.map(job => {
@@ -125,12 +123,12 @@ async function sendShipmentTrackingEmails(
       ...orderShippedEmail(order, trackingUrl),
       to: order.get('email'),
       from: emailFrom(order.get('lang')),
-      mailSettings: { sandboxMode: { enable: process.env.NODE_ENV !== 'production' } },
+      mailSettings: { sandboxMode: { enable: process.env.NODE_ENV === 'development' } },
     };
   });
 
   try {
-    mailer.setApiKey(SENDGRID_API_KEY);
+    mailer.setApiKey(env('SENDGRID_API_KEY'));
     const sendResult = await mailer.send(emails);
     // typings are bad, sending multiple emails returns multiple responses, like below
     const responses = (sendResult[0] as unknown) as [{ statusCode: number } | undefined];

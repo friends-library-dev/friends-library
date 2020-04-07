@@ -1,6 +1,6 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { PrintSize, checkoutErrors as Err } from '@friends-library/types';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import fetch from 'node-fetch';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
@@ -82,8 +82,7 @@ async function calculateForType(
   json: typeof luluResponse;
   shippingLevel: ShippingLevel;
 }> {
-  const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
-  const res = await fetch(`${LULU_API_ENDPOINT}/print-job-cost-calculations/`, {
+  const res = await fetch(`${env('LULU_API_ENDPOINT')}/print-job-cost-calculations/`, {
     method: 'POST',
     headers: {
       'Cache-Control': 'no-cache',

@@ -4,7 +4,7 @@ import { CheckoutError, checkoutErrors as Err } from '@friends-library/types';
 import stripeClient from '../lib/stripe';
 import Responder from '../lib/Responder';
 import { PrintSize } from '@friends-library/types';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import validateJson from '../lib/validate-json';
 import log from '../lib/log';
 import { findById, persist } from '../lib/Order';
@@ -38,9 +38,8 @@ export default async function createPrintJob(
     return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
-  const { LULU_API_ENDPOINT } = env.require('LULU_API_ENDPOINT');
   const payload = createOrderPayload(data);
-  const res = await fetch(`${LULU_API_ENDPOINT}/print-jobs/`, {
+  const res = await fetch(`${env('LULU_API_ENDPOINT')}/print-jobs/`, {
     method: 'POST',
     headers: {
       'Cache-Control': 'no-cache',

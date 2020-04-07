@@ -1,4 +1,4 @@
-import env from '@friends-library/env';
+import env from './env';
 import Stripe from 'stripe';
 
 const STRIPE_FLAT_FEE = 30;
@@ -26,7 +26,6 @@ let clientInstance: Stripe;
 
 export default function client(): Stripe {
   if (clientInstance) return clientInstance;
-  const { STRIPE_SECRET_KEY } = env.require('STRIPE_SECRET_KEY');
-  clientInstance = new Stripe(STRIPE_SECRET_KEY);
+  clientInstance = new Stripe(env('STRIPE_SECRET_KEY'));
   return clientInstance;
 }

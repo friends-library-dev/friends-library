@@ -2,7 +2,7 @@ import { APIGatewayEvent } from 'aws-lambda';
 import * as slack from '@friends-library/slack';
 import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { findById } from '../lib/Order';
@@ -36,19 +36,18 @@ export default async function sendOrderConfirmationEmail(
         address: order.get('address'),
       },
     },
-    env.get('SLACK_ORDERS_CHANNEL').SLACK_ORDERS_CHANNEL,
+    env('SLACK_ORDERS_CHANNEL'),
     ':books:',
   );
 
-  const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');
-  mailer.setApiKey(SENDGRID_API_KEY);
+  mailer.setApiKey(env('SENDGRID_API_KEY'));
   const [res] = await mailer.send({
     ...orderConfirmationEmail(order),
     to: order.get('email'),
     from: emailFrom(order.get('lang')),
     mailSettings: {
       sandboxMode: {
-        enable: process.env.NODE_ENV !== 'production',
+        enable: process.env.NODE_ENV === 'development',
       },
     },
   });

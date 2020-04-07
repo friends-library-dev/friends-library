@@ -1,7 +1,7 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err, Lang } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
-import env from '@friends-library/env';
+import env from '../lib/env';
 import Responder from '../lib/Responder';
 import validateJson from '../lib/validate-json';
 import { emailFrom } from '../lib/email';
@@ -17,8 +17,7 @@ export default async function submitContactForm(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
-  const { SENDGRID_API_KEY } = env.require('SENDGRID_API_KEY');
-  mailer.setApiKey(SENDGRID_API_KEY);
+  mailer.setApiKey(env('SENDGRID_API_KEY'));
   const [res] = await mailer.send({
     to: emailTo(data),
     from: emailFrom(data.lang),
@@ -31,7 +30,7 @@ export default async function submitContactForm(
     text: emailText(data),
     mailSettings: {
       sandboxMode: {
-        enable: process.env.NODE_ENV !== 'production',
+        enable: process.env.NODE_ENV === 'development',
       },
     },
   });
@@ -54,28 +53,26 @@ function emailText({ name, subject, message }: typeof schema.example): string {
 }
 
 function emailTo({ subject, message, lang }: typeof schema.example): string {
-  const { JASON_CONTACT_FORM_EMAIL, JARED_CONTACT_FORM_EMAIL } = env.require(
-    'JASON_CONTACT_FORM_EMAIL',
-    'JARED_CONTACT_FORM_EMAIL',
-  );
+  const JASON_EMAIL = env('JASON_CONTACT_FORM_EMAIL');
+  const JARED_EMAIL = env('JARED_CONTACT_FORM_EMAIL');
 
   if (lang === 'es') {
-    return JASON_CONTACT_FORM_EMAIL;
+    return JASON_EMAIL;
   }
 
   if (message.toLocaleLowerCase().match(/\bjason\b/)) {
-    return JASON_CONTACT_FORM_EMAIL;
+    return JASON_EMAIL;
   }
 
   if (message.toLocaleLowerCase().match(/\bjared\b/)) {
-    return JARED_CONTACT_FORM_EMAIL;
+    return JARED_EMAIL;
   }
 
   if (subject === 'tech') {
-    return JARED_CONTACT_FORM_EMAIL;
+    return JARED_EMAIL;
   }
 
-  return Math.random() < 0.5 ? JARED_CONTACT_FORM_EMAIL : JASON_CONTACT_FORM_EMAIL;
+  return Math.random() < 0.5 ? JARED_EMAIL : JASON_EMAIL;
 }
 
 const schema = {

@@ -1,6 +1,6 @@
 import ClientOAuth2 from 'client-oauth2';
 import { PrintSize } from '@friends-library/types';
-import env from '@friends-library/env';
+import env from './env';
 
 export function podPackageId(printSize: PrintSize, numPages: number): string {
   const dimensions = {
@@ -22,16 +22,11 @@ export function podPackageId(printSize: PrintSize, numPages: number): string {
 }
 
 export async function getAuthToken(): Promise<string> {
-  const { LULU_CLIENT_KEY, LULU_CLIENT_SECRET, LULU_API_ENDPOINT } = env.require(
-    'LULU_CLIENT_KEY',
-    'LULU_CLIENT_SECRET',
-    'LULU_API_ENDPOINT',
-  );
-
+  const ENDPOINT = env('LULU_API_ENDPOINT');
   const client = new ClientOAuth2({
-    clientId: LULU_CLIENT_KEY,
-    clientSecret: LULU_CLIENT_SECRET,
-    accessTokenUri: `${LULU_API_ENDPOINT}/auth/realms/glasstree/protocol/openid-connect/token`,
+    clientId: env('LULU_CLIENT_KEY'),
+    clientSecret: env('LULU_CLIENT_SECRET'),
+    accessTokenUri: `${ENDPOINT}/auth/realms/glasstree/protocol/openid-connect/token`,
   });
 
   const { accessToken } = await client.credentials.getToken();
