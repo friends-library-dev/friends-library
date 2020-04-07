@@ -25,12 +25,6 @@ body .PathBooks:lang(es)::before {
   color: white !important;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .PathBooks > div:nth-last-child(-n + 2) {
-    margin-bottom: 0;
-  }
-}
-
 @screen md {
   .PathBooks > div:nth-last-child(-n + 2) svg path {
     color: white !important;

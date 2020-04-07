@@ -26,6 +26,12 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         ...RecommendedBook
       }
+      en_sewel: document(
+        slug: { eq: "history-of-quakers" }
+        friendSlug: { eq: "william-sewel" }
+      ) {
+        ...RecommendedBook
+      }
       en_kelty: document(
         slug: { eq: "lives-of-primitive-quakers" }
         friendSlug: { eq: "mary-ann-kelty" }
@@ -244,7 +250,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       <PathBlock
         slug="history"
         title={LANG === 'en' ? 'History of the Quakers' : 'Historia de los Cuáqueros'}
-        books={prepareBooks([data.en_penn_pcr, data.en_kelty])}
+        books={prepareBooks([data.en_penn_pcr, data.en_sewel, data.en_kelty])}
         color="maroon"
       >
         <HistoryBlurb />
