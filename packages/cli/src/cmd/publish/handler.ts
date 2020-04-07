@@ -42,6 +42,11 @@ export default async function publish(argv: PublishOptions): Promise<void> {
       continue;
     }
 
+    // temp prevent publishing sewel
+    if (dpc.edition?.path.includes('sewel/history')) {
+      continue;
+    }
+
     await validate(dpc);
     const uploads = new Map<string, string>();
     const fileId = getFileId(dpc);

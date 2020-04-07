@@ -1,6 +1,7 @@
 id: 045aa005-fac5-43ac-91b6-3f6e6ed87498
 name: William Sewel
 slug: william-sewel
+added: 2018-09-25T19:17:54.000Z
 gender: male
 born: 1653
 died: 1720
@@ -27,7 +28,7 @@ documents:
   - id: 69c5fc26-76e3-4302-964e-ba46d889003b
     title: The History of the Christian People Called Quakers
     slug: history-of-quakers
-    filename: History_of_Christian_People_Called_Quakers
+    filename: History_of_Quakers
     description:
       William Sewel (1653-1720), being a Quaker himself, an honest and meticulous
       researcher, and an eye-witness to many of the events described in his writings, has
@@ -46,10 +47,8 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-158-8
-        draft: true
       - type: original
         isbn: 978-1-64476-159-5
-        draft: true
   - id: 2c64c45a-02b0-406d-935f-c90a42daf5a7
     alt_language_id: 184123b9-03ca-44aa-9242-50f339d8c711
     title: The Sufferings of Catharine Evans and Sarah Cheevers
