@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { FluidBgImageObject } from '@friends-library/types';
-import { ContactFormBlock } from '@friends-library/ui';
-import { Layout } from '../components';
+import { ContactFormBlock, t } from '@friends-library/ui';
+import { Layout, Seo } from '../components';
 import { LANG } from '../env';
 
 interface Props {
@@ -17,6 +17,13 @@ interface Props {
 
 const ContactPage: React.FC<Props> = ({ data }) => (
   <Layout>
+    <Seo
+      title={t`Contact Us`}
+      description={[
+        'Got a question? — or are you having any sort of technical trouble with our books or website? Want to reach out for any other reason? We’d love to hear from you! You can expect to hear back within a day or two.',
+        '¿Tienes alguna pregunta? — ¿o estás teniendo algún tipo de problema técnico con nuestros libros o con el sitio? ¿Quieres ponerte en contacto por alguna otra razón? ¡Nos encantaría escucharte! Puedes contar con nuestra respuesta en un día o dos.',
+      ]}
+    />
     <ContactFormBlock bgImg={data.books.image.fluid} onSubmit={submit} />
   </Layout>
 );

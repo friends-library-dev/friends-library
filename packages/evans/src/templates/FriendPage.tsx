@@ -14,6 +14,8 @@ import {
 } from '@friends-library/ui';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { Layout, Seo } from '../components';
+import { LANG } from '../env';
+import { friendPageMetaDesc } from '../lib/seo';
 import './FriendPage.css';
 
 interface Props {
@@ -64,7 +66,17 @@ export default ({ data: { friend, relatedDocuments, booksBg } }: Props) => {
   const quotes = friend.quotes || [];
   return (
     <Layout>
-      <Seo title={friend.name} />
+      <Seo
+        title={friend.name}
+        description={friendPageMetaDesc(
+          friend.name,
+          friend.description,
+          friend.documents.map(d => d.htmlShortTitle),
+          friend.documents.filter(d => d.hasAudio).length,
+          friend.isCompilationsQuasiFriend,
+          LANG,
+        )}
+      />
       <FriendBlock name={friend.name} gender={friend.gender} blurb={friend.description} />
       {quotes.length > 0 && (
         <FeaturedQuoteBlock quote={quotes[0].text} cite={quotes[0].source} />

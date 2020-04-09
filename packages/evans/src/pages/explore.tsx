@@ -36,7 +36,13 @@ export default ({
   },
 }: Props) => (
   <Layout>
-    <Seo title={t`Explore Books`} />
+    <Seo
+      title={t`Explore Books`}
+      description={[
+        `Explore ${site.meta.numEnglishBooks} books written by early members of the Religious Society of Friends (Quakers) – available for free download as EPUB, MOBI, PDF, and audiobooks. Browse ${updatedEditions.nodes.length} updated editions, ${audioBooks.nodes.length} audiobooks, and recently added titles, or view books by geographic region or time period.`,
+        `Explora nuestros ${site.meta.numSpanishBooks} libros escritos por los primeros miembros de la Sociedad de Amigos (Cuáqueros), disponibles de forma gratuita en formatos digitales EPUB, MOBI, PDF, y audiolibros. Puedes navegar por todos nuestros libros y audiolibros, o buscar libros en la categoría particular que más te interese.`,
+      ]}
+    />
     <BooksBgBlock bright>
       <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-10 sm:px-16 my-6 max-w-screen-md mx-auto">
         <Dual.h1 className="sans-wider text-3xl mb-6">

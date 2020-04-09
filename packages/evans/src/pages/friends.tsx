@@ -17,10 +17,16 @@ export default ({ data: { allFriend, recent, street, village } }: Props) => {
   const filteredFriends = allFriend.nodes
     .sort(makeSorter(sortOption))
     .filter(makeFilter(searchQuery, sortOption));
-  console.log(street);
+
   return (
     <Layout>
-      <Seo title={t`All Friends`} />
+      <Seo
+        title={t`All Friends`}
+        description={[
+          `Friends Library currently contains books written by ${allFriend.nodes.length} early members of the Religious Society of Friends (Quakers), and more authors are being added regularly. View all authors here, including William Penn, Isaac Penington, Robert Barclay, and George Fox. All books are available in their entirety for free download as EPUB, MOBI, PDF, and a growing number are available as audiobooks. Paperback copies are also available at very low cost.`,
+          `Actualmente la Biblioteca de Amigos contiene libros escritos por ${allFriend.nodes.length} antiguos Amigos, y constantemente estamos añadiendo nuevos autores. Aquí puedes ver todos nuestros autores, incluyendo William Penn, Isaac Penington, Robert Barclay, y George Fox. Los libros completos están disponibles para ser descargados gratuitamente en formatos digitales como EPUB, MOBI, PDF, y algunos han sido grabados como audiolibros. Libros impresos también están disponibles por un precio muy económico.`,
+        ]}
+      />
       <FriendsPageHero numFriends={allFriend.nodes.length} bgImg={street.image.fluid} />
       <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">
         <h2 className="text-center pb-8 sans-wider text-2xl px-8">{t`Recently Added Authors`}</h2>

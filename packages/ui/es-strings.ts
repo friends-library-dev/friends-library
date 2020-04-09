@@ -37,6 +37,9 @@ const strings: { [k: string]: string } = {
   'View More': 'Ver más',
   'Your search returned no results': 'Tú búsqueda no obtuvo resultados',
 
+  // SEO
+  // 'Free'
+
   // all friends filters
   Sort: 'Ordenar por',
   'First Name': 'Nombre',

@@ -70,7 +70,10 @@ const Layout: React.FC = ({ children }) => {
   }, [menuOpen, setMenuOpen]);
 
   const data = useStaticQuery(graphql`
-    query {
+    query LayoutQuery {
+      site {
+        ...SiteMetadata
+      }
       mountains: file(relativePath: { eq: "mountains.jpg" }) {
         childImageSharp {
           fluid(quality: 90, maxWidth: 1920) {
@@ -92,6 +95,15 @@ const Layout: React.FC = ({ children }) => {
           })}
         />
         <title>{t`Friends Library`}</title>
+        <meta
+          name="description"
+          content={
+            [
+              `Friends Library exists to freely share the writings of early members of the Religious Society of Friends (Quakers), believing that no other collection of Christian writings more accurately communicates or powerfully illustrates the soul-transforming power of the gospel of Jesus Christ. We have ${data.site.meta.numEnglishBooks} books available for free download in multiple editions and digital formats (including PDF, MOBI, and EPUB), and a growing number of them are also recorded as audiobooks. Paperback copies are also available at very low cost.`,
+              `La Biblioteca de los Amigos ha sido creada para compartir gratuitamente los escritos de los primeros miembros de la Sociedad de Amigos (Cuáqueros), ya que creemos que no existe ninguna otra colección de escritos cristianos que comunique con mayor precisión, o que ilustre con más pureza, el poder del evangelio de Jesucristo que transforma el alma. Actualmente tenemos ${data.site.meta.numSpanishBooks} libros disponibles para descargarse gratuitamente en múltiples ediciones y formatos digitales, y un número creciente de estos libros están siendo grabados como audiolibros. Libros impresos también están disponibles por un precio muy económico. `,
+            ][LANG === 'en' ? 0 : 1]
+          }
+        />
         {APP_URL.includes('netlify') && (
           <meta name="robots" content="noindex, nofollow" />
         )}
