@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import { Book, Region } from './types';
+import { bgLayer } from '../../lib/color';
 import SearchControls from './SearchControls';
 import SearchResult from './SearchResult';
 import { t } from '../../translation';
-import './SearchBlock.css';
 
 interface Props {
   initialFilters?: string[];
   initialUsed?: boolean;
+  bgImg: FluidBgImageObject;
   books: (Book & {
     tags: string[];
     period: 'early' | 'mid' | 'late';
@@ -15,7 +18,7 @@ interface Props {
   })[];
 }
 
-const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) => {
+const SearchBlock: React.FC<Props> = ({ books, initialFilters, bgImg, initialUsed }) => {
   const [filters, setFilters] = useState<string[]>(initialFilters || []);
   const [used, setUsed] = useState<boolean>(initialUsed || false);
   const [query, setQuery] = useState<string>('');
@@ -37,20 +40,24 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, initialUsed }) =>
         setSearchQuery={setQuery}
       />
       {matches.length > 0 && (
-        <div className="SearchBlock__Results flex flex-wrap justify-center my-8">
+        <div className="flex flex-wrap justify-center my-8">
           {matches.map(book => (
             <SearchResult key={`${book.documentUrl}/${book.edition}`} {...book} />
           ))}
         </div>
       )}
       {matches.length === 0 && (
-        <div className="SearchBlock__Results SearchBlock__Results--empty bg-cover px-16 sm:px-32 flex flex-col justify-center bg-bottom">
+        <BackgroundImage
+          style={{ minHeight: '45vh' }}
+          fluid={[bgLayer([0, 0, 0], 0.3), bgImg]}
+          className="SearchBlock__Results--empty bg-cover px-16 sm:px-32 flex flex-col justify-center bg-bottom"
+        >
           <p className="text-white text-2xl sm:text-3xl sans-wider text-center">
             {used
               ? t`Your search returned no results`
               : `^ ${t`Select a filter or search to get started!`}`}
           </p>
-        </div>
+        </BackgroundImage>
       )}
     </div>
   );

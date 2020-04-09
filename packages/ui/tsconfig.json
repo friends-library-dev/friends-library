@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
+    "incremental": false,
     "lib": ["es5", "es6", "es7", "es2017", "dom", "ES2019"],
     "sourceMap": true,
     "skipLibCheck": true,
@@ -26,6 +27,7 @@
   ],
   "include": [
     "src/**/*",
+    "tailwind.config.ts",
     "../cover-component/src/css",
     "../cover-component/src/LogoIcon.tsx",
     "../cover-component/src/overrides.ts",

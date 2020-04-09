@@ -1,6 +1,7 @@
 import React from 'react';
+import { graphql } from 'gatsby';
+import { FluidBgImageObject } from '@friends-library/types';
 import {
-  MultiBookBgBlock,
   ExploreNavBlock,
   ExploreUpdatedEditionsBlock,
   ExploreGettingStartedLinkBlock,
@@ -13,8 +14,8 @@ import {
   Dual,
   t,
 } from '@friends-library/ui';
-import { graphql } from 'gatsby';
 import { Layout, Seo } from '../components';
+import BooksBgBlock from '../components/BooksBgBlock';
 import { SiteMetadata } from '../types';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { APP_ALT_URL, LANG } from '../env';
@@ -28,11 +29,15 @@ export default ({
     regionBooks,
     searchBooks,
     site,
+    headphones,
+    books3,
+    waterPath,
+    castle,
   },
 }: Props) => (
   <Layout>
     <Seo title={t`Explore Books`} />
-    <MultiBookBgBlock bright>
+    <BooksBgBlock bright>
       <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-10 sm:px-16 my-6 max-w-screen-md mx-auto">
         <Dual.h1 className="sans-wider text-3xl mb-6">
           <>Explore Books</>
@@ -53,7 +58,7 @@ export default ({
           </>
         </Dual.p>
       </div>
-    </MultiBookBgBlock>
+    </BooksBgBlock>
     <ExploreNavBlock />
     <ExploreUpdatedEditionsBlock
       books={updatedEditions.nodes.map(data => ({
@@ -63,8 +68,9 @@ export default ({
         authorUrl: data.authorUrl,
       }))}
     />
-    <ExploreGettingStartedLinkBlock />
+    <ExploreGettingStartedLinkBlock bgImg={books3.image.fluid} />
     <ExploreAudioBooksBlock
+      bgImg={headphones.image.fluid}
       books={audioBooks.nodes.map(data => ({
         ...coverPropsFromQueryData(data),
         htmlShortTitle: data.htmlShortTitle,
@@ -96,6 +102,7 @@ export default ({
     )}
     {LANG === 'en' && (
       <ExploreTimelineBlock
+        bgImg={castle.image.fluid}
         books={booksByDate.nodes.map(data => ({
           ...coverPropsFromQueryData(data),
           htmlShortTitle: data.htmlShortTitle,
@@ -110,6 +117,7 @@ export default ({
       numBooks={site.meta[LANG === 'en' ? 'numSpanishBooks' : 'numEnglishBooks']}
     />
     <ExploreSearchBlock
+      bgImg={waterPath.image.fluid}
       books={searchBooks.nodes.flatMap(data =>
         data.editions.map(edition => ({
           ...coverPropsFromQueryData({ ...data, editions: [edition] }),
@@ -174,6 +182,26 @@ interface Props {
         date: number;
         htmlShortTitle: string;
       })[];
+    };
+    books3: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
+    };
+    waterPath: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
+    };
+    castle: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
+    };
+    headphones: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
     };
   };
 }
@@ -242,6 +270,34 @@ export const query = graphql`
         authorUrl
         documentUrl: url
         htmlShortTitle
+      }
+    }
+    books3: file(relativePath: { eq: "Books3.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    waterPath: file(relativePath: { eq: "water-path.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    castle: file(relativePath: { eq: "castle.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    headphones: file(relativePath: { eq: "headphones.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
       }
     }
   }

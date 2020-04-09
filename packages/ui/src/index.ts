@@ -23,7 +23,6 @@ export { default as HomeFeaturedBooksBlock } from './pages/home/FeaturedBooksBlo
 export { default as HomeWhoWereTheQuakersBlock } from './pages/home/WhoWereTheQuakersBlock';
 export { default as HomeHeroBlock } from './pages/home/HeroBlock';
 export { default as HomeSubHeroBlock } from './pages/home/SubHeroBlock';
-export { default as HomeExploreBooksBlock } from './pages/home/ExploreBooksBlock';
 
 // document page
 export { default as ReadSampleBlock } from './pages/document/ReadSampleBlock';

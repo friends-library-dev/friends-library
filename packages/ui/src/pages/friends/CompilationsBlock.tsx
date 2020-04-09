@@ -1,11 +1,24 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import Button from '../../Button';
+import { bgLayer } from '../../lib/color';
 import { t, Dual } from '../../translation';
 import './CompilationsBlock.css';
 
-const CompilationsBlock: React.FC = () => (
-  <div className="CompilationsBlock text-center text-white px-16 py-24 md:py-24 xl:py-32">
+interface Props {
+  bgImg: FluidBgImageObject;
+}
+
+const CompilationsBlock: React.FC<Props> = ({ bgImg }) => (
+  <BackgroundImage
+    fluid={[bgLayer([0, 0, 0], 0.38), bgImg, bgLayer('#333')]}
+    rootMargin="300px"
+    fadeIn={false}
+    id="CompilationsBlock"
+    className="text-center text-white px-16 py-24 md:py-24 xl:py-32"
+  >
     <h1 className="sans-wider text-4xl font-bold">{t`Compilations`}</h1>
     <Dual.p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       <>
@@ -37,7 +50,7 @@ const CompilationsBlock: React.FC = () => (
     <Button to={t`/compilations`} className="mt-4 mx-auto">
       {t`View Compilations`} &rarr;
     </Button>
-  </div>
+  </BackgroundImage>
 );
 
 export default CompilationsBlock;

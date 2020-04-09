@@ -11,11 +11,11 @@ import {
   t,
   DocBlock,
   ListenBlock,
-  HomeExploreBooksBlock,
   BookTeaserCards,
   makeScroller,
 } from '@friends-library/ui';
 import { Layout, Seo } from '../components';
+import ExploreBooksBlock from '../components/ExploreBooksBlock';
 import { SiteMetadata } from '../types';
 import { LANG } from '../env';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
@@ -176,7 +176,7 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
         }))}
       />
       {(!audio || otherBooks.length === 0) && (
-        <HomeExploreBooksBlock numTotalBooks={numBooks} />
+        <ExploreBooksBlock numTotalBooks={numBooks} />
       )}
     </Layout>
   );

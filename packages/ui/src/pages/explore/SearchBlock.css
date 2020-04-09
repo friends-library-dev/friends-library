@@ -1,8 +1,0 @@
-.SearchBlock__Results {
-  min-height: 45vh;
-}
-
-.SearchBlock__Results--empty {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url('../../images/water-path.jpg');
-}

@@ -1,15 +1,39 @@
 import React from 'react';
+import { graphql } from 'gatsby';
+import { FluidBgImageObject } from '@friends-library/types';
 import { ContactFormBlock } from '@friends-library/ui';
 import { Layout } from '../components';
 import { LANG } from '../env';
 
-const ContactPage: React.FC = () => (
+interface Props {
+  data: {
+    books: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
+    };
+  };
+}
+
+const ContactPage: React.FC<Props> = ({ data }) => (
   <Layout>
-    <ContactFormBlock onSubmit={submit} />
+    <ContactFormBlock bgImg={data.books.image.fluid} onSubmit={submit} />
   </Layout>
 );
 
 export default ContactPage;
+
+export const query = graphql`
+  query ContactFormBg {
+    books: file(relativePath: { eq: "Books7.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`;
 
 async function submit(data: Record<string, string>): Promise<boolean> {
   try {

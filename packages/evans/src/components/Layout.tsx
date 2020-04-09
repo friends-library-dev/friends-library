@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import cx from 'classnames';
 import smoothscroll from 'smoothscroll-polyfill';
 import { useNumCartItems, CartStore } from '@friends-library/ui';
@@ -18,11 +19,24 @@ const store = CartStore.getSingleton();
 const Layout: React.FC = ({ children }) => {
   // force netlify deploy
   const [numCartItems] = useNumCartItems();
+  const [jsEnabled, setJsEnabled] = useState<boolean>(false);
+  const [webp, setWebp] = useState<boolean | null>(null);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState<boolean>(false);
   const [itemJustAdded, setItemJustAdded] = useState<boolean>(false);
 
   useEffect(() => smoothscroll.polyfill(), []);
+  useEffect(() => setJsEnabled(true), []);
+
+  // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/img/webp.js
+  useEffect(() => {
+    const img = new Image();
+    img.onload = event => {
+      setWebp(event?.type === 'load' ? img.width === 1 : false);
+    };
+    img.src =
+      'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+  }, []);
 
   useEffect(() => {
     const setJustAdded: () => any = () => {
@@ -55,6 +69,18 @@ const Layout: React.FC = ({ children }) => {
     };
   }, [menuOpen, setMenuOpen]);
 
+  const data = useStaticQuery(graphql`
+    query {
+      mountains: file(relativePath: { eq: "mountains.jpg" }) {
+        childImageSharp {
+          fluid(quality: 90, maxWidth: 1920) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <Fragment>
       <Helmet>
@@ -74,6 +100,7 @@ const Layout: React.FC = ({ children }) => {
           href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
           rel="stylesheet prefetch"
         />
+        <body className={cx({ webp, 'no-webp': webp === false, 'no-js': !jsEnabled })} />
       </Helmet>
       {itemJustAdded && (
         <PopUnder
@@ -100,7 +127,7 @@ const Layout: React.FC = ({ children }) => {
         className="Content flex flex-col relative overflow-hidden bg-white min-h-screen"
       >
         {children}
-        <Footer />
+        <Footer bgImg={data.mountains.childImageSharp.fluid} />
       </div>
       <Checkout isOpen={checkoutModalOpen} />
     </Fragment>

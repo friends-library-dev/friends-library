@@ -1,4 +1,4 @@
-import Octokit from '@octokit/rest';
+import { Octokit } from '@octokit/rest';
 import env from '@friends-library/env';
 
 export async function openPullRequest(

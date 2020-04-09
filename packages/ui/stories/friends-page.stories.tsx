@@ -8,6 +8,11 @@ import FriendCard from '../src/pages/friends/FriendCard';
 import ControlsBlock from '../src/pages/friends/ControlsBlock';
 import Stack from '../src/layout/Stack';
 
+// @ts-ignore
+import Village from '../src/images/village.jpg';
+// @ts-ignore
+import Street from '../src/images/street.jpg';
+
 storiesOf('Friends Page', module)
   .addDecorator(coverSizes)
   .add('ControlsBlock', () => {
@@ -96,5 +101,9 @@ storiesOf('Friends Page', module)
       <CircleSilhouette bgColor="flgreen" gender="female" fgColor="white" />
     </Stack>
   ))
-  .add('CompilationsBlock', () => <CompilationsBlock />)
-  .add('FriendPageHero', () => <FriendPageHero numFriends={89} />);
+  .add('CompilationsBlock', () => (
+    <CompilationsBlock bgImg={{ aspectRatio: 1, src: Village, srcSet: '' }} />
+  ))
+  .add('FriendPageHero', () => (
+    <FriendPageHero bgImg={{ src: Street, srcSet: '', aspectRatio: 1 }} numFriends={89} />
+  ));

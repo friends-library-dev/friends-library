@@ -1,4 +1,5 @@
 const { execSync } = require('child_process');
+const os = require('os');
 
 const [, , pkg, ...rest] = process.argv;
 
@@ -42,8 +43,19 @@ if (pkg === 'all') {
 }
 
 function compilePkg(pkg) {
-  let args = rest.length ? ` ${rest.join(' ')}` : '';
   let cwd = process.cwd();
+  const opts = { cwd, stdio: 'inherit' };
+
+  // special case: compile and tweak the tailwind.config.ts file
+  if (pkg === 'ui') {
+    const path = 'packages/ui/tailwind.config';
+    execSync(`yarn tsc ${path}.ts -declaration --skipLibCheck`, opts);
+    // couldn't figure how to get TS to give me a plain `module.exports =`
+    const extra = os.platform() === 'darwin' ? ' ""' : '';
+    execSync(`sed -i${extra} -E 's/^exports.+\\{$/module.exports = {/' ${path}.js`, opts);
+  }
+
+  let args = rest.length ? ` ${rest.join(' ')}` : '';
   let cmd = `yarn tsc --build packages/${pkg}${args}`;
 
   // always use verbose output on netlify / ci
@@ -56,5 +68,5 @@ function compilePkg(pkg) {
     cmd = `yarn compile${args}`;
   }
 
-  execSync(cmd, { cwd, stdio: 'inherit' });
+  execSync(cmd, opts);
 }

@@ -1,4 +1,4 @@
-import Octokit from '@octokit/rest';
+import { Octokit } from '@octokit/rest';
 import env from '@friends-library/env';
 import { EditionMeta } from '@friends-library/types';
 import DocumentMeta from './document-meta';

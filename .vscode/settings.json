@@ -20,6 +20,7 @@
     "packages/cover-web-app/build": true,
     "packages/styleguide/src/built-frags.json": true,
     "packages/ui/storybook-static": true,
+    "packages/ui/tailwind.config.js": true,
     "packages/ui/**/*.d.ts": true,
     // 👇 doesn't work https://github.com/microsoft/vscode/issues/869
     "packages/ui/src/globals.d.ts": false,

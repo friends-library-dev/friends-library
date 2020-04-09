@@ -1,21 +1,16 @@
-.NotFoundHeroBlock {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),
-    url(../images/sheep.jpg), linear-gradient(#444, #444);
-  background-size: cover;
-  background-position: center center;
-}
-
 @media (min-width: 500px) {
-  .NotFoundHeroBlock {
+  #NotFoundHeroBlock,
+  #NotFoundHeroBlock::before,
+  #NotFoundHeroBlock::after {
     background-size: 1500px;
-    background-position: center 700px;
+    background-position: center 80%;
   }
 }
 
-.NotFoundHeroBlock form {
+#NotFoundHeroBlock form {
   background-color: rgba(0, 0, 0, 0.55);
 }
 
-.NotFoundHeroBlock input {
+#NotFoundHeroBlock input {
   background-color: rgba(255, 255, 255, 0.75);
 }
