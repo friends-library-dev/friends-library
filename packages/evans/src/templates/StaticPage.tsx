@@ -17,6 +17,7 @@ interface Props {
       body: string;
       frontmatter: {
         title: string;
+        description: string;
       };
     };
   };
@@ -83,9 +84,19 @@ const components: { [key: string]: React.FC } = {
 const StaticPage: React.FC<Props> = ({ data }) => {
   const { mdx, audioBooks, site } = data;
   const { body, frontmatter } = mdx;
+  function replaceCounts(str: string): string {
+    return str
+      .replace(/%AUDIOBOOK_COUNT%/g, String(audioBooks.totalCount))
+      .replace(/%NUM_SPANISH_BOOKS%/g, String(site.meta.numSpanishBooks))
+      .replace(/%NUM_ENGLISH_BOOKS%/g, String(site.meta.numEnglishBooks))
+      .replace(/ -- /g, ' — ');
+  }
   return (
     <Layout>
-      <Seo title={frontmatter.title} />
+      <Seo
+        title={frontmatter.title}
+        description={replaceCounts(frontmatter.description)}
+      />
       <BooksBgBlock bright>
         <h1
           className="max-w-screen-md mx-auto px-6 py-16 heading-text text-2xl sm:text-4xl bracketed text-flprimary"
@@ -96,13 +107,7 @@ const StaticPage: React.FC<Props> = ({ data }) => {
       </BooksBgBlock>
       <div className="MDX p-10 md:px-16 lg:px-24 body-text max-w-6xl mx-auto mt-4">
         <MDXProvider components={components}>
-          <MDXRenderer>
-            {body
-              .replace(/%AUDIOBOOK_COUNT%/g, String(audioBooks.totalCount))
-              .replace(/%NUM_SPANISH_BOOKS%/g, String(site.meta.numSpanishBooks))
-              .replace(/%NUM_ENGLISH_BOOKS%/g, String(site.meta.numEnglishBooks))
-              .replace(/ -- /g, ' — ')}
-          </MDXRenderer>
+          <MDXRenderer>{replaceCounts(body)}</MDXRenderer>
         </MDXProvider>
       </div>
     </Layout>
@@ -123,6 +128,7 @@ export const pageQuery = graphql`
       body
       frontmatter {
         title
+        description
       }
     }
   }

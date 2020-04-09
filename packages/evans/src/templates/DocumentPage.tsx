@@ -18,6 +18,7 @@ import { Layout, Seo } from '../components';
 import ExploreBooksBlock from '../components/ExploreBooksBlock';
 import { SiteMetadata } from '../types';
 import { LANG } from '../env';
+import { bookPageMetaDesc } from '../lib/seo';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 
 interface Props {
@@ -116,7 +117,17 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
   };
   return (
     <Layout>
-      <Seo title={document.title} />
+      <Seo
+        title={document.title}
+        description={bookPageMetaDesc(
+          friend.name,
+          document.description,
+          document.htmlShortTitle,
+          hasAudio,
+          document.isCompilation,
+          LANG,
+        )}
+      />
       <DocBlock
         description={document.description}
         htmlTitle={document.htmlTitle}

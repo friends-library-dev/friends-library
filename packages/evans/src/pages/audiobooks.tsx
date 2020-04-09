@@ -50,7 +50,13 @@ const AudiobooksPage: React.FC<Props> = ({
   data: { audioBooks, recent, headphones },
 }: Props) => (
   <Layout>
-    <Seo title={t`Audio Books`} />
+    <Seo
+      title={t`Audio Books`}
+      description={[
+        `Browse ${audioBooks.nodes.length} free audiobooks from early members of the Religious Society of Friends (Quakers). Download as a podcast, MP3s, or an M4B file – or listen online in your browser. All books are available in e-Book format as well for free download as EPUB, MOBI, or PDF, and paperback copies are also available at very low cost.`,
+        'Dale un vistazo a nuestros audiolibros gratuitos de los primeros miembros de la Sociedad Religiosa de Amigos (Cuáqueros). Puedes descargar el audio como un podcast, MP3, o un archivo M4B - o reproducirlo en línea desde tu navegador. También, los libros completos están disponibles para ser descargados gratuitamente en formatos digitales como EPUB, MOBI, PDF. Libros impresos también están disponibles por un precio muy económico.',
+      ]}
+    />
     <AudiobooksHero
       bgImg={headphones.image.fluid}
       className="p-16 pb-48 md:pb-56"
