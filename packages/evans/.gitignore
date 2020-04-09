@@ -1,5 +1,6 @@
 # @friends-library things
 src/build/.dpc-cache.json
+reduxcache*/
 
 # Logs
 logs
