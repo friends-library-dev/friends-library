@@ -16,6 +16,9 @@ import ClockIcon from '../src/icons/Clock';
 import DownloadIcon from '../src/icons/Download';
 import { props as coverProps } from './cover.stories';
 
+// @ts-ignore
+import Books7 from '../src/images/Books7.jpg';
+
 storiesOf('Friend Page', module)
   .addDecorator(centered)
   .add('Quote svg', () => <Quotes />)
@@ -135,6 +138,7 @@ storiesOf('Friend page/TestimonialsBlock', module)
 
 storiesOf('Friend page/MapBlock', module).add('basic', () => (
   <MapBlock
+    bgImg={{ aspectRatio: 1, src: Books7, srcSet: '' }}
     friendName="Ann Branson"
     residences={[
       'London England (1808 -1825)',

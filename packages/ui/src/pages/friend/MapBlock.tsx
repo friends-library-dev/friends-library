@@ -1,4 +1,6 @@
 import React from 'react';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import Meta from './FriendMeta';
 import { t } from '../../translation';
 import Uk from '../../images/maps/UK--2x.png';
@@ -7,9 +9,10 @@ import Europe from '../../images/maps/Europe--2x.png';
 import LocationMarker from '../../icons/LocationMarker';
 import './MapBlock.css';
 
-// @see packages/ui/src/images/maps/readme.md for info on modifying map PNGs
+// @see packages/ui/src/images/maps/readme.md for how to modify map PNGs
 
 interface Props {
+  bgImg: FluidBgImageObject;
   friendName: string;
   residences: string[];
   map: 'UK' | 'US' | 'Europe';
@@ -20,8 +23,11 @@ interface Props {
   }[];
 }
 
-const MapBlock: React.FC<Props> = ({ friendName, markers, residences, map }) => (
-  <div className="MapBlock relative bg-cover pb-20 md:pb-32 xl:pb-64">
+const MapBlock: React.FC<Props> = ({ bgImg, friendName, markers, residences, map }) => (
+  <BackgroundImage
+    fluid={bgImg}
+    className="MapBlock relative bg-cover pb-20 md:pb-32 xl:pb-64"
+  >
     <div className="relative items-start justify-center xl:flex xl:bg-flgray-100 xl:mx-auto xl:mt-12 xl:py-10">
       <Meta
         className="mx-6 z-10 max-w-xs md:mt-8 xl:w-64 xl:py-24"
@@ -45,7 +51,7 @@ const MapBlock: React.FC<Props> = ({ friendName, markers, residences, map }) => 
         </div>
       </div>
     </div>
-  </div>
+  </BackgroundImage>
 );
 
 export default MapBlock;

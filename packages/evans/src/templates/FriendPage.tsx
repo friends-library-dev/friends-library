@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { graphql } from 'gatsby';
-import { Name, Description } from '@friends-library/types';
+import { Name, Description, FluidBgImageObject } from '@friends-library/types';
 import {
   t,
   translate,
@@ -18,6 +18,7 @@ import './FriendPage.css';
 
 interface Props {
   data: {
+    booksBg: { image: { fluid: FluidBgImageObject } };
     relatedDocuments: {
       nodes: (CoverData & {
         id: string;
@@ -58,7 +59,7 @@ interface Props {
   };
 }
 
-export default ({ data: { friend, relatedDocuments } }: Props) => {
+export default ({ data: { friend, relatedDocuments, booksBg } }: Props) => {
   const isOnlyBook = friend.documents.length === 1;
   const quotes = friend.quotes || [];
   return (
@@ -100,6 +101,7 @@ export default ({ data: { friend, relatedDocuments } }: Props) => {
       </div>
       {!friend.isCompilationsQuasiFriend && (
         <MapBlock
+          bgImg={booksBg.image.fluid}
           friendName={friend.name}
           residences={friend.residences.flatMap(r => {
             const place = `${translate(r.city)}, ${translate(r.region)}`;
@@ -192,6 +194,13 @@ export const query = graphql`
         durations {
           start
           end
+        }
+      }
+    }
+    booksBg: file(relativePath: { eq: "Books7.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }

@@ -1,7 +1,3 @@
-.MapBlock {
-  background-image: url(../../images/Books7.jpg);
-}
-
 .MapBlock .FriendMeta {
   transform: translateY(20px);
   min-height: 15rem;
