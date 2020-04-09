@@ -5,8 +5,6 @@
 
 [build.processing]
   skip_processing = false
-[build.processing.html]
-  pretty_urls = true
 
 [build.environment]
   DOCS_REPOS_ROOT = "/opt/build/repo/"
