@@ -150,7 +150,7 @@ export async function findById(id: string): Promise<mongoose.Document | null> {
   return model;
 }
 
-export async function find(query?: Record<string, string>): Promise<mongoose.Document[]> {
+export async function find(query: Record<string, string>): Promise<mongoose.Document[]> {
   const db = await connect();
   const results = await Order.find(query).exec();
   await db.close();

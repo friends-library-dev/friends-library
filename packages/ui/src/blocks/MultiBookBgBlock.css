@@ -1,10 +1,6 @@
-.MultiBookBgBlock {
-  background: radial-gradient(rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.925) 75%),
-    url(../images/explore-books.jpg);
-  background-size: cover;
-}
-
-.MultiBookBgBlock--bright {
-  background: radial-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.6) 65%),
-    url(../images/explore-books.jpg), linear-gradient(#444, #444);
+#MultiBookBgBlock.bright,
+#MultiBookBgBlock.bright::before,
+#MultiBookBgBlock.bright::after {
+  background-size: 826px 625px;
+  background-repeat: repeat;
 }

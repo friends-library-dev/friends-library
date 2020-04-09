@@ -125,6 +125,18 @@ export interface CoverProps {
   updateBlurb?: (blurb: string) => void;
 }
 
+export interface FluidBgImageObject {
+  aspectRatio: number;
+  src: string;
+  srcSet: string;
+  sizes?: string;
+  base64?: string;
+  tracedSVG?: string;
+  srcWebp?: string;
+  srcSetWebp?: string;
+  media?: string;
+}
+
 export function isDefined<T>(x: T | undefined): x is T {
   return typeof x !== 'undefined';
 }

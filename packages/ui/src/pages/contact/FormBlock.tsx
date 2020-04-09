@@ -1,15 +1,21 @@
 import React from 'react';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import { t, Dual } from '../../translation';
 import Form from './Form';
 import Stack from '../../layout/Stack';
-import './FormBlock.css';
+import { bgLayer } from '../../lib/color';
 
 interface Props {
   onSubmit: (formData: Record<string, string>) => Promise<boolean>;
+  bgImg: FluidBgImageObject;
 }
 
-const ContactFormBlock: React.FC<Props> = ({ onSubmit }) => (
-  <div className="ContactFormBlock">
+const ContactFormBlock: React.FC<Props> = ({ onSubmit, bgImg }) => (
+  <BackgroundImage
+    fadeIn={false}
+    fluid={[bgLayer([0, 0, 0], 0.6), bgImg, bgLayer('#666')]}
+  >
     <div className="flex flex-col lg:flex-row lg:py-24 lg:px-6 max-w-screen-lg mx-auto">
       <div className="bg-white p-16 text-center lg:text-left body-text flex flex-col lg:w-1/3 lg:bg-flgray-100 lg:px-12">
         <h1 className="sans-widest text-2xl pb-3 mb-10 uppercase border-flprimary border-b-4 self-center">
@@ -44,7 +50,7 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit }) => (
       </div>
       <Form onSubmit={onSubmit} className="lg:flex-grow p-6 m-2 sm:m-6 lg:m-0 lg:py-12" />
     </div>
-  </div>
+  </BackgroundImage>
 );
 
 export default ContactFormBlock;

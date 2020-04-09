@@ -14,7 +14,20 @@ import HomeHeroBlock from '../src/pages/home/HeroBlock';
 import HomeFeaturedBooksBlock from '../src/pages/home/FeaturedBooksBlock';
 import HomeWhoWereTheQuakersBlock from '../src/pages/home/WhoWereTheQuakersBlock';
 
-storiesOf('Footer', module).add('default', () => <Footer />);
+// @ts-ignore
+import Mountains from '../src/images/mountains.jpg';
+// @ts-ignore
+import London from '../src/images/london.jpg';
+
+storiesOf('Footer', module).add('default', () => (
+  <Footer
+    bgImg={{
+      aspectRatio: 1,
+      src: Mountains,
+      srcSet: '',
+    }}
+  />
+));
 
 storiesOf('SlideoverMenu', module).add('default', () => (
   <SlideoverMenu onClose={a('close')} />
@@ -82,7 +95,9 @@ storiesOf('Search', module)
 
 storiesOf('Home Blocks', module)
   .addDecorator(coverSizes)
-  .add('Who Were Quakers?', () => <HomeWhoWereTheQuakersBlock />)
+  .add('Who Were Quakers?', () => (
+    <HomeWhoWereTheQuakersBlock bgImg={{ aspectRatio: 1, src: London, srcSet: '' }} />
+  ))
   .add('Featured Books', () => <HomeFeaturedBooksBlock books={[]} />)
   .add('Hero', () => <HomeHeroBlock />);
 

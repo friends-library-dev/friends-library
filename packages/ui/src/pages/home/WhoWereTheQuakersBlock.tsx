@@ -1,11 +1,23 @@
 import React from 'react';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import { t, Dual } from '../../translation';
 import Button from '../../Button';
 import Heading from '../../Heading';
+import { bgLayer } from '../../lib/color';
 import './WhoWereTheQuakersBlock.css';
 
-const WhoWereTheQuakersBlock: React.FC = () => (
-  <section className="WhoWereTheQuakersBlock bg-flmaroon text-white flex flex-col items-center py-12 sm:py-16 px-12  md:px-16 lg:px-20 lg:py-24">
+interface Props {
+  bgImg: FluidBgImageObject;
+}
+
+const WhoWereTheQuakersBlock: React.FC<Props> = ({ bgImg }) => (
+  <BackgroundImage
+    fluid={[bgLayer('flprimary', 0.9), bgImg]}
+    Tag="section"
+    id="WhoWereTheQuakersBlock"
+    className="bg-flmaroon text-white flex flex-col items-center py-12 sm:py-16 px-12  md:px-16 lg:px-20 lg:py-24"
+  >
     <Heading darkBg>
       <Dual.frag>
         <>Who were the Quakers?</>
@@ -36,7 +48,7 @@ const WhoWereTheQuakersBlock: React.FC = () => (
     <Button to={t`/quakers`} className="mt-12" bg="blue" shadow>
       {t`Find out more`}
     </Button>
-  </section>
+  </BackgroundImage>
 );
 
 export default WhoWereTheQuakersBlock;

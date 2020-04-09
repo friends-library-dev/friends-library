@@ -1,11 +1,9 @@
 import React from 'react';
-import { t, Dual } from '../../translation';
-import MultiBookBgBlock from '../../blocks/MultiBookBgBlock';
-import Heading from '../../Heading';
-import Button from '../../Button';
+import { t, Dual, Heading, Button } from '@friends-library/ui';
+import BooksBgBlock from './BooksBgBlock';
 
 const ExploreBooksBlock: React.FC<{ numTotalBooks: number }> = ({ numTotalBooks }) => (
-  <MultiBookBgBlock>
+  <BooksBgBlock>
     <Heading darkBg className="text-white">
       <Dual.frag>
         <>Explore Books</>
@@ -32,7 +30,7 @@ const ExploreBooksBlock: React.FC<{ numTotalBooks: number }> = ({ numTotalBooks 
         <>Comenzar a Explorar</>
       </Dual.frag>
     </Button>
-  </MultiBookBgBlock>
+  </BooksBgBlock>
 );
 
 export default ExploreBooksBlock;

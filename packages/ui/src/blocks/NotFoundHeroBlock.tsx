@@ -1,11 +1,22 @@
 import React from 'react';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import Button from '../Button';
 import { LANG } from '../env';
 import { t, Dual } from '../translation';
+import { bgLayer } from '../lib/color';
 import './NotFoundHeroBlock.css';
 
-const NotFoundHeroBlock: React.FC = () => (
-  <div className="NotFoundHeroBlock text-center text-white px-10 py-20 sm:px-16 sm:py-24 md:py-24 xl:py-32">
+interface Props {
+  bgImg: FluidBgImageObject;
+}
+
+const NotFoundHeroBlock: React.FC<Props> = ({ bgImg }) => (
+  <BackgroundImage
+    fluid={[bgLayer([0, 0, 0], 0.38), bgImg, bgLayer('#444')]}
+    id="NotFoundHeroBlock"
+    className="text-center text-white px-10 py-20 sm:px-16 sm:py-24 md:py-24 xl:py-32"
+  >
     <h1 className="sans-wider text-4xl font-bold">{t`Not Found`}</h1>
     <Dual.p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       <>
@@ -38,7 +49,7 @@ const NotFoundHeroBlock: React.FC = () => (
       />
       <Button className="mx-auto">{t`Search`}</Button>
     </form>
-  </div>
+  </BackgroundImage>
 );
 
 export default NotFoundHeroBlock;

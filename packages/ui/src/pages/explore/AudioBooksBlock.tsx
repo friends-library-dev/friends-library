@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import { FluidBgImageObject } from '@friends-library/types';
 import cx from 'classnames';
 import { t } from '../../translation';
 import { Book } from './types';
@@ -10,11 +11,16 @@ import './AudioBooksBlock.css';
 
 interface Props {
   books: Omit<Book, 'authorUrl'>[];
+  bgImg: FluidBgImageObject;
 }
 
-const AudioBooksBlock: React.FC<Props> = ({ books }) => (
+const AudioBooksBlock: React.FC<Props> = ({ books, bgImg }) => (
   <div id="AudioBooksBlock" className="AudioBooksBlock text-center pb-16">
-    <AudiobooksHero className="p-10 pb-56 md:pb-64" numBooks={books.length} />
+    <AudiobooksHero
+      bgImg={bgImg}
+      className="p-10 pb-56 md:pb-64"
+      numBooks={books.length}
+    />
     <div
       className={cx(
         '-mt-16 mx-16 flex flex-col items-center',

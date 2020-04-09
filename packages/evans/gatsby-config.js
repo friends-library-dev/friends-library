@@ -11,7 +11,7 @@ module.exports = {
     siteUrl:
       LANG === 'en'
         ? 'https://www.friendslibrary.com'
-        : 'https://bibliotecadelosamigos.org',
+        : 'https://www.bibliotecadelosamigos.org',
     title: LANG === 'en' ? 'Friends Library' : 'La Biblioteca de los Amigos',
     numSpanishBooks: getAllFriends('es', true)
       .flatMap(friend => friend.documents)
@@ -23,10 +23,30 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: LANG === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos',
+        short_name: LANG === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos',
+        start_url: '/',
+        background_color: '#000000',
+        theme_color: LANG === 'es' ? '#c18c59' : '#6c3142',
+        display: 'minimal-ui',
+        icon: `${__dirname}/src/images/favicon_${LANG}.png`,
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'ui-images',
+        path: `${__dirname}/../ui/src/images`,
+        ignore: ['**/*.md'],
       },
     },
     {
@@ -40,18 +60,6 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-sitemap',
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: LANG === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos',
-        short_name: LANG === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos',
-        start_url: '/',
-        background_color: '#000000',
-        theme_color: LANG === 'es' ? '#c18c59' : '#6c3142',
-        display: 'minimal-ui',
-        icon: `src/images/favicon_${LANG}.png`,
-      },
-    },
 
     'gatsby-plugin-remove-serviceworker',
     'gatsby-plugin-typescript',

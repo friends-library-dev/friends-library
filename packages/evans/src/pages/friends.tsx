@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
+import { FluidBgImageObject } from '@friends-library/types';
 import {
-  FriendsPageHero,
   FriendsPageCompilationsBlock,
+  FriendsPageHero,
   FriendsPageControlsBlock,
   FriendCard,
   Stack,
@@ -10,16 +11,17 @@ import {
 } from '@friends-library/ui';
 import { Seo, Layout } from '../components';
 
-export default ({ data: { allFriend, recent } }: Props) => {
+export default ({ data: { allFriend, recent, street, village } }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOption, setSortOption] = useState<string>('First Name');
   const filteredFriends = allFriend.nodes
     .sort(makeSorter(sortOption))
     .filter(makeFilter(searchQuery, sortOption));
+  console.log(street);
   return (
     <Layout>
       <Seo title={t`All Friends`} />
-      <FriendsPageHero numFriends={allFriend.nodes.length} />
+      <FriendsPageHero numFriends={allFriend.nodes.length} bgImg={street.image.fluid} />
       <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">
         <h2 className="text-center pb-8 sans-wider text-2xl px-8">{t`Recently Added Authors`}</h2>
         {/* purgeCSS: mb-20 md:mb-12 xl:mb-0 */}
@@ -58,7 +60,7 @@ export default ({ data: { allFriend, recent } }: Props) => {
             ))}
         </div>
       </div>
-      <FriendsPageCompilationsBlock />
+      <FriendsPageCompilationsBlock bgImg={village.image.fluid} />
     </Layout>
   );
 };
@@ -129,6 +131,16 @@ interface Props {
     recent: {
       nodes: FriendNode[];
     };
+    village: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
+    };
+    street: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
+    };
   };
 }
 
@@ -174,6 +186,20 @@ export const query = graphql`
         }
         documents: childrenDocument {
           hasNonDraftEdition
+        }
+      }
+    }
+    village: file(relativePath: { eq: "village.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    street: file(relativePath: { eq: "street.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }

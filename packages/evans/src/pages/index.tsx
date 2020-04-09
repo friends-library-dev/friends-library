@@ -1,6 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { FluidBgImageObject } from '@friends-library/types';
 import Layout from '../components/Layout';
+import ExploreBooksBlock from '../components/ExploreBooksBlock';
 import { LANG } from '../env';
 import { SiteMetadata } from '../types';
 import {
@@ -8,14 +10,13 @@ import {
   HomeHeroBlock,
   HomeSubHeroBlock,
   HomeGettingStartedBlock,
-  HomeExploreBooksBlock,
   HomeFeaturedBooksBlock,
   HomeFormatsBlock,
 } from '@friends-library/ui';
 import { coverPropsFromQueryData } from '../lib/covers';
 
 const HomePage: React.FC<Props> = ({ data }) => {
-  const { site, ...featured } = data;
+  const { site, london, ...featured } = data;
   const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
   return (
     <Layout>
@@ -33,9 +34,9 @@ const HomePage: React.FC<Props> = ({ data }) => {
           }))}
       />
       <HomeGettingStartedBlock />
-      <HomeWhoWereTheQuakersBlock />
+      <HomeWhoWereTheQuakersBlock bgImg={london.image.fluid} />
       <HomeFormatsBlock />
-      <HomeExploreBooksBlock numTotalBooks={numBooks} />
+      <ExploreBooksBlock numTotalBooks={numBooks} />
     </Layout>
   );
 };
@@ -54,6 +55,7 @@ interface Props {
     es_ip_1: any | null;
     es_ip_2: any | null;
     es_penn_ncnc: any | null;
+    london: { image: { fluid: FluidBgImageObject } };
   };
 }
 
@@ -124,6 +126,13 @@ export const query = graphql`
     ) {
       ...RecommendedBook
       featuredDesc: featuredDescription
+    }
+    london: file(relativePath: { eq: "london.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
     }
   }
 `;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import { FluidBgImageObject } from '@friends-library/types';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import {
   t,
@@ -25,6 +26,11 @@ type AudioBookNode = CoverData & {
 
 interface Props {
   data: {
+    headphones: {
+      image: {
+        fluid: FluidBgImageObject;
+      };
+    };
     audioBooks: {
       nodes: AudioBookNode[];
     };
@@ -40,10 +46,16 @@ interface Props {
   };
 }
 
-const AudiobooksPage: React.FC<Props> = ({ data: { audioBooks, recent } }: Props) => (
+const AudiobooksPage: React.FC<Props> = ({
+  data: { audioBooks, recent, headphones },
+}: Props) => (
   <Layout>
     <Seo title={t`Audio Books`} />
-    <AudiobooksHero className="p-16 pb-48 md:pb-56" numBooks={audioBooks.nodes.length} />
+    <AudiobooksHero
+      bgImg={headphones.image.fluid}
+      className="p-16 pb-48 md:pb-56"
+      numBooks={audioBooks.nodes.length}
+    />
     <div className="bg-flgray-200 py-12 xl:pb-6">
       <Dual.h2 className="sans-wider text-center text-2xl md:text-3xl mb-12 px-10">
         <>Recently Added Audio Books</>
@@ -143,6 +155,13 @@ export const query = graphql`
             duration
             publishedDate
           }
+        }
+      }
+    }
+    headphones: file(relativePath: { eq: "headphones.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }

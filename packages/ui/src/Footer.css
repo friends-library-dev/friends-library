@@ -1,13 +1,7 @@
-.Footer {
-  background-image: linear-gradient(rgba(108, 49, 66, 0.8), rgba(108, 49, 66, 0.8)),
-    url(./images/mountains.jpg), linear-gradient(#6c3142, #6c3142);
-  background-size: cover;
+#Footer,
+#Footer::before,
+#Footer::after {
   background-position: 0 40%;
-}
-
-.Footer:lang(es) {
-  background-image: linear-gradient(rgba(193, 140, 89, 0.8), rgba(193, 140, 89, 0.8)),
-    url(./images/mountains.jpg), linear-gradient(#c18c59, #c18c59);
 }
 
 .Footer dt::before {

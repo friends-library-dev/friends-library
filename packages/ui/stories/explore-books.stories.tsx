@@ -23,11 +23,26 @@ import { Region, Book } from '../src/pages/explore/types';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 
+// @ts-ignore
+import WaterPath from '../src/images/water-path.jpg';
+// @ts-ignore
+import Headphones from '../src/images/headphones.jpg';
+// @ts-ignore
+import Castle from '../src/images/castle.jpg';
+// @ts-ignore
+import Books3 from '../src/images/Books3.jpg';
+
+const pathBg = { aspectRatio: 1, src: WaterPath, srcSet: '' };
+
 storiesOf('Explore Books Page/SearchBlock', module)
   .addDecorator(coverSizes)
-  .add('unused', () => <SearchBlock books={[]} initialUsed={false} />)
+  .add('unused', () => <SearchBlock bgImg={pathBg} books={[]} initialUsed={false} />)
   .add('some results', () => (
-    <SearchBlock books={pileOfBooks} initialFilters={['edition.updated']} />
+    <SearchBlock
+      books={pileOfBooks}
+      bgImg={pathBg}
+      initialFilters={['edition.updated']}
+    />
   ));
 
 storiesOf('Explore Books Page/NewBooksBlock', module)
@@ -40,9 +55,15 @@ storiesOf('Explore Books Page/NewBooksBlock', module)
 storiesOf('Explore Books Page', module)
   .addDecorator(coverSizes)
   .add('UpdatedEditionsBlock', () => <UpdatedEditionsBlock books={pileOfBooks} />)
-  .add('AudioBooksBlock', () => <AudioBooksBlock books={pileOfBooks} />)
+  .add('AudioBooksBlock', () => (
+    <AudioBooksBlock
+      bgImg={{ aspectRatio: 1, src: Headphones, srcSet: '' }}
+      books={pileOfBooks}
+    />
+  ))
   .add('TimelineBlock', () => (
     <TimelineBlock
+      bgImg={{ aspectRatio: 1, src: Castle, srcSet: '' }}
       books={[
         ...pileOfBooks,
         ...pileOfBooks.map(b => ({ ...b, documentUrl: `/2/${b.documentUrl}` })),
@@ -74,7 +95,9 @@ storiesOf('Explore Books Page', module)
   })
   .add('NavBlock', () => <NavBlock />)
   .add('AltSiteBlock', () => <AltSiteBlock numBooks={43} url="/" />)
-  .add('GettingStartedLinkBlock', () => <GettingStartedLinkBlock />)
+  .add('GettingStartedLinkBlock', () => (
+    <GettingStartedLinkBlock bgImg={{ aspectRatio: 1, src: Books3, srcSet: '' }} />
+  ))
   .add('MapSlider', () => {
     const [region, setRegion] = useState<Region>('England');
     return <MapSlider region={region} setRegion={setRegion} />;

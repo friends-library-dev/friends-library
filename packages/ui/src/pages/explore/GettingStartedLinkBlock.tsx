@@ -1,11 +1,22 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import { t, Dual } from '../../translation';
-import './GettingStartedLinkBlock.css';
+import { bgLayer } from '../../lib/color';
 
-const GettingStartedLinkBlock: React.FC = () => {
+interface Props {
+  bgImg: FluidBgImageObject;
+}
+
+const GettingStartedLinkBlock: React.FC<Props> = ({ bgImg }) => {
   return (
-    <div className="GettingStartedLinkBlock p-16 bg-cover sm:p-20 md:p-24">
+    <BackgroundImage
+      fluid={[bgLayer('flblue', 0.8), bgImg]}
+      fadeIn={false}
+      id="GettingStartedLinkBlock"
+      className="p-16 bg-cover sm:p-20 md:p-24"
+    >
       <Dual.h3 className="text-white text-center font-sans leading-loose tracking-wider text-lg antialiased">
         <>
           Looking for just a few hand-picked recommendations? Head on over to our{' '}
@@ -22,7 +33,7 @@ const GettingStartedLinkBlock: React.FC = () => {
           .
         </>
       </Dual.h3>
-    </div>
+    </BackgroundImage>
   );
 };
 

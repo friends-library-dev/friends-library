@@ -61,14 +61,15 @@ class Payment extends React.Component<Props, State> {
       throw new Error('Missing stripe prop!');
     }
 
-    onPay(() =>
-      // @ts-ignore
-      stripe.confirmCardPayment(paymentIntentClientSecret, {
+    onPay(() => {
+      const element = elements.getElement('cardNumber');
+      if (!element) throw new Error('No cardElement found!');
+      return stripe.confirmCardPayment(paymentIntentClientSecret, {
         payment_method: {
-          card: elements.getElement('cardNumber'),
+          card: element,
         },
-      }),
-    );
+      });
+    });
   };
 
   private valid: () => boolean = () => {

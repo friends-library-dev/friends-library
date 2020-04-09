@@ -131,7 +131,12 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
             id="message"
           ></textarea>
         </fieldset>
-        <Button className="my-2" width="100%" disabled={state === 'submitting'}>
+        <Button
+          className="my-2"
+          style={{ maxWidth: '16rem' }}
+          width="100%"
+          disabled={state === 'submitting'}
+        >
           {state === 'submitting' ? `${t`Submitting`}...` : t`Submit`}
         </Button>
       </form>

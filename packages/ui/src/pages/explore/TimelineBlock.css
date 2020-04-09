@@ -1,12 +1,22 @@
-.TimelineBlock_Hero {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url('../../images/castle.jpg');
+#TimelineBlock .BookSlider {
+  z-index: -1;
+}
+
+@screen sm {
+  #TimelineBlock .BookSlider {
+    z-index: 1;
+  }
+}
+
+#TimelineBlock_Hero,
+#TimelineBlock_Hero::before,
+#TimelineBlock_Hero::after {
   background-size: 1200px auto;
   background-position: center 0%;
   overflow: visible;
 }
 
-.TimelineBlock_Hero::after {
+.TimelineBlock__BgWord::after {
   padding-top: 75px;
   color: white;
   z-index: 3;
@@ -14,12 +24,13 @@
 }
 
 @screen sm {
-  .TimelineBlock_Hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url('../../images/castle.jpg');
+  #TimelineBlock_Hero,
+  #TimelineBlock_Hero::before,
+  #TimelineBlock_Hero::after {
     background-size: cover;
   }
-  .TimelineBlock_Hero::after {
+
+  .TimelineBlock__BgWord::after {
     padding-top: 38px;
     font-size: 130px;
   }

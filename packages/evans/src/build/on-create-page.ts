@@ -4,7 +4,7 @@ import { LANG } from '../env';
 const onCreatePage: GatsbyNode['onCreatePage'] = async ({
   page,
   actions,
-}: CreatePageArgs) => {
+}: CreatePageArgs<unknown>) => {
   if (LANG === 'en') {
     return;
   }

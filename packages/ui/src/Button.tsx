@@ -11,6 +11,7 @@ interface Props {
   shadow?: boolean;
   width?: number | string;
   textColor?: string;
+  style?: Record<string, string | number>;
   bg?: 'gold' | 'blue' | 'green' | 'maroon' | 'primary' | null;
 }
 
@@ -23,10 +24,11 @@ const Button: React.FC<Props> = ({
   shadow,
   bg,
   textColor = 'white',
+  style = {},
   width = 280,
 }) => {
   const props = {
-    style: { width },
+    style: { ...style, width },
     className: cx('Btn block', className, `text-${textColor}`, {
       [`bg-fl${bg || 'primary'}`]: bg !== null,
       [`hover:bg-fl${bg || 'primary'}-800`]: bg !== null,

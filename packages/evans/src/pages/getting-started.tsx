@@ -2,7 +2,6 @@ import React from 'react';
 import cx from 'classnames';
 import { graphql } from 'gatsby';
 import {
-  MultiBookBgBlock,
   EmbeddedAudio,
   DuoToneWaveBlock,
   Heading,
@@ -14,9 +13,12 @@ import { SiteMetadata } from '../types';
 import { LANG } from '../env';
 import { Layout, Seo } from '../components';
 import GettingStartedPaths from '../components/GettingStartedPaths';
+import BooksBgBlock from '../components/BooksBgBlock';
 
 interface Props {
-  data: { site: SiteMetadata };
+  data: {
+    site: SiteMetadata;
+  };
 }
 
 const GettingStartedPage: React.FC<Props> = ({
@@ -26,7 +28,7 @@ const GettingStartedPage: React.FC<Props> = ({
 }) => (
   <Layout>
     <Seo title={t`Getting Started`} />
-    <MultiBookBgBlock className="flex flex-col items-center">
+    <BooksBgBlock className="flex flex-col items-center">
       <Heading darkBg className="text-white">
         <Dual.frag>
           <>Not sure where to get started?</>
@@ -49,7 +51,7 @@ const GettingStartedPage: React.FC<Props> = ({
           quienes fueron los primeros Amigos.
         </>
       </Dual.p>
-    </MultiBookBgBlock>
+    </BooksBgBlock>
     <DuoToneWaveBlock className="pt-12 px-6 pb-32">
       <div className="flex flex-col sm:items-center">
         <Dual.h2 className="font-sans text-3xl px-6 text-center mb-6 tracking-wide md:text-left">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import { Book } from './types';
-import BgWordBlock from './BgWordBlock';
 import PillDropdown from '../../PillDropdown';
 import PillDropdownItem from '../../PillDropdownItem';
 import PillDropdownDropdown from '../../PillDropdownDropdown';
@@ -8,32 +9,44 @@ import BookSlider from './BookSlider';
 import TimePicker from './TimePicker';
 import { useWindowWidth } from '../../hooks/window-width';
 import { SCREEN_MD } from '../../lib/constants';
+import { bgLayer } from '../../lib/color';
+import BgWordBlock from './BgWordBlock';
 import './TimelineBlock.css';
 
 interface Props {
   books: (Book & { date: number })[];
+  bgImg: FluidBgImageObject;
 }
 
-const TimelineBlock: React.FC<Props> = ({ books }) => {
+const TimelineBlock: React.FC<Props> = ({ books, bgImg }) => {
   const [date, setDate] = useState<number>(1650);
   const windowWidth = useWindowWidth();
   const nextDate = date + (windowWidth < SCREEN_MD ? 50 : 25);
   return (
     <div id="TimelineBlock" className="TimelineBlock">
-      <BgWordBlock
-        word="Timeline"
-        className="TimelineBlock_Hero px-12 pt-40 pb-24 sm:pb-32"
+      <BackgroundImage
+        style={{ overflow: 'visible' }}
+        fluid={[bgLayer([0, 0, 0], 0.35), bgImg]}
+        data-bgword="Timeline"
+        id="TimelineBlock_Hero"
       >
-        <div className="bg-white px-10 py-12 text-center max-w-screen-md mx-auto">
-          <h2 className="font-sans text-flblack tracking-wide text-3xl mb-6">Timeline</h2>
-          <p className="body-text leading-loose">
-            The books in our library were written over the course of approximately 200
-            years. Use the timeline picker below to view books from the time period of
-            your choice.
-          </p>
-        </div>
-        <div className="sm:hidden">
-          <label className="font-sans text-center text-white uppercase antialiased mt-12 mb-2 block tracking-widest">
+        <BgWordBlock
+          word="Timeline"
+          className="TimelineBlock__BgWord px-12 pt-40 pb-24 sm:pb-32"
+        >
+          <div className="bg-white px-10 py-12 text-center max-w-screen-md mx-auto">
+            <h2 className="font-sans text-flblack tracking-wide text-3xl mb-6">
+              Timeline
+            </h2>
+            <p className="body-text leading-loose">
+              The books in our library were written over the course of approximately 200
+              years. Use the timeline picker below to view books from the time period of
+              your choice.
+            </p>
+          </div>
+        </BgWordBlock>
+        <div className="sm:hidden pb-24 -mt-10">
+          <label className="font-sans text-center text-white uppercase antialiased mt-0 mb-2 block tracking-widest">
             Pick a Date
           </label>
           <PillDropdown pillText={String(date)} className="mx-auto">
@@ -57,11 +70,11 @@ const TimelineBlock: React.FC<Props> = ({ books }) => {
           </PillDropdown>
         </div>
         <TimePicker
-          className="hidden sm:flex mt-24 mx-8 max-w-screen-lg lg:mx-auto"
+          className="hidden sm:flex pb-32 mx-20 -mt-6 max-w-screen-lg lg:mx-auto"
           selected={date}
           setSelected={setDate}
         />
-      </BgWordBlock>
+      </BackgroundImage>
       <div className="bg-flgold text-center text-white text-2xl p-3 tracking-widest sm:hidden">
         {date}
       </div>

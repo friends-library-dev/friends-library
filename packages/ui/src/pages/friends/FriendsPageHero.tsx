@@ -1,10 +1,22 @@
 import React from 'react';
+import BackgroundImage from 'gatsby-background-image';
+import { FluidBgImageObject } from '@friends-library/types';
 import { t, Dual } from '../../translation';
 import { makeScroller } from '../../lib/scroll';
+import { bgLayer } from '../../lib/color';
 import './FriendsPageHero.css';
 
-const FriendsPageHero: React.FC<{ numFriends: number }> = ({ numFriends }) => (
-  <div className="FriendsPageHero text-center text-white px-16 py-16 md:py-24 xl:py-32">
+interface Props {
+  numFriends: number;
+  bgImg: FluidBgImageObject;
+}
+
+const FriendsPageHero: React.FC<Props> = ({ numFriends, bgImg }) => (
+  <BackgroundImage
+    id="FriendsPageHero"
+    fluid={[bgLayer([0, 0, 0], 0.52), bgImg, bgLayer('#666')]}
+    className="text-center text-white px-16 py-16 md:py-24 xl:py-32"
+  >
     <h1 className="sans-wider text-4xl font-bold">{t`Authors`}</h1>
     <Dual.p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       <>
@@ -65,7 +77,7 @@ const FriendsPageHero: React.FC<{ numFriends: number }> = ({ numFriends }) => (
         para hallar exactamente lo que estás buscando.
       </>
     </Dual.p>
-  </div>
+  </BackgroundImage>
 );
 
 export default FriendsPageHero;
