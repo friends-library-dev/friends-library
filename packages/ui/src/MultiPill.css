@@ -1,9 +1,26 @@
 .MultiPill > button {
   width: 100%;
+  position: relative;
 }
 
-.MultiPill.inline > button {
-  width: 280px;
+.MultiPill > button::after {
+  content: '';
+  @apply opacity-0 inset-0 bg-gray-200 rounded-full block absolute;
+  transition: opacity 200ms ease-in-out;
+}
+
+.MultiPill > button:hover::after {
+  opacity: 0.085;
+}
+
+.MultiPill > button:hover span {
+  border-bottom: 1px dotted currentColor;
+}
+
+@screen md {
+  .MultiPill > button + button {
+    margin-left: -3.15rem;
+  }
 }
 
 @media (max-width: 768px) {
