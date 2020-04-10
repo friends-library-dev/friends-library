@@ -4,6 +4,10 @@
   width: 220px;
 }
 
+.SubHeroBlock .gatsby-image-wrapper {
+  position: absolute !important;
+}
+
 .SubHeroBlock .Devices {
   width: 45vw;
   top: -5%;

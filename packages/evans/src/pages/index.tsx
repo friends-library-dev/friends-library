@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { FluidBgImageObject } from '@friends-library/types';
+import { FluidBgImageObject, FluidImageObject } from '@friends-library/types';
 import Layout from '../components/Layout';
 import ExploreBooksBlock from '../components/ExploreBooksBlock';
 import { LANG } from '../env';
@@ -16,12 +16,28 @@ import {
 import { coverPropsFromQueryData } from '../lib/covers';
 
 const HomePage: React.FC<Props> = ({ data }) => {
-  const { site, london, ...featured } = data;
+  const {
+    site,
+    london,
+    deviceArray,
+    paperback,
+    iPad,
+    iPhone,
+    formats,
+    formatsMobile,
+    ...featured
+  } = data;
   const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
   return (
     <Layout>
       <HomeHeroBlock />
-      <HomeSubHeroBlock numTotalBooks={numBooks} />
+      <HomeSubHeroBlock
+        imgDeviceArray={deviceArray.image.fluid}
+        imgCover={paperback.image.fluid}
+        imgIPad={iPad.image.fluid}
+        imgIPhone={iPhone.image.fluid}
+        numTotalBooks={numBooks}
+      />
       <HomeFeaturedBooksBlock
         books={Object.values(featured)
           .filter(Boolean)
@@ -35,7 +51,7 @@ const HomePage: React.FC<Props> = ({ data }) => {
       />
       <HomeGettingStartedBlock />
       <HomeWhoWereTheQuakersBlock bgImg={london.image.fluid} />
-      <HomeFormatsBlock />
+      <HomeFormatsBlock img={formats.image.fluid} imgMobile={formatsMobile.image.fluid} />
       <ExploreBooksBlock numTotalBooks={numBooks} />
     </Layout>
   );
@@ -56,6 +72,12 @@ interface Props {
     es_ip_2: any | null;
     es_penn_ncnc: any | null;
     london: { image: { fluid: FluidBgImageObject } };
+    deviceArray: { image: { fluid: FluidImageObject } };
+    iPad: { image: { fluid: FluidImageObject } };
+    iPhone: { image: { fluid: FluidImageObject } };
+    paperback: { image: { fluid: FluidImageObject } };
+    formats: { image: { fluid: FluidImageObject } };
+    formatsMobile: { image: { fluid: FluidImageObject } };
   };
 }
 
@@ -130,6 +152,48 @@ export const query = graphql`
     london: file(relativePath: { eq: "london.jpg" }) {
       image: childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    deviceArray: file(relativePath: { eq: "device-array.png" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    paperback: file(relativePath: { eq: "samuel-fothergill-cover.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 440) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    iPhone: file(relativePath: { eq: "iphone.png" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 700) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    iPad: file(relativePath: { eq: "ipad.png" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    formats: file(relativePath: { eq: "formats-books.png" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 867) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    formatsMobile: file(relativePath: { eq: "formats-books-mobile.png" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 586) {
           ...GatsbyImageSharpFluid_withWebp
         }
       }

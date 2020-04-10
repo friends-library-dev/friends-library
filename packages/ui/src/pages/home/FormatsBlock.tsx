@@ -1,13 +1,18 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import Image from 'gatsby-image';
+import { FluidImageObject } from '@friends-library/types';
 import { t, Dual } from '../../translation';
 import { LANG } from '../../env';
 import Heading from '../../Heading';
-import Books from '../../images/formats-books.png';
-import BooksMobile from '../../images/formats-books-mobile.png';
 import './FormatsBlock.css';
 
-const FormatsBlock: React.FC = () => (
+interface Props {
+  img: FluidImageObject;
+  imgMobile: FluidImageObject;
+}
+
+const FormatsBlock: React.FC<Props> = ({ img, imgMobile }) => (
   <section className="FormatsBlock py-16 px-12 sm:px-16 relative xl:pl-24 xl:py-24">
     <Heading left={['md']} className="text-gray-900 md:text-left">
       <Dual.frag>
@@ -59,8 +64,8 @@ const FormatsBlock: React.FC = () => (
         .
       </p>
     )}
-    <img className="Books--lg hidden md:block" src={Books} alt="" />
-    <img className="Books--sm md:hidden" src={BooksMobile} alt="" />
+    <Image className="Books--lg z-10 hidden md:block" fluid={img} alt="" />
+    <Image className="Books--sm z-10 md:hidden" fluid={imgMobile} alt="" />
   </section>
 );
 

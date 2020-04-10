@@ -26,6 +26,7 @@
     "@reach/dialog": "^0.7.0",
     "classnames": "^2.2.6",
     "gatsby-background-image": "^1.0.1",
+    "gatsby-image": "^2.3.2",
     "gatsby-link": "^2.2.2",
     "js-cookie": "^2.2.1",
     "react": "16.10.1",

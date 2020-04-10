@@ -1,17 +1,31 @@
 import React from 'react';
+import Image from 'gatsby-image';
+import { FluidImageObject } from '@friends-library/types';
 import { t, Dual } from '../../translation';
 import Heading from '../../Heading';
-import Devices from '../../images/device-array.png';
-import Cover from '../../images/samuel-fothergill-cover.jpg';
-import iPhone from '../../images/iphone.png';
-import iPad from '../../images/ipad.png';
 import './SubHeroBlock.css';
 
-const SubHeroBlock: React.FC<{ numTotalBooks: number }> = ({ numTotalBooks }) => (
+interface Props {
+  numTotalBooks: number;
+  imgDeviceArray: FluidImageObject;
+  imgCover: FluidImageObject;
+  imgIPhone: FluidImageObject;
+  imgIPad: FluidImageObject;
+}
+
+const SubHeroBlock: React.FC<Props> = ({
+  numTotalBooks,
+  imgDeviceArray,
+  imgCover,
+  imgIPad,
+  imgIPhone,
+}) => (
   <section className="SubHeroBlock bg-flprimary p-10 pb-48 relative overflow-hidden md:px-20 lg:px-24 md:pt-20 md:pb-2 md:overflow-visible xl:py-20">
-    <img
+    <Image
+      fadeIn={false}
+      durationFadeIn={0}
       className="Devices absolute right-0 top-0 hidden md:block"
-      src={Devices}
+      fluid={imgDeviceArray}
       alt="Friends Library books on various devices"
     />
     <Heading darkBg className="text-white md:hidden">
@@ -36,9 +50,24 @@ const SubHeroBlock: React.FC<{ numTotalBooks: number }> = ({ numTotalBooks }) =>
       <li className="Format Format--paperback">{t`Paperbacks`}</li>
       <li className="Format Format--ebook">{t`E-Books`}</li>
     </ul>
-    <img className="Paperback absolute md:hidden" src={Cover} alt="" />
-    <img className="iPhone absolute shadow-xl md:hidden" src={iPhone} alt="" />
-    <img className="iPad absolute shadow-xl md:hidden" src={iPad} alt="" />
+    <Image
+      fadeIn={false}
+      className="Paperback absolute md:hidden"
+      fluid={imgCover}
+      alt=""
+    />
+    <Image
+      fadeIn={false}
+      className="iPhone absolute shadow-xl md:hidden"
+      fluid={imgIPhone}
+      alt=""
+    />
+    <Image
+      fadeIn={false}
+      className="iPad absolute shadow-xl md:hidden"
+      fluid={imgIPad}
+      alt=""
+    />
   </section>
 );
 

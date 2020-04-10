@@ -2,13 +2,13 @@
   width: 380px;
   right: 0;
   top: -100px;
-  position: absolute;
+  position: absolute !important;
 }
 
 .FormatsBlock .Books--sm {
   width: 180px;
   right: -15px;
-  position: absolute;
+  position: absolute !important;
   top: 75px;
 }
 
