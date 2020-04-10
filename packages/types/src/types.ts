@@ -137,6 +137,18 @@ export interface FluidBgImageObject {
   media?: string;
 }
 
+export interface FluidImageObject {
+  aspectRatio: number;
+  src: string;
+  srcSet: string;
+  sizes: string;
+  base64?: string;
+  tracedSVG?: string;
+  srcWebp?: string;
+  srcSetWebp?: string;
+  media?: string;
+}
+
 export function isDefined<T>(x: T | undefined): x is T {
   return typeof x !== 'undefined';
 }
