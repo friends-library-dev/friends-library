@@ -31,6 +31,7 @@ const Layout: React.FC = ({ children }) => {
   // https://github.com/Modernizr/Modernizr/blob/master/feature-detects/img/webp.js
   useEffect(() => {
     const img = new Image();
+    img.onerror = () => setWebp(false);
     img.onload = event => {
       setWebp(event?.type === 'load' ? img.width === 1 : false);
     };
