@@ -45,7 +45,7 @@ const TimelineBlock: React.FC<Props> = ({ books, bgImg }) => {
             </p>
           </div>
         </BgWordBlock>
-        <div className="sm:hidden pb-24 -mt-10">
+        <div className="sm:hidden pb-32 -mt-12">
           <label className="font-sans text-center text-white uppercase antialiased mt-0 mb-2 block tracking-widest">
             Pick a Date
           </label>
@@ -75,10 +75,10 @@ const TimelineBlock: React.FC<Props> = ({ books, bgImg }) => {
           setSelected={setDate}
         />
       </BackgroundImage>
-      <div className="bg-flgold text-center text-white text-2xl p-3 tracking-widest sm:hidden">
+      <div className="bg-flgold text-center text-white text-2xl p-4 tracking-widest sm:hidden">
         {date}
       </div>
-      <div className="flex flex-col md:flex-row md:justify-center items-center pt-12 sm:-mt-32 mb-8">
+      <div className="flex flex-col md:flex-row md:justify-center items-center pt-20 sm:pt-12 sm:-mt-32 mb-8">
         <div
           className="hidden md:block bg-flgold text-white box-content h-48 py-2 px-2 mr-4 -mt-48 text-center text-xl transform rotate-180"
           style={{ writingMode: 'vertical-rl' }}
