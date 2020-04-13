@@ -180,12 +180,12 @@ async function createMissingPlaylist(audio: Audio, quality: 'HQ' | 'LQ'): Promis
 async function verifyTracksExist(audio: Audio): Promise<void> {
   for (let part of audio.parts) {
     const trackHq = await getClient().getTrack(part.externalIdHq);
-    if (trackHq === null) {
+    if (trackHq === null || trackHq.user.permalink !== 'msf-audio') {
       throw new Error(`HQ track not found for ${audio.edition.path} ${part.title}`);
     }
     green(`sc track: ${trackHq.id} for ${audio.edition.path} ${part.title} HQ`);
     const trackLq = await getClient().getTrack(part.externalIdLq);
-    if (trackLq === null) {
+    if (trackLq === null || trackHq.user.permalink !== 'msf-audio') {
       throw new Error(`LQ track not found for ${audio.edition.path} ${part.title}`);
     }
     green(`sc track: ${trackLq.id} for ${audio.edition.path} ${part.title} LQ`);
