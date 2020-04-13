@@ -108,7 +108,6 @@ const Layout: React.FC = ({ children }) => {
         {APP_URL.includes('netlify') && (
           <meta name="robots" content="noindex, nofollow" />
         )}
-        <script src="https://js.stripe.com/v3/" async></script>
         <link
           href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
           rel="stylesheet prefetch"
