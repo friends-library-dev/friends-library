@@ -9,10 +9,11 @@ type Props = CoverProps & {
   perspective?: 'back' | 'front' | 'spine' | 'angle-front' | 'angle-back';
   className?: string;
   shadow?: boolean;
+  onlyFront?: boolean;
 };
 
 const ThreeD: React.FC<Props> = props => {
-  const { isbn, size, pages, shadow, scaler = 1, className = '' } = props;
+  const { isbn, size, pages, shadow, scaler = 1, className = '', onlyFront } = props;
   const { width, height } = docDims(size);
   const spineWidth = threeDSpineWidth(pages);
   const leftOffset = (width - spineWidth) / 2;
@@ -42,10 +43,12 @@ const ThreeD: React.FC<Props> = props => {
       >
         <Back
           {...props}
+          bgOnly={onlyFront === true}
           style={{
             transform: `rotateY(180deg) translateZ(${(spineWidth * scaler) / 2}in)`,
           }}
         />
+        )
         <Spine
           {...props}
           styles={{
