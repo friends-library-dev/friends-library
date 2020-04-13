@@ -25,10 +25,10 @@ const Book: React.FC<FeaturedBookProps & { isCurrent: boolean }> = props => {
     >
       <div className="flex flex-col items-center md:items-end md:w-2/5 md:mr-16">
         <div className="mb-8 md:hidden">
-          <Front {...coverProps} size="m" scope="1-2" scaler={1 / 2} />
+          <Front {...coverProps} size="m" onlyFront scope="1-2" scaler={1 / 2} />
         </div>
         <div className="hidden md:block">
-          <Front {...coverProps} size="m" scope="3-5" scaler={3 / 5} />
+          <Front {...coverProps} size="m" onlyFront scope="3-5" scaler={3 / 5} />
         </div>
       </div>
       <div className="Text md:w-3/5 flex-grow flex flex-col justify-start">
