@@ -76,3 +76,11 @@ documents:
               seconds: 3414
               chapters:
                 - 3
+            - title: El Diario de John Burnyeat
+              external_id_lq: 797683438
+              external_id_hq: 797687104
+              filesize_lq: 20620449
+              filesize_hq: 69096572
+              seconds: 4123
+              chapters:
+                - 4

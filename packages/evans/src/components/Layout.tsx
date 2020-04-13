@@ -17,7 +17,7 @@ import './Layout.css';
 const store = CartStore.getSingleton();
 
 const Layout: React.FC = ({ children }) => {
-  // force netlify deploy
+  // force netlify deploy #484
   const [numCartItems] = useNumCartItems();
   const [jsEnabled, setJsEnabled] = useState<boolean>(false);
   const [webp, setWebp] = useState<boolean | null>(null);
