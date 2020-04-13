@@ -13,19 +13,25 @@ description:
   libros impresos.
 ---
 
-import { EmbeddedAudio } from '@friends-library/ui';
-
 <Lead>
   Si nunca has escuchado nuestro audio introductorio que explica quienes fueron los
   primeros Cuáqueros, te recomendamos que empieces por aquí, haciendo clic al botón de
   reproducir a continuación:
 </Lead>
-<EmbeddedAudio
-  className="mt-6 sm:mb-20"
-  trackId={783137959}
+
+```
+<!-- use iframe directly, b/c importing EmbeddedAudio broke hot reloading -->
+```
+
+<iframe
+  class="mt-6 sm:mb-20"
   title="¿Quienes Eran Los Primeros Cuáqueros?"
-  showArtwork={false}
-/>
+  width="100%"
+  height="166"
+  scrolling="no"
+  frameborder="no"
+  src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F783137959&amp;color=C18C59&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_artwork=false&amp;show_teaser=false&amp;locale=es"
+></iframe>
 
 ## ¿Quiénes Eran Los Primeros Cuáqueros?
 

@@ -11,18 +11,24 @@ description:
   in e-Book, audio, and paperback formats.
 ---
 
-import { EmbeddedAudio } from '@friends-library/ui';
-
 <Lead>
   If you haven’t listened to our introductory audio explaining who the early Quakers were,
   we recommend you start by clicking the play button below:
 </Lead>
-<EmbeddedAudio
-  className="mt-6 sm:mb-20"
-  trackId={242345955}
+
+```
+<!-- use iframe directly, b/c importing EmbeddedAudio broke hot reloading -->
+```
+
+<iframe
+  class="mt-6 sm:mb-20"
   title="Introduction to the Early Quakers"
-  showArtwork={false}
-/>
+  width="100%"
+  height="166"
+  scrolling="no"
+  frameborder="no"
+  src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F242345955&amp;color=6C3142&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_artwork=false&amp;show_teaser=false&amp;locale=en"
+></iframe>
 
 ## Who were the early Quakers?
 
