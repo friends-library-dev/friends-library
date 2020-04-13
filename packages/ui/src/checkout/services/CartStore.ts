@@ -4,6 +4,7 @@ import Cart from '../models/Cart';
 
 export default class CartStore extends EventEmitter {
   private _isOpen = false;
+  private stripeLoaded = false;
   public cart: Cart;
 
   public constructor() {
@@ -41,6 +42,9 @@ export default class CartStore extends EventEmitter {
     this._isOpen = true;
     this.emit('show');
     this.emit('toggle:visibility', true);
+    if (!this.stripeLoaded) {
+      this.loadStripe();
+    }
   }
 
   public static getSingleton(): CartStore {
@@ -48,6 +52,13 @@ export default class CartStore extends EventEmitter {
       singleton = new CartStore();
     }
     return singleton;
+  }
+
+  private loadStripe(): void {
+    const script = document.createElement('script');
+    script.src = 'https://js.stripe.com/v3/';
+    document.head.appendChild(script);
+    this.stripeLoaded = true;
   }
 }
 
