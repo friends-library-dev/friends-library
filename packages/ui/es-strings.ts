@@ -35,7 +35,7 @@ const strings: { [k: string]: string } = {
   'Friends Library': 'Biblioteca de los Amigos',
   'View %s More': 'Ver %s más',
   'View More': 'Ver más',
-  'Your search returned no results': 'Tú búsqueda no obtuvo resultados',
+  'Your search returned no results': 'Tu búsqueda no obtuvo resultados',
 
   // all friends filters
   Sort: 'Ordenar por',
