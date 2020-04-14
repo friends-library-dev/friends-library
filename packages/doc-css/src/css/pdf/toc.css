@@ -1,5 +1,6 @@
 .toc {
   page: toc;
+  page-break-before: recto; /* keep TOC on recto */
 }
 
 .toc h1 {
