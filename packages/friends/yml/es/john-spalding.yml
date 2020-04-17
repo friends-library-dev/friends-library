@@ -46,6 +46,5 @@ documents:
       - treatise
     editions:
       - type: updated
-        draft: true
         isbn: 978-1-64476-193-9
         editor: Jason R. Henderson
