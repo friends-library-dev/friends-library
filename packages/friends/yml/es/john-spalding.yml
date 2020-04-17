@@ -1,0 +1,49 @@
+id: 2d2a6dfa-1b8c-4826-9169-831fe7190208
+name: John Spalding
+slug: john-spalding
+gender: male
+added: 2020-04-17T14:25:19.038Z
+born: 1765
+died: 1795
+residences:
+  - city: Reading
+    region: England
+description:
+  Though raised in the Church of England, John Spalding’s (1765-1795) pursuit of truth
+  left him dissatisfied with the traditional worship of his day, concluding that, in many
+  respects, it was neither pleasing to God nor effective towards the salvation of his
+  soul. After at last finding the Pearl of great price, he composed a public letter to
+  beloved friends and family attending St. Giles church in Reading, entitling it - “A Few
+  Reasons for Leaving the National Established Mode of Worship, addressed to the
+  professors of religion in this day, by one who was long in the profession, but knew not
+  the power, till it pleased the Lord, by the ministry and writings of the people called
+  Quakers, to direct him to where alone the power is to be known, that is, within.”
+documents:
+  - id: ee1e556f-0462-49bc-a2e3-7c3924c9fb48
+    alt_language_id: 873dacbb-3205-4afb-8c38-772fb7a09fed
+    title: Salgan de Babilonia
+    slug: salgan-de-babilonia
+    filename: Salgan_de_Babilonia
+    description:
+      Though raised in the Church of England, John Spalding’s (1765-1795) pursuit of truth
+      left him dissatisfied with the traditional worship of his day, concluding that, in
+      many respects, it was neither pleasing to God nor effective towards the salvation of
+      his soul. After at last finding the Pearl of great price, he composed a public
+      letter to beloved friends and family attending St. Giles church in Reading,
+      entitling it - “A Few Reasons for Leaving the National Established Mode of Worship,
+      Addressed to the professors of religion in this day, by one who was long in the
+      profession, but knew not the power, till it pleased the Lord, by the ministry and
+      writings of the people called Quakers, to direct him to where alone the power is to
+      be known, that is, within.”
+    partial_description:
+      An epistle of John Spalding, addressed to family and friends attending St. Giles
+      church, advancing several well-grounded reasons for leaving the Church of England
+      and joining in fellowship with the Society of Friends.
+    tags:
+      - letters
+      - treatise
+    editions:
+      - type: updated
+        draft: true
+        isbn: 978-1-64476-193-9
+        editor: Jason R. Henderson
