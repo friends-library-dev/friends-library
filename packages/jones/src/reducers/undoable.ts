@@ -51,6 +51,5 @@ export function undoable<T>(
 }
 
 export function emptyUndoable<T>(): Undoable<T> {
-  // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
   return { past: [], present: {} as T, future: [] };
 }

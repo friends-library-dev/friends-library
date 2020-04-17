@@ -128,7 +128,12 @@ export default connect(mapState, mapDispatch)(Work);
 
 const ClosedWarning: React.FC<{ status: 'closed' | 'merged' }> = ({ status }) => (
   <div style={{ color: 'red', padding: '1em 3em' }}>
-    <h1>😬 Pull Request was {status}!</h1>
+    <h1>
+      <span role="img" aria-label="Embarrassed face.">
+        😬
+      </span>{' '}
+      Pull Request was {status}!
+    </h1>
     <p style={{ lineHeight: '160%', color: 'white' }}>
       Whoops, looks like there was some sort of a coordination problem. Don't worry, none
       of your work is lost, you can reopen the task if necessary. But for now you'll need
