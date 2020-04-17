@@ -181,6 +181,7 @@ const strings: { [k: string]: string } = {
   London: 'Londres',
   Philadelphia: 'Filadelfia',
   Ruscombe: 'Ruscombe',
+  Reading: 'Reading',
   Pennsylvania: 'Pensilvania',
   Amsterdam: 'Ámsterdam',
   Netherlands: 'Holanda',
