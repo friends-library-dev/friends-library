@@ -63,10 +63,27 @@ export function published(
   lang: Lang,
 ): { publishedTimestamp: number; publishedDate: string } {
   const date = new Date(dateStr);
-  const formatter = new Intl.DateTimeFormat(lang, { month: 'short' });
-  const month = formatter.format(date);
+  const formatter = new Intl.DateTimeFormat('en-US', { month: 'short' });
+  let month = formatter.format(date);
+  if (lang === 'es') {
+    month = spanishShortMonth(month);
+  }
   return {
     publishedTimestamp: date.getTime(),
     publishedDate: `${month} ${date.getDate()}`,
   };
+}
+
+function spanishShortMonth(short: string): string {
+  switch (short.toLowerCase()) {
+    case 'jan':
+      return 'Ene';
+    case 'apr':
+      return 'Abr';
+    case 'aug':
+      return 'Ago';
+    case 'dec':
+      return 'Dic';
+  }
+  return short;
 }
