@@ -8,7 +8,7 @@ const StyledContent = styled.section`
   min-height: 100vh;
 `;
 
-export default () => (
+const Content: React.FC = () => (
   <StyledContent>
     <sections.Emphasis />
     <sections.Quotes />
@@ -26,3 +26,5 @@ export default () => (
     <sections.Videos />
   </StyledContent>
 );
+
+export default Content;

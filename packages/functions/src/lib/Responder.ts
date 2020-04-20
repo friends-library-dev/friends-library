@@ -10,7 +10,7 @@ export default class Responder {
     this.callback = callback;
   }
 
-  public json(body: Record<string, any>, statusCode: number = 200): void {
+  public json(body: Record<string, any>, statusCode = 200): void {
     this.callback(null, {
       statusCode,
       body: JSON.stringify(body),
@@ -33,7 +33,7 @@ export default class Responder {
     });
   }
 
-  public text(text: string, statusCode: number = 200): void {
+  public text(text: string, statusCode = 200): void {
     this.callback(null, {
       statusCode,
       body: text,
@@ -43,7 +43,7 @@ export default class Responder {
     });
   }
 
-  public html(html: string, statusCode: number = 200): void {
+  public html(html: string, statusCode = 200): void {
     this.callback(null, {
       statusCode,
       body: html,

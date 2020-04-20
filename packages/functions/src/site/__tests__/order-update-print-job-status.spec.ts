@@ -16,7 +16,7 @@ jest.mock('../../lib/Order', () => ({
 }));
 
 describe('updateOrderPrintJobStatus()', () => {
-  let body = '{"orderId":"123abc","printJobStatus":"accepted"}';
+  const body = '{"orderId":"123abc","printJobStatus":"accepted"}';
 
   it('responds 400 if mal-formed body', async () => {
     const badBody = '{"printJobStatus":"bad_status"}';

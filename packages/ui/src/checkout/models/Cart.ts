@@ -45,7 +45,7 @@ export default class Cart extends EventEmitter {
   }
 
   public addItem(newItem: CartItem): void {
-    for (let item of this.items) {
+    for (const item of this.items) {
       if (item.equals(newItem)) {
         item.quantity++;
         this.emit('change');

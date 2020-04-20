@@ -33,7 +33,7 @@ const DownloadWizard: React.FC<Props> = ({
       setDownloaded(true);
       onSelect(edition || 'updated', eBookType || 'web_pdf');
     }
-  }, [edition, format, eBookType, downloaded]);
+  }, [edition, format, eBookType, downloaded, onSelect, selectionComplete]);
 
   return (
     <ChoiceWizard top={top} left={left}>

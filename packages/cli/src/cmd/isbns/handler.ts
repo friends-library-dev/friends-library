@@ -61,7 +61,7 @@ function next(): void {
     });
   });
 
-  for (let isbn of isbns) {
+  for (const isbn of isbns) {
     if (!used.includes(isbn)) {
       const pbcopy = spawn('pbcopy');
       pbcopy.stdin.write(isbn);

@@ -6,7 +6,7 @@ import { yamlGlob } from '../test-helpers';
 import schema, { subSchemas } from '../../src/schema';
 
 const validator = new Validator();
-for (let key in subSchemas) {
+for (const key in subSchemas) {
   validator.addSchema(subSchemas[key], `/${key}`);
 }
 

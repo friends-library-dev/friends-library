@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, Asciidoc, H1, Note, Para, Section, Snippet } from '../components';
 
-export default () => (
+const ChapterSynopsis: React.FC = () => (
   <Section id="chapter-synopsis">
     <H1>Chapter Synopsis</H1>
     <Para>
@@ -18,3 +18,5 @@ export default () => (
     <Asciidoc id="chapter-synopsis-footnote" emphasize={[4]} />
   </Section>
 );
+
+export default ChapterSynopsis;

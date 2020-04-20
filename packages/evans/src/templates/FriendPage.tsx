@@ -61,7 +61,7 @@ interface Props {
   };
 }
 
-export default ({ data: { friend, relatedDocuments, booksBg } }: Props) => {
+const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg } }) => {
   const isOnlyBook = friend.documents.length === 1;
   const quotes = friend.quotes || [];
   return (
@@ -159,6 +159,8 @@ export default ({ data: { friend, relatedDocuments, booksBg } }: Props) => {
     </Layout>
   );
 };
+
+export default FriendPage;
 
 export const query = graphql`
   query GetFriend($slug: String!, $relatedDocumentIds: [String!]!) {

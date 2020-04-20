@@ -49,7 +49,7 @@ export default class RegexLintRunner {
         matches.push(match);
       }
     } else {
-      let match = lint.search.exec(line);
+      const match = lint.search.exec(line);
       if (match) matches.push(match);
     }
     return matches;

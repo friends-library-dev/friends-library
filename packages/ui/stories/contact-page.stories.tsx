@@ -6,7 +6,7 @@ import ContactFormBlock from '../src/pages/contact/FormBlock';
 // @ts-ignore
 import Books from '../src/images/Books7.jpg';
 
-function delay(delay: number, result: boolean = true): () => Promise<boolean> {
+function delay(delay: number, result = true): () => Promise<boolean> {
   return () => {
     return new Promise(res => {
       setTimeout(() => res(result), delay);

@@ -9,10 +9,13 @@ module.exports = {
     'react-app',
   ],
   rules: {
+    'no-var': 'off',
     'default-case': 'off',
     'react/no-unescaped-entities': 'error',
     'no-only-tests/no-only-tests': 'error',
     'no-useless-constructor': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-angle-bracket-type-assertion': 'off',
@@ -36,12 +39,6 @@ module.exports = {
         allowTypedFunctionExpressions: true,
       },
     ],
-    '@typescript-eslint/no-object-literal-type-assertion': [
-      'error',
-      {
-        allowAsParameter: true,
-      },
-    ],
   },
   overrides: [
     {
@@ -51,12 +48,12 @@ module.exports = {
       },
     },
     {
-      files: ['*.spec.ts'],
+      files: ['**/__tests__/**'],
       rules: {
         'no-throw-literal': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/consistent-type-assertions': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/no-object-literal-type-assertion': 'off',
       },
     },
     {
@@ -71,6 +68,12 @@ module.exports = {
       rules: {
         'jsx-a11y/accessible-emoji': 'off',
         'react/no-unescaped-entities': 'off',
+      },
+    },
+    {
+      files: ['**/packages/doc-manifests/**'],
+      rules: {
+        'react-hooks/rules-of-hooks': 'off',
       },
     },
   ],

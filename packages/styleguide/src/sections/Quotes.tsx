@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
-export default () => (
+const Quotes: React.FC = () => (
   <Section id="quotes">
     <H1>Quotes</H1>
     <H2>Inline Quotes:</H2>
@@ -84,3 +84,5 @@ export default () => (
     </Note>
   </Section>
 );
+
+export default Quotes;

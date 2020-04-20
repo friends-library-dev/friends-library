@@ -18,7 +18,7 @@ export function getDpcCache(): Map<string, EditionCache> {
   }
 
   const stored = JSON.parse(fs.readFileSync(CACHE_PATH).toString());
-  for (let [path, edCache] of stored) {
+  for (const [path, edCache] of stored) {
     cache.set(path, edCache);
   }
 

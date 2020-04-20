@@ -11,7 +11,7 @@ import {
   Asciidoc,
 } from '../components';
 
-export default () => (
+const ChapterHeadings: React.FC = () => (
   <Section id="chapter-headings">
     <H1>Chapter Headings</H1>
     <Para>
@@ -85,3 +85,5 @@ export default () => (
     </Note>
   </Section>
 );
+
+export default ChapterHeadings;

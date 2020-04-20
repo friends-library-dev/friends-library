@@ -21,7 +21,7 @@ jest.mock('../../lib/Order', () => ({
 }));
 
 describe('/payment-capture handler', () => {
-  let testBody = JSON.stringify({
+  const testBody = JSON.stringify({
     paymentIntentId: 'pi_123',
     orderId: 'order-id',
   });

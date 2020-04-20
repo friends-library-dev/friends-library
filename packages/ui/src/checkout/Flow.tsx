@@ -24,7 +24,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
     return () => {
       machine.removeListener('state:change', setState);
     };
-  }, []);
+  }, [machine]);
 
   switch (state) {
     case 'cart':

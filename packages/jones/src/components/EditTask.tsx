@@ -106,7 +106,7 @@ class EditTask extends React.Component<Props, State> {
     this.input.current && this.input.current.focus();
   }
 
-  protected clickSave = () => {
+  protected clickSave: () => void = () => {
     const { name, repoId } = this.state;
     const { updateTask, goToTasks, task } = this.props;
     if (!repoId || !name.trim()) {
@@ -119,7 +119,7 @@ class EditTask extends React.Component<Props, State> {
     goToTasks();
   };
 
-  protected clickCancel = () => {
+  protected clickCancel: () => void = () => {
     const { deleteTask, goToTasks, task } = this.props;
     if (task.isNew) {
       deleteTask(task.id);

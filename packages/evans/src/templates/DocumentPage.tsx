@@ -91,7 +91,9 @@ interface Props {
   };
 }
 
-export default ({ data: { site, friend, document, otherDocuments } }: Props) => {
+const DocumentPage: React.FC<Props> = ({
+  data: { site, friend, document, otherDocuments },
+}) => {
   useEffect(() => {
     if (window.location.hash === '#audiobook') {
       setTimeout(makeScroller('#audiobook'), 10);
@@ -192,6 +194,8 @@ export default ({ data: { site, friend, document, otherDocuments } }: Props) => 
     </Layout>
   );
 };
+
+export default DocumentPage;
 
 export const query = graphql`
   query DocumentPage($documentSlug: String!, $friendSlug: String!) {

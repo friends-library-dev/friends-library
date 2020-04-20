@@ -20,8 +20,10 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default ({ id }: { id: string }) => (
+const Html: React.FC<{ id: string }> = ({ id }) => (
   <StyledDiv className="rendered-adoc html">
     <div className="body" dangerouslySetInnerHTML={{ __html: html(id) }} />
   </StyledDiv>
 );
+
+export default Html;

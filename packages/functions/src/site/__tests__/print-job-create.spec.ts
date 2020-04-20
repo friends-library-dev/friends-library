@@ -36,7 +36,7 @@ const { Response } = jest.requireActual('node-fetch');
 const mockFetch = <jest.Mock>(<unknown>fetch);
 
 describe('createOrder()', () => {
-  let testBody = JSON.stringify(schema.example);
+  const testBody = JSON.stringify(schema.example);
 
   it('should return 500 response if oauth token acquisition fails', async () => {
     getToken.mockImplementationOnce(() => {

@@ -14,7 +14,7 @@ export function feeOffset(desiredNet: number): number {
   return STRIPE_FLAT_FEE + percentageOffset;
 }
 
-function calculatePercentageOffset(amt: number, carry: number = 0): number {
+function calculatePercentageOffset(amt: number, carry = 0): number {
   const offset = Math.round(amt * STRIPE_PERCENTAGE);
   if (offset === 0) {
     return carry;

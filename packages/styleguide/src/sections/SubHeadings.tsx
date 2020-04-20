@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
-export default () => (
+const SubHeadings: React.FC = () => (
   <Section id="sub-headings">
     <H1>Sub-Headings:</H1>
     <H2>Basic Sub-Headings:</H2>
@@ -64,3 +64,5 @@ export default () => (
     <Pair id="styled-headings" emphasize={[1]} />
   </Section>
 );
+
+export default SubHeadings;

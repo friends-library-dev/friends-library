@@ -4,7 +4,7 @@ export function undoable<T>(
   reducer: (state: T, action: Action) => T,
   undoKey: string,
   resetters: string[] = [],
-  limit: number = 50,
+  limit = 50,
 ): (state: Undoable<T>, action: Action) => Undoable<Record<string, any>> {
   return (state = emptyUndoable(), action) => {
     if (action.type === `RESET_UNDO_${undoKey}` || resetters.includes(action.type)) {

@@ -94,11 +94,12 @@ const DocBlock: React.FC<Props> = props => {
     }
   }, []);
 
-  useEffect(positionWizard, [downloading, addingToCart, wrap.current]);
+  useEffect(positionWizard, [downloading, addingToCart, wrap.current, positionWizard]);
+
   useEffect(() => {
     window.addEventListener('resize', positionWizard);
     return () => window.removeEventListener('resize', positionWizard);
-  }, [downloading, addingToCart, wrap.current]);
+  }, [downloading, addingToCart, positionWizard]);
 
   useEffect(() => {
     const escape: (e: KeyboardEvent) => any = ({ keyCode }) => {
@@ -109,7 +110,7 @@ const DocBlock: React.FC<Props> = props => {
     };
     document.addEventListener('keydown', escape);
     return () => window.removeEventListener('keydown', escape);
-  }, [downloading]);
+  }, [downloading, addingToCart]);
 
   const addToCart = (editionType: EditionType): void => {
     const edition = editions.find(e => e.type === editionType);

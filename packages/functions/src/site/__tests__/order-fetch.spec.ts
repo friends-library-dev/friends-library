@@ -16,7 +16,7 @@ jest.mock('../../lib/Order', () => ({
 }));
 
 describe('fetchOrder()', () => {
-  let path = '/site/orders/123abc';
+  const path = '/site/orders/123abc';
 
   const badPaths = [
     ['/site/orders/_nope'],

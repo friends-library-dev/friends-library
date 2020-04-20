@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Section, H1, Para } from '../components';
 
-export default () => (
+const Videos: React.FC = () => (
   <Section id="videos">
     <H1>Videos</H1>
     <Para>
@@ -61,3 +61,5 @@ export default () => (
     </ul>
   </Section>
 );
+
+export default Videos;

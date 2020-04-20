@@ -130,7 +130,7 @@ function splitBetweenWords(
 }
 
 function getWordSplitCandidate(words: string[], splitLen: number): string[] {
-  let chunks: string[][] = [[]];
+  const chunks: string[][] = [[]];
   let lineIndex = 0;
   words.forEach(word => {
     if (chunks[lineIndex].join(' ').length < splitLen) {

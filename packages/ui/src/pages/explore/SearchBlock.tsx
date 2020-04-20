@@ -28,7 +28,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, bgImg, initialUse
     if (!used && userHasInteractedWithSearch(query, filters, initialFilters)) {
       setUsed(true);
     }
-  }, [filters, query, initialFilters]);
+  }, [filters, query, initialFilters, used]);
 
   return (
     <div id="SearchBlock">
@@ -80,7 +80,7 @@ function match(books: Props['books'], filters: string[], search: string): Props[
       }
     }
 
-    for (let filter of filters) {
+    for (const filter of filters) {
       const [type, value] = filter.split('.');
       if (type === 'edition' && book.edition !== value) {
         return false;

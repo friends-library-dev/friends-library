@@ -66,8 +66,6 @@ export function copyright(dpc: DocPrecursor): Html {
     revision: { timestamp, sha, url },
     meta: { published, isbn },
   } = dpc;
-  let marginData = '';
-
   moment.locale(lang);
   let time = moment
     .utc(moment.unix(timestamp))
@@ -103,7 +101,6 @@ export function copyright(dpc: DocPrecursor): Html {
   return `
   <div class="copyright-page">
     <ul>
-      ${marginData}
       <li>${strings.publicDomain}</li>
       ${published ? `<li>${strings.publishedIn} ${published}</li>` : ''}
       ${isbn ? `<li id="isbn">ISBN: <code>${isbn}</code></li>` : ''}

@@ -36,7 +36,7 @@ const PillDropdown: React.FC<Props> = ({
       document.removeEventListener('click', click);
       window.removeEventListener('keydown', escape);
     };
-  }, [dropdownVisible]);
+  }, [dropdownVisible, autoHide]);
 
   return (
     <div

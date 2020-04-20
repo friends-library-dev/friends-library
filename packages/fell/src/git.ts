@@ -84,8 +84,8 @@ export async function commitAll(repoPath: Repo, message: string): Promise<void> 
 export async function push(
   repoPath: Repo,
   branch: string,
-  force: boolean = false,
-  remoteName: string = 'origin',
+  force = false,
+  remoteName = 'origin',
 ): Promise<void> {
   const repo = await getRepo(repoPath);
   const remote = await repo.getRemote(remoteName);

@@ -7,7 +7,7 @@ const runner = new RegexLintRunner([
     test: 'inclose',
     search: /\b(Un|un)?(I|i)nclose?/g,
     replace: (_, un, i) => {
-      let str = `${i === 'I' ? 'E' : 'e'}nclose`;
+      const str = `${i === 'I' ? 'E' : 'e'}nclose`;
       if (un !== undefined) {
         return `${un}${str}`;
       }

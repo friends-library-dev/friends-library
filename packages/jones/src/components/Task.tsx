@@ -115,7 +115,7 @@ class Task extends React.Component<Props, State> {
     task.pullRequest && syncStatus(task);
   }
 
-  protected confirmDelete = () => {
+  protected confirmDelete: () => void = () => {
     if (process.env.NODE_ENV === 'development') {
       this.deleteTask();
       return;
@@ -134,26 +134,26 @@ class Task extends React.Component<Props, State> {
       .catch(() => {});
   };
 
-  protected deleteTask = () => {
+  protected deleteTask: () => void = () => {
     const { task, deleteTask } = this.props;
     deleteTask(task.id);
   };
 
-  protected submit = async () => {
+  protected submit: () => Promise<void> = async () => {
     const { task, submit } = this.props;
     this.setState({ submitting: true });
     await submit(task);
     this.setState({ submitting: false });
   };
 
-  protected resubmit = async () => {
+  protected resubmit: () => Promise<void> = async () => {
     const { task, resubmit } = this.props;
     this.setState({ submitting: true });
     await resubmit(task);
     this.setState({ submitting: false });
   };
 
-  protected reopen = () => {
+  protected reopen: () => void = () => {
     const { task, reopenTask } = this.props;
     smalltalk
       .confirm(

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Note } from '../components';
 
-export default () => (
+const Epigraphs: React.FC = () => (
   <Section id="epigraphs">
     <H1>Epigraphs</H1>
     <Para>
@@ -25,3 +25,5 @@ export default () => (
     </Note>
   </Section>
 );
+
+export default Epigraphs;

@@ -11,7 +11,9 @@ import {
 } from '@friends-library/ui';
 import { Seo, Layout } from '../components';
 
-export default ({ data: { allFriend, recent, street, village } }: Props) => {
+const FriendsPage: React.FC<Props> = ({
+  data: { allFriend, recent, street, village },
+}) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOption, setSortOption] = useState<string>('First Name');
   const filteredFriends = allFriend.nodes
@@ -70,6 +72,8 @@ export default ({ data: { allFriend, recent, street, village } }: Props) => {
     </Layout>
   );
 };
+
+export default FriendsPage;
 
 function cardProps(
   friend: FriendData,
