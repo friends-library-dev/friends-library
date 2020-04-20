@@ -6,7 +6,7 @@ export default function migrate(state: SavedState): SavedState {
     return state;
   }
 
-  for (let id in tasks) {
+  for (const id in tasks) {
     const task = tasks[id] as any;
     if (typeof task.prNumber === 'number') {
       task.pullRequest = { number: task.prNumber };

@@ -1,8 +1,7 @@
 function getEnv<T extends string>(required: boolean, ...keys: T[]): { [k in T]: string } {
-  /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
   const obj = {} as { [k in T]: string };
   keys.forEach(key => {
-    let val = process.env[key];
+    const val = process.env[key];
     if (
       required &&
       typeof val !== 'string' &&

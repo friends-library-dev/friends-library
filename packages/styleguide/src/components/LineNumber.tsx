@@ -25,6 +25,8 @@ const Number = styled.span`
   }
 `;
 
-export default ({ num }: { num: number }) => (
+const LineNumber: React.FC<{ num: number }> = ({ num }) => (
   <Number>{String(num).padStart(2, '0')}.</Number>
 );
+
+export default LineNumber;

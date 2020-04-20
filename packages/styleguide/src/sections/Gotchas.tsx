@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Note } from '../components';
 
-export default () => (
+const Gotchas: React.FC = () => (
   <Section id="gotchas">
     <H1>Gotchas 😬</H1>
     <H2>Square Brackets:</H2>
@@ -42,3 +42,5 @@ export default () => (
     </Note>
   </Section>
 );
+
+export default Gotchas;

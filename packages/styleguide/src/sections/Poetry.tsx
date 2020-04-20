@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Note, Asciidoc } from '../components';
 
-export default () => (
+const Poetry: React.FC = () => (
   <Section id="poetry">
     <H1>Poetry</H1>
 
@@ -37,3 +37,5 @@ export default () => (
     </Note>
   </Section>
 );
+
+export default Poetry;

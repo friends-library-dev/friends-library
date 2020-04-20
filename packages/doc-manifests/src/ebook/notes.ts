@@ -26,11 +26,7 @@ export function makeFootnoteCallReplacer(dpc: DocPrecursor): (html: Html) => Htm
   };
 }
 
-export function callMarkup(
-  id: string,
-  ref: string | number,
-  withId: boolean = true,
-): Html {
+export function callMarkup(id: string, ref: string | number, withId = true): Html {
   return [
     `<sup class="footnote"${withId ? ` id="fn-call__${id}"` : ''}>`,
     `<a href="notes.xhtml#fn__${id}" title="View footnote.">`,

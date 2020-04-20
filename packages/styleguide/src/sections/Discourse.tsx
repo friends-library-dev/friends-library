@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
-export default () => (
+const Discourse: React.FC = () => (
   <Section id="discourse">
     <H1>Discourse</H1>
     <Para>
@@ -31,3 +31,5 @@ export default () => (
     <Pair id="discourse-non-standard" emphasize={[2, 5, 8]} />
   </Section>
 );
+
+export default Discourse;

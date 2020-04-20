@@ -52,23 +52,23 @@ export function allFriends(): Friend[] {
   return friends;
 }
 
-let friendsMap: Map<Slug, Friend> = new Map();
+const friendsMap: Map<Slug, Friend> = new Map();
 
 export function allFriendsMap(): Map<Slug, Friend> {
   if (friendsMap.size === 0) {
-    for (let friend of allFriends()) {
+    for (const friend of allFriends()) {
       friendsMap.set(friend.path, friend);
     }
   }
   return friendsMap;
 }
 
-let docsMap: Map<Slug | ISBN, Document> = new Map();
+const docsMap: Map<Slug | ISBN, Document> = new Map();
 
 export function allDocsMap(): Map<Slug | ISBN, Document> {
   if (docsMap.size === 0) {
-    for (let friend of allFriends()) {
-      for (let document of friend.documents) {
+    for (const friend of allFriends()) {
+      for (const document of friend.documents) {
         docsMap.set(document.slug, document);
         docsMap.set(document.id, document);
       }

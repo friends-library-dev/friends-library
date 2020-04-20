@@ -6,8 +6,10 @@ interface Props {
   close: () => void;
 }
 
-export default ({ close }: Props) => (
+const Slideover: React.FC<Props> = ({ close }) => (
   <div className="Slideover fixed overflow-hidden overflow-y-auto h-full">
     <SlideoverMenu onClose={close} />
   </div>
 );
+
+export default Slideover;

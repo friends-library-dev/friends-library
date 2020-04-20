@@ -4,9 +4,9 @@ import { File, SearchResult } from '../type';
 export function searchFiles(
   searchTerm: string,
   files: File[],
-  words: boolean = true,
-  caseSensitive: boolean = false,
-  regexp: boolean = false,
+  words = true,
+  caseSensitive = false,
+  regexp = false,
 ): SearchResult[] {
   const results = files.reduce((acc, file) => {
     const lines = (file.editedContent || file.content || '').split(/\n/);

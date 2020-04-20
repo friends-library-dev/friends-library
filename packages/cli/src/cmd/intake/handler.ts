@@ -18,7 +18,7 @@ export default function handler(): void {
     const signsOfIntake = dpc.asciidoc
       .split('\n')
       .reduce((count: number, line: string) => {
-        for (let regex of regexes) {
+        for (const regex of regexes) {
           if (regex.test(line)) {
             return count + 1;
           }

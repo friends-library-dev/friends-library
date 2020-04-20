@@ -25,12 +25,12 @@ export default class RotatableCover extends React.Component<Props, State> {
   };
 
   public componentDidMount(): void {
-    let showBackTimeout = window.setTimeout(
+    const showBackTimeout = window.setTimeout(
       () => this.setState({ perspective: 'angle-back' }),
       10000,
     );
     this.setState({ showBackTimeout });
-    let backToFrontTimeout = window.setTimeout(
+    const backToFrontTimeout = window.setTimeout(
       () => this.setState({ perspective: 'angle-front' }),
       14000,
     );

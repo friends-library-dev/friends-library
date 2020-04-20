@@ -50,7 +50,7 @@ const Item: React.FC<ItemProps> = ({ text, href }) => {
 
 Item.defaultProps = { href: '' };
 
-export default () => (
+const Sidebar: React.FC = () => (
   <StyledSidebar>
     <img
       alt=""
@@ -96,3 +96,5 @@ export default () => (
     </ul>
   </StyledSidebar>
 );
+
+export default Sidebar;

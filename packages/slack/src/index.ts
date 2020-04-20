@@ -4,7 +4,7 @@ import { WebClient } from '@slack/client';
 export async function send(
   msg: string,
   channel: string,
-  emoji: string = ':robot_face:',
+  emoji = ':robot_face:',
 ): Promise<void> {
   getClient().chat.postMessage({
     username: 'FL Bot',
@@ -20,11 +20,11 @@ export async function sendJson(
   msg: string,
   data: Record<string, Record<string, any>>,
   channel: string,
-  emoji: string = ':robot_face:',
+  emoji = ':robot_face:',
 ): Promise<void> {
   const blocks = [sectionBlock(msg)];
 
-  for (let label in data) {
+  for (const label in data) {
     blocks.push(sectionBlock(`_${label.toUpperCase()}:_`));
     blocks.push(sectionBlock('```' + JSON.stringify(data[label], null, 2) + '```'));
   }

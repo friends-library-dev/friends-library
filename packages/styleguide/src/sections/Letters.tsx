@@ -15,7 +15,7 @@ const EmbeddedTypes = styled.ul`
   }
 `;
 
-export default () => (
+const Letters: React.FC = () => (
   <Section id="letters">
     <H1>Letters &amp; Signed Sections</H1>
     <Note>
@@ -190,3 +190,5 @@ export default () => (
     <Pair id="bare-embedded" />
   </Section>
 );
+
+export default Letters;

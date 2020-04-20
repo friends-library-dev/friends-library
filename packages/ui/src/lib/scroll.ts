@@ -1,6 +1,6 @@
-export function makeScroller(selector: string, padding: number = 0): () => void {
+export function makeScroller(selector: string, padding = 0): () => void {
   return () => {
-    let element = document.querySelector(selector);
+    const element = document.querySelector(selector);
     if (element) {
       const elementRect = element.getBoundingClientRect();
       window.scrollTo({

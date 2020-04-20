@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Snippet } from '../components';
 
-export default () => (
+const Breaks: React.FC = () => (
   <Section id="breaks">
     <H1>Breaks &amp; Offsets</H1>
 
@@ -36,3 +36,5 @@ export default () => (
     <Pair id="offset" emphasize={[16]} />
   </Section>
 );
+
+export default Breaks;

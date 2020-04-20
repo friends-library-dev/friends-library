@@ -5,7 +5,7 @@ export async function openPullRequest(
   repo: string,
   branch: string,
   title: string,
-  body: string = '',
+  body = '',
 ): Promise<number | false> {
   try {
     const {

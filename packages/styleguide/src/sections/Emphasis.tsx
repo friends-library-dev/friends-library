@@ -3,7 +3,7 @@ import { Pair, H1, Para, Code, Section, Note, Asciidoc } from '../components';
 
 const editorUrl = 'https://flp-editor.netlify.com';
 
-export default () => (
+const Emphasis: React.FC = () => (
   <Section id="emphasis">
     <H1>Emphasis (italic)</H1>
     <Para>
@@ -40,3 +40,5 @@ export default () => (
     </Note>
   </Section>
 );
+
+export default Emphasis;

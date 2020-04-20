@@ -168,7 +168,7 @@ class FriendFiles extends React.Component<Props> {
     return collapsed[key] || false;
   }
 
-  protected renderDoc = (doc: Document) => {
+  protected renderDoc: (doc: Document) => JSX.Element = doc => {
     const { collapseTask, taskId } = this.props;
     const key = doc.slug;
     const isCollapsed = this.isCollapsed(key);
@@ -185,7 +185,10 @@ class FriendFiles extends React.Component<Props> {
     );
   };
 
-  protected renderEdition = (ed: DocumentEdition, doc: Document) => {
+  protected renderEdition: (ed: DocumentEdition, doc: Document) => JSX.Element = (
+    ed,
+    doc,
+  ) => {
     const { collapseTask, taskId } = this.props;
     const key = [doc.slug, ed.type].join('/');
     const isCollapsed = this.isCollapsed(key);
@@ -205,7 +208,7 @@ class FriendFiles extends React.Component<Props> {
     );
   };
 
-  protected renderFile = (file: DocumentFile) => {
+  protected renderFile: (file: DocumentFile) => JSX.Element = file => {
     const { editingFile, updateTask, taskId } = this.props;
     const editing = file.path === editingFile;
     return (

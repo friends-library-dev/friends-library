@@ -6,7 +6,7 @@ import { LANG } from './env';
 let locale: Lang = 'en';
 
 export function t(strings: TemplateStringsArray, ...vars: (string | number)[]): string {
-  let string = translate(strings.join('%s'));
+  const string = translate(strings.join('%s'));
   return string.replace('%s', String(vars[0]));
 }
 

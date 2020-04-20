@@ -45,7 +45,7 @@ export default async function handler(argv: Argv): Promise<void> {
     .map(edition => edition.audio)
     .filter(isDefined);
 
-  for (let audio of audios.slice(0, argv.limit)) {
+  for (const audio of audios.slice(0, argv.limit)) {
     await handleAudio(audio, argv);
   }
 }
@@ -96,7 +96,7 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   }
 
   if (argv.all || argv.setTrackAttrs) {
-    for (let part of audio.parts) {
+    for (const part of audio.parts) {
       const attrs = {
         sharing: 'public',
         embeddable_by: 'all',
@@ -111,7 +111,7 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   }
 
   if (argv.all || argv.setTrackArtwork) {
-    for (let part of audio.parts) {
+    for (const part of audio.parts) {
       await client.setTrackArtwork(part.externalIdHq, artworkPath);
       await client.setTrackArtwork(part.externalIdLq, artworkPath);
     }
@@ -144,7 +144,7 @@ async function uploadLocalAudioFilesToCloud(
   paths: string[],
   filter: (str: string) => boolean,
 ): Promise<void> {
-  for (let path of paths.filter(filter)) {
+  for (const path of paths.filter(filter)) {
     const cloudPath = path.replace(/^.+?\/(en|es)\//, '$1/');
     green(`uploading ${filter === isMp3 ? 'mp3' : 'm4b'} file: ${cloudPath}`);
     await cloud.uploadFile(path, cloudPath);
@@ -178,7 +178,7 @@ async function createMissingPlaylist(audio: Audio, quality: 'HQ' | 'LQ'): Promis
 }
 
 async function verifyTracksExist(audio: Audio): Promise<void> {
-  for (let part of audio.parts) {
+  for (const part of audio.parts) {
     const trackHq = await getClient().getTrack(part.externalIdHq);
     if (trackHq === null || trackHq.user.permalink !== 'msf-audio') {
       throw new Error(`HQ track not found for ${audio.edition.path} ${part.title}`);

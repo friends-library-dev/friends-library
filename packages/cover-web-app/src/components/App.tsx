@@ -57,7 +57,7 @@ export default class App extends React.Component<{}, State> {
 
   public componentDidMount(): void {
     try {
-      let stored = JSON.parse(sessionStorage.getItem('state') || 'null');
+      const stored = JSON.parse(sessionStorage.getItem('state') || 'null');
       this.setState({ ...this.state, ...stored });
     } catch {}
 

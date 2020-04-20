@@ -114,16 +114,20 @@ class Component extends React.Component<Props, State> {
     changeReplaceTerm(replaceTerm);
   }, 500);
 
-  protected handleReplaceTermChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  protected handleReplaceTermChange: (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => void = e => {
     this.setState({ replaceTerm: e.target.value }, this.changeReplaceTerm);
   };
 
-  protected replaceAll = () => {
+  protected replaceAll: () => void = () => {
     this.setState({ replaceTerm: '' });
     this.props.replaceAll();
   };
 
-  protected handleSpecialKeys = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  protected handleSpecialKeys: (
+    event: React.KeyboardEvent<HTMLInputElement>,
+  ) => void = event => {
     const { undo, redo, cancelSearch } = this.props;
     if (event.key === 'z' && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();

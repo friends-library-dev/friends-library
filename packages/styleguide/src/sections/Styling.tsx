@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, H2, Para, Code, Section, Note, Snippet } from '../components';
 
-export default () => (
+const Styling: React.FC = () => (
   <Section id="styling">
     <H1>Misc. Styling</H1>
 
@@ -122,3 +122,5 @@ export default () => (
     <Pair id="the-end" emphasize={[7]} />
   </Section>
 );
+
+export default Styling;

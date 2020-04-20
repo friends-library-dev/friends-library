@@ -21,7 +21,7 @@ export function getLintAnnotations(
   return files.reduce((annotations, { path, adoc }) => {
     const lintResults = lint(adoc, { lang });
     return [...annotations, ...lintResults.map(result => toAnnotation(result, path))];
-  }, <GithubCheckAnnotation[]>[]);
+  }, [] as GithubCheckAnnotation[]);
 }
 
 function toAnnotation(result: LintResult, path: string): GithubCheckAnnotation {

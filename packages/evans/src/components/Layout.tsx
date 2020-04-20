@@ -50,7 +50,7 @@ const Layout: React.FC = ({ children }) => {
       store.removeListener('toggle:visibility', setCheckoutModalOpen);
       store.removeListener('cart:item-added', setJustAdded);
     };
-  });
+  }, []);
 
   useEffect(() => {
     const menuNode = document.querySelector('.Slideover');

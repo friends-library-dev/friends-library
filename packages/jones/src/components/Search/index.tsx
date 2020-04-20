@@ -89,7 +89,7 @@ class Search extends React.Component<Props, State> {
     }
   }
 
-  protected changeSearchTerm = (searchTerm: string) => {
+  protected changeSearchTerm: (searchTerm: string) => void = searchTerm => {
     keepSearchTerm = searchTerm;
     this.setState({
       searchTerm,
@@ -98,13 +98,13 @@ class Search extends React.Component<Props, State> {
     });
   };
 
-  protected changeReplaceTerm = (replaceTerm: string) => {
+  protected changeReplaceTerm: (replaceTerm: string) => void = replaceTerm => {
     this.setState({
       replaceTerm,
     });
   };
 
-  protected search = () => {
+  protected search: () => void = () => {
     const { searchTerm } = this.state;
     const { files, regexp, caseSensitive, words } = this.props;
     const termLength = searchTerm.trim().length;
@@ -120,7 +120,7 @@ class Search extends React.Component<Props, State> {
     this.setState({ results, searchComplete: true });
   };
 
-  protected cancelSearch = () => {
+  protected cancelSearch: () => void = () => {
     const { cancelSearch } = this.props;
     cancelSearch();
     this.setState({ searchTerm: '', results: [] });
@@ -132,7 +132,7 @@ class Search extends React.Component<Props, State> {
     this.setState({ results });
   }
 
-  protected replaceAll = () => {
+  protected replaceAll: () => void = () => {
     const { replaceAll } = this.props;
     const { results, replaceTerm } = this.state;
     replaceAll({ results, replace: replaceTerm });

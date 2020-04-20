@@ -20,7 +20,7 @@ import { SiteMetadata } from '../types';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { APP_ALT_URL, LANG } from '../env';
 
-export default ({
+const ExplorePage: React.FC<Props> = ({
   data: {
     updatedEditions,
     audioBooks,
@@ -34,7 +34,7 @@ export default ({
     waterPath,
     castle,
   },
-}: Props) => (
+}) => (
   <Layout>
     <Seo
       title={t`Explore Books`}
@@ -308,3 +308,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default ExplorePage;

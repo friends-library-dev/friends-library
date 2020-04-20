@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { H1, H2, Para, Code, Section, Note, Asciidoc } from '../components';
 
-export default () => (
+const Footnotes: React.FC = () => (
   <Section id="footnotes-section">
     <H1>Footnotes</H1>
     <Note>
@@ -40,3 +40,5 @@ export default () => (
     <Asciidoc id="footnote-multi" emphasize={[11]} />
   </Section>
 );
+
+export default Footnotes;

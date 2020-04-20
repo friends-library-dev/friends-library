@@ -18,7 +18,7 @@ import * as publishRef from './cmd/publish-ref';
 
 prettifyErrors();
 
-/* eslint-disable no-unused-expressions */
+/* eslint-disable  @typescript-eslint/no-unused-expressions */
 yargs
   .scriptName('yarn fl')
   // @ts-ignore

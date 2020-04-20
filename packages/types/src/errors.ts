@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
 export const checkoutErrors = {
   INVALID_FN_REQUEST_BODY: 'INVALID_FN_REQUEST_BODY',
   SHIPPING_NOT_POSSIBLE: 'SHIPPING_NOT_POSSIBLE',

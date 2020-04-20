@@ -21,8 +21,6 @@ interface Props {
 }
 
 const Checkout: React.FC<Props> = ({ isOpen }) => {
-  if (!isOpen) return null;
-
   const data = useStaticQuery(graphql`
     query EmptyCartBooks {
       doc1: document(
@@ -75,6 +73,8 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
       }
     }
   `);
+
+  if (!isOpen) return null;
 
   const recommended = Object.values(data)
     .filter(Boolean)

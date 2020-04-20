@@ -10,14 +10,14 @@ interface Props {
   height?: number;
 }
 
-export default ({
+const EmbeddedAudio: React.FC<Props> = ({
   className = '',
   trackId,
   playlistId,
   showArtwork = true,
   height = 166,
   title,
-}: Props) => (
+}) => (
   <iframe
     className={className}
     title={title}
@@ -28,6 +28,8 @@ export default ({
     src={src(trackId, playlistId, showArtwork)}
   />
 );
+
+export default EmbeddedAudio;
 
 function src(
   trackId: number,
