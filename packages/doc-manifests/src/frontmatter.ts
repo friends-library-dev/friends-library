@@ -78,9 +78,12 @@ export function copyright(dpc: DocPrecursor): Html {
       .join(' ');
   }
 
-  let strings = {
+  let t = {
     publicDomain: 'Public domain in the USA',
     publishedIn: 'Originally published in',
+    publisher: 'Friends Library Publishing',
+    domain: 'friendslibrary.com',
+    email: 'info@friendslibrary.com',
     textRevision: 'Text revision',
     createdBy: 'Ebook created and freely distributed by',
     moreFreeBooks: 'Find more free books from early Quakers at',
@@ -88,9 +91,12 @@ export function copyright(dpc: DocPrecursor): Html {
   };
 
   if (lang === 'es') {
-    strings = {
+    t = {
       publicDomain: 'Dominio público en los Estados Unidos de América',
       publishedIn: 'Publicado originalmente en',
+      publisher: 'La Biblioteca de los Amigos',
+      domain: 'bibliotecadelosamigos.org',
+      email: 'info@bibliotecadelosamigos.org',
       textRevision: 'Revisión de texto',
       createdBy: 'Creado y distribuido gratuitamente por',
       moreFreeBooks: 'Encuentre más libros gratis de los primeros Cuáqueros en',
@@ -101,19 +107,13 @@ export function copyright(dpc: DocPrecursor): Html {
   return `
   <div class="copyright-page">
     <ul>
-      <li>${strings.publicDomain}</li>
-      ${published ? `<li>${strings.publishedIn} ${published}</li>` : ''}
+      <li>${t.publicDomain}</li>
+      ${published ? `<li>${t.publishedIn} ${published}</li>` : ''}
       ${isbn ? `<li id="isbn">ISBN: <code>${isbn}</code></li>` : ''}
-      <li>${strings.textRevision} <code><a href="${url}">${sha}</a></code> — ${time}</li>
-      <li>${
-        strings.createdBy
-      } <a href="https://friendslibrary.com">Friends Library Publishing</a></li>
-      <li>${
-        strings.moreFreeBooks
-      } <a href="https://friendslibrary.com">friendslibrary.com</a></li>
-      <li>${
-        strings.contact
-      } <a href="mailto:info@friendslibrary.com.com">info@friendslibrary.com</a></li>
+      <li>${t.textRevision} <code><a href="${url}">${sha}</a></code> — ${time}</li>
+      <li>${t.createdBy} <a href="https://${t.domain}">${t.publisher}</a></li>
+      <li>${t.moreFreeBooks} <a href="https://${t.domain}">${t.domain}</a></li>
+      <li>${t.contact} <a href="mailto:${t.email}">${t.email}</a></li>
     </ul>
   </div>
   `;
