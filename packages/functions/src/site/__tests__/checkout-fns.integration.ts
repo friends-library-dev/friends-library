@@ -175,7 +175,7 @@ export function urls(): { endpoint: string; origin: string } {
   if (process.env.FNS_INTEGRATION_TEST_URL) {
     endpoint = process.env.FNS_INTEGRATION_TEST_URL;
   } else if (process.env.PR) {
-    endpoint = `https://deploy-preview-${process.env.PR}--en-evans.netlify.com`;
+    endpoint = `https://deploy-preview-${process.env.PR}--en-evans.netlify.app`;
   }
   endpoint += '/.netlify/functions/site';
   const origin = endpoint.split('/.netlify')[0];

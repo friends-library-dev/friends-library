@@ -64,11 +64,11 @@ function getNetlifyPreviewComment(prNumber: number): string {
   return stripIndent(`
     Deploy previews:
 
-    - [Website (English)](https://deploy-preview-${prNumber}--en-evans.netlify.com)
-    - [Website (Spanish)](https://deploy-preview-${prNumber}--es-evans.netlify.com)
-    - [Online Editor](https://deploy-preview-${prNumber}--flp-editor.netlify.com)
-    - [Styleguide](https://deploy-preview-${prNumber}--flp-styleguide.netlify.com)
-    - [Covers](https://deploy-preview-${prNumber}--flp-covers.netlify.com)
-    - [Storybook](https://deploy-preview-${prNumber}--flp-storybook.netlify.com)
+    - [Website (English)](https://deploy-preview-${prNumber}--en-evans.netlify.app)
+    - [Website (Spanish)](https://deploy-preview-${prNumber}--es-evans.netlify.app)
+    - [Online Editor](https://deploy-preview-${prNumber}--flp-editor.netlify.app)
+    - [Styleguide](https://deploy-preview-${prNumber}--flp-styleguide.netlify.app)
+    - [Covers](https://deploy-preview-${prNumber}--flp-covers.netlify.app)
+    - [Storybook](https://deploy-preview-${prNumber}--flp-storybook.netlify.app)
   `).trim();
 }
