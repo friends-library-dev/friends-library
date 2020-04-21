@@ -19,6 +19,19 @@ const common: CoverCssModule = (scaler, scope) => {
       box-sizing: inherit;
     }
 
+    .Cover h1,
+    .Cover h2,
+    .Cover h3,
+    .Cover h4,
+    .Cover h5,
+    .Cover h6,
+    .Cover p,
+    .Cover hr,
+    .Cover figure,
+    .Cover pre {
+      margin: 0; /* match tailwind reset */
+    }
+
     .Cover .front,
     .Cover .back {
       display: flex;
