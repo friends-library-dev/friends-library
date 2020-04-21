@@ -50,9 +50,15 @@ documents:
         isbn: 978-1-64476-082-6
   - id: 873dacbb-3205-4afb-8c38-772fb7a09fed
     alt_language_id: ee1e556f-0462-49bc-a2e3-7c3924c9fb48
-    title: A Few Reasons for Leaving the Established Mode of Worship
-    slug: few-reasons-for-leaving
-    filename: A_Few_Reasons_for_Leaving
+    title: Come Out of Babylon
+    original_title:
+      A Few Reasons for Leaving the National Established Mode of Worship, addressed to the
+      professors of religion in this day, by one who was long in the profession, but knew
+      not the power, till it pleased the Lord, by the ministry and writings of the people
+      called Quakers, to direct him to where alone the power is to be known, that is,
+      within.
+    slug: come-out-of-babylon
+    filename: Come_Out_of_Babylon
     description:
       Though raised in the Church of England, John Spalding’s (1765-1795) pursuit of truth
       left him dissatisfied with the traditional worship of his day, concluding that, in
@@ -77,21 +83,21 @@ documents:
         editor: Jason R. Henderson
         audio:
           added: 2017-11-11T05:00:00.000Z
+          external_playlist_id_hq: 1037093152
+          external_playlist_id_lq: 1037093305
           reader: Jason Henderson
-          external_playlist_id_hq: 971893939
-          external_playlist_id_lq: 971901193
           parts:
             - title: Part 1
-              external_id_hq: 354378077
-              external_id_lq: 354378092
+              external_id_hq: 803918338
+              external_id_lq: 803917480
               filesize_hq: 45003401
               filesize_lq: 15559998
               seconds: 2593
               chapters:
                 - 0
             - title: Part 2
-              external_id_hq: 354370403
-              external_id_lq: 354370415
+              external_id_hq: 803919727
+              external_id_lq: 803918815
               filesize_hq: 48852152
               filesize_lq: 16644750
               seconds: 2774
