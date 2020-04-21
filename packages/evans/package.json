@@ -71,7 +71,7 @@
     "develop:es:site": "GATSBY_LANG=es GATSBY_PORT=9333 GATSBY_ALT_PORT=9222 gatsby develop --port 9333",
     "develop:en": "run-p develop:en:site develop:functions",
     "develop:es": "run-p develop:es:site develop:functions",
-    "build:netlify": "cd ../../ && yarn fell:clone && cd packages/evans && yarn compile && yarn build && ln -s ../functions/dist functions"
+    "build:netlify": "cd ../../ && yarn fell:clone && cd packages/evans && yarn compile && yarn build && ln -s ../functions/dist functions && cd ../../ && yarn netlify:cache"
   },
   "devDependencies": {
     "@types/he": "^1.1.0",
