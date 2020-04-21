@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - yarn_cached_install
-      - run: DOCS_REPOS_ROOT=~/fl-node1/ yarn fell:clone # must go BEFORE the two builds below
+      - run: DOCS_REPOS_ROOT=~/fl-node1/ yarn fell:fresh-clone # must go BEFORE the two builds below
       - run: DOCS_REPOS_ROOT=~/fl-node1/ yarn fl check-intake
       - run: DOCS_REPOS_ROOT=~/fl-node1/ yarn evans:build:en
       - run: DOCS_REPOS_ROOT=~/fl-node1/ yarn evans:build:es
