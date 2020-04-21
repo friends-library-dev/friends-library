@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, Para, Code, Section, Note, Asciidoc } from '../components';
 
-const editorUrl = 'https://flp-editor.netlify.com';
+const editorUrl = 'https://flp-editor.netlify.app';
 
 const Emphasis: React.FC = () => (
   <Section id="emphasis">

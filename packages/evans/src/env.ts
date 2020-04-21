@@ -39,7 +39,7 @@ function swapAltUrl(url: Url): Url {
       : 'https://www.friendslibrary.com';
   }
 
-  if (url.includes('.netlify.com')) {
+  if (url.includes('.netlify.app')) {
     return url.replace('en-evans.', 'es-evans.').replace('es-evans.', 'en-evans.');
   }
 

@@ -127,7 +127,7 @@ storiesOf('Doc Page', module)
       price={499}
       hasAudio={true}
       numChapters={15}
-      altLanguageUrl="https://es-evans.netlify.com/james-parnell/vida"
+      altLanguageUrl="https://www.bibliotecadelosamigos.org/james-parnell/vida"
       documentId="123abc"
       editions={[]}
     />
