@@ -94,12 +94,12 @@ const DocBlock: React.FC<Props> = props => {
     }
   }, []);
 
-  useEffect(positionWizard, [downloading, addingToCart, wrap.current, positionWizard]);
+  useEffect(positionWizard, [downloading, addingToCart, wrap.current]);
 
   useEffect(() => {
     window.addEventListener('resize', positionWizard);
     return () => window.removeEventListener('resize', positionWizard);
-  }, [downloading, addingToCart, positionWizard]);
+  }, [downloading, addingToCart]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const escape: (e: KeyboardEvent) => any = ({ keyCode }) => {
