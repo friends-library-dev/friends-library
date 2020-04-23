@@ -61,7 +61,7 @@ const Item: React.FC<Props> = ({
         </code>
       </div>
       <div
-        className="hidden md:flex md:w-1/3 remove flex-col order-2 justify-center"
+        className="hidden md:flex md:w-1/3 remove flex-col order-2 justify-center cursor-pointer"
         onClick={remove}
       >
         <span>&#x2715;</span>
