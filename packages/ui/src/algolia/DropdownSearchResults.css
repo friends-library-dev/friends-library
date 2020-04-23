@@ -1,0 +1,55 @@
+.DropdownSearchResults {
+  box-shadow: 10px 22px 45px -5px rgba(0, 0, 0, 0.3),
+    1px 39px 40px -5px rgba(0, 0, 0, 0.4);
+  max-width: calc(100vw - 20px);
+  min-width: calc(100vw - 16px);
+  transform: translateX(13px);
+}
+
+@media (min-width: 490px) {
+  .DropdownSearchResults {
+    max-width: 560px;
+    min-width: 450px;
+    transform: none;
+  }
+}
+
+.DropdownSearchResults > div {
+  max-height: calc(100vh - 75px);
+  overflow: auto;
+}
+
+.DropdownSearchResults::before {
+  display: block;
+  position: absolute;
+  content: '';
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  z-index: 1000;
+  top: -8px;
+  right: 40px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  @apply border-flgray-400;
+  transform: rotate(-45deg);
+  border-radius: 2px;
+}
+
+.DropdownSearchResults .ais-Hits-item:hover {
+  @apply bg-flgray-200;
+}
+
+.DropdownSearchResults .ais-Hits-item a:focus {
+  @apply bg-flgray-200;
+}
+
+.DropdownSearchResults .ais-Hits-item:last-child a {
+  @apply border-0;
+}
+
+@screen md {
+  .DropdownSearchResults {
+    min-width: 560px;
+  }
+}

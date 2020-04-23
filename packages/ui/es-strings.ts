@@ -74,6 +74,12 @@ const strings: { [k: string]: string } = {
   'Featured Books': 'Libros Destacados',
   'Find out more': 'Más Información',
 
+  // search
+  Friends: 'Amigos',
+  Page: 'Página',
+  Residences: 'Residencias',
+  'No results for query': 'No hemos encontrado resultados para',
+
   // Friend Page
   'All Compilations (%s)': 'Todas las Compilaciones (%s)',
   'Books by %s': 'Libros de %s',

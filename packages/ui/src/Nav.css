@@ -1,39 +1,63 @@
 .Nav {
   height: 70px;
-  padding: 0 20px 0 0;
-}
-
-.Nav .Logo:lang(en) {
-  width: 140px;
+  padding: 0 10px 0 0;
 }
 
 .Nav .Logo:lang(es) {
-  width: 190px;
+  width: 160px;
   transform: translateY(4px);
 }
 
-@media (max-width: 670px) {
-  .Nav.searching .Logo {
-    width: 145px;
+.Nav.showing-cart .Logo:lang(es) {
+  width: 120px;
+}
+
+.Nav .Logo:lang(en) {
+  width: 110px;
+}
+
+@media (max-width: 340px) {
+  .Nav .Hamburger {
+    margin-right: 0.75rem;
   }
 }
 
-@media (max-width: 570px) {
-  .Nav.searching .Logo {
-    width: 100px;
-  }
-}
-
-@media (min-width: 545px) {
-  .Nav .Logo:lang(en) {
-    width: 150px;
+@media (min-width: 340px) {
+  .Nav {
+    padding-right: 20px;
   }
 
   .Nav .Logo:lang(es) {
-    width: 210px;
+    width: 175px;
   }
 
-  .Nav .Search {
-    display: block;
+  .Nav.showing-cart .Logo:lang(es) {
+    width: 133px;
   }
+}
+
+@media (min-width: 360px) {
+  .Nav .Logo:lang(en) {
+    width: 140px;
+  }
+  .Nav .Logo:lang(es) {
+    width: 190px;
+  }
+  .Nav.showing-cart .Logo:lang(es) {
+    width: 160px;
+  }
+}
+
+@media (min-width: 400px) {
+  .Nav.showing-cart .Logo:lang(es) {
+    width: 190px;
+  }
+}
+
+html[lang='es'] .Nav.searching input {
+  background-color: rgb(193, 140, 89, 0.05);
+}
+
+html[lang='en'] .Nav.searching input {
+  background-color: rgb(108, 49, 66, 0.05);
 }

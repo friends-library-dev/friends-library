@@ -12,7 +12,6 @@ const PillDropdownDropdown: React.FC<Props> = ({ className, accordion, children 
   const Element = accordion ? Accordion : 'div';
   return (
     <Element
-      translate=""
       className={cx(
         className,
         'PillDropdownDropdown relative rounded-lg bg-flgray-100 shadow-direct',

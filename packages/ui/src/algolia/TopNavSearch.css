@@ -1,0 +1,5 @@
+.TopNavSearch.searching form,
+.TopNavSearch.searching input {
+  width: 100%;
+  max-width: 550px;
+}
