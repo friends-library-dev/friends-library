@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import cx from 'classnames';
 import smoothscroll from 'smoothscroll-polyfill';
-import { useNumCartItems, CartStore } from '@friends-library/ui';
+import { useNumCartItems, CartStore, useEscapeable } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
 import { Dual, Nav, PopUnder, Footer, t } from '@friends-library/ui';
 import {
@@ -52,23 +52,7 @@ const Layout: React.FC = ({ children }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const menuNode = document.querySelector('.Slideover');
-    const click: (event: any) => any = event => {
-      if (menuOpen && menuNode && !menuNode.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    };
-    const escape: (e: KeyboardEvent) => any = ({ keyCode }) => {
-      menuOpen && keyCode === 27 && setMenuOpen(false);
-    };
-    document.addEventListener('click', click);
-    document.addEventListener('keydown', escape);
-    return () => {
-      document.removeEventListener('click', click);
-      window.removeEventListener('keydown', escape);
-    };
-  }, [menuOpen, setMenuOpen]);
+  useEscapeable('.Slideover', menuOpen, setMenuOpen);
 
   const data = useStaticQuery(graphql`
     query LayoutQuery {

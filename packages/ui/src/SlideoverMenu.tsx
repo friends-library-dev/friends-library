@@ -4,7 +4,7 @@ import { Lang } from '@friends-library/types';
 import { t } from '@friends-library/ui';
 import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';
-import Search from './Search';
+// import Search from './algolia/TopNavSearchInput';
 import { LANG } from './env';
 import { useCartTotalQuantity } from './checkout/hooks';
 import './SlideoverMenu.css';
@@ -29,7 +29,7 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <i className="w-12" />
       </header>
       <div className="py-12 pl-16 md:pl-24">
-        <Search className="mb-4" expanded onClick={() => {}} onBlur={() => {}} />
+        {/* <Search className="mb-4" expanded onClick={() => {}} onBlur={() => {}} /> */}
         <LinkGroup
           links={[
             [t`/getting-started`, t`Getting Started`],

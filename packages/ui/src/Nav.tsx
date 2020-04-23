@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Link from 'gatsby-link';
 import cx from 'classnames';
+import { useEscapeable } from '@friends-library/ui';
 import { LANG } from './env';
 import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';
 import Hamburger from './Hamburger';
-import Search from './Search';
 import CartBadge from './CartBadge';
+import TopNavSearch from './algolia/TopNavSearch';
 import './Nav.css';
 
 interface Props {
@@ -20,37 +21,49 @@ const Nav: React.FC<Props> = ({
   initialSearching,
   onHamburgerClick,
   onCartBadgeClick,
-  showCartBadge,
+  // showCartBadge,
 }) => {
+  const showCartBadge = false;
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
+  useEscapeable('.TopNavSearch', searching, setSearching);
+  const Logo = LANG === 'es' ? AmigosLogo : FriendsLogo;
   return (
     <nav
-      className={cx('Nav flex justify-between bg-white border-gray-300 border-b', {
+      className={cx('Nav flex bg-white border-gray-300 border-b', {
         searching,
+        'showing-cart': showCartBadge,
       })}
     >
-      <Hamburger onClick={onHamburgerClick} />
-      <Link className="m-0" to="/">
-        {LANG === 'es' ? (
-          <AmigosLogo className="h-full block transition-ease-out-1/4s" />
-        ) : (
-          <FriendsLogo className="h-full block transition-ease-out-1/4s" />
-        )}
+      <Hamburger
+        onClick={onHamburgerClick}
+        className={cx('flex-grow-0', {
+          'mr-6': !searching,
+          'mr-0 sm:mr-6': searching,
+        })}
+      />
+      <Link
+        className={cx('m-0 sm:inline mr-4 sm:mr-0', {
+          'hidden flex-grow-0': searching,
+          'flex-grow': !searching,
+        })}
+        to="/"
+      >
+        <Logo className="h-full block mx-auto" />
       </Link>
-      <div className="flex items-center">
-        <Search
-          className="hidden"
-          autoFocus
-          expanded={searching}
-          onClick={() => {
-            if (!searching) {
-              setSearching(true);
-            }
-          }}
-          onBlur={() => setSearching(false)}
-        />
-        {showCartBadge && <CartBadge onClick={onCartBadgeClick} />}
-      </div>
+      <TopNavSearch className="flex" searching={searching} setSearching={setSearching} />
+      {showCartBadge && (
+        <div
+          className={cx(
+            'ml-2 flex-col justify-center items-end flex-growx sm:flex-grow-0',
+            {
+              'hidden sm:flex': searching,
+              flex: !searching,
+            },
+          )}
+        >
+          <CartBadge onClick={onCartBadgeClick} />
+        </div>
+      )}
     </nav>
   );
 };

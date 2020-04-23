@@ -7,6 +7,11 @@
   --reach-accordian: 1;
 }
 
+mark {
+  @apply bg-flprimary-400 text-white;
+  padding: 0 1px;
+}
+
 html:lang(es) .es\:hidden {
   display: none;
 }

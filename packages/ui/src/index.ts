@@ -15,6 +15,7 @@ export { default as BookTeaserCards } from './blocks/BookTeaserCards';
 export { default as EmbeddedAudio } from './EmbeddedAudio';
 export { t, translate, Dual, useLocale } from './translation';
 export { makeScroller } from './lib/scroll';
+export { useEscapeable } from './lib/hooks';
 
 // home page
 export { default as HomeGettingStartedBlock } from './pages/home/GettingStartedBlock';

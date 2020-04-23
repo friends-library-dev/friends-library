@@ -1,10 +1,19 @@
 import React from 'react';
+import cx from 'classnames';
 import './CartBadge.css';
 
-const CartBadge: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+interface Props {
+  onClick: () => any;
+  className?: string;
+}
+
+const CartBadge: React.FC<Props> = ({ onClick, className }) => {
   return (
     <div
-      className="CartBadge rounded-full border-flprimary border-solid border ml-2 flex flex-row items-center justify-center relative cursor-pointer"
+      className={cx(
+        className,
+        'CartBadge rounded-full border-flprimary border-solid border flex flex-row items-center justify-center relative cursor-pointer',
+      )}
       onClick={onClick}
     >
       <Icon />

@@ -64,6 +64,9 @@ export default {
       },
     },
   },
-  variants: {},
+  variants: {
+    padding: ['responsive', 'last'],
+    borderWidth: ['responsive', 'last'],
+  },
   plugins: [],
 };
