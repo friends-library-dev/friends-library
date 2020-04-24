@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import { FluidBgImageObject } from '@friends-library/types';
+import { t } from '@friends-library/locale';
 import {
   FriendsPageCompilationsBlock,
   FriendsPageHero,
   FriendsPageControlsBlock,
   FriendCard,
   Stack,
-  t,
 } from '@friends-library/ui';
 import { Seo, Layout } from '../components';
 

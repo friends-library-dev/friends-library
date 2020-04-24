@@ -23,6 +23,7 @@
   "references": [
     { "path": "../types" },
     { "path": "../cover-component" },
+    { "path": "../locale" },
     { "path": "../friends" }
   ],
   "include": [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { t } from '../../translation';
+import { t } from '@friends-library/locale';
 import { Props as BookTeaserCardProps } from '../../BookTeaserCard';
 import BookTeaserCards from '../../blocks/BookTeaserCards';
 

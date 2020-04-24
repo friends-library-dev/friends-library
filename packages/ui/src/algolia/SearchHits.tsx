@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import { Highlight, Snippet } from 'react-instantsearch-dom';
-import { t } from '../translation';
+import { t } from '@friends-library/locale';
 
 export interface HitProps {
   hit: {

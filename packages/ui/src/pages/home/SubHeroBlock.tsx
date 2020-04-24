@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'gatsby-image';
 import { FluidImageObject } from '@friends-library/types';
-import { t, Dual } from '../../translation';
+import { t } from '@friends-library/locale';
+import Dual from '../../Dual';
 import Heading from '../../Heading';
 import './SubHeroBlock.css';
 

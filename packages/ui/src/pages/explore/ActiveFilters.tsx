@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Dual } from '../../translation';
+import Dual from '../../Dual';
 import FilterBtn from './FilterBtn';
 import './ActiveFilters.css';
 

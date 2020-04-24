@@ -1,8 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
-import { FluidBgImageObject } from '@friends-library/types';
 import BackgroundImage from 'gatsby-background-image';
-import { t, Dual } from '../translation';
+import { FluidBgImageObject } from '@friends-library/types';
+import { t } from '@friends-library/locale';
+import Dual from '../Dual';
 import { bgLayer } from '../lib/color';
 import './AudiobooksHero.css';
 

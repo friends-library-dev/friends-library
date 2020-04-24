@@ -1,12 +1,13 @@
 import React from 'react';
 import cx from 'classnames';
+import { t } from '@friends-library/locale';
 import Button from '../../Button';
 import Stack from '../../layout/Stack';
 import CircleSilhouette from './CircleSilhouette';
 import Flag from '../../icons/Flag';
 import Calendar from '../../icons/Calendar';
 import ThinLogo from '../../icons/ThinLogo';
-import { t, Dual } from '../../translation';
+import Dual from '../../Dual';
 import './FriendCard.css';
 
 interface Props {

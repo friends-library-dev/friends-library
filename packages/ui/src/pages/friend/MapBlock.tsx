@@ -1,8 +1,8 @@
 import React from 'react';
 import BackgroundImage from 'gatsby-background-image';
 import { FluidBgImageObject } from '@friends-library/types';
+import { t } from '@friends-library/locale';
 import Meta from './FriendMeta';
-import { t } from '../../translation';
 import Uk from '../../images/maps/UK--2x.png';
 import Us from '../../images/maps/US.png';
 import Europe from '../../images/maps/Europe--2x.png';

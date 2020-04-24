@@ -1,11 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 import { connectStateResults, Index, Configure } from 'react-instantsearch-dom';
+import { t } from '@friends-library/locale';
 import Pagination from './Pagination';
 import IndexResults from './IndexResults';
 import { FriendHit, BookHit } from './SearchHits';
 import { LANG } from '../env';
-import { t } from '../translation';
 import './DropdownSearchResults.css';
 
 interface Props {

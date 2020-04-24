@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import Link from 'gatsby-link';
 import { CoverProps } from '@friends-library/types';
-import { t } from '../../translation';
+import { t } from '@friends-library/locale';
 import Album from '../../Album';
 import AudioDuration from '../../AudioDuration';
 import Button from '../../Button';

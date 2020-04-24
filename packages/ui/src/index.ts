@@ -13,7 +13,7 @@ export { default as Stack } from './layout/Stack';
 export { default as BookTeaserCard } from './BookTeaserCard';
 export { default as BookTeaserCards } from './blocks/BookTeaserCards';
 export { default as EmbeddedAudio } from './EmbeddedAudio';
-export { t, translate, Dual, useLocale } from './translation';
+export { default as Dual } from './Dual';
 export { makeScroller } from './lib/scroll';
 export { useEscapeable } from './lib/hooks';
 

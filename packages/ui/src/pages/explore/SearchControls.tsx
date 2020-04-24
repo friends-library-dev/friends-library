@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditionType } from '@friends-library/types';
+import { t, translate } from '@friends-library/locale';
 import { Region } from './types';
-import { t, translate } from '../../translation';
 import FilterControls from './FilterControls';
 import ActiveFilters from './ActiveFilters';
 

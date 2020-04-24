@@ -1,7 +1,8 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { FluidBgImageObject } from '@friends-library/types';
-import { ContactFormBlock, t } from '@friends-library/ui';
+import { ContactFormBlock } from '@friends-library/ui';
+import { t } from '@friends-library/locale';
 import { Layout, Seo } from '../components';
 import { LANG } from '../env';
 

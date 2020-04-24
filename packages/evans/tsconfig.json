@@ -12,6 +12,7 @@
   "references": [
     { "path": "../types" },
     { "path": "../env" },
+    { "path": "../locale" },
     { "path": "../cli-utils" },
     { "path": "../cover-component" },
     { "path": "../dpc-fs" },

@@ -2,7 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { AudioQuality } from '@friends-library/types';
 import Link from 'gatsby-link';
-import { t, Dual } from '../../translation';
+import { t } from '@friends-library/locale';
+import Dual from '../../Dual';
 import QualitySwitch from './QualitySwitch';
 import Stack from '../../layout/Stack';
 

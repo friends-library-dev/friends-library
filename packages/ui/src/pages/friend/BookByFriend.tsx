@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { CoverProps } from '@friends-library/types';
 import { ThreeD } from '@friends-library/cover-component';
-import { t, translate } from '../../translation';
+import { t, translate } from '@friends-library/locale';
 import Button from '../../Button';
 import ClockIcon from '../../icons/Clock';
 import TagsIcon from '../../icons/Tags';

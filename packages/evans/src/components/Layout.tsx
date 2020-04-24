@@ -2,9 +2,17 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import cx from 'classnames';
 import smoothscroll from 'smoothscroll-polyfill';
-import { useNumCartItems, CartStore, useEscapeable } from '@friends-library/ui';
 import { Helmet } from 'react-helmet';
-import { Dual, Nav, PopUnder, Footer, t } from '@friends-library/ui';
+import { t } from '@friends-library/locale';
+import {
+  useNumCartItems,
+  CartStore,
+  useEscapeable,
+  Dual,
+  Nav,
+  PopUnder,
+  Footer,
+} from '@friends-library/ui';
 import {
   CoverWebStylesAllStatic,
   CoverWebStylesSizes,

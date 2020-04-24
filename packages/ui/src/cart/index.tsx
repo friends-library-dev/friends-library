@@ -1,7 +1,8 @@
 import React from 'react';
+import { t } from '@friends-library/locale';
 import Item from './Item';
 import Button from '../Button';
-import { t, Dual } from '../translation';
+import Dual from '../Dual';
 import Back from '../checkout/Back';
 import Progress from '../checkout/Progress';
 import Header from '../checkout/Header';

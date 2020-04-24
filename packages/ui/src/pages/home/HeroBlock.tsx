@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dual } from '../../translation';
+import Dual from '../../Dual';
 import './HeroBlock.css';
 
 const HeroBlock: React.FC = () => (

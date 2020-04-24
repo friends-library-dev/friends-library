@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import { Lang } from '@friends-library/types';
-import { t } from '@friends-library/ui';
+import { t } from '@friends-library/locale';
 import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';
 // import Search from './algolia/TopNavSearchInput';

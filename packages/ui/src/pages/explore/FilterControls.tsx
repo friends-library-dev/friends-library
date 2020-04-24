@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { t } from '../../translation';
+import { t } from '@friends-library/locale';
 import SearchInput from '../../SearchInput';
 import FilterSelect from './FilterSelect';
 

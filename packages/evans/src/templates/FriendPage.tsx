@@ -2,9 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import { graphql } from 'gatsby';
 import { Name, Description, FluidBgImageObject } from '@friends-library/types';
+import { t, translate } from '@friends-library/locale';
 import {
-  t,
-  translate,
   FriendBlock,
   FeaturedQuoteBlock,
   BookByFriend,

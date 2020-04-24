@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
-import { t, Dual } from '../../translation';
+import { t } from '@friends-library/locale';
+import Dual from '../../Dual';
 import Button from '../../Button';
 import { makeScroller } from '../../lib/scroll';
 import './Form.css';

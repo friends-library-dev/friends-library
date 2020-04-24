@@ -1,7 +1,8 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { CoverProps } from '@friends-library/types';
-import { PathBlock, t } from '@friends-library/ui';
+import { t } from '@friends-library/locale';
+import { PathBlock } from '@friends-library/ui';
 import { coverPropsFromQueryData } from '../lib/covers';
 import { LANG } from '../env';
 

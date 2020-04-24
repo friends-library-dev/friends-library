@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { t } from '@friends-library/ui';
+import { t } from '@friends-library/locale';
 import { LANG } from '../env';
 
 interface Props {

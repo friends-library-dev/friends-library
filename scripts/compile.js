@@ -17,6 +17,7 @@ const pkgs = [
   'cover-component',
   'dpc-fs',
   'lulu',
+  'locale',
   'env',
   'evans',
   'cli-utils',
