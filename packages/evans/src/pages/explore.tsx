@@ -17,6 +17,7 @@ import {
 import { Layout, Seo } from '../components';
 import BooksBgBlock from '../components/BooksBgBlock';
 import { SiteMetadata } from '../types';
+import { PAGE_META_DESCS } from '../lib/seo';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import { APP_ALT_URL, LANG } from '../env';
 
@@ -28,7 +29,7 @@ const ExplorePage: React.FC<Props> = ({
     booksByDate,
     regionBooks,
     searchBooks,
-    site,
+    site: { meta },
     headphones,
     books3,
     waterPath,
@@ -38,10 +39,13 @@ const ExplorePage: React.FC<Props> = ({
   <Layout>
     <Seo
       title={t`Explore Books`}
-      description={[
-        `Explore ${site.meta.numEnglishBooks} books written by early members of the Religious Society of Friends (Quakers) – available for free download as EPUB, MOBI, PDF, and audiobooks. Browse ${updatedEditions.nodes.length} updated editions, ${audioBooks.nodes.length} audiobooks, and recently added titles, or view books by geographic region or time period.`,
-        `Explora nuestros ${site.meta.numSpanishBooks} libros escritos por los primeros miembros de la Sociedad de Amigos (Cuáqueros), disponibles de forma gratuita en formatos digitales EPUB, MOBI, PDF, y audiolibros. Puedes navegar por todos nuestros libros y audiolibros, o buscar libros en la categoría particular que más te interese.`,
-      ]}
+      description={PAGE_META_DESCS.explore[LANG].replace(
+        /%NUM_ENGLISH_BOOKS%/g,
+        `${meta.numEnglishBooks}`,
+      )
+        .replace(/%NUM_UPDATED_EDITIONS%/g, `${updatedEditions.nodes.length}`)
+        .replace(/%NUM_SPANISH_BOOKS%/g, `${meta.numSpanishBooks}`)
+        .replace(/%NUM_AUDIOBOOKS%/g, `${audioBooks.nodes.length}`)}
     />
     <BooksBgBlock bright>
       <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-10 sm:px-16 my-6 max-w-screen-md mx-auto">
@@ -51,13 +55,13 @@ const ExplorePage: React.FC<Props> = ({
         </Dual.h1>
         <Dual.p className="body-text">
           <>
-            We currently have {site.meta.numEnglishBooks} books freely available on this
-            site. Overwhelmed? On this page you can browse all the titles by edition,
-            region, time period, tags, and more&mdash;or search the full library to find
-            exactly what you’re looking for.
+            We currently have {meta.numEnglishBooks} books freely available on this site.
+            Overwhelmed? On this page you can browse all the titles by edition, region,
+            time period, tags, and more&mdash;or search the full library to find exactly
+            what you’re looking for.
           </>
           <>
-            Actualmente tenemos {site.meta.numSpanishBooks} libros disponibles de forma
+            Actualmente tenemos {meta.numSpanishBooks} libros disponibles de forma
             gratuita en este sitio, y más están siendo traducidos y añadidos regularmente.
             En nuestra página de “Explorar” puedes navegar por todos nuestros libros y
             audiolibros, o buscar libros en la categoría particular que más te interese.
@@ -120,7 +124,7 @@ const ExplorePage: React.FC<Props> = ({
     )}
     <ExploreAltSiteBlock
       url={APP_ALT_URL}
-      numBooks={site.meta[LANG === 'en' ? 'numSpanishBooks' : 'numEnglishBooks']}
+      numBooks={meta[LANG === 'en' ? 'numSpanishBooks' : 'numEnglishBooks']}
     />
     <ExploreSearchBlock
       bgImg={waterPath.image.fluid}

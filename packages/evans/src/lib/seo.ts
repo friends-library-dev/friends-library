@@ -85,3 +85,36 @@ export function friendPageMetaDesc(
     .replace(/&rdquo; &mdash;/g, '&rdquo;&mdash;')
     .replace(/&rdquo;(\.|,)/g, '$1&rdquo;');
 }
+
+export const PAGE_META_DESCS = {
+  audiobooks: {
+    en:
+      'Browse %NUM_AUDIOBOOKS% free audiobooks from early members of the Religious Society of Friends (Quakers). Download as a podcast, MP3s, or an M4B file – or listen online in your browser. All books are available in e-Book format as well for free download as EPUB, MOBI, or PDF, and paperback copies are also available at very low cost.',
+    es:
+      'Dale un vistazo a nuestros audiolibros gratuitos de los primeros miembros de la Sociedad Religiosa de Amigos (Cuáqueros). Puedes descargar el audio como un podcast, MP3, o un archivo M4B - o reproducirlo en línea desde tu navegador. También, los libros completos están disponibles para ser descargados gratuitamente en formatos digitales como EPUB, MOBI, PDF. Libros impresos también están disponibles por un precio muy económico.',
+  },
+  contact: {
+    en:
+      'Got a question? — or are you having any sort of technical trouble with our books or website? Want to reach out for any other reason? We’d love to hear from you! You can expect to hear back within a day or two.',
+    es:
+      '¿Tienes alguna pregunta? — ¿o estás teniendo algún tipo de problema técnico con nuestros libros o con el sitio? ¿Quieres ponerte en contacto por alguna otra razón? ¡Nos encantaría escucharte! Puedes contar con nuestra respuesta en un día o dos.',
+  },
+  explore: {
+    en:
+      'Explore %NUM_ENGLISH_BOOKS% books written by early members of the Religious Society of Friends (Quakers) – available for free download as EPUB, MOBI, PDF, and audiobooks. Browse %NUM_UPDATED_EDITIONS% updated editions, %NUM_AUDIOBOOKS% audiobooks, and recently added titles, or view books by geographic region or time period.',
+    es:
+      'Explora nuestros %NUM_SPANISH_BOOKS% libros escritos por los primeros miembros de la Sociedad de Amigos (Cuáqueros), disponibles de forma gratuita en formatos digitales EPUB, MOBI, PDF, y audiolibros. Puedes navegar por todos nuestros libros y audiolibros, o buscar libros en la categoría particular que más te interese.',
+  },
+  friends: {
+    en:
+      'Friends Library currently contains books written by %NUM_FRIENDS% early members of the Religious Society of Friends (Quakers), and more authors are being added regularly. View all authors here, including William Penn, Isaac Penington, Robert Barclay, and George Fox. All books are available in their entirety for free download as EPUB, MOBI, PDF, and a growing number are available as audiobooks. Paperback copies are also available at very low cost.',
+    es:
+      'Actualmente la Biblioteca de Amigos contiene libros escritos por %NUM_FRIENDS% antiguos Amigos, y constantemente estamos añadiendo nuevos autores. Aquí puedes ver todos nuestros autores, incluyendo William Penn, Isaac Penington, Robert Barclay, y George Fox. Los libros completos están disponibles para ser descargados gratuitamente en formatos digitales como EPUB, MOBI, PDF, y algunos han sido grabados como audiolibros. Libros impresos también están disponibles por un precio muy económico.',
+  },
+  'getting-started': {
+    en:
+      'View hand-picked reading recommendations to help you get started with our %NUM_ENGLISH_BOOKS% books written by early members of the Religious Society of Friends (Quakers). Recommendations come in four categories: History, Doctrine, Spiritual Life, and Journals. All books are available in their entirety for free download as EPUB, MOBI, PDF, and a growing number are available as audiobooks. Paperback copies are also available at very low cost.',
+    es:
+      'Hemos seleccionado algunos de nuestros libros favoritos de los antiguos miembros de la Sociedad de Amigos (Cuáqueros), y los hemos organizado en categorías para ayudarte a comenzar. Nuestras recomendaciones están organizadas en cuatro categorías: Historia, Doctrina, Vida Espiritual, y Biografía. Los libros completos están disponibles para ser descargados gratuitamente en formatos digitales como EPUB, MOBI, PDF, y algunos han sido grabados como audiolibros. Libros impresos también están disponibles por un precio muy económico.',
+  },
+};

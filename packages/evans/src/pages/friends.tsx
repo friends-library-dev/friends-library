@@ -9,6 +9,8 @@ import {
   FriendCard,
   Stack,
 } from '@friends-library/ui';
+import { LANG } from '../env';
+import { PAGE_META_DESCS } from '../lib/seo';
 import { Seo, Layout } from '../components';
 
 const FriendsPage: React.FC<Props> = ({
@@ -24,10 +26,10 @@ const FriendsPage: React.FC<Props> = ({
     <Layout>
       <Seo
         title={t`All Friends`}
-        description={[
-          `Friends Library currently contains books written by ${allFriend.nodes.length} early members of the Religious Society of Friends (Quakers), and more authors are being added regularly. View all authors here, including William Penn, Isaac Penington, Robert Barclay, and George Fox. All books are available in their entirety for free download as EPUB, MOBI, PDF, and a growing number are available as audiobooks. Paperback copies are also available at very low cost.`,
-          `Actualmente la Biblioteca de Amigos contiene libros escritos por ${allFriend.nodes.length} antiguos Amigos, y constantemente estamos añadiendo nuevos autores. Aquí puedes ver todos nuestros autores, incluyendo William Penn, Isaac Penington, Robert Barclay, y George Fox. Los libros completos están disponibles para ser descargados gratuitamente en formatos digitales como EPUB, MOBI, PDF, y algunos han sido grabados como audiolibros. Libros impresos también están disponibles por un precio muy económico.`,
-        ]}
+        description={PAGE_META_DESCS.friends[LANG].replace(
+          /%NUM_FRIENDS%/g,
+          String(allFriend.nodes.length),
+        )}
       />
       <FriendsPageHero numFriends={allFriend.nodes.length} bgImg={street.image.fluid} />
       <div className="pt-10 pb-20 sm:px-24 md:px-16 lg:px-32 xl:px-0 xl:pt-20 xl:pb-24">

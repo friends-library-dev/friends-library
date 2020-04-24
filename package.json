@@ -41,6 +41,9 @@
     "netlify:cache": "[ $NETLIFY = true ] && ./scripts/netlify-yarn-cache.sh || echo \"skip netlify:cache\"",
     "netlify:restore": "[ $NETLIFY = true ] && ./scripts/netlify-yarn-restore.sh || echo \"skip netlify:restore\"",
     "preinstall": "YARN_SILENT=0 yarn netlify:restore",
+    "algolia:send": "FORCE_ALGOLIA_SEND=true yarn ts-node packages/evans/src/build/algolia.ts",
+    "algolia:send:es": "GATSBY_LANG=es yarn algolia:send",
+    "algolia:send:en": "GATSBY_LANG=en yarn algolia:send",
     "preflight": "yarn lint && yarn fl make en/robert-barclay/recreation-entertainment/updated --target all -o && yarn test && yarn evans:ts:check && yarn cover:ts:check && yarn ts:clean && yarn compile all && yarn styleguide:build && yarn evans:build:en && yarn evans:build:es && yarn jones:build && yarn cover:build && yarn fl check-intake"
   },
   "dependencies": {
