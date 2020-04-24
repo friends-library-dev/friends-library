@@ -86,7 +86,7 @@ const StaticPage: React.FC<Props> = ({ data }) => {
   const { body, frontmatter } = mdx;
   function replaceCounts(str: string): string {
     return str
-      .replace(/%AUDIOBOOK_COUNT%/g, String(audioBooks.totalCount))
+      .replace(/%NUM_AUDIOBOOKS%/g, String(audioBooks.totalCount))
       .replace(/%NUM_SPANISH_BOOKS%/g, String(site.meta.numSpanishBooks))
       .replace(/%NUM_ENGLISH_BOOKS%/g, String(site.meta.numEnglishBooks))
       .replace(/ -- /g, ' — ');

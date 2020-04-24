@@ -4,4 +4,12 @@ export { default as Document } from './Document';
 export { default as Audio } from './Audio';
 export { default as AudioPart } from './AudioPart';
 export { default as friendFromJS } from './map';
-export { getFriend, getAllFriends } from './query';
+export {
+  getFriend,
+  getAllFriends,
+  numPublishedBooks,
+  allPublishedBooks,
+  allPublishedFriends,
+  allPublishedAudiobooks,
+  allPublishedUpdatedEditions,
+} from './query';

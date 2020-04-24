@@ -1,20 +1,37 @@
-import { Friend, Document } from '@friends-library/friends';
+import fs from 'fs';
+import { sync as glob } from 'glob';
+import { safeLoad as ymlToJs } from 'js-yaml';
+import algoliasearch from 'algoliasearch';
+import { t } from '@friends-library/locale';
+import {
+  Friend,
+  Document,
+  numPublishedBooks,
+  allPublishedFriends,
+  allPublishedAudiobooks,
+  allPublishedUpdatedEditions,
+} from '@friends-library/friends';
 import env from '@friends-library/env';
 import { allFriends, htmlShortTitle } from './helpers';
 import { friendUrl, documentUrl } from '../lib/url';
-import algoliasearch from 'algoliasearch';
+import { LANG } from '../env';
+import { PAGE_META_DESCS } from '../lib/seo';
+
+if (process.env.FORCE_ALGOLIA_SEND) {
+  require('@friends-library/env/load');
+  sendSearchDataToAlgolia();
+}
 
 export async function sendSearchDataToAlgolia(): Promise<void> {
-  const { GATSBY_ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY, GATSBY_LANG } = env.require(
+  const { GATSBY_ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY } = env.require(
     'GATSBY_ALGOLIA_APP_ID',
     'ALGOLIA_ADMIN_KEY',
-    'GATSBY_LANG',
   );
 
-  const friends = allFriends().filter(f => f.lang === GATSBY_LANG);
   const client = algoliasearch(GATSBY_ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY);
+  const friends = allFriends().filter(f => f.lang === LANG);
 
-  const friendsIndex = client.initIndex(`${GATSBY_LANG}_friends`);
+  const friendsIndex = client.initIndex(`${LANG}_friends`);
   await friendsIndex.replaceAllObjects(friends.map(friendRecord));
   await friendsIndex.setSettings({
     paginationLimitedTo: 24,
@@ -23,7 +40,7 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
     searchableAttributes: ['name', 'bookTitles', 'description', 'residences'],
   });
 
-  const docsIndex = client.initIndex(`${GATSBY_LANG}_docs`);
+  const docsIndex = client.initIndex(`${LANG}_docs`);
   await docsIndex.replaceAllObjects(
     friends
       .flatMap(f => f.documents)
@@ -47,6 +64,17 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
       'authorName',
       'tags',
     ],
+  });
+
+  const pagesIndex = client.initIndex(`${LANG}_pages`);
+  await pagesIndex.replaceAllObjects([...mdxRecords(), ...customPageRecords()], {
+    autoGenerateObjectIDIfNotExist: true,
+  });
+  await pagesIndex.setSettings({
+    paginationLimitedTo: 24,
+    snippetEllipsisText: '[...]',
+    attributesToSnippet: ['text:30'],
+    searchableAttributes: ['title', 'subtitle', 'text'],
   });
 }
 
@@ -81,8 +109,110 @@ function documentRecord(doc: Document): Record<string, string | undefined> {
   };
 }
 
+function mdxRecords(): Record<string, string | null>[] {
+  const paths = glob(`${__dirname}/../mdx/*.${LANG}.mdx`);
+  return paths.flatMap(filePath => {
+    const content = fs.readFileSync(filePath).toString();
+    const [, yaml, text] = content.split(/---\n/m);
+    const frontmatter = ymlToJs(yaml);
+    const records: Record<string, string | null>[] = [
+      {
+        title: frontmatter.title,
+        url: frontmatter.path,
+        text: convertEntities(replaceCounts(frontmatter.description)),
+      },
+    ];
+    const paras = removeMarkdownFormatting(convertEntities(replaceCounts(text.trim())))
+      .split('\n\n')
+      .map(sanitizeMdParagraph)
+      .filter(Boolean);
+
+    let currentSubtitle: null | string = null;
+    for (const para of paras) {
+      if (para.startsWith('#')) {
+        currentSubtitle = para.replace(/^#+ /, '');
+        continue;
+      }
+      records.push({
+        url: frontmatter.path,
+        title: frontmatter.title,
+        subtitle: currentSubtitle,
+        text: para,
+      });
+    }
+    return records;
+  });
+}
+
+function customPageRecords(): Record<string, string | null>[] {
+  return [
+    {
+      title: t`Audio Books`,
+      url: t`/audiobooks`,
+      text: replaceCounts(PAGE_META_DESCS.audiobooks[LANG]),
+    },
+    {
+      title: t`Contact Us`,
+      url: t`/contact`,
+      text: replaceCounts(PAGE_META_DESCS.contact[LANG]),
+    },
+    {
+      title: t`Explore Books`,
+      url: t`/explore`,
+      text: replaceCounts(PAGE_META_DESCS.explore[LANG]),
+    },
+    {
+      title: t`All Friends`,
+      url: t`/friends`,
+      text: replaceCounts(PAGE_META_DESCS.friends[LANG]),
+    },
+    {
+      title: t`Getting Started`,
+      url: t`/getting-started`,
+      text: replaceCounts(PAGE_META_DESCS['getting-started'][LANG]),
+    },
+  ];
+}
+
 function shortTitle(title: string): string {
-  return htmlShortTitle(title)
+  return convertEntities(htmlShortTitle(title));
+}
+
+function convertEntities(input: string): string {
+  return input
     .replace(/&mdash;/g, '—')
-    .replace(/&nbsp;/g, ' ');
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&rsquo;/g, '’')
+    .replace(/&lsquo;/g, '‘')
+    .replace(/&rdquo;/g, '”')
+    .replace(/&ldquo;/g, '“');
+}
+
+function removeMarkdownFormatting(md: string): string {
+  return md
+    .replace(/(\*\*|_)/g, '')
+    .replace(/^> /gm, '')
+    .replace(/{' '}/g, '')
+    .replace(/<.+?>/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+}
+
+function replaceCounts(str: string): string {
+  return str
+    .replace(/%NUM_ENGLISH_BOOKS%/g, String(numPublishedBooks('en')))
+    .replace(/%NUM_SPANISH_BOOKS%/g, String(numPublishedBooks('es')))
+    .replace(/%NUM_FRIENDS%/g, String(allPublishedFriends(LANG).length))
+    .replace(/%NUM_UPDATED_EDITIONS%/g, String(allPublishedUpdatedEditions(LANG).length))
+    .replace(/%NUM_AUDIOBOOKS%/g, String(allPublishedAudiobooks(LANG).length));
+}
+
+function sanitizeMdParagraph(paragraph: string): string {
+  return paragraph
+    .split('\n')
+    .filter(l => !l.match(/^<\/?Lead>/))
+    .join(' ')
+    .replace(/<\/?iframe(.*?)>/g, '')
+    .replace(/ {2,}/g, ' ')
+    .replace(/^- /, '')
+    .trim();
 }

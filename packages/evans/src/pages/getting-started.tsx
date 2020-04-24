@@ -11,6 +11,7 @@ import {
 } from '@friends-library/ui';
 import { SiteMetadata } from '../types';
 import { LANG } from '../env';
+import { PAGE_META_DESCS } from '../lib/seo';
 import { Layout, Seo } from '../components';
 import GettingStartedPaths from '../components/GettingStartedPaths';
 import BooksBgBlock from '../components/BooksBgBlock';
@@ -29,10 +30,10 @@ const GettingStartedPage: React.FC<Props> = ({
   <Layout>
     <Seo
       title={t`Getting Started`}
-      description={[
-        `View hand-picked reading recommendations to help you get started with our ${meta.numEnglishBooks} books written by early members of the Religious Society of Friends (Quakers). Recommendations come in four categories: History, Doctrine, Spiritual Life, and Journals. All books are available in their entirety for free download as EPUB, MOBI, PDF, and a growing number are available as audiobooks. Paperback copies are also available at very low cost.`,
-        'Hemos seleccionado algunos de nuestros libros favoritos de los antiguos miembros de la Sociedad de Amigos (Cuáqueros), y los hemos organizado en categorías para ayudarte a comenzar. Nuestras recomendaciones están organizadas en cuatro categorías: Historia, Doctrina, Vida Espiritual, y Biografía. Los libros completos están disponibles para ser descargados gratuitamente en formatos digitales como EPUB, MOBI, PDF, y algunos han sido grabados como audiolibros. Libros impresos también están disponibles por un precio muy económico',
-      ]}
+      description={PAGE_META_DESCS['getting-started'][LANG].replace(
+        /%NUM_ENGLISH_BOOKS%/g,
+        String(meta.numEnglishBooks),
+      )}
     />
     <BooksBgBlock className="flex flex-col items-center">
       <Heading darkBg className="text-white">

@@ -1,6 +1,6 @@
 const path = require('path');
 const proxy = require('http-proxy-middleware');
-const { getAllFriends } = require('@friends-library/friends');
+const { getAllFriends, numPublishedBooks } = require('@friends-library/friends');
 
 require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
@@ -13,12 +13,8 @@ module.exports = {
         ? 'https://www.friendslibrary.com'
         : 'https://www.bibliotecadelosamigos.org',
     title: LANG === 'en' ? 'Friends Library' : 'La Biblioteca de los Amigos',
-    numSpanishBooks: getAllFriends('es', true)
-      .flatMap(friend => friend.documents)
-      .filter(document => document.hasNonDraftEdition).length,
-    numEnglishBooks: getAllFriends('en', true)
-      .flatMap(friend => friend.documents)
-      .filter(document => document.hasNonDraftEdition).length,
+    numSpanishBooks: numPublishedBooks('es'),
+    numEnglishBooks: numPublishedBooks('en'),
   },
   plugins: [
     'gatsby-plugin-react-helmet',
