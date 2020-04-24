@@ -175,7 +175,6 @@ const subSchemas: Record<string, Schema> = {
       slug: { $ref: '/slug', required: true },
       partial_description: {
         type: 'string',
-        minLength: 150,
         maxLength: 400,
         required: true,
       },
