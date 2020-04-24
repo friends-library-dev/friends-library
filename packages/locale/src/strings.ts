@@ -75,6 +75,7 @@ const strings: { [k: string]: string } = {
   'Find out more': 'Más Información',
 
   // search
+  Pages: 'Páginas',
   Friends: 'Amigos',
   Page: 'Página',
   Residences: 'Residencias',

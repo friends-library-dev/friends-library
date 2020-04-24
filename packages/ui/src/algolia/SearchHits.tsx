@@ -26,7 +26,7 @@ const GenericHit: React.FC<GenericHitProps> = ({
   subtitleAttr,
 }) => {
   const attr = bestHighlightAttr(hit, attrFallback, attrReject);
-  const Summary = attr.endsWith('escription') ? Snippet : Highlight;
+  const Summary = attr.match(/(^text$|escription$)/) ? Snippet : Highlight;
   return (
     <Link
       key={hit.objectID}
@@ -56,6 +56,16 @@ export const BookHit: React.FC<HitProps> = ({ hit }) => (
     attrReject={['title', 'authorName']}
     titleAttr="title"
     subtitleAttr="authorName"
+    hit={hit}
+  />
+);
+
+export const PageHit: React.FC<HitProps> = ({ hit }) => (
+  <GenericHit
+    attrFallback="text"
+    attrReject={['title', 'subtitle']}
+    titleAttr="title"
+    subtitleAttr="subtitle"
     hit={hit}
   />
 );

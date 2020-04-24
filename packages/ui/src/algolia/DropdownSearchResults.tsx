@@ -4,7 +4,7 @@ import { connectStateResults, Index, Configure } from 'react-instantsearch-dom';
 import { t } from '@friends-library/locale';
 import Pagination from './Pagination';
 import IndexResults from './IndexResults';
-import { FriendHit, BookHit } from './SearchHits';
+import { FriendHit, BookHit, PageHit } from './SearchHits';
 import { LANG } from '../env';
 import './DropdownSearchResults.css';
 
@@ -25,6 +25,7 @@ const DropdownSearchResults: React.FC<Props> = ({
       <div className={cx(query.length < 3 && 'hidden')}>
         <Index indexName={`${LANG}_docs`} />
         <Index indexName={`${LANG}_friends`} />
+        <Index indexName={`${LANG}_pages`} />
       </div>
     );
   }
@@ -50,6 +51,10 @@ const DropdownSearchResults: React.FC<Props> = ({
         </Index>
         <Index indexName={`${LANG}_friends`}>
           <IndexResults title={t`Friends`} icon="fa-users" HitComponent={FriendHit} />
+          <Pagination />
+        </Index>
+        <Index indexName={`${LANG}_pages`}>
+          <IndexResults title={t`Pages`} icon="fa-file-text" HitComponent={PageHit} />
           <Pagination />
         </Index>
       </div>
