@@ -2,7 +2,7 @@ import fs from 'fs';
 import { sync as glob } from 'glob';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import algoliasearch from 'algoliasearch';
-import { t } from '@friends-library/locale';
+import { t, translate } from '@friends-library/locale';
 import {
   Friend,
   Document,
@@ -90,7 +90,9 @@ function friendRecord(friend: Friend): Record<string, string> {
         .map(d => shortTitle(d.title))
         .join('”, “') +
       '”',
-    residences: friend.residences.map(r => `${r.city}, ${r.region}`).join(' — '),
+    residences: friend.residences
+      .map(r => `${translate(r.city)}, ${translate(r.region)}`)
+      .join(' — '),
     description: friend.description,
   };
 }
