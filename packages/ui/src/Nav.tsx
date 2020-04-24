@@ -21,9 +21,8 @@ const Nav: React.FC<Props> = ({
   initialSearching,
   onHamburgerClick,
   onCartBadgeClick,
-  // showCartBadge,
+  showCartBadge,
 }) => {
-  const showCartBadge = false;
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
   useEscapeable('.TopNavSearch', searching, setSearching);
   const Logo = LANG === 'es' ? AmigosLogo : FriendsLogo;
