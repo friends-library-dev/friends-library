@@ -226,3 +226,20 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-175-5
+  - id: 960e1f3b-deb2-480a-83bf-ca7dfd3b965c
+    title: Examples of Youthful Piety
+    original_title:
+      Examples of Youthful Piety Principally Intended for the Instruction of Young Persons
+    slug: youthful-piety
+    filename: Youthful_Piety
+    description: TODO
+    partial_description: TODO
+    tags:
+      - spiritual life
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-194-6
+        draft: true
+      - type: original
+        isbn: 978-1-64476-195-3
+        draft: true

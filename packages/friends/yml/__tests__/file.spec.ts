@@ -49,11 +49,6 @@ files.forEach(file => {
       throw new Error(err.message);
     }
 
-    test('no todo or lorem text', () => {
-      expect(fileContents).not.toContain('TODO');
-      expect(fileContents).not.toContain('Lorem');
-    });
-
     test('no asciidoc-style escaping', () => {
       expect(fileContents).not.toContain('+++[');
     });
@@ -135,6 +130,18 @@ files.forEach(file => {
         ids.push(doc.id);
         docMap.set(doc.id, { ...doc, lang: friend.lang });
         done();
+      });
+    });
+
+    test('non-draft entities may not have TODO or LOREM text', () => {
+      friend.documents.forEach(document => {
+        document.editions.forEach(edition => {
+          if (edition.draft !== true) {
+            expect(friend.description).not.toMatch(/(^todo$)|\blorem\b/i);
+            expect(document.description).not.toMatch(/(^todo$)|\blorem\b/i);
+            expect(document.partial_description).not.toMatch(/(^todo$)|\blorem\b/i);
+          }
+        });
       });
     });
 
