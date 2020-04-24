@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'gatsby-link';
 import cx from 'classnames';
 import { useEscapeable } from '@friends-library/ui';
@@ -26,6 +26,20 @@ const Nav: React.FC<Props> = ({
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
   useEscapeable('.TopNavSearch', searching, setSearching);
   const Logo = LANG === 'es' ? AmigosLogo : FriendsLogo;
+
+  useEffect(() => {
+    const vimActivate: (e: KeyboardEvent) => any = e => {
+      if (!searching && e.keyCode === FORWARD_SLASH) {
+        e.preventDefault();
+        setSearching(true);
+      }
+    };
+    document.addEventListener('keydown', vimActivate);
+    return () => {
+      window.removeEventListener('keydown', vimActivate);
+    };
+  }, [searching, setSearching]);
+
   return (
     <nav
       className={cx('Nav flex bg-white border-gray-300 border-b', {
@@ -68,3 +82,5 @@ const Nav: React.FC<Props> = ({
 };
 
 export default Nav;
+
+const FORWARD_SLASH = 191;
