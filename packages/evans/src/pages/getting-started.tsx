@@ -1,11 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 import { graphql } from 'gatsby';
+import { t } from '@friends-library/locale';
 import {
   EmbeddedAudio,
   DuoToneWaveBlock,
   Heading,
-  t,
   Dual,
   makeScroller,
 } from '@friends-library/ui';

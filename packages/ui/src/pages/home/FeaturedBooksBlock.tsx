@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
 import { Swipeable } from 'react-swipeable';
 import { CoverProps } from '@friends-library/types';
-import { t } from '../../translation';
+import { t } from '@friends-library/locale';
 import Heading from '../../Heading';
 import FeaturedBook from './FeaturedBook';
 import './FeaturedBooksBlock.css';

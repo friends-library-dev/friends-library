@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { connectPagination } from 'react-instantsearch-dom';
-import { t } from '../translation';
+import { t } from '@friends-library/locale';
 
 interface Props {
   currentRefinement: number;

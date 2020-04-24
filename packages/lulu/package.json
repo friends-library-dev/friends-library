@@ -8,7 +8,5 @@
   "scripts": {
     "test": "cd ../.. && yarn jest packages/lulu",
     "compile": "cd ../../ && yarn compile lulu"
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  }
 }

@@ -2,9 +2,10 @@ import React from 'react';
 import Link from 'gatsby-link';
 import BackgroundImage from 'gatsby-background-image';
 import { FluidBgImageObject } from '@friends-library/types';
+import { t } from '@friends-library/locale';
 import Button from '../../Button';
 import { bgLayer } from '../../lib/color';
-import { t, Dual } from '../../translation';
+import Dual from '../../Dual';
 import './CompilationsBlock.css';
 
 interface Props {

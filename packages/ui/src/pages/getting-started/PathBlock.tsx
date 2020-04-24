@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import cx from 'classnames';
 import { CoverProps } from '@friends-library/types';
 import { Front } from '@friends-library/cover-component';
-import { t } from '../../translation';
+import { t } from '@friends-library/locale';
 import WaveBottomBlock from '../../blocks/WaveBottomBlock';
 import Button from '../../Button';
 import DownloadIcon from '../../icons/Download';

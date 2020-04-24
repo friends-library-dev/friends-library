@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import BackgroundImage from 'gatsby-background-image';
 import cx from 'classnames';
 import { Lang, FluidBgImageObject } from '@friends-library/types';
-import { t } from '@friends-library/ui';
+import { t } from '@friends-library/locale';
 import { LANG } from './env';
 import FriendsLogo from './LogoFriends';
 import AmigosLogo from './LogoAmigos';

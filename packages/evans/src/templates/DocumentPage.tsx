@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { graphql } from 'gatsby';
+import { t } from '@friends-library/locale';
 import {
   EditionType,
   CoverProps,
@@ -8,7 +9,6 @@ import {
   Lang,
 } from '@friends-library/types';
 import {
-  t,
   DocBlock,
   ListenBlock,
   BookTeaserCards,

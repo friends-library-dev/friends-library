@@ -3,7 +3,7 @@ import cx from 'classnames';
 import Link from 'gatsby-link';
 import { Front } from '@friends-library/cover-component';
 import { CoverProps } from '@friends-library/types';
-import { t } from './translation';
+import { t } from '@friends-library/locale';
 import { LANG } from './env';
 import Button from './Button';
 import Album from './Album';

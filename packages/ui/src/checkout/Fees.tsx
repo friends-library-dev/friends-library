@@ -1,5 +1,5 @@
 import React from 'react';
-import { t } from '../translation';
+import { t } from '@friends-library/locale';
 import './Fees.css';
 
 interface Props {

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import cx from 'classnames';
 import { LANG } from '../../env';
-import { Dual } from '../../translation';
+import Dual from '../../Dual';
 import AmigosLogo from '../../LogoAmigos';
 import FriendsLogo from '../../LogoFriends';
 import './AltSiteBlock.css';

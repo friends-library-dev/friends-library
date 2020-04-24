@@ -1,5 +1,6 @@
 import React from 'react';
-import { t, Dual } from '../../translation';
+import { t } from '@friends-library/locale';
+import Dual from '../../Dual';
 import DuoToneWaveBlock from '../../blocks/DuoToneWaveBlock';
 import Heading from '../../Heading';
 import Button from '../../Button';

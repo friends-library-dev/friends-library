@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'gatsby-link';
+import { t } from '@friends-library/locale';
 import { LANG } from '../../env';
-import { Dual, t } from '../../translation';
+import Dual from '../../Dual';
 import { Book } from './types';
 import BgWordBlock from './BgWordBlock';
 import BookSlider from './BookSlider';

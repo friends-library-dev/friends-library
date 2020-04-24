@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { FluidBgImageObject } from '@friends-library/types';
+import { t } from '@friends-library/locale';
 import { coverPropsFromQueryData, CoverData } from '../lib/covers';
 import {
-  t,
   Dual,
   Stack,
   Audiobook,

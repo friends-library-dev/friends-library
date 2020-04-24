@@ -1,9 +1,10 @@
 import React from 'react';
 import BackgroundImage from 'gatsby-background-image';
 import { FluidBgImageObject } from '@friends-library/types';
+import { t } from '@friends-library/locale';
 import Button from '../Button';
 import { LANG } from '../env';
-import { t, Dual } from '../translation';
+import Dual from '../Dual';
 import { bgLayer } from '../lib/color';
 import './NotFoundHeroBlock.css';
 

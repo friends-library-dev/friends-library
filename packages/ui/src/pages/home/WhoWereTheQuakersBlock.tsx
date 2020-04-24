@@ -1,7 +1,8 @@
 import React from 'react';
 import BackgroundImage from 'gatsby-background-image';
 import { FluidBgImageObject } from '@friends-library/types';
-import { t, Dual } from '../../translation';
+import { t } from '@friends-library/locale';
+import Dual from '../../Dual';
 import Button from '../../Button';
 import Heading from '../../Heading';
 import { bgLayer } from '../../lib/color';

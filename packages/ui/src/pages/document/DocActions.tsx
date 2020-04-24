@@ -1,5 +1,5 @@
 import React from 'react';
-import { t } from '../../translation';
+import { t } from '@friends-library/locale';
 import MultiPill from '../../MultiPill';
 
 interface Props {

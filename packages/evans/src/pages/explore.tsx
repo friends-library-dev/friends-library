@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import { FluidBgImageObject } from '@friends-library/types';
+import { t } from '@friends-library/locale';
 import {
   ExploreNavBlock,
   ExploreUpdatedEditionsBlock,
@@ -12,7 +13,6 @@ import {
   ExploreAltSiteBlock,
   ExploreSearchBlock,
   Dual,
-  t,
 } from '@friends-library/ui';
 import { Layout, Seo } from '../components';
 import BooksBgBlock from '../components/BooksBgBlock';

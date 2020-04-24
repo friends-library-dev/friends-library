@@ -7,7 +7,7 @@ import {
   CardCvcElement,
   ReactStripeElements,
 } from 'react-stripe-elements';
-import { t } from '../translation';
+import { t } from '@friends-library/locale';
 import Back from './Back';
 import Header from './Header';
 import Progress from './Progress';

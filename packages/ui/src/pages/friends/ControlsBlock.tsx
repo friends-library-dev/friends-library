@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { t, translate } from '../../translation';
+import { t, translate } from '@friends-library/locale';
 import SearchInput from '../../SearchInput';
 import PillDropdown from '../../PillDropdown';
 import PillDropdownDropdown from '../../PillDropdownDropdown';

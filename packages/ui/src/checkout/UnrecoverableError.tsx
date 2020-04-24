@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { t, Dual } from '../translation';
+import { t } from '@friends-library/locale';
+import Dual from '../Dual';
 import Header from './Header';
 import Button from '../Button';
 import ErrorMsg from './ErrorMsg';

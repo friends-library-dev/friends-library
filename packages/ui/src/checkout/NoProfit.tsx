@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { Dual } from '../translation';
+import Dual from '../Dual';
 import SpanishFreeBooksNote from '../SpanishFreeBooksNote';
 
 const NoProfit: React.FC<{ className?: string }> = ({ className }) => (

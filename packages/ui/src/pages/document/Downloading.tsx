@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dual } from '../../translation';
+import Dual from '../../Dual';
 import ChoiceStep from './ChoiceStep';
 
 const Downloading: React.FC = () => (

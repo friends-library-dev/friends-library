@@ -1,8 +1,8 @@
 import React from 'react';
 import { AccordionItem, AccordionButton, AccordionPanel } from '@reach/accordion';
+import { t } from '@friends-library/locale';
 import PillDropdownDropdown from '../../PillDropdownDropdown';
 import Item from '../../PillDropdownItem';
-import { t } from '../../translation';
 import { LANG } from '../../env';
 import './FilterSelectDropdown.css';
 

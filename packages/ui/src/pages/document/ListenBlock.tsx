@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
-import { t } from '../../translation';
+import { t } from '@friends-library/locale';
 import { LANG } from '../../env';
 import { AudioQuality } from '@friends-library/types';
 import EmbeddedAudio from '../../EmbeddedAudio';
