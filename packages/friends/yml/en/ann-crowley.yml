@@ -1,0 +1,36 @@
+id: 1da97dc1-d7d9-4bf6-a81c-ea1b638dbc20
+name: Ann Crowley
+slug: ann-crowley
+gender: female
+added: 2020-04-27T17:17:09.161Z
+born: 1765
+died: 1826
+residences:
+  - city: Shillingford
+    region: England
+    durations:
+      - start: 1765
+        end: 1795
+  - city: Uxbridge
+    region: England
+    durations:
+      - start: 1795
+        end: 1826
+description: TODO
+documents:
+  - id: 025ae678-5e76-4128-9b59-b0761a7cb9d1
+    title: The Life of Ann Crowley
+    original_title: Some Account the Religious Experience of Ann Crowley
+    slug: life
+    filename: Life_of_Ann_Crowley
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-196-0
+        draft: true
+      - type: original
+        isbn: 978-1-64476-197-7
+        draft: true
