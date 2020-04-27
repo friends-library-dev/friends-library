@@ -84,3 +84,11 @@ documents:
               seconds: 4123
               chapters:
                 - 4
+            - title: La Vida de Joseph Pike
+              external_id_lq: 808283821
+              external_id_hq: 808306186
+              filesize_lq: 12408202
+              filesize_hq: 41727349
+              seconds: 2481
+              chapters:
+                - 5
