@@ -1,0 +1,49 @@
+id: a277036b-f220-480d-b9b7-abe3d9a3bb22
+name: Elizabeth Webb
+slug: elizabeth-webb
+gender: female
+added: 2020-04-27T15:54:31.000Z
+born: 1663
+died: 1726
+quotes:
+  - source: John Richardson
+    text: TODO
+residences:
+  - city: Gloucester
+    region: England
+    durations:
+      - start: 1663
+        end: 1700
+  - city: Philadelphia
+    region: Pennsylvania
+    durations:
+      - start: 1700
+        end: 1726
+description: TODO
+documents:
+  - id: b0dacd28-1f1c-4f89-ba0f-fc562c3566d8
+    alt_language_id: a52eb875-8a1a-4f2f-b1b4-650eb3af1126
+    title: La Carta de Elizabeth Webb
+    slug: carta
+    filename: Carta_de_Elizabeth_Webb
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: updated
+        isbn: 978-1-64476-200-4
+        draft: true
+        audio:
+          reader: Keren Alvaredo
+          added: 2019-07-29T04:00:00.000Z
+          parts:
+            - title: La Carta de Elizabeth Webb
+              external_id_hq: 809112163
+              external_id_lq: 809111311
+              filesize_hq: 58195664
+              filesize_lq: 13604280
+              seconds: 3400
+              chapters:
+                - 0

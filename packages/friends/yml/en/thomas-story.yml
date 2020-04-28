@@ -28,6 +28,7 @@ description:
   seeker of truth.
 documents:
   - id: 659d4885-daa3-42e1-acc4-827ec5cd0d36
+    alt_language_id: c68cd139-7ed7-49aa-bb20-36434e16f981
     title: Selection from the Journal of Thomas Story
     slug: journal-selection
     filename: Selection_Journal_of_Thomas_Story

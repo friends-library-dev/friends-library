@@ -48,3 +48,16 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-171-7
+  - id: c68cd139-7ed7-49aa-bb20-36434e16f981
+    alt_language_id: 659d4885-daa3-42e1-acc4-827ec5cd0d36
+    title: Selección del Diario de Thomas Story
+    slug: seleccion-del-diario
+    filename: Seleccion_del_Diario_de_Thomas_Story
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-207-3
+        draft: true

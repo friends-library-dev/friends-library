@@ -1,0 +1,28 @@
+id: 6802687a-aaeb-4004-bb87-a9e9d5408597
+name: Charles Marshall
+slug: charles-marshall
+gender: male
+added: 2020-04-27T17:58:49.000Z
+born: 1637
+died: 1698
+quotes:
+  - source: Charles Marshall
+    text: TODO
+residences:
+  - city: Bristol
+    region: England
+description: TODO
+documents:
+  - id: 314bb746-3449-4e69-aacd-8bae50fe92a1
+    alt_language_id: 9ac03f31-dba4-4723-a8cd-4a67bde65757
+    title: Selección del Diario de Charles Marshall
+    slug: seleccion-del-diario
+    filename: Seleccion_del_Diario_de_Charles_Marshall
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-206-6
+        draft: true

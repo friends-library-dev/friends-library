@@ -1,0 +1,48 @@
+id: d33b12fb-0374-4010-a643-8d9585b4d2fb
+name: John Burnyeat
+slug: john-burnyeat
+gender: male
+added: 2020-04-27T17:36:27.000Z
+born: 1631
+died: 1690
+quotes:
+  - source: George Fox
+    text: TODO
+residences:
+  - city: Broughton
+    region: England
+    durations:
+      - start: 1631
+        end: 1673
+  - city: Dublin
+    region: Ireland
+    durations:
+      - start: 1673
+        end: 1690
+description: TODO
+documents:
+  - id: d588963b-e583-4023-abad-b7c526315451
+    alt_language_id: b40a8274-196a-43e3-9fef-0c96ab9ce55a
+    title: Selección del Diario de John Burnyeat
+    slug: seleccion-del-diario
+    filename: Seleccion_del_Diario_de_John_Burnyeat
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-201-1
+        draft: true
+        audio:
+          reader: Keren Alvaredo
+          added: 2019-07-29T04:00:00.000Z
+          parts:
+            - title: Selección del Diario de John Burnyeat
+              external_id_hq: 809118520
+              external_id_lq: 809117317
+              filesize_hq: 69826326
+              filesize_lq: 16441510
+              seconds: 4110
+              chapters:
+                - 0

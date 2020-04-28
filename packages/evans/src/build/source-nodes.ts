@@ -70,7 +70,9 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
       if (document.altLanguageId) {
         const altDoc = docs.get(document.altLanguageId);
         if (!altDoc) throw new Error(`Missing alt language doc from ${document.path}`);
-        documentProps.altLanguageUrl = `${APP_ALT_URL}${url.documentUrl(altDoc)}`;
+        if (altDoc.hasNonDraftEdition) {
+          documentProps.altLanguageUrl = `${APP_ALT_URL}${url.documentUrl(altDoc)}`;
+        }
       }
 
       const filteredEditions = document.editions.filter(ed => !ed.isDraft);

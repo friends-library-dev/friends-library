@@ -63,7 +63,7 @@ const subSchemas: Record<string, Schema> = {
     additionalProperties: false,
     properties: {
       source: { type: 'string', required: true },
-      text: { type: 'string', required: true, minLength: 30, maxLength: 700 },
+      text: { type: 'string', required: true, maxLength: 700 },
     },
   },
 
