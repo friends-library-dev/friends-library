@@ -13,3 +13,8 @@
   AWS_LAMBDA_JS_RUNTIME = "nodejs12.x"
   DOCUMENT_META_GIST_FILENAME = "fl-doc-meta-v2.json"
   DOCUMENT_META_GIST_ID = "32117af9174d8c6bf3ba72956b6e60dc"
+
+[[redirects]]
+  from = "/charles-marshall/short-journal"
+  to = "/charles-marshall/journal-selection"
+  status = 301
