@@ -25,11 +25,37 @@ description:
   judge and teacher, and also uncovers the several snares and temptations of the enemy
   that he met with and overcame along the way.
 documents:
+  - id: 8efe55b2-00e9-432b-853f-fc5f3cb8deaf
+    title: The Journal of Charles Marshall
+    slug: journal
+    filename: Journal_of_Charles_Marshall
+    description:
+      Charles Marshall (1637-1698) was convinced of the Truth at age seventeen by the
+      powerful ministry of John Audland and John Camm, and eventually became a worthy
+      minister and elder himself in the early Society of Friends. This publication
+      contains his full journal, a large collection of his letters and epistles to the
+      churches, and a number of treatises and other publications, including “The Way of
+      Life Revealed and the Way of Death Discovered.”
+    partial_description:
+      This publication contains the full journal of Charles Marshall, a large collection
+      of his letters and epistles to the churches, and a number of treatises and other
+      publications, including, “The Way of Life Revealed and the Way of Death Discovered.”
+    tags:
+      - journal
+      - letters
+      - treatise
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-212-7
+        draft: true
+      - type: original
+        isbn: 978-1-64476-213-4
+        draft: true
   - id: 9ac03f31-dba4-4723-a8cd-4a67bde65757
     alt_language_id: 314bb746-3449-4e69-aacd-8bae50fe92a1
-    title: The Journal of Charles Marshall
-    slug: short-journal
-    filename: Journal_of_Charles_Marshall
+    title: Selection from the Journal of Charles Marshall
+    slug: journal-selection
+    filename: Journal_Selection_of_Charles_Marshall
     description:
       Charles Marshall (1637-1698) was convinced of the Truth at age seventeen by the
       powerful ministry of John Audland and John Camm, and eventually became a worthy
@@ -38,9 +64,10 @@ documents:
       Jesus Christ, both as his judge and teacher, and also uncovers the several snares
       and temptations of the enemy that he met with and overcame along the way.
     partial_description:
-      This publication contains the full journal of Charles Marshall, a large collection
-      of his letters and epistles to the churches, and a number of treatises and other
-      publications, including, The Way of Life Revealed and the Way of Death Discovered.
+      A short but instructive selection from the Journal of Charles Marshall, in which he
+      describes his progressive experience of the light of Jesus Christ, both as judge and
+      teacher, and also uncovers the several snares and temptations of the enemy that he
+      met with and overcame along the way.
     tags:
       - journal
     editions:
@@ -51,7 +78,7 @@ documents:
           added: 2016-08-03T04:00:00.000Z
           reader: Jason Henderson
           parts:
-            - title: The Journal of Charles Marshall
+            - title: Selection from the Journal of Charles Marshall
               external_id_hq: 748332928
               external_id_lq: 748332562
               filesize_hq: 40912174
@@ -83,5 +110,12 @@ documents:
     tags:
       - treatise
     editions:
+      - type: updated
+        editor: Jason R. Henderson
+        isbn: 978-1-64476-214-1
+        draft: true
       - type: modernized
         isbn: 978-1-64476-011-6
+      - type: original
+        isbn: 978-1-64476-215-8
+        draft: true
