@@ -1,0 +1,30 @@
+id: 3459c505-19f0-4a35-8bb1-44d75647566b
+name: Daniel Stanton
+slug: daniel-stanton
+gender: male
+added: 2020-04-28T20:45:08.000Z
+born: 1708
+died: 1790
+residences:
+  - city: Philadelphia
+    region: Pennsylvania
+description: TODO
+documents:
+  - id: 9811730b-0a00-4dea-b01f-c676df865802
+    title: The Journal of Daniel Stanton
+    slug: journal
+    original_title:
+      A Journal of the Life, Travels and Gospel Labours of a Faithful Minister of Jesus
+      Christ, Daniel Stanton Late of Philadelphia, In the Province of Pennsylvania
+    filename: Journal_of_Daniel_Stanton
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        isbn: 978-1-64476-210-3
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-211-0
+        draft: true
