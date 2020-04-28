@@ -1,0 +1,30 @@
+id: 7887c42e-68da-4404-ad28-b514c8478833
+name: Gilbert Latey
+slug: gilbert-latey
+gender: male
+added: 2020-04-28T20:45:08.000Z
+born: 1626
+died: 1705
+residences:
+  - city: London
+    region: England
+description: TODO
+documents:
+  - id: c43536d9-7992-4e18-9aea-9e51a5b93802
+    title: The Life of Gilbert Latey
+    slug: life
+    original_title:
+      A Brief Narrative of the Life of Gilbert Latey, Comprising Some Account of the First
+      Settlement of Friends Meetings in London.
+    filename: Life_of_Gilbert_Latey
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: original
+        isbn: 978-1-64476-208-0
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-209-7
+        draft: true
