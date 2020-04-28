@@ -62,10 +62,11 @@ documents:
       - type: updated
         isbn: 978-1-64476-028-4
         editor: Jason R. Henderson
-        draft: true
         audio:
-          added: 2019-08-08T04:00:00.000Z
+          added: 2020-04-28T04:00:00.000Z
           reader: Jason Henderson
+          external_playlist_id_hq: 1041552526
+          external_playlist_id_lq: 1041552688
           parts:
             - title: Part 1
               external_id_hq: 663080018
