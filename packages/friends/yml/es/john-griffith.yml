@@ -1,0 +1,41 @@
+id: 3a6dac7d-dc26-4d94-88bd-277ba98da91c
+name: John Griffith
+slug: john-griffith
+gender: male
+added: 2020-04-27T16:41:30.000Z
+born: 1713
+died: 1776
+quotes:
+  - source: John Griffith
+    text: TODO
+residences:
+  - city: Radnorshire
+    region: Wales
+    durations:
+      - start: 1713
+        end: 1726
+  - city: Philadelphia
+    region: Pennsylvania
+    durations:
+      - start: 1726
+        end: 1750
+  - city: Chelmsford
+    region: England
+    durations:
+      - start: 1750
+        end: 1776
+description: TODO
+documents:
+  - id: d3a7084f-5f52-441c-9088-55f86ae5fb19
+    alt_language_id: a3016ba9-1370-4b8c-b680-98f383317f3b
+    title: Selección del Diario de John Griffith
+    slug: seleccion-del-diario
+    filename: Seleccion_del_Diario_de_John_Griffith
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-203-5
+        draft: true

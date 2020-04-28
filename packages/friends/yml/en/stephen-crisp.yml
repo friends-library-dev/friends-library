@@ -32,6 +32,7 @@ description:
   languages.
 documents:
   - id: 0d7bb9f8-b098-4dbd-9780-b32805b43e96
+    alt_language_id: 947049d8-78f9-4f8b-9b5a-56413b3fe60a
     title: Selection from the Journal of Stephen Crisp
     slug: journal-selection
     filename: Selection_Journal_of_Stephen_Crisp

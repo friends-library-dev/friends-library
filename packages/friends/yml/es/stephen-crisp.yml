@@ -86,3 +86,29 @@ documents:
               filesize_lq: 13024352
               chapters:
                 - 0
+  - id: 947049d8-78f9-4f8b-9b5a-56413b3fe60a
+    alt_language_id: 0d7bb9f8-b098-4dbd-9780-b32805b43e96
+    title: Selección del Diario de Stephen Crisp
+    slug: seleccion-del-diario
+    filename: Seleccion_del_Diario_de_Stephen_Crisp
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: updated
+        isbn: 978-1-64476-199-1
+        draft: true
+        audio:
+          added: 2019-07-29T04:00:00.000Z
+          reader: Keren Alvaredo
+          parts:
+            - title: Selección del Diario de Stephen Crisp
+              external_id_hq: 809067742
+              external_id_lq: 809066086
+              filesize_hq: 61775436
+              filesize_lq: 14408348
+              seconds: 3601
+              chapters:
+                - 0

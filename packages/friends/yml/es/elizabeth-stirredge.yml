@@ -1,0 +1,29 @@
+id: d8552565-9d72-4104-97bb-9d836903d161
+name: Elizabeth Stirredge
+slug: elizabeth-stirredge
+gender: female
+added: 2020-04-27T15:42:35.000Z
+born: 1634
+died: 1706
+quotes:
+  - source: John Neale
+    text: TODO
+residences:
+  - city: Hemel Hempstead
+    region: England
+description: TODO
+documents:
+  - id: 3a4567fd-c9b3-47f9-82aa-cebd539caaaa
+    alt_language_id: 492a89d4-0f81-490a-9619-b3a390d51307
+    title: Selección de la Vida de Elizabeth Stirredge
+    slug: seleccion-de-la-vida
+    filename: Seleccion_de_la_Vida_de_Elizabeth_Stirredge
+    published: 1711
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-205-9
+        draft: true

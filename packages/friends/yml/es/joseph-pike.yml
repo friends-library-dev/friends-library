@@ -1,0 +1,40 @@
+id: 60956f08-c9f0-4baf-90f0-37fd76d9e55e
+name: Joseph Pike
+slug: joseph-pike
+gender: male
+added: 2020-04-27T16:52:05.000Z
+born: 1657
+died: 1729
+quotes:
+  - source: Joseph Pike
+    text: TODO
+residences:
+  - city: Cork
+    region: Ireland
+description: TODO
+documents:
+  - id: 8b902ddb-8a70-414a-a6e5-1a815dd6d2e9
+    alt_language_id: f9356ff3-a098-45b1-9ed2-022790240c01
+    title: Selección de la Vida de Joseph Pike
+    slug: seleccion-de-la-vida
+    filename: Seleccion_de_la_Vida_de_Joseph_Pike
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-202-8
+        draft: true
+        audio:
+          reader: Keren Alvaredo
+          added: 2019-07-29T04:00:00.000Z
+          parts:
+            - title: Selección de la Vida de Joseph Pike
+              external_id_hq: 809127286
+              external_id_lq: 809126293
+              filesize_hq: 42170388
+              filesize_lq: 9885740
+              seconds: 2471
+              chapters:
+                - 0

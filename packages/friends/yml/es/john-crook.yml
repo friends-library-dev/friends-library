@@ -1,0 +1,28 @@
+id: 2f5de4d2-5fc9-4e56-b302-124d8b801c69
+name: John Crook
+slug: john-crook
+gender: male
+added: 2020-04-27T18:31:14.000Z
+born: 1617
+died: 1699
+quotes:
+  - source: John Crook
+    text: TODO
+residences:
+  - city: London
+    region: England
+description: TODO
+documents:
+  - id: 8fbadbad-0fc1-4dfa-9fb4-d96e7c00ff58
+    alt_language_id: cf6f05e2-e5c9-4ec3-8096-d283f3e4c020
+    title: Selección de la Vida de John Crook
+    slug: seleccion-de-la-vida
+    filename: Seleccion_de_la_Vida_de_John_Crook
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-204-2
+        draft: true

@@ -1,0 +1,42 @@
+id: b0894e1b-63db-468f-a347-73a73f3f7a4b
+name: John Richardson
+slug: john-richardson
+gender: male
+added: 2020-04-27T20:09:48.000Z
+born: 1667
+died: 1753
+residences:
+  - city: York
+    region: England
+description: TODO
+quotes:
+  - source: Daniel Stanton
+    text: TODO
+  - source: Samuel Fothergill
+    text: TODO
+documents:
+  - id: 2dee903b-4a9a-4dae-a9d3-d7937029471a
+    alt_language_id: 470677d5-c6e0-4d1f-a61d-69827d25a14c
+    title: Selección del Diario de John Richardson
+    slug: seleccion-del-diario
+    filename: Seleccion_del_Diario_de_John_Richardson
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-198-4
+        draft: true
+        audio:
+          added: 2019-07-29T04:00:00.000Z
+          reader: Keren Alvaredo
+          parts:
+            - title: Selección del Diario de John Richardson
+              external_id_hq: 809099992
+              external_id_lq: 809098726
+              filesize_hq: 63286490
+              filesize_lq: 15032526
+              seconds: 3757
+              chapters:
+                - 0
