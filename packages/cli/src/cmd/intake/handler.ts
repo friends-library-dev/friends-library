@@ -44,6 +44,7 @@ export default function handler(): void {
 const regexes = [
   /^\[quote]$/,
   /^\[quote\.scripture.*]$/,
+  /^____$/,
   /style-blurb/,
   /chapter-subtitle--blurb/,
   /short="/,
@@ -51,6 +52,9 @@ const regexes = [
   /\.alt\b/,
   /\.old-style/,
   /\.blurb/,
+  /^\[\.asterism\]$/,
+  /^\[\.small-break\]$/,
+  /^'''$/,
   /\.centered/,
   /^__Objection:__$/,
   /\.offset\b/,
