@@ -1,5 +1,6 @@
 dist
 storybook-static
+tailwind.config.js
 **/*.d.ts
 !src/globals.d.ts
 .storybook/preview-head.html

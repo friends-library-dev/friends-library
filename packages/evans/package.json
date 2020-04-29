@@ -65,7 +65,7 @@
     "test": "cd ../../ && yarn jest packages/evans",
     "ts:check": "../../node_modules/.bin/tsc --noEmit -p .",
     "develop:functions": "cd ../functions && yarn start",
-    "compile": "cd ../../ && yarn compile evans",
+    "compile": "cd ../../ && yarn compile evans && yarn compile ui",
     "build:functions": "cd ../functions && yarn build",
     "build": "gatsby clean && gatsby build && yarn build:functions",
     "build:en": "GATSBY_LANG=en yarn build",
