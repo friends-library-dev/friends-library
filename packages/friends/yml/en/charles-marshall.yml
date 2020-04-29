@@ -113,9 +113,7 @@ documents:
       - type: updated
         editor: Jason R. Henderson
         isbn: 978-1-64476-214-1
-        draft: true
       - type: modernized
         isbn: 978-1-64476-011-6
       - type: original
         isbn: 978-1-64476-215-8
-        draft: true
