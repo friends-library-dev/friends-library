@@ -7,7 +7,7 @@ import * as cloud from '@friends-library/cloud';
 import { c, log, red, green, yellow } from '@friends-library/cli-utils/color';
 import { getAllFriends, Audio, Friend } from '@friends-library/friends';
 import * as docMeta from '@friends-library/document-meta';
-import { isDefined } from '@friends-library/types';
+import { isDefined, AudioQuality } from '@friends-library/types';
 import Client from './SoundCloudClient';
 
 interface Argv {
@@ -22,6 +22,7 @@ interface Argv {
   setTrackArtwork: boolean;
   setPlaylistArtwork: boolean;
   verifyExternalTracks: boolean;
+  uploadExternalTracks: boolean;
   createMissingPlaylists: boolean;
   recreateIndividualTitip: boolean;
   storeFilesizes: boolean;
@@ -89,6 +90,10 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
     artworkPath = `${tmpDir}/artwork.png`;
     const buffer = await cloud.downloadFile(audio.imagePath);
     fs.writeFileSync(artworkPath, buffer);
+  }
+
+  if (argv.all || argv.uploadExternalTracks) {
+    await uploadExternalTracks(audio, paths, artworkPath);
   }
 
   if (argv.all || argv.verifyExternalTracks) {
@@ -261,6 +266,30 @@ async function uploadIndividualTitip(
   return trackId;
 }
 
+async function uploadExternalTracks(
+  audio: Audio,
+  paths: string[],
+  artworkPath: string,
+): Promise<void> {
+  for (let i = 0; i < audio.parts.length; i++) {
+    const part = audio.parts[i];
+    const qualities: AudioQuality[] = ['LQ', 'HQ'];
+    for (const quality of qualities) {
+      const key = quality === 'HQ' ? 'externalIdHq' : 'externalIdLq';
+      if (part[key] === 0) {
+        const trackId = await getClient().uploadTrack({
+          title: audio.edition.document.title,
+          description: audio.edition.description || audio.edition.document.description,
+          audioPath: paths.find(p => p.endsWith(audio.partFilename(i, quality))) || '',
+          imagePath: artworkPath,
+          tags: [quality as string].concat(audio.edition.document.tags),
+        });
+        red(`${key} ${quality} for ${audio.edition.path}:${i} ${part.title}: ${trackId}`);
+      }
+    }
+  }
+}
+
 async function storeFilesizes(
   audio: Audio,
   paths: string[],
@@ -293,6 +322,7 @@ function needArtwork(argv: Argv): boolean {
   return (
     argv.all ||
     argv.setPlaylistArtwork ||
+    argv.uploadExternalTracks ||
     argv.setTrackArtwork ||
     argv.recreateIndividualTitip
   );
@@ -302,6 +332,7 @@ function shouldVerifyAudioPaths(argv: Argv): boolean {
   return (
     argv.all ||
     argv.verifyLocalFilepaths ||
+    argv.uploadExternalTracks ||
     argv.uploadM4BFiles ||
     argv.uploadMp3Files ||
     argv.uploadMp3Zips ||
