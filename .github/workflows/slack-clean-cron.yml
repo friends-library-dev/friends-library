@@ -1,0 +1,49 @@
+name: Clean Slack Bot Channels
+
+on:
+  schedule:
+    # every 12 hours
+    - cron: 0 * * * *
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    env:
+      TOKEN: ${{ secrets.SLACK_LEGACY_TOKEN }}
+    steps:
+      - uses: matken11235/slack-cleaner@v1
+        with:
+          channel: downloads
+          before: '`date -d "-5 days" "+%Y%m%d"`'
+          rate: 1.2
+          message: true
+          bot: true
+          perform: true
+          token: $TOKEN
+      - uses: matken11235/slack-cleaner@v1
+        with:
+          channel: errors
+          before: '`date -d "-3 days" "+%Y%m%d"`'
+          rate: 1.2
+          message: true
+          bot: true
+          perform: true
+          token: $TOKEN
+      - uses: matken11235/slack-cleaner@v1
+        with:
+          channel: fnlogs
+          before: '`date -d "+1 days" "+%Y%m%d"`'
+          rate: 1.2
+          message: true
+          bot: true
+          perform: true
+          token: $TOKEN
+      - uses: matken11235/slack-cleaner@v1
+        with:
+          channel: test-bot
+          before: '`date -d "-1 days" "+%Y%m%d"`'
+          rate: 1.2
+          message: true
+          bot: true
+          perform: true
+          token: $TOKEN
