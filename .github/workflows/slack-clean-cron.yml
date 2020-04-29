@@ -15,7 +15,7 @@ jobs:
         with:
           channel: downloads
           before: '`date -d "-5 days" "+%Y%m%d"`'
-          rate: 1.2
+          rate: '1.2'
           message: true
           bot: true
           perform: true
@@ -24,7 +24,7 @@ jobs:
         with:
           channel: errors
           before: '`date -d "-3 days" "+%Y%m%d"`'
-          rate: 1.2
+          rate: '1.2'
           message: true
           bot: true
           perform: true
@@ -33,7 +33,7 @@ jobs:
         with:
           channel: fnlogs
           before: '`date -d "+1 days" "+%Y%m%d"`'
-          rate: 1.2
+          rate: '1.2'
           message: true
           bot: true
           perform: true
@@ -42,7 +42,7 @@ jobs:
         with:
           channel: test-bot
           before: '`date -d "-1 days" "+%Y%m%d"`'
-          rate: 1.2
+          rate: '1.2'
           message: true
           bot: true
           perform: true
