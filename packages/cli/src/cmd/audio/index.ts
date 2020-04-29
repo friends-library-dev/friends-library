@@ -39,6 +39,12 @@ export const builder: CommandBuilder = function(yargs) {
       default: false,
       demand: false,
     })
+    .option('upload-external-tracks', {
+      type: 'boolean',
+      description: 'upload any missing external tracks designated with id=0',
+      default: false,
+      demand: false,
+    })
     .option('recreate-individual-titip', {
       type: 'boolean',
       description: 'create duplicates of TITIP chapter files for standalone embedding',
