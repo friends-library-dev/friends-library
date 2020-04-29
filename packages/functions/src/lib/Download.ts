@@ -68,6 +68,15 @@ const schema = new mongoose.Schema(
       required: false,
       max: 255,
     },
+    location: {
+      ip: { type: String },
+      city: { type: String },
+      region: { type: String },
+      postalCode: { type: String },
+      country: { type: String },
+      latitude: { type: Number },
+      longitude: { type: Number },
+    },
   },
   { timestamps: true },
 );

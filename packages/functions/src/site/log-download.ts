@@ -1,4 +1,5 @@
 import '@friends-library/env/load';
+import fetch from 'node-fetch';
 import { APIGatewayEvent } from 'aws-lambda';
 import env from '../lib/env';
 import { EditionType, AudioQuality } from '@friends-library/types';
@@ -64,6 +65,27 @@ async function logDownload(
     return;
   }
 
+  let location: null | Record<string, string | number> = null;
+  if (headers['client-ip']) {
+    try {
+      const ipRes = await fetch(`https://ipapi.co/${headers['client-ip']}/json/`);
+      const json = await ipRes.json();
+      if (typeof json === 'object') {
+        location = {
+          ip: json.ip,
+          city: json.city,
+          region: json.region,
+          postalCode: json.postal,
+          country: json.country_name,
+          latitude: json.latitude,
+          longitude: json.longitude,
+        };
+      }
+    } catch {
+      // ¯\_(ツ)_/¯
+    }
+  }
+
   try {
     const download = {
       document_id: docId,
@@ -76,6 +98,7 @@ async function logDownload(
       browser: ua.browser,
       platform: ua.platform,
       referrer,
+      ...(location ? { location } : {}),
     };
     await create(download);
     log('Download added to db:', { download });
@@ -83,23 +106,34 @@ async function logDownload(
     log.error('error adding download to db', { error });
   }
 
-  sendSlack(ua, referrer, cloudPath);
+  sendSlack(ua, referrer, cloudPath, location);
 }
 
 export default logDownload;
 
-function sendSlack(ua: useragent.UserAgent, referrer: string, cloudPath: string): void {
-  const device = [
-    ua.platform,
-    ua.os,
-    ua.browser,
-    ua.isMobile ? 'mobile' : 'non-mobile',
-  ].join(' / ');
+function sendSlack(
+  ua: useragent.UserAgent,
+  referrer: string,
+  cloudPath: string,
+  location: null | Record<string, string | number>,
+): void {
+  const device = [ua.platform, ua.os, ua.browser, ua.isMobile ? 'mobile' : 'non-mobile']
+    .filter(part => part !== 'unknown')
+    .join(' / ');
 
-  const from = referrer ? ` from url: ${referrer}` : '';
+  const from = referrer ? `, from url: ${referrer}` : '';
+
+  let where = '';
+  if (location) {
+    const mapUrl = `https://www.google.com/maps/@${location.latitude},${location.longitude},14z`;
+    const parts = [location.city, location.region, location.postalCode, location.country]
+      .filter(Boolean)
+      .join(' / ');
+    where = `, location: \`${parts}\` ${mapUrl}`;
+  }
 
   slack.send(
-    `Download: \`${cloudPath}\`, device: \`${device}\`${from}`,
+    `Download: \`${cloudPath}\`, device: \`${device}\`${from}${where}`,
     env('SLACK_DOWNLOADS_CHANNEL'),
   );
 }
