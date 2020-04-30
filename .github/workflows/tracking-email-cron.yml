@@ -1,4 +1,4 @@
-name: Send Order Tracking Emails
+name: order-tracking-emails
 
 on:
   schedule:
