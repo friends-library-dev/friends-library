@@ -1,0 +1,131 @@
+name: ci-cd
+on: [push]
+jobs:
+  build-and-test:
+    name: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+      - name: compile
+        run: |
+          yarn compile types
+          yarn compile env
+          yarn compile adoc-utils
+          yarn compile adoc-lint
+          yarn compile slack
+          yarn compile cloud
+          yarn compile lulu
+          yarn compile doc-html
+      - name: test
+        run: yarn test -w=2
+
+  ts-lint:
+    name: ts-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+      - name: ts:lint
+        run: yarn ts:lint
+
+  jones-build:
+    name: jones-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/jones
+      - name: compile
+        run: yarn compile jones
+      - name: jones:build
+        run: yarn jones:build
+
+  evans-ts-check:
+    name: evans-ts-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/evans
+      - name: compile
+        run: yarn compile evans
+      - name: check-ts
+        run: yarn evans:ts:check
+
+  evans-build-en:
+    name: evans-build-en
+    env:
+      FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}
+      DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
+      DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
+      DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
+      CLOUD_STORAGE_BUCKET_URL: ${{ secrets.CLOUD_STORAGE_BUCKET_URL }}
+      DOCS_REPOS_ROOT: ${{ github.workspace }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/evans
+      - name: compile
+        run: yarn compile evans
+      - name: fell-clone
+        run: yarn fell:fresh-clone
+      - name: evans-build-en
+        run: yarn evans:build:en
+
+  evans-build-es:
+    name: evans-build-es
+    env:
+      FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}
+      DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
+      DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
+      DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
+      CLOUD_STORAGE_BUCKET_URL: ${{ secrets.CLOUD_STORAGE_BUCKET_URL }}
+      DOCS_REPOS_ROOT: ${{ github.workspace }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/evans
+      - name: compile
+        run: yarn compile evans
+      - name: fell-clone
+        run: yarn fell:fresh-clone
+      - name: evans-build-es
+        run: yarn evans:build:es
+
+  cover-build-and-check:
+    name: cover-build-and-check
+    runs-on: ubuntu-latest
+    env:
+      DOCS_REPOS_ROOT: ${{ github.workspace }}
+      DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
+      DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
+      DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/cover-web-app
+      - name: compile
+        run: yarn compile cover-web-app
+      - name: cover:ts:check
+        run: yarn cover:ts:check
+      - name: cover:build
+        run: yarn cover:build
+
+  styleguide-build:
+    name: styleguide-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/styleguide
+      - name: styleguide:build
+        run: yarn styleguide:build
