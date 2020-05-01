@@ -8,37 +8,46 @@ jobs:
   clean:
     runs-on: ubuntu-latest
     steps:
-      - uses: matken11235/slack-cleaner@v1
-        with:
-          group: downloads
-          before: '`date -d "-5 days" "+%Y%m%d"`'
-          rate: '1'
-          message: true
-          bot: true
-          perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
-      - uses: matken11235/slack-cleaner@v1
-        with:
-          group: errors
-          before: '`date -d "-3 days" "+%Y%m%d"`'
-          rate: '1'
-          message: true
-          bot: true
-          perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
-      - uses: matken11235/slack-cleaner@v1
+      - name: set-env
+        run: |
+          echo ::set-env name=FIVE_DAYS_AGO::$(date -d '-5 days' '+%Y%m%d')
+          echo ::set-env name=THREE_DAYS_AGO::$(date -d '-3 days' '+%Y%m%d')
+          echo ::set-env name=ONE_DAY_AGO::$(date -d '-1 days' '+%Y%m%d')
+      - name: 'clean-channel: fnlogs'
+        uses: matken11235/slack-cleaner@v1
         with:
           group: fnlogs
-          before: '`date -d "+1 days" "+%Y%m%d"`'
+          before: ${{ env.FIVE_DAYS_AGO }}
           rate: '1'
           message: true
           bot: true
           perform: true
           token: ${{ secrets.SLACK_LEGACY_TOKEN }}
-      - uses: matken11235/slack-cleaner@v1
+      - name: 'clean-channel: errors'
+        uses: matken11235/slack-cleaner@v1
+        with:
+          group: errors
+          before: ${{ env.THREE_DAYS_AGO }}
+          rate: '1'
+          message: true
+          bot: true
+          perform: true
+          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+      - name: 'clean-channel: fnlogs'
+        uses: matken11235/slack-cleaner@v1
+        with:
+          group: fnlogs
+          before: ${{ env.ONE_DAY_AGO }}
+          rate: '1'
+          message: true
+          bot: true
+          perform: true
+          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+      - name: 'clean-channel: test-bot'
+        uses: matken11235/slack-cleaner@v1
         with:
           group: test-bot
-          before: '`date -d "-1 days" "+%Y%m%d"`'
+          before: ${{ env.ONE_DAY_AGO }}
           rate: '1'
           message: true
           bot: true
