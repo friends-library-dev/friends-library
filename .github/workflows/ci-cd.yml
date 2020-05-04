@@ -2,6 +2,15 @@ name: ci-cd
 
 on: [push]
 
+env:
+  FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}
+  DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
+  DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
+  DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
+  CLOUD_STORAGE_BUCKET_URL: ${{ secrets.CLOUD_STORAGE_BUCKET_URL }}
+  DOCS_REPOS_ROOT: ${{ github.workspace }}
+  NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
+
 jobs:
   cancel:
     name: cancel-previous-runs
@@ -13,8 +22,8 @@ jobs:
           workflow_id: 1155909
           access_token: ${{ github.token }}
 
-  build-and-test:
-    name: build-and-test
+  test:
+    name: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -69,16 +78,15 @@ jobs:
 
   evans-build-en:
     name: evans-build-en
-    env:
-      FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}
-      DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
-      DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
-      DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
-      CLOUD_STORAGE_BUCKET_URL: ${{ secrets.CLOUD_STORAGE_BUCKET_URL }}
-      DOCS_REPOS_ROOT: ${{ github.workspace }}
     runs-on: ubuntu-latest
     steps:
+      - name: set-short-sha
+        run: echo ::set-env name=SHORT_SHA::$(echo $GITHUB_SHA | cut -c1-7)
       - uses: actions/checkout@v2
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: bahmutov/npm-install@v1
         with:
           working-directory: packages/evans
@@ -88,19 +96,36 @@ jobs:
         run: yarn fell:fresh-clone
       - name: evans-build-en
         run: yarn evans:build:en
+      - name: deploy
+        id: deploy
+        if: ${{ success() }}
+        env:
+          PR_NUMBER: ${{ steps.findPr.outputs.number }}
+          PR_TITLE: ${{ steps.findPr.outputs.title }}
+          DEPLOY_SITE_ID: ${{ secrets.DEPLOY_SITE_ID_EN }}
+        run: yarn evans:deploy
+      - name: deploy-comment
+        if: ${{ steps.deploy.outputs.deployUrl && steps.findPr.outputs.number }}
+        env:
+          PR_NUMBER: ${{ steps.findPr.outputs.number }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployUrl }}
+        run: |
+          curl -sL -X POST -d "{\"body\":\"[EN preview $SHORT_SHA]($DEPLOY_URL)\"}" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
 
   evans-build-es:
     name: evans-build-es
-    env:
-      FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}
-      DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
-      DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
-      DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
-      CLOUD_STORAGE_BUCKET_URL: ${{ secrets.CLOUD_STORAGE_BUCKET_URL }}
-      DOCS_REPOS_ROOT: ${{ github.workspace }}
     runs-on: ubuntu-latest
     steps:
+      - name: set-short-sha
+        run: echo ::set-env name=SHORT_SHA::$(echo $GITHUB_SHA | cut -c1-7)
       - uses: actions/checkout@v2
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: bahmutov/npm-install@v1
         with:
           working-directory: packages/evans
@@ -110,15 +135,28 @@ jobs:
         run: yarn fell:fresh-clone
       - name: evans-build-es
         run: yarn evans:build:es
+      - name: deploy
+        id: deploy
+        if: ${{ success() }}
+        env:
+          PR_NUMBER: ${{ steps.findPr.outputs.number }}
+          PR_TITLE: ${{ steps.findPr.outputs.title }}
+          DEPLOY_SITE_ID: ${{ secrets.DEPLOY_SITE_ID_ES }}
+        run: yarn evans:deploy
+      - name: deploy-comment
+        if: ${{ steps.deploy.outputs.deployUrl && steps.findPr.outputs.number }}
+        env:
+          PR_NUMBER: ${{ steps.findPr.outputs.number }}
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployUrl }}
+        run: |
+          curl -sL -X POST -d "{\"body\":\"[ES preview $SHORT_SHA]($DEPLOY_URL)\"}" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
 
   cover-build-and-check:
     name: cover-build-and-check
     runs-on: ubuntu-latest
-    env:
-      DOCS_REPOS_ROOT: ${{ github.workspace }}
-      DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
-      DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
-      DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
