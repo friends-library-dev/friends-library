@@ -13,10 +13,10 @@ jobs:
           echo ::set-env name=FIVE_DAYS_AGO::$(date -d '-5 days' '+%Y%m%d')
           echo ::set-env name=THREE_DAYS_AGO::$(date -d '-3 days' '+%Y%m%d')
           echo ::set-env name=ONE_DAY_AGO::$(date -d '-1 days' '+%Y%m%d')
-      - name: 'clean-channel: fnlogs'
+      - name: 'clean-channel: downloads'
         uses: matken11235/slack-cleaner@v1
         with:
-          group: fnlogs
+          group: downloads
           before: ${{ env.FIVE_DAYS_AGO }}
           rate: '1'
           message: true
