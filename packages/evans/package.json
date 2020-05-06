@@ -66,19 +66,19 @@
   "scripts": {
     "deploy": "node ./deploy.js",
     "test": "cd ../../ && yarn jest packages/evans",
+    "compile": "cd ../../ && yarn compile evans",
     "ts:check": "../../node_modules/.bin/tsc --noEmit -p .",
     "develop:functions": "cd ../functions && yarn start",
-    "compile": "cd ../../ && yarn compile evans",
     "build:functions": "cd ../functions && yarn build",
-    "build": "gatsby clean && gatsby build && yarn build:functions",
+    "symlink:functions": "ln -s ../functions/dist functions",
+    "build": "gatsby clean && gatsby build && yarn build:functions && yarn symlink:functions && cp ./_redirects ./public/",
     "build:en": "GATSBY_LANG=en yarn build",
     "build:es": "GATSBY_LANG=es yarn build",
     "dpc-cache:clean": "rm -f src/build/.dpc-cache.json",
     "develop:en:site": "GATSBY_LANG=en GATSBY_PORT=9222 GATSBY_ALT_PORT=9333 gatsby develop --port 9222",
     "develop:es:site": "GATSBY_LANG=es GATSBY_PORT=9333 GATSBY_ALT_PORT=9222 gatsby develop --port 9333",
     "develop:en": "run-p develop:en:site develop:functions",
-    "develop:es": "run-p develop:es:site develop:functions",
-    "build:netlify": "cd ../../ && yarn fell:fresh-clone && cd packages/evans && yarn compile && yarn build && ln -s ../functions/dist functions"
+    "develop:es": "run-p develop:es:site develop:functions"
   },
   "devDependencies": {
     "@types/he": "^1.1.0",
