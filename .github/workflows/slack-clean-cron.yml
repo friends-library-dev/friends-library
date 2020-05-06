@@ -43,6 +43,16 @@ jobs:
           bot: true
           perform: true
           token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+      - name: 'clean-channel: dev'
+        uses: matken11235/slack-cleaner@v1
+        with:
+          group: dev
+          before: ${{ env.FIVE_DAYS_AGO }}
+          rate: '1'
+          message: true
+          bot: true
+          perform: true
+          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
       - name: 'clean-channel: test-bot'
         uses: matken11235/slack-cleaner@v1
         with:
