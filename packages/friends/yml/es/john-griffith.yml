@@ -7,7 +7,13 @@ born: 1713
 died: 1776
 quotes:
   - source: John Griffith
-    text: TODO
+    text:
+      Muy grande es el engaño de aquellos que piensan que toda la obra de regeneración
+      ocurre instantáneamente. Esto no puede ser otra cosa más que un engaño de Satanás
+      para hacer que las personas reposen en un estado de auto-seguridad tanto como
+      puedan. ¡Oh! ¡qué largo tiempo se requiere para echar fuera esa naturaleza
+      obstinada, dura y rebelde, que nació en Egipto, antes de que sea levantada la nueva
+      generación que está en condiciones de entrar en la tierra prometida!
 residences:
   - city: Radnorshire
     region: Wales
@@ -24,18 +30,37 @@ residences:
     durations:
       - start: 1750
         end: 1776
-description: TODO
+description:
+  John Griffith (1713-1776), de ser un joven desenfrenado y descuidado, se convirtió en un
+  sabio y cuidadoso ministro del evangelio. Su diario está lleno de sabiduría celestial,
+  la cual obtuvo de su experiencia personal tanto de la bondad y guía del Señor, como de
+  las trampas y engaños del enemigo. Junto con un remanente de lámparas brillantes y
+  resplandecientes que quedaban en su generación, Griffith luchaba contra la triste
+  degeneración hacia la formalidad, tradición, y a las palabras sin vida entre un pueblo
+  que una vez fue distinguido por su experiencia del poder y pureza internos del Espíritu
+  Santo.
 documents:
   - id: d3a7084f-5f52-441c-9088-55f86ae5fb19
     alt_language_id: a3016ba9-1370-4b8c-b680-98f383317f3b
     title: Selección del Diario de John Griffith
     slug: seleccion-del-diario
     filename: Seleccion_del_Diario_de_John_Griffith
-    description: TODO
-    partial_description: TODO
+    description:
+      John Griffith (1713-1776), de ser un joven desenfrenado y descuidado, se convirtió
+      en un sabio y cuidadoso ministro del evangelio. Su diario está lleno de sabiduría
+      celestial, la cual obtuvo de su experiencia personal tanto de la bondad y guía del
+      Señor, como de las trampas y engaños del enemigo. Junto con un remanente de lámparas
+      brillantes y resplandecientes que quedaban en su generación, Griffith luchaba contra
+      la triste degeneración hacia la formalidad, tradición, y a las palabras sin vida
+      entre un pueblo que una vez fue distinguido por su experiencia del poder y pureza
+      internos del Espíritu Santo. Esta instructiva porción de su largo diario trata de su
+      conversión, crecimiento espiritual y llamado al ministerio.
+    partial_description:
+      Un extracto del diario de la vida, viajes y labor en la obra del ministerio de John
+      Griffith, que proporciona una profunda explicación de la naturaleza del verdadero
+      Cristianismo, de la obra del ministerio y de la condición actual de la iglesia.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-203-5
-        draft: true

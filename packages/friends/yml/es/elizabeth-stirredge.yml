@@ -7,11 +7,21 @@ born: 1634
 died: 1706
 quotes:
   - source: John Neale
-    text: TODO
+    text:
+      Mucho se podría decir de nuestra amiga [Elizabeth Stirredge]. Ella era una mujer
+      valiente por la verdad en la tierra, una madre en Israel, y anciana digna y fiel en
+      la iglesia de Cristo de su tiempo.
 residences:
   - city: Hemel Hempstead
     region: England
-description: TODO
+description:
+  Elizabeth Stirredge (1634-1706) no era una ministra itinerante en la Sociedad de Amigos.
+  Era una esposa, una madre y una extraordinaria mujer de Dios. Esta corta pero fascinante
+  historia de su vida la escribió cuando tenía 56 años de edad para el beneficio de sus
+  hijos y nietos. En ella describe su desesperada búsqueda del Señor en su juventud, su
+  descubrimiento de la Verdad como es en Jesús, y muchas de las pruebas, persecuciones y
+  liberaciones con las que se encontró en el camino, a medida que tomaba la cruz diaria y
+  seguía fielmente a su Señor.
 documents:
   - id: 3a4567fd-c9b3-47f9-82aa-cebd539caaaa
     alt_language_id: 492a89d4-0f81-490a-9619-b3a390d51307
@@ -19,11 +29,20 @@ documents:
     slug: seleccion-de-la-vida
     filename: Seleccion_de_la_Vida_de_Elizabeth_Stirredge
     published: 1711
-    description: TODO
-    partial_description: TODO
+    description:
+      Elizabeth Stirredge (1634-1706) no era una ministra itinerante en la Sociedad de
+      Amigos. Era una esposa, una madre y una extraordinaria mujer de Dios. Esta corta
+      pero fascinante historia de su vida la escribió cuando tenía 56 años de edad para el
+      beneficio de sus hijos y nietos. En ella describe su desesperada búsqueda del Señor
+      en su juventud, su descubrimiento de la Verdad como es en Jesús, y muchas de las
+      pruebas, persecuciones y liberaciones con las que se encontró en el camino, a medida
+      que tomaba la cruz diaria y seguía fielmente a su Señor.
+    partial_description:
+      Un extracto de la Vida de Elizabeth Stirrege escrito para sus hijos y nietos, que
+      relata su ferviente búsqueda del conocimiento de Dios, y su fidelidad a Él en las
+      dificultades causadas por los falsos hermanos y la cruda persecución.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-205-9
-        draft: true

@@ -8,26 +8,57 @@ died: 1753
 residences:
   - city: York
     region: England
-description: TODO
+description:
+  La vida de John Richardson (1667-1753) es una poderosa confirmación de las palabras de
+  Jesús, que las cosas celestiales “están escondidas de los sabios y de los entendidos, y
+  son reveladas a los niños,” y que Su “poder se perfecciona en la debilidad.” Aunque
+  empezó su vida como un niño pobre del campo con poca educación, Richardson se volvió un
+  estudiante fiel en la escuela de Cristo, donde no sólo aprendió verdades espirituales y
+  misterios celestiales, sino que llegó a experimentar sus ropas lavadas, su mente
+  renovada y su corazón transformado. Esta instructiva porción es un extracto de su diario
+  que relata sus primeros años, su crecimiento espiritual y su llamado al ministerio.
+  Nació en Inglaterra, pero viajó como ministro durante la mayor parte de su vida adulta,
+  visitando dos veces las colonias americanas, donde victoriosamente defendió la verdad en
+  contra de “ese lamentable apóstata” George Keith.
 quotes:
   - source: Daniel Stanton
-    text: TODO
+    text:
+      Fui a visitar a ese querido y antiguo Amigo John Richardson, quien visitó dos veces
+      América por causa de la verdad, y se esforzó demasiado durante su día por esparcir y
+      promover el evangelio de paz y salvación en la tierra. Aunque era anciano y débil de
+      cuerpo, él estaba fresco y vivo en la vida de la religión, y cuando estuve con él,
+      mi corazón fue refrescado en la unidad y comunión de la vida divina.
   - source: Samuel Fothergill
-    text: TODO
+    text:
+      Al siguiente día estuve en Castleton. Pasé una hora con ese emblema de inocencia, y
+      en la tarde cabalgué diez millas hacia la casa donde reposa el arca, es decir, a la
+      casa de John Richardson, quien al siguiente día fue conmigo a Pickering, y luego
+      regresé con él a su casa, donde nos sentamos y conversamos casi hasta al amanecer.
 documents:
   - id: 2dee903b-4a9a-4dae-a9d3-d7937029471a
     alt_language_id: 470677d5-c6e0-4d1f-a61d-69827d25a14c
     title: Selección del Diario de John Richardson
     slug: seleccion-del-diario
     filename: Seleccion_del_Diario_de_John_Richardson
-    description: TODO
-    partial_description: TODO
+    description:
+      La vida de John Richardson (1667-1753) es una poderosa confirmación de las palabras
+      de Jesús, que las cosas celestiales “están escondidas de los sabios y de los
+      entendidos, y son reveladas a los niños,” y que Su “poder se perfecciona en la
+      debilidad.” Aunque empezó su vida como un niño pobre del campo con poca educación,
+      Richardson se volvió un estudiante fiel en la escuela de Cristo, donde no sólo
+      aprendió verdades espirituales y misterios celestiales, sino que llegó a
+      experimentar sus ropas lavadas, su mente renovada y su corazón transformado. Esta
+      instructiva porción es un extracto de su diario que relata sus primeros años, su
+      crecimiento espiritual y su llamado al ministerio.
+    partial_description:
+      Un extracto del diario del siervo de Dios, John Richardson, que contiene un relato
+      de las pruebas y tribulaciones de su juventud, sus increíbles experiencias
+      espirituales, y sus primeros servicios en la obra del Ministerio.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-198-4
-        draft: true
         audio:
           added: 2019-07-29T04:00:00.000Z
           reader: Keren Alvaredo
