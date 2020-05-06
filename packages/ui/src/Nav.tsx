@@ -29,7 +29,7 @@ const Nav: React.FC<Props> = ({
 
   useEffect(() => {
     const vimActivate: (e: KeyboardEvent) => any = e => {
-      if (!searching && e.keyCode === FORWARD_SLASH) {
+      if (!searching && e.keyCode === FORWARD_SLASH && !e.shiftKey) {
         e.preventDefault();
         setSearching(true);
       }
