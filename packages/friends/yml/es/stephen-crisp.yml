@@ -91,15 +91,25 @@ documents:
     title: Selección del Diario de Stephen Crisp
     slug: seleccion-del-diario
     filename: Seleccion_del_Diario_de_Stephen_Crisp
-    description: TODO
-    partial_description: TODO
+    description:
+      Stephen Crisp (1628-1692) fue otro cuya búsqueda desesperada de la Verdad (que duró
+      veinte largos años) finalmente lo llevó a un conocimiento y experiencia de la gracia
+      y la verdad que están en Jesucristo. Después de haber encontrado la Perla de gran
+      precio, vendió todo para comprarla, y pronto se convirtió en un ministro eminente
+      entre la primitiva Sociedad de los Amigos, trabajando por los siguientes treinta y
+      cinco años en    el poder y la sabiduría del Espíritu a lo largo de Inglaterra,
+      Escocia, Holanda y Alemania.
+    partial_description:
+      Un extracto del diario de Stephen Crisp, que contiene un relato de sus fuertes
+      deseos de pureza cuando era joven, del tiempo en que fue convencido de la verdad a
+      través del ministerio de James Parnell, y de su subsecuente ministerio y cuidado
+      paternal sobre la antigua Sociedad de Amigos.
     tags:
       - journal
       - letters
     editions:
       - type: updated
         isbn: 978-1-64476-199-1
-        draft: true
         audio:
           added: 2019-07-29T04:00:00.000Z
           reader: Keren Alvaredo

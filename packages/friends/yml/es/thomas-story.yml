@@ -53,11 +53,24 @@ documents:
     title: Selección del Diario de Thomas Story
     slug: seleccion-del-diario
     filename: Seleccion_del_Diario_de_Thomas_Story
-    description: TODO
-    partial_description: TODO
+    description:
+      Thomas Story (1662-1742) fue un ministro increíblemente dotado y útil en la Sociedad
+      de Amigos, que viajó por toda Inglaterra, Irlanda, Escocia, Holanda, Jamaica,
+      Barbados y las colonias americanas en su servicio por el Evangelio. Era conocido
+      tanto por su profundidad espiritual como por sus capacidades intelectuales. Su clara
+      percepción de la verdad espiritual, su profundo conocimiento de la Escritura, y su
+      facilidad para expresarse hicieron que fuera demasiado fuerte para los enemigos de
+      la verdad, que intentaban difamar y oponerse a las enseñanzas de los primeros
+      Amigos. Los muchos y convincentes argumentos doctrinales que se encuentran en su
+      diario se volvieron muy influyentes entre los Cuáqueros, y siguen siendo de gran
+      beneficio para todo buscador genuino de la verdad.
+    partial_description:
+      Un extracto del diario de Thomas Story, que contiene un relato de su dramático
+      despertar a la verdad sin la ayuda de ningún ministerio humano, y de su utilidad en
+      la iglesia como un ministro del evangelio, siendo uno que tenía una combinación
+      inusual de la humildad de un niño con un extraordinario discernimiento intelectual.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-207-3
-        draft: true
