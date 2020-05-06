@@ -7,25 +7,50 @@ born: 1657
 died: 1729
 quotes:
   - source: Joseph Pike
-    text: TODO
+    text:
+      “Lo que de Dios se puede conocer, es manifiesto dentro del hombre.” Es ahí donde
+      Cristo mismo enseña a Su pueblo. Cuánto más nos mantengamos vueltos hacia el
+      interior en esta escuela, más aprenderemos de Cristo. Cuánto menos nos mantengamos
+      vueltos hacia el interior, aun cuando estemos involucrados en cosas lícitas, menos
+      aprenderemos de Cristo. ¡Oh, lean, ustedes los que pueden leer en el misterio de
+      vida! ¡No hay seguridad, ni preservación, ni crecimiento en la Verdad, sino en la
+      verdadera humildad, manteniéndose vueltos hacia el don del Santo Espíritu de Cristo,
+      y vigilando continuamente en la luz contra las tentaciones del enemigo!
 residences:
   - city: Cork
     region: Ireland
-description: TODO
+description:
+  Joseph Pike (1657-1729) fue convencido de la verdad a través de la poderosa predicación
+  de William Edmundson, y se convirtió en un anciano sabio y fiel en la Sociedad de Amigos
+  en Irlanda. Él escribió en su vejez un relato de sus primeros años, de sus luchas
+  espirituales y de su crecimiento en la verdad, principalmente para el beneficio de sus
+  propios hijos. En esta historia corta pero valiosa, él relata (con detalles que son de
+  mucha ayuda) los tratos del Señor con él, primero como Juez, luego como Refinador de
+  plata, y eventualmente como Consolador y Fortalecedor de Sion.
 documents:
   - id: 8b902ddb-8a70-414a-a6e5-1a815dd6d2e9
     alt_language_id: f9356ff3-a098-45b1-9ed2-022790240c01
     title: Selección de la Vida de Joseph Pike
     slug: seleccion-de-la-vida
     filename: Seleccion_de_la_Vida_de_Joseph_Pike
-    description: TODO
-    partial_description: TODO
+    description:
+      Joseph Pike (1657-1729) fue convencido de la verdad a través de la poderosa
+      predicación de William Edmundson, y se convirtió en un anciano sabio y fiel en la
+      Sociedad de Amigos en Irlanda. Él escribió en su vejez un relato de sus primeros
+      años, de sus luchas espirituales y de su crecimiento en la verdad, principalmente
+      para el beneficio de sus propios hijos. En esta historia corta pero valiosa, él
+      relata (con detalles que son de mucha ayuda) los tratos del Señor con él, primero
+      como Juez, luego como Refinador de plata, y eventualmente como Consolador y
+      Fortalecedor de Sion.
+    partial_description:
+      Un extracto del diario y escritos de Joseph Pike, que contiene un relato de sus
+      viajes espirituales y de los distintos tratos de Dios con su alma por los que tuvo
+      que pasar en el camino de la regeneración.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-202-8
-        draft: true
         audio:
           reader: Keren Alvaredo
           added: 2019-07-29T04:00:00.000Z

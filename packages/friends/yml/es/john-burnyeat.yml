@@ -7,7 +7,10 @@ born: 1631
 died: 1690
 quotes:
   - source: George Fox
-    text: TODO
+    text:
+      '[John Burnyeat] era un amigo y hermano fiel, y un ministro competente de
+      Jesucristo…un anciano, y una columna en la casa de Dios...un verdadero apóstol de
+      Jesucristo, que predicó a Cristo gratuitamente, tanto por mar como por tierra.'
 residences:
   - city: Broughton
     region: England
@@ -19,21 +22,43 @@ residences:
     durations:
       - start: 1673
         end: 1690
-description: TODO
+description:
+  John Burnyeat (1631-1690) era un anciano y columna en la antigua Sociedad de Amigos,
+  cuyo poderoso ministerio convirtió a muchos de las tinieblas a la luz, y de la potestad
+  de Satanás al poder de Dios. Habiendo sido despertado para ver el error fatal de creer
+  en una justicia imputada que no es ni experimentada ni obedecida, se volvió a Aquel que
+  lo había herido y se dio cuenta de que Sión debía ser purificada “con espíritu de juicio
+  y con espíritu de fuego.” Y luego, habiendo sido preparado y enviado a la mies, trabajó
+  incansablemente y viajó extensivamente en el servicio de la Verdad, a menudo sufriendo
+  grandemente por su fidelidad a Jesucristo. En verdad se puede decir de John Burnyeat que
+  siguió al Señor con todo su corazón en su generación, poniendo su mano en el arado y
+  nunca mirando atrás.
 documents:
   - id: d588963b-e583-4023-abad-b7c526315451
     alt_language_id: b40a8274-196a-43e3-9fef-0c96ab9ce55a
     title: Selección del Diario de John Burnyeat
     slug: seleccion-del-diario
     filename: Seleccion_del_Diario_de_John_Burnyeat
-    description: TODO
-    partial_description: TODO
+    description:
+      John Burnyeat (1631-1690) era un anciano y columna en la antigua Sociedad de Amigos,
+      cuyo poderoso ministerio convirtió a muchos de las tinieblas a la luz, y de la
+      potestad de Satanás al poder de Dios. Habiendo sido despertado para ver el error
+      fatal de creer en una justicia imputada que no es ni experimentada ni obedecida, se
+      volvió a Aquel que lo había herido y se dio cuenta de que Sión debía ser purificada
+      “con espíritu de juicio y con espíritu de fuego.” Y luego, habiendo sido preparado y
+      enviado a la mies, trabajó incansablemente y viajó extensivamente en el servicio de
+      la Verdad, a menudo sufriendo grandemente por su fidelidad a Jesucristo. En verdad
+      se puede decir de John Burnyeat que siguió al Señor con todo su corazón en su
+      generación, poniendo su mano en el arado y nunca mirando atrás.
+    partial_description:
+      Un extracto del diario y cartas de John Burnyeat, que muestra cómo el Señor lo
+      preparó para su extensa obra en el ministerio y lo envió en el poder del Espíritu a
+      predicar el evangelio en Inglaterra, Irlanda, Barbados y en las Colonias Americanas.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-201-1
-        draft: true
         audio:
           reader: Keren Alvaredo
           added: 2019-07-29T04:00:00.000Z

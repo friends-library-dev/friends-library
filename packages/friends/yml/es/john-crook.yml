@@ -7,22 +7,46 @@ born: 1617
 died: 1699
 quotes:
   - source: John Crook
-    text: TODO
+    text:
+      Este Santo Espíritu ha sido para mí tanto comida como bebida, tal como la Roca de la
+      antigüedad que seguía a los israelitas. Diez veces (según recuerdo) he estado preso,
+      y todo por el bien de una buena consciencia delante de mi Dios. Sin embargo, este
+      Santo Espíritu nunca me ha dejado, sino que muchas veces me ha hecho cantar en las
+      prisiones. Sí, por este Santo Espíritu todo se ha vuelto alegría para mí. Mi ayuda
+      está en Él, mi consuelo fluye de Él, y diariamente le pido a mi Dios que todo Su
+      pueblo sea guiado en todas las cosas por medio de Su Espíritu.
 residences:
   - city: London
     region: England
-description: TODO
+description:
+  Como muchos otros antiguos Cuáqueros, John Crook (1617-1699) era un buscador de la
+  verdad desde temprana edad. Fue educado en Londres, y por un tiempo ocupó el puesto de
+  Juez de la Paz en Bedfordshire, pero cuando fue convencido de la verdad en 1654 (por
+  medio de la predicación de William Dewsbury), muy pronto perdió tanto su cargo público
+  como su libertad. En total, John Crook fue encarcelado diez veces por su fe, y sufrió
+  mucho a “manos de hombres perversos.”
 documents:
   - id: 8fbadbad-0fc1-4dfa-9fb4-d96e7c00ff58
     alt_language_id: cf6f05e2-e5c9-4ec3-8096-d283f3e4c020
     title: Selección de la Vida de John Crook
     slug: seleccion-de-la-vida
     filename: Seleccion_de_la_Vida_de_John_Crook
-    description: TODO
-    partial_description: TODO
+    description:
+      Como muchos otros antiguos Cuáqueros, John Crook (1617-1699) era un buscador de la
+      verdad desde temprana edad. Fue educado en Londres, y por un tiempo ocupó el puesto
+      de Juez de la Paz en Bedfordshire, pero cuando fue convencido de la verdad en 1654
+      (por medio de la predicación de William Dewsbury), muy pronto perdió tanto su cargo
+      público como su libertad. En total, John Crook fue encarcelado diez veces por su fe,
+      y sufrió mucho a “manos de hombres perversos.” En este extracto de sus escritos, él
+      relata su búsqueda de Dios a temprana edad, su convencimiento de la verdad y su
+      crecimiento en ella, y algunas de sus labores ministeriales en la antigua Sociedad
+      de Amigos.
+    partial_description:
+      Un extracto del diario y escritos de John Crook, que relata su sed de santidad en su
+      juventud, su convencimiento de la verdad y su crecimiento en ella, y algunas de sus
+      labores ministeriales en la antigua Sociedad de Amigos.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-204-2
-        draft: true
