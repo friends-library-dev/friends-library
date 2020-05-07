@@ -10,11 +10,6 @@ export default function handler(): void {
       throw new Error('Missing dpc edition entity');
     }
 
-    // temp: half-published william sewel
-    if (dpc.edition.path.includes('en/william-sewel/history')) {
-      return;
-    }
-
     const signsOfIntake = dpc.asciidoc
       .split('\n')
       .reduce((count: number, line: string) => {
