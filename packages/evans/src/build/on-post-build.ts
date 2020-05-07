@@ -15,8 +15,11 @@ const onPostBuild: GatsbyNode['onPostBuild'] = async () => {
     }
   });
 
-  const { NETLIFY, CONTEXT } = env.get('NETLIFY', 'CONTEXT');
-  if (NETLIFY && CONTEXT === 'production') {
+  const { GATSBY_NETLIFY_CONTEXT, DEPLOYING } = env.get(
+    'GATSBY_NETLIFY_CONTEXT',
+    'DEPLOYING',
+  );
+  if (DEPLOYING && GATSBY_NETLIFY_CONTEXT === 'production') {
     await sendSearchDataToAlgolia();
   }
 };
