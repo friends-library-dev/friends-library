@@ -74,7 +74,6 @@ const FakeInnerds: React.FC<{ price: number; hasAudio: boolean }> = ({
         adipisci!
       </p>
       <DocActions
-        paperbackAvailable
         download={() => {}}
         addToCart={() => {}}
         gotoAudio={() => {}}

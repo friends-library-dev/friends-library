@@ -242,12 +242,10 @@ function LinksAndMeta(
     className,
     onClickDownload,
     onClickAddToCart,
-    documentId,
   } = props;
   return (
     <div className={className}>
       <DocActions
-        paperbackAvailable={documentId !== SEWELS_HISTORY}
         download={onClickDownload}
         addToCart={onClickAddToCart}
         gotoAudio={makeScroller('#audiobook')}
@@ -314,4 +312,3 @@ function ensureWizardInViewport(): void {
 
 const POPUNDER_TRIANGLE_HEIGHT = 16;
 const CENTIMETERS_IN_INCH = 2.54;
-const SEWELS_HISTORY = '69c5fc26-76e3-4302-964e-ba46d889003b';
