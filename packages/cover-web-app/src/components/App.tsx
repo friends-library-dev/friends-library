@@ -13,24 +13,28 @@ import {
 } from '@friends-library/cover-component';
 import debounce from 'lodash/debounce';
 import { FriendData, DocumentData, EditionData } from '../types';
-import { friendData, editions, documents, fitScaler, LOREM_BLURB } from './utils';
+import { friendData, editions, documents, scalerAndScope } from './utils';
 import Select from './Select';
 import Toolbar from './Toolbar';
 import CodeEditor from './CodeEditor';
 import './App.css';
 
 type Perspective = 'front' | 'spine' | 'back' | 'angle-front' | 'angle-back';
+export type Scale = 'fit' | '1' | '1-4' | '1-3' | '1-2' | '4-5' | '3-5';
 export type Mode = 'pdf' | '3d' | 'ebook';
+export type BookSize = 'actual' | 's' | 'm' | 'xl';
 
 interface State {
   friendIndex: number;
   docIndex: number;
   edIndex: number;
-  fit: boolean;
+  scale: Scale;
   showGuides: boolean;
   maskBleed: boolean;
   showCode: boolean;
   mode: Mode;
+  bookSize: BookSize;
+  fauxVol?: 1 | 2;
   perspective: Perspective;
   capturing: 'ebook' | 'audio' | null;
   customBlurbs: Record<string, string>;
@@ -43,12 +47,14 @@ export default class App extends React.Component<{}, State> {
     friendIndex: 0,
     docIndex: 0,
     edIndex: 0,
-    fit: true,
+    bookSize: 'actual',
+    scale: '1',
     showGuides: false,
     showCode: false,
     maskBleed: true,
     mode: '3d',
     capturing: null,
+    fauxVol: undefined,
     perspective: 'angle-front',
     customBlurbs: {},
     customCss: {},
@@ -69,7 +75,7 @@ export default class App extends React.Component<{}, State> {
     const query = new URLSearchParams(window.location.search);
     const capturing = query.get('capture');
     if (capturing === 'ebook' || capturing === 'audio') {
-      this.setState({ capturing, mode: 'ebook', fit: false });
+      this.setState({ capturing, mode: 'ebook', scale: '1' });
     } else {
       this.setState({ capturing: null });
     }
@@ -123,24 +129,27 @@ export default class App extends React.Component<{}, State> {
   }
 
   protected coverProps(): CoverProps | undefined {
-    const { showGuides, mode } = this.state;
+    const { showGuides, mode, bookSize, scale, showCode, fauxVol } = this.state;
     const { friend, doc, ed } = this.selectedEntities();
     if (!friend || !doc || !ed) return;
+    const size = mode === 'ebook' ? 'xl' : bookSize === 'actual' ? ed.size : bookSize;
     return {
       author: friend.name,
       lang: doc.lang,
       title: doc.title,
       isCompilation: doc.isCompilation,
-      size: mode === 'ebook' ? 'xl' : ed.size,
+      size: mode === 'ebook' ? 'xl' : bookSize === 'actual' ? ed.size : bookSize,
       pages: ed.pages,
       edition: ed.type,
       blurb: this.getBlurb(friend, doc),
-      isbn: ed.isbn || '978-1-64476-015-4', // @TODO temp hard-coded during dev
+      isbn: ed.isbn,
       showGuides,
       allowEditingBlurb: true,
       updateBlurb: this.updateBlurb,
       customCss: this.getCustomCss(),
       customHtml: this.getCustomHtml(),
+      fauxVolumeNum: fauxVol,
+      ...scalerAndScope(size, ed.pages, scale, mode, showCode),
     };
   }
 
@@ -148,8 +157,7 @@ export default class App extends React.Component<{}, State> {
     const key = this.coverKey();
     const { customBlurbs } = this.state;
     if (customBlurbs[key] !== undefined) return customBlurbs[key];
-    const blurb = doc.description || friend.description || 'TODO';
-    return blurb === 'TODO' ? LOREM_BLURB : blurb;
+    return doc.description || friend.description || 'TODO';
   }
 
   protected getCustomCss(): Css {
@@ -343,22 +351,24 @@ export default class App extends React.Component<{}, State> {
       friendIndex,
       docIndex,
       edIndex,
-      fit,
+      scale,
       showGuides,
       maskBleed,
       perspective,
       showCode,
       mode,
       capturing,
+      fauxVol,
+      bookSize,
     } = this.state;
     const coverProps = this.coverProps();
-    const scaler = coverProps ? fitScaler(coverProps, fit, mode, showCode) : undefined;
     return (
       <div
         className={cx('App', 'web', {
           [`trim--${coverProps ? coverProps.size : 'm'}`]: true,
           'capturing-screenshot': capturing !== null,
           'capturing-audio': capturing === 'audio',
+          'has-custom-code': this.getCustomCss() || this.getCustomCss(),
         })}
       >
         <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
@@ -448,21 +458,19 @@ export default class App extends React.Component<{}, State> {
                   {coverProps.lang === 'en' ? <LogoEnglish /> : <LogoSpanish />}
                 </div>
               )}
-              {mode === '3d' && (
-                <ThreeD scaler={scaler} {...coverProps} perspective={perspective} />
-              )}
-              {mode === 'pdf' && (
-                <PrintPdf scaler={scaler} {...coverProps} bleed={!maskBleed} />
-              )}
-              {mode === 'ebook' && <Front scaler={scaler} {...coverProps} />}
+              {mode === '3d' && <ThreeD {...coverProps} perspective={perspective} />}
+              {mode === 'pdf' && <PrintPdf {...coverProps} bleed={!maskBleed} />}
+              {mode === 'ebook' && <Front {...coverProps} />}
               <style>
-                {coverCss.common(scaler).join('\n')}
-                {coverCss.front(scaler).join('\n')}
-                {coverCss.back(scaler).join('\n')}
-                {coverCss.spine(scaler).join('\n')}
-                {coverCss.guides(scaler).join('\n')}
-                {mode === '3d' ? coverCss.threeD(scaler).join('\n') : ''}
-                {mode === 'pdf' ? coverCss.pdf(coverProps, scaler).join('\n') : ''}
+                {coverCss.common(coverProps.scaler).join('\n')}
+                {coverCss.front(coverProps.scaler).join('\n')}
+                {coverCss.back(coverProps.scaler).join('\n')}
+                {coverCss.spine(coverProps.scaler).join('\n')}
+                {coverCss.guides(coverProps.scaler).join('\n')}
+                {mode === '3d' ? coverCss.threeD(coverProps.scaler).join('\n') : ''}
+                {mode === 'pdf'
+                  ? coverCss.pdf(coverProps, coverProps.scaler).join('\n')
+                  : ''}
               </style>
             </div>
           </>
@@ -476,19 +484,46 @@ export default class App extends React.Component<{}, State> {
           />
         )}
         <Toolbar
-          fit={fit}
+          fauxVol={fauxVol}
+          scale={scale}
           maskBleed={maskBleed}
           showGuides={showGuides}
           mode={mode}
           spinCover={this.spinCover}
           showCode={showCode}
+          cycleFauxVol={() => {
+            this.setState({
+              fauxVol: fauxVol === 1 ? 2 : fauxVol === 2 ? undefined : 1,
+            });
+          }}
           cycleMode={() => {
             this.setState({
               mode: mode === 'pdf' ? '3d' : mode === '3d' ? 'ebook' : 'pdf',
             });
           }}
           toggleShowCode={() => this.setState({ showCode: !showCode })}
-          toggleFit={() => this.setState({ fit: !fit })}
+          cycleScale={() => {
+            const map: Record<Scale, Scale> = {
+              fit: '1',
+              '1': '1-2',
+              '1-2': '1-3',
+              '1-3': '1-4',
+              '1-4': '3-5',
+              '3-5': '4-5',
+              '4-5': 'fit',
+            };
+            this.setState({ scale: map[scale] });
+          }}
+          bookSize={bookSize}
+          cycleBookSize={() => {
+            const map: Record<BookSize, BookSize> = {
+              actual: 's',
+              s: 'm',
+              m: 'xl',
+              xl: 'actual',
+            };
+            this.setState({ bookSize: map[bookSize] });
+          }}
           toggleShowGuides={() => this.setState({ showGuides: !showGuides })}
           toggleMaskBleed={() => this.setState({ maskBleed: !maskBleed })}
           coverProps={coverProps}
