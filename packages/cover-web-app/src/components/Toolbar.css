@@ -17,6 +17,7 @@ button.selected {
   text-align: center;
   flex-grow: 1;
   font-size: 13px;
+  padding-right: 7em;
 }
 
 .book-stats span + span {
@@ -25,4 +26,8 @@ button.selected {
 
 .book-stats code {
   color: #666;
+}
+
+.has-custom-code .custom-code {
+  background: rgba(0, 0, 255, 0.1);
 }

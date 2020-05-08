@@ -1,7 +1,7 @@
 import { CoverProps } from '@friends-library/types';
 import { docDims, pdfWidth, pdfHeight } from '@friends-library/cover-component';
 import { FriendData, DocumentData, EditionData } from '../types';
-import { Mode } from './App';
+import { Mode, Scale } from './App';
 
 const friendData = (window as any).Friends as FriendData[];
 export { friendData };
@@ -18,29 +18,49 @@ export function makePdf(props: CoverProps): void {
   });
 }
 
-export function fitScaler(
-  props: CoverProps,
-  fit: boolean,
+export function scalerAndScope(
+  size: CoverProps['size'],
+  pages: CoverProps['pages'],
+  scale: Scale,
+  mode: Mode,
+  showCode: boolean,
+): Pick<CoverProps, 'scaler' | 'scope'> {
+  switch (scale) {
+    case '1':
+      return {};
+    case '1-2':
+      return { scaler: 1 / 2, scope: scale };
+    case '1-3':
+      return { scaler: 1 / 3, scope: scale };
+    case '1-4':
+      return { scaler: 1 / 4, scope: scale };
+    case '3-5':
+      return { scaler: 3 / 5, scope: scale };
+    case '4-5':
+      return { scaler: 4 / 5, scope: scale };
+    case 'fit':
+      return { scaler: fitScaler(size, pages, mode, showCode) };
+  }
+}
+
+function fitScaler(
+  size: CoverProps['size'],
+  pages: CoverProps['pages'],
   mode: Mode,
   showCode: boolean,
 ): number | undefined {
-  if (!fit) {
-    return WEB_SCALER;
-  }
-
-  const { size, pages } = props;
   const appChromeHeight = showCode ? 475 : 175;
   const dims = docDims(size);
   const windowWidth = window.innerWidth / 96;
   const windowHeight = (window.innerHeight - appChromeHeight) / 96;
-  const coverWidth = (mode === 'pdf' ? pdfWidth(size, pages) : dims.width) * WEB_SCALER;
-  const coverHeight = (mode === 'pdf' ? pdfHeight(size) : dims.height) * WEB_SCALER;
+  const coverWidth = mode === 'pdf' ? pdfWidth(size, pages) : dims.width;
+  const coverHeight = mode === 'pdf' ? pdfHeight(size) : dims.height;
   if (coverWidth <= windowWidth && coverHeight <= windowHeight) {
-    return WEB_SCALER;
+    return 1;
   }
 
   const scale = Math.min(windowWidth / coverWidth, windowHeight / coverHeight);
-  return WEB_SCALER * (scale - 0.019);
+  return scale - 0.019;
 }
 
 export function documents(friendIndex: number): DocumentData[] {
@@ -59,12 +79,3 @@ export function editions(friendIndex: number, docIndex: number): EditionData[] {
   }
   return friendData[friendIndex].documents[docIndex].editions;
 }
-
-const LOREM_BLURB =
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
-
-export { LOREM_BLURB };
-
-// I used to use this to match web app to prince pdf output
-// not really sure if i need it anymore, or if it's still the right value
-const WEB_SCALER = 1; //1.1358;

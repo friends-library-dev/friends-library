@@ -6,6 +6,10 @@ const back: CoverCssModule = (scaler, scope) => {
   const [blurbStaticCss, blurbSizeCss] = blurbCss(scaler, scope);
 
   const staticCss = css`
+    .Cover .back {
+      overflow: hidden;
+    }
+
     .Cover .back__safe {
       position: relative;
     }
