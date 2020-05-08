@@ -54,7 +54,11 @@ export function wrapClasses(
     scope,
     scaler,
     showGuides,
-  }: Pick<CoverProps, 'edition' | 'lang' | 'size' | 'scope' | 'scaler' | 'showGuides'>,
+    fauxVolumeNum,
+  }: Pick<
+    CoverProps,
+    'edition' | 'lang' | 'size' | 'scope' | 'scaler' | 'showGuides' | 'fauxVolumeNum'
+  >,
   customClasses?: string | string[] | Record<string, boolean>,
 ): string {
   const scale = typeof scaler === 'number' ? scaler : 1;
@@ -67,6 +71,7 @@ export function wrapClasses(
     scope ? `Cover--scope-${scope}` : false,
     scale <= 0.5 ? 'Cover--scale-s' : false,
     scale <= 0.35 ? 'Cover--scale-xs' : false,
+    fauxVolumeNum !== undefined && `faux-vol faux-vol--${fauxVolumeNum}`,
     customClasses,
   );
 }
@@ -111,6 +116,10 @@ export function spineAuthorDisplay(
   totalChars += numWideLetters;
 
   if (size === 'm' && totalChars >= 50) {
+    return 'none';
+  }
+
+  if (size === 'xl' && totalChars >= 60) {
     return 'none';
   }
 
