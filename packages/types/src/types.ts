@@ -116,9 +116,10 @@ export interface CoverProps {
   edition: EditionType;
   isbn: ISBN;
   blurb: string;
-  showGuides?: boolean;
   customCss: Css;
   customHtml: Html;
+  fauxVolumeNum?: number;
+  showGuides?: boolean;
   scope?: string;
   scaler?: number;
   allowEditingBlurb?: boolean;
