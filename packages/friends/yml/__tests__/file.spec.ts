@@ -83,6 +83,16 @@ files.forEach(file => {
       }
     });
 
+    test('friend quotes use ellipses … rather than three dots', () => {
+      (friend.quotes || []).forEach(quote => {
+        expect(quote.text).not.toMatch(/\.\.\./);
+      });
+    });
+
+    test('friend descriptions use ellipses … rather than three dots', () => {
+      expect(friend.description).not.toMatch(/\.\.\./);
+    });
+
     test('friend quotes have no straight quotes or double-dash', () => {
       (friend.quotes || []).forEach(quote => {
         expect(quote.text).not.toMatch(/'|"|--/);
@@ -117,6 +127,19 @@ files.forEach(file => {
         expect(doc.featured_description || '').not.toMatch(/'|"|--/);
         (doc.related_documents || []).forEach(related => {
           expect(related.description).not.toMatch(/'|"|--/);
+        });
+      });
+    });
+
+    test('document fields must use ellipses … rather than three dots', () => {
+      documents.forEach(doc => {
+        expect(doc.description).not.toMatch(/\.\.\./);
+        expect(doc.title).not.toMatch(/\.\.\./);
+        expect(doc.partial_description).not.toMatch(/\.\.\./);
+        expect(doc.original_title || '').not.toMatch(/\.\.\./);
+        expect(doc.featured_description || '').not.toMatch(/\.\.\./);
+        (doc.related_documents || []).forEach(related => {
+          expect(related.description).not.toMatch(/\.\.\./);
         });
       });
     });
