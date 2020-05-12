@@ -93,6 +93,15 @@ describe('singlePassFix()', () => {
     expect(fixed).toBe('Foo\n\nBar.\n');
   });
 
+  it('can delete footnote-paragraph-split extra lines', () => {
+    const adoc = 'Foo\n{footnote-paragraph-split}\n\nBar.\n';
+    const lints = lint(adoc);
+
+    const [fixed] = singlePassFix(adoc, lints);
+
+    expect(fixed).toBe('Foo\n{footnote-paragraph-split}\nBar.\n');
+  });
+
   it('can perform multi-line fix', () => {
     const adoc = 'Hello foo-\nbar baz.\n';
     const lints = lint(adoc);

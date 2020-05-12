@@ -25,7 +25,7 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
   console.log(`\n\n${chalk.cyan(result.rule)}: ${result.message}`);
   grey(`${path}:${result.line}${result.column === false ? '' : `:${result.column}`}`);
 
-  if (['eof-newline', 'open-block'].includes(result.rule)) {
+  if (['eof-newline', 'open-block', 'footnote-split-spacing'].includes(result.rule)) {
     if (result.fixable) {
       printIsFixable();
     }

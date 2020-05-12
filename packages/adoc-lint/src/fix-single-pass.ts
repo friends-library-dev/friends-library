@@ -43,6 +43,14 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
       return;
     }
 
+    if (rule === 'footnote-split-spacing') {
+      if (!modifiedLines.has(lint.line)) {
+        lines[lint.line - 1] = null;
+        modifiedLines.add(lint.line);
+      }
+      return;
+    }
+
     if (
       rule === 'trailing-hyphen' ||
       rule === 'dangling-possessive' ||
