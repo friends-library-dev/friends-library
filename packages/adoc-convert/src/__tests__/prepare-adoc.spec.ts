@@ -2,6 +2,22 @@ import stripIndent from 'strip-indent';
 import { prepareAsciidoc } from '../prepare-adoc';
 
 describe('prepareAsciidoc()', () => {
+  it('converts escaped square brackets to entity, to avoid footnote problems', () => {
+    const adoc = stripIndent(`
+      [.centered]
+      Foo +++[+++bar+++]+++ baz.^
+      footnote:[jim +++[+++jam+++]+++ bob.]
+    `).trim();
+
+    const expected = stripIndent(`
+      [.centered]
+      Foo &#91;bar&#93; baz.footnote:[jim &#91;jam&#93; bob.]
+    `).trim();
+
+    const prepared = prepareAsciidoc(adoc);
+    expect(prepared).toBe(expected);
+  });
+
   it('escapes entity+semicolon to prevent creating definition list', () => {
     const adoc = "== Ch 1\n\nStayed at R. Jones`';\n\nLeft next day.";
     const prepared = prepareAsciidoc(adoc);
