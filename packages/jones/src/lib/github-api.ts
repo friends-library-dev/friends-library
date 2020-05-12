@@ -39,7 +39,7 @@ export async function pullRequestStatus(
   repo: RepoSlug,
   number: number,
 ): Promise<'open' | 'merged' | 'closed'> {
-  const res = await gh.pulls.get({ owner: ORG, repo, number });
+  const res = await gh.pulls.get({ owner: ORG, repo, pull_number: number });
   if (res.data.merged_at !== null) {
     return 'merged';
   }
