@@ -137,7 +137,7 @@ describe('createSourceSpec()', () => {
     expect(section.html).toContain(
       '<span class="book-title">bar</span>{% note: uuid1 %}',
     );
-    expect(notes.get('uuid1')).toBe('jim [jam].');
+    expect(notes.get('uuid1')).toBe('jim &#91;jam&#93;.');
   });
 
   test('book-title inside footnote on book-title works', () => {

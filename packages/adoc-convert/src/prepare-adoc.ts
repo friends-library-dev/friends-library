@@ -22,8 +22,13 @@ export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
     replaceSmallBreaks,
     helpBookTitleTouchingFootnote,
     restoreLineEndingDashesInVerse,
+    squareBracketsToEntities,
   ]),
 );
+
+function squareBracketsToEntities(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(/\+\+\+\[\+\+\+/gm, '&#91;').replace(/\+\+\+\]\+\+\+/gm, '&#93;');
+}
 
 function replaceSmallBreaks(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
