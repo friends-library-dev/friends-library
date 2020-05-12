@@ -8,24 +8,24 @@ import { MakeOptions, makeDpc } from '../make/handler';
 import { builder as makeBuilder } from '../make';
 import send from '../make/send';
 
-export const command = 'publish:ref [path]';
+export const command = 'make:ref [basename]';
 
 export const describe = 'publish reference asciidoc document at given path';
 
-export const builder: CommandBuilder = function(yargs) {
-  if (typeof makeBuilder !== 'function') throw new Error('No bueno');
-  return makeBuilder(yargs).positional('path', {
+export const builder: CommandBuilder = async function(yargs) {
+  if (typeof makeBuilder !== 'function') throw new Error('Unexpected lack of builder fn');
+  return (await makeBuilder(yargs)).positional('basename', {
     type: 'string',
     default: 'misc',
-    describe: 'relative filepath to reference doc (from packages/cli/src/publish-ref)',
+    describe: 'basename of reference doc (from packages/cli/src/make-ref)',
   });
 };
 
 export async function handler(
-  argv: Arguments<MakeOptions & { path: string }>,
+  argv: Arguments<MakeOptions & { basename: string }>,
 ): Promise<void> {
   deleteNamespaceDir('fl-publish-ref');
-  const dpc = dpcFromPath(argv.path);
+  const dpc = dpcFromPath(argv.basename);
   hydrate.process(dpc);
   const files = await makeDpc(dpc, { ...argv, skipLint: true }, 'fl-publish-ref');
   !argv.noOpen && files.forEach(file => execSync(`open "${file}"`));

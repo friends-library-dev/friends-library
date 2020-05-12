@@ -14,7 +14,7 @@ import * as intake from './cmd/intake';
 import * as audio from './cmd/audio';
 import * as eachYml from './cmd/each-yml';
 import * as eachAdoc from './cmd/each-adoc';
-import * as publishRef from './cmd/publish-ref';
+import * as publishRef from './cmd/make-ref';
 
 prettifyErrors();
 
