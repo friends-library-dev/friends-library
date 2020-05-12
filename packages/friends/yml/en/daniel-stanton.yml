@@ -4,11 +4,32 @@ slug: daniel-stanton
 gender: male
 added: 2020-04-28T20:45:08.000Z
 born: 1708
-died: 1790
+died: 1770
+quotes:
+  - source: Rebecca Jones
+    text:
+      Soon after my return my mind was bowed very low, by reason that a beloved friend and
+      father in the truth, Daniel Stanton, was taken from works to rewards. He had been
+      eminently favoured in his public appearances for many months before, insomuch that
+      many Friends were apprehensive of what he sometimes expressed as his belief, “that
+      he had not many days longer to labour among us.” This was a great stripping to the
+      church, and a near trial to many individuals, and the loss was not likely to be soon
+      made up.
 residences:
   - city: Philadelphia
     region: Pennsylvania
-description: TODO
+description:
+  Daniel Stanton (1708-1770) was left an orphan when very young, and passed through great
+  hardships in his early years. Being moved from place to place for short periods of time,
+  he at last was put apprentice to his uncle in New Jersey, where he was allowed no
+  freedom to attend any place of worship. But having a heart that longed for truth, the
+  Lord was pleased to visit and instruct him by His own Holy Spirit, enabling him clearly
+  to see that “those who worship Him, must worship in Spirit and truth.” Continuing in
+  faithful resignation to whatever the Lord made manifest, Daniel became a minster of the
+  gospel in the Society of Friends, and though his adult life was fraught with
+  difficulties (having to bury his wife and five children before the age of forty), he
+  overcame the world through a living faith and an unreserved surrender to the Lord Jesus
+  Christ.
 documents:
   - id: 9811730b-0a00-4dea-b01f-c676df865802
     title: The Journal of Daniel Stanton
@@ -17,14 +38,27 @@ documents:
       A Journal of the Life, Travels and Gospel Labours of a Faithful Minister of Jesus
       Christ, Daniel Stanton Late of Philadelphia, In the Province of Pennsylvania
     filename: Journal_of_Daniel_Stanton
-    description: TODO
-    partial_description: TODO
+    description:
+      Daniel Stanton (1708-1770) was left an orphan when very young, and passed through
+      great hardships in his early years. Being moved from place to place for short
+      periods of time, he at last was put apprentice to his uncle in New Jersey, where he
+      was allowed no freedom to attend any place of worship. But having a heart that
+      longed for truth, the Lord was pleased to visit and instruct him by His own Holy
+      Spirit, enabling him clearly to see that “those who worship Him, must worship in
+      Spirit and truth.” Continuing in faithful resignation to whatever the Lord made
+      manifest, Daniel became a minster of the gospel in the Society of Friends, and
+      though his adult life was fraught with difficulties (having to bury his wife and
+      five children before the age of forty), he overcame the world through a living faith
+      and an unreserved surrender to the Lord Jesus Christ.
+    partial_description:
+      A journal of the life, travels, and gospel labours of Daniel Stanton, giving an
+      account of his surrender to the Spirit of Truth when an orphan, his growth in grace
+      and his travels in the work of the ministry; also containing his epistles to monthly
+      and quarterly meetings in North Carolina.
     tags:
       - journal
     editions:
       - type: original
         isbn: 978-1-64476-210-3
-        draft: true
       - type: modernized
         isbn: 978-1-64476-211-0
-        draft: true

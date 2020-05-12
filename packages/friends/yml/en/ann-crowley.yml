@@ -5,6 +5,13 @@ gender: female
 added: 2020-04-27T17:17:09.161Z
 born: 1765
 died: 1826
+quotes:
+  - source: Thomas Scattergood
+    text:
+      Ann Crowley, a young woman, sat near me, and appeared under exercise, but did not
+      give up to speak; and at the grave I thought she again appeared under a concern to
+      express something to the people; so I took her by the arm and put her before me, and
+      soon after she spoke, and thus opened a door for me to labour.
 residences:
   - city: Shillingford
     region: England
@@ -16,21 +23,47 @@ residences:
     durations:
       - start: 1795
         end: 1826
-description: TODO
+description:
+  Ann Crowley (1765-1926) was one of eight sisters who lived together for many years in
+  spiritual unity and tender affection. Though all of her siblings appear to have been
+  preachers of righteousness in life and conduct, Ann was called of the Lord to serve Him
+  in a more public sphere. Being of a shy and unassuming character, she was for some time
+  unwilling to open her mouth in the assemblies of God’s people. But by the “operation of
+  divine love” upon her heart, she was eventually brought to a state of resignation, and
+  with the encouragement of some valuable Friends (like Debra Darby and Thomas
+  Scattergood), she put her hand to the gospel plow and never looked back.
 documents:
   - id: 025ae678-5e76-4128-9b59-b0761a7cb9d1
     title: The Life of Ann Crowley
     original_title: Some Account the Religious Experience of Ann Crowley
     slug: life
     filename: Life_of_Ann_Crowley
-    description: TODO
-    partial_description: TODO
+    description:
+      Ann Crowley (1765-1926) was one of eight sisters who lived together for many years
+      in spiritual unity and tender affection. Though all of her siblings appear to have
+      been preachers of righteousness in life and conduct, Ann was called of the Lord to
+      serve Him in a more public sphere. Being of a shy and unassuming character, she was
+      for some time unwilling to open her mouth in the assemblies of God’s people. But by
+      the “operation of divine love” upon her heart, she was eventually brought to a state
+      of resignation, and with the encouragement of some valuable Friends (like Debra
+      Darby and Thomas Scattergood), she put her hand to the gospel plow and never looked
+      back.
+    partial_description:
+      A short narrative of the life and Christian experiences of Ann Crowley, giving a
+      relation of her call to the ministry and labors in the gospel; also containing a
+      testimony of the life and dying sayings of her sister, Rebecca Crowley.
     tags:
       - journal
     editions:
       - type: modernized
         isbn: 978-1-64476-196-0
-        draft: true
       - type: original
         isbn: 978-1-64476-197-7
-        draft: true
+    related_documents:
+      - id: 0af1efec-461d-4936-bf91-cc0f44a60bd9
+        description:
+          During his six years in Europe in the service of the gospel, Thomas Scattergood
+          was like a “father in Israel” to young Ann Crowley, often giving her counsel and
+          encouragement in the path of discipleship and in the work of the ministry.
+          Several lengthly letters from Ann were published in the journal of Thomas
+          Scattergood, and now have been appended to the memoir of her life.

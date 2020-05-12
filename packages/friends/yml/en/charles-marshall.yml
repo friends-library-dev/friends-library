@@ -47,10 +47,8 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-212-7
-        draft: true
       - type: original
         isbn: 978-1-64476-213-4
-        draft: true
   - id: 9ac03f31-dba4-4723-a8cd-4a67bde65757
     alt_language_id: 314bb746-3449-4e69-aacd-8bae50fe92a1
     title: Selection from the Journal of Charles Marshall
