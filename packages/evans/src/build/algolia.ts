@@ -29,7 +29,9 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
   );
 
   const client = algoliasearch(GATSBY_ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY);
-  const friends = allFriends().filter(f => f.lang === LANG);
+  const friends = allFriends()
+    .filter(f => f.lang === LANG)
+    .filter(f => f.hasNonDraftDocument);
 
   const friendsIndex = client.initIndex(`${LANG}_friends`);
   await friendsIndex.replaceAllObjects(friends.map(friendRecord));
