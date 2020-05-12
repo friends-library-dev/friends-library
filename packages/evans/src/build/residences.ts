@@ -152,6 +152,10 @@ function position(residence: { city: string; region: string }): Position {
       return { top: 43.5, left: 49.7, map: 'UK' };
     case 'Moorside, England':
       return { top: 51.5, left: 52.7, map: 'UK' };
+    case 'Uxbridge, England':
+      return { top: 73.6, left: 58.6, map: 'UK' };
+    case 'Shillingford, England':
+      return { top: 72.2, left: 55.7, map: 'UK' };
     case 'Jordans, England':
       return { top: 72.5, left: 57.7, map: 'UK' };
     case 'Leicester, England':

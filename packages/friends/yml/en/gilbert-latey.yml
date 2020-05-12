@@ -5,10 +5,28 @@ gender: male
 added: 2020-04-28T20:45:08.000Z
 born: 1626
 died: 1705
+quotes:
+  - source: John Woolman
+    text:
+      Gilbert Latey, through the powerful operations of the spirit of Christ in his soul,
+      was brought to that depth of self-denial, that he could not join with that proud
+      spirit in other people, which inclined them to want vanities and superfluities. This
+      Friend was often amongst the chief rulers of the nation in times of persecution, and
+      it appears by the testimony of Friends, that his dwelling was so evidently in the
+      pure life of Truth, that in his visits to those great men, he found a place in their
+      minds.
 residences:
   - city: London
     region: England
-description: TODO
+description:
+  Gilbert Latey (1626-1705) was convinced of the truth through the powerful preaching of
+  Edward Burrough in the year 1654, and continued a faithful and tireless disciple of
+  Christ until his death in 1705. The memoir of his life (written by his nephew Richard
+  Hawkins, with whom he lived for forty-two years) is both a narrative of the most
+  remarkable events in Gilbert’s life, and a historical account of the first ministers and
+  established meetings of Friends in London. Included in this history is also a sobering
+  account of the Great Plague of London in 1655, the last major epidemic of the bubonic
+  plague to occur in England.
 documents:
   - id: c43536d9-7992-4e18-9aea-9e51a5b93802
     title: The Life of Gilbert Latey
@@ -17,14 +35,23 @@ documents:
       A Brief Narrative of the Life of Gilbert Latey, Comprising Some Account of the First
       Settlement of Friends Meetings in London.
     filename: Life_of_Gilbert_Latey
-    description: TODO
-    partial_description: TODO
+    description:
+      Gilbert Latey (1626-1705) was convinced of the truth through the powerful preaching
+      of Edward Burrough in the year 1654, and continued a faithful and tireless disciple
+      of Christ until his death in 1705. The memoir of his life (written by his nephew
+      Richard Hawkins, with whom he lived for forty-two years) is both a narrative of the
+      most remarkable events in Gilbert’s life, and a historical account of the first
+      ministers and established meetings of Friends in London. Included in this history is
+      also a sobering account of the Great Plague of London in 1655, the last major
+      epidemic of the bubonic plague to occur in England.
+    partial_description:
+      A narrative of many remarkable events in the life of Gilbert Latey, together with an
+      historical account of the first ministers and established meetings of Friends in
+      London.
     tags:
       - journal
     editions:
       - type: original
         isbn: 978-1-64476-208-0
-        draft: true
       - type: modernized
         isbn: 978-1-64476-209-7
-        draft: true
