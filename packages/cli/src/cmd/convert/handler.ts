@@ -33,7 +33,10 @@ export default function convertHandler({ file, skipRefs }: ConvertOptions): void
 function prepMultiParagraphFootnotes(src: string): void {
   const xml = fs.readFileSync(src).toString();
   const replaced = xml.replace(/<footnote>([\s\S]+?)<\/footnote>/gm, (_, note) => {
-    const prepped = note.replace(/<\/para><para> */g, '{footnote-paragraph-split}');
+    const prepped = note.replace(
+      /<\/para>(\s*<para\/>\s*)?(<para\/>\s*)?(<para\/>\s*)?<para>\s*/g,
+      '{footnote-paragraph-split}',
+    );
     return `<footnote>${prepped}</footnote>`;
   });
   if (replaced !== xml) {
