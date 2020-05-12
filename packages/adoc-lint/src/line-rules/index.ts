@@ -35,3 +35,4 @@ export { default as italicsTouchingFootnote } from './italics-touching-footnote'
 export { default as unexpectedUnderscore } from './unexpected-underscore';
 export { default as emdashTouchingItalics } from './emdash-touching-italics';
 export { default as libreOfficeArtifacts } from './libre-office-artifacts';
+export { default as footnoteSplitSpacing } from './footnote-split-spacing';
