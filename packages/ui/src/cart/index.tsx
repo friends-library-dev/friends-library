@@ -2,7 +2,6 @@ import React from 'react';
 import { t } from '@friends-library/locale';
 import Item from './Item';
 import Button from '../Button';
-import Dual from '../Dual';
 import Back from '../checkout/Back';
 import Progress from '../checkout/Progress';
 import Header from '../checkout/Header';
@@ -27,18 +26,6 @@ const CartComponent: React.FC<Props> = ({
   <>
     <Header>{t`Your Order`}</Header>
     <NoProfit />
-    <Dual.p className="bg-orange-600 text-white py-3 px-6 mb-4">
-      <>
-        Due to the COVID-19 pandemic, the United States Postal Service has temporarily
-        suspended international shipping. For this reason we are only able to process
-        orders <i>to the United States</i> at this time. Sorry for the inconvenience.
-      </>
-      <>
-        Debido a la pandemia de COVID-19, el Servicio Postal de los Estados Unidos ha
-        suspendido temporalmente el envío internacional. Por esta razón, lamentablemente,
-        no podemos procesar pedidos de otros países en este momento.
-      </>
-    </Dual.p>
     <Progress step="Order" />
     <div className="ColumnHeadings flex text-gray-900 text-center antialiased mt-6 border-b border-gray-300 pb-2">
       <div className="w-2/3 md:w-3/5 text-left">{t`Item`}</div>

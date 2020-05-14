@@ -4,10 +4,6 @@
   border-bottom-width: 1px;
 }
 
-.CartInput:disabled {
-  @apply bg-gray-200 cursor-not-allowed text-gray-600 border-orange-700;
-}
-
 .CartInput.invalid {
   @apply border-red-600;
   margin-bottom: 12px;
