@@ -158,6 +158,19 @@ export function isNotFalse<T>(x: T | false): x is T {
   return x !== false;
 }
 
+// identity passthrough tagged template literal for getting vscode syntax
+// highlighting for stuff like css`` and graphql``
+export function syntax(
+  strings: TemplateStringsArray,
+  ...values: (string | number)[]
+): string {
+  let str = '';
+  strings.forEach((string, i) => {
+    str += string + (values[i] || '');
+  });
+  return str;
+}
+
 export {
   ISBN,
   Uuid,
