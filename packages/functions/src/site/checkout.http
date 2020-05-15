@@ -44,9 +44,11 @@ POST {{base}}/orders/create HTTP/1.1
 content-type: application/json
 
 {
+  "lang": "en",
   "amount": 1632,
   "email": "jared@netrivet.com",
   "items": [{
+    "title": "Journal of George Fox",
     "documentId": "6b0e134d-8d2e-48bc-8fa3-e8fc79793804",
     "edition": "modernized",
     "quantity": 1,
@@ -106,8 +108,8 @@ GET {{base}}/print-job/{{printJobId}}/status
 
 ###
 
-# Update print_job.status of an existing order
-PATCH {{base}}/orders/update-print-job-status HTTP/1.1
+# Update printJobStatus of an existing order
+POST {{base}}/orders/update-print-job-status HTTP/1.1
 content-type: application/json
 
 {

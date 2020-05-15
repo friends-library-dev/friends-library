@@ -1,9 +1,14 @@
 import { checkoutErrors as Err } from '@friends-library/types';
 import auth, { schema } from '../order-create';
 import { invokeCb } from './invoke';
-import { persist } from '../../lib/Order';
+import { create } from '../../lib/order';
 
 const createIntent = jest.fn();
+
+jest.mock('uuid/v4', () => {
+  return jest.fn(() => 'generated-uuid');
+});
+
 jest.mock('stripe', () => {
   return jest.fn().mockImplementation(() => ({
     paymentIntents: {
@@ -12,11 +17,8 @@ jest.mock('stripe', () => {
   }));
 });
 
-const mockOrder = { id: 'mongo-id', set: jest.fn() };
-jest.mock('../../lib/Order', () => ({
-  __esModule: true,
-  default: jest.fn(() => mockOrder),
-  persist: jest.fn(),
+jest.mock('../../lib/order', () => ({
+  create: jest.fn(() => Promise.resolve([null, true])),
 }));
 
 describe('/orders/create handler', () => {
@@ -31,34 +33,31 @@ describe('/orders/create handler', () => {
     expect(json).toMatchObject({
       paymentIntentId: 'intent_id',
       paymentIntentClientSecret: 'intent_id_secret',
-      orderId: 'mongo-id',
+      orderId: 'generated-uuid',
     });
     expect(createIntent.mock.calls[0][0]).toMatchObject({
       amount: 1111,
       currency: 'usd',
       capture_method: 'manual',
       payment_method_types: ['card'],
-      metadata: { orderId: 'mongo-id' },
+      metadata: { orderId: 'generated-uuid' },
     });
-    expect(persist).toHaveBeenCalledWith(mockOrder);
-    expect(mockOrder.set).toHaveBeenCalledWith('payment', {
-      id: 'intent_id',
-      status: 'authorized',
+    expect((<jest.Mock>create).mock.calls[0][0]).toMatchObject({
+      id: 'generated-uuid',
+      paymentId: 'intent_id',
+      paymentStatus: 'authorized',
       amount: 1111,
       taxes: 0,
-      cc_fee_offset: 42,
+      ccFeeOffset: 42,
       shipping: 399,
     });
   });
 
   it('responds 500 if persisting order fails', async () => {
-    (<jest.Mock>persist).mockImplementationOnce(() => {
-      throw new Error('Oh noes!');
-    });
-
+    (<jest.Mock>create).mockResolvedValueOnce([['err'], null]);
     const { res, json } = await invokeCb(auth, { body: JSON.stringify(schema.example) });
     expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe(Err.ERROR_UPDATING_FLP_ORDER);
+    expect(json.msg).toBe(Err.ERROR_CREATING_FLP_ORDER);
   });
 
   it('returns 403 with error code from stripe in case of error', async () => {

@@ -2,7 +2,7 @@ import { checkoutErrors as Err } from '@friends-library/types';
 import fetch from 'node-fetch';
 import mailer from '@sendgrid/mail';
 import checkOrders from '../orders-check';
-import { find, persistAll } from '../../lib/Order';
+import { findByPrintJobStatus, saveAll } from '../../lib/order';
 import { invokeCb } from './invoke';
 
 jest.mock('@sendgrid/mail', () => ({
@@ -10,14 +10,12 @@ jest.mock('@sendgrid/mail', () => ({
   send: jest.fn(() => Promise.resolve([{ statusCode: 202 }])),
 }));
 
-const { default: Order } = jest.requireActual('../../lib/Order');
-jest.mock('../../lib/Order', () => ({
-  __esModule: true,
-  find: jest.fn(),
-  persistAll: jest.fn(),
+jest.mock('../../lib/order', () => ({
+  findByPrintJobStatus: jest.fn(() =>
+    Promise.resolve([null, [{ printJobId: 123, address: { name: 'Bo' } }]]),
+  ),
+  saveAll: jest.fn(() => Promise.resolve([null, true])),
 }));
-const mockOrder = new Order({ print_job: { id: 123 } });
-(<jest.Mock>find).mockResolvedValue([mockOrder]);
 
 const getToken = jest.fn(() => 'oauth-token');
 jest.mock('client-oauth2', () => {
@@ -33,7 +31,7 @@ describe('checkOrders()', () => {
   beforeEach(() => jest.clearAllMocks());
 
   it('returns 200 w/ message without doing anything when no orders in accepted state', async () => {
-    (<jest.Mock>find).mockResolvedValueOnce([]);
+    (<jest.Mock>findByPrintJobStatus).mockResolvedValueOnce([null, []]);
     const { res, json } = await invokeCb(checkOrders, {});
     expect(res.statusCode).toBe(200);
     expect(json).toMatchObject({ msg: 'No accepted print jobs to process' });
@@ -50,9 +48,9 @@ describe('checkOrders()', () => {
   });
 
   it('hits lulu api with ids of interesting orders', async () => {
-    (<jest.Mock>find).mockResolvedValueOnce([
-      new Order({ print_job: { id: 234 } }),
-      new Order({ print_job: { id: 456 } }),
+    (<jest.Mock>findByPrintJobStatus).mockResolvedValueOnce([
+      null,
+      [{ printJobId: 234 }, { printJobId: 456 }],
     ]);
     await invokeCb(checkOrders, {});
     expect(mockFetch.mock.calls[0][0]).toMatch(/print-jobs\/\?id=234&id=456$/);
@@ -66,8 +64,9 @@ describe('checkOrders()', () => {
   });
 
   it('does not try to send empty email list', async () => {
-    (<jest.Mock>find).mockResolvedValueOnce([
-      new Order({ print_job: { id: 123 }, email: 'foo@bar.com' }),
+    (<jest.Mock>findByPrintJobStatus).mockResolvedValueOnce([
+      null,
+      [{ printJobId: 123, email: 'foo@bar.com' }],
     ]);
     mockFetch.mockResolvedValueOnce(
       new Response(
@@ -87,10 +86,13 @@ describe('checkOrders()', () => {
   });
 
   it('sends emails with tracking links', async () => {
-    (<jest.Mock>find).mockResolvedValueOnce([
-      new Order({ print_job: { id: 123 }, email: 'foo@bar.com' }),
-      new Order({ print_job: { id: 234 }, email: 'rofl@lol.com' }),
-      new Order({ print_job: { id: 345 }, email: 'not@shipped.com' }),
+    (<jest.Mock>findByPrintJobStatus).mockResolvedValueOnce([
+      null,
+      [
+        { printJobId: 123, email: 'foo@bar.com', address: { name: 'Bo' } },
+        { printJobId: 234, email: 'rofl@lol.com', address: { name: 'Bo' } },
+        { printJobId: 345, email: 'not@shipped.com', address: { name: 'Bo' } },
+      ],
     ]);
 
     mockFetch.mockResolvedValueOnce(
@@ -152,8 +154,9 @@ describe('checkOrders()', () => {
       ),
     );
     await invokeCb(checkOrders, {});
-    expect(persistAll).toHaveBeenCalledWith([mockOrder]);
-    expect(mockOrder.get('print_job.status')).toBe('shipped');
+    expect((<jest.Mock>saveAll).mock.calls[0][0]).toMatchObject([
+      { printJobStatus: 'shipped' },
+    ]);
   });
 
   it('should respond 500 without emailing if updating orders fails', async () => {
@@ -170,9 +173,7 @@ describe('checkOrders()', () => {
         }),
       ),
     );
-    (<jest.Mock>persistAll).mockImplementationOnce(() => {
-      throw new Error('some error');
-    });
+    (<jest.Mock>saveAll).mockResolvedValueOnce([['error'], null]);
 
     const { res, json } = await invokeCb(checkOrders, {});
 

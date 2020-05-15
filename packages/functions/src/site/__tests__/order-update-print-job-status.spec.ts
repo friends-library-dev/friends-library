@@ -1,43 +1,37 @@
 import { checkoutErrors as Err } from '@friends-library/types';
 import updateOrderPrintJobStatus from '../order-update-print-job-status';
 import { invokeCb } from './invoke';
-import { findById, persist } from '../../lib/Order';
+import { findById, save } from '../../lib/order';
 
-const mockOrder = {
-  id: 'mongo-id',
-  set: jest.fn(),
-  toJSON: () => ({ _id: 'mongo-id' }),
-};
-jest.mock('../../lib/Order', () => ({
-  __esModule: true,
-  default: jest.fn(() => mockOrder),
+jest.mock('../../lib/order', () => ({
   findById: jest.fn(),
-  persist: jest.fn(),
+  save: jest.fn(),
 }));
 
 describe('updateOrderPrintJobStatus()', () => {
-  const body = '{"orderId":"123abc","printJobStatus":"accepted"}';
+  const body = JSON.stringify({ orderId: '123abc', printJobStatus: 'accepted' });
 
   it('responds 400 if mal-formed body', async () => {
-    const badBody = '{"printJobStatus":"bad_status"}';
+    const badBody = JSON.stringify({ printJobStatus: 'bad_status' });
     const { res } = await invokeCb(updateOrderPrintJobStatus, { body: badBody });
     expect(res.statusCode).toBe(400);
   });
 
   it('updates & persists order, returning 200 and order body', async () => {
-    (<jest.Mock>findById).mockResolvedValueOnce(mockOrder);
+    (<jest.Mock>findById).mockResolvedValueOnce([null, { id: 'order-id' }]);
+    (<jest.Mock>save).mockResolvedValueOnce([null, true]);
     const { res, json } = await invokeCb(updateOrderPrintJobStatus, { body });
     expect(res.statusCode).toBe(200);
-    expect(json).toMatchObject({ _id: 'mongo-id' });
-    expect(mockOrder.set).toHaveBeenCalledWith('print_job.status', 'accepted');
-    expect(persist).toHaveBeenCalledWith(mockOrder);
+    expect(json).toMatchObject({ id: 'order-id', printJobStatus: 'accepted' });
+    expect((<jest.Mock>save).mock.calls[0][0]).toMatchObject({
+      id: 'order-id',
+      printJobStatus: 'accepted',
+    });
   });
 
-  it('responds 500 if persist fails', async () => {
-    (<jest.Mock>findById).mockResolvedValueOnce(mockOrder);
-    (<jest.Mock>persist).mockImplementationOnce(() => {
-      throw new Error('Oh noes!');
-    });
+  it('responds 500 if save fails', async () => {
+    (<jest.Mock>findById).mockResolvedValueOnce([null, { id: 'order-id' }]);
+    (<jest.Mock>save).mockResolvedValueOnce([['err'], false]);
     const { res, json } = await invokeCb(updateOrderPrintJobStatus, { body });
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe(Err.ERROR_UPDATING_FLP_ORDER);

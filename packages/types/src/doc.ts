@@ -77,7 +77,7 @@ export function genericDpc(): DocPrecursor {
   };
 }
 
-const ARTIFACT_TYPES = [
+export const ARTIFACT_TYPES = [
   'paperback-interior',
   'paperback-cover',
   'web-pdf',
@@ -86,8 +86,6 @@ const ARTIFACT_TYPES = [
 ] as const;
 
 export type ArtifactType = typeof ARTIFACT_TYPES[number];
-
-export { ARTIFACT_TYPES };
 
 export interface PaperbackInteriorConfig {
   printSize: PrintSize;

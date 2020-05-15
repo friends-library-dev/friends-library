@@ -1,12 +1,13 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import uuid from 'uuid/v4';
 import { checkoutErrors as Err } from '@friends-library/types';
 import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
-import Order, { persist as persistOrder } from '../lib/Order';
+import { create as createOrder, Order } from '../lib/order';
 import log from '../lib/log';
 
-export default async function createOrder(
+export default async function orderCreateHandler(
   { body }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
@@ -16,16 +17,22 @@ export default async function createOrder(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
-  const order = new Order({
-    lang: data.lang,
+  const now = new Date().toISOString();
+  const order: Order = {
+    id: uuid(),
+    lang: data.lang === 'en' ? 'en' : 'es',
     email: data.email,
-    items: data.items.map(i => ({
-      ...i,
-      document_id: i.documentId,
-      unit_price: i.unitPrice,
-    })),
+    created: now,
+    updated: now,
+    items: data.items as Order['items'],
     address: data.address,
-  } as any);
+    amount: data.amount,
+    shipping: data.shipping,
+    taxes: data.taxes,
+    ccFeeOffset: data.ccFeeOffset,
+    paymentId: '<pending>',
+    paymentStatus: 'authorized',
+  };
 
   try {
     var paymentIntent = await stripeClient().paymentIntents.create(
@@ -34,32 +41,22 @@ export default async function createOrder(
         currency: 'usd',
         capture_method: 'manual',
         payment_method_types: ['card'],
-        metadata: {
-          orderId: order.id,
-        },
+        metadata: { orderId: order.id },
       },
       {
         idempotency_key: order.id,
       },
     );
+    order.paymentId = paymentIntent.id;
   } catch (error) {
     log.error('error creating payment intent', { error });
     return respond.json({ msg: Err.ERROR_CREATING_STRIPE_PAYMENT_INTENT }, 403);
   }
 
-  try {
-    order.set('payment', {
-      id: paymentIntent.id,
-      status: 'authorized',
-      amount: data.amount,
-      shipping: data.shipping,
-      taxes: data.taxes,
-      cc_fee_offset: data.ccFeeOffset,
-    });
-    await persistOrder(order);
-  } catch (error) {
-    log.error('error persisting flp order', { error });
-    return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER }, 500);
+  const [error] = await createOrder(order);
+  if (error) {
+    log.error('error creating flp order', { error });
+    return respond.json({ msg: Err.ERROR_CREATING_FLP_ORDER }, 500);
   }
 
   log(`created payment intent: ${paymentIntent.id}`);

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development yarn netlify-lambda serve src --config ./webpack.config.js --port 2345",
-    "build": "NODE_ENV=production yarn netlify-lambda build src --config ./webpack.config.js",
+    "build": "NODE_ENV=production yarn netlify-lambda build src",
     "test": "cd ../../ && yarn jest packages/functions",
     "test:integration": "cd ../../ && yarn test --testRegex=packages/functions/.*/.*\\.integration\\.ts --env=node"
   },
@@ -25,13 +25,12 @@
     "bufferutil": "^4.0.1",
     "client-oauth2": "^4.2.5",
     "express-useragent": "^1.0.12",
-    "gmail-send": "^1.2.14",
     "jsonschema": "^1.2.6",
-    "mongoose": "^5.6.4",
     "netlify-lambda": "^1.5.0",
     "node-fetch": "^2.6.0",
     "stripe": "^7.5.2",
     "utf-8-validate": "^5.0.2",
+    "uuid": "^3.3.3",
     "webpack": "^4.35.3",
     "ws": "^7.1.0"
   },
@@ -39,7 +38,6 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@types/aws-lambda": "^8.10.28",
     "@types/express-useragent": "^0.2.21",
-    "@types/mongoose": "^5.5.8",
     "@types/stripe": "^6.31.11"
   }
 }
