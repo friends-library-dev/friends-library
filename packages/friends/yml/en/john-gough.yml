@@ -1,0 +1,98 @@
+id: b1ddeaab-3446-46d4-a734-c4139611ebb6
+name: John Gough
+slug: john-gough
+gender: male
+added: 2020-05-19T20:04:10.285Z
+born: 1721
+died: 1791
+quotes:
+  - source: Richard Shackleton
+    text:
+      I understand John Gough has lately had an alarming paralytic stroke, which nearly
+      deprived him of the use of one side for some time; but was so far recovered as to be
+      able to attend their late quarterly meeting near Charlemont, where he had very
+      acceptable service, appearing with increasing brightness in his Master’s cause, who,
+      I trust, will strengthen him every way for this fresh service. I love to see people
+      so devoted, so dedicated, so set upon promoting the cause of Christ.
+residences:
+  - city: Kendal
+    region: England
+    durations:
+      - start: 1721
+        end: 1740
+  - city: Dublin
+    region: Ireland
+    durations:
+      - start: 1740
+        end: 1774
+  - city: Lisburn
+    region: Ireland
+    durations:
+      - start: 1774
+        end: 1791
+description:
+  Like his older brother James, John Gough (1721-1791) was gifted with a keen intellect
+  and so excelled in his studies that he became an assistant to a Friends school in
+  Wiltshire when only sixteen years of age. As an adult he became master of boarding
+  schools in Cork, Dublin, and Lisburn, but was also very active in the work of the
+  ministry, both preaching and writing for the advancement of the gospel. In 1782, when
+  sixty-one years of age, he commenced his four-volume History of the Society of Friends,
+  which occupied him for eight years, and was published in 1790. This immense work gave a
+  full, clear, and accurate portrayal of the history of Friends, adding valuable
+  information to what had already been recorded in Sewel’s “History,” and continuing the
+  history of this people until 1764.
+documents:
+  - id: 6f47a04b-de86-4646-ba0f-52c7bdbd2ae3
+    title: History of the Quakers, Volume I
+    original_title:
+      A History of the People called Quakers, from their First Rise to the Present Time,
+      Volume I
+    slug: history-of-the-quakers-v1
+    filename: History_of_the_Quakers_v1
+    description:
+      Like his older brother James, John Gough (1721-1791) was gifted with a keen
+      intellect and so excelled in his studies that he became an assistant to a Friends
+      school in Wiltshire when only sixteen years of age. As an adult he became master of
+      boarding schools in Cork, Dublin, and Lisburn, but was also very active in the work
+      of the ministry, both preaching and writing for the advancement of the gospel. In
+      1782, when sixty-one years of age, he commenced his four-volume History of the
+      Society of Friends, which occupied him for eight years, and was published in 1790.
+      This immense work gave a full, clear, and accurate portrayal of the history of
+      Friends, adding valuable information to what had already been recorded in Sewel’s
+      “History,” and continuing the history of this people until 1764.
+    partial_description:
+      Volume 1 of The History of the People Called Quakers, beginning with an overview of
+      the various dispensations whereby God has revealed Himself to mankind, then giving
+      an account the early ministry of George Fox and the rise of the Society of Friends
+      to the year 1661.
+    tags:
+      - history
+    editions:
+      - type: original
+        draft: true
+        isbn: 978-1-64476-192-2
+  - id: 073e1a75-2193-4b5b-9de1-5a06a8a970e4
+    title: History of the Quakers, Volume II
+    original_title:
+      A History of the People called Quakers, from their First Rise to the Present Time,
+      Volume II
+    slug: history-of-the-quakers-v2
+    filename: History_of_the_Quakers_v2
+    description:
+      Like his older brother James, John Gough (1721-1791) was gifted with a keen
+      intellect and so excelled in his studies that he became an assistant to a Friends
+      school in Wiltshire when only sixteen years of age. As an adult he became master of
+      boarding schools in Cork, Dublin, and Lisburn, but was also very active in the work
+      of the ministry, both preaching and writing for the advancement of the gospel. In
+      1782, when sixty-one years of age, he commenced his four-volume History of the
+      Society of Friends, which occupied him for eight years, and was published in 1790.
+      This immense work gave a full, clear, and accurate portrayal of the history of
+      Friends, adding valuable information to what had already been recorded in Sewel’s
+      “History,” and continuing the history of this people until 1764.
+    partial_description: TODO
+    tags:
+      - history
+    editions:
+      - type: original
+        draft: true
+        isbn: 978-1-64476-216-5
