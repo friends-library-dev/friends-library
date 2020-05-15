@@ -1,0 +1,111 @@
+# --------------------------------------
+# -------- orders collection -----------
+# --------------------------------------
+
+type Order @collection(name: "orders") {
+  externalId: String!
+  paymentId: String!
+  paymentStatus: PaymentStatus!
+  printJobId: Int
+  printJobStatus: PrintJobStatus
+  amount: Int!
+  shipping: Int!
+  taxes: Int!
+  ccFeeOffset: Int!
+  email: String!
+  items: [OrderItem!]!
+  address: Address!
+  lang: Lang!
+  created: Time!
+  updated: Time!
+}
+
+type OrderItem @embedded {
+  title: String!
+  documentId: String!
+  edition: EditionType!
+  quantity: Int!
+  unitPrice: Int!
+}
+
+type Address @embedded {
+  name: String!
+  street: String!
+  street2: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+}
+
+# --------------------------------------
+# ------- downloads collection ---------
+# --------------------------------------
+
+type Download @collection(name: "downloads") {
+  documentId: String!
+  edition: EditionType!
+  format: String!
+  isMobile: Boolean!
+  audioQuality: AudioQuality
+  audioPartNumber: Int
+  os: String
+  browser: String
+  platform: String
+  userAgent: String
+  referrer: String
+  ip: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  latitude: Float
+  longitude: Float
+  created: Time!
+}
+
+# --------------------------------------
+# --------------- enums ----------------
+# --------------------------------------
+
+enum Lang {
+  en
+  es
+}
+
+enum EditionType {
+  original
+  modernized
+  updated
+}
+
+enum PrintJobStatus {
+  pending
+  accepted
+  rejected
+  shipped
+  canceled
+}
+
+enum PaymentStatus {
+  authorized
+  captured
+  canceled
+}
+
+enum AudioQuality {
+  HQ
+  LQ
+}
+
+# --------------------------------------
+# ------------- queries ----------------
+# --------------------------------------
+
+type Query {
+  ordersByPrintJobStatus(printJobStatus: PrintJobStatus!): [Order!]!
+    @index(name: "orders_by_print_job_status")
+  findOrderByExternalId(externalId: String!): Order @index(name: "orders_by_external_id")
+  allOrders: [Order!]! @index(name: "all_orders")
+  allDownloads: [Download!]! @index(name: "all_downloads")
+}

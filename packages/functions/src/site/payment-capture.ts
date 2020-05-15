@@ -4,7 +4,7 @@ import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
-import { findById, persist } from '../lib/Order';
+import { findById, save as saveOrder } from '../lib/order';
 
 export default async function capturePayment(
   { body }: APIGatewayEvent,
@@ -16,8 +16,9 @@ export default async function capturePayment(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
-  const order = await findById(data.orderId);
+  const [findError, order] = await findById(data.orderId);
   if (!order) {
+    log.error(`order ${data.orderId} not found`, { error: findError });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
@@ -36,11 +37,11 @@ export default async function capturePayment(
     return respond.json({ msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT }, 500);
   }
 
-  try {
-    order.set('payment.status', 'captured');
-    await persist(order);
-  } catch (error) {
-    log.error('error updating flp order', { error });
+  order.paymentStatus = 'captured';
+  const [saveError] = await saveOrder(order);
+
+  if (saveError) {
+    log.error('error updating flp order', { error: saveError });
     // @TODO decide what to do here... cancel the payment intent?
   }
 

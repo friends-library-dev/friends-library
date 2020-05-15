@@ -5,22 +5,23 @@ import mailer from '@sendgrid/mail';
 import env from '../lib/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
-import { findById } from '../lib/Order';
+import { findById } from '../lib/order';
 import { orderConfirmationEmail, emailFrom } from '../lib/email';
 
 export default async function sendOrderConfirmationEmail(
   { path }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const pathMatch = path.match(/\/orders\/([a-z0-9]+)\/confirmation-email$/);
+  const pathMatch = path.match(/\/orders\/([a-z0-9-]+)\/confirmation-email$/);
   if (!pathMatch) {
     log.error(`invalid send order confirmation email path: ${path}`);
     return respond.json({ msg: Err.INVALID_SEND_ORDER_CONFIRMATION_EMAIL_URL }, 400);
   }
 
   const [, orderId] = pathMatch;
-  const order = await findById(orderId);
+  const [findError, order] = await findById(orderId);
   if (!order) {
+    log.error(`order ${orderId} not found`, { error: findError });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
@@ -30,10 +31,10 @@ export default async function sendOrderConfirmationEmail(
     '*Order submitted*',
     {
       order: {
-        name: order.get('address.name'),
-        email: order.get('email'),
-        items: order.get('items'),
-        address: order.get('address'),
+        name: order.address.name,
+        email: order.email,
+        items: order.items,
+        address: order.address,
       },
     },
     env('SLACK_ORDERS_CHANNEL'),
@@ -43,8 +44,8 @@ export default async function sendOrderConfirmationEmail(
   mailer.setApiKey(env('SENDGRID_API_KEY'));
   const [res] = await mailer.send({
     ...orderConfirmationEmail(order),
-    to: order.get('email'),
-    from: emailFrom(order.get('lang')),
+    to: order.email,
+    from: emailFrom(order.lang),
     mailSettings: {
       sandboxMode: {
         enable: process.env.NODE_ENV === 'development',

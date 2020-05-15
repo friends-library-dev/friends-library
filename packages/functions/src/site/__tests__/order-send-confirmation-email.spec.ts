@@ -2,7 +2,7 @@ import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
 import sendConfirmation from '../order-send-confirmation-email';
 import { invokeCb } from './invoke';
-import { findById } from '../../lib/Order';
+import { findById } from '../../lib/order';
 
 jest.mock('@friends-library/slack');
 
@@ -13,20 +13,14 @@ jest.mock('@sendgrid/mail', () => ({
 
 const mockOrder = {
   id: '123',
-  get: jest.fn((what: any) => {
-    switch (what) {
-      case 'items':
-        return [];
-      case 'address.name':
-        return 'Jared Henderson';
-    }
-    return 'test@foo.com';
-  }),
+  email: 'jared@netrivet.com',
+  items: [],
+  address: {
+    name: 'Jared Henderson',
+  },
 };
-jest.mock('../../lib/Order', () => ({
-  __esModule: true,
-  default: jest.fn(() => mockOrder),
-  findById: jest.fn(() => mockOrder),
+jest.mock('../../lib/order', () => ({
+  findById: jest.fn(() => Promise.resolve([null, mockOrder])),
 }));
 
 describe('sendOrderConfirmationEmail()', () => {
@@ -49,7 +43,7 @@ describe('sendOrderConfirmationEmail()', () => {
   });
 
   it('should respond 404 if order cant be found', async () => {
-    (<jest.Mock>findById).mockResolvedValueOnce(null);
+    (<jest.Mock>findById).mockResolvedValueOnce([null, null]);
     const { res, json } = await invokeCb(sendConfirmation, {
       path: '/site/orders/123/confirmation-email',
     });
@@ -59,10 +53,10 @@ describe('sendOrderConfirmationEmail()', () => {
   });
 
   it('should send custom email data', async () => {
-    (<jest.Mock>findById).mockResolvedValueOnce({
-      id: '345',
-      get: (what: any) => (what === 'email' ? 'foo@bar.com' : undefined),
-    });
+    (<jest.Mock>findById).mockResolvedValueOnce([
+      null,
+      { ...mockOrder, id: '345', email: 'foo@bar.com' },
+    ]);
     await invokeCb(sendConfirmation, {
       path: '/site/orders/345/confirmation-email',
     });

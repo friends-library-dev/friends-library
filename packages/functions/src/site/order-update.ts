@@ -3,7 +3,7 @@ import { checkoutErrors as Err } from '@friends-library/types';
 import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
-import { persist, findById } from '../lib/Order';
+import { save as saveOrder, findById } from '../lib/order';
 import log from '../lib/log';
 
 export default async function updateOrder(
@@ -26,37 +26,27 @@ export default async function updateOrder(
     return respond.json({ msg: Err.ERROR_UPDATING_STRIPE_PAYMENT_INTENT }, 403);
   }
 
-  const order = await findById(data.orderId);
+  const [findError, order] = await findById(data.orderId);
   if (!order) {
-    return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
+    return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND, errors: findError }, 404);
   }
 
-  try {
-    order.set('email', data.email);
-    order.set('address', data.address);
-    order.set(
-      'items',
-      data.items.map(i => ({
-        ...i,
-        document_id: i.documentId,
-        unit_price: i.unitPrice,
-      })),
-    );
-    order.set('payment', {
-      id: data.paymentIntentId,
-      status: order.get('payment.status'),
-      amount: data.amount,
-      shipping: data.shipping,
-      taxes: data.taxes,
-      cc_fee_offset: data.ccFeeOffset,
-    });
-    await persist(order);
-    log(`updated order: ${data.orderId}`);
-  } catch (error) {
-    log.error('error persisting flp order', { error });
-    return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error: error.message }, 500);
+  order.email = data.email;
+  order.address = data.address;
+  order.items = data.items;
+  order.paymentId = data.paymentIntentId;
+  order.amount = data.amount;
+  order.shipping = data.shipping;
+  order.taxes = data.taxes;
+  order.ccFeeOffset = data.ccFeeOffset;
+  const [saveError] = await saveOrder(order);
+
+  if (saveError) {
+    log.error('error persisting flp order', { error: saveError });
+    return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error: saveError }, 500);
   }
 
+  log(`updated order: ${data.orderId}`);
   respond.noContent();
 }
 
@@ -76,6 +66,7 @@ export const schema = {
       items: {
         type: 'object',
         properties: {
+          title: { type: 'string' },
           documentId: { $ref: '/uuid' },
           printSize: { $ref: '/print-size' },
           quantity: { $ref: '/book-qty' },
@@ -96,8 +87,9 @@ export const schema = {
     email: 'user@example.com',
     items: [
       {
+        title: 'Journal of George Fox',
         documentId: '6b0e134d-8d2e-48bc-8fa3-e8fc79793804',
-        edition: 'modernized',
+        edition: 'modernized' as const,
         quantity: 1,
         unitPrice: 231,
       },

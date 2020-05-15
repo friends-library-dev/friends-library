@@ -36,7 +36,7 @@ describe('CheckoutService()', () => {
     expect(err).toBeUndefined();
     expect(service.paymentIntentId).toMatch(/^pi_\w+$/i);
     expect(service.paymentIntentClientSecret).toMatch(/^pi_\w+?_secret_\w+$/i);
-    expect(service.orderId).toMatch(/^[a-f\d]{24}$/i);
+    expect(service.orderId).toMatch(/^[a-f\d-]{36}$/i);
 
     // step 2.5 (testing only, because not using stripe js client)
     err = await service.__testonly__authorizePayment();
@@ -45,12 +45,10 @@ describe('CheckoutService()', () => {
     // step 3: verify that the order was created
     let orderRes = await api.getOrder(service.orderId);
     expect(orderRes.data).toMatchObject({
-      payment: {
-        id: service.paymentIntentId,
-        shipping: 399,
-        taxes: 0,
-        cc_fee_offset: 42,
-      },
+      paymentId: service.paymentIntentId,
+      shipping: 399,
+      taxes: 0,
+      ccFeeOffset: 42,
     });
 
     // step 4: crate the print job
@@ -59,10 +57,8 @@ describe('CheckoutService()', () => {
     // step 5: verify order updated
     orderRes = await api.getOrder(service.orderId);
     expect(orderRes.data).toMatchObject({
-      print_job: {
-        id: service.printJobId,
-        status: 'pending',
-      },
+      printJobId: service.printJobId,
+      printJobStatus: 'pending',
     });
 
     // step 6: wait for print job validation
@@ -75,19 +71,15 @@ describe('CheckoutService()', () => {
 
     // step 8: verify print job status updated
     orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({
-      print_job: { status: 'accepted' },
-    });
+    expect(orderRes.data).toMatchObject({ printJobStatus: 'accepted' });
 
     // step 9: capture the payment
     err = await service.capturePayment();
     expect(err).toBeUndefined();
 
-    // step 10: verify order payment.status updated
+    // step 10: verify order payment status updated
     orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({
-      payment: { status: 'captured' },
-    });
+    expect(orderRes.data).toMatchObject({ paymentStatus: 'captured' });
 
     // step 11: send order confirmation email
     const confirmRes = await api.sendOrderConfirmationEmail(service.orderId);
@@ -115,8 +107,6 @@ export function urls(): { endpoint: string; origin: string } {
   let endpoint = 'http://localhost:2345';
   if (process.env.FNS_INTEGRATION_TEST_URL) {
     endpoint = process.env.FNS_INTEGRATION_TEST_URL;
-  } else if (process.env.PR) {
-    endpoint = `https://deploy-preview-${process.env.PR}--en-evans.netlify.app`;
   }
   endpoint += '/.netlify/functions/site';
   const origin = endpoint.split('/.netlify')[0];

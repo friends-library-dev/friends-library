@@ -223,13 +223,22 @@ export default class CheckoutService {
 
   private createOrderPayload(): Record<string, any> {
     const { shipping, taxes, ccFeeOffset } = this.fees;
+    if (!this.cart.address) throw new Error('Missing address');
     return {
       amount: this.cart.subTotal() + this.sumFees(),
       shipping,
       taxes,
       ccFeeOffset,
       email: this.cart.email,
-      address: this.cart.address,
+      address: {
+        name: this.cart.address.name,
+        street: this.cart.address.street,
+        street2: this.cart.address.street2,
+        city: this.cart.address.city,
+        state: this.cart.address.state,
+        zip: this.cart.address.zip,
+        country: this.cart.address.country,
+      },
       lang: LANG,
       items: this.cart.items
         .filter(i => i.quantity > 0)

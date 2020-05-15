@@ -5,28 +5,33 @@ import { CheckoutError, checkoutErrors as Err } from '@friends-library/types';
 import env from '../lib/env';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
-import mongoose from 'mongoose';
-import { find, persistAll } from '../lib/Order';
+import { findByPrintJobStatus, saveAll, Order } from '../lib/order';
 import { getAuthToken } from '../lib/lulu';
 import { orderShippedEmail, emailFrom } from '../lib/email';
-
-type Orders = mongoose.Document[];
 
 export default async function checkOrders(
   event: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const orders = await find({ 'print_job.status': 'accepted' });
+  const [error, orders] = await findByPrintJobStatus('shipped');
+  if (error || !orders) {
+    log.error(`Error retrieving orders for /orders-check`, { error, orders });
+    return respond.json({ msg: Err.ERROR_RETRIEVING_FLP_ORDERS }, 500);
+  }
+
   if (orders.length === 0) {
     log('No accepted print jobs to process');
     return respond.json({ msg: 'No accepted print jobs to process' });
   }
 
-  const [err, jobs] = await getPrintJobs(orders);
-  if (err) return respond.json({ msg: err }, 500);
+  const [printJobErr, jobs] = await getPrintJobs(orders);
+  if (printJobErr) {
+    log.error('Error fetching print jobs from lulu api', { error: printJobErr });
+    return respond.json({ msg: printJobErr }, 500);
+  }
 
-  const updatedOrders: Orders = [];
-  const recentlyShippedOrders: Orders = [];
+  const updatedOrders: Order[] = [];
+  const recentlyShippedOrders: Order[] = [];
 
   jobs.forEach((job: Record<string, any>) => {
     const status = job.status.name as string;
@@ -34,7 +39,7 @@ export default async function checkOrders(
       return;
     }
 
-    const order = orders.find(o => o.get('print_job.id') === job.id);
+    const order = orders.find(o => o.printJobId === job.id);
     if (!order) {
       return;
     }
@@ -49,23 +54,22 @@ export default async function checkOrders(
       case 'CANCELLED':
       case 'CANCELED':
         log.error(`order ${order.id} was ${status}!`);
-        order.set('print_job.status', status.toLowerCase());
+        order.printJobStatus = status === 'REJECTED' ? 'rejected' : 'canceled';
         updatedOrders.push(order);
         break;
 
       case 'SHIPPED':
-        order.set('print_job.status', status.toLowerCase());
+        order.printJobStatus = 'shipped';
         updatedOrders.push(order);
         recentlyShippedOrders.push(order);
     }
   });
 
   if (updatedOrders.length) {
-    try {
-      await persistAll(updatedOrders);
-    } catch (error) {
-      log.error('error persisting updated orders');
-      return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDERS }, 500);
+    const [error] = await saveAll(updatedOrders);
+    if (error) {
+      log.error('error persisting updated orders', { error });
+      return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDERS, error }, 500);
     }
   }
 
@@ -84,7 +88,7 @@ export default async function checkOrders(
 }
 
 async function getPrintJobs(
-  orders: Orders,
+  orders: Order[],
 ): Promise<[null | CheckoutError, Record<string, any>[]]> {
   try {
     var token = await getAuthToken();
@@ -93,7 +97,7 @@ async function getPrintJobs(
     return [Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN, []];
   }
 
-  const query = orders.map(o => o.get('print_job.id')).join('&id=');
+  const query = orders.map(o => o.printJobId).join('&id=');
   const res = await fetch(`${env('LULU_API_ENDPOINT')}/print-jobs/?id=${query}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -109,20 +113,20 @@ async function getPrintJobs(
 
 async function sendShipmentTrackingEmails(
   jobs: Record<string, any>[],
-  orders: Orders,
+  orders: Order[],
 ): Promise<void> {
   const shippedJobs = jobs.filter(job => job.status.name === 'SHIPPED');
 
   const emails = shippedJobs.map(job => {
-    const order = orders.find(o => o.get('print_job.id') === job.id);
+    const order = orders.find(o => o.printJobId === job.id);
     if (!order) throw new Error('Matching order not found!');
     // this is a hair naive, theoretically there could be more than one shipment
     // for a huge order, this just gets the first tracking url, but probably good enough
     const trackingUrl = job.line_items[0].tracking_urls[0];
     return {
       ...orderShippedEmail(order, trackingUrl),
-      to: order.get('email'),
-      from: emailFrom(order.get('lang')),
+      to: order.email,
+      from: emailFrom(order.lang),
       mailSettings: { sandboxMode: { enable: process.env.NODE_ENV === 'development' } },
     };
   });

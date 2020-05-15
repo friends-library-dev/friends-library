@@ -25,15 +25,54 @@ export {
   genericDpc,
 } from './doc';
 export { checkoutErrors, CheckoutError } from './errors';
-export type Gender = 'male' | 'female';
-export type Lang = 'en' | 'es';
-export type EditionType = 'original' | 'modernized' | 'updated';
-export type FormatType = 'pdf' | 'epub' | 'mobi' | 'audio' | 'paperback';
-export type NodeEnv = 'production' | 'development';
-export type PrintSize = 's' | 'm' | 'xl';
-export type PrintSizeVariant = PrintSize | 'xl--condensed';
-export type PrintJobStatus = 'pending' | 'accepted' | 'shipped' | 'rejected' | 'canceled';
-export type AudioQuality = 'HQ' | 'LQ';
+
+export const GENDERS = ['male', 'female'] as const;
+export type Gender = typeof GENDERS[number];
+
+export const LANGS = ['en', 'es'] as const;
+export type Lang = typeof LANGS[number];
+
+export const EDITION_TYPES = ['original', 'modernized', 'updated'] as const;
+export type EditionType = typeof EDITION_TYPES[number];
+
+export const FORMAT_TYPES = ['pdf', 'epub', 'mobi', 'audio', 'paperback'] as const;
+export type FormatType = typeof FORMAT_TYPES[number];
+
+export const NODE_ENVS = ['production', 'development'] as const;
+export type NodeEnv = typeof NODE_ENVS[number];
+
+export const PRINT_SIZES = ['s', 'm', 'xl'] as const;
+export type PrintSize = typeof PRINT_SIZES[number];
+
+export const PRINT_SIZE_VARIANTS = ['s', 'm', 'xl', 'xl--condensed'] as const;
+export type PrintSizeVariant = typeof PRINT_SIZE_VARIANTS[number];
+
+export const DOWNLOAD_FORMATS = [
+  'epub',
+  'mobi',
+  'web-pdf',
+  'mp3-zip',
+  'm4b',
+  'mp3',
+  'podcast',
+] as const;
+export type DownloadFormat = typeof DOWNLOAD_FORMATS[number];
+
+export const PRINT_JOB_STATUSES = [
+  'pending',
+  'accepted',
+  'shipped',
+  'rejected',
+  'canceled',
+] as const;
+
+export type PrintJobStatus = typeof PRINT_JOB_STATUSES[number];
+
+export const PAYMENT_STATUSES = ['authorized', 'captured', 'canceled'] as const;
+export type PaymentStatus = typeof PAYMENT_STATUSES[number];
+
+export const AUDIO_QUALITIES = ['HQ', 'LQ'] as const;
+export type AudioQuality = typeof AUDIO_QUALITIES[number];
 
 export interface PrintSizeDetails {
   abbrev: PrintSize;

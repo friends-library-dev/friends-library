@@ -1,5 +1,5 @@
 import { Document, Edition, Audio, Friend } from '@friends-library/friends';
-import { Url, AudioQuality } from '@friends-library/types';
+import { Url, AudioQuality, DownloadFormat } from '@friends-library/types';
 
 export function friendUrl(friend: Friend): Url {
   if (friend.slug === 'compilations') {
@@ -49,8 +49,6 @@ export function mp3PartDownloadUrl(
   return logUrl(audio.edition, 'mp3', audio.partFilename(index, quality));
 }
 
-type DownloadType = 'epub' | 'mobi' | 'web-pdf' | 'mp3-zip' | 'm4b' | 'mp3' | 'podcast';
-
 export function artifactDownloadUrl(
   edition: Edition,
   type: 'epub' | 'mobi' | 'web-pdf',
@@ -58,7 +56,7 @@ export function artifactDownloadUrl(
   return logUrl(edition, type, edition.filename(type));
 }
 
-function logUrl(edition: Edition, type: DownloadType, filename: string): string {
+function logUrl(edition: Edition, type: DownloadFormat, filename: string): string {
   return [
     '/.netlify/functions/site/log/download',
     edition.document.id,

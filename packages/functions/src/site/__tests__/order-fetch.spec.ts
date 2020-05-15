@@ -1,27 +1,20 @@
 import { checkoutErrors as Err } from '@friends-library/types';
 import fetchOrder from '../order-fetch';
 import { invokeCb } from './invoke';
-import { findById } from '../../lib/Order';
+import { findById } from '../../lib/order';
 
-const mockOrder = {
-  id: '123abc',
-  set: jest.fn(),
-  toJSON: () => ({ _id: '123abc' }),
-};
-jest.mock('../../lib/Order', () => ({
-  __esModule: true,
-  default: jest.fn(() => mockOrder),
-  findById: jest.fn(() => Promise.resolve(mockOrder)),
-  persist: jest.fn(),
+const id = '6b0e134d-8d2e-48bc-8fa3-e8fc79793804';
+const mockOrder = { id };
+jest.mock('../../lib/order', () => ({
+  findById: jest.fn(() => Promise.resolve([null, mockOrder])),
 }));
 
 describe('fetchOrder()', () => {
-  const path = '/site/orders/123abc';
+  const path = `/site/orders/${id}`;
 
   const badPaths = [
     ['/site/orders/_nope'],
     ['/site/orders/41234?foo=bar'],
-    ['/site/orders/6b0e134d-8d2e-48bc-8fa3-e8fc79793804'],
     ['/site/orders/'],
   ];
 
@@ -32,7 +25,7 @@ describe('fetchOrder()', () => {
   });
 
   it('responds 404 if order not found', async () => {
-    (<jest.Mock>findById).mockResolvedValueOnce(null);
+    (<jest.Mock>findById).mockResolvedValueOnce([null, null]);
     const { res, json } = await invokeCb(fetchOrder, { path });
     expect(res.statusCode).toBe(404);
     expect(json).toMatchObject({ msg: Err.FLP_ORDER_NOT_FOUND });
@@ -41,6 +34,6 @@ describe('fetchOrder()', () => {
   it('responds 200 with order json if found', async () => {
     const { res, json } = await invokeCb(fetchOrder, { path });
     expect(res.statusCode).toBe(200);
-    expect(json).toMatchObject({ _id: '123abc' });
+    expect(json).toMatchObject({ id });
   });
 });

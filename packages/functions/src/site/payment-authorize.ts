@@ -76,8 +76,13 @@ const schema = {
 };
 
 function isTestInvocation(): boolean {
+  if (env.getContext() === 'TEST') {
+    return true;
+  }
+
   if (env('STRIPE_SECRET_KEY').match(/^sk_test_/) === null) {
     return false;
   }
+
   return process.env.NODE_ENV === 'development';
 }

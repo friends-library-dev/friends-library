@@ -12,6 +12,22 @@ describe('site fns integration', () => {
     expect(status).toBe(204);
   });
 
+  const path =
+    'log/download/9333dd0a-d92b-401e-a086-f611cc20f984/en/hugh-turford/walk-in-the-spirit/updated/epub/Walk_in_the_Spirit--updated.epub';
+
+  test('GET /download should return 302 (w/ IP)', async () => {
+    const { status } = await fetch(`${endpoint}/${path}`, {
+      redirect: 'manual',
+      headers: { 'client-ip': '71.79.157.162' },
+    });
+    expect(status).toBe(302);
+  });
+
+  test('GET /download should return 302 (no IP)', async () => {
+    const { status } = await fetch(`${endpoint}/${path}`, { redirect: 'manual' });
+    expect(status).toBe(302);
+  });
+
   test('POST /print-job/fees endpoint', async () => {
     const res = await fetch(`${endpoint}/print-job/fees`, {
       method: 'POST',
@@ -43,7 +59,7 @@ describe('site fns integration', () => {
     expect(authRes.status).toBe(201);
     expect(paymentIntentId).toMatch(/^pi_\w+$/i);
     expect(paymentIntentClientSecret).toMatch(/^pi_\w+?_secret_\w+$/i);
-    expect(orderId).toMatch(/^[a-f\d]{24}$/i);
+    expect(orderId).toMatch(/^[a-f\d-]{36}$/i);
 
     /**
      * Step 2: Verify that our order was created
@@ -52,14 +68,12 @@ describe('site fns integration', () => {
     expect(orderRes.status).toBe(200);
     expect(await orderRes.json()).toMatchObject({
       email,
-      payment: {
-        id: paymentIntentId,
-        status: 'authorized',
-        amount: createOrderSchema.example.amount,
-        shipping: createOrderSchema.example.shipping,
-        taxes: createOrderSchema.example.taxes,
-        cc_fee_offset: createOrderSchema.example.ccFeeOffset,
-      },
+      paymentId: paymentIntentId,
+      paymentStatus: 'authorized',
+      amount: createOrderSchema.example.amount,
+      shipping: createOrderSchema.example.shipping,
+      taxes: createOrderSchema.example.taxes,
+      ccFeeOffset: createOrderSchema.example.ccFeeOffset,
     });
 
     /**
@@ -97,10 +111,8 @@ describe('site fns integration', () => {
     orderRes = await fetch(`${endpoint}/orders/${orderId}`);
     expect(orderRes.status).toBe(200);
     expect(await orderRes.json()).toMatchObject({
-      print_job: {
-        id: printJobId,
-        status: 'pending',
-      },
+      printJobId: printJobId,
+      printJobStatus: 'pending',
     });
 
     /**
@@ -115,7 +127,7 @@ describe('site fns integration', () => {
     } while (orderStatus !== 'accepted');
 
     /**
-     * Step 7: Update order print_job status
+     * Step 7: Update order print job status
      */
     const updateOrderRes = await fetch(`${endpoint}/orders/update-print-job-status`, {
       method: 'POST',
@@ -125,13 +137,11 @@ describe('site fns integration', () => {
     expect(updateOrderRes.status).toBe(200);
 
     /**
-     * Step 8: Verify that our order print_job.status was updated
+     * Step 8: Verify that our order print job status was updated
      */
     orderRes = await fetch(`${endpoint}/orders/${orderId}`);
     expect(orderRes.status).toBe(200);
-    expect(await orderRes.json()).toMatchObject({
-      print_job: { status: 'accepted' },
-    });
+    expect(await orderRes.json()).toMatchObject({ printJobStatus: 'accepted' });
 
     /**
      * Step 9: Capture payment
@@ -144,13 +154,11 @@ describe('site fns integration', () => {
     expect(captureRes.status).toBe(204);
 
     /**
-     * Step 10: Verify that our order payment.status was updated
+     * Step 10: Verify that our order payment status was updated
      */
     orderRes = await fetch(`${endpoint}/orders/${orderId}`);
     expect(orderRes.status).toBe(200);
-    expect(await orderRes.json()).toMatchObject({
-      payment: { status: 'captured' },
-    });
+    expect(await orderRes.json()).toMatchObject({ paymentStatus: 'captured' });
 
     /**
      * Step 11: Send order confirmation email
@@ -174,8 +182,6 @@ export function urls(): { endpoint: string; origin: string } {
   let endpoint = 'http://localhost:2345';
   if (process.env.FNS_INTEGRATION_TEST_URL) {
     endpoint = process.env.FNS_INTEGRATION_TEST_URL;
-  } else if (process.env.PR) {
-    endpoint = `https://deploy-preview-${process.env.PR}--en-evans.netlify.app`;
   }
   endpoint += '/.netlify/functions/site';
   const origin = endpoint.split('/.netlify')[0];

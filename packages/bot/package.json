@@ -37,7 +37,7 @@
     "shipit-shared": "^4.4.2",
     "shipit-yarn": "^0.2.0",
     "smee-client": "^1.0.2",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.3"
   },
   "engines": {
     "node": ">= 8.3.0"

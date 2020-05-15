@@ -1,7 +1,7 @@
 import { checkoutErrors as Err } from '@friends-library/types';
 import capture from '../payment-capture';
 import { invokeCb } from './invoke';
-import { findById, persist } from '../../lib/Order';
+import { findById, save } from '../../lib/order';
 
 const captureIntent = jest.fn();
 jest.mock('stripe', () => {
@@ -12,12 +12,10 @@ jest.mock('stripe', () => {
   }));
 });
 
-const mockOrder = { id: 'mongo-id', set: jest.fn() };
-jest.mock('../../lib/Order', () => ({
-  __esModule: true,
-  default: jest.fn(() => mockOrder),
-  findById: jest.fn(() => mockOrder),
-  persist: jest.fn(),
+const mockOrder = { id: 'order-id' };
+jest.mock('../../lib/order', () => ({
+  findById: jest.fn(() => Promise.resolve([null, mockOrder])),
+  save: jest.fn(() => Promise.resolve([null, true])),
 }));
 
 describe('/payment-capture handler', () => {
@@ -36,7 +34,7 @@ describe('/payment-capture handler', () => {
   });
 
   it('should respond 404 if order cant be found', async () => {
-    (<jest.Mock>findById).mockReturnValueOnce(null);
+    (<jest.Mock>findById).mockResolvedValueOnce([null, null]);
     const { res, json } = await invokeCb(capture, { body: testBody });
     expect(res.statusCode).toBe(404);
     expect(json.msg).toBe(Err.FLP_ORDER_NOT_FOUND);
@@ -44,15 +42,14 @@ describe('/payment-capture handler', () => {
 
   it('should update & persist the order with new payment.status', async () => {
     await invokeCb(capture, { body: testBody });
-    expect(mockOrder.set).toHaveBeenCalledWith('payment.status', 'captured');
-    expect(persist).toHaveBeenCalledWith(mockOrder);
+    expect((<jest.Mock>save).mock.calls[0][0]).toMatchObject({
+      id: 'order-id',
+      paymentStatus: 'captured',
+    });
   });
 
   it('should still respond 204 if persisting order fails', async () => {
-    (<jest.Mock>persist).mockImplementationOnce(() => {
-      throw new Error('Oh noes!');
-    });
-
+    (<jest.Mock>save).mockResolvedValueOnce([['error saving'], null]);
     const { res } = await invokeCb(capture, { body: testBody });
     expect(res.statusCode).toBe(204);
   });
