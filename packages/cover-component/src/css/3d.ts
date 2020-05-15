@@ -1,5 +1,6 @@
+import { syntax as css } from '@friends-library/types';
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, withSizes } from './helpers';
+import { dynamifyCss, withSizes } from './helpers';
 
 const threeD: CoverCssModule = (scaler, scope) => {
   const staticCss = css`

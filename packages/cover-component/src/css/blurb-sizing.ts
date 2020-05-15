@@ -1,4 +1,4 @@
-import { css } from './helpers';
+import { syntax as css } from '@friends-library/types';
 
 const lessThanCss = css`
   .Cover .blurb--lt-375 .blurb {

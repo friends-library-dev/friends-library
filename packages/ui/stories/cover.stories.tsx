@@ -10,7 +10,7 @@ import {
   css as coverCss,
   wrapClasses,
 } from '@friends-library/cover-component';
-import { CoverProps, PrintSize } from '@friends-library/types';
+import { CoverProps, PrintSize, syntax as css } from '@friends-library/types';
 import { addStaticCoverCss } from './helpers';
 
 export const props: CoverProps & { htmlShortTitle: string } = {
@@ -269,12 +269,4 @@ const Wrapped: React.FC<Partial<CoverProps> & {
 
 function p(overrides: Partial<CoverProps>): CoverProps {
   return { ...props, ...overrides };
-}
-
-function css(strings: any, ...values: any[]): string {
-  let str = '';
-  strings.forEach((string: string, i: number) => {
-    str += string + (values[i] || '');
-  });
-  return str;
 }

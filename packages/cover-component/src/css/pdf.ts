@@ -1,4 +1,5 @@
-import { css, dynamifyCss, docDims, PRINT_BLEED, pdfSpineWidth } from './helpers';
+import { syntax as css } from '@friends-library/types';
+import { dynamifyCss, docDims, PRINT_BLEED, pdfSpineWidth } from './helpers';
 import { CoverProps, Css } from '@friends-library/types';
 
 export default function pdf(

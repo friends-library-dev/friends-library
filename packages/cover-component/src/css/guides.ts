@@ -1,5 +1,6 @@
+import { syntax as css } from '@friends-library/types';
 import { CoverCssModule } from './types';
-import { css, dynamifyCss, PRINT_BLEED, withSizes } from './helpers';
+import { dynamifyCss, PRINT_BLEED, withSizes } from './helpers';
 
 const guides: CoverCssModule = (scaler, scope) => {
   const staticCss = css`
