@@ -1,5 +1,5 @@
-import { Document } from 'mongoose';
 import { Lang } from '@friends-library/types';
+import { Order } from './order';
 import env from './env';
 
 export function emailFrom(lang: Lang): string {
@@ -11,10 +11,10 @@ export function emailFrom(lang: Lang): string {
 }
 
 export function orderShippedEmail(
-  order: Document,
+  order: Order,
   trackingUrl: string,
 ): { subject: string; text: string } {
-  const lang = order.get('lang');
+  const lang = order.lang;
   return {
     subject:
       lang === 'es'
@@ -28,10 +28,8 @@ export function orderShippedEmail(
   };
 }
 
-export function orderConfirmationEmail(
-  order: Document,
-): { subject: string; text: string } {
-  const lang = order.get('lang');
+export function orderConfirmationEmail(order: Order): { subject: string; text: string } {
+  const lang = order.lang;
   return {
     subject:
       lang === 'es'
@@ -44,16 +42,16 @@ export function orderConfirmationEmail(
   };
 }
 
-function salutation(order: Document, fallback: string): string {
-  const name = order.get('address.name');
+function salutation(order: Order, fallback: string): string {
+  const name = order.address.name;
   if (typeof name === 'string') {
     return name.split(' ').shift() + ',';
   }
   return fallback;
 }
 
-function lineItems(order: Document): string {
-  const items: { title: string; quantity: number }[] = order.get('items') || [];
+function lineItems(order: Order): string {
+  const items: { title: string; quantity: number }[] = order.items || [];
   return items.map(item => `* (${item.quantity}) ${item.title}`).join('\n');
 }
 

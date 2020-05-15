@@ -105,7 +105,15 @@ describe('CheckoutService()', () => {
         taxes: 0,
         ccFeeOffset: 1,
         email: service.cart.email,
-        address: service.cart.address,
+        address: {
+          name: service.cart.address!.name,
+          street: service.cart.address!.street,
+          street2: service.cart.address!.street2,
+          city: service.cart.address!.city,
+          state: service.cart.address!.state,
+          zip: service.cart.address!.zip,
+          country: service.cart.address!.country,
+        },
         items: service.cart.items.map(i => ({
           title: i.printJobTitle(0),
           documentId: i.documentId,

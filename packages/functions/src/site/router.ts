@@ -61,7 +61,7 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return submitContactForm(event, respond);
     }
 
-    if (path.match(/^orders\/[a-z0-9]+\/confirmation-email$/)) {
+    if (path.match(/^orders\/[a-z0-9-]+\/confirmation-email$/)) {
       return sendOrderConfirmationEmail(event, respond);
     }
   }

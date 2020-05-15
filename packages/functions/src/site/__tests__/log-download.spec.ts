@@ -1,13 +1,10 @@
 import logDownload from '../log-download';
 import { invokeCb } from './invoke';
-import { create } from '../../lib/Download';
+import { create } from '../../lib/download';
 
 jest.mock('@friends-library/slack');
-jest.mock('../../lib/Download', () => ({
-  __esModule: true,
-  default: jest.fn(),
-  create: jest.fn(),
-  format: ['web-pdf', 'mobi', 'epub', 'mp3-zip', 'm4b', 'mp3', 'podcast'],
+jest.mock('../../lib/download', () => ({
+  create: jest.fn(() => [null, true]),
 }));
 
 describe('logDownload()', () => {
@@ -41,95 +38,95 @@ describe('logDownload()', () => {
       'doc-id/en/george-fox/journal/updated/mp3-zip/Journal--mp3s--lq.zip',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--mp3s--lq.zip',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'mp3-zip',
-        audio_quality: 'LQ',
-        audio_part_number: undefined,
+        audioQuality: 'LQ',
+        audioPartNumber: undefined,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/mp3-zip/Journal--mp3s.zip',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--mp3s.zip',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'mp3-zip',
-        audio_quality: 'HQ',
-        audio_part_number: undefined,
+        audioQuality: 'HQ',
+        audioPartNumber: undefined,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/mp3/Journal--pt2.mp3',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--pt2.mp3',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'mp3',
-        audio_quality: 'HQ',
-        audio_part_number: 2,
+        audioQuality: 'HQ',
+        audioPartNumber: 2,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/mp3/Journal--pt2--lq.mp3',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--pt2--lq.mp3',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'mp3',
-        audio_quality: 'LQ',
-        audio_part_number: 2,
+        audioQuality: 'LQ',
+        audioPartNumber: 2,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/m4b/Journal--lq.m4b',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--lq.m4b',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'm4b',
-        audio_quality: 'LQ',
-        audio_part_number: undefined,
+        audioQuality: 'LQ',
+        audioPartNumber: undefined,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/m4b/Journal.m4b',
       '/cloud/bucket/en/george-fox/journal/updated/Journal.m4b',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'm4b',
-        audio_quality: 'HQ',
-        audio_part_number: undefined,
+        audioQuality: 'HQ',
+        audioPartNumber: undefined,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/mp3/Journal--lq.mp3',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--lq.mp3',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'mp3',
-        audio_quality: 'LQ',
-        audio_part_number: 1,
+        audioQuality: 'LQ',
+        audioPartNumber: 1,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/mp3/Journal.mp3',
       '/cloud/bucket/en/george-fox/journal/updated/Journal.mp3',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'mp3',
-        audio_quality: 'HQ',
-        audio_part_number: 1,
+        audioQuality: 'HQ',
+        audioPartNumber: 1,
       },
     ],
     [
       'doc-id/en/george-fox/journal/updated/epub/Journal--updated.epub',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--updated.epub',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'epub',
       },
@@ -138,7 +135,7 @@ describe('logDownload()', () => {
       'doc-id/en/george-fox/journal/updated/mobi/Journal--updated.mobi',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--updated.mobi',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'mobi',
       },
@@ -147,7 +144,7 @@ describe('logDownload()', () => {
       'doc-id/en/george-fox/journal/updated/web-pdf/Journal--updated.pdf',
       '/cloud/bucket/en/george-fox/journal/updated/Journal--updated.pdf',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'updated',
         format: 'web-pdf',
       },
@@ -156,20 +153,20 @@ describe('logDownload()', () => {
       'doc-id/en/george-fox/journal/modernized/podcast/podcast.rss',
       '/george-fox/journal/modernized/podcast.rss',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'modernized',
         format: 'podcast',
-        audio_quality: 'HQ',
+        audioQuality: 'HQ',
       },
     ],
     [
       'doc-id/en/george-fox/journal/modernized/podcast/podcast--lq.rss',
       '/george-fox/journal/modernized/lq/podcast.rss',
       {
-        document_id: 'doc-id',
+        documentId: 'doc-id',
         edition: 'modernized',
         format: 'podcast',
-        audio_quality: 'LQ',
+        audioQuality: 'LQ',
       },
     ],
   ];

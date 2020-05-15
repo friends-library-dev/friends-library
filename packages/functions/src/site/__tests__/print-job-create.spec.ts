@@ -2,19 +2,12 @@ import { checkoutErrors as Err } from '@friends-library/types';
 import createOrder, { schema } from '../print-job-create';
 import { invokeCb } from './invoke';
 import { podPackageId } from '../../lib/lulu';
-import { findById, persist } from '../../lib/Order';
+import { findById, save } from '../../lib/order';
 import fetch from 'node-fetch';
 
-const mockOrder = {
-  id: 'mongo-id',
-  set: jest.fn(),
-  toJSON: () => ({ _id: 'mongo-id' }),
-};
-jest.mock('../../lib/Order', () => ({
-  __esModule: true,
-  default: jest.fn(() => mockOrder),
-  findById: jest.fn(() => Promise.resolve(mockOrder)),
-  persist: jest.fn(),
+jest.mock('../../lib/order', () => ({
+  findById: jest.fn(() => Promise.resolve([null, { id: 'order-id' }])),
+  save: jest.fn(() => Promise.resolve([null, true])),
 }));
 
 const getToken = jest.fn(() => 'oauth-token');
@@ -36,6 +29,8 @@ const { Response } = jest.requireActual('node-fetch');
 const mockFetch = <jest.Mock>(<unknown>fetch);
 
 describe('createOrder()', () => {
+  beforeEach(() => jest.clearAllMocks());
+
   const testBody = JSON.stringify(schema.example);
 
   it('should return 500 response if oauth token acquisition fails', async () => {
@@ -89,7 +84,7 @@ describe('createOrder()', () => {
   });
 
   it('responds 404 if order cannot be retrieved', async () => {
-    (<jest.Mock>findById).mockResolvedValueOnce(null);
+    (<jest.Mock>findById).mockResolvedValueOnce([null, null]);
 
     const { res, json } = await invokeCb(createOrder, { body: testBody });
 
@@ -144,7 +139,9 @@ describe('createOrder()', () => {
   it('updates order with print job order and status on success', async () => {
     mockFetch.mockImplementation(() => new Response('{"id":6}', { status: 201 }));
     await invokeCb(createOrder, { body: testBody });
-    expect(mockOrder.set).toHaveBeenCalledWith('print_job', { id: 6, status: 'pending' });
-    expect(persist).toHaveBeenCalledWith(mockOrder);
+    expect((<jest.Mock>save).mock.calls[0][0]).toMatchObject({
+      printJobId: 6,
+      printJobStatus: 'pending',
+    });
   });
 });

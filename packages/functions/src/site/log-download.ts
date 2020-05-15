@@ -2,10 +2,15 @@ import '@friends-library/env/load';
 import fetch from 'node-fetch';
 import { APIGatewayEvent } from 'aws-lambda';
 import env from '../lib/env';
-import { EditionType, AudioQuality } from '@friends-library/types';
+import {
+  EditionType,
+  AudioQuality,
+  DownloadFormat,
+  DOWNLOAD_FORMATS,
+} from '@friends-library/types';
 import * as slack from '@friends-library/slack';
 import useragent from 'express-useragent';
-import { create, format as formats, Format } from '../lib/Download';
+import { create as createDownload, Download } from '../lib/download';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 
@@ -17,7 +22,7 @@ async function logDownload(
   const pathParts = path.replace(/.*\/log\/download\//, '').split('/');
   const docId = pathParts.shift() || '';
   const filename = pathParts.pop() || '';
-  const format = (pathParts.pop() || '') as Format;
+  const format = (pathParts.pop() || '') as DownloadFormat;
   const editionPath = pathParts.join('/');
   const editionType = (editionPath || '').split('/').pop() as EditionType;
   const cloudPath = `${editionPath}/${filename}`;
@@ -28,7 +33,7 @@ async function logDownload(
     return;
   }
 
-  if (!formats.includes(format)) {
+  if (!DOWNLOAD_FORMATS.includes(format)) {
     respond.clientError(`Unknown download format: ${format}`);
     return;
   }
@@ -65,7 +70,7 @@ async function logDownload(
     return;
   }
 
-  let location: null | Record<string, string | number> = null;
+  let location: Record<string, string | number> = {};
   if (headers['client-ip']) {
     try {
       const ipRes = await fetch(`https://ipapi.co/${headers['client-ip']}/json/`);
@@ -86,24 +91,27 @@ async function logDownload(
     }
   }
 
-  try {
-    const download = {
-      document_id: docId,
-      edition: editionType,
-      format,
-      audio_quality: audioQuality,
-      audio_part_number: audioPartNumber,
-      is_mobile: ua.isMobile,
-      os: ua.os,
-      browser: ua.browser,
-      platform: ua.platform,
-      referrer,
-      ...(location ? { location } : {}),
-    };
-    await create(download);
-    log('Download added to db:', { download });
-  } catch (error) {
+  const download: Download = {
+    documentId: docId,
+    edition: editionType,
+    format,
+    audioQuality,
+    audioPartNumber,
+    isMobile: ua.isMobile,
+    os: ua.os,
+    browser: ua.browser,
+    platform: ua.platform,
+    referrer,
+    ...location,
+    userAgent: headers['user-agent'],
+    created: new Date().toISOString(),
+  };
+
+  const [error] = await createDownload(download);
+  if (error) {
     log.error('error adding download to db', { error });
+  } else {
+    log('Download added to db:', { download });
   }
 
   sendSlack(ua, referrer, cloudPath, location);
@@ -115,7 +123,7 @@ function sendSlack(
   ua: useragent.UserAgent,
   referrer: string,
   cloudPath: string,
-  location: null | Record<string, string | number>,
+  location: Record<string, string | number>,
 ): void {
   const device = [ua.platform, ua.os, ua.browser, ua.isMobile ? 'mobile' : 'non-mobile']
     .filter(part => part !== 'unknown')
@@ -124,7 +132,7 @@ function sendSlack(
   const from = referrer ? `, from url: ${referrer}` : '';
 
   let where = '';
-  if (location) {
+  if (location.latitude) {
     const mapUrl = `https://www.google.com/maps/@${location.latitude},${location.longitude},14z`;
     const parts = [location.city, location.region, location.postalCode, location.country]
       .filter(Boolean)

@@ -1,8 +1,8 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import { checkoutErrors as Err } from '@friends-library/types';
+import { checkoutErrors as Err, PRINT_JOB_STATUSES } from '@friends-library/types';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
-import { findById, persist } from '../lib/Order';
+import { findById, save as saveOrder } from '../lib/order';
 import validateJson from '../lib/validate-json';
 
 export default async function updateOrderPrintJobStatus(
@@ -15,19 +15,20 @@ export default async function updateOrderPrintJobStatus(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
-  try {
-    const { orderId, printJobStatus } = data;
-    const order = await findById(orderId);
-    if (!order) {
-      return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
-    }
-    order.set('print_job.status', printJobStatus);
-    await persist(order);
-    respond.json(order.toJSON());
-  } catch (error) {
-    log.error('error updating order', { error });
-    respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER }, 500);
+  const { orderId, printJobStatus } = data;
+  const [findError, order] = await findById(orderId);
+  if (!order) {
+    return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND, error: findError }, 404);
   }
+
+  order.printJobStatus = printJobStatus;
+  const [error] = await saveOrder(order);
+  if (error) {
+    log.error('error updating order', { error });
+    return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error }, 500);
+  }
+
+  respond.json(order);
 }
 
 const schema = {
@@ -37,12 +38,12 @@ const schema = {
     },
     printJobStatus: {
       type: 'string',
-      enum: ['pending', 'accepted', 'rejected', 'canceled', 'shipped'],
+      enum: (PRINT_JOB_STATUSES as unknown) as string[],
     },
   },
   required: ['orderId', 'printJobStatus'],
   example: {
     orderId: 'abc123',
-    printJobStatus: 'accepted',
+    printJobStatus: 'accepted' as const,
   },
 };

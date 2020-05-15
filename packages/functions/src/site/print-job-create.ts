@@ -7,7 +7,7 @@ import { PrintSize } from '@friends-library/types';
 import env from '../lib/env';
 import validateJson from '../lib/validate-json';
 import log from '../lib/log';
-import { findById, persist } from '../lib/Order';
+import { findById, save as saveOrder } from '../lib/order';
 import { getAuthToken, podPackageId } from '../lib/lulu';
 
 export default async function createPrintJob(
@@ -25,9 +25,9 @@ export default async function createPrintJob(
     return respond.json({ msg: invalidPaymentIntentMsg }, 403);
   }
 
-  const order = await findById(data.orderId);
+  const [findError, order] = await findById(data.orderId);
   if (!order) {
-    log.error('order not found for print job creation', { data });
+    log.error('order not found for print job creation', { data, error: findError });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
@@ -55,12 +55,13 @@ export default async function createPrintJob(
     return respond.json({ msg: Err.ERROR_CREATING_PRINT_JOB }, 500);
   }
 
-  try {
-    order.set('print_job', { id: json.id, status: 'pending' });
-    await persist(order);
-  } catch (error) {
+  order.printJobStatus = 'pending';
+  order.printJobId = json.id;
+  const [saveError] = await saveOrder(order);
+
+  if (saveError) {
     log.error('error updating order with print_job details', {
-      error,
+      error: saveError,
       data: {
         orderId: data.orderId,
         printJobId: json.id,
@@ -70,7 +71,7 @@ export default async function createPrintJob(
     // or just proceed, since it's not 100% critical to have updated
   }
 
-  respond.json({ printJobId: json.id }, 201);
+  respond.json({ printJobId: order.printJobId }, 201);
 }
 
 function createOrderPayload(data: typeof schema.example): Record<string, any> {
