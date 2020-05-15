@@ -4,7 +4,6 @@ import { action as a } from '@storybook/addon-actions';
 import centered from '@storybook/addon-centered/react';
 import { coverSizes } from './decorators';
 import Nav from '../src/Nav';
-import Search from '../src/Search';
 import Button from '../src/Button';
 import Hamburger from '../src/Hamburger';
 import SlideoverMenu from '../src/SlideoverMenu';
@@ -85,14 +84,6 @@ storiesOf('Nav', module)
     />
   ));
 
-storiesOf('Search', module)
-  .addDecorator(centered)
-  .add('minimized', () => <Search expanded={false} {...searchActions} />)
-  .add('expanded', () => <Search expanded={true} {...searchActions} />)
-  .add('with text', () => (
-    <Search initialValue="William Penn" expanded={true} {...searchActions} />
-  ));
-
 storiesOf('Home Blocks', module)
   .addDecorator(coverSizes)
   .add('Who Were Quakers?', () => (
@@ -100,12 +91,6 @@ storiesOf('Home Blocks', module)
   ))
   .add('Featured Books', () => <HomeFeaturedBooksBlock books={[]} />)
   .add('Hero', () => <HomeHeroBlock />);
-
-const searchActions = {
-  onSubmit: a('submit'),
-  onClick: a('click'),
-  onBlur: a('blur'),
-};
 
 storiesOf('MultiPill', module)
   .addDecorator(storyFn => (
