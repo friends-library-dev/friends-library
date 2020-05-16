@@ -40,6 +40,7 @@ async function handleDownloads() {
       platform: nullable(string, md.platform, 'platform'),
       userAgent: nullable(string, md.user_agent, 'user_agent'),
       referrer: nullable(string, md.referrer, 'referrer'),
+      created: new Date().toISOString(),
     };
 
     if (md.location) {
@@ -56,10 +57,12 @@ async function handleDownloads() {
       download.longitude = nullable(number, md.location.longitude, 'location.longitude');
     }
 
-    if (md.location) console.log(download);
-    // process.exit(0);
+    console.log(md);
+    // if (md.location) console.log(download);
+    const [err, data] = await sendQuery(CREATE_DOWNLOAD, { data: download });
+    console.log({ err, data });
+    process.exit();
   }
-  console.log(downloads[0]);
 }
 
 function nullable(type, input, key) {
@@ -210,3 +213,11 @@ export async function sendQuery<T>(
     return [[msg], null];
   }
 }
+
+const CREATE_DOWNLOAD = graphql`
+  mutation CreateDownload($data: DownloadInput!) {
+    result: createDownload(data: $data) {
+      _id
+    }
+  }
+`;
