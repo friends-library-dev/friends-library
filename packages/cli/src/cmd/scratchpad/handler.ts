@@ -20,12 +20,13 @@ const SECRET =
 const DIR = `/Users/jared/Desktop/mongo/${ENV}`;
 
 export default async function handler(): Promise<void> {
-  await handleDownloads();
   // await handleOrders();
+  await handleDownloads();
 }
 
 async function handleDownloads() {
   const downloads = JSON.parse(fs.readFileSync(`${DIR}/downloads.json`).toString());
+  const retry = [];
   for (let i = 0; i < downloads.length; i++) {
     const md = downloads[i];
     const download: any = {
@@ -40,7 +41,7 @@ async function handleDownloads() {
       platform: nullable(string, md.platform, 'platform'),
       userAgent: nullable(string, md.user_agent, 'user_agent'),
       referrer: nullable(string, md.referrer, 'referrer'),
-      created: new Date().toISOString(),
+      created: new Date(string(md.createdAt.$date, 'createdAt.$date')).toISOString(),
     };
 
     if (md.location) {
@@ -57,12 +58,19 @@ async function handleDownloads() {
       download.longitude = nullable(number, md.location.longitude, 'location.longitude');
     }
 
-    console.log(md);
+    // console.log(md);
     // if (md.location) console.log(download);
     const [err, data] = await sendQuery(CREATE_DOWNLOAD, { data: download });
-    console.log({ err, data });
-    process.exit();
+    if (err) retry.push(download);
+    if (err) console.log({ err, data });
+    // process.exit();
   }
+
+  console.log(`retrying ${retry.length} failed creations`);
+  retry.forEach(async download => {
+    const [err, data] = await sendQuery(CREATE_DOWNLOAD, { data: download });
+    console.log({ retry: true, err, data });
+  });
 }
 
 function nullable(type, input, key) {
