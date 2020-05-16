@@ -16,7 +16,7 @@ const ENV = 'test';
 const SECRET =
   ENV === 'test'
     ? 'fnADr6WzcwACEqapaw7PJTXhPLKnAtZiW8URIUEJ'
-    : '***fnADr6XmZ_ACEg8AysyYhXjPu4QoT0HAcv7lj1FE';
+    : 'fnADr6XmZ_ACEg8AysyYhXjPu4QoT0HAcv7lj1FE';
 const DIR = `/Users/jared/Desktop/mongo/${ENV}`;
 
 export default async function handler(): Promise<void> {
@@ -63,6 +63,7 @@ async function handleDownloads() {
     const [err, data] = await sendQuery(CREATE_DOWNLOAD, { data: download });
     if (err) retry.push(download);
     if (err) console.log({ err, data });
+    process.stdout.write('.');
     // process.exit();
   }
 
@@ -150,7 +151,9 @@ async function handleOrders() {
       })),
     };
     const [err, data] = await sendQuery(CREATE_ORDER, { data: order });
+    console.log({ err, data });
   }
+  console.log('done with orders');
 }
 
 export interface Order {
