@@ -15,6 +15,7 @@ import * as audio from './cmd/audio';
 import * as eachYml from './cmd/each-yml';
 import * as eachAdoc from './cmd/each-adoc';
 import * as publishRef from './cmd/make-ref';
+import * as scratchpad from './cmd/scratchpad';
 
 prettifyErrors();
 
@@ -36,4 +37,5 @@ yargs
   .command(audio)
   .command(eachYml)
   .command(eachAdoc)
+  .command(scratchpad)
   .help().argv;
