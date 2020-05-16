@@ -167,6 +167,7 @@ const strings: { [k: string]: string } = {
   'Select a Country': 'Selecciona tu país',
   Subtotal: 'Subtotal',
   Shipping: 'Envío',
+  Taxes: 'Impuestos',
   'Credit Card Fee Offset': 'Tarifa de Tarjeta de Crédito',
   'Grand Total': 'Total General',
   'Enter credit card details': 'Introduce la información de tu tarjeta de Crédito',
