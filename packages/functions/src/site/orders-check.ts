@@ -13,9 +13,9 @@ export default async function checkOrders(
   event: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const [error, orders] = await findByPrintJobStatus('shipped');
+  const [error, orders] = await findByPrintJobStatus('accepted');
   if (error || !orders) {
-    log.error(`Error retrieving orders for /orders-check`, { error, orders });
+    log.error(`Error retrieving orders for /orders/check`, { error, orders });
     return respond.json({ msg: Err.ERROR_RETRIEVING_FLP_ORDERS }, 500);
   }
 

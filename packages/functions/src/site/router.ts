@@ -18,6 +18,7 @@ import sendOrderConfirmationEmail from './order-send-confirmation-email';
 export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
   const method = event.httpMethod;
   const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, '');
+
   if (method === 'GET') {
     switch (path) {
       case 'wakeup':

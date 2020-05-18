@@ -89,9 +89,24 @@ describe('checkOrders()', () => {
     (<jest.Mock>findByPrintJobStatus).mockResolvedValueOnce([
       null,
       [
-        { printJobId: 123, email: 'foo@bar.com', address: { name: 'Bo' } },
-        { printJobId: 234, email: 'rofl@lol.com', address: { name: 'Bo' } },
-        { printJobId: 345, email: 'not@shipped.com', address: { name: 'Bo' } },
+        {
+          printJobId: 123,
+          printJobStatus: 'accepted',
+          email: 'foo@bar.com',
+          address: { name: 'Bo' },
+        },
+        {
+          printJobId: 234,
+          printJobStatus: 'accepted',
+          email: 'rofl@lol.com',
+          address: { name: 'Bo' },
+        },
+        {
+          printJobId: 345,
+          printJobStatus: 'accepted',
+          email: 'not@shipped.com',
+          address: { name: 'Bo' },
+        },
       ],
     ]);
 
@@ -130,7 +145,9 @@ describe('checkOrders()', () => {
     );
 
     const { res } = await invokeCb(checkOrders, {});
+
     const emails = (<jest.Mock>mailer.send).mock.calls[0][0];
+    expect(findByPrintJobStatus).toHaveBeenCalledWith('accepted');
     expect(emails.length).toBe(2);
     expect(emails[0].to).toBe('foo@bar.com');
     expect(emails[0].text).toContain('track.me/123456');
