@@ -13,7 +13,7 @@ jobs:
           echo ::set-env name=FIVE_DAYS_AGO::$(date -d '-5 days' '+%Y%m%d')
           echo ::set-env name=THREE_DAYS_AGO::$(date -d '-3 days' '+%Y%m%d')
           echo ::set-env name=ONE_DAY_AGO::$(date -d '-1 days' '+%Y%m%d')
-      - name: 'clean-channel: downloads'
+      - name: clean downloads channel
         uses: matken11235/slack-cleaner@v1
         with:
           group: downloads
@@ -23,17 +23,27 @@ jobs:
           bot: true
           perform: true
           token: ${{ secrets.SLACK_LEGACY_TOKEN }}
-      - name: 'clean-channel: errors'
+      - name: clean errors channel
         uses: matken11235/slack-cleaner@v1
         with:
           group: errors
+          before: ${{ env.FIVE_DAYS_AGO }}
+          rate: '1'
+          message: true
+          bot: true
+          perform: true
+          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+      - name: clean msf-errors channel
+        uses: matken11235/slack-cleaner@v1
+        with:
+          group: msf-errors
           before: ${{ env.THREE_DAYS_AGO }}
           rate: '1'
           message: true
           bot: true
           perform: true
           token: ${{ secrets.SLACK_LEGACY_TOKEN }}
-      - name: 'clean-channel: fnlogs'
+      - name: clean fnlogs channel
         uses: matken11235/slack-cleaner@v1
         with:
           group: fnlogs
@@ -43,7 +53,7 @@ jobs:
           bot: true
           perform: true
           token: ${{ secrets.SLACK_LEGACY_TOKEN }}
-      - name: 'clean-channel: dev'
+      - name: clean dev channel
         uses: matken11235/slack-cleaner@v1
         with:
           channel: dev
@@ -53,7 +63,7 @@ jobs:
           bot: true
           perform: true
           token: ${{ secrets.SLACK_LEGACY_TOKEN }}
-      - name: 'clean-channel: test-bot'
+      - name: clean test-bot-channel
         uses: matken11235/slack-cleaner@v1
         with:
           group: test-bot
