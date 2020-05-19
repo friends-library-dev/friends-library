@@ -36,6 +36,7 @@
     "yargs": "^15.0.0"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.7",
     "@types/puppeteer-core": "^1.9.0",
     "@types/yargs": "^15.0.0"
   }
