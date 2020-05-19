@@ -172,6 +172,7 @@ const subSchemas: Record<string, Schema> = {
       title: { type: 'string', required: true },
       original_title: { type: 'string', required: false },
       published: { type: 'integer', required: false },
+      incomplete: { enum: [true], required: false },
       slug: { $ref: '/slug', required: true },
       partial_description: {
         type: 'string',

@@ -54,6 +54,10 @@ export default class Document {
     return this.data.published;
   }
 
+  public get isComplete(): boolean {
+    return this.data.incomplete !== true;
+  }
+
   public get tags(): DocumentData['tags'] {
     return this.data.tags;
   }
@@ -116,6 +120,7 @@ export default class Document {
       altLanguageId: this.altLanguageId,
       relatedDocuments: this.relatedDocuments,
       region: this.region,
+      isComplete: this.isComplete,
     };
   }
 }

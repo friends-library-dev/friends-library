@@ -53,6 +53,7 @@ export interface DocumentData {
   original_title?: string;
   published?: number;
   editions: EditionData[];
+  incomplete?: true;
   alt_language_id?: Uuid;
   related_documents?: {
     id: Uuid;

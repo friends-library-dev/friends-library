@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'gatsby-link';
-import { CoverProps, PrintSize, EditionType } from '@friends-library/types';
+import { CoverProps, PrintSize, EditionType, Html } from '@friends-library/types';
 import { bookDims } from '@friends-library/lulu';
 import { t } from '@friends-library/locale';
 import DownloadWizard from './DownloadWizard';
@@ -27,6 +27,7 @@ type Props = Omit<CoverProps, 'pages'> & {
   numChapters: number;
   altLanguageUrl?: string | null;
   pages: number[];
+  isComplete: boolean;
   editions: {
     title: string[];
     interiorPdfUrl: string[];
@@ -172,7 +173,7 @@ const DocBlock: React.FC<Props> = props => {
         <div className="Text mb-8 md:px-12 bg-white md:mr-6 xl:mr-10">
           <h1
             className="font-sans text-3xl md:text-2-5xl font-bold leading-snug mt-8 tracking-wider mb-6"
-            dangerouslySetInnerHTML={{ __html: props.htmlTitle }}
+            dangerouslySetInnerHTML={{ __html: titleHtml(props) }}
           />
           {!props.isCompilation && (
             <h2 className="font-sans text-1-5xl md:text-xl subpixel-antialiased leading-loose mb-8">
@@ -181,6 +182,20 @@ const DocBlock: React.FC<Props> = props => {
                 {author}
               </Link>
             </h2>
+          )}
+          {!props.isComplete && (
+            <Dual.p className="font-serif text-xl md:text-lg antialiased italic leading-relaxed mb-4 text-flprimary-800">
+              <>
+                <sup>*</sup>
+                This book is not yet completely published. Since individual chapters are
+                valuable on their own, they will be made available as they are completed.
+              </>
+              <>
+                <sup>*</sup>
+                Este libro aun está siendo traducido, sin embargo, dado que cada capítulo
+                es muy valioso, estarán disponibles a medida que se vayan completando.
+              </>
+            </Dual.p>
           )}
           <p className="font-serif text-xl md:text-lg antialiased leading-relaxed">
             {description}
@@ -308,6 +323,14 @@ function ensureWizardInViewport(): void {
     const scrollTo = bottom - window.innerHeight + window.scrollY + extraSpace;
     window.scrollTo({ top: scrollTo, behavior: 'smooth' });
   }
+}
+
+function titleHtml({ htmlTitle, isComplete }: Props): Html {
+  let html = htmlTitle;
+  if (!isComplete) {
+    html += '<sup class="text-flprimary-800">*</sup>';
+  }
+  return html;
 }
 
 const POPUNDER_TRIANGLE_HEIGHT = 16;
