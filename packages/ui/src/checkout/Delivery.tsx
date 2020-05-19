@@ -39,7 +39,15 @@ const Delivery: React.FC<{
   const [zipBlurred, setZipBlurred] = useState<boolean>(false);
   const [country, setCountry] = useState<string>(stored.country || '');
   const [countryBlurred, setCountryBlurred] = useState<boolean>(false);
-  const filledOutCompletely = !!(name && street && city && state && zip && country);
+  const filledOutCompletely = !!(
+    name &&
+    street &&
+    city &&
+    state &&
+    zip &&
+    country &&
+    email
+  );
 
   return (
     <div className={cx(throbbing && 'pointer-events-none')}>
