@@ -10,6 +10,7 @@ import {
 } from '@friends-library/types';
 import * as slack from '@friends-library/slack';
 import useragent from 'express-useragent';
+import isbot from 'isbot';
 import { create as createDownload, Download } from '../lib/download';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
@@ -64,9 +65,10 @@ async function logDownload(
 
   respond.redirect(redirUri);
 
-  const ua = useragent.parse(headers['user-agent'] || '');
-  if (ua.isBot) {
-    log('Bot, bailing early');
+  const userAgent = headers['user-agent'] || '';
+  const parsedUserAgent = useragent.parse(userAgent);
+  if (parsedUserAgent.isBot || isbot(userAgent)) {
+    log(`Not saving bot download, ua: ${userAgent}`);
     return;
   }
 
@@ -97,14 +99,14 @@ async function logDownload(
     format,
     audioQuality,
     audioPartNumber,
-    isMobile: ua.isMobile,
-    os: ua.os,
-    browser: ua.browser,
-    platform: ua.platform,
+    isMobile: parsedUserAgent.isMobile,
+    os: parsedUserAgent.os,
+    browser: parsedUserAgent.browser,
+    platform: parsedUserAgent.platform,
     referrer,
     ...location,
-    userAgent: headers['user-agent'],
     created: new Date().toISOString(),
+    userAgent,
   };
 
   const [error] = await createDownload(download);
@@ -114,7 +116,7 @@ async function logDownload(
     log('Download added to db:', { download });
   }
 
-  sendSlack(ua, referrer, cloudPath, location);
+  sendSlack(parsedUserAgent, referrer, cloudPath, location);
 }
 
 export default logDownload;
