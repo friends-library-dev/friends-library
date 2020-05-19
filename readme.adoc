@@ -1,5 +1,0 @@
-# 🚀 Friends Library Monorepo
-
-For documentation, see `readme` for each package:
-
-* link:packages/fell/readme.md[fell docs] _(group manipulation of document source repos)_
