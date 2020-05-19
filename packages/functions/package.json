@@ -38,6 +38,7 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@types/aws-lambda": "^8.10.28",
     "@types/express-useragent": "^0.2.21",
+    "@types/node-fetch": "^2.5.7",
     "@types/stripe": "^6.31.11"
   }
 }

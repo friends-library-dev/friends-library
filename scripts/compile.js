@@ -4,7 +4,6 @@ const os = require('os');
 const [, , pkg, ...rest] = process.argv;
 
 const pkgs = [
-  'bot',
   'adoc-utils',
   'adoc-lint',
   'adoc-convert',

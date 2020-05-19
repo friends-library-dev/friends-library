@@ -3,4 +3,3 @@
 For documentation, see `readme` for each package:
 
 * link:packages/fell/readme.md[fell docs] _(group manipulation of document source repos)_
-* link:packages/bot/readme.md[bot docs] _(friends library github bot)_
