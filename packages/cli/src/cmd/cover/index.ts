@@ -8,7 +8,7 @@ export const builder: CommandBuilder = function(yargs) {
   return yargs.option('pattern', {
     alias: 'p',
     type: 'string',
-    description: 'pattern to restrict updated assets',
+    description: 'pattern to restrict matched documents',
     demand: false,
   });
 };
