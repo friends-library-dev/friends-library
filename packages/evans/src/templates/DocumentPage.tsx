@@ -39,6 +39,7 @@ interface Props {
       description: string;
       altLanguageUrl: string | null;
       isCompilation: boolean;
+      isComplete: boolean;
       editions: {
         type: EditionType;
         isbn: string;
@@ -143,6 +144,7 @@ const DocumentPage: React.FC<Props> = ({
         documentId={document.id}
         numChapters={mainEdition.numChapters}
         altLanguageUrl={document.altLanguageUrl}
+        isComplete={document.isComplete}
         {...coverProps}
         pages={mainEdition.pages}
         editions={document.editions.map(edition => ({
@@ -261,6 +263,7 @@ export const query = graphql`
       }
       altLanguageUrl
       isCompilation
+      isComplete
       description
       slug
       title
