@@ -27,33 +27,46 @@ export default async function sendOrderConfirmationEmail(
 
   // use this fn invocation to send the successful order slack msg
   // since this is a fire & forget request, the extra slack won't cost here
-  slack.sendJson(
-    '*Order submitted*',
-    {
-      order: {
-        name: order.address.name,
-        email: order.email,
-        items: order.items,
-        address: order.address,
+  try {
+    slack.sendJson(
+      '*Order submitted*',
+      {
+        order: {
+          name: order.address.name,
+          email: order.email,
+          items: order.items,
+          address: order.address,
+        },
       },
-    },
-    env('SLACK_ORDERS_CHANNEL'),
-    ':books:',
-  );
+      env('SLACK_ORDERS_CHANNEL'),
+      ':books:',
+    );
+  } catch (error) {
+    log.error('Error sending order submitted slack', { error, order });
+  }
 
-  mailer.setApiKey(env('SENDGRID_API_KEY'));
-  const [res] = await mailer.send({
-    ...orderConfirmationEmail(order),
-    to: order.email,
-    from: emailFrom(order.lang),
-    mailSettings: {
-      sandboxMode: {
-        enable: process.env.NODE_ENV === 'development',
+  try {
+    mailer.setApiKey(env('SENDGRID_API_KEY'));
+    const [res] = await mailer.send({
+      ...orderConfirmationEmail(order),
+      to: order.email,
+      from: emailFrom(order.lang),
+      mailSettings: {
+        sandboxMode: {
+          enable: process.env.NODE_ENV === 'development',
+        },
       },
-    },
-  });
+    });
 
-  if (res.statusCode > 202) {
+    if (res.statusCode > 202) {
+      log.error('Unexpected response sending order confirmation email', {
+        response: res.toJSON(),
+        order,
+      });
+      return respond.json({ msg: Err.ERROR_SENDING_EMAIL }, 500);
+    }
+  } catch (error) {
+    log.error('Error sending order confirmation email', { error, order });
     return respond.json({ msg: Err.ERROR_SENDING_EMAIL }, 500);
   }
 
