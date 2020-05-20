@@ -75,6 +75,13 @@ describe('prepareTitle()', () => {
       'front',
     ],
     [
+      // faux-volume titles come in with entity emdash
+      'The Journal of George Fox &#8212; Vol. I',
+      'George Fox',
+      'The Journal of George&nbsp;Fox',
+      'front',
+    ],
+    [
       'Los Escritos de Isaac Penington -- Volumen 3',
       'Isaac Penington',
       'Los Escritos de Isaac&nbsp;Penington',
