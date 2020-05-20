@@ -41,7 +41,7 @@ export function prepareTitle(
 ): string {
   const isCompilation = ['Compilations', 'Compilaciones'].includes(name);
   const volumeRemovable = isCompilation || title.includes(name);
-  title = title.replace(/--/g, '–');
+  title = title.replace(/(--|&#8212;|&mdash;)/g, '–');
   title = title.replace(/(?: –|,) Vol(?:\.|umen?) (\d+|[IV]+)$/, (_, num) =>
     context === 'front' && volumeRemovable ? '' : `, Vol.&nbsp;${ensureRoman(num)}`,
   );
