@@ -1,5 +1,9 @@
 import { flow, memoize } from 'lodash';
 import { Asciidoc } from '@friends-library/types';
+import {
+  backtickQuotesToEntities,
+  htmlEntitiesToDecimal,
+} from '@friends-library/adoc-utils';
 import { br7 } from '@friends-library/doc-html';
 
 export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
@@ -13,7 +17,8 @@ export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
     swapLineEndingDashesInVerse,
     emdashBeforeBookTitle,
     enAndEmDashToDoubleDash,
-    entitiesToDecimal,
+    backtickQuotesToEntities,
+    htmlEntitiesToDecimal,
     escapeSemicolonAfterEntity,
     signaturePrependDoubleDash,
     doubleDashToEntity,
@@ -62,15 +67,6 @@ function doubleDashToEntity(adoc: Asciidoc): Asciidoc {
     .replace(/\n--\n/gm, '{open-block-delimiter}')
     .replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;')
     .replace(/{open-block-delimiter}/gm, '\n--\n');
-}
-
-function entitiesToDecimal(adoc: Asciidoc): Asciidoc {
-  return adoc
-    .replace(/"`/gim, '&#8220;')
-    .replace(/`"/gim, '&#8221;')
-    .replace(/'`/gim, '&#8216;')
-    .replace(/`'/gim, '&#8217;')
-    .replace(/&hellip;/g, '&#8230;');
 }
 
 function escapeSemicolonAfterEntity(adoc: Asciidoc): Asciidoc {
