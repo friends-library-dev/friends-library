@@ -1,3 +1,4 @@
+import { PRINT_SIZES } from '@friends-library/types';
 import { Schema } from 'jsonschema';
 
 export default {
@@ -167,6 +168,10 @@ const subSchemas: Record<string, Schema> = {
       alt_language_id: { $ref: '/uuid', required: false },
       region: {
         enum: ['England', 'Ireland', 'Scotland', 'Western US', 'Eastern US'],
+        required: false,
+      },
+      print_size: {
+        enum: (PRINT_SIZES as unknown) as string[],
         required: false,
       },
       title: { type: 'string', required: true },

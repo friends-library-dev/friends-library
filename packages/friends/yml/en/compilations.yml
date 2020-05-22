@@ -135,6 +135,7 @@ documents:
     title: Piety Promoted, Volume I
     slug: piety-promoted-v1
     filename: Piety_Promoted_v1
+    print_size: m
     description:
       The full title of this work is, “Piety Promoted in a Collection of the Dying Sayings
       of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
@@ -159,6 +160,7 @@ documents:
     title: Piety Promoted, Volume II
     slug: piety-promoted-v2
     filename: Piety_Promoted_v2
+    print_size: m
     description:
       The full title of this work is, “Piety Promoted in a Collection of the Dying Sayings
       of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
@@ -182,6 +184,7 @@ documents:
     title: Piety Promoted, Volume III
     slug: piety-promoted-v3
     filename: Piety_Promoted_v3
+    print_size: m
     description:
       The full title of this work is, “Piety Promoted in a Collection of the Dying Sayings
       of Many of the People Called Quakers; With a Brief Account of Some of Their Labors
@@ -206,6 +209,7 @@ documents:
     title: Piety Promoted, Volume IV
     slug: piety-promoted-v4
     filename: Piety_Promoted_v4
+    print_size: m
     description:
       The full title of this work is, “Piety Promoted in a Collection of the Dying Sayings
       of Many of the People Called Quakers; With a Brief Account of Some of Their Labors

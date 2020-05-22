@@ -3,11 +3,15 @@ import parsePdf from 'pdf-parse';
 import { choosePrintSize } from '@friends-library/lulu';
 import { log, c, red } from '@friends-library/cli-utils/color';
 import * as artifacts from '@friends-library/doc-artifacts';
-import { PageData, PrintSizeVariant, EditionMeta } from '@friends-library/types';
+import {
+  PageData,
+  PrintSizeVariant,
+  EditionMeta,
+  PrintSize,
+  PRINT_SIZE_VARIANTS,
+} from '@friends-library/types';
 import { paperbackInterior as paperbackManifest } from '@friends-library/doc-manifests';
 import { FsDocPrecursor } from '@friends-library/dpc-fs';
-
-const variants: PrintSizeVariant[] = ['s', 'm', 'xl', 'xl--condensed'];
 
 type SinglePages = PageData['single'];
 type MultiPages = PageData['split'];
@@ -21,11 +25,15 @@ export async function publishPaperback(
   const [singlePages, singleFiles] = await makeSingleVolumes(dpc, opts);
   const [splitPages, splitFiles] = await makeMultiVolumes(dpc, opts);
 
-  try {
-    var [size, condense] = choosePrintSize(singlePages, splitPages);
-  } catch (error) {
-    red(`${dpc.path} exceeds max allowable size, must be split`);
-    process.exit(1);
+  let size: PrintSize = dpc.printSize || 's';
+  let condense = false;
+  if (!dpc.printSize) {
+    try {
+      [size, condense] = choosePrintSize(singlePages, splitPages);
+    } catch (error) {
+      red(`${dpc.path} exceeds max allowable size, must be split`);
+      process.exit(1);
+    }
   }
 
   const sizeVariant = `${size}${condense ? '--condensed' : ''}` as PrintSizeVariant;
@@ -60,7 +68,7 @@ async function makeSingleVolumes(
   const pages: SinglePages = { s: 0, m: 0, xl: 0, 'xl--condensed': 0 };
   const files: SingleFiles = { s: '', m: '', xl: '', 'xl--condensed': '' };
 
-  for (const variant of variants) {
+  for (const variant of PRINT_SIZE_VARIANTS) {
     log(c`     {magenta.dim ->} {gray size:} {cyan ${variant}}`);
     const size = variant === 'xl--condensed' ? 'xl' : variant;
     const [manifest] = await paperbackManifest(dpc, {

@@ -25,6 +25,7 @@ export interface DocPrecursor {
   epigraphs: Epigraph[];
   sections: DocSection[];
   paperbackSplits: number[];
+  printSize?: PrintSize;
   blurb: string;
   notes: Notes;
   config: { [key: string]: any };
