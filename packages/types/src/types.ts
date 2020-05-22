@@ -197,6 +197,23 @@ export function isNotFalse<T>(x: T | false): x is T {
   return x !== false;
 }
 
+export const ADOC_SYNTAX = {
+  LEFT_DOUBLE_QUOTE: '"`',
+  RIGHT_DOUBLE_QUOTE: '`"',
+  LEFT_SINGLE_QUOTE: "'`",
+  RIGHT_SINGLE_QUOTE: "`'",
+};
+
+export const HTML_DEC_ENTITIES = {
+  LEFT_DOUBLE_QUOTE: '&#8220;',
+  RIGHT_DOUBLE_QUOTE: '&#8221;',
+  LEFT_SINGLE_QUOTE: '&#8216;',
+  RIGHT_SINGLE_QUOTE: '&#8217;',
+  MDASH: '&#8212;',
+  AMPERSAND: '&#38;',
+  ELLIPSES: '&#8230;',
+};
+
 // identity passthrough tagged template literal for getting vscode syntax
 // highlighting for stuff like css`` and graphql``
 export function syntax(
