@@ -1,4 +1,11 @@
-import { Asciidoc } from '@friends-library/types';
+import { Asciidoc, Html } from '@friends-library/types';
+
+export function adocFragmentToHtml(adoc: Asciidoc): Html {
+  return backtickQuotesToEntities(adoc)
+    .replace(/--/g, '&#8212;')
+    .replace(/ & /g, ' &#38; ')
+    .trim();
+}
 
 export function backtickQuotesToEntities(adoc: Asciidoc): Asciidoc {
   return adoc

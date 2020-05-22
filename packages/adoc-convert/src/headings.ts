@@ -1,3 +1,4 @@
+import { adocFragmentToHtml } from '@friends-library/adoc-utils';
 import { Asciidoc, DocSection } from '@friends-library/types';
 import { toArabic } from 'roman-numerals';
 
@@ -7,7 +8,7 @@ export function extractShortHeadings(adoc: Asciidoc): Map<string, string> {
   let match;
   while ((match = regex.exec(adoc))) {
     const [, ref, short] = match;
-    headings.set(ref, entitiesToDecimal(short));
+    headings.set(ref, adocFragmentToHtml(short));
   }
   return headings;
 }
@@ -44,19 +45,15 @@ function parseHeading(text: string): Pick<DocSection['heading'], 'text' | 'seque
   const pattern = /(chapter|section|capítulo) ((?:[1-9]+[0-9]*)|(?:[ivxlcdm]+))(?::|\.)?(?:\s+([^<]+))?/i;
   const match = text.match(pattern);
   if (!match) {
-    return { text: entitiesToDecimal(text.trim()) };
+    return { text: adocFragmentToHtml(text) };
   }
 
   const [, type, number, body] = match;
   return {
-    text: entitiesToDecimal((body || '').trim()),
+    text: adocFragmentToHtml(body || ''),
     sequence: {
       type: type.replace(/^\w/, c => c.toUpperCase()),
       number: Number.isNaN(+number) ? toArabic(number) : +number,
     },
   };
-}
-
-function entitiesToDecimal(text: string): string {
-  return text.replace(/ & /g, ' &#38; ');
 }

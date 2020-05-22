@@ -7,5 +7,9 @@
     "composite": true
   },
   "include": ["./src"],
-  "references": [{ "path": "../types" }, { "path": "../lulu" }]
+  "references": [
+    { "path": "../types" },
+    { "path": "../lulu" },
+    { "path": "../adoc-utils" }
+  ]
 }
