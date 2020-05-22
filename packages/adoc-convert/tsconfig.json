@@ -9,5 +9,9 @@
     "composite": true
   },
   "include": ["./src"],
-  "references": [{ "path": "../types" }, { "path": "../doc-html" }]
+  "references": [
+    { "path": "../types" },
+    { "path": "../doc-html" },
+    { "path": "../adoc-utils" }
+  ]
 }
