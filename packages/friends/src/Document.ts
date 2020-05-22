@@ -1,7 +1,7 @@
 import { DocumentData } from './types';
 import Friend from './Friend';
 import Edition from './Edition';
-import { Slug, Uuid, Description } from '@friends-library/types';
+import { Slug, Uuid, Description, PrintSize } from '@friends-library/types';
 
 export default class Document {
   private _friend: Friend | undefined;
@@ -56,6 +56,10 @@ export default class Document {
 
   public get isComplete(): boolean {
     return this.data.incomplete !== true;
+  }
+
+  public get printSize(): PrintSize | undefined {
+    return this.data.print_size;
   }
 
   public get tags(): DocumentData['tags'] {
@@ -121,6 +125,7 @@ export default class Document {
       relatedDocuments: this.relatedDocuments,
       region: this.region,
       isComplete: this.isComplete,
+      printSize: this.printSize,
     };
   }
 }

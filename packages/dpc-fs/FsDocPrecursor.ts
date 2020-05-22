@@ -6,6 +6,7 @@ export default class FsDocPrecursor implements DocPrecursor {
   public friend?: Friend;
   public document?: Document;
   public edition?: Edition;
+  public printSize?: DocPrecursor['printSize'];
   public path: DocPrecursor['path'];
   public lang: DocPrecursor['lang'];
   public friendSlug: DocPrecursor['friendSlug'];

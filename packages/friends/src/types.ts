@@ -7,6 +7,7 @@ import {
   Uuid,
   EditionType,
   ISBN,
+  PrintSize,
 } from '@friends-library/types';
 
 export interface FriendData {
@@ -39,6 +40,7 @@ export interface DocumentData {
   description: Description;
   partial_description: Description;
   featured_description?: Description;
+  print_size?: PrintSize;
   region?: string;
   tags: (
     | 'journal'
