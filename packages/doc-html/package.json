@@ -9,6 +9,7 @@
     "compile": "cd ../../ && yarn compile doc-html"
   },
   "dependencies": {
+    "@friends-library/adoc-utils": "1.0.0",
     "@friends-library/lulu": "1.0.0",
     "@friends-library/types": "1.0.0",
     "moment": "^2.24.0",
