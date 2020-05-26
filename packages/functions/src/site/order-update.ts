@@ -20,7 +20,7 @@ export default async function updateOrder(
     await stripeClient().paymentIntents.update(data.paymentIntentId, {
       amount: data.amount,
     });
-    log(`updated payment intent: ${data.paymentIntentId}`);
+    log.info(`updated payment intent: ${data.paymentIntentId}`);
   } catch (error) {
     log.error('error updating payment intent', { error });
     return respond.json({ msg: Err.ERROR_UPDATING_STRIPE_PAYMENT_INTENT }, 403);
@@ -46,7 +46,7 @@ export default async function updateOrder(
     return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error: saveError }, 500);
   }
 
-  log(`updated order: ${data.orderId}`);
+  log.info(`updated order: ${data.orderId}`, { data });
   respond.noContent();
 }
 

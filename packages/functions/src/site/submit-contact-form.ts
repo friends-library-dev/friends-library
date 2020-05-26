@@ -36,10 +36,12 @@ export default async function submitContactForm(
   });
 
   if (res.statusCode > 202) {
+    log.error('error sending contact form email', data);
     return respond.json({ msg: Err.ERROR_SENDING_EMAIL }, 500);
   }
 
   respond.noContent();
+  log.info('contact form submitted', data);
 }
 
 function emailText({ name, subject, message }: typeof schema.example): string {

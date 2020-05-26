@@ -59,7 +59,7 @@ export default async function orderCreateHandler(
     return respond.json({ msg: Err.ERROR_CREATING_FLP_ORDER }, 500);
   }
 
-  log(`created payment intent: ${paymentIntent.id}`);
+  log.info(`created payment intent: ${paymentIntent.id}`);
   respond.json(
     {
       paymentIntentId: paymentIntent.id,

@@ -72,6 +72,7 @@ export default async function createPrintJob(
   }
 
   respond.json({ printJobId: order.printJobId }, 201);
+  log.info(`print job ${order.printJobId} created`);
 }
 
 function createOrderPayload(data: typeof schema.example): Record<string, any> {

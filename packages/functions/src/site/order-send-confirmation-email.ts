@@ -1,5 +1,4 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import * as slack from '@friends-library/slack';
 import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
 import env from '../lib/env';
@@ -25,22 +24,15 @@ export default async function sendOrderConfirmationEmail(
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
-  // use this fn invocation to send the successful order slack msg
-  // since this is a fire & forget request, the extra slack won't cost here
   try {
-    slack.sendJson(
-      '*Order submitted*',
-      {
-        order: {
-          name: order.address.name,
-          email: order.email,
-          items: order.items,
-          address: order.address,
-        },
+    log.order('*Order submitted*', {
+      order: {
+        name: order.address.name,
+        email: order.email,
+        items: order.items,
+        address: order.address,
       },
-      env('SLACK_ORDERS_CHANNEL'),
-      ':books:',
-    );
+    });
   } catch (error) {
     log.error('Error sending order submitted slack', { error, order });
   }
@@ -70,5 +62,6 @@ export default async function sendOrderConfirmationEmail(
     return respond.json({ msg: Err.ERROR_SENDING_EMAIL }, 500);
   }
 
+  log.info(`Successfully sent confirmation email for order: ${order.id}`);
   respond.noContent();
 }

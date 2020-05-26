@@ -59,7 +59,7 @@ export default async function authorizePayment(
     return respond.json({ msg: intent.status }, 500);
   }
 
-  log(`confirmed payment intent: ${intentId}`);
+  log.info(`confirmed payment intent: ${intentId}`);
   respond.noContent();
 }
 
