@@ -38,7 +38,5 @@ export function editionTypeFromPath(path: string): EditionType | undefined {
 }
 
 export function langFromPath(path: string): Lang {
-  return path.includes('/es/') || path.indexOf('es/') === 0 || path === 'es'
-    ? 'es'
-    : 'en';
+  return path.includes('/es/') || path.startsWith('es/') || path === 'es' ? 'es' : 'en';
 }
