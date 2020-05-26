@@ -8,7 +8,6 @@ import {
   DownloadFormat,
   DOWNLOAD_FORMATS,
 } from '@friends-library/types';
-import * as slack from '@friends-library/slack';
 import useragent from 'express-useragent';
 import isbot from 'isbot';
 import { create as createDownload, Download } from '../lib/download';
@@ -68,7 +67,7 @@ async function logDownload(
   const userAgent = headers['user-agent'] || '';
   const parsedUserAgent = useragent.parse(userAgent);
   if (parsedUserAgent.isBot || isbot(userAgent)) {
-    log(`Not saving bot download, ua: ${userAgent}`);
+    log.info(`Not saving bot download, ua: ${userAgent}`);
     return;
   }
 
@@ -113,7 +112,7 @@ async function logDownload(
   if (error) {
     log.error('error adding download to db', { error });
   } else {
-    log('Download added to db:', { download });
+    log.debug('Download added to db:', { download });
   }
 
   sendSlack(parsedUserAgent, referrer, cloudPath, location);
@@ -142,8 +141,5 @@ function sendSlack(
     where = `, location: \`${parts}\` ${mapUrl}`;
   }
 
-  slack.send(
-    `Download: \`${cloudPath}\`, device: \`${device}\`${from}${where}`,
-    env('SLACK_DOWNLOADS_CHANNEL'),
-  );
+  log.download(`Download: \`${cloudPath}\`, device: \`${device}\`${from}${where}`);
 }

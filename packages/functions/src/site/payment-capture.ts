@@ -45,7 +45,7 @@ export default async function capturePayment(
     // @TODO decide what to do here... cancel the payment intent?
   }
 
-  log(`captured payment intent: ${data.paymentIntentId}`);
+  log.info(`captured payment intent: ${data.paymentIntentId}`);
   respond.noContent();
 }
 

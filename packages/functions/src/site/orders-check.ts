@@ -20,7 +20,7 @@ export default async function checkOrders(
   }
 
   if (orders.length === 0) {
-    log('No accepted print jobs to process');
+    log.info('No accepted print jobs to process');
     return respond.json({ msg: 'No accepted print jobs to process' });
   }
 
@@ -59,6 +59,7 @@ export default async function checkOrders(
         break;
 
       case 'SHIPPED':
+        log.order(`Order ${order.id} shipped`);
         order.printJobStatus = 'shipped';
         updatedOrders.push(order);
         recentlyShippedOrders.push(order);
@@ -77,7 +78,7 @@ export default async function checkOrders(
     await sendShipmentTrackingEmails(jobs, recentlyShippedOrders);
   }
 
-  log(
+  log.info(
     `Updated ${updatedOrders.length} orders, and sent ${recentlyShippedOrders.length} tracking emails`,
   );
 

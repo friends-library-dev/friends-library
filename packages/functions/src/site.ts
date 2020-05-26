@@ -11,7 +11,8 @@ const handler: Handler = (
 ) => {
   // @ts-ignore
   env.setContext(context);
-  log('*/site fn invocation*', {
+  router(event, new Responder(callback));
+  log.debug('*/site fn invocation*', {
     event: {
       path: event.path,
       httpMethod: event.httpMethod,
@@ -24,7 +25,6 @@ const handler: Handler = (
       },
     },
   });
-  router(event, new Responder(callback));
 };
 
 export { handler };

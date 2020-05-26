@@ -30,6 +30,7 @@ export default async function printJobFees(
 
   const cheapest = await calculateCheapest(data, token);
   if (!cheapest) {
+    log.error('shipping not possible', { address: data.address });
     return respond.json({ msg: Err.SHIPPING_NOT_POSSIBLE }, 400);
   }
 

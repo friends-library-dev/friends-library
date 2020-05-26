@@ -1,27 +1,63 @@
-import env from './env';
 import * as slack from '@friends-library/slack';
+import env from './env';
 
-function log(msg: string, data?: Record<string, any>): void {
-  if (!shouldLog()) return;
-  sendSlack(msg, data);
+function log(msg: string, data?: Record<string, any>, channel?: string): void {
+  sendSlack({ msg, data, channel });
   console.log(msg, data);
 }
 
 log.error = error;
+log.debug = debug;
+log.info = info;
+log.download = download;
+log.order = order;
 
 function error(msg: string, data?: Record<string, any>): void {
-  if (!shouldLog()) return;
-  sendSlack(msg, data, ':fire_engine:');
+  sendSlack({ msg, data, emoji: ':fire_engine:', channel: 'errors' });
   console.error(msg, data);
 }
 
-function sendSlack(msg: string, data?: Record<string, any>, emoji?: string): void {
-  const SLACK_FNS_LOGS_CHANNEL = env('SLACK_FNS_LOGS_CHANNEL');
+function info(msg: string, data?: Record<string, any>): void {
+  sendSlack({ msg, data, channel: 'info' });
+  console.log(msg, data);
+}
+
+function order(msg: string, data?: Record<string, any>): void {
+  sendSlack({ msg, data, channel: 'orders', emoji: ':books:' });
+  console.log(msg, data);
+}
+
+function download(msg: string, data?: Record<string, any>): void {
+  sendSlack({ msg, data, channel: 'downloads' });
+  console.log(msg, data);
+}
+
+function debug(msg: string, data?: Record<string, any>): void {
+  sendSlack({ msg, data, channel: 'debug' });
+  console.log(msg, data);
+}
+
+interface Slack {
+  msg: string;
+  data?: Record<string, any>;
+  channel?: string;
+  emoji?: string;
+}
+
+function sendSlack({ msg, data, channel: prodChannel, emoji }: Slack): void {
+  if (!shouldLog()) return;
+
+  let channel = prodChannel || 'debug';
+  if (env.getContext() === 'TEST') {
+    channel = 'staging';
+  }
+
   if (data) {
-    slack.sendJson(msg, data, SLACK_FNS_LOGS_CHANNEL, emoji);
+    slack.sendJson(msg, data, channel, emoji);
     return;
   }
-  slack.send(msg, SLACK_FNS_LOGS_CHANNEL, emoji);
+
+  slack.send(msg, channel, emoji);
 }
 
 function shouldLog(): boolean {
