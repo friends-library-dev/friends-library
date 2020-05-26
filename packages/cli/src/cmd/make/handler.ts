@@ -1,5 +1,6 @@
 import { execSync } from 'child_process';
 import { Arguments } from 'yargs';
+import { sync as glob } from 'glob';
 import { log, red } from '@friends-library/cli-utils/color';
 import * as manifest from '@friends-library/doc-manifests';
 import * as artifacts from '@friends-library/doc-artifacts';
@@ -48,7 +49,7 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
 
   // lint before hydrate.process so linter catches adoc > html errors
   if (!skipLint) {
-    dpcs.forEach(dpc => lint(dpc.fullPath, fix));
+    dpcs.forEach(dpc => lint(dpc.fullPath, fix, isolate));
   }
 
   dpcs.forEach(hydrate.process);
@@ -137,7 +138,18 @@ function makeSrcPath(dpc: DocPrecursor, idx: number, type: ArtifactType): string
   return path;
 }
 
-function lint(path: string, fix: boolean): void {
+function lint(dpcPath: string, fix: boolean, isolate?: number): void {
+  let path = dpcPath;
+
+  if (isolate) {
+    const pattern = `${isolate < 10 ? '0' : ''}${isolate}*`;
+    const matches = glob(`${path}/${pattern}`);
+    if (matches.length !== 1) {
+      throw new Error(`Unexpected result isolating ${isolate}`);
+    }
+    [path] = matches;
+  }
+
   if (fix === true) {
     const { unfixable, numFixed } = lintFixPath(path);
     if (unfixable.count() > 0) {
