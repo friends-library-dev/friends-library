@@ -1,0 +1,26 @@
+name: lint-asciidoc
+
+on: [push]
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lots0logs/gh-action-get-changed-files@2.0.6
+        with:
+          token: ${{ github.token }}
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: friends-library/friends-library
+          path: fl
+      - name: yarn
+        run: cd fl/packages/adoc-lint && yarn
+      - name: compile
+        run: cd fl && yarn compile adoc-lint
+      - name: lint
+        uses: friends-library/friends-library/actions/lint-adoc@master
