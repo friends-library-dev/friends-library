@@ -7,8 +7,9 @@ env:
 
 jobs:
   lint:
-    name: lint
+    name: run-lint-adoc
     runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master'
     steps:
       - uses: lots0logs/gh-action-get-changed-files@2.0.6
         with:
