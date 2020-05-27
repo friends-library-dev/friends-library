@@ -13,6 +13,7 @@ $ yarn fell push feature-x --open-pr
 $ yarn fell delete feature-x
 $ yarn fell sync # pull --rebase
 $ yarn fell clone
+$ yarn fell workflows
 ```
 
 _Exclude_ repos by passing strings, if these strings appear _anywhere in repo path_, that
@@ -106,3 +107,9 @@ $ yarn fell sync
 $ yarn fell sync --exclude wheeler
 $ yarn fell sync --scope feature-x
 ```
+
+### `workflows [--exclude]`
+
+Update all non-excluded repos with github action workflow files from
+`actions/workflows/*.yml`. Allows for mass-updates of github actions for all doc repos.
+Usually combined with `yarn fell commit` and `yarn fell push`
