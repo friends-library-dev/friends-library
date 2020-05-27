@@ -1,0 +1,4 @@
+name: lint-files
+runs:
+  using: node12
+  main: ./lint.js
