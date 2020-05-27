@@ -32,7 +32,7 @@ export async function hasBranch(repoPath: Repo, branchName: string): Promise<boo
 export async function deleteBranch(repoPath: Repo, branch: string): Promise<boolean> {
   const repo = await getRepo(repoPath);
   const ref = await repo.getBranch(branch);
-  const res = await NodeGit.Branch.delete(ref);
+  const res = NodeGit.Branch.delete(ref);
   return res === 0;
 }
 
@@ -67,17 +67,16 @@ export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Reposi
 }
 
 // like `git add . && git commit -am <message>`
-export async function commitAll(repoPath: Repo, message: string): Promise<void> {
+export async function commitAll(repoPath: Repo, message: string): Promise<NodeGit.Oid> {
   const repo = await getRepo(repoPath);
   // @see https://github.com/nodegit/nodegit/blob/master/examples/add-and-commit.js
   const signature = repo.defaultSignature();
   const index = await repo.refreshIndex();
   await index.addAll();
-  await index.write();
+  index.write();
   const oid = await index.writeTree();
   const head = await NodeGit.Reference.nameToId(repo, 'HEAD');
   const parent = await repo.getCommit(head);
-  // @ts-ignore
   return repo.createCommit('HEAD', signature, signature, message, oid, [parent]);
 }
 
