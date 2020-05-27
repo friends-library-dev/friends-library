@@ -9,6 +9,7 @@ import * as push from './cmd/push';
 import * as dlete from './cmd/delete';
 import * as sync from './cmd/sync';
 import * as clone from './cmd/clone';
+import * as workflows from './cmd/workflows';
 
 prettifyErrors();
 
@@ -24,4 +25,5 @@ yargs
   .command(sync)
   .command(clone)
   .command(dlete)
+  .command(workflows)
   .help().argv;
