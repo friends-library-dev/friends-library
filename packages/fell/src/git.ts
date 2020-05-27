@@ -1,4 +1,5 @@
 import { red } from '@friends-library/cli-utils/color';
+import env from '@friends-library/env';
 import NodeGit from 'nodegit';
 import { Repo } from './type';
 
@@ -67,10 +68,14 @@ export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Reposi
 }
 
 // like `git add . && git commit -am <message>`
+// @see https://github.com/nodegit/nodegit/blob/master/examples/add-and-commit.js
 export async function commitAll(repoPath: Repo, message: string): Promise<NodeGit.Oid> {
+  const { FELL_GIT_USER, FELL_GIT_EMAIL } = env.require(
+    'FELL_GIT_USER',
+    'FELL_GIT_EMAIL',
+  );
   const repo = await getRepo(repoPath);
-  // @see https://github.com/nodegit/nodegit/blob/master/examples/add-and-commit.js
-  const signature = repo.defaultSignature();
+  const signature = NodeGit.Signature.now(FELL_GIT_USER, FELL_GIT_EMAIL);
   const index = await repo.refreshIndex();
   await index.addAll();
   index.write();
