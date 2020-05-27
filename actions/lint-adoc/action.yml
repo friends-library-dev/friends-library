@@ -1,4 +1,4 @@
-name: lint-files
+name: lint-adoc
 runs:
   using: node12
   main: ./lint.js
