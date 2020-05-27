@@ -3,7 +3,6 @@ import env from './env';
 
 function log(msg: string, data?: Record<string, any>, channel?: string): void {
   sendSlack({ msg, data, channel });
-  console.log(msg, data);
 }
 
 log.error = error;
@@ -14,27 +13,22 @@ log.order = order;
 
 function error(msg: string, data?: Record<string, any>): void {
   sendSlack({ msg, data, emoji: ':fire_engine:', channel: 'errors' });
-  console.error(msg, data);
 }
 
 function info(msg: string, data?: Record<string, any>): void {
   sendSlack({ msg, data, channel: 'info' });
-  console.log(msg, data);
 }
 
 function order(msg: string, data?: Record<string, any>): void {
   sendSlack({ msg, data, channel: 'orders', emoji: ':books:' });
-  console.log(msg, data);
 }
 
 function download(msg: string, data?: Record<string, any>): void {
   sendSlack({ msg, data, channel: 'downloads' });
-  console.log(msg, data);
 }
 
 function debug(msg: string, data?: Record<string, any>): void {
   sendSlack({ msg, data, channel: 'debug' });
-  console.log(msg, data);
 }
 
 interface Slack {
@@ -46,6 +40,7 @@ interface Slack {
 
 function sendSlack({ msg, data, channel: prodChannel, emoji }: Slack): void {
   if (!shouldLog()) return;
+  const logMethod: 'error' | 'log' = prodChannel === 'errors' ? 'error' : 'log';
 
   let channel = prodChannel || 'debug';
   if (env.getContext() === 'TEST') {
@@ -54,10 +49,12 @@ function sendSlack({ msg, data, channel: prodChannel, emoji }: Slack): void {
 
   if (data) {
     slack.sendJson(msg, data, channel, emoji);
+    console[logMethod](msg, data);
     return;
   }
 
   slack.send(msg, channel, emoji);
+  console[logMethod](msg, data);
 }
 
 function shouldLog(): boolean {
