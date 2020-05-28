@@ -121,7 +121,7 @@ export function resubmitTask(task: Task): ReduxThunk {
     dispatch({ type: 'RE_SUBMITTING_TASK' });
     const sha = await tryGithub(
       async () => {
-        return await gh.addCommit(fixedTask, github.user);
+        return await gh.addCommit(fixedTask /*, github.user */);
       },
       'SUBMIT_TASK',
       dispatch,

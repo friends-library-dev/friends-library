@@ -31,8 +31,9 @@ export function authenticate(token: string): void {
   });
 }
 
-export function deleteBranch(user: string, repo: RepoSlug, branch: BranchName): void {
-  gh.git.deleteRef({ owner: user, repo, ref: `heads/${branch}` });
+export function deleteBranch(owner: string, repo: RepoSlug, branch: BranchName): void {
+  owner = ORG; // while not supporting forks
+  gh.git.deleteRef({ owner, repo, ref: `heads/${branch}` });
 }
 
 export async function pullRequestStatus(
@@ -156,7 +157,7 @@ async function syncFork(repo: RepoSlug, user: string): Promise<void> {
   });
 }
 
-async function ensureSyncedFork(repo: RepoSlug, user: string): Promise<void> {
+export async function ensureSyncedFork(repo: RepoSlug, user: string): Promise<void> {
   const forkExists = await hasFork(repo, user);
   if (!forkExists) {
     await createFork(repo, user);
@@ -164,15 +165,15 @@ async function ensureSyncedFork(repo: RepoSlug, user: string): Promise<void> {
   await syncFork(repo, user);
 }
 
-export async function addCommit(task: Task, user: string): Promise<Sha> {
+export async function addCommit(task: Task /*, user: string */): Promise<Sha> {
   const { parentCommit = '', repoId, id, files } = task;
   const branchName = `task-${id}`;
   const repo = await getRepoSlug(repoId);
-  const baseTreeSha = await getTreeSha(repo, parentCommit, user);
-  const newTreeSha = await createTree(repo, baseTreeSha, files, user);
+  const baseTreeSha = await getTreeSha(repo, parentCommit);
+  const newTreeSha = await createTree(repo, baseTreeSha, files);
   const msg = `updates to task: ${task.name}`;
-  const newCommitSha = await createCommit(repo, newTreeSha, parentCommit, msg, user);
-  await updateHead(repo, branchName, newCommitSha, user);
+  const newCommitSha = await createCommit(repo, newTreeSha, parentCommit, msg);
+  await updateHead(repo, branchName, newCommitSha);
   return newCommitSha;
 }
 
@@ -183,18 +184,14 @@ export async function createNewPullRequest(
   const { parentCommit = '', repoId, id, files } = task;
   const branchName = `task-${id}`;
   const repo = await getRepoSlug(repoId);
-  await ensureSyncedFork(repo, user);
-  await createBranch(repo, branchName, parentCommit, user);
-  const baseTreeSha = await getTreeSha(repo, parentCommit, user);
-  const newTreeSha = await createTree(repo, baseTreeSha, files, user);
-  const newCommitSha = await createCommit(
-    repo,
-    newTreeSha,
-    parentCommit,
-    task.name,
-    user,
-  );
-  await updateHead(repo, branchName, newCommitSha, user);
+  // create branch WITHIN org for now, because lint action doesn't have
+  // permission to create a check: https://github.community/t/115708
+  // await ensureSyncedFork(repo, user);
+  await createBranch(repo, branchName, parentCommit);
+  const baseTreeSha = await getTreeSha(repo, parentCommit);
+  const newTreeSha = await createTree(repo, baseTreeSha, files);
+  const newCommitSha = await createCommit(repo, newTreeSha, parentCommit, task.name);
+  await updateHead(repo, branchName, newCommitSha);
   const prNumber = await openPullRequest(repo, branchName, task.name, user);
   return {
     commit: newCommitSha,
@@ -215,7 +212,7 @@ async function openPullRequest(
     repo,
     title,
     owner: ORG,
-    head: `${user}:${branch}`,
+    head: branch, // fork: `${user}:${branch}`,
     base: 'master',
     body,
     maintainer_can_modify: true,
