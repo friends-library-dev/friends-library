@@ -49,3 +49,29 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-055-0
+  - id: d70a65d2-a3b6-48d8-8de0-b962aca084bf
+    title: Selection from the Journal of Job Scott
+    slug: journal-selection
+    filename: Journal_Selection_of_Job_Scott
+    description:
+      Job Scott (1751-1793) was a gifted and well-beloved minister in the Society of
+      Friends in America. He was known for his total dependence upon the immediate moving
+      and empowering of the Holy Spirit, and his unwillingness to minister without a clear
+      sense of the Lord’s will. On occasions, while preaching, he would suddenly stop
+      speaking and sit down, explaining later that, having lost a sense of the authority
+      and direction of the Spirit of God, he could do nothing without it. The writings in
+      his journal abound with spiritual wisdom and experience, and have no doubt comforted
+      and helped many weary travelers on the road to Zion. Job Scott died of Smallpox on a
+      ministry trip to Ireland in 1793.
+    partial_description:
+      A selection from the Journal of Job Scott, focusing on his early experiences of the
+      Spirit of Truth when a child, his temptations and rebellion against the Lord’s
+      convictions and corrections in the time of his adolescence, and his whole-hearted
+      surrender to Christ when nineteen years of age.
+    tags:
+      - journal
+    editions:
+      - type: updated
+        draft: true
+        isbn: 978-1-64476-219-6
+        editor: Jason R. Henderson
