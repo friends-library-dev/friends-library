@@ -4,7 +4,7 @@ const https = require('https');
 /**
  * @param {string} path
  * @param {Record<string, any>} json
- * @returns {Promise<string>}
+ * @returns {Promise<Record<string, any>>}
  */
 function postJson(path, json) {
   const body = JSON.stringify(json);
@@ -29,7 +29,7 @@ function postJson(path, json) {
             data += chunk;
           });
           response.on('end', () => {
-            resolve(data);
+            resolve(JSON.parse(data));
           });
         },
       )
