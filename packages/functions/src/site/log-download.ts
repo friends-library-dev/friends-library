@@ -67,7 +67,7 @@ async function logDownload(
   const userAgent = headers['user-agent'] || '';
   const parsedUserAgent = useragent.parse(userAgent);
   if (parsedUserAgent.isBot || isbot(userAgent)) {
-    log.info(`Bot download: \`${userAgent}\``);
+    log.info(`Bot download: \`${userAgent.replace(/\n/gm, '')}\``);
     return;
   }
 
