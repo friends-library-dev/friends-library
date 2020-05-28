@@ -65,25 +65,13 @@ documents:
       ministry trip to Ireland in 1793.
     partial_description:
       A selection from the Journal of Job Scott, focusing on his early experiences of the
-      Spirit of Truth when a child, his temptations and rebellion against the Lord's
+      Spirit of Truth when a child, his temptations and rebellion against the Lord’s
       convictions and corrections in the time of his adolescence, and his whole-hearted
       surrender to Christ when nineteen years of age.
-
     tags:
       - journal
     editions:
       - type: updated
-        isbn: 978-1-64476-010-9
+        draft: true
+        isbn: 978-1-64476-219-6
         editor: Jason R. Henderson
-        audio:
-          added: 2020-05-28T04:00:00.000Z
-          reader: Jason R. Henderson
-          parts:
-            - title: Selection from the Journal of Job Scott
-              external_id_hq: TODO
-              external_id_lq: TODO
-              filesize_hq: TODO
-              filesize_lq: TODO
-              seconds: TODO
-              chapters:
-                - 0
