@@ -43,7 +43,7 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
             key={book.documentUrl}
             className="pt-4 mb-6 md:mb-20 md:w-1/2 xl:w-1/4 relative flex flex-col justify-start"
           >
-            <h3 className="heading-text text-base mb-2 font-normal max-w-xs mx-auto">
+            <h3 className="heading-text text-base mb-2 font-normal max-w-xs mx-auto px-2">
               <Link
                 className="hover:underline"
                 to={book.documentUrl}
