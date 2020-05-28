@@ -1,6 +1,7 @@
+import { Action } from '../../type';
 import taskReducer from '../tasks-reducer';
 
-function result(start, end, path = 'path.adoc'): any {
+function result(start: [number, number], end: [number, number], path = 'path.adoc'): any {
   return {
     path,
     start: { line: start[0], column: start[1] },
@@ -9,8 +10,8 @@ function result(start, end, path = 'path.adoc'): any {
 }
 
 describe('taskReducer()', () => {
-  let state;
-  let action;
+  let state: any;
+  let action: Action;
 
   beforeEach(() => {
     action = { type: '', payload: {} };

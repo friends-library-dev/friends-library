@@ -1,19 +1,19 @@
 import { undoable, emptyUndoable } from '../undoable';
 
-function incrementReducer(state = 0, { type }): number {
+function incrementReducer(state = 0, { type }: { type: string }): number {
   if (type !== 'IGNORE') {
     return state + 1;
   }
   return state;
 }
 
-function action(type): { type: string } {
+function action(type: string): { type: string } {
   return { type };
 }
 
 describe('undoable()', () => {
-  let state;
-  let reducer;
+  let state: any;
+  let reducer: any;
 
   beforeEach(() => {
     reducer = undoable(incrementReducer, 'TEST');
