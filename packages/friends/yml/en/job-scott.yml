@@ -72,6 +72,17 @@ documents:
       - journal
     editions:
       - type: updated
-        draft: true
         isbn: 978-1-64476-219-6
         editor: Jason R. Henderson
+        audio:
+          added: 2020-05-28T20:15:21.556Z
+          reader: Jason Henderson
+          parts:
+            - title: Selection from the Journal of Job Scott
+              external_id_hq: 830029747
+              external_id_lq: 830028478
+              filesize_hq: 84068722
+              filesize_lq: 22799584
+              seconds: 4560
+              chapters:
+                - 0
