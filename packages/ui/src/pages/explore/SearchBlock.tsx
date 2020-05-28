@@ -40,7 +40,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, bgImg, initialUse
         setSearchQuery={setQuery}
       />
       {matches.length > 0 && (
-        <div className="flex flex-wrap justify-center my-8">
+        <div className="flex flex-wrap justify-center py-8 bg-flgray-100">
           {matches.map(book => (
             <SearchResult key={`${book.documentUrl}/${book.edition}`} {...book} />
           ))}
