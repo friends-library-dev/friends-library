@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/master'
     steps:
-      - uses: lots0logs/gh-action-get-changed-files@2.0.6
+      - uses: trilom/file-changes-action@v1.2.3
         with:
           token: ${{ github.token }}
       - uses: actions/checkout@v2
