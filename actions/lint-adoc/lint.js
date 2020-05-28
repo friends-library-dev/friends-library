@@ -36,11 +36,20 @@ async function main() {
     };
   }
 
-  await client.postJson(`/repos/${GITHUB_REPOSITORY}/check-runs`, json);
+  try {
+    const apiJson = await client.postJson(`/repos/${GITHUB_REPOSITORY}/check-runs`, json);
+    console.log(apiJson);
+  } catch (err) {
+    console.error('Error creating check run', err);
+  }
+
+  console.log('------------');
 
   if (annotations.length) {
+    console.error(`${allLints.length} lint errors!`);
     console.error(allLints);
-    throw new Error(`${allLints.length} lint errors!`);
+  } else {
+    console.log('No lint violations found.');
   }
 }
 
