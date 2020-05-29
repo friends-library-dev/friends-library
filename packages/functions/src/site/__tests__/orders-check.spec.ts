@@ -176,6 +176,27 @@ describe('checkOrders()', () => {
     ]);
   });
 
+  it('should not error if tracking_urls array is NULL', async () => {
+    mockFetch.mockResolvedValueOnce(
+      new Response(
+        JSON.stringify({
+          results: [
+            {
+              id: 123,
+              status: { name: 'SHIPPED' },
+              line_items: [{ tracking_urls: null }],
+            },
+          ],
+        }),
+      ),
+    );
+
+    await invokeCb(checkOrders, {});
+
+    const emails = (<jest.Mock>mailer.send).mock.calls[0][0];
+    expect(emails.length).toBe(1);
+  });
+
   it('should respond 500 without emailing if updating orders fails', async () => {
     mockFetch.mockResolvedValueOnce(
       new Response(

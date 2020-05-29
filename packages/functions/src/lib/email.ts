@@ -12,9 +12,11 @@ export function emailFrom(lang: Lang): string {
 
 export function orderShippedEmail(
   order: Order,
-  trackingUrl: string,
+  trackingUrl?: string,
 ): { subject: string; text: string } {
   const lang = order.lang;
+  const trackingUnavailable =
+    lang === 'en' ? 'Sorry, not available' : 'Lo sentimos, no disponible';
   return {
     subject:
       lang === 'es'
@@ -23,7 +25,7 @@ export function orderShippedEmail(
     text: (lang === 'es' ? ORDER_SHIPPED_EMAIL_ES : ORDER_SHIPPED_EMAIL_EN)
       .replace('{{salutation}}', salutation(order, lang === 'es' ? '¡Hola!' : 'Hello!'))
       .replace('{{lineItems}}', lineItems(order))
-      .replace('{{trackingUrl}}', trackingUrl)
+      .replace('{{trackingUrl}}', trackingUrl || `[${trackingUnavailable}]`)
       .replace('{{orderId}}', order.id),
   };
 }
