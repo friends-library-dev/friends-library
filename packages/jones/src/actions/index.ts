@@ -20,6 +20,7 @@ export {
   findInCurrentFile,
 } from './find-replace-actions';
 
+export const logout = createAction('LOGOUT');
 export const receiveAccessToken = createAction('RECEIVE_ACCESS_TOKEN');
 export const hardReset = createAction('HARD_RESET');
 export const changeScreen = createAction('CHANGE_SCREEN');

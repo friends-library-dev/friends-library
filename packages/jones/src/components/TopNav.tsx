@@ -60,6 +60,7 @@ const TopNav = styled.div<{ throbbing: boolean }>`
 interface Props {
   token: string;
   requestGitHubUser: Dispatch;
+  logout: Dispatch;
   name?: string;
   avatar?: string;
   user: string;
@@ -76,7 +77,7 @@ class Component extends React.Component<Props> {
   }
 
   public render(): JSX.Element {
-    const { avatar, name, screen, user, throbbing } = this.props;
+    const { avatar, name, screen, user, throbbing, logout } = this.props;
     return (
       <TopNav throbbing={throbbing}>
         <img className="icon" src={fox} alt="" />
@@ -85,7 +86,7 @@ class Component extends React.Component<Props> {
           <NavContent screen={screen} />
         </div>
         {user && (
-          <div className="github">
+          <div className="github" onDoubleClick={logout}>
             <span className="name">{name ? name : user}</span>
             {avatar && <img className="avatar" src={avatar} alt="" />}
           </div>
@@ -95,7 +96,7 @@ class Component extends React.Component<Props> {
   }
 }
 
-const mapState = (state: AppState): Omit<Props, 'requestGitHubUser'> => {
+const mapState = (state: AppState): Omit<Props, 'requestGitHubUser' | 'logout'> => {
   if (state.github.token === null) {
     throw new Error('No github token found');
   }
@@ -108,6 +109,7 @@ const mapState = (state: AppState): Omit<Props, 'requestGitHubUser'> => {
 
 const mapDispatch = {
   requestGitHubUser: actions.requestGitHubUser,
+  logout: actions.logout,
 };
 
 export default connect(mapState, mapDispatch)(Component);
