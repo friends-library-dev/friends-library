@@ -121,11 +121,8 @@ async function sendShipmentTrackingEmails(
   const emails = shippedJobs.map(job => {
     const order = orders.find(o => o.printJobId === job.id);
     if (!order) throw new Error('Matching order not found!');
-    // this is a hair naive, theoretically there could be more than one shipment
-    // for a huge order, this just gets the first tracking url, but probably good enough
-    const trackingUrl = job.line_items[0].tracking_urls[0];
     return {
-      ...orderShippedEmail(order, trackingUrl),
+      ...orderShippedEmail(order, trackingUrl(job)),
       to: order.email,
       from: emailFrom(order.lang),
       mailSettings: { sandboxMode: { enable: process.env.NODE_ENV === 'development' } },
@@ -144,4 +141,11 @@ async function sendShipmentTrackingEmails(
   } catch (error) {
     log.error('error sending shipment tracking emails', { error, emails });
   }
+}
+
+function trackingUrl(job: Record<string, any>): string | undefined {
+  const firstLineItem = job.line_items[0];
+  // this is a hair naive, theoretically there could be more than one shipment
+  // for a huge order, this just gets the first tracking url, but probably good enough
+  return firstLineItem.tracking_urls ? firstLineItem.tracking_urls[0] : undefined;
 }
