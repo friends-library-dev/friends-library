@@ -4,6 +4,7 @@ node_modules/
 /en/
 /es/
 .env
+.env.swp
 coverage/
 *.tsbuildinfo
 **/dist/
