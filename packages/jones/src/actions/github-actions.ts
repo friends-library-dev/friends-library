@@ -1,8 +1,8 @@
 import smalltalk from 'smalltalk';
-import { lintFix as fixLints } from '@friends-library/adoc-lint';
-import * as gh from '../lib/github-api';
 import { safeLoad as ymlToJs } from 'js-yaml';
+import { lintFix as fixLints } from '@friends-library/adoc-lint';
 import { Slug, Url, Uuid } from '@friends-library/types';
+import * as gh from '../lib/github-api';
 import { Task, ReduxThunk, Dispatch, State } from '../type';
 import { lintOptions } from '../lib/lint';
 
