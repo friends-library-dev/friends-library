@@ -221,3 +221,21 @@ documents:
               seconds: 2190
               chapters:
                 - 9
+  - id: 30ef0a6f-1840-4e66-bb1a-563d1cca1db1
+    title: The Life of William Penn
+    slug: life
+    filename: Life_of_William_Penn
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - history
+      - exhortation
+      - doctrinal
+    editions:
+      - type: original
+        isbn: 978-1-64476-220-2
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-221-9
+        draft: true
