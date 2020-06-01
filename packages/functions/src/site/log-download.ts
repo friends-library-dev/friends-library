@@ -130,7 +130,7 @@ function sendSlack(
     .filter(part => part !== 'unknown')
     .join(' / ');
 
-  const from = referrer ? `, from url: ${referrer}` : '';
+  const from = referrer ? `, from url: \`${referrer}\`` : '';
 
   let where = '';
   if (location.latitude) {
