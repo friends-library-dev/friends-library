@@ -47,14 +47,18 @@ function sendSlack({ msg, data, channel: prodChannel, emoji }: Slack): void {
     channel = 'staging';
   }
 
-  if (data) {
-    slack.sendJson(msg, data, channel, emoji);
-    console[logMethod](msg, data);
-    return;
-  }
+  try {
+    if (data) {
+      slack.sendJson(msg, data, channel, emoji);
+      console[logMethod](msg, channel, data);
+      return;
+    }
 
-  slack.send(msg, channel, emoji);
-  console[logMethod](msg, data);
+    slack.send(msg, channel, emoji);
+    console[logMethod](msg, channel);
+  } catch (error) {
+    console.error('Error sending slack', { error, msg, channel, emoji, data });
+  }
 }
 
 function shouldLog(): boolean {
