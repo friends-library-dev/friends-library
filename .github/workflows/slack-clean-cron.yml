@@ -1,8 +1,6 @@
 name: slack-clean
 
-on:
-  schedule:
-    - cron: 0 0,12 * * *
+on: [push]
 
 jobs:
   clean:
@@ -23,7 +21,7 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean errors channel
         uses: matken11235/slack-cleaner@v1
         with:
@@ -33,7 +31,7 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean msf-errors channel
         uses: matken11235/slack-cleaner@v1
         with:
@@ -43,7 +41,7 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean info channel
         uses: matken11235/slack-cleaner@v1
         with:
@@ -53,7 +51,7 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean debug channel
         uses: matken11235/slack-cleaner@v1
         with:
@@ -63,7 +61,7 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean dev channel
         uses: matken11235/slack-cleaner@v1
         with:
@@ -73,7 +71,7 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean staging channel
         uses: matken11235/slack-cleaner@v1
         with:
@@ -83,7 +81,7 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean spendable channel
         uses: matken11235/slack-cleaner@v1
         with:
@@ -93,4 +91,4 @@ jobs:
           message: true
           bot: true
           perform: true
-          token: ${{ secrets.SLACK_LEGACY_TOKEN }}
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
