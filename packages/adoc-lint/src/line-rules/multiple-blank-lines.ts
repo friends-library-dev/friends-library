@@ -32,13 +32,13 @@ const rule: LineRule = (
 
   return [
     {
-      line: lineNumber,
+      line: lineNumber - 1,
       column: false,
       type: 'error',
       rule: rule.slug,
       message: 'Multiple blank lines are not allowed',
       fixable: true,
-      recommendation: `--> remove preceding line/s: (${remove.sort().join(',')})`,
+      recommendation: `--> remove line/s: (${remove.sort().join(',')})`,
     },
   ];
 };
