@@ -1,5 +1,5 @@
 {
-  "name": "@friends-library/action-pdf",
+  "name": "@friends-library/action-lint-adoc",
   "version": "1.0.0",
   "description": "testing",
   "main": "dist/index.js",
