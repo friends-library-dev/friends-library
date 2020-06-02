@@ -14,7 +14,7 @@ export default async function pdf(
   const { ARTIFACT_DIR, SRC_DIR } = dirs(opts);
   fs.ensureDirSync(SRC_DIR);
 
-  const writeFiles = Promise.all(
+  await Promise.all(
     Object.keys(manifest).map(path =>
       fs.outputFile(
         `${SRC_DIR}/${path}`,
@@ -24,10 +24,9 @@ export default async function pdf(
     ),
   );
 
-  const { PRINCE_BIN } = env.require('PRINCE_BIN');
-  await writeFiles;
   const src = `${SRC_DIR}/doc.html`;
-  const stream = spawn(PRINCE_BIN || '/usr/local/bin/prince-books', [src]);
+  const { PRINCE_BIN } = env.require('PRINCE_BIN');
+  const stream = spawn(PRINCE_BIN, [src]);
 
   let output = '';
   await new Promise((resolve, reject) => {

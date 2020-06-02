@@ -1,0 +1,16 @@
+{
+  "name": "@friends-library/action-pdf",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@friends-library/adoc-convert": "1.0.0",
+    "@friends-library/cloud": "1.0.0",
+    "@friends-library/doc-artifacts": "1.0.0",
+    "@friends-library/doc-manifests": "1.0.0",
+    "@octokit/action": "^2.7.1"
+  }
+}
