@@ -61,7 +61,7 @@ documents:
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
     partial_description:
-      Volume 1 of The History of the People Called Quakers, beginning with an overview of
+      Volume I of The History of the People Called Quakers, beginning with an overview of
       the various dispensations whereby God has revealed Himself to mankind, then giving
       an account the early ministry of George Fox and the rise of the Society of Friends
       to the year 1661.
@@ -89,7 +89,10 @@ documents:
       This immense work gave a full, clear, and accurate portrayal of the history of
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
-    partial_description: TODO
+    partial_description:
+      Volume II of The History of the People Called Quakers, covering the years from
+      approximately 1661 to 1683, a period full of growth, life and power for the young
+      Society of Friends, but also the time of its most intense persecution.
     tags:
       - history
     editions:
@@ -114,7 +117,11 @@ documents:
       This immense work gave a full, clear, and accurate portrayal of the history of
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
-    partial_description: TODO
+    partial_description:
+      Volume III of The History of the People Called Quakers, covering the time period
+      between approximately 1682 and 1699, detailing the expansion of the Society of
+      Friends in Ireland, the West Indies, colonial America, and the founding of
+      Pennsylvania.
     tags:
       - history
     editions:
@@ -139,7 +146,11 @@ documents:
       This immense work gave a full, clear, and accurate portrayal of the history of
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
-    partial_description: TODO
+    partial_description:
+      Volume IV of The History of the People Called Quakers, covering the early decades of
+      the 18th century including a number of passages pertaining to the growth and
+      progress of Pennsylvania and ultimately ending with a brief account of the author’s
+      death.
     tags:
       - history
     editions:
