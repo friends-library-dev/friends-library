@@ -8,6 +8,7 @@ import { processDocument } from '@friends-library/adoc-convert';
 import { paperbackInterior } from '@friends-library/doc-manifests';
 import { newOrModifiedFiles } from '../helpers';
 import * as pullRequest from '../pull-requests';
+import { deleteBotCommentsContaining } from '../comments';
 
 async function main() {
   const COMMIT_SHA = pullRequest.latestCommitSha();
@@ -39,6 +40,7 @@ async function main() {
   }
 
   if (uploaded.length) {
+    deleteBotCommentsContaining('PDF Previews for commit', owner, repo, PR_NUM);
     await new Octokit().issues.createComment({
       owner,
       repo,

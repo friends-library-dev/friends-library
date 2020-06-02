@@ -5,8 +5,10 @@ import { Octokit } from '@octokit/action';
 import { newOrModifiedFiles } from '../helpers';
 import { Annotation, toAnnotation, lintOptions } from './lint-helpers';
 import * as pullRequest from '../pull-requests';
+import { deleteBotCommentsContaining } from '../comments';
 
 async function main() {
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
   const pull_number = pullRequest.number();
   if (!pull_number) {
     return;
@@ -17,8 +19,9 @@ async function main() {
     return;
   }
 
+  deleteBotCommentsContaining('lint violations!', owner, repo, pull_number);
+
   let errors: Annotation[] = [];
-  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
   const client = new Octokit();
 
   newOrModifiedFiles().forEach(path => {
