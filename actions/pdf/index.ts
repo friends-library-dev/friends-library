@@ -32,7 +32,9 @@ async function main() {
     });
 
     const pdfPath = await pdf(manifest, `doc_${Date.now()}`);
-    const cloudFilename = `${COMMIT_SHA.substr(0, 8)}--${filename}`;
+    console.log({ file });
+    const [, edition] = file.split('/');
+    const cloudFilename = `${COMMIT_SHA.substr(0, 8)}--${edition}--${filename}`;
     const url = await uploadFile(pdfPath, `actions/${repo}/${PR_NUM}/${cloudFilename}`);
     uploaded.push([url, cloudFilename]);
   }
