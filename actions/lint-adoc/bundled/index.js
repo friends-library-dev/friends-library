@@ -14429,6 +14429,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(__webpack_require__(747));
 function newOrModifiedFiles() {
+    console.log('files:', JSON.parse(fs_1.default.readFileSync(process.env.HOME + "/files.json").toString()));
+    console.log('files_added:', JSON.parse(fs_1.default.readFileSync(process.env.HOME + "/files_added.json").toString()));
+    console.log('files_modified:', JSON.parse(fs_1.default.readFileSync(process.env.HOME + "/files_modified.json").toString()));
+    console.log('files_removed:', JSON.parse(fs_1.default.readFileSync(process.env.HOME + "/files_removed.json").toString()));
     return ['files_modified.json', 'files_added.json']
         .map(function (basename) { return process.env.HOME + "/" + basename; })
         .map(function (path) { return fs_1.default.readFileSync(path).toString(); })
