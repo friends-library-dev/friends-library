@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - actions
+      - actions-*
 
 env:
   FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}
