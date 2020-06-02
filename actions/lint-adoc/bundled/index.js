@@ -611,10 +611,10 @@ var core = __importStar(__webpack_require__(280));
 var action_1 = __webpack_require__(40);
 var helpers_1 = __webpack_require__(752);
 var lint_helpers_1 = __webpack_require__(329);
-var pullRequest = __importStar(__webpack_require__(879));
+var pullRequest = __importStar(__webpack_require__(508));
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var pull_number, commitSha, annotations, _a, owner, repo, client;
+        var pull_number, commitSha, errors, _a, owner, repo, client;
         return __generator(this, function (_b) {
             pull_number = pullRequest.number();
             if (!pull_number) {
@@ -624,17 +624,18 @@ function main() {
             if (!commitSha) {
                 return [2 /*return*/];
             }
-            annotations = [];
+            errors = [];
             _a = __read((process.env.GITHUB_REPOSITORY || '').split('/'), 2), owner = _a[0], repo = _a[1];
             client = new action_1.Octokit();
             helpers_1.newOrModifiedFiles().forEach(function (path) {
                 var asciidoc = fs_1.default.readFileSync(path).toString();
-                annotations = __spread(annotations, adoc_lint_1.lint(asciidoc, lint_helpers_1.lintOptions(path)).map(function (l) { return lint_helpers_1.toAnnotation(l, path); }));
+                errors = __spread(errors, adoc_lint_1.lint(asciidoc, lint_helpers_1.lintOptions(path)).map(function (l) { return lint_helpers_1.toAnnotation(l, path); }));
             });
-            if (!annotations.length) {
+            if (!errors.length) {
                 return [2 /*return*/];
             }
-            core.setFailed("**Found " + annotations.length + " lint error" + (annotations.length > 1 ? 's' : '') + "**!");
+            core.setFailed("Found " + errors.length + " lint error" + (errors.length > 1 ? 's' : '') + "!");
+            console.error(errors);
             client.checks.create({
                 owner: owner,
                 repo: repo,
@@ -644,15 +645,15 @@ function main() {
                 conclusion: 'failure',
                 output: {
                     title: 'Asciidoc lint failure',
-                    summary: "Found " + annotations.length + " problems",
-                    annotations: annotations,
+                    summary: "Found " + errors.length + " problems",
+                    annotations: errors,
                 },
             });
             client.issues.createComment({
                 owner: owner,
                 repo: repo,
                 issue_number: pull_number,
-                body: "Found " + annotations.length + " lint violations! :grimacing:\n\nCheck the [changed files](https://github.com/" + owner + "/" + repo + "/pull/" + pull_number + "/files) for comments showing exact violation details.",
+                body: "Found `" + errors.length + "` **lint violations!** :grimacing:\n\nCheck the [changed files](https://github.com/" + owner + "/" + repo + "/pull/" + pull_number + "/files) for comments showing exact violation details.",
             });
             return [2 /*return*/];
         });
@@ -11427,7 +11428,45 @@ module.exports = opts => {
 /* 505 */,
 /* 506 */,
 /* 507 */,
-/* 508 */,
+/* 508 */
+/***/ (function(__unusedmodule, exports, __webpack_require__) {
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var fs_1 = __importDefault(__webpack_require__(747));
+function number() {
+    var _a;
+    var _b = process.env.GITHUB_REF, GITHUB_REF = _b === void 0 ? '' : _b;
+    var refMatch = /refs\/pull\/(\d+)\/merge/g.exec(GITHUB_REF);
+    if (refMatch) {
+        return Number(refMatch[1]);
+    }
+    var event = getEventJson();
+    if ((_a = event === null || event === void 0 ? void 0 : event.pull_request) === null || _a === void 0 ? void 0 : _a.number) {
+        return Number(event.pull_request.number);
+    }
+    return false;
+}
+exports.number = number;
+function latestCommitSha() {
+    var _a, _b;
+    var event = getEventJson();
+    if ((_b = (_a = event === null || event === void 0 ? void 0 : event.pull_request) === null || _a === void 0 ? void 0 : _a.head) === null || _b === void 0 ? void 0 : _b.sha) {
+        return String(event.pull_request.head.sha);
+    }
+    return false;
+}
+exports.latestCommitSha = latestCommitSha;
+function getEventJson() {
+    var _a = process.env.GITHUB_EVENT_PATH, GITHUB_EVENT_PATH = _a === void 0 ? '' : _a;
+    var contents = fs_1.default.readFileSync(GITHUB_EVENT_PATH, 'utf8');
+    return JSON.parse(contents);
+}
+
+
+/***/ }),
 /* 509 */,
 /* 510 */,
 /* 511 */,
@@ -14432,11 +14471,7 @@ function newOrModifiedFiles() {
     var _a = process.env.HOME, HOME = _a === void 0 ? '' : _a;
     var all = JSON.parse(fs_1.default.readFileSync(HOME + "/files.json", 'utf8'));
     var rm = JSON.parse(fs_1.default.readFileSync(HOME + "/files_removed.json", 'utf8'));
-    var ret = all
-        .filter(function (file) { return file.endsWith('.adoc'); })
-        .filter(function (file) { return !rm.includes(file); });
-    console.log({ interestingFiles: ret });
-    return ret;
+    return all.filter(function (file) { return file.endsWith('.adoc'); }).filter(function (file) { return !rm.includes(file); });
 }
 exports.newOrModifiedFiles = newOrModifiedFiles;
 
@@ -15532,45 +15567,7 @@ module.exports = listCacheClear;
 /* 876 */,
 /* 877 */,
 /* 878 */,
-/* 879 */
-/***/ (function(__unusedmodule, exports, __webpack_require__) {
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = __importDefault(__webpack_require__(747));
-function number() {
-    var _a;
-    var _b = process.env.GITHUB_REF, GITHUB_REF = _b === void 0 ? '' : _b;
-    var refMatch = /refs\/pull\/(\d+)\/merge/g.exec(GITHUB_REF);
-    if (refMatch) {
-        return Number(refMatch[1]);
-    }
-    var event = getEventJson();
-    if ((_a = event === null || event === void 0 ? void 0 : event.pull_request) === null || _a === void 0 ? void 0 : _a.number) {
-        return Number(event.pull_request.number);
-    }
-    return false;
-}
-exports.number = number;
-function latestCommitSha() {
-    var _a, _b;
-    var event = getEventJson();
-    if ((_b = (_a = event === null || event === void 0 ? void 0 : event.pull_request) === null || _a === void 0 ? void 0 : _a.head) === null || _b === void 0 ? void 0 : _b.sha) {
-        return String(event.pull_request.head.sha);
-    }
-    return false;
-}
-exports.latestCommitSha = latestCommitSha;
-function getEventJson() {
-    var _a = process.env.GITHUB_EVENT_PATH, GITHUB_EVENT_PATH = _a === void 0 ? '' : _a;
-    var contents = fs_1.default.readFileSync(GITHUB_EVENT_PATH, 'utf8');
-    return JSON.parse(contents);
-}
-
-
-/***/ }),
+/* 879 */,
 /* 880 */
 /***/ (function(__unusedmodule, exports, __webpack_require__) {
 

@@ -7,7 +7,7 @@ import { DocPrecursor } from '@friends-library/types';
 import { processDocument } from '@friends-library/adoc-convert';
 import { paperbackInterior } from '@friends-library/doc-manifests';
 import { newOrModifiedFiles } from '../helpers';
-import * as pullRequest from '../lint-adoc/pull-requests';
+import * as pullRequest from '../pull-requests';
 
 async function main() {
   const COMMIT_SHA = pullRequest.latestCommitSha();

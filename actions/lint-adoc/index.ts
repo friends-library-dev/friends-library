@@ -4,7 +4,7 @@ import * as core from '@actions/core';
 import { Octokit } from '@octokit/action';
 import { newOrModifiedFiles } from '../helpers';
 import { Annotation, toAnnotation, lintOptions } from './lint-helpers';
-import * as pullRequest from './pull-requests';
+import * as pullRequest from '../pull-requests';
 
 async function main() {
   const pull_number = pullRequest.number();
@@ -17,25 +17,24 @@ async function main() {
     return;
   }
 
-  let annotations: Annotation[] = [];
+  let errors: Annotation[] = [];
   const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
   const client = new Octokit();
 
   newOrModifiedFiles().forEach(path => {
     const asciidoc = fs.readFileSync(path).toString();
-    annotations = [
-      ...annotations,
+    errors = [
+      ...errors,
       ...lint(asciidoc, lintOptions(path)).map(l => toAnnotation(l, path)),
     ];
   });
 
-  if (!annotations.length) {
+  if (!errors.length) {
     return;
   }
 
-  core.setFailed(
-    `**Found ${annotations.length} lint error${annotations.length > 1 ? 's' : ''}**!`,
-  );
+  core.setFailed(`Found ${errors.length} lint error${errors.length > 1 ? 's' : ''}!`);
+  console.error(errors);
 
   client.checks.create({
     owner,
@@ -46,8 +45,8 @@ async function main() {
     conclusion: 'failure',
     output: {
       title: 'Asciidoc lint failure',
-      summary: `Found ${annotations.length} problems`,
-      annotations,
+      summary: `Found ${errors.length} problems`,
+      annotations: errors,
     },
   });
 
@@ -55,7 +54,7 @@ async function main() {
     owner,
     repo,
     issue_number: pull_number,
-    body: `Found ${annotations.length} lint violations! :grimacing:\n\nCheck the [changed files](https://github.com/${owner}/${repo}/pull/${pull_number}/files) for comments showing exact violation details.`,
+    body: `Found \`${errors.length}\` **lint violations!** :grimacing:\n\nCheck the [changed files](https://github.com/${owner}/${repo}/pull/${pull_number}/files) for comments showing exact violation details.`,
   });
 }
 
