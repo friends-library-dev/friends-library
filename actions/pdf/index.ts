@@ -7,7 +7,8 @@ import { DocPrecursor } from '@friends-library/types';
 import { processDocument } from '@friends-library/adoc-convert';
 import { paperbackInterior } from '@friends-library/doc-manifests';
 import { newOrModifiedFiles } from '../helpers';
-import * as pullRequest from '../lint-adoc/pull-requests';
+import * as pullRequest from '../pull-requests';
+import { deleteBotCommentsContaining } from '../comments';
 
 async function main() {
   const COMMIT_SHA = pullRequest.latestCommitSha();
@@ -32,12 +33,14 @@ async function main() {
     });
 
     const pdfPath = await pdf(manifest, `doc_${Date.now()}`);
-    const cloudFilename = `${COMMIT_SHA.substr(0, 8)}--${filename}`;
+    const [, edition] = file.split('/');
+    const cloudFilename = `${COMMIT_SHA.substr(0, 8)}--${edition}--${filename}`;
     const url = await uploadFile(pdfPath, `actions/${repo}/${PR_NUM}/${cloudFilename}`);
     uploaded.push([url, cloudFilename]);
   }
 
   if (uploaded.length) {
+    deleteBotCommentsContaining('PDF Previews for commit', owner, repo, PR_NUM);
     await new Octokit().issues.createComment({
       owner,
       repo,

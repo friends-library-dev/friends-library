@@ -1,9 +1,8 @@
 import fs from 'fs';
 
 export function newOrModifiedFiles(): string[] {
-  return ['files_modified.json', 'files_added.json']
-    .map(basename => `${process.env.HOME}/${basename}`)
-    .map(path => fs.readFileSync(path).toString())
-    .flatMap(contents => JSON.parse(contents))
-    .filter(file => file.endsWith('.adoc'));
+  const { HOME = '' } = process.env;
+  const all: string[] = JSON.parse(fs.readFileSync(`${HOME}/files.json`, 'utf8'));
+  const rm: string[] = JSON.parse(fs.readFileSync(`${HOME}/files_removed.json`, 'utf8'));
+  return all.filter(file => file.endsWith('.adoc')).filter(file => !rm.includes(file));
 }

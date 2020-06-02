@@ -5,6 +5,10 @@
   "main": "dist/index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "ncc build index.ts -o bundled -w",
+    "build": "ncc build index.ts -o bundled -m"
+  },
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@friends-library/adoc-lint": "1.0.0",
