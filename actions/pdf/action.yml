@@ -1,4 +1,4 @@
-name: lint-adoc
+name: make-pdf
 inputs:
   GITHUB_TOKEN:
     required: true

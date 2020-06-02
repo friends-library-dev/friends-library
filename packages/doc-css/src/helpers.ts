@@ -12,7 +12,10 @@ export function replaceVars(css: Css, vars: Record<string, string>): Css {
 }
 
 export function toCss(relPath: string): Css {
-  return fs.readFileSync(`${__dirname}/../src/css/${relPath}.css`).toString();
+  // going all the way up to root allows this to work for ncc-bundled actions
+  // which are in the same directory depth, but a different location
+  const ROOT = `${__dirname}/../../..`;
+  return fs.readFileSync(`${ROOT}/packages/doc-css/src/css/${relPath}.css`).toString();
 }
 
 export function runningHead(dpc: DocPrecursor): string {

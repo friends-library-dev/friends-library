@@ -1,6 +1,10 @@
 name: ci-cd
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - master
+      - actions
 
 env:
   FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}
