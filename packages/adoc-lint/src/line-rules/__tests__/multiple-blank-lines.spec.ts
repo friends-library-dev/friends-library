@@ -15,13 +15,13 @@ describe('multipleBlankLines()', () => {
     const results = multipleBlankLines(lines[2], lines, 3, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
-      line: 3,
+      line: 2,
       column: false,
       type: 'error',
       rule: 'multiple-blank-lines',
       message: 'Multiple blank lines are not allowed',
       fixable: true,
-      recommendation: '--> remove preceding line/s: (2)',
+      recommendation: '--> remove line/s: (2)',
     });
   });
 
@@ -39,7 +39,7 @@ describe('multipleBlankLines()', () => {
       const results = multipleBlankLines(line, lines, index + 1, opts);
       if (index === 4) {
         expect(results).toHaveLength(1);
-        expect(results[0].recommendation).toBe('--> remove preceding line/s: (2,3,4)');
+        expect(results[0].recommendation).toBe('--> remove line/s: (2,3,4)');
       } else {
         expect(results).toHaveLength(0);
       }
