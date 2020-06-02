@@ -23,9 +23,9 @@ jobs:
           tar -xvzf ~/prince.tar.gz -C ~ > /dev/null
           printf "$HOME\n" | ~/${PRINCE_FILENAME}/install.sh
       - name: get changed files
-        uses: trilom/file-changes-action@v1.2.3
+        uses: trilom/file-changes-action@v1.2.4
         with:
-          token: ${{ github.token }}
+          githubToken: ${{ github.token }}
       - name: create pdf previews
         uses: friends-library/friends-library/actions/pdf@actions
         with:
