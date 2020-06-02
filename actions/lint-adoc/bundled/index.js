@@ -9952,7 +9952,11 @@ function deleteBotCommentsContaining(str, owner, repo, prNumber) {
                     })];
                 case 1:
                     comments = (_a.sent()).data;
-                    console.log(JSON.stringify(comments, null, 2));
+                    comments.forEach(function (comment) {
+                        if (comment.user.type === 'Bot' && comment.body.includes(str)) {
+                            client.issues.deleteComment({ owner: owner, repo: repo, comment_id: comment.id });
+                        }
+                    });
                     return [2 /*return*/];
             }
         });

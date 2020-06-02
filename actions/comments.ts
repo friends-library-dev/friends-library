@@ -13,5 +13,9 @@ export async function deleteBotCommentsContaining(
     repo,
     issue_number: prNumber,
   });
-  console.log(JSON.stringify(comments, null, 2));
+  comments.forEach(comment => {
+    if (comment.user.type === 'Bot' && comment.body.includes(str)) {
+      client.issues.deleteComment({ owner, repo, comment_id: comment.id });
+    }
+  });
 }
