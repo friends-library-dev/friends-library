@@ -30,6 +30,7 @@ async function main() {
   });
 
   const shouldDeploy = !!labels.find(l => l.name === `deploy:${siteId}`);
+  console.log('should deploy:', shouldDeploy);
   core.setOutput(`should_deploy_${siteId}`, shouldDeploy);
 }
 

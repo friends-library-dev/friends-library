@@ -269,6 +269,7 @@ function main() {
                 case 2:
                     labels = (_b.sent()).data;
                     shouldDeploy = !!labels.find(function (l) { return l.name === "deploy:" + siteId; });
+                    console.log('should deploy:', shouldDeploy);
                     core.setOutput("should_deploy_" + siteId, shouldDeploy);
                     return [2 /*return*/];
             }
