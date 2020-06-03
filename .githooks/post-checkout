@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+// @ts-check
+
+console.log(`\x1b[2m[git hook \`post-checkout\`]\x1b[0m`);
+
+require('./actions').handleBundledActionJs(false);
