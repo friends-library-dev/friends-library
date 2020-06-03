@@ -236,8 +236,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core = __importStar(__webpack_require__(280));
 var action_1 = __webpack_require__(40);
 var pr = __importStar(__webpack_require__(508));
-// console.log(pr.latestCommitSha());
-// console.log(process.env.GITHUB_SHA);
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var _a, owner, repo, COMMIT_SHA, PR_NUM, siteId, labels, shouldDeploy;
@@ -246,21 +244,21 @@ function main() {
                 case 0:
                     _a = __read((process.env.GITHUB_REPOSITORY || '').split('/'), 2), owner = _a[0], repo = _a[1];
                     COMMIT_SHA = pr.latestCommitSha() || process.env.GITHUB_SHA || '';
-                    console.log('use commit_sha:', COMMIT_SHA);
                     return [4 /*yield*/, pr.numberFromCommitSha(COMMIT_SHA, owner, repo)];
                 case 1:
                     PR_NUM = (_b.sent()) || pr.number();
                     if (!PR_NUM) {
-                        console.log('No associated PR for commit');
+                        core.warning('No associated PR for commit');
                         return [2 /*return*/];
                     }
                     siteId = process.env.INPUT_SITE_ID;
                     if (!siteId) {
-                        console.log("Missing site id");
+                        core.warning("Missing site id");
                         return [2 /*return*/];
                     }
-                    console.log('site id:', siteId);
-                    console.log('found PR num:', PR_NUM);
+                    core.info("Using commit sha: " + COMMIT_SHA);
+                    core.info("Using PR number: " + PR_NUM);
+                    core.info("Using site id: " + siteId);
                     return [4 /*yield*/, new action_1.Octokit().issues.listLabelsOnIssue({
                             owner: owner,
                             repo: repo,
@@ -269,32 +267,14 @@ function main() {
                 case 2:
                     labels = (_b.sent()).data;
                     shouldDeploy = !!labels.find(function (l) { return l.name === "deploy:" + siteId; });
-                    console.log('should deploy:', shouldDeploy);
                     core.setOutput("should_deploy_" + siteId, shouldDeploy);
+                    core.info("Set output.should_deploy_" + siteId + " = " + shouldDeploy);
                     return [2 /*return*/];
             }
         });
     });
 }
 main();
-// pull request sync:
-// pull request sync: correct one was `latestCommitSha()`
-// push event (to master) (MERGE COMMIT)
-// latestCommitSha was `false`
-// GITHUB_SHA was merge commit
-// merge_commit SHA gave good result when listing PRs for commit 👍
-// pull request open (multiple commits)
-// latestCommitSha was correct
-// GITHUB_SHA incorrect
-// push event (to master) (REBASE AND MERGE)
-// latestCommitSha was `false`
-// GITHUB_SHA was correct for rebased new tip
-// rebased sha gave good results for list pRS for commit 👍
-// push event (to master) (SQUASH AND MERGE)
-// latestCommitSha was `false`
-// GITHUB_SHA was correct for squashed new tip
-// rebased sha gave good results for list pRS for commit 👍
-// ${{ github.event_name }}
 
 
 /***/ }),
