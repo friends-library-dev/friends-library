@@ -2,9 +2,12 @@ name: deploy-site
 
 on:
   push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize]
     branches-ignore:
-      - actions
-      - actions-*
+      - master
 
 env:
   FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}

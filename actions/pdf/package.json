@@ -1,8 +1,6 @@
 {
   "name": "@friends-library/action-pdf",
   "version": "1.0.0",
-  "description": "testing",
-  "main": "dist/index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {

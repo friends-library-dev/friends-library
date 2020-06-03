@@ -26,5 +26,6 @@ export function latestCommitSha(): Sha | false {
 function getEventJson(): Record<string, any> {
   const { GITHUB_EVENT_PATH = '' } = process.env;
   const contents = fs.readFileSync(GITHUB_EVENT_PATH, 'utf8');
+  console.log(JSON.stringify(JSON.parse(contents), null, 2));
   return JSON.parse(contents);
 }

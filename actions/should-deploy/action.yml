@@ -1,0 +1,7 @@
+name: should-deploy
+inputs:
+  GITHUB_TOKEN:
+    required: true
+runs:
+  using: node12
+  main: ./bundled/index.js
