@@ -6,8 +6,6 @@ on:
       - master
   pull_request:
     types: [opened, synchronize]
-    branches-ignore:
-      - master
 
 env:
   FELL_GITHUB_TOKEN: ${{ secrets.FELL_GITHUB_TOKEN }}

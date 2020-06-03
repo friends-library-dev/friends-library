@@ -1,0 +1,6 @@
+GET https://api.github.com/repos/jaredh159/action-test/commits/ec3b49a87e951f6215bc04efebffecc70d49f285/pulls
+Accept: application/vnd.github.groot-preview+json
+
+###
+
+GET https://api.github.com/repos/jaredh159/action-test/issues/5/labels

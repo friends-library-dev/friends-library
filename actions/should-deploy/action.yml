@@ -1,5 +1,7 @@
 name: should-deploy
 inputs:
+  SITE_ID:
+    required: true
   GITHUB_TOKEN:
     required: true
 runs:

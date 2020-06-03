@@ -1,5 +1,24 @@
 import fs from 'fs';
 import { Sha } from '@friends-library/types';
+import { Octokit } from '@octokit/action';
+
+/**
+ * This works for `pull_request.*` events, and also gives
+ * correct result for a `push` event created by merging a PR
+ */
+export async function numberFromCommitSha(
+  sha: Sha,
+  owner: string,
+  repo: string,
+): Promise<number | false> {
+  const { data: prs } = await new Octokit().repos.listPullRequestsAssociatedWithCommit({
+    owner,
+    repo,
+    commit_sha: sha,
+  });
+  console.log({ prsFromCommitSha: prs });
+  return prs.length === 1 ? prs[0].number : false;
+}
 
 export function number(): number | false {
   const { GITHUB_REF = '' } = process.env;
