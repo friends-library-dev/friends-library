@@ -19,6 +19,7 @@ function handleBundledActionJs(gitAdd) {
     const FLAGS = '--force --ignore-unmatch --quiet';
     execSync(`git rm ${FLAGS} packages/actions/pdf/bundled/index.js`);
     execSync(`git rm ${FLAGS} packages/actions/lint-adoc/bundled/index.js`);
+    execSync(`git rm ${FLAGS} packages/actions/should-deploy/bundled/index.js`);
 
     // make sure we don't get the actions* branch special .gitignore rule
     if (ACTION_IGNORE.includes(BUNDLED_JS)) {
@@ -31,6 +32,7 @@ function handleBundledActionJs(gitAdd) {
       execSync('git add ./actions/.gitignore');
       gitAdd && execSync(`git add packages/actions/pdf/bundled/index.js`);
       gitAdd && execSync(`git add packages/actions/lint-adoc/bundled/index.js`);
+      gitAdd && execSync(`git add packages/actions/should-deploy/bundled/index.js`);
     }
   }
 }

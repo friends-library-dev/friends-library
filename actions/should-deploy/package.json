@@ -1,5 +1,5 @@
 {
-  "name": "@friends-library/action-lint-adoc",
+  "name": "@friends-library/should-deploy",
   "version": "1.0.0",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.4",
-    "@friends-library/adoc-lint": "1.0.0",
     "@octokit/action": "^2.7.1"
   }
 }
