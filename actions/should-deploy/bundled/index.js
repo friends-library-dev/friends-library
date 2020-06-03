@@ -240,7 +240,7 @@ var pr = __importStar(__webpack_require__(508));
 // console.log(process.env.GITHUB_SHA);
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, owner, repo, COMMIT_SHA, PR_NUM, siteId, labels;
+        var _a, owner, repo, COMMIT_SHA, PR_NUM, siteId, labels, shouldDeploy;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -268,12 +268,8 @@ function main() {
                         })];
                 case 2:
                     labels = (_b.sent()).data;
-                    labels.forEach(function (label) {
-                        if (label.name === "deploy:" + siteId) {
-                            console.log('setting env var!');
-                            core.exportVariable("DEPLOY_" + siteId.toUpperCase(), 'true');
-                        }
-                    });
+                    shouldDeploy = !!labels.find(function (l) { return l.name === "deploy:" + siteId; });
+                    core.setOutput("should_deploy_" + siteId, shouldDeploy);
                     return [2 /*return*/];
             }
         });
@@ -8308,7 +8304,6 @@ function numberFromCommitSha(sha, owner, repo) {
                     })];
                 case 1:
                     prs = (_a.sent()).data;
-                    console.log({ prsFromCommitSha: prs });
                     return [2 /*return*/, prs.length === 1 ? prs[0].number : false];
             }
         });
@@ -8341,7 +8336,6 @@ exports.latestCommitSha = latestCommitSha;
 function getEventJson() {
     var _a = process.env.GITHUB_EVENT_PATH, GITHUB_EVENT_PATH = _a === void 0 ? '' : _a;
     var contents = fs_1.default.readFileSync(GITHUB_EVENT_PATH, 'utf8');
-    console.log(JSON.stringify(JSON.parse(contents), null, 2));
     return JSON.parse(contents);
 }
 

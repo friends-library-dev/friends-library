@@ -16,7 +16,6 @@ export async function numberFromCommitSha(
     repo,
     commit_sha: sha,
   });
-  console.log({ prsFromCommitSha: prs });
   return prs.length === 1 ? prs[0].number : false;
 }
 
@@ -45,6 +44,5 @@ export function latestCommitSha(): Sha | false {
 function getEventJson(): Record<string, any> {
   const { GITHUB_EVENT_PATH = '' } = process.env;
   const contents = fs.readFileSync(GITHUB_EVENT_PATH, 'utf8');
-  console.log(JSON.stringify(JSON.parse(contents), null, 2));
   return JSON.parse(contents);
 }

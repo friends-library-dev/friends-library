@@ -29,12 +29,8 @@ async function main() {
     issue_number: PR_NUM,
   });
 
-  labels.forEach(label => {
-    if (label.name === `deploy:${siteId}`) {
-      console.log('setting env var!');
-      core.exportVariable(`DEPLOY_${siteId.toUpperCase()}`, 'true');
-    }
-  });
+  const shouldDeploy = !!labels.find(l => l.name === `deploy:${siteId}`);
+  core.setOutput(`should_deploy_${siteId}`, shouldDeploy);
 }
 
 main();
