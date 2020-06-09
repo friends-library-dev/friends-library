@@ -39,7 +39,7 @@ async function main() {
   }
 
   if (uploaded.length) {
-    pr.deleteBotCommentsContaining('PDF Previews for commit');
+    await pr.deleteBotCommentsContaining('PDF Previews for commit');
     await new Octokit().issues.createComment({
       owner,
       repo,

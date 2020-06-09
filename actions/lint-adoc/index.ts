@@ -13,7 +13,7 @@ async function main() {
     return;
   }
 
-  pr.deleteBotCommentsContaining('lint violations!');
+  await pr.deleteBotCommentsContaining('lint violations!');
 
   let errors: Annotation[] = [];
   newOrModifiedFiles().forEach(path => {
@@ -35,7 +35,7 @@ async function main() {
   const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
   const client = new Octokit();
 
-  client.checks.create({
+  await client.checks.create({
     owner,
     repo,
     name: 'lint-adoc',
@@ -49,7 +49,7 @@ async function main() {
     },
   });
 
-  client.issues.createComment({
+  await client.issues.createComment({
     owner,
     repo,
     issue_number: prNumber,
