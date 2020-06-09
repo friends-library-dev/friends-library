@@ -1,6 +1,6 @@
 name: meta
 inputs:
-  GITHUB_TOKEN:
+  github_token:
     required: true
 outputs:
   latest_commit_sha: Full sha of latest commit, for any type of event

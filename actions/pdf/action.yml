@@ -1,6 +1,6 @@
 name: make-pdf
 inputs:
-  GITHUB_TOKEN:
+  github_token:
     required: true
 runs:
   using: node12

@@ -1,12 +1,12 @@
 name: should-deploy
 inputs:
-  SITE_ID:
+  site_id:
     required: true
-  GITHUB_TOKEN:
+  github_token:
     required: true
 outputs:
-  should_deploy_<input.SITE_ID>:
-    String "true" or "false", whether the site indicated by the input SITE_ID should be
+  should_deploy_<inputs.site_id>:
+    String "true" or "false", whether the site indicated by the `inputs.site_id` should be
     deployed for this event
   deploy_context: Netlify deploy context -- "production" or "preview"
 runs:

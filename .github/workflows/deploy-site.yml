@@ -19,7 +19,6 @@ env:
   GATSBY_TEST_STRIPE_PUBLISHABLE_KEY: ${{ secrets.GATSBY_TEST_STRIPE_PUBLISHABLE_KEY }}
   GATSBY_PROD_STRIPE_PUBLISHABLE_KEY: ${{ secrets.GATSBY_PROD_STRIPE_PUBLISHABLE_KEY }}
   DOCS_REPOS_ROOT: ${{ github.workspace }}
-  NETLIFY_API_TOKEN: ${{ secrets.NETLIFY_API_TOKEN }}
   DEPLOYING: true
 
 jobs:
@@ -48,13 +47,13 @@ jobs:
         id: meta
         uses: friends-library/friends-library/actions/meta@actions
         with:
-          GITHUB_TOKEN: ${{ github.token }}
+          github_token: ${{ github.token }}
       - name: should-deploy
         id: should_deploy
         uses: friends-library/friends-library/actions/should-deploy@actions
         with:
-          SITE_ID: site
-          GITHUB_TOKEN: ${{ github.token }}
+          site_id: site
+          github_token: ${{ github.token }}
 
   english:
     name: english
@@ -63,12 +62,6 @@ jobs:
     if: needs.setup.outputs.should_deploy_site == 'true'
     outputs:
       deploy_url: ${{ steps.deploy.outputs.url }}
-    env:
-      PR_TITLE: ${{ needs.setup.outputs.pull_request_title }}
-      PR_NUMBER: ${{ needs.setup.outputs.pull_request_number }}
-      SHORT_SHA: ${{ needs.setup.outputs.latest_commit_sha_short }}
-      GATSBY_NETLIFY_CONTEXT: ${{ needs.setup.outputs.deploy_context }}
-      DEPLOY_SITE_ID: ${{ secrets.DEPLOY_SITE_ID_EN }}
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
@@ -79,11 +72,19 @@ jobs:
       - name: fell-clone
         run: yarn fell:fresh-clone
       - name: evans-build-en
+        env:
+          GATSBY_NETLIFY_CONTEXT: ${{ needs.setup.outputs.deploy_context }}
         run: yarn evans:build:en
       - name: deploy
         id: deploy
         if: success()
-        run: yarn evans:deploy
+        uses: friends-library/friends-library/actions/deploy@actions
+        with:
+          netlify_api_token: ${{ secrets.NETLIFY_API_TOKEN }}
+          site_id: ${{ secrets.DEPLOY_SITE_ID_EN }}
+          build_dir: packages/evans/public
+          functions_dir: packages/functions/dist
+          github_token: ${{ github.token }}
 
   spanish:
     name: spanish
@@ -92,12 +93,6 @@ jobs:
     if: needs.setup.outputs.should_deploy_site == 'true'
     outputs:
       deploy_url: ${{ steps.deploy.outputs.url }}
-    env:
-      PR_TITLE: ${{ needs.setup.outputs.pull_request_title }}
-      PR_NUMBER: ${{ needs.setup.outputs.pull_request_number }}
-      SHORT_SHA: ${{ needs.setup.outputs.latest_commit_sha_short }}
-      GATSBY_NETLIFY_CONTEXT: ${{ needs.setup.outputs.deploy_context }}
-      DEPLOY_SITE_ID: ${{ secrets.DEPLOY_SITE_ID_ES }}
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
@@ -108,11 +103,19 @@ jobs:
       - name: fell-clone
         run: yarn fell:fresh-clone
       - name: evans-build-es
+        env:
+          GATSBY_NETLIFY_CONTEXT: ${{ needs.setup.outputs.deploy_context }}
         run: yarn evans:build:es
       - name: deploy
         id: deploy
         if: success()
-        run: yarn evans:deploy
+        uses: friends-library/friends-library/actions/deploy@actions
+        with:
+          netlify_api_token: ${{ secrets.NETLIFY_API_TOKEN }}
+          site_id: ${{ secrets.DEPLOY_SITE_ID_ES }}
+          build_dir: packages/evans/public
+          functions_dir: packages/functions/dist
+          github_token: ${{ github.token }}
 
   comment:
     name: comment
