@@ -1,0 +1,31 @@
+id: dae9f1bf-455c-4805-adee-aa510ff787c2
+name: Ruth Follows
+slug: ruth-follows
+gender: female
+added: 2020-06-09T14:24:46.039Z
+born: 1718
+died: 1809
+residences:
+  - city: Castle Donington
+    region: England
+description: TODO
+documents:
+  - id: 2460c682-7d5d-408b-b059-e05e28a19aea
+    title: Journal of Ruth Follows
+    original_title:
+      'Memoirs of Ruth Follows Late of Castle Donnington, Leicestershire; For Sixty Years
+      a Minister in the Society of Friends: With Extracts From Her Letters.'
+    slug: journal
+    filename: Journal_of_Ruth_Follows
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-222-6
+        draft: true
+      - type: original
+        isbn: 978-1-64476-223-3
+        draft: true
