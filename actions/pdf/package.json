@@ -4,8 +4,8 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ncc build index.ts -o bundled -w",
-    "build": "ncc build index.ts -o bundled -m"
+    "start": "ncc build index.ts -o bundled -w -e epub-check",
+    "build": "ncc build index.ts -o bundled -m -e epub-check"
   },
   "dependencies": {
     "@actions/core": "^1.2.4",

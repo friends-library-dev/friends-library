@@ -6,13 +6,12 @@ import { uploadFile } from '@friends-library/cloud';
 import { DocPrecursor } from '@friends-library/types';
 import { processDocument } from '@friends-library/adoc-convert';
 import { paperbackInterior } from '@friends-library/doc-manifests';
-import { newOrModifiedFiles } from '../helpers';
-import * as pullRequest from '../pull-requests';
-import { deleteBotCommentsContaining } from '../comments';
+import { newOrModifiedFiles, latestCommitSha } from '../helpers';
+import * as pr from '../pull-requests';
 
 async function main() {
-  const COMMIT_SHA = pullRequest.latestCommitSha();
-  const PR_NUM = pullRequest.number();
+  const COMMIT_SHA = latestCommitSha();
+  const PR_NUM = await pr.number();
   if (!COMMIT_SHA || !PR_NUM) {
     return;
   }
@@ -24,7 +23,7 @@ async function main() {
   for (let file of newOrModifiedFiles()) {
     const filename = path.basename(file);
     const adoc = fs.readFileSync(file).toString();
-    const dpc = dpcFromAdocFragment(adoc, GITHUB_REPOSITORY);
+    const dpc = dpcFromAdocFragment(adoc, owner, repo);
     const [manifest] = await paperbackInterior(dpc, {
       frontmatter: false,
       printSize: 'm',
@@ -40,7 +39,7 @@ async function main() {
   }
 
   if (uploaded.length) {
-    deleteBotCommentsContaining('PDF Previews for commit', owner, repo, PR_NUM);
+    pr.deleteBotCommentsContaining('PDF Previews for commit');
     await new Octokit().issues.createComment({
       owner,
       repo,
@@ -54,10 +53,10 @@ async function main() {
 
 main();
 
-function dpcFromAdocFragment(adoc: string, repoOwner: string): DocPrecursor {
+function dpcFromAdocFragment(adoc: string, owner: string, repo: string): DocPrecursor {
   const { epigraphs, sections, notes } = processDocument(adoc);
   return {
-    lang: repoOwner === 'biblioteca-de-los-amigos' ? 'es' : 'en',
+    lang: owner === 'biblioteca-de-los-amigos' ? 'es' : 'en',
     friendSlug: 'test',
     friendInitials: ['F', 'P'],
     documentSlug: 'test',
@@ -78,7 +77,10 @@ function dpcFromAdocFragment(adoc: string, repoOwner: string): DocPrecursor {
       title: 'Test Document',
       isbn: '',
       author: {
-        name: 'Test Author',
+        name: repo
+          .split('-')
+          .map(([first, ...rest]) => first.toUpperCase() + rest.join(''))
+          .join(' '),
         nameSort: '',
       },
     },

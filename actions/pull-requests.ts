@@ -1,25 +1,48 @@
-import fs from 'fs';
-import { Sha } from '@friends-library/types';
-import { Octokit } from '@octokit/action';
+import { Octokit as pr } from '@octokit/action';
+import * as core from '@actions/core';
+import { getEventJson, latestCommitSha } from './helpers';
 
 /**
- * This works for `pull_request.*` events, and also gives
+ * Get pull request data.
+ *
+ * Works for `pull_request.*` events, and also gives
  * correct result for a `push` event created by merging a PR
  */
-export async function numberFromCommitSha(
-  sha: Sha,
-  owner: string,
-  repo: string,
-): Promise<number | false> {
-  const { data: prs } = await new Octokit().repos.listPullRequestsAssociatedWithCommit({
+export async function data(): Promise<{ number: number; title: string } | void> {
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+  const client = new pr();
+  const prNum = numberFromEnv();
+
+  if (prNum) {
+    const { data: pr } = await client.pulls.get({ owner, repo, pull_number: prNum });
+    if (pr) {
+      return pr;
+    }
+  }
+
+  const { data: prs } = await client.repos.listPullRequestsAssociatedWithCommit({
     owner,
     repo,
-    commit_sha: sha,
+    commit_sha: latestCommitSha() || '',
   });
-  return prs.length === 1 ? prs[0].number : false;
+  if (prs.length) {
+    return prs[0];
+  }
 }
 
-export function number(): number | false {
+export async function number(): Promise<number | void> {
+  const fromEnv = numberFromEnv();
+  if (fromEnv) {
+    return fromEnv;
+  }
+
+  const prData = await data();
+  if (prData) {
+    return prData.number;
+  }
+}
+
+function numberFromEnv(): number | void {
   const { GITHUB_REF = '' } = process.env;
   const refMatch = /refs\/pull\/(\d+)\/merge/g.exec(GITHUB_REF);
   if (refMatch) {
@@ -30,19 +53,26 @@ export function number(): number | false {
   if (event?.pull_request?.number) {
     return Number(event.pull_request.number);
   }
-  return false;
 }
 
-export function latestCommitSha(): Sha | false {
-  const event = getEventJson();
-  if (event?.pull_request?.head?.sha) {
-    return String(event.pull_request.head.sha);
+export async function deleteBotCommentsContaining(str: string): Promise<void> {
+  const client = new pr();
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+  const prNumber = await number();
+  if (!prNumber) {
+    core.warning(`Unable to find PR number, skipping attempt to delete PR bot comments`);
+    return;
   }
-  return false;
-}
 
-function getEventJson(): Record<string, any> {
-  const { GITHUB_EVENT_PATH = '' } = process.env;
-  const contents = fs.readFileSync(GITHUB_EVENT_PATH, 'utf8');
-  return JSON.parse(contents);
+  const { data: comments } = await client.issues.listComments({
+    owner,
+    repo,
+    issue_number: prNumber,
+  });
+
+  comments.forEach(comment => {
+    if (comment.user.type === 'Bot' && comment.body.includes(str)) {
+      client.issues.deleteComment({ owner, repo, comment_id: comment.id });
+    }
+  });
 }

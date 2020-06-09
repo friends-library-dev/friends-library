@@ -4,26 +4,18 @@ import * as core from '@actions/core';
 import { Octokit } from '@octokit/action';
 import { newOrModifiedFiles } from '../helpers';
 import { Annotation, toAnnotation, lintOptions } from './lint-helpers';
-import * as pullRequest from '../pull-requests';
-import { deleteBotCommentsContaining } from '../comments';
+import * as pr from '../pull-requests';
+import { latestCommitSha } from '../helpers';
 
 async function main() {
-  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
-  const pull_number = pullRequest.number();
-  if (!pull_number) {
+  const prNumber = await pr.number();
+  if (!prNumber) {
     return;
   }
 
-  const commitSha = pullRequest.latestCommitSha();
-  if (!commitSha) {
-    return;
-  }
-
-  deleteBotCommentsContaining('lint violations!', owner, repo, pull_number);
+  pr.deleteBotCommentsContaining('lint violations!');
 
   let errors: Annotation[] = [];
-  const client = new Octokit();
-
   newOrModifiedFiles().forEach(path => {
     const asciidoc = fs.readFileSync(path).toString();
     errors = [
@@ -33,17 +25,21 @@ async function main() {
   });
 
   if (!errors.length) {
+    core.info(`Found 0 lint errors.`);
     return;
   }
 
   core.setFailed(`Found ${errors.length} lint error${errors.length > 1 ? 's' : ''}!`);
   console.error(errors);
 
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+  const client = new Octokit();
+
   client.checks.create({
     owner,
     repo,
     name: 'lint-adoc',
-    head_sha: commitSha,
+    head_sha: latestCommitSha() || '',
     status: 'completed',
     conclusion: 'failure',
     output: {
@@ -56,8 +52,8 @@ async function main() {
   client.issues.createComment({
     owner,
     repo,
-    issue_number: pull_number,
-    body: `Found \`${errors.length}\` **lint violations!** :grimacing:\n\nCheck the [changed files](https://github.com/${owner}/${repo}/pull/${pull_number}/files) for comments showing exact violation details.`,
+    issue_number: prNumber,
+    body: `Found \`${errors.length}\` **lint violations!** :grimacing:\n\nCheck the [changed files](https://github.com/${owner}/${repo}/pull/${prNumber}/files) for comments showing exact violation details.`,
   });
 }
 

@@ -4,6 +4,11 @@ inputs:
     required: true
   GITHUB_TOKEN:
     required: true
+outputs:
+  should_deploy_<input.SITE_ID>:
+    String "true" or "false", whether the site indicated by the input SITE_ID should be
+    deployed for this event
+  deploy_context: Netlify deploy context -- "production" or "preview"
 runs:
   using: node12
   main: ./bundled/index.js
