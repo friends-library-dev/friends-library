@@ -48,7 +48,7 @@ const runner = new RegexLintRunner(
       test: 'ray', // --> my
       search: /\bray\b/g,
       replace: 'my',
-      allowIfNear: /\b(ray of|gloom|sum|shone)\b/i,
+      allowIfNear: /\b(ray of|gloom|sun|shone)\b/i,
     },
     {
       test: 'arid', // --> and
