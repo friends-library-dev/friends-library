@@ -5,12 +5,7 @@ import * as pr from '../pull-requests';
 async function main() {
   const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
 
-  // this order was carefully tested and ensures we get the right commit
-  // when opening and syncing a pull request, AND when merging (ANY merge type)
-  const COMMIT_SHA = pr.latestCommitSha() || process.env.GITHUB_SHA || '';
-  core.setOutput('latest_commit_sha', COMMIT_SHA);
-
-  const PR_NUM = (await pr.numberFromCommitSha(COMMIT_SHA, owner, repo)) || pr.number();
+  const PR_NUM = await pr.number();
   if (!PR_NUM) {
     core.warning('No associated PR for commit');
     return;
@@ -22,7 +17,6 @@ async function main() {
     return;
   }
 
-  core.info(`Using commit sha: ${COMMIT_SHA}`);
   core.info(`Using PR number: ${PR_NUM}`);
   core.info(`Using site id: ${siteId}`);
 
@@ -34,7 +28,12 @@ async function main() {
 
   const shouldDeploy = !!labels.find(l => l.name === `deploy:${siteId}`);
   core.setOutput(`should_deploy_${siteId}`, shouldDeploy);
-  core.info(`Set output.should_deploy_${siteId} = ${shouldDeploy}`);
+  core.info(`Set \`should_deploy_${siteId}\` output to ${shouldDeploy}`);
+
+  const deployContext =
+    process.env.GITHUB_REF === 'refs/heads/master' ? 'production' : 'preview';
+  core.setOutput('deploy_context', deployContext);
+  core.info(`Set \`deploy_context\` output to ${deployContext}`);
 }
 
 main();

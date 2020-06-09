@@ -1,0 +1,12 @@
+name: meta
+inputs:
+  GITHUB_TOKEN:
+    required: true
+outputs:
+  latest_commit_sha: Full sha of latest commit, for any type of event
+  latest_commit_sha_short: Short sha of latest commit, for any type of event
+  pull_request_number: Pull request number, if available
+  pull_request_title: Pull request title, if available
+runs:
+  using: node12
+  main: ./bundled/index.js
