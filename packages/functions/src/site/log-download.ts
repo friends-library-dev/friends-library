@@ -71,20 +71,20 @@ async function logDownload(
     return;
   }
 
-  let location: Record<string, string | number> = {};
+  let location: Record<string, string | number | null> = {};
   if (headers['client-ip']) {
     try {
       const ipRes = await fetch(`https://ipapi.co/${headers['client-ip']}/json/`);
       const json = await ipRes.json();
       if (typeof json === 'object') {
         location = {
-          ip: json.ip,
-          city: json.city,
-          region: json.region,
-          postalCode: json.postal,
-          country: json.country_name,
-          latitude: json.latitude,
-          longitude: json.longitude,
+          ip: nullableLocationProp('string', json.ip),
+          city: nullableLocationProp('string', json.city),
+          region: nullableLocationProp('string', json.region),
+          country: nullableLocationProp('string', json.country_name),
+          postalCode: nullableLocationProp('string', json.postal),
+          latitude: nullableLocationProp('number', json.latitude),
+          longitude: nullableLocationProp('number', json.longitude),
         };
       }
     } catch {
@@ -124,7 +124,7 @@ function sendSlack(
   ua: useragent.UserAgent,
   referrer: string,
   cloudPath: string,
-  location: Record<string, string | number>,
+  location: Record<string, string | number | null>,
 ): void {
   const device = [ua.platform, ua.os, ua.browser, ua.isMobile ? 'mobile' : 'non-mobile']
     .filter(part => part !== 'unknown')
@@ -142,4 +142,24 @@ function sendSlack(
   }
 
   log.download(`Download: \`${cloudPath}\`, device: \`${device}\`${from}${where}`);
+}
+
+function nullableLocationProp(
+  type: 'string' | 'number',
+  value: any,
+): string | number | null {
+  if (typeof value !== 'string' && typeof value !== 'number') {
+    return null;
+  }
+
+  if (typeof value !== type) {
+    return null;
+  }
+
+  // some IPs are restricted with a `"Sign up to access"` value
+  if (typeof value === 'string' && value.match(/sign up/i)) {
+    return null;
+  }
+
+  return value;
 }
