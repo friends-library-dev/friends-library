@@ -16,9 +16,9 @@ function getClient(): AWS.S3 {
       CLOUD_STORAGE_KEY,
       CLOUD_STORAGE_SECRET,
     } = env.require(
-      'CLOUD_STORAGE_ENDPOINT',
-      'CLOUD_STORAGE_KEY',
-      'CLOUD_STORAGE_SECRET',
+      `CLOUD_STORAGE_ENDPOINT`,
+      `CLOUD_STORAGE_KEY`,
+      `CLOUD_STORAGE_SECRET`,
     );
     clientInstance = new AWS.S3({
       endpoint: new AWS.Endpoint(CLOUD_STORAGE_ENDPOINT).href,
@@ -33,7 +33,7 @@ function getClient(): AWS.S3 {
 }
 
 export function downloadFile(cloudFilePath: CloudFilePath): Promise<Buffer> {
-  const { CLOUD_STORAGE_BUCKET } = env.require('CLOUD_STORAGE_BUCKET');
+  const { CLOUD_STORAGE_BUCKET } = env.require(`CLOUD_STORAGE_BUCKET`);
   const client = getClient();
   return new Promise((resolve, reject) => {
     client.getObject(
@@ -58,8 +58,8 @@ export async function uploadFile(
   opts: { delete: boolean } = { delete: false },
 ): Promise<Url> {
   const { CLOUD_STORAGE_BUCKET_URL, CLOUD_STORAGE_BUCKET } = env.require(
-    'CLOUD_STORAGE_BUCKET_URL',
-    'CLOUD_STORAGE_BUCKET',
+    `CLOUD_STORAGE_BUCKET_URL`,
+    `CLOUD_STORAGE_BUCKET`,
   );
   const client = getClient();
   return new Promise((resolve, reject) => {
@@ -69,7 +69,7 @@ export async function uploadFile(
         Body: fs.readFileSync(localFilePath),
         Bucket: CLOUD_STORAGE_BUCKET,
         ContentType: getContentType(localFilePath),
-        ACL: 'public-read',
+        ACL: `public-read`,
       },
       err => {
         if (err) {
@@ -89,7 +89,7 @@ export async function uploadFiles(
   files: Map<LocalFilePath, CloudFilePath>,
   opts: { delete: boolean } = { delete: false },
 ): Promise<Url[]> {
-  const { CLOUD_STORAGE_BUCKET_URL } = env.require('CLOUD_STORAGE_BUCKET_URL');
+  const { CLOUD_STORAGE_BUCKET_URL } = env.require(`CLOUD_STORAGE_BUCKET_URL`);
   const promises = [...files].map(([localPath, cloudPath]) =>
     uploadFile(localPath, cloudPath, opts),
   );
@@ -102,7 +102,7 @@ export async function uploadFiles(
 }
 
 export async function rimraf(path: CloudFilePath): Promise<CloudFilePath[]> {
-  const { CLOUD_STORAGE_BUCKET } = env.require('CLOUD_STORAGE_BUCKET');
+  const { CLOUD_STORAGE_BUCKET } = env.require(`CLOUD_STORAGE_BUCKET`);
   const client = getClient();
   // note, in `aws-sdk` v3 (now in alpha), it looks like they
   // switched to allowing `const data = await client.operation(...)`
@@ -143,20 +143,20 @@ export async function rimraf(path: CloudFilePath): Promise<CloudFilePath[]> {
 
 function getContentType(path: LocalFilePath): string {
   switch (extname(path)) {
-    case '.mp3':
-      return 'audio/mpeg';
-    case '.m4b':
-      return 'audio/mp4';
-    case '.png':
-      return 'image/png';
-    case '.pdf':
-      return 'application/pdf';
-    case '.epub':
-      return 'application/epub+zip';
-    case '.mobi':
-      return 'application/x-mobipocket-ebook';
-    case '.zip':
-      return 'application/zip';
+    case `.mp3`:
+      return `audio/mpeg`;
+    case `.m4b`:
+      return `audio/mp4`;
+    case `.png`:
+      return `image/png`;
+    case `.pdf`:
+      return `application/pdf`;
+    case `.epub`:
+      return `application/epub+zip`;
+    case `.mobi`:
+      return `application/x-mobipocket-ebook`;
+    case `.zip`:
+      return `application/zip`;
     default:
       throw new Error(`Unexpected file extension: ${path}`);
   }

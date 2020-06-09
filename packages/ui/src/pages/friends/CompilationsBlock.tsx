@@ -14,7 +14,7 @@ interface Props {
 
 const CompilationsBlock: React.FC<Props> = ({ bgImg }) => (
   <BackgroundImage
-    fluid={[bgLayer([0, 0, 0], 0.38), bgImg, bgLayer('#333')]}
+    fluid={[bgLayer([0, 0, 0], 0.38), bgImg, bgLayer(`#333`)]}
     rootMargin="300px"
     fadeIn={false}
     id="CompilationsBlock"
@@ -26,7 +26,7 @@ const CompilationsBlock: React.FC<Props> = ({ bgImg }) => (
         We also have books that contain a collection of writings from several different
         authors. Some of these books were compiled and published by early Friends, and
         some were compiled more recently by the editors of this website. Among the latter
-        group is the book{' '}
+        group is the book{` `}
         <Link
           to="/compilations/truth-in-the-inward-parts"
           className="subtle-link text-white"
@@ -40,7 +40,7 @@ const CompilationsBlock: React.FC<Props> = ({ bgImg }) => (
         También tenemos libros que son una compilación de escritos de varios autores
         diferentes. Algunos de estos libros fueron compilados y publicados por los
         primeros Amigos, y otros fueron compilados más recientemente por los editores de
-        este sitio web. En este último grupo está incluido el libro{' '}
+        este sitio web. En este último grupo está incluido el libro{` `}
         <Link to="/compilaciones/verdad-en-lo-intimo" className="subtle-link text-white">
           La Verdad en lo Íntimo
         </Link>

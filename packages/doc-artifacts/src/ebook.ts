@@ -26,18 +26,18 @@ export async function writeEbookManifest(
       fs.outputFile(
         `${SRC_DIR}/${path}`,
         manifest[path],
-        path.endsWith('.png') ? 'binary' : undefined,
+        path.endsWith(`.png`) ? `binary` : undefined,
       ),
     );
   });
 
-  const binary = zip.generate({ base64: false, compression: 'DEFLATE' });
-  const basename = `${filenameNoExt}${ebookType === 'mobi' ? '.mobi' : ''}.epub`;
+  const binary = zip.generate({ base64: false, compression: `DEFLATE` });
+  const basename = `${filenameNoExt}${ebookType === `mobi` ? `.mobi` : ``}.epub`;
   const epubPath = `${ARTIFACT_DIR}/${basename}`;
-  promises.push(fs.writeFile(epubPath, binary, 'binary'));
+  promises.push(fs.writeFile(epubPath, binary, `binary`));
   await Promise.all(promises);
 
-  if (opts.check && ebookType === 'epub') {
+  if (opts.check && ebookType === `epub`) {
     const check = await epubCheck(SRC_DIR);
     if (!check.pass) {
       logEpubCheckFail(basename, check.messages);
@@ -50,7 +50,7 @@ export async function writeEbookManifest(
 
 function logEpubCheckFail(filename: string, warnings: any[]): void {
   const simplified = warnings.map(msg => ({
-    location: `${msg.file.replace(/^\.\//, '')}:${msg.line} (${msg.col})`,
+    location: `${msg.file.replace(/^\.\//, ``)}:${msg.line} (${msg.col})`,
     error: `${msg.msg} ${msg.type}`,
   }));
   red(`EpubCheck failed for "${filename}" warnings below:`);

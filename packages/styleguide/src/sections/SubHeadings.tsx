@@ -7,8 +7,10 @@ const SubHeadings: React.FC = () => (
     <H2>Basic Sub-Headings:</H2>
     <Para>
       As noted in the <a href="chapter-headings">chapter-headings</a> section, chapter
-      headings use <i>two equals signs</i> <Code>== Some Title</Code>. <i>Secondary</i>{' '}
-      and <i>tertiary</i> headings can be designated by using <i>three</i> or <i>four</i>{' '}
+      headings use <i>two equals signs</i> <Code>== Some Title</Code>. <i>Secondary</i>
+      {` `}
+      and <i>tertiary</i> headings can be designated by using <i>three</i> or <i>four</i>
+      {` `}
       equals signs, respectively:
     </Para>
     <Pair id="sub-headings" emphasize={[3, 9]} />

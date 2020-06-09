@@ -18,17 +18,17 @@ async function logDownload(
   { path, headers = {} }: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const referrer = headers.referer || '';
-  const pathParts = path.replace(/.*\/log\/download\//, '').split('/');
-  const docId = pathParts.shift() || '';
-  const filename = pathParts.pop() || '';
-  const format = (pathParts.pop() || '') as DownloadFormat;
-  const editionPath = pathParts.join('/');
-  const editionType = (editionPath || '').split('/').pop() as EditionType;
+  const referrer = headers.referer || ``;
+  const pathParts = path.replace(/.*\/log\/download\//, ``).split(`/`);
+  const docId = pathParts.shift() || ``;
+  const filename = pathParts.pop() || ``;
+  const format = (pathParts.pop() || ``) as DownloadFormat;
+  const editionPath = pathParts.join(`/`);
+  const editionType = (editionPath || ``).split(`/`).pop() as EditionType;
   const cloudPath = `${editionPath}/${filename}`;
-  let redirUri = `${env('CLOUD_STORAGE_BUCKET_URL')}/${cloudPath}`;
+  let redirUri = `${env(`CLOUD_STORAGE_BUCKET_URL`)}/${cloudPath}`;
 
-  if (!['original', 'modernized', 'updated'].includes(editionType)) {
+  if (![`original`, `modernized`, `updated`].includes(editionType)) {
     respond.clientError(`Bad editionType to /log/download: ${editionType}`);
     return;
   }
@@ -41,30 +41,30 @@ async function logDownload(
   let audioQuality: AudioQuality | undefined;
   let audioPartNumber: number | undefined;
 
-  if (format === 'podcast') {
-    audioQuality = filename.endsWith('--lq.rss') ? 'LQ' : 'HQ';
+  if (format === `podcast`) {
+    audioQuality = filename.endsWith(`--lq.rss`) ? `LQ` : `HQ`;
     // @TODO this is duplicated in Audio.podcastRelFilepath() :(
-    redirUri = `${editionPath.replace(/^(en|es)\//, '/')}/${
-      audioQuality === 'LQ' ? 'lq/' : ''
+    redirUri = `${editionPath.replace(/^(en|es)\//, `/`)}/${
+      audioQuality === `LQ` ? `lq/` : ``
     }podcast.rss`;
   }
 
-  if (format === 'mp3') {
-    audioQuality = filename.endsWith('--lq.mp3') ? 'LQ' : 'HQ';
+  if (format === `mp3`) {
+    audioQuality = filename.endsWith(`--lq.mp3`) ? `LQ` : `HQ`;
     audioPartNumber = 1;
     filename.replace(/--pt(\d+)(--lq)?\.mp3$/, (_, num) => {
       audioPartNumber = Number(num);
-      return '';
+      return ``;
     });
   }
 
-  if (format === 'mp3-zip' || format === 'm4b') {
-    audioQuality = filename.match(/--lq\.(zip|m4b)$/) ? 'LQ' : 'HQ';
+  if (format === `mp3-zip` || format === `m4b`) {
+    audioQuality = filename.match(/--lq\.(zip|m4b)$/) ? `LQ` : `HQ`;
   }
 
   respond.redirect(redirUri);
 
-  const userAgent = headers['user-agent'] || '';
+  const userAgent = headers[`user-agent`] || ``;
   const parsedUserAgent = useragent.parse(userAgent);
   if (parsedUserAgent.isBot || isbot(userAgent)) {
     log.debug(`Bot download: \`${userAgent}\``);
@@ -72,19 +72,19 @@ async function logDownload(
   }
 
   let location: Record<string, string | number | null> = {};
-  if (headers['client-ip']) {
+  if (headers[`client-ip`]) {
     try {
-      const ipRes = await fetch(`https://ipapi.co/${headers['client-ip']}/json/`);
+      const ipRes = await fetch(`https://ipapi.co/${headers[`client-ip`]}/json/`);
       const json = await ipRes.json();
-      if (typeof json === 'object') {
+      if (typeof json === `object`) {
         location = {
-          ip: nullableLocationProp('string', json.ip),
-          city: nullableLocationProp('string', json.city),
-          region: nullableLocationProp('string', json.region),
-          country: nullableLocationProp('string', json.country_name),
-          postalCode: nullableLocationProp('string', json.postal),
-          latitude: nullableLocationProp('number', json.latitude),
-          longitude: nullableLocationProp('number', json.longitude),
+          ip: nullableLocationProp(`string`, json.ip),
+          city: nullableLocationProp(`string`, json.city),
+          region: nullableLocationProp(`string`, json.region),
+          country: nullableLocationProp(`string`, json.country_name),
+          postalCode: nullableLocationProp(`string`, json.postal),
+          latitude: nullableLocationProp(`number`, json.latitude),
+          longitude: nullableLocationProp(`number`, json.longitude),
         };
       }
     } catch {
@@ -110,9 +110,9 @@ async function logDownload(
 
   const [error] = await createDownload(download);
   if (error) {
-    log.error('error adding download to db', { error });
+    log.error(`error adding download to db`, { error });
   } else {
-    log.debug('Download added to db:', { download });
+    log.debug(`Download added to db:`, { download });
   }
 
   sendSlack(parsedUserAgent, referrer, cloudPath, location);
@@ -126,18 +126,18 @@ function sendSlack(
   cloudPath: string,
   location: Record<string, string | number | null>,
 ): void {
-  const device = [ua.platform, ua.os, ua.browser, ua.isMobile ? 'mobile' : 'non-mobile']
-    .filter(part => part !== 'unknown')
-    .join(' / ');
+  const device = [ua.platform, ua.os, ua.browser, ua.isMobile ? `mobile` : `non-mobile`]
+    .filter(part => part !== `unknown`)
+    .join(` / `);
 
-  const from = referrer ? `, from url: \`${referrer}\`` : '';
+  const from = referrer ? `, from url: \`${referrer}\`` : ``;
 
-  let where = '';
+  let where = ``;
   if (location.latitude) {
     const mapUrl = `https://www.google.com/maps/@${location.latitude},${location.longitude},14z`;
     const parts = [location.city, location.region, location.postalCode, location.country]
       .filter(Boolean)
-      .join(' / ');
+      .join(` / `);
     where = `, location: \`${parts}\` ${mapUrl}`;
   }
 
@@ -148,7 +148,7 @@ function nullableLocationProp(
   type: 'string' | 'number',
   value: any,
 ): string | number | null {
-  if (typeof value !== 'string' && typeof value !== 'number') {
+  if (typeof value !== `string` && typeof value !== `number`) {
     return null;
   }
 
@@ -157,7 +157,7 @@ function nullableLocationProp(
   }
 
   // some IPs are restricted with a `"Sign up to access"` value
-  if (typeof value === 'string' && value.match(/sign up/i)) {
+  if (typeof value === `string` && value.match(/sign up/i)) {
     return null;
   }
 

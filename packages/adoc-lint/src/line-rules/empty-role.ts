@@ -6,7 +6,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '' || line[0] !== '[' || line[line.length - 1] !== ']') {
+  if (line === `` || line[0] !== `[` || line[line.length - 1] !== `]`) {
     return [];
   }
 
@@ -19,14 +19,14 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: line.length - 1,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'empty classname (periods must be followed by something or omitted)',
+      message: `empty classname (periods must be followed by something or omitted)`,
       fixable: false,
-      recommendation: line.replace(/\.\]$/, ']'),
+      recommendation: line.replace(/\.\]$/, `]`),
     },
   ];
 };
 
-rule.slug = 'empty-role';
+rule.slug = `empty-role`;
 export default rule;

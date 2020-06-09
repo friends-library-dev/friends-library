@@ -1,7 +1,7 @@
 import { Asciidoc } from '@friends-library/types';
 
 export function isAsciidocBracketLine(line: Asciidoc): boolean {
-  return line[0] === '[' && line[line.length - 1] === ']';
+  return line[0] === `[` && line[line.length - 1] === `]`;
 }
 
 export function isFootnotePoetryLine(

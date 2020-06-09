@@ -15,11 +15,11 @@ export function useEscapeable(
     const escape: (e: KeyboardEvent) => any = ({ keyCode }) => {
       isOpen && keyCode === 27 && setIsOpen(false);
     };
-    document.addEventListener('click', click);
-    document.addEventListener('keydown', escape);
+    document.addEventListener(`click`, click);
+    document.addEventListener(`keydown`, escape);
     return () => {
-      document.removeEventListener('click', click);
-      window.removeEventListener('keydown', escape);
+      document.removeEventListener(`click`, click);
+      window.removeEventListener(`keydown`, escape);
     };
   }, [isOpen, setIsOpen, selector]);
 }

@@ -17,12 +17,12 @@ interface Props {
 const DropdownSearchResults: React.FC<Props> = ({
   className,
   allSearchResults: allResults,
-  searchState: { query = '' },
+  searchState: { query = `` },
 }) => {
   const hasResults = allResults && Object.values(allResults).some(r => r && r.nbHits > 0);
   if (!hasResults && query.length < 3) {
     return (
-      <div className={cx(query.length < 3 && 'hidden')}>
+      <div className={cx(query.length < 3 && `hidden`)}>
         <Index indexName={`${LANG}_docs`} />
         <Index indexName={`${LANG}_friends`} />
         <Index indexName={`${LANG}_pages`} />
@@ -33,14 +33,14 @@ const DropdownSearchResults: React.FC<Props> = ({
     <div
       className={cx(
         className,
-        'DropdownSearchResults border border-flgray-400 rounded-md bg-white',
-        'absolute right-0 top-0 mt-16',
+        `DropdownSearchResults border border-flgray-400 rounded-md bg-white`,
+        `absolute right-0 top-0 mt-16`,
       )}
     >
       <div className="p-3">
         {!hasResults && (
           <p className="text-center px-2 py-3 text-gray-800 tracking-wide">
-            {t`No results for query`}:{' '}
+            {t`No results for query`}:{` `}
             <b className="antialiased">&ldquo;{query}&rdquo;</b>
           </p>
         )}

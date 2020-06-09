@@ -40,13 +40,13 @@ export const query = graphql`
 
 async function submit(data: Record<string, string>): Promise<boolean> {
   try {
-    const { status } = await window.fetch('/.netlify/functions/site/contact', {
-      method: 'POST',
-      credentials: 'omit',
+    const { status } = await window.fetch(`/.netlify/functions/site/contact`, {
+      method: `POST`,
+      credentials: `omit`,
       body: JSON.stringify({ ...data, lang: LANG }),
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+        'Content-Type': `application/json`,
+        Accept: `application/json`,
       },
     });
     return status === 204;

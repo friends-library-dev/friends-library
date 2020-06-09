@@ -9,7 +9,7 @@ export interface EditionCache {
 
 export function getDpcCache(): Map<string, EditionCache> {
   const cache: Map<string, EditionCache> = new Map();
-  if (NODE_ENV !== 'development') {
+  if (NODE_ENV !== `development`) {
     return cache;
   }
 
@@ -26,7 +26,7 @@ export function getDpcCache(): Map<string, EditionCache> {
 }
 
 export function persistDpcCache(dpcCache: Map<string, EditionCache>): void {
-  if (NODE_ENV === 'development') {
+  if (NODE_ENV === `development`) {
     fs.writeFileSync(CACHE_PATH, JSON.stringify([...dpcCache], null, 2));
   }
 }

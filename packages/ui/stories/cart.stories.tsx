@@ -19,8 +19,8 @@ const StatefulCart: React.FC = () => {
         cart.items = items.map(i => new CartItemModel(i));
         setItems(items);
       }}
-      checkout={a('checkout')}
-      onContinueBrowsing={a('continue browsing')}
+      checkout={a(`checkout`)}
+      onContinueBrowsing={a(`continue browsing`)}
     />
   );
 };
@@ -37,12 +37,12 @@ const StatefulCartItem: React.FC = () => {
       quantity={qty}
       price={422}
       changeQty={setQty}
-      remove={a('remove')}
+      remove={a(`remove`)}
     />
   );
 };
 
-storiesOf('Cart', module)
+storiesOf(`Cart`, module)
   .addDecorator(coverSizes)
-  .add('Cart', () => <StatefulCart />)
-  .add('CartItem', () => <StatefulCartItem />);
+  .add(`Cart`, () => <StatefulCart />)
+  .add(`CartItem`, () => <StatefulCartItem />);

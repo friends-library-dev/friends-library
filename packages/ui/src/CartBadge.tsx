@@ -12,7 +12,7 @@ const CartBadge: React.FC<Props> = ({ onClick, className }) => {
     <div
       className={cx(
         className,
-        'CartBadge rounded-full border-flprimary border-solid border flex flex-row items-center justify-center relative cursor-pointer',
+        `CartBadge rounded-full border-flprimary border-solid border flex flex-row items-center justify-center relative cursor-pointer`,
       )}
       onClick={onClick}
     >

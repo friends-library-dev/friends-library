@@ -28,8 +28,8 @@ const ActiveFilters: React.FC<Props> = ({ groups, clearAll }) => {
         {groups.map(group => (
           <div
             className={cx(
-              'ActiveFilters__Group bg-blue-200* my-1 mb-2',
-              'md:flex md:flex-wrap md:mx-2',
+              `ActiveFilters__Group bg-blue-200* my-1 mb-2`,
+              `md:flex md:flex-wrap md:mx-2`,
             )}
             key={group.label}
           >

@@ -16,7 +16,7 @@ const Seo: React.FC<Props> = ({ title, description }) => (
     <meta
       name="description"
       content={
-        Array.isArray(description) ? description[LANG === 'en' ? 0 : 1] : description
+        Array.isArray(description) ? description[LANG === `en` ? 0 : 1] : description
       }
     />
   </Helmet>

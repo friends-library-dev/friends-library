@@ -9,12 +9,12 @@ interface Props {
   className?: string;
 }
 
-const SampleToc: React.FC<Props> = ({ chapters, onClose, className = '' }) => {
+const SampleToc: React.FC<Props> = ({ chapters, onClose, className = `` }) => {
   return (
     <div
       className={cx(
         className,
-        'SampleToc p-8 px-16 pb-8 bg-white border-flprimary relative',
+        `SampleToc p-8 px-16 pb-8 bg-white border-flprimary relative`,
       )}
     >
       <h5 className="font-sans uppercase text-center text-xl tracking-wider mb-6">
@@ -40,7 +40,7 @@ const Chapter: React.FC<Omit<Heading, 'id'>> = ({ text, shortText, sequence }) =
       {sequence && (
         <b className="antialiased pr-2">
           {sequence.type} {sequence.number}
-          {shortText || text ? ':' : ''}
+          {shortText || text ? `:` : ``}
         </b>
       )}
       {shortText || text}

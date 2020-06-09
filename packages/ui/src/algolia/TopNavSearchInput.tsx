@@ -9,7 +9,7 @@ interface Props {
 }
 
 const TopNavSearchInput: React.FC<Props> = ({ searching, refine }) => {
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(``);
   const throttledSearch = useRef<(s: string) => any>(throttle(refine, 150));
   return (
     <SearchInput

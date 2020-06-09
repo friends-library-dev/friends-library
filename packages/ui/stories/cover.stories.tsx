@@ -14,20 +14,19 @@ import { CoverProps, PrintSize, syntax as css } from '@friends-library/types';
 import { addStaticCoverCss } from './helpers';
 
 export const props: CoverProps & { htmlShortTitle: string } = {
-  lang: 'en',
-  size: 's',
+  lang: `en`,
+  size: `s`,
   pages: 222,
   isCompilation: false,
-  blurb:
-    'Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart. Having witnessed in his own soul, he to.',
+  blurb: `Samuel Rundell (1762 - 1848) was a wool-dealer who lived in Liskeard, a small town in southwest England. When young he befriended that worthy elder and "mother in Israel" Catherine Payton (Phillips), whose wisdom and piety no doubt made lasting impressions upon him. As a minister and author, Rundell was particularly concerned to press the necessity of a real and living experience of inward purification by an unreserved obedience to the light or Spirit of Christ working in the heart. Having witnessed in his own soul, he to.`,
   showGuides: false,
-  edition: 'updated',
-  title: 'The Work of Vital Religion in the Soul',
-  htmlShortTitle: 'The Work of Vital Religion in the Soul',
-  isbn: '978-1-64476-000-0',
-  author: 'Samuel Rundell',
-  customCss: '',
-  customHtml: '',
+  edition: `updated`,
+  title: `The Work of Vital Religion in the Soul`,
+  htmlShortTitle: `The Work of Vital Religion in the Soul`,
+  isbn: `978-1-64476-000-0`,
+  author: `Samuel Rundell`,
+  customCss: ``,
+  customHtml: ``,
 };
 
 addStaticCoverCss(
@@ -53,30 +52,30 @@ addStaticCoverCss(
   `,
 );
 
-storiesOf('Cover', module)
+storiesOf(`Cover`, module)
   .addDecorator(centered)
   .addDecorator(storyFn => <div className="Cover-storybook-bg">{storyFn()}</div>)
-  .add('back (s, m, xl)', () => (
+  .add(`back (s, m, xl)`, () => (
     <div className="all-sizes">
-      <Wrapped type="back" {...{ scope: 's', size: 's' }} />
-      <Wrapped type="back" {...{ scope: 'm', size: 'm' }} />
-      <Wrapped type="back" {...{ scope: 'xl', size: 'xl' }} />
+      <Wrapped type="back" {...{ scope: `s`, size: `s` }} />
+      <Wrapped type="back" {...{ scope: `m`, size: `m` }} />
+      <Wrapped type="back" {...{ scope: `xl`, size: `xl` }} />
       <Style type="back" size="s" scope="s" />
       <Style type="back" size="m" scope="m" />
       <Style type="back" size="xl" scope="xl" />
     </div>
   ))
-  .add('front (s, m, xl)', () => (
+  .add(`front (s, m, xl)`, () => (
     <div className="all-sizes">
-      <Front {...p({ scope: 's', size: 's' })} />
-      <Front {...p({ scope: 'm', size: 'm' })} />
-      <Front {...p({ scope: 'xl', size: 'xl' })} />
+      <Front {...p({ scope: `s`, size: `s` })} />
+      <Front {...p({ scope: `m`, size: `m` })} />
+      <Front {...p({ scope: `xl`, size: `xl` })} />
       <Style type="front" size="s" scope="s" />
       <Style type="front" size="m" scope="m" />
       <Style type="front" size="xl" scope="xl" />
     </div>
   ))
-  .add('front-main (multi)', () => {
+  .add(`front-main (multi)`, () => {
     const books: [string, string, string][] = [];
     // @ts-ignore
     (window.FRIENDS as any).forEach(friend => {
@@ -108,24 +107,24 @@ storiesOf('Cover', module)
         `}</style>
         {books.map(([scope, title, author]) => (
           <div className="square">
-            <Front {...p({ scope, author, title, size: 's' })} />
+            <Front {...p({ scope, author, title, size: `s` })} />
             <Style type="front" scope={scope} author={author} size="s" />
           </div>
         ))}
       </div>
     );
   })
-  .add('back (scaled)', () => {
+  .add(`back (scaled)`, () => {
     const sizes: [string, number][] = [
-      ['back-full', 1],
-      ['back-half', 0.5],
-      ['back-third', 0.333333],
-      ['back-quarter', 0.225],
-      ['back-fifth', 0.14],
-      ['back-sixth', 0.1],
+      [`back-full`, 1],
+      [`back-half`, 0.5],
+      [`back-third`, 0.333333],
+      [`back-quarter`, 0.225],
+      [`back-fifth`, 0.14],
+      [`back-sixth`, 0.1],
     ];
     return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: `flex`, alignItems: `center` }}>
         {sizes.map(([scope, scaler]) => (
           <>
             <Wrapped type="back" {...{ scope, scaler }} />
@@ -135,17 +134,17 @@ storiesOf('Cover', module)
       </div>
     );
   })
-  .add('front (scaled)', () => {
+  .add(`front (scaled)`, () => {
     const sizes: [string, number][] = [
-      ['full', 1],
-      ['half', 0.5],
-      ['third', 0.333333],
-      ['quarter', 0.225],
-      ['fifth', 0.14],
-      ['sixth', 0.1],
+      [`full`, 1],
+      [`half`, 0.5],
+      [`third`, 0.333333],
+      [`quarter`, 0.225],
+      [`fifth`, 0.14],
+      [`sixth`, 0.1],
     ];
     return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: `flex`, alignItems: `center` }}>
         {sizes.map(([scope, scaler]) => (
           <>
             <Front {...p({ scope, scaler })} />
@@ -155,44 +154,44 @@ storiesOf('Cover', module)
       </div>
     );
   })
-  .add('3d (angle-back)', () => (
+  .add(`3d (angle-back)`, () => (
     <div>
       <ThreeD {...props} perspective="angle-back" />
       <Style type="3d" />
     </div>
   ))
-  .add('3d (angle-front)', () => (
+  .add(`3d (angle-front)`, () => (
     <div>
       <ThreeD {...props} perspective="angle-front" />
       <Style type="3d" />
     </div>
   ))
-  .add('pdf', () => (
+  .add(`pdf`, () => (
     <div>
       <PrintPdf {...props} />
       <Style type="pdf" />
     </div>
   ))
-  .add('pdf (no-bleed)', () => (
+  .add(`pdf (no-bleed)`, () => (
     <div>
       <PrintPdf {...props} bleed={false} />
       <Style type="pdf" />
     </div>
   ))
-  .add('pdf (guides)', () => (
+  .add(`pdf (guides)`, () => (
     <div>
       <PrintPdf {...p({ showGuides: true })} />
       <Style type="pdf" showGuides={true} />
     </div>
   ))
-  .add('spine', () => (
+  .add(`spine`, () => (
     <div>
       <Wrapped type="spine" />
       <Style type="spine" />
     </div>
   ))
-  .add('spine (s, m, xl)', () => {
-    const sizes: PrintSize[] = ['s', 'm', 'xl'];
+  .add(`spine (s, m, xl)`, () => {
+    const sizes: PrintSize[] = [`s`, `m`, `xl`];
     return (
       <div>
         {sizes.map(size => {
@@ -210,13 +209,13 @@ storiesOf('Cover', module)
       </div>
     );
   })
-  .add('back', () => (
+  .add(`back`, () => (
     <div>
       <Wrapped type="back" />
       <Style type="back" />
     </div>
   ))
-  .add('front', () => (
+  .add(`front`, () => (
     <div>
       <Front {...props} />
       <Style type="front" />
@@ -241,12 +240,12 @@ const Style: React.FC<{
   return (
     <style>
       {coverCss.common(...args)[1]}
-      {['front', '3d', 'pdf'].includes(type) ? coverCss.front(...args)[1] : ''}
-      {['back', '3d', 'pdf'].includes(type) ? coverCss.back(...args)[1] : ''}
-      {['spine', '3d', 'pdf'].includes(type) ? coverCss.spine(...args)[1] : ''}
-      {useProps.showGuides ? coverCss.guides(...args)[1] : ''}
-      {type === '3d' ? coverCss.threeD(...args)[1] : ''}
-      {type === 'pdf' ? coverCss.pdf(useProps, ...args)[1] : ''}
+      {[`front`, `3d`, `pdf`].includes(type) ? coverCss.front(...args)[1] : ``}
+      {[`back`, `3d`, `pdf`].includes(type) ? coverCss.back(...args)[1] : ``}
+      {[`spine`, `3d`, `pdf`].includes(type) ? coverCss.spine(...args)[1] : ``}
+      {useProps.showGuides ? coverCss.guides(...args)[1] : ``}
+      {type === `3d` ? coverCss.threeD(...args)[1] : ``}
+      {type === `pdf` ? coverCss.pdf(useProps, ...args)[1] : ``}
     </style>
   );
 };
@@ -261,8 +260,8 @@ const Wrapped: React.FC<Partial<CoverProps> & {
       className={wrapClasses(useProps, `type--${wProps.type}`)}
       style={wProps.style ? wProps.style : {}}
     >
-      {wProps.type === 'back' && <Back {...useProps} />}
-      {wProps.type === 'spine' && <Spine {...useProps} />}
+      {wProps.type === `back` && <Back {...useProps} />}
+      {wProps.type === `spine` && <Spine {...useProps} />}
     </div>
   );
 };

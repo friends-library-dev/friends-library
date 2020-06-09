@@ -11,10 +11,10 @@ import { bgLayer } from './lib/color';
 import './Footer.css';
 
 const Footer: React.FC<{ bgImg: FluidBgImageObject }> = ({ bgImg }) => {
-  const Logo = LANG === 'en' ? FriendsLogo : AmigosLogo;
+  const Logo = LANG === `en` ? FriendsLogo : AmigosLogo;
   return (
     <BackgroundImage
-      fluid={[bgLayer('flprimary', 0.8), bgImg, bgLayer('flprimary')]}
+      fluid={[bgLayer(`flprimary`, 0.8), bgImg, bgLayer(`flprimary`)]}
       id="Footer"
       Tag="footer"
       rootMargin="300px"
@@ -24,20 +24,20 @@ const Footer: React.FC<{ bgImg: FluidBgImageObject }> = ({ bgImg }) => {
       <div className="Footer__main">
         <div
           className={cx(
-            'text-center flex flex-col items-center px-8 py-12',
-            'md:text-left md:flex-row md:items-start md:justify-between',
-            LANG === 'es' && 'md:pr-0',
-            'lg:p-20',
-            'xl:px-40 xl:py-24',
+            `text-center flex flex-col items-center px-8 py-12`,
+            `md:text-left md:flex-row md:items-start md:justify-between`,
+            LANG === `es` && `md:pr-0`,
+            `lg:p-20`,
+            `xl:px-40 xl:py-24`,
           )}
         >
           <Logo
             iconColor="white"
             friendsColor="white"
             libraryColor="white"
-            className={cx('fill-current', 'mb-10 py-2', 'md:mr-4', {
-              'w-48': LANG === 'es',
-              'w-40': LANG === 'en',
+            className={cx(`fill-current`, `mb-10 py-2`, `md:mr-4`, {
+              'w-48': LANG === `es`,
+              'w-40': LANG === `en`,
             })}
           />
           <div className="columns flex-grow md:flex md:ml-8 lg:ml-20 max-w-screen-lg">
@@ -54,10 +54,10 @@ const Footer: React.FC<{ bgImg: FluidBgImageObject }> = ({ bgImg }) => {
               title={t`About`}
               links={[
                 [t`/quakers`, t`About the Quakers`],
-                ['/modernization', 'About modernization', 'en'],
-                ['/editions', 'About book editions', 'en'],
-                ['/spanish-translations', 'About Spanish translations', 'en'],
-                ['/nuestras-traducciones', 'Nuestras Traducciones', 'es'],
+                [`/modernization`, `About modernization`, `en`],
+                [`/editions`, `About book editions`, `en`],
+                [`/spanish-translations`, `About Spanish translations`, `en`],
+                [`/nuestras-traducciones`, `Nuestras Traducciones`, `es`],
                 [t`/about`, t`About this Site`],
               ]}
             />
@@ -89,7 +89,7 @@ const LinkList: React.FC<{
   last?: boolean;
 }> = ({ title, links, last }) => {
   return (
-    <dl className={cx(!last && 'mb-10 md:mb-0 md:pr-8', 'md:flex-grow')}>
+    <dl className={cx(!last && `mb-10 md:mb-0 md:pr-8`, `md:flex-grow`)}>
       <dt className="text-xl font-semibold mb-5 tracking-widest">{title}</dt>
       <dd>
         <ul className="text-gray-300">

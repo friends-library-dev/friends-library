@@ -53,37 +53,37 @@ export interface DocPrecursor {
 
 export function genericDpc(): DocPrecursor {
   return {
-    lang: 'en',
-    friendSlug: 'george-fox',
-    friendInitials: ['G', 'F'],
-    documentSlug: 'journal',
-    path: 'en/george-fox/journal/original',
-    documentId: '9414033c-4b70-4b4b-8e48-fec037822173',
+    lang: `en`,
+    friendSlug: `george-fox`,
+    friendInitials: [`G`, `F`],
+    documentSlug: `journal`,
+    path: `en/george-fox/journal/original`,
+    documentId: `9414033c-4b70-4b4b-8e48-fec037822173`,
     isCompilation: false,
-    editionType: 'original',
-    asciidoc: '',
+    editionType: `original`,
+    asciidoc: ``,
     epigraphs: [],
     sections: [],
     paperbackSplits: [],
-    blurb: '',
+    blurb: ``,
     notes: new Map(),
     config: {},
     customCode: { css: {}, html: {} },
     meta: {
-      title: 'Journal of George Fox',
-      isbn: '978-1-64476-029-1',
-      author: { name: 'George Fox', nameSort: 'Fox, George' },
+      title: `Journal of George Fox`,
+      isbn: `978-1-64476-029-1`,
+      author: { name: `George Fox`, nameSort: `Fox, George` },
     },
-    revision: { timestamp: Date.now(), sha: '', url: '' },
+    revision: { timestamp: Date.now(), sha: ``, url: `` },
   };
 }
 
 export const ARTIFACT_TYPES = [
-  'paperback-interior',
-  'paperback-cover',
-  'web-pdf',
-  'epub',
-  'mobi',
+  `paperback-interior`,
+  `paperback-cover`,
+  `web-pdf`,
+  `epub`,
+  `mobi`,
 ] as const;
 
 export type ArtifactType = typeof ARTIFACT_TYPES[number];

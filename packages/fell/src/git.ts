@@ -44,7 +44,7 @@ export async function sync(repoPath: Repo): Promise<void> {
     await repo.fetchAll({ ...remoteCallbacks });
     await repo.mergeBranches(
       branch,
-      'origin/master',
+      `origin/master`,
       repo.defaultSignature(),
       NodeGit.Merge.PREFERENCE.FASTFORWARD_ONLY,
     );
@@ -56,7 +56,7 @@ export async function sync(repoPath: Repo): Promise<void> {
 
 export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Repository> {
   const opts = { fetchOpts: remoteCallbacks };
-  if (url.startsWith('https')) {
+  if (url.startsWith(`https`)) {
     delete opts.fetchOpts.callbacks.credentials;
   }
   try {
@@ -71,8 +71,8 @@ export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Reposi
 // @see https://github.com/nodegit/nodegit/blob/master/examples/add-and-commit.js
 export async function commitAll(repoPath: Repo, message: string): Promise<NodeGit.Oid> {
   const { FELL_GIT_USER, FELL_GIT_EMAIL } = env.require(
-    'FELL_GIT_USER',
-    'FELL_GIT_EMAIL',
+    `FELL_GIT_USER`,
+    `FELL_GIT_EMAIL`,
   );
   const repo = await getRepo(repoPath);
   const signature = NodeGit.Signature.now(FELL_GIT_USER, FELL_GIT_EMAIL);
@@ -80,22 +80,22 @@ export async function commitAll(repoPath: Repo, message: string): Promise<NodeGi
   await index.addAll();
   index.write();
   const oid = await index.writeTree();
-  const head = await NodeGit.Reference.nameToId(repo, 'HEAD');
+  const head = await NodeGit.Reference.nameToId(repo, `HEAD`);
   const parent = await repo.getCommit(head);
-  return repo.createCommit('HEAD', signature, signature, message, oid, [parent]);
+  return repo.createCommit(`HEAD`, signature, signature, message, oid, [parent]);
 }
 
 export async function push(
   repoPath: Repo,
   branch: string,
   force = false,
-  remoteName = 'origin',
+  remoteName = `origin`,
 ): Promise<void> {
   const repo = await getRepo(repoPath);
   const remote = await repo.getRemote(remoteName);
   try {
     await remote.push(
-      [`${force ? '+' : ''}refs/heads/${branch}:refs/heads/${branch}`],
+      [`${force ? `+` : ``}refs/heads/${branch}:refs/heads/${branch}`],
       remoteCallbacks,
     );
   } catch (error) {
@@ -125,7 +125,7 @@ export async function isAheadOfMaster(repoPath: Repo): Promise<boolean> {
 
   const priorShas: string[] = await new Promise(resolve => {
     const stream = masterCommit.history();
-    stream.on('end', (commits: NodeGit.Commit[]) =>
+    stream.on(`end`, (commits: NodeGit.Commit[]) =>
       resolve(commits.map((commit: NodeGit.Commit) => commit.sha())),
     );
     stream.start();

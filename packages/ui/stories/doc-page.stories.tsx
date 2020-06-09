@@ -20,48 +20,48 @@ import DownloadAudiobook from '../src/pages/document/DownloadAudiobook';
 import DownloadOptions from '../src/DownloadOptions';
 import PopUnder from '../src/PopUnder';
 
-storiesOf('Doc Page', module)
+storiesOf(`Doc Page`, module)
   .addDecorator(coverSizes)
   .addDecorator(centered)
   .addDecorator(storyFn => (
     <div className="bg-gray-800 w-screen h-screen">{storyFn()}</div>
   ))
-  .add('QualitySwitch', () => <StatefulSwitch />)
-  .add('TocHamburger', () => <TocHamburger />)
-  .add('Tablet', () => <Tablet />)
-  .add('SampleToc', () => <SampleToc onClose={a('close')} chapters={chapters} />);
+  .add(`QualitySwitch`, () => <StatefulSwitch />)
+  .add(`TocHamburger`, () => <TocHamburger />)
+  .add(`Tablet`, () => <Tablet />)
+  .add(`SampleToc`, () => <SampleToc onClose={a(`close`)} chapters={chapters} />);
 
-storiesOf('Doc Page', module)
+storiesOf(`Doc Page`, module)
   .addDecorator(centered)
-  .add('DownloadOptions', () => <DownloadOptions />)
-  .add('ChooseFormat', () => (
-    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
-      <ChooseFormat onChoose={a('choose format')} />
+  .add(`DownloadOptions`, () => <DownloadOptions />)
+  .add(`ChooseFormat`, () => (
+    <PopUnder style={{ width: `22rem`, maxWidth: `100vw` }} tailwindBgColor="flblue">
+      <ChooseFormat onChoose={a(`choose format`)} />
     </PopUnder>
   ))
-  .add('Downloading', () => (
-    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
+  .add(`Downloading`, () => (
+    <PopUnder style={{ width: `22rem`, maxWidth: `100vw` }} tailwindBgColor="flblue">
       <Downloading />
     </PopUnder>
   ))
-  .add('ChooseEbookType', () => (
-    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
-      <ChooseEbookType recommendation="epub" onChoose={a('choose ebook type')} />
+  .add(`ChooseEbookType`, () => (
+    <PopUnder style={{ width: `22rem`, maxWidth: `100vw` }} tailwindBgColor="flblue">
+      <ChooseEbookType recommendation="epub" onChoose={a(`choose ebook type`)} />
     </PopUnder>
   ))
-  .add('ChooseEdition', () => (
-    <PopUnder style={{ width: '22rem', maxWidth: '100vw' }} tailwindBgColor="flblue">
+  .add(`ChooseEdition`, () => (
+    <PopUnder style={{ width: `22rem`, maxWidth: `100vw` }} tailwindBgColor="flblue">
       <ChooseEdition
-        editions={['updated', 'modernized', 'original']}
-        onSelect={a('select')}
+        editions={[`updated`, `modernized`, `original`]}
+        onSelect={a(`select`)}
       />
     </PopUnder>
   ));
 
-storiesOf('Doc Page', module)
+storiesOf(`Doc Page`, module)
   .addDecorator(coverSizes)
-  .add('DownloadAudiobook', () => {
-    const [quality, setQuality] = useState<AudioQuality>('HQ');
+  .add(`DownloadAudiobook`, () => {
+    const [quality, setQuality] = useState<AudioQuality>(`HQ`);
     return (
       <div className="p-6 bg-flgray-200">
         <DownloadAudiobook
@@ -82,10 +82,10 @@ storiesOf('Doc Page', module)
       </div>
     );
   })
-  .add('ReadSampleBlock', () => (
+  .add(`ReadSampleBlock`, () => (
     <ReadSampleBlock price={499} hasAudio={true} chapters={chapters} />
   ))
-  .add('ListenBlock', () => (
+  .add(`ListenBlock`, () => (
     <ListenBlock
       complete={true}
       title="Sweet Track"
@@ -95,18 +95,18 @@ storiesOf('Doc Page', module)
       trackIdHq={236087816}
       numAudioParts={1}
       m4bFilesizeHq="36MB"
-      m4bFilesizeLq={'15MB'}
-      mp3ZipFilesizeHq={'42MB'}
-      mp3ZipFilesizeLq={'17MB'}
-      m4bUrlHq={'/'}
-      m4bUrlLq={'/'}
-      mp3ZipUrlHq={'/'}
-      mp3ZipUrlLq={'/'}
-      podcastUrlHq={'/'}
-      podcastUrlLq={'/'}
+      m4bFilesizeLq={`15MB`}
+      mp3ZipFilesizeHq={`42MB`}
+      mp3ZipFilesizeLq={`17MB`}
+      m4bUrlHq={`/`}
+      m4bUrlLq={`/`}
+      mp3ZipUrlHq={`/`}
+      mp3ZipUrlLq={`/`}
+      podcastUrlHq={`/`}
+      podcastUrlLq={`/`}
     />
   ))
-  .add('DocBlock', () => (
+  .add(`DocBlock`, () => (
     <DocBlock
       lang="en"
       title="The Journal and Writings of Ambrose Rigge"
@@ -132,12 +132,12 @@ storiesOf('Doc Page', module)
       editions={[]}
     />
   ))
-  .add('DownloadWizard', () => (
-    <div style={{ transform: 'translate(50%)', marginTop: 50 }}>
+  .add(`DownloadWizard`, () => (
+    <div style={{ transform: `translate(50%)`, marginTop: 50 }}>
       <DownloadWizard
-        editions={['updated', 'modernized', 'original']}
+        editions={[`updated`, `modernized`, `original`]}
         eBookTypeRecommendation="epub"
-        onSelect={a('select')}
+        onSelect={a(`select`)}
       />
     </div>
   ));
@@ -146,37 +146,37 @@ const blurb = `Ambrose Rigge (1635-1705) was early convinced of the truth throug
 
 const chapters = [
   {
-    id: 'one',
-    text: 'This is a chapter title that is way too long',
-    shortText: 'This is a chapter title',
+    id: `one`,
+    text: `This is a chapter title that is way too long`,
+    shortText: `This is a chapter title`,
     sequence: {
-      type: 'Chapter',
+      type: `Chapter`,
       number: 1,
     },
   },
   {
-    id: 'two',
-    text: 'This is a chapter title two',
+    id: `two`,
+    text: `This is a chapter title two`,
     sequence: {
-      type: 'Chapter',
+      type: `Chapter`,
       number: 2,
     },
   },
   {
-    id: 'three',
-    text: 'This is a chapter title three',
+    id: `three`,
+    text: `This is a chapter title three`,
     sequence: {
-      type: 'Chapter',
+      type: `Chapter`,
       number: 3,
     },
   },
   {
-    id: 'four',
-    text: 'Epilogue',
+    id: `four`,
+    text: `Epilogue`,
   },
 ];
 
 const StatefulSwitch: React.FC = () => {
-  const [quality, setQuality] = useState<AudioQuality>('HQ');
+  const [quality, setQuality] = useState<AudioQuality>(`HQ`);
   return <QualitySwitch quality={quality} onChange={setQuality} />;
 };

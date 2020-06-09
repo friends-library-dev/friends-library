@@ -10,6 +10,6 @@ store().then(store => {
     <Provider store={store}>
       <App />
     </Provider>,
-    document.getElementById('root'),
+    document.getElementById(`root`),
   );
 });

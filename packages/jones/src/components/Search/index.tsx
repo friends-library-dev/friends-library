@@ -40,13 +40,13 @@ const Results = styled.div`
   overflow: auto;
 `;
 
-let keepSearchTerm = '';
+let keepSearchTerm = ``;
 
 function initialState(): State {
   return {
     searchComplete: false,
     searchTerm: keepSearchTerm,
-    replaceTerm: '',
+    replaceTerm: ``,
     results: [] as SearchResultType[],
   };
 }
@@ -123,7 +123,7 @@ class Search extends React.Component<Props, State> {
   protected cancelSearch: () => void = () => {
     const { cancelSearch } = this.props;
     cancelSearch();
-    this.setState({ searchTerm: '', results: [] });
+    this.setState({ searchTerm: ``, results: [] });
   };
 
   protected dismissResult(index: number): void {
@@ -138,7 +138,7 @@ class Search extends React.Component<Props, State> {
     replaceAll({ results, replace: replaceTerm });
     this.setState({
       results: [] as SearchResultType[],
-      replaceTerm: '',
+      replaceTerm: ``,
       searchComplete: false,
     });
   };
@@ -175,7 +175,7 @@ class Search extends React.Component<Props, State> {
             />
           ))}
         </Results>
-        <KeyEvent handleKeys={['esc']} onKeyEvent={this.cancelSearch} />
+        <KeyEvent handleKeys={[`esc`]} onKeyEvent={this.cancelSearch} />
       </SearchWrap>
     );
   }

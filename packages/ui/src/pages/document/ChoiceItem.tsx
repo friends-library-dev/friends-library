@@ -20,8 +20,8 @@ const ChoiceItem: React.FC<Props> = ({
   <div
     onClick={onChoose}
     className={cx(
-      recommended && 'bg-flblue-700',
-      'hover:bg-flblue-800 py-4 pl-12 flex cursor-pointer',
+      recommended && `bg-flblue-700`,
+      `hover:bg-flblue-800 py-4 pl-12 flex cursor-pointer`,
     )}
   >
     <div className="w-12 mr-4 p-1">

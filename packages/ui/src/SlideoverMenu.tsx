@@ -11,7 +11,7 @@ import './SlideoverMenu.css';
 
 const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [cartQty, , store] = useCartTotalQuantity();
-  const Logo = LANG === 'en' ? FriendsLogo : AmigosLogo;
+  const Logo = LANG === `en` ? FriendsLogo : AmigosLogo;
   return (
     <nav className="SlideoverMenu bg-flmaroon text-white">
       <header className="p-5 flex border-b-4 border-flprimary-800">
@@ -41,10 +41,10 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <LinkGroup
           links={[
             [t`/quakers`, t`About the Quakers`],
-            ['/modernization', 'About Modernization', 'en'],
-            ['/editions', 'About Book Editions', 'en'],
-            ['/spanish-translations', 'About Spanish Books', 'en'],
-            ['/nuestras-traducciones', 'Nuestras Traducciones', 'es'],
+            [`/modernization`, `About Modernization`, `en`],
+            [`/editions`, `About Book Editions`, `en`],
+            [`/spanish-translations`, `About Spanish Books`, `en`],
+            [`/nuestras-traducciones`, `Nuestras Traducciones`, `es`],
             [t`/about`, t`About this Site`],
           ]}
         />
@@ -68,8 +68,8 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         />
         <LinkGroup
           links={[
-            ['https://www.bibliotecadelosamigos.org', 'Biblioteca de los Amigos', 'en'],
-            ['https://www.friendslibrary.com', 'Friends Library', 'es'],
+            [`https://www.bibliotecadelosamigos.org`, `Biblioteca de los Amigos`, `en`],
+            [`https://www.friendslibrary.com`, `Friends Library`, `es`],
           ]}
         />
       </div>
@@ -84,7 +84,7 @@ const LinkGroup: React.FC<{ links: LinkItem[] }> = ({ links }) => (
     {links
       .filter(([, , lang]) => !lang || lang === LANG)
       .map((link, idx) => {
-        if (typeof link == 'function') {
+        if (typeof link == `function`) {
           return (
             <li className="py-2" key={`fn-${idx}`}>
               {link()}
@@ -94,7 +94,7 @@ const LinkGroup: React.FC<{ links: LinkItem[] }> = ({ links }) => (
         const [href, text] = link;
         return (
           <li className="py-2" key={href}>
-            {href.startsWith('https') ? (
+            {href.startsWith(`https`) ? (
               <a href={href}>{text}</a>
             ) : (
               <Link to={href}>{text}</Link>

@@ -10,7 +10,7 @@ import migrate from './migrations';
 
 const defaultState: State = {
   version: 2,
-  screen: 'TASKS',
+  screen: `TASKS`,
   currentTask: undefined,
   tasks: emptyUndoable(),
   repos: [],
@@ -22,7 +22,7 @@ const defaultState: State = {
 
 async function loadState(): Promise<State | {}> {
   try {
-    let state = (await localForage.getItem('jones')) as SavedState;
+    let state = (await localForage.getItem(`jones`)) as SavedState;
     state = state || getLegacyState() || {};
     state = migrate(state);
     return {
@@ -40,7 +40,7 @@ async function loadState(): Promise<State | {}> {
 
 const saveState = (state: State): void => {
   try {
-    localForage.setItem('jones', state);
+    localForage.setItem(`jones`, state);
   } catch (err) {
     // ¯\_(ツ)_/¯
   }
@@ -50,8 +50,8 @@ const saveState = (state: State): void => {
 const sliceReducer = combineReducers(rootReducer);
 
 const reducer = (state: any = defaultState, action: Action): any => {
-  if (action.type === 'HARD_RESET') {
-    localForage.removeItem('jones');
+  if (action.type === `HARD_RESET`) {
+    localForage.removeItem(`jones`);
     return {
       ...defaultState,
       github: state.github,
@@ -83,9 +83,9 @@ export default async function(): Promise<any> {
   // @ts-ignore
   if (module.hot) {
     // @ts-ignore
-    module.hot.accept('./reducers', () => {
+    module.hot.accept(`./reducers`, () => {
       // eslint-disable global-require
-      const nextReducer = require('./reducers').default;
+      const nextReducer = require(`./reducers`).default;
       store.replaceReducer(nextReducer);
     });
   }
@@ -94,7 +94,7 @@ export default async function(): Promise<any> {
 }
 
 function getLegacyState(): Record<string, any> | null {
-  const serialized = localStorage.getItem('jones');
+  const serialized = localStorage.getItem(`jones`);
   if (serialized == null) {
     return null;
   }
@@ -108,7 +108,7 @@ function getLegacyState(): Record<string, any> | null {
   }
 
   localStorage.setItem(
-    'jones',
+    `jones`,
     JSON.stringify({
       ...state,
       convertedToIndexedDB: true,

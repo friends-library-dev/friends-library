@@ -14,7 +14,7 @@ const BgWordBlock: React.FC<Props> = ({ word, id, className, children, title }) 
     {...(id ? { id } : {})}
     className={cx(
       className,
-      'BgWordBlock text-center relative overflow-x-hidden font-sans',
+      `BgWordBlock text-center relative overflow-x-hidden font-sans`,
     )}
     data-bgword={word}
   >

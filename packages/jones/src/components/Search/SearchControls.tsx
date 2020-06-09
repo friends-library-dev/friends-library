@@ -99,7 +99,7 @@ class Component extends React.Component<Props, State> {
   private searchInput = React.createRef<HTMLInputElement>();
 
   public state = {
-    replaceTerm: '',
+    replaceTerm: ``,
   };
 
   public componentDidMount(): void {
@@ -121,7 +121,7 @@ class Component extends React.Component<Props, State> {
   };
 
   protected replaceAll: () => void = () => {
-    this.setState({ replaceTerm: '' });
+    this.setState({ replaceTerm: `` });
     this.props.replaceAll();
   };
 
@@ -129,16 +129,16 @@ class Component extends React.Component<Props, State> {
     event: React.KeyboardEvent<HTMLInputElement>,
   ) => void = event => {
     const { undo, redo, cancelSearch } = this.props;
-    if (event.key === 'z' && (event.ctrlKey || event.metaKey)) {
+    if (event.key === `z` && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
       event.shiftKey ? redo() : undo();
     }
 
-    if (event.key === 'Escape') {
+    if (event.key === `Escape`) {
       cancelSearch();
     }
 
-    if (event.key === 'f' && (event.ctrlKey || event.metaKey)) {
+    if (event.key === `f` && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
       cancelSearch();
     }
@@ -186,7 +186,7 @@ class Component extends React.Component<Props, State> {
             onChange={e => changeSearchTerm(e.target.value)}
             onKeyDown={event => {
               this.handleSpecialKeys(event);
-              if (event.key === 'Enter') {
+              if (event.key === `Enter`) {
                 search();
               }
             }}

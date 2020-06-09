@@ -6,12 +6,12 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
   const nextLine = lines[lineNumber];
-  if (!nextLine || nextLine[0] !== 's' || !line.match(/`'$/)) {
+  if (!nextLine || nextLine[0] !== `s` || !line.match(/`'$/)) {
     return [];
   }
 
@@ -23,14 +23,14 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: line.length + 1,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Possessive broken over two lines (probably by conversion process)',
-      recommendation: `${line}s\n${nextLine.replace(/^s/, '').trim()}`,
+      message: `Possessive broken over two lines (probably by conversion process)`,
+      recommendation: `${line}s\n${nextLine.replace(/^s/, ``).trim()}`,
       fixable: true,
     },
   ];
 };
 
-rule.slug = 'dangling-possessive';
+rule.slug = `dangling-possessive`;
 export default rule;

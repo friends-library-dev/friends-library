@@ -37,8 +37,8 @@ export function coverPropsFromQueryData(data: CoverData): CoverProps {
     edition: edition.type,
     isbn: edition.isbn,
     blurb: edition.blurb,
-    customCss: edition.code.css.cover || '',
-    customHtml: edition.code.html.cover || '',
+    customCss: edition.code.css.cover || ``,
+    customHtml: edition.code.html.cover || ``,
   };
 }
 

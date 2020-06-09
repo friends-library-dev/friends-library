@@ -2,9 +2,9 @@ import { Asciidoc, LintResult } from '@friends-library/types';
 import { BlockRule } from '../types';
 
 const rule: BlockRule = (block: Asciidoc): LintResult[] => {
-  const lines = block.split('\n');
+  const lines = block.split(`\n`);
   const chapterHeadings: number[] = lines.reduce((acc, line, index) => {
-    if (line && line.substring(0, 3) === '== ' && line.match(/^== +[^\s\n]/)) {
+    if (line && line.substring(0, 3) === `== ` && line.match(/^== +[^\s\n]/)) {
       acc.push(index + 1);
     }
     return acc;
@@ -19,9 +19,9 @@ const rule: BlockRule = (block: Asciidoc): LintResult[] => {
       {
         line: 1,
         column: false,
-        type: 'error',
+        type: `error`,
         rule: rule.slug,
-        message: 'Every file must have exactly one chapter level heading `== `',
+        message: `Every file must have exactly one chapter level heading \`== \``,
         fixable: false,
       },
     ];
@@ -30,12 +30,12 @@ const rule: BlockRule = (block: Asciidoc): LintResult[] => {
   return chapterHeadings.slice(1).map(line => ({
     line,
     column: false,
-    type: 'error',
+    type: `error`,
     rule: rule.slug,
     message: `Duplicate chapter heading \`== \` -- see line ${chapterHeadings[0]}`,
     fixable: false,
   }));
 };
 
-rule.slug = 'chapter-heading';
+rule.slug = `chapter-heading`;
 export default rule;

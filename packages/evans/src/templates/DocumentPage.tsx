@@ -96,11 +96,11 @@ const DocumentPage: React.FC<Props> = ({
   data: { site, friend, document, otherDocuments },
 }) => {
   useEffect(() => {
-    if (window.location.hash === '#audiobook') {
-      setTimeout(makeScroller('#audiobook'), 10);
+    if (window.location.hash === `#audiobook`) {
+      setTimeout(makeScroller(`#audiobook`), 10);
     }
   }, []);
-  const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
+  const numBooks = site.meta[LANG === `en` ? `numEnglishBooks` : `numSpanishBooks`];
   const otherBooks = otherDocuments.nodes;
   const mainEdition = document.editions[0];
   const audio = mainEdition.audio;
@@ -115,8 +115,8 @@ const DocumentPage: React.FC<Props> = ({
     edition: mainEdition.type,
     isbn: mainEdition.isbn,
     blurb: document.description,
-    customCss: mainEdition.code.css.cover || '',
-    customHtml: mainEdition.code.html.cover || '',
+    customCss: mainEdition.code.css.cover || ``,
+    customHtml: mainEdition.code.html.cover || ``,
   };
   return (
     <Layout>

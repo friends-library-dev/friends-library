@@ -32,7 +32,7 @@ const DownloadLinks: React.FC<Props> = props => {
     m4bSize: props.m4bFilesizeHq,
     podcast: props.podcastUrlHq,
   };
-  if (props.quality === 'LQ') {
+  if (props.quality === `LQ`) {
     links = {
       mp3Zip: props.mp3ZipUrlLq,
       zipSize: props.mp3ZipFilesizeLq,
@@ -42,7 +42,7 @@ const DownloadLinks: React.FC<Props> = props => {
     };
   }
   return (
-    <div id="audiobook" className={cx(props.className, 'bg-white font-sans p-8')}>
+    <div id="audiobook" className={cx(props.className, `bg-white font-sans p-8`)}>
       <h3 className="text-2xl text-center mb-6">{t`Download Audiobook`}</h3>
       {!props.complete && (
         <Dual.p className="text-center sm:pl-10 max-w-sm mx-auto -mt-2 italic font-serif mb-6 text-flblue">
@@ -67,13 +67,13 @@ const DownloadLinks: React.FC<Props> = props => {
             </span>
           </dt>
           <dd className="text-flgray-500 text-xs mb-4 pb-1">
-            (Apple Podcasts, Stitcher,{' '}
+            (Apple Podcasts, Stitcher,{` `}
             <span className="hidden sm:inline">Overcast, </span>
             etc.)
           </dd>
           <dt className="uppercase text-md mb-1">
             <a href={links.mp3Zip} className="hover:underline">
-              {t`Download mp3 Files as Zip`} -{' '}
+              {t`Download mp3 Files as Zip`} -{` `}
               <span className="text-flprimary">({links.zipSize})</span>
             </a>
           </dt>
@@ -87,11 +87,12 @@ const DownloadLinks: React.FC<Props> = props => {
             <a href={links.m4b} className="hover:underline">
               <Dual.frag>
                 <>
-                  Download .M4B Audiobook <span className="hidden sm:inline">File</span> -{' '}
+                  Download .M4B Audiobook <span className="hidden sm:inline">File</span> -
+                  {` `}
                 </>
                 <>
-                  Descargar Audiolibro{' '}
-                  <span className="hidden sm:inline">en archivo</span> M4b -{' '}
+                  Descargar Audiolibro{` `}
+                  <span className="hidden sm:inline">en archivo</span> M4b -{` `}
                 </>
               </Dual.frag>
               <span className="text-flprimary">({links.m4bSize})</span>
@@ -100,12 +101,12 @@ const DownloadLinks: React.FC<Props> = props => {
           <dd className="text-flgray-500 text-xs mb-4 pb-1">
             <Dual.frag>
               <>
-                (Audiobook format for{' '}
+                (Audiobook format for{` `}
                 <span className="hidden sm:inline">Apple Books, </span>
                 iTunes, etc.)
               </>
               <>
-                (Formato de Audiolibro para{' '}
+                (Formato de Audiolibro para{` `}
                 <span className="hidden sm:inline">Aplicación de Libros, </span>
                 iTunes, etc.)
               </>
@@ -118,7 +119,7 @@ const DownloadLinks: React.FC<Props> = props => {
         <QualitySwitch key="switch" quality={props.quality} onChange={props.setQuality} />
         <p key="text" className="text-flgray-500 text-base antialiased tracking-wider">
           (
-          {props.quality === 'HQ'
+          {props.quality === `HQ`
             ? t`Higher quality, larger file size`
             : t`Lower quality, faster download`}
           )
@@ -128,7 +129,8 @@ const DownloadLinks: React.FC<Props> = props => {
           className="text-flprimary text-sm tracking-wider"
           to={t`/audio-help`}
         >
-          <span className="fl-underline">{t`Need Help?`}</span>{' '}
+          <span className="fl-underline">{t`Need Help?`}</span>
+          {` `}
           <i className="fa fa-life-ring opacity-75 pl-1" />
         </Link>
       </Stack>

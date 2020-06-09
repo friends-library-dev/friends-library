@@ -28,7 +28,7 @@ export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
     const { unfixable, numFixed } = lintFixPath(path, options);
     if (unfixable.count() === 0) {
       if (numFixed === 0) {
-        green('0 lint violations found! 😊 \n');
+        green(`0 lint violations found! 😊 \n`);
       } else {
         green(`${numFixed}/${numFixed} lint violations fixed! 😊 \n`);
       }
@@ -46,7 +46,7 @@ export default function lintHandler(argv: Arguments<LintCommandOptions>): void {
 
   const lints = lintPath(path, options);
   if (lints.count() === 0) {
-    green('0 lint violations found! 😊 \n');
+    green(`0 lint violations found! 😊 \n`);
     process.exit(0);
   }
 

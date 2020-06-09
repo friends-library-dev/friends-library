@@ -56,7 +56,7 @@ export async function findByPrintJobStatus(
 }
 
 export async function save(order: Order): Promise<[QueryError, boolean]> {
-  if (!order.faunaId) throw new Error('Missing faunadb id');
+  if (!order.faunaId) throw new Error(`Missing faunadb id`);
   const faunaId = order.faunaId;
   order.updated = new Date().toISOString();
   const [errors] = await sendQuery(SAVE_ORDER, { id: faunaId, data: faunaize(order) });

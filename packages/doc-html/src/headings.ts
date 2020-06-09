@@ -7,7 +7,7 @@ export function replaceHeadings(
   heading: Heading,
   dpc: Pick<DocPrecursor, 'config'>,
 ): Html {
-  const docStyle = dpc.config.chapterHeadingStyle || 'normal';
+  const docStyle = dpc.config.chapterHeadingStyle || `normal`;
   return html.replace(/{% chapter-heading(?:, ([a-z]+))? %}/, (_, style) =>
     headingMarkup(heading, style || docStyle),
   );
@@ -44,12 +44,12 @@ function headingMarkup({ id, sequence, text }: Heading, style: string): Html {
 }
 
 function headingTextMarkup(text: string): string {
-  if (text.indexOf(' / ') === -1) {
+  if (text.indexOf(` / `) === -1) {
     return text;
   }
 
   return text
-    .split(' / ')
+    .split(` / `)
     .map((part, index, parts) => {
       if (index === 0) {
         return `<span class="line line-1">${part} ${br7}</span>`;
@@ -59,5 +59,5 @@ function headingTextMarkup(text: string): string {
       }
       return `<span class="line line-${index + 1}">${part}</span>`;
     })
-    .join('');
+    .join(``);
 }

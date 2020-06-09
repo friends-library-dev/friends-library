@@ -15,11 +15,11 @@ function pair(start: string, end: string): { [k: string]: (state: string[]) => a
 }
 
 export default createReducer([], {
-  ...pair('REQUEST_FRIEND_REPOS', 'RECEIVE_FRIEND_REPOS'),
-  ...pair('REQUEST_GITHUB_USER', 'RECEIVE_GITHUB_USER'),
-  ...pair('SUBMITTING_TASK', 'TASK_SUBMITTED'),
-  ...pair('RE_SUBMITTING_TASK', 'TASK_RE_SUBMITTED'),
-  ...pair('START_CHECKOUT', 'END_CHECKOUT'),
+  ...pair(`REQUEST_FRIEND_REPOS`, `RECEIVE_FRIEND_REPOS`),
+  ...pair(`REQUEST_GITHUB_USER`, `RECEIVE_GITHUB_USER`),
+  ...pair(`SUBMITTING_TASK`, `TASK_SUBMITTED`),
+  ...pair(`RE_SUBMITTING_TASK`, `TASK_RE_SUBMITTED`),
+  ...pair(`START_CHECKOUT`, `END_CHECKOUT`),
 
   NETWORK_ERROR: () => [],
 });

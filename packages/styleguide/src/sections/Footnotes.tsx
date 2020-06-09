@@ -10,14 +10,16 @@ const Footnotes: React.FC = () => (
       rendered footnotes. Sorry! 😬
     </Note>
     <Para>
-      Footnotes in asciidoc are created with the <i>footnote macro</i>, which looks like{' '}
+      Footnotes in asciidoc are created with the <i>footnote macro</i>, which looks like
+      {` `}
       <Code>footnote:[Some text here]</Code>, as shown below:
     </Para>
     <Asciidoc id="footnote-inline" />
 
     <Para>
       However, if there's not punctuation before a footnote, the macro runs directly into
-      the text, which looks weird, so I created a convention that we can also add a caret{' '}
+      the text, which looks weird, so I created a convention that we can also add a caret
+      {` `}
       <Code>^</Code> and then a newline before the footnote, which is how almost all of
       the footnotes in the existing documents are formatted, shown below:
     </Para>
@@ -25,7 +27,7 @@ const Footnotes: React.FC = () => (
 
     <Para>
       Footnotes can span multiple lines (as shown above and below), and can incorporate
-      inline styling within their content, including things like <b>italics</b> and{' '}
+      inline styling within their content, including things like <b>italics</b> and{` `}
       <b>inline quotes</b>:
     </Para>
     <Asciidoc id="footnote-styling" />
@@ -34,8 +36,8 @@ const Footnotes: React.FC = () => (
     <Para>
       The asciidoc format doesn't natively support <b>multi-paragraph</b> footnotes, so I
       had to invent a syntax for this. Instead of leaving an extra empty line, like normal
-      paragraphs, instead insert a line containing only{' '}
-      <Code>{'{footnote-paragraph-split}'}</Code>:
+      paragraphs, instead insert a line containing only{` `}
+      <Code>{`{footnote-paragraph-split}`}</Code>:
     </Para>
     <Asciidoc id="footnote-multi" emphasize={[11]} />
   </Section>

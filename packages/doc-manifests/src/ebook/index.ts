@@ -21,9 +21,9 @@ export default async function ebook(
 ): Promise<FileManifest[]> {
   return [
     {
-      mimetype: 'application/epub+zip',
+      mimetype: `application/epub+zip`,
       'META-INF/container.xml': container(),
-      'OEBPS/style.css': conf.subType === 'epub' ? epubCss(dpc) : mobiCss(dpc),
+      'OEBPS/style.css': conf.subType === `epub` ? epubCss(dpc) : mobiCss(dpc),
       'OEBPS/package-document.opf': packageDocument(dpc, conf),
       'OEBPS/nav.xhtml': wrapEbookBodyHtml(nav(dpc, conf), dpc.lang),
       ...coverFiles(dpc, conf.coverImg),
@@ -39,9 +39,9 @@ function coverFiles(dpc: DocPrecursor, coverImg?: Buffer): FileManifest {
   return {
     'OEBPS/cover.png': coverImg,
     'OEBPS/cover.xhtml': wrapEbookBodyHtml(
-      '<figure><img alt="Cover" src="cover.png"/></figure>',
+      `<figure><img alt="Cover" src="cover.png"/></figure>`,
       dpc.lang,
-      'cover',
+      `cover`,
     ),
   };
 }
@@ -60,7 +60,7 @@ function container(): Xml {
 function wrapEbookBodyHtml(bodyHtml: Html, lang: Lang, bodyClass?: string): Html {
   return wrapHtmlBody(bodyHtml, {
     htmlAttrs: `xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="${lang}" lang="${lang}"`,
-    css: ['style.css'],
+    css: [`style.css`],
     isUtf8: true,
     ...(bodyClass ? { bodyClass } : {}),
   });

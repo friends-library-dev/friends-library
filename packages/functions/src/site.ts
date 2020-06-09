@@ -12,7 +12,7 @@ const handler: Handler = (
   // @ts-ignore
   env.setContext(context);
   router(event, new Responder(callback));
-  log.debug('*/site fn invocation*', {
+  log.debug(`*/site fn invocation*`, {
     event: {
       path: event.path,
       httpMethod: event.httpMethod,
@@ -21,7 +21,7 @@ const handler: Handler = (
       headers: {
         origin: event.headers?.origin,
         referer: event.headers?.referer,
-        'user-agent': event.headers?.['user-agent'],
+        'user-agent': event.headers?.[`user-agent`],
       },
     },
   });
@@ -30,15 +30,15 @@ const handler: Handler = (
 export { handler };
 
 function readableBody(body: any): any {
-  if (typeof body === 'object') {
+  if (typeof body === `object`) {
     return body;
   }
 
   try {
-    var obj = JSON.parse(body || '');
+    var obj = JSON.parse(body || ``);
   } catch (err) {
     return body;
   }
 
-  return typeof obj === 'object' ? obj : body;
+  return typeof obj === `object` ? obj : body;
 }

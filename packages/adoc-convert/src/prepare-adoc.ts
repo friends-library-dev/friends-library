@@ -32,7 +32,7 @@ export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
 );
 
 function squareBracketsToEntities(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/\+\+\+\[\+\+\+/gm, '&#91;').replace(/\+\+\+\]\+\+\+/gm, '&#93;');
+  return adoc.replace(/\+\+\+\[\+\+\+/gm, `&#91;`).replace(/\+\+\+\]\+\+\+/gm, `&#93;`);
 }
 
 function replaceSmallBreaks(adoc: Asciidoc): Asciidoc {
@@ -43,57 +43,57 @@ function replaceSmallBreaks(adoc: Asciidoc): Asciidoc {
 }
 
 function helpBookTitleTouchingFootnote(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/#footnote:\[/g, '#{blank}footnote:[');
+  return adoc.replace(/#footnote:\[/g, `#{blank}footnote:[`);
 }
 
 function signaturePrependDoubleDash(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/(\[\.signed-section-signature\]\n)/gm, '$1--');
+  return adoc.replace(/(\[\.signed-section-signature\]\n)/gm, `$1--`);
 }
 
 function collapseEmDashNewlineWhitespace(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gim, '&#8212;$1');
+  return adoc.replace(/&#8212;\n([a-z]|&#8220;|&#8216;)/gim, `&#8212;$1`);
 }
 
 function enAndEmDashToDoubleDash(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/[–|—]/g, '--');
+  return adoc.replace(/[–|—]/g, `--`);
 }
 
 function collapseFootnoteCarets(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/\^\nfootnote:\[/gim, 'footnote:[');
+  return adoc.replace(/\^\nfootnote:\[/gim, `footnote:[`);
 }
 
 function doubleDashToEntity(adoc: Asciidoc): Asciidoc {
   return adoc
-    .replace(/\n--\n/gm, '{open-block-delimiter}')
-    .replace(/(?<!class="[a-z- ]+)--/gm, '&#8212;')
-    .replace(/{open-block-delimiter}/gm, '\n--\n');
+    .replace(/\n--\n/gm, `{open-block-delimiter}`)
+    .replace(/(?<!class="[a-z- ]+)--/gm, `&#8212;`)
+    .replace(/{open-block-delimiter}/gm, `\n--\n`);
 }
 
 function escapeSemicolonAfterEntity(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/(?<entity>&#\d{2,4};);/, '$<entity>+++;+++');
+  return adoc.replace(/(?<entity>&#\d{2,4};);/, `$<entity>+++;+++`);
 }
 
 function emdashBeforeBookTitle(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /--\[\.book-title\]#([\s|\S]+?)#/gm,
-    '--+++<span class="book-title">+++$1+++</span>+++',
+    `--+++<span class="book-title">+++$1+++</span>+++`,
   );
 }
 function swapLineEndingDashesInVerse(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /(?<=\n\[verse.*?\]\n____\n)([\s|\S]+?)(?=\n____)/gm,
-    (_, verseLines) => verseLines.replace(/--\n/gm, '{verse-end-emdash}\n'),
+    (_, verseLines) => verseLines.replace(/--\n/gm, `{verse-end-emdash}\n`),
   );
 }
 
 function restoreLineEndingDashesInVerse(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/{verse-end-emdash}/g, '&#8212;');
+  return adoc.replace(/{verse-end-emdash}/g, `&#8212;`);
 }
 
 function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /(?<=\[\.discourse-part\]\n)(Question:|Pregunta:|(?:Answer|Respuesta)(?: [0-9]+)?:|Objection:|Objeción:|Inquiry [0-9]+:)( |\n)/gim,
-    '_$1_$2',
+    `_$1_$2`,
   );
 }
 
@@ -108,11 +108,11 @@ function changeChapterSynopsisMarkup(adoc: Asciidoc): Asciidoc {
   return adoc.replace(/\[\.chapter-synopsis\]\n([\s\S]+?)(?=\n\n)/gim, (_, inner) => {
     const joined = inner
       .trim()
-      .split('\n')
+      .split(`\n`)
       .filter((line: Asciidoc) => !line.match(/^\/\//))
       .map((line: Asciidoc) => line.trim())
-      .map((line: Asciidoc) => line.replace(/^\* /, ''))
-      .join('&#8212;');
+      .map((line: Asciidoc) => line.replace(/^\* /, ``))
+      .join(`&#8212;`);
     return `[.chapter-synopsis]\n${joined}\n\n`;
   });
 }
@@ -123,8 +123,8 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
     (_, inner) => {
       const joined = inner
         .trim()
-        .split('\n')
-        .join(' ');
+        .split(`\n`)
+        .join(` `);
       return raw(`<h3 class="chapter-subtitle--blurb">${joined}</h3>`);
     },
   );
@@ -133,7 +133,7 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
 function discreteize(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /\[((?:\.blurb|\.alt|\.centered)+)\]\n(====?) /gm,
-    '[discrete$1]\n$2 ',
+    `[discrete$1]\n$2 `,
   );
 }
 
@@ -142,8 +142,8 @@ function headingsInOpenBlocks(adoc: Asciidoc): Asciidoc {
     const inner = content.replace(
       /(^|\n\n)(?:\[([^\]]+?)\]\n)?(===+ )/gim,
       (__: any, start: string, bracket: string | undefined, heading: string) => {
-        const discrete = (bracket || '').indexOf('discrete') !== -1 ? '' : 'discrete';
-        return `${start}[${discrete}${bracket || ''}]\n${heading}`;
+        const discrete = (bracket || ``).indexOf(`discrete`) !== -1 ? `` : `discrete`;
+        return `${start}[${discrete}${bracket || ``}]\n${heading}`;
       },
     );
     return `${open}${inner}${end}`;

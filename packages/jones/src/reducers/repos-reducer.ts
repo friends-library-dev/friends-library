@@ -16,9 +16,9 @@ export default createReducer([], {
       id: repo.id,
       slug: repo.name,
       friendName:
-        repo.name === 'compilations' || repo.name === 'compilaciones'
-          ? repo.name.replace(/^c/, 'C')
-          : repo.description.replace(/^.. ([\w .]+)( \(.*?\))? source documents$/, '$1'),
+        repo.name === `compilations` || repo.name === `compilaciones`
+          ? repo.name.replace(/^c/, `C`)
+          : repo.description.replace(/^.. ([\w .]+)( \(.*?\))? source documents$/, `$1`),
     }));
   },
 });

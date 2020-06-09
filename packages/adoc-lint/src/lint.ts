@@ -5,10 +5,10 @@ import * as blockLints from './block-rules';
 
 export default function lint(
   adoc: Asciidoc,
-  options: LintOptions = { lang: 'en' },
+  options: LintOptions = { lang: `en` },
 ): LintResult[] {
   const lineRules: LineRule[] = Object.values(lineLints);
-  const lines = adoc.split('\n');
+  const lines = adoc.split(`\n`);
   const lineResults = lines.reduce((acc, line, index) => {
     if (isLintComment(line)) {
       return acc;
@@ -72,7 +72,7 @@ function runRule(
 function disabledByComment(ruleSlug: string, prevLine?: Asciidoc): boolean {
   return !!(
     prevLine &&
-    prevLine[0] === '/' &&
+    prevLine[0] === `/` &&
     prevLine.match(new RegExp(`^// lint-disable .*${ruleSlug}`))
   );
 }
@@ -82,16 +82,15 @@ function isLintComment(line: Asciidoc): boolean {
 }
 
 function isComment(line: Asciidoc): boolean {
-  return line[0] === '/' && line[1] === '/';
+  return line[0] === `/` && line[1] === `/`;
 }
 
 function commentWarning(lineNumber: number): LintResult {
   return {
     line: lineNumber,
     column: false,
-    type: 'warning',
-    rule: 'temporary-comments',
-    message:
-      'Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. `// lint-disable invalid-characters`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with `--lint-ignore` to disable this lint warning)',
+    type: `warning`,
+    rule: `temporary-comments`,
+    message: `Comments should generally be removed, with the exceptions of: 1) comments to disable lint rules (e.g. \`// lint-disable invalid-characters\`), and 2) special cases where there would be a long-term value to keeping the comment (these lines can be marked with \`--lint-ignore\` to disable this lint warning)`,
   };
 }

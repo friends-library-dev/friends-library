@@ -4,12 +4,12 @@ function getEnv<T extends string>(required: boolean, ...keys: T[]): { [k in T]: 
     const val = process.env[key];
     if (
       required &&
-      typeof val !== 'string' &&
-      typeof process.env.JEST_WORKER_ID === 'undefined'
+      typeof val !== `string` &&
+      typeof process.env.JEST_WORKER_ID === `undefined`
     ) {
       throw new Error(`Env var \`${key}\` is required.`);
     }
-    obj[key] = typeof val === 'string' ? val : '';
+    obj[key] = typeof val === `string` ? val : ``;
   });
   return obj;
 }

@@ -7,7 +7,7 @@ interface Props {
 
 const Component: React.FC<Props> = ({ screen }) => (
   <>
-    {screen !== 'WORK' ? (
+    {screen !== `WORK` ? (
       <>
         Friends Library Publishing <i>Online Editor</i>
       </>

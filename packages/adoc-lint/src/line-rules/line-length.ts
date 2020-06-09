@@ -21,8 +21,8 @@ const rule: LineRule = (
       line: lineNumber,
       column: false,
       rule: rule.slug,
-      type: 'error',
-      message: 'Non-heading and non-list lines should not exceed 100 characters',
+      type: `error`,
+      message: `Non-heading and non-list lines should not exceed 100 characters`,
       ...(recommendation ? { recommendation } : {}),
     },
   ];
@@ -32,7 +32,7 @@ function lengthOk(line: Asciidoc): boolean {
   if (line.length < 100) {
     return true;
   }
-  if (['//', '==', '* '].includes(line.substring(0, 2))) {
+  if ([`//`, `==`, `* `].includes(line.substring(0, 2))) {
     return true;
   }
 
@@ -40,7 +40,7 @@ function lengthOk(line: Asciidoc): boolean {
     return true;
   }
 
-  if (line.includes('[.book-title]#')) {
+  if (line.includes(`[.book-title]#`)) {
     return true;
   }
 
@@ -62,12 +62,12 @@ function getRecommendation(line: Asciidoc): Asciidoc | false {
     return adoc.replace(`•${index}`, ref.match);
   }, block);
 
-  if (reco.trim() === line.trim() || reco.split('\n').length > 2) {
+  if (reco.trim() === line.trim() || reco.split(`\n`).length > 2) {
     return false;
   }
 
   return reco;
 }
 
-rule.slug = 'line-length';
+rule.slug = `line-length`;
 export default rule;

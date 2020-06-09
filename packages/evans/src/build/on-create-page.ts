@@ -5,26 +5,26 @@ const onCreatePage: GatsbyNode['onCreatePage'] = async ({
   page,
   actions,
 }: CreatePageArgs<unknown>) => {
-  if (LANG === 'en') {
+  if (LANG === `en`) {
     return;
   }
   const { createPage, deletePage } = actions;
   const oldPage = { ...page };
   switch (page.path) {
-    case '/contact':
-      page.path = '/contactanos';
+    case `/contact`:
+      page.path = `/contactanos`;
       break;
-    case '/getting-started':
-      page.path = '/comenzar';
+    case `/getting-started`:
+      page.path = `/comenzar`;
       break;
-    case '/explore':
-      page.path = '/explorar';
+    case `/explore`:
+      page.path = `/explorar`;
       break;
-    case '/friends':
-      page.path = '/amigos';
+    case `/friends`:
+      page.path = `/amigos`;
       break;
-    case '/audiobooks':
-      page.path = '/audiolibros';
+    case `/audiobooks`:
+      page.path = `/audiolibros`;
       break;
   }
 

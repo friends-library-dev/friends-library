@@ -9,7 +9,7 @@ interface CoverOptions {
 }
 
 export default async function handler(argv: CoverOptions): Promise<void> {
-  deleteNamespaceDir('fl-cover');
+  deleteNamespaceDir(`fl-cover`);
   const dpcs = dpcQuery.getByPattern(argv.pattern);
   const meta = await docMeta.fetch();
 
@@ -29,7 +29,7 @@ export default async function handler(argv: CoverOptions): Promise<void> {
     for (let i = 0; i < manifests.length; i++) {
       const manifest = manifests[i];
       const filename = `cover-${dpc.document?.id}-${dpc.edition?.type}-${i}`;
-      const pdfPath = await pdf(manifest, filename, { namespace: 'fl-cover' });
+      const pdfPath = await pdf(manifest, filename, { namespace: `fl-cover` });
       execSync(`open ${pdfPath}`);
     }
   }

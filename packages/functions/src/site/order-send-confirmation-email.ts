@@ -25,7 +25,7 @@ export default async function sendOrderConfirmationEmail(
   }
 
   try {
-    log.order('*Order submitted*', {
+    log.order(`*Order submitted*`, {
       order: {
         name: order.address.name,
         email: order.email,
@@ -34,31 +34,31 @@ export default async function sendOrderConfirmationEmail(
       },
     });
   } catch (error) {
-    log.error('Error sending order submitted slack', { error, order });
+    log.error(`Error sending order submitted slack`, { error, order });
   }
 
   try {
-    mailer.setApiKey(env('SENDGRID_API_KEY'));
+    mailer.setApiKey(env(`SENDGRID_API_KEY`));
     const [res] = await mailer.send({
       ...orderConfirmationEmail(order),
       to: order.email,
       from: emailFrom(order.lang),
       mailSettings: {
         sandboxMode: {
-          enable: process.env.NODE_ENV === 'development',
+          enable: process.env.NODE_ENV === `development`,
         },
       },
     });
 
     if (res.statusCode > 202) {
-      log.error('Unexpected response sending order confirmation email', {
+      log.error(`Unexpected response sending order confirmation email`, {
         response: res.toJSON(),
         order,
       });
       return respond.json({ msg: Err.ERROR_SENDING_EMAIL }, 500);
     }
   } catch (error) {
-    log.error('Error sending order confirmation email', { error, order });
+    log.error(`Error sending order confirmation email`, { error, order });
     return respond.json({ msg: Err.ERROR_SENDING_EMAIL }, 500);
   }
 

@@ -30,25 +30,25 @@ const PillDropdown: React.FC<Props> = ({
       keyCode === 27 && setDropdownVisible(false);
     };
 
-    document.addEventListener('click', click);
-    document.addEventListener('keydown', escape);
+    document.addEventListener(`click`, click);
+    document.addEventListener(`keydown`, escape);
     return () => {
-      document.removeEventListener('click', click);
-      window.removeEventListener('keydown', escape);
+      document.removeEventListener(`click`, click);
+      window.removeEventListener(`keydown`, escape);
     };
   }, [dropdownVisible, autoHide]);
 
   return (
     <div
       ref={ref}
-      className={cx(className, 'rounded-full w-64 bg-white relative h-12 cursor-pointer')}
+      className={cx(className, `rounded-full w-64 bg-white relative h-12 cursor-pointer`)}
     >
       <div
         onClick={() => setDropdownVisible(!dropdownVisible)}
         className={cx(
-          'border border-flgray-400 rounded-full subtle-focus',
-          'h-12 w-64 pt-3 text-center select-none',
-          'text-flgray-500 antialiased font-sans tracking-widest',
+          `border border-flgray-400 rounded-full subtle-focus`,
+          `h-12 w-64 pt-3 text-center select-none`,
+          `text-flgray-500 antialiased font-sans tracking-widest`,
         )}
       >
         {pillText}
@@ -58,7 +58,7 @@ const PillDropdown: React.FC<Props> = ({
         className="h-12 w-12 absolute top-0 right-0 flex justify-center items-center"
       >
         <i
-          className={`fa fa-chevron-${dropdownVisible ? 'up' : 'down'} text-flgray-400`}
+          className={`fa fa-chevron-${dropdownVisible ? `up` : `down`} text-flgray-400`}
         />
       </div>
       {dropdownVisible && children}

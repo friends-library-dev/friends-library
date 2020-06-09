@@ -25,15 +25,15 @@ const Input: React.FC<Props> = ({
   onBlur,
   onFocus,
   className,
-  type = 'text',
+  type = `text`,
 }) => (
   <div className="relative">
     <input
       autoFocus={autofocus}
-      className={cx(className, 'CartInput', { invalid: !valid })}
+      className={cx(className, `CartInput`, { invalid: !valid })}
       type={type}
       placeholder={valid ? placeholder : invalidMsg}
-      value={value || ''}
+      value={value || ``}
       onChange={e => onChange(e.target.value)}
       onBlur={onBlur || (() => {})}
       onFocus={onFocus || (() => {})}

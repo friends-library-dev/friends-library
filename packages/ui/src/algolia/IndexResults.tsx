@@ -22,7 +22,7 @@ const UnconnectedResults: React.FC<Props> = ({
   return (
     <div>
       <h4 className="border-b m-2 border-solid flex items-center border-flgray-400 pb-px text-lg">
-        <i className={cx(icon, 'fa mr-2 text-flprimary')} />
+        <i className={cx(icon, `fa mr-2 text-flprimary`)} />
         {`${title} `}
         <span className="opacity-50 text-sm ml-1 tracking-widest">
           ({searchResults.nbHits})

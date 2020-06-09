@@ -2,14 +2,14 @@ import { Html, Lang, DocPrecursor, DocSection, Notes } from '@friends-library/ty
 import { br7 } from '@friends-library/doc-html';
 
 const symbolMap = new Map([
-  [1, '§'],
-  [2, '*'],
-  [3, '†'],
-  [4, '‡'],
+  [1, `§`],
+  [2, `*`],
+  [3, `†`],
+  [4, `‡`],
 ]);
 
 function makeGetRef({ notes }: DocPrecursor): (num: number) => number | string {
-  return (num: number) => (useSymbols(notes) ? symbolMap.get(num) || '' : num);
+  return (num: number) => (useSymbols(notes) ? symbolMap.get(num) || `` : num);
 }
 
 export function useSymbols(notes: Notes): boolean {
@@ -28,12 +28,12 @@ export function makeFootnoteCallReplacer(dpc: DocPrecursor): (html: Html) => Htm
 
 export function callMarkup(id: string, ref: string | number, withId = true): Html {
   return [
-    `<sup class="footnote"${withId ? ` id="fn-call__${id}"` : ''}>`,
+    `<sup class="footnote"${withId ? ` id="fn-call__${id}"` : ``}>`,
     `<a href="notes.xhtml#fn__${id}" title="View footnote.">`,
     ref,
-    '</a>',
-    '</sup>',
-  ].join('');
+    `</a>`,
+    `</sup>`,
+  ].join(``);
 }
 
 export function notesMarkup(dpc: DocPrecursor): Html {
@@ -55,15 +55,15 @@ export function notesMarkup(dpc: DocPrecursor): Html {
         .map(
           ([id, note], index) =>
             `<div class="footnote" id="fn__${id}">
-          <a href="${locations.get(id) || ''}.xhtml#fn-call__${id}">${getRef(
+          <a href="${locations.get(id) || ``}.xhtml#fn-call__${id}">${getRef(
               index + 2,
             )}</a> ${note}
-          <a href="${locations.get(id) || ''}.xhtml#fn-call__${id}">\u23CE</a>
+          <a href="${locations.get(id) || ``}.xhtml#fn-call__${id}">\u23CE</a>
           ${br7}
           ${br7}
         </div>`,
         )
-        .join('\n      ')}
+        .join(`\n      `)}
     </div>
 `.trim();
 }
@@ -81,11 +81,11 @@ function getNoteLocations(sections: DocSection[]): Map<string, string> {
 }
 
 function getHelperNote(symbols: boolean, lang: Lang): string {
-  if (lang === 'en') {
+  if (lang === `en`) {
     return `You made it to the notes area! To get back to where you just were, click the back arrow (\u23CE) at the end of the note, or the ${
-      symbols ? 'symbol' : 'number'
+      symbols ? `symbol` : `number`
     } at the beginning of the note, or use your e-reader’s “back to page...” feature.`;
   }
   // TODO need spanish for "symbol" or "number"
-  return '¡Llegaste a la sección de notas! Para volver al lugar donde estabas leyendo, haz clic en la pequeña flecha (\u23CE) al final de la nota, o en el número al principio de la nota, o donde tu aplicación dice  “volver a la página.”';
+  return `¡Llegaste a la sección de notas! Para volver al lugar donde estabas leyendo, haz clic en la pequeña flecha (\u23CE) al final de la nota, o en el número al principio de la nota, o donde tu aplicación dice  “volver a la página.”`;
 }

@@ -13,7 +13,7 @@ content-type: application/json
 }
 
 ###
- 
+
 # Calculate shipping/tax fees (Germany -- incurs some tax)
 # @name printJobFeesWithTax
 POST {{base}}/print-job/fees HTTP/1.1

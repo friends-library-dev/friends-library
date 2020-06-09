@@ -5,22 +5,22 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
-      test: 'naylor',
+      test: `naylor`,
       search: /\bNaylor\b/g,
-      replace: 'Nayler',
+      replace: `Nayler`,
       fixable: true,
-      message: 'James Nayler\'s last name should always be spelled "Nayler"',
+      message: `James Nayler's last name should always be spelled "Nayler"`,
     },
     {
-      test: 'pennington',
+      test: `pennington`,
       search: /\bPennington\b/g,
-      replace: 'Penington',
+      replace: `Penington`,
       fixable: true,
-      message: 'Isaac Penington\'s last name should always be spelled "Penington"',
+      message: `Isaac Penington's last name should always be spelled "Penington"`,
       allowIfNear: /\bSr\.|\bAlderman\b|\bFather\b|\bDaniel\b|\b(p|P)adre\b/,
     },
   ],
-  { langs: ['en', 'es'] },
+  { langs: [`en`, `es`] },
 );
 
 const rule: LineRule = (
@@ -32,7 +32,7 @@ const rule: LineRule = (
   return runner.getLineLintResults(line, lineNumber, lintOptions);
 };
 
-rule.slug = 'consistent-name-spelling';
+rule.slug = `consistent-name-spelling`;
 runner.rule = rule.slug;
 
 export default rule;

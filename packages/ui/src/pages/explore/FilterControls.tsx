@@ -31,8 +31,8 @@ const Label: React.FC<{ className?: string }> = ({ children, className }) => (
   <div
     className={cx(
       className,
-      'h-12 flex flex-col justify-center mr-4',
-      'uppercase font-sans text-flgray-500 tracking-wide text-base',
+      `h-12 flex flex-col justify-center mr-4`,
+      `uppercase font-sans text-flgray-500 tracking-wide text-base`,
     )}
   >
     {children}

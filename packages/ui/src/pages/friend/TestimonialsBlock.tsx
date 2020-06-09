@@ -9,7 +9,7 @@ interface Props {
 const TestimonialsBlock: React.FC<Props> = ({ testimonials }) => {
   const num = testimonials.length;
   if (num > 4) {
-    throw new Error('Too many testimonials!');
+    throw new Error(`Too many testimonials!`);
   }
 
   if (num < 1) {
@@ -20,7 +20,7 @@ const TestimonialsBlock: React.FC<Props> = ({ testimonials }) => {
     <div className="flex flex-col md:flex-row md:flex-wrap">
       {testimonials.map((t, idx) => (
         <Testimonial
-          className={cx('flex-grow md:py-32', {
+          className={cx(`flex-grow md:py-32`, {
             'md:w-full': idx === 0 && num === 3,
             'md:w-1/2': num !== 3 || idx !== 0,
           })}
@@ -40,12 +40,12 @@ export default TestimonialsBlock;
 function color(index: number): TestimonialProps['color'] {
   switch (index) {
     case 0:
-      return 'maroon';
+      return `maroon`;
     case 1:
-      return 'blue';
+      return `blue`;
     case 2:
-      return 'green';
+      return `green`;
     default:
-      return 'gold';
+      return `gold`;
   }
 }

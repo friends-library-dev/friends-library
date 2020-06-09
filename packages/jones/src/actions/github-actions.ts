@@ -9,7 +9,7 @@ import { lintOptions } from '../lib/lint';
 export function deleteTask(id: Uuid): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     dispatch({
-      type: 'DELETE_TASK',
+      type: `DELETE_TASK`,
       payload: id,
     });
 
@@ -47,7 +47,7 @@ export function syncPullRequestStatus(task: Task): ReduxThunk {
     try {
       const status = await gh.pullRequestStatus(repo.slug, task.pullRequest.number);
       dispatch({
-        type: 'UPDATE_PULL_REQUEST_STATUS',
+        type: `UPDATE_PULL_REQUEST_STATUS`,
         payload: {
           id: task.id,
           status,
@@ -62,20 +62,20 @@ export function syncPullRequestStatus(task: Task): ReduxThunk {
 export function submitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const { github } = getState();
-    if (github.token === null) throw new Error('Github user not authenticated');
+    if (github.token === null) throw new Error(`Github user not authenticated`);
 
     const fixedTask = lintFix(task, dispatch, getState);
-    dispatch({ type: 'SUBMITTING_TASK' });
+    dispatch({ type: `SUBMITTING_TASK` });
     const pr = await tryGithub(
       async () => {
         return await gh.createNewPullRequest(fixedTask, github.user);
       },
-      'SUBMIT_TASK',
+      `SUBMIT_TASK`,
       dispatch,
     );
     if (pr) {
       dispatch({
-        type: 'TASK_SUBMITTED',
+        type: `TASK_SUBMITTED`,
         payload: {
           id: task.id,
           prNumber: pr.number,
@@ -89,14 +89,14 @@ export function submitTask(task: Task): ReduxThunk {
 function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Task {
   Object.keys(task.files).forEach(path => {
     const file = task.files[path];
-    if (typeof file.editedContent !== 'string' || file.editedContent === file.content) {
+    if (typeof file.editedContent !== `string` || file.editedContent === file.content) {
       return;
     }
 
     const { fixed } = fixLints(file.editedContent, lintOptions(file.path));
     if (
       !fixed ||
-      typeof fixed !== 'string' ||
+      typeof fixed !== `string` ||
       fixed.length < 8 ||
       fixed === file.editedContent
     ) {
@@ -104,7 +104,7 @@ function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Task {
     }
 
     dispatch({
-      type: 'UPDATE_FILE',
+      type: `UPDATE_FILE`,
       payload: { id: task.id, path, adoc: fixed },
     });
   });
@@ -115,20 +115,20 @@ function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Task {
 export function resubmitTask(task: Task): ReduxThunk {
   return async (dispatch: Dispatch, getState: () => State) => {
     const { github } = getState();
-    if (github.token === null) throw new Error('Github user not authenticated');
+    if (github.token === null) throw new Error(`Github user not authenticated`);
 
     const fixedTask = lintFix(task, dispatch, getState);
-    dispatch({ type: 'RE_SUBMITTING_TASK' });
+    dispatch({ type: `RE_SUBMITTING_TASK` });
     const sha = await tryGithub(
       async () => {
         return await gh.addCommit(fixedTask /*, github.user */);
       },
-      'SUBMIT_TASK',
+      `SUBMIT_TASK`,
       dispatch,
     );
     if (sha) {
       dispatch({
-        type: 'TASK_RE_SUBMITTED',
+        type: `TASK_RE_SUBMITTED`,
         payload: {
           id: task.id,
           parentCommit: sha,
@@ -140,11 +140,11 @@ export function resubmitTask(task: Task): ReduxThunk {
 
 export function checkout(task: Task): ReduxThunk {
   return async (dispatch: Dispatch) => {
-    dispatch({ type: 'START_CHECKOUT' });
+    dispatch({ type: `START_CHECKOUT` });
     const data = await tryGithub(
       async () => {
         const repoSlug = await gh.getRepoSlug(task.repoId);
-        const parentCommit = await gh.getHeadSha(repoSlug, 'master');
+        const parentCommit = await gh.getHeadSha(repoSlug, `master`);
         const fileArray = await gh.getAdocFiles(repoSlug, parentCommit);
         const files = fileArray.reduce((acc, file) => {
           acc[file.path] = file;
@@ -158,21 +158,21 @@ export function checkout(task: Task): ReduxThunk {
         }, {} as { [key: string]: string });
         return Promise.resolve({ documentTitles, files, parentCommit });
       },
-      'CHECKOUT',
+      `CHECKOUT`,
       dispatch,
     );
 
     if (data) {
       dispatch({
-        type: 'UPDATE_TASK',
+        type: `UPDATE_TASK`,
         payload: {
           id: task.id,
           data,
         },
       });
-      dispatch({ type: 'END_CHECKOUT' });
+      dispatch({ type: `END_CHECKOUT` });
     } else {
-      dispatch({ type: 'CHANGE_SCREEN', payload: 'TASKS' });
+      dispatch({ type: `CHANGE_SCREEN`, payload: `TASKS` });
     }
   };
 }
@@ -183,30 +183,30 @@ interface Named {
 
 export function fetchFriendRepos(): ReduxThunk {
   return async (dispatch: Dispatch) => {
-    dispatch({ type: 'REQUEST_FRIEND_REPOS' });
+    dispatch({ type: `REQUEST_FRIEND_REPOS` });
     let repos;
     try {
       const friendRepos = (await gh.getFriendRepos()) as Named[];
       // filter out any friend repos that don't have a yml file yet
       const ymlsPath = `/repos/:owner/:repo/contents/packages/friends/yml/${gh.LANG}`;
-      const { data: ymls } = await gh.req(ymlsPath, { repo: 'friends-library' });
+      const { data: ymls } = await gh.req(ymlsPath, { repo: `friends-library` });
       repos = friendRepos.filter(repo => {
         return !!ymls.find((y: Named) => y.name === `${repo.name}.yml`);
       });
     } catch (e) {
-      dispatch({ type: 'NETWORK_ERROR' });
+      dispatch({ type: `NETWORK_ERROR` });
       return;
     }
-    dispatch({ type: 'RECEIVE_FRIEND_REPOS', payload: repos });
+    dispatch({ type: `RECEIVE_FRIEND_REPOS`, payload: repos });
   };
 }
 
 export function requestGitHubUser(): ReduxThunk {
   return async (dispatch: Dispatch) => {
-    dispatch({ type: 'REQUEST_GITHUB_USER' });
-    const { data: user } = await gh.req('/user');
+    dispatch({ type: `REQUEST_GITHUB_USER` });
+    const { data: user } = await gh.req(`/user`);
     dispatch({
-      type: 'RECEIVE_GITHUB_USER',
+      type: `RECEIVE_GITHUB_USER`,
       payload: {
         name: user.name,
         avatar: user.avatar_url,
@@ -225,7 +225,7 @@ async function tryGithub(
   try {
     result = await fn();
   } catch (e) {
-    dispatch({ type: 'NETWORK_ERROR' });
+    dispatch({ type: `NETWORK_ERROR` });
     alertGithubError(errorType);
     return false;
   }
@@ -233,21 +233,19 @@ async function tryGithub(
 }
 
 function alertGithubError(type: string): void {
-  smalltalk.alert('😬 <b style="color: red;">Network Error</b>', ghErrorMsgs[type]);
+  smalltalk.alert(`😬 <b style="color: red;">Network Error</b>`, ghErrorMsgs[type]);
 }
 
 function friendYmlUrl(friendSlug: Slug): Url {
   return [
-    'https://raw.githubusercontent.com/',
+    `https://raw.githubusercontent.com/`,
     `${gh.ORG}/friends-library/master/`,
     `packages/friends/yml/${gh.LANG}/`,
     `${friendSlug}.yml`,
-  ].join('');
+  ].join(``);
 }
 
 const ghErrorMsgs: { [key: string]: string } = {
-  SUBMIT_TASK:
-    'There was an error submitting your task to GitHub. Probably just a temporary glitch on their end. None of your work was lost, try submitting again in a few seconds. 🤞',
-  CHECKOUT:
-    'There was an error retrieving source files to edit. Probably just a temporary glitch with GitHub. Try again in a few seconds. 🤞',
+  SUBMIT_TASK: `There was an error submitting your task to GitHub. Probably just a temporary glitch on their end. None of your work was lost, try submitting again in a few seconds. 🤞`,
+  CHECKOUT: `There was an error retrieving source files to edit. Probably just a temporary glitch with GitHub. Try again in a few seconds. 🤞`,
 };

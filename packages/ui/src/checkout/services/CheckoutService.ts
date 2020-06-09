@@ -15,10 +15,10 @@ import { LANG } from '../../env';
 export default class CheckoutService {
   private errors: string[] = [];
   private stripeError?: string;
-  public orderId = '';
-  public paymentIntentId = '';
-  public paymentIntentClientSecret = '';
-  public shippingLevel = '';
+  public orderId = ``;
+  public paymentIntentId = ``;
+  public paymentIntentClientSecret = ``;
+  public shippingLevel = ``;
   public printJobId = -1;
   public printJobStatus?: PrintJobStatus;
   public fees = {
@@ -54,7 +54,7 @@ export default class CheckoutService {
         ),
     };
 
-    if (!this.cart.address) throw new Error('Missing address');
+    if (!this.cart.address) throw new Error(`Missing address`);
 
     const res = await this.api.calculateFees(payload);
     if (res.ok) {
@@ -133,13 +133,13 @@ export default class CheckoutService {
         this.errors.push(data.msg || `Status: ${statusCode}`);
         this.printJobStatus = data.status;
       }
-    } while (this.printJobStatus !== 'accepted' && attempts++ < 45);
+    } while (this.printJobStatus !== `accepted` && attempts++ < 45);
 
-    if (this.printJobStatus === 'accepted') {
+    if (this.printJobStatus === `accepted`) {
       return;
     }
 
-    return 'print_job_acceptance_verification_timeout';
+    return `print_job_acceptance_verification_timeout`;
   }
 
   public async updateOrderPrintJobStatus(): Promise<string | void> {
@@ -154,7 +154,7 @@ export default class CheckoutService {
     authorizePayment: () => Promise<Record<string, any>>,
   ): Promise<string | void> {
     const res = await this.api.authorizePayment(authorizePayment);
-    if (!res.ok && typeof res.data.userMsg === 'string') {
+    if (!res.ok && typeof res.data.userMsg === `string`) {
       this.stripeError = res.data.userMsg;
     }
     return this.resolve(res);
@@ -223,7 +223,7 @@ export default class CheckoutService {
 
   private createOrderPayload(): Record<string, any> {
     const { shipping, taxes, ccFeeOffset } = this.fees;
-    if (!this.cart.address) throw new Error('Missing address');
+    if (!this.cart.address) throw new Error(`Missing address`);
     return {
       amount: this.cart.subTotal() + this.sumFees(),
       shipping,
@@ -254,10 +254,10 @@ export default class CheckoutService {
 
   private resetState(): void {
     this.errors = [];
-    this.orderId = '';
-    this.paymentIntentId = '';
-    this.paymentIntentClientSecret = '';
-    this.shippingLevel = '';
+    this.orderId = ``;
+    this.paymentIntentId = ``;
+    this.paymentIntentClientSecret = ``;
+    this.shippingLevel = ``;
     this.printJobId = -1;
     this.printJobStatus = undefined;
     this.fees = { shipping: 0, taxes: 0, ccFeeOffset: 0 };

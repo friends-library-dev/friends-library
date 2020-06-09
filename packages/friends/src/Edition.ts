@@ -14,7 +14,7 @@ export default class Edition {
   }
 
   public get document(): Document {
-    if (!this._document) throw new Error('Document not set');
+    if (!this._document) throw new Error(`Document not set`);
     return this._document;
   }
 
@@ -47,17 +47,17 @@ export default class Edition {
   }
 
   public filename(type: ArtifactType, volumeNumber?: number): string {
-    const volSuffix = typeof volumeNumber === 'number' ? `--v${volumeNumber}` : '';
+    const volSuffix = typeof volumeNumber === `number` ? `--v${volumeNumber}` : ``;
     switch (type) {
-      case 'epub':
+      case `epub`:
         return `${this.filenameBase}.epub`;
-      case 'mobi':
+      case `mobi`:
         return `${this.filenameBase}.mobi`;
-      case 'web-pdf':
+      case `web-pdf`:
         return `${this.filenameBase}.pdf`;
-      case 'paperback-interior':
+      case `paperback-interior`:
         return `${this.filenameBase}--(print)${volSuffix}.pdf`;
-      case 'paperback-cover':
+      case `paperback-cover`:
         return `${this.filenameBase}--cover${volSuffix}.pdf`;
     }
   }
@@ -87,11 +87,11 @@ export default class Edition {
       isDraft: this.isDraft,
       filenameBase: this.filenameBase,
       filename: {
-        epub: this.filename('epub'),
-        mobi: this.filename('mobi'),
-        'web-pdf': this.filename('web-pdf'),
-        'paperback-cover': this.filename('paperback-cover'),
-        'paperback-interior': this.filename('paperback-interior'),
+        epub: this.filename(`epub`),
+        mobi: this.filename(`mobi`),
+        'web-pdf': this.filename(`web-pdf`),
+        'paperback-cover': this.filename(`paperback-cover`),
+        'paperback-interior': this.filename(`paperback-interior`),
       },
     };
   }

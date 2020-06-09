@@ -5,7 +5,7 @@ import CheckoutService from './CheckoutService';
 const states = {
   cart: {
     async next(this: CheckoutMachine) {
-      await this.transitionTo('delivery');
+      await this.transitionTo(`delivery`);
       // don't await, fire & forget to wakeup in background
       this.service.sendWakeup();
     },
@@ -15,34 +15,34 @@ const states = {
   },
 
   delivery: {
-    next: 'calculateFees',
-    back: 'cart',
+    next: `calculateFees`,
+    back: `cart`,
   },
 
   calculateFees: {
-    onEnter: 'Service.calculateFees',
+    onEnter: `Service.calculateFees`,
     success(this: CheckoutMachine) {
       if (!this.service.orderId) {
-        this.transitionTo('createOrder');
+        this.transitionTo(`createOrder`);
       } else {
-        this.transitionTo('updateOrder');
+        this.transitionTo(`updateOrder`);
       }
     },
     failure(this: CheckoutMachine, err: string) {
-      this.transitionTo(err === Err.SHIPPING_NOT_POSSIBLE ? 'delivery' : 'brickSession');
+      this.transitionTo(err === Err.SHIPPING_NOT_POSSIBLE ? `delivery` : `brickSession`);
     },
   },
 
   createOrder: {
-    onEnter: 'Service.createOrder',
-    success: 'payment',
-    failure: 'brickSession',
+    onEnter: `Service.createOrder`,
+    success: `payment`,
+    failure: `brickSession`,
   },
 
   updateOrder: {
-    onEnter: 'Service.updateOrder',
-    success: 'payment',
-    failure: 'brickSession',
+    onEnter: `Service.updateOrder`,
+    success: `payment`,
+    failure: `brickSession`,
   },
 
   payment: {
@@ -50,48 +50,48 @@ const states = {
       this: CheckoutMachine,
       authorizePayment: () => Promise<Record<string, any>>,
     ) {
-      await this.transitionTo('authorizingPayment');
+      await this.transitionTo(`authorizingPayment`);
       const err = await this.service.authorizePayment(authorizePayment);
-      await this.dispatch(err ? 'failure' : 'success', err);
+      await this.dispatch(err ? `failure` : `success`, err);
     },
-    back: 'delivery',
+    back: `delivery`,
   },
 
   authorizingPayment: {
-    success: 'createPrintJob',
+    success: `createPrintJob`,
     failure(this: CheckoutMachine) {
       // we've got a user-actionable stripe error, display it on payment screen
       if (this.service.peekStripeError()) {
-        this.transitionTo('payment');
+        this.transitionTo(`payment`);
         return;
       }
       // something went horribly wrong, brick session
-      this.transitionTo('brickSession');
+      this.transitionTo(`brickSession`);
     },
   },
 
   createPrintJob: {
-    onEnter: 'Service.createPrintJob',
-    success: 'verifyPrintJob',
-    failure: 'brickSession',
+    onEnter: `Service.createPrintJob`,
+    success: `verifyPrintJob`,
+    failure: `brickSession`,
   },
 
   verifyPrintJob: {
-    onEnter: 'Service.verifyPrintJobAccepted',
-    success: 'updateOrderPrintJobStatus',
-    failure: 'brickSession',
+    onEnter: `Service.verifyPrintJobAccepted`,
+    success: `updateOrderPrintJobStatus`,
+    failure: `brickSession`,
   },
 
   updateOrderPrintJobStatus: {
-    onEnter: 'Service.updateOrderPrintJobStatus',
-    success: 'capturePayment',
-    failure: 'capturePayment',
+    onEnter: `Service.updateOrderPrintJobStatus`,
+    success: `capturePayment`,
+    failure: `capturePayment`,
   },
 
   capturePayment: {
-    onEnter: 'Service.capturePayment',
-    success: 'confirmation',
-    failure: 'brickSession',
+    onEnter: `Service.capturePayment`,
+    success: `confirmation`,
+    failure: `brickSession`,
   },
 
   confirmation: {
@@ -117,22 +117,22 @@ const states = {
     onEnter(this: CheckoutMachine) {
       this.service.brickOrder(this.history);
     },
-    tryAgain: 'cart',
+    tryAgain: `cart`,
     close(this: CheckoutMachine) {
       this.close();
     },
   },
 
   closed: {
-    next: 'cart',
+    next: `cart`,
   },
 };
 
 type StateKey = keyof typeof states;
 
 export default class CheckoutMachine extends EventEmitter {
-  public history: StateKey[] = ['cart'];
-  public state: StateKey = 'cart';
+  public history: StateKey[] = [`cart`];
+  public state: StateKey = `cart`;
 
   public constructor(public service: CheckoutService) {
     super();
@@ -143,13 +143,13 @@ export default class CheckoutMachine extends EventEmitter {
   }
 
   public close(): void {
-    this.emit('close');
-    this.transitionTo('closed');
-    this.dispatch('next');
+    this.emit(`close`);
+    this.transitionTo(`closed`);
+    this.dispatch(`next`);
   }
 
   public async transitionTo(state: StateKey): Promise<void> {
-    log(`%ctransition to state: %c${state}`, 'color: grey', 'color: green');
+    log(`%ctransition to state: %c${state}`, `color: grey`, `color: green`);
     const nextState = states[state];
     if (!nextState) {
       throw new Error(`Unexpected next state: ${state}`);
@@ -157,36 +157,36 @@ export default class CheckoutMachine extends EventEmitter {
 
     this.state = state;
     this.history.push(state);
-    this.emit('state:change', state);
+    this.emit(`state:change`, state);
 
-    if (!nextState.hasOwnProperty('onEnter')) {
+    if (!nextState.hasOwnProperty(`onEnter`)) {
       return;
     }
 
     // @ts-ignore
     const { onEnter } = nextState;
-    if (typeof onEnter === 'function') {
+    if (typeof onEnter === `function`) {
       await onEnter.call(this);
       return;
     }
 
-    if (typeof onEnter === 'string' && onEnter.startsWith('Service.')) {
-      const method = onEnter.replace(/^Service\./, '');
+    if (typeof onEnter === `string` && onEnter.startsWith(`Service.`)) {
+      const method = onEnter.replace(/^Service\./, ``);
       // @ts-ignore
-      if (typeof this.service[method] !== 'function') {
+      if (typeof this.service[method] !== `function`) {
         throw new Error(`CheckoutService method: ${method} does not exist`);
       }
       // @ts-ignore
       const err = await this.service[method]();
-      await this.dispatch(err ? 'failure' : 'success', err);
+      await this.dispatch(err ? `failure` : `success`, err);
       return;
     }
 
-    throw new Error('Unexpected value for [state].onEnter');
+    throw new Error(`Unexpected value for [state].onEnter`);
   }
 
   public async dispatch<T>(action: string, payload?: T): Promise<void> {
-    log(`%cdispatch action: %c${action}`, 'color: grey', 'color: orange');
+    log(`%cdispatch action: %c${action}`, `color: grey`, `color: orange`);
     const state = states[this.state];
     if (!state) {
       return;
@@ -198,7 +198,7 @@ export default class CheckoutMachine extends EventEmitter {
       return;
     }
 
-    if (typeof handler === 'function') {
+    if (typeof handler === `function`) {
       handler.call(this, payload);
       return;
     }
@@ -208,4 +208,4 @@ export default class CheckoutMachine extends EventEmitter {
 }
 
 const log: any =
-  process?.env?.NODE_ENV === 'production' ? (): void => {} : console.log.bind(console);
+  process?.env?.NODE_ENV === `production` ? (): void => {} : console.log.bind(console);

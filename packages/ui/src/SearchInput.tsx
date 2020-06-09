@@ -16,8 +16,8 @@ const SearchInput: React.FC<Props> = ({
   setQuery,
   small = false,
   open = true,
-  lineColor = 'flgray-400',
-  textColor = 'flgray-500',
+  lineColor = `flgray-400`,
+  textColor = `flgray-500`,
 }) => {
   // purgeCSS: h-12 w-12 h-10 w-10 text-flgray-500
   const size = small ? 10 : 12;
@@ -31,11 +31,11 @@ const SearchInput: React.FC<Props> = ({
         value={query}
         onChange={e => setQuery(e.target.value)}
         className={cx(
-          'SearchInput__input',
+          `SearchInput__input`,
           // purgeCSS: border-flgray-400 border-flprimary
           `border border-${lineColor} rounded-full subtle-focus`,
           `h-${size} pl-4`,
-          'antialiased font-sans',
+          `antialiased font-sans`,
           {
             [`w-64 pr-16 text-${textColor}`]: open,
             [`w-${size} text-white`]: !open,

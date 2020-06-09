@@ -14,7 +14,7 @@ interface Props {
 
 const Stack: React.FC<Props> = ({
   className,
-  el = 'div',
+  el = `div`,
   children,
   space,
   sm,
@@ -30,10 +30,10 @@ const Stack: React.FC<Props> = ({
         return React.cloneElement(child, {
           className: cx(child.props.className, {
             [`mb-${space}`]: notLast,
-            [`sm:mb-${sm || ''}`]: notLast && sm,
-            [`md:mb-${md || ''}`]: notLast && md,
-            [`lg:mb-${lg || ''}`]: notLast && lg,
-            [`xl:mb-${xl || ''}`]: notLast && xl,
+            [`sm:mb-${sm || ``}`]: notLast && sm,
+            [`md:mb-${md || ``}`]: notLast && md,
+            [`lg:mb-${lg || ``}`]: notLast && lg,
+            [`xl:mb-${xl || ``}`]: notLast && xl,
           }),
         });
       })}

@@ -21,7 +21,7 @@ import { documentDate, periodFromDate, published } from '../lib/date';
 import { documentRegion } from '../lib/region';
 import { APP_ALT_URL, LANG } from '../env';
 
-const humansize = filesize.partial({ round: 0, spacer: '' });
+const humansize = filesize.partial({ round: 0, spacer: `` });
 
 const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   actions: { createNode },
@@ -47,7 +47,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
       id: createNodeId(`friend-${friend.id}`),
       children: documents.map(d => createNodeId(`document-${d.id}`)),
       internal: {
-        type: 'Friend',
+        type: `Friend`,
         contentDigest: createContentDigest(friendProps),
       },
     });
@@ -78,7 +78,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
       const filteredEditions = document.editions.filter(ed => !ed.isDraft);
       const editions = filteredEditions.map(edition => {
         const editionMeta = meta.get(edition.path);
-        let printSize: PrintSize = 'm';
+        let printSize: PrintSize = `m`;
         let pages = [175];
         if (editionMeta) {
           printSize = editionMeta.paperback.size;
@@ -125,9 +125,9 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           printSize,
           pages,
           downloadUrl: {
-            web_pdf: url.artifactDownloadUrl(edition, 'web-pdf'),
-            epub: url.artifactDownloadUrl(edition, 'epub'),
-            mobi: url.artifactDownloadUrl(edition, 'mobi'),
+            web_pdf: url.artifactDownloadUrl(edition, `web-pdf`),
+            epub: url.artifactDownloadUrl(edition, `epub`),
+            mobi: url.artifactDownloadUrl(edition, `mobi`),
           },
           chapterHeadings: dpcData.headings,
           price: price(printSize, pages),
@@ -146,12 +146,12 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
                 m4bFilesizeLq: humansize(editionMeta.audioFilesizes?.m4bLq || 0),
                 mp3ZipFilesizeHq: humansize(editionMeta.audioFilesizes?.mp3ZipHq || 0),
                 mp3ZipFilesizeLq: humansize(editionMeta.audioFilesizes?.mp3ZipLq || 0),
-                m4bUrlHq: url.m4bDownloadUrl(edition.audio, 'HQ'),
-                m4bUrlLq: url.m4bDownloadUrl(edition.audio, 'LQ'),
-                mp3ZipUrlHq: url.mp3ZipDownloadUrl(edition.audio, 'HQ'),
-                mp3ZipUrlLq: url.mp3ZipDownloadUrl(edition.audio, 'LQ'),
-                podcastUrlHq: url.podcastUrl(edition.audio, 'HQ'),
-                podcastUrlLq: url.podcastUrl(edition.audio, 'LQ'),
+                m4bUrlHq: url.m4bDownloadUrl(edition.audio, `HQ`),
+                m4bUrlLq: url.m4bDownloadUrl(edition.audio, `LQ`),
+                mp3ZipUrlHq: url.mp3ZipDownloadUrl(edition.audio, `HQ`),
+                mp3ZipUrlLq: url.mp3ZipDownloadUrl(edition.audio, `LQ`),
+                podcastUrlHq: url.podcastUrl(edition.audio, `HQ`),
+                podcastUrlLq: url.podcastUrl(edition.audio, `LQ`),
                 externalPlaylistIdHq: edition.audio.externalPlaylistIdHq || null,
                 externalPlaylistIdLq: edition.audio.externalPlaylistIdLq || null,
               }
@@ -165,7 +165,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         id: createNodeId(`document-${document.id}`),
         parent: createNodeId(`friend-${friend.id}`),
         internal: {
-          type: 'Document',
+          type: `Document`,
           contentDigest: createContentDigest(documentProps),
         },
       });

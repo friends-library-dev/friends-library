@@ -50,12 +50,12 @@ function html(dpc: DocPrecursor, conf: PaperbackInteriorConfig, volIdx?: number)
     prependFrontmatter,
     ([html, d, c, i]) => [removeMobi7Tags(html), d, c, i],
     wrapHtml,
-  ])(['', dpc, conf, volIdx])[0];
+  ])([``, dpc, conf, volIdx])[0];
 }
 
 const addFirstChapterClass: HtmlStep = ([html, dpc, conf, volIdx]) => {
   return [
-    html.replace('<div class="sect1', '<div class="sect1 first-chapter'),
+    html.replace(`<div class="sect1`, `<div class="sect1 first-chapter`),
     dpc,
     conf,
     volIdx,
@@ -76,10 +76,10 @@ const prependFrontmatter: HtmlStep = ([html, dpc, conf, volIdx]) => {
 };
 
 const wrapHtml: HtmlStep = ([html, dpc, conf, volIdx]) => {
-  const { abbrev } = getPrintSizeDetails(conf.printSize || 'm');
+  const { abbrev } = getPrintSizeDetails(conf.printSize || `m`);
   const wrapped = wrapHtmlBody(html, {
     title: dpc.meta.title,
-    css: ['doc.css'],
+    css: [`doc.css`],
     bodyClass: `body trim--${abbrev}`,
     htmlAttrs: `lang="${dpc.lang}"`,
   });

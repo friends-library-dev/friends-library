@@ -86,7 +86,7 @@ const AudiobooksPage: React.FC<Props> = ({
             documentUrl={book.documentUrl}
             description={
               book.description ||
-              'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ'
+              `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ`
             }
           />
         ))}
@@ -96,14 +96,14 @@ const AudiobooksPage: React.FC<Props> = ({
       <h2 className="sans-wider text-center text-3xl mb-8 px-8">{t`All Audio Books`}</h2>
       <Dual.p className="body-text text-center text-lg mb-12 px-8 sm:px-10">
         <>
-          Browse all {audioBooks.nodes.length} audiobooks below, or{' '}
+          Browse all {audioBooks.nodes.length} audiobooks below, or{` `}
           <Link to={t`/audio-help`} className="subtle-link">
             get help with listening here
           </Link>
           .
         </>
         <>
-          Explora los {audioBooks.nodes.length} audiolibros a continuación u{' '}
+          Explora los {audioBooks.nodes.length} audiolibros a continuación u{` `}
           <Link to={t`/audio-help`} className="subtle-link">
             obtén ayuda aquí para escuchar
           </Link>
@@ -117,7 +117,7 @@ const AudiobooksPage: React.FC<Props> = ({
             className="mb-12 sm:w-4/5 md:w-2/5 md:box-content md:mx-4 xl:w-1/4 xl:max-w-3xl"
             {...coverPropsFromQueryData(book)}
             htmlShortTitle={book.htmlShortTitle}
-            bgColor={['blue', 'green', 'gold'][idx % 3] as 'blue' | 'green' | 'gold'}
+            bgColor={[`blue`, `green`, `gold`][idx % 3] as 'blue' | 'green' | 'gold'}
             duration={(book.editions[0].audio || { duration: book.documentUrl }).duration}
             authorUrl={book.authorUrl}
             documentUrl={book.documentUrl}

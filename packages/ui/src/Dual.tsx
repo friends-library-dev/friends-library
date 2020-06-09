@@ -13,7 +13,7 @@ type PartialProps = Omit<Props, 'el'>;
 const DualComponent: React.FC<Props> = props => {
   const { el, children, ...forwardProps } = props;
   const Tag = el;
-  const useChildren = children[LANG === 'en' ? 0 : 1];
+  const useChildren = children[LANG === `en` ? 0 : 1];
   if (!Tag) return <React.Fragment>{useChildren}</React.Fragment>;
   return <Tag {...forwardProps}>{useChildren}</Tag>;
 };

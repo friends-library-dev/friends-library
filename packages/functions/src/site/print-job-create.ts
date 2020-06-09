@@ -16,7 +16,7 @@ export default async function createPrintJob(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /print-job', { body, error: data });
+    log.error(`invalid body for /print-job`, { body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, detail: data.message }, 400);
   }
 
@@ -27,23 +27,23 @@ export default async function createPrintJob(
 
   const [findError, order] = await findById(data.orderId);
   if (!order) {
-    log.error('order not found for print job creation', { data, error: findError });
+    log.error(`order not found for print job creation`, { data, error: findError });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
   try {
     var token = await getAuthToken();
   } catch (error) {
-    log.error('error acquiring lulu oauth token', { error });
+    log.error(`error acquiring lulu oauth token`, { error });
     return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
   }
 
   const payload = createOrderPayload(data);
-  const res = await fetch(`${env('LULU_API_ENDPOINT')}/print-jobs/`, {
-    method: 'POST',
+  const res = await fetch(`${env(`LULU_API_ENDPOINT`)}/print-jobs/`, {
+    method: `POST`,
     headers: {
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json',
+      'Cache-Control': `no-cache`,
+      'Content-Type': `application/json`,
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(payload),
@@ -55,12 +55,12 @@ export default async function createPrintJob(
     return respond.json({ msg: Err.ERROR_CREATING_PRINT_JOB }, 500);
   }
 
-  order.printJobStatus = 'pending';
+  order.printJobStatus = `pending`;
   order.printJobId = json.id;
   const [saveError] = await saveOrder(order);
 
   if (saveError) {
-    log.error('error updating order with print_job details', {
+    log.error(`error updating order with print_job details`, {
       error: saveError,
       data: {
         orderId: data.orderId,
@@ -103,7 +103,7 @@ async function verifyPaymentIntent(
 ): Promise<CheckoutError | void> {
   try {
     const intent = await stripeClient().paymentIntents.retrieve(paymentIntentId);
-    if (intent.status === 'succeeded') {
+    if (intent.status === `succeeded`) {
       log.error(`verify payment intent fail: intent ${paymentIntentId} already captured`);
       return Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED;
     }
@@ -120,53 +120,51 @@ async function verifyPaymentIntent(
 
 export const schema = {
   properties: {
-    address: { $ref: '/address' },
-    orderId: { type: 'string', minLength: 10 },
-    paymentIntentId: { type: 'string', minLength: 5 },
-    email: { $ref: '/email' },
-    shippingLevel: { $ref: '/lulu-shipping-level' },
+    address: { $ref: `/address` },
+    orderId: { type: `string`, minLength: 10 },
+    paymentIntentId: { type: `string`, minLength: 5 },
+    email: { $ref: `/email` },
+    shippingLevel: { $ref: `/lulu-shipping-level` },
     items: {
-      type: 'array',
+      type: `array`,
       minItems: 1,
       items: {
-        type: 'object',
+        type: `object`,
         properties: {
-          title: { type: 'string', minLength: 4 },
-          coverUrl: { type: 'string', minLength: 4 },
-          interiorUrl: { type: 'string', minLength: 4 },
-          pages: { $ref: '/pages' },
-          printSize: { $ref: '/print-size' },
-          quantity: { $ref: '/book-qty' },
+          title: { type: `string`, minLength: 4 },
+          coverUrl: { type: `string`, minLength: 4 },
+          interiorUrl: { type: `string`, minLength: 4 },
+          pages: { $ref: `/pages` },
+          printSize: { $ref: `/print-size` },
+          quantity: { $ref: `/book-qty` },
         },
-        required: ['pages', 'printSize', 'quantity', 'title', 'coverUrl', 'interiorUrl'],
+        required: [`pages`, `printSize`, `quantity`, `title`, `coverUrl`, `interiorUrl`],
       },
     },
   },
-  required: ['orderId', 'email', 'shippingLevel', 'paymentIntentId', 'items', 'address'],
+  required: [`orderId`, `email`, `shippingLevel`, `paymentIntentId`, `items`, `address`],
   example: {
-    orderId: 'flp-order-id',
-    email: 'jared@netrivet.com',
-    shippingLevel: 'MAIL',
-    paymentIntentId: 'ch_123abc',
+    orderId: `flp-order-id`,
+    email: `jared@netrivet.com`,
+    shippingLevel: `MAIL`,
+    paymentIntentId: `ch_123abc`,
     items: [
       {
-        title: 'Journal of Ambrose Rigge (modernized)',
-        coverUrl:
-          'https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.pdf',
-        interiorUrl:
-          'https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf',
-        printSize: 'm' as PrintSize,
+        title: `Journal of Ambrose Rigge (modernized)`,
+        coverUrl: `https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.pdf`,
+        interiorUrl: `https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf`,
+        printSize: `m` as PrintSize,
         pages: 166,
         quantity: 1,
       },
     ],
     address: {
-      name: 'Jared Henderson',
-      street: '123 Mulberry Ln.',
-      city: 'Wadsworth',
-      state: 'OH',
-      zip: '44281',
-      country: 'US',
+      name: `Jared Henderson`,
+      street: `123 Mulberry Ln.`,
+      city: `Wadsworth`,
+      state: `OH`,
+      zip: `44281`,
+      country: `US`,
     },
   },
 };

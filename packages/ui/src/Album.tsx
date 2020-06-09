@@ -12,9 +12,9 @@ type Props = Omit<CoverProps, 'blurb' | 'pages' | 'size'> & {
 };
 
 const Album: React.FC<Props> = props => {
-  const Logo = LANG === 'en' ? LogoFriends : LogoAmigos;
+  const Logo = LANG === `en` ? LogoFriends : LogoAmigos;
   return (
-    <div className={cx(props.className, 'Album box-content shadow-xl relative')}>
+    <div className={cx(props.className, `Album box-content shadow-xl relative`)}>
       <Logo
         iconColor="white"
         friendsColor="white"

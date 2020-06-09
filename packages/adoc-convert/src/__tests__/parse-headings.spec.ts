@@ -6,55 +6,55 @@ function parse(adoc: Asciidoc): Heading {
   return sections[0].heading;
 }
 
-describe('parsing headings', () => {
+describe(`parsing headings`, () => {
   const cases: [Asciidoc, Partial<Heading>][] = [
     [
-      '== Forward',
+      `== Forward`,
       {
-        id: '_forward',
-        text: 'Forward',
+        id: `_forward`,
+        text: `Forward`,
       },
     ],
 
     [
-      '== Chapter 3: Foobar',
+      `== Chapter 3: Foobar`,
       {
-        text: 'Foobar',
+        text: `Foobar`,
         sequence: {
-          type: 'Chapter',
+          type: `Chapter`,
           number: 3,
         },
       },
     ],
 
     [
-      '== Chapter x',
+      `== Chapter x`,
       {
         sequence: {
-          type: 'Chapter',
+          type: `Chapter`,
           number: 10,
         },
       },
     ],
 
     [
-      '== Section 5: Lorem',
+      `== Section 5: Lorem`,
       {
-        text: 'Lorem',
+        text: `Lorem`,
         sequence: {
-          type: 'Section',
+          type: `Section`,
           number: 5,
         },
       },
     ],
 
     [
-      '[#ch10, short="Prayer, Ministry, Wisdom, & Kingdom"]\n== Chapter X. The Prayer, Ministry, Wisdom and Kingdom which are Spiritual',
+      `[#ch10, short="Prayer, Ministry, Wisdom, & Kingdom"]\n== Chapter X. The Prayer, Ministry, Wisdom and Kingdom which are Spiritual`,
       {
-        text: 'The Prayer, Ministry, Wisdom and Kingdom which are Spiritual',
-        shortText: 'Prayer, Ministry, Wisdom, &#38; Kingdom',
+        text: `The Prayer, Ministry, Wisdom and Kingdom which are Spiritual`,
+        shortText: `Prayer, Ministry, Wisdom, &#38; Kingdom`,
         sequence: {
-          type: 'Chapter',
+          type: `Chapter`,
           number: 10,
         },
       },
@@ -62,7 +62,7 @@ describe('parsing headings', () => {
   ];
 
   test.each(cases)(
-    'parses heading from %s',
+    `parses heading from %s`,
     (adoc: Asciidoc, heading: Partial<Heading>) => {
       expect(parse(adoc)).toMatchObject(heading);
     },

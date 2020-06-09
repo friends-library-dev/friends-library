@@ -63,33 +63,33 @@ function groupify(
   books: BookMeta[],
 ): { label: string; filters: { text: string; clear: () => any }[] }[] {
   const groups: { [k in FilterType]: Group } = {
-    edition: { label: 'Editions', filters: [] },
+    edition: { label: `Editions`, filters: [] },
     tag: { label: t`Tags`, filters: [] },
-    period: { label: 'Periods', filters: [] },
-    region: { label: 'Regions', filters: [] },
+    period: { label: `Periods`, filters: [] },
+    region: { label: `Regions`, filters: [] },
   };
 
   filters.forEach(filter => {
-    const [type, value] = filter.split('.') as [FilterType, string];
+    const [type, value] = filter.split(`.`) as [FilterType, string];
 
     const makeItem: (fn: (book: Props['books'][0]) => boolean) => Filter = fn => ({
-      text: `${translate(value.replace(/-us$/, ' US'))} (${books.filter(fn).length})`,
+      text: `${translate(value.replace(/-us$/, ` US`))} (${books.filter(fn).length})`,
       clear: () => setFilters(filters.filter(f => f !== filter)),
     });
 
     switch (type) {
-      case 'edition':
+      case `edition`:
         groups.edition.filters.push(makeItem(b => b.edition === value));
         break;
-      case 'tag':
+      case `tag`:
         groups.tag.filters.push(makeItem(b => b.tags.includes(value)));
         break;
-      case 'period':
+      case `period`:
         groups.period.filters.push(makeItem(b => b.period === value));
         break;
-      case 'region':
+      case `region`:
         groups.region.filters.push(
-          makeItem(b => b.region.toLowerCase().replace(/ /, '-') === value),
+          makeItem(b => b.region.toLowerCase().replace(/ /, `-`) === value),
         );
         break;
     }

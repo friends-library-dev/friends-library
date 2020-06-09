@@ -27,7 +27,7 @@ const Letters: React.FC = () => (
 
     <H2 style={{ marginTop: 0 }}>Salutations:</H2>
     <Para>
-      Letter <b>salutations</b> are designated on their own lines with the class{' '}
+      Letter <b>salutations</b> are designated on their own lines with the class{` `}
       <Code>[.salutation]</Code>:
     </Para>
     <Snippet trigger="sal" expansion="[.salutation]" />
@@ -35,9 +35,9 @@ const Letters: React.FC = () => (
 
     <H2>Opening Context:</H2>
     <Para>
-      Letters or other signed sections often have a line indicating the{' '}
+      Letters or other signed sections often have a line indicating the{` `}
       <i>context or place from which they were written</i>. When this context appears at
-      the <b>beginning of the section,</b> it should be designated with the class{' '}
+      the <b>beginning of the section,</b> it should be designated with the class{` `}
       <Code>[.signed-section-context-open]</Code>
     </Para>
     <Snippet trigger="ssco" expansion="[.signed-section-context-open]" />
@@ -61,9 +61,9 @@ const Letters: React.FC = () => (
 
     <H2>Closing Context:</H2>
     <Para>
-      Letters or other signed sections often have a line indicating the{' '}
+      Letters or other signed sections often have a line indicating the{` `}
       <i>context or place from which they were written</i>. When this context appears at
-      the <b>end of the section,</b> it should be designated with the class{' '}
+      the <b>end of the section,</b> it should be designated with the class{` `}
       <Code>[.signed-section-context-close]</Code>
     </Para>
     <Snippet trigger="sscc" expansion="[.signed-section-context-close]" />
@@ -71,7 +71,7 @@ const Letters: React.FC = () => (
 
     <H2>Closing:</H2>
     <Para>
-      Occasionally, a Quaker letter will have what is generally considered a{' '}
+      Occasionally, a Quaker letter will have what is generally considered a{` `}
       <i>closing</i>, equivalent to <i>Sincerely,</i> in a modern letter. These are
       designated with the class <Code>[.signed-section-closing]</Code>:
     </Para>
@@ -97,26 +97,30 @@ const Letters: React.FC = () => (
     <Para>
       Many of our books contain letters or signed sections that are <i>embedded</i> within
       a larger section, like a chapter. These sorts of sections need to be demarcated by
-      special asciidoc markers. Before they begin, you must add a line with the class{' '}
-      <Code>[.embedded-content-document.{'<TYPE>'}]</Code> where <Code>{'<TYPE>'}</Code>{' '}
+      special asciidoc markers. Before they begin, you must add a line with the class{` `}
+      <Code>[.embedded-content-document.{`<TYPE>`}]</Code> where <Code>{`<TYPE>`}</Code>
+      {` `}
       is replaced by a class indicating type <i>type</i> of embedded document it is. You
       can choose from the following types:
     </Para>
     <EmbeddedTypes>
       <li>
-        <Code>letter</Code>{' '}
+        <Code>letter</Code>
+        {` `}
         <span>
           most common - addressed <i>specifically</i> to <i>one or a few</i> individuals
         </span>
       </li>
       <li>
-        <Code>epistle</Code>{' '}
+        <Code>epistle</Code>
+        {` `}
         <span>
           a writing directed to a group of Friends <i>not specifically named</i>
         </span>
       </li>
       <li>
-        <Code>address</Code>{' '}
+        <Code>address</Code>
+        {` `}
         <span>
           a writing directed generally to non-Friends (like all magistrates, parlaiment,
           priests)
@@ -126,21 +130,24 @@ const Letters: React.FC = () => (
         <Code>testimony</Code> <span>testimony from an individual or a meeting</span>
       </li>
       <li>
-        <Code>paper</Code>{' '}
+        <Code>paper</Code>
+        {` `}
         <span>
           use if the context explicitly indicates it is a paper (e. g. "...I then gave
           forth this <i>paper"</i>)
         </span>
       </li>
       <li>
-        <Code>legal</Code>{' '}
+        <Code>legal</Code>
+        {` `}
         <span>
           legal documents (mittimus, warrant, court order, prisoner transfer instructions,
           etc.)
         </span>
       </li>
       <li>
-        <Code>minute</Code>{' '}
+        <Code>minute</Code>
+        {` `}
         <span>
           an official <em>minute</em> from a Friends meeting
         </span>
@@ -149,7 +156,8 @@ const Letters: React.FC = () => (
         <Code>prayer</Code> <span>a written prayer embedded in a document (rare)</span>
       </li>
       <li>
-        <Code>treatise</Code>{' '}
+        <Code>treatise</Code>
+        {` `}
         <span>a written work dealing formally with a specific subject (rare)</span>
       </li>
     </EmbeddedTypes>
@@ -162,7 +170,7 @@ const Letters: React.FC = () => (
       dashes <Code>--</Code> (surrounded by empty lines) to close the section. Below is a
       simple (but representative) example:
     </Para>
-    <Snippet trigger="ed" expansion={'.embedded-content-document.TYPE\n--'} />
+    <Snippet trigger="ed" expansion={`.embedded-content-document.TYPE\n--`} />
     <Pair id="embedded-letter" emphasize={[5, 6, 18]} />
 
     <H2>Postscripts:</H2>
@@ -176,7 +184,7 @@ const Letters: React.FC = () => (
     <Para>
       Not all <i>signed sections</i> are embedded. A good example is a signed forward, or
       a chapter which is a <i>testimony</i>, both of which usually have a signature and
-      sometimes a closing context, but should <i>not</i> be wrapped as an{' '}
+      sometimes a closing context, but should <i>not</i> be wrapped as an{` `}
       <i>embedded content document</i>.
     </Para>
     <Pair id="forward" />

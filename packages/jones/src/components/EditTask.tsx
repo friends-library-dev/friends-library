@@ -134,7 +134,7 @@ class EditTask extends React.Component<Props, State> {
       <div className="padded-wrap">
         <H1>
           <i className="fas fa-code-branch" />
-          {task.isNew ? 'Create' : 'Edit'} Task
+          {task.isNew ? `Create` : `Edit`} Task
         </H1>
         <Heading>Task name:</Heading>
         <Input
@@ -155,7 +155,7 @@ class EditTask extends React.Component<Props, State> {
               .map(friend => (
                 <li
                   key={friend.repoId}
-                  className={repoId === friend.repoId ? 'selected' : ''}
+                  className={repoId === friend.repoId ? `selected` : ``}
                   onClick={() => this.setState({ repoId: friend.repoId })}
                 >
                   {friend.name}

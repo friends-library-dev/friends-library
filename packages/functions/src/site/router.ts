@@ -17,15 +17,15 @@ import sendOrderConfirmationEmail from './order-send-confirmation-email';
 
 export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
   const method = event.httpMethod;
-  const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, '');
+  const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, ``);
 
-  if (method === 'GET') {
+  if (method === `GET`) {
     switch (path) {
-      case 'wakeup':
+      case `wakeup`:
         return respond.noContent();
     }
 
-    if (path.startsWith('orders/')) {
+    if (path.startsWith(`orders/`)) {
       return fetchOrder(event, respond);
     }
 
@@ -33,32 +33,32 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
       return printJobStatus(event, respond);
     }
 
-    if (path.startsWith('log/download/')) {
+    if (path.startsWith(`log/download/`)) {
       return logDownload(event, respond);
     }
   }
 
-  if (method === 'POST') {
+  if (method === `POST`) {
     switch (path) {
-      case 'payment/capture':
+      case `payment/capture`:
         return capturePayment(event, respond);
-      case 'payment/authorize':
+      case `payment/authorize`:
         return authorizePayment(event, respond);
-      case 'print-job/fees':
+      case `print-job/fees`:
         return printJobFees(event, respond);
-      case 'print-job':
+      case `print-job`:
         return createPrintJob(event, respond);
-      case 'orders/check':
+      case `orders/check`:
         return checkOrders(event, respond);
-      case 'orders/create':
+      case `orders/create`:
         return createOrder(event, respond);
-      case 'orders/update':
+      case `orders/update`:
         return updateOrder(event, respond);
-      case 'orders/update-print-job-status':
+      case `orders/update-print-job-status`:
         return updateOrderPrintJobStatus(event, respond);
-      case 'orders/brick':
+      case `orders/brick`:
         return brickOrder(event, respond);
-      case 'contact':
+      case `contact`:
         return submitContactForm(event, respond);
     }
 

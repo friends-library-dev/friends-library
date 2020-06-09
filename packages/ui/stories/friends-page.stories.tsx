@@ -13,11 +13,11 @@ import Village from '../src/images/village.jpg';
 // @ts-ignore
 import Street from '../src/images/street.jpg';
 
-storiesOf('Friends Page', module)
+storiesOf(`Friends Page`, module)
   .addDecorator(coverSizes)
-  .add('ControlsBlock', () => {
-    const [searchQuery, setSearchQuery] = useState<string>('');
-    const [sortOption, setSortOption] = useState<string>('Alphabetical');
+  .add(`ControlsBlock`, () => {
+    const [searchQuery, setSearchQuery] = useState<string>(``);
+    const [sortOption, setSortOption] = useState<string>(`Alphabetical`);
     return (
       <ControlsBlock
         searchQuery={searchQuery}
@@ -27,7 +27,7 @@ storiesOf('Friends Page', module)
       />
     );
   })
-  .add('FriendCard', () => (
+  .add(`FriendCard`, () => (
     <div>
       <FriendCard
         className=""
@@ -55,7 +55,7 @@ storiesOf('Friends Page', module)
       />
     </div>
   ))
-  .add('FriendCards (multi)', () => (
+  .add(`FriendCards (multi)`, () => (
     <div className="bg-flgray-200 p-8">
       <FriendCard
         className="mb-8"
@@ -93,7 +93,7 @@ storiesOf('Friends Page', module)
       />
     </div>
   ))
-  .add('CircleSilhouettes', () => (
+  .add(`CircleSilhouettes`, () => (
     <Stack space="6" className="p-8 bg-gray-400">
       <CircleSilhouette bgColor="white" gender="male" fgColor="flgreen" />
       <CircleSilhouette bgColor="flgreen" gender="male" fgColor="white" />
@@ -101,9 +101,9 @@ storiesOf('Friends Page', module)
       <CircleSilhouette bgColor="flgreen" gender="female" fgColor="white" />
     </Stack>
   ))
-  .add('CompilationsBlock', () => (
-    <CompilationsBlock bgImg={{ aspectRatio: 1, src: Village, srcSet: '' }} />
+  .add(`CompilationsBlock`, () => (
+    <CompilationsBlock bgImg={{ aspectRatio: 1, src: Village, srcSet: `` }} />
   ))
-  .add('FriendPageHero', () => (
-    <FriendPageHero bgImg={{ src: Street, srcSet: '', aspectRatio: 1 }} numFriends={89} />
+  .add(`FriendPageHero`, () => (
+    <FriendPageHero bgImg={{ src: Street, srcSet: ``, aspectRatio: 1 }} numFriends={89} />
   ));

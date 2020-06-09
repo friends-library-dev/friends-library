@@ -2,13 +2,13 @@ import { Asciidoc } from '@friends-library/types';
 
 export function quotify(adoc: Asciidoc): Asciidoc {
   return adoc
-    .split('\n')
+    .split(`\n`)
     .map(quotifyLine)
-    .join('\n');
+    .join(`\n`);
 }
 
 export function quotifyLine(line: Asciidoc): Asciidoc {
-  if (line === "'''") {
+  if (line === `'''`) {
     return line;
   }
 
@@ -17,7 +17,7 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
   }
 
   let match;
-  const chars = line.split('');
+  const chars = line.split(``);
   const mod = [...chars];
   const expr = /"|'/g;
 
@@ -52,13 +52,13 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
     }
 
     // if there is a space before it, always point it right
-    if (charBefore === ' ') {
+    if (charBefore === ` `) {
       mod[index] = right(type);
       continue;
     }
 
     // if there is a space after it, always point left
-    if (charAfter === ' ') {
+    if (charAfter === ` `) {
       mod[index] = left(type);
       continue;
     }
@@ -69,7 +69,7 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
       continue;
     }
 
-    if (['?', '.', ','].includes(charBefore)) {
+    if ([`?`, `.`, `,`].includes(charBefore)) {
       mod[index] = left(type);
       continue;
     }
@@ -83,18 +83,18 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
     mod[index] = right(type);
   }
 
-  const newLine = mod.join('');
+  const newLine = mod.join(``);
 
   return newLine
-    .replace(/([^`]|^)"`'([^` ])/g, '$1"`\'`$2')
-    .replace(/([^` [])'`"/g, '$1`\'`"')
-    .replace(/([^` [])"`'/g, '$1`"`\'')
-    .replace(/(^|\b| |`|-)'`(\d\d)(\b|$| )/g, "$1`'$2$3")
-    .replace(/([a-z])`"([a-z])/i, "$1`'$2")
-    .replace(/([a-z])--`'([a-z])/gi, "$1--'`$2")
-    .replace(/\+\+\+____+\+\+\+'`s\b/g, "+++_______+++`'s")
+    .replace(/([^`]|^)"`'([^` ])/g, `$1"\`'\`$2`)
+    .replace(/([^` [])'`"/g, `$1\`'\`"`)
+    .replace(/([^` [])"`'/g, `$1\`"\`'`)
+    .replace(/(^|\b| |`|-)'`(\d\d)(\b|$| )/g, `$1\`'$2$3`)
+    .replace(/([a-z])`"([a-z])/i, `$1\`'$2`)
+    .replace(/([a-z])--`'([a-z])/gi, `$1--'\`$2`)
+    .replace(/\+\+\+____+\+\+\+'`s\b/g, `+++_______+++\`'s`)
     .replace(/(^|\b| |`|-)'`(')?(T|t)is(\b|$| )/g, (_, a, b, c, d) => {
-      return `${a}${b ? "'`" : ''}\`'${c}is${d}`;
+      return `${a}${b ? `'\`` : ``}\`'${c}is${d}`;
     });
 }
 
@@ -106,4 +106,4 @@ function left(type: string): string {
   return `${BACKTICK}${type}`;
 }
 
-const BACKTICK = '`';
+const BACKTICK = `\``;

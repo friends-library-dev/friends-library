@@ -5,7 +5,7 @@ import { filesFromPath, langFromPath, editionTypeFromPath } from './path';
 
 export default function lintPath(
   path: FilePath,
-  options: LintOptions = { lang: 'en' },
+  options: LintOptions = { lang: `en` },
 ): DirLints {
   const files = filesFromPath(path);
   const lints = new DirLints();

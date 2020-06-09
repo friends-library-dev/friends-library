@@ -87,7 +87,7 @@ const mapState = (state: AppState): Omit<Props, 'goToTasks'> => {
 };
 
 const mapDispatch = {
-  goToTasks: () => actions.changeScreen('TASKS'),
+  goToTasks: () => actions.changeScreen(`TASKS`),
 };
 
 export default connect(mapState, mapDispatch)(WorkNav);

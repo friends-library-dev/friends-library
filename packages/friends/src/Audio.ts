@@ -14,7 +14,7 @@ export default class Audio {
   }
 
   public get edition(): Edition {
-    if (!this._edition) throw new Error('Edition not set');
+    if (!this._edition) throw new Error(`Edition not set`);
     return this._edition;
   }
 
@@ -27,7 +27,7 @@ export default class Audio {
   }
 
   public get m4bFilenameHq(): string {
-    return this.m4bFilenameLq.replace(/--lq\.m4b$/, '.m4b');
+    return this.m4bFilenameLq.replace(/--lq\.m4b$/, `.m4b`);
   }
 
   public get m4bFilenameLq(): string {
@@ -35,7 +35,7 @@ export default class Audio {
   }
 
   public get zipFilenameHq(): string {
-    return this.zipFilenameLq.replace(/--lq\.zip$/, '.zip');
+    return this.zipFilenameLq.replace(/--lq\.zip$/, `.zip`);
   }
 
   public get zipFilenameLq(): string {
@@ -72,8 +72,8 @@ export default class Audio {
 
   public audiobookFilename(quality: AudioQuality): string {
     let filename = this.edition.document.filenameBase;
-    if (quality === 'LQ') {
-      filename += '--lq';
+    if (quality === `LQ`) {
+      filename += `--lq`;
     }
     return `${filename}.m4b`;
   }
@@ -87,8 +87,8 @@ export default class Audio {
     if (this.parts.length > 1) {
       filename += `--pt${index + 1}`;
     }
-    if (quality === 'LQ') {
-      filename += '--lq';
+    if (quality === `LQ`) {
+      filename += `--lq`;
     }
     return `${filename}.mp3`;
   }
@@ -98,8 +98,8 @@ export default class Audio {
   }
 
   public podcastRelFilepath(quality: AudioQuality): string {
-    let path = this.edition.path.replace(/^(en|es)\//, '/');
-    if (quality === 'LQ') path += '/lq';
+    let path = this.edition.path.replace(/^(en|es)\//, `/`);
+    if (quality === `LQ`) path += `/lq`;
     return `${path}/podcast.rss`;
   }
 
@@ -120,9 +120,9 @@ export default class Audio {
         return parts.slice(idx + 1).every(part => part === 0);
       })
       .map(String)
-      .map(part => part.padStart(2, '0'))
-      .join(':')
-      .replace(/^0/, '');
+      .map(part => part.padStart(2, `0`))
+      .join(`:`)
+      .replace(/^0/, ``);
   }
 
   public toJSON(): Omit<

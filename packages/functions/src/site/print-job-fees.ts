@@ -14,14 +14,14 @@ export default async function printJobFees(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /print-job/fees', { body, error: data });
+    log.error(`invalid body for /print-job/fees`, { body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
   try {
     var token = await getAuthToken();
   } catch (error) {
-    log.error('error acquiring lulu oauth token', { error });
+    log.error(`error acquiring lulu oauth token`, { error });
     return respond.json(
       { msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN, error: error.message },
       500,
@@ -30,7 +30,7 @@ export default async function printJobFees(
 
   const cheapest = await calculateCheapest(data, token);
   if (!cheapest) {
-    log.error('shipping not possible', { address: data.address });
+    log.error(`shipping not possible`, { address: data.address });
     return respond.json({ msg: Err.SHIPPING_NOT_POSSIBLE }, 400);
   }
 
@@ -83,11 +83,11 @@ async function calculateForType(
   json: typeof luluResponse;
   shippingLevel: ShippingLevel;
 }> {
-  const res = await fetch(`${env('LULU_API_ENDPOINT')}/print-job-cost-calculations/`, {
-    method: 'POST',
+  const res = await fetch(`${env(`LULU_API_ENDPOINT`)}/print-job-cost-calculations/`, {
+    method: `POST`,
     headers: {
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json',
+      'Cache-Control': `no-cache`,
+      'Content-Type': `application/json`,
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
@@ -117,35 +117,35 @@ function toCents(strNum: string): number {
 
 export const schema = {
   properties: {
-    address: { $ref: '/address' },
+    address: { $ref: `/address` },
     items: {
-      type: 'array',
+      type: `array`,
       minItems: 1,
       items: {
-        type: 'object',
+        type: `object`,
         properties: {
-          pages: { $ref: '/pages' },
-          printSize: { $ref: '/print-size' },
-          quantity: { $ref: '/book-qty' },
+          pages: { $ref: `/pages` },
+          printSize: { $ref: `/print-size` },
+          quantity: { $ref: `/book-qty` },
         },
-        required: ['pages', 'printSize', 'quantity'],
+        required: [`pages`, `printSize`, `quantity`],
       },
     },
   },
-  required: ['address', 'items'],
+  required: [`address`, `items`],
   example: {
     address: {
-      name: 'Jared Henderson',
-      street: '123 Mulberry Ln.',
-      city: 'Wadsworth',
-      state: 'OH',
-      zip: '44281',
-      country: 'US',
+      name: `Jared Henderson`,
+      street: `123 Mulberry Ln.`,
+      city: `Wadsworth`,
+      state: `OH`,
+      zip: `44281`,
+      country: `US`,
     },
     items: [
       {
         pages: 178,
-        printSize: 'm' as PrintSize,
+        printSize: `m` as PrintSize,
         quantity: 1,
       },
     ],
@@ -155,26 +155,26 @@ export const schema = {
 const luluResponse = {
   line_item_costs: [
     {
-      cost_excl_discounts: '4.81',
-      total_tax: '0.00',
-      tax_rate: '0.000000',
+      cost_excl_discounts: `4.81`,
+      total_tax: `0.00`,
+      tax_rate: `0.000000`,
       quantity: 1,
-      total_cost_excl_tax: '4.81',
-      total_cost_excl_discounts: '4.81',
-      total_cost_incl_tax: '4.81',
+      total_cost_excl_tax: `4.81`,
+      total_cost_excl_discounts: `4.81`,
+      total_cost_incl_tax: `4.81`,
       discounts: [],
       unit_tier_cost: null,
     },
   ],
   shipping_cost: {
-    total_cost_excl_tax: '3.99',
-    total_cost_incl_tax: '3.99',
-    total_tax: '0.00',
-    tax_rate: '0.00',
+    total_cost_excl_tax: `3.99`,
+    total_cost_incl_tax: `3.99`,
+    total_tax: `0.00`,
+    tax_rate: `0.00`,
   },
-  total_tax: '0.00',
-  total_cost_excl_tax: '8.80',
-  total_cost_incl_tax: '8.80',
-  total_discount_amount: '0.00',
-  currency: 'USD',
+  total_tax: `0.00`,
+  total_cost_excl_tax: `8.80`,
+  total_cost_incl_tax: `8.80`,
+  total_discount_amount: `0.00`,
+  currency: `USD`,
 };

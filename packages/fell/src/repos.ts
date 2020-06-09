@@ -6,8 +6,8 @@ import * as git from './git';
 
 export async function getRepos(exclude: string[], branch?: string): Promise<string[]> {
   const cwd = process.cwd();
-  const enRepos = glob.sync(path.resolve(cwd, 'en', '*'));
-  const esRepos = glob.sync(path.resolve(cwd, 'es', '*'));
+  const enRepos = glob.sync(path.resolve(cwd, `en`, `*`));
+  const esRepos = glob.sync(path.resolve(cwd, `es`, `*`));
   const repos = [...enRepos, ...esRepos];
   const notExcluded = repos.filter(repo => {
     return exclude.reduce((bool, str) => {

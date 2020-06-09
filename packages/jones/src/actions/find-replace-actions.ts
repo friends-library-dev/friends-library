@@ -9,9 +9,9 @@ export function findInCurrentFile(): ReduxThunk {
     if (!task || !task.editingFile) {
       return;
     }
-    const [documentSlug, editionType, filename] = task.editingFile.split('/');
+    const [documentSlug, editionType, filename] = task.editingFile.split(`/`);
     dispatch({
-      type: 'UPDATE_SEARCH',
+      type: `UPDATE_SEARCH`,
       payload: {
         searching: true,
         documentSlug,
@@ -36,7 +36,7 @@ export function replaceAll({
     }
 
     dispatch({
-      type: 'REPLACE_IN_RESULTS',
+      type: `REPLACE_IN_RESULTS`,
       payload: {
         results,
         replace,
@@ -61,7 +61,7 @@ export function replaceInResult({
       return;
     }
     dispatch({
-      type: 'REPLACE_IN_RESULT',
+      type: `REPLACE_IN_RESULT`,
       payload: {
         result,
         replace,
@@ -80,7 +80,7 @@ export function editSearchResult(result: SearchResult): ReduxThunk {
       return;
     }
     dispatch({
-      type: 'EDIT_SEARCH_RESULT',
+      type: `EDIT_SEARCH_RESULT`,
       payload: {
         taskId: task.id,
         result: result,

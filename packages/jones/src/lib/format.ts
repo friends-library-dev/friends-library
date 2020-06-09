@@ -19,9 +19,9 @@ export function italicize(
     start: { column: startCol },
     end: { column: endCol },
   } = range;
-  const before = firstLine[startCol - 1] || '';
-  const after = lastLine[endCol] || '';
-  const symbol = dunder(before) || dunder(after) ? '__' : '_';
+  const before = firstLine[startCol - 1] || ``;
+  const after = lastLine[endCol] || ``;
+  const symbol = dunder(before) || dunder(after) ? `__` : `_`;
   return `${symbol}${selection}${symbol}`;
 }
 

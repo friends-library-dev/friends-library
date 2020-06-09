@@ -26,11 +26,11 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
       <Dual.p className="body-text text-center">
         <>
           There’s nothing in your cart! Below are a few recommendations, or you can check
-          out our{' '}
+          out our{` `}
           <Link to={t`/getting-started`} className="subtle-link">
             getting started picks
           </Link>
-          , or{' '}
+          , or{` `}
           <Link to={t`/explore`} className="subtle-link">
             explore all the books
           </Link>
@@ -38,11 +38,11 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
         </>
         <>
           ¡No hay nada en tu carrito! Abajo encontrarás algunas recomendaciones, también
-          puedes ver nuestra{' '}
+          puedes ver nuestra{` `}
           <Link to={t`/getting-started`} className="subtle-link">
             selección de libros para comenzar
           </Link>
-          , o{' '}
+          , o{` `}
           <Link to={t`/explore`} className="subtle-link">
             explorar todos nuestros libros
           </Link>
@@ -55,7 +55,7 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
             to={path}
             key={title}
             className={cx(
-              'flex flex-col items-center hover:underline mb-6 md:flex md:w-1/3',
+              `flex flex-col items-center hover:underline mb-6 md:flex md:w-1/3`,
               {
                 hidden: idx > 1,
               },

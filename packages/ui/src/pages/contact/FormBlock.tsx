@@ -15,7 +15,7 @@ interface Props {
 const ContactFormBlock: React.FC<Props> = ({ onSubmit, bgImg }) => (
   <BackgroundImage
     fadeIn={false}
-    fluid={[bgLayer([0, 0, 0], 0.6), bgImg, bgLayer('#666')]}
+    fluid={[bgLayer([0, 0, 0], 0.6), bgImg, bgLayer(`#666`)]}
   >
     <div className="flex flex-col lg:flex-row lg:py-24 lg:px-6 max-w-screen-lg mx-auto">
       <div className="bg-white p-16 text-center lg:text-left body-text flex flex-col lg:w-1/3 lg:bg-flgray-100 lg:px-12">

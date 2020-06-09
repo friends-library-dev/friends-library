@@ -40,10 +40,9 @@ const Layout: React.FC = ({ children }) => {
     const img = new Image();
     img.onerror = () => setWebp(false);
     img.onload = event => {
-      setWebp(event?.type === 'load' ? img.width === 1 : false);
+      setWebp(event?.type === `load` ? img.width === 1 : false);
     };
-    img.src =
-      'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=';
+    img.src = `data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=`;
   }, []);
 
   useEffect(() => {
@@ -51,15 +50,15 @@ const Layout: React.FC = ({ children }) => {
       setItemJustAdded(true);
       setTimeout(() => setItemJustAdded(false), 4000);
     };
-    store.on('toggle:visibility', setCheckoutModalOpen);
-    store.on('cart:item-added', setJustAdded);
+    store.on(`toggle:visibility`, setCheckoutModalOpen);
+    store.on(`cart:item-added`, setJustAdded);
     return () => {
-      store.removeListener('toggle:visibility', setCheckoutModalOpen);
-      store.removeListener('cart:item-added', setJustAdded);
+      store.removeListener(`toggle:visibility`, setCheckoutModalOpen);
+      store.removeListener(`cart:item-added`, setJustAdded);
     };
   }, []);
 
-  useEscapeable('.Slideover', menuOpen, setMenuOpen);
+  useEscapeable(`.Slideover`, menuOpen, setMenuOpen);
 
   const data = useStaticQuery(graphql`
     query LayoutQuery {
@@ -93,10 +92,10 @@ const Layout: React.FC = ({ children }) => {
             [
               `Friends Library exists to freely share the writings of early members of the Religious Society of Friends (Quakers), believing that no other collection of Christian writings more accurately communicates or powerfully illustrates the soul-transforming power of the gospel of Jesus Christ. We have ${data.site.meta.numEnglishBooks} books available for free download in multiple editions and digital formats (including PDF, MOBI, and EPUB), and a growing number of them are also recorded as audiobooks. Paperback copies are also available at very low cost.`,
               `La Biblioteca de los Amigos ha sido creada para compartir gratuitamente los escritos de los primeros miembros de la Sociedad de Amigos (Cuáqueros), ya que creemos que no existe ninguna otra colección de escritos cristianos que comunique con mayor precisión, o que ilustre con más pureza, el poder del evangelio de Jesucristo que transforma el alma. Actualmente tenemos ${data.site.meta.numSpanishBooks} libros disponibles para descargarse gratuitamente en múltiples ediciones y formatos digitales, y un número creciente de estos libros están siendo grabados como audiolibros. Libros impresos también están disponibles por un precio muy económico. `,
-            ][LANG === 'en' ? 0 : 1]
+            ][LANG === `en` ? 0 : 1]
           }
         />
-        {APP_URL.includes('netlify') && (
+        {APP_URL.includes(`netlify`) && (
           <meta name="robots" content="noindex, nofollow" />
         )}
         <link
@@ -108,7 +107,7 @@ const Layout: React.FC = ({ children }) => {
       {itemJustAdded && (
         <PopUnder
           alignRight
-          style={{ position: 'fixed', right: 7, top: 73, zIndex: 1000 }}
+          style={{ position: `fixed`, right: 7, top: 73, zIndex: 1000 }}
           tailwindBgColor="flprimary"
         >
           <Dual.p className="text-white px-8 py-4 font-sans antialiased">

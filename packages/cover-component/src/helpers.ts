@@ -9,7 +9,7 @@ export function overridable(
   fallback: JSX.Element,
 ): JSX.Element {
   if (fragments[key] !== undefined) {
-    return React.createElement(key === 'blurb' ? 'div' : fallback.type, {
+    return React.createElement(key === `blurb` ? `div` : fallback.type, {
       className: key,
       dangerouslySetInnerHTML: { __html: fragments[key] },
     });
@@ -24,13 +24,13 @@ export function initials(
   isCompilation: boolean,
 ): [string, string] {
   if (isCompilation) {
-    if (title.includes('Piety Promoted')) {
-      return ['P', 'P'];
+    if (title.includes(`Piety Promoted`)) {
+      return [`P`, `P`];
     }
     // [F]riends [L]ibrary || [B]iblioteca [A]migos
-    return lang === 'en' ? ['F', 'L'] : ['B', 'A'];
+    return lang === `en` ? [`F`, `L`] : [`B`, `A`];
   }
-  const [first, ...rest] = author.split(' ');
+  const [first, ...rest] = author.split(` `);
   return [first[0].toUpperCase(), rest[rest.length - 1][0].toUpperCase()];
 }
 
@@ -39,13 +39,13 @@ export function prepareTitle(
   name: string,
   context: 'front' | 'spine',
 ): string {
-  const isCompilation = ['Compilations', 'Compilaciones'].includes(name);
+  const isCompilation = [`Compilations`, `Compilaciones`].includes(name);
   const volumeRemovable = isCompilation || title.includes(name);
-  title = title.replace(/(--|&#8212;|&mdash;)/g, '–');
+  title = title.replace(/(--|&#8212;|&mdash;)/g, `–`);
   title = title.replace(/(?: –|,) Vol(?:\.|umen?) (\d+|[IV]+)$/, (_, num) =>
-    context === 'front' && volumeRemovable ? '' : `, Vol.&nbsp;${ensureRoman(num)}`,
+    context === `front` && volumeRemovable ? `` : `, Vol.&nbsp;${ensureRoman(num)}`,
   );
-  return title.replace(name, name.replace(/ /g, '&nbsp;'));
+  return title.replace(name, name.replace(/ /g, `&nbsp;`));
 }
 
 export function prepareAuthor(
@@ -57,10 +57,10 @@ export function prepareAuthor(
   const volumeMatch = title.match(/ Vol(?:\.|umen?) (\d+|[IV]+)$/);
   const nameInTitle = title.includes(author);
   if (!volumeMatch && isCompilation) {
-    return lang === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos';
+    return lang === `en` ? `Friends Library` : `Biblioteca de los Amigos`;
   }
   if (volumeMatch && (nameInTitle || isCompilation)) {
-    return `Volume${lang === 'es' ? 'n' : ''} ${ensureRoman(volumeMatch[1])}`;
+    return `Volume${lang === `es` ? `n` : ``} ${ensureRoman(volumeMatch[1])}`;
   }
   return author;
 }
@@ -71,11 +71,11 @@ function ensureRoman(str: string): string {
 
 export function formatBlurb(blurb: string): string {
   return quotify(blurb)
-    .replace(/"`/g, '“')
-    .replace(/`"/g, '”')
-    .replace(/'`/g, '‘')
-    .replace(/`'/g, '’')
-    .replace(/--/g, '–');
+    .replace(/"`/g, `“`)
+    .replace(/`"/g, `”`)
+    .replace(/'`/g, `‘`)
+    .replace(/`'/g, `’`)
+    .replace(/--/g, `–`);
 }
 
 export function getHtmlFragments(html: Html): Record<string, Html> {
@@ -85,12 +85,12 @@ export function getHtmlFragments(html: Html): Record<string, Html> {
   while ((match = regex.exec(html))) {
     const lines = match[0]
       .trim()
-      .split('\n')
+      .split(`\n`)
       .map(s => s.trim());
     lines.pop();
-    const classMatch = (lines.shift() || '').match(/class="([^ "]+)/);
+    const classMatch = (lines.shift() || ``).match(/class="([^ "]+)/);
     if (classMatch) {
-      fragments[classMatch[1]] = lines.join('');
+      fragments[classMatch[1]] = lines.join(``);
     } else {
       console.error(`Bad custom HTML -- frag wrapping elements must have class`);
     }

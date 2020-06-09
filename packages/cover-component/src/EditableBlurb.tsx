@@ -21,7 +21,7 @@ export default class EditableBlurb extends React.Component<Props> {
       <ContentEditable
         innerRef={this.contentEditable}
         html={blurb}
-        style={{ position: 'relative', zIndex: 1 }}
+        style={{ position: `relative`, zIndex: 1 }}
         onChange={(e: EditEvent) => update(e.target.value)}
       />
     );

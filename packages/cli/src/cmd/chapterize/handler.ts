@@ -3,7 +3,7 @@ import { red } from '@friends-library/cli-utils/color';
 import fs from 'fs-extra';
 import path from 'path';
 
-const { DOCS_REPOS_ROOT } = env.require('DOCS_REPOS_ROOT');
+const { DOCS_REPOS_ROOT } = env.require(`DOCS_REPOS_ROOT`);
 
 interface ChapterizeOptions {
   file: string;
@@ -26,13 +26,13 @@ export default function chapterize({ file, dest, chStart }: ChapterizeOptions): 
     .trim();
 
   const parts = adoc.split(/(?<=\n)(?=== )/);
-  const frontmatterParts = ['preface', 'forward', 'introduction'];
+  const frontmatterParts = [`preface`, `forward`, `introduction`];
   const cmds: string[] = [];
   let chapterNum = 0;
 
   parts.forEach((part, index) => {
     const num = index + 1;
-    const paddedNum = String(num).padStart(2, '0');
+    const paddedNum = String(num).padStart(2, `0`);
     let filename = `${paddedNum}-`;
     if (chapterNum || index + 1 === chStart) {
       filename += `chapter-${++chapterNum}.adoc`;
@@ -44,6 +44,6 @@ export default function chapterize({ file, dest, chStart }: ChapterizeOptions): 
   });
 
   if (parts.length > 3) {
-    fs.outputFileSync(`${destPath}/rename.sh`, cmds.join('\n'));
+    fs.outputFileSync(`${destPath}/rename.sh`, cmds.join(`\n`));
   }
 }

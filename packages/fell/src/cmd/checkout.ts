@@ -38,20 +38,20 @@ export async function handler({
   green(`${clean.length} branches checked out new branch: ${branch}`);
 }
 
-export const command = 'checkout <branchName>';
+export const command = `checkout <branchName>`;
 
-export const describe = 'Checkout a branch for all repos';
+export const describe = `Checkout a branch for all repos`;
 
 export const builder: { [key: string]: Options } = {
   ...excludable,
   ...scopeable,
   branchName: {
-    type: 'string' as const,
+    type: `string` as const,
     required: true,
   },
   createBranch: {
-    alias: 'b',
+    alias: `b`,
     default: false,
-    type: 'boolean' as const,
+    type: `boolean` as const,
   },
 };

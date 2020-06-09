@@ -6,7 +6,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '' || !line.includes('_')) {
+  if (line === `` || !line.includes(`_`)) {
     return [];
   }
 
@@ -19,14 +19,14 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: (match.index || 0) + 2,
-      type: 'error',
+      type: `error`,
       fixable: false,
       rule: rule.slug,
-      recommendation: line.replace(/_/g, '__'),
-      message: 'Italics touching footnote markers must use double underscores',
+      recommendation: line.replace(/_/g, `__`),
+      message: `Italics touching footnote markers must use double underscores`,
     },
   ];
 };
 
-rule.slug = 'italics-touching-footnote';
+rule.slug = `italics-touching-footnote`;
 export default rule;

@@ -13,7 +13,7 @@ const rule: LineRule = (
   }
 
   let column: number | null = null;
-  line.split('').forEach((char, col) => {
+  line.split(``).forEach((char, col) => {
     if (column === null && char !== fixed[col]) {
       column = col;
     }
@@ -22,15 +22,15 @@ const rule: LineRule = (
   return [
     {
       line: lineNumber,
-      type: 'error',
+      type: `error`,
       column: column || 0,
       rule: rule.slug,
-      message: 'Incorrect usage of smart quotes/apostrophes',
+      message: `Incorrect usage of smart quotes/apostrophes`,
       recommendation: fixed,
       fixable: true,
     },
   ];
 };
 
-rule.slug = 'smart-quotes';
+rule.slug = `smart-quotes`;
 export default rule;

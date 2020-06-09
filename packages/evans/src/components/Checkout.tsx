@@ -11,10 +11,10 @@ import {
 import { cover3dFromQuery } from '../lib/covers';
 
 const store = CartStore.getSingleton();
-const api = new CheckoutApi('/.netlify/functions/site');
+const api = new CheckoutApi(`/.netlify/functions/site`);
 const service = new CheckoutService(store.cart, api);
 const machine = new CheckoutMachine(service);
-machine.on('close', () => store.close());
+machine.on(`close`, () => store.close());
 
 interface Props {
   isOpen: boolean;
@@ -79,7 +79,7 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
   const recommended = Object.values(data)
     .filter(Boolean)
     .map((docData: any) => ({
-      Cover: cover3dFromQuery(docData, { scaler: 0.25, scope: '1-4', size: 'm' }),
+      Cover: cover3dFromQuery(docData, { scaler: 0.25, scope: `1-4`, size: `m` }),
       title: docData.htmlShortTitle,
       path: docData.url,
     }));

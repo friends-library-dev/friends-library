@@ -14,13 +14,13 @@ function delay(delay: number, result = true): () => Promise<boolean> {
   };
 }
 
-const books = { aspectRatio: 1, src: Books, srcSet: '' };
+const books = { aspectRatio: 1, src: Books, srcSet: `` };
 
-storiesOf('Contact page', module)
-  .add('ContactForm', () => <ContactForm onSubmit={async () => true} />)
-  .add('ContactFormBlock (success)', () => (
+storiesOf(`Contact page`, module)
+  .add(`ContactForm`, () => <ContactForm onSubmit={async () => true} />)
+  .add(`ContactFormBlock (success)`, () => (
     <ContactFormBlock bgImg={books} onSubmit={delay(4000)} />
   ))
-  .add('ContactFormBlock (error)', () => (
+  .add(`ContactFormBlock (error)`, () => (
     <ContactFormBlock bgImg={books} onSubmit={delay(4000, false)} />
   ));

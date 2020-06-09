@@ -4,7 +4,7 @@ import { cartPlusData } from '../../models/__tests__/fixtures';
 
 jest.useFakeTimers();
 
-describe('CheckoutService()', () => {
+describe(`CheckoutService()`, () => {
   let service: CheckoutService;
   const calculateFees = jest.fn();
   const createOrder = jest.fn();
@@ -24,12 +24,12 @@ describe('CheckoutService()', () => {
     } as unknown) as CheckoutApi);
   });
 
-  describe('.calculateFees()', () => {
+  describe(`.calculateFees()`, () => {
     beforeEach(() => {
       calculateFees.mockClear();
     });
 
-    it('passes correct payload to api', async () => {
+    it(`passes correct payload to api`, async () => {
       calculateFees.mockResolvedValue({ ok: true, data: {} });
 
       await service.calculateFees();
@@ -46,11 +46,11 @@ describe('CheckoutService()', () => {
       });
     });
 
-    it('should return null error and set internal state if success', async () => {
+    it(`should return null error and set internal state if success`, async () => {
       calculateFees.mockResolvedValue({
         ok: true,
         data: {
-          shippingLevel: 'MAIL',
+          shippingLevel: `MAIL`,
           shipping: 399,
           taxes: 0,
           ccFeeOffset: 42,
@@ -60,7 +60,7 @@ describe('CheckoutService()', () => {
       const err = await service.calculateFees();
 
       expect(err).toBeUndefined();
-      expect(service.shippingLevel).toBe('MAIL');
+      expect(service.shippingLevel).toBe(`MAIL`);
       expect(service.fees).toEqual({
         shipping: 399,
         taxes: 0,
@@ -68,7 +68,7 @@ describe('CheckoutService()', () => {
       });
     });
 
-    it('should not send data about item with quantity = 0', async () => {
+    it(`should not send data about item with quantity = 0`, async () => {
       calculateFees.mockResolvedValue({ ok: true, data: {} });
       service.cart.items[0].quantity = 0;
       await service.calculateFees();
@@ -77,29 +77,29 @@ describe('CheckoutService()', () => {
       expect(payloadItems).toHaveLength(2);
     });
 
-    it('returns error if error', async () => {
+    it(`returns error if error`, async () => {
       calculateFees.mockResolvedValue({
         ok: false,
-        data: { msg: 'shipping_not_possible' },
+        data: { msg: `shipping_not_possible` },
       });
 
       const err = await service.calculateFees();
 
-      expect(err).toBe('shipping_not_possible');
+      expect(err).toBe(`shipping_not_possible`);
     });
   });
 
-  describe('createOrder()', () => {
+  describe(`createOrder()`, () => {
     beforeEach(() => createOrder.mockClear());
 
-    it('passes correct payload to api', async () => {
+    it(`passes correct payload to api`, async () => {
       service.fees = { shipping: 1, taxes: 0, ccFeeOffset: 1 };
       createOrder.mockResolvedValue({ ok: true, data: {} });
 
       await service.createOrder();
 
       expect(createOrder).toHaveBeenCalledWith({
-        lang: 'en',
+        lang: `en`,
         amount: service.cart.subTotal() + 2, // 2 = sum of all fees
         shipping: 1,
         taxes: 0,
@@ -124,7 +124,7 @@ describe('CheckoutService()', () => {
       });
     });
 
-    it('should not send item with quantity = 0', async () => {
+    it(`should not send item with quantity = 0`, async () => {
       service.cart.items[0].quantity = 0;
       createOrder.mockResolvedValue({ ok: true, data: {} });
       await service.createOrder();
@@ -133,54 +133,54 @@ describe('CheckoutService()', () => {
       expect(payloadItems).toHaveLength(1);
     });
 
-    it('should return null error and set internal state if success', async () => {
+    it(`should return null error and set internal state if success`, async () => {
       createOrder.mockResolvedValue({
         ok: true,
         data: {
-          paymentIntentClientSecret: 'pi_id_secret_123',
-          paymentIntentId: 'pi_id',
-          orderId: 'order_id',
+          paymentIntentClientSecret: `pi_id_secret_123`,
+          paymentIntentId: `pi_id`,
+          orderId: `order_id`,
         },
       });
 
       const err = await service.createOrder();
 
       expect(err).toBeUndefined();
-      expect(service.paymentIntentId).toBe('pi_id');
-      expect(service.paymentIntentClientSecret).toBe('pi_id_secret_123');
-      expect(service.orderId).toBe('order_id');
+      expect(service.paymentIntentId).toBe(`pi_id`);
+      expect(service.paymentIntentClientSecret).toBe(`pi_id_secret_123`);
+      expect(service.orderId).toBe(`order_id`);
     });
 
-    it('returns error if error', async () => {
+    it(`returns error if error`, async () => {
       createOrder.mockResolvedValue({
         ok: false,
-        data: { msg: 'error_saving_flp_order' },
+        data: { msg: `error_saving_flp_order` },
       });
 
       const err = await service.createOrder();
 
-      expect(err).toBe('error_saving_flp_order');
+      expect(err).toBe(`error_saving_flp_order`);
     });
   });
 
-  describe('createPrintJob()', () => {
+  describe(`createPrintJob()`, () => {
     beforeEach(() => {
       createPrintJob.mockClear();
       createPrintJob.mockResolvedValue({ ok: true, data: { printJobId: 6 } });
     });
 
-    it('passes correct payload to api and sets internal state', async () => {
-      service.orderId = 'order_id';
-      service.paymentIntentId = 'pi_id';
-      service.shippingLevel = 'PRIORITY_MAIL';
+    it(`passes correct payload to api and sets internal state`, async () => {
+      service.orderId = `order_id`;
+      service.paymentIntentId = `pi_id`;
+      service.shippingLevel = `PRIORITY_MAIL`;
       createPrintJob.mockResolvedValue({ ok: true, data: { printJobId: 6 } });
 
       await service.createPrintJob();
 
       expect(createPrintJob).toHaveBeenCalledWith({
-        orderId: 'order_id',
-        paymentIntentId: 'pi_id',
-        shippingLevel: 'PRIORITY_MAIL',
+        orderId: `order_id`,
+        paymentIntentId: `pi_id`,
+        shippingLevel: `PRIORITY_MAIL`,
         email: service.cart.email,
         address: service.cart.address,
         items: service.cart.items.flatMap(i =>
@@ -198,7 +198,7 @@ describe('CheckoutService()', () => {
       expect(service.printJobId).toBe(6);
     });
 
-    it('should not send item with quantity of zero', async () => {
+    it(`should not send item with quantity of zero`, async () => {
       service.cart.items[0].quantity = 0;
       await service.createPrintJob();
       const payloadItems = createPrintJob.mock.calls[0][0].items;
@@ -207,14 +207,14 @@ describe('CheckoutService()', () => {
     });
   });
 
-  describe('verifyPrintJobAccepted()', () => {
+  describe(`verifyPrintJobAccepted()`, () => {
     beforeEach(() => {
       service.printJobId = 55;
       getPrintJobStatus.mockClear();
     });
 
-    it('should request the status of the print job', async () => {
-      getPrintJobStatus.mockResolvedValueOnce(jobStatus('accepted'));
+    it(`should request the status of the print job`, async () => {
+      getPrintJobStatus.mockResolvedValueOnce(jobStatus(`accepted`));
 
       const err = await service.verifyPrintJobAccepted();
 
@@ -222,11 +222,11 @@ describe('CheckoutService()', () => {
       expect(err).toBeUndefined();
     });
 
-    it('should keep requesting status until it gets accepted', async () => {
+    it(`should keep requesting status until it gets accepted`, async () => {
       getPrintJobStatus
-        .mockResolvedValueOnce(jobStatus('pending'))
-        .mockResolvedValueOnce(jobStatus('pending'))
-        .mockResolvedValueOnce(jobStatus('accepted'));
+        .mockResolvedValueOnce(jobStatus(`pending`))
+        .mockResolvedValueOnce(jobStatus(`pending`))
+        .mockResolvedValueOnce(jobStatus(`accepted`));
 
       service.verifyPrintJobAccepted();
       await drainPromiseQueue();
@@ -244,62 +244,62 @@ describe('CheckoutService()', () => {
       expect(getPrintJobStatus.mock.calls.length).toBe(3);
     });
 
-    it('returns an error after 45 seconds without acceptance', async () => {
-      getPrintJobStatus.mockResolvedValue(jobStatus('pending'));
+    it(`returns an error after 45 seconds without acceptance`, async () => {
+      getPrintJobStatus.mockResolvedValue(jobStatus(`pending`));
       const promise = service.verifyPrintJobAccepted();
       for (let i = 0; i <= 45; i++) {
         await drainPromiseQueue();
         jest.runOnlyPendingTimers();
       }
       const err = await promise;
-      expect(err).toBe('print_job_acceptance_verification_timeout');
+      expect(err).toBe(`print_job_acceptance_verification_timeout`);
     });
   });
 
-  describe('updateOrderPrintJobStatus()', () => {
-    it('should send correct orderId & payload to api', async () => {
-      service.orderId = '123abc';
-      service.printJobStatus = 'rejected';
+  describe(`updateOrderPrintJobStatus()`, () => {
+    it(`should send correct orderId & payload to api`, async () => {
+      service.orderId = `123abc`;
+      service.printJobStatus = `rejected`;
       updateOrderPrintJobStatus.mockResolvedValueOnce({ ok: true, data: {} });
       const err = await service.updateOrderPrintJobStatus();
       expect(updateOrderPrintJobStatus).toHaveBeenCalledWith({
-        orderId: '123abc',
-        printJobStatus: 'rejected',
+        orderId: `123abc`,
+        printJobStatus: `rejected`,
       });
       expect(err).toBeUndefined();
     });
 
-    it('returns error if api request errors', async () => {
-      service.printJobStatus = 'rejected';
+    it(`returns error if api request errors`, async () => {
+      service.printJobStatus = `rejected`;
       updateOrderPrintJobStatus.mockResolvedValueOnce({
         ok: false,
-        data: { msg: 'error_updating_order' },
+        data: { msg: `error_updating_order` },
       });
       const err = await service.updateOrderPrintJobStatus();
-      expect(err).toBe('error_updating_order');
+      expect(err).toBe(`error_updating_order`);
     });
   });
 
-  describe('capturePayment()', () => {
-    it('should send correct payload to api', async () => {
-      service.orderId = '123abc';
-      service.paymentIntentId = 'ch_123';
+  describe(`capturePayment()`, () => {
+    it(`should send correct payload to api`, async () => {
+      service.orderId = `123abc`;
+      service.paymentIntentId = `ch_123`;
       capturePayment.mockResolvedValueOnce({ ok: true, data: {} });
       const err = await service.capturePayment();
       expect(err).toBeUndefined();
       expect(capturePayment).toHaveBeenCalledWith({
-        orderId: '123abc',
-        paymentIntentId: 'ch_123',
+        orderId: `123abc`,
+        paymentIntentId: `ch_123`,
       });
     });
 
-    it('should return error if api request errors', async () => {
+    it(`should return error if api request errors`, async () => {
       capturePayment.mockResolvedValueOnce({
         ok: false,
-        data: { msg: 'order_not_found' },
+        data: { msg: `order_not_found` },
       });
       const err = await service.capturePayment();
-      expect(err).toBe('order_not_found');
+      expect(err).toBe(`order_not_found`);
     });
   });
 });

@@ -9,7 +9,7 @@ interface Props {
 const Flag: React.FC<Props> = ({ className, height = 18 }) => {
   return (
     <svg
-      className={cx(className, 'inline-block')}
+      className={cx(className, `inline-block`)}
       width={height}
       height={height}
       viewBox="0 0 29 29"

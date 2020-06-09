@@ -11,7 +11,7 @@ export default class RegexLintRunner {
     options: Partial<RegexLintOptions> = {},
   ) {
     this.lints = lintData.map(data => new RegexLint({ ...options, ...data }));
-    this.testPattern = new RegExp(this.lints.map(l => l.test).join('|'), 'i');
+    this.testPattern = new RegExp(this.lints.map(l => l.test).join(`|`), `i`);
   }
 
   public getLineLintResults(
@@ -21,7 +21,7 @@ export default class RegexLintRunner {
   ): LintResult[] {
     let results: LintResult[] = [];
 
-    if (line === '' || !line.match(this.testPattern)) {
+    if (line === `` || !line.match(this.testPattern)) {
       return results;
     }
 
@@ -61,14 +61,14 @@ export default class RegexLintRunner {
     lint: RegexLint,
   ): LintResult {
     if (!this.rule) {
-      throw new Error('Must set RegexLintRunner.rule property');
+      throw new Error(`Must set RegexLintRunner.rule property`);
     }
     const recommendation = lint.recommendation(match);
     return {
       line: lineNumber,
       column: getColumn(match, recommendation),
       fixable: lint.isFixable(),
-      type: 'error',
+      type: `error`,
       rule: this.rule,
       message: lint.message(match[0]),
       ...(recommendation ? { recommendation } : {}),
@@ -77,7 +77,7 @@ export default class RegexLintRunner {
 }
 
 function getColumn(
-  { index = 0, input: before = '' }: RegExpMatchArray,
+  { index = 0, input: before = `` }: RegExpMatchArray,
   corrected?: string,
 ): number {
   if (corrected === undefined) {

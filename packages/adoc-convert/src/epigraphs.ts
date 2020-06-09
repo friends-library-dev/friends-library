@@ -6,7 +6,7 @@ export function extractEpigraphs(adoc: Asciidoc): [Epigraph[], Asciidoc] {
     /\[quote\.epigraph(?:, *, *([^\]]+?))?\]\n____+\n([\s\S]+?)\n____+/gim,
     (_, source, text) => {
       epigraphs.push({ text, ...(source ? { source } : {}) });
-      return '';
+      return ``;
     },
   );
   return [epigraphs, shortened.trimLeft()];

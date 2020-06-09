@@ -14,10 +14,10 @@ export function podcast(
   const { friend } = document;
   const { audio } = edition;
   if (!audio) {
-    throw new Error('Document has no audio');
+    throw new Error(`Document has no audio`);
   }
 
-  const { CLOUD_STORAGE_BUCKET_URL: CLOUD_URL } = env.require('CLOUD_STORAGE_BUCKET_URL');
+  const { CLOUD_STORAGE_BUCKET_URL: CLOUD_URL } = env.require(`CLOUD_STORAGE_BUCKET_URL`);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss
@@ -33,7 +33,7 @@ export function podcast(
     />
     <title>${encode(document.title)}</title>
     <itunes:subtitle>
-      Audiobook of ${document.isCompilation ? '' : `${friend.name}'s`} "${
+      Audiobook of ${document.isCompilation ? `` : `${friend.name}'s`} "${
     document.title
   }" from The Friends Library. Read by ${audio.reader}.
     </itunes:subtitle>
@@ -77,14 +77,14 @@ export function podcast(
         audio,
         quality,
       )} pt-${num} at ${APP_URL}</guid>
-      <pubDate>${moment().format('ddd, DD MMM YYYY hh:mm:ss ZZ')}</pubDate>
+      <pubDate>${moment().format(`ddd, DD MMM YYYY hh:mm:ss ZZ`)}</pubDate>
       <itunes:duration>${part.seconds}</itunes:duration>
       <itunes:order>${num}</itunes:order>
       <itunes:explicit>clean</itunes:explicit>
       <itunes:episodeType>full</itunes:episodeType>
     </item>`;
       })
-      .join('\n    ')}
+      .join(`\n    `)}
   </channel>
 </rss>
 `;
@@ -101,14 +101,14 @@ export function partDesc(part: AudioPart, partNumber: number, numParts: number):
     `Part ${partNumber} of ${part.audio.parts.length}`,
     `of the audiobook version of`,
     byLine,
-  ].join(' ');
+  ].join(` `);
 
   if (part.title !== `Part ${partNumber}`) {
     desc = `${part.title}. ${desc}`;
   }
 
-  desc = desc.replace(/^Chapter (\d)/, 'Ch. $1');
-  desc = desc.replace(/^Capítulo (\d)/, 'Cp. $1');
+  desc = desc.replace(/^Chapter (\d)/, `Ch. $1`);
+  desc = desc.replace(/^Capítulo (\d)/, `Cp. $1`);
 
   return desc;
 }

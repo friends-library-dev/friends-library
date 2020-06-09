@@ -27,26 +27,26 @@ const ControlsBlock: React.FC<Props> = ({
     <PillDropdown pillText={translate(sortOption)} autoHide>
       <PillDropdownDropdown>
         <PillDropdownItem
-          onClick={() => setSortOption('First Name')}
-          selected={sortOption === 'First Name'}
+          onClick={() => setSortOption(`First Name`)}
+          selected={sortOption === `First Name`}
         >
           {t`First Name`}
         </PillDropdownItem>
         <PillDropdownItem
-          onClick={() => setSortOption('Last Name')}
-          selected={sortOption === 'Last Name'}
+          onClick={() => setSortOption(`Last Name`)}
+          selected={sortOption === `Last Name`}
         >
           {t`Last Name`}
         </PillDropdownItem>
         <PillDropdownItem
-          onClick={() => setSortOption('Birth Date')}
-          selected={sortOption === 'Birth Date'}
+          onClick={() => setSortOption(`Birth Date`)}
+          selected={sortOption === `Birth Date`}
         >
           {t`Birth Date`}
         </PillDropdownItem>
         <PillDropdownItem
-          onClick={() => setSortOption('Death Date')}
-          selected={sortOption === 'Death Date'}
+          onClick={() => setSortOption(`Death Date`)}
+          selected={sortOption === `Death Date`}
         >
           {t`Death Date`}
         </PillDropdownItem>
@@ -63,8 +63,8 @@ const Label: React.FC<{ className?: string }> = ({ children, className }) => (
   <div
     className={cx(
       className,
-      'h-12 flex flex-col justify-center mr-4',
-      'uppercase font-sans text-flgray-500 tracking-wide text-base',
+      `h-12 flex flex-col justify-center mr-4`,
+      `uppercase font-sans text-flgray-500 tracking-wide text-base`,
     )}
   >
     {children}

@@ -3,10 +3,10 @@ import { Asciidoc, LintResult } from '@friends-library/types';
 export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, number] {
   let numUnfixedFixables = 0;
   const modifiedLines = new Set();
-  const lines = adoc.split('\n') as (string | null)[];
+  const lines = adoc.split(`\n`) as (string | null)[];
 
   lints.forEach(lint => {
-    if (!lint.fixable || typeof lint.recommendation !== 'string') {
+    if (!lint.fixable || typeof lint.recommendation !== `string`) {
       return;
     }
 
@@ -16,22 +16,22 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
       return;
     }
 
-    if (rule === 'open-block') {
+    if (rule === `open-block`) {
       lines[lint.line - 1] = `\n${lines[lint.line - 1]}`;
       modifiedLines.add(lint.line);
       return;
     }
 
-    if (rule === 'unspaced-class') {
-      lines[lint.line - 1] = `\n${lines[lint.line - 1] || ''}`;
+    if (rule === `unspaced-class`) {
+      lines[lint.line - 1] = `\n${lines[lint.line - 1] || ``}`;
       modifiedLines.add(lint.line);
       return;
     }
 
-    if (rule === 'multiple-blank-lines') {
+    if (rule === `multiple-blank-lines`) {
       const remove: number[] = recommendation
-        .replace(/[^\d,]/g, '')
-        .split(',')
+        .replace(/[^\d,]/g, ``)
+        .split(`,`)
         .map(Number);
 
       remove.forEach(lineNumber => {
@@ -43,7 +43,7 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
       return;
     }
 
-    if (rule === 'footnote-split-spacing') {
+    if (rule === `footnote-split-spacing`) {
       if (!modifiedLines.has(lint.line)) {
         lines[lint.line - 1] = null;
         modifiedLines.add(lint.line);
@@ -52,14 +52,14 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
     }
 
     if (
-      rule === 'trailing-hyphen' ||
-      rule === 'dangling-possessive' ||
-      (rule === 'join-words' && recommendation.includes('\n'))
+      rule === `trailing-hyphen` ||
+      rule === `dangling-possessive` ||
+      (rule === `join-words` && recommendation.includes(`\n`))
     ) {
       if (modifiedLines.has(lint.line + 1)) {
         numUnfixedFixables++;
       } else {
-        const [first, second] = recommendation.split('\n');
+        const [first, second] = recommendation.split(`\n`);
         lines[lint.line - 1] = first;
         lines[lint.line] = second;
         modifiedLines.add(lint.line);
@@ -68,8 +68,8 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
       return;
     }
 
-    if (rule === 'eof-newline') {
-      lines.push('');
+    if (rule === `eof-newline`) {
+      lines.push(``);
       return;
     }
 
@@ -77,5 +77,5 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
     modifiedLines.add(lint.line);
   });
 
-  return [lines.filter(l => l !== null).join('\n'), numUnfixedFixables];
+  return [lines.filter(l => l !== null).join(`\n`), numUnfixedFixables];
 }

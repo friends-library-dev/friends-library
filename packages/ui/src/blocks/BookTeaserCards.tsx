@@ -28,15 +28,15 @@ const BookTeaserCards: React.FC<Props> = ({
       className={cx(
         className,
         `bg-${bgColor}`,
-        'BookTeaserCards pb-16',
-        'md:pt-16 md:pb-1',
-        'xl:flex xl:flex-wrap xl:justify-center',
+        `BookTeaserCards pb-16`,
+        `md:pt-16 md:pb-1`,
+        `xl:flex xl:flex-wrap xl:justify-center`,
       )}
     >
       <TitleEl
         className={cx(
           `text-${titleTextColor}`,
-          'sans-wider px-6 text-2xl text-center mt-10 md:-mt-2 md:mb-12 xl:w-full',
+          `sans-wider px-6 text-2xl text-center mt-10 md:-mt-2 md:mb-12 xl:w-full`,
         )}
       >
         {title}

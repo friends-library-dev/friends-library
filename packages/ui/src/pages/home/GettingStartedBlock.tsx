@@ -7,7 +7,7 @@ import Button from '../../Button';
 
 const GettingStartedBlock: React.FC = () => (
   <DuoToneWaveBlock className="px-6 py-16 sm:p-16 md:pb-64">
-    <Heading left={['md']} className="text-gray-900 md:text-left">
+    <Heading left={[`md`]} className="text-gray-900 md:text-left">
       <Dual.frag>
         <>Getting started</>
         <>Comenzar</>

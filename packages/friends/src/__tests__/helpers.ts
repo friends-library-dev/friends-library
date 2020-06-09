@@ -17,7 +17,7 @@ export function testFriend(spec?: Spec): Friend {
     origFriendData = safeLoad(
       fs.readFileSync(`${__dirname}/fixture.yml`).toString(),
     ) as FriendData;
-    origFriendData.lang = 'en';
+    origFriendData.lang = `en`;
   }
   const data = JSON.parse(JSON.stringify(origFriendData));
   if (spec) {

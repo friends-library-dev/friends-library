@@ -14,7 +14,7 @@ interface Props {
 
 const WhoWereTheQuakersBlock: React.FC<Props> = ({ bgImg }) => (
   <BackgroundImage
-    fluid={[bgLayer('flprimary', 0.9), bgImg]}
+    fluid={[bgLayer(`flprimary`, 0.9), bgImg]}
     Tag="section"
     id="WhoWereTheQuakersBlock"
     className="bg-flmaroon text-white flex flex-col items-center py-12 sm:py-16 px-12  md:px-16 lg:px-20 lg:py-24"

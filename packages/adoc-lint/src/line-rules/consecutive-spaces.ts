@@ -7,7 +7,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '' || line.indexOf('  ') === -1) {
+  if (line === `` || line.indexOf(`  `) === -1) {
     return [];
   }
 
@@ -39,13 +39,13 @@ function getLint(column: number, line: Asciidoc, lineNumber: number): LintResult
   return {
     line: lineNumber,
     column,
-    type: 'error',
+    type: `error`,
     rule: rule.slug,
-    message: 'Consecutive spaces are not allowed',
-    recommendation: line.replace(/ {2,}/g, ' '),
+    message: `Consecutive spaces are not allowed`,
+    recommendation: line.replace(/ {2,}/g, ` `),
     fixable: true,
   };
 }
 
-rule.slug = 'consecutive-spaces';
+rule.slug = `consecutive-spaces`;
 export default rule;

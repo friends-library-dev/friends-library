@@ -20,18 +20,18 @@ interface State {
 
 export default class RotatableCover extends React.Component<Props, State> {
   public state: State = {
-    perspective: 'angle-front',
+    perspective: `angle-front`,
     controlled: false,
   };
 
   public componentDidMount(): void {
     const showBackTimeout = window.setTimeout(
-      () => this.setState({ perspective: 'angle-back' }),
+      () => this.setState({ perspective: `angle-back` }),
       10000,
     );
     this.setState({ showBackTimeout });
     const backToFrontTimeout = window.setTimeout(
-      () => this.setState({ perspective: 'angle-front' }),
+      () => this.setState({ perspective: `angle-front` }),
       14000,
     );
     this.setState({ backToFrontTimeout });
@@ -46,7 +46,7 @@ export default class RotatableCover extends React.Component<Props, State> {
     const { className, coverProps } = this.props;
     const { perspective, showBackTimeout, backToFrontTimeout } = this.state;
     return (
-      <div className={cx(className, 'flex flex-col items-center')}>
+      <div className={cx(className, `flex flex-col items-center`)}>
         <div className="hidden xl:block">
           <ThreeD {...coverProps} perspective={perspective} scaler={4 / 5} scope="4-5" />
         </div>
@@ -74,15 +74,15 @@ export default class RotatableCover extends React.Component<Props, State> {
 
 function nextPerspective(perspective: Perspective): Perspective {
   switch (perspective) {
-    case 'angle-front':
-      return 'spine';
-    case 'spine':
-      return 'angle-back';
-    case 'angle-back':
-      return 'back';
-    case 'back':
-      return 'front';
+    case `angle-front`:
+      return `spine`;
+    case `spine`:
+      return `angle-back`;
+    case `angle-back`:
+      return `back`;
+    case `back`:
+      return `front`;
     default:
-      return 'angle-front';
+      return `angle-front`;
   }
 }

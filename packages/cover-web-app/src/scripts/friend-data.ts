@@ -7,14 +7,14 @@ import { getAllFriends, Friend } from '@friends-library/friends';
 import { fetchSingleton, DocumentMeta } from '@friends-library/document-meta';
 import { FriendData } from '../types';
 
-const { DOCS_REPOS_ROOT: ROOT } = env.require('DOCS_REPOS_ROOT');
+const { DOCS_REPOS_ROOT: ROOT } = env.require(`DOCS_REPOS_ROOT`);
 
 (async () => {
   const meta = await fetchSingleton();
   const data: FriendData[] = Object.values(
-    getAllFriends('en', true)
-      .concat(getAllFriends('es', true))
-      .filter(friend => !['Jane Doe', 'John Doe'].includes(friend.name))
+    getAllFriends(`en`, true)
+      .concat(getAllFriends(`es`, true))
+      .filter(friend => ![`Jane Doe`, `John Doe`].includes(friend.name))
       .filter(friend => friend.hasNonDraftDocument)
       .reduce((acc, friend: Friend) => {
         if (!acc[friend.name]) {
@@ -78,7 +78,7 @@ function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents
                   size: editionMeta.paperback.size,
                   pages: editionMeta.paperback.volumes[0],
                 }
-              : { pages: 222, size: 'm' }),
+              : { pages: 222, size: `m` }),
           };
         }),
     };

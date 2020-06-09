@@ -11,7 +11,7 @@ export default class AudioPart {
   }
 
   public get audio(): Audio {
-    if (!this._audio) throw new Error('Audio not set.');
+    if (!this._audio) throw new Error(`Audio not set.`);
     return this._audio;
   }
 

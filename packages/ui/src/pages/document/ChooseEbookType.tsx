@@ -13,20 +13,20 @@ interface Props {
 const ChooseFormat: React.FC<Props> = ({ recommendation, onChoose }) => {
   const formats = {
     epub: {
-      label: 'E-Pub',
+      label: `E-Pub`,
       description: t`Best for most apps and platforms, including iOS.`,
       Icon: Epub,
-      choice: 'epub' as const,
+      choice: `epub` as const,
     },
     mobi: {
-      label: 'Mobi',
+      label: `Mobi`,
       description: t`Best on Amazon devices, Kindle app, and Android.`,
       Icon: Mobi,
-      choice: 'mobi' as const,
+      choice: `mobi` as const,
     },
   };
   const recommended = formats[recommendation];
-  const discouraged = formats[recommendation === 'epub' ? 'mobi' : 'epub'];
+  const discouraged = formats[recommendation === `epub` ? `mobi` : `epub`];
   return (
     <ChoiceStep title={t`Choose eBook Type`}>
       <ChoiceItem

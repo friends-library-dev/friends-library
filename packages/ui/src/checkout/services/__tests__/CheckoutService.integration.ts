@@ -5,7 +5,7 @@ import CheckoutApi from '../CheckoutApi';
 
 const { endpoint, origin } = urls();
 
-describe('CheckoutService()', () => {
+describe(`CheckoutService()`, () => {
   let service: CheckoutService;
   let api: CheckoutApi;
   let cart: Cart;
@@ -18,13 +18,13 @@ describe('CheckoutService()', () => {
     service = new CheckoutService(cart, api);
   });
 
-  test('wakeup should return 204 OK', async () => {
+  test(`wakeup should return 204 OK`, async () => {
     const res = await api.wakeup();
     expect(res.ok).toBe(true);
     expect(res.statusCode).toBe(204);
   });
 
-  test('sequential, stateful checkout fns', async () => {
+  test(`sequential, stateful checkout fns`, async () => {
     let err: string | void;
 
     // step 1: calculate fees
@@ -58,7 +58,7 @@ describe('CheckoutService()', () => {
     orderRes = await api.getOrder(service.orderId);
     expect(orderRes.data).toMatchObject({
       printJobId: service.printJobId,
-      printJobStatus: 'pending',
+      printJobStatus: `pending`,
     });
 
     // step 6: wait for print job validation
@@ -71,7 +71,7 @@ describe('CheckoutService()', () => {
 
     // step 8: verify print job status updated
     orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({ printJobStatus: 'accepted' });
+    expect(orderRes.data).toMatchObject({ printJobStatus: `accepted` });
 
     // step 9: capture the payment
     err = await service.capturePayment();
@@ -79,7 +79,7 @@ describe('CheckoutService()', () => {
 
     // step 10: verify order payment status updated
     orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({ paymentStatus: 'captured' });
+    expect(orderRes.data).toMatchObject({ paymentStatus: `captured` });
 
     // step 11: send order confirmation email
     const confirmRes = await api.sendOrderConfirmationEmail(service.orderId);
@@ -90,25 +90,25 @@ describe('CheckoutService()', () => {
 function getCart(): Cart {
   const testCart = cartPlusData();
   const item = testCart.items[0];
-  item.title = ['Journal of Ambrose Rigge (modernized)'];
+  item.title = [`Journal of Ambrose Rigge (modernized)`];
   item.numPages = [166];
-  item.printSize = 'm';
+  item.printSize = `m`;
   item.coverPdfUrl = [
-    'https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.pdf',
+    `https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.pdf`,
   ];
   item.interiorPdfUrl = [
-    'https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf',
+    `https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf`,
   ];
   testCart.items = [item];
   return testCart;
 }
 
 export function urls(): { endpoint: string; origin: string } {
-  let endpoint = 'http://localhost:2345';
+  let endpoint = `http://localhost:2345`;
   if (process.env.FNS_INTEGRATION_TEST_URL) {
     endpoint = process.env.FNS_INTEGRATION_TEST_URL;
   }
-  endpoint += '/.netlify/functions/site';
-  const origin = endpoint.split('/.netlify')[0];
+  endpoint += `/.netlify/functions/site`;
+  const origin = endpoint.split(`/.netlify`)[0];
   return { endpoint, origin };
 }

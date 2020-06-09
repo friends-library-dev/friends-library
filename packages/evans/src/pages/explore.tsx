@@ -88,7 +88,7 @@ const ExplorePage: React.FC<Props> = ({
       }))}
     />
     <ExploreNewBooksBlock
-      books={newBooks.nodes.slice(0, LANG === 'es' ? 2 : 4).map(data => ({
+      books={newBooks.nodes.slice(0, LANG === `es` ? 2 : 4).map(data => ({
         ...coverPropsFromQueryData(data),
         documentUrl: data.documentUrl,
         htmlShortTitle: data.htmlShortTitle,
@@ -96,10 +96,10 @@ const ExplorePage: React.FC<Props> = ({
         badgeText: data.editions[0].badgeText,
         description:
           data.description ||
-          'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.',
+          `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.`,
       }))}
     />
-    {LANG === 'en' && (
+    {LANG === `en` && (
       <ExploreRegionBlock
         books={regionBooks.nodes.map(data => ({
           ...coverPropsFromQueryData(data),
@@ -110,7 +110,7 @@ const ExplorePage: React.FC<Props> = ({
         }))}
       />
     )}
-    {LANG === 'en' && (
+    {LANG === `en` && (
       <ExploreTimelineBlock
         bgImg={castle.image.fluid}
         books={booksByDate.nodes.map(data => ({
@@ -124,7 +124,7 @@ const ExplorePage: React.FC<Props> = ({
     )}
     <ExploreAltSiteBlock
       url={APP_ALT_URL}
-      numBooks={meta[LANG === 'en' ? 'numSpanishBooks' : 'numEnglishBooks']}
+      numBooks={meta[LANG === `en` ? `numSpanishBooks` : `numEnglishBooks`]}
     />
     <ExploreSearchBlock
       bgImg={waterPath.image.fluid}

@@ -37,7 +37,7 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
       onSwipedLeft={() =>
         notMobile && canGoRight && setCurrentHorizPage(currentHorizPage + 1)
       }
-      className={cx(className, 'BookSlider md:overflow-hidden md:relative')}
+      className={cx(className, `BookSlider md:overflow-hidden md:relative`)}
     >
       {canGoLeft && (
         <Arrow
@@ -65,9 +65,9 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
           <div
             key={book.documentUrl}
             className={cx(
-              idx < vertCutoff ? 'flex' : 'hidden md:flex',
-              'BookSlider__Book max-w-xs flex-col items-center mb-12 px-10 text-center',
-              'md:px-6 md:mb-0',
+              idx < vertCutoff ? `flex` : `hidden md:flex`,
+              `BookSlider__Book max-w-xs flex-col items-center mb-12 px-10 text-center`,
+              `md:px-6 md:mb-0`,
             )}
           >
             <Link to={book.documentUrl}>
@@ -90,9 +90,9 @@ const BookSlider: React.FC<Props> = ({ books, className }) => {
               key={`page-${idx + 1}`}
               onClick={() => setCurrentHorizPage(idx + 1)}
               className={cx(
-                'px-2 text-3xl',
-                currentHorizPage === idx + 1 && 'text-flgray-600',
-                currentHorizPage !== idx + 1 && 'text-flgray-400 cursor-pointer',
+                `px-2 text-3xl`,
+                currentHorizPage === idx + 1 && `text-flgray-600`,
+                currentHorizPage !== idx + 1 && `text-flgray-400 cursor-pointer`,
               )}
             >
               •
@@ -122,9 +122,9 @@ const Arrow: React.FC<{ direction: 'left' | 'right'; onClick: () => any }> = ({
     onClick={onClick}
     className={cx(
       `fa-chevron-${direction}`,
-      'fa z-50 cursor-pointer hover:text-black',
-      'fa absolute text-2xl text-gray-700 px-4 opacity-25 cursor-pointer',
-      'transform -translate-y-1/2',
+      `fa z-50 cursor-pointer hover:text-black`,
+      `fa absolute text-2xl text-gray-700 px-4 opacity-25 cursor-pointer`,
+      `transform -translate-y-1/2`,
     )}
   />
 );

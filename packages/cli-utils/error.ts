@@ -1,15 +1,15 @@
 import PrettyError from 'pretty-error';
 
 export function prettifyErrors(): void {
-  if (process.argv.includes('--ugly-error')) {
+  if (process.argv.includes(`--ugly-error`)) {
     return;
   }
 
   const cwd = process.cwd();
   const pe = new PrettyError();
   pe.skipNodeFiles();
-  pe.skipPackage('lodash', 'yargs');
-  pe.alias(`${cwd}/packages`, '[fl-pkg]');
+  pe.skipPackage(`lodash`, `yargs`);
+  pe.alias(`${cwd}/packages`, `[fl-pkg]`);
   pe.appendStyle({
     'pretty-error > trace': {
       marginLeft: 2,
@@ -19,7 +19,7 @@ export function prettifyErrors(): void {
     },
     'pretty-error > trace > item > footer > addr': {
       marginLeft: 3,
-      bullet: '"<grey>  ↪</grey>"',
+      bullet: `"<grey>  ↪</grey>"`,
     },
   });
   pe.start();
@@ -30,7 +30,7 @@ export function catchify<T>(fn: () => T): () => T | undefined {
     try {
       return fn(...args);
     } catch (error) {
-      console.log('');
+      console.log(``);
       console.log(error);
       process.exit();
     }

@@ -20,7 +20,7 @@ prettifyErrors();
 
 /* eslint-disable  @typescript-eslint/no-unused-expressions */
 yargs
-  .scriptName('yarn fl')
+  .scriptName(`yarn fl`)
   // @ts-ignore
   .command(make)
   .command(cover)

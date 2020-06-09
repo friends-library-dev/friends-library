@@ -27,7 +27,7 @@ const HomePage: React.FC<Props> = ({ data }) => {
     formatsMobile,
     ...featured
   } = data;
-  const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
+  const numBooks = site.meta[LANG === `en` ? `numEnglishBooks` : `numSpanishBooks`];
   return (
     <Layout>
       <HomeHeroBlock />

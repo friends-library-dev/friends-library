@@ -18,27 +18,27 @@ import Mountains from '../src/images/mountains.jpg';
 // @ts-ignore
 import London from '../src/images/london.jpg';
 
-storiesOf('Footer', module).add('default', () => (
+storiesOf(`Footer`, module).add(`default`, () => (
   <Footer
     bgImg={{
       aspectRatio: 1,
       src: Mountains,
-      srcSet: '',
+      srcSet: ``,
     }}
   />
 ));
 
-storiesOf('SlideoverMenu', module).add('default', () => (
-  <SlideoverMenu onClose={a('close')} />
+storiesOf(`SlideoverMenu`, module).add(`default`, () => (
+  <SlideoverMenu onClose={a(`close`)} />
 ));
 
-storiesOf('Hamburger', module)
+storiesOf(`Hamburger`, module)
   .addDecorator(centered)
-  .add('default', () => <Hamburger onClick={a('hamburger-clicked')} />);
+  .add(`default`, () => <Hamburger onClick={a(`hamburger-clicked`)} />);
 
-storiesOf('Button', module)
+storiesOf(`Button`, module)
   .addDecorator(centered)
-  .add('various', () => (
+  .add(`various`, () => (
     <>
       <Button className="mb-6" shadow bg="gold">
         Shadow
@@ -60,51 +60,51 @@ storiesOf('Button', module)
     </>
   ));
 
-storiesOf('Nav', module)
-  .add('default', () => (
+storiesOf(`Nav`, module)
+  .add(`default`, () => (
     <Nav
       showCartBadge={false}
-      onCartBadgeClick={a('cart badge clicked')}
-      onHamburgerClick={a('hamburger clicked')}
+      onCartBadgeClick={a(`cart badge clicked`)}
+      onHamburgerClick={a(`hamburger clicked`)}
     />
   ))
-  .add('with cart badge', () => (
+  .add(`with cart badge`, () => (
     <Nav
       showCartBadge
-      onCartBadgeClick={a('cart badge clicked')}
-      onHamburgerClick={a('hamburger clicked')}
+      onCartBadgeClick={a(`cart badge clicked`)}
+      onHamburgerClick={a(`hamburger clicked`)}
     />
   ))
-  .add('searching', () => (
+  .add(`searching`, () => (
     <Nav
       initialSearching={true}
       showCartBadge={false}
-      onCartBadgeClick={a('cart badge clicked')}
-      onHamburgerClick={a('hamburger clicked')}
+      onCartBadgeClick={a(`cart badge clicked`)}
+      onHamburgerClick={a(`hamburger clicked`)}
     />
   ));
 
-storiesOf('Home Blocks', module)
+storiesOf(`Home Blocks`, module)
   .addDecorator(coverSizes)
-  .add('Who Were Quakers?', () => (
-    <HomeWhoWereTheQuakersBlock bgImg={{ aspectRatio: 1, src: London, srcSet: '' }} />
+  .add(`Who Were Quakers?`, () => (
+    <HomeWhoWereTheQuakersBlock bgImg={{ aspectRatio: 1, src: London, srcSet: `` }} />
   ))
-  .add('Featured Books', () => <HomeFeaturedBooksBlock books={[]} />)
-  .add('Hero', () => <HomeHeroBlock />);
+  .add(`Featured Books`, () => <HomeFeaturedBooksBlock books={[]} />)
+  .add(`Hero`, () => <HomeHeroBlock />);
 
-storiesOf('MultiPill', module)
+storiesOf(`MultiPill`, module)
   .addDecorator(storyFn => (
-    <div style={{ maxWidth: 1000, padding: '3em' }}>{storyFn()}</div>
+    <div style={{ maxWidth: 1000, padding: `3em` }}>{storyFn()}</div>
   ))
-  .add('3-part', () => (
+  .add(`3-part`, () => (
     <MultiPill
       buttons={[
-        { text: 'Download', icon: 'cloud-download' },
-        { text: 'Paperback $4.99', icon: 'book' },
-        { text: 'Audio Book', icon: 'headphones' },
+        { text: `Download`, icon: `cloud-download` },
+        { text: `Paperback $4.99`, icon: `book` },
+        { text: `Audio Book`, icon: `headphones` },
       ]}
     />
   ))
-  .add('2-part', () => (
-    <MultiPill buttons={[{ text: 'Download Lo-Fi' }, { text: 'Download Hi-Fi' }]} />
+  .add(`2-part`, () => (
+    <MultiPill buttons={[{ text: `Download Lo-Fi` }, { text: `Download Hi-Fi` }]} />
   ));

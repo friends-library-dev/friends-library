@@ -27,11 +27,11 @@ const components: { [key: string]: React.FC } = {
   h2: ({ children }) => (
     <h2
       className={cx(
-        'bg-flprimary text-white font-sans text-2xl bracketed tracking-widest',
-        'my-12 -mx-10 py-4 px-10',
-        'sm:text-3xl',
-        'md:-mx-16 md:px-16 ',
-        'lg:-mx-24 lg:px-24',
+        `bg-flprimary text-white font-sans text-2xl bracketed tracking-widest`,
+        `my-12 -mx-10 py-4 px-10`,
+        `sm:text-3xl`,
+        `md:-mx-16 md:px-16 `,
+        `lg:-mx-24 lg:px-24`,
       )}
     >
       {children}
@@ -57,8 +57,8 @@ const components: { [key: string]: React.FC } = {
   blockquote: ({ children }) => (
     <blockquote
       className={cx(
-        'italic tracking-wider bg-flgray-100 leading-loose',
-        'py-4 px-8 my-8',
+        `italic tracking-wider bg-flgray-100 leading-loose`,
+        `py-4 px-8 my-8`,
       )}
     >
       {children}
@@ -68,8 +68,8 @@ const components: { [key: string]: React.FC } = {
   ul: ({ children }) => (
     <ul
       className={cx(
-        'diamonds leading-normal bg-flgray-100 text-base sm:text-lg',
-        'py-4 px-16 mb-8',
+        `diamonds leading-normal bg-flgray-100 text-base sm:text-lg`,
+        `py-4 px-16 mb-8`,
       )}
     >
       {children}
@@ -77,7 +77,7 @@ const components: { [key: string]: React.FC } = {
   ),
 
   Lead: ({ children }) => (
-    <p className={cx('text-xl sm:text-2xl pb-4 pt-2 leading-loose')}>{children}</p>
+    <p className={cx(`text-xl sm:text-2xl pb-4 pt-2 leading-loose`)}>{children}</p>
   ),
 };
 
@@ -89,7 +89,7 @@ const StaticPage: React.FC<Props> = ({ data }) => {
       .replace(/%NUM_AUDIOBOOKS%/g, String(audioBooks.totalCount))
       .replace(/%NUM_SPANISH_BOOKS%/g, String(site.meta.numSpanishBooks))
       .replace(/%NUM_ENGLISH_BOOKS%/g, String(site.meta.numEnglishBooks))
-      .replace(/ -- /g, ' — ');
+      .replace(/ -- /g, ` — `);
   }
   return (
     <Layout>
@@ -100,7 +100,7 @@ const StaticPage: React.FC<Props> = ({ data }) => {
       <BooksBgBlock bright>
         <h1
           className="max-w-screen-md mx-auto px-6 py-16 heading-text text-2xl sm:text-4xl bracketed text-flprimary"
-          style={{ backgroundColor: 'rgba(255, 255, 255, 0.85)' }}
+          style={{ backgroundColor: `rgba(255, 255, 255, 0.85)` }}
         >
           {frontmatter.title}
         </h1>

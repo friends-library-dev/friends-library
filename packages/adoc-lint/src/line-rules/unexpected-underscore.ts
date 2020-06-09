@@ -7,7 +7,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '' || !line.includes('_') || isAsciidocBracketLine(line)) {
+  if (line === `` || !line.includes(`_`) || isAsciidocBracketLine(line)) {
     return [];
   }
 
@@ -28,12 +28,12 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Unexpected underscore',
+      message: `Unexpected underscore`,
     },
   ];
 };
 
-rule.slug = 'unexpected-underscore';
+rule.slug = `unexpected-underscore`;
 export default rule;

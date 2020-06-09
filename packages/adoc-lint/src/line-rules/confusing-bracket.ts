@@ -6,11 +6,11 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line[0] !== '[' || line[line.length - 1] !== ']') {
+  if (line[0] !== `[` || line[line.length - 1] !== `]`) {
     return [];
   }
 
-  if (!line.startsWith('[.book-title]')) {
+  if (!line.startsWith(`[.book-title]`)) {
     return [];
   }
 
@@ -18,14 +18,13 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: false,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message:
-        'Line-ending bracket needs to be escaped because the line starts with a [.book-title]',
-      recommendation: line.replace(/\]$/, '+++]+++'),
+      message: `Line-ending bracket needs to be escaped because the line starts with a [.book-title]`,
+      recommendation: line.replace(/\]$/, `+++]+++`),
     },
   ];
 };
 
-rule.slug = 'confusing-bracket';
+rule.slug = `confusing-bracket`;
 export default rule;

@@ -42,8 +42,8 @@ function htmlToSections(docHtml: Html, shortHeadings: Map<string, string>): DocS
 
 function addSignedSectionClass(html: Html): Html {
   const has = html.match(/class="(signed-section|salutation|letter-heading)/gm)
-    ? 'has'
-    : 'no';
+    ? `has`
+    : `no`;
   return html.replace(
     /^<div class="sect1/,
     `<div class="sect1 chapter--${has}-signed-section`,

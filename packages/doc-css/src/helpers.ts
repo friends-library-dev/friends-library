@@ -2,7 +2,7 @@ import fs from 'fs';
 import { Css, DocPrecursor } from '@friends-library/types';
 
 export function joinCssFiles(paths: string[]): Css {
-  return paths.map(toCss).join('\n');
+  return paths.map(toCss).join(`\n`);
 }
 
 export function replaceVars(css: Css, vars: Record<string, string>): Css {

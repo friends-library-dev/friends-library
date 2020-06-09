@@ -10,7 +10,7 @@ const defaultMargins = {
 
 export function price(size: PrintSize, pages: number[]): number {
   return pages.reduce((sum, volPages) => {
-    const isSaddleStitch = size === 's' && volPages < 32;
+    const isSaddleStitch = size === `s` && volPages < 32;
     const basePrice = isSaddleStitch ? 200 : 125;
     return sum + basePrice + Math.round(volPages * PRICE_PER_PAGE);
   }, 0);
@@ -28,8 +28,8 @@ export function bookDims(
 
 export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
   s: {
-    luluName: 'Pocket Book',
-    abbrev: 's',
+    luluName: `Pocket Book`,
+    abbrev: `s`,
     minPages: 2,
     maxPages: 175,
     margins: {
@@ -47,8 +47,8 @@ export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
   m: {
     minPages: 100,
     maxPages: 450,
-    luluName: 'Digest',
-    abbrev: 'm',
+    luluName: `Digest`,
+    abbrev: `m`,
     margins: defaultMargins,
     dims: {
       height: 8.5,
@@ -58,8 +58,8 @@ export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
   xl: {
     minPages: 350,
     maxPages: 720,
-    luluName: 'US Trade',
-    abbrev: 'xl',
+    luluName: `US Trade`,
+    abbrev: `xl`,
     margins: defaultMargins,
     dims: {
       height: 9,
@@ -94,28 +94,28 @@ export function choosePrintSize(
       s: Infinity,
       m: splitPages.m.reduce(add) / numVols,
       xl: splitPages.xl.reduce(add) / numVols,
-      'xl--condensed': splitPages['xl--condensed'].reduce(add) / numVols,
+      'xl--condensed': splitPages[`xl--condensed`].reduce(add) / numVols,
     };
     return choosePrintSize(average, undefined);
   }
 
   if (singlePages.s <= sizes.s.maxPages) {
-    return ['s', NOT_CONDENSED];
+    return [`s`, NOT_CONDENSED];
   }
 
   if (singlePages.m <= sizes.m.maxPages) {
-    return ['m', NOT_CONDENSED];
+    return [`m`, NOT_CONDENSED];
   }
 
   if (singlePages.xl <= CONDENSE_THRESHOLD) {
-    return ['xl', NOT_CONDENSED];
+    return [`xl`, NOT_CONDENSED];
   }
 
-  if (singlePages['xl--condensed'] > sizes.xl.maxPages) {
-    throw new RangeError('Max book size exceeded');
+  if (singlePages[`xl--condensed`] > sizes.xl.maxPages) {
+    throw new RangeError(`Max book size exceeded`);
   }
 
-  return ['xl', CONDENSED];
+  return [`xl`, CONDENSED];
 }
 
 function add(a: number, b: number): number {

@@ -16,7 +16,7 @@ export async function create(
     return pdf(manifest, filenameNoExt, options);
   }
 
-  if (manifest['OEBPS/nav.xhtml'].includes('http-equiv')) {
+  if (manifest[`OEBPS/nav.xhtml`].includes(`http-equiv`)) {
     return mobi(manifest, filenameNoExt, options);
   }
 

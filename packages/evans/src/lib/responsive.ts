@@ -1,6 +1,6 @@
 import { Title, Name, Html } from '@friends-library/types';
 
-const REPLACE = '<span class="d-none d-sm-inline">$&</span>';
+const REPLACE = `<span class="d-none d-sm-inline">$&</span>`;
 
 export default function responsiveDocumentTitle(
   originalTitle: Title,
@@ -17,7 +17,7 @@ export default function responsiveDocumentTitle(
   }
 
   const names = [friendName];
-  const nameParts = friendName.split(' ');
+  const nameParts = friendName.split(` `);
   if (nameParts.length === 3) {
     names.push(`${nameParts[0]} ${nameParts[2]}`);
   }

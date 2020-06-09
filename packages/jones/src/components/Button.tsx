@@ -14,7 +14,7 @@ interface Props {
 const Component: React.FC<Props> = props => (
   <StyledSpan
     {...props}
-    {...(props.href && !props.disabled ? { as: 'a' } : {})}
+    {...(props.href && !props.disabled ? { as: `a` } : {})}
     {...(props.disabled ? { onClick: undefined } : {})}
   >
     {props.children}
@@ -25,8 +25,8 @@ export default Component;
 
 const StyledSpan = styled.span`
   opacity: ${({ disabled }: Props) => (disabled ? 0.15 : 1)};
-  cursor: ${({ disabled }: Props) => (disabled ? 'not-allowed' : 'pointer')};
-  background: ${({ secondary }: Props) => (secondary ? '#666' : '#61afef')};
+  cursor: ${({ disabled }: Props) => (disabled ? `not-allowed` : `pointer`)};
+  background: ${({ secondary }: Props) => (secondary ? `#666` : `#61afef`)};
   display: inline-block;
   width: 190px;
   height: ${(p: Props) => p.height || 50}px;
@@ -41,6 +41,6 @@ const StyledSpan = styled.span`
 
   &:hover {
     ${(p: Props) =>
-      p.disabled ? '' : p.secondary ? 'background: #777' : 'background: #4d99d8'}
+      p.disabled ? `` : p.secondary ? `background: #777` : `background: #4d99d8`}
   }
 `;

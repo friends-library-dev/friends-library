@@ -4,169 +4,169 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
-    test: 'arch-angel',
+    test: `arch-angel`,
     search: /\b(A|a)rch-angel/g,
-    replace: '$1rchangel',
+    replace: `$1rchangel`,
   },
   {
-    test: 'yoke-mate',
+    test: `yoke-mate`,
     search: /\b(Y|y)oke-mate/g,
-    replace: '$1okemate',
+    replace: `$1okemate`,
   },
   {
-    test: 'back-yard',
+    test: `back-yard`,
     search: /\b(B|b)ack-yard/g,
-    replace: '$1ackyard',
+    replace: `$1ackyard`,
   },
   {
-    test: 'grave-yard',
+    test: `grave-yard`,
     search: /\b(G|g)rave-yard/g,
-    replace: '$1raveyard',
+    replace: `$1raveyard`,
   },
   {
-    test: 'ware-house',
+    test: `ware-house`,
     search: /\b(W|w)are-house/g,
-    replace: '$1arehouse',
+    replace: `$1arehouse`,
   },
   {
-    test: 'grand-children',
+    test: `grand-children`,
     search: /\b(G|g)rand-child/g,
-    replace: '$1randchild',
+    replace: `$1randchild`,
   },
   {
-    test: 'fellow-',
+    test: `fellow-`,
     search: /\b(F|f)ellow-(creature|servant|traveller)(s)?\b/g,
-    replace: '$1ellow $2$3',
+    replace: `$1ellow $2$3`,
   },
   {
-    test: 'heavy-laden',
+    test: `heavy-laden`,
     search: /\b(H|h)eavy-laden\b/g,
-    replace: '$1eavy laden',
+    replace: `$1eavy laden`,
   },
   {
-    test: '-hearted',
+    test: `-hearted`,
     search: /\b((F|f)aint|(B|b)roken|(L|l)ight)-hearted\b/g,
-    replace: '$1hearted',
+    replace: `$1hearted`,
   },
   {
-    test: 'judgment-seat',
+    test: `judgment-seat`,
     search: /\b(J|j)udgment-seat\b/g,
-    replace: '$1udgment seat',
+    replace: `$1udgment seat`,
   },
   {
-    test: 'Zion-ward',
+    test: `Zion-ward`,
     search: /\bZion-ward(s)?\b/g,
-    replace: 'Zionward$1',
+    replace: `Zionward$1`,
   },
   {
-    test: 'holy-days',
+    test: `holy-days`,
     search: /\b(H|h)oly-days\b/g,
-    replace: '$1oly days',
+    replace: `$1oly days`,
   },
   {
-    test: 'worship-house',
+    test: `worship-house`,
     search: /\b(W|w)orship-house(s)?\b/g,
-    replace: '$1orship house$2',
+    replace: `$1orship house$2`,
   },
   {
-    test: 'inn-keeper',
+    test: `inn-keeper`,
     search: /\b(I|i)nn-keeper(s)?\b/g,
-    replace: '$1nnkeeper$2',
+    replace: `$1nnkeeper$2`,
   },
   {
-    test: 'dining-room',
+    test: `dining-room`,
     search: /\b(D|d)ining-room(s)?\b/g,
-    replace: '$1ining room$2',
+    replace: `$1ining room$2`,
   },
   {
-    test: 're-establish',
+    test: `re-establish`,
     search: /\b(R|r)e-establish(ed|ment|ing)?\b/g,
-    replace: '$1eestablish$2',
+    replace: `$1eestablish$2`,
   },
   {
-    test: '-minded',
+    test: `-minded`,
     search: /\b((S|s)piritually|(R|r)eligiously)-minded\b/g,
-    replace: '$1 minded',
+    replace: `$1 minded`,
   },
   {
-    test: 'hope-well',
+    test: `hope-well`,
     search: /\bHope-well\b/g,
-    replace: 'Hopewell',
+    replace: `Hopewell`,
   },
   {
-    test: 'loving-kindness',
+    test: `loving-kindness`,
     search: /\b(L|l)oving-kindness\b/g,
-    replace: '$1ovingkindness',
+    replace: `$1ovingkindness`,
   },
   {
-    test: 'to-day',
+    test: `to-day`,
     search: /\b(T|t)o-day\b/g,
-    replace: '$1oday',
+    replace: `$1oday`,
   },
   {
-    test: 'to-morrow',
+    test: `to-morrow`,
     search: /\b(T|t)o-morrow\b/g,
-    replace: '$1omorrow',
+    replace: `$1omorrow`,
   },
   {
-    test: 'sun-set',
+    test: `sun-set`,
     search: /\b(S|s)un-set(s)?\b/g,
-    replace: '$1unset$2',
+    replace: `$1unset$2`,
   },
   {
-    test: 'road-side',
+    test: `road-side`,
     search: /\b(R|r)oad-side(s)?\b/g,
-    replace: '$1oadside$2',
+    replace: `$1oadside$2`,
   },
   {
-    test: 'day-time',
+    test: `day-time`,
     search: /\b(D|d)ay-time(s)?\b/g,
-    replace: '$1aytime$2',
+    replace: `$1aytime$2`,
   },
   {
-    test: 'death-bed',
+    test: `death-bed`,
     search: /\b(D|d)eath-bed(s)?\b/g,
-    replace: '$1eathbed$2',
+    replace: `$1eathbed$2`,
   },
   {
-    test: 'anti-christ',
+    test: `anti-christ`,
     search: /\b(A|a)nti-(C|c)hrist\b/g,
-    replace: '$1ntichrist',
+    replace: `$1ntichrist`,
   },
   {
-    test: 're-enter',
+    test: `re-enter`,
     search: /\b(R|r)e-enter(s|ed)?\b/g,
-    replace: '$1eenter$2',
+    replace: `$1eenter$2`,
   },
   {
-    test: 're-embark',
+    test: `re-embark`,
     search: /\b(R|r)e-embark(s|ed|ing|ation)?\b/g,
-    replace: '$1eembark$2',
+    replace: `$1eembark$2`,
   },
   {
-    test: 're-examin',
+    test: `re-examin`,
     search: /\b(R|r)e-examin(ing|ed|e|ation)\b/g,
-    replace: '$1eexamin$2',
+    replace: `$1eexamin$2`,
   },
   {
-    test: 'pre-eminen',
+    test: `pre-eminen`,
     search: /(P|p)re-eminen(ce|t|tly)/g,
-    replace: '$1reeminen$2',
+    replace: `$1reeminen$2`,
   },
   {
-    test: 'slave-holder',
+    test: `slave-holder`,
     search: /\b(S|s)lave-holder(s)?\b/g,
-    replace: '$1laveholder$2',
+    replace: `$1laveholder$2`,
   },
   {
-    test: 'co-operat',
+    test: `co-operat`,
     search: /\b(C|c)o-operat(e|ing|ed|ion|es)\b/g,
-    replace: '$1ooperat$2',
+    replace: `$1ooperat$2`,
   },
   {
-    test: 'bed-side',
+    test: `bed-side`,
     search: /\b(B|b)ed-side(s)?\b/g,
-    replace: '$1edside$2',
+    replace: `$1edside$2`,
   },
 ]);
 
@@ -176,13 +176,13 @@ const rule: LineRule = (
   lineNumber: number,
   lintOptions: LintOptions,
 ): LintResult[] => {
-  if (lintOptions.lang !== 'en') {
+  if (lintOptions.lang !== `en`) {
     return [];
   }
   return runner.getLineLintResults(line, lineNumber, lintOptions);
 };
 
-rule.slug = 'unhyphened-words';
+rule.slug = `unhyphened-words`;
 runner.rule = rule.slug;
 
 export default rule;

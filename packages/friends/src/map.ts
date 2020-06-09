@@ -7,19 +7,19 @@ import AudioPart from './AudioPart';
 import { FriendData, EditionData } from './types';
 
 export default function friendFromJS(json: FriendData): Friend {
-  const friend = new Friend(omit(json, 'documents'));
+  const friend = new Friend(omit(json, `documents`));
 
   friend.documents = json.documents.map(docData => {
-    const document = new Document(omit(docData, 'editions'));
+    const document = new Document(omit(docData, `editions`));
     document.friend = friend;
     docData.editions.sort(sortEditions);
 
     document.editions = docData.editions.map(edData => {
-      const edition = new Edition(omit(edData, 'audio'));
+      const edition = new Edition(omit(edData, `audio`));
       edition.document = document;
 
       if (edData.audio) {
-        const audio = new Audio(omit(edData.audio, 'parts'));
+        const audio = new Audio(omit(edData.audio, `parts`));
         edition.audio = audio;
         edition.audio.parts = edData.audio.parts.map(audioPartData => {
           const part = new AudioPart(audioPartData);
@@ -39,11 +39,11 @@ export default function friendFromJS(json: FriendData): Friend {
 }
 
 function sortEditions(ed1: EditionData, ed2: EditionData): number {
-  if (ed1.type === 'updated') {
+  if (ed1.type === `updated`) {
     return -1;
   }
-  if (ed1.type === 'modernized') {
-    return ed2.type === 'updated' ? 1 : -1;
+  if (ed1.type === `modernized`) {
+    return ed2.type === `updated` ? 1 : -1;
   }
   return 1;
 }

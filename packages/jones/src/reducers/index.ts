@@ -10,7 +10,7 @@ import { undoable } from './undoable';
 
 export default {
   github,
-  tasks: undoable(tasks, 'TASKS', ['WORK_ON_TASK', 'END_CHECKOUT']),
+  tasks: undoable(tasks, `TASKS`, [`WORK_ON_TASK`, `END_CHECKOUT`]),
   currentTask,
   screen,
   repos,

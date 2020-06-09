@@ -18,14 +18,14 @@ import { LANG } from '../env';
 import { PAGE_META_DESCS } from '../lib/seo';
 
 if (process.env.FORCE_ALGOLIA_SEND) {
-  require('@friends-library/env/load');
+  require(`@friends-library/env/load`);
   sendSearchDataToAlgolia();
 }
 
 export async function sendSearchDataToAlgolia(): Promise<void> {
   const { GATSBY_ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY } = env.require(
-    'GATSBY_ALGOLIA_APP_ID',
-    'ALGOLIA_ADMIN_KEY',
+    `GATSBY_ALGOLIA_APP_ID`,
+    `ALGOLIA_ADMIN_KEY`,
   );
 
   const client = algoliasearch(GATSBY_ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY);
@@ -37,9 +37,9 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
   await friendsIndex.replaceAllObjects(friends.map(friendRecord));
   await friendsIndex.setSettings({
     paginationLimitedTo: 24,
-    snippetEllipsisText: '[...]',
-    attributesToSnippet: ['description:30'],
-    searchableAttributes: ['name', 'bookTitles', 'description', 'residences'],
+    snippetEllipsisText: `[...]`,
+    attributesToSnippet: [`description:30`],
+    searchableAttributes: [`name`, `bookTitles`, `description`, `residences`],
   });
 
   const docsIndex = client.initIndex(`${LANG}_docs`);
@@ -51,20 +51,20 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
   );
   await docsIndex.setSettings({
     paginationLimitedTo: 24,
-    snippetEllipsisText: '[...]',
+    snippetEllipsisText: `[...]`,
     attributesToSnippet: [
-      'description:30',
-      'partialDescription:30',
-      'featuredDescription:30',
+      `description:30`,
+      `partialDescription:30`,
+      `featuredDescription:30`,
     ],
     searchableAttributes: [
-      'title',
-      'originalTitle',
-      'description',
-      'partialDescription',
-      'featuredDescription',
-      'authorName',
-      'tags',
+      `title`,
+      `originalTitle`,
+      `description`,
+      `partialDescription`,
+      `featuredDescription`,
+      `authorName`,
+      `tags`,
     ],
   });
 
@@ -74,9 +74,9 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
   });
   await pagesIndex.setSettings({
     paginationLimitedTo: 24,
-    snippetEllipsisText: '[...]',
-    attributesToSnippet: ['text:30'],
-    searchableAttributes: ['title', 'subtitle', 'text'],
+    snippetEllipsisText: `[...]`,
+    attributesToSnippet: [`text:30`],
+    searchableAttributes: [`title`, `subtitle`, `text`],
   });
 }
 
@@ -86,15 +86,15 @@ function friendRecord(friend: Friend): Record<string, string> {
     name: friend.name,
     url: friendUrl(friend),
     bookTitles:
-      '“' +
+      `“` +
       friend.documents
         .filter(d => d.hasNonDraftEdition)
         .map(d => shortTitle(d.title))
-        .join('”, “') +
-      '”',
+        .join(`”, “`) +
+      `”`,
     residences: friend.residences
       .map(r => `${translate(r.city)}, ${translate(r.region)}`)
-      .join(' — '),
+      .join(` — `),
     description: friend.description,
   };
 }
@@ -109,7 +109,7 @@ function documentRecord(doc: Document): Record<string, string | undefined> {
     description: doc.description,
     partialDescription: doc.partialDescription,
     featuredDescription: doc.featuredDescription,
-    tags: doc.tags.join(', '),
+    tags: doc.tags.join(`, `),
   };
 }
 
@@ -127,14 +127,14 @@ function mdxRecords(): Record<string, string | null>[] {
       },
     ];
     const paras = removeMarkdownFormatting(convertEntities(replaceCounts(text.trim())))
-      .split('\n\n')
+      .split(`\n\n`)
       .map(sanitizeMdParagraph)
       .filter(Boolean);
 
     let currentSubtitle: null | string = null;
     for (const para of paras) {
-      if (para.startsWith('#')) {
-        currentSubtitle = para.replace(/^#+ /, '');
+      if (para.startsWith(`#`)) {
+        currentSubtitle = para.replace(/^#+ /, ``);
         continue;
       }
       records.push({
@@ -173,7 +173,7 @@ function customPageRecords(): Record<string, string | null>[] {
     {
       title: t`Getting Started`,
       url: t`/getting-started`,
-      text: replaceCounts(PAGE_META_DESCS['getting-started'][LANG]),
+      text: replaceCounts(PAGE_META_DESCS[`getting-started`][LANG]),
     },
   ];
 }
@@ -184,27 +184,27 @@ function shortTitle(title: string): string {
 
 function convertEntities(input: string): string {
   return input
-    .replace(/&mdash;/g, '—')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&rsquo;/g, '’')
-    .replace(/&lsquo;/g, '‘')
-    .replace(/&rdquo;/g, '”')
-    .replace(/&ldquo;/g, '“');
+    .replace(/&mdash;/g, `—`)
+    .replace(/&nbsp;/g, ` `)
+    .replace(/&rsquo;/g, `’`)
+    .replace(/&lsquo;/g, `‘`)
+    .replace(/&rdquo;/g, `”`)
+    .replace(/&ldquo;/g, `“`);
 }
 
 function removeMarkdownFormatting(md: string): string {
   return md
-    .replace(/(\*\*|_)/g, '')
-    .replace(/^> /gm, '')
-    .replace(/{' '}/g, '')
-    .replace(/<.+?>/g, '')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+    .replace(/(\*\*|_)/g, ``)
+    .replace(/^> /gm, ``)
+    .replace(/{' '}/g, ``)
+    .replace(/<.+?>/g, ``)
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, `$1`);
 }
 
 function replaceCounts(str: string): string {
   return str
-    .replace(/%NUM_ENGLISH_BOOKS%/g, String(numPublishedBooks('en')))
-    .replace(/%NUM_SPANISH_BOOKS%/g, String(numPublishedBooks('es')))
+    .replace(/%NUM_ENGLISH_BOOKS%/g, String(numPublishedBooks(`en`)))
+    .replace(/%NUM_SPANISH_BOOKS%/g, String(numPublishedBooks(`es`)))
     .replace(/%NUM_FRIENDS%/g, String(allPublishedFriends(LANG).length))
     .replace(/%NUM_UPDATED_EDITIONS%/g, String(allPublishedUpdatedEditions(LANG).length))
     .replace(/%NUM_AUDIOBOOKS%/g, String(allPublishedAudiobooks(LANG).length));
@@ -212,11 +212,11 @@ function replaceCounts(str: string): string {
 
 function sanitizeMdParagraph(paragraph: string): string {
   return paragraph
-    .split('\n')
+    .split(`\n`)
     .filter(l => !l.match(/^<\/?Lead>/))
-    .join(' ')
-    .replace(/<\/?iframe(.*?)>/g, '')
-    .replace(/ {2,}/g, ' ')
-    .replace(/^- /, '')
+    .join(` `)
+    .replace(/<\/?iframe(.*?)>/g, ``)
+    .replace(/ {2,}/g, ` `)
+    .replace(/^- /, ``)
     .trim();
 }

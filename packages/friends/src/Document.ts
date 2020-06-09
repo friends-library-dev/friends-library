@@ -18,7 +18,7 @@ export default class Document {
   }
 
   public get friend(): Friend {
-    if (!this._friend) throw new Error('Friend not set');
+    if (!this._friend) throw new Error(`Friend not set`);
     return this._friend;
   }
 
@@ -97,7 +97,7 @@ export default class Document {
   }
 
   public get hasUpdatedEdition(): boolean {
-    return this.editions.map(edition => edition.type).includes('updated');
+    return this.editions.map(edition => edition.type).includes(`updated`);
   }
 
   public get relatedDocuments(): DocumentData['related_documents'] {

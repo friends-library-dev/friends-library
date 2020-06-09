@@ -23,18 +23,18 @@ const AudioBooksBlock: React.FC<Props> = ({ books, bgImg }) => (
     />
     <div
       className={cx(
-        '-mt-16 mx-16 flex flex-col items-center',
-        'md:flex-row md:items-start md:flex-wrap md:justify-center md:content-center',
-        'lg:mx-8',
+        `-mt-16 mx-16 flex flex-col items-center`,
+        `md:flex-row md:items-start md:flex-wrap md:justify-center md:content-center`,
+        `lg:mx-8`,
       )}
     >
       {books.slice(0, 4).map(book => (
         <Link
           to={`${book.documentUrl}#audiobook`}
           className={cx(
-            'flex flex-col items-center mb-10',
-            'md:w-64 md:mx-12',
-            'lg:mx-4 lg:w-56',
+            `flex flex-col items-center mb-10`,
+            `md:w-64 md:mx-12`,
+            `lg:mx-4 lg:w-56`,
           )}
           key={book.documentUrl}
         >

@@ -19,7 +19,7 @@ function replaceInResult(
   const { path, start, end } = result;
   const file = files[path];
   const content = file.editedContent || file.content;
-  const lines = content.split('\n');
+  const lines = content.split(`\n`);
   const index = start.line - 1;
   const line = lines[index];
   const prevLength = line.length;
@@ -35,11 +35,11 @@ function replaceInResult(
     line.substring(0 - offset, start.column - offset),
     replace,
     line.substring(end.column - offset),
-  ].join('');
+  ].join(``);
 
   const diff = prevLength - lines[index].length;
   adjust.set(key, offset + diff);
-  file.editedContent = lines.join('\n');
+  file.editedContent = lines.join(`\n`);
 }
 
 export default createReducer(
@@ -104,7 +104,7 @@ export default createReducer(
       const time = new Date().toJSON();
       state[taskId] = {
         id: taskId,
-        name: '',
+        name: ``,
         repoId: -1,
         created: time,
         updated: time,

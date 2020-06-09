@@ -22,12 +22,12 @@ const MultiBookBgBlock: React.FC<Props> = ({ children, className, bgImg, bright 
       fluid={[
         `radial-gradient(rgba(0, 0, 0, ${opStart}), rgba(0, 0, 0, ${opEnd}) ${percent}%)`,
         bgImg,
-        ...(bright ? [bgLayer('#444')] : []),
+        ...(bright ? [bgLayer(`#444`)] : []),
       ]}
       className={cx(
         className,
-        bright && 'bright',
-        'py-20 sm:py-32 px-10 sm:px-16 bg-black',
+        bright && `bright`,
+        `py-20 sm:py-32 px-10 sm:px-16 bg-black`,
       )}
     >
       {children}

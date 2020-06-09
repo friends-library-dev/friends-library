@@ -76,7 +76,7 @@ export const SubLine: React.FC<{ label: string; className?: string }> = ({
   children,
   className,
 }) => (
-  <div className={`${className || ''} text-gray-700 text-sm flex`}>
+  <div className={`${className || ``} text-gray-700 text-sm flex`}>
     <span className="flex-grow">{label}</span>
     {children}
   </div>

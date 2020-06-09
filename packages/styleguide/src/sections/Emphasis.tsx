@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Pair, H1, Para, Code, Section, Note, Asciidoc } from '../components';
 
-const editorUrl = 'https://flp-editor.netlify.app';
+const editorUrl = `https://flp-editor.netlify.app`;
 
 const Emphasis: React.FC = () => (
   <Section id="emphasis">
@@ -23,7 +23,7 @@ const Emphasis: React.FC = () => (
     <Pair id="emphasis-dunder" />
 
     <Note>
-      Because of the way footnotes work in Asciidoc, if you have italics that{' '}
+      Because of the way footnotes work in Asciidoc, if you have italics that{` `}
       <i>directly run into a footnote</i>, you will need to use double-underscores, or
       you'll get an error:
     </Note>
@@ -35,7 +35,8 @@ const Emphasis: React.FC = () => (
     </Para>
     <Pair id="emphasis-multiline" />
     <Note>
-      Cited <b>book titles</b> should <i>not</i> be denoted using bare italics. Use the{' '}
+      Cited <b>book titles</b> should <i>not</i> be denoted using bare italics. Use the
+      {` `}
       <a href="#styling">dedicated syntax</a> instead.
     </Note>
   </Section>

@@ -49,7 +49,7 @@ class Component extends React.Component<Props> {
     const { editionType, documentTitle, numFiles } = this.props;
     return (
       <>
-        * Searching <code>{numFiles}</code> files in the{' '}
+        * Searching <code>{numFiles}</code> files in the{` `}
         <i className="edition">{editionType}</i> edition of <i>{documentTitle}</i>.
       </>
     );

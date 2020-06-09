@@ -10,19 +10,19 @@ for (const key in subSchemas) {
   validator.addSchema(subSchemas[key], `/${key}`);
 }
 
-const files = yamlGlob(path.resolve(__dirname, '../../yml/*/*.yml'))
+const files = yamlGlob(path.resolve(__dirname, `../../yml/*/*.yml`))
   .concat([
     {
-      name: 'Fixture',
-      short: 'fixture.yml',
-      path: path.resolve(__dirname, '../../src/__tests__/fixture.yml'),
+      name: `Fixture`,
+      short: `fixture.yml`,
+      path: path.resolve(__dirname, `../../src/__tests__/fixture.yml`),
     },
   ])
-  .map(({ short, path }) => ({ path: short, contents: readFileSync(path, 'UTF-8') }))
+  .map(({ short, path }) => ({ path: short, contents: readFileSync(path, `UTF-8`) }))
   .map(({ path, contents }) => ({ path, json: safeLoad(contents) }));
 
 files.forEach(({ path, json }) => {
-  const lang = path.startsWith('en') ? '(english)' : '(spanish)';
+  const lang = path.startsWith(`en`) ? `(english)` : `(spanish)`;
 
   it(`${path} ${lang} should validate against schema`, () => {
     let useSchema = schema;
@@ -34,7 +34,7 @@ files.forEach(({ path, json }) => {
 
     const result = validator.validate(json, useSchema);
     if (result.errors.length) {
-      throw new Error(`${result.errors.map(e => e.stack).join('\n')}`);
+      throw new Error(`${result.errors.map(e => e.stack).join(`\n`)}`);
     }
   });
 });

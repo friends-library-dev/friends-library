@@ -1,35 +1,35 @@
 import stripIndent from 'strip-indent';
 import leadingWhitespace from '../leading-whitespace';
 
-const opts = { lang: 'en' as const };
+const opts = { lang: `en` as const };
 
-describe('leadingWhitespace()', () => {
-  it('creates a lint violation result for a line with leading whitespace', () => {
-    const results = leadingWhitespace(' Foo bar!', [], 4, opts);
+describe(`leadingWhitespace()`, () => {
+  it(`creates a lint violation result for a line with leading whitespace`, () => {
+    const results = leadingWhitespace(` Foo bar!`, [], 4, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 4,
       column: 0,
-      type: 'error',
-      rule: 'leading-whitespace',
-      message: 'Lines should not have leading whitespace',
-      recommendation: 'Foo bar!',
+      type: `error`,
+      rule: `leading-whitespace`,
+      message: `Lines should not have leading whitespace`,
+      recommendation: `Foo bar!`,
       fixable: true,
     });
   });
 
-  it('does not lint error empty lines', () => {
-    const results = leadingWhitespace('', [], 4, opts);
+  it(`does not lint error empty lines`, () => {
+    const results = leadingWhitespace(``, [], 4, opts);
     expect(results).toHaveLength(0);
   });
 
-  it('only produces one lint for a chunk of leading whitespace', () => {
-    const results = leadingWhitespace('   Foo.', [], 1, opts);
+  it(`only produces one lint for a chunk of leading whitespace`, () => {
+    const results = leadingWhitespace(`   Foo.`, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].column).toBe(0);
   });
 
-  it('allows leading whitespace in footnote poetry', () => {
+  it(`allows leading whitespace in footnote poetry`, () => {
     const adoc = stripIndent(`
       Foobar.^
       footnote:[Here is a poem:
@@ -37,12 +37,12 @@ describe('leadingWhitespace()', () => {
            so much baz. \`
       and now the poem is done.]
     `).trim();
-    const lines = adoc.split('\n');
+    const lines = adoc.split(`\n`);
     const results = leadingWhitespace(lines[3], lines, 4, opts);
     expect(results).toHaveLength(0);
   });
 
-  it('finds no violations in this chunk of real footnote poetry', () => {
+  it(`finds no violations in this chunk of real footnote poetry`, () => {
     const adoc = stripIndent(`
       Now began the priests to prophesy again,
       that within half a year we should be all put down and gone.^
@@ -58,7 +58,7 @@ describe('leadingWhitespace()', () => {
       We stayed one night at a little town on this side, called Cockan,
     `).trim();
 
-    const lines = adoc.split('\n');
+    const lines = adoc.split(`\n`);
     lines.forEach((line, index) => {
       const results = leadingWhitespace(lines[index], lines, index + 1, opts);
       expect(results).toHaveLength(0);

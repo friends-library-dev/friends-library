@@ -18,13 +18,13 @@ export default async function authorizePayment(
   respond: Responder,
 ): Promise<void> {
   if (!isTestInvocation()) {
-    log.error('/payment/authorize used outside of local testing');
-    return respond.json({ msg: 'payment_confirm_production_attempt' }, 403);
+    log.error(`/payment/authorize used outside of local testing`);
+    return respond.json({ msg: `payment_confirm_production_attempt` }, 403);
   }
 
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment/authorize', { body, error: data });
+    log.error(`invalid body for /payment/authorize`, { body, error: data });
     return respond.json({ msg: data.message }, 400);
   }
 
@@ -32,12 +32,12 @@ export default async function authorizePayment(
 
   try {
     var paymentMethod = await stripeClient().paymentMethods.create({
-      type: 'card',
+      type: `card`,
       card: {
-        number: '4242424242424242',
+        number: `4242424242424242`,
         exp_month: 12,
         exp_year: 2029,
-        cvc: '314',
+        cvc: `314`,
       },
     });
   } catch (error) {
@@ -54,8 +54,8 @@ export default async function authorizePayment(
     return respond.json({ msg: error.code }, 500);
   }
 
-  if (intent.status !== 'requires_capture') {
-    log.error('unexpected intent status after confirmation', { intent });
+  if (intent.status !== `requires_capture`) {
+    log.error(`unexpected intent status after confirmation`, { intent });
     return respond.json({ msg: intent.status }, 500);
   }
 
@@ -66,23 +66,23 @@ export default async function authorizePayment(
 const schema = {
   properties: {
     paymentIntentId: {
-      type: 'string',
+      type: `string`,
     },
   },
-  required: ['paymentIntentId'],
+  required: [`paymentIntentId`],
   example: {
-    paymentIntentId: 'pi_a3bd4g',
+    paymentIntentId: `pi_a3bd4g`,
   },
 };
 
 function isTestInvocation(): boolean {
-  if (env.getContext() === 'TEST') {
+  if (env.getContext() === `TEST`) {
     return true;
   }
 
-  if (env('STRIPE_SECRET_KEY').match(/^sk_test_/) === null) {
+  if (env(`STRIPE_SECRET_KEY`).match(/^sk_test_/) === null) {
     return false;
   }
 
-  return process.env.NODE_ENV === 'development';
+  return process.env.NODE_ENV === `development`;
 }

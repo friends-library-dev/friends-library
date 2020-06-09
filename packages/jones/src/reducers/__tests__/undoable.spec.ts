@@ -1,7 +1,7 @@
 import { undoable, emptyUndoable } from '../undoable';
 
 function incrementReducer(state = 0, { type }: { type: string }): number {
-  if (type !== 'IGNORE') {
+  if (type !== `IGNORE`) {
     return state + 1;
   }
   return state;
@@ -11,12 +11,12 @@ function action(type: string): { type: string } {
   return { type };
 }
 
-describe('undoable()', () => {
+describe(`undoable()`, () => {
   let state: any;
   let reducer: any;
 
   beforeEach(() => {
-    reducer = undoable(incrementReducer, 'TEST');
+    reducer = undoable(incrementReducer, `TEST`);
     state = {
       past: [],
       present: 0,
@@ -24,13 +24,13 @@ describe('undoable()', () => {
     };
   });
 
-  test('reset resets the history', () => {
+  test(`reset resets the history`, () => {
     state = {
       past: [0],
       present: 1,
       future: [],
     };
-    const newState = reducer(state, action('RESET_UNDO_TEST'));
+    const newState = reducer(state, action(`RESET_UNDO_TEST`));
     expect(newState).toEqual({
       past: [],
       present: 1,
@@ -38,13 +38,13 @@ describe('undoable()', () => {
     });
   });
 
-  test('undo un-does', () => {
+  test(`undo un-does`, () => {
     state = {
       past: [0],
       present: 1,
       future: [],
     };
-    const newState = reducer(state, action('UNDO_TEST'));
+    const newState = reducer(state, action(`UNDO_TEST`));
     expect(newState).toEqual({
       past: [],
       present: 0,
@@ -52,23 +52,23 @@ describe('undoable()', () => {
     });
   });
 
-  test('undo returns same state if no past', () => {
+  test(`undo returns same state if no past`, () => {
     state = {
       past: [],
       present: 0,
       future: [1],
     };
-    const newState = reducer(state, action('UNDO_TEST'));
+    const newState = reducer(state, action(`UNDO_TEST`));
     expect(newState).toBe(state);
   });
 
-  test('redo re-does', () => {
+  test(`redo re-does`, () => {
     state = {
       past: [],
       present: 0,
       future: [1],
     };
-    const newState = reducer(state, action('REDO_TEST'));
+    const newState = reducer(state, action(`REDO_TEST`));
     expect(newState).toEqual({
       past: [0],
       present: 1,
@@ -76,28 +76,28 @@ describe('undoable()', () => {
     });
   });
 
-  test('redo returns same state if no future', () => {
+  test(`redo returns same state if no future`, () => {
     state = {
       past: [0],
       present: 1,
       future: [],
     };
-    const newState = reducer(state, action('REDO_TEST'));
+    const newState = reducer(state, action(`REDO_TEST`));
     expect(newState).toBe(state);
   });
 
-  test('ignored action leaves history untouched', () => {
-    const newState = reducer(state, action('IGNORE'));
+  test(`ignored action leaves history untouched`, () => {
+    const newState = reducer(state, action(`IGNORE`));
     expect(newState).toBe(state);
   });
 
-  test('reset action resets state', () => {
+  test(`reset action resets state`, () => {
     state = {
       past: [0, 1, 2],
       present: 3,
       future: [],
     };
-    const newState = reducer(state, action('RESET_UNDO_TEST'));
+    const newState = reducer(state, action(`RESET_UNDO_TEST`));
     expect(newState).toEqual({
       past: [],
       present: 3,
@@ -105,12 +105,12 @@ describe('undoable()', () => {
     });
   });
 
-  test('limit limits undo/redo stack', () => {
-    reducer = undoable(incrementReducer, 'TEST', [], 2);
-    let newState = reducer(state, action('INCREMENT'));
-    newState = reducer(newState, action('INCREMENT'));
-    newState = reducer(newState, action('INCREMENT'));
-    newState = reducer(newState, action('INCREMENT'));
+  test(`limit limits undo/redo stack`, () => {
+    reducer = undoable(incrementReducer, `TEST`, [], 2);
+    let newState = reducer(state, action(`INCREMENT`));
+    newState = reducer(newState, action(`INCREMENT`));
+    newState = reducer(newState, action(`INCREMENT`));
+    newState = reducer(newState, action(`INCREMENT`));
 
     expect(newState).toEqual({
       past: [2, 3],
@@ -120,7 +120,7 @@ describe('undoable()', () => {
   });
 });
 
-test('emptyUndoable() returns empty undoable', () => {
+test(`emptyUndoable() returns empty undoable`, () => {
   expect(emptyUndoable()).toEqual({
     past: [],
     present: {},

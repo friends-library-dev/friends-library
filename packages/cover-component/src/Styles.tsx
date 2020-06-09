@@ -33,9 +33,9 @@ export { CoverWebStylesAllStatic, CoverWebStylesAllDynamic, CoverWebStylesSizes 
 
 function minifyCss(css: string): string {
   return css
-    .replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, '')
-    .replace(/ {2,}/g, ' ')
-    .replace(/ ([{:}]) /g, '$1')
-    .replace(/([;,]) /g, '$1')
-    .replace(/ !/g, '!');
+    .replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/|[\r\n\t]+/g, ``)
+    .replace(/ {2,}/g, ` `)
+    .replace(/ ([{:}]) /g, `$1`)
+    .replace(/([;,]) /g, `$1`)
+    .replace(/ !/g, `!`);
 }

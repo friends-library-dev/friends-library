@@ -54,7 +54,7 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
 
   dpcs.forEach(hydrate.process);
 
-  const namespace = 'fl-make';
+  const namespace = `fl-make`;
   artifacts.deleteNamespaceDir(namespace);
 
   let files: string[] = [];
@@ -90,19 +90,19 @@ async function getTypeManifests(
   argv: MakeOptions,
 ): Promise<FileManifest[]> {
   switch (type) {
-    case 'web-pdf':
+    case `web-pdf`:
       return manifest.webPdf(dpc);
-    case 'paperback-interior': {
+    case `paperback-interior`: {
       const conf: PaperbackInteriorConfig = {
         frontmatter: !argv.noFrontmatter,
-        printSize: argv.printSize || 'm',
+        printSize: argv.printSize || `m`,
         condense: argv.condense,
         allowSplits: false,
       };
       return manifest.paperbackInterior(dpc, conf);
     }
-    case 'mobi':
-    case 'epub': {
+    case `mobi`:
+    case `epub`: {
       const conf: EbookConfig = {
         frontmatter: !argv.noFrontmatter,
         subType: type,
@@ -115,24 +115,24 @@ async function getTypeManifests(
 }
 
 function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): string {
-  let suffix = '';
-  if (type === 'paperback-cover') suffix = '(cover)';
-  if (type === 'web-pdf') suffix = '(web)';
-  if (type === 'mobi') suffix = `${Math.floor(Date.now() / 1000)}`;
+  let suffix = ``;
+  if (type === `paperback-cover`) suffix = `(cover)`;
+  if (type === `web-pdf`) suffix = `(web)`;
+  if (type === `mobi`) suffix = `${Math.floor(Date.now() / 1000)}`;
   return [
-    dpc.friendInitials.join(''),
+    dpc.friendInitials.join(``),
     dpc.documentSlug,
     dpc.documentId.substring(0, 8),
     dpc.editionType,
     suffix,
   ]
     .filter(p => !!p)
-    .join('--');
+    .join(`--`);
 }
 
 function makeSrcPath(dpc: DocPrecursor, idx: number, type: ArtifactType): string {
   let path = makeFilename(dpc, idx, type);
-  if (type === 'mobi' || type === 'epub') {
+  if (type === `mobi` || type === `epub`) {
     path += `/${type}`;
   }
   return path;
@@ -142,7 +142,7 @@ function lint(dpcPath: string, fix: boolean, isolate?: number): void {
   let path = dpcPath;
 
   if (isolate) {
-    const pattern = `${isolate < 10 ? '0' : ''}${isolate}*`;
+    const pattern = `${isolate < 10 ? `0` : ``}${isolate}*`;
     const matches = glob(`${path}/${pattern}`);
     if (matches.length !== 1) {
       throw new Error(`Unexpected result isolating ${isolate}`);
@@ -154,7 +154,7 @@ function lint(dpcPath: string, fix: boolean, isolate?: number): void {
     const { unfixable, numFixed } = lintFixPath(path);
     if (unfixable.count() > 0) {
       printLints(unfixable);
-      log('\n\n');
+      log(`\n\n`);
       red(`ERROR: ${unfixable.count()} remaining lint errors (fixed ${numFixed}). 😬 `);
       process.exit(1);
     }

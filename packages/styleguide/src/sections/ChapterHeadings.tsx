@@ -15,7 +15,8 @@ const ChapterHeadings: React.FC = () => (
   <Section id="chapter-headings">
     <H1>Chapter Headings</H1>
     <Para>
-      Chapter headings are placed on a single line starting with <i>two</i> equal signs{' '}
+      Chapter headings are placed on a single line starting with <i>two</i> equal signs
+      {` `}
       <Code>==</Code>:
     </Para>
     <Pair id="chapter-simple" />
@@ -43,11 +44,12 @@ const ChapterHeadings: React.FC = () => (
 
     <H2>Blurb-style chapter headings</H2>
     <Para>
-      Some chapter headings are long and weird. They can be designated in an alternate{' '}
+      Some chapter headings are long and weird. They can be designated in an alternate
+      {` `}
       <i>blurb</i> style by adding a <Code>[.style-blurb]</Code> class above the heading.
     </Para>
     <Note>
-      In the asciidoc source files, ong titles still need to be{' '}
+      In the asciidoc source files, ong titles still need to be{` `}
       <i>kept on a single line,</i> which will cause some wrapping, as seen below. That's
       OK. 👍
     </Note>
@@ -57,9 +59,10 @@ const ChapterHeadings: React.FC = () => (
       Chapter <i>subtitle</i> blurbs
     </H2>
     <Para>
-      Another form of chapter heading is a heading with a subtitle that is long and{' '}
-      <i>blurb-like</i>. These are marked up a bit differently, with a <i>paragraph</i>{' '}
-      directly below the chapter heading with the class{' '}
+      Another form of chapter heading is a heading with a subtitle that is long and{` `}
+      <i>blurb-like</i>. These are marked up a bit differently, with a <i>paragraph</i>
+      {` `}
+      directly below the chapter heading with the class{` `}
       <Code>[.chapter-subtitle--blurb]</Code> added.
     </Para>
     <Snippet trigger="csb" expansion="[.chapter-subtitle--blurb]" />
@@ -68,15 +71,17 @@ const ChapterHeadings: React.FC = () => (
     <H2>Short titles</H2>
     <Para>
       By default, the chapter titles will be used for <i>running headers</i> and the table
-      of contents. This can be problematic with <i>long</i> titles. You can specify a{' '}
-      <b>shortened version of the title</b> to be used in these locations by adding custom{' '}
+      of contents. This can be problematic with <i>long</i> titles. You can specify a{` `}
+      <b>shortened version of the title</b> to be used in these locations by adding custom
+      {` `}
       <Code>id</Code> and <Code>short</Code> attributes separated by a comma, as shown
       below (line <code>1</code>):
     </Para>
     <Asciidoc id="chapter-short" emphasize={[1]} />
     <Note>
       <Code>id</Code> attributes are specified using the <Code>#</Code> symbol, like in
-      CSS. You can add classes at the same time as ids by appending a <Code>.</Code>, like{' '}
+      CSS. You can add classes at the same time as ids by appending a <Code>.</Code>, like
+      {` `}
       <Code>[#the-way.style-blurb]</Code>.
     </Note>
     <Note>

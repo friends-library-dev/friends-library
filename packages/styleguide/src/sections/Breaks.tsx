@@ -12,7 +12,7 @@ const Breaks: React.FC = () => (
       line with three straight apostrophes <Code>'''</Code>. It is rendered with 3
       centered asterisks.
     </Para>
-    <Snippet trigger="ast" expansion={"[.asterism]\n'''"} />
+    <Snippet trigger="ast" expansion={`[.asterism]\n'''`} />
     <Pair id="asterism" emphasize={[5, 6]} />
 
     <H2>Small Breaks:</H2>
@@ -21,7 +21,7 @@ const Breaks: React.FC = () => (
       similarly to an asterism, except substituting the class <Code>[.small-break]</Code>.
       It is rendered as a small break between paragraphs.
     </Para>
-    <Snippet trigger="sb" expansion={"[.small-break]\n'''"} />
+    <Snippet trigger="sb" expansion={`[.small-break]\n'''`} />
     <Pair id="small-break" emphasize={[16, 17]} />
 
     <H2>Offset Paragraphs:</H2>

@@ -7,14 +7,14 @@ interface AceMarker {
 }
 
 function getEditor(): any {
-  const el = document.getElementById('brace-editor');
+  const el = document.getElementById(`brace-editor`);
   if (!el) {
     return;
   }
 
   try {
     // @ts-ignore
-    const editor = window.ace.edit('brace-editor');
+    const editor = window.ace.edit(`brace-editor`);
     if (editor) {
       return editor;
     }
@@ -35,7 +35,7 @@ export function clearSearchResultHighlights(): void {
     const session = editor.getSession();
     Object.values(session.getMarkers()).forEach(m => {
       const marker = m as AceMarker;
-      if (marker.clazz === 'search-result') {
+      if (marker.clazz === `search-result`) {
         session.removeMarker(marker.id);
       }
     });
@@ -58,7 +58,7 @@ export function goToSearchResult(
 
       const session = editor.getSession();
       // @ts-ignore
-      const Range = window.ace.acequire('ace/range').Range;
+      const Range = window.ace.acequire(`ace/range`).Range;
       editor.gotoLine(result.start.line);
 
       const endCol = replace ? result.start.column + replace.length : result.end.column;
@@ -75,8 +75,8 @@ export function goToSearchResult(
       clearSearchResultHighlights();
 
       // highlight selected search result
-      const marker = session.addMarker(range, 'search-result', 'text');
-      editor.on('focus', () => session.removeMarker(marker));
+      const marker = session.addMarker(range, `search-result`, `text`);
+      editor.on(`focus`, () => session.removeMarker(marker));
     } catch (e) {
       // ¯\_(ツ)_/¯
     }

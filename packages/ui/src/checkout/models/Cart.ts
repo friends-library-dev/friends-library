@@ -29,7 +29,7 @@ export default class Cart extends EventEmitter {
 
   public set items(items: CartItem[]) {
     this._items = items;
-    this.emit('change');
+    this.emit(`change`);
   }
 
   public get items(): CartItem[] {
@@ -48,14 +48,14 @@ export default class Cart extends EventEmitter {
     for (const item of this.items) {
       if (item.equals(newItem)) {
         item.quantity++;
-        this.emit('change');
-        this.emit('add-item');
+        this.emit(`change`);
+        this.emit(`add-item`);
         return;
       }
     }
     this._items.push(newItem);
-    this.emit('change');
-    this.emit('add-item');
+    this.emit(`change`);
+    this.emit(`add-item`);
   }
 
   public subTotal(): number {

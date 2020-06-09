@@ -4,7 +4,7 @@ import singlePassFix from './fix-single-pass';
 
 export default function fix(
   adoc: Asciidoc,
-  options: LintOptions = { lang: 'en' },
+  options: LintOptions = { lang: `en` },
 ): {
   fixed: Asciidoc;
   numFixed: number;

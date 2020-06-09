@@ -14,7 +14,7 @@ interface Props {
 
 const NotFoundHeroBlock: React.FC<Props> = ({ bgImg }) => (
   <BackgroundImage
-    fluid={[bgLayer([0, 0, 0], 0.38), bgImg, bgLayer('#444')]}
+    fluid={[bgLayer([0, 0, 0], 0.38), bgImg, bgLayer(`#444`)]}
     id="NotFoundHeroBlock"
     className="text-center text-white px-10 py-20 sm:px-16 sm:py-24 md:py-24 xl:py-32"
   >
@@ -40,7 +40,7 @@ const NotFoundHeroBlock: React.FC<Props> = ({ bgImg }) => (
       <input
         type="hidden"
         name="sitesearch"
-        value={LANG === 'en' ? 'friendslibrary.com' : 'bibliotecadelosamigos.org'}
+        value={LANG === `en` ? `friendslibrary.com` : `bibliotecadelosamigos.org`}
       />
       <input
         className="subtle-focus flex-grow h-12 mb-4 md:mb-0 md:h-auto md:mr-6 rounded-md body-text px-8 text-xl"

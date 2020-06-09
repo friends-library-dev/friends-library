@@ -4,68 +4,68 @@ import { LineRule } from '../types';
 
 // @see https://books.google.com/ngrams for data backing up choices
 const sets = [
-  ['yoke', 'mate', ''],
-  ['yoke', 'mates', ''],
-  ['grave', 'yard', ''],
-  ['every', 'where', ''],
-  ['every', 'thing', ''],
-  ['tender', 'spirited', '-'],
-  ['choice', 'spirited', '-'],
-  ['hard', 'hearted', '-'],
-  ['hard', 'heartedness', '-'],
-  ['honest', 'hearted', '-'],
-  ['simple', 'hearted', '-'],
-  ['faint', 'hearted', ''],
-  ['upright', 'hearted', '-'],
-  ['sincere', 'hearted', '-'],
-  ['tender', 'hearted', '-'],
-  ['tender', 'heartedness', '-'],
-  ['stout', 'hearted', '-'],
-  ['broken', 'hearted', ''],
-  ['humble', 'hearted', '-'],
-  ['true', 'hearted', '-'],
-  ['heavy', 'hearted', '-'],
-  ['dead', 'hearted', '-'],
-  ['open', 'hearted', '-'],
-  ['single', 'hearted', '-'],
-  ['light', 'hearted', ''],
-  ['fellow', 'laborers', '-'],
-  ['fellow', 'labourers', '-'],
-  ['fellow', 'laborer', '-'],
-  ['fellow', 'labourer', '-'],
-  ['fore', 'part', ''],
-  ['for', 'ever', ''],
-  ['for', 'evermore', ''],
-  ['like', 'minded', '-'],
-  ['feeble', 'minded', '-'],
-  ['high', 'minded', '-'],
-  ['honest', 'minded', '-'],
-  ['humble', 'minded', '-'],
-  ['tender', 'minded', '-'],
-  ['well', 'minded', '-'],
-  ['right', 'minded', '-'],
-  ['carnal', 'minded', '-'],
-  ['heavenly', 'minded', '-'],
-  ['earthly', 'minded', '-'],
-  ['lowly', 'minded', '-'],
-  ['simple', 'minded', '-'],
-  ['better', 'minded', '-'],
-  ['religious', 'minded', '-'],
-  ['upright', 'minded', '-'],
-  ['liberal', 'minded', '-'],
-  ['sober', 'minded', '-'],
-  ['evil', 'minded', '-'],
-  ['worldly', 'minded', '-'],
-  ['noble', 'minded', '-'],
-  ['single', 'minded', '-'],
-  ['open', 'minded', '-'],
-  ['loving', 'kindness', ''],
-  ['well', 'behaved', '-'],
+  [`yoke`, `mate`, ``],
+  [`yoke`, `mates`, ``],
+  [`grave`, `yard`, ``],
+  [`every`, `where`, ``],
+  [`every`, `thing`, ``],
+  [`tender`, `spirited`, `-`],
+  [`choice`, `spirited`, `-`],
+  [`hard`, `hearted`, `-`],
+  [`hard`, `heartedness`, `-`],
+  [`honest`, `hearted`, `-`],
+  [`simple`, `hearted`, `-`],
+  [`faint`, `hearted`, ``],
+  [`upright`, `hearted`, `-`],
+  [`sincere`, `hearted`, `-`],
+  [`tender`, `hearted`, `-`],
+  [`tender`, `heartedness`, `-`],
+  [`stout`, `hearted`, `-`],
+  [`broken`, `hearted`, ``],
+  [`humble`, `hearted`, `-`],
+  [`true`, `hearted`, `-`],
+  [`heavy`, `hearted`, `-`],
+  [`dead`, `hearted`, `-`],
+  [`open`, `hearted`, `-`],
+  [`single`, `hearted`, `-`],
+  [`light`, `hearted`, ``],
+  [`fellow`, `laborers`, `-`],
+  [`fellow`, `labourers`, `-`],
+  [`fellow`, `laborer`, `-`],
+  [`fellow`, `labourer`, `-`],
+  [`fore`, `part`, ``],
+  [`for`, `ever`, ``],
+  [`for`, `evermore`, ``],
+  [`like`, `minded`, `-`],
+  [`feeble`, `minded`, `-`],
+  [`high`, `minded`, `-`],
+  [`honest`, `minded`, `-`],
+  [`humble`, `minded`, `-`],
+  [`tender`, `minded`, `-`],
+  [`well`, `minded`, `-`],
+  [`right`, `minded`, `-`],
+  [`carnal`, `minded`, `-`],
+  [`heavenly`, `minded`, `-`],
+  [`earthly`, `minded`, `-`],
+  [`lowly`, `minded`, `-`],
+  [`simple`, `minded`, `-`],
+  [`better`, `minded`, `-`],
+  [`religious`, `minded`, `-`],
+  [`upright`, `minded`, `-`],
+  [`liberal`, `minded`, `-`],
+  [`sober`, `minded`, `-`],
+  [`evil`, `minded`, `-`],
+  [`worldly`, `minded`, `-`],
+  [`noble`, `minded`, `-`],
+  [`single`, `minded`, `-`],
+  [`open`, `minded`, `-`],
+  [`loving`, `kindness`, ``],
+  [`well`, `behaved`, `-`],
 ];
 
 const firstParts = new RegExp(
-  `\\b${sets.map(([first]) => escape(first)).join('|')}\\b`,
-  'i',
+  `\\b${sets.map(([first]) => escape(first)).join(`|`)}\\b`,
+  `i`,
 );
 
 const rule: LineRule = (
@@ -74,7 +74,7 @@ const rule: LineRule = (
   lineNumber: number,
   { lang }: LintOptions,
 ): LintResult[] => {
-  if (lang === 'es' || line === '') {
+  if (lang === `es` || line === ``) {
     return [];
   }
 
@@ -84,11 +84,11 @@ const rule: LineRule = (
 
   const results: LintResult[] = [];
   sets.forEach(([first, second, joiner]) => {
-    if (!line.match(new RegExp(`\\b${first}\\b`, 'i'))) {
+    if (!line.match(new RegExp(`\\b${first}\\b`, `i`))) {
       return;
     }
 
-    const sameLine = new RegExp(`\\b(${first})( )(${second})\\b`, 'i');
+    const sameLine = new RegExp(`\\b(${first})( )(${second})\\b`, `i`);
     const match = line.match(sameLine);
     if (match && match.index !== undefined) {
       results.push(
@@ -114,17 +114,17 @@ const rule: LineRule = (
       return;
     }
 
-    const thisLineEnd = new RegExp(`\\b(${first})$`, 'i');
+    const thisLineEnd = new RegExp(`\\b(${first})$`, `i`);
     const lineEndMatch = line.match(thisLineEnd);
-    if (!lineEndMatch || typeof lineEndMatch.index === 'undefined') {
+    if (!lineEndMatch || typeof lineEndMatch.index === `undefined`) {
       return;
     }
 
     let reco;
     if (line.length < nextLine.length) {
-      reco = `${line}${joiner}${second}\n${nextLine.replace(nextLineStart, '').trim()}`;
+      reco = `${line}${joiner}${second}\n${nextLine.replace(nextLineStart, ``).trim()}`;
     } else {
-      reco = `${line.replace(thisLineEnd, '').trim()}\n${
+      reco = `${line.replace(thisLineEnd, ``).trim()}\n${
         lineEndMatch[1]
       }${joiner}${nextLine}`;
     }
@@ -137,7 +137,7 @@ const rule: LineRule = (
   return results;
 };
 
-rule.slug = 'join-words';
+rule.slug = `join-words`;
 export default rule;
 
 function getLint(
@@ -151,7 +151,7 @@ function getLint(
   return {
     line,
     column,
-    type: 'error',
+    type: `error`,
     rule: rule.slug,
     message: `"${first} ${second}" should be combined to become "${first}${joiner}${second}"`,
     fixable: true,

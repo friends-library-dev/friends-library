@@ -1,7 +1,7 @@
 import { feeOffset } from '../stripe';
 
-describe('feeOffset()', () => {
-  it('throws if passed a non-integer', () => {
+describe(`feeOffset()`, () => {
+  it(`throws if passed a non-integer`, () => {
     expect(() => feeOffset(33.34)).toThrow();
   });
 
@@ -17,7 +17,7 @@ describe('feeOffset()', () => {
     [41917, 1283],
   ];
 
-  test.each(cases)('offset for %d should be %d', () => {
+  test.each(cases)(`offset for %d should be %d`, () => {
     expect(feeOffset(941)).toBe(59);
   });
 });

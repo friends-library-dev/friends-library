@@ -47,15 +47,15 @@ export default class App extends React.Component<{}, State> {
     friendIndex: 0,
     docIndex: 0,
     edIndex: 0,
-    bookSize: 'actual',
-    scale: '1',
+    bookSize: `actual`,
+    scale: `1`,
     showGuides: false,
     showCode: false,
     maskBleed: true,
-    mode: '3d',
+    mode: `3d`,
     capturing: null,
     fauxVol: undefined,
-    perspective: 'angle-front',
+    perspective: `angle-front`,
     customBlurbs: {},
     customCss: {},
     customHtml: {},
@@ -63,24 +63,24 @@ export default class App extends React.Component<{}, State> {
 
   public componentDidMount(): void {
     try {
-      const stored = JSON.parse(sessionStorage.getItem('state') || 'null');
+      const stored = JSON.parse(sessionStorage.getItem(`state`) || `null`);
       this.setState({ ...this.state, ...stored });
     } catch {}
 
-    window.addEventListener('resize', () => this.forceUpdate());
-    window.addEventListener('beforeunload', () => {
-      sessionStorage.setItem('state', JSON.stringify(this.state));
+    window.addEventListener(`resize`, () => this.forceUpdate());
+    window.addEventListener(`beforeunload`, () => {
+      sessionStorage.setItem(`state`, JSON.stringify(this.state));
     });
 
     const query = new URLSearchParams(window.location.search);
-    const capturing = query.get('capture');
-    if (capturing === 'ebook' || capturing === 'audio') {
-      this.setState({ capturing, mode: 'ebook', scale: '1' });
+    const capturing = query.get(`capture`);
+    if (capturing === `ebook` || capturing === `audio`) {
+      this.setState({ capturing, mode: `ebook`, scale: `1` });
     } else {
       this.setState({ capturing: null });
     }
-    if (query.has('id')) {
-      this.setState(this.selectCover(query.get('id') || ''));
+    if (query.has(`id`)) {
+      this.setState(this.selectCover(query.get(`id`) || ``));
     }
   }
 
@@ -132,13 +132,13 @@ export default class App extends React.Component<{}, State> {
     const { showGuides, mode, bookSize, scale, showCode, fauxVol } = this.state;
     const { friend, doc, ed } = this.selectedEntities();
     if (!friend || !doc || !ed) return;
-    const size = mode === 'ebook' ? 'xl' : bookSize === 'actual' ? ed.size : bookSize;
+    const size = mode === `ebook` ? `xl` : bookSize === `actual` ? ed.size : bookSize;
     return {
       author: friend.name,
       lang: doc.lang,
       title: doc.title,
       isCompilation: doc.isCompilation,
-      size: mode === 'ebook' ? 'xl' : bookSize === 'actual' ? ed.size : bookSize,
+      size: mode === `ebook` ? `xl` : bookSize === `actual` ? ed.size : bookSize,
       pages: ed.pages,
       edition: ed.type,
       blurb: this.getBlurb(friend, doc),
@@ -157,7 +157,7 @@ export default class App extends React.Component<{}, State> {
     const key = this.coverKey();
     const { customBlurbs } = this.state;
     if (customBlurbs[key] !== undefined) return customBlurbs[key];
-    return doc.description || friend.description || 'TODO';
+    return doc.description || friend.description || `TODO`;
   }
 
   protected getCustomCss(): Css {
@@ -166,7 +166,7 @@ export default class App extends React.Component<{}, State> {
       return this.state.customCss[key];
     }
     const { doc } = this.selectedEntities();
-    return doc && doc.customCss ? doc.customCss : '';
+    return doc && doc.customCss ? doc.customCss : ``;
   }
 
   protected getCustomHtml(): Html {
@@ -175,7 +175,7 @@ export default class App extends React.Component<{}, State> {
       return this.state.customHtml[key];
     }
     const { doc } = this.selectedEntities();
-    return doc && doc.customHtml ? doc.customHtml : '';
+    return doc && doc.customHtml ? doc.customHtml : ``;
   }
 
   protected updateCustomCss(css: Css): void {
@@ -198,24 +198,24 @@ export default class App extends React.Component<{}, State> {
 
   protected documentKey(): string {
     const { friend, doc } = this.selectedEntities();
-    if (!friend || !doc) return '[[none]]';
+    if (!friend || !doc) return `[[none]]`;
     return `${friend.name}${doc.title}`;
   }
 
   protected coverKey(): string {
     const { friend, doc, ed } = this.selectedEntities();
-    if (!friend || !doc || !ed) return '[[none]]';
+    if (!friend || !doc || !ed) return `[[none]]`;
     return `${friend.name}${doc.title}${ed.type}`;
   }
 
   protected spinCover: () => void = () => {
     const { perspective } = this.state;
     const next: { [k in Perspective]: Perspective } = {
-      front: 'angle-front',
-      'angle-front': 'spine',
-      spine: 'angle-back',
-      'angle-back': 'back',
-      back: 'front',
+      front: `angle-front`,
+      'angle-front': `spine`,
+      spine: `angle-back`,
+      'angle-back': `back`,
+      back: `front`,
     };
     this.setState({ perspective: next[perspective] });
   };
@@ -364,18 +364,18 @@ export default class App extends React.Component<{}, State> {
     const coverProps = this.coverProps();
     return (
       <div
-        className={cx('App', 'web', {
-          [`trim--${coverProps ? coverProps.size : 'm'}`]: true,
+        className={cx(`App`, `web`, {
+          [`trim--${coverProps ? coverProps.size : `m`}`]: true,
           'capturing-screenshot': capturing !== null,
-          'capturing-audio': capturing === 'audio',
+          'capturing-audio': capturing === `audio`,
           'has-custom-code': this.getCustomCss() || this.getCustomCss(),
         })}
       >
-        <KeyEvent handleKeys={['right']} onKeyEvent={() => this.changeCover(FORWARD)} />
-        <KeyEvent handleKeys={['left']} onKeyEvent={() => this.changeCover(BACKWARD)} />
-        <KeyEvent handleKeys={['f']} onKeyEvent={() => this.changeFriend(FORWARD)} />
+        <KeyEvent handleKeys={[`right`]} onKeyEvent={() => this.changeCover(FORWARD)} />
+        <KeyEvent handleKeys={[`left`]} onKeyEvent={() => this.changeCover(BACKWARD)} />
+        <KeyEvent handleKeys={[`f`]} onKeyEvent={() => this.changeFriend(FORWARD)} />
         <KeyEvent
-          handleKeys={['esc']}
+          handleKeys={[`esc`]}
           onKeyEvent={() =>
             this.setState({
               customBlurbs: {},
@@ -385,35 +385,35 @@ export default class App extends React.Component<{}, State> {
           }
         />
         <KeyEvent
-          handleKeys={['shift+f']}
+          handleKeys={[`shift+f`]}
           onKeyEvent={() => this.changeFriend(BACKWARD)}
         />
         <KeyEvent
-          handleKeys={['up', 'd']}
+          handleKeys={[`up`, `d`]}
           onKeyEvent={() => this.changeDocument(FORWARD)}
         />
         <KeyEvent
-          handleKeys={['down', 'shift+d']}
+          handleKeys={[`down`, `shift+d`]}
           onKeyEvent={() => this.changeDocument(BACKWARD)}
         />
         <KeyEvent
-          handleKeys={['pageup', 'e']}
+          handleKeys={[`pageup`, `e`]}
           onKeyEvent={() => this.changeEdition(FORWARD)}
         />
         <KeyEvent
-          handleKeys={['pagedown', 'shift+e']}
+          handleKeys={[`pagedown`, `shift+e`]}
           onKeyEvent={() => this.changeEdition(BACKWARD)}
         />
         <KeyEvent
-          handleKeys={['g']}
+          handleKeys={[`g`]}
           onKeyEvent={() => this.setState({ showGuides: !showGuides })}
         />
         <KeyEvent
-          handleKeys={['s']}
-          onKeyEvent={debounce(() => mode === '3d' && this.spinCover(), 250)}
+          handleKeys={[`s`]}
+          onKeyEvent={debounce(() => mode === `3d` && this.spinCover(), 250)}
         />
-        <form autoComplete="off" style={{ padding: '1em 1em 0 1em', display: 'flex' }}>
-          <FormControl style={{ minWidth: 200, marginRight: '1em' }}>
+        <form autoComplete="off" style={{ padding: `1em 1em 0 1em`, display: `flex` }}>
+          <FormControl style={{ minWidth: 200, marginRight: `1em` }}>
             <Select
               label="Friend"
               value={friendIndex}
@@ -427,7 +427,7 @@ export default class App extends React.Component<{}, State> {
               }}
             />
           </FormControl>
-          <FormControl style={{ flexGrow: 1, marginRight: '1em' }}>
+          <FormControl style={{ flexGrow: 1, marginRight: `1em` }}>
             <Select
               label="Document"
               value={docIndex}
@@ -452,25 +452,25 @@ export default class App extends React.Component<{}, State> {
         {!coverProps && <div style={{ flexGrow: 1 }} />}
         {coverProps && (
           <>
-            <div className={cx('cover-wrap', { 'cover--ebook': mode === 'ebook' })}>
-              {capturing === 'audio' && (
+            <div className={cx(`cover-wrap`, { 'cover--ebook': mode === `ebook` })}>
+              {capturing === `audio` && (
                 <div className={`audio-logo audio-logo--${coverProps.lang}`}>
-                  {coverProps.lang === 'en' ? <LogoEnglish /> : <LogoSpanish />}
+                  {coverProps.lang === `en` ? <LogoEnglish /> : <LogoSpanish />}
                 </div>
               )}
-              {mode === '3d' && <ThreeD {...coverProps} perspective={perspective} />}
-              {mode === 'pdf' && <PrintPdf {...coverProps} bleed={!maskBleed} />}
-              {mode === 'ebook' && <Front {...coverProps} />}
+              {mode === `3d` && <ThreeD {...coverProps} perspective={perspective} />}
+              {mode === `pdf` && <PrintPdf {...coverProps} bleed={!maskBleed} />}
+              {mode === `ebook` && <Front {...coverProps} />}
               <style>
-                {coverCss.common(coverProps.scaler).join('\n')}
-                {coverCss.front(coverProps.scaler).join('\n')}
-                {coverCss.back(coverProps.scaler).join('\n')}
-                {coverCss.spine(coverProps.scaler).join('\n')}
-                {coverCss.guides(coverProps.scaler).join('\n')}
-                {mode === '3d' ? coverCss.threeD(coverProps.scaler).join('\n') : ''}
-                {mode === 'pdf'
-                  ? coverCss.pdf(coverProps, coverProps.scaler).join('\n')
-                  : ''}
+                {coverCss.common(coverProps.scaler).join(`\n`)}
+                {coverCss.front(coverProps.scaler).join(`\n`)}
+                {coverCss.back(coverProps.scaler).join(`\n`)}
+                {coverCss.spine(coverProps.scaler).join(`\n`)}
+                {coverCss.guides(coverProps.scaler).join(`\n`)}
+                {mode === `3d` ? coverCss.threeD(coverProps.scaler).join(`\n`) : ``}
+                {mode === `pdf`
+                  ? coverCss.pdf(coverProps, coverProps.scaler).join(`\n`)
+                  : ``}
               </style>
             </div>
           </>
@@ -498,29 +498,29 @@ export default class App extends React.Component<{}, State> {
           }}
           cycleMode={() => {
             this.setState({
-              mode: mode === 'pdf' ? '3d' : mode === '3d' ? 'ebook' : 'pdf',
+              mode: mode === `pdf` ? `3d` : mode === `3d` ? `ebook` : `pdf`,
             });
           }}
           toggleShowCode={() => this.setState({ showCode: !showCode })}
           cycleScale={() => {
             const map: Record<Scale, Scale> = {
-              fit: '1',
-              '1': '1-2',
-              '1-2': '1-3',
-              '1-3': '1-4',
-              '1-4': '3-5',
-              '3-5': '4-5',
-              '4-5': 'fit',
+              fit: `1`,
+              '1': `1-2`,
+              '1-2': `1-3`,
+              '1-3': `1-4`,
+              '1-4': `3-5`,
+              '3-5': `4-5`,
+              '4-5': `fit`,
             };
             this.setState({ scale: map[scale] });
           }}
           bookSize={bookSize}
           cycleBookSize={() => {
             const map: Record<BookSize, BookSize> = {
-              actual: 's',
-              s: 'm',
-              m: 'xl',
-              xl: 'actual',
+              actual: `s`,
+              s: `m`,
+              m: `xl`,
+              xl: `actual`,
             };
             this.setState({ bookSize: map[bookSize] });
           }}
@@ -534,5 +534,5 @@ export default class App extends React.Component<{}, State> {
 }
 
 type Direction = 'FORWARD' | 'BACKWARD';
-const FORWARD = 'FORWARD';
-const BACKWARD = 'BACKWARD';
+const FORWARD = `FORWARD`;
+const BACKWARD = `BACKWARD`;

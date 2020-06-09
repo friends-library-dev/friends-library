@@ -12,7 +12,7 @@ export default class CartStore extends EventEmitter {
     this.cart = new Cart([]);
 
     try {
-      const stored = JSON.parse(Cookies.get('flp-cart') || '');
+      const stored = JSON.parse(Cookies.get(`flp-cart`) || ``);
       if (stored) {
         this.cart = Cart.fromJson(stored);
       }
@@ -20,12 +20,12 @@ export default class CartStore extends EventEmitter {
       // ¯\_(ツ)_/¯
     }
 
-    this.cart.on('change', () => {
-      Cookies.set('flp-cart', JSON.stringify(this.cart.toJSON()));
-      this.emit('cart:changed');
+    this.cart.on(`change`, () => {
+      Cookies.set(`flp-cart`, JSON.stringify(this.cart.toJSON()));
+      this.emit(`cart:changed`);
     });
 
-    this.cart.on('add-item', () => this.emit('cart:item-added'));
+    this.cart.on(`add-item`, () => this.emit(`cart:item-added`));
   }
 
   public isOpen(): boolean {
@@ -34,14 +34,14 @@ export default class CartStore extends EventEmitter {
 
   public close(): void {
     this._isOpen = false;
-    this.emit('hide');
-    this.emit('toggle:visibility', false);
+    this.emit(`hide`);
+    this.emit(`toggle:visibility`, false);
   }
 
   public open(): void {
     this._isOpen = true;
-    this.emit('show');
-    this.emit('toggle:visibility', true);
+    this.emit(`show`);
+    this.emit(`toggle:visibility`, true);
     if (!this.stripeLoaded) {
       this.loadStripe();
     }
@@ -55,8 +55,8 @@ export default class CartStore extends EventEmitter {
   }
 
   private loadStripe(): void {
-    const script = document.createElement('script');
-    script.src = 'https://js.stripe.com/v3/';
+    const script = document.createElement(`script`);
+    script.src = `https://js.stripe.com/v3/`;
     document.head.appendChild(script);
     this.stripeLoaded = true;
   }

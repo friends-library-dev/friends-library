@@ -4,20 +4,20 @@ import { getAllFriends, Friend, Document, Edition } from '@friends-library/frien
 import { Slug, ISBN, Asciidoc } from '@friends-library/types';
 
 export function htmlShortTitle(title: string): string {
-  return htmlTitle(title.replace(/\bvolumen? \b/i, 'Vol.&nbsp;'));
+  return htmlTitle(title.replace(/\bvolumen? \b/i, `Vol.&nbsp;`));
 }
 
 export function htmlTitle(title: string): string {
-  return title.replace(/ -- /g, ' &mdash; ').replace(/\b\d+$/, digits => {
+  return title.replace(/ -- /g, ` &mdash; `).replace(/\b\d+$/, digits => {
     return toRoman(Number(digits));
   });
 }
 
 export function justHeadings(adoc: Asciidoc): Asciidoc {
   return adoc
-    .split('\n\n')
+    .split(`\n\n`)
     .slice(0, 1)
-    .join('');
+    .join(``);
 }
 
 export function cartItemData(
@@ -26,17 +26,17 @@ export function cartItemData(
 ): Record<string, string[]> {
   const isMulti = pages.length > 1;
   const vols = pages.map((_, idx) => idx + 1);
-  const cloudUrl = env.require('CLOUD_STORAGE_BUCKET_URL').CLOUD_STORAGE_BUCKET_URL;
+  const cloudUrl = env.require(`CLOUD_STORAGE_BUCKET_URL`).CLOUD_STORAGE_BUCKET_URL;
   const url = `${cloudUrl}/${edition.path}`;
   return {
     cartItemTitles: vols.map(
-      v => `${edition.document.title}${isMulti ? `, vol. ${v}` : ''}`,
+      v => `${edition.document.title}${isMulti ? `, vol. ${v}` : ``}`,
     ),
     cartItemInteriorPdfUrls: vols.map(
-      v => `${url}/${edition.filename('paperback-interior', isMulti ? v : undefined)}`,
+      v => `${url}/${edition.filename(`paperback-interior`, isMulti ? v : undefined)}`,
     ),
     cartItemCoverPdfUrls: vols.map(
-      v => `${url}/${edition.filename('paperback-cover', isMulti ? v : undefined)}`,
+      v => `${url}/${edition.filename(`paperback-cover`, isMulti ? v : undefined)}`,
     ),
   };
 }
@@ -45,9 +45,9 @@ let friends: Friend[] = [];
 
 export function allFriends(): Friend[] {
   if (!friends.length) {
-    friends = getAllFriends('en', true)
-      .concat(getAllFriends('es', true))
-      .filter(f => !['Jane Doe', 'John Doe'].includes(f.name));
+    friends = getAllFriends(`en`, true)
+      .concat(getAllFriends(`es`, true))
+      .filter(f => ![`Jane Doe`, `John Doe`].includes(f.name));
   }
   return friends;
 }

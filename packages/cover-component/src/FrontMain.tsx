@@ -21,7 +21,7 @@ const FrontMain: React.FC<Props> = ({
   return (
     <div
       className={cx(
-        'front__main',
+        `front__main`,
         `front__main--first-initial--${firstInitial}`,
         `front__main--initials--${firstInitial}${lastInitial}`,
       )}
@@ -36,8 +36,8 @@ const FrontMain: React.FC<Props> = ({
         <div className="initials__top">
           <span
             className={cx(
-              'initial',
-              'initial--first',
+              `initial`,
+              `initial--first`,
               `initial--X${lastInitial}`,
               `initial--${firstInitial}`,
               `initials--${firstInitial}${lastInitial}`,
@@ -49,8 +49,8 @@ const FrontMain: React.FC<Props> = ({
         <div className="initials__bottom">
           <span
             className={cx(
-              'initial',
-              'initial--last',
+              `initial`,
+              `initial--last`,
               `initial--${firstInitial}X`,
               `initial--${lastInitial}`,
               `initials--${firstInitial}${lastInitial}`,
@@ -61,12 +61,12 @@ const FrontMain: React.FC<Props> = ({
         </div>
       </div>
       {overridable(
-        'title-wrap',
+        `title-wrap`,
         fragments,
         <div className="title-wrap">
           <h1
             className="title"
-            dangerouslySetInnerHTML={{ __html: prepareTitle(title, author, 'front') }}
+            dangerouslySetInnerHTML={{ __html: prepareTitle(title, author, `front`) }}
           />
         </div>,
       )}

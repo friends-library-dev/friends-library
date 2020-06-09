@@ -15,27 +15,27 @@ export default function handler(argv: Argv): void {
   const map: Map<string, number> = new Map();
   pathFiles.forEach(({ adoc }) => {
     const textLines = adoc
-      .split('\n')
-      .filter(l => l !== '')
-      .filter(l => l !== '--')
-      .filter(l => l !== '____')
+      .split(`\n`)
+      .filter(l => l !== ``)
+      .filter(l => l !== `--`)
+      .filter(l => l !== `____`)
       .filter(l => !l.match(/^\[.+\]$/))
-      .filter(l => !l.includes(']#'))
+      .filter(l => !l.includes(`]#`))
       .filter(l => l.length > 1)
       .map(l => l.toLowerCase())
-      .map(l => l.replace(/footnote:\[/, ''))
-      .map(l => l.replace(/=+ /, ''));
+      .map(l => l.replace(/footnote:\[/, ``))
+      .map(l => l.replace(/=+ /, ``));
 
     textLines.forEach(line => {
       const words = line
-        .replace(/--/g, ' ')
-        .replace(/&hellip;/, ' ')
-        .split(' ')
-        .map(w => w.replace(/^[^a-z]+/, ''))
-        .map(w => w.replace(/[^a-z]+$/, ''))
-        .map(w => w.replace(/`'s/g, ''))
+        .replace(/--/g, ` `)
+        .replace(/&hellip;/, ` `)
+        .split(` `)
+        .map(w => w.replace(/^[^a-z]+/, ``))
+        .map(w => w.replace(/[^a-z]+$/, ``))
+        .map(w => w.replace(/`'s/g, ``))
         .map(w => w.trim())
-        .filter(w => w !== '');
+        .filter(w => w !== ``);
 
       words.forEach(word => {
         if (map.has(word)) {

@@ -9,7 +9,7 @@ export function searchFiles(
   regexp = false,
 ): SearchResult[] {
   const results = files.reduce((acc, file) => {
-    const lines = (file.editedContent || file.content || '').split(/\n/);
+    const lines = (file.editedContent || file.content || ``).split(/\n/);
     let pattern = regexp ? searchTerm : escape(searchTerm);
     if (words) {
       pattern = `\\b${pattern}\\b`;
@@ -17,7 +17,7 @@ export function searchFiles(
 
     let exp: RegExp;
     try {
-      exp = new RegExp(pattern, `g${caseSensitive ? '' : 'i'}`);
+      exp = new RegExp(pattern, `g${caseSensitive ? `` : `i`}`);
     } catch {
       return [];
     }
@@ -25,7 +25,7 @@ export function searchFiles(
     lines.forEach((line, index) => {
       let match;
       while ((match = exp.exec(line))) {
-        const [documentSlug, editionType, filename] = file.path.split('/');
+        const [documentSlug, editionType, filename] = file.path.split(`/`);
         const result = {
           path: file.path,
           documentSlug,
@@ -50,9 +50,9 @@ export function searchFiles(
   }, [] as SearchResult[]);
   return results.sort(({ editionType }) => {
     switch (editionType) {
-      case 'updated':
+      case `updated`:
         return -1;
-      case 'modernized':
+      case `modernized`:
         return 0;
       default:
         return 1;

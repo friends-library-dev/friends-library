@@ -6,7 +6,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
@@ -17,14 +17,14 @@ const rule: LineRule = (
     results.push({
       line: lineNumber,
       column: match.index + 1,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'unexpected unspaced period',
+      message: `unexpected unspaced period`,
     });
   }
 
   return results;
 };
 
-rule.slug = 'unspaced-period';
+rule.slug = `unspaced-period`;
 export default rule;

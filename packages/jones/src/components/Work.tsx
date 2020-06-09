@@ -69,8 +69,8 @@ class Work extends React.Component<Props> {
       redo,
       find,
     } = this.props;
-    const status = get(task, 'pullRequest.status', 'open');
-    if (status !== 'open') {
+    const status = get(task, `pullRequest.status`, `open`);
+    if (status !== `open`) {
       return <ClosedWarning status={status} />;
     }
 
@@ -87,16 +87,16 @@ class Work extends React.Component<Props> {
             <Search />
           </EditorPane>
         </Main>
-        <KeyEvent handleKeys={['meta+Up', 'ctrl+Up']} onKeyEvent={increaseFontSize} />
-        <KeyEvent handleKeys={['meta+Down', 'ctrl+Down']} onKeyEvent={decreaseFontSize} />
+        <KeyEvent handleKeys={[`meta+Up`, `ctrl+Up`]} onKeyEvent={increaseFontSize} />
+        <KeyEvent handleKeys={[`meta+Down`, `ctrl+Down`]} onKeyEvent={decreaseFontSize} />
         <KeyEvent
-          handleKeys={['meta+ctrl+7', 'alt+ctrl+7']}
+          handleKeys={[`meta+ctrl+7`, `alt+ctrl+7`]}
           onKeyEvent={toggleSidebarOpen}
         />
-        <KeyEvent handleKeys={['meta+Z', 'ctrl+Z']} onKeyEvent={undo} />
-        <KeyEvent handleKeys={['meta+shift+Z', 'ctrl+shift+Z']} onKeyEvent={redo} />
+        <KeyEvent handleKeys={[`meta+Z`, `ctrl+Z`]} onKeyEvent={undo} />
+        <KeyEvent handleKeys={[`meta+shift+Z`, `ctrl+shift+Z`]} onKeyEvent={redo} />
         <KeyEvent
-          handleKeys={['meta+F', 'ctrl+F']}
+          handleKeys={[`meta+F`, `ctrl+F`]}
           onKeyEvent={(_: any, event: any) => {
             find();
             event.preventDefault();
@@ -127,14 +127,15 @@ const mapDispatch = {
 export default connect(mapState, mapDispatch)(Work);
 
 const ClosedWarning: React.FC<{ status: 'closed' | 'merged' }> = ({ status }) => (
-  <div style={{ color: 'red', padding: '1em 3em' }}>
+  <div style={{ color: `red`, padding: `1em 3em` }}>
     <h1>
       <span role="img" aria-label="Embarrassed face.">
         😬
-      </span>{' '}
+      </span>
+      {` `}
       Pull Request was {status}!
     </h1>
-    <p style={{ lineHeight: '160%', color: 'white' }}>
+    <p style={{ lineHeight: `160%`, color: `white` }}>
       Whoops, looks like there was some sort of a coordination problem. Don't worry, none
       of your work is lost, you can reopen the task if necessary. But for now you'll need
       to go back to the "Tasks" screen, and you'll probably want to contact Jared or
