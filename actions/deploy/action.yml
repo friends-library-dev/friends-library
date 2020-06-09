@@ -1,0 +1,19 @@
+name: deploy
+inputs:
+  netlify_api_token:
+    description: Netlify API token
+    required: true
+  site_id:
+    description: API id of netlify site
+    required: true
+  build_dir:
+    description: path to build dir from repo root
+    required: true
+  functions_dir:
+    description: path to functions dir from repo root
+    required: false
+outputs:
+  url: url of deploy
+runs:
+  using: node12
+  main: ./bundled/index.js
