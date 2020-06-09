@@ -15,4 +15,4 @@ jobs:
       - name: lint
         uses: friends-library/friends-library/actions/lint-adoc@actions
         with:
-          GITHUB_TOKEN: ${{ github.token }}
+          github_token: ${{ github.token }}
