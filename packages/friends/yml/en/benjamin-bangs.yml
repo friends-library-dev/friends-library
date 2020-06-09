@@ -1,0 +1,32 @@
+id: 18070c21-4020-497a-a33e-76035af70cdb
+name: Benjamin Bangs
+slug: benjamin-bangs
+gender: female
+added: 2020-06-09T14:48:14.330Z
+born: 1652
+died: 1741
+residences:
+  - city: Norwich
+    region: England
+  - city: Stockport
+    region: England
+description: TODO
+documents:
+  - id: 81171796-9b62-46dd-a73e-44cb807e48b0
+    title: Journal of Benjamin Bangs
+    original_title:
+      Memoirs of the Life and Convincement of Benjamin Bangs A Minister of the Gospel,
+      Late of Stockport, In Cheshire.
+    slug: journal
+    filename: Journal_of_Benjamin_Bangs
+    description: TODO
+    partial_description: TODtO
+    tags:
+      - journal
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-224-0
+        draft: true
+      - type: original
+        isbn: 978-1-64476-225-7
+        draft: true
