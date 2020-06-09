@@ -6,12 +6,12 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '' || line[line.length - 1] !== '-' || line[line.length - 2] === '-') {
+  if (line === `` || line[line.length - 1] !== `-` || line[line.length - 2] === `-`) {
     return [];
   }
 
   // footnote poetry stanza marker
-  if (line.indexOf('     - - - -') === 0) {
+  if (line.indexOf(`     - - - -`) === 0) {
     return [];
   }
 
@@ -21,9 +21,9 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: line.length,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Lines may not end with a hyphen',
+      message: `Lines may not end with a hyphen`,
       ...(recommendation === false ? {} : { recommendation, fixable: true }),
     },
   ];
@@ -34,24 +34,24 @@ function getRecommendation(line: Asciidoc, next: Asciidoc | null): string | fals
     return false;
   }
 
-  if (!line.includes(' ') || !next.includes(' ')) {
+  if (!line.includes(` `) || !next.includes(` `)) {
     return false;
   }
 
-  if (next.indexOf('//') === 0 || next[0] === '-') {
+  if (next.indexOf(`//`) === 0 || next[0] === `-`) {
     return false;
   }
 
   if (line.length <= next.length) {
-    const nextWords = next.split(' ');
+    const nextWords = next.split(` `);
     const nextFirst = nextWords.shift();
-    return `${line}${nextFirst}\n${nextWords.join(' ')}`;
+    return `${line}${nextFirst}\n${nextWords.join(` `)}`;
   }
 
-  const lineWords = line.split(' ');
+  const lineWords = line.split(` `);
   const lineLast = lineWords.pop();
-  return `${lineWords.join(' ')}\n${lineLast}${next}`;
+  return `${lineWords.join(` `)}\n${lineLast}${next}`;
 }
 
-rule.slug = 'trailing-hyphen';
+rule.slug = `trailing-hyphen`;
 export default rule;

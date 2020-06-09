@@ -7,7 +7,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
@@ -23,28 +23,28 @@ const rule: LineRule = (
     results.push({
       line: lineNumber,
       column: match.index + 2,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Unexpected period',
+      message: `Unexpected period`,
     });
   }
 
   return results;
 };
 
-rule.slug = 'unexpected-period';
+rule.slug = `unexpected-period`;
 rule.maybe = true;
 export default rule;
 
 function isRomanNumeral(match: RegExpExecArray, line: string): boolean {
   const lastWord = line
     .substring(0, match.index)
-    .split(' ')
+    .split(` `)
     .pop();
 
   try {
-    const num = toArabic(lastWord || '');
-    if (typeof num === 'number') {
+    const num = toArabic(lastWord || ``);
+    if (typeof num === `number`) {
       return true;
     }
   } catch {}
@@ -54,11 +54,11 @@ function isRomanNumeral(match: RegExpExecArray, line: string): boolean {
 
 function isIe(match: RegExpExecArray, line: string): boolean {
   const firstLetter = match[0][0];
-  if (firstLetter === 'i') {
+  if (firstLetter === `i`) {
     return !!match[0].match(/i\. ?e/);
   }
 
-  if (firstLetter !== 'e') {
+  if (firstLetter !== `e`) {
     return false;
   }
 
@@ -67,11 +67,11 @@ function isIe(match: RegExpExecArray, line: string): boolean {
 
 function isPmOrAm(match: RegExpExecArray, line: string): boolean {
   const firstLetter = match[0][0].toLowerCase();
-  if (['a', 'p'].includes(firstLetter)) {
+  if ([`a`, `p`].includes(firstLetter)) {
     return !!match[0].match(/(p|a)\. ?m/i);
   }
 
-  if (firstLetter !== 'm') {
+  if (firstLetter !== `m`) {
     return false;
   }
 

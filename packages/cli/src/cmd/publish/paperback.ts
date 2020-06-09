@@ -25,7 +25,7 @@ export async function publishPaperback(
   const [singlePages, singleFiles] = await makeSingleVolumes(dpc, opts);
   const [splitPages, splitFiles] = await makeMultiVolumes(dpc, opts);
 
-  let size: PrintSize = dpc.printSize || 's';
+  let size: PrintSize = dpc.printSize || `s`;
   let condense = false;
   if (!dpc.printSize) {
     try {
@@ -36,9 +36,9 @@ export async function publishPaperback(
     }
   }
 
-  const sizeVariant = `${size}${condense ? '--condensed' : ''}` as PrintSizeVariant;
+  const sizeVariant = `${size}${condense ? `--condensed` : ``}` as PrintSizeVariant;
   let volumes = [singlePages[sizeVariant]];
-  if (splitPages && sizeVariant !== 's') {
+  if (splitPages && sizeVariant !== `s`) {
     volumes = splitPages[sizeVariant];
   }
 
@@ -53,7 +53,7 @@ export async function publishPaperback(
   };
 
   const files =
-    splitFiles && sizeVariant !== 's'
+    splitFiles && sizeVariant !== `s`
       ? splitFiles[sizeVariant]
       : [singleFiles[sizeVariant]];
 
@@ -66,16 +66,16 @@ async function makeSingleVolumes(
 ): Promise<[SinglePages, SingleFiles]> {
   log(c`   {gray Determining paperback interior page counts...}`);
   const pages: SinglePages = { s: 0, m: 0, xl: 0, 'xl--condensed': 0 };
-  const files: SingleFiles = { s: '', m: '', xl: '', 'xl--condensed': '' };
+  const files: SingleFiles = { s: ``, m: ``, xl: ``, 'xl--condensed': `` };
 
   for (const variant of PRINT_SIZE_VARIANTS) {
     log(c`     {magenta.dim ->} {gray size:} {cyan ${variant}}`);
-    const size = variant === 'xl--condensed' ? 'xl' : variant;
+    const size = variant === `xl--condensed` ? `xl` : variant;
     const [manifest] = await paperbackManifest(dpc, {
       printSize: size,
       frontmatter: true,
       allowSplits: false,
-      condense: variant === 'xl--condensed',
+      condense: variant === `xl--condensed`,
     });
 
     const file = filename(dpc, variant);
@@ -99,14 +99,14 @@ async function makeMultiVolumes(
   const files: MultiFiles = { m: [], xl: [], 'xl--condensed': [] };
 
   log(c`   {gray Determining paperback interior page counts for split faux-volumes...}`);
-  for (const variant of ['m', 'xl', 'xl--condensed'] as const) {
+  for (const variant of [`m`, `xl`, `xl--condensed`] as const) {
     log(c`     {magenta.dim ->} {gray size (split):} {cyan ${variant}}`);
-    const size = variant === 'xl--condensed' ? 'xl' : variant;
+    const size = variant === `xl--condensed` ? `xl` : variant;
     const manifests = await paperbackManifest(dpc, {
       printSize: size,
       frontmatter: true,
       allowSplits: true,
-      condense: variant === 'xl--condensed',
+      condense: variant === `xl--condensed`,
     });
 
     for (let idx = 0; idx < manifests.length; idx++) {
@@ -130,7 +130,7 @@ async function getPages(path: string): Promise<number> {
 
 function filename(dpc: FsDocPrecursor, variant: string, volumeNumber?: number): string {
   return [
-    dpc.friendInitials.join(''),
+    dpc.friendInitials.join(``),
     dpc.documentSlug,
     dpc.editionType,
     dpc.documentId.substring(0, 8),
@@ -138,5 +138,5 @@ function filename(dpc: FsDocPrecursor, variant: string, volumeNumber?: number): 
     volumeNumber,
   ]
     .filter(part => !!part)
-    .join('--');
+    .join(`--`);
 }

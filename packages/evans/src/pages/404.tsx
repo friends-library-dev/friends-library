@@ -19,8 +19,8 @@ interface Props {
 }
 
 const NotFoundPage: React.FC<Props> = ({ data: { site, sheep } }) => {
-  const numBooks = site.meta[LANG === 'en' ? 'numEnglishBooks' : 'numSpanishBooks'];
-  const numAltBooks = site.meta[LANG === 'es' ? 'numEnglishBooks' : 'numSpanishBooks'];
+  const numBooks = site.meta[LANG === `en` ? `numEnglishBooks` : `numSpanishBooks`];
+  const numAltBooks = site.meta[LANG === `es` ? `numEnglishBooks` : `numSpanishBooks`];
   return (
     <Layout>
       <NotFoundHeroBlock bgImg={sheep.image.fluid} />

@@ -7,7 +7,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
@@ -15,12 +15,12 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: 1,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'your message here',
+      message: `your message here`,
     },
   ];
 };
 
-rule.slug = 'my-slug';
+rule.slug = `my-slug`;
 export default rule;

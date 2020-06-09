@@ -5,13 +5,13 @@ import { ISBN } from '@friends-library/types';
 import { getAllFriends } from '@friends-library/friends';
 import isbns from './isbns.json';
 
-const flags = ['next', 'makeImages', 'makeCsv'] as const;
+const flags = [`next`, `makeImages`, `makeCsv`] as const;
 
 type Argv = { [k in typeof flags[number]]: boolean };
 
 export default function handler(argv: Argv): void {
   if (!flags.some(f => argv[f])) {
-    const optionList = flags.map(optionify).join(' ');
+    const optionList = flags.map(optionify).join(` `);
     log(c`\n{red Supply at least one option:} {green ${optionList}}\n`);
     process.exit(1);
   }
@@ -22,26 +22,26 @@ export default function handler(argv: Argv): void {
 }
 
 function makeCsv(): void {
-  const editions = [...getAllFriends('en', true), ...getAllFriends('es', true)]
+  const editions = [...getAllFriends(`en`, true), ...getAllFriends(`es`, true)]
     .flatMap(friend => friend.documents)
     .flatMap(document => document.editions);
 
   const rows: [string, string, string, string, string, string][] = [
-    ['ISBN', 'Title', 'Author Last', 'Author First', 'Editor Last', 'Editor First'],
+    [`ISBN`, `Title`, `Author Last`, `Author First`, `Editor Last`, `Editor First`],
   ];
 
   editions.forEach(edition => {
     const document = edition.document;
-    const [authorFirst, authorLast = ''] = splitName(document.friend.name);
-    const [editorFirst, editorLast = ''] = splitName(edition.editor || '');
+    const [authorFirst, authorLast = ``] = splitName(document.friend.name);
+    const [editorFirst, editorLast = ``] = splitName(edition.editor || ``);
     rows.push([
       edition.isbn,
-      edition.type === 'original'
+      edition.type === `original`
         ? document.title
         : `${document.title} (${edition.type})`,
       authorLast,
-      authorFirst === 'Compilations' || authorFirst === 'Compilaciones'
-        ? ''
+      authorFirst === `Compilations` || authorFirst === `Compilaciones`
+        ? ``
         : authorFirst,
       editorLast,
       editorFirst,
@@ -55,7 +55,7 @@ function makeCsv(): void {
 
 function next(): void {
   const used: ISBN[] = [];
-  [...getAllFriends('en', true), ...getAllFriends('es', true)].forEach(friend => {
+  [...getAllFriends(`en`, true), ...getAllFriends(`es`, true)].forEach(friend => {
     friend.documents.forEach(doc => {
       doc.editions.forEach(edition => used.push(edition.isbn));
     });
@@ -63,7 +63,7 @@ function next(): void {
 
   for (const isbn of isbns) {
     if (!used.includes(isbn)) {
-      const pbcopy = spawn('pbcopy');
+      const pbcopy = spawn(`pbcopy`);
       pbcopy.stdin.write(isbn);
       pbcopy.stdin.end();
       log(c`\nNext ISBN is: {green ${isbn}}  {gray (also copied to clipboard)}\n`);
@@ -71,11 +71,11 @@ function next(): void {
     }
   }
 
-  red('All ISBNs used!');
+  red(`All ISBNs used!`);
 }
 
 function makeImgs(): void {
-  const url = 'http://bwipjs-api.metafloor.com/?bcid=isbn&includetext&guardwhitespace';
+  const url = `http://bwipjs-api.metafloor.com/?bcid=isbn&includetext&guardwhitespace`;
   const imgDir = `${process.cwd()}/packages/cover-web-app/public/images/isbn/`;
   isbns.forEach(isbn => {
     execSync(`curl -Ss "${url}&text=${isbn}&scale=3&height=16" > ${imgDir}/${isbn}.png`);
@@ -84,22 +84,22 @@ function makeImgs(): void {
 
 function toCsvString(rows: string[][]): string {
   return rows
-    .map(row => row.map(col => (col.includes(',') ? `"${col}"` : col)).join(','))
-    .join('\n');
+    .map(row => row.map(col => (col.includes(`,`) ? `"${col}"` : col)).join(`,`))
+    .join(`\n`);
 }
 
 function optionify(str: string): string {
-  return `--${str.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+  return `--${str.replace(/([A-Z])/g, `-$1`).toLowerCase()}`;
 }
 
 function splitName(name: string): string[] {
   return name
-    .split('')
+    .split(``)
     .reverse()
-    .join('')
-    .replace(' ', '*')
-    .split('')
+    .join(``)
+    .replace(` `, `*`)
+    .split(``)
     .reverse()
-    .join('')
-    .split('*');
+    .join(``)
+    .split(`*`);
 }

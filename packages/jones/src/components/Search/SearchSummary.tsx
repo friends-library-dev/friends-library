@@ -11,7 +11,7 @@ const SearchSummary: React.FC<Props> = ({ results }) => {
   }
 
   const dismissed = results.filter(result => result.dismissed);
-  const found = dismissed.length ? 'Showing' : 'Found';
+  const found = dismissed.length ? `Showing` : `Found`;
   const number = dismissed.length
     ? `${results.length - dismissed.length}/${results.length}`
     : results.length;

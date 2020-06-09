@@ -4,8 +4,8 @@ import dict from './strings';
 let locale: Lang | null = null;
 
 export function t(strings: TemplateStringsArray, ...vars: (string | number)[]): string {
-  const string = translate(strings.join('%s'));
-  return string.replace('%s', String(vars[0]));
+  const string = translate(strings.join(`%s`));
+  return string.replace(`%s`, String(vars[0]));
 }
 
 export function translate(str: string): string {
@@ -13,7 +13,7 @@ export function translate(str: string): string {
     locale = localeFromEnv();
   }
 
-  if (locale === 'es') {
+  if (locale === `es`) {
     if (dict[str] !== undefined) {
       return dict[str];
     } else {
@@ -29,13 +29,13 @@ export function setLocale(set: Lang): void {
 
 function localeFromEnv(): Lang {
   // !!! keep full, exact token: `process.env.GATSBY_LANG` for Webpack.definePlugin !!!
-  if (typeof process !== 'undefined' && process.env && process.env.GATSBY_LANG === 'es') {
-    return 'es';
+  if (typeof process !== `undefined` && process.env && process.env.GATSBY_LANG === `es`) {
+    return `es`;
   }
 
-  if (typeof window !== 'undefined') {
-    return document.documentElement.lang === 'es' ? 'es' : 'en';
+  if (typeof window !== `undefined`) {
+    return document.documentElement.lang === `es` ? `es` : `en`;
   }
 
-  return 'en';
+  return `en`;
 }

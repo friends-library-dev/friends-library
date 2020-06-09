@@ -62,7 +62,7 @@ const Component: React.FC<Props> = ({ result, edit, replace }) => {
   return (
     <SearchResultPreview
       onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-        if (e.target instanceof Element && e.target.nodeName === 'B') {
+        if (e.target instanceof Element && e.target.nodeName === `B`) {
           edit(result);
         }
       }}
@@ -93,7 +93,7 @@ function lineContent(
   replace: string,
 ): Html {
   const { start, end } = result;
-  let content = '';
+  let content = ``;
   const isStartLine = line.lineNumber === start.line;
   if (isStartLine) {
     const before = line.content.substring(0, start.column);

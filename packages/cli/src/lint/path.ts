@@ -15,7 +15,7 @@ export function filesFromPath(
     }
     files = [path];
   } else {
-    files = glob(`${path.replace(/\/$/, '')}/**/*.adoc`);
+    files = glob(`${path.replace(/\/$/, ``)}/**/*.adoc`);
     if (files.length === 0) {
       throw new Error(`No files globbed from <path>: ${path}`);
     }
@@ -27,16 +27,16 @@ export function filesFromPath(
 }
 
 export function editionTypeFromPath(path: string): EditionType | undefined {
-  if (path.includes('/original/')) {
-    return 'original';
-  } else if (path.includes('/modernized/')) {
-    return 'modernized';
-  } else if (path.includes('/updated/')) {
-    return 'updated';
+  if (path.includes(`/original/`)) {
+    return `original`;
+  } else if (path.includes(`/modernized/`)) {
+    return `modernized`;
+  } else if (path.includes(`/updated/`)) {
+    return `updated`;
   }
   return undefined;
 }
 
 export function langFromPath(path: string): Lang {
-  return path.includes('/es/') || path.startsWith('es/') || path === 'es' ? 'es' : 'en';
+  return path.includes(`/es/`) || path.startsWith(`es/`) || path === `es` ? `es` : `en`;
 }

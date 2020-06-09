@@ -12,29 +12,29 @@ interface Props {
 
 const ChooseEdition: React.FC<Props> = ({ editions, onSelect }) => (
   <ChoiceStep title="Choose an Edition">
-    {editions.includes('updated') && (
+    {editions.includes(`updated`) && (
       <ChoiceItem
         label="Updated"
         description="Our most readable edition"
-        onChoose={() => onSelect('updated')}
+        onChoose={() => onSelect(`updated`)}
         recommended
         Icon={Diamonds.updated}
       />
     )}
-    {editions.includes('modernized') && (
+    {editions.includes(`modernized`) && (
       <ChoiceItem
         label="Modern"
         description="Modern grammar and vocabulary"
-        recommended={!editions.includes('updated')}
-        onChoose={() => onSelect('modernized')}
+        recommended={!editions.includes(`updated`)}
+        onChoose={() => onSelect(`modernized`)}
         Icon={Diamonds.modernized}
       />
     )}
-    {editions.includes('original') && (
+    {editions.includes(`original`) && (
       <ChoiceItem
         label="Original"
         description="Original grammar and vocabulary"
-        onChoose={() => onSelect('original')}
+        onChoose={() => onSelect(`original`)}
         Icon={Diamonds.original}
       />
     )}

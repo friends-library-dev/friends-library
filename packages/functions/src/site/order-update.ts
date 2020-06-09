@@ -12,7 +12,7 @@ export default async function updateOrder(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /orders/update', { body: body, data });
+    log.error(`invalid body for /orders/update`, { body: body, data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
@@ -22,7 +22,7 @@ export default async function updateOrder(
     });
     log.info(`updated payment intent: ${data.paymentIntentId}`);
   } catch (error) {
-    log.error('error updating payment intent', { error });
+    log.error(`error updating payment intent`, { error });
     return respond.json({ msg: Err.ERROR_UPDATING_STRIPE_PAYMENT_INTENT }, 403);
   }
 
@@ -42,7 +42,7 @@ export default async function updateOrder(
   const [saveError] = await saveOrder(order);
 
   if (saveError) {
-    log.error('error persisting flp order', { error: saveError });
+    log.error(`error persisting flp order`, { error: saveError });
     return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error: saveError }, 500);
   }
 
@@ -52,55 +52,55 @@ export default async function updateOrder(
 
 export const schema = {
   properties: {
-    orderId: { type: 'string' },
-    paymentIntentId: { type: 'string' },
-    amount: { type: 'integer' },
-    email: { $ref: '/email' },
-    address: { $ref: '/address' },
-    taxes: { type: 'integer' },
-    shipping: { type: 'integer' },
-    ccFeeOffset: { type: 'integer' },
+    orderId: { type: `string` },
+    paymentIntentId: { type: `string` },
+    amount: { type: `integer` },
+    email: { $ref: `/email` },
+    address: { $ref: `/address` },
+    taxes: { type: `integer` },
+    shipping: { type: `integer` },
+    ccFeeOffset: { type: `integer` },
     items: {
-      type: 'array',
+      type: `array`,
       minItems: 1,
       items: {
-        type: 'object',
+        type: `object`,
         properties: {
-          title: { type: 'string' },
-          documentId: { $ref: '/uuid' },
-          printSize: { $ref: '/print-size' },
-          quantity: { $ref: '/book-qty' },
-          unitPrice: { type: 'integer' },
+          title: { type: `string` },
+          documentId: { $ref: `/uuid` },
+          printSize: { $ref: `/print-size` },
+          quantity: { $ref: `/book-qty` },
+          unitPrice: { type: `integer` },
         },
-        required: ['documentId', 'edition', 'quantity', 'unitPrice'],
+        required: [`documentId`, `edition`, `quantity`, `unitPrice`],
       },
     },
   },
-  required: ['orderId', 'paymentIntentId', 'amount', 'email', 'address', 'items'],
+  required: [`orderId`, `paymentIntentId`, `amount`, `email`, `address`, `items`],
   example: {
-    orderId: '123abc',
-    paymentIntentId: 'pi_345def',
+    orderId: `123abc`,
+    paymentIntentId: `pi_345def`,
     amount: 1111,
     taxes: 0,
     shipping: 399,
     ccFeeOffset: 42,
-    email: 'user@example.com',
+    email: `user@example.com`,
     items: [
       {
-        title: 'Journal of George Fox',
-        documentId: '6b0e134d-8d2e-48bc-8fa3-e8fc79793804',
-        edition: 'modernized' as const,
+        title: `Journal of George Fox`,
+        documentId: `6b0e134d-8d2e-48bc-8fa3-e8fc79793804`,
+        edition: `modernized` as const,
         quantity: 1,
         unitPrice: 231,
       },
     ],
     address: {
-      name: 'Jared Henderson',
-      street: '123 Mulberry Ln.',
-      city: 'Wadsworth',
-      state: 'OH',
-      zip: '44281',
-      country: 'US',
+      name: `Jared Henderson`,
+      street: `123 Mulberry Ln.`,
+      city: `Wadsworth`,
+      state: `OH`,
+      zip: `44281`,
+      country: `US`,
     },
   },
 };

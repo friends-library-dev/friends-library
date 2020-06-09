@@ -3,9 +3,9 @@ import { Order } from './order';
 import env from './env';
 
 export function emailFrom(lang: Lang): string {
-  let name = lang === 'en' ? 'Friends Library' : 'Biblioteca de los Amigos';
-  if (env.getContext() === 'TEST') {
-    name += ' [TEST]';
+  let name = lang === `en` ? `Friends Library` : `Biblioteca de los Amigos`;
+  if (env.getContext() === `TEST`) {
+    name += ` [TEST]`;
   }
   return `${name} <app@friendslibrary.com>`;
 }
@@ -16,17 +16,17 @@ export function orderShippedEmail(
 ): { subject: string; text: string } {
   const lang = order.lang;
   const trackingUnavailable =
-    lang === 'en' ? 'Sorry, not available' : 'Lo sentimos, no disponible';
+    lang === `en` ? `Sorry, not available` : `Lo sentimos, no disponible`;
   return {
     subject:
-      lang === 'es'
-        ? '[,] Pedido Enviado – Biblioteca de Amigos'
-        : '[,] Friends Library Order Shipped',
-    text: (lang === 'es' ? ORDER_SHIPPED_EMAIL_ES : ORDER_SHIPPED_EMAIL_EN)
-      .replace('{{salutation}}', salutation(order, lang === 'es' ? '¡Hola!' : 'Hello!'))
-      .replace('{{lineItems}}', lineItems(order))
-      .replace('{{trackingUrl}}', trackingUrl || `[${trackingUnavailable}]`)
-      .replace('{{orderId}}', order.id),
+      lang === `es`
+        ? `[,] Pedido Enviado – Biblioteca de Amigos`
+        : `[,] Friends Library Order Shipped`,
+    text: (lang === `es` ? ORDER_SHIPPED_EMAIL_ES : ORDER_SHIPPED_EMAIL_EN)
+      .replace(`{{salutation}}`, salutation(order, lang === `es` ? `¡Hola!` : `Hello!`))
+      .replace(`{{lineItems}}`, lineItems(order))
+      .replace(`{{trackingUrl}}`, trackingUrl || `[${trackingUnavailable}]`)
+      .replace(`{{orderId}}`, order.id),
   };
 }
 
@@ -34,27 +34,27 @@ export function orderConfirmationEmail(order: Order): { subject: string; text: s
   const lang = order.lang;
   return {
     subject:
-      lang === 'es'
-        ? '[,] Confirmación de Pedido - Biblioteca de Amigos'
-        : '[,] Friends Library Order Confirmation',
-    text: (lang === 'es' ? CONFIRMATION_EMAIL_ES : CONFIRMATION_EMAIL_EN)
-      .replace('{{salutation}}', salutation(order, lang === 'es' ? '¡Hola!' : 'Hello!'))
-      .replace('{{lineItems}}', lineItems(order))
-      .replace('{{orderId}}', order.id),
+      lang === `es`
+        ? `[,] Confirmación de Pedido - Biblioteca de Amigos`
+        : `[,] Friends Library Order Confirmation`,
+    text: (lang === `es` ? CONFIRMATION_EMAIL_ES : CONFIRMATION_EMAIL_EN)
+      .replace(`{{salutation}}`, salutation(order, lang === `es` ? `¡Hola!` : `Hello!`))
+      .replace(`{{lineItems}}`, lineItems(order))
+      .replace(`{{orderId}}`, order.id),
   };
 }
 
 function salutation(order: Order, fallback: string): string {
   const name = order.address.name;
-  if (typeof name === 'string') {
-    return name.split(' ').shift() + ',';
+  if (typeof name === `string`) {
+    return name.split(` `).shift() + `,`;
   }
   return fallback;
 }
 
 function lineItems(order: Order): string {
   const items: { title: string; quantity: number }[] = order.items || [];
-  return items.map(item => `* (${item.quantity}) ${item.title}`).join('\n');
+  return items.map(item => `* (${item.quantity}) ${item.title}`).join(`\n`);
 }
 
 const CONFIRMATION_EMAIL_EN = `

@@ -7,7 +7,7 @@ import { langFromPath, editionTypeFromPath } from './path';
 
 export default function lintFixPath(
   path: FilePath,
-  options: LintOptions = { lang: 'en' },
+  options: LintOptions = { lang: `en` },
 ): { unfixable: DirLints; numFixed: number } {
   const lints = lintPath(path, options);
   const fixable = lints.numFixable();

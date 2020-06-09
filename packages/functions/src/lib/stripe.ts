@@ -6,7 +6,7 @@ const STRIPE_PERCENTAGE = 0.029;
 
 export function feeOffset(desiredNet: number): number {
   if (!Number.isInteger(desiredNet) || desiredNet <= 0) {
-    throw new TypeError('`desiredNet` must be positive integer (amount in cents)');
+    throw new TypeError(`\`desiredNet\` must be positive integer (amount in cents)`);
   }
 
   const withFlatFee = desiredNet + STRIPE_FLAT_FEE;
@@ -26,6 +26,6 @@ let clientInstance: Stripe;
 
 export default function client(): Stripe {
   if (clientInstance) return clientInstance;
-  clientInstance = new Stripe(env('STRIPE_SECRET_KEY'));
+  clientInstance = new Stripe(env(`STRIPE_SECRET_KEY`));
   return clientInstance;
 }

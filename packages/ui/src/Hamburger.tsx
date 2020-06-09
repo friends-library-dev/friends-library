@@ -9,7 +9,7 @@ interface Props {
 
 const Component: React.FC<Props> = ({ onClick, className }) => (
   <div
-    className={cx(className, 'Hamburger flex flex-col justify-center bg-flprimary')}
+    className={cx(className, `Hamburger flex flex-col justify-center bg-flprimary`)}
     onClick={onClick}
   >
     <div />

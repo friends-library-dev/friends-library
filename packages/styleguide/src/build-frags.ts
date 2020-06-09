@@ -10,22 +10,22 @@ import chokidar from 'chokidar';
 import { throttle } from 'lodash';
 
 const notify = throttle(
-  () => console.log(chalk.magenta('🚁  styleguide fragments regenerated')),
+  () => console.log(chalk.magenta(`🚁  styleguide fragments regenerated`)),
   5000,
 );
-const adocGlob = path.resolve(__dirname, 'adoc/*.adoc');
+const adocGlob = path.resolve(__dirname, `adoc/*.adoc`);
 
-fs.ensureDir(path.resolve(__dirname, '..', 'dist/'));
+fs.ensureDir(path.resolve(__dirname, `..`, `dist/`));
 
-if (process.argv.includes('--watch')) {
-  chokidar.watch(adocGlob).on('all', regen);
+if (process.argv.includes(`--watch`)) {
+  chokidar.watch(adocGlob).on(`all`, regen);
 } else {
   regen();
 }
 
 function regen(): void {
   fs.writeFileSync(
-    path.resolve(__dirname, '../dist/paperback-interior.css'),
+    path.resolve(__dirname, `../dist/paperback-interior.css`),
     genericPaperbackInterior(),
   );
 
@@ -35,7 +35,7 @@ function regen(): void {
   files.forEach(file => {
     const adoc = normalizeAdoc(fs.readFileSync(file).toString());
     const { sections, epigraphs } = processDocument(adoc);
-    const id = path.basename(file).replace(/\.adoc$/, '');
+    const id = path.basename(file).replace(/\.adoc$/, ``);
 
     frags[id] = {
       html: `${epigraph({ epigraphs })}${webHtml(sections)}`,
@@ -43,7 +43,7 @@ function regen(): void {
     };
   });
 
-  fs.writeFileSync(path.resolve(__dirname, 'built-frags.json'), JSON.stringify(frags));
+  fs.writeFileSync(path.resolve(__dirname, `built-frags.json`), JSON.stringify(frags));
   notify();
 }
 

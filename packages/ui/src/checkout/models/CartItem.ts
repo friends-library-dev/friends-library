@@ -41,7 +41,7 @@ export default class CartItem {
 
   public printJobTitle(index: number): string {
     let title = this.title[index];
-    if (this.edition !== 'updated') {
+    if (this.edition !== `updated`) {
       title += ` (${this.edition})`;
     }
     return title;

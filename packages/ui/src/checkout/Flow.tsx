@@ -20,14 +20,14 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
   );
 
   useEffect(() => {
-    machine.on('state:change', setState);
+    machine.on(`state:change`, setState);
     return () => {
-      machine.removeListener('state:change', setState);
+      machine.removeListener(`state:change`, setState);
     };
   }, [machine]);
 
   switch (state) {
-    case 'cart':
+    case `cart`:
       if (cartItems.length === 0) {
         return <EmptyCart recommendedBooks={recommendedBooks} />;
       }
@@ -39,68 +39,68 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
             setCartItems(items);
           }}
           subTotal={cart.subTotal()}
-          checkout={() => machine.dispatch('next')}
-          onContinueBrowsing={() => machine.dispatch('continueBrowsing')}
+          checkout={() => machine.dispatch(`next`)}
+          onContinueBrowsing={() => machine.dispatch(`continueBrowsing`)}
         />
       );
-    case 'delivery':
-    case 'createOrder':
-    case 'calculateFees':
+    case `delivery`:
+    case `createOrder`:
+    case `calculateFees`:
       return (
         <Delivery
-          throbbing={state !== 'delivery'}
-          onBack={() => machine.dispatch('back')}
+          throbbing={state !== `delivery`}
+          onBack={() => machine.dispatch(`back`)}
           error={!!cart.address?.unusable}
           stored={{ ...cart.address, ...(cart.email ? { email: cart.email } : {}) }}
           onSubmit={data => {
             const { email, ...address } = data;
             cart.email = email;
             cart.address = address;
-            machine.dispatch('next');
+            machine.dispatch(`next`);
           }}
         />
       );
-    case 'payment':
-    case 'authorizingPayment':
-    case 'createPrintJob':
-    case 'verifyPrintJob':
-    case 'updateOrderPrintJobStatus':
-    case 'capturePayment':
+    case `payment`:
+    case `authorizingPayment`:
+    case `createPrintJob`:
+    case `verifyPrintJob`:
+    case `updateOrderPrintJobStatus`:
+    case `capturePayment`:
       return (
         <StripeProvider
           apiKey={
-            (process.env.GATSBY_NETLIFY_CONTEXT === 'production'
+            (process.env.GATSBY_NETLIFY_CONTEXT === `production`
               ? process.env.GATSBY_PROD_STRIPE_PUBLISHABLE_KEY
-              : process.env.GATSBY_TEST_STRIPE_PUBLISHABLE_KEY) || ''
+              : process.env.GATSBY_TEST_STRIPE_PUBLISHABLE_KEY) || ``
           }
         >
           <Elements locale={LANG}>
             <Payment
-              throbbing={state !== 'payment'}
+              throbbing={state !== `payment`}
               error={machine.service.popStripeError()}
-              onBack={() => machine.dispatch('back')}
+              onBack={() => machine.dispatch(`back`)}
               paymentIntentClientSecret={machine.service.paymentIntentClientSecret}
               subTotal={cart.subTotal()}
               shipping={machine.service.fees.shipping}
               taxes={machine.service.fees.taxes}
               ccFeeOffset={machine.service.fees.ccFeeOffset}
-              onPay={getToken => machine.dispatch('next', getToken)}
+              onPay={getToken => machine.dispatch(`next`, getToken)}
             />
           </Elements>
         </StripeProvider>
       );
-    case 'confirmation':
+    case `confirmation`:
       return (
         <Confirmation
-          email={cart.email || ''}
-          onClose={() => machine.dispatch('finish')}
+          email={cart.email || ``}
+          onClose={() => machine.dispatch(`finish`)}
         />
       );
-    case 'brickSession':
+    case `brickSession`:
       return (
         <UnrecoverableError
-          onRetry={() => machine.dispatch('tryAgain')}
-          onClose={() => machine.dispatch('close')}
+          onRetry={() => machine.dispatch(`tryAgain`)}
+          onClose={() => machine.dispatch(`close`)}
         />
       );
     default:

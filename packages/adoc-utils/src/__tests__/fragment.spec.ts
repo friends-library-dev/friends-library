@@ -1,7 +1,7 @@
 import { backtickQuotesToEntities } from '../fragment';
 import { ADOC_SYNTAX as a, HTML_DEC_ENTITIES as h } from '@friends-library/types';
 
-describe('backTickQuotesToEntities()', () => {
+describe(`backTickQuotesToEntities()`, () => {
   const cases = [
     [
       `Foo ${a.LEFT_DOUBLE_QUOTE}bar${a.RIGHT_DOUBLE_QUOTE}${a.RIGHT_SINGLE_QUOTE}`,
@@ -21,7 +21,7 @@ describe('backTickQuotesToEntities()', () => {
     ],
   ];
 
-  test.each(cases)('%s should become %s', (adoc, html) => {
+  test.each(cases)(`%s should become %s`, (adoc, html) => {
     expect(backtickQuotesToEntities(adoc)).toBe(html);
   });
 });

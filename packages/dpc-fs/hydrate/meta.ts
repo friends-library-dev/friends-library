@@ -5,7 +5,7 @@ export default function meta(dpc: FsDocPrecursor): void {
   hydrateEntities(dpc);
   const { friend, document, edition } = dpc;
   if (!friend || !document || !edition) {
-    throw new Error('Unexpected lack of entities');
+    throw new Error(`Unexpected lack of entities`);
   }
 
   dpc.meta = {

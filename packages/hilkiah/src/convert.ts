@@ -10,7 +10,7 @@ const ROMAN_NUMERAL_MAP: { [key: string]: number } = {
 
 export function romanToArabic(input: string): number {
   const roman = input.toUpperCase();
-  const letters = roman.split('');
+  const letters = roman.split(``);
   let arabic = 0;
 
   letters.forEach((letter, i) => {

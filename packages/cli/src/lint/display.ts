@@ -9,7 +9,7 @@ export function printLints(lints: DirLints, limit: false | number = false): void
     if (limit && printed >= limit) {
       return;
     }
-    const lines = adoc.split('\n');
+    const lines = adoc.split(`\n`);
     fileLints.forEach(lint => {
       if (limit && printed >= limit) {
         return;
@@ -23,9 +23,9 @@ export function printLints(lints: DirLints, limit: false | number = false): void
 
 function printResult(result: LintResult, path: string, lines: string[]): void {
   console.log(`\n\n${chalk.cyan(result.rule)}: ${result.message}`);
-  grey(`${path}:${result.line}${result.column === false ? '' : `:${result.column}`}`);
+  grey(`${path}:${result.line}${result.column === false ? `` : `:${result.column}`}`);
 
-  if (['eof-newline', 'open-block', 'footnote-split-spacing'].includes(result.rule)) {
+  if ([`eof-newline`, `open-block`, `footnote-split-spacing`].includes(result.rule)) {
     if (result.fixable) {
       printIsFixable();
     }
@@ -33,7 +33,7 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
   }
 
   if (result.column !== false) {
-    yellow('v---'.padStart(result.column + 3));
+    yellow(`v---`.padStart(result.column + 3));
   }
 
   const line = lines[result.line - 1];
@@ -44,7 +44,7 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
   if (
     line &&
     lines[result.line] &&
-    ['trailing-hyphen', 'dangling-possessive'].includes(result.rule)
+    [`trailing-hyphen`, `dangling-possessive`].includes(result.rule)
   ) {
     red(lines[result.line]);
   }
@@ -58,10 +58,10 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
   }
 
   if (line) {
-    grey('[no recommendation]');
+    grey(`[no recommendation]`);
   }
 }
 
 function printIsFixable(): void {
-  console.log(chalk.dim.cyan('Use `--fix` to automatically fix'));
+  console.log(chalk.dim.cyan(`Use \`--fix\` to automatically fix`));
 }

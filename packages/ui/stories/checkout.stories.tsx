@@ -14,39 +14,39 @@ import Confirmation from '../src/checkout/Confirmation';
 import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 
-storiesOf('Checkout Components', module)
+storiesOf(`Checkout Components`, module)
   .addDecorator(coverSizes)
-  .add('EmptyCart', () => (
+  .add(`EmptyCart`, () => (
     <EmptyCart
       recommendedBooks={[
         {
-          title: 'No Cross, No Crown',
-          path: '/',
+          title: `No Cross, No Crown`,
+          path: `/`,
           Cover: <ThreeD {...coverProps} scaler={0.25} scope="1-4" />,
         },
         {
-          title: 'Journal of George Fox',
-          path: '/',
+          title: `Journal of George Fox`,
+          path: `/`,
           Cover: (
             <ThreeD {...coverProps} edition="modernized" scaler={0.25} scope="1-4" />
           ),
         },
         {
-          title: 'The Work of Vital Religion in the Soul',
-          path: '/',
+          title: `The Work of Vital Religion in the Soul`,
+          path: `/`,
           Cover: <ThreeD {...coverProps} edition="original" scaler={0.25} scope="1-4" />,
         },
       ]}
     />
   ))
-  .add('Payment', () => (
+  .add(`Payment`, () => (
     <div className="p-8">
       <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
         <Elements>
           <Payment
             throbbing={false}
-            onPay={a('on pay')}
-            onBack={a('on back')}
+            onPay={a(`on pay`)}
+            onBack={a(`on back`)}
             subTotal={1298}
             shipping={399}
             taxes={132}
@@ -57,14 +57,14 @@ storiesOf('Checkout Components', module)
       </StripeProvider>
     </div>
   ))
-  .add('Payment (throbbing)', () => (
+  .add(`Payment (throbbing)`, () => (
     <div className="p-8">
       <StripeProvider apiKey="pk_test_DAZbsOWXXbvBe51IEVvVfc4H">
         <Elements>
           <Payment
             throbbing={true}
-            onPay={a('on pay')}
-            onBack={a('on back')}
+            onPay={a(`on pay`)}
+            onBack={a(`on back`)}
             subTotal={1298}
             shipping={399}
             taxes={132}
@@ -75,12 +75,12 @@ storiesOf('Checkout Components', module)
       </StripeProvider>
     </div>
   ))
-  .add('Progress (order)', () => <Progress step="Order" />)
-  .add('Progress (delivery)', () => <Progress step="Delivery" />)
-  .add('Progress (payment)', () => <Progress step="Payment" />)
-  .add('Progress (confirmation)', () => <Progress step="Confirmation" />)
-  .add('Input (valid)', () => (
-    <Modal onClose={a('close modal')}>
+  .add(`Progress (order)`, () => <Progress step="Order" />)
+  .add(`Progress (delivery)`, () => <Progress step="Delivery" />)
+  .add(`Progress (payment)`, () => <Progress step="Payment" />)
+  .add(`Progress (confirmation)`, () => <Progress step="Confirmation" />)
+  .add(`Input (valid)`, () => (
+    <Modal onClose={a(`close modal`)}>
       <div style={{ width: 300 }}>
         <Input
           valid={true}
@@ -91,8 +91,8 @@ storiesOf('Checkout Components', module)
       </div>
     </Modal>
   ))
-  .add('Input (invalid)', () => (
-    <Modal onClose={a('close modal')}>
+  .add(`Input (invalid)`, () => (
+    <Modal onClose={a(`close modal`)}>
       <div style={{ width: 300 }}>
         <Input
           valid={false}
@@ -103,8 +103,8 @@ storiesOf('Checkout Components', module)
       </div>
     </Modal>
   ))
-  .add('Input (invalid+value)', () => (
-    <Modal onClose={a('close modal')}>
+  .add(`Input (invalid+value)`, () => (
+    <Modal onClose={a(`close modal`)}>
       <div style={{ width: 300 }}>
         <Input
           valid={false}
@@ -116,26 +116,26 @@ storiesOf('Checkout Components', module)
       </div>
     </Modal>
   ))
-  .add('Confirmation', () => (
-    <Modal onClose={a('close modal')}>
-      <Confirmation email="you@example.com" onClose={a('close')} />
+  .add(`Confirmation`, () => (
+    <Modal onClose={a(`close modal`)}>
+      <Confirmation email="you@example.com" onClose={a(`close`)} />
     </Modal>
   ))
-  .add('Delivery (shipping err)', () => (
+  .add(`Delivery (shipping err)`, () => (
     <div style={{ margin: 25 }}>
-      <Delivery onBack={a('back')} onSubmit={a('submit address')} error />
+      <Delivery onBack={a(`back`)} onSubmit={a(`submit address`)} error />
     </div>
   ))
-  .add('Delivery (throbbing)', () => (
+  .add(`Delivery (throbbing)`, () => (
     <div style={{ margin: 25 }}>
-      <Delivery onBack={a('back')} throbbing onSubmit={a('submit address')} />
+      <Delivery onBack={a(`back`)} throbbing onSubmit={a(`submit address`)} />
     </div>
   ))
-  .add('Delivery', () => (
+  .add(`Delivery`, () => (
     <div style={{ margin: 25 }}>
-      <Delivery onBack={a('back')} onSubmit={a('submit address')} />
+      <Delivery onBack={a(`back`)} onSubmit={a(`submit address`)} />
     </div>
   ))
-  .add('UnrecoverableError', () => (
-    <UnrecoverableError onClose={a('close')} onRetry={a('retry')} />
+  .add(`UnrecoverableError`, () => (
+    <UnrecoverableError onClose={a(`close`)} onRetry={a(`retry`)} />
   ));

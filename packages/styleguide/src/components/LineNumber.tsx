@@ -26,7 +26,7 @@ const Number = styled.span`
 `;
 
 const LineNumber: React.FC<{ num: number }> = ({ num }) => (
-  <Number>{String(num).padStart(2, '0')}.</Number>
+  <Number>{String(num).padStart(2, `0`)}.</Number>
 );
 
 export default LineNumber;

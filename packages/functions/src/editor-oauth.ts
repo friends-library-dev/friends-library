@@ -13,22 +13,22 @@ const handler: Handler = async (event: APIGatewayEvent) => {
     JONES_OAUTH_CLIENT_SECRET,
     JONES_OAUTH_REDIR_URI,
   } = env.require(
-    'JONES_OAUTH_CLIENT_ID',
-    'JONES_OAUTH_CLIENT_SECRET',
-    'JONES_OAUTH_REDIR_URI',
+    `JONES_OAUTH_CLIENT_ID`,
+    `JONES_OAUTH_CLIENT_SECRET`,
+    `JONES_OAUTH_REDIR_URI`,
   );
 
   const url = [
-    'https://github.com/login/oauth/access_token',
-    `?client_id=${JONES_OAUTH_CLIENT_ID || ''}`,
-    `&client_secret=${JONES_OAUTH_CLIENT_SECRET || ''}`,
+    `https://github.com/login/oauth/access_token`,
+    `?client_id=${JONES_OAUTH_CLIENT_ID || ``}`,
+    `&client_secret=${JONES_OAUTH_CLIENT_SECRET || ``}`,
     `&code=${query.code}`,
-  ].join('');
+  ].join(``);
 
   const response = await fetch(url, {
-    method: 'POST',
+    method: `POST`,
     headers: {
-      Accept: 'application/json',
+      Accept: `application/json`,
     },
   });
 

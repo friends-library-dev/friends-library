@@ -32,7 +32,7 @@ const Back: React.FC<Props> = ({
   bgOnly,
   style,
 }) => {
-  const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
+  const Diamond = Diamonds[lang === `es` ? `spanish` : edition];
   const fragments = getHtmlFragments(customHtml);
   return (
     <div className={`back has-bg ${blurbClasses(blurb)}`} style={style || {}}>
@@ -41,7 +41,7 @@ const Back: React.FC<Props> = ({
           <>
             <Diamond />
             {overridable(
-              'blurb',
+              `blurb`,
               fragments,
               allowEditingBlurb ? (
                 <div className="blurb">
@@ -67,7 +67,7 @@ const Back: React.FC<Props> = ({
             )}
             <div className="about-flp">
               <p className="purpose">
-                {lang === 'es' ? (
+                {lang === `es` ? (
                   <>
                     <b>La Biblioteca de los Amigos</b> existe para compartir de forma
                     gratuita los escritos de los primeros miembros de la Sociedad
@@ -86,20 +86,20 @@ const Back: React.FC<Props> = ({
                 )}
               </p>
               <p className="website">
-                {lang === 'es' ? (
+                {lang === `es` ? (
                   <>
-                    Descarga este y otros libros gratis en{' '}
+                    Descarga este y otros libros gratis en{` `}
                     <b>www.bibliotecadelosamigos.org</b>.
                   </>
                 ) : (
                   <>
-                    Download this and other books for free at{' '}
+                    Download this and other books for free at{` `}
                     <b>www.friendslibrary.com</b>.
                   </>
                 )}
               </p>
             </div>
-            {lang === 'es' ? <LogoSpanish /> : <Logo />}
+            {lang === `es` ? <LogoSpanish /> : <Logo />}
           </>
         )}
       </div>
@@ -112,7 +112,7 @@ export default Back;
 function blurbClasses(blurb: string): string {
   const classes: string[] = [];
   for (let i = 150; i <= 1000; i += 25) {
-    classes.push(`blurb--${blurb.length < i ? 'lt' : 'gte'}-${i}`);
+    classes.push(`blurb--${blurb.length < i ? `lt` : `gte`}-${i}`);
   }
-  return classes.join(' ');
+  return classes.join(` `);
 }

@@ -15,7 +15,7 @@ prettifyErrors();
 
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 yargs
-  .scriptName('yarn fell')
+  .scriptName(`yarn fell`)
   .command(branch)
   .command(status)
   .command(checkout)

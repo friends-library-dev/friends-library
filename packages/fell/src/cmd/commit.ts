@@ -16,16 +16,16 @@ export async function handler({ exclude, scope, message }: Argv): Promise<void> 
   green(`${dirty.length} repos added new commit "${message}"`);
 }
 
-export const command = 'commit';
+export const command = `commit`;
 
-export const describe = 'commit to all repos';
+export const describe = `commit to all repos`;
 
 export const builder: { [key: string]: Options } = {
   ...excludable,
   ...scopeable,
   message: {
-    alias: 'm',
+    alias: `m`,
     required: true,
-    type: 'string' as const,
+    type: `string` as const,
   },
 };

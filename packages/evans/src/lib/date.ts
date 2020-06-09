@@ -50,12 +50,12 @@ export function documentDate({
 
 export function periodFromDate(date: number): 'early' | 'mid' | 'late' {
   if (date <= 1720) {
-    return 'early';
+    return `early`;
   }
   if (date <= 1810) {
-    return 'mid';
+    return `mid`;
   }
-  return 'late';
+  return `late`;
 }
 
 export function published(
@@ -63,9 +63,9 @@ export function published(
   lang: Lang,
 ): { publishedTimestamp: number; publishedDate: string } {
   const date = new Date(dateStr);
-  const formatter = new Intl.DateTimeFormat('en-US', { month: 'short' });
+  const formatter = new Intl.DateTimeFormat(`en-US`, { month: `short` });
   let month = formatter.format(date);
-  if (lang === 'es') {
+  if (lang === `es`) {
     month = spanishShortMonth(month);
   }
   return {
@@ -76,14 +76,14 @@ export function published(
 
 function spanishShortMonth(short: string): string {
   switch (short.toLowerCase()) {
-    case 'jan':
-      return 'Ene';
-    case 'apr':
-      return 'Abr';
-    case 'aug':
-      return 'Ago';
-    case 'dec':
-      return 'Dic';
+    case `jan`:
+      return `Ene`;
+    case `apr`:
+      return `Abr`;
+    case `aug`:
+      return `Ago`;
+    case `dec`:
+      return `Dic`;
   }
   return short;
 }

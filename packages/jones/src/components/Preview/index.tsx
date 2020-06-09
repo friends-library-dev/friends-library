@@ -68,15 +68,15 @@ interface State {
 }
 
 class Component extends React.Component<Props, State> {
-  public state: State = { html: '', cssLoaded: false };
+  public state: State = { html: ``, cssLoaded: false };
 
   public componentDidMount(): void {
-    const link = document.createElement('link');
-    link.setAttribute('rel', 'stylesheet');
-    link.type = 'text/css';
-    link.href = 'preview.css';
+    const link = document.createElement(`link`);
+    link.setAttribute(`rel`, `stylesheet`);
+    link.type = `text/css`;
+    link.href = `preview.css`;
     document.head.appendChild(link);
-    window.addEventListener('scroll', this.watchScroll);
+    window.addEventListener(`scroll`, this.watchScroll);
 
     link.onload = () => {
       this.setState({ cssLoaded: true });
@@ -93,7 +93,7 @@ class Component extends React.Component<Props, State> {
   }
 
   public componentWillUnmount(): void {
-    window.removeEventListener('scroll', this.watchScroll);
+    window.removeEventListener(`scroll`, this.watchScroll);
   }
 
   protected restoreScroll(): void {
@@ -122,7 +122,7 @@ class Component extends React.Component<Props, State> {
             <div className="inner" dangerouslySetInnerHTML={{ __html: html }} />
           ) : (
             <Centered>
-              <h1 style={{ height: '100vh', opacity: 0.8, lineHeight: '100vh' }}>
+              <h1 style={{ height: `100vh`, opacity: 0.8, lineHeight: `100vh` }}>
                 <img alt="" src={throbber} style={{ height: 45 }} />
               </h1>
             </Centered>
@@ -141,7 +141,7 @@ const mapState = (state: AppState, { taskId, file }: OwnProps): Props => {
         `${log.getSeverity()}: ${log.getText()}${
           log.getSourceLocation()
             ? ` (near line ${(log.getSourceLocation() as any).getLineNumber()})`
-            : ''
+            : ``
         }`,
       );
     });

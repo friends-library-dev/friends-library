@@ -39,15 +39,15 @@ const MapBlock: React.FC<Props> = ({ bgImg, friendName, markers, residences, map
         ))}
       </Meta>
       <div className="bg-white py-6 md:py-12 md:px-8 lg:px-32 xl:bg-flgray-100 xl:p-0">
-        <div className={`relative ${friendName.toLowerCase().replace(/ /g, '-')}`}>
+        <div className={`relative ${friendName.toLowerCase().replace(/ /g, `-`)}`}>
           {markers
             .filter(m => m.top > 0)
             .map(m => (
               <LocationMarker key={m.label} top={m.top} left={m.left} label={m.label} />
             ))}
-          {map === 'UK' && <img src={Uk} alt="Map of U.K." />}
-          {map === 'US' && <img src={Us} alt="Map of U.S." />}
-          {map === 'Europe' && <img src={Europe} alt="Map of Europe." />}
+          {map === `UK` && <img src={Uk} alt="Map of U.K." />}
+          {map === `US` && <img src={Us} alt="Map of U.S." />}
+          {map === `Europe` && <img src={Europe} alt="Map of Europe." />}
         </div>
       </div>
     </div>

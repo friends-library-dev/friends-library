@@ -28,9 +28,9 @@ const TopNavSearch: React.FC<Props> = ({ className, searching, setSearching }) =
       autoFocus={false}
       className={cx(
         className,
-        'TopNavSearch flex-col justify-center items-end relative',
-        searching && 'searching flex-grow pl-4 sm:pl-8 md:pl-16',
-        !searching && 'flex-grow-0',
+        `TopNavSearch flex-col justify-center items-end relative`,
+        searching && `searching flex-grow pl-4 sm:pl-8 md:pl-16`,
+        !searching && `flex-grow-0`,
       )}
       lockProps={{ onClick: () => !searching && setSearching(true) }}
     >
@@ -46,7 +46,7 @@ export default TopNavSearch;
 
 function focusInput(): void {
   const input: HTMLInputElement | null = document.querySelector(
-    '.TopNavSearch .SearchInput__input',
+    `.TopNavSearch .SearchInput__input`,
   );
   input && input.focus();
 }

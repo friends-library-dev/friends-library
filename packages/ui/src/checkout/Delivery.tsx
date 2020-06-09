@@ -24,20 +24,20 @@ const Delivery: React.FC<{
   throbbing?: boolean;
   error?: boolean;
 }> = ({ onSubmit, onBack, stored = {}, error, throbbing }) => {
-  const [email, setEmail] = useState<string>(stored.email || '');
+  const [email, setEmail] = useState<string>(stored.email || ``);
   const [emailBlurred, setEmailBlurred] = useState<boolean>(false);
-  const [name, setName] = useState<string>(stored.name || '');
+  const [name, setName] = useState<string>(stored.name || ``);
   const [nameBlurred, setNameBlurred] = useState<boolean>(false);
-  const [street, setStreet] = useState<string>(stored.street || '');
+  const [street, setStreet] = useState<string>(stored.street || ``);
   const [streetBlurred, setStreetBlurred] = useState<boolean>(false);
-  const [street2, setStreet2] = useState<string>(stored.street2 || '');
-  const [city, setCity] = useState<string>(stored.city || '');
+  const [street2, setStreet2] = useState<string>(stored.street2 || ``);
+  const [city, setCity] = useState<string>(stored.city || ``);
   const [cityBlurred, setCityBlurred] = useState<boolean>(false);
-  const [state, setState] = useState<string>(stored.state || '');
+  const [state, setState] = useState<string>(stored.state || ``);
   const [stateBlurred, setStateBlurred] = useState<boolean>(false);
-  const [zip, setZip] = useState<string>(stored.zip || '');
+  const [zip, setZip] = useState<string>(stored.zip || ``);
   const [zipBlurred, setZipBlurred] = useState<boolean>(false);
-  const [country, setCountry] = useState<string>(stored.country || '');
+  const [country, setCountry] = useState<string>(stored.country || ``);
   const [countryBlurred, setCountryBlurred] = useState<boolean>(false);
   const filledOutCompletely = !!(
     name &&
@@ -50,7 +50,7 @@ const Delivery: React.FC<{
   );
 
   return (
-    <div className={cx(throbbing && 'pointer-events-none')}>
+    <div className={cx(throbbing && `pointer-events-none`)}>
       <Header>{t`Delivery`}</Header>
       {!error && <NoProfit className="hidden md:block" />}
       <Progress step="Delivery" />
@@ -76,8 +76,8 @@ const Delivery: React.FC<{
         {throbbing && <MessageThrobber />}
         <div
           className={cx(
-            'InputWrap md:flex flex-wrap justify-between',
-            throbbing && 'blur',
+            `InputWrap md:flex flex-wrap justify-between`,
+            throbbing && `blur`,
           )}
         >
           <Input
@@ -141,8 +141,8 @@ const Delivery: React.FC<{
           />
           <CountryDropdown
             classes={cx(
-              'CartInput text-gray-500 order-8',
-              countryBlurred && !country && 'invalid text-red-600',
+              `CartInput text-gray-500 order-8`,
+              countryBlurred && !country && `invalid text-red-600`,
             )}
             defaultOptionLabel={
               !countryBlurred || country ? t`Select Country` : t`Select a Country`
@@ -151,7 +151,7 @@ const Delivery: React.FC<{
             valueType="short"
             onChange={(country: string) => setCountry(country)}
             onBlur={() => setCountryBlurred(true)}
-            priorityOptions={['US', 'GB']}
+            priorityOptions={[`US`, `GB`]}
           />
           <Input
             className="order-2"
@@ -165,7 +165,7 @@ const Delivery: React.FC<{
             type="email"
           />
         </div>
-        <Back className={cx(throbbing && 'blur')} onClick={onBack}>
+        <Back className={cx(throbbing && `blur`)} onClick={onBack}>
           {t`Back to Order`}
         </Back>
         <Button shadow className="mx-auto" disabled={!filledOutCompletely || throbbing}>
@@ -182,23 +182,25 @@ const ShippingError: React.FC = () => (
   <ErrorMsg>
     <Dual.frag>
       <>
-        Sorry, we’re not able to ship to that address. Please double-check for any{' '}
+        Sorry, we’re not able to ship to that address. Please double-check for any{` `}
         <i>errors,</i> or try an <i>alternate address</i> where you could receive a
         shipment. Still no luck? We might not be able to ship directly to your location,
-        but you can{' '}
+        but you can{` `}
         <Link to={t`/contact`} className="underline">
           contact us
-        </Link>{' '}
+        </Link>
+        {` `}
         to arrange an alternate shipment.
       </>
       <>
         Lo sentimos, no podemos hacer envíos a esa dirección. Por favor, comprueba si hay
         algún <em>error,</em> o intenta una <em>dirección alternativa</em> donde puedas
         recibir el envío. ¿Todavía no lo has logrado? Es posible que no podamos enviar
-        directamente a esa ubicación, pero{' '}
+        directamente a esa ubicación, pero{` `}
         <Link to={t`/contact`} className="underline">
           contáctanos
-        </Link>{' '}
+        </Link>
+        {` `}
         para acordar un envío alternativo.
       </>
     </Dual.frag>

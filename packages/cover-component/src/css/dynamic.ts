@@ -12,5 +12,5 @@ export default function allDynamic(scaler?: number, scope?: string): Css {
     back(scaler, scope)[1],
     spine(scaler, scope)[1],
     threeD(scaler, scope)[1],
-  ].join('');
+  ].join(``);
 }

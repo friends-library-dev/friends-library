@@ -69,7 +69,7 @@ const blurb: CoverCssModule = (scaler, scope) => {
     ${sizingCss}
   `;
 
-  return [staticCss, dynamifyCss('', scope, scaler)];
+  return [staticCss, dynamifyCss(``, scope, scaler)];
 };
 
 export default blurb;

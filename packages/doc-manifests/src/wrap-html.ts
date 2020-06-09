@@ -13,15 +13,15 @@ export default function wrapHtmlBody(
 ): Html {
   return stripIndent(`
     <!DOCTYPE html>
-    <html${opts.htmlAttrs ? ` ${opts.htmlAttrs.trim()}` : ''}>
+    <html${opts.htmlAttrs ? ` ${opts.htmlAttrs.trim()}` : ``}>
     <head>
-      ${opts.isUtf8 ? '<meta charset="UTF-8"/>' : ''}
-      ${opts.title ? `<title>${opts.title}</title>` : ''}
+      ${opts.isUtf8 ? `<meta charset="UTF-8"/>` : ``}
+      ${opts.title ? `<title>${opts.title}</title>` : ``}
       ${(opts.css || []).map(
         href => `<link href="${href}" rel="stylesheet" type="text/css" />`,
       )}
     </head>
-    <body${opts.bodyClass ? ` class="${opts.bodyClass}"` : ''}>
+    <body${opts.bodyClass ? ` class="${opts.bodyClass}"` : ``}>
       ${bodyHtml.trim()}
     </body>
     </html>

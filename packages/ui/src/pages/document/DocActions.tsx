@@ -17,7 +17,7 @@ const DocActions: React.FC<Props> = ({
   hasAudio,
   download,
   gotoAudio,
-  className = '',
+  className = ``,
 }) => {
   return (
     <MultiPill
@@ -25,16 +25,16 @@ const DocActions: React.FC<Props> = ({
       buttons={[
         {
           text: t`Download`,
-          icon: 'cloud',
+          icon: `cloud`,
           onClick: download,
         },
         {
           text: `${t`Paperback`} $${(price / 100).toFixed(2)}`,
-          icon: 'book',
+          icon: `book`,
           onClick: addToCart,
         },
         ...(hasAudio
-          ? [{ text: t`Audiobook`, icon: 'headphones', onClick: gotoAudio }]
+          ? [{ text: t`Audiobook`, icon: `headphones`, onClick: gotoAudio }]
           : []),
       ]}
     />

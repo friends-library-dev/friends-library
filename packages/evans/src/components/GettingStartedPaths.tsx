@@ -250,7 +250,7 @@ const GettingStartedPaths: React.FC<Props> = ({
     <>
       <PathBlock
         slug="history"
-        title={LANG === 'en' ? 'History of the Quakers' : 'Historia de los Cuáqueros'}
+        title={LANG === `en` ? `History of the Quakers` : `Historia de los Cuáqueros`}
         books={prepareBooks([data.en_penn_pcr, data.en_sewel, data.en_kelty])}
         color="maroon"
       >
@@ -258,7 +258,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       </PathBlock>
       <PathBlock
         slug="doctrinal"
-        title={LANG === 'en' ? 'The Quaker Doctrine' : 'La Doctrina de los Cuáqueros'}
+        title={LANG === `en` ? `The Quaker Doctrine` : `La Doctrina de los Cuáqueros`}
         books={prepareBooks([
           data.en_barclay_uttermost,
           data.en_phipps,
@@ -305,7 +305,7 @@ const GettingStartedPaths: React.FC<Props> = ({
       </PathBlock>
       <PathBlock
         slug="journal"
-        title={LANG === 'en' ? 'Journals' : 'Biográfico'}
+        title={LANG === `en` ? `Journals` : `Biográfico`}
         books={prepareBooks([
           data.en_titip,
           data.en_richardson_journal,
@@ -341,7 +341,7 @@ function prepareBooks(
 })[] {
   return data.filter(Boolean).map((doc: any) => ({
     ...coverPropsFromQueryData(doc),
-    size: 's' as const,
+    size: `s` as const,
     hasAudio: doc.hasAudio === true,
     documentUrl: doc.url,
     authorUrl: doc.authorUrl,

@@ -9,17 +9,17 @@ interface Props {
 const Progress: React.FC<Props> = ({ step }) => {
   return (
     <ol className="flex antialiased font-hairline tracking-wider justify-center font-sans text-center text-md md:text-lg">
-      <Step step={t`Order`} active={step === 'Order'} complete={true} />
-      <Step step={t`Delivery`} active={step === 'Delivery'} complete={step !== 'Order'} />
+      <Step step={t`Order`} active={step === `Order`} complete={true} />
+      <Step step={t`Delivery`} active={step === `Delivery`} complete={step !== `Order`} />
       <Step
         step={t`Payment`}
-        active={step === 'Payment'}
-        complete={['Payment', 'Confirmation'].includes(step)}
+        active={step === `Payment`}
+        complete={[`Payment`, `Confirmation`].includes(step)}
       />
       <Step
         step={t`Confirmation`}
-        active={step === 'Confirmation'}
-        complete={step === 'Confirmation'}
+        active={step === `Confirmation`}
+        complete={step === `Confirmation`}
       />
     </ol>
   );
@@ -33,12 +33,12 @@ const Step: React.FC<{ active: boolean; complete: boolean; step: string }> = ({
   step,
 }) => (
   <li
-    className={cx('w-1/3 md:w-48 border-b-4 md:border-b-8 py-3 md:py-4', {
+    className={cx(`w-1/3 md:w-48 border-b-4 md:border-b-8 py-3 md:py-4`, {
       'border-gray-400': !complete,
       'border-flprimary': complete,
       'text-flprimary': complete,
       'text-gray-600': !complete,
-      'hidden md:block': step === 'Confirmation',
+      'hidden md:block': step === `Confirmation`,
       bracketed: active,
     })}
   >

@@ -56,25 +56,25 @@ const Toolbar: React.FC<Props> = ({
     <MaterialUiToolbar>
       <IconButton
         title="mask bleed"
-        disabled={mode !== 'pdf'}
-        style={maskBleed && mode === 'pdf' ? selected : {}}
+        disabled={mode !== `pdf`}
+        style={maskBleed && mode === `pdf` ? selected : {}}
         onClick={toggleMaskBleed}
       >
         <MaskBleedIcon />
       </IconButton>
       <IconButton
         title="show guides"
-        className={showGuides ? 'selected' : ''}
+        className={showGuides ? `selected` : ``}
         onClick={toggleShowGuides}
       >
         <GuidesIcon />
       </IconButton>
       <IconButton title="mode" onClick={cycleMode}>
-        {mode === '3d' ? <ThreeDIcon /> : mode === 'pdf' ? <TwoDIcon /> : <EbookIcon />}
+        {mode === `3d` ? <ThreeDIcon /> : mode === `pdf` ? <TwoDIcon /> : <EbookIcon />}
       </IconButton>
       <IconButton
         title="toggle custom code"
-        className={showCode ? 'custom-code selected' : 'custom-code'}
+        className={showCode ? `custom-code selected` : `custom-code`}
         onClick={toggleShowCode}
       >
         <CodeIcon />
@@ -87,11 +87,11 @@ const Toolbar: React.FC<Props> = ({
       </IconButton>
       <IconButton
         onClick={cycleBookSize}
-        title={bookSize === 'actual' ? 'actual size' : `forced size: ${bookSize}`}
+        title={bookSize === `actual` ? `actual size` : `forced size: ${bookSize}`}
       >
         <TextButton>{bookSizeDisplay(bookSize)}</TextButton>
       </IconButton>
-      {coverProps && mode !== 'ebook' && (
+      {coverProps && mode !== `ebook` && (
         <p className="book-stats">
           <span>
             size: <code>{coverProps.size.toUpperCase()}</code>
@@ -104,14 +104,14 @@ const Toolbar: React.FC<Props> = ({
           </span>
         </p>
       )}
-      {coverProps && mode === '3d' && (
+      {coverProps && mode === `3d` && (
         <>
           <IconButton onClick={spinCover} title="spin cover">
             <ReplayIcon />
           </IconButton>
         </>
       )}
-      {coverProps && process.env.NODE_ENV === 'development' && mode !== 'ebook' && (
+      {coverProps && process.env.NODE_ENV === `development` && mode !== `ebook` && (
         <>
           <IconButton onClick={() => makePdf(coverProps)} title="create pdf">
             <PdfIcon />
@@ -124,35 +124,35 @@ const Toolbar: React.FC<Props> = ({
 
 export default Toolbar;
 
-const selected = { color: 'rgb(133, 75, 94)', background: '#efefef' };
+const selected = { color: `rgb(133, 75, 94)`, background: `#efefef` };
 
 function scaleChar(scale: Scale): string {
   const map: Record<Scale, string> = {
-    fit: 'f',
-    '1': '1',
-    '1-2': '½',
-    '1-3': '⅓',
-    '1-4': '¼',
-    '3-5': '⅗',
-    '4-5': '⅘',
+    fit: `f`,
+    '1': `1`,
+    '1-2': `½`,
+    '1-3': `⅓`,
+    '1-4': `¼`,
+    '3-5': `⅗`,
+    '4-5': `⅘`,
   };
   return map[scale];
 }
 
 function fauxVolDisplay(fauxVol: undefined | 1 | 2): string {
-  if (!fauxVol) return '~';
+  if (!fauxVol) return `~`;
   return `v${fauxVol}`;
 }
 
 function bookSizeDisplay(bookSize: BookSize): string {
-  if (bookSize === 'actual') {
-    return '•';
+  if (bookSize === `actual`) {
+    return `•`;
   }
   return bookSize;
 }
 
 const TextButton: React.FC = ({ children }) => (
-  <span style={{ fontWeight: 'bold', width: 22, fontFamily: 'monospace' }}>
+  <span style={{ fontWeight: `bold`, width: 22, fontFamily: `monospace` }}>
     {children}
   </span>
 );

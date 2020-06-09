@@ -23,15 +23,15 @@ const Button: React.FC<Props> = ({
   children,
   shadow,
   bg,
-  textColor = 'white',
+  textColor = `white`,
   style = {},
   width = 280,
 }) => {
   const props = {
     style: { ...style, width },
-    className: cx('Btn block', className, `text-${textColor}`, {
-      [`bg-fl${bg || 'primary'}`]: bg !== null,
-      [`hover:bg-fl${bg || 'primary'}-800`]: bg !== null,
+    className: cx(`Btn block`, className, `text-${textColor}`, {
+      [`bg-fl${bg || `primary`}`]: bg !== null,
+      [`hover:bg-fl${bg || `primary`}-800`]: bg !== null,
       'shadow-btn': shadow,
       'opacity-25': disabled,
       'cursor-pointer': !disabled,
@@ -40,7 +40,7 @@ const Button: React.FC<Props> = ({
     ...(onClick && !disabled ? { onClick } : {}),
   };
 
-  if (typeof to === 'string') {
+  if (typeof to === `string`) {
     return (
       <Link to={to} {...props}>
         {children}

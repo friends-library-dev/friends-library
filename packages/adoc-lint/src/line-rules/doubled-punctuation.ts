@@ -7,26 +7,26 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
   const doubles = [
-    "`'`'",
-    "'`'`",
-    '`"`"',
-    '"`"`',
-    ',,',
-    ';;',
-    '??',
-    '.,',
-    ',.',
-    ':.',
-    '.:',
-    '.;',
-    ';.',
-    '!.',
-    '.!',
+    `\`'\`'`,
+    `'\`'\``,
+    `\`"\`"`,
+    `"\`"\``,
+    `,,`,
+    `;;`,
+    `??`,
+    `.,`,
+    `,.`,
+    `:.`,
+    `.:`,
+    `.;`,
+    `;.`,
+    `!.`,
+    `.!`,
   ];
 
   const lints: LintResult[] = [];
@@ -48,7 +48,7 @@ const rule: LineRule = (
 };
 
 function specialCase(double: string, line: string, column: number): boolean {
-  if (!['.,', '.:', '.;', '.!'].includes(double)) {
+  if (![`.,`, `.:`, `.;`, `.!`].includes(double)) {
     return false;
   }
 
@@ -57,17 +57,17 @@ function specialCase(double: string, line: string, column: number): boolean {
   }
 
   const two = line.substring(column - 2, column).toLowerCase();
-  const allowedTwo = ['jr', 'sr', 'mo', 'ii', 'co', 'pa', 'pp'];
+  const allowedTwo = [`jr`, `sr`, `mo`, `ii`, `co`, `pa`, `pp`];
   if (two.length === 2 && allowedTwo.includes(two)) {
     return true;
   }
 
   // prettier-ignore
   const allowedThree = [
-    'etc', 'viz', 'ult', 'jun', 'vol', '4to', 'i.e', 'esq', '1st',
-    '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', 'p.m',
-    'a.m', 'sen', 'pet', 'jan', 'feb', 'mar', 'apr', 'jul', 'aug',
-    'sep', 'oct', 'nov', 'dec', 'm.d',
+    `etc`, `viz`, `ult`, `jun`, `vol`, `4to`, `i.e`, `esq`, `1st`,
+    `2nd`, `3rd`, `4th`, `5th`, `6th`, `7th`, `8th`, `9th`, `p.m`,
+    `a.m`, `sen`, `pet`, `jan`, `feb`, `mar`, `apr`, `jul`, `aug`,
+    `sep`, `oct`, `nov`, `dec`, `m.d`,
   ];
   const three = line.substring(column - 3, column).toLowerCase();
   if (three.length === 3 && allowedThree.includes(three)) {
@@ -76,8 +76,8 @@ function specialCase(double: string, line: string, column: number): boolean {
 
   // prettier-ignore
   const allowedFour = [
-    'vols', 'ibid', 'i. e', 'inst', 'mass', 'p. m', 'a. m',
-    'matt', 'chap', 'faht',
+    `vols`, `ibid`, `i. e`, `inst`, `mass`, `p. m`, `a. m`,
+    `matt`, `chap`, `faht`,
   ];
   const four = line.substring(column - 4, column).toLowerCase();
   if (four.length === 4 && allowedFour.includes(four)) {
@@ -87,26 +87,26 @@ function specialCase(double: string, line: string, column: number): boolean {
   // special case `G. F., and F. H. went to meeting`
   if (
     column >= 1 &&
-    line[column] === '.' &&
+    line[column] === `.` &&
     line[column - 1].match(/[A-Z]/) &&
-    (column === 1 || line[column - 2] === ' ')
+    (column === 1 || line[column - 2] === ` `)
   ) {
     return true;
   }
 
-  if (three === "`'s" && four[0] && line[column - 4].match(/[A-Z]/)) {
+  if (three === `\`'s` && four[0] && line[column - 4].match(/[A-Z]/)) {
     return true;
   }
 
   // catch roman numerals
   const lastWord = line
     .substring(0, column)
-    .split(' ')
+    .split(` `)
     .pop();
 
   try {
-    const num = toArabic(lastWord || '');
-    if (typeof num === 'number') {
+    const num = toArabic(lastWord || ``);
+    if (typeof num === `number`) {
       return true;
     }
   } catch (e) {
@@ -119,7 +119,7 @@ function specialCase(double: string, line: string, column: number): boolean {
   }
 
   // definition lists
-  if (double === '.:' && line[column + 1] === ':') {
+  if (double === `.:` && line[column + 1] === `:`) {
     return true;
   }
 
@@ -139,9 +139,9 @@ function getLint(
   const lint: LintResult = {
     line: lineNumber,
     column: colIndex + 1 + double.length / 2,
-    type: 'error',
+    type: `error`,
     rule: rule.slug,
-    message: 'Invalid doubled punctuation mark',
+    message: `Invalid doubled punctuation mark`,
     recommendation,
     fixable: double.length === 2,
   };
@@ -154,5 +154,5 @@ function getLint(
   return lint;
 }
 
-rule.slug = 'doubled-punctuation';
+rule.slug = `doubled-punctuation`;
 export default rule;

@@ -27,8 +27,8 @@ export default async function paperbackCover(
         lang: dpc.lang,
         edition: dpc.editionType,
         showGuides: showGuides || false,
-        customCss: dpc.customCode.css['paperback-cover'] || '',
-        customHtml: dpc.customCode.html['paperback-cover'] || '',
+        customCss: dpc.customCode.css[`paperback-cover`] || ``,
+        customHtml: dpc.customCode.html[`paperback-cover`] || ``,
         size: printSize,
         isbn: dpc.meta.isbn,
         pages: numPages,
@@ -45,15 +45,15 @@ export function paperbackCoverFromProps(props: CoverProps): FileManifest[] {
     {
       'doc.html': wrapHtmlBody(html, {
         isUtf8: true,
-        css: ['doc.css'],
+        css: [`doc.css`],
         htmlAttrs: `lang="${props.lang}" class="prince pdf trim--${props.size}"`,
       }),
       'doc.css': `
-        ${css.common().join('\n')}
-        ${css.back().join('\n')}
-        ${css.spine().join('\n')}
-        ${css.front().join('\n')}
-        ${css.pdf(props).join('\n')}
+        ${css.common().join(`\n`)}
+        ${css.back().join(`\n`)}
+        ${css.spine().join(`\n`)}
+        ${css.front().join(`\n`)}
+        ${css.pdf(props).join(`\n`)}
       `,
     },
   ];

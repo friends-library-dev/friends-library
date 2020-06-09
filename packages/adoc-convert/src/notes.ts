@@ -19,45 +19,45 @@ export function extractNotes(srcHtml: Html): [Notes, Html] {
   html = html.replace(
     /<div class="footnote" id="_footnotedef_([0-9]+)[\S\s]+?<\/div>/gim,
     (full, num) => {
-      const note = striptags(full, ['em', 'i', 'strong', 'b', 'span'])
+      const note = striptags(full, [`em`, `i`, `strong`, `b`, `span`])
         .trim()
         .replace(
           /{footnote-paragraph-split}/g,
           `<span class="fn-split">${br7}${br7}</span>`,
         )
-        .replace(/^[0-9]+\. /, '');
-      notes.set(map.get(num) || '', expandFootnotePoetry(note));
-      return '';
+        .replace(/^[0-9]+\. /, ``);
+      notes.set(map.get(num) || ``, expandFootnotePoetry(note));
+      return ``;
     },
   );
 
-  html = html.replace(/<div id="footnotes"[\s\S]+?<\/div>/gim, '');
+  html = html.replace(/<div id="footnotes"[\s\S]+?<\/div>/gim, ``);
 
   return [notes, html];
 }
 
 function expandFootnotePoetry(html: Html): Html {
-  const nowrap = makeWrap('', '');
+  const nowrap = makeWrap(``, ``);
   return html.replace(/ ` {4}(.+?) *?`( )?/gim, (_, poem) => {
     let stanzas = false;
     return poem
-      .split('      ')
+      .split(`      `)
       .map((line: string) => {
         if (line.match(/^- - -/)) {
           stanzas = true;
-          return '</span>\n<span class="verse__stanza">';
+          return `</span>\n<span class="verse__stanza">`;
         }
-        const spacer = '&#160;&#160;&#160;&#160;';
+        const spacer = `&#160;&#160;&#160;&#160;`;
         line = line.replace(/^ +/, (leadingWhitespace: string) =>
           leadingWhitespace
-            .split('')
+            .split(``)
             .map(() => spacer)
-            .join(''),
+            .join(``),
         );
         return `<span class="verse__line">${br7}${line}</span>`;
       })
-      .reduce(stanzas ? makeWrap('<span class="verse__stanza">', '</span>') : nowrap, [])
-      .reduce(makeWrap(`<span class="verse">${br7}`, '</span>'), [])
-      .join('\n');
+      .reduce(stanzas ? makeWrap(`<span class="verse__stanza">`, `</span>`) : nowrap, [])
+      .reduce(makeWrap(`<span class="verse">${br7}`, `</span>`), [])
+      .join(`\n`);
   });
 }

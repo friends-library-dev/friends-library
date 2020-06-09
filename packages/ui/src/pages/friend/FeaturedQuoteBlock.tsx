@@ -17,7 +17,7 @@ const FeaturedQuoteBlock: React.FC<Props> = ({ cite, quote }) => {
           <span
             className="relative block font-serif text-lg"
             dangerouslySetInnerHTML={{
-              __html: quote.replace(/“/g, '‘').replace(/”/g, '’'),
+              __html: quote.replace(/“/g, `‘`).replace(/”/g, `’`),
             }}
           />
         </p>

@@ -21,7 +21,7 @@ interface Props {
 const SearchBlock: React.FC<Props> = ({ books, initialFilters, bgImg, initialUsed }) => {
   const [filters, setFilters] = useState<string[]>(initialFilters || []);
   const [used, setUsed] = useState<boolean>(initialUsed || false);
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(``);
   const matches = match(books, filters, query.toLowerCase().trim());
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, bgImg, initialUse
       )}
       {matches.length === 0 && (
         <BackgroundImage
-          style={{ minHeight: '45vh' }}
+          style={{ minHeight: `45vh` }}
           fluid={[bgLayer([0, 0, 0], 0.3), bgImg]}
           className="SearchBlock__Results--empty bg-cover px-16 sm:px-32 flex flex-col justify-center bg-bottom"
         >
@@ -81,17 +81,17 @@ function match(books: Props['books'], filters: string[], search: string): Props[
     }
 
     for (const filter of filters) {
-      const [type, value] = filter.split('.');
-      if (type === 'edition' && book.edition !== value) {
+      const [type, value] = filter.split(`.`);
+      if (type === `edition` && book.edition !== value) {
         return false;
       }
-      if (type === 'period' && book.period !== value) {
+      if (type === `period` && book.period !== value) {
         return false;
       }
-      if (type === 'region' && !regionMatches(value, book)) {
+      if (type === `region` && !regionMatches(value, book)) {
         return false;
       }
-      if (type === 'tag' && !book.tags.includes(value)) {
+      if (type === `tag` && !book.tags.includes(value)) {
         return false;
       }
     }
@@ -100,7 +100,7 @@ function match(books: Props['books'], filters: string[], search: string): Props[
 }
 
 function regionMatches(region: string, book: Props['books'][0]): boolean {
-  const compare = book.region.toLowerCase().replace(/ /g, '-');
+  const compare = book.region.toLowerCase().replace(/ /g, `-`);
   return region === compare;
 }
 
@@ -110,6 +110,6 @@ function userHasInteractedWithSearch(
   initialFilters?: string[],
 ): boolean {
   return !!(
-    query !== '' || JSON.stringify(filters) !== JSON.stringify(initialFilters || [])
+    query !== `` || JSON.stringify(filters) !== JSON.stringify(initialFilters || [])
   );
 }

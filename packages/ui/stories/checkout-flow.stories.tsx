@@ -10,29 +10,29 @@ import CheckoutFlow from '../src/checkout/Flow';
 import { cartPlusData, cart } from '../src/checkout/models/__tests__/fixtures';
 import { coverSizes } from './decorators';
 
-storiesOf('Checkout flow', module)
+storiesOf(`Checkout flow`, module)
   .addDecorator(coverSizes)
-  .add('happy path (prefill)', () => {
+  .add(`happy path (prefill)`, () => {
     const service = new CheckoutService(cartPlusData(), new MockCheckoutApi(1000));
     const machine = new CheckoutMachine(service);
     return (
-      <Modal onClose={a('close modal')}>
+      <Modal onClose={a(`close modal`)}>
         <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );
   })
-  .add('happy path (empty)', () => {
+  .add(`happy path (empty)`, () => {
     const service = new CheckoutService(cart(), new MockCheckoutApi(1000));
     const machine = new CheckoutMachine(service);
     return (
-      <Modal onClose={a('close modal')}>
+      <Modal onClose={a(`close modal`)}>
         <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );
   })
-  .add('Error: shipping impossible', () => {
+  .add(`Error: shipping impossible`, () => {
     const api = new MockCheckoutApi(1000);
-    api.pushResponse('calculateFees', {
+    api.pushResponse(`calculateFees`, {
       ok: false,
       statusCode: 400,
       data: { msg: Err.SHIPPING_NOT_POSSIBLE },
@@ -40,14 +40,14 @@ storiesOf('Checkout flow', module)
     const service = new CheckoutService(cartPlusData(), api);
     const machine = new CheckoutMachine(service);
     return (
-      <Modal onClose={a('close modal')}>
+      <Modal onClose={a(`close modal`)}>
         <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );
   })
-  .add('Error: create order failed', () => {
+  .add(`Error: create order failed`, () => {
     const api = new MockCheckoutApi(1000);
-    api.pushResponse('createOrder', {
+    api.pushResponse(`createOrder`, {
       ok: false,
       statusCode: 500,
       data: { msg: Err.ERROR_UPDATING_FLP_ORDER },
@@ -55,7 +55,7 @@ storiesOf('Checkout flow', module)
     const service = new CheckoutService(cartPlusData(), api);
     const machine = new CheckoutMachine(service);
     return (
-      <Modal onClose={a('close modal')}>
+      <Modal onClose={a(`close modal`)}>
         <CheckoutFlow machine={machine} recommendedBooks={[]} />
       </Modal>
     );

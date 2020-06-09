@@ -10,15 +10,15 @@ export async function sendQuery<T>(
   variables: Record<string, any> = {},
 ): Promise<[QueryError, null | T]> {
   try {
-    const res = await fetch('https://graphql.fauna.com/graphql', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${env('FAUNA_SERVER_SECRET')}` },
+    const res = await fetch(`https://graphql.fauna.com/graphql`, {
+      method: `POST`,
+      headers: { Authorization: `Bearer ${env(`FAUNA_SERVER_SECRET`)}` },
       body: JSON.stringify({ query, variables }),
     });
 
     const json = await res.json();
     if (json.errors || !json.data) {
-      log.error('graphql error', { json, query, variables });
+      log.error(`graphql error`, { json, query, variables });
     }
 
     return [
@@ -26,7 +26,7 @@ export async function sendQuery<T>(
       json.data ? json.data.result : null,
     ];
   } catch (error) {
-    const msg = error instanceof Error ? error.message : 'faunadb http/unknown error';
+    const msg = error instanceof Error ? error.message : `faunadb http/unknown error`;
     return [[msg], null];
   }
 }

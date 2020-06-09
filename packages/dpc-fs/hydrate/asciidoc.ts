@@ -12,15 +12,15 @@ export default function asciidoc(
   isolate?: number,
   mutator?: AsciidocMutator,
 ): void {
-  let pattern = '*';
+  let pattern = `*`;
   if (isolate) {
-    pattern = `${isolate < 10 ? '0' : ''}${isolate}*`;
+    pattern = `${isolate < 10 ? `0` : ``}${isolate}*`;
   }
 
   const asciidoc = glob(`${dpc.fullPath}/${pattern}.adoc`)
     .map(path => ({ path, adoc: fs.readFileSync(path).toString() }))
     .map(mutator ? ({ path, adoc }, idx) => mutator(adoc, path, idx) : ({ adoc }) => adoc)
-    .join('\n');
+    .join(`\n`);
 
   dpc.asciidoc = asciidoc;
 }

@@ -31,11 +31,11 @@ interface Argv {
 
 export default async function handler(argv: Argv): Promise<void> {
   let friends: Friend[] = [];
-  if (argv.lang === 'both' || argv.lang === 'en') {
-    friends = friends.concat(getAllFriends('en', true));
+  if (argv.lang === `both` || argv.lang === `en`) {
+    friends = friends.concat(getAllFriends(`en`, true));
   }
-  if (argv.lang === 'both' || argv.lang === 'es') {
-    friends = friends.concat(getAllFriends('es', true));
+  if (argv.lang === `both` || argv.lang === `es`) {
+    friends = friends.concat(getAllFriends(`es`, true));
   }
 
   const audios = friends
@@ -84,7 +84,7 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   }
 
   const tmpDir = `/tmp/${uuid()}`;
-  let artworkPath = '';
+  let artworkPath = ``;
   if (needArtwork(argv)) {
     fs.mkdirpSync(tmpDir);
     artworkPath = `${tmpDir}/artwork.png`;
@@ -103,12 +103,12 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   if (argv.all || argv.setTrackAttrs) {
     for (const part of audio.parts) {
       const attrs = {
-        sharing: 'public',
-        embeddable_by: 'all',
-        track_type: 'spoken',
-        commentable: 'false',
-        downloadable: 'true',
-        label_name: 'Friends Library Publishing',
+        sharing: `public`,
+        embeddable_by: `all`,
+        track_type: `spoken`,
+        commentable: `false`,
+        downloadable: `true`,
+        label_name: `Friends Library Publishing`,
       };
       await client.updateTrackAttrs(part.externalIdHq, attrs);
       await client.updateTrackAttrs(part.externalIdLq, attrs);
@@ -124,10 +124,10 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
 
   if ((argv.all || argv.createMissingPlaylists) && audio.parts.length > 1) {
     if (!audio.externalPlaylistIdHq) {
-      await createMissingPlaylist(audio, 'HQ');
+      await createMissingPlaylist(audio, `HQ`);
     }
     if (!audio.externalPlaylistIdLq) {
-      await createMissingPlaylist(audio, 'LQ');
+      await createMissingPlaylist(audio, `LQ`);
     }
   }
 
@@ -150,20 +150,20 @@ async function uploadLocalAudioFilesToCloud(
   filter: (str: string) => boolean,
 ): Promise<void> {
   for (const path of paths.filter(filter)) {
-    const cloudPath = path.replace(/^.+?\/(en|es)\//, '$1/');
-    green(`uploading ${filter === isMp3 ? 'mp3' : 'm4b'} file: ${cloudPath}`);
+    const cloudPath = path.replace(/^.+?\/(en|es)\//, `$1/`);
+    green(`uploading ${filter === isMp3 ? `mp3` : `m4b`} file: ${cloudPath}`);
     await cloud.uploadFile(path, cloudPath);
   }
 }
 
 async function zipAndUploadMp3s(audio: Audio, paths: string[]): Promise<void> {
   const { zipFilenameHq, zipFilenameLq } = audio;
-  const hqPaths = paths.filter(p => !p.endsWith('--lq.mp3'));
-  const lqPaths = paths.filter(p => p.endsWith('--lq.mp3'));
+  const hqPaths = paths.filter(p => !p.endsWith(`--lq.mp3`));
+  const lqPaths = paths.filter(p => p.endsWith(`--lq.mp3`));
   const dir = path.dirname(paths[0]);
   const opts = { cwd: dir };
-  execSync(`zip ${zipFilenameLq} ${lqPaths.map(p => path.basename(p)).join(' ')}`, opts);
-  execSync(`zip ${zipFilenameHq} ${hqPaths.map(p => path.basename(p)).join(' ')}`, opts);
+  execSync(`zip ${zipFilenameLq} ${lqPaths.map(p => path.basename(p)).join(` `)}`, opts);
+  execSync(`zip ${zipFilenameHq} ${hqPaths.map(p => path.basename(p)).join(` `)}`, opts);
   await cloud.uploadFile(`${dir}/${zipFilenameLq}`, audio.zipFilepathLq);
   await cloud.uploadFile(`${dir}/${zipFilenameHq}`, audio.zipFilepathHq);
 }
@@ -175,7 +175,7 @@ async function createMissingPlaylist(audio: Audio, quality: 'HQ' | 'LQ'): Promis
     title: document.title,
     description: edition.description || document.description,
     tags: [quality as string].concat(document.tags),
-    tracks: audio.parts.map(p => (quality === 'HQ' ? p.externalIdHq : p.externalIdLq)),
+    tracks: audio.parts.map(p => (quality === `HQ` ? p.externalIdHq : p.externalIdLq)),
   });
   const key = `external_playlist_id_${quality.toLowerCase()}`;
   red(`SET in .yml: ${edition.path}/audio ${key}: ${playlistId}`);
@@ -185,12 +185,12 @@ async function createMissingPlaylist(audio: Audio, quality: 'HQ' | 'LQ'): Promis
 async function verifyTracksExist(audio: Audio): Promise<void> {
   for (const part of audio.parts) {
     const trackHq = await getClient().getTrack(part.externalIdHq);
-    if (trackHq === null || trackHq.user.permalink !== 'msf-audio') {
+    if (trackHq === null || trackHq.user.permalink !== `msf-audio`) {
       throw new Error(`HQ track not found for ${audio.edition.path} ${part.title}`);
     }
     green(`sc track: ${trackHq.id} for ${audio.edition.path} ${part.title} HQ`);
     const trackLq = await getClient().getTrack(part.externalIdLq);
-    if (trackLq === null || trackHq.user.permalink !== 'msf-audio') {
+    if (trackLq === null || trackHq.user.permalink !== `msf-audio`) {
       throw new Error(`LQ track not found for ${audio.edition.path} ${part.title}`);
     }
     green(`sc track: ${trackLq.id} for ${audio.edition.path} ${part.title} LQ`);
@@ -200,15 +200,15 @@ async function verifyTracksExist(audio: Audio): Promise<void> {
 function verifyAudioPaths(audio: Audio): string[] {
   const syncPath = `/Users/jared/Sync`;
   let paths = [
-    `${syncPath}/${audio.audiobookFilepath('HQ')}`,
-    `${syncPath}/${audio.audiobookFilepath('LQ')}`,
+    `${syncPath}/${audio.audiobookFilepath(`HQ`)}`,
+    `${syncPath}/${audio.audiobookFilepath(`LQ`)}`,
   ];
 
   paths = paths.concat(
     audio.parts.flatMap((part, idx) => {
       return [
-        `${syncPath}/${audio.partFilepath(idx, 'HQ')}`,
-        `${syncPath}/${audio.partFilepath(idx, 'LQ')}`,
+        `${syncPath}/${audio.partFilepath(idx, `HQ`)}`,
+        `${syncPath}/${audio.partFilepath(idx, `LQ`)}`,
       ];
     }),
   );
@@ -239,11 +239,11 @@ async function recreateIndividualTitip(audio: Audio, artworkPath: string): Promi
   }
 
   const track = await getClient().getTrack(audio.parts[0].externalIdLq);
-  if (track && track.title.toLowerCase().includes('truth in the inward parts')) {
+  if (track && track.title.toLowerCase().includes(`truth in the inward parts`)) {
     const [hqPath, lqPath] = verifyAudioPaths(audio);
-    const lqTrackId = await uploadIndividualTitip(audio, lqPath, artworkPath, 'LQ');
+    const lqTrackId = await uploadIndividualTitip(audio, lqPath, artworkPath, `LQ`);
     red(`set ${audio.edition.path} external_id_lq: ${lqTrackId}`);
-    const hqTrackId = await uploadIndividualTitip(audio, hqPath, artworkPath, 'HQ');
+    const hqTrackId = await uploadIndividualTitip(audio, hqPath, artworkPath, `HQ`);
     red(`set ${audio.edition.path} external_id_hq: ${hqTrackId}`);
   }
 }
@@ -273,14 +273,14 @@ async function uploadExternalTracks(
 ): Promise<void> {
   for (let i = 0; i < audio.parts.length; i++) {
     const part = audio.parts[i];
-    const qualities: AudioQuality[] = ['LQ', 'HQ'];
+    const qualities: AudioQuality[] = [`LQ`, `HQ`];
     for (const quality of qualities) {
-      const key = quality === 'HQ' ? 'externalIdHq' : 'externalIdLq';
+      const key = quality === `HQ` ? `externalIdHq` : `externalIdLq`;
       if (part[key] === 0) {
         const trackId = await getClient().uploadTrack({
           title: audio.edition.document.title,
           description: audio.edition.description || audio.edition.document.description,
-          audioPath: paths.find(p => p.endsWith(audio.partFilename(i, quality))) || '',
+          audioPath: paths.find(p => p.endsWith(audio.partFilename(i, quality))) || ``,
           imagePath: artworkPath,
           tags: [quality as string].concat(audio.edition.document.tags),
         });
@@ -302,20 +302,20 @@ async function storeFilesizes(
     ...editionMeta,
     updated: new Date().toISOString(),
     audioFilesizes: {
-      m4bHq: fs.statSync(`${dir}/${audio.m4bFilenameHq}`)['size'],
-      m4bLq: fs.statSync(`${dir}/${audio.m4bFilenameLq}`)['size'],
-      mp3ZipHq: fs.statSync(`${dir}/${audio.zipFilenameHq}`)['size'],
-      mp3ZipLq: fs.statSync(`${dir}/${audio.zipFilenameLq}`)['size'],
+      m4bHq: fs.statSync(`${dir}/${audio.m4bFilenameHq}`)[`size`],
+      m4bLq: fs.statSync(`${dir}/${audio.m4bFilenameLq}`)[`size`],
+      mp3ZipHq: fs.statSync(`${dir}/${audio.zipFilenameHq}`)[`size`],
+      mp3ZipLq: fs.statSync(`${dir}/${audio.zipFilenameLq}`)[`size`],
     },
   });
 }
 
 function isM4b(path: string): boolean {
-  return path.endsWith('.m4b');
+  return path.endsWith(`.m4b`);
 }
 
 function isMp3(path: string): boolean {
-  return path.endsWith('.mp3');
+  return path.endsWith(`.mp3`);
 }
 
 function needArtwork(argv: Argv): boolean {
@@ -352,10 +352,10 @@ function getClient(): Client {
     SOUNDCLOUD_CLIENT_ID,
     SOUNDCLOUD_CLIENT_SECRET,
   } = env.require(
-    'SOUNDCLOUD_USERNAME',
-    'SOUNDCLOUD_PASSWORD',
-    'SOUNDCLOUD_CLIENT_ID',
-    'SOUNDCLOUD_CLIENT_SECRET',
+    `SOUNDCLOUD_USERNAME`,
+    `SOUNDCLOUD_PASSWORD`,
+    `SOUNDCLOUD_CLIENT_ID`,
+    `SOUNDCLOUD_CLIENT_SECRET`,
   );
 
   client = new Client({

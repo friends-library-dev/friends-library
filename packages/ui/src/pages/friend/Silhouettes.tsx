@@ -9,7 +9,7 @@ interface Props {
 
 export const Male: React.FC<Props> = ({
   height = 246.4,
-  tailwindColor = 'flprimary',
+  tailwindColor = `flprimary`,
   style = {},
 }) => (
   <svg height={height} width={45500 / height} viewBox="0 0 663 881" style={style}>
@@ -22,7 +22,7 @@ export const Male: React.FC<Props> = ({
 
 export const Female: React.FC<Props> = ({
   height = 224,
-  tailwindColor = 'flprimary',
+  tailwindColor = `flprimary`,
   style = {},
 }) => (
   <svg
@@ -31,7 +31,7 @@ export const Female: React.FC<Props> = ({
     viewBox="0 0 1098 1600"
     style={{
       ...style,
-      transform: style.transform ? `${style.transform} scaleX(-1)` : 'scaleX(-1)',
+      transform: style.transform ? `${style.transform} scaleX(-1)` : `scaleX(-1)`,
     }}
   >
     <path

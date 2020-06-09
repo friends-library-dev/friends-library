@@ -10,19 +10,19 @@ export function currentTask(state: State): Task | null {
 
 export function requireCurrentTask(state: State): Task {
   const task = currentTask(state);
-  if (!task) throw new Error('There is no current task');
+  if (!task) throw new Error(`There is no current task`);
   return task;
 }
 
 export function currentTaskFriendName(state: State): string {
   const task = currentTask(state);
   if (!task) {
-    return '';
+    return ``;
   }
 
   const repo = state.repos.find(r => r.id === task.repoId);
   if (!repo) {
-    return '';
+    return ``;
   }
 
   return repo.friendName;
@@ -36,7 +36,7 @@ export function searchedFiles(state: State): File[] {
   }
 
   return Object.values(task.files).filter(file => {
-    const [docSlug, edType, basename] = file.path.split('/');
+    const [docSlug, edType, basename] = file.path.split(`/`);
     if (documentSlug && docSlug !== documentSlug) {
       return false;
     }
@@ -74,7 +74,7 @@ export interface Document {
 export function documentTree(task: Task): Document[] {
   let documents: Document[] = [];
   documents = Object.values(task.files).reduce((docs: Document[], file: File) => {
-    const [docSlug, edType, filename] = file.path.split('/');
+    const [docSlug, edType, filename] = file.path.split(`/`);
     let document = docs.find(d => d.slug === docSlug);
     if (!document) {
       document = {
@@ -104,9 +104,9 @@ export function documentTree(task: Task): Document[] {
   documents.forEach(doc => {
     doc.editions = doc.editions.sort(({ type }) => {
       switch (type) {
-        case 'updated':
+        case `updated`:
           return -1;
-        case 'modernized':
+        case `modernized`:
           return 0;
         default:
           return 1;

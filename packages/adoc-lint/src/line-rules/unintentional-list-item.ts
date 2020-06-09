@@ -6,7 +6,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
@@ -20,13 +20,12 @@ const rule: LineRule = (
       line: lineNumber,
       column: match.index + 2,
       rule: rule.slug,
-      type: 'error',
-      message:
-        'Periods near the beginning of the line sometimes need to be escaped to prevent errors converting to HTML.',
-      recommendation: line.replace(/\./, '+++.+++'),
+      type: `error`,
+      message: `Periods near the beginning of the line sometimes need to be escaped to prevent errors converting to HTML.`,
+      recommendation: line.replace(/\./, `+++.+++`),
     },
   ];
 };
 
-rule.slug = 'unintentional-list-item';
+rule.slug = `unintentional-list-item`;
 export default rule;

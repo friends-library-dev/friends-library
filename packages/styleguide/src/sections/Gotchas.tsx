@@ -15,15 +15,16 @@ const Gotchas: React.FC = () => (
 
     <H2>Confusing Periods:</H2>
     <Para>
-      In asciidoc, when a line{' '}
+      In asciidoc, when a line{` `}
       <i>starts with a number or capital letter followed by a period</i>, that signifies a
       list item. Therefore, we need to trick asciidoc by <b>escaping the period</b>, as
       shown:
     </Para>
     <Pair id="confusing-periods" emphasize={[2, 6]} />
     <Note>
-      You only have to escape the period when the sequence{' '}
-      <b>is at the very beginning of the line</b>, which normally means when the sequence{' '}
+      You only have to escape the period when the sequence{` `}
+      <b>is at the very beginning of the line</b>, which normally means when the sequence
+      {` `}
       <i>begins a sentence.</i>
     </Note>
 
@@ -36,7 +37,7 @@ const Gotchas: React.FC = () => (
     <Pair id="underscores" />
 
     <Note>
-      The tool that converts <code>.odt</code> to raw asciidoc for intake{' '}
+      The tool that converts <code>.odt</code> to raw asciidoc for intake{` `}
       <i>takes care of escaping these special cases</i>, so you rarely have to actually
       manually add or edit these sequences. 👍
     </Note>

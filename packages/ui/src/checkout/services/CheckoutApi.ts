@@ -4,11 +4,11 @@ export default class CheckoutApi {
   private API_ROOT: string;
 
   public constructor(API_ROOT: string) {
-    this.API_ROOT = API_ROOT.replace(/\/$/, '');
+    this.API_ROOT = API_ROOT.replace(/\/$/, ``);
   }
 
   public async wakeup(): Promise<ApiResponse> {
-    return this.get('/wakeup');
+    return this.get(`/wakeup`);
   }
 
   public async brickOrder(
@@ -24,23 +24,23 @@ export default class CheckoutApi {
       printJobId,
       userAgent: navigator ? navigator.userAgent : null,
     };
-    return this.post('/orders/brick', payload);
+    return this.post(`/orders/brick`, payload);
   }
 
   public async calculateFees(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post('/print-job/fees', payload);
+    return this.post(`/print-job/fees`, payload);
   }
 
   public async createOrder(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post('/orders/create', payload);
+    return this.post(`/orders/create`, payload);
   }
 
   public async updateOrder(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post('/orders/update', payload);
+    return this.post(`/orders/update`, payload);
   }
 
   public async capturePayment(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post('/payment/capture', payload);
+    return this.post(`/payment/capture`, payload);
   }
 
   public async authorizePayment(
@@ -70,7 +70,7 @@ export default class CheckoutApi {
       };
     }
 
-    if (res.paymentIntent.status !== 'requires_capture') {
+    if (res.paymentIntent.status !== `requires_capture`) {
       return {
         ok: false,
         statusCode: 500,
@@ -85,17 +85,17 @@ export default class CheckoutApi {
   public async __testonly__authorizePayment(payload: {
     paymentIntentId: string;
   }): Promise<ApiResponse> {
-    return this.post('/payment/authorize', payload);
+    return this.post(`/payment/authorize`, payload);
   }
 
   public async createPrintJob(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post('/print-job', payload);
+    return this.post(`/print-job`, payload);
   }
 
   public async updateOrderPrintJobStatus(
     payload: Record<string, any>,
   ): Promise<ApiResponse> {
-    return this.post('/orders/update-print-job-status', payload);
+    return this.post(`/orders/update-print-job-status`, payload);
   }
 
   public async getPrintJobStatus(printJobId: number): Promise<ApiResponse> {
@@ -109,18 +109,18 @@ export default class CheckoutApi {
   public async sendOrderConfirmationEmail(orderId: string): Promise<ApiResponse> {
     const response = await window.fetch(
       this.endpoint(`/orders/${orderId}/confirmation-email`),
-      { method: 'POST', credentials: 'omit' },
+      { method: `POST`, credentials: `omit` },
     );
     return this.normalize(response);
   }
 
   private async get(path: string): Promise<ApiResponse> {
-    const response = await window.fetch(this.endpoint(path), { credentials: 'omit' });
+    const response = await window.fetch(this.endpoint(path), { credentials: `omit` });
     return await this.normalize(response);
   }
 
   private async post(path: string, payload: Record<string, any>): Promise<ApiResponse> {
-    return this.sendJson(path, payload, 'POST');
+    return this.sendJson(path, payload, `POST`);
   }
 
   private async sendJson(
@@ -131,17 +131,17 @@ export default class CheckoutApi {
     const response = await window.fetch(this.endpoint(path), {
       method,
       body: JSON.stringify(payload),
-      credentials: 'omit',
+      credentials: `omit`,
       headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+        'Content-Type': `application/json`,
+        Accept: `application/json`,
       },
     });
     return this.normalize(response);
   }
 
   private endpoint(path: string): string {
-    return `${this.API_ROOT}/${path.replace(/^\//, '')}`;
+    return `${this.API_ROOT}/${path.replace(/^\//, ``)}`;
   }
 
   private async normalize(response: Response): Promise<ApiResponse> {

@@ -30,16 +30,16 @@ export async function handler({ exclude, branch, scope }: Argv): Promise<void> {
   });
 }
 
-export const command = 'delete <branch>';
+export const command = `delete <branch>`;
 
-export const describe = 'delete a branch from all selected repos';
+export const describe = `delete a branch from all selected repos`;
 
 export const builder: CommandBuilder = function(yargs) {
   return yargs
-    .positional('branch', {
-      type: 'string',
+    .positional(`branch`, {
+      type: `string`,
       required: true,
     })
-    .option('scope', scopeable.scope)
-    .option('exclude', excludable.exclude);
+    .option(`scope`, scopeable.scope)
+    .option(`exclude`, excludable.exclude);
 };

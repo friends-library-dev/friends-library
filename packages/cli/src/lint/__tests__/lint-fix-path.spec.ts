@@ -2,8 +2,8 @@ import fs from 'fs-extra';
 import stripIndent from 'strip-indent';
 import lintFixPath from '../lint-fix-path';
 
-describe('lintFixPath()', () => {
-  test('it can fix a file at a dir', () => {
+describe(`lintFixPath()`, () => {
+  test(`it can fix a file at a dir`, () => {
     const adoc = stripIndent(`
       == Chapter  1
 
@@ -38,7 +38,7 @@ describe('lintFixPath()', () => {
     expect(unfixable.get(`${dir}/test.adoc`)!.lints).toHaveLength(1);
     expect(unfixable.get(`${dir}/test.adoc`)!.lints![0]).toMatchObject({
       line: 5,
-      rule: 'git-conflict-markers',
+      rule: `git-conflict-markers`,
     });
 
     fs.removeSync(dir);

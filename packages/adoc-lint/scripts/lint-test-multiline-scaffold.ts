@@ -1,20 +1,20 @@
 // @ts-ignore
 import myRule from '../my-slug';
 
-const opts = { lang: 'en' as const };
+const opts = { lang: `en` as const };
 
-describe('myRule()', () => {
-  it('creates a lint for violation of `my-slug` rule', () => {
-    const adoc = 'Multiline\nasciidoc';
-    const lines = adoc.split('\n');
+describe(`myRule()`, () => {
+  it(`creates a lint for violation of \`my-slug\` rule`, () => {
+    const adoc = `Multiline\nasciidoc`;
+    const lines = adoc.split(`\n`);
     const results = myRule(lines[0], lines, 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0]).toEqual({
       line: 1,
       column: 1,
-      type: 'error',
-      rule: 'my-slug',
-      message: 'your message here',
+      type: `error`,
+      rule: `my-slug`,
+      message: `your message here`,
     });
   });
 
@@ -22,8 +22,8 @@ describe('myRule()', () => {
     // ['Violation', 'Fixed'],
   ];
 
-  xtest.each(violations)('multiline adoc should have lint error', (adoc, fixed) => {
-    const lines = adoc.split('\n');
+  xtest.each(violations)(`multiline adoc should have lint error`, (adoc, fixed) => {
+    const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(myRule(line, lines, i + 1, opts));
@@ -36,8 +36,8 @@ describe('myRule()', () => {
     // ['Not a violation'],
   ];
 
-  xtest.each(allowed)('multiline adoc should not have lint error', adoc => {
-    const lines = adoc.split('\n');
+  xtest.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+    const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {
       results = results.concat(myRule(line, lines, i + 1, opts));

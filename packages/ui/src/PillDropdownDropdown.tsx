@@ -9,14 +9,14 @@ interface Props {
 }
 
 const PillDropdownDropdown: React.FC<Props> = ({ className, accordion, children }) => {
-  const Element = accordion ? Accordion : 'div';
+  const Element = accordion ? Accordion : `div`;
   return (
     <Element
       className={cx(
         className,
-        'PillDropdownDropdown relative rounded-lg bg-flgray-100 shadow-direct',
-        'mt-3 w-64 py-4 z-10',
-        'text-flgray-100 antialiased',
+        `PillDropdownDropdown relative rounded-lg bg-flgray-100 shadow-direct`,
+        `mt-3 w-64 py-4 z-10`,
+        `text-flgray-100 antialiased`,
       )}
     >
       {children}

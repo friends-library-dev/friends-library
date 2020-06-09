@@ -16,7 +16,7 @@ const PrintPdf: React.FC<Props> = props => {
       className={wrapClasses(props, {
         'Cover--pdf': true,
         'Cover--pdf--bleed': props.bleed !== false,
-        browser: typeof window !== 'undefined',
+        browser: typeof window !== `undefined`,
       })}
     >
       <div className="print-pdf">

@@ -14,25 +14,25 @@ export default function paperbackInterior(
   conf: PaperbackInteriorConfig,
 ): Css {
   let css = joinCssFiles([
-    'common',
-    'not-mobi7',
-    'pdf/base',
-    'pdf/paging',
-    'pdf/typography',
-    'pdf/half-title',
-    'pdf/original-title',
-    'pdf/copyright',
-    'pdf/toc',
-    'pdf/chapter-heading',
-    'pdf/paperback-interior',
-    ...(dpc.notes.size < 5 ? ['pdf/symbol-notes'] : []),
-    ...(conf.condense ? ['pdf/condense'] : []),
+    `common`,
+    `not-mobi7`,
+    `pdf/base`,
+    `pdf/paging`,
+    `pdf/typography`,
+    `pdf/half-title`,
+    `pdf/original-title`,
+    `pdf/copyright`,
+    `pdf/toc`,
+    `pdf/chapter-heading`,
+    `pdf/paperback-interior`,
+    ...(dpc.notes.size < 5 ? [`pdf/symbol-notes`] : []),
+    ...(conf.condense ? [`pdf/condense`] : []),
   ]);
 
   const { customCode } = dpc;
-  css += customCode.css.all || '';
-  css += customCode.css.pdf || '';
-  css += customCode.css['paperback-interior'] || ''; // @TODO rename all repo files!!!
+  css += customCode.css.all || ``;
+  css += customCode.css.pdf || ``;
+  css += customCode.css[`paperback-interior`] || ``; // @TODO rename all repo files!!!
 
   const vars = getVars(dpc, conf);
   return replaceVars(css, vars);
@@ -83,7 +83,7 @@ export function printDimsVars(size: PrintSizeDetails): Record<string, string> {
 
 export function generic(): Css {
   return paperbackInterior(genericDpc(), {
-    printSize: 'm',
+    printSize: `m`,
     allowSplits: false,
     frontmatter: false,
     condense: false,

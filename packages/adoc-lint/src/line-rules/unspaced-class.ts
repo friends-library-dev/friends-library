@@ -7,19 +7,19 @@ const rule: LineRule = (
   lineNumber: number,
 ): LintResult[] => {
   if (
-    line === '' ||
-    line[0] !== '[' ||
-    line[line.length - 1] !== ']' ||
+    line === `` ||
+    line[0] !== `[` ||
+    line[line.length - 1] !== `]` ||
     lineNumber === 1
   ) {
     return [];
   }
 
-  if (line.indexOf(']') !== line.length - 1) {
+  if (line.indexOf(`]`) !== line.length - 1) {
     return [];
   }
 
-  if (lines[lineNumber - 2] === '') {
+  if (lines[lineNumber - 2] === ``) {
     return [];
   }
 
@@ -27,15 +27,14 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: false,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message:
-        'Class/id designations (like `[.something]`) must be preceded by an empty line',
+      message: `Class/id designations (like \`[.something]\`) must be preceded by an empty line`,
       fixable: true,
       recommendation: `--> add an empty line before line ${lineNumber}`,
     },
   ];
 };
 
-rule.slug = 'unspaced-class';
+rule.slug = `unspaced-class`;
 export default rule;

@@ -13,7 +13,7 @@ interface Props {
 
 const FilterSelectDropdown: React.FC<Props> = props => (
   <PillDropdownDropdown className="FilterSelectDropdown" accordion>
-    {LANG === 'en' && (
+    {LANG === `en` && (
       <AccordionItem className="border-tx">
         <Category label="Editions" />
         <AccordionPanel>
@@ -58,7 +58,7 @@ const FilterSelectDropdown: React.FC<Props> = props => (
         </Option>
       </AccordionPanel>
     </AccordionItem>
-    {LANG === 'en' && (
+    {LANG === `en` && (
       <AccordionItem>
         <Category label="Time Period" />
         <AccordionPanel>
@@ -77,7 +77,7 @@ const FilterSelectDropdown: React.FC<Props> = props => (
         </AccordionPanel>
       </AccordionItem>
     )}
-    {LANG === 'en' && (
+    {LANG === `en` && (
       <AccordionItem className="border-b">
         <Category label="Region" />
         <AccordionPanel>
@@ -130,7 +130,7 @@ const Option: React.FC<Props & { value: string }> = ({
       {isSelected && (
         <i
           className="fa fa-times-circle text-lg text-flgray-400 pl-2 -mr-3"
-          style={{ transform: 'translateY(1px)' }}
+          style={{ transform: `translateY(1px)` }}
         />
       )}
     </Item>
@@ -151,13 +151,13 @@ const Category: React.FC<{ label: string }> = ({ label }) => (
  * Tags are the only filter type that can have more than one selected at a time
  */
 function addFilter(toAdd: string, current: string[]): string[] {
-  const toAddType = toAdd.split('.')[0];
-  if (toAddType === 'tag') {
+  const toAddType = toAdd.split(`.`)[0];
+  if (toAddType === `tag`) {
     return current.concat(toAdd);
   }
   return current
     .filter(existing => {
-      const existingType = existing.split('.')[0];
+      const existingType = existing.split(`.`)[0];
       return existingType !== toAddType;
     })
     .concat([toAdd]);

@@ -12,14 +12,14 @@ const Heading: React.FC<{
   <h1
     className={cx(
       className,
-      'Heading font-sans uppercase text-center text-2xl mb-5 sm:text-3xl tracking-wider font-black',
+      `Heading font-sans uppercase text-center text-2xl mb-5 sm:text-3xl tracking-wider font-black`,
       {
         'Heading--darkbg': darkBg,
         'Heading--left': left === true,
-        'Heading--sm-left': Array.isArray(left) && left.includes('sm'),
-        'Heading--md-left': Array.isArray(left) && left.includes('md'),
-        'Heading--lg-left': Array.isArray(left) && left.includes('lg'),
-        'Heading--xl-left': Array.isArray(left) && left.includes('xl'),
+        'Heading--sm-left': Array.isArray(left) && left.includes(`sm`),
+        'Heading--md-left': Array.isArray(left) && left.includes(`md`),
+        'Heading--lg-left': Array.isArray(left) && left.includes(`lg`),
+        'Heading--xl-left': Array.isArray(left) && left.includes(`xl`),
       },
     )}
   >

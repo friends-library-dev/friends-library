@@ -45,23 +45,24 @@ const Quotes: React.FC = () => (
     <H2>Block Quotes:</H2>
     <Para>
       Block quotes are designated with an opening line with <Code>[quote]</Code> followed
-      by a <b>quote block</b>, which is demarcated by <code>4</code> underscores{' '}
+      by a <b>quote block</b>, which is demarcated by <code>4</code> underscores{` `}
       <Code>____</Code> before <i>and</i> after:
     </Para>
     <Pair id="quote-block" emphasize={[3, 4, 11]} />
-    <Snippet trigger="q" expansion={'[quote]\n____'} />
+    <Snippet trigger="q" expansion={`[quote]\n____`} />
 
     <H2>Block Quotes with Attribution:</H2>
     <Para>
       Block Quotes can also specify <b>attribution</b> by listing first the source, then
-      the location, comma-separated, in the opening line, like this{' '}
-      <Code>[quote, AUTHOR, LOCATION]</Code>. The author and location will be rendered{' '}
+      the location, comma-separated, in the opening line, like this{` `}
+      <Code>[quote, AUTHOR, LOCATION]</Code>. The author and location will be rendered
+      {` `}
       <i>below</i> the quote, as shown below:
     </Para>
     <Pair id="quote-cited" emphasize={[1]} />
     <Note>
       As shown in the above example, if the <i>author</i>, or <i>location</i> contains one
-      or more <b>commas</b>, you'll need to wrap it with quotation marks.{' '}
+      or more <b>commas</b>, you'll need to wrap it with quotation marks.{` `}
       <Code>[quote, "G. Fox, M.D.", "Book, etc."]</Code>
     </Note>
     <Para>
@@ -72,14 +73,14 @@ const Quotes: React.FC = () => (
 
     <H2>Scripture Block Quotes</H2>
     <Para>
-      For blockquotes that are from <b>scripture</b>, add the class{' '}
+      For blockquotes that are from <b>scripture</b>, add the class{` `}
       <Code>.scripture</Code>, and an <i>optional</i> citation. Scripture block quotes are
       also italicized.
     </Para>
     <Pair id="quote-scripture" emphasize={[1]} />
-    <Snippet trigger="qs" expansion={'[quote.scripture, , ]\n____'} />
+    <Snippet trigger="qs" expansion={`[quote.scripture, , ]\n____`} />
     <Note>
-      <b>Epigraphs</b> are a special type of block quote, but are covered in{' '}
+      <b>Epigraphs</b> are a special type of block quote, but are covered in{` `}
       <a href="#epigraphs">their own section.</a>
     </Note>
   </Section>

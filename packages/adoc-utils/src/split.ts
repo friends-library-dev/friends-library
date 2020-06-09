@@ -15,7 +15,7 @@ export function makeSplitLines(
         return splitSentence(sentence, maxLen, minLen);
       })
       .reduce(cleanup, [])
-      .join('\n');
+      .join(`\n`);
     return fixFootnoteSplitters(validLines);
   };
 }
@@ -32,27 +32,27 @@ function splitIntoSentences(input: string): string[] {
       // optional close quote/apostrophe
       /(?<trailingQuote>`"|')?/,
       // followed by a required space
-      ' ',
+      ` `,
       // capture whatever the next character is for ruling out certain things
       /(?<nextCharacter>.)/,
     ],
-    'gm',
+    `gm`,
   );
 
   return input
-    .replace(/footnote:\[/gm, '^\nfootnote:[')
-    .replace(/\] /gm, ']\n')
+    .replace(/footnote:\[/gm, `^\nfootnote:[`)
+    .replace(/\] /gm, `]\n`)
     .replace(
       splitSentencesRegExp,
       regex.groupsFirst((groups, match) => {
-        const { lastWord, punctuation, trailingQuote = '', nextCharacter } = groups;
-        if (lastWord === 'viz') {
+        const { lastWord, punctuation, trailingQuote = ``, nextCharacter } = groups;
+        if (lastWord === `viz`) {
           return match;
         }
-        if (lastWord === 'ver' && punctuation === '.' && nextCharacter.match(/\d/)) {
+        if (lastWord === `ver` && punctuation === `.` && nextCharacter.match(/\d/)) {
           return match;
         }
-        if (lastWord === 'etc' && nextCharacter.match(/[a-z]/)) {
+        if (lastWord === `etc` && nextCharacter.match(/[a-z]/)) {
           return match;
         }
         return `${lastWord}${punctuation}${trailingQuote}${NEWLINE}${nextCharacter}`;
@@ -60,8 +60,8 @@ function splitIntoSentences(input: string): string[] {
     )
     .replace(/([A-Za-z]{2})!(`")? ([A-Z])/gm, `$1!$2${NEWLINE}$3`)
     .split(NEWLINE)
-    .join('\n')
-    .split('\n');
+    .join(`\n`)
+    .split(`\n`);
 }
 
 function splitSentence(sentence: string, maxLen: number, minLen: number): string {
@@ -69,17 +69,17 @@ function splitSentence(sentence: string, maxLen: number, minLen: number): string
   let lines = splitByPunctuation(sentence);
 
   // next re-join short phrases to keep lines close ideal length
-  lines = lines.reduce(rejoinShortPhrases(maxLen), ['']);
+  lines = lines.reduce(rejoinShortPhrases(maxLen), [``]);
 
   // if we still have lines that are too long, split between words (without punctuation)
   lines = lines.reduce(splitBetweenWords(maxLen, minLen), []);
 
   // clean up and return as a single string including newlines
-  return lines.reduce(cleanup, []).join('\n');
+  return lines.reduce(cleanup, []).join(`\n`);
 }
 
 function splitByPunctuation(sentence: string): string[] {
-  return sentence.replace(/([,|;|:]) /gm, '$1\n').split('\n');
+  return sentence.replace(/([,|;|:]) /gm, `$1\n`).split(`\n`);
 }
 
 const rejoinShortPhrases: (
@@ -88,7 +88,7 @@ const rejoinShortPhrases: (
   return (acc, part) => {
     const lastIndex = acc.length - 1;
     const lastLine = acc[lastIndex];
-    if (lastLine === '') {
+    if (lastLine === ``) {
       acc[lastIndex] = part;
     } else if (`${lastLine} ${part}`.length < maxLen) {
       acc[lastIndex] = `${lastLine} ${part}`;
@@ -108,12 +108,12 @@ function splitBetweenWords(
       return acc.concat([part]);
     }
 
-    let best = [''];
+    let best = [``];
     let bestScore = 100000;
     let current;
     let currentScore;
     let splitLen = maxLen - 7;
-    const words = part.split(' ');
+    const words = part.split(` `);
 
     while (splitLen >= minLen) {
       current = getWordSplitCandidate(words, splitLen);
@@ -133,14 +133,14 @@ function getWordSplitCandidate(words: string[], splitLen: number): string[] {
   const chunks: string[][] = [[]];
   let lineIndex = 0;
   words.forEach(word => {
-    if (chunks[lineIndex].join(' ').length < splitLen) {
+    if (chunks[lineIndex].join(` `).length < splitLen) {
       chunks[lineIndex].push(word);
       return;
     }
     lineIndex++;
     chunks[lineIndex] = [word];
   });
-  return chunks.map(chunk => chunk.join(' '));
+  return chunks.map(chunk => chunk.join(` `));
 }
 
 function scoreSplitBetweenWords(arr: string[], minLen: number, maxLen: number): number {
@@ -193,7 +193,7 @@ function cleanup(lines: string[], line: string, index: number): string[] {
   }
 
   // this fixes lines that are just ^etc.$
-  if (line === 'etc.' && index > 0) {
+  if (line === `etc.` && index > 0) {
     lines[index - 1] = `${lines[index - 1]} etc.`;
     return lines;
   }
@@ -213,12 +213,12 @@ function cleanup(lines: string[], line: string, index: number): string[] {
 
 const getLeadingRef = memoize((line: string): number | null => {
   if (line.match(/verse [0-9]+\./)) {
-    return line.indexOf('.') + 1;
+    return line.indexOf(`.`) + 1;
   }
 
   // catch refs in their "mutated" state
   if (line.match(/^((1|2) )?[A-Z][a-z]+({•})? [0-9]{1,2}{\^}[0-9,-]+\./)) {
-    return line.indexOf('.') + 1;
+    return line.indexOf(`.`) + 1;
   }
 
   const refs = find(line);
@@ -227,8 +227,8 @@ const getLeadingRef = memoize((line: string): number | null => {
     return null;
   }
 
-  if (line[refs[0].position.end] === '.') {
-    return line.indexOf('.') + 1;
+  if (line[refs[0].position.end] === `.`) {
+    return line.indexOf(`.`) + 1;
   }
 
   return null;
@@ -238,27 +238,27 @@ function fixFootnoteSplitters(input: string): string {
   return input
     .replace(
       /{(\n)?footnote(\n)?-(\n)?paragraph(\n)?-(\n)?split(\n)?}/gm,
-      '\n{footnote-paragraph-split}\n',
+      `\n{footnote-paragraph-split}\n`,
     )
-    .replace(/\n+{footnote-paragraph-split}\n+/gm, '\n{footnote-paragraph-split}\n');
+    .replace(/\n+{footnote-paragraph-split}\n+/gm, `\n{footnote-paragraph-split}\n`);
 }
 
 export function refUnmutate(str: string): string {
-  return str.replace(/{•}/gm, '.').replace(/{\^}/gm, ':');
+  return str.replace(/{•}/gm, `.`).replace(/{\^}/gm, `:`);
 }
 
 export function refMutate(str: string): string {
-  return str.replace(/\./gm, '{•}').replace(/:/gm, '{^}');
+  return str.replace(/\./gm, `{•}`).replace(/:/gm, `{^}`);
 }
 
 function lineIsHeading(line: string): boolean {
-  return line[0] === '=';
+  return line[0] === `=`;
 }
 
 const regex = {
   assemble(arr: (string | RegExp)[], flags?: string): RegExp {
     return new RegExp(
-      arr.map(p => (typeof p === 'string' ? p : p.source)).join(''),
+      arr.map(p => (typeof p === `string` ? p : p.source)).join(``),
       flags,
     );
   },
@@ -268,10 +268,10 @@ const regex = {
   ): (substr: string, ...rest: any[]) => string {
     return (substr, ...rest) => {
       const last = rest[rest.length - 1];
-      const groups = typeof last === 'string' ? {} : last;
+      const groups = typeof last === `string` ? {} : last;
       return fn(groups, substr, ...rest);
     };
   },
 };
 
-const NEWLINE = '__NEWLINE__';
+const NEWLINE = `__NEWLINE__`;

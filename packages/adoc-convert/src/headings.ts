@@ -17,7 +17,7 @@ export function extractHeading(
   section: Omit<DocSection, 'heading'>,
   short: Map<string, string>,
 ): DocSection {
-  let heading: DocSection['heading'] = { id: '', text: '' };
+  let heading: DocSection['heading'] = { id: ``, text: `` };
   const html = section.html.replace(
     /(<div class="sect1([^"]+?)?">\n)<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/,
     (_, start, kls, id, inner) => {
@@ -27,12 +27,12 @@ export function extractHeading(
         ...(short.has(id) ? { shortText: short.get(id) } : {}),
       };
       const match = kls.match(/ style-([a-z]+)/);
-      const sectionStart = start.replace(/ style-[a-z]+/, '');
-      return `${sectionStart}{% chapter-heading${match ? `, ${match[1]}` : ''} %}`;
+      const sectionStart = start.replace(/ style-[a-z]+/, ``);
+      return `${sectionStart}{% chapter-heading${match ? `, ${match[1]}` : ``} %}`;
     },
   );
 
-  if (heading.id === '') {
+  if (heading.id === ``) {
     throw new Error(
       `Unable to extract chapter-level heading from section: ${section.id}`,
     );
@@ -50,7 +50,7 @@ function parseHeading(text: string): Pick<DocSection['heading'], 'text' | 'seque
 
   const [, type, number, body] = match;
   return {
-    text: adocFragmentToHtml(body || ''),
+    text: adocFragmentToHtml(body || ``),
     sequence: {
       type: type.replace(/^\w/, c => c.toUpperCase()),
       number: Number.isNaN(+number) ? toArabic(number) : +number,

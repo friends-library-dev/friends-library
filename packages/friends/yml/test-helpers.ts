@@ -11,7 +11,7 @@ export function yamlGlob(pattern: string): File[] {
   return glob.sync(pattern).map(path => ({
     path,
     name: basename(path),
-    short: path.replace(/.+?\/yml\//, ''),
+    short: path.replace(/.+?\/yml\//, ``),
   }));
 }
 
@@ -55,7 +55,7 @@ export function hasProp(obj: any, key: string): boolean {
 }
 
 export function isSlug(slug: any): boolean {
-  if (typeof slug !== 'string') {
+  if (typeof slug !== `string`) {
     return false;
   }
 

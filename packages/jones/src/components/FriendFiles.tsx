@@ -123,7 +123,7 @@ const IconSearch = styled.i<{ isEdition?: boolean }>`
     -webkit-font-smoothing: antialiased;
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
-    content: ${(props: any) => (props.isEdition ? '"\f02e"' : '"\f02d"')};
+    content: ${(props: any) => (props.isEdition ? `"\f02e"` : `"\f02d"`)};
     margin-right: 0.75em;
     color: #999;
   }
@@ -147,7 +147,7 @@ interface Props {
 class FriendFiles extends React.Component<Props> {
   protected search(path: string): void {
     const { updateSearch } = this.props;
-    const [documentSlug, editionType] = path.split('/');
+    const [documentSlug, editionType] = path.split(`/`);
     updateSearch({
       searching: true,
       documentSlug: documentSlug || null,
@@ -173,7 +173,7 @@ class FriendFiles extends React.Component<Props> {
     const key = doc.slug;
     const isCollapsed = this.isCollapsed(key);
     return (
-      <li key={doc.slug} className={cx('parent', { collapsed: isCollapsed })}>
+      <li key={doc.slug} className={cx(`parent`, { collapsed: isCollapsed })}>
         <span
           className="toggler"
           onClick={() => collapseTask({ taskId, key, isCollapsed })}
@@ -190,12 +190,12 @@ class FriendFiles extends React.Component<Props> {
     doc,
   ) => {
     const { collapseTask, taskId } = this.props;
-    const key = [doc.slug, ed.type].join('/');
+    const key = [doc.slug, ed.type].join(`/`);
     const isCollapsed = this.isCollapsed(key);
     return (
       <EditionLi
         key={`${doc.slug}/${ed.type}`}
-        className={cx('parent', { collapsed: isCollapsed })}
+        className={cx(`parent`, { collapsed: isCollapsed })}
       >
         <span
           className="toggler"
@@ -241,7 +241,7 @@ const mapState = (
   return {
     taskId: task.id,
     documents: documentTree(task),
-    editingFile: task.editingFile || '',
+    editingFile: task.editingFile || ``,
     collapsed: task.collapsed || {},
   };
 };

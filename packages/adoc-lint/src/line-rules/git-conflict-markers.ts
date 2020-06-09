@@ -6,11 +6,11 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
-  if (line[0] !== '=' && line[0] !== '>' && line[0] !== '<') {
+  if (line[0] !== `=` && line[0] !== `>` && line[0] !== `<`) {
     return [];
   }
 
@@ -22,12 +22,12 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: false,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Git conflict markers must be removed.',
+      message: `Git conflict markers must be removed.`,
     },
   ];
 };
 
-rule.slug = 'git-conflict-markers';
+rule.slug = `git-conflict-markers`;
 export default rule;

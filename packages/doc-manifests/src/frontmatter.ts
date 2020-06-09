@@ -12,7 +12,7 @@ export const frontmatter = memoize(
       copyright: copyright(dpc),
       epigraph: epigraph(dpc),
     };
-    return pickBy(files, html => html !== '');
+    return pickBy(files, html => html !== ``);
   },
 );
 
@@ -30,11 +30,11 @@ export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
   const nameInTitle = title.indexOf(name) !== -1;
   if (!nameInTitle && !dpc.isCompilation) {
     markup = `${markup}\n<p class="byline">${br7}${
-      lang === 'en' ? 'by' : 'por'
+      lang === `en` ? `by` : `por`
     } ${name}</p>`;
   }
 
-  if (editor && lang === 'en') {
+  if (editor && lang === `en`) {
     markup += `\n<p class="editor">${br7}${br7}${br7}Edited by ${editor}</p>`;
   }
 
@@ -43,7 +43,7 @@ export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
 
 function originalTitle({ meta, lang }: DocPrecursor): Html {
   if (!meta.originalTitle) {
-    return '';
+    return ``;
   }
 
   return `
@@ -69,38 +69,38 @@ export function copyright(dpc: DocPrecursor): Html {
   moment.locale(lang);
   let time = moment
     .utc(moment.unix(timestamp))
-    .format(lang === 'en' ? 'MMMM Do, YYYY' : 'D [de] MMMM, YYYY');
+    .format(lang === `en` ? `MMMM Do, YYYY` : `D [de] MMMM, YYYY`);
 
-  if (lang === 'es') {
+  if (lang === `es`) {
     time = time
-      .split(' ')
-      .map(p => (p === 'de' ? p : ucfirst(p)))
-      .join(' ');
+      .split(` `)
+      .map(p => (p === `de` ? p : ucfirst(p)))
+      .join(` `);
   }
 
   let t = {
-    publicDomain: 'Public domain in the USA',
-    publishedIn: 'Originally published in',
-    publisher: 'Friends Library Publishing',
-    domain: 'friendslibrary.com',
-    email: 'info@friendslibrary.com',
-    textRevision: 'Text revision',
-    createdBy: 'Ebook created and freely distributed by',
-    moreFreeBooks: 'Find more free books from early Quakers at',
-    contact: 'Contact the publishers at',
+    publicDomain: `Public domain in the USA`,
+    publishedIn: `Originally published in`,
+    publisher: `Friends Library Publishing`,
+    domain: `friendslibrary.com`,
+    email: `info@friendslibrary.com`,
+    textRevision: `Text revision`,
+    createdBy: `Ebook created and freely distributed by`,
+    moreFreeBooks: `Find more free books from early Quakers at`,
+    contact: `Contact the publishers at`,
   };
 
-  if (lang === 'es') {
+  if (lang === `es`) {
     t = {
-      publicDomain: 'Dominio público en los Estados Unidos de América',
-      publishedIn: 'Publicado originalmente en',
-      publisher: 'La Biblioteca de los Amigos',
-      domain: 'bibliotecadelosamigos.org',
-      email: 'info@bibliotecadelosamigos.org',
-      textRevision: 'Revisión de texto',
-      createdBy: 'Creado y distribuido gratuitamente por',
-      moreFreeBooks: 'Encuentre más libros gratis de los primeros Cuáqueros en',
-      contact: 'Puede contactarnos en',
+      publicDomain: `Dominio público en los Estados Unidos de América`,
+      publishedIn: `Publicado originalmente en`,
+      publisher: `La Biblioteca de los Amigos`,
+      domain: `bibliotecadelosamigos.org`,
+      email: `info@bibliotecadelosamigos.org`,
+      textRevision: `Revisión de texto`,
+      createdBy: `Creado y distribuido gratuitamente por`,
+      moreFreeBooks: `Encuentre más libros gratis de los primeros Cuáqueros en`,
+      contact: `Puede contactarnos en`,
     };
   }
 
@@ -108,8 +108,8 @@ export function copyright(dpc: DocPrecursor): Html {
   <div class="copyright-page">
     <ul>
       <li>${t.publicDomain}</li>
-      ${published ? `<li>${t.publishedIn} ${published}</li>` : ''}
-      ${isbn ? `<li id="isbn">ISBN: <code>${isbn}</code></li>` : ''}
+      ${published ? `<li>${t.publishedIn} ${published}</li>` : ``}
+      ${isbn ? `<li id="isbn">ISBN: <code>${isbn}</code></li>` : ``}
       <li>${t.textRevision} <code><a href="${url}">${sha}</a></code> — ${time}</li>
       <li>${t.createdBy} <a href="https://${t.domain}">${t.publisher}</a></li>
       <li>${t.moreFreeBooks} <a href="https://${t.domain}">${t.domain}</a></li>

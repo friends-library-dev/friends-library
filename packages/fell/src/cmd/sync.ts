@@ -12,9 +12,9 @@ export async function handler({ exclude, scope }: Argv): Promise<void> {
   green(`👍  ${clean.length} repos synced.`);
 }
 
-export const command = 'sync';
+export const command = `sync`;
 
-export const describe = 'like git pull --rebase';
+export const describe = `like git pull --rebase`;
 
 export const builder: { [key: string]: Options } = {
   ...excludable,

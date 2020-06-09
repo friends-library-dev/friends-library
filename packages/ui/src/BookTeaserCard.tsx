@@ -30,21 +30,21 @@ const BookTeaserCard: React.FC<Props> = props => {
     description,
     badgeText,
   } = props;
-  const isAudio = typeof audioDuration === 'string';
+  const isAudio = typeof audioDuration === `string`;
   return (
     <div
       className={cx(
         className,
-        'BookTeaserCard text-white items-start',
-        isAudio && 'BookTeaserCard__Audio',
-        'sm:mx-24',
-        'md:flex md:mx-auto',
+        `BookTeaserCard text-white items-start`,
+        isAudio && `BookTeaserCard__Audio`,
+        `sm:mx-24`,
+        `md:flex md:mx-auto`,
       )}
     >
       <div
         className={cx(
-          'CoverWrap flex justify-center md:pt-12 md:pl-10',
-          isAudio && 'md:-ml-10',
+          `CoverWrap flex justify-center md:pt-12 md:pl-10`,
+          isAudio && `md:-ml-10`,
         )}
       >
         <div className="relative">
@@ -63,8 +63,8 @@ const BookTeaserCard: React.FC<Props> = props => {
       </div>
       <div
         className={cx(
-          'font-sans px-10 pb-10 pt-8 bg-white tracking-wider text-center',
-          'md:text-left md:bg-transparent md:pt-10',
+          `font-sans px-10 pb-10 pt-8 bg-white tracking-wider text-center`,
+          `md:text-left md:bg-transparent md:pt-10`,
         )}
       >
         <h3 className="mb-4 text-base text-flgray-900 md:mb-2 md:pb-1">
@@ -80,7 +80,7 @@ const BookTeaserCard: React.FC<Props> = props => {
         {isAudio && (
           <AudioDuration className="mt-8 md:justify-start">{audioDuration}</AudioDuration>
         )}
-        <p className={cx('body-text text-left mt-6', !isAudio && 'md:pb-10')}>
+        <p className={cx(`body-text text-left mt-6`, !isAudio && `md:pb-10`)}>
           {description}
         </p>
         {isAudio && (
@@ -101,7 +101,7 @@ export default BookTeaserCard;
 const Badge: React.FC = ({ children }) => (
   <div
     className={`absolute antialiased top-0 left-0 bg-fl${
-      LANG === 'en' ? 'gold' : 'maroon'
+      LANG === `en` ? `gold` : `maroon`
     } flex flex-col items-center justify-center tracking-wide font-sans text-white rounded-full w-16 h-16 z-10 transform -translate-y-6 -translate-x-4`}
   >
     <span>{children}</span>

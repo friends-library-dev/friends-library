@@ -77,9 +77,9 @@ async function handleAudioImage(
   const dirname = artifacts.dirs(opts).ARTIFACT_DIR;
   const filepath = `${dirname}/${filename}`;
   fs.ensureDirSync(dirname);
-  const buffer = await makeScreenshot(dpc.path, 'audio');
+  const buffer = await makeScreenshot(dpc.path, `audio`);
   uploads.set(filepath, `${dpc.path}/${filename}`);
-  fs.writeFileSync(filepath, buffer, { encoding: 'binary' });
+  fs.writeFileSync(filepath, buffer, { encoding: `binary` });
 }
 
 async function handleWebPdf(
@@ -90,10 +90,10 @@ async function handleWebPdf(
   log(c`   {gray Creating web-pdf artifact...}`);
   const [webManifest] = await manifest.webPdf(dpc);
   const filename = edition(dpc)
-    .filename('web-pdf')
-    .replace(/\.pdf$/, '');
+    .filename(`web-pdf`)
+    .replace(/\.pdf$/, ``);
   const path = await artifacts.pdf(webManifest, filename, opts);
-  uploads.set(path, cloudPath(dpc, 'web-pdf'));
+  uploads.set(path, cloudPath(dpc, `web-pdf`));
 }
 
 async function handlePaperbackAndCover(
@@ -106,7 +106,7 @@ async function handlePaperbackAndCover(
   const [paperbackMeta, volumePaths] = await publishPaperback(dpc, opts);
   volumePaths.forEach((path, idx) => {
     const fauxVolNum = volumePaths.length > 1 ? idx + 1 : undefined;
-    uploads.set(path, cloudPath(dpc, 'paperback-interior', fauxVolNum));
+    uploads.set(path, cloudPath(dpc, `paperback-interior`, fauxVolNum));
   });
 
   const existingMeta = meta.get(dpc.path);
@@ -130,10 +130,10 @@ async function handlePaperbackAndCover(
     const manifest = coverManifests[idx];
     const fauxVolumeNumber = coverManifests.length > 1 ? idx + 1 : undefined;
     const filename = edition(dpc)
-      .filename('paperback-cover', fauxVolumeNumber)
-      .replace(/\.pdf$/, '');
+      .filename(`paperback-cover`, fauxVolumeNumber)
+      .replace(/\.pdf$/, ``);
     const path = await artifacts.pdf(manifest, filename, opts);
-    uploads.set(path, cloudPath(dpc, 'paperback-cover', fauxVolumeNumber));
+    uploads.set(path, cloudPath(dpc, `paperback-cover`, fauxVolumeNumber));
   }
 }
 
@@ -143,23 +143,23 @@ async function handleEbooks(
   uploads: Map<string, string>,
   makeScreenshot: ScreenshotTaker,
 ): Promise<void> {
-  const coverImg = await makeScreenshot(dpc.path, 'ebook');
+  const coverImg = await makeScreenshot(dpc.path, `ebook`);
   // to get a cover image .png file, see epub src files in `artifacts` dir after publish
   const config = { coverImg, frontmatter: true };
   const base = edition(dpc)
-    .filename('epub')
-    .replace(/\..*$/, '');
+    .filename(`epub`)
+    .replace(/\..*$/, ``);
 
   log(c`   {gray Creating epub artifact...}`);
-  const [epubManifest] = await manifest.epub(dpc, { ...config, subType: 'epub' });
+  const [epubManifest] = await manifest.epub(dpc, { ...config, subType: `epub` });
   const epub = await artifacts.create(epubManifest, base, { ...opts, check: true });
 
   log(c`   {gray Creating mobi artifact...}`);
-  const [mobiManifest] = await manifest.mobi(dpc, { ...config, subType: 'mobi' });
+  const [mobiManifest] = await manifest.mobi(dpc, { ...config, subType: `mobi` });
   const mobi = await artifacts.create(mobiManifest, base, { ...opts, check: false });
 
-  uploads.set(epub, cloudPath(dpc, 'epub'));
-  uploads.set(mobi, cloudPath(dpc, 'mobi'));
+  uploads.set(epub, cloudPath(dpc, `epub`));
+  uploads.set(mobi, cloudPath(dpc, `mobi`));
 }
 
 function cloudPath(dpc: FsDocPrecursor, type: ArtifactType, volNum?: number): string {
@@ -168,15 +168,15 @@ function cloudPath(dpc: FsDocPrecursor, type: ArtifactType, volNum?: number): st
 
 async function triggerSiteRebuilds(): Promise<void> {
   const { EN_BUILD_HOOK_URI, ES_BUILD_HOOK_URI } = env.require(
-    'EN_BUILD_HOOK_URI',
-    'ES_BUILD_HOOK_URI',
+    `EN_BUILD_HOOK_URI`,
+    `ES_BUILD_HOOK_URI`,
   );
-  const opts = { method: 'POST', body: '{}' };
+  const opts = { method: `POST`, body: `{}` };
   try {
     await Promise.all([fetch(EN_BUILD_HOOK_URI, opts), fetch(ES_BUILD_HOOK_URI, opts)]);
     log(c`{green √} Triggered site re-builds for English and Spanish`);
   } catch (error) {
-    red('Error triggering site deploy');
+    red(`Error triggering site deploy`);
     console.error(error);
     process.exit(1);
   }
@@ -184,21 +184,21 @@ async function triggerSiteRebuilds(): Promise<void> {
 
 function getFileId(dpc: DocPrecursor): string {
   return [
-    dpc.friendInitials.join(''),
+    dpc.friendInitials.join(``),
     dpc.documentSlug,
     dpc.editionType,
     dpc.documentId.substring(0, 8),
-  ].join('--');
+  ].join(`--`);
 }
 
 const getProductionRevision: () => Sha = memoize(() => {
-  const cmd = 'git log --max-count=1 --pretty="%h" -- .';
+  const cmd = `git log --max-count=1 --pretty="%h" -- .`;
   return execSync(cmd, { cwd: process.cwd() })
     .toString()
     .trim();
 });
 
 function edition(dpc: FsDocPrecursor): Edition {
-  if (!dpc.edition) throw new Error('Unexpected lack of Edition on hydrated dpc');
+  if (!dpc.edition) throw new Error(`Unexpected lack of Edition on hydrated dpc`);
   return dpc.edition;
 }

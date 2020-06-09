@@ -13,9 +13,9 @@ const CoverFront: React.FC<Props> = props => {
     <div
       id={`Cover--${props.isbn}`}
       className={wrapClasses(props, [
-        'Cover--front-only',
-        props.className || '',
-        ...(props.shadow ? ['with-shadow'] : []),
+        `Cover--front-only`,
+        props.className || ``,
+        ...(props.shadow ? [`with-shadow`] : []),
       ])}
     >
       <FrontInner {...props} />

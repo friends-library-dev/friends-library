@@ -7,11 +7,11 @@ export default function handler(): void {
     hydrate.entities(dpc);
     hydrate.asciidoc(dpc);
     if (!dpc.edition) {
-      throw new Error('Missing dpc edition entity');
+      throw new Error(`Missing dpc edition entity`);
     }
 
     const signsOfIntake = dpc.asciidoc
-      .split('\n')
+      .split(`\n`)
       .reduce((count: number, line: string) => {
         for (const regex of regexes) {
           if (regex.test(line)) {
@@ -21,7 +21,7 @@ export default function handler(): void {
         return count;
       }, 0);
 
-    const rate = dpc.asciidoc.split('\n').length / signsOfIntake;
+    const rate = dpc.asciidoc.split(`\n`).length / signsOfIntake;
 
     if (rate > 650 && dpc.edition.isDraft === false) {
       log(c`{yellow ${dpc.path}} {gray likely not intaken}`);

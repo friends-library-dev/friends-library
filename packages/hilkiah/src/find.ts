@@ -22,8 +22,8 @@ export interface Ref {
   };
 }
 
-const ROM = '(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})';
-const ARAB = '[\\d]{1,3}';
+const ROM = `(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})`;
+const ARAB = `[\\d]{1,3}`;
 
 function absorbRight(ref: Ref, input: string): Ref {
   const {
@@ -59,7 +59,7 @@ function extractRef(book: string, chapter: number, match: RegExpMatchArray): Ref
   let ref: Ref = {
     book,
     contiguous: true,
-    match: '',
+    match: ``,
     verses: [],
     position: {
       start: match.index,
@@ -96,11 +96,11 @@ export function find(str: string): Ref[] {
   books.forEach(book => {
     let pattern = book.abbreviations
       .concat([book.name])
-      .map(abbrev => abbrev.replace('.', '\\.'))
-      .join('|');
+      .map(abbrev => abbrev.replace(`.`, `\\.`))
+      .join(`|`);
 
     pattern = `(?:${pattern})(?:\\.|,)? (${ARAB}|${ROM})`;
-    const exp = new RegExp(pattern, 'gi');
+    const exp = new RegExp(pattern, `gi`);
     let match;
     while ((match = exp.exec(str))) {
       const chapter = toNumber(match[1]) as number;

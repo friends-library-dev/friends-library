@@ -2,7 +2,7 @@ import { Ref } from './find';
 import { toNumber } from './convert';
 
 // @TODO duplication...
-const ARAB = '[\\d]{1,3}';
+const ARAB = `[\\d]{1,3}`;
 const ADD = `(?:, ?(${ARAB}))?`;
 const CSV = `${ADD}${ADD}${ADD}${ADD}${ADD}${ADD}`;
 

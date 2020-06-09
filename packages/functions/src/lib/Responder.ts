@@ -15,7 +15,7 @@ export default class Responder {
       statusCode,
       body: JSON.stringify(body),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': `application/json`,
       },
     });
   }
@@ -38,7 +38,7 @@ export default class Responder {
       statusCode,
       body: text,
       headers: {
-        'Content-Type': 'text/plain',
+        'Content-Type': `text/plain`,
       },
     });
   }
@@ -48,7 +48,7 @@ export default class Responder {
       statusCode,
       body: html,
       headers: {
-        'Content-Type': 'text/html',
+        'Content-Type': `text/html`,
       },
     });
   }
@@ -56,11 +56,11 @@ export default class Responder {
   public notFound(): void {
     this.callback(null, {
       statusCode: 404,
-      body: 'Not Found',
+      body: `Not Found`,
     });
   }
 
   public clientError(msg?: string): void {
-    this.callback(null, { statusCode: 400, body: msg || '' });
+    this.callback(null, { statusCode: 400, body: msg || `` });
   }
 }

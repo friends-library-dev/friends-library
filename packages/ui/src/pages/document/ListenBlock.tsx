@@ -28,7 +28,7 @@ interface Props {
 }
 
 const ListenBlock: React.FC<Props> = props => {
-  const [quality, setQuality] = useState<AudioQuality>('HQ');
+  const [quality, setQuality] = useState<AudioQuality>(`HQ`);
   const {
     trackIdLq,
     trackIdHq,
@@ -41,7 +41,7 @@ const ListenBlock: React.FC<Props> = props => {
   useEffect(() => {
     // @ts-ignore
     if (window.navigator?.connection?.downlink < 2.5) {
-      setQuality('LQ');
+      setQuality(`LQ`);
     }
   }, []);
 
@@ -49,8 +49,8 @@ const ListenBlock: React.FC<Props> = props => {
     <WaveBottomBlock
       color="maroon"
       className={cx(
-        'ListenBlock z-10 bg-flgray-100 pt-8 pb-12 py-12',
-        'sm:p-16 lg:flex items-start lg:p-0',
+        `ListenBlock z-10 bg-flgray-100 pt-8 pb-12 py-12`,
+        `sm:p-16 lg:flex items-start lg:p-0`,
       )}
     >
       <DownloadAudiobook
@@ -62,24 +62,24 @@ const ListenBlock: React.FC<Props> = props => {
       <div className="flex-grow lg:ml-8 xl:max-w-screen-md xl:mx-auto">
         <h3
           className={cx(
-            'text-2xl tracking-wide text-center my-6',
-            'sm:mb-16 sm:text-black',
-            'lg:mb-0 lg:text-left xl:pt-6',
+            `text-2xl tracking-wide text-center my-6`,
+            `sm:mb-16 sm:text-black`,
+            `lg:mb-0 lg:text-left xl:pt-6`,
             {
               'text-white': !playlistIdLq,
               'text-black': !!playlistIdLq,
             },
           )}
         >
-          {LANG === 'en' && (
+          {LANG === `en` && (
             <span className="italic lowercase font-serif font-normal pr-1">Or</span>
           )}
           {t`Listen online`}
         </h3>
         <div className="flex flex-col items-center shadow-xl mt-8 mx-6 sm:mb-8 lg:ml-0">
           <EmbeddedAudio
-            trackId={quality === 'HQ' ? trackIdHq : trackIdLq}
-            playlistId={quality === 'HQ' ? playlistIdHq : playlistIdLq}
+            trackId={quality === `HQ` ? trackIdHq : trackIdLq}
+            playlistId={quality === `HQ` ? playlistIdHq : playlistIdLq}
             height={
               playlistIdLq
                 ? SC_MAIN_SECTION_HEIGHT +

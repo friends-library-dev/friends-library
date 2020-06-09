@@ -1,7 +1,7 @@
 import { price, choosePrintSize } from '../';
 import { PageData, PrintSize } from '@friends-library/types';
 
-describe('choosePrintSize()', () => {
+describe(`choosePrintSize()`, () => {
   const singleCases: [PageData['single'], [PrintSize, boolean]][] = [
     [
       {
@@ -10,7 +10,7 @@ describe('choosePrintSize()', () => {
         xl: 550,
         'xl--condensed': 530,
       },
-      ['xl', false],
+      [`xl`, false],
     ],
     [
       {
@@ -19,7 +19,7 @@ describe('choosePrintSize()', () => {
         xl: 750,
         'xl--condensed': 690,
       },
-      ['xl', true],
+      [`xl`, true],
     ],
     [
       {
@@ -28,7 +28,7 @@ describe('choosePrintSize()', () => {
         xl: 350,
         'xl--condensed': 200,
       },
-      ['m', false],
+      [`m`, false],
     ],
     [
       {
@@ -37,12 +37,12 @@ describe('choosePrintSize()', () => {
         xl: 44,
         'xl--condensed': 40,
       },
-      ['s', false],
+      [`s`, false],
     ],
   ];
 
   test.each(singleCases)(
-    'non-volumed data should produce correct size and condense',
+    `non-volumed data should produce correct size and condense`,
     (single, result) => {
       expect(choosePrintSize(single, undefined)).toMatchObject(result);
     },
@@ -55,12 +55,12 @@ describe('choosePrintSize()', () => {
         xl: [550, 550],
         'xl--condensed': [500, 500],
       },
-      ['xl', false],
+      [`xl`, false],
     ],
   ];
 
   test.each(splitCases)(
-    'volumed data should produce correct size and condense',
+    `volumed data should produce correct size and condense`,
     (split, result) => {
       const single = { s: 5, m: 5, xl: 5, 'xl--condensed': 5 };
       expect(choosePrintSize(single, split)).toMatchObject(result);
@@ -68,17 +68,17 @@ describe('choosePrintSize()', () => {
   );
 });
 
-describe('price()', () => {
+describe(`price()`, () => {
   const priceCases: [number, PrintSize, number[]][] = [
-    [214, 's', [10]],
-    [265, 's', [100]],
-    [265, 'm', [100]],
-    [405, 'm', [200]],
-    [685, 'xl', [400]],
+    [214, `s`, [10]],
+    [265, `s`, [100]],
+    [265, `m`, [100]],
+    [405, `m`, [200]],
+    [685, `xl`, [400]],
   ];
 
   test.each(priceCases)(
-    '.price() is %d for size: %s, pages: %d',
+    `.price() is %d for size: %s, pages: %d`,
     (expectedPrice, printSize, numPages) => {
       expect(price(printSize, numPages)).toBe(expectedPrice);
     },

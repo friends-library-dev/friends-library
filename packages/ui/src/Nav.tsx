@@ -24,8 +24,8 @@ const Nav: React.FC<Props> = ({
   showCartBadge,
 }) => {
   const [searching, setSearching] = useState<boolean>(initialSearching || false);
-  useEscapeable('.TopNavSearch', searching, setSearching);
-  const Logo = LANG === 'es' ? AmigosLogo : FriendsLogo;
+  useEscapeable(`.TopNavSearch`, searching, setSearching);
+  const Logo = LANG === `es` ? AmigosLogo : FriendsLogo;
 
   useEffect(() => {
     const vimActivate: (e: KeyboardEvent) => any = e => {
@@ -34,28 +34,28 @@ const Nav: React.FC<Props> = ({
         setSearching(true);
       }
     };
-    document.addEventListener('keydown', vimActivate);
+    document.addEventListener(`keydown`, vimActivate);
     return () => {
-      window.removeEventListener('keydown', vimActivate);
+      window.removeEventListener(`keydown`, vimActivate);
     };
   }, [searching, setSearching]);
 
   return (
     <nav
-      className={cx('Nav flex bg-white border-gray-300 border-b', {
+      className={cx(`Nav flex bg-white border-gray-300 border-b`, {
         searching,
         'showing-cart': showCartBadge,
       })}
     >
       <Hamburger
         onClick={onHamburgerClick}
-        className={cx('flex-grow-0', {
+        className={cx(`flex-grow-0`, {
           'mr-6': !searching,
           'mr-0 sm:mr-6': searching,
         })}
       />
       <Link
-        className={cx('m-0 sm:inline mr-4 sm:mr-0', {
+        className={cx(`m-0 sm:inline mr-4 sm:mr-0`, {
           'hidden flex-grow-0': searching,
           'flex-grow': !searching,
         })}
@@ -67,7 +67,7 @@ const Nav: React.FC<Props> = ({
       {showCartBadge && (
         <div
           className={cx(
-            'ml-2 flex-col justify-center items-end flex-growx sm:flex-grow-0',
+            `ml-2 flex-col justify-center items-end flex-growx sm:flex-grow-0`,
             {
               'hidden sm:flex': searching,
               flex: !searching,

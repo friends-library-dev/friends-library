@@ -16,8 +16,8 @@ import { Seo, Layout } from '../components';
 const FriendsPage: React.FC<Props> = ({
   data: { allFriend, recent, street, village },
 }) => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortOption, setSortOption] = useState<string>('First Name');
+  const [searchQuery, setSearchQuery] = useState<string>(``);
+  const [sortOption, setSortOption] = useState<string>(`First Name`);
   const filteredFriends = allFriend.nodes
     .sort(makeSorter(sortOption))
     .filter(makeFilter(searchQuery, sortOption));
@@ -54,7 +54,7 @@ const FriendsPage: React.FC<Props> = ({
       <div className="bg-flgray-200 flex justify-center">
         <div
           className="flex flex-wrap max-w-screen-xl justify-center pb-12 lg:pb-20"
-          style={{ minHeight: '30vh' }}
+          style={{ minHeight: `30vh` }}
         >
           {filteredFriends.length === 0 && (
             <p className="self-center sans-wide text-lg pt-10 text-gray-800">
@@ -83,7 +83,7 @@ function cardProps(
 ): React.ComponentProps<typeof FriendCard> & { key: string } {
   return {
     key: friend.url,
-    color: ['flblue', 'flgreen', 'flmaroon', 'flgold'][idx % 4],
+    color: [`flblue`, `flgreen`, `flmaroon`, `flgold`][idx % 4],
     name: friend.name,
     region: `${friend.primaryResidence.city}, ${friend.primaryResidence.region}`,
     born: friend.born || undefined,
@@ -98,13 +98,13 @@ function makeSorter(
   sortOption: string,
 ): (friendA: FriendData, friendB: FriendData) => 1 | 0 | -1 {
   switch (sortOption) {
-    case 'Death Date':
+    case `Death Date`:
       return (a, b) => ((a?.died || 0) < (b?.died || 0) ? -1 : 1);
-    case 'Birth Date':
+    case `Birth Date`:
       return (a, b) => ((a?.born || 0) < (b?.born || 0) ? -1 : 1);
-    case 'Last Name':
+    case `Last Name`:
       return (a, b) =>
-        (a.name.split(' ').pop() || '') < (b.name.split(' ').pop() || '') ? -1 : 1;
+        (a.name.split(` `).pop() || ``) < (b.name.split(` `).pop() || ``) ? -1 : 1;
     default:
       return (a, b) => (a.name < b.name ? -1 : 1);
   }
@@ -112,14 +112,14 @@ function makeSorter(
 
 function makeFilter(query: string, sortOption: string): (friend: FriendData) => boolean {
   return friend => {
-    if (sortOption === 'Death Date' && !friend.died) {
+    if (sortOption === `Death Date` && !friend.died) {
       return false;
     }
-    if (sortOption === 'Birth Date' && !friend.born) {
+    if (sortOption === `Birth Date` && !friend.born) {
       return false;
     }
     return (
-      query.trim() === '' ||
+      query.trim() === `` ||
       friend.name.toLowerCase().includes(query.trim().toLowerCase())
     );
   };

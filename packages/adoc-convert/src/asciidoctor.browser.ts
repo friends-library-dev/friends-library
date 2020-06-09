@@ -1,6 +1,6 @@
 // @ts-ignore
-if (typeof window.Asciidoctor !== 'function') {
-  throw new Error('Asciidoctor.js must be loaded via a script tag');
+if (typeof window.Asciidoctor !== `function`) {
+  throw new Error(`Asciidoctor.js must be loaded via a script tag`);
 }
 
 let instance: any;

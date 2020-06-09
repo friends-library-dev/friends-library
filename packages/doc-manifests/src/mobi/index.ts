@@ -13,10 +13,10 @@ export default async function mobi(
 export function mobiFromEbook(manifests: FileManifest[]): FileManifest[] {
   return manifests.map(manifest => {
     return mapValues(manifest, content => {
-      if (typeof content !== 'string') return content;
+      if (typeof content !== `string`) return content;
       return content.replace(
         /<meta charset="UTF-8"\/>/gm,
-        '<meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8"/>',
+        `<meta http-equiv="Content-Type" content="application/xml+xhtml; charset=UTF-8"/>`,
       );
     });
   });

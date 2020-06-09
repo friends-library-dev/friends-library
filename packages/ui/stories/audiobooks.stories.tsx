@@ -4,9 +4,9 @@ import { coverSizes } from './decorators';
 import { props as coverProps } from './cover.stories';
 import Audiobook from '../src/pages/audiobooks/Audiobook';
 
-storiesOf('Audiobooks Page', module)
+storiesOf(`Audiobooks Page`, module)
   .addDecorator(coverSizes)
-  .add('Audiobook', () => (
+  .add(`Audiobook`, () => (
     <Audiobook
       {...coverProps}
       bgColor="blue"

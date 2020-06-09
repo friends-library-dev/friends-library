@@ -26,8 +26,8 @@ export async function handler({ exclude }: Argv): Promise<void> {
   green(`Synced github action workflow files for ${repoPaths.length} repos`);
 }
 
-export const command = 'workflows';
+export const command = `workflows`;
 
-export const describe = 'Syncs github action workflow files to all doc repos';
+export const describe = `Syncs github action workflow files to all doc repos`;
 
 export const builder: { [key: string]: Options } = excludable;

@@ -12,7 +12,7 @@ import Work from './components/Work';
 import Preview from './components/Preview';
 import { State, Dispatch } from './type';
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === `development`;
 
 const scrollCss = css`
   ::-webkit-scrollbar {
@@ -44,10 +44,10 @@ class App extends React.Component<Props> {
   public componentDidMount(): void {
     const { receiveAccessToken } = this.props;
     const query = new URLSearchParams(window.location.search);
-    if (query.has('access_token')) {
-      receiveAccessToken(query.get('access_token'));
+    if (query.has(`access_token`)) {
+      receiveAccessToken(query.get(`access_token`));
       // wait for indexeddb to store query token before refreshing
-      Promise.resolve().then(() => window.location.replace('/'));
+      Promise.resolve().then(() => window.location.replace(`/`));
     }
   }
 
@@ -73,9 +73,9 @@ class App extends React.Component<Props> {
     }
 
     const query = new URLSearchParams(window.location.search);
-    if (query.get('preview') && query.get('task') && query.get('file')) {
-      const taskId = query.get('task') as string;
-      const file = query.get('file') as string;
+    if (query.get(`preview`) && query.get(`task`) && query.get(`file`)) {
+      const taskId = query.get(`task`) as string;
+      const file = query.get(`file`) as string;
       return <Preview taskId={taskId} file={file} />;
     }
 
@@ -83,8 +83,8 @@ class App extends React.Component<Props> {
       <>
         <Global styles={scrollCss} />
         <TopNav />
-        <div style={{ height: 'calc(100vh - 50px)' }}>{this.renderScreen()}</div>
-        {isDev && <KeyEvent handleKeys={['meta+ctrl+1']} onKeyEvent={hardReset} />}
+        <div style={{ height: `calc(100vh - 50px)` }}>{this.renderScreen()}</div>
+        {isDev && <KeyEvent handleKeys={[`meta+ctrl+1`]} onKeyEvent={hardReset} />}
       </>
     );
   }

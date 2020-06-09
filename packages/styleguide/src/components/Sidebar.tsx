@@ -43,12 +43,12 @@ interface ItemProps {
 const Item: React.FC<ItemProps> = ({ text, href }) => {
   return (
     <li>
-      <a href={`#${href || text.toLowerCase().replace(/ /g, '-')}`}>{text}</a>
+      <a href={`#${href || text.toLowerCase().replace(/ /g, `-`)}`}>{text}</a>
     </li>
   );
 };
 
-Item.defaultProps = { href: '' };
+Item.defaultProps = { href: `` };
 
 const Sidebar: React.FC = () => (
   <StyledSidebar>
@@ -60,13 +60,13 @@ const Sidebar: React.FC = () => (
     <h1
       style={{
         fontSize: 17.5,
-        lineHeight: '1.3em',
-        position: 'absolute',
+        lineHeight: `1.3em`,
+        position: `absolute`,
         top: 5,
         left: 135,
-        color: '#222',
+        color: `#222`,
         opacity: 0.8,
-        fontFamily: 'Georgia',
+        fontFamily: `Georgia`,
         fontWeight: 200,
       }}
     >
@@ -76,7 +76,7 @@ const Sidebar: React.FC = () => (
       <br />
       Publishing
       <br />
-      <i style={{ color: '#d62529' }}>Styleguide</i>
+      <i style={{ color: `#d62529` }}>Styleguide</i>
     </h1>
     <ul style={{ marginTop: 30 }}>
       <Item text="Emphasis" />

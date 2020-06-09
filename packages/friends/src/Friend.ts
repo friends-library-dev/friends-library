@@ -48,7 +48,7 @@ export default class Friend {
   }
 
   public get isMale(): boolean {
-    return this.data.gender === 'male';
+    return this.data.gender === `male`;
   }
 
   public get isFemale(): boolean {
@@ -56,14 +56,14 @@ export default class Friend {
   }
 
   public get isCompilationsQuasiFriend(): boolean {
-    return this.slug.startsWith('compila');
+    return this.slug.startsWith(`compila`);
   }
 
   public get primaryResidence(): Omit<FriendData['residences'][0], 'duration'> {
     if (this.isCompilationsQuasiFriend) {
       return {
-        city: 'mixed (compilation)',
-        region: 'mixed (compilation)',
+        city: `mixed (compilation)`,
+        region: `mixed (compilation)`,
       };
     }
 
@@ -95,8 +95,8 @@ export default class Friend {
   }
 
   public get alphabeticalName(): string {
-    const parts = this.data.name.split(' ');
-    return `${parts.pop()}, ${parts.join(' ')}`;
+    const parts = this.data.name.split(` `);
+    return `${parts.pop()}, ${parts.join(` `)}`;
   }
 
   public get hasNonDraftDocument(): boolean {

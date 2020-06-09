@@ -6,7 +6,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '') {
+  if (line === ``) {
     return [];
   }
 
@@ -20,14 +20,14 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: match.index ? match.index + 1 : 0,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Libre Office ref artifacts must be removed',
+      message: `Libre Office ref artifacts must be removed`,
       fixable: true,
-      recommendation: line.replace(regex, ''),
+      recommendation: line.replace(regex, ``),
     },
   ];
 };
 
-rule.slug = 'libre-office-artifacts';
+rule.slug = `libre-office-artifacts`;
 export default rule;

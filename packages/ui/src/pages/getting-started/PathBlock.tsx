@@ -32,7 +32,7 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
       color={color}
       className={cx(
         `PathBlock PathBlock--${slug} p-12 text-fl${color}`,
-        books.length <= page * PAGE_SIZE && 'pb-10',
+        books.length <= page * PAGE_SIZE && `pb-10`,
       )}
     >
       <h2 className="heading-text mb-6">{title}</h2>

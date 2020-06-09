@@ -17,16 +17,18 @@ const UnrecoverableError: React.FC<Props> = ({ onRetry, onClose }) => (
     <ErrorMsg>
       <span role="img" aria-label="">
         😬
-      </span>{' '}
+      </span>
+      {` `}
       <Dual.frag>
         <>
           Whoops! We’re very sorry &mdash; the checkout process encountered a rare and
           unexpected error. Don’t worry, your credit card <i>was not charged.</i> Please
           try your order again in a few moments. Our team has already been notified of the
-          error. If the problem persists, please{' '}
+          error. If the problem persists, please{` `}
           <Link to={t`/contact`} className="underline">
             contact us
-          </Link>{' '}
+          </Link>
+          {` `}
           to get help completing your order.
         </>
         <>
@@ -34,10 +36,11 @@ const UnrecoverableError: React.FC<Props> = ({ onRetry, onClose }) => (
           raro e inesperado. No te preocupes, no se ha emitido ningún cargo a tu tarjeta
           de crédito. Por favor intenta hacer el pedido otra vez en unos momentos. Nuestro
           equipo ya ha sido notificado sobre este error. Si el problema persiste, por
-          favor{' '}
+          favor{` `}
           <Link to={t`/contact`} className="underline">
             contáctanos
-          </Link>{' '}
+          </Link>
+          {` `}
           para que puedas recibir ayuda para completar tu pedido..
         </>
       </Dual.frag>

@@ -32,7 +32,7 @@ const Spine: React.FC<Props> = ({
   size,
   scaler = 1,
 }) => {
-  const Diamond = Diamonds[lang === 'es' ? 'spanish' : edition];
+  const Diamond = Diamonds[lang === `es` ? `spanish` : edition];
   const width = pdfSpineWidth(pages) * scaler;
   const style = Object.assign({}, { width: `${width}in` }, styles || {});
   const fragments = getHtmlFragments(customHtml);
@@ -42,15 +42,15 @@ const Spine: React.FC<Props> = ({
       <LogoIcon />
       <Diamond />
       {overridable(
-        'spine__title',
+        `spine__title`,
         fragments,
         <div
           className="spine__title"
-          dangerouslySetInnerHTML={{ __html: prepareTitle(title, author, 'spine') }}
+          dangerouslySetInnerHTML={{ __html: prepareTitle(title, author, `spine`) }}
         />,
       )}
       {overridable(
-        'spine__author',
+        `spine__author`,
         fragments,
         <div
           className="spine__author"
@@ -58,7 +58,7 @@ const Spine: React.FC<Props> = ({
             display: spineAuthorDisplay(title, author, size, isCompilation),
           }}
         >
-          {author.split(' ').pop()}
+          {author.split(` `).pop()}
         </div>,
       )}
       {showGuides && (
@@ -75,10 +75,10 @@ const Spine: React.FC<Props> = ({
 export default Spine;
 
 function spineClasses(pages: number): string {
-  const classes = ['spine has-bg'];
+  const classes = [`spine has-bg`];
   const rounded = Math.floor(pages / 10) * 10;
   for (let i = 120; i <= 180; i += 20) {
     rounded < i && classes.push(`spine--pgs-lt-${i}`);
   }
-  return classes.join(' ');
+  return classes.join(` `);
 }

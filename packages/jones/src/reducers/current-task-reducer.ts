@@ -15,7 +15,7 @@ export default createReducer(null, {
   },
 
   CHANGE_SCREEN: (state: Uuid | null, action: Action) => {
-    if (action.payload === 'TASKS') {
+    if (action.payload === `TASKS`) {
       return null;
     }
     return state;

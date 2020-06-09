@@ -41,11 +41,11 @@ const Div = styled.div`
 
 const Component: React.FC = () => {
   const url = [
-    'https://github.com/login/oauth/authorize',
-    `?client_id=${process.env.REACT_APP_OAUTH_CLIENT_ID || ''}`,
-    '&scope=repo,read:user',
-    '&state=894c5e7f-c83f-4bd3-b299-47b754d9b506',
-  ].join('');
+    `https://github.com/login/oauth/authorize`,
+    `?client_id=${process.env.REACT_APP_OAUTH_CLIENT_ID || ``}`,
+    `&scope=repo,read:user`,
+    `&state=894c5e7f-c83f-4bd3-b299-47b754d9b506`,
+  ].join(``);
 
   return (
     <Div>
@@ -55,10 +55,12 @@ const Component: React.FC = () => {
             src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
             alt="github logo"
           />
-          To use the <i>Friends Library Editor,</i> you'll need to login with a (free){' '}
+          To use the <i>Friends Library Editor,</i> you'll need to login with a (free)
+          {` `}
           <a href="https://github.com" target="_blank" rel="noopener noreferrer">
             GitHub
-          </a>{' '}
+          </a>
+          {` `}
           account.
         </p>
         <Button className="login-btn" href={url}>

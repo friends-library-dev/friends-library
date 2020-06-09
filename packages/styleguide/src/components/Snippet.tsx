@@ -56,8 +56,7 @@ const StyledDiv = styled.div`
   }
 `;
 
-const logo =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/131px-Atom_editor_logo.svg.png';
+const logo = `https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/131px-Atom_editor_logo.svg.png`;
 
 interface Props {
   trigger: string;
@@ -69,21 +68,22 @@ const Snippet: React.FC<Props> = ({ trigger, expansion, acronym }) => (
   <StyledDiv>
     <img src={logo} alt="" />
     <p>
-      The snippet <code className="trigger">{trigger}</code>{' '}
-      <Acronym text={acronym || ''} /> will expand to <Expansion expansion={expansion} />
+      The snippet <code className="trigger">{trigger}</code>
+      {` `}
+      <Acronym text={acronym || ``} /> will expand to <Expansion expansion={expansion} />
     </p>
   </StyledDiv>
 );
 
-Snippet.defaultProps = { acronym: '' };
+Snippet.defaultProps = { acronym: `` };
 
 export default Snippet;
 
 const Expansion: React.FC<{ expansion: string }> = ({ expansion }) => {
   const html = expansion
-    .split('\n')
+    .split(`\n`)
     .map(part => `<span class="expansion">${part}</span>`)
-    .join(' and ');
+    .join(` and `);
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
@@ -91,15 +91,15 @@ const Acronym: React.FC<{ text: string }> = ({ text }) => {
   if (!text) {
     return <></>;
   }
-  const parts = text.split(' ');
+  const parts = text.split(` `);
   const inner = parts.reduce((acc, part, index) => {
     acc += `<span class="first-letter">${part[0]}</span>`;
     acc += part.substr(1);
     if (index < parts.length - 1) {
-      acc += ' ';
+      acc += ` `;
     }
     return acc;
-  }, '');
+  }, ``);
   const html = `(${inner})`;
   return <span className="acronym" dangerouslySetInnerHTML={{ __html: html }} />;
 };

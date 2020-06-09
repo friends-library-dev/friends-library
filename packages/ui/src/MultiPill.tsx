@@ -14,17 +14,17 @@ interface Props {
 }
 const MultiPill: React.FC<Props> = ({ buttons, className }) => {
   return (
-    <div className={cx(className, 'MultiPill md:flex')}>
+    <div className={cx(className, `MultiPill md:flex`)}>
       {buttons.map((button, idx) => (
         <Button
           key={button.text}
           {...(button.onClick ? { onClick: button.onClick } : {})}
-          width={LANG === 'en' ? 280 : idx === 1 ? 320 : 260}
+          width={LANG === `en` ? 280 : idx === 1 ? 320 : 260}
           bg={null}
           className={cx(
             // purgeCSS: bg-flmaroon-600 bg-flmaroon-500 bg-flmaroon-400
             // purgeCSS: bg-flgold-600 bg-flgold-500 bg-flgold-400
-            `bg-fl${LANG === 'en' ? 'maroon' : 'gold'}-${[600, 500, 400][idx]}`,
+            `bg-fl${LANG === `en` ? `maroon` : `gold`}-${[600, 500, 400][idx]}`,
             // purgeCSS: z-30 z-20 z-10
             `z-${[30, 20, 10][idx]}`,
             {

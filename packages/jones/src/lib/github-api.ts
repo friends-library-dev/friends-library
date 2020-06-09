@@ -3,16 +3,16 @@ import { Base64 } from 'js-base64';
 import { Slug, Sha, Lang } from '@friends-library/types';
 import { Task, File } from '../type';
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === `development`;
 
-let GITHUB_ORG = 'friends-library';
+let GITHUB_ORG = `friends-library`;
 if (process.env.REACT_APP_GITHUB_ORG) {
   GITHUB_ORG = process.env.REACT_APP_GITHUB_ORG;
-} else if (process.env.REACT_APP_NETLIFY_CONTEXT === 'deploy-preview' || isDev) {
-  GITHUB_ORG = 'friends-library-sandbox';
+} else if (process.env.REACT_APP_NETLIFY_CONTEXT === `deploy-preview` || isDev) {
+  GITHUB_ORG = `friends-library-sandbox`;
 }
 export const ORG = GITHUB_ORG;
-export const LANG: Lang = ORG === 'biblioteca-de-los-amigos' ? 'es' : 'en';
+export const LANG: Lang = ORG === `biblioteca-de-los-amigos` ? `es` : `en`;
 
 type RepoSlug = string;
 type BranchName = string;
@@ -42,12 +42,12 @@ export async function pullRequestStatus(
 ): Promise<'open' | 'merged' | 'closed'> {
   const res = await gh.pulls.get({ owner: ORG, repo, pull_number: number });
   if (res.data.merged_at !== null) {
-    return 'merged';
+    return `merged`;
   }
   if (res.data.closed_at !== null) {
-    return 'closed';
+    return `closed`;
   }
-  return 'open';
+  return `open`;
 }
 
 export async function getFriendRepos(): Promise<Record<string, any>[]> {
@@ -58,15 +58,15 @@ export async function getFriendRepos(): Promise<Record<string, any>[]> {
 export async function getRepoSlug(repoId: number): Promise<Slug> {
   const {
     data: { name: slug },
-  } = await req('/repositories/:id', { id: repoId });
+  } = await req(`/repositories/:id`, { id: repoId });
   return slug;
 }
 
 export async function getHeadSha(
   repo: RepoSlug,
-  branch: BranchName = 'master',
+  branch: BranchName = `master`,
 ): Promise<Sha> {
-  const response = await req('/repos/:owner/:repo/git/refs/:ref', {
+  const response = await req(`/repos/:owner/:repo/git/refs/:ref`, {
     repo,
     ref: `heads/${branch}`,
   });
@@ -83,7 +83,7 @@ export async function getAdocFiles(repo: RepoSlug, sha: Sha): Promise<GitFile[]>
   const filePromises = tree.filter(isAsciidoc).map(async blob => {
     const {
       data: { content },
-    } = await req('/repos/:owner/:repo/git/blobs/:sha', {
+    } = await req(`/repos/:owner/:repo/git/blobs/:sha`, {
       repo,
       sha: blob.sha,
     });
@@ -109,7 +109,7 @@ export async function getTree(
 > {
   const {
     data: { tree },
-  } = await req('/repos/:owner/:repo/git/trees/:sha?recursive=1', {
+  } = await req(`/repos/:owner/:repo/git/trees/:sha?recursive=1`, {
     repo,
     sha,
   });
@@ -117,7 +117,7 @@ export async function getTree(
 }
 
 async function createFork(repo: RepoSlug, user: string): Promise<void> {
-  await req('POST /repos/:owner/:repo/forks', {
+  await req(`POST /repos/:owner/:repo/forks`, {
     repo,
   });
   return new Promise(resolve => {
@@ -133,7 +133,7 @@ async function createFork(repo: RepoSlug, user: string): Promise<void> {
 
 async function hasFork(repo: RepoSlug, user: string): Promise<boolean> {
   try {
-    await req('/repos/:owner/:repo', {
+    await req(`/repos/:owner/:repo`, {
       owner: user,
       repo,
     });
@@ -144,16 +144,16 @@ async function hasFork(repo: RepoSlug, user: string): Promise<boolean> {
 }
 
 async function syncFork(repo: RepoSlug, user: string): Promise<void> {
-  const upstream = await req('/repos/:owner/:repo/git/refs/:ref', {
+  const upstream = await req(`/repos/:owner/:repo/git/refs/:ref`, {
     repo,
-    ref: 'heads/master',
+    ref: `heads/master`,
   });
 
-  await req('PATCH /repos/:owner/:repo/git/refs/:ref', {
+  await req(`PATCH /repos/:owner/:repo/git/refs/:ref`, {
     sha: upstream.data.object.sha,
     owner: user,
     repo,
-    ref: 'heads/master',
+    ref: `heads/master`,
   });
 }
 
@@ -166,7 +166,7 @@ export async function ensureSyncedFork(repo: RepoSlug, user: string): Promise<vo
 }
 
 export async function addCommit(task: Task /*, user: string */): Promise<Sha> {
-  const { parentCommit = '', repoId, id, files } = task;
+  const { parentCommit = ``, repoId, id, files } = task;
   const branchName = `task-${id}`;
   const repo = await getRepoSlug(repoId);
   const baseTreeSha = await getTreeSha(repo, parentCommit);
@@ -181,7 +181,7 @@ export async function createNewPullRequest(
   task: Task,
   user: string,
 ): Promise<{ number: number; commit: Sha }> {
-  const { parentCommit = '', repoId, id, files } = task;
+  const { parentCommit = ``, repoId, id, files } = task;
   const branchName = `task-${id}`;
   const repo = await getRepoSlug(repoId);
   // create branch WITHIN org for now, because lint action doesn't have
@@ -208,12 +208,12 @@ async function openPullRequest(
   const body = getPrBody(user);
   const {
     data: { number },
-  } = await req('POST /repos/:owner/:repo/pulls', {
+  } = await req(`POST /repos/:owner/:repo/pulls`, {
     repo,
     title,
     owner: ORG,
     head: branch, // fork: `${user}:${branch}`,
-    base: 'master',
+    base: `master`,
     body,
     maintainer_can_modify: true,
   });
@@ -223,13 +223,13 @@ async function openPullRequest(
 function getPrBody(user: string): string {
   if (
     isDev ||
-    ORG !== 'friends-library' ||
-    user === 'jaredh159' ||
-    user === 'Henderjay'
+    ORG !== `friends-library` ||
+    user === `jaredh159` ||
+    user === `Henderjay`
   ) {
-    return '';
+    return ``;
   }
-  return '@jaredh159 @Henderjay';
+  return `@jaredh159 @Henderjay`;
 }
 
 async function updateHead(
@@ -238,7 +238,7 @@ async function updateHead(
   sha: Sha,
   owner: string = ORG,
 ): Promise<void> {
-  await req('PATCH /repos/:owner/:repo/git/refs/:ref', {
+  await req(`PATCH /repos/:owner/:repo/git/refs/:ref`, {
     repo,
     owner,
     ref: `heads/${branch}`,
@@ -255,7 +255,7 @@ async function createCommit(
 ): Promise<Sha> {
   const {
     data: { sha },
-  } = await req('POST /repos/:owner/:repo/git/commits', {
+  } = await req(`POST /repos/:owner/:repo/git/commits`, {
     owner,
     repo,
     message,
@@ -273,7 +273,7 @@ async function createTree(
 ): Promise<Sha> {
   const {
     data: { sha },
-  } = await req('POST /repos/:owner/:repo/git/trees', {
+  } = await req(`POST /repos/:owner/:repo/git/trees`, {
     repo,
     owner,
     base_tree: baseTreeSha,
@@ -281,8 +281,8 @@ async function createTree(
       .filter(validContent)
       .map(f => ({
         path: f.path,
-        mode: '100644',
-        type: 'blob',
+        mode: `100644`,
+        type: `blob`,
         content: f.editedContent,
       })),
   });
@@ -293,7 +293,7 @@ function validContent(file: File): boolean {
   if (!file.editedContent) {
     return false;
   }
-  if (file.editedContent === 'null') {
+  if (file.editedContent === `null`) {
     return false;
   }
   return true;
@@ -322,7 +322,7 @@ export async function getTreeSha(
   sha: Sha,
   owner: string = ORG,
 ): Promise<Sha> {
-  const res = await req('/repos/:owner/:repo/git/commits/:sha', {
+  const res = await req(`/repos/:owner/:repo/git/commits/:sha`, {
     owner,
     repo,
     sha,
@@ -338,5 +338,5 @@ export async function req(route: string, opts: any = {}): Promise<any> {
 }
 
 function isAsciidoc(node: { type: string; path: string }): boolean {
-  return node.type === 'blob' && !!node.path.match(/\.adoc$/);
+  return node.type === `blob` && !!node.path.match(/\.adoc$/);
 }

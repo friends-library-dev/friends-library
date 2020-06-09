@@ -4,7 +4,7 @@ export default class DocumentMeta {
   public constructor(private data: Record<string, EditionMeta>) {}
 
   public has(id: string): boolean {
-    return typeof this.data[id] !== 'undefined';
+    return typeof this.data[id] !== `undefined`;
   }
 
   public get(id: string): EditionMeta | null {

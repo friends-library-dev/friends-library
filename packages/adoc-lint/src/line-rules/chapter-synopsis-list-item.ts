@@ -6,11 +6,11 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line[0] !== '[' || line[1] !== '.' || line[line.length - 1] !== ']') {
+  if (line[0] !== `[` || line[1] !== `.` || line[line.length - 1] !== `]`) {
     return [];
   }
 
-  if (!line.includes('.chapter-synopsis')) {
+  if (!line.includes(`.chapter-synopsis`)) {
     return [];
   }
 
@@ -23,13 +23,13 @@ const rule: LineRule = (
       results.push({
         line: index + 1,
         column: 1,
-        type: 'error',
+        type: `error`,
         rule: rule.slug,
-        message: 'Chapter synopsis list items must begin with exactly `* `',
+        message: `Chapter synopsis list items must begin with exactly \`* \``,
         recommendation: nextLine
-          .replace(/^\*+/, '')
-          .replace(/^ +/, '')
-          .replace(/^/, '* '),
+          .replace(/^\*+/, ``)
+          .replace(/^ +/, ``)
+          .replace(/^/, `* `),
         fixable: false,
       });
     }
@@ -40,5 +40,5 @@ const rule: LineRule = (
   return results;
 };
 
-rule.slug = 'chapter-synopsis-list-item';
+rule.slug = `chapter-synopsis-list-item`;
 export default rule;

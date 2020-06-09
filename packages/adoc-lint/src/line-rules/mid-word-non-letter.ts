@@ -8,8 +8,8 @@ const rule: LineRule = (
   lineNumber: number,
 ): LintResult[] => {
   if (
-    line === '' ||
-    line === '{footnote-paragraph-split}' ||
+    line === `` ||
+    line === `{footnote-paragraph-split}` ||
     isAsciidocBracketLine(line)
   ) {
     return [];
@@ -19,21 +19,21 @@ const rule: LineRule = (
   let match;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {
-    if (match[0].endsWith('] ') || match[0].endsWith('* ')) {
+    if (match[0].endsWith(`] `) || match[0].endsWith(`* `)) {
       continue;
     }
 
     results.push({
       line: lineNumber,
       column: match.index + 2,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Unexpected mid-word non-letter (probably a scan error)',
+      message: `Unexpected mid-word non-letter (probably a scan error)`,
     });
   }
 
   return results;
 };
 
-rule.slug = 'mid-word-non-letter';
+rule.slug = `mid-word-non-letter`;
 export default rule;

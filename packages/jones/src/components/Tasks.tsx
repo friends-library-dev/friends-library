@@ -18,7 +18,7 @@ const Welcome: React.FC<Props> = ({ tasks, changeScreen, createTask }) => (
   <div className="padded-wrap">
     <h1>Tasks</h1>
     <Heading>
-      You have {tasks.length} task{tasks.length === 1 ? '' : 's'}:
+      You have {tasks.length} task{tasks.length === 1 ? `` : `s`}:
     </Heading>
     <TaskList />
     <Button

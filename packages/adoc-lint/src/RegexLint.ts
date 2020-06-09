@@ -28,9 +28,9 @@ export default class RegexLint {
   protected defaults: RegexLintOptions = {
     isMaybe: false,
     fixable: true,
-    langs: ['en'],
-    editions: ['original', 'modernized', 'updated'],
-    message: '"<found>" <shouldBecome> "<fixed>" <inContext>',
+    langs: [`en`],
+    editions: [`original`, `modernized`, `updated`],
+    message: `"<found>" <shouldBecome> "<fixed>" <inContext>`,
     recommend: true,
   };
 
@@ -59,23 +59,23 @@ export default class RegexLint {
 
   public isFixable(): boolean {
     const { fixable } = this.data;
-    return typeof fixable === 'function' ? fixable() : fixable;
+    return typeof fixable === `function` ? fixable() : fixable;
   }
 
   public message(found: string): string {
     const fixed = this.execReplace(found);
     const shouldBecome = this.isMaybe
-      ? 'is often (but not always!) better'
-      : 'should be replaced with';
-    let inContext = 'in all editions';
+      ? `is often (but not always!) better`
+      : `should be replaced with`;
+    let inContext = `in all editions`;
     if (this.data.editions.length < 3) {
-      inContext = `in ${this.data.editions.join(' and ')} editions`;
+      inContext = `in ${this.data.editions.join(` and `)} editions`;
     }
     return this.data.message
-      .replace('<found>', found)
-      .replace('<shouldBecome>', shouldBecome)
-      .replace('<fixed>', fixed)
-      .replace('<inContext>', inContext)
+      .replace(`<found>`, found)
+      .replace(`<shouldBecome>`, shouldBecome)
+      .replace(`<fixed>`, fixed)
+      .replace(`<inContext>`, inContext)
       .trim();
   }
 
@@ -84,19 +84,19 @@ export default class RegexLint {
       return;
     }
 
-    const line = match.input || '';
+    const line = match.input || ``;
     const index = match.index || 0;
     const parts = [
       line.substring(0, index),
       this.execReplace(line.substring(index, index + match[0].length)),
       line.substring(index + match[0].length),
     ];
-    return parts.join('');
+    return parts.join(``);
   }
 
   private execReplace(str: string): string {
     const { replace } = this.data;
     // @ts-ignore https://github.com/microsoft/TypeScript/issues/29789
-    return str.replace(this.search, replace === undefined ? '???' : replace);
+    return str.replace(this.search, replace === undefined ? `???` : replace);
   }
 }

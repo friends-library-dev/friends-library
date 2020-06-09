@@ -19,14 +19,14 @@ import { props as coverProps } from './cover.stories';
 // @ts-ignore
 import Books7 from '../src/images/Books7.jpg';
 
-storiesOf('Friend Page', module)
+storiesOf(`Friend Page`, module)
   .addDecorator(centered)
-  .add('Quote svg', () => <Quotes />)
-  .add('Audio icon svg', () => <AudioIcon />)
-  .add('Tags icon svg', () => <TagsIcon />)
-  .add('Clock icon svg', () => <ClockIcon />)
-  .add('Download icon svg', () => <DownloadIcon />)
-  .add('Testimonial', () => (
+  .add(`Quote svg`, () => <Quotes />)
+  .add(`Audio icon svg`, () => <AudioIcon />)
+  .add(`Tags icon svg`, () => <TagsIcon />)
+  .add(`Clock icon svg`, () => <ClockIcon />)
+  .add(`Download icon svg`, () => <DownloadIcon />)
+  .add(`Testimonial`, () => (
     <Testimonial
       className="w-64"
       color="green"
@@ -34,7 +34,7 @@ storiesOf('Friend Page', module)
       cite="George Fox"
     ></Testimonial>
   ))
-  .add('FriendMeta', () => (
+  .add(`FriendMeta`, () => (
     <FriendMeta className="w-64" color="green" title="Author Facts">
       <li>Lived: 1808</li>
       <li>Died: 1891</li>
@@ -47,22 +47,22 @@ storiesOf('Friend Page', module)
     </FriendMeta>
   ));
 
-storiesOf('Friend page', module)
+storiesOf(`Friend page`, module)
   .addDecorator(coverSizes)
-  .add('FriendBlock', () => (
+  .add(`FriendBlock`, () => (
     <FriendBlock gender="female" name="Ann Branson" blurb={blurb} />
   ))
-  .add('FeaturedQuoteBlock', () => (
+  .add(`FeaturedQuoteBlock`, () => (
     <FeaturedQuoteBlock cite="Ann Branson" quote={quote} />
   ))
-  .add('BookByFriend', () => (
+  .add(`BookByFriend`, () => (
     <div className="bg-flgray-100 p-12 flex flex-col items-center">
       <BookByFriend
         isAlone={true}
         htmlShortTitle={coverProps.title}
         {...coverProps}
         bookUrl="/"
-        tags={['journal', 'letters']}
+        tags={[`journal`, `letters`]}
         hasAudio
         description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         pages={[187]}
@@ -70,85 +70,85 @@ storiesOf('Friend page', module)
     </div>
   ));
 
-storiesOf('Friend page/TestimonialsBlock', module)
-  .add('one', () => (
+storiesOf(`Friend page/TestimonialsBlock`, module)
+  .add(`one`, () => (
     <TestimonialsBlock
       testimonials={[
         {
           quote: LOREM,
-          cite: 'George Fox',
+          cite: `George Fox`,
         },
       ]}
     />
   ))
-  .add('two', () => (
+  .add(`two`, () => (
     <TestimonialsBlock
       testimonials={[
         {
           quote: LOREM,
-          cite: 'George Fox',
+          cite: `George Fox`,
         },
         {
           quote: LOREM,
-          cite: 'Rebecca Jones',
+          cite: `Rebecca Jones`,
         },
       ]}
     />
   ))
-  .add('three', () => (
+  .add(`three`, () => (
     <TestimonialsBlock
       testimonials={[
         {
           quote: LOREM,
-          cite: 'George Fox',
+          cite: `George Fox`,
         },
         {
-          quote: LOREM + " Let's make it a little longer.",
-          cite: 'Rebecca Jones',
+          quote: LOREM + ` Let's make it a little longer.`,
+          cite: `Rebecca Jones`,
         },
         {
           quote: LOREM,
-          cite: 'Robert Barclay',
+          cite: `Robert Barclay`,
         },
       ]}
     />
   ))
-  .add('four', () => (
+  .add(`four`, () => (
     <TestimonialsBlock
       testimonials={[
         {
           quote: LOREM,
-          cite: 'George Fox',
+          cite: `George Fox`,
         },
         {
-          quote: LOREM + "Let's make it a little longer.",
-          cite: 'Rebecca Jones',
-        },
-        {
-          quote: LOREM,
-          cite: 'Robert Barclay',
+          quote: LOREM + `Let's make it a little longer.`,
+          cite: `Rebecca Jones`,
         },
         {
           quote: LOREM,
-          cite: 'Catherine Payton',
+          cite: `Robert Barclay`,
+        },
+        {
+          quote: LOREM,
+          cite: `Catherine Payton`,
         },
       ]}
     />
   ));
 
-storiesOf('Friend page/MapBlock', module).add('basic', () => (
+storiesOf(`Friend page/MapBlock`, module).add(`basic`, () => (
   <MapBlock
-    bgImg={{ aspectRatio: 1, src: Books7, srcSet: '' }}
+    bgImg={{ aspectRatio: 1, src: Books7, srcSet: `` }}
     friendName="Ann Branson"
     residences={[
-      'London England (1808 -1825)',
-      'Scotland (1825 - 1829)',
-      'Ireland (1829 - 1891)',
+      `London England (1808 -1825)`,
+      `Scotland (1825 - 1829)`,
+      `Ireland (1829 - 1891)`,
     ]}
     map="UK"
     markers={[
       {
-        label: 'London, England',
+        label: `London, England`,
         top: 69,
         left: 66,
       },
@@ -174,5 +174,4 @@ purity and power of the original Quakers, even while all around her the 200 year
 lampstand of the Society of Friends slowly and tragically burned out.
 `;
 
-const LOREM =
-  'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+const LOREM = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`;

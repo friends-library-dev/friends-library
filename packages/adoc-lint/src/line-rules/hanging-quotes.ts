@@ -6,11 +6,11 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '' || line.length < 4) {
+  if (line === `` || line.length < 4) {
     return [];
   }
 
-  if (line[line.length - 3] !== ' ') {
+  if (line[line.length - 3] !== ` `) {
     return [];
   }
 
@@ -22,12 +22,12 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: line.length - 1,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Invalid hanging quotation. Perhaps move it to the next line?',
+      message: `Invalid hanging quotation. Perhaps move it to the next line?`,
     },
   ];
 };
 
-rule.slug = 'hanging-quotes';
+rule.slug = `hanging-quotes`;
 export default rule;

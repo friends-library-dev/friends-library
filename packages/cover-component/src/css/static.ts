@@ -15,6 +15,6 @@ export default function allStatic(withGuides?: boolean): Css {
     spine()[0],
     threeD()[0],
     ...(withGuides ? [guides()[0]] : []),
-    pdf({ size: 'm', pages: 222 }),
-  ].join('');
+    pdf({ size: `m`, pages: 222 }),
+  ].join(``);
 }

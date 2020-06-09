@@ -11,7 +11,7 @@ export default async function updateOrderPrintJobStatus(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for PATCH /orders/{:id}', { body: body, error: data });
+    log.error(`invalid body for PATCH /orders/{:id}`, { body: body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
@@ -24,7 +24,7 @@ export default async function updateOrderPrintJobStatus(
   order.printJobStatus = printJobStatus;
   const [error] = await saveOrder(order);
   if (error) {
-    log.error('error updating order', { error });
+    log.error(`error updating order`, { error });
     return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error }, 500);
   }
 
@@ -34,16 +34,16 @@ export default async function updateOrderPrintJobStatus(
 const schema = {
   properties: {
     orderId: {
-      type: 'string',
+      type: `string`,
     },
     printJobStatus: {
-      type: 'string',
+      type: `string`,
       enum: (PRINT_JOB_STATUSES as unknown) as string[],
     },
   },
-  required: ['orderId', 'printJobStatus'],
+  required: [`orderId`, `printJobStatus`],
   example: {
-    orderId: 'abc123',
-    printJobStatus: 'accepted' as const,
+    orderId: `abc123`,
+    printJobStatus: `accepted` as const,
   },
 };

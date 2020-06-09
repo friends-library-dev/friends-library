@@ -23,7 +23,7 @@ const Audiobook: React.FC<Props> = props => (
   <div
     className={cx(
       props.className,
-      'Audiobook flex flex-col items-center',
+      `Audiobook flex flex-col items-center`,
       // purgeCSS: text-flblue text-flmaroon text-flgold text-flgreen
       `text-fl${props.bgColor}`,
     )}

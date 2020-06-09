@@ -7,8 +7,8 @@ export const postProcessHtml: (html: Html) => Html = memoize(
   flow([
     changeVerseMarkup,
     modifyOldStyleHeadings,
-    html => html.replace(/<hr>/gim, '<hr />'),
-    html => html.replace(/<br>/gim, '<br />'),
+    html => html.replace(/<hr>/gim, `<hr />`),
+    html => html.replace(/<br>/gim, `<br />`),
     html => html.replace(/<blockquote>/gim, `<blockquote>${br7}`),
     removeParagraphClass,
     html =>
@@ -29,7 +29,7 @@ function modifyOldStyleHeadings(html: Html): Html {
     /<div class="sect2 old-style( [^"]+?)?">\n<h3 ([^>]+?)>([\s\S]+?)<\/h3>/gim,
     (_, kls, h3id, text) => {
       const inner = text
-        .split(' / ')
+        .split(` / `)
         .map((part: string, index: number, parts: string[]) => {
           if (index === 0) {
             return `<span>${part} ${br7}</span>`;
@@ -39,30 +39,30 @@ function modifyOldStyleHeadings(html: Html): Html {
           }
           return `<span><em>${part}</em> ${br7}</span>`;
         })
-        .join('');
-      return `<div class="sect2"><h3 ${h3id} class="old-style${kls || ''}">${inner}</h3>`;
+        .join(``);
+      return `<div class="sect2"><h3 ${h3id} class="old-style${kls || ``}">${inner}</h3>`;
     },
   );
 }
 
 function removeParagraphClass(html: Html): Html {
   const standalone = [
-    'salutation',
-    'discourse-part',
-    'offset',
-    'numbered',
-    'the-end',
-    'postscript',
-    'chapter-synopsis',
-    'letter-participants',
-    'signed-section-signature',
-    'signed-section-closing',
-    'signed-section-context-open',
-    'signed-section-context-close',
+    `salutation`,
+    `discourse-part`,
+    `offset`,
+    `numbered`,
+    `the-end`,
+    `postscript`,
+    `chapter-synopsis`,
+    `letter-participants`,
+    `signed-section-signature`,
+    `signed-section-closing`,
+    `signed-section-context-open`,
+    `signed-section-context-close`,
   ];
 
   return html.replace(/<div class="paragraph ([a-z0-9- ]+?)">/g, (full, extra) => {
-    const classes = extra.split(' ');
+    const classes = extra.split(` `);
     if (intersection(standalone, classes).length) {
       return `<div class="${extra}">`;
     }
@@ -75,18 +75,18 @@ function changeVerseMarkup(html: Html): Html {
     /<div class="verseblock">\n<pre class="content">([\s\S]*?)<\/pre>\n<\/div>/gim,
     (_, verses) => {
       const hasStanzas = verses.match(/\n\n/gm);
-      const stanzaOpen = hasStanzas ? '\n<div class="verse__stanza">' : '';
-      const stanzaClose = hasStanzas ? '</div>\n' : '';
+      const stanzaOpen = hasStanzas ? `\n<div class="verse__stanza">` : ``;
+      const stanzaClose = hasStanzas ? `</div>\n` : ``;
       return verses
         .trim()
-        .split('\n')
+        .split(`\n`)
         .map((verse: string) =>
           verse
             ? `<div class="verse__line">${verse}</div>`
             : `${stanzaClose}${stanzaOpen}`,
         )
         .reduce(makeWrap(`<div class="verse">${stanzaOpen}`, `${stanzaClose}</div>`), [])
-        .join('\n');
+        .join(`\n`);
     },
   );
 }

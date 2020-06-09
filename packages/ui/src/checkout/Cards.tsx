@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Visa: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className={`${className ? `${className} ` : ''}card inline-block mr-1`}
+    className={`${className ? `${className} ` : ``}card inline-block mr-1`}
     id="card-visa"
     viewBox="0 7 38 23"
     width="38"
@@ -18,7 +18,7 @@ export const Visa: React.FC<{ className?: string }> = ({ className }) => (
 
 export const Amex: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className={`${className ? `${className} ` : ''}card inline-block mr-1`}
+    className={`${className ? `${className} ` : ``}card inline-block mr-1`}
     id="card-amex"
     viewBox="0 7 38 23"
     width="38"
@@ -38,7 +38,7 @@ export const Amex: React.FC<{ className?: string }> = ({ className }) => (
 
 export const Mastercard: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className={`${className ? `${className} ` : ''}card inline-block mr-1`}
+    className={`${className ? `${className} ` : ``}card inline-block mr-1`}
     id="card-mastercard"
     viewBox="0 7 38 23"
     width="38"
@@ -63,7 +63,7 @@ export const Mastercard: React.FC<{ className?: string }> = ({ className }) => (
 
 export const Discover: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className={`${className ? `${className} ` : ''}card inline-block mr-1`}
+    className={`${className ? `${className} ` : ``}card inline-block mr-1`}
     id="card-discover"
     viewBox="0 7 38 23"
     width="38"
@@ -91,7 +91,7 @@ export const Discover: React.FC<{ className?: string }> = ({ className }) => (
 
 export const Card: React.FC<{ className?: string }> = ({ className }) => (
   <svg
-    className={`${className ? `${className} ` : ''}card inline-block mr-1`}
+    className={`${className ? `${className} ` : ``}card inline-block mr-1`}
     id="card-default"
     viewBox="0 7 38 23"
     width="38"
@@ -123,16 +123,16 @@ export const CardRow: React.FC = () => (
 export const FeedbackCard: React.FC<{ brand?: string }> = ({ brand }) => {
   let Component = Card;
   switch (brand) {
-    case 'amex':
+    case `amex`:
       Component = Amex;
       break;
-    case 'discover':
+    case `discover`:
       Component = Discover;
       break;
-    case 'visa':
+    case `visa`:
       Component = Visa;
       break;
-    case 'mastercard':
+    case `mastercard`:
       Component = Mastercard;
       break;
     default:
@@ -141,12 +141,12 @@ export const FeedbackCard: React.FC<{ brand?: string }> = ({ brand }) => {
   return (
     <Component
       className={`absolute top-0 right-0 mt-2 mr-2${
-        isKnownBrand(brand) ? '' : ' opacity-25'
+        isKnownBrand(brand) ? `` : ` opacity-25`
       }`}
     />
   );
 };
 
 function isKnownBrand(brand?: string): boolean {
-  return !!(brand && ['amex', 'visa', 'mastercard', 'discover'].includes(brand));
+  return !!(brand && [`amex`, `visa`, `mastercard`, `discover`].includes(brand));
 }

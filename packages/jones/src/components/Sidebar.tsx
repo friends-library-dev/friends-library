@@ -27,12 +27,12 @@ const ToggleEl = styled.div<{ open: boolean }>`
   cursor: pointer;
   width: 25px;
   height: 50px;
-  border-bottom-${(p: any) => (p.open ? 'right' : 'left')}-radius: 50px;
-  border-top-${(p: any) => (p.open ? 'right' : 'left')}-radius: 50px;
-  background: ${(p: any) => (p.open ? '#111' : '#25282c')};
+  border-bottom-${(p: any) => (p.open ? `right` : `left`)}-radius: 50px;
+  border-top-${(p: any) => (p.open ? `right` : `left`)}-radius: 50px;
+  background: ${(p: any) => (p.open ? `#111` : `#25282c`)};
   z-index: 5;
   position: fixed;
-  ${(p: any) => (p.open ? 'left' : 'right')}: 0px;
+  ${(p: any) => (p.open ? `left` : `right`)}: 0px;
   top: calc(50% - 25px);
 
   & i {
@@ -69,7 +69,7 @@ interface ToggleProps {
 
 const Toggle: React.FC<ToggleProps> = ({ onClick, isOpen }) => (
   <ToggleEl className="toggle" onClick={onClick} open={isOpen}>
-    <i className={`fas fa-angle-${isOpen ? 'right' : 'left'}`} />
+    <i className={`fas fa-angle-${isOpen ? `right` : `left`}`} />
   </ToggleEl>
 );
 

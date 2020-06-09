@@ -19,28 +19,28 @@ export default async function pdf(
       fs.outputFile(
         `${SRC_DIR}/${path}`,
         manifest[path],
-        path.endsWith('.png') ? 'binary' : undefined,
+        path.endsWith(`.png`) ? `binary` : undefined,
       ),
     ),
   );
 
   const src = `${SRC_DIR}/doc.html`;
-  const { PRINCE_BIN } = env.require('PRINCE_BIN');
+  const { PRINCE_BIN } = env.require(`PRINCE_BIN`);
   const stream = spawn(PRINCE_BIN, [src]);
 
-  let output = '';
+  let output = ``;
   await new Promise((resolve, reject) => {
-    stream.stderr.on('data', data => {
+    stream.stderr.on(`data`, data => {
       output = output.concat(data.toString());
     });
 
-    stream.on('close', code => {
+    stream.on(`close`, code => {
       output = output
         .trim()
-        .split('\n')
+        .split(`\n`)
         .filter(filterPrinceOutput)
         .map(opts.formatOutput || (l => l))
-        .join('\n');
+        .join(`\n`);
 
       if (output) {
         yellow(output);
@@ -56,7 +56,7 @@ export default async function pdf(
 }
 
 function filterPrinceOutput(line: string): boolean {
-  if (line.trim() === '') {
+  if (line.trim() === ``) {
     return false;
   }
 

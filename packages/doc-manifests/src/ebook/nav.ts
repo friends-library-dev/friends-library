@@ -3,7 +3,7 @@ import { Html, DocPrecursor, EbookConfig } from '@friends-library/types';
 
 export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
   if (dpc.sections.length === 1) {
-    return '<nav epub:type="toc" id="toc"><ol></ol></nav>';
+    return `<nav epub:type="toc" id="toc"><ol></ol></nav>`;
   }
 
   return `
@@ -12,10 +12,10 @@ export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
       <ol>
         ${tocItems(dpc)
           .map(item => {
-            const hidden = item.hidden ? ' hidden=""' : '';
+            const hidden = item.hidden ? ` hidden=""` : ``;
             return `<li${hidden}><a href="${item.href}">${item.text}</a></li>`;
           })
-          .join('\n        ')}
+          .join(`\n        `)}
       </ol>
     </nav>
     <nav epub:type="landmarks" hidden="">
@@ -25,7 +25,7 @@ export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
             item =>
               `<li><a href="${item.href}" epub:type="${item.type}">${item.text}</a></li>`,
           )
-          .join('\n        ')}
+          .join(`\n        `)}
       </ol>
     </nav>
   `.trim();
@@ -42,8 +42,8 @@ export function tocItems({ sections }: DocPrecursor): TocItem[] {
 
   items.push({
     hidden: true,
-    href: 'half-title.xhtml',
-    text: 'Title page',
+    href: `half-title.xhtml`,
+    text: `Title page`,
   });
 
   sections.forEach(section => {
@@ -66,23 +66,23 @@ export function landmarks({ subType, frontmatter }: EbookConfig): Landmark[] {
   const landmarkItems: Landmark[] = [];
 
   landmarkItems.push({
-    type: 'titlepage',
-    href: 'half-title.xhtml',
-    text: 'Title page',
+    type: `titlepage`,
+    href: `half-title.xhtml`,
+    text: `Title page`,
   });
 
-  if (subType === 'mobi') {
+  if (subType === `mobi`) {
     landmarkItems.push({
-      type: 'toc',
-      href: 'nav.xhtml',
-      text: 'Table of Contents',
+      type: `toc`,
+      href: `nav.xhtml`,
+      text: `Table of Contents`,
     });
   }
 
   landmarkItems.push({
-    type: 'bodymatter',
-    href: frontmatter ? 'half-title.xhtml' : 'section1.xhtml',
-    text: 'Beginning',
+    type: `bodymatter`,
+    href: frontmatter ? `half-title.xhtml` : `section1.xhtml`,
+    text: `Beginning`,
   });
 
   return landmarkItems;

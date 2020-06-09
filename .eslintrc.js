@@ -24,6 +24,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error', { argsIngorePattern: '^_' }],
     'no-unused-vars': 'off',
     camelcase: 'off',
+    '@typescript-eslint/quotes': ['error', 'backtick'],
     '@typescript-eslint/camelcase': [
       'error',
       {

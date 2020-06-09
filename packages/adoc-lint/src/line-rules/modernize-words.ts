@@ -5,68 +5,65 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
-      test: 'amongst',
+      test: `amongst`,
       search: /\b(A|a)mongst\b/g,
-      replace: '$1mong',
+      replace: `$1mong`,
       fixable: true,
     },
     {
-      test: 'spake',
+      test: `spake`,
       search: /\b(S|s)pake\b/g,
-      replace: '$1poke',
+      replace: `$1poke`,
       fixable: true,
     },
     {
-      test: 'methinks',
+      test: `methinks`,
       search: /\b(M|m)ethinks\b/g,
-      replace: 'I think',
+      replace: `I think`,
       fixable: true,
     },
     {
-      test: 'methought',
+      test: `methought`,
       search: /\b(M|m)ethought\b/g,
-      replace: 'I thought',
+      replace: `I thought`,
       fixable: true,
     },
     {
-      test: 'whoso',
+      test: `whoso`,
       search: /\b(W|w)hoso\b/g,
-      replace: '$1hoever',
+      replace: `$1hoever`,
       fixable: false,
     },
     {
-      test: 'zionward',
+      test: `zionward`,
       search: /\bZionward(s?)\b/g,
-      replace: 'towards Zion',
+      replace: `towards Zion`,
       isMaybe: true,
       fixable: false,
     },
     {
-      test: 'jollity',
+      test: `jollity`,
       search: /\b(J|j)ollity\b/g,
-      replace: (_, firstLetter) => `${firstLetter === 'J' ? 'M' : 'm'}erriment`,
+      replace: (_, firstLetter) => `${firstLetter === `J` ? `M` : `m`}erriment`,
       fixable: false,
-      message:
-        '"<found>" should be replaced in modernized editions (merriment, revelry, mirth, gaiety, merrymaking, cheerfulness, etc.)',
+      message: `"<found>" should be replaced in modernized editions (merriment, revelry, mirth, gaiety, merrymaking, cheerfulness, etc.)`,
     },
     {
-      test: 'intercourse',
+      test: `intercourse`,
       search: /\b(I|i)ntercourse\b/g,
       recommend: false,
       fixable: false,
-      message:
-        '"<found>" should be replaced in modernized editions (communication, interaction, conversation, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)',
+      message: `"<found>" should be replaced in modernized editions (communication, interaction, conversation, commerce, dealings, exchange, fellowship, communion, contact, correspondence, etc.)`,
     },
     {
-      test: 'ejaculat',
+      test: `ejaculat`,
       search: /\b(E|e)jaculat(ed?|ions?|ing)\b/g,
       recommend: false,
       fixable: false,
-      message:
-        '"<found>" should be replaced in modernized editions (exclamation, cry, utterance, etc.)',
+      message: `"<found>" should be replaced in modernized editions (exclamation, cry, utterance, etc.)`,
     },
   ],
-  { langs: ['en'], editions: ['modernized'] },
+  { langs: [`en`], editions: [`modernized`] },
 );
 
 const rule: LineRule = (
@@ -75,13 +72,13 @@ const rule: LineRule = (
   lineNumber: number,
   lintOptions: LintOptions,
 ): LintResult[] => {
-  if (lintOptions.lang !== 'en' || lintOptions.editionType !== 'modernized') {
+  if (lintOptions.lang !== `en` || lintOptions.editionType !== `modernized`) {
     return [];
   }
   return runner.getLineLintResults(line, lineNumber, lintOptions);
 };
 
-rule.slug = 'modernize-words';
+rule.slug = `modernize-words`;
 runner.rule = rule.slug;
 
 export default rule;

@@ -31,14 +31,14 @@ function html(dpc: DocPrecursor, conf: HtmlStepConfig, volIdx?: number): Html {
     inlineNotes,
     ([html, d, c, i]) => [removeMobi7Tags(html), d, c, i],
     wrapHtml,
-  ])(['', dpc, conf, volIdx])[0];
+  ])([``, dpc, conf, volIdx])[0];
 }
 
 const wrapHtml: HtmlStep = ([html, dpc, conf, volIdx]) => {
   const wrapped = wrapHtmlBody(html, {
     title: dpc.meta.title,
-    css: ['doc.css'],
-    bodyClass: 'body',
+    css: [`doc.css`],
+    bodyClass: `body`,
     htmlAttrs: `lang="${dpc.lang}"`,
   });
   return [wrapped, dpc, conf, volIdx];

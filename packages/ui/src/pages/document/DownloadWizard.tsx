@@ -25,13 +25,13 @@ const DownloadWizard: React.FC<Props> = ({
   const [edition, setEdition] = useState<EditionType | undefined>(initialEdition);
   const [format, setFormat] = useState<'ebook' | 'pdf' | undefined>();
   const [eBookType, setEBookType] = useState<'epub' | 'mobi' | undefined>();
-  const selectionComplete = edition && format && (format === 'pdf' || eBookType);
+  const selectionComplete = edition && format && (format === `pdf` || eBookType);
   const [downloaded, setDownloaded] = useState<boolean>(false);
 
   useEffect(() => {
     if (selectionComplete && !downloaded) {
       setDownloaded(true);
-      onSelect(edition || 'updated', eBookType || 'web_pdf');
+      onSelect(edition || `updated`, eBookType || `web_pdf`);
     }
   }, [edition, format, eBookType, downloaded, onSelect, selectionComplete]);
 
@@ -41,7 +41,7 @@ const DownloadWizard: React.FC<Props> = ({
         <ChooseEdition editions={editions} onSelect={setEdition} />
       )}
       {edition && !format && <ChooseFormat onChoose={setFormat} />}
-      {edition && format && format !== 'pdf' && !eBookType && (
+      {edition && format && format !== `pdf` && !eBookType && (
         <ChooseEbookType
           recommendation={eBookTypeRecommendation}
           onChoose={setEBookType}

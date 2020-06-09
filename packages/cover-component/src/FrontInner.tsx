@@ -29,13 +29,13 @@ const FrontInner: React.FC<Props> = props => {
       <div className="front__safe">
         <div className="top-row">
           <span className="flp">
-            {lang === 'es' ? 'Biblioteca de los Amigos' : 'Friends Library Publishing'}
+            {lang === `es` ? `Biblioteca de los Amigos` : `Friends Library Publishing`}
           </span>
           <LogoIcon />
         </div>
         <FrontMain {...props} />
         {overridable(
-          'author',
+          `author`,
           fragments,
           <div className="author">
             <div className="author__line" />

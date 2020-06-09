@@ -18,7 +18,7 @@ export default class MockCheckoutApi extends CheckoutApi {
         ok: true,
         statusCode: 200,
         data: {
-          shippingLevel: 'MAIL',
+          shippingLevel: `MAIL`,
           shipping: 399,
           taxes: 0,
           ccFeeOffset: 42,
@@ -44,9 +44,9 @@ export default class MockCheckoutApi extends CheckoutApi {
         ok: true,
         statusCode: 201,
         data: {
-          paymentIntentId: 'pi_abc',
-          paymentIntentClientSecret: 'pi_abc_secret_123',
-          orderId: 'order-id',
+          paymentIntentId: `pi_abc`,
+          paymentIntentClientSecret: `pi_abc_secret_123`,
+          orderId: `order-id`,
         },
       },
     },
@@ -71,14 +71,14 @@ export default class MockCheckoutApi extends CheckoutApi {
         ok: true,
         statusCode: 200,
         delay: 250,
-        data: { status: 'accepted' },
+        data: { status: `accepted` },
       },
       stack: [
         {
           ok: true,
           statusCode: 200,
           delay: 250,
-          data: { status: 'pending' },
+          data: { status: `pending` },
         },
       ],
     },
@@ -93,14 +93,14 @@ export default class MockCheckoutApi extends CheckoutApi {
       default: {
         ok: true,
         statusCode: 200,
-        data: { id: 'order-id', printJobStatus: 'accepted' },
+        data: { id: `order-id`, printJobStatus: `accepted` },
       },
     },
     getOrder: {
       default: {
         ok: true,
         statusCode: 200,
-        data: { id: 'order-id ' },
+        data: { id: `order-id ` },
       },
     },
     sendOrderConfirmationEmail: {
@@ -113,51 +113,51 @@ export default class MockCheckoutApi extends CheckoutApi {
   };
 
   public constructor(private defaultDelay: number = 0) {
-    super('');
+    super(``);
   }
 
   public async wakeup(): Promise<ApiResponse> {
-    return this.getResponse('wakeup');
+    return this.getResponse(`wakeup`);
   }
 
   public async calculateFees(): Promise<ApiResponse> {
-    return this.getResponse('calculateFees');
+    return this.getResponse(`calculateFees`);
   }
 
   public async createOrder(): Promise<ApiResponse> {
-    return this.getResponse('createOrder');
+    return this.getResponse(`createOrder`);
   }
 
   public async updateOrder(): Promise<ApiResponse> {
-    return this.getResponse('updateOrder');
+    return this.getResponse(`updateOrder`);
   }
 
   public async authorizePayment(): Promise<ApiResponse> {
-    return this.getResponse('authorizePayment');
+    return this.getResponse(`authorizePayment`);
   }
 
   public async capturePayment(): Promise<ApiResponse> {
-    return this.getResponse('capturePayment');
+    return this.getResponse(`capturePayment`);
   }
 
   public async createPrintJob(): Promise<ApiResponse> {
-    return this.getResponse('createPrintJob');
+    return this.getResponse(`createPrintJob`);
   }
 
   public async brickOrder(): Promise<ApiResponse> {
-    return this.getResponse('brickOrder');
+    return this.getResponse(`brickOrder`);
   }
 
   public async updateOrderPrintJobStatus(): Promise<ApiResponse> {
-    return this.getResponse('updateOrderPrintJobStatus');
+    return this.getResponse(`updateOrderPrintJobStatus`);
   }
 
   public async getPrintJobStatus(): Promise<ApiResponse> {
-    return this.getResponse('getPrintJobStatus');
+    return this.getResponse(`getPrintJobStatus`);
   }
 
   public async sendOrderConfirmationEmail(): Promise<ApiResponse> {
-    return this.getResponse('sendOrderConfirmationEmail');
+    return this.getResponse(`sendOrderConfirmationEmail`);
   }
 
   public setResponse(method: string, response: MockResponse): void {
@@ -180,8 +180,8 @@ export default class MockCheckoutApi extends CheckoutApi {
   private getResponse(method: string): Promise<ApiResponse> {
     console.log(
       `%cmock checkout api method invoked: %c${method}`,
-      'color: grey',
-      'color: blue',
+      `color: grey`,
+      `color: blue`,
     );
     const responses = this.responses[method];
     if (responses.stack && responses.stack.length) {

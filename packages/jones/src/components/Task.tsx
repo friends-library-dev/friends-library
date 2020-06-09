@@ -21,7 +21,7 @@ const Wrap = styled.li<{ locked: boolean }>`
 
   & h1 {
     font-size: 20px;
-    background: ${(p: any) => (p.locked ? '#5d0303' : '#121212')};
+    background: ${(p: any) => (p.locked ? `#5d0303` : `#121212`)};
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     color: #ddd;
@@ -52,8 +52,8 @@ const Wrap = styled.li<{ locked: boolean }>`
     }
 
     & .delete {
-      color: ${(p: any) => (p.locked ? 'white' : 'red')};
-      background: ${(p: any) => (p.locked ? 'var(--accent)' : '#eaeaea')};
+      color: ${(p: any) => (p.locked ? `white` : `red`)};
+      background: ${(p: any) => (p.locked ? `var(--accent)` : `#eaeaea`)};
     }
 
     & > * {
@@ -116,18 +116,18 @@ class Task extends React.Component<Props, State> {
   }
 
   protected confirmDelete: () => void = () => {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === `development`) {
       this.deleteTask();
       return;
     }
 
     smalltalk
       .prompt(
-        'Delete Task?',
-        'You will lose any work and there is no undo.\nPlease type "Hubberthorne" to confirm:\n\n',
+        `Delete Task?`,
+        `You will lose any work and there is no undo.\nPlease type "Hubberthorne" to confirm:\n\n`,
       )
       .then((value: string) => {
-        if (value === 'Hubberthorne') {
+        if (value === `Hubberthorne`) {
           this.deleteTask();
         }
       })
@@ -157,9 +157,9 @@ class Task extends React.Component<Props, State> {
     const { task, reopenTask } = this.props;
     smalltalk
       .confirm(
-        'Reopen?',
-        'Reopening should only be done when you need to re-submit a task that has accidentally been worked on after the PR has been merged.',
-        { buttons: { ok: 'Recover', cancel: 'Cancel' } },
+        `Reopen?`,
+        `Reopening should only be done when you need to re-submit a task that has accidentally been worked on after the PR has been merged.`,
+        { buttons: { ok: `Recover`, cancel: `Cancel` } },
       )
       .then(() => reopenTask({ id: task.id, newId: uuid() }))
       .catch(() => {});
@@ -171,24 +171,25 @@ class Task extends React.Component<Props, State> {
     } = this.props;
     const { submitting } = this.state;
     if (submitting) {
-      return 'Submitting...';
+      return `Submitting...`;
     }
-    return pullRequest ? 'Re-submit' : 'Submit';
+    return pullRequest ? `Re-submit` : `Submit`;
   }
 
   public render(): JSX.Element {
     const { submitting } = this.state;
     const { task, repo, workOnTask, taskHasWork } = this.props;
-    let status = 'open';
+    let status = `open`;
     if (task.pullRequest && task.pullRequest.status) {
       status = task.pullRequest.status;
     }
-    const isLocked = status !== 'open';
+    const isLocked = status !== `open`;
     return (
       <Wrap locked={isLocked}>
         <h1>
-          <i className={`fas fa-${isLocked ? 'lock' : 'code-branch'}`} />{' '}
-          {isLocked ? `${status.toUpperCase()}: ` : ''}
+          <i className={`fas fa-${isLocked ? `lock` : `code-branch`}`} />
+          {` `}
+          {isLocked ? `${status.toUpperCase()}: ` : ``}
           {task.name}
         </h1>
         <p className="friend">
@@ -199,7 +200,7 @@ class Task extends React.Component<Props, State> {
             <li>
               <i className="far fa-calendar" />
               <i>Created:</i>
-              {moment(task.created).format('M/D/YY [at] h:mm:ssa')}
+              {moment(task.created).format(`M/D/YY [at] h:mm:ssa`)}
             </li>
             <li>
               <i className="far fa-calendar" />

@@ -35,7 +35,7 @@ function prepMultiParagraphFootnotes(src: string): void {
   const replaced = xml.replace(/<footnote>([\s\S]+?)<\/footnote>/gm, (_, note) => {
     const prepped = note.replace(
       /<\/para>(\s*<para\/>\s*)?(<para\/>\s*)?(<para\/>\s*)?<para>\s*/g,
-      '{footnote-paragraph-split}',
+      `{footnote-paragraph-split}`,
     );
     return `<footnote>${prepped}</footnote>`;
   });
@@ -50,7 +50,7 @@ function validate(src: string): { src: string; target: string } {
     process.exit();
   }
 
-  const target = src.replace(/\.xml$/, '.adoc');
+  const target = src.replace(/\.xml$/, `.adoc`);
   if (fs.existsSync(target)) {
     red(`ERROR: Target file ${target} already exists!`);
     process.exit();
@@ -60,19 +60,19 @@ function validate(src: string): { src: string; target: string } {
 }
 
 function generateRawAsciiDoc(src: string, target: string): void {
-  const tag = 'jaredh159/convert:1.0.0';
+  const tag = `jaredh159/convert:1.0.0`;
   const opts = { cwd: __dirname };
 
   // check that we have docker installed
-  if (spawnSync('docker', ['--version']).status !== 0) {
+  if (spawnSync(`docker`, [`--version`]).status !== 0) {
     red(`Docker required to run convert command.`);
     process.exit(1);
   }
 
-  const imageExists = spawnSync('docker', ['image', 'inspect', tag], opts).status === 0;
+  const imageExists = spawnSync(`docker`, [`image`, `inspect`, tag], opts).status === 0;
   if (!imageExists) {
     // build an image according to specs in ./Dockerfile
-    spawnSync('docker', ['build', '-t', tag, '.'], opts);
+    spawnSync(`docker`, [`build`, `-t`, tag, `.`], opts);
   }
 
   const id = uuid();
@@ -81,10 +81,10 @@ function generateRawAsciiDoc(src: string, target: string): void {
   fs.copyFileSync(src, `${tmpDir}/document.xml`);
 
   // run the command in the docker container
-  spawnSync('docker', ['run', '--name', id, `--volume=${tmpDir}:/root/docs`, tag], opts);
+  spawnSync(`docker`, [`run`, `--name`, id, `--volume=${tmpDir}:/root/docs`, tag], opts);
 
   // destroy the docker container
-  spawnSync('docker', ['rm', id]);
+  spawnSync(`docker`, [`rm`, id]);
 
   if (!fs.existsSync(`${tmpDir}/document.adoc`)) {
     red(`ERROR: Target file ${target} not generated!`);
@@ -99,7 +99,7 @@ function generateRawAsciiDoc(src: string, target: string): void {
 
 function replaceScriptureReferences(input: string): string {
   return input
-    .split('\n')
+    .split(`\n`)
     .map(line => {
       let replaced = line;
       const refs = hilkiah.find(line);
@@ -108,5 +108,5 @@ function replaceScriptureReferences(input: string): string {
       });
       return replaced;
     })
-    .join('\n');
+    .join(`\n`);
 }

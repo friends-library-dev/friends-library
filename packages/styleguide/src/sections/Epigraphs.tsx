@@ -19,7 +19,8 @@ const Epigraphs: React.FC = () => (
     </Para>
     <Pair id="epigraphs" />
     <Note>
-      Epigraphs must be placed at the <i>beginning</i> of the <b>first source document</b>{' '}
+      Epigraphs must be placed at the <i>beginning</i> of the <b>first source document</b>
+      {` `}
       in order to be properly identified, extracted, and rendered in their proper place
       with the rest of the frontmatter.
     </Note>

@@ -9,14 +9,14 @@ interface Props {
 
 const AudioDuration: React.FC<Props> = ({
   children,
-  textColor = 'flprimary',
+  textColor = `flprimary`,
   className,
 }) => (
   <div
     className={cx(
       className,
       `text-${textColor}`,
-      'text-sm flex items-center justify-center',
+      `text-sm flex items-center justify-center`,
     )}
   >
     <PlayTriangle className="h-5 w-5 mr-1" tailwindColor={textColor} />

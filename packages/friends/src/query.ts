@@ -8,20 +8,20 @@ import Edition from './Edition';
 import Document from './Document';
 import friendFromJS from './map';
 
-export function getFriend(slug: Slug, lang: Lang = 'en'): Friend {
+export function getFriend(slug: Slug, lang: Lang = `en`): Friend {
   const path = resolve(__dirname, `../yml/${lang}/${slug}.yml`);
   const file = readFileSync(path);
   const data = safeLoad(file.toString());
   return friendFromJS({ lang, ...data });
 }
 
-export function getAllFriends(lang: Lang = 'en', withCompilations = false): Friend[] {
+export function getAllFriends(lang: Lang = `en`, withCompilations = false): Friend[] {
   const pattern = resolve(__dirname, `../yml/${lang}/*.yml`);
-  const friends = glob(pattern).map(path => getFriend(basename(path, '.yml'), lang));
+  const friends = glob(pattern).map(path => getFriend(basename(path, `.yml`), lang));
   if (withCompilations) {
     return friends;
   }
-  const compilations = lang === 'en' ? 'compilations' : 'compilaciones';
+  const compilations = lang === `en` ? `compilations` : `compilaciones`;
   return friends.filter(friend => friend.slug !== compilations);
 }
 
@@ -34,7 +34,7 @@ export function allPublishedBooks(lang: Lang): Document[] {
 export function allPublishedUpdatedEditions(lang: Lang): Edition[] {
   return allPublishedBooks(lang)
     .flatMap(doc => doc.editions)
-    .filter(edition => edition.type === 'updated');
+    .filter(edition => edition.type === `updated`);
 }
 
 export function allPublishedFriends(lang: Lang): Friend[] {

@@ -35,15 +35,15 @@ export function docDims(size: PrintSize): DocDims {
 
 export function allSizesDocDims(): { [k in PrintSize]: DocDims } {
   return {
-    s: docDims('s'),
-    m: docDims('m'),
-    xl: docDims('xl'),
+    s: docDims(`s`),
+    m: docDims(`m`),
+    xl: docDims(`xl`),
   };
 }
 
 export function withSizes(fn: (dims: DocDims, size: PrintSize) => Css): Css {
-  const sizes: PrintSize[] = ['s', 'm', 'xl'];
-  return sizes.map(size => fn(docDims(size), size).replace(/__SIZE__/g, size)).join('\n');
+  const sizes: PrintSize[] = [`s`, `m`, `xl`];
+  return sizes.map(size => fn(docDims(size), size).replace(/__SIZE__/g, size)).join(`\n`);
 }
 
 export function wrapClasses(
@@ -61,23 +61,23 @@ export function wrapClasses(
   >,
   customClasses?: string | string[] | Record<string, boolean>,
 ): string {
-  const scale = typeof scaler === 'number' ? scaler : 1;
+  const scale = typeof scaler === `number` ? scaler : 1;
   return cx(
-    'Cover',
+    `Cover`,
     `Edition--${edition}`,
     `Lang--${lang}`,
     `trim--${size}`,
-    showGuides ? 'Cover--show-guides' : false,
+    showGuides ? `Cover--show-guides` : false,
     scope ? `Cover--scope-${scope}` : false,
-    scale <= 0.5 ? 'Cover--scale-s' : false,
-    scale <= 0.35 ? 'Cover--scale-xs' : false,
+    scale <= 0.5 ? `Cover--scale-s` : false,
+    scale <= 0.35 ? `Cover--scale-xs` : false,
     fauxVolumeNum !== undefined && `faux-vol faux-vol--${fauxVolumeNum}`,
     customClasses,
   );
 }
 
 export function scaleCssInches(css: Css, scaler?: number): Css {
-  if (typeof scaler !== 'number') {
+  if (typeof scaler !== `number`) {
     return css;
   }
 
@@ -107,23 +107,23 @@ export function spineAuthorDisplay(
   isCompilation: boolean,
 ): 'block' | 'none' {
   if (isCompilation) {
-    return 'none';
+    return `none`;
   }
 
-  const lastName = String(author.split(' ').pop());
-  let totalChars = title.replace(/&nbsp;/g, ' ').length + lastName.length;
+  const lastName = String(author.split(` `).pop());
+  let totalChars = title.replace(/&nbsp;/g, ` `).length + lastName.length;
   const numWideLetters = (`${title}${lastName}`.match(/(W|D)/g) || []).length;
   totalChars += numWideLetters;
 
-  if (size === 'm' && totalChars >= 50) {
-    return 'none';
+  if (size === `m` && totalChars >= 50) {
+    return `none`;
   }
 
-  if (size === 'xl' && totalChars >= 60) {
-    return 'none';
+  if (size === `xl` && totalChars >= 60) {
+    return `none`;
   }
 
-  return 'block';
+  return `block`;
 }
 
 const SPINE_PAD = 0.06;

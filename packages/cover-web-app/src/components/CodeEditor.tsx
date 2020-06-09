@@ -28,8 +28,8 @@ export default class CodeEditor extends React.Component<Props> {
 
   public componentDidMount(): void {
     const editor = (this.htmlEditor.current as any).editor;
-    editor.setOption('wrap', 'free');
-    editor.setOption('enableEmmet', true);
+    editor.setOption(`wrap`, `free`);
+    editor.setOption(`enableEmmet`, true);
   }
 
   public render(): JSX.Element {

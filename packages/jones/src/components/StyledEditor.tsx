@@ -1,13 +1,13 @@
 import styled from '@emotion/styled/macro';
 
-const minusSearch = 'calc(30vh - 50px)';
+const minusSearch = `calc(30vh - 50px)`;
 
 export default styled.div<{ searching: boolean }>`
   position: relative;
   z-index: 1;
   background: #555;
   width: 100%;
-  height: ${(p: any) => (p.searching ? minusSearch : '100%')};
+  height: ${(p: any) => (p.searching ? minusSearch : `100%`)};
 
   .ace_print-margin {
     background: rgba(255, 255, 255, 0.08) !important;
@@ -28,7 +28,7 @@ export default styled.div<{ searching: boolean }>`
     color: rgb(171, 178, 191);
     font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
     width: 100% !important;
-    height: ${(p: any) => (p.searching ? minusSearch : '100%')} !important;
+    height: ${(p: any) => (p.searching ? minusSearch : `100%`)} !important;
 
     .ace_active-line {
       background: #454545 !important;

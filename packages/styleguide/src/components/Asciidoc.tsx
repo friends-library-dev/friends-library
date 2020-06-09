@@ -47,8 +47,8 @@ const Asciidoc: React.FC<Props> = ({ id, emphasize }) => {
   inFootnote = false;
   const adoc = getAdoc(id)
     .trim()
-    .replace(/^== Generated\n\n/, '');
-  const lines = adoc.split('\n');
+    .replace(/^== Generated\n\n/, ``);
+  const lines = adoc.split(`\n`);
   return (
     <StyleDiv className="asciidoc">
       {lines.map((line, i) => {
@@ -56,11 +56,11 @@ const Asciidoc: React.FC<Props> = ({ id, emphasize }) => {
         const emphasized = emphasize && emphasize.includes(lineNumber);
         return (
           <Line
-            className={`asciidoc__line${emphasized ? ' highlight' : ''}`}
+            className={`asciidoc__line${emphasized ? ` highlight` : ``}`}
             key={`${id}-${lineNumber}`}
           >
             <LineNumber num={lineNumber} />
-            <LineText dangerouslySetInnerHTML={{ __html: colorize(line) || '&#8203;' }} />
+            <LineText dangerouslySetInnerHTML={{ __html: colorize(line) || `&#8203;` }} />
           </Line>
         );
       })}
@@ -76,15 +76,15 @@ export default Asciidoc;
 
 function colorize(line: string): string {
   return line
-    .replace(/\+\+\+(.+?)\+\+\+/g, '{orange}+++{/}{green}$1{/}{orange}+++{/}')
-    .replace(/(.+)::$/, '{white}$1{/}{red}::{/}')
-    .replace(/("`|'`)(.+?)(`"|`')/g, '{orange}<i>$1$2$3</i>{/}')
-    .replace(/^--$/, '{blue}--{/}')
+    .replace(/\+\+\+(.+?)\+\+\+/g, `{orange}+++{/}{green}$1{/}{orange}+++{/}`)
+    .replace(/(.+)::$/, `{white}$1{/}{red}::{/}`)
+    .replace(/("`|'`)(.+?)(`"|`')/g, `{orange}<i>$1$2$3</i>{/}`)
+    .replace(/^--$/, `{blue}--{/}`)
     .replace(
       /footnote:\[(.+)\]/, // single-line footnotes
-      '{blue}footnote{/}:[{green}$1{/}]',
+      `{blue}footnote{/}:[{green}$1{/}]`,
     )
-    .replace('{footnote-paragraph-split}', '{grey}{footnote-paragraph-split}{/}')
+    .replace(`{footnote-paragraph-split}`, `{grey}{footnote-paragraph-split}{/}`)
     .replace(
       /footnote:\[([^\]]+)$/g, // start of multi-line footnote
       (_, rest) => {
@@ -98,42 +98,42 @@ function colorize(line: string): string {
     )
     .replace(/^____$/, () => {
       inVerse = !inVerse;
-      return '{i}____{/}';
+      return `{i}____{/}`;
     })
     .replace(/^(`? +)/, (orig, pre) => {
       if (!inFootnote) {
         return orig;
       }
-      return pre.replace(/ /g, '&nbsp;');
+      return pre.replace(/ /g, `&nbsp;`);
     })
     .replace(/(.+)\](.+)?/, (orig, before, after) => {
       if (!inFootnote) {
         return orig;
       }
       inFootnote = false;
-      return `{green}${before}{/}]${after || ''}`;
+      return `{green}${before}{/}]${after || ``}`;
     })
-    .replace(/(__?)([^ _].+?)\1/gim, '{i}$1$2$1{/}')
-    .replace(/(^=.+)/gim, '{white}$1{/}')
+    .replace(/(__?)([^ _].+?)\1/gim, `{i}$1$2$1{/}`)
+    .replace(/(^=.+)/gim, `{white}$1{/}`)
     .replace(/^\[(\.|#)(.+)\]$/g, (_, start, inner) => {
-      inner = inner.replace(/\./g, '{white}.{/}');
+      inner = inner.replace(/\./g, `{white}.{/}`);
       return `{white}[${start}{/}{grey}${inner}{/}{white}]{/}`;
     })
-    .replace(/\[\.([a-z_]+?)\]#([^#]+)#/, '{grey}[.$1]{/}{pink}#$2#{/}')
-    .replace(/, short="/g, '{white},{/} short="')
-    .replace(/^\* /, '{red}*{/} ')
+    .replace(/\[\.([a-z_]+?)\]#([^#]+)#/, `{grey}[.$1]{/}{pink}#$2#{/}`)
+    .replace(/, short="/g, `{white},{/} short="`)
+    .replace(/^\* /, `{red}*{/} `)
     .replace(/(^.+$)/, (_, l) => (inVerse ? `{i}${l}{/}` : l))
     .replace(/(^.+$)/, (_, l) => (inFootnote ? `{green}${l}{/}` : l))
     .replace(
       /{(i|red|blue|grey|white|green|orange|normal|pink)}/g,
-      '<span class="asciidoc--$1">',
+      `<span class="asciidoc--$1">`,
     )
-    .replace(/{\/}/g, '</span>');
+    .replace(/{\/}/g, `</span>`);
 }
 
 function cite(text?: string): string {
   if (!text) {
-    return '';
+    return ``;
   }
-  return `{grey}<i>${text}</i>{/}`.replace(/(\.|,)/g, '{i}$1{/}');
+  return `{grey}<i>${text}</i>{/}`.replace(/(\.|,)/g, `{i}$1{/}`);
 }

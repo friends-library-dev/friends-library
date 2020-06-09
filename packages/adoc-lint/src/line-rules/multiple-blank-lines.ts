@@ -6,25 +6,25 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line !== '') {
+  if (line !== ``) {
     return [];
   }
 
   const prevLine = lines[lineNumber - 2];
-  if (typeof prevLine === 'undefined' || prevLine !== '') {
+  if (typeof prevLine === `undefined` || prevLine !== ``) {
     return [];
   }
 
   // we only flag the LAST line of a multi-line violation
   const nextLine = lines[lineNumber];
-  if (nextLine === '') {
+  if (nextLine === ``) {
     return [];
   }
 
   const remove = [];
   let offset = 2;
   let current = lines[lineNumber - offset];
-  while (current === '') {
+  while (current === ``) {
     offset++;
     remove.push(lineNumber - offset + 2);
     current = lines[lineNumber - offset];
@@ -34,14 +34,14 @@ const rule: LineRule = (
     {
       line: lineNumber - 1,
       column: false,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Multiple blank lines are not allowed',
+      message: `Multiple blank lines are not allowed`,
       fixable: true,
-      recommendation: `--> remove line/s: (${remove.sort().join(',')})`,
+      recommendation: `--> remove line/s: (${remove.sort().join(`,`)})`,
     },
   ];
 };
 
-rule.slug = 'multiple-blank-lines';
+rule.slug = `multiple-blank-lines`;
 export default rule;

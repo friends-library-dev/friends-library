@@ -31,8 +31,9 @@ const ChooseAFile: React.FC<{}> = () => (
   <Centered>
     <p style={{ opacity: 0.5 }}>
       <span role="img" aria-label="left">
-        👈{' '}
-      </span>{' '}
+        👈{` `}
+      </span>
+      {` `}
       choose a file
     </p>
   </Centered>
@@ -84,15 +85,15 @@ class Editor extends React.Component<Props> {
   }
 
   protected checkLint(adoc: unknown): void {
-    if (typeof adoc !== 'string') {
+    if (typeof adoc !== `string`) {
       return;
     }
 
     const lints = lint(adoc, this.props.lintOptions)
       .filter(
-        l => l.fixable !== true || ['join-words', 'obsolete-spellings'].includes(l.rule),
+        l => l.fixable !== true || [`join-words`, `obsolete-spellings`].includes(l.rule),
       )
-      .filter(l => l.rule !== 'temporary-comments');
+      .filter(l => l.rule !== `temporary-comments`);
 
     this.annotateLintErrors(lints);
   }
@@ -113,7 +114,7 @@ class Editor extends React.Component<Props> {
             row: lint.line - 1,
             column: lint.column,
             text,
-            type: 'warning',
+            type: `warning`,
           };
         }),
       );
@@ -138,7 +139,7 @@ class Editor extends React.Component<Props> {
           updateFile(adoc);
           this.checkLint(adoc);
         }, 500)}
-        value={adoc || ''}
+        value={adoc || ``}
         editorProps={{ $blockScrolling: true }}
         setOptions={{
           enableSnippets: true,
@@ -162,10 +163,10 @@ class Editor extends React.Component<Props> {
 
 const mapState = (state: State): Omit<StateProps, 'size'> => {
   const task = requireCurrentTask(state);
-  const file = task.files[task.editingFile || ''];
+  const file = task.files[task.editingFile || ``];
   return {
-    lintOptions: lintOptions(file ? file.path : ''),
-    githubUser: state.github.token ? state.github.user : '',
+    lintOptions: lintOptions(file ? file.path : ``),
+    githubUser: state.github.token ? state.github.user : ``,
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
     adoc: file ? file.editedContent || file.content : undefined,

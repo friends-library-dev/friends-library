@@ -7,9 +7,9 @@ export function useNumCartItems(): [number, (numItems: number) => void, CartStor
   const [numItems, setNumItems] = useState<number>(store.cart.numItems());
   const onChange = (): void => setNumItems(store.cart.numItems());
   useEffect(() => {
-    store.on('cart:changed', onChange);
+    store.on(`cart:changed`, onChange);
     return () => {
-      store.removeListener('cart:changed', onChange);
+      store.removeListener(`cart:changed`, onChange);
     };
   }, []);
   return [numItems, setNumItems, store];
@@ -19,9 +19,9 @@ export function useCartTotalQuantity(): [number, (qty: number) => void, CartStor
   const [quantity, setQuantity] = useState<number>(store.cart.totalQuantity());
   const onChange = (): void => setQuantity(store.cart.totalQuantity());
   useEffect(() => {
-    store.on('cart:changed', onChange);
+    store.on(`cart:changed`, onChange);
     return () => {
-      store.removeListener('cart:changed', onChange);
+      store.removeListener(`cart:changed`, onChange);
     };
   }, []);
   return [quantity, setQuantity, store];

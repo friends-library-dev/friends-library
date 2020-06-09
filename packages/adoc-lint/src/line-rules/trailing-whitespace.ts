@@ -6,7 +6,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (!line.length || line[line.length - 1] !== ' ') {
+  if (!line.length || line[line.length - 1] !== ` `) {
     return [];
   }
 
@@ -20,13 +20,13 @@ const rule: LineRule = (
       line: lineNumber,
       column: match.index + 1,
       rule: rule.slug,
-      type: 'error',
-      message: 'Lines should not have trailing whitespace',
-      recommendation: line.replace(/ +$/, ''),
+      type: `error`,
+      message: `Lines should not have trailing whitespace`,
+      recommendation: line.replace(/ +$/, ``),
       fixable: true,
     },
   ];
 };
 
-rule.slug = 'trailing-whitespace';
+rule.slug = `trailing-whitespace`;
 export default rule;

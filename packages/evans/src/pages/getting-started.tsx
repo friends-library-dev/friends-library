@@ -30,7 +30,7 @@ const GettingStartedPage: React.FC<Props> = ({
   <Layout>
     <Seo
       title={t`Getting Started`}
-      description={PAGE_META_DESCS['getting-started'][LANG].replace(
+      description={PAGE_META_DESCS[`getting-started`][LANG].replace(
         /%NUM_ENGLISH_BOOKS%/g,
         String(meta.numEnglishBooks),
       )}
@@ -44,8 +44,8 @@ const GettingStartedPage: React.FC<Props> = ({
       </Heading>
       <Dual.p className="text-center body-text text-white text-lg leading-loose max-w-4xl md:text-left">
         <>
-          Interested in reading something from the early Quakers, but picking from{' '}
-          {LANG === 'en' ? meta.numEnglishBooks : meta.numSpanishBooks} books seems
+          Interested in reading something from the early Quakers, but picking from{` `}
+          {LANG === `en` ? meta.numEnglishBooks : meta.numSpanishBooks} books seems
           daunting? No worries&mdash;on this page we’ve selected some of our favorite
           books and arranged them into four categories. Plus we’ve got an introductory
           audio to help introduce you to the early Friends.
@@ -78,11 +78,11 @@ const GettingStartedPage: React.FC<Props> = ({
         </Dual.p>
         <div className="max-w-3xl sm:w-3/4">
           <EmbeddedAudio
-            trackId={LANG === 'es' ? 783137959 : 242345955}
+            trackId={LANG === `es` ? 783137959 : 242345955}
             title={
-              LANG === 'es'
-                ? '¿Quienes Eran Los Primeros Cuáqueros?'
-                : 'Introduction to the Early Quakers'
+              LANG === `es`
+                ? `¿Quienes Eran Los Primeros Cuáqueros?`
+                : `Introduction to the Early Quakers`
             }
             showArtwork={false}
           />
@@ -110,30 +110,30 @@ const GettingStartedPage: React.FC<Props> = ({
     <div className="md:flex flex-wrap">
       <PathIntro
         title={t`History`}
-        noBooks={LANG === 'es'}
+        noBooks={LANG === `es`}
         color="maroon"
-        onClick={() => makeScroller('.PathBlock--history')()}
+        onClick={() => makeScroller(`.PathBlock--history`)()}
       >
         <HistoryBlurb />
       </PathIntro>
       <PathIntro
         title={t`Doctrine`}
         color="blue"
-        onClick={() => makeScroller('.PathBlock--doctrinal')()}
+        onClick={() => makeScroller(`.PathBlock--doctrinal`)()}
       >
         <DoctrineBlurb />
       </PathIntro>
       <PathIntro
         title={t`Spiritual Life`}
         color="green"
-        onClick={() => makeScroller('.PathBlock--spiritual-life')()}
+        onClick={() => makeScroller(`.PathBlock--spiritual-life`)()}
       >
         <DevotionalBlurb />
       </PathIntro>
       <PathIntro
-        title={LANG === 'en' ? 'Journals' : 'Biográfico'}
+        title={LANG === `en` ? `Journals` : `Biográfico`}
         color="gold"
-        onClick={() => makeScroller('.PathBlock--journal')()}
+        onClick={() => makeScroller(`.PathBlock--journal`)()}
       >
         <JournalsBlurb />
       </PathIntro>
@@ -166,9 +166,9 @@ const PathIntro: React.FC<PathIntroProps> = ({
     onClick={onClick}
     className={cx(
       className,
-      !noBooks && 'cursor-pointer',
+      !noBooks && `cursor-pointer`,
       `bg-fl${color}`,
-      'p-8 pb-4 md:w-1/2 lg:w-1/4 flex flex-col justify-start',
+      `p-8 pb-4 md:w-1/2 lg:w-1/4 flex flex-col justify-start`,
     )}
   >
     <h3 className="font-sans text-white text-center text-3xl tracking-wide mb-8">

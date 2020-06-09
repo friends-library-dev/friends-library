@@ -26,13 +26,13 @@ export async function handler({
   delay,
 }: Argv): Promise<void> {
   let repos = await getRepos(exclude, branch);
-  if (branch !== 'master') {
+  if (branch !== `master`) {
     const ahead = await Promise.all(repos.map(repo => git.isAheadOfMaster(repo)));
     repos = repos.filter((repo, index) => ahead[index]);
   }
 
   await Promise.all(repos.map(repo => git.push(repo, branch, force)));
-  if (branch === 'master' || !openPr) {
+  if (branch === `master` || !openPr) {
     return;
   }
 
@@ -40,7 +40,7 @@ export async function handler({
   // synchronously work through creating PRs, and delay between them
   for (const repo of repos) {
     const title = prTitle || (await git.getHeadCommitMessage(repo));
-    const num = await openPullRequest(path.basename(repo), branch, title, prBody || '');
+    const num = await openPullRequest(path.basename(repo), branch, title, prBody || ``);
     if (num) {
       green(`PR#${num} opened for repo: ${repo}`);
     } else {
@@ -51,30 +51,30 @@ export async function handler({
   }
 }
 
-export const command = 'push <branch>';
+export const command = `push <branch>`;
 
-export const describe = 'push a branch from all selected repos';
+export const describe = `push a branch from all selected repos`;
 
 export const builder: CommandBuilder = function(yargs) {
   return yargs
-    .positional('branch', {
-      type: 'string',
+    .positional(`branch`, {
+      type: `string`,
       required: true,
     })
-    .option('exclude', excludable.exclude)
-    .option('force', forceable.force)
-    .option('open-pr', {
+    .option(`exclude`, excludable.exclude)
+    .option(`force`, forceable.force)
+    .option(`open-pr`, {
       default: false,
-      type: 'boolean',
+      type: `boolean`,
     })
-    .option('pr-title', {
-      type: 'string',
+    .option(`pr-title`, {
+      type: `string`,
     })
-    .option('pr-body', {
-      type: 'string',
+    .option(`pr-body`, {
+      type: `string`,
     })
-    .option('delay', {
-      type: 'number',
+    .option(`delay`, {
+      type: `number`,
       default: 5,
     });
 };

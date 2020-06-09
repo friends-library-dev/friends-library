@@ -7,7 +7,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (!line.length || line[0] !== ' ') {
+  if (!line.length || line[0] !== ` `) {
     return [];
   }
 
@@ -20,13 +20,13 @@ const rule: LineRule = (
       line: lineNumber,
       column: 0,
       rule: rule.slug,
-      type: 'error',
-      message: 'Lines should not have leading whitespace',
-      recommendation: line.replace(/^ +/, ''),
+      type: `error`,
+      message: `Lines should not have leading whitespace`,
+      recommendation: line.replace(/^ +/, ``),
       fixable: true,
     },
   ];
 };
 
-rule.slug = 'leading-whitespace';
+rule.slug = `leading-whitespace`;
 export default rule;

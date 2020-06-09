@@ -7,7 +7,8 @@ const Poetry: React.FC = () => (
 
     <Para>
       Poetry is marked up first with a line containing only <Code>[verse]</Code>, followed
-      by the poetry wrapped in a <i>quote block</i> which is demarcated by <code>4</code>{' '}
+      by the poetry wrapped in a <i>quote block</i> which is demarcated by <code>4</code>
+      {` `}
       underscores <Code>____</Code> before <i>and</i> after.
     </Para>
     <Pair id="poetry" emphasize={[1, 2, 7]} />
@@ -32,7 +33,8 @@ const Poetry: React.FC = () => (
       space then another backtick.
     </Note>
     <Note>
-      Browsers can't render footnotes like <a href="https://www.princexml.com">Prince</a>{' '}
+      Browsers can't render footnotes like <a href="https://www.princexml.com">Prince</a>
+      {` `}
       can, hence no preview here, sorry. It works, if you do it right, trust me!
     </Note>
   </Section>

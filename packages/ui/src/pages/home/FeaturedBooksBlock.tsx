@@ -59,7 +59,7 @@ const FeaturedBooksBlock: React.FC<Props> = ({ books }) => {
               setControlled(true);
               setIndex(bkIdx);
             }}
-            className={cx('block w-2 h-2 mx-2 rounded-full', {
+            className={cx(`block w-2 h-2 mx-2 rounded-full`, {
               'bg-gray-700': index === bkIdx,
               'bg-gray-400': index !== bkIdx,
             })}

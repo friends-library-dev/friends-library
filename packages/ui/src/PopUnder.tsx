@@ -14,7 +14,7 @@ const PopUnder: React.FC<Props> = ({
   children,
   alignRight,
   style,
-  tailwindBgColor = 'white',
+  tailwindBgColor = `white`,
 }) => {
   return (
     <div
@@ -23,8 +23,8 @@ const PopUnder: React.FC<Props> = ({
         className,
         `bg-${tailwindBgColor}`,
         `text-${tailwindBgColor}`, // for .PopUnder::after currentColor
-        'PopUnder rounded-lg shadow-direct relative',
-        alignRight && 'align-right',
+        `PopUnder rounded-lg shadow-direct relative`,
+        alignRight && `align-right`,
       )}
     >
       {children}

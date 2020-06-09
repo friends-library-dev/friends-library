@@ -6,7 +6,7 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === '' || lineNumber !== lines.length) {
+  if (line === `` || lineNumber !== lines.length) {
     return [];
   }
 
@@ -14,14 +14,14 @@ const rule: LineRule = (
     {
       line: lineNumber,
       column: false,
-      type: 'error',
+      type: `error`,
       rule: rule.slug,
-      message: 'Files must end with a single blank line',
+      message: `Files must end with a single blank line`,
       fixable: true,
-      recommendation: '--> add a new line to the end of the file',
+      recommendation: `--> add a new line to the end of the file`,
     },
   ];
 };
 
-rule.slug = 'eof-newline';
+rule.slug = `eof-newline`;
 export default rule;

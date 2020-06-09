@@ -87,7 +87,7 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
             : t`Books by ${friend.name}`}
         </h2>
         <div
-          className={cx('flex flex-col items-center ', 'xl:justify-center', {
+          className={cx(`flex flex-col items-center `, `xl:justify-center`, {
             'lg:flex-row lg:justify-between lg:flex-wrap lg:items-stretch': !isOnlyBook,
           })}
         >
@@ -104,7 +104,7 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
                 hasAudio={doc.hasAudio}
                 bookUrl={doc.url}
                 pages={doc.editions[0].pages}
-                description={doc.partialDescription || ''}
+                description={doc.partialDescription || ``}
               />
             );
           })}
@@ -147,7 +147,7 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
         titleEl="h3"
         books={relatedDocuments.nodes.map(relatedDoc => {
           const friendDoc = friend.relatedDocuments.find(doc => doc.id === relatedDoc.id);
-          if (!friendDoc) throw new Error('Missing related doc');
+          if (!friendDoc) throw new Error(`Missing related doc`);
           return {
             ...relatedDoc,
             ...coverPropsFromQueryData(relatedDoc),

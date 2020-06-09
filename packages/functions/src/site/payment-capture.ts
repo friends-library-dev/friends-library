@@ -12,7 +12,7 @@ export default async function capturePayment(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error('invalid body for /payment/capture', { body, error: data });
+    log.error(`invalid body for /payment/capture`, { body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY }, 400);
   }
 
@@ -32,16 +32,16 @@ export default async function capturePayment(
     );
   }
 
-  if (intent.status !== 'succeeded') {
-    log.error('unexpected response capturing intent', { intent });
+  if (intent.status !== `succeeded`) {
+    log.error(`unexpected response capturing intent`, { intent });
     return respond.json({ msg: Err.ERROR_CAPTURING_STRIPE_PAYMENT_INTENT }, 500);
   }
 
-  order.paymentStatus = 'captured';
+  order.paymentStatus = `captured`;
   const [saveError] = await saveOrder(order);
 
   if (saveError) {
-    log.error('error updating flp order', { error: saveError });
+    log.error(`error updating flp order`, { error: saveError });
     // @TODO decide what to do here... cancel the payment intent?
   }
 
@@ -52,15 +52,15 @@ export default async function capturePayment(
 const schema = {
   properties: {
     paymentIntentId: {
-      type: 'string',
+      type: `string`,
     },
     orderId: {
-      type: 'string',
+      type: `string`,
     },
   },
-  required: ['paymentIntentId', 'orderId'],
+  required: [`paymentIntentId`, `orderId`],
   example: {
-    paymentIntentId: 'pi_a3bd4g',
-    orderId: '5d49b249b58e56b378f13efe',
+    paymentIntentId: `pi_a3bd4g`,
+    orderId: `5d49b249b58e56b378f13efe`,
   },
 };

@@ -9,7 +9,7 @@ interface Props {
 }
 
 const RegionBlock: React.FC<Props> = ({ books }) => {
-  const [region, setRegion] = useState<Region>('England');
+  const [region, setRegion] = useState<Region>(`England`);
   return (
     <BgWordBlock id="RegionBlock" word="Geography" className="p-10" title="Geography">
       <p className="body-text pb-12">

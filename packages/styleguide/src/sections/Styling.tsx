@@ -7,7 +7,8 @@ const Styling: React.FC = () => (
 
     <H2>Book Titles:</H2>
     <Para>
-      <b>Book titles</b> should be indicated with an inline class, and <Code>#</Code>{' '}
+      <b>Book titles</b> should be indicated with an inline class, and <Code>#</Code>
+      {` `}
       delimiters, like so: <Code>[.book-title]#TITLE#</Code> and <i>not</i> with plain
       italics:
     </Para>
@@ -17,7 +18,7 @@ const Styling: React.FC = () => (
     <H2>Underlining</H2>
 
     <Para>
-      <i>Underlining</i> can be achieved with an inline class, like so:{' '}
+      <i>Underlining</i> can be achieved with an inline class, like so:{` `}
       <Code>[.underline]#TEXT HERE#</Code>.
     </Para>
 
@@ -44,7 +45,7 @@ const Styling: React.FC = () => (
 
     <H2>Numbered Paragraphs:</H2>
     <Para>
-      Fairly often our books will contain chunks of text that include{' '}
+      Fairly often our books will contain chunks of text that include{` `}
       <b>numbered paragraphs</b>. These paragraphs often begin with arabic numbers, or
       with words like <i>First</i>, or <i>Secondly</i>. When, according to our judgment,
       these paragraphs convey some kind of structural meaning that should be represented
@@ -55,11 +56,12 @@ const Styling: React.FC = () => (
     <Snippet trigger="num" expansion="[.numbered]" />
     <Pair id="numbered" emphasize={[1, 7]} />
     <Note>
-      The above asciidoc snippet uses <Code>+++</Code> to <i>escape</i> the period. See{' '}
+      The above asciidoc snippet uses <Code>+++</Code> to <i>escape</i> the period. See
+      {` `}
       <a href="#gotchas">Gotchas</a> for more on why.
     </Note>
     <Para>
-      Frequently, numbered sections will begin with full words, which sometimes{' '}
+      Frequently, numbered sections will begin with full words, which sometimes{` `}
       <i>should be rendered with italics:</i>
     </Para>
     <Pair id="numbered-alt" />
@@ -70,7 +72,8 @@ const Styling: React.FC = () => (
     </Para>
     <Pair id="centered" emphasize={[1]} />
     <Note>
-      Use of the <Code>.centered</Code> class is generally discouraged, as it conveys no{' '}
+      Use of the <Code>.centered</Code> class is generally discouraged, as it conveys no
+      {` `}
       <i>meaning,</i> it's purely a presentational direction. Prefer instead other methods
       of adding a structural meaning to an element, if possible. However, sometimes we do
       need to hold our nose and add a presentational directive like this to achieve the
@@ -83,20 +86,21 @@ const Styling: React.FC = () => (
     </Para>
     <Pair id="emphasized" emphasize={[1]} />
     <Note>
-      As with the <Code>.centered</Code> above, try to use this <Code>.emphasized</Code>{' '}
+      As with the <Code>.centered</Code> above, try to use this <Code>.emphasized</Code>
+      {` `}
       class sparingly, preferring classes and block types with structural meaning.
     </Note>
 
     <H2>Combining Classes:</H2>
     <Para>
-      Any "classes" in asciidoc can be combined by chaining them together, like{' '}
+      Any "classes" in asciidoc can be combined by chaining them together, like{` `}
       <Code>[.centered.emphasized]</Code>:
     </Para>
     <Pair id="centered-emphasized" emphasize={[1]} />
     <Note>
       As an example of abusing these presentational classes, you might consider the
-      temptation to mark up a scrap of poetry using this method, with{' '}
-      <Code>[.centered.emphasized]</Code>. Instead, use a{' '}
+      temptation to mark up a scrap of poetry using this method, with{` `}
+      <Code>[.centered.emphasized]</Code>. Instead, use a{` `}
       <a href="#poetry">verse block</a>, which will provide both proper styling and
       correct semantics.
     </Note>
@@ -113,7 +117,7 @@ const Styling: React.FC = () => (
     <H2>The End:</H2>
 
     <Para>
-      A small number of our books end with a single paragraph saying something like{' '}
+      A small number of our books end with a single paragraph saying something like{` `}
       <i>THE END</i> or <i>FINIS</i>, because I think this was a relatively common
       publishing convention. At least in the <i>original editions</i> I've been leaving
       these intact, but I designate them with the class <Code>[.the-end]</Code> so that I

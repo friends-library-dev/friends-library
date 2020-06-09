@@ -50,7 +50,7 @@ const DocBlock: React.FC<Props> = props => {
   const wrap = useRef<HTMLDivElement | null>(null);
   const [downloading, setDownloading] = useState<boolean>(false);
   const [addingToCart, setAddingToCart] = useState<boolean>(false);
-  const [recoEbookType, setRecoEbookType] = useState<'epub' | 'mobi'>('epub');
+  const [recoEbookType, setRecoEbookType] = useState<'epub' | 'mobi'>(`epub`);
   const [wizardOffset, setWizardOffset] = useState<{ top: number; left: number }>({
     top: -9999,
     left: -9999,
@@ -62,15 +62,15 @@ const DocBlock: React.FC<Props> = props => {
     }
     // i should lose my React license for this
     let visibleBtnRect: DOMRect | undefined;
-    document.querySelectorAll('.DocBlock .MultiPill > button').forEach(btn => {
+    document.querySelectorAll(`.DocBlock .MultiPill > button`).forEach(btn => {
       const rect = btn.getBoundingClientRect();
       if (!rect.width && !rect.height) {
         return;
       }
-      const text = (btn.textContent || '').toLowerCase();
+      const text = (btn.textContent || ``).toLowerCase();
       if (
         (downloading && text.match(/download|descargar/)) || // @TODO check spanish!
-        (addingToCart && text.includes('.'))
+        (addingToCart && text.includes(`.`))
       ) {
         visibleBtnRect = rect;
       }
@@ -94,15 +94,15 @@ const DocBlock: React.FC<Props> = props => {
   useEffect(() => {
     const userAgent = window.navigator.userAgent.toLowerCase();
     if (userAgent.match(/\b(android|kindle|silk)\b/)) {
-      setRecoEbookType('mobi');
+      setRecoEbookType(`mobi`);
     }
   }, []);
 
   useEffect(positionWizard, [downloading, addingToCart, wrap.current]);
 
   useEffect(() => {
-    window.addEventListener('resize', positionWizard);
-    return () => window.removeEventListener('resize', positionWizard);
+    window.addEventListener(`resize`, positionWizard);
+    return () => window.removeEventListener(`resize`, positionWizard);
   }, [downloading, addingToCart]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -112,8 +112,8 @@ const DocBlock: React.FC<Props> = props => {
         setAddingToCart(false);
       }
     };
-    document.addEventListener('keydown', escape);
-    return () => window.removeEventListener('keydown', escape);
+    document.addEventListener(`keydown`, escape);
+    return () => window.removeEventListener(`keydown`, escape);
   }, [downloading, addingToCart]);
 
   const addToCart = (editionType: EditionType): void => {
@@ -177,7 +177,8 @@ const DocBlock: React.FC<Props> = props => {
           />
           {!props.isCompilation && (
             <h2 className="font-sans text-1-5xl md:text-xl subpixel-antialiased leading-loose mb-8">
-              <i className="font-serif tracking-widest pr-1">{t`by`}:</i>{' '}
+              <i className="font-serif tracking-widest pr-1">{t`by`}:</i>
+              {` `}
               <Link className="strong-link" to={authorUrl}>
                 {author}
               </Link>
@@ -263,7 +264,7 @@ function LinksAndMeta(
       <DocActions
         download={onClickDownload}
         addToCart={onClickAddToCart}
-        gotoAudio={makeScroller('#audiobook')}
+        gotoAudio={makeScroller(`#audiobook`)}
         className="mb-8 flex flex-col md:flex-row items-center md:items-start lg:mx-24 xl:mx-0"
         price={price}
         hasAudio={hasAudio}
@@ -271,10 +272,10 @@ function LinksAndMeta(
       <div className="DocMeta flex flex-col items-center">
         <ul className="diamonds text-sans text-gray-600 leading-loose antialiased">
           <li>{author}</li>
-          {LANG === 'en' && <li className="capitalize">{edition} Edition</li>}
+          {LANG === `en` && <li className="capitalize">{edition} Edition</li>}
           <li>{dimensions(size, pages)}</li>
           <li>{numChapters > 1 ? t`${numChapters} chapters` : t`1 chapter`}</li>
-          <li>{pages.map(p => t`${p} pages`).join(', ')}</li>
+          <li>{pages.map(p => t`${p} pages`).join(`, `)}</li>
           <li>
             <Dual.frag>
               <>Language: English</>
@@ -302,17 +303,17 @@ function dimensions(size: PrintSize, pages: number[]): string {
       .map(p => bookDims(size, p))
       .map(dims =>
         [dims.width, dims.height, dims.depth]
-          .map(n => (LANG === 'en' ? n : n * CENTIMETERS_IN_INCH))
+          .map(n => (LANG === `en` ? n : n * CENTIMETERS_IN_INCH))
           .map(n => n.toPrecision(2))
-          .map(s => s.replace(/\.0+$/, ''))
-          .join(' x '),
+          .map(s => s.replace(/\.0+$/, ``))
+          .join(` x `),
       )
-      .join(', ') + `${LANG === 'en' ? ' in' : ' cm'}`
+      .join(`, `) + `${LANG === `en` ? ` in` : ` cm`}`
   );
 }
 
 function ensureWizardInViewport(): void {
-  const wizard = document.querySelector('.ChoiceWizard');
+  const wizard = document.querySelector(`.ChoiceWizard`);
   if (!wizard) {
     return;
   }
@@ -321,14 +322,14 @@ function ensureWizardInViewport(): void {
   if (bottom > window.innerHeight) {
     const extraSpace = 25;
     const scrollTo = bottom - window.innerHeight + window.scrollY + extraSpace;
-    window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+    window.scrollTo({ top: scrollTo, behavior: `smooth` });
   }
 }
 
 function titleHtml({ htmlTitle, isComplete }: Props): Html {
   let html = htmlTitle;
   if (!isComplete) {
-    html += '<sup class="text-flprimary-800">*</sup>';
+    html += `<sup class="text-flprimary-800">*</sup>`;
   }
   return html;
 }

@@ -23,9 +23,9 @@ function lint(dpc: FsDocPrecursor): void {
 
 function gitBranch(dpc: FsDocPrecursor): void {
   const isMaster =
-    execSync('git symbolic-ref HEAD --short', { cwd: gitRoot(dpc) })
+    execSync(`git symbolic-ref HEAD --short`, { cwd: gitRoot(dpc) })
       .toString()
-      .trim() === 'master';
+      .trim() === `master`;
   if (!isMaster) {
     red(`\n\nERROR: git branch for ${dpc.path} is not <master>.`);
     process.exit(1);
@@ -34,9 +34,9 @@ function gitBranch(dpc: FsDocPrecursor): void {
 
 function gitStatus(dpc: FsDocPrecursor): void {
   const statusClean =
-    execSync('git status --porcelain', { cwd: gitRoot(dpc) })
+    execSync(`git status --porcelain`, { cwd: gitRoot(dpc) })
       .toString()
-      .trim() === '';
+      .trim() === ``;
   if (!statusClean) {
     red(`\n\nERROR: git status for ${dpc.path} is not clean.`);
     process.exit(1);
@@ -44,12 +44,12 @@ function gitStatus(dpc: FsDocPrecursor): void {
 }
 
 async function gitCommit(dpc: FsDocPrecursor): Promise<void> {
-  const { CLI_GITHUB_TOKEN } = env.require('CLI_GITHUB_TOKEN');
-  const localSha = execSync('git rev-parse --verify HEAD', { cwd: gitRoot(dpc) })
+  const { CLI_GITHUB_TOKEN } = env.require(`CLI_GITHUB_TOKEN`);
+  const localSha = execSync(`git rev-parse --verify HEAD`, { cwd: gitRoot(dpc) })
     .toString()
     .trim();
 
-  const org = dpc.lang === 'en' ? 'friends-library' : 'biblioteca-de-los-amigos';
+  const org = dpc.lang === `en` ? `friends-library` : `biblioteca-de-los-amigos`;
   const path = `repos/${org}/${dpc.friendSlug}/git/refs/heads/master`;
   const res = await fetch(`https://api.github.com/${path}`, {
     headers: {

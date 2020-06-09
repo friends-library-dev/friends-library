@@ -32,11 +32,11 @@ export function format({ book, verses, contiguous, match }: Ref, opts = {}): str
   }
 
   if (contiguous) {
-    return `${str}-${(verses.pop() || { verse: '' }).verse}`;
+    return `${str}-${(verses.pop() || { verse: `` }).verse}`;
   }
 
   return `${str},${verses
     .slice(1)
     .map(v => v.verse)
-    .join(',')}`;
+    .join(`,`)}`;
 }

@@ -6,15 +6,15 @@ interface Props {
   className?: string;
 }
 
-const PlayTriangle: React.FC<Props> = ({ tailwindColor = 'flprimary', className }) => (
+const PlayTriangle: React.FC<Props> = ({ tailwindColor = `flprimary`, className }) => (
   <svg
-    className={cx(className, 'inline-block')}
+    className={cx(className, `inline-block`)}
     viewBox="0 0 66 102"
     width="66"
     height="102"
   >
     <polygon
-      className={cx(`text-${tailwindColor}`, 'stroke-current')}
+      className={cx(`text-${tailwindColor}`, `stroke-current`)}
       strokeWidth="9"
       strokeLinejoin="round"
       fill="transparent"

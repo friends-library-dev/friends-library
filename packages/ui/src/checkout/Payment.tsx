@@ -58,12 +58,12 @@ class Payment extends React.Component<Props, State> {
 
     const { paymentIntentClientSecret, stripe, elements, onPay } = this.props;
     if (!stripe || !elements) {
-      throw new Error('Missing stripe prop!');
+      throw new Error(`Missing stripe prop!`);
     }
 
     onPay(() => {
-      const element = elements.getElement('cardNumber');
-      if (!element) throw new Error('No cardElement found!');
+      const element = elements.getElement(`cardNumber`);
+      if (!element) throw new Error(`No cardElement found!`);
       return stripe.confirmCardPayment(paymentIntentClientSecret, {
         payment_method: {
           card: element,
@@ -94,7 +94,7 @@ class Payment extends React.Component<Props, State> {
         {error && <ErrorMsg>{error}</ErrorMsg>}
         <div className="relative">
           {throbbing && <MessageThrobber />}
-          <div className={cx('md:flex mt-4', throbbing && 'blur pointer-events-none')}>
+          <div className={cx(`md:flex mt-4`, throbbing && `blur pointer-events-none`)}>
             <Fees
               className="w-full md:w-1/2 md:mr-10 md:border-b md:pb-2 md:mb-4"
               {...this.props}
@@ -105,7 +105,7 @@ class Payment extends React.Component<Props, State> {
               </h3>
               <div className="relative">
                 <CardNumberElement
-                  className={cx('CartInput', { invalid: !!numberError })}
+                  className={cx(`CartInput`, { invalid: !!numberError })}
                   placeholder="Credit Card Number"
                   onReady={el => el.focus()}
                   onChange={({ error, brand, complete }) => {
@@ -125,7 +125,7 @@ class Payment extends React.Component<Props, State> {
                 <div className="relative mr-4 w-1/2 flex-grow">
                   <CardExpiryElement
                     style={style}
-                    className={cx('CartInput', { invalid: !!expiryError })}
+                    className={cx(`CartInput`, { invalid: !!expiryError })}
                     onFocus={() => this.setState({ expiryError: undefined })}
                     onChange={({ error, complete }) => {
                       this.setState({
@@ -140,7 +140,7 @@ class Payment extends React.Component<Props, State> {
                   <CardCvcElement
                     style={style}
                     placeholder="CVC"
-                    className={cx('CartInput', { invalid: !!cvcError })}
+                    className={cx(`CartInput`, { invalid: !!cvcError })}
                     onFocus={() => this.setState({ cvcError: undefined })}
                     onChange={({ error, complete }) => {
                       this.setState({
@@ -158,11 +158,11 @@ class Payment extends React.Component<Props, State> {
             </div>
           </div>
         </div>
-        <div className={cx(throbbing && 'blur pointer-events-none')}>
+        <div className={cx(throbbing && `blur pointer-events-none`)}>
           <Back onClick={onBack}>{t`Back to Delivery`}</Back>
           <Button
-            bg={this.valid() ? 'primary' : null}
-            className={cx('mx-auto', {
+            bg={this.valid() ? `primary` : null}
+            className={cx(`mx-auto`, {
               'bg-gray-800': !this.valid(),
             })}
             disabled={!this.valid()}
@@ -179,22 +179,22 @@ export default injectStripe(Payment);
 
 const style = {
   base: {
-    color: '#666',
+    color: `#666`,
     fontWeight: 500,
-    fontFamily: 'Cabin, Open Sans, Segoe UI, sans-serif',
-    fontSize: '16px',
-    letterSpacing: '0.05em',
-    fontSmoothing: 'antialiased',
+    fontFamily: `Cabin, Open Sans, Segoe UI, sans-serif`,
+    fontSize: `16px`,
+    letterSpacing: `0.05em`,
+    fontSmoothing: `antialiased`,
     '::placeholder': {
-      color: '#ccc',
+      color: `#ccc`,
     },
   },
   complete: {
-    color: '#106314',
+    color: `#106314`,
   },
   invalid: {
     '::placeholder': {
-      color: '#fff',
+      color: `#fff`,
     },
   },
 };

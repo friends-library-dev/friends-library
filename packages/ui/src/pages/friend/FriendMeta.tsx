@@ -11,11 +11,11 @@ interface Props {
 const FriendMeta: React.FC<Props> = ({ children, title, color, className }) => {
   return (
     <aside
-      className={cx(className, 'FriendMeta text-white px-6 py-12', {
-        'bg-flgreen': color === 'green',
-        'bg-flblue': color === 'blue',
-        'bg-flmaroon': color === 'maroon',
-        'bg-flgold': color === 'gold',
+      className={cx(className, `FriendMeta text-white px-6 py-12`, {
+        'bg-flgreen': color === `green`,
+        'bg-flblue': color === `blue`,
+        'bg-flmaroon': color === `maroon`,
+        'bg-flgold': color === `gold`,
       })}
     >
       <h4 className="text-center font-sans uppercase tracking-wider mb-8">{title}</h4>

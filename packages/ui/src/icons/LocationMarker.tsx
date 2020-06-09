@@ -16,12 +16,12 @@ const LocationMarker: React.FC<Props> = ({
   left,
   label,
   onClick = () => {},
-  tailwindColor = 'flprimary',
+  tailwindColor = `flprimary`,
 }) => (
   <>
     <svg
-      className={cx(className, 'absolute')}
-      style={{ top: `${top}%`, left: `${left}%`, transform: 'translate(-12px, -36px)' }}
+      className={cx(className, `absolute`)}
+      style={{ top: `${top}%`, left: `${left}%`, transform: `translate(-12px, -36px)` }}
       width="26"
       height="37"
       viewBox="0 0 26 37"
@@ -39,8 +39,8 @@ const LocationMarker: React.FC<Props> = ({
       style={{
         top: `${top}%`,
         left: `${left}%`,
-        transform: 'translate(-50%, 25%)',
-        textShadow: '1px 1px white, -1px -1px white',
+        transform: `translate(-50%, 25%)`,
+        textShadow: `1px 1px white, -1px -1px white`,
       }}
     >
       {label}

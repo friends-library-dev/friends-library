@@ -42,8 +42,8 @@ const GenericHit: React.FC<GenericHitProps> = ({
         </h6>
       )}
       <p className="body-text text-sm leading-snug">
-        {attr === 'bookTitles' && <span>{t`Books`}: </span>}
-        {attr === 'residences' && <span>{t`Residences`}: </span>}
+        {attr === `bookTitles` && <span>{t`Books`}: </span>}
+        {attr === `residences` && <span>{t`Residences`}: </span>}
         <Summary hit={hit} attribute={attr} tagName="mark" />
       </p>
     </Link>
@@ -53,7 +53,7 @@ const GenericHit: React.FC<GenericHitProps> = ({
 export const BookHit: React.FC<HitProps> = ({ hit }) => (
   <GenericHit
     attrFallback="partialDescription"
-    attrReject={['title', 'authorName']}
+    attrReject={[`title`, `authorName`]}
     titleAttr="title"
     subtitleAttr="authorName"
     hit={hit}
@@ -63,7 +63,7 @@ export const BookHit: React.FC<HitProps> = ({ hit }) => (
 export const PageHit: React.FC<HitProps> = ({ hit }) => (
   <GenericHit
     attrFallback="text"
-    attrReject={['title', 'subtitle']}
+    attrReject={[`title`, `subtitle`]}
     titleAttr="title"
     subtitleAttr="subtitle"
     hit={hit}
@@ -73,7 +73,7 @@ export const PageHit: React.FC<HitProps> = ({ hit }) => (
 export const FriendHit: React.FC<HitProps> = ({ hit }) => (
   <GenericHit
     attrFallback="description"
-    attrReject={['name']}
+    attrReject={[`name`]}
     titleAttr="name"
     hit={hit}
   />
@@ -85,7 +85,7 @@ function bestHighlightAttr(
   reject: string[],
 ): string {
   for (const attr of Object.keys(hit._highlightResult)) {
-    if (hit._highlightResult[attr].matchLevel === 'full' && !reject.includes(attr)) {
+    if (hit._highlightResult[attr].matchLevel === `full` && !reject.includes(attr)) {
       return attr;
     }
   }

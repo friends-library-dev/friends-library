@@ -29,24 +29,24 @@ const fixtureCases = fs
   .readFileSync(`${__dirname}/fixture.adoc`)
   .toString()
   .trim()
-  .split('\n\n')
+  .split(`\n\n`)
   .map(pair =>
     pair
-      .split('\n')
+      .split(`\n`)
       .map(line => line.trim())
-      .filter(line => !line.startsWith('//')),
+      .filter(line => !line.startsWith(`//`)),
   );
 
-describe('quotify()', () => {
-  test.each(fixtureCases)('quotifies %s', (before, after) => {
+describe(`quotify()`, () => {
+  test.each(fixtureCases)(`quotifies %s`, (before, after) => {
     expect(quotify(before)).toBe(after);
   });
 
-  test.each(multilineCases)('quotifies %s', (before, after) => {
-    expect(quotify(before.replace(/\^/g, '`'))).toBe(after.replace(/\^/g, '`'));
+  test.each(multilineCases)(`quotifies %s`, (before, after) => {
+    expect(quotify(before.replace(/\^/g, `\``))).toBe(after.replace(/\^/g, `\``));
   });
 
-  test('asterism not quotified', () => {
+  test(`asterism not quotified`, () => {
     const adoc = strip(`
       Foo bar.
 
@@ -59,12 +59,12 @@ describe('quotify()', () => {
     expect(quotify(adoc)).toBe(adoc);
   });
 
-  test('possesive curly double-quote fixed', () => {
-    expect(quotify('Jared`"s')).toBe("Jared`'s");
-    expect(quotify('great name`"s sake')).toBe("great name`'s sake");
+  test(`possesive curly double-quote fixed`, () => {
+    expect(quotify(`Jared\`"s`)).toBe(`Jared\`'s`);
+    expect(quotify(`great name\`"s sake`)).toBe(`great name\`'s sake`);
   });
 
-  test('bracket quotes not quotified', () => {
+  test(`bracket quotes not quotified`, () => {
     const adoc = strip(`
       [#ch1.style-blurb, short="foobar"]
       == Some title
@@ -75,7 +75,7 @@ describe('quotify()', () => {
     expect(quotify(adoc)).toBe(adoc);
   });
 
-  test('block quote citation not quotified', () => {
+  test(`block quote citation not quotified`, () => {
     const adoc = strip(`
       [quote, Robert Barclay, "Apology, Prop. 7, Sec. 3"]
       ____
