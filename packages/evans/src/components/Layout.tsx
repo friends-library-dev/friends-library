@@ -19,7 +19,7 @@ import {
 } from '@friends-library/cover-component';
 import Checkout from './Checkout';
 import Slideover from './Slideover';
-import { LANG, APP_URL } from '../env';
+import { LANG } from '../env';
 import './Layout.css';
 
 const store = CartStore.getSingleton();
@@ -95,7 +95,7 @@ const Layout: React.FC = ({ children }) => {
             ][LANG === `en` ? 0 : 1]
           }
         />
-        {APP_URL.includes(`netlify`) && (
+        {process.env.GATSBY_NETLIFY_CONTEXT === `preview` && (
           <meta name="robots" content="noindex, nofollow" />
         )}
         <link
