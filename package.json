@@ -11,7 +11,7 @@
     "fl": "yarn ts-node --transpile-only --project ./packages/cli/tsconfig.json ./packages/cli/src/app.ts",
     "test": "yarn jest",
     "lint": "yarn ts:lint",
-    "ts:lint": "yarn eslint 'packages/**/*.{ts,tsx}'",
+    "ts:lint": "yarn eslint '**/*.{ts,tsx}'",
     "asciidoc:scaffold:lint": "cd ./packages/adoc-lint && yarn scaffold:lint",
     "styleguide:develop": "cd ./packages/styleguide && yarn start",
     "styleguide:build": "cd ./packages/styleguide && yarn build",

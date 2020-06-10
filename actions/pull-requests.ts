@@ -9,7 +9,7 @@ import { getEventJson, latestCommitSha } from './helpers';
  * correct result for a `push` event created by merging a PR
  */
 export async function data(): Promise<{ number: number; title: string } | void> {
-  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || ``).split(`/`);
   const client = new pr();
   const prNum = numberFromEnv();
 
@@ -23,7 +23,7 @@ export async function data(): Promise<{ number: number; title: string } | void> 
   const { data: prs } = await client.repos.listPullRequestsAssociatedWithCommit({
     owner,
     repo,
-    commit_sha: latestCommitSha() || '',
+    commit_sha: latestCommitSha() || ``,
   });
   if (prs.length) {
     return prs[0];
@@ -43,7 +43,7 @@ export async function number(): Promise<number | void> {
 }
 
 function numberFromEnv(): number | void {
-  const { GITHUB_REF = '' } = process.env;
+  const { GITHUB_REF = `` } = process.env;
   const refMatch = /refs\/pull\/(\d+)\/merge/g.exec(GITHUB_REF);
   if (refMatch) {
     return Number(refMatch[1]);
@@ -57,7 +57,7 @@ function numberFromEnv(): number | void {
 
 export async function deleteBotCommentsContaining(str: string): Promise<void> {
   const client = new pr();
-  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || ``).split(`/`);
   const prNumber = await number();
   if (!prNumber) {
     core.warning(`Unable to find PR number, skipping attempt to delete PR bot comments`);
@@ -71,7 +71,7 @@ export async function deleteBotCommentsContaining(str: string): Promise<void> {
   });
 
   comments.forEach(comment => {
-    if (comment.user.type === 'Bot' && comment.body.includes(str)) {
+    if (comment.user.type === `Bot` && comment.body.includes(str)) {
       client.issues.deleteComment({ owner, repo, comment_id: comment.id });
     }
   });

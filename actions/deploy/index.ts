@@ -5,7 +5,7 @@ import * as pr from '../pull-requests';
 // @ts-ignore
 import NetlifyAPI from 'netlify';
 
-async function main() {
+async function main(): Promise<void> {
   const {
     INPUT_NETLIFY_API_TOKEN: token,
     INPUT_SITE_ID: siteId,
