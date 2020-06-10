@@ -11,9 +11,7 @@
     "write:css": "node ./src/write-css.js",
     "test": "cd ../../ && yarn jest packages/api",
     "eject": "react-scripts eject",
-    "build:netlify": "yarn compile && yarn build",
-    "deploy:prod": "REACT_APP_OAUTH_CLIENT_ID=9b6f22aa47ed65ea8a6a REACT_APP_NETLIFY_CONTEXT=production yarn build && netlify deploy --dir=build --prod",
-    "deploy:preview": "REACT_APP_NETLIFY_CONTEXT=deploy-preview yarn build && netlify deploy --dir=build"
+    "build:netlify": "yarn compile && yarn build"
   },
   "dependencies": {
     "@emotion/core": "^10.0.14",
