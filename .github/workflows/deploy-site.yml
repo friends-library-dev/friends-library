@@ -64,8 +64,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
-        with:
-          working-directory: packages/evans
       - name: compile
         run: yarn compile evans
       - name: fell-clone
@@ -95,8 +93,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
-        with:
-          working-directory: packages/evans
       - name: compile
         run: yarn compile evans
       - name: fell-clone
