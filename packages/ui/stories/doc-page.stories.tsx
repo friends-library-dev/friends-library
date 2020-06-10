@@ -108,6 +108,7 @@ storiesOf(`Doc Page`, module)
   ))
   .add(`DocBlock`, () => (
     <DocBlock
+      isComplete
       lang="en"
       title="The Journal and Writings of Ambrose Rigge"
       htmlTitle="The Journal and Writings of Ambrose Rigge"

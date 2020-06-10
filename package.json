@@ -34,6 +34,8 @@
     "format:all": "yarn prettier \"packages/**/*.{ts,tsx,js,css,scss,yml}\" --write",
     "storybook": "cd packages/ui && yarn storybook",
     "ui:start": "cd packages/ui && yarn storybook",
+    "ui:build": "cd packages/ui && yarn build",
+    "ui:build:quiet": "cd packages/ui && yarn build:quiet",
     "ts:check": "yarn evans:ts:check && yarn cover:ts:check && yarn compile all",
     "kick:tires": "yarn lint && yarn test && yarn ts:check",
     "algolia:send": "FORCE_ALGOLIA_SEND=true yarn ts-node packages/evans/src/build/algolia.ts",
