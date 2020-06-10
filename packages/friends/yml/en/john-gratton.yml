@@ -50,3 +50,40 @@ documents:
       - type: updated
         isbn: 978-1-64476-071-0
         editor: Jason R. Henderson
+  - id: 29b459d6-16ae-4f64-a03c-4ee1794b3523
+    title: Selection from the Journal of John Gratton
+    slug: journal-selection
+    filename: Selection_Journal_of_John_Gratton
+    description:
+      John Gratton (1641-1711) was one of many early Quakers who were convinced of the
+      truth directly by the Lord, apart from the preaching or writings of others in the
+      Society of Friends. His desperate and agonizing pursuit of true Christianity
+      (amongst the many sects and opinions of the day) finally brought him to dramatically
+      experience the truth of Christ’s promise—“Everyone who asks receives, and he who
+      seeks finds, and to him who knocks it will be opened.” Having found the truth he had
+      so diligently sought for, he loved it, and submitted to its powerful operations in
+      his own heart, becoming an esteemed minister and a great sufferer for the gospel of
+      Jesus Christ.
+    partial_description:
+      A selection from the journal of John Gratton, relating his long and ardent pursuit
+      after real Christianity amongst the many sects and opinions of the day, and his
+      eventual discovery and experience of Christ within, the Pearl of great price, and
+      the only hope of glory.
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-226-4
+        editor: Jason R. Henderson
+        audio:
+          added: 2020-06-10T14:02:43.011Z
+          reader: Jason Henderson
+          parts:
+            - title: Selection from the Journal of John Gratton
+              external_id_hq: 837597541
+              external_id_lq: 837597028
+              filesize_hq: 96894392
+              filesize_lq: 25822474
+              seconds: 5164
+              chapters:
+                - 0
