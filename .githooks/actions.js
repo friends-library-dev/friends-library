@@ -14,15 +14,18 @@ function handleBundledActionJs(gitAdd) {
     .toString()
     .trim();
 
+  const actionDirs = fs
+    .readdirSync(`./actions`, { withFileTypes: true })
+    .filter(dirent => dirent.name !== 'workflows')
+    .filter(dirent => dirent.isDirectory())
+    .map(dirent => dirent.name);
+
   if (!currentBranch.startsWith('actions')) {
     // make sure we don't commit ncc-bundled js
     const FLAGS = '--force --ignore-unmatch --quiet';
-    execSync(`git rm ${FLAGS} packages/actions/pdf/bundled/index.js`);
-    execSync(`git rm ${FLAGS} packages/actions/lint-adoc/bundled/index.js`);
-    execSync(`git rm ${FLAGS} packages/actions/should-deploy/bundled/index.js`);
-    execSync(`git rm ${FLAGS} packages/actions/deploy/bundled/index.js`);
-    execSync(`git rm ${FLAGS} packages/actions/meta/bundled/index.js`);
-    execSync(`git rm ${FLAGS} packages/actions/pr-cleanup/bundled/index.js`);
+    actionDirs.forEach(action =>
+      execSync(`git rm ${FLAGS} ./actions/${action}/bundled/index.js`),
+    );
 
     // make sure we don't get the actions* branch special .gitignore rule
     if (ACTION_IGNORE.includes(BUNDLED_JS)) {
@@ -33,12 +36,12 @@ function handleBundledActionJs(gitAdd) {
     if (!ACTION_IGNORE.includes(BUNDLED_JS)) {
       fs.writeFileSync('./actions/.gitignore', `${ACTION_IGNORE}${BUNDLED_JS}`);
       execSync('git add ./actions/.gitignore');
-      gitAdd && execSync(`git add packages/actions/pdf/bundled/index.js`);
-      gitAdd && execSync(`git add packages/actions/lint-adoc/bundled/index.js`);
-      gitAdd && execSync(`git add packages/actions/should-deploy/bundled/index.js`);
-      gitAdd && execSync(`git add packages/actions/deploy/bundled/index.js`);
-      gitAdd && execSync(`git add packages/actions/meta/bundled/index.js`);
-      gitAdd && execSync(`git add packages/actions/pr-cleanup/bundled/index.js`);
+      if (!gitAdd) {
+        actionDirs.forEach(action => {
+          const path = `./actions/${action}/bundled/index.js`;
+          fs.existsSync(path) && execSync(`git add ${path}`);
+        });
+      }
     }
   }
 }
