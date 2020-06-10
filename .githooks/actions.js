@@ -20,6 +20,9 @@ function handleBundledActionJs(gitAdd) {
     execSync(`git rm ${FLAGS} packages/actions/pdf/bundled/index.js`);
     execSync(`git rm ${FLAGS} packages/actions/lint-adoc/bundled/index.js`);
     execSync(`git rm ${FLAGS} packages/actions/should-deploy/bundled/index.js`);
+    execSync(`git rm ${FLAGS} packages/actions/deploy/bundled/index.js`);
+    execSync(`git rm ${FLAGS} packages/actions/meta/bundled/index.js`);
+    execSync(`git rm ${FLAGS} packages/actions/pr-cleanup/bundled/index.js`);
 
     // make sure we don't get the actions* branch special .gitignore rule
     if (ACTION_IGNORE.includes(BUNDLED_JS)) {
@@ -33,6 +36,9 @@ function handleBundledActionJs(gitAdd) {
       gitAdd && execSync(`git add packages/actions/pdf/bundled/index.js`);
       gitAdd && execSync(`git add packages/actions/lint-adoc/bundled/index.js`);
       gitAdd && execSync(`git add packages/actions/should-deploy/bundled/index.js`);
+      gitAdd && execSync(`git add packages/actions/deploy/bundled/index.js`);
+      gitAdd && execSync(`git add packages/actions/meta/bundled/index.js`);
+      gitAdd && execSync(`git add packages/actions/pr-cleanup/bundled/index.js`);
     }
   }
 }
