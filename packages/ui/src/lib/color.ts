@@ -7,15 +7,15 @@ export function bgLayer(
   let colorStr = ``;
   if (typeof color === `string`) {
     colorStr = color;
-    if (tailwind.theme.extend.colors.hasOwnProperty(color)) {
-      // @ts-ignore
-      colorStr = tailwind.theme.extend.colors[color] as string;
+    const tailwindColors = tailwind.theme.extend.colors;
+    if (color in tailwindColors) {
+      colorStr = tailwindColors[color as keyof typeof tailwindColors];
     }
   } else {
     colorStr = `rgb(${color.join(`, `)})`;
   }
   if (opacity) {
-    colorStr = colorStr.replace(`)`, `, ${opacity})`);
+    colorStr = colorStr.replace(`)`, `, ${opacity})`).replace(`rgb(`, `rgba(`);
   }
 
   return `linear-gradient(${colorStr}, ${colorStr})`;
