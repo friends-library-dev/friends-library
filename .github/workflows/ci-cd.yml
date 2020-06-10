@@ -134,3 +134,16 @@ jobs:
           working-directory: packages/styleguide
       - name: styleguide:build
         run: yarn styleguide:build
+
+  storybook-build:
+    name: storybook-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+        with:
+          working-directory: packages/ui
+      - name: compile
+        run: yarn compile ui
+      - name: ui:build
+        run: yarn ui:build:quiet
