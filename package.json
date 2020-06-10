@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "compile": "node scripts/compile.js",
-    "actions:compile": "cd actions/meta && yarn build && cd ../lint-adoc && yarn build && cd ../pdf && yarn build && cd ../should-deploy && yarn build && cd ../deploy && yarn build",
+    "actions:compile": "cd actions/meta && yarn build && cd ../lint-adoc && yarn build && cd ../pdf && yarn build && cd ../should-deploy && yarn build && cd ../deploy && yarn build && cd ../pr-cleanup && yarn build",
     "ts:clean": "find . -name \"*.tsbuildinfo\" -type f -delete && rm -rf packages/*/dist",
     "fell": "yarn ts-node --transpile-only --project ./packages/fell/tsconfig.json ./packages/fell/src/app.ts",
     "fell:fresh-clone": "rm -rf ./en && rm -rf ./es && mkdir -p ./en ./es && yarn compile fell && yarn fell clone",

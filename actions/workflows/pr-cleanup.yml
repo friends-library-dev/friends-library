@@ -1,0 +1,15 @@
+name: pr-cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  pdfs:
+    name: delete-pdf-previews
+    runs-on: ubuntu-latest
+    steps:
+      - name: delete-pdf-previews
+        uses: friends-library/friends-library/actions/pr-cleanup@actions
+        with:
+          github_token: ${{ github.token }}

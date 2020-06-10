@@ -1,0 +1,7 @@
+name: pr-cleanup
+inputs:
+  github_token:
+    required: true
+runs:
+  using: node12
+  main: ./bundled/index.js
