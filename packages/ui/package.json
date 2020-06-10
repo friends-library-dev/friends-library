@@ -11,9 +11,8 @@
     "compile": "cd ../../ && yarn compile ui",
     "storybook": "node ./pre-build.js && start-storybook -p 6006 --ci",
     "start": "yarn storybook",
-    "build": "build-storybook",
-    "build:quiet": "build-storybook --loglevel error --quiet",
-    "build:netlify": "yarn compile && yarn build:quiet",
+    "build": "node ./pre-build.js && build-storybook",
+    "build:quiet": "node ./pre-build.js && build-storybook --loglevel error --quiet",
     "test": "cd ../../ && yarn test packages/ui/src",
     "test:integration": "cd ../../ && yarn test --config packages/ui/src/checkout/services/__tests__/jest.config.js --testRegex=packages/ui/.*/.*\\.integration\\.ts"
   },

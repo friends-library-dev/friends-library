@@ -22,8 +22,10 @@
   },
   "references": [
     { "path": "../types" },
+    { "path": "../env" },
     { "path": "../cover-component" },
     { "path": "../locale" },
+    { "path": "../lulu" },
     { "path": "../friends" }
   ],
   "include": [
