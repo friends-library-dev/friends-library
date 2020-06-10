@@ -1,0 +1,20 @@
+name: pr-cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  pdfs:
+    name: delete-pdf-previews
+    runs-on: ubuntu-latest
+    steps:
+      - name: delete-pdf-previews
+        env:
+          CLOUD_STORAGE_BUCKET: ${{ secrets.CLOUD_STORAGE_BUCKET }}
+          CLOUD_STORAGE_ENDPOINT: ${{ secrets.CLOUD_STORAGE_ENDPOINT }}
+          CLOUD_STORAGE_KEY: ${{ secrets.CLOUD_STORAGE_KEY }}
+          CLOUD_STORAGE_SECRET: ${{ secrets.CLOUD_STORAGE_SECRET }}
+        uses: friends-library/friends-library/actions/pr-cleanup@actions
+        with:
+          github_token: ${{ github.token }}
