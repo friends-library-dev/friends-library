@@ -15,7 +15,7 @@ export function toAnnotation(lint: Record<string, any>, path: string): Annotatio
     path,
     start_line: lint.line,
     end_line: lint.line,
-    annotation_level: 'failure',
+    annotation_level: `failure`,
     message: lint.message,
   };
 
@@ -25,8 +25,8 @@ export function toAnnotation(lint: Record<string, any>, path: string): Annotatio
   }
 
   if (lint.recommendation) {
-    const reco = lint.recommendation.startsWith('-->')
-      ? `${lint.recommendation.replace(/^--> ?/, '')}`
+    const reco = lint.recommendation.startsWith(`-->`)
+      ? `${lint.recommendation.replace(/^--> ?/, ``)}`
       : `\`\`\`\n${lint.recommendation}\n\`\`\``;
     annotation.message += `\n\nRecommended fix:\n\n${reco}`;
   }
@@ -35,9 +35,9 @@ export function toAnnotation(lint: Record<string, any>, path: string): Annotatio
 }
 
 export function lintOptions(path: string): LintOptions {
-  const lang = process.env.GITHUB_REPOSITORY?.startsWith('friends-library') ? 'en' : 'es';
-  let edition: EditionType = 'original';
-  if (path.includes('modernized/')) edition = 'modernized';
-  if (path.includes('updated/')) edition = 'updated';
+  const lang = process.env.GITHUB_REPOSITORY?.startsWith(`friends-library`) ? `en` : `es`;
+  let edition: EditionType = `original`;
+  if (path.includes(`modernized/`)) edition = `modernized`;
+  if (path.includes(`updated/`)) edition = `updated`;
   return { lang, editionType: edition };
 }

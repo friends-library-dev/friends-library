@@ -7,13 +7,13 @@ import { Annotation, toAnnotation, lintOptions } from './lint-helpers';
 import * as pr from '../pull-requests';
 import { latestCommitSha } from '../helpers';
 
-async function main() {
+async function main(): Promise<void> {
   const prNumber = await pr.number();
   if (!prNumber) {
     return;
   }
 
-  await pr.deleteBotCommentsContaining('lint violations!');
+  await pr.deleteBotCommentsContaining(`lint violations!`);
 
   let errors: Annotation[] = [];
   newOrModifiedFiles().forEach(path => {
@@ -29,21 +29,21 @@ async function main() {
     return;
   }
 
-  core.setFailed(`Found ${errors.length} lint error${errors.length > 1 ? 's' : ''}!`);
+  core.setFailed(`Found ${errors.length} lint error${errors.length > 1 ? `s` : ``}!`);
   console.error(errors);
 
-  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || ``).split(`/`);
   const client = new Octokit();
 
   await client.checks.create({
     owner,
     repo,
-    name: 'lint-adoc',
-    head_sha: latestCommitSha() || '',
-    status: 'completed',
-    conclusion: 'failure',
+    name: `lint-adoc`,
+    head_sha: latestCommitSha() || ``,
+    status: `completed`,
+    conclusion: `failure`,
     output: {
-      title: 'Asciidoc lint failure',
+      title: `Asciidoc lint failure`,
       summary: `Found ${errors.length} problems`,
       annotations: errors,
     },

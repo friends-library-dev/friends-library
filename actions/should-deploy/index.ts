@@ -2,12 +2,12 @@ import * as core from '@actions/core';
 import { Octokit } from '@octokit/action';
 import * as pr from '../pull-requests';
 
-async function main() {
-  const [owner, repo] = (process.env.GITHUB_REPOSITORY || '').split('/');
+async function main(): Promise<void> {
+  const [owner, repo] = (process.env.GITHUB_REPOSITORY || ``).split(`/`);
 
   const PR_NUM = await pr.number();
   if (!PR_NUM) {
-    core.warning('No associated PR for commit');
+    core.warning(`No associated PR for commit`);
     return;
   }
 
@@ -31,8 +31,8 @@ async function main() {
   core.info(`Set \`should_deploy_${siteId}\` output to ${shouldDeploy}`);
 
   const deployContext =
-    process.env.GITHUB_REF === 'refs/heads/master' ? 'production' : 'preview';
-  core.setOutput('deploy_context', deployContext);
+    process.env.GITHUB_REF === `refs/heads/master` ? `production` : `preview`;
+  core.setOutput(`deploy_context`, deployContext);
   core.info(`Set \`deploy_context\` output to ${deployContext}`);
 }
 
