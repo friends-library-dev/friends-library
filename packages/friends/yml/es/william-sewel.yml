@@ -26,6 +26,30 @@ description:
   corazón a las enseñanzas del Espíritu de la verdad y regresó a la vida, luz, poder y
   pureza originales del Cristianismo primitivo.
 documents:
+  - id: 41b1ae64-5130-418e-9fea-a004dbdb46d5
+    alt_language_id: 69c5fc26-76e3-4302-964e-ba46d889003b
+    title: Historia del Pueblo Cristiano Llamado Cuáqueros
+    slug: historia-de-los-cuaqueros
+    filename: Historia_de_los_Cuaqueros
+    description:
+      Siendo un Cuáquero, un investigador honesto y meticuloso, y un testigo presencial de
+      muchos de los eventos descritos en su libro, William Sewell (1653-1720) ha sido
+      considerado durante mucho tiempo la principal autoridad de la antigua historia de la
+      Sociedad de Amigos. Esta larga pero invaluable publicación (primero escrita en
+      holandés en 1717, y luego traducida por Sewel al inglés) cuenta la historia
+      asombrosa de un pueblo que despertó de la religión formal y sin vida de su época, se
+      sometió de todo corazón a las enseñanzas del Espíritu de la verdad y regresó a la
+      vida, luz, poder y pureza originales del Cristianismo primitivo.
+    partial_description:
+      Una historia exhaustiva de la Sociedad de Amigos, considerada durante mucho tiempo
+      como la publicación más veraz y precisa sobre el verdadero surgimiento, incremento y
+      progreso de este pueblo cristiano durante sus primeros sesenta y cinco años.
+    tags:
+      - history
+    editions:
+      - type: updated
+        isbn: 978-1-64476-227-1
+        draft: true
   - id: 184123b9-03ca-44aa-9242-50f339d8c711
     alt_language_id: 2c64c45a-02b0-406d-935f-c90a42daf5a7
     title: Los Sufrimientos de Catharine Evans y Sarah Cheevers
