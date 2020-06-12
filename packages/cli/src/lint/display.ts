@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { LintResult } from '@friends-library/types';
-import { red, green, grey, yellow } from '@friends-library/cli-utils/color';
+import { c, log, red, green, grey, yellow } from '@friends-library/cli-utils/color';
 import DirLints from './DirLints';
 
 export function printLints(lints: DirLints, limit: false | number = false): void {
@@ -22,7 +22,7 @@ export function printLints(lints: DirLints, limit: false | number = false): void
 }
 
 function printResult(result: LintResult, path: string, lines: string[]): void {
-  console.log(`\n\n${chalk.cyan(result.rule)}: ${result.message}`);
+  log(c`\n\n{cyan ${result.rule}}: ${result.message}`);
   grey(`${path}:${result.line}${result.column === false ? `` : `:${result.column}`}`);
 
   if ([`eof-newline`, `open-block`, `footnote-split-spacing`].includes(result.rule)) {
@@ -47,6 +47,10 @@ function printResult(result: LintResult, path: string, lines: string[]): void {
     [`trailing-hyphen`, `dangling-possessive`].includes(result.rule)
   ) {
     red(lines[result.line]);
+  }
+
+  if (result.rule === `numbered-group`) {
+    yellow.dim(lines[result.line]);
   }
 
   if (result.recommendation) {

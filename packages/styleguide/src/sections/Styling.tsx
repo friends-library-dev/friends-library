@@ -49,12 +49,19 @@ const Styling: React.FC = () => (
       <b>numbered paragraphs</b>. These paragraphs often begin with arabic numbers, or
       with words like <i>First</i>, or <i>Secondly</i>. When, according to our judgment,
       these paragraphs convey some kind of structural meaning that should be represented
-      in the formatting, use the <Code>[.numbered]</Code> class, as shown below. The
-      numbered class creates automatic spacing between paragraphs and also removes the
-      text-indent, causing these paragraphs to stand out from the surrounding text.
+      in the formatting, use the <Code>[.numbered]</Code> class, and <i>wrapped</i> in a
+      {` `}
+      <Code>[.numbered-group]</Code> class as shown below. The numbered classes create
+      automatic spacing between paragraphs and also removes the text-indent, causing these
+      paragraphs to stand out from the surrounding text.
     </Para>
+    <Note>
+      As of June 2020, all <Code>[.numbered]</Code> chunks now must be <b>wrapped</b> in a
+      {` `}
+      <Code>[.numbered-group]</Code> block, as shown below
+    </Note>
     <Snippet trigger="num" expansion="[.numbered]" />
-    <Pair id="numbered" emphasize={[1, 7]} />
+    <Pair id="numbered" emphasize={[1, 2, 4, 10, 15]} />
     <Note>
       The above asciidoc snippet uses <Code>+++</Code> to <i>escape</i> the period. See
       {` `}
@@ -64,7 +71,7 @@ const Styling: React.FC = () => (
       Frequently, numbered sections will begin with full words, which sometimes{` `}
       <i>should be rendered with italics:</i>
     </Para>
-    <Pair id="numbered-alt" />
+    <Pair id="numbered-alt" emphasize={[5, 10, 14]} />
 
     <H2>Centered Text:</H2>
     <Para>
@@ -131,9 +138,9 @@ const Styling: React.FC = () => (
       <b>Intermediate titles</b> are used to indicate major section breaks (larger than
       chapters) in a document, and in paperbacks and ebooks they are rendered on their own
       page. They are created in their own file, they{` `}
-      <b>must have the class designation</b> <code>.intermediate-title</code>, plus an ID,
+      <b>must have the class designation</b> <Code>.intermediate-title</Code>, plus an ID,
       and a usually a <em>short title</em>, which will be used for the table of contents.
-      The <code>h3.division</code> markup is a useful convention for supplying the
+      The <Code>h3.division</Code> markup is a useful convention for supplying the
       numbered division of the book, like a volume or book number.
     </Para>
     <Pair id="intermediate-title" emphasize={[1]} />
