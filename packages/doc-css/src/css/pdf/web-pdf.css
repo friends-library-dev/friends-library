@@ -113,3 +113,7 @@ h2 {
 .intermediate-title h2 {
   margin-top: 0;
 }
+
+.numbered p {
+  margin: 1em 0;
+}

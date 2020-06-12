@@ -1,3 +1,6 @@
+[.numbered-group]
+--
+
 [.numbered]
 1+++.+++ That there is no way of being saved from sin and
 wrath eternal but by Christ alone who died at Jerusalem.
@@ -8,3 +11,5 @@ or power under heaven given by which lost man may be saved but his alone.
 2+++.+++ That there is no way of being saved by him,
 but through receiving him into the heart by a living faith,
 and having him formed in the heart.
+
+--
