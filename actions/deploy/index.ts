@@ -15,7 +15,7 @@ async function main(): Promise<void> {
     GITHUB_REF,
   } = process.env;
 
-  const isOpenPr = GITHUB_REF !== `refs/heads/master`;
+  const refIsNotMaster = GITHUB_REF !== `refs/heads/master`;
   const client = new NetlifyAPI(token);
   const shortSha = (latestCommitSha() || ``).substr(0, 8);
   const prData = await pr.data();
@@ -26,16 +26,22 @@ async function main(): Promise<void> {
 
   const { number: prNumber, title: prTitle } = prData;
   let message = `Push commit @${shortSha}`;
-  if (prNumber && isOpenPr) {
+  if (prNumber && refIsNotMaster) {
     message = `PR #${prNumber}@${shortSha} "${prTitle}"`;
-  } else if (prNumber && !isOpenPr) {
+  } else if (prNumber && !refIsNotMaster) {
     message = `Merge PR#${prNumber}@${shortSha} to master`;
   }
+
+  core.info(`GITHUB_REF: ${GITHUB_REF}`);
+  core.info(`Deploying build dir: ${monorepoRoot}/${buildDir}`);
+  core.info(`Deploying fns dir: ${fnsDir ? `${monorepoRoot}/${fnsDir}` : `<none>`}`);
+  core.info(`Deploying with message: "${message}"`);
+  core.info(`Deploying as draft: ${refIsNotMaster}`);
 
   try {
     const res = await client.deploy(siteId, `${monorepoRoot}/${buildDir}`, {
       message,
-      draft: isOpenPr,
+      draft: refIsNotMaster,
       ...(fnsDir ? { fnDir: `${monorepoRoot}/${fnsDir}` } : {}),
       statusCb: (status: any) => status.type !== `hashing` && core.debug(status.msg),
     });
