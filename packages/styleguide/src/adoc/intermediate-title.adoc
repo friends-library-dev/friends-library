@@ -1,0 +1,8 @@
+[#book2.intermediate-title, short="Book II"]
+== History of the People Called Quakers
+
+[.division]
+=== Book II.
+
+[.blurb]
+==== From the End of the Commonwealth to the Restoration of monarchical Government.

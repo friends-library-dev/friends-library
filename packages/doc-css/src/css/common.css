@@ -202,7 +202,8 @@ blockquote .paragraph:first-of-type p {
 }
 
 h3.blurb,
-h4.blurb {
+h4.blurb,
+.paragraph.blurb p {
   font-weight: 400;
   font-style: italic;
   text-align: center;
@@ -304,8 +305,18 @@ h4.alt {
 .emphasized {
   font-style: italic;
 }
+
 .emphasized > * {
   font-style: italic;
+}
+
+.weight-normal,
+.weight-normal > * {
+  font-weight: 400;
+}
+
+.small-caps > *:first-child {
+  font-variant: small-caps;
 }
 
 dl {

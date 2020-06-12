@@ -81,3 +81,35 @@ div.asterism {
 h2 {
   margin-top: 60pt;
 }
+
+.intermediate-title {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.sect1.intermediate-title .chapter-heading h2 {
+  font-size: 1.6rem;
+}
+
+.sect1.intermediate-title .division h3 {
+  font-size: 1.25rem;
+}
+
+.intermediate-title::after,
+.intermediate-title::before {
+  content: '* * *';
+  letter-spacing: 0.25em;
+  display: block;
+  margin: 2em 0;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+.intermediate-title::after {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+
+.intermediate-title h2 {
+  margin-top: 0;
+}

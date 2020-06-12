@@ -120,6 +120,7 @@ export type DocSection = Readonly<{
   index: number;
   heading: Heading;
   html: Html;
+  isIntermediateTitle?: boolean;
 }>;
 
 export interface FileManifest {

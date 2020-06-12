@@ -18,6 +18,7 @@ export function extractHeading(
   short: Map<string, string>,
 ): DocSection {
   let heading: DocSection['heading'] = { id: ``, text: `` };
+  let isIntermediateTitle: undefined | boolean;
   const html = section.html.replace(
     /(<div class="sect1([^"]+?)?">\n)<h2 id="([^"]+)"[^>]*?>(.+?)<\/h2>/,
     (_, start, kls, id, inner) => {
@@ -28,6 +29,7 @@ export function extractHeading(
       };
       const match = kls.match(/ style-([a-z]+)/);
       const sectionStart = start.replace(/ style-[a-z]+/, ``);
+      isIntermediateTitle = kls.includes(`intermediate-title`) || undefined;
       return `${sectionStart}{% chapter-heading${match ? `, ${match[1]}` : ``} %}`;
     },
   );
@@ -38,7 +40,7 @@ export function extractHeading(
     );
   }
 
-  return { ...section, html, heading };
+  return { ...section, html, heading, isIntermediateTitle };
 }
 
 function parseHeading(text: string): Pick<DocSection['heading'], 'text' | 'sequence'> {

@@ -115,7 +115,7 @@ async function handlePaperbackAndCover(
     published: existingMeta?.published || new Date().toISOString(),
     updated: new Date().toISOString(),
     adocLength: dpc.asciidoc.length,
-    numSections: dpc.sections.length,
+    numSections: dpc.sections.filter(s => !s.isIntermediateTitle).length,
     revision: dpc.revision.sha,
     productionRevision: getProductionRevision(),
     paperback: paperbackMeta,

@@ -52,17 +52,21 @@ function footnoteHelper({ lang, notes }: DocPrecursor): Html {
   `.trim();
 }
 
-function contentToc({ sections }: DocPrecursor): Html {
+function contentToc({ sections, lang }: DocPrecursor): Html {
   return `
   <section class="content-toc">
-    <h1>Table of Contents</h1>
+    <h1>${lang === `en` ? `Table of Contents` : `Índice`}</h1>
     ${sections
       .map(
         sect =>
           `<div>
         ${br7}
         <a href="${sect.id}.xhtml">
-          ${navText(sect.heading)}
+          ${
+            sect.isIntermediateTitle
+              ? `~ ${navText(sect.heading)} ~`
+              : navText(sect.heading)
+          }
         </a>
         ${br7}
       </div>`,

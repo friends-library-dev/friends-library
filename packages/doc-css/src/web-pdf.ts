@@ -13,6 +13,7 @@ export default function paperbackInterior(dpc: DocPrecursor): Css {
     `pdf/toc`,
     `pdf/chapter-heading`,
     `pdf/web-pdf`,
+    `pdf/intermediate-title`,
     ...(dpc.notes.size < 5 ? [`pdf/symbol-notes`] : []),
   ]);
 

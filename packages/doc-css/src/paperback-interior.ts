@@ -25,6 +25,7 @@ export default function paperbackInterior(
     `pdf/toc`,
     `pdf/chapter-heading`,
     `pdf/paperback-interior`,
+    `pdf/intermediate-title`,
     ...(dpc.notes.size < 5 ? [`pdf/symbol-notes`] : []),
     ...(conf.condense ? [`pdf/condense`] : []),
   ]);
