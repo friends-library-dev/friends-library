@@ -1,0 +1,30 @@
+name: actions-js
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: compile-ts
+        run: yarn compile all
+      - name: compile-actions-js
+        run: yarn actions:compile
+      - name: modify-gitignore
+        run: echo "!**/bundled/index.js" >> ./actions/.gitignore
+      - name: commit
+        run: |
+          git config --local user.email "jared@netrivet.com"
+          git config --local user.name "Jared Henderson"
+          git add .
+          git commit -m "commit latest bundled actions js"
+      - name: push-changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ github.token }}
+          branch: actions
+          force: true
