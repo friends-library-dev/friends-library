@@ -23,6 +23,8 @@ jobs:
         run: |
           git config --local user.email "jared@netrivet.com"
           git config --local user.name "Jared Henderson"
+          git checkout -- package.json
+          git checkout -- yarn.lock
           git add .
           git commit -m "commit latest bundled actions js"
       - name: push-changes
