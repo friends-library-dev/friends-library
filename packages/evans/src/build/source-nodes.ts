@@ -132,7 +132,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
           chapterHeadings: dpcData.headings,
           price: price(printSize, pages),
           customCode: dpcData.customCode,
-          numChapters: editionMeta ? editionMeta.numSections : 1,
+          numChapters: editionMeta.numSections,
           audio: edition.audio
             ? {
                 reader: edition.audio.reader,

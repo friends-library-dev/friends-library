@@ -1,5 +1,5 @@
 import { navText } from '@friends-library/doc-html';
-import { Html, DocPrecursor, EbookConfig } from '@friends-library/types';
+import { Html, DocPrecursor, EbookConfig, Lang } from '@friends-library/types';
 
 export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
   if (dpc.sections.length === 1) {
@@ -8,7 +8,7 @@ export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
 
   return `
     <nav epub:type="toc" id="toc">
-      <h2>Table of Contents</h2>
+      <h2>${dpc.lang === `en` ? `Table of Contents` : `Índice`}</h2>
       <ol>
         ${tocItems(dpc)
           .map(item => {
@@ -20,7 +20,7 @@ export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
     </nav>
     <nav epub:type="landmarks" hidden="">
       <ol>
-        ${landmarks(conf)
+        ${landmarks(conf, dpc.lang)
           .map(
             item =>
               `<li><a href="${item.href}" epub:type="${item.type}">${item.text}</a></li>`,
@@ -37,19 +37,20 @@ interface TocItem {
   hidden?: true;
 }
 
-export function tocItems({ sections }: DocPrecursor): TocItem[] {
+export function tocItems({ sections, lang }: DocPrecursor): TocItem[] {
   const items: TocItem[] = [];
 
   items.push({
     hidden: true,
     href: `half-title.xhtml`,
-    text: `Title page`,
+    text: lang === `en` ? `Title page` : `Portada`,
   });
 
   sections.forEach(section => {
+    const text = navText(section.heading);
     items.push({
       href: `${section.id}.xhtml`,
-      text: navText(section.heading),
+      text: section.isIntermediateTitle ? `~ ${text} ~` : text,
     });
   });
 
@@ -62,27 +63,27 @@ interface Landmark {
   text: string;
 }
 
-export function landmarks({ subType, frontmatter }: EbookConfig): Landmark[] {
+export function landmarks({ subType, frontmatter }: EbookConfig, lang: Lang): Landmark[] {
   const landmarkItems: Landmark[] = [];
 
   landmarkItems.push({
     type: `titlepage`,
     href: `half-title.xhtml`,
-    text: `Title page`,
+    text: lang === `en` ? `Title page` : `Portada`,
   });
 
   if (subType === `mobi`) {
     landmarkItems.push({
       type: `toc`,
       href: `nav.xhtml`,
-      text: `Table of Contents`,
+      text: lang === `en` ? `Table of Contents` : `Índice`,
     });
   }
 
   landmarkItems.push({
     type: `bodymatter`,
     href: frontmatter ? `half-title.xhtml` : `section1.xhtml`,
-    text: `Beginning`,
+    text: lang === `en` ? `Beginning` : `Comenzando`,
   });
 
   return landmarkItems;

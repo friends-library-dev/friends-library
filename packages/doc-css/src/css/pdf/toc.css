@@ -24,6 +24,10 @@
   vertical-align: top;
 }
 
+.toc-intermediate-title a[href]::after {
+  content: '';
+}
+
 @page toc {
   @bottom-center {
     content: normal;
@@ -31,4 +35,16 @@
   @top-center {
     content: normal;
   }
+}
+
+.toc-intermediate-title {
+  text-align: center;
+  font-variant: small-caps;
+  font-size: 95%;
+  line-height: 100%;
+  margin: 2em 0 0 0;
+}
+
+.toc-intermediate-title + p {
+  margin-top: 0;
 }

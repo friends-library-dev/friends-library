@@ -124,6 +124,19 @@ const Styling: React.FC = () => (
       can style them appropriately:
     </Para>
     <Pair id="the-end" emphasize={[7]} />
+
+    <H2>Intermediate Titles:</H2>
+
+    <Para>
+      <b>Intermediate titles</b> are used to indicate major section breaks (larger than
+      chapters) in a document, and in paperbacks and ebooks they are rendered on their own
+      page. They are created in their own file, they{` `}
+      <b>must have the class designation</b> <code>.intermediate-title</code>, plus an ID,
+      and a usually a <em>short title</em>, which will be used for the table of contents.
+      The <code>h3.division</code> markup is a useful convention for supplying the
+      numbered division of the book, like a volume or book number.
+    </Para>
+    <Pair id="intermediate-title" emphasize={[1]} />
   </Section>
 );
 

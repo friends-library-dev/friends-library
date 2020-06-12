@@ -28,9 +28,9 @@ function toc({ lang, sections }: DocPrecursor): Html {
   `;
 }
 
-function tocEntry({ heading }: DocSection): Html {
+function tocEntry({ heading, isIntermediateTitle }: DocSection): Html {
   return `
-    <p>
+    <p${isIntermediateTitle ? ` class="toc-intermediate-title"` : ``}>
       <a href="#${heading.id || ``}">
         <span>${navText(heading)}</span>
       </a>
