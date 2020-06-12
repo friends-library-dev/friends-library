@@ -13,6 +13,8 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - name: compile-ts
         run: yarn compile all
+      - name: install-ncc
+        run: yarn add @zeit/ncc --ignore-workspace-root-check
       - name: compile-actions-js
         run: yarn actions:compile
       - name: modify-gitignore
