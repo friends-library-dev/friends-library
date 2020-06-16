@@ -44,6 +44,7 @@ describe(`invalidHeading()`, () => {
   const allowed = [
     [`== Foo`],
     [`=== Foo`],
+    [`====`], // example block delimiter
     [`==== Foo`],
     [`=== Foo Bar`],
     [`==== 1 Thing`],

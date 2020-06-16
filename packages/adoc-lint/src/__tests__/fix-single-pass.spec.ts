@@ -197,6 +197,36 @@ describe(`singlePassFix()`, () => {
     expect(unfixed).toBe(0);
   });
 
+  it(`correctly handles adding space after numbered-group delimiter`, () => {
+    const adoc =
+      stripIndent(`
+      [.numbered-group]
+      ====
+
+      [.numbered]
+      Foo
+      ====
+      Bar
+    `).trim() + `\n`;
+
+    const expected =
+      stripIndent(`
+      [.numbered-group]
+      ====
+
+      [.numbered]
+      Foo
+
+      ====
+
+      Bar
+    `).trim() + `\n`;
+
+    const lints = lint(adoc);
+    const [fixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe(expected);
+  });
+
   const unspacedOpenBlocks: [Asciidoc][] = [
     [
       stripIndent(`
