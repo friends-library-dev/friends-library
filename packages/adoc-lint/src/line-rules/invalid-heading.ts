@@ -14,6 +14,10 @@ const rule: LineRule = (
     return [];
   }
 
+  if (line === `====`) {
+    return []; // example block delimiter (used by .numbered-group)
+  }
+
   if (line === `=======`) {
     return []; // will be flagged by `git-conflict-markers`
   }

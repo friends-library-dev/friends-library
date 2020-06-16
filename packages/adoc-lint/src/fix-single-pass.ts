@@ -6,6 +6,8 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
   const lines = adoc.split(`\n`) as (string | null)[];
 
   lints.forEach(lint => {
+    const lineIndex = lint.line - 1;
+    const line = lines[lineIndex];
     if (!lint.fixable || typeof lint.recommendation !== `string`) {
       return;
     }
@@ -17,13 +19,13 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
     }
 
     if (rule === `open-block`) {
-      lines[lint.line - 1] = `\n${lines[lint.line - 1]}`;
+      lines[lineIndex] = `\n${line}`;
       modifiedLines.add(lint.line);
       return;
     }
 
     if (rule === `unspaced-class`) {
-      lines[lint.line - 1] = `\n${lines[lint.line - 1] || ``}`;
+      lines[lineIndex] = `\n${line || ``}`;
       modifiedLines.add(lint.line);
       return;
     }
@@ -45,7 +47,17 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
 
     if (rule === `footnote-split-spacing`) {
       if (!modifiedLines.has(lint.line)) {
-        lines[lint.line - 1] = null;
+        lines[lineIndex] = null;
+        modifiedLines.add(lint.line);
+      }
+      return;
+    }
+
+    if (rule === `numbered-group`) {
+      if (!modifiedLines.has(lint.line)) {
+        const before = recommendation.includes(`before`);
+        const after = recommendation.includes(`after`);
+        lines[lineIndex] = `${before ? `\n` : ``}${line}${after ? `\n` : ``}`;
         modifiedLines.add(lint.line);
       }
       return;

@@ -51,7 +51,7 @@ const Styling: React.FC = () => (
       these paragraphs convey some kind of structural meaning that should be represented
       in the formatting, use the <Code>[.numbered]</Code> class, and <i>wrapped</i> in a
       {` `}
-      <Code>[.numbered-group]</Code> class as shown below. The numbered classes create
+      <Code>[.numbered-group]</Code> block as shown below. The numbered classes create
       automatic spacing between paragraphs and also removes the text-indent, causing these
       paragraphs to stand out from the surrounding text.
     </Para>

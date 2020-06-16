@@ -1,5 +1,5 @@
 [.numbered-group]
---
+====
 
 [.numbered]
 _First,_ the ten commandments given by Moses from Mount Horeb were the
@@ -14,4 +14,4 @@ _Secondly,_ that covenant God found fault with because it was not able
 _Thirdly,_ in Christ's coming God provides a new covenant,
 a better covenant, of which Christ is the mediator.
 
---
+====
