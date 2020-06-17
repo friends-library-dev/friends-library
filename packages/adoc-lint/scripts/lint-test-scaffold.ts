@@ -17,7 +17,7 @@ describe(`myRule()`, () => {
   });
 
   const violations: [string, string][] = [
-    // ['Violation', 'Fixed'],
+    // [`Violation`, `Fixed`],
   ];
 
   xtest.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
@@ -27,7 +27,7 @@ describe(`myRule()`, () => {
   });
 
   const allowed: [string][] = [
-    // ['Not a violation'],
+    // [`Not a violation`],
   ];
 
   xtest.each(allowed)(`%s is not a lint violation`, line => {
