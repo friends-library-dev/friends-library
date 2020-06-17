@@ -23,4 +23,5 @@ const rule: LineRule = (
 };
 
 rule.slug = `my-slug`;
+
 export default rule;
