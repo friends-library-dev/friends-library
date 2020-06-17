@@ -16,7 +16,7 @@ const rule: LineRule = (
   }
 
   const expr = /[a-z][0-9&£$%*(={}°\\/[\]](?!hellip;)([a-zA-Z ]|\b)/g;
-  let match;
+  let match: RegExpExecArray | null = null;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {
     if (match[0].endsWith(`] `) || match[0].endsWith(`* `)) {
