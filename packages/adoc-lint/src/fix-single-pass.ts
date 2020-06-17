@@ -18,6 +18,12 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
       return;
     }
 
+    if (rule === `unspaced-markup`) {
+      lines[lineIndex] = `${line}\n`;
+      modifiedLines.add(lint.line);
+      return;
+    }
+
     if (rule === `open-block`) {
       lines[lineIndex] = `\n${line}`;
       modifiedLines.add(lint.line);

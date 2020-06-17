@@ -19,7 +19,7 @@ describe(`myRule()`, () => {
   });
 
   const violations: [string, string][] = [
-    // ['Violation', 'Fixed'],
+    // [`Violation`, `Fixed`],
   ];
 
   xtest.each(violations)(`multiline adoc should have lint error`, (adoc, fixed) => {
@@ -33,7 +33,7 @@ describe(`myRule()`, () => {
   });
 
   const allowed: [string][] = [
-    // ['Not a violation'],
+    // [`Not a violation`],
   ];
 
   xtest.each(allowed)(`multiline adoc should not have lint error`, adoc => {

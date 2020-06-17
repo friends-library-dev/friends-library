@@ -197,6 +197,15 @@ describe(`singlePassFix()`, () => {
     expect(unfixed).toBe(0);
   });
 
+  it(`correctly handles fix of "unspaced-markup" rule`, () => {
+    const adoc = `Foo\n\n[.asterism]\n'''\nFoobar\n`;
+    const expected = `Foo\n\n[.asterism]\n'''\n\nFoobar\n`;
+    const lints = lint(adoc);
+    const [fixed, unfixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe(expected);
+    expect(unfixed).toBe(0);
+  });
+
   it(`correctly handles adding space after numbered-group delimiter`, () => {
     const adoc =
       stripIndent(`
