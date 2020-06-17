@@ -38,3 +38,4 @@ export { default as libreOfficeArtifacts } from './libre-office-artifacts';
 export { default as footnoteSplitSpacing } from './footnote-split-spacing';
 export { default as unexpectedIdentifier } from './unexpected-identifier';
 export { default as unspacedMarkup } from './unspaced-markup';
+export { default as spacedPunctuation } from './spaced-punctuation';
