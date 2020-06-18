@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import uuid from 'uuid/v4';
 import { flow } from 'lodash';
 import { spawnSync } from 'child_process';
-import { red, green } from '@friends-library/cli-utils/color';
+import { red, green, cyan } from '@friends-library/cli-utils/color';
 import { splitLines, refMutate, refUnmutate } from '@friends-library/adoc-utils';
 import * as hilkiah from '@friends-library/hilkiah';
 import { combineLines } from './combine';
@@ -15,6 +15,10 @@ interface ConvertOptions {
 
 export default function convertHandler({ file, skipRefs }: ConvertOptions): void {
   const { src, target } = validate(file);
+  if (skipRefs) {
+    cyan(`Skipping processing scripture references due to --skip-refs flag`);
+  }
+
   prepMultiParagraphFootnotes(src);
   generateRawAsciiDoc(src, target);
 
