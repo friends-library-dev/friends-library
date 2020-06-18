@@ -1,0 +1,25 @@
+id: cf0d8044-6538-4daa-929a-280151ef40c1
+name: George Whitehead
+slug: george-whitehead
+gender: male
+added: 2020-06-18T13:08:32.073Z
+born: 1636
+died: 1723
+residences:
+  - city: Sedbergh
+    region: England
+description: TODO
+documents:
+  - id: fa42e9c6-b5d9-4c74-aea7-3816efb8bd2e
+    alt_language_id: 1003add3-09be-4deb-8476-8a2be7c34405
+    title: Selección del Diario de George Whitehead
+    slug: seleccion-del-diario
+    filename: Seleccion_del_Diario_de_George_Whitehead
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-228-8
+        draft: true
