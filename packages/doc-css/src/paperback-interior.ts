@@ -15,6 +15,7 @@ export default function paperbackInterior(
 ): Css {
   let css = joinCssFiles([
     `common`,
+    `tables`,
     `not-mobi7`,
     `pdf/base`,
     `pdf/paging`,

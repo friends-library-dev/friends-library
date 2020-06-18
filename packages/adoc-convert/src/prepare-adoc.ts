@@ -55,7 +55,7 @@ function collapseEmDashNewlineWhitespace(adoc: Asciidoc): Asciidoc {
 }
 
 function enAndEmDashToDoubleDash(adoc: Asciidoc): Asciidoc {
-  return adoc.replace(/[–|—]/g, `--`);
+  return adoc.replace(/(–|—)/g, `--`);
 }
 
 function collapseFootnoteCarets(adoc: Asciidoc): Asciidoc {

@@ -2,6 +2,7 @@ import { Asciidoc, LintResult, LintOptions } from '@friends-library/types';
 import gitConflictMarkers from './git-conflict-markers';
 import characterName from '../character-name';
 import { LineRule } from '../types';
+import { isTableLine } from '../utils';
 
 const rule: LineRule = (
   line: Asciidoc,
@@ -9,7 +10,7 @@ const rule: LineRule = (
   lineNumber: number,
   options: LintOptions,
 ): LintResult[] => {
-  if (line === ``) {
+  if (line === `` || isTableLine(line)) {
     return [];
   }
 

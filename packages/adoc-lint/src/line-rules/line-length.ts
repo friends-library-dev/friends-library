@@ -2,6 +2,7 @@ import * as hilkiah from '@friends-library/hilkiah';
 import { Asciidoc, LintResult } from '@friends-library/types';
 import { makeSplitLines } from '@friends-library/adoc-utils';
 import { LineRule } from '../types';
+import { isTableLine } from '../utils';
 
 const split = makeSplitLines(90, 45);
 
@@ -32,6 +33,7 @@ function lengthOk(line: Asciidoc): boolean {
   if (line.length < 100) {
     return true;
   }
+
   if ([`//`, `==`, `* `].includes(line.substring(0, 2))) {
     return true;
   }
@@ -41,6 +43,10 @@ function lengthOk(line: Asciidoc): boolean {
   }
 
   if (line.includes(`[.book-title]#`)) {
+    return true;
+  }
+
+  if (isTableLine(line)) {
     return true;
   }
 

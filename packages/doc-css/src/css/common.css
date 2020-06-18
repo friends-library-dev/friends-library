@@ -362,3 +362,7 @@ dt {
 .syllogism li {
   font-style: italic;
 }
+
+.x-small {
+  font-size: 0.7em;
+}

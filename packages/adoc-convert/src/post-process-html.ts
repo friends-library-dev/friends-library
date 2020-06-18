@@ -5,6 +5,7 @@ import { makeReduceWrapper as makeWrap } from './helpers';
 
 export const postProcessHtml: (html: Html) => Html = memoize(
   flow([
+    closeColTags,
     changeVerseMarkup,
     modifyOldStyleHeadings,
     html => html.replace(/<hr>/gim, `<hr />`),
@@ -23,6 +24,10 @@ export const postProcessHtml: (html: Html) => Html = memoize(
       ),
   ]),
 );
+
+function closeColTags(html: Html): Html {
+  return html.replace(/<col( ([^>])*)?\/?>/gim, `<col$1></col>`);
+}
 
 function modifyOldStyleHeadings(html: Html): Html {
   return html.replace(

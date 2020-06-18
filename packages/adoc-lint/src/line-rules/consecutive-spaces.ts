@@ -1,5 +1,5 @@
 import { Asciidoc, LintResult } from '@friends-library/types';
-import { isFootnotePoetryLine } from '../utils';
+import { isFootnotePoetryLine, isTableLine } from '../utils';
 import { LineRule } from '../types';
 
 const rule: LineRule = (
@@ -11,7 +11,7 @@ const rule: LineRule = (
     return [];
   }
 
-  if (isFootnotePoetryLine(line, lines, lineNumber)) {
+  if (isTableLine(line) || isFootnotePoetryLine(line, lines, lineNumber)) {
     return [];
   }
 

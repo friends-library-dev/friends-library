@@ -4,6 +4,7 @@ import { joinCssFiles, replaceVars, runningHead } from './helpers';
 export default function paperbackInterior(dpc: DocPrecursor): Css {
   let css = joinCssFiles([
     `common`,
+    `tables`,
     `not-mobi7`,
     `pdf/base`,
     `pdf/typography`,
