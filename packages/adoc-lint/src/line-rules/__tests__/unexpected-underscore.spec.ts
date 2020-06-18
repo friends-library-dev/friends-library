@@ -26,6 +26,7 @@ describe(`unexpectedUnderscore()`, () => {
     [`Foo_bar_ is baz.`],
     [`[#testimony_pardshaw short="short"]`],
     [`(_Foobar_)`],
+    [`**_Totals:_**`],
     [`Foo bar._`],
   ];
 

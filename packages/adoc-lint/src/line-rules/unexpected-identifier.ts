@@ -13,6 +13,7 @@ const rule: LineRule = (
 
   const identifiers = line
     .replace(/^\[(.+)\]$/, `$1`)
+    .replace(/cols="([0-9,])+"/, ``)
     .replace(/,.*/, ``)
     .replace(/^#[\w\d-_]+/, ``)
     .trim();
@@ -99,6 +100,13 @@ const CLASSES = [
   `chapter-subtitle--blurb`,
   `postscript`,
   `syllogism`,
+  `table-valign-middle`,
+  `table-vertical-lines`,
+  `table-align-center`,
+  `table-header-tail-x-small`,
+  `table-last-col-secondary`,
+  `table-tail-align-right`,
+  `table-tail-align-center`,
   `the-end`,
 ];
 

@@ -51,4 +51,21 @@ describe(`consecutiveSpaces()`, () => {
     });
     expect(results).toHaveLength(0);
   });
+
+  it(`allows consecutive spaces in tables`, () => {
+    const adoc = stripIndent(`
+      |==
+      | Foo   | Bar
+      | Jimmy | Jammy
+      2+|    Foobar
+      |===
+    `).trim();
+    const lines = adoc.split(`\n`);
+
+    let results: any[] = [];
+    lines.forEach((line, index) => {
+      results = results.concat(...consecutiveSpaces(line, lines, index + 1, opts));
+    });
+    expect(results).toHaveLength(0);
+  });
 });

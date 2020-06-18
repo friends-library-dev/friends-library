@@ -35,6 +35,7 @@ describe(`lineLength()`, () => {
     [`[#foo.bar.baz.foo, short="${longLine}"]`], // not a text line
     [`// comment: ${longLine}`],
     [`* list item: ${longLine}`],
+    [`| table cell: ${longLine}`],
 
     // inline spans (like .book-title) below, need to stay on one line
     [

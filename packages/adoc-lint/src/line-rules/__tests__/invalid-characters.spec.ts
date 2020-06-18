@@ -42,6 +42,9 @@ describe(`invalidCharacters()`, () => {
     [`Jim jam.`],
     [`<<<<<<<`], // caught by `git-conflict-marker`
     [`>>>>>>>`], // caught by `git-conflict-marker`
+    [`|==`], // table line
+    [`| Foo | Bar`], // table line
+    [`2+| Jim Jam`], // table line
   ];
 
   test.each(allowed)(`%s should not be linted`, adoc => {

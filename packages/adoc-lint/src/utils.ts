@@ -4,6 +4,16 @@ export function isAsciidocBracketLine(line: Asciidoc): boolean {
   return line[0] === `[` && line[line.length - 1] === `]`;
 }
 
+export function isTableLine(line: Asciidoc): boolean {
+  if (line === `|==`) {
+    return true;
+  }
+  if (line.match(/^(\d+\+)?\|/)) {
+    return true;
+  }
+  return false;
+}
+
 export function isFootnotePoetryLine(
   line: Asciidoc,
   lines: Asciidoc[],

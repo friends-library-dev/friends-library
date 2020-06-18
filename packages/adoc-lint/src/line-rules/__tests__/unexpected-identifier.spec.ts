@@ -36,6 +36,7 @@ describe(`unxpectedIdentifier()`, () => {
     [`[.chapter-subtitle--blurb]`],
     [`[.embedded-content-document]`],
     [`[.embedded-content-document.epistle]`],
+    [`[cols="3,3,2"]`],
   ];
 
   test.each(allowed)(`%s is not a lint violation`, line => {

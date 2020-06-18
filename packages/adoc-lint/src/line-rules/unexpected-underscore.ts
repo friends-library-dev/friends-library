@@ -20,7 +20,7 @@ const rule: LineRule = (
   const restOfLine = line.substring(column);
 
   // don't flag italicizing within a word like `sun_light_`
-  if (restOfLine.match(/[a-z0-9]+_/)) {
+  if (restOfLine.match(/[a-z0-9:]+_/)) {
     return [];
   }
 
