@@ -236,8 +236,21 @@ documents:
       Examples of Youthful Piety Principally Intended for the Instruction of Young Persons
     slug: youthful-piety
     filename: Youthful_Piety
-    description: TODO
-    partial_description: TODO
+    description:
+      'The full title of this work is, “Examples of Youthful Piety, Principally Intended
+      for the Instruction of Young Persons.” This inspiring publication gathers together
+      all of the spiritual experiences and dying testimonies of children from the four
+      volumes of Piety Promoted, also adding many others not previously published. The
+      testimonies in this work—taken from young persons between the ages of six and
+      twenty-five—span a period of about 200 years and are a united and powerful
+      confirmation of the importance of Solomon’s exhortation: “Remember now your creator
+      in the days of your youth.”'
+    partial_description:
+      This inspiring publication gathers together all of the spiritual experiences and
+      dying testimonies of children from the four volumes of Piety Promoted, also adding
+      many others not previously published. The testimonies in this work span a period of
+      about 200 years, and are taken from young persons between the ages of six and
+      twenty-five.
     tags:
       - spiritual life
     editions:

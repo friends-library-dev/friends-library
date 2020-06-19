@@ -8,18 +8,40 @@ died: 1723
 residences:
   - city: Sedbergh
     region: England
-description: TODO
+description:
+  George Whitehead (1636-1723) era uno de los ministros más conocidos e influyentes entre
+  la antigua Sociedad de Amigos. Fue convencido de la Verdad cuando solo tenía 17 años de
+  edad, y por su fidelidad creció rápidamente en la vida y poder de Cristo. En sus
+  servicios por el evangelio, era abusado y perseguido frecuentemente por hombres
+  perversos y malos. Fue encarcelado muchas veces y una vez fue azotado públicamente por
+  su testimonio de la Verdad, pero a través de todo esto él se aferró a la cruz, y se
+  convirtió en una columna y anciano en la iglesia de Dios, trabajando constantemente por
+  el avance de la Verdad, y compareciendo muchas veces ante reyes y magistrados para
+  defender la causa de sus hermanos perseguidos.
 documents:
   - id: fa42e9c6-b5d9-4c74-aea7-3816efb8bd2e
     alt_language_id: 1003add3-09be-4deb-8476-8a2be7c34405
     title: Selección del Diario de George Whitehead
     slug: seleccion-del-diario
     filename: Seleccion_del_Diario_de_George_Whitehead
-    description: TODO
-    partial_description: TODO
+    description:
+      George Whitehead (1636-1723) era uno de los ministros más conocidos e influyentes
+      entre la antigua Sociedad de Amigos. Fue convencido de la Verdad cuando solo tenía
+      17 años de edad, y por su fidelidad creció rápidamente en la vida y poder de Cristo.
+      En sus servicios por el evangelio, era abusado y perseguido frecuentemente por
+      hombres perversos y malos. Fue encarcelado muchas veces y una vez fue azotado
+      públicamente por su testimonio de la Verdad, pero a través de todo esto él se aferró
+      a la cruz, y se convirtió en una columna y anciano en la iglesia de Dios, trabajando
+      constantemente por el avance de la Verdad, y compareciendo muchas veces ante reyes y
+      magistrados para defender la causa de sus hermanos perseguidos.
+    partial_description:
+      Un extracto del diario de George Whitehead, que relata su honesta búsqueda de la
+      virtud y el verdadero conocimiento de Dios desde su juventud, la experiencia interna
+      de la obra de santificación en su corazón, y el comienzo de sus labores
+      ministeriales, siendo enviado por el Señor a predicar el evangelio en la
+      demostración y poder del Espíritu.
     tags:
       - journal
     editions:
       - type: updated
         isbn: 978-1-64476-228-8
-        draft: true
