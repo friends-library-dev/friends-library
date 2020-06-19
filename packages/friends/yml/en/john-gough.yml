@@ -43,7 +43,8 @@ description:
   history of this people until 1764.
 documents:
   - id: 6f47a04b-de86-4646-ba0f-52c7bdbd2ae3
-    title: History of the Quakers, Volume I
+    print_size: xl
+    title: A History of the Quakers, Volume I
     original_title:
       A History of the People called Quakers, from their First Rise to the Present Time,
       Volume I
@@ -61,7 +62,7 @@ documents:
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
     partial_description:
-      Volume I of The History of the People Called Quakers, beginning with an overview of
+      Volume I of A History of the People Called Quakers, beginning with an overview of
       the various dispensations whereby God has revealed Himself to mankind, then giving
       an account the early ministry of George Fox and the rise of the Society of Friends
       to the year 1661.
@@ -69,10 +70,10 @@ documents:
       - history
     editions:
       - type: original
-        draft: true
         isbn: 978-1-64476-192-2
   - id: 073e1a75-2193-4b5b-9de1-5a06a8a970e4
-    title: History of the Quakers, Volume II
+    print_size: xl
+    title: A History of the Quakers, Volume II
     original_title:
       A History of the People called Quakers, from their First Rise to the Present Time,
       Volume II
@@ -90,17 +91,17 @@ documents:
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
     partial_description:
-      Volume II of The History of the People Called Quakers, covering the years from
+      Volume II of A History of the People Called Quakers, covering the years from
       approximately 1661 to 1683, a period full of growth, life and power for the young
       Society of Friends, but also the time of its most intense persecution.
     tags:
       - history
     editions:
       - type: original
-        draft: true
         isbn: 978-1-64476-216-5
   - id: d4f97e5f-72fa-4d07-b6c5-21f4712e6f70
-    title: History of the Quakers, Volume III
+    title: A History of the Quakers, Volume III
+    print_size: xl
     original_title:
       A History of the People called Quakers, from their First Rise to the Present Time,
       Volume III
@@ -118,7 +119,7 @@ documents:
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
     partial_description:
-      Volume III of The History of the People Called Quakers, covering the time period
+      Volume III of A History of the People Called Quakers, covering the time period
       between approximately 1682 and 1699, detailing the expansion of the Society of
       Friends in Ireland, the West Indies, colonial America, and the founding of
       Pennsylvania.
@@ -126,10 +127,10 @@ documents:
       - history
     editions:
       - type: original
-        draft: true
         isbn: 978-1-64476-217-2
   - id: 041de011-afa1-45fb-bf77-9618e4bdb529
-    title: History of the Quakers, Volume IV
+    title: A History of the Quakers, Volume IV
+    print_size: xl
     original_title:
       A History of the People called Quakers, from their First Rise to the Present Time,
       Volume IV
@@ -147,7 +148,7 @@ documents:
       Friends, adding valuable information to what had already been recorded in Sewel’s
       “History,” and continuing the history of this people until 1764.
     partial_description:
-      Volume IV of The History of the People Called Quakers, covering the early decades of
+      Volume IV of A History of the People Called Quakers, covering the early decades of
       the 18th century including a number of passages pertaining to the growth and
       progress of Pennsylvania and ultimately ending with a brief account of the author’s
       death.
@@ -155,5 +156,4 @@ documents:
       - history
     editions:
       - type: original
-        draft: true
         isbn: 978-1-64476-218-9
