@@ -100,6 +100,8 @@ function position(residence: { city: string; region: string }): Position {
       return { top: 61.4, left: 48.3, map: `UK` };
     case `Abingdon, England`:
       return { top: 72.4, left: 55.3, map: `UK` };
+    case `Lisburn, Ireland`:
+      return { top: 41.4, left: 37.2, map: `UK` };
     case `Ballymore, Ireland`:
       return { top: 52.4, left: 31.3, map: `UK` };
     case `Ashford, England`:
