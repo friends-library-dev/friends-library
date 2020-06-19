@@ -26,8 +26,7 @@ jobs:
       latest_commit_sha: ${{ steps.meta.outputs.latest_commit_sha }}
       latest_commit_sha_short: ${{ steps.meta.outputs.latest_commit_sha_short }}
       should_deploy: ${{ steps.should_deploy.outputs.should_deploy_editor }}
-      client_id: ${{ steps.prod.outputs.client_id || steps.preview.outputs.client_id }}
-      context: ${{ steps.prod.outputs.context || steps.preview.outputs.context }}
+      deploy_context: ${{ steps.should_deploy.outputs.deploy_context }}
     steps:
       - name: meta
         id: meta
@@ -40,18 +39,6 @@ jobs:
         with:
           site_id: editor
           github_token: ${{ github.token }}
-      - name: set-prod-env
-        id: prod
-        if: steps.should_deploy.outputs.deploy_context == 'production'
-        run: |
-          echo "::set-output name=client_id=9b6f22aa47ed65ea8a6a"
-          echo "::set-output name=context=production"
-      - name: set-preview-env
-        id: preview
-        if: steps.should_deploy.outputs.deploy_context == 'preview'
-        run: |
-          echo "::set-output name=client_id::c57bcd3a00808c041852"
-          echo "::set-output name=context::deploy-preview"
 
   english:
     name: english
@@ -61,6 +48,15 @@ jobs:
     outputs:
       deploy_url: ${{ steps.deploy.outputs.url }}
     steps:
+      - name: set-preview-env
+        run: |
+          echo c57bcd3a00808c041852 > $HOME/client_id
+          echo deploy-preview > $HOME/context
+      - name: set-prod-env
+        if: needs.setup.outputs.deploy_context == 'production'
+        run: |
+          echo 9b6f22aa47ed65ea8a6a > $HOME/client_id
+          echo production > $HOME/context
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
       - name: compile
@@ -68,9 +64,10 @@ jobs:
       - name: jones-build-en
         env:
           REACT_APP_GITHUB_ORG: friends-library
-          REACT_APP_OAUTH_CLIENT_ID: ${{ needs.setup.outputs.client_id }}
-          REACT_APP_NETLIFY_CONTEXT: ${{ needs.setup.outputs.context }}
-        run: yarn jones:build
+        run: |
+          export REACT_APP_OAUTH_CLIENT_ID=$( cat $HOME/client_id )
+          export REACT_APP_NETLIFY_CONTEXT=$( cat $HOME/context )
+          yarn jones:build
       - name: deploy
         id: deploy
         if: success()
@@ -89,16 +86,26 @@ jobs:
     outputs:
       deploy_url: ${{ steps.deploy.outputs.url }}
     steps:
+      - name: set-preview-env
+        run: |
+          echo c57bcd3a00808c041852 > $HOME/client_id
+          echo deploy-preview > $HOME/context
+      - name: set-prod-env
+        if: needs.setup.outputs.deploy_context == 'production'
+        run: |
+          echo d3d2082e14077ecb7986 > $HOME/client_id
+          echo production > $HOME/context
       - uses: actions/checkout@v2
       - uses: bahmutov/npm-install@v1
       - name: compile
         run: yarn compile jones
-      - name: jones-build-en
+      - name: jones-build-es
         env:
           REACT_APP_GITHUB_ORG: biblioteca-de-los-amigos
-          REACT_APP_OAUTH_CLIENT_ID: ${{ needs.setup.outputs.client_id }}
-          REACT_APP_NETLIFY_CONTEXT: ${{ needs.setup.outputs.context }}
-        run: yarn jones:build
+        run: |
+          export REACT_APP_OAUTH_CLIENT_ID=$( cat $HOME/client_id )
+          export REACT_APP_NETLIFY_CONTEXT=$( cat $HOME/context )
+          yarn jones:build
       - name: deploy
         id: deploy
         if: success()
