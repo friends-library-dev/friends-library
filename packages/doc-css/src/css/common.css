@@ -92,16 +92,17 @@ h3 + h4 {
   margin-bottom: 1em;
   font-style: italic;
   text-align: center;
+  font-size: 95%;
 }
 
 .verse__stanza {
   display: block;
-  margin-bottom: 1.5em;
+  margin-bottom: 1.4em;
 }
 
 .verse__line {
   display: block;
-  line-height: 1.75em;
+  line-height: 1.6em;
 }
 
 .signed-section-context-open p {

@@ -117,3 +117,7 @@ h2 {
 .numbered p {
   margin: 1em 0;
 }
+
+.verse {
+  font-size: 90%;
+}
