@@ -1,0 +1,1677 @@
+== Standard Embed
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Dear Cousin,
+
+G+++.+++ M.--In fresh and near love my dear salutation often and now reaches to you and mother,
+with all my near and dear friends about you;
+though under pain of heart that I am unexpectedly so long detained from you;
+but the free assurance is renewedly extended,
+that the heavenly Hand and holy living power engages me here for the good of souls,
+and helping to build up the house for the praise of the King of righteousness.
+
+I and three other Friends were seven days and nights,
+and had meetings among other people, without coming to any Friend`'s house,
+and travelled hard, having in that time rode near 300 miles in almost constant rain,
+which hurt my health; however the glorious name of the Lord was with us,
+and was magnified.
+
+[.signed-section-signature]
+John Fothergill.
+
+[.postscript]
+====
+
+P+++.+++ S. You may let Friends see the few lines enclosed:
+
+====
+
+--
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+== With second signature after
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Friends,
+
+All children of new Jerusalem, that descends from above, the holy city,
+which the Lord and the Lamb is the light thereof, and is the temple:
+in it they are born again of the spirit:
+so Jerusalem that is above is the mother of them that are born of the spirit.
+And so they that come, and are come, to heavenly Jerusalem, are them that receive Christ;
+and he giveth them power to become the sons of God, and are born again of the spirit:
+so Jerusalem that is above, is their mother.
+And such do come to heavenly mount Zion, and the innumerable company of angels,
+and to the spirits of just men made perfect;
+and are come to the church of the living God, written in heaven,
+and have the name of God, and the city of God written upon them: so here is a new mother,
+that brings forth a heavenly and a spiritual generation.
+
+There is no schism, nor division, nor contention, nor strife, in heavenly Jerusalem,
+nor in the body of Christ, which is made up of living stones, a spiritual house.
+And Christ is not divided, for in him there is peace.
+Christ saith, in me you have peace.
+And he is from above, and not of this world; but in the world below, in the spirit of it,
+there is trouble: therefore keep in Christ, and walk in him, Amen.
+
+[.signed-section-signature]
+G+++.+++ F.
+
+[.postscript]
+====
+
+P+++.+++ S. Jerusalem was the mother of all true Christians before the apostacy; and since,
+the outward Christians are broken into many sects, and they have gotten many mothers;
+but all they that are come out of the apostacy by the power and spirit of Christ,
+Jerusalem that is above, is their mother, and none below her;
+who doth nourish all her spiritual children.
+
+====
+
+[.signed-section-signature]
+G+++.+++ F.
+
+[.signed-section-context-close]
+Read at the Yearly Meeting in London, 1691.
+
+--
+
+This year I find that William Goodridge, of Banwell, in Somersetshire,
+was released from prison, where he had been confined about thirteen years.
+He had been premunired for refusing to take the oath: and his goods,
+whereof the moveables were rated at about two hundred and forty-four pounds,
+and the real estate counted worth sixty pounds per annum, were confiscated.
+
+== Postscript with (converted) Title line
+
+[.salutation]
+Friends,
+
+Therefore Friends and professors of the truth everywhere, in the fear,
+dread and awe of the most high God, live low before him;
+that so where this inexpressibly precious work is not experienced,
+there may be a true waiting and travailing in Spirit,
+in which a living cry and supplication will arise to the living God to accomplish it.
+
+[.postscript]
+====
+
+Postscript.--Dear Friends everywhere,
+feel that divine Hand and mighty Arm that gathered you out
+of the rollings and tossings of the nations and people,
+into the sweet, safe habitation of Israel,
+where you may dwell alone out of the defilements of the nations;
+where the hiding place will be known, until the word of the Lord be fulfilled,
+and his indignation pass over, to accomplish his own determination in the earth.
+
+====
+
+[.signed-section-signature]
+C+++.+++ M.
+
+[.signed-section-context-close]
+1680
+
+== Long Single-para PS, not Embedded
+
+[.blurb]
+=== False Ministers.
+
+Thus says the Lord concerning the prophets that make my people err,
+that bite with their teeth, and cry, Peace; and he that puts not into their mouths,
+they even prepare war against him.
+The heads thereof judge for reward, and the priests thereof teach for hire,
+and the prophets thereof divine for money. Micah 3:11-5.
+
+Woe be to the shepherds of Israel that do feed themselves!
+should not the shepherds feed the flocks?
+You eat the fat, and you clothe you with the wool, you kill them that are fed:
+but you feed not the flock, etc., Ezek. 34:2-5.
+
+[.signed-section-signature]
+C+++.+++ M.
+
+[.signed-section-context-close]
+Fleet Prison, The 9th Month, 1683.
+
+[.postscript]
+====
+
+O! you holy, most high God of mercy and tender compassion,
+look down with an eye of pity on the inhabitants of the earth;
+and send forth your light and truth more and more,
+to guide the people out of the broad way of destruction into your narrow way of life,
+which leads to your holy mountain, where there is no hurting nor destroying.
+O! that through the glorious, outstretched arm of your salvation,
+sin may be finished and iniquity brought to an end;
+that the righteousness of Christ Jesus, the dear Son of your love,
+may cover the earth as the waters cover the sea.
+Ah! for your names sake, hear the cry of the poor and sighing of the needy;
+and stretch forth your arm and deliver your oppressed out of their distresses;
+that your creation, O Lord, may be eased,
+and your great name and the noble acts of your Almighty arm and
+Divine power may be renowned gloriously through all lands.
+Amen, Amen.
+
+====
+
+== Short Single-para PS, not embedded
+
+[.letter-heading]
+An Epistle to Friends of Charlecot, in Wilts.
+
+[.salutation]
+Dear Friends,
+
+All keep on the watch-tower,
+wherein alone you are in a capacity to hear what the Lord says,
+and in which you will find peace spoken unto you, that none may go back into folly,
+into earthliness, carelessness, or double-mindedness again.
+And tender Friends, keep your meetings diligently,
+and therein wait with an earnest expectation of Christ Jesus
+coming in among you and breathing on you invisibly;
+through which breath of life, your senses can alone be made living;
+and so being daily watered and refreshed,
+you will go away inwardly strengthened and increased.
+So dear friends, be faithful in watering and diligent in watching,
+and then you will find and feel the breakings in of the pure,
+heavenly power of the everlasting, true God upon your spirits,
+through which your meetings will be kept living and fresh;
+so will the great travail that has been for you be answered.
+And this I say unto you in the name of the Lord, if after such dressing, pruning,
+and watering that has been among you, you keep not in the Son of the endless,
+boundless love of God, but allow your minds to go into the earth,
+the Lord shall bow you down dreadfully, and render unto you the reward of forgetfulness,
+carelessness and earthly-mindedness; out of which, dear friends, in the love of God,
+I earnestly desire you all may keep, a sweet savour unto the Lord;
+that so the servants of God coming among you, may be refreshed,
+your souls therein abundantly comforted, and the worthy name of the Lord God magnified:
+this is the breathing of your travailing friend and brother,
+
+[.signed-section-signature]
+Charles Marshall.
+
+[.postscript]
+====
+
+Friends, be diligent in keeping your week-day meetings;
+it lies on my spirit to lay it on you at this time.
+
+====
+
+[.letter-heading]
+A Letter to Friends of Falmouth.
+
+[.salutation]
+Dear Friends of Falmouth,
+
+My love in the living, quickening truth of God,
+salutes you all that are faithful to the Lord,
+in the manifestation of his light of righteousness revealed in your inward parts,
+wherein is Zion`'s way cast up before your understanding; in which pure path of life,
+which the vulturous eye never saw, nor ravenous beast ever trod in,
+my soul breathes to the God of Heaven you may be preserved ETC...
+
+== Embedded, before SSCC
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+To Leopold the Second, King of Hungary, Bohemia, etc.
+
+Among the numerous congratulations awaiting your accession to the imperial crown,
+accept, O king, our Christian good wishes,
+and solicitude for your present and eternal wellbeing.
+
+We are conscious that we have no claim to the liberty of addressing you,
+but from a belief that the Lord Almighty, who rules in the kingdoms of men,
+and gives them to whomsoever he will,
+has inclined us to leave our habitations to visit some parts of this country,
+and now engages us, in gospel love, to express our secret and united prayer,
+that you may be an instrument in his holy hand for the advancement of that glorious day,
+spoken of by the prophet, "`when swords shall be beaten into plowshares;
+and spears into pruning-hooks; when nation shall not lift up sword against nation,
+neither shall they learn war any more.`"
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Through the neglect of a principle so pure and important,
+how has the rational part of God`'s creation been
+sacrificed to the irregular passions of sovereigns,
+and many unprepared souls precipitated into an awful futurity!
+That the gospel dispensation is intended to remedy these evils,
+and promote the government of the Prince of Peace;
+that the Gentiles are to come to its light, and kings to the brightness of its arising,
+are truths to which the sacred records abundantly testify.
+
+[.signed-section-signature]
+George and Sarah Dillwyn, Of Burlington, New Jersey, North America.
+
+[.signed-section-signature]
+Sarah Grubb, Clonmel, Ireland.
+
+[.signed-section-signature]
+Joshua Beale, Cork, Ireland
+
+[.postscript]
+====
+
+Members of the religious Society of Friends in those countries and Great Britain,
+commonly called Quakers.
+
+====
+
+[.signed-section-context-close]
+Mulheim on the Rhine, 29th of 9th Mo., called September, 1790.
+
+--
+
+== Funky Wheeler
+
+--
+
+[.letter-heading]
+To the Members of the Mission at the Sandwich Islands
+
+[.salutation]
+Dear Friends,
+
+Your joint communication, replete with the expression of brotherly kindness and regard,
+was put into my hand just as we were quitting the shores of Oahu.
+Although utterly unmerited on my part, yet I feel compelled to accept it,
+from a belief in the purity of those motives by which it was dictated; while,
+at the same time, the feeling is awakened,
+that to me belongs only "`blushing and confusion of face.`"
+I rejoice in the opportunity so soon afforded me to acknowledge its receipt,
+and more especially because I had felt my mind drawn towards you,
+before I saw its contents;
+desiring more and more that you may individually become
+acquainted with the binding influence of that love,
+which many waters cannot quench,
+"`unto all riches of the full assurance of understanding,
+to the acknowledgment of the mystery of God, and of the Father, and of Christ;
+in whom are hid all the treasures of wisdom and knowledge.`"
+
+[.signed-section-signature]
+Daniel Wheeler
+
+[.postscript]
+====
+
+My son Charles unites with me in an assurance of grateful
+acknowledgment and regard for your kind remembrance of him.
+
+_P+++.+++ S._--The oppressed condition of the natives of this island is truly affecting,
+and prompts me to remind my constant friend Hiram Bingham,
+of the address that was presented to the king Kinau, etc., at his house,
+to whose care the printing of it was committed.
+
+====
+
+[.signed-section-context-close]
+Henry Freeling, in the road of Waimea, Isle of Tauai, 27th of Sixth Month, 1836.
+
+--
+
+== Standard Embed Wheeler
+
+[.embedded-content-document.letter]
+--
+
+[.signed-section-context-open]
+Church Missionary Society`'s Station, Paihia, Bay of Islands, New Zealand, 18th January, 1837.
+
+[.salutation]
+Reverend and Dear Sir,
+
+Before you bid adieu to New Zealand, we take this opportunity of expressing the pleasure,
+and, we hope, the edification we have derived, by your unexpected coming to this country.
+
+We regret,
+that circumstances of war and tumult have not made it desirable for
+you to visit the more extensive field of our labour,
+south of the Bay of Islands.
+But we do hope, that the places favoured by your Christian example and addresses,
+may have seen and heard to profit,
+and that "`at the last day`" it may be found that your sojourn here has not been in vain.
+
+[.signed-section-closing]
+Yours, very affectionately,
+
+[.signed-section-signature]
+Charles Baker, James Stack, William Colenss, William Thomas Fairburn
+
+[.postscript]
+====
+
+P+++.+++ S.--A difference of location of several of our brethren,
+and the absence of some from home, will not allow of their signing their names;
+but we can confidently say,
+they fully agree with us in this expression of our sentiments.
+
+====
+
+--
+
+[.offset]
++++[+++No circumstance attending Daniel Wheeler`'s visit to the South Sea Islands,
+appears to have more painfully affected his feelings,
+than the observation forced upon him from place to place,
+of the demoralizing and devastating effects of the interaction
+of the natives with the crews of vessels visiting their shores.
+In some letters, not forming a part of his Journal, he thus alludes to the subject.]
+
+== Ferris Funky Book Ending
+
+Although I had been called out of the world, and uncommonly favoured, as before related;
+although I had forsaken the vanities and flesh-pleasing
+gratifications in which I had delighted;
+although I had left the college in a way so mortifying, had given up all to death,
+and freely borne the cross of being esteemed a fool by the world;
+afterwards joining with the despised Quakers, adopting their language,
+dress and behaviour; (all which I could not have done without Divine assistance;) yet,
+after all this, I was so forgetful, and ungrateful to my heavenly Benefactor,
+that it is a wonder I was ever restored.
+And I have no doubt that thousands, through negligence,
+even after they have been called out of the world, and have run well for a season,
+have been finally lost;
+swimming away in the riches and pleasures of this transitory state.
+This I have written for a warning to others.
+
+In the early part of the winter, after my return from New-England, in 1776,
+I was reduced to a poor state of health, and so continue.
+I believe I have not lately been ever clear of a slow fever;
+but have generally been able to go to our religious meetings, at and near home;
+sometimes to Philadelphia, and once into Maryland, the lower counties on Delaware, etc.
+
+[.signed-section-signature]
+David Ferris
+
+[.signed-section-context-close]
+Wilmington, 5th Mo. 1779.
+
+[.postscript]
+====
+
+P+++.+++ S. I do not think it probable that Friends will
+think the rough remarks and observations I have made,
+worth publishing; but they may possibly be of some use to my family, to whom, therefore,
+I leave them.
+
+====
+
+[.signed-section-signature]
+David Ferris
+
+== Embedded Double-Signed
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Dear Friend--
+
+In much sympathy and true brotherly love I present you with these lines,
+being much disappointed in not meeting you here.
+I hope you are on the mending hand,
+and that I shall yet be favored to enjoy under your roof,
+and among your very affectionate children, a few more of such agreeable hours,
+of which I have already passed so many; when we had, added to our family comforts,
+that of a most agreeable circle of dear brethren and sisters; and above all,
+the Divine Master`'s presence to crown our little assembly;
+when our parlor became as the school and
+nursing-room for the disciples and children of Christ.
+
+As to the business of the day, you may be better informed than by me at present;
+but may let you know I am nearly through the visit to the families of Friends,
+except to those in this place;
+and though it is a work which has required much patience and perseverance,
+yet it now affords me a secret satisfaction, and I seem clear that stopping among you,
+and visiting the families in this monthly meeting, has been the way of peace.
+
+[.signed-section-signature]
+David Sands
+
+[.postscript]
+====
+
+P+++.+++ S.--My love to dear John Thorpe,
+with whom I have felt much since I heard of his trials in his family,
+followed by his own indisposition: and to all my friends in your freedom, in Manchester:
+for sure I am, I love you, and you are near to my best feelings as a meeting.
+I often look back with a humble hope of your growth in the best things.
+
+====
+
+[.signed-section-signature]
+David Sands
+
+[.signed-section-context-close]
+Warrington, 12th month 15th, 1795.
+
+--
+
+== Embedded, after SSCC
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Dearly beloved friend David Sands--
+
+Having opportunity, I may say you are often in my remembrance,
+and I among thousands should be glad to see you, in our land,
+not doubting but that you will be clothed with the
+garment of praise for the spirit of heaviness.
+I write these few lines to renew mutual love;
+and to say I have lived to see the bread that you cast on the waters,
+in the region of the East, returning after many days, to the glory of God;
+breathing peace on earth and good-will to men;
+although some sturdy oaks and tall cedars have failed every way.
+You may remember, dear David,
+how we passed along among the people during the inclement season of the year;
+over ponds and lakes, hungry and cold;
+and sometimes inwardly stripped and baptized for the dead;
+all which cannot be fully expressed in this silent way
+so plainly as felt experience gives it.
+Although there have been great overturnings,
+yet the Divine Parent causes the sun to shine, and the south wind to blow,
+as the extended sceptre of his continued mercy;
+watering the garden of the soul that loves him,
+and even continuing to make himself manifest, at times,
+to them who inquire not after him.
+
+May the Lord of the harvest clothe your tender mind afresh
+with a concern again to visit the churches in our land.
+I have seen little children turn a snowball,
+and it grew bigger so fast by turning that they would call for help.
+As of old the fishermen did, when, by their Master`'s orders,
+they had cast the net on the right side of the ship; even so,
+when the sun warms the snow, and the north wind breathes upon it,
+the last turning will collect more weight than several preceding ones.
+You will understand my simple hints.
+I conclude with a feeling of more love than can be expressed in this silent way,
+and remain your assured and affectionate friend,
+
+[.signed-section-signature]
+James Neall
+
+[.signed-section-context-close]
+Brunswick. 6th month 6th, 1808.
+
+[.postscript]
+====
+
+P+++.+++ S. I have written to you one or two letters since your return from Europe,
+but have not had any answer.
+I wish to receive a line from you,
+and an intimation of your mind when you look towards us.
+
+====
+
+--
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+== Just PS
+
+[.centered]
+==== LETTER XI.
+
+[.letter-heading]
+To Her Mother.
+
+[.signed-section-context-open]
+1795.
+
+You are the persons our Lord has himself pronounced blessed;
+he bids you rejoice and be exceeding glad.
+May we be vigilant to serve our Master, and pray for them that hate us!
+I want nothing but what my Jesus has to give, and he is always willing,
+and we might be always receiving,
+if unbelief did not prevent us opening wide the door of our hearts,
+that he might come in and sup with us according to his promise.--I
+think he is teaching me more every day,
+there is nothing worth having but himself, nor enjoying,
+but as we receive in it something of his love: don`'t you find it so?
+If we have him, we have more than tongue can describe, we have sweet peace within,
+that we enjoy by looking in faith through our interceding Saviour to our loving Father.
+What mere earthen vessels we are, empty and liable to be broken:
+what a blessing to see we are so, that we may ask and receive, and be filled;
+that we may come up from this wilderness leaning on our Beloved!
+He will hold us up, and we shall be safe.
+But I must stop and recollect, this subject of a soul`'s love would fill my paper,
+and after all, I have said nothing: I must leave the subject to eternity,
+we can`'t comprehend, much less talk of it, though to feel it is heaven begun!
+And does my sweet Lucy give her idols to the moles and the bats: this is love again!
+
+Tell +++_______+++ if you have no objection that (from
+my soul) I wish she was what they call a Quaker,
+but that most of all, I wish her to be a Christian;
+a despised follower of a despised Saviour.
+I have acquitted my conscience already, and tell her from me, if she reject this Saviour,
+He will reject her,
+and the horrible consequence no pen can paint.--Need I tell my beloved
+parent my heart is united to her`'s forever in love by the strongest bands.
+
+[.postscript]
+====
+
+P+++.+++ S. When you give my message give it in love: there is great harmony in love
+
+====
+
+[.centered]
+==== LETTER XII.
+
+[.letter-heading]
+To Her Mother.
+
+[.signed-section-context-open]
+1795.
+
+To those who find religion a real good, retirement is delightful,
+as it enables us without interruption to seek for peace,
+and to enjoy the greatest privileges:
+communion with him who condescends to be the Friend of sinners,
+and rejoices over them to do them good. ETC...
+
+== Banks PS Header (converted) (embedded)
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Dear Wife,
+
+In that love which still endures, and increases in my heart to you, do I feel you;
+and the further I am separated from you, the nearer you are unto me,
+even in that which length of time or distance of place shall never be able to wear out,
+or bring to decay.
+Feel the reach of my love in your heart, and be broken and tendered in the sense thereof,
+even of the heart-breaking love of God: in which my heart abounds in love to you;
+with breathings to God, that we may be kept living to him,
+through all our various exercises,
+that so we may daily learn with the blessed and wise apostle,
+in all conditions to be content; and that patience may have its perfect work in us;
+for patience gains experience, and experience hope, that never makes ashamed,
+but anchors the soul both sure and stedfast unto God.
+
+Remember my dear and tender love, as also my duty and tender regard, to my parents,
+for they are very near and dear to me; with my love also to Friends, neighbours,
+and relations, as if named.
+My companion and fellow-labourer in the Gospel desires to have his love remembered to you.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+And so I bid you farewell.
+The Lord keep and preserve you, with all his people, faithful in this trying day,
+which possibly may have the effect to try the faith of many.
+
+[.signed-section-signature]
+J+++.+++ B.
+
+[.signed-section-context-close]
+Puddimoore-Milton, in Somersetshire, the 28th of the Fourth month, 1668.
+
+[.postscript]
+====
+
+Postscript.--The truth of our God prospers and gains a good report in these parts,
+and many other places where we have travelled; and many are coming in to partake thereof.
+For people in many places are weary of the hireling priests,
+and dead formal worship of the world, and their assemblies grow thin.
+The Lord, by the all-sufficiency of his power, has made our service effectual unto many,
+both Friends and other people,
+and very full and peaceable meetings we have had in several counties and shires;
+wherefore we cannot but return the praise, honour, and glory unto Him,
+whose the work and power are; and count nothing too hard for us,
+so that we may bear a faithful testimony for Him, to the good of souls;
+that he over all may be glorified;
+and that we may feel true peace with Him in the end for our reward.
+
+====
+
+[.signed-section-signature]
+J+++.+++ B.
+
+--
+
+== Long Double-Para PS Embed
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Dear Wife,
+
+Yours I have received, whereby I understand the great weakness you have been in,
+which has been a near trial and great exercise to me.
+But when I consider the large love of God to you,
+in preserving you in faith to believe in Him,
+with patience and true contentedness to give up unto Him under your great weakness,
+it has eased my burden and lessened my exercise.
+
+Remember my dear and tender love, and also my duty, to my parents;
+for still I find myself bound to be tender over them,
+and to do for them whatever lies in my power,
+under the consideration of what they have done for me.
+With the salutation of my true love to yourself, in the remembrance of our little one,
+and my love to Friends, and relations and neighbours, I remain your loving husband,
+
+[.signed-section-signature]
+J+++.+++ B.
+
+[.postscript]
+====
+
+And now Peter Fearon, my apprentice: Mark, and take good notice what I say to you;
+lay it to heart, and consider these things well, now in my absence.
+My true and unfeigned love is to you,
+and I desire your prosperity and welfare in all that is good,
+both inwardly and outwardly;
+but first of all and chiefly in that which pertains to the salvation of your soul;
+the way whereof, the Lord, in His love, has in some measure made manifest unto you.
+Therefore, be watchful to walk in it; that is to say,
+take heed to the light of Christ Jesus in you, the measure of the Spirit of Truth,
+which will lead you into all truth and out of all deceit as you do obey and follow it.
+Whatever this pure light in you makes manifest to be evil and reproves you for,
+depart from it, though it be that which no other eye can see nor any man know of,
+yet you must forsake it,
+and wait and watch daily against it in the light that makes it manifest,
+and you will receive power to cast it off and depart from it.
+The light, which is Christ Jesus--the way, the truth,
+and the life--teaches to be sober and lowly-minded.
+It teaches that our words ought to be few and savoury,
+and that we be gentle and easily entreated, not high-minded,
+but fearing the living God continually.
+This keeps the heart clean as you abide in it, keeping low and humble in self-denial,
+and willing to take up and bear the daily cross; and as this goes on in the heart,
+you thereby come to depart from all iniquity.
+"`All things that are reproved are made manifest by the light,
+and whatsoever makes manifest, is light;`"^
+footnote:[Ephesians 5:13]
+and that which the light makes manifest to be sin and evil, either in word or action,
+you must forsake and deny yourself in.
+For this is the will and mind of the Lord, by His blessed Spirit;
+and he that knows his master`'s will and does it not,
+according to the Scriptures of truth, must be beaten with many stripes.^
+footnote:[Luke 12:47-48]
+
+As to things appertaining to your work and service, be patient and content,
+and go quietly about your business in the fear of God.
+And do not say in yourself that I will think you have not done enough,
+for it is far from me to think in this way.
+My only desire is, that if you do ever so little, be careful to do it well.
+But, above all things, be truly willing and obedient unto your mistress,
+for whatsoever you do to her, I take it as done to myself.
+And mind to carry yourself in love, and be a good example in my family,
+that so you may all live in love and unity together; in which the Lord preserve you all.
+
+====
+
+[.signed-section-closing]
+Your loving master,
+
+[.signed-section-signature]
+J+++.+++ B.
+
+[.signed-section-context-close]
+From Whitechapel in London, the 3rd day of the Sixth month, 1668.
+
+--
+
+== PS journal-like continuation
+
+[.embedded-content-document.letter]
+--
+
+[.letter-heading]
+From Christiana Hustler to John Conran.
+
+[.signed-section-context-open]
+Ayton, Ninth Month 18th, 1784.
+
+[.salutation]
+Dear Friend,
+
+Well, my dear friends,
+may you and I ever be enabled to press forward (leaving
+the things that are behind) towards the mark,
+for the prize set before us, however arduous and tribulated the path;
+that neither heights nor depths, principalities nor powers, things present,
+nor yet to come,
+may ever be able to separate us from that love which we have been
+mercifully enabled in days past to prefer to all things visible;
+and may we be enough engaged so to run as that we may obtain,
+is the principal desire of my mind, I think I may truly say, at this time.
+
+As to myself, and my own movements, I have little to say,
+having seldom to my own feelings been able to keep my head above water:
+I am at present with our valuable friend Rebecca Jones,
+who came over with Thomas Ross and Mehetabel Jenkins (now in
+your land,) and several other Friends,
+a little before the last Yearly Meeting, where believing it right for myself to be,
+and she willing to accept of my company down into the north,
+we came to the Quarterly (or what are called the Yearly) Meetings at Colchester,
+Woodbridge, and Norwich, taking the meetings in the way,
+and after them most of those in Norfolk, Lincolnshire, and Yorkshire.--And now,
+with an earnest request that you will again let me hear from you,
+I must for the present bid you dearly farewell,
+and with the affectionate salutation of my best love to your whole Self,
+remain your assured, though poor friend,
+
+[.signed-section-signature]
+Christiana Hustler
+
+[.postscript]
+====
+
+P+++.+++ S. My late companion Phebe Marshall, is married to a Friend of Leeds meeting,
+whose name is James Blakes, I hope suitably.
+
+Twelfth Month 6th.--Since writing the above, we attended our autumn Quarterly Meeting,
+proceeding pretty directly from there into the counties of Durham, Northumberland,
+and through Scotland as far as Old Meldrum,
+returning last Seventh-day to this place (Whitehaven,) and hope to
+reach our Quarterly Meeting at Leeds the latter end of this month.
+Our friend John Hall, at whose house we lodged two nights,
+desired to be affectionately remembered to you,
+and that I will inform you he received an acceptable letter from you at Birmingham,
+which he intends to answer shortly.
+He with my companion are both bravely, as was Rebecca Wright,
+whom we passed on her way to Scotland, accompanied by Martha Routh.
+Patience Brayton is I expect now in or near Cornwall,
+Samuel Emlen and George Dillwyn and his wife in London, and by letters received,
+our worthy friend Robert Valentine is safely arrived in his own land
+before their Yearly Meeting in the Ninth Month which will be,
+and has been cause of joy, no doubt to his friends as well as himself.
+
+====
+
+[.signed-section-closing]
+Once more farewell.
+
+[.signed-section-signature]
+Christiana Hustler
+
+--
+
+== Embed with double-para plus signature
+
+[.embedded-content-document.epistle]
+--
+
+[.salutation]
+Dear Friends,
+
+In the extendings of the love of Christ the
+great and blessed Shepherd of the Lord`'s flock everywhere,
+am I concerned to remember you, and stirred up to write a little to you,
+as a tender and brotherly salutation.
+
+And I am fully satisfied,
+that the gracious regard of Almighty Goodness is afresh extending towards you,
+in order to help you,
+both to own and to live more comfortably in the dominion of Truth in yourselves;
+and to enable you in the life and wisdom of Truth,
+to be more serviceable in your families, in the Society you profess to be of,
+(so lamentably decaying in your parts) and also to the neighborhood.
+
+The mouths of those who mock and contemn the repairers, would, in the Lord`'s counsel,
+be stopped, or turn to their own shame and sorrow;
+and the seeming strength of the arm of such uncircumcised,
+would appear to be mere weakness,
+and like briars and thorns in the way of the Lord of hosts.
+
+So dear Friends, brethren and sisters,
+be aroused into upright inwardness of application in soul,
+to have your own hearts searched by the finger or power of God;
+and that in love and virtue may help and lead you in
+faithfulness to labor in the work of the Lord,
+that you may be fully clear of the blood of all.
+I fully believe the blessed Master Builder and great Husbandman,
+will yet add a blessing to your sincere application, both inwardly for your own help,
+and to others; for his eye is towards you for good,
+and towards the work he has begun in your parts.
+
+And I beg it may ever be remembered, particularly by the more active for religion,
+either as ministers, or other helps in the government of the church, that exhortation,
+advice, or proposing the best of rules for necessary practice,
+are not likely to produce much good effect,
+if the tincture and savor of the spirit of religion and
+gospel power do not accompany such labor,
+and show itself in the life of such persons.
+
+This leads into, and gives dominion over our own spirits and tempers,
+and washes from the defiling love and spirit of this world,
+with its corrupting friendships and selfish views, which have hurt many inwardly,
+if not slain and laid waste multitudes.
+
+[.signed-section-signature]
+John Fothergill.
+
+[.postscript]
+====
+
+P+++.+++ S. If I have been very pressing and earnest with you,
+and not without danger of offending some, yet know you,
+it is from a clear view that the Lord of heaven and earth,
+who sees all things and persons as they are in reality,
+is both willing and desirous to help and quicken you,
+and to repair his work and plantation among you in this province;
+and to water and dress it, that it may become both more comfortable in itself,
+and more beautiful.
+He therefore uses various means to encourage you to seek the Lord in good earnest,
+to know him to work in, for and with you, for that great end,
+to prevent greater desolations and forsaking, which are likely to overtake you,
+through the rebellious and negligent, to more scandal and sorrow of heart.
+
+I am now clear, and beseech that you may make proper use of this and all other favors,
+both in thinking of it carefully,
+and spreading it as may be judged necessary and
+I seem rather moved with desire that this,
+or a copy of it may go to Friends over the bay.
+Though at present my hope seems weak of some,
+of their regarding any thing that may be for their effectual help,
+yet the unchangeable God, his holy Truth, and faithful laborers in his love and fear,
+will be clear,
+and have comfort in themselves from him whose ear grows
+not heavy that it cannot hear in any land or age;
+glory and thanksgiving be to his name forever and ever.
+
+====
+
+[.signed-section-context-close]
+Barbados, the 23rd of the Twelfth month, 1737.
+
+--
+
+== PS straight into non-embed letter
+
+[.letter-heading]
+Letter 30.
+
+[.signed-section-context-open]
+Bromley, 2nd Twelfth month 1736.
+
+[.salutation]
+Dear Friend,
+
+When I was last in the north, I heard of you in several places,
+as one who had turned your face Zionwards;
+having seen the emptiness of earthly enjoyments.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+It is my desire for you, that your eye may be more and more fixed on heavenly things,
+and that you may daily know a drinking of the well of salvation,
+which Christ has opened in the hearts of true believers;
+that thus you might be wholly weaned from the breast of this world,
+and might drink abundantly of that joy which flows from the breasts
+of Divine consolation in Christ our bishop and true shepherd.
+
+To his protection I commit you, with my own soul, and remain your companion and sister,
+as you follow the Lamb in patience and tribulation,
+
+[.signed-section-signature]
+Deborah Bell.
+
+[.postscript]
+====
+
+P+++.+++ S.--I hear your freedom, as to the outward, is enlarged; may your freedom,
+and liberty of soul,
+daily increase through the power of him that is come to set his
+children free to serve him in simplicity and singleness of heart.
+
+====
+
+[.letter-heading]
+Letter 31.
+
+[.signed-section-context-open]
+Balby, near Doncaster.
+
+[.salutation]
+Dear Friend,
+
+The reading your letter gave me great satisfaction,
+as it informs me you are treated with less severity than heretofore, etc.
+
+== Embedded double-para PS, last after SSCC
+
+[.embedded-content-document.letter]
+--
+
+[.letter-heading]
+To * * * * *,
+
+[.salutation]
+Respected Friend;
+
+"`The little Piece which this accompanieth, I think I can truly say,
+I wrote under an apprehension of duty, uninfluenced by any personal motives whatever.
+I submit it to thy candid perusal, and can assure thee,
+that notwithstanding the apparent difference, I still retain an affectionate regard,
+from a belief of the inconsistency thereof with the simplicity of true Christianity,
+and of the unlawfulness of feeding the vain mind in man, by giving him flattering titles.
+I have desired to follow nothing by imitation, but from conviction,
+and I hope these desires have been mercifully answered.
+
+[.signed-section-closing]
+I remain, respectfully, thy Friend,
+
+[.signed-section-signature]
+John Spalding
+
+[.signed-section-context-close]
+Reading 11 Mo. 1794
+
+[.postscript]
+====
+
+Postscript: "`There is a little matter I have for some time
+felt a desire to call thy serious attention to.
+Not long since,
+part of the goods of some of thy peaceable neighbours were taken away by force,
+for the repairing, I apprehend,
+the place where thy congregation meet to worship I have been led to consider
+the inconsistency of this practice with the spirit of the gospel,
+of which thou art esteemed a minister.
+I have examined the Scriptures of Truth,
+and do not find that either Christ or his apostles ever used, or taught such a practice,
+to oblige those to support them, or their places of worship, who did not receive them.
+__"`As ye would that men should do unto you,`"__ said our Lord,
+__"`do ye even so unto them,`"__ for this
+__"`is the law and the prophets,`"__
+Now I am much inclined to think,
+if thou wilt calmly and weightily consider this matter,
+a deviation from this important injunction will appear.
+If this people had the powers of the earth on their side (as thou hast in these
+matters) and insisted upon thy helping to support their place of worship,
+where thou hadst a conscientious objection to go, wouldst not thou think it unreasonable;
+and rather that every society should support its own ministers and places of worship?
+And truly there are those who from a real conscientious scruple,
+cannot willingly uphold those called parish churches.
+
+"`Now this I do not write from any desire to avoid suffering for praised be the Lord,
+there is a remnant at this day,
+who are enabled to take joyfully the spoiling of their goods for a good conscience sake,
+in supporting their testimonies against what they believe to
+be repugnant to the spirit of the gospel dispensation.`"
+
+====
+
+--
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+== PS with poetry after it, embedded
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+James Anderton,
+
+I have lately received a general release under your hand and seal.
+I much wonder you were so impudent as first to steal my goods and
+rob my house for wages though I never set you at work;
+and then deceitfully you make it out as if I had paid your demands,
+and thereupon have acquitted me.
+Be it known unto you, O hypocrite, that I never consented to pay you anything,
+because I owed you nothing;
+your release I return back to you again as a testimony against your deceit.
+But as for the goods and money that were by you violently taken from me,
+I can look upon it to be no other than theft and robbery,
+which will assuredly be upon your account before
+the righteous God unto whom I have committed my cause,
+whose truth and servants you have reproached,
+and whose worship you have disdainfully opposed.
+For at Chewly, on the 10th of the seventh month,
+you did prefer card-playing before the true worship of God.
+Oh full of all subtlety, how do you pervert the right way of God!
+You shall as assuredly feel the vengeance of God and his
+fiery indignation for these things as you have done them;
+and with the murderer, swearer and liar you shall be shut out except you speedily repent.
+O repent, repent; if you can find a place.
+
+[.signed-section-signature]
+O+++.+++ S.
+
+[.signed-section-context-close]
+The 24th of the Eighth month, 1667.
+
+[.postscript]
+====
+
+P+++.+++ S.--And now, James Anderton,
+consider with yourself what you have brought to pass by
+your striving in cruelty against me these four years;
+you have but made your folly manifest.
+Alas! what am I, that you should thus strive against me?
+But it is the living God that is on my side and has preserved me hitherto;
+living praises be to His name forever.
+
+[verse]
+____
+In the Truth of God, unto which all must bow,
+At first I was not so strong as I am now.
+Holy Praises be to my Rock and Strength forever;
+For from his Love no earthly thing can sever.
+____
+
+====
+
+[.signed-section-signature]
+O+++.+++ S.
+
+--
+
+After this I had little more to do with him for some time,
+till the Court Leet came which was in the second month, 1668,
+to which being summoned I did appear there;
+and the priest being there also he soon fell upon me,
+charging me with having printed lies against him in a book,
+which he said was almost filled with lies.
+I desired him to instance in anyone particular, and prove it false if he could,
+before all the people; there being the chief men of three or four parishes.
+
+== PS with random verse after
+
+[.embedded-content-document.epistle]
+--
+
+[.salutation]
+Friends and Neighbours,
+
+Forasmuch as James Anderton has opened his mouth wide against
+the innocent people of God called Quakers in general,
+and me in particular; but chiefly against the Truth which we profess;
+now it is well known to most of you that his enmity has
+been openly manifested towards me both by words and deeds.
+
+Now if it can be proved,
+that the true worship of God is in that very way
+which we meet together to worship him in,
+and in that very way wherein we meet together and
+worship God in is the true worship of God performed;
+then it is evident,
+that he that speaks against our meetings speaks against the true worship of God:
+now it can be so proved,
+therefore he that speaks against our meetings speaks against the true worship of God.
+
+Secondly. We do abide in the doctrine of Christ and do keep his commandments;
+as might be largely evinced according to the Scriptures of Truth.
+
+And as for all his other accusations which he in a clamorous manner vented against us;
+surely he had no more ground for them than his forefathers,
+the priests and persecutors of old, had against Christ and his followers.
+
+Wherefore in Christian love to your souls I write this,
+to warn you not to trifle away your precious time;
+but turn to the Life of Christ and the manifestation of the Holy Spirit,
+which is the gift of God, shining in your own hearts and consciences,
+which will reprove for and condemn sin in your mortal flesh,
+and through believing will lead you out of sin into a state of acceptance with God;
+in which continuing, through obedience,
+you may come to be redeemed from the bondage of corruption,
+and be brought into the glorious liberty of the children of God,
+who are all led by his Spirit.
+
+I am a real friend to all tender-hearted people but a living witness against deceit,
+
+[.signed-section-signature]
+O+++.+++ Sansom
+
+[.signed-section-context-close]
+The 28th of the First month, 1669.
+
+[.postscript]
+====
+
+P+++.+++ S. If James Anderton or any other has anything to charge us with,
+who are in scorn called Quakers,
+let it be produced in writing openly to the view of all sober people;
+and they may expect a sober answer in plainness.
+And so let them and us be tried by the Scriptures of Truth;
+and whoever is found guilty of error, let him be censured accordingly.
+
+====
+
+[.offset]
+"`Prove all things; hold fast that which is good.`"
+
+--
+
+== 3 Para PS, then re-sign
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+James Anderton,
+
+Your late carriage and deportment has brought a weighty
+and serious consideration upon my spirit concerning you;
+and in the light of the living God,
+I see your state and standing to be sad and dangerous;
+and in tender love to your immortal soul I am even constrained
+to write these lines in the fear of the Lord as a warning to you,
+that you turn in your mind to the light with which Christ has enlightened you,
+that you may see and discern your own state and condition,
+while his Spirit strives with you and his mercy and
+long-suffering is extended towards you;
+lest his spirit cease striving, and he give you over to a reprobate mind,
+and his wrath come upon you, and there be no remedy for you.
+Therefore prize your precious time and your day before it be too late.
+
+So to the light of Christ Jesus in your own conscience I once more direct you;
+therein to wait for a clear understanding;
+for that will make manifest to you your evil deeds and reprove you for them.
+And if you turn at its reproof, happy will you be;
+but if you do go on in rebellion as you are now going,
+it is and will be your condemnation forever and you can not escape.
+And whether you will hear or forbear; yet this light which I have testified of,
+will stand a faithful witness for the Lord that cannot lie;
+and from it your most secret thoughts cannot be hid.
+O that you would prize your precious time,
+and consider in this your day the things that belong to your soul`'s peace
+before they be hid from your eyes! which is the desire of him,
+who is a well-wisher to your soul, but a witness against your deceit.
+
+[.signed-section-signature]
+Oliver Sansom,
+
+[.postscript]
+====
+
+P+++.+++ S.--And whereas you have threatened me with a prison
+if I did not pay what you pretend was due to your father;
+this I have to say and testify in the presence of the living God,
+that for conscience sake towards the Lord could not
+give your father anything nor pay him any wages,
+because he was a deceitful worker and a false minister;
+and the Lord God of my life required me to bear witness against him in his day.
+And in my sufferings I committed the keeping of my
+soul with all that I had unto the Lord;
+who was unto me as a tender father and has kept and preserved me all along;
+and has also delivered and set me at liberty: Glory over all be to Him forevermore.
+
+And now, James Anderton, take heed to yourself what you do concerning me.
+Think not that because you have a law on your side,
+an unjust law will excuse you in the sight of God;
+for in all ages the servants of the Lord suffered
+under the pretence of the breach of a law,
+by their persecutors.
+And know this, that it is by the Spirit of the Lord that I am raised up,
+to stand a witness for him against your ways I and practices;
+and unto Him I commit my I cause,
+who alone is able to preserve me and keep me in well-doing, unto the end of my days.
+
+So in the coolness of your spirit I desire you to consider of what I have here written;
+and to the just witness of God I appeal to testify to the truth of it:
+and whether you will hear or not,
+yet that will one day bring to your remembrance that you have been warned.
+
+====
+
+[.signed-section-signature]
+O+++.+++ S.
+
+[.signed-section-context-close]
+Written and delivered in the Twelfth month, 1672.
+
+--
+
+My purpose of removing from this place to go and dwell at Farringdon
+continued still with a weighty exercise upon me.
+Yet I hastened not in it, but waited to see how the Lord would make my way clear;
+desiring of the Lord that he would keep me always single to himself;
+that whatsoever I did, or whatsoever state I was in, I might enjoy contentment, peace,
+and satisfaction from him
+
+== Single Para PS then re-sign
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Benjamin Woodbridge,
+
+Forasmuch as it is commonly reported both in town and country hereaway,
+that upon the 9th day of this month, you preaching at Newbury,
+did in your sermon speak very much against the people called Quakers;
+charging them to hold very dangerous principles,
+and as deniers of the chief fundamental points of religion,
+and the true marks of a Christian; and also,
+that what they made a show of outwardly in point of worship, etc.,
+is but mere deceit and hypocrisy, to gain proselytes; and much more to this purpose,
+it is generally reported,
+you did then and there speak and declare to a multitude of people,
+who were at that time congregated together.
+
+And as truth seeks no corners and innocency needs no covering,
+so I desire you in plainness of heart to grant me this request;
+and expecting to hear shortly from you,
+I remain A true lover of all those that love truth in sincerity.
+
+[.signed-section-signature]
+Oliver Sansom.
+
+[.signed-section-context-close]
+The 26th of the Ninth month, 1673.`"
+
+[.postscript]
+====
+
+P+++.+++ S.--When you write, direct your letter to be left with Robert Wilson in Newbury for me.
+I wrote to you about half a year ago, but never yet received any answer;
+I desire to know the reason.
+
+====
+
+[.signed-section-signature]
+O+++.+++ S.
+
+--
+
+This letter was delivered to him, and seemingly well received by him;
+and some of his hearers who were intimate with him reported he did say,
+he would answer it as soon as he was able to use a pen.
+For suddenly after he had preached so bitterly against us,
+he was taken with a great weakness of body,
+which some said was from the gout in his hands and feet;
+but after about three weeks time he began to handle his pen again,
+and sent me the answer following:
+
+== PS with closing
+
+[.embedded-content-document.letter]
+--
+
+[.salutation]
+Thomas Fettiplace,
+
+Now I place this persecution upon you, because you, as I am certified,
+are the most busy in this bad business.
+For although your brother Hide, and sometimes one justice more,
+may be present at your petty sessions, yet it is you that take upon you to be speaker,
+and the rest being passive, you earnest on matters according to your own will;
+so that we can do no other than give every one his due,
+and lay the propagating and managing of these bad proceedings at your door.
+
+Truly I have been concerned for you,
+because of your going on in persecution against God and his people;
+knowing that a bitter cup you must come to drink from the Lord`'s hand for the same,
+unless you repent; and I have often considered, in pity to you,
+poor man! that it would have been far better for you, if,
+when your commission was taken away, you had never obtained it again,
+to do as you have done.
+
+But be you assured of this, that the Lord who searches the heart,
+has your life and breath in his hand, and will not be mocked by you;
+but will give you to reap according as you sow,
+and render you a just reward according to your works;
+and in his fear is this written for your everlasting good,
+By him who has learned to love and pray for enemies and persecutors, called
+
+[.signed-section-signature]
+Oliver Sansom.
+
+[.signed-section-context-close]
+Written in Reading Jail, where I suffer for believing and obeying him,
+who said "`swear not at all,`" 6th of Second month, 1685.
+
+[.postscript]
+====
+
+P+++.+++ S.--Truly as the state of things now stands, your doings seem very strange.
+What if he that now sits at the helm,
+should permit or encourage you and others of your mind, on purpose to try you,
+and to see what you would do,
+to prosecute other protestants that dissent from you even unto blood?
+Which if the Lord should allow,
+you seem too likely to be an instrument for the carrying on such a tragedy,
+in whose heart the old enemy who was a murderer from the beginning has ruled and does.
+And when you have done the worst you can against us,
+may not the Lord then in his justice, cause you to drink of the same cup,
+and to receive the same measure from others that you have meted to us?
+
+I hear you are very liberal to your clerk, in giving him what you have no right unto,
+for writing your warrants, viz: Twelve-pence a warrant, and if I mistake not,
+sometimes more; to be paid out of the spoil of the poor Quakers`' goods,
+for all the warrants and court orders that your cruel hand has signed against them,
+besides the penalties imposed.
+May we not well question whether you allow him any other wages than this,
+which is thus oppressively extorted, because of the multitude of your warrants.
+Let it be plainly understood by what law you thus proceed;
+for these doings of yours give a general dissatisfaction.
+One formerly said, there was nothing worse than legal tyranny.
+Take heed that you are not found in it.
+
+And furthermore consider, do you not think that other justices,
+who are more moderate and tender to their neighbours,
+are as good subjects to the king as yourself,
+and keep as clear a conscience in discharging their duty, expressed in their commission,
+as you do?
+who yet never had a hand in persecution, and do scorn to make a spoil upon sober people,
+as you have done.
+And as their tenderness will be for their honour here and peace hereafter;
+so your rigour will be both to your shame here and torment hereafter,
+without timely repentance.
+
+But although I do write thus sharply,
+yet I can truly say it is not in wrath or enmity against you;
+but in a fervent zeal for God against unrighteousness, and in love and good will to you;
+that you might not go on in that way which will end in misery.
+And as a testimony of my love I have an intent, and some hopes,
+to visit you at your house before many months more be expired,
+if the Lord enable and make way for me;
+and then I think to speak with you about my book which I lent you,
+and you have neglected to return.
+I am,
+
+[.signed-section-closing]
+A lover of truth and just government,
+
+[.signed-section-signature]
+O+++.+++ S.
+
+====
+
+--
+
+[.offset]
+Underneath I wrote these Scriptures.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+mollit anim id est laborum.
+
+== Double before re-sign
+
+[.embedded-content-document.letter]
+--
+
+[.letter-heading]
+Samuel Fothergill to his Brother John.
+
+[.signed-section-context-open]
+Warrington, 1760. Eleventh month 12th, 1760.
+
+The secret emotions of tender affection to you and dear sister
+frequently and strongly bring you both to remembrance;
+and when I can,
+I pray for your preservation and establishment in the possession of every blessing;
+in particular, of hearts clothed with a holy sensibility of Divine favor,
+and an anxious thirst of soul after still more and more worthiness;
+for gracious remembrance in every needful time, for such times will come;
+the smoothest passage is often mercifully thorny;
+and the kings and priests of God`'s own anointing,
+when a superficial eye views ensigns of royalty,
+have underneath sackcloth on their loins.
+
+It is never better with me,
+than when I descend to bring up some fresh memorials from the hidden depths.
+Though the waves and billows may at times pass over my head, they are your waves, oh.
+Father, and I will humbly look through them all towards your holy temple.
+
+[.signed-section-signature]
+Samuel Fothergill.
+
+[.postscript]
+====
+
+The suggested paragraph.--"`May He who touched the mind of youthful Solomon,
+at an age similar to yours, with the love of wisdom, which,
+at his accession to the throne of his royal father, he asked of God, bless you, O king,
+with a wise and understanding heart, and add thereto riches, honor, and length of days.`"
+
+N+++.+++ B.--I believe Solomon`'s vision, in Gibeon, was in the twenty-third year of his age,
+the age of our present king.
+If the sentiment be too trifling, excuse me, and pass it by.
+
+====
+
+[.signed-section-signature]
+Samuel Fothergill
+
+--
+
+In the preceding letter,
+Samuel Fothergill mentions some remarks which he had written
+upon a Sermon and Address delivered at Litchfield.
+His remarks were afterwards published,
+and led him into some controversy in defense of the doctrines
+of the Society of Friends on the subject of Water Baptism.
+His opponent was Edward Owen, at that time Rector of Warrington,
+and in much reputation as a learned man, and as an accomplished classical scholar.
+
+== Isolated
+
+[.embedded-content-document.address]
+--
+
+[.salutation]
+May it please the bishop,
+
+This comes as an address in the behalf of a friend of mine,
+who teaches our children at Mount-melick, for which, and no other cause of offence,
+some persons have presented him in the bishop`'s court,
+which may be supposed was done out of prejudice or self-interest;
+for he is a quiet harmless Englishman,
+capable to instruct children in learning and sobriety.
+We understand,
+that the officers of the said court are proceeding against him to an excommunication;
+and the issue must be a prison if not prevented by you.
+
+I have a secret belief, that you have no delight or inclination,
+that people should be cast into prison on such accounts,
+which makes me the more willing to let you know the
+proceedings of your officers in court against our said friend,
+desiring you to read this, and so leave it to your discretion, and the issue to the Lord.
+
+[.postscript]
+====
+
+P+++.+++S.--A worthy saying of Bishop Boyle, called Primate of Ireland,
+against controversy and strife among Christians, is in these words:
+"`Heaven is a quiet place, there no quarrels are;
+and religion is a holy and peaceable thing, which excites to piety and charity;
+but not to strife and debates.`"
+And that noble and worthy Prince, King William, in his speech to the parliament, says,
+"`That differences of names among Protestants might be taken away,
+and no other distinction of religion exist among his subjects,
+but Protestants and Papists.`"
+
+====
+
+--
+
+== PS between Sig and SSCC (embed)
+
+[.embedded-content-document.letter]
+--
+
+For the hands of John Evans, my right dear, and precious husband,
+with my tender-hearted children,
+who are more dear and precious to me than the apple of my eye.
+
+Most dear and faithful husband, friend, and brother, begotten of my eternal Father,
+of the immortal seed of the covenant of light, life, and blessedness,
+I have unity and fellowship with you day and night, to my great refreshment,
+and continual comfort.
+Praises, praises be given to our God forevermore,
+who has joined us together in that which neither sea nor land can separate or divide.
+
+Dear hearts, I do commit you into the hands of the Almighty, who dwells on high,
+and to the word of his grace in you,
+who is able to build you up to everlasting life and eternal salvation.
+By me, who am your dear and precious wife, and spouse, in the marriage of the Lamb,
+in the bed undefiled,
+
+[.signed-section-signature]
+C+++.+++ E.
+
+[.postscript]
+====
+
+My dearly beloved yokemate in the work of our God, does dearly salute you.
+Salute us dearly to our precious friends in all places.
+I do believe we shall see your faces again with joy.
+
+====
+
+[.signed-section-context-close]
+This was written in the Inquisition at Malta, in the 11th month, in the year 1661.
+
+--
+
+== Thomas Wilson Weird
+
+[.chapter-subtitle--blurb]
+An Epistle to Friends in Virginia and Carolina, from King`'s creek, in Maryland,
+the 12th of the Second month, 1692.
+
+[.salutation]
+Dear Friends,
+
+All dwell in the love of God, by which your hearts were at first reached,
+and tender desires raised, to make your peace with him, which was lost by reason of sin.
+It was the love of the Father to bring you to his Son, the Lord Jesus Christ,
+in whom you all have life and salvation, as you abide in him, and keep in his love,
+that draws your affections heavenward, where they will be fixed on heavenly things,
+and where your souls will witness the sweetness of life,
+strengthening and building you up in that most holy faith,
+which God hath called you into, and made you partakers of.
+Every one be careful to walk worthy of the vocation, whereunto ye are called,
+in all fear and meekness, watching in the light,
+where you will discern the wiles of the enemy in
+all his cunning baits and transformations.
+As every one of you keeps inward to the Lord, you will have salt in yourselves,
+to savour withal, as Christ our Lord said, "`Everyone shall be salted with fire,
+and every sacrifice seasoned with salt; have salt in yourselves,
+and dwell at peace one with another.`"
+
+As every one keeps to the spirit of judgment and burning,
+and knows the fire of God`'s jealousy kindled against every appearance of evil,
+you will be kept inquiring and taking counsel of the Lord, where you will be safe,
+and can do nothing against the truth, but for the truth,
+and the Lord will take delight to appear in your meetings, by his living power,
+and give you a sense and feeling beyond words, as he hath done unto a remnant of you.
+Blessed be his holy name forever,
+that there are those who can taste words as the mouth tastes meat;
+therefore is it that words cannot deceive such, but all have not attained this length;
+some are unskillful, and have need of milk, which our God will give.
+
+Therefore let your care be, to wait for the assistance of God`'s spirit,
+and that none plead for the truth, and be out of the Spirit of Truth,
+for that will never tend to God`'s glory, nor your edification; but on the contrary,
+to darken, veil, and oppress the Seed of God, one in another.
+But as all keep low in their respective gifts,
+waiting to know the assistance of God`'s spirit, being nothing without it,
+you will feel the Lord to work all your works in you and for you,
+and give power to answer what he requires of you,
+and then his love will be increased into you, and you will abide in favour with him;
+as you are preserved here, you will daily witness an increase of the life of truth,
+which will occasion praises to be sounded forth to the Lord God and the Lamb,
+who is blessed forevermore.
+Amen.
+
+[.postscript]
+====
+
+Postscript: Dear Friends, we desire you, in the love of God,
+as it was our advice when present with you, that you watch one over another in love,
+and keep in a Christian spirit, forgiving one another;
+if any brother have anything against another, as God, for Christ`'s sake,
+doth forgive you, so forgive one another.
+Take the advice of the apostle, "`Be not children in understanding,
+but in malice be ye children,`" that you may bear the marks of true disciples,
+and manifest yourselves to all men to be such;
+that you may be preachers of righteousness to the world, that lies in wickedness,
+and follow after those things that make for peace, and eschew the contrary,
+and the God of peace will bless you, and keep you from evil, that it hurt you not,
+to his glory, and your comfort.
+Amen.
+
+Let copies of this be taken and read in your meetings, and a copy be sent to Carolina.
+So remain your friends and brethren in the truth, letting you know that we are well,
+with love to you all, sending these lines as a token thereof.
+Farewell.
+
+====
+
+[.signed-section-signature]
+Thomas Wilson, James Dickinson
+
+[.blurb]
+=== An Epistle to Friends in Pennsylvania.
+
+[.salutation]
+Dear Friends,
+
+The tender salutation of our love in the Lord Jesus Christ,
+salutes you all, in the spring of divine love, as those that desire your growth,
+and settlement in God`'s everlasting truth, of which, in his rich mercy,
+he hath made you sensible, and gathered you into,
+wherein you have found great peace with God, and sweet unity one with another,
+so that your hearts have been filled in your assemblies with his living presence,
+which hath occasioned praises to spring unanimously unto the Lord.

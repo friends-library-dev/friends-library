@@ -12,6 +12,7 @@ export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
     changeChapterSynopsisMarkup,
     changeChapterSubtitleBlurbMarkup,
     prepareDiscourseParts,
+    preparePostscripts,
     discreteize,
     headingsInOpenBlocks,
     swapLineEndingDashesInVerse,
@@ -88,6 +89,13 @@ function swapLineEndingDashesInVerse(adoc: Asciidoc): Asciidoc {
 
 function restoreLineEndingDashesInVerse(adoc: Asciidoc): Asciidoc {
   return adoc.replace(/{verse-end-emdash}/g, `&#8212;`);
+}
+
+function preparePostscripts(adoc: Asciidoc): Asciidoc {
+  return adoc.replace(
+    /(?<=\[\.postscript\]\n====\n\n)((P(\+\+\+\.\+\+\+|\.)? ?(S|D)(\.|:)?|(Post(s|S)cript|Pos(d|D)ata)(\.|:)?))/gm,
+    `_$1_`,
+  );
 }
 
 function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {

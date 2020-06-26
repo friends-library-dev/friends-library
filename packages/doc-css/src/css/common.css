@@ -151,9 +151,20 @@ h3 + h4 {
   margin-top: 0;
 }
 
-.postscript {
+.paragraph + .postscript {
+  margin-top: 1em;
+}
+
+.signed-section-context-close + .postscript {
   margin-top: -1em;
-  text-align: justify;
+}
+
+.signed-section-signature + .postscript {
+  margin-top: -1.5em;
+}
+
+.postscript .paragraph:first-of-type p {
+  text-indent: 0;
 }
 
 .signed-section-signature p,
