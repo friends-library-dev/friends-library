@@ -24,7 +24,7 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
       return;
     }
 
-    if (rule === `open-block`) {
+    if (rule === `open-block` || rule === `wrapping-block`) {
       lines[lineIndex] = `\n${line}`;
       modifiedLines.add(lint.line);
       return;

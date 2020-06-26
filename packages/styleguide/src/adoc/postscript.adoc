@@ -12,7 +12,14 @@ exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 George Fox
 
 [.postscript]
-The bearer hereof is a daughter-in-law of mine,
+====
+
+P+++.+++ S.--The bearer hereof is a daughter-in-law of mine,
 that comes with Gertrude Dirick Nieson and George Keith's wife, to visit thee.
+
+====
+
+[.signed-section-signature]
+G+++.+++ F.
 
 --

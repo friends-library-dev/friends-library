@@ -292,4 +292,61 @@ describe(`singlePassFix()`, () => {
     expect(fixed).toBe(correctlySpacedOpenBlock);
     expect(unfixed).toBe(0);
   });
+
+  const unspacedWrappingBlocks: [Asciidoc][] = [
+    [
+      stripIndent(`
+        [.postscript]
+        ====
+        Foo
+
+        ====
+
+        Bar
+      `).trim() + `\n`,
+    ],
+
+    [
+      stripIndent(`
+        [.postscript]
+        ====
+        
+        Foo
+        ====
+
+        Bar
+      `).trim() + `\n`,
+    ],
+
+    [
+      stripIndent(`
+        [.postscript]
+        ====
+        
+        Foo
+        
+        ====
+        Bar
+      `).trim() + `\n`,
+    ],
+  ];
+
+  const correctlySpacedWrappingBlock =
+    stripIndent(`
+    [.postscript]
+    ====
+    
+    Foo
+
+    ====
+
+    Bar
+  `).trim() + `\n`;
+
+  test.each(unspacedWrappingBlocks)(`should fix unspaced wrapping block`, adoc => {
+    const lints = lint(adoc);
+    const [fixed, unfixed] = singlePassFix(adoc, lints);
+    expect(fixed).toBe(correctlySpacedWrappingBlock);
+    expect(unfixed).toBe(0);
+  });
 });

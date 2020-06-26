@@ -100,6 +100,50 @@ describe(`prepareAsciidoc()`, () => {
     );
   });
 
+  const psCases = [
+    // english
+    [`P+++.+++ S. Foo`, `_P+++.+++ S._ Foo`],
+    [`P. S. Bar`, `_P. S._ Bar`],
+    [`PS: Bar`, `_PS:_ Bar`],
+    [`P. S.--Bar`, `_P. S._&#8212;Bar`],
+    [`P. S.Bar`, `_P. S._Bar`],
+    [`P.S. Bar`, `_P.S._ Bar`],
+    [`PS Bar`, `_PS_ Bar`],
+    [`PS. Bar`, `_PS._ Bar`],
+    [`Postscript Foobar`, `_Postscript_ Foobar`],
+    [`Postscript. Foobar`, `_Postscript._ Foobar`],
+    [`PostScript Foobar`, `_PostScript_ Foobar`],
+    // spanish
+    [`P+++.+++ D. Foo`, `_P+++.+++ D._ Foo`],
+    [`P. D. Bar`, `_P. D._ Bar`],
+    [`PD: Bar`, `_PD:_ Bar`],
+    [`P. D.--Bar`, `_P. D._&#8212;Bar`],
+    [`P. D.Bar`, `_P. D._Bar`],
+    [`P.D. Bar`, `_P.D._ Bar`],
+    [`PD Bar`, `_PD_ Bar`],
+    [`PD. Bar`, `_PD._ Bar`],
+    [`Posdata Foobar`, `_Posdata_ Foobar`],
+    [`Posdata. Foobar`, `_Posdata._ Foobar`],
+    [`PosData Foobar`, `_PosData_ Foobar`],
+  ];
+
+  test.each(psCases)(`PS start %s should become %s`, (before, after) => {
+    const adoc = stripIndent(`
+      == Chapter 1
+
+      [.postscript]
+      ====
+
+      ${before}
+
+      ====
+    `).trim();
+
+    const prepared = prepareAsciidoc(adoc);
+
+    expect(prepared).toContain(after);
+  });
+
   it(`italicizes staring words of English discourse-parts`, () => {
     const adoc = stripIndent(`
       == Chapter 1

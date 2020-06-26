@@ -175,10 +175,17 @@ const Letters: React.FC = () => (
 
     <H2>Postscripts:</H2>
     <Para>
-      Postscripts are designated with the <Code>[.postscript]</Code> class, and should be
-      kept <b>inside an embedded letter block</b>.
+      Postscripts are designated with the <Code>[.postscript]</Code> class, must be
+      wrapped in a <em>block section</em> delimited by <Code>====</Code> and should be
+      kept <em>inside an embedded letter block</em>, when present. Postscripts can be
+      multiple paragraphs in length.
     </Para>
-    <Pair id="postscript" emphasize={[14, 18]} />
+    <Note>
+      Extra signatures, closings, etc. that appear <em>after</em> the postscript should
+      {` `}
+      <em>not</em> be included in the postscript wrapping block. (See lines 22-23 below.)
+    </Note>
+    <Pair id="postscript" emphasize={[14, 15, 20]} />
 
     <H2>Non-Embedded Signed Sections:</H2>
     <Para>
