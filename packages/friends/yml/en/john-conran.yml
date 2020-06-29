@@ -58,3 +58,16 @@ documents:
         isbn: 978-1-64476-066-6
       - type: original
         isbn: 978-1-64476-067-3
+  - id: 91324cab-b3aa-4b46-abab-703f24a68f95
+    title: Selection from the Journal of John Conran
+    slug: journal-selection
+    filename: Selection_Journal_John_Conran
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        editor: Jason Henderson
+        draft: true
+        isbn: 978-1-64476-229-5
