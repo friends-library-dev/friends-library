@@ -113,6 +113,10 @@ describe(`prepareAsciidoc()`, () => {
     [`Postscript Foobar`, `_Postscript_ Foobar`],
     [`Postscript. Foobar`, `_Postscript._ Foobar`],
     [`PostScript Foobar`, `_PostScript_ Foobar`],
+    [`N+++.+++ B. Foo`, `_N+++.+++ B._ Foo`],
+    [`N+++.+++B. Foo`, `_N+++.+++B._ Foo`],
+    [`NB: Foo`, `_NB:_ Foo`],
+    [`N.B. Bar`, `_N.B._ Bar`],
     // spanish
     [`P+++.+++ D. Foo`, `_P+++.+++ D._ Foo`],
     [`P. D. Bar`, `_P. D._ Bar`],
