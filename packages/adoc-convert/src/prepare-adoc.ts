@@ -93,7 +93,7 @@ function restoreLineEndingDashesInVerse(adoc: Asciidoc): Asciidoc {
 
 function preparePostscripts(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
-    /(?<=\[\.postscript\]\n====\n\n)((P(\+\+\+\.\+\+\+|\.)? ?(S|D)(\.|:)?|(Post(s|S)cript|Pos(d|D)ata)(\.|:)?))/gm,
+    /(?<=\[\.postscript\]\n====\n\n)((P(\+\+\+\.\+\+\+|\.)? ?(S|D)|(Post(s|S)cript|Pos(d|D)ata|N(\+\+\+\.\+\+\+|\.)? ?B))(\.|:)?)/gm,
     `_$1_`,
   );
 }
