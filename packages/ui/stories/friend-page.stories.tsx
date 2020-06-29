@@ -59,7 +59,6 @@ storiesOf(`Friend page`, module)
     <div className="bg-flgray-100 p-12 flex flex-col items-center">
       <BookByFriend
         isAlone={true}
-        htmlShortTitle={coverProps.title}
         {...coverProps}
         bookUrl="/"
         tags={[`journal`, `letters`]}

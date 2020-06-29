@@ -40,11 +40,9 @@ const CartComponent: React.FC<Props> = ({
     </div>
     {items.map((item, index) => (
       <Item
-        key={`item-${index}`}
-        edition={item.edition}
-        price={new CartItem(item).price()}
         {...item}
-        displayTitle={item.displayTitle}
+        key={`item-${index}`}
+        price={new CartItem(item).price()}
         title={item.title[0]}
         changeQty={(qty: number) => {
           items[index].quantity = qty;

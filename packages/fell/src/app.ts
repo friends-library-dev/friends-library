@@ -24,6 +24,7 @@ yargs
   .command(push)
   .command(sync)
   .command(clone)
+  // @ts-ignore
   .command(dlete)
   .command(workflows)
   .help().argv;
