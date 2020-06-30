@@ -77,3 +77,18 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-002-4
+  - id: da278bff-6921-412d-b518-b249e5855fc1
+    alt_language_id: a1b1457c-3678-4659-916d-c7b66e465b7e
+    title: Restauración del Cristianismo Primitivo
+    filename: Restauracion_del_Cristianismo_Primitivo
+    slug: restauracion-del-cristianismo-primitivo
+    description: TODO
+    partial_description: TODO
+    tags:
+      - history
+      - exhortation
+      - doctrinal
+    editions:
+      - type: updated
+        isbn: 978-1-64476-230-1
+        draft: true
