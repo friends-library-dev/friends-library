@@ -81,5 +81,16 @@ documents:
     editions:
       - type: updated
         editor: Jason Henderson
-        draft: true
         isbn: 978-1-64476-229-5
+        audio:
+          added: 2020-06-30T14:32:11.663Z
+          reader: Jason Henderson
+          parts:
+            - title: Selection from the Journal of John Gratton
+              external_id_hq: 849636388
+              external_id_lq: 849634693
+              filesize_hq: 76335373
+              filesize_lq: 19866686
+              seconds: 3973
+              chapters:
+                - 0
