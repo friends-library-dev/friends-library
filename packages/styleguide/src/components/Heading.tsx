@@ -18,7 +18,7 @@ export const H1 = styled.h1`
   }
 `;
 
-export const H2 = styled.h1`
+export const H2 = styled.h2`
   color: #d62529;
   font-family: 'Helvetica Neue', Helvetica, arial, sans-serif;
   font-weight: 200;
@@ -26,4 +26,5 @@ export const H2 = styled.h1`
   font-size: 1.85em;
   margin-top: 85px;
   margin-bottom: -30px;
+  text-align: left;
 `;

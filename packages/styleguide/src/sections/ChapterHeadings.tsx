@@ -88,6 +88,54 @@ const ChapterHeadings: React.FC = () => (
       When adding a short title as shown above, the <Code>id</Code> must be unique within
       the entire book.
     </Note>
+
+    <H2 id="heading-continuation-blurbs">
+      Heading <em>Continuation</em> Blurbs
+    </H2>
+    <Para>
+      A <b>heading continuation blurb</b> is similar to a <em>chapter subtitle blurb</em>
+      {` `}
+      in that it is a chunk or blurb of text that sort of functions as part of the chapter
+      or section heading. The main distinction is that this designation was created to
+      handle the <em>incredibly long titles</em> that were in vogue several hundreds of
+      years ago. So it's useful only in rare cases where we are trying to deal with a very
+      long title, or a title that runs on into multiple paragraphs.
+    </Para>
+    <Note>
+      <b>Italics</b> within these paragraphs are automatically rendered in{` `}
+      <b style={{ fontVariant: `small-caps` }}>Small Caps,</b> as both examples show.
+    </Note>
+    <Pair id="heading-continuation-blurb" emphasize={[3]} />
+    <Para>
+      Sometimes <b>multiple</b> <Code>.heading-continuation-blurb</Code>s are needed:
+    </Para>
+    <Pair id="heading-continuation-blurb-multiple" emphasize={[3, 7, 12]} />
+
+    <H2 id="section-author">Section Author</H2>
+    <Para>
+      The <Code>[.section-author]</Code> designation should be used when a chapter or
+      section has an <em>author credit line.</em>
+    </Para>
+    <Pair id="section-author" emphasize={[10]} />
+
+    <H2 id="section-date">Section Date</H2>
+    <Para>
+      The <Code>[.section-date]</Code> designation should be used when a chapter or
+      section has an <em>explicit date</em>.
+    </Para>
+    <Pair id="section-date" emphasize={[10]} />
+
+    <H2 id="section-epigraphs">
+      Section <em>Epigraphs</em>
+    </H2>
+    <Para>
+      <b>Section epigraphs</b> are epigraphs associated with a <em>chapter</em> or{` `}
+      <em>section</em>, rather than with the book as a whole. They are marked up with as a
+      {` `}
+      <em>quote</em> with the class designation of <Code>.section-epigraph</Code> as shown
+      below:
+    </Para>
+    <Pair id="section-epigraph" emphasize={[16, 17, 22]} />
   </Section>
 );
 

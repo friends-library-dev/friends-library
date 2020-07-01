@@ -285,16 +285,19 @@ h3.old-style {
   text-align: center;
 }
 
-h3.old-style span:first-child {
+h3.old-style span:first-child,
+h2 > .line-1 {
   margin-bottom: 0.5em;
 }
 
-h3.old-style span {
+h3.old-style span,
+h2 > .line {
   display: block;
   line-height: 1.5em;
 }
 
-h3.old-style span + span {
+h3.old-style span + span,
+h2 > .line + .line {
   font-weight: 400;
   font-style: italic;
 }
@@ -377,4 +380,78 @@ dt {
 
 .x-small {
   font-size: 0.7em;
+}
+
+.heading-continuation-blurb + .heading-continuation-blurb {
+  margin-top: -0.75em;
+}
+
+.heading-continuation-blurb {
+  margin-bottom: 1.75em;
+}
+
+.section-summary-preface p,
+.heading-continuation-blurb p {
+  font-style: italic;
+  padding-left: 1.5em;
+}
+
+.heading-continuation-blurb p {
+  font-size: 0.95em;
+}
+
+.section-summary-preface {
+  margin-bottom: 1em;
+}
+
+.section-summary-preface p:first-of-type,
+.heading-continuation-blurb p:first-of-type {
+  text-indent: -1.5em;
+}
+
+.section-summary-preface p em,
+.section-author p em,
+.heading-continuation-blurb p em {
+  font-variant: small-caps;
+  font-style: normal;
+  font-size: 1.07em;
+  padding-left: 0.1em;
+  hyphens: none !important;
+}
+
+.section-author p {
+  font-style: italic;
+  text-align: center !important;
+  text-indent: 0 !important;
+}
+
+.section-date {
+  margin: 1.5em 0;
+}
+
+.section-date p {
+  text-align: center !important;
+  text-indent: 0 !important;
+}
+
+.section-date p::before {
+  content: '[';
+  font-style: italic;
+  padding-right: 0.1em;
+}
+
+.section-date p::after {
+  content: ']';
+  font-style: italic;
+}
+
+.section-epigraph blockquote {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  border-left-width: 0;
+}
+
+.section-epigraph blockquote .paragraph p {
+  font-size: 0.9em;
+  padding-left: 0;
 }
