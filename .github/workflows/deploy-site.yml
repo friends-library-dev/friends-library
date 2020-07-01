@@ -82,6 +82,11 @@ jobs:
           build_dir: packages/evans/public
           functions_dir: packages/functions/dist
           github_token: ${{ github.token }}
+      - name: test-fns-en
+        if: success() && github.ref != 'refs/heads/master'
+        env:
+          FNS_INTEGRATION_TEST_URL: ${{ steps.deploy.outputs.url }}
+        run: yarn test:integration
 
   spanish:
     name: spanish
@@ -111,6 +116,11 @@ jobs:
           build_dir: packages/evans/public
           functions_dir: packages/functions/dist
           github_token: ${{ github.token }}
+      - name: test-fns-es
+        if: success() && github.ref != 'refs/heads/master'
+        env:
+          FNS_INTEGRATION_TEST_URL: ${{ steps.deploy.outputs.url }}
+        run: yarn test:integration
 
   comment:
     name: comment
