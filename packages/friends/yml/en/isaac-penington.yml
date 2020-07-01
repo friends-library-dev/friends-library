@@ -450,7 +450,7 @@ documents:
       - doctrinal
       - letters
     editions:
-      - type: modernized
+      - type: original
         isbn: 978-1-64476-043-7
         draft: true
   - id: 1e2ad3c4-d14e-4277-b2f4-a520de5d5409
@@ -479,7 +479,7 @@ documents:
       - doctrinal
       - letters
     editions:
-      - type: modernized
+      - type: original
         isbn: 978-1-64476-044-4
         draft: true
   - id: f2f76200-7cb1-491a-a6d5-e5ecae939d28
@@ -508,7 +508,7 @@ documents:
       - doctrinal
       - letters
     editions:
-      - type: modernized
+      - type: original
         isbn: 978-1-64476-045-1
         draft: true
   - id: 7727b95b-960f-491c-ac61-cf876d10b278
@@ -537,6 +537,6 @@ documents:
       - doctrinal
       - letters
     editions:
-      - type: modernized
+      - type: original
         isbn: 978-1-64476-046-8
         draft: true
