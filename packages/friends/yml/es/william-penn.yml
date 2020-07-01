@@ -82,8 +82,24 @@ documents:
     title: Restauración del Cristianismo Primitivo
     filename: Restauracion_del_Cristianismo_Primitivo
     slug: restauracion-del-cristianismo-primitivo
-    description: TODO
-    partial_description: TODO
+    description:
+      Este libro es una combinación de dos publicaciones distintas de William Penn. Una es
+      de su libro “Restauración del Cristianismo Primitivo,” y la otra es “Un Corto Relato
+      del Surgimiento y Progreso del Pueblo llamado Cuáqueros.” Las dos publicaciones se
+      traslapan en su enfoque, ambas relacionadas (en diversos grados) con el surgimiento
+      de la Sociedad de Amigos, y con los distintos principios y prácticas de este pueblo,
+      y se pensó que estos cortos libros podían combinarse y entrelazarse de tal modo que
+      le brindaran al lector una presentación más completa de estos temas, que lo que cada
+      publicación podría hacer individualmente. Penn comienza con un resumen general de
+      las diversas dispensaciones de Dios en el mundo, y luego relata la extraordinaria
+      labor del Señor en la restauración y el restablecimiento de la verdadera luz, vida,
+      poder y pureza de la iglesia primitiva a través del derramamiento de su Espíritu en
+      la primitiva Sociedad de Amigos.
+    partial_description:
+      Aquí se encuentran unidas dos excelentes publicaciones de William Penn. Una es de su
+      libro “Restauración del Cristianismo Primitivo,” y la otra es “Un Corto Relato del
+      Surgimiento y Progreso del Pueblo llamado Cuáqueros,” que originalmente sirvió como
+      introducción al Diario de George Fox.
     tags:
       - history
       - exhortation
@@ -91,4 +107,3 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-230-1
-        draft: true
