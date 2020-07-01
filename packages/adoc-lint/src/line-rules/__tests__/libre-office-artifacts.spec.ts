@@ -22,6 +22,10 @@ describe(`libreOfficeArtifacts()`, () => {
       `Paul says, +++[++++++[+++_dlps]]the woman being deceived,`,
       `Paul says, the woman being deceived,`,
     ],
+    [
+      `+++[++++++[+++_390.4]]Objection. But is not uniformity lovely;`,
+      `Objection. But is not uniformity lovely;`,
+    ],
   ];
 
   test.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
