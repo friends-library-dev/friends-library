@@ -27,8 +27,20 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         ...RecommendedBook
       }
+      es_penn_pcr: document(
+        slug: { eq: "restauracion-del-cristianismo-primitivo" }
+        friendSlug: { eq: "william-penn" }
+      ) {
+        ...RecommendedBook
+      }
       en_sewel: document(
         slug: { eq: "history-of-quakers" }
+        friendSlug: { eq: "william-sewel" }
+      ) {
+        ...RecommendedBook
+      }
+      es_sewel: document(
+        slug: { eq: "historia-de-los-cuaqueros" }
         friendSlug: { eq: "william-sewel" }
       ) {
         ...RecommendedBook
@@ -262,6 +274,9 @@ const GettingStartedPaths: React.FC<Props> = ({
           data.en_sewel,
           data.en_kelty,
           data.en_gough,
+          // spanish
+          data.es_penn_pcr,
+          data.es_sewel,
         ])}
         color="maroon"
       >

@@ -110,7 +110,6 @@ const GettingStartedPage: React.FC<Props> = ({
     <div className="md:flex flex-wrap">
       <PathIntro
         title={t`History`}
-        noBooks={LANG === `es`}
         color="maroon"
         onClick={() => makeScroller(`.PathBlock--history`)()}
       >
@@ -257,11 +256,11 @@ export const HistoryBlurb: React.FC = () => (
       figures among early Friends.
     </>
     <>
-      Actualmente no hay libros históricos disponibles en español, pero dos libros se
-      encuentran en proceso de traducción. Vuelve pronto si estás interesado en aprender
-      acerca de la historia de la primera Sociedad de Amigos, cómo surgieron, sus grandes
-      sufrimientos y fidelidad, y la difusión de la Verdad en Gran Bretaña, Europa, las
-      colonias de América y más allá.
+      Actualmente tenemos dos libros históricos disponibles en español; uno que está
+      completo, y otro que se encuentra en proceso de traducción. Estos excelentes libros
+      te ayudarán a aprender acerca de la historia de la primera Sociedad de Amigos, cómo
+      fue su surgimiento, sus grandes sufrimientos y fidelidad, y la difusión de la Verdad
+      en Gran Bretaña, Europa, las colonias de América y más allá.
     </>
   </Dual.frag>
 );
