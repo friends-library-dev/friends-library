@@ -28,8 +28,14 @@ const rule: LineRule = (
 
   if (identifiers.startsWith(`quote.`)) {
     const rest = identifiers.replace(/^quote\./, ``);
-    if (![`scripture`, `epigraph`].includes(rest)) {
-      return [violation(lineNumber, identifiers, [`quote.scripture`, `quote.epigraph`])];
+    if (![`scripture`, `epigraph`, `section-epigraph`].includes(rest)) {
+      return [
+        violation(lineNumber, identifiers, [
+          `quote.scripture`,
+          `quote.epigraph`,
+          `quote.section-epigraph`,
+        ]),
+      ];
     }
     return [];
   }
@@ -107,6 +113,10 @@ const CLASSES = [
   `table-last-col-secondary`,
   `table-tail-align-right`,
   `table-tail-align-center`,
+  `section-author`,
+  `section-date`,
+  `heading-continuation-blurb`,
+  `section-summary-preface`,
   `the-end`,
 ];
 

@@ -144,6 +144,14 @@ const Styling: React.FC = () => (
       numbered division of the book, like a volume or book number.
     </Para>
     <Pair id="intermediate-title" emphasize={[1]} />
+
+    <H2 id="section-summary-preface">Section Summary Prefaces</H2>
+    <Para>
+      A <b>section summary preface</b> is a special designation for a sentence or
+      paragraph of text that immediate follows a sub-header, and usually{` `}
+      <em>summarizes</em> or acts as a simple <em>preface</em> to the following section.
+    </Para>
+    <Pair id="section-summary-preface" emphasize={[3]} />
   </Section>
 );
 

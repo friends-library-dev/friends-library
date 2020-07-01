@@ -39,6 +39,7 @@ export default function handler(): void {
 const regexes = [
   /^\[quote]$/,
   /^\[quote\.scripture.*]$/,
+  /^\[quote\.section-epigraph.*]$/,
   /^____$/,
   /style-blurb/,
   /chapter-subtitle--blurb/,
@@ -59,6 +60,10 @@ const regexes = [
   /\.postscript/,
   /\.book-title/,
   /\.underline/,
+  /\.section-author/,
+  /\.section-date/,
+  /\.heading-continuation-blurb/,
+  /\.section-summary-preface/,
   /\.numbered/,
   /\.emphasized/,
   /\.the-end/,

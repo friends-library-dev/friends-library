@@ -55,7 +55,7 @@ function headingTextMarkup(text: string): string {
         return `<span class="line line-1">${part} ${br7}</span>`;
       }
       if (index === parts.length - 1) {
-        return `<span class="line line-${index + 1}">${part}</span>`;
+        return `<span class="line line-${index + 1}">${part} ${br7}</span>`;
       }
       return `<span class="line line-${index + 1}">${part}</span>`;
     })
