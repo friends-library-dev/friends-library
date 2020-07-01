@@ -6,11 +6,11 @@ const rule: LineRule = (
   lines: Asciidoc[],
   lineNumber: number,
 ): LintResult[] => {
-  if (line === ``) {
+  if (line === `` || !line.includes(`++++++`)) {
     return [];
   }
 
-  const regex = /\+{3}\[\+{6}\[\+{3}\w+\]\]/;
+  const regex = /\+{3}\[\+{6}\[\+{3}(\w|\.)+\]\]/;
   const match = line.match(regex);
   if (!match) {
     return [];
