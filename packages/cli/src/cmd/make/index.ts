@@ -17,6 +17,12 @@ export const builder: CommandBuilder = function(yargs) {
       describe: `do not open created file/s`,
       default: false,
     })
+    .option(`head`, {
+      alias: `h`,
+      type: `boolean`,
+      describe: `render only first 100 lines of asciidoc`,
+      default: false,
+    })
     .option(`no-frontmatter`, {
       alias: `f`,
       type: `boolean`,
