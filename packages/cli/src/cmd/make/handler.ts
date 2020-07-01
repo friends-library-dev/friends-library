@@ -31,6 +31,7 @@ export interface MakeOptions {
   send: boolean;
   fix: boolean;
   skipLint: boolean;
+  head: boolean;
 }
 
 export default async function handler(argv: Arguments<MakeOptions>): Promise<void> {
@@ -41,11 +42,21 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
     process.exit(1);
   }
 
+  let mutator = (adoc: string): string => adoc;
+  if (argv.head) {
+    mutator = (adoc: string): string => {
+      return adoc
+        .split(`\n`)
+        .slice(0, 100)
+        .join(`\n`);
+    };
+  }
+
   dpcs.forEach(hydrate.meta);
   dpcs.forEach(hydrate.revision);
   dpcs.forEach(hydrate.config);
   dpcs.forEach(hydrate.customCode);
-  dpcs.forEach(dpc => hydrate.asciidoc(dpc, isolate));
+  dpcs.forEach(dpc => hydrate.asciidoc(dpc, isolate, mutator));
 
   // lint before hydrate.process so linter catches adoc > html errors
   if (!skipLint) {
