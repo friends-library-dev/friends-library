@@ -221,15 +221,15 @@ async function openPullRequest(
 }
 
 function getPrBody(user: string): string {
-  if (
-    isDev ||
-    ORG !== `friends-library` ||
-    user === `jaredh159` ||
-    user === `Henderjay`
-  ) {
+  if (isDev || user === `jaredh159` || user === `Henderjay`) {
     return ``;
   }
-  return `@jaredh159 @Henderjay`;
+
+  if (ORG === `biblioteca-de-los-amigos`) {
+    return `@Henderjay`;
+  }
+
+  return ORG === `friends-library` ? `@jaredh159 @Henderjay` : ``;
 }
 
 async function updateHead(
