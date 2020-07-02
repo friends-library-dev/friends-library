@@ -11,7 +11,7 @@ const rule: LineRule = (
   }
 
   const expr = /\.[A-Z][^.]/g;
-  let match;
+  let match: RegExpExecArray | null = null;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {
     results.push({

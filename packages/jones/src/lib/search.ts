@@ -23,7 +23,7 @@ export function searchFiles(
     }
 
     lines.forEach((line, index) => {
-      let match;
+      let match: RegExpExecArray | null = null;
       while ((match = exp.exec(line))) {
         const [documentSlug, editionType, filename] = file.path.split(`/`);
         const result = {
