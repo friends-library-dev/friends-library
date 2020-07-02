@@ -7,6 +7,7 @@ import { splitLines, refMutate, refUnmutate } from '@friends-library/adoc-utils'
 import * as hilkiah from '@friends-library/hilkiah';
 import { combineLines } from './combine';
 import { processAsciidoc } from './process';
+import { ensureDockerImage } from '../../docker';
 
 interface ConvertOptions {
   file: string;
@@ -67,28 +68,14 @@ function generateRawAsciiDoc(src: string, target: string): void {
   const tag = `jaredh159/convert:1.0.0`;
   const opts = { cwd: __dirname };
 
-  // check that we have docker installed
-  if (spawnSync(`docker`, [`--version`]).status !== 0) {
-    red(`Docker required to run convert command.`);
-    process.exit(1);
-  }
+  ensureDockerImage(tag, __dirname);
 
-  const imageExists = spawnSync(`docker`, [`image`, `inspect`, tag], opts).status === 0;
-  if (!imageExists) {
-    // build an image according to specs in ./Dockerfile
-    spawnSync(`docker`, [`build`, `-t`, tag, `.`], opts);
-  }
-
-  const id = uuid();
-  const tmpDir = `/tmp/${id}`;
+  const tmpDir = `/tmp/${uuid()}`;
   fs.mkdirSync(tmpDir);
   fs.copyFileSync(src, `${tmpDir}/document.xml`);
 
   // run the command in the docker container
-  spawnSync(`docker`, [`run`, `--name`, id, `--volume=${tmpDir}:/root/docs`, tag], opts);
-
-  // destroy the docker container
-  spawnSync(`docker`, [`rm`, id]);
+  spawnSync(`docker`, [`run`, `--rm`, `--volume=${tmpDir}:/root/docs`, tag], opts);
 
   if (!fs.existsSync(`${tmpDir}/document.adoc`)) {
     red(`ERROR: Target file ${target} not generated!`);
