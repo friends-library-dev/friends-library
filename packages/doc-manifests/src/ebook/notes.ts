@@ -70,7 +70,7 @@ export function notesMarkup(dpc: DocPrecursor): Html {
 
 function getNoteLocations(sections: DocSection[]): Map<string, string> {
   return sections.reduce((locations, section) => {
-    let match;
+    let match: RegExpExecArray | null = null;
     const regex = /{% note: ([a-z0-9-]+) %}/gim;
     while ((match = regex.exec(section.html))) {
       const [, noteId] = match;

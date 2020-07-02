@@ -37,14 +37,14 @@ export default class RegexLintRunner {
     return results;
   }
 
-  protected getLineMatches(lint: RegexLint, line: Asciidoc): RegExpMatchArray[] {
-    const matches: RegExpMatchArray[] = [];
+  protected getLineMatches(lint: RegexLint, line: Asciidoc): RegExpExecArray[] {
+    const matches: RegExpExecArray[] = [];
     if (lint.allowIfNear && line.match(lint.allowIfNear)) {
       return matches;
     }
 
     if (lint.search.global) {
-      let match;
+      let match: RegExpExecArray | null = null;
       while ((match = lint.search.exec(line))) {
         matches.push(match);
       }
@@ -56,7 +56,7 @@ export default class RegexLintRunner {
   }
 
   protected getLintResult(
-    match: RegExpMatchArray,
+    match: RegExpExecArray,
     lineNumber: number,
     lint: RegexLint,
   ): LintResult {
@@ -77,7 +77,7 @@ export default class RegexLintRunner {
 }
 
 function getColumn(
-  { index = 0, input: before = `` }: RegExpMatchArray,
+  { index = 0, input: before = `` }: RegExpExecArray,
   corrected?: string,
 ): number {
   if (corrected === undefined) {

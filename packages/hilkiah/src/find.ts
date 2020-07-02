@@ -46,10 +46,7 @@ function absorbRight(ref: Ref, input: string): Ref {
   };
 }
 
-function extractRef(book: string, chapter: number, match: RegExpMatchArray): Ref | null {
-  if (match.index === undefined || match.input === undefined) {
-    return null;
-  }
+function extractRef(book: string, chapter: number, match: RegExpExecArray): Ref | null {
   const start = match.index + match[0].length;
   const context = match.input.substring(start, start + 25);
 
@@ -101,7 +98,7 @@ export function find(str: string): Ref[] {
 
     pattern = `(?:${pattern})(?:\\.|,)? (${ARAB}|${ROM})`;
     const exp = new RegExp(pattern, `gi`);
-    let match;
+    let match: RegExpExecArray | null = null;
     while ((match = exp.exec(str))) {
       const chapter = toNumber(match[1]) as number;
       const ref = extractRef(book.name, chapter, match);

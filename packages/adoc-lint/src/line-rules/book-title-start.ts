@@ -13,7 +13,7 @@ const rule: LineRule = (
   const lints: LintResult[] = [];
   const regex = /[^^ ([-]\[\.book-title]/g;
 
-  let match: RegExpMatchArray | null = null;
+  let match: RegExpExecArray | null = null;
   while ((match = regex.exec(line))) {
     lints.push({
       line: lineNumber,

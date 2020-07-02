@@ -81,7 +81,7 @@ export function formatBlurb(blurb: string): string {
 export function getHtmlFragments(html: Html): Record<string, Html> {
   const fragments: Record<string, Html> = {};
   const regex = /(?:^|\n)<(div|p|h\d).+?\n<\/\1>/gs;
-  let match;
+  let match: RegExpExecArray | null = null;
   while ((match = regex.exec(html))) {
     const lines = match[0]
       .trim()

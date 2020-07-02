@@ -13,7 +13,7 @@ const rule: LineRule = (
 
   const expr = /[a-z]\.(?<!\betc\.)(?<!\bviz\.)(?<!\b(V|v)ol\.)(?<!\bch\.)(?<!\b8vo\.)(?<!\bfol\.)(?<!\bsect\.)(?<!\bedit\.)(?<!\b\d+(d|s)\.)(?<!\bchap\.)(?<!\bp\.) [a-z]/g;
 
-  let match;
+  let match: RegExpExecArray | null = null;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {
     if (isIe(match, line) || isPmOrAm(match, line) || isRomanNumeral(match, line)) {

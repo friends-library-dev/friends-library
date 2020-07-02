@@ -12,7 +12,7 @@ const rule: LineRule = (
   }
 
   const expr = /[a-z][A-Z]([a-z]|\b)/g;
-  let match;
+  let match: RegExpExecArray | null = null;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {
     if (isMc(match, line) || isLitV(match, line)) {

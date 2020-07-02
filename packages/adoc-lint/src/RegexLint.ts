@@ -79,7 +79,7 @@ export default class RegexLint {
       .trim();
   }
 
-  public recommendation(match: RegExpMatchArray): string | undefined {
+  public recommendation(match: RegExpExecArray): string | undefined {
     if (!this.data.recommend) {
       return;
     }

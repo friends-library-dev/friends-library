@@ -16,7 +16,7 @@ export function quotifyLine(line: Asciidoc): Asciidoc {
     return line;
   }
 
-  let match;
+  let match: RegExpExecArray | null = null;
   const chars = line.split(``);
   const mod = [...chars];
   const expr = /"|'/g;

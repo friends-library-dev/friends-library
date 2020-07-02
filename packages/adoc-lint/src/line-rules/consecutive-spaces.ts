@@ -16,7 +16,7 @@ const rule: LineRule = (
   }
 
   const expr = / {2,}/g;
-  let match;
+  let match: RegExpExecArray | null = null;
   const results: LintResult[] = [];
   while ((match = expr.exec(line))) {
     const isLeading = match.index === 0;
