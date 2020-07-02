@@ -42,3 +42,4 @@ export { default as spacedPunctuation } from './spaced-punctuation';
 export { default as postscriptHeader } from './postscript-header';
 export { default as unwrappedPostscript } from './unwrapped-postscript';
 export { default as bookTitleSpacing } from './book-title-spacing';
+export { default as bookTitleStart } from './book-title-start';

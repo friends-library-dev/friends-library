@@ -5,7 +5,7 @@ import { toArabic } from 'roman-numerals';
 export function extractShortHeadings(adoc: Asciidoc): Map<string, string> {
   const headings = new Map();
   const regex = /\[#([a-z0-9-_]+)(?:\.[a-z0-9-_]+?)?,.*?short="(.*?)"\]\n== /gim;
-  let match;
+  let match: RegExpMatchArray | null = null;
   while ((match = regex.exec(adoc))) {
     const [, ref, short] = match;
     headings.set(ref, adocFragmentToHtml(short));
