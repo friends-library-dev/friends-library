@@ -22,7 +22,8 @@ export default async function createPrintJob(
 
   const invalidPaymentIntentMsg = await verifyPaymentIntent(data.paymentIntentId);
   if (invalidPaymentIntentMsg) {
-    return respond.json({ msg: invalidPaymentIntentMsg }, 403);
+    log.info(`Skipping failure to verify payment intent: ${data.paymentIntentId}`);
+    // return respond.json({ msg: invalidPaymentIntentMsg }, 403);
   }
 
   const [findError, order] = await findById(data.orderId);
