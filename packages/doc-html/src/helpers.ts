@@ -7,7 +7,7 @@ export function ucfirst(lower: string): string {
 }
 
 const smallEn = `a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|via`.split(`|`);
-const smallEs = `a|un|una|el|la|los|las|y|e|o|con|de|del|al|por|si|en`.split(`|`);
+const smallEs = `a|un|una|el|la|los|las|y|e|o|con|de|del|al|por|si|en|que`.split(`|`);
 
 export function capitalizeTitle(str: string, lang: Lang): string {
   const small = lang === `en` ? smallEn : smallEs;
