@@ -10,18 +10,19 @@ residences:
 quotes:
   - source: Hugh Turford
     text:
-      Ever since men came to be persuaded that though they sow tares, they shall still
-      reap wheat, and though they go down to the grave sinners, they shall still rise
-      saints, and attain in another world what the primitive Christians attained in this
-      world; since then, I say, the citizenship of Christians has not been in heaven, but
-      in the earth. They have walked in darkness and not in the light.
+      Desde que los hombres llegaron a ser convencidos de que, aunque siembren cizaña,
+      recogerán trigo, y que, aunque desciendan a la tumba como pecadores, aún así ellos
+      se levantarán santos, y alcanzarán en otro mundo lo que los primeros cristianos
+      alcanzaron en este mundo; desde entonces, yo digo, la ciudadanía de los Cristianos
+      no ha sido en los cielos, sino en la tierra. Ellos han caminado en oscuridad y no en
+      la luz.
 description:
-  Apart from the fact that he worked as a schoolmaster in Bristol, and died in the year
-  1713, virtually nothing is known about the life of Hugh Turford. However, his little
-  book “Walk in the Spirit,” first published in 1702 (but having been reprinted in
-  twenty-eight English editions, and translated into French, Spanish, Italian, German, and
-  Danish) is considered by many to be among the most influential of all early Quaker
-  writings.
+  Aparte del hecho de que trabajó como maestro en Bristol, Inglaterra, y murió en el año
+  1713, no se sabe prácticamente nada sobre la vida de Hugh Turford. Sin embargo, su
+  pequeño libro “Andar en el Espíritu,” publicado por primera vez en 1702 (pero que ha
+  sido reimpreso en veintiocho ediciones en inglés, y traducido al francés, español,
+  italiano, alemán y danés) es considerado por muchos como uno de los libros más
+  influyentes de todos los escritos de los primeros Cuáqueros.
 documents:
   - id: 6ca63604-3364-4098-a604-190e5d0b0d9e
     alt_language_id: 9333dd0a-d92b-401e-a086-f611cc20f984
@@ -29,23 +30,24 @@ documents:
     slug: andar-en-el-espiritu
     filename: Andar_en_el_Espiritu
     description:
-      The primitive Christians built on a sure rock, a living foundation, on Christ as He
-      was in all ages, and still is—on His spiritual appearance as the light of the world,
-      and the life of righteousness. His work of sanctification is inward, and is to be
-      effected by inward means. Nothing but inward light can expel inward darkness;
-      nothing less than eternal life can deliver our souls from the power of death. But
-      this way of God’s salvation has been so long rejected, that few in our present age
-      know what His Spirit is, where they may become acquainted with it, or how they may
-      walk in it.
+      Los primeros Cristianos edificaron sobre una roca estable, sobre un cimiento vivo,
+      sobre Cristo como Él ha sido en todas las eras, y sigue siendo--es decir, sobre Su
+      aparición espiritual como la luz del mundo, y como la vida de justicia. Y tomando Su
+      Espíritu eterno en sí mismos como su guía, rechazaron todo aquello por lo que fueron
+      condenados y reprendidos. La obra de santificación es interna, y tiene que llevarse
+      a cabo por un medio interno. Nada, excepto la luz interna, puede echar fuera la
+      oscuridad interna; nada menos que la luz eterna puede librar nuestras almas del
+      poder de la muerte. Pero este camino de la salvación de Dios ha sido rechazado por
+      tanto tiempo, que pocos en nuestra era actual saben qué es este Espíritu, dónde
+      conocerlo, o cómo caminar en él.
     partial_description:
-      A treatise by Hugh Turford first demonstrating the meaning and importance of Paul’s
-      words to the Galatians, “Walk in the Spirit, and you shall not fulfill the lust of
-      the flesh,” and then explaining the nature of grace, and how it saves from sin and
-      affects man’s salvation.
+      Un tratado de Hugh Turford que primero demuestra el significado y la importancia de
+      las palabras de Pablo a los Gálatas, “Andad en el Espíritu; y no satisfagáis la
+      concupiscencia de la carne,” y luego explica la naturaleza de la gracia, y cómo
+      salva del pecado y realiza la salvación del hombre.
     tags:
       - doctrinal
       - treatise
     editions:
       - type: updated
         isbn: 978-1-64476-231-8
-        draft: true
