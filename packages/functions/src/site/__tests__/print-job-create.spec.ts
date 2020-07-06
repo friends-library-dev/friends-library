@@ -52,7 +52,7 @@ describe(`createOrder()`, () => {
     expect(res.statusCode).toBe(400);
   });
 
-  it(`returns 403 if the stripe API doesn’t recognize the payment intent`, async () => {
+  it.skip(`returns 403 if the stripe API doesn’t recognize the payment intent`, async () => {
     retrieveIntent.mockImplementationOnce(() => {
       throw { statusCode: 404 };
     });
@@ -63,7 +63,7 @@ describe(`createOrder()`, () => {
     expect(json.msg).toBe(Err.STRIPE_PAYMENT_INTENT_NOT_FOUND);
   });
 
-  it(`returns 403 if the payment intent has already been captured`, async () => {
+  it.skip(`returns 403 if the payment intent has already been captured`, async () => {
     retrieveIntent.mockImplementationOnce(() => ({ id: ``, status: `succeeded` }));
 
     const { res, json } = await invokeCb(createOrder, { body: testBody });
@@ -72,7 +72,7 @@ describe(`createOrder()`, () => {
     expect(json.msg).toBe(Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED);
   });
 
-  it(`returns 403 and passes on unknown stripe error`, async () => {
+  it.skip(`returns 403 and passes on unknown stripe error`, async () => {
     retrieveIntent.mockImplementationOnce(() => {
       throw { statusCode: 500, code: `unknown_stripe_error` };
     });
