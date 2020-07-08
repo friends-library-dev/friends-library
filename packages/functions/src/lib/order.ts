@@ -3,7 +3,6 @@ import {
   Uuid,
   Lang,
   PrintJobStatus,
-  PaymentStatus,
   EditionType,
   syntax as graphql,
 } from '@friends-library/types';
@@ -13,7 +12,6 @@ export interface Order {
   id: Uuid;
   lang: Lang;
   paymentId: string;
-  paymentStatus: PaymentStatus;
   amount: number;
   taxes: number;
   shipping: number;
@@ -121,7 +119,6 @@ const ORDERS_BY_PRINT_JOB_STATUS = graphql`
         shipping
         ccFeeOffset
         paymentId
-        paymentStatus
         items {
           title
           documentId
@@ -159,7 +156,6 @@ const FIND_BY_ID = graphql`
       shipping
       ccFeeOffset
       paymentId
-      paymentStatus
       items {
         title
         documentId

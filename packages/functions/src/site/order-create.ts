@@ -1,7 +1,5 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import uuid from 'uuid/v4';
 import { checkoutErrors as Err } from '@friends-library/types';
-import stripeClient from '../lib/stripe';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import { create as createOrder, Order } from '../lib/order';
@@ -13,13 +11,13 @@ export default async function orderCreateHandler(
 ): Promise<void> {
   const data = validateJson<typeof schema.example>(body, schema);
   if (data instanceof Error) {
-    log.error(`invalid body for /orders/create`, { body: body, data });
+    log.error(`invalid body for /orders`, { body: body, data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
   const now = new Date().toISOString();
   const order: Order = {
-    id: uuid(),
+    id: data.id,
     lang: data.lang === `en` ? `en` : `es`,
     email: data.email,
     created: now,
@@ -30,28 +28,9 @@ export default async function orderCreateHandler(
     shipping: data.shipping,
     taxes: data.taxes,
     ccFeeOffset: data.ccFeeOffset,
-    paymentId: `<pending>`,
-    paymentStatus: `authorized`,
+    paymentId: data.paymentId,
+    printJobStatus: `presubmit`,
   };
-
-  try {
-    var paymentIntent = await stripeClient().paymentIntents.create(
-      {
-        amount: data.amount,
-        currency: `usd`,
-        capture_method: `manual`,
-        payment_method_types: [`card`],
-        metadata: { orderId: order.id },
-      },
-      {
-        idempotency_key: order.id,
-      },
-    );
-    order.paymentId = paymentIntent.id;
-  } catch (error) {
-    log.error(`error creating payment intent`, { error });
-    return respond.json({ msg: Err.ERROR_CREATING_STRIPE_PAYMENT_INTENT }, 403);
-  }
 
   const [error] = await createOrder(order);
   if (error) {
@@ -59,48 +38,43 @@ export default async function orderCreateHandler(
     return respond.json({ msg: Err.ERROR_CREATING_FLP_ORDER }, 500);
   }
 
-  log.info(`created payment intent: ${paymentIntent.id}`);
-  respond.json(
-    {
-      paymentIntentId: paymentIntent.id,
-      paymentIntentClientSecret: paymentIntent.client_secret,
-      orderId: order.id,
-    },
-    201,
-  );
+  respond.json(order, 201);
 }
 
 export const schema = {
   properties: {
-    amount: { type: `integer` },
-    email: { $ref: `/email` },
-    address: { $ref: `/address` },
-    taxes: { type: `integer` },
-    shipping: { type: `integer` },
-    ccFeeOffset: { type: `integer` },
-    lang: { $ref: `/lang` },
+    amount: { type: `integer`, required: true },
+    id: { $ref: `/uuid`, required: true },
+    email: { $ref: `/email`, required: true },
+    address: { $ref: `/address`, required: true },
+    taxes: { type: `integer`, required: true },
+    shipping: { type: `integer`, required: true },
+    paymentId: { type: `string`, required: true },
+    ccFeeOffset: { type: `integer`, required: true },
+    lang: { $ref: `/lang`, required: true },
     items: {
       type: `array`,
       minItems: 1,
       items: {
         type: `object`,
         properties: {
-          title: { type: `string` },
-          documentId: { $ref: `/uuid` },
-          printSize: { $ref: `/print-size` },
-          quantity: { $ref: `/book-qty` },
-          unitPrice: { type: `integer` },
+          title: { type: `string`, required: true },
+          documentId: { $ref: `/uuid`, required: true },
+          edition: { $ref: `/edition`, required: true },
+          printSize: { $ref: `/print-size`, required: true },
+          quantity: { $ref: `/book-qty`, required: true },
+          unitPrice: { type: `integer`, required: true },
         },
-        required: [`documentId`, `title`, `edition`, `quantity`, `unitPrice`],
       },
     },
   },
-  required: [`amount`, `email`, `address`, `items`, `lang`],
   example: {
+    id: `f971b507-6ca3-4ebc-8388-86e3f245ef4b`,
     amount: 1111,
     taxes: 0,
     shipping: 399,
     ccFeeOffset: 42,
+    paymentId: `pi_123abc`,
     email: `user@example.com`,
     lang: `en`,
     items: [

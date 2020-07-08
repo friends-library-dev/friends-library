@@ -59,6 +59,7 @@ export const DOWNLOAD_FORMATS = [
 export type DownloadFormat = typeof DOWNLOAD_FORMATS[number];
 
 export const PRINT_JOB_STATUSES = [
+  `presubmit`,
   `pending`,
   `accepted`,
   `shipped`,
@@ -67,9 +68,6 @@ export const PRINT_JOB_STATUSES = [
 ] as const;
 
 export type PrintJobStatus = typeof PRINT_JOB_STATUSES[number];
-
-export const PAYMENT_STATUSES = [`authorized`, `captured`, `canceled`] as const;
-export type PaymentStatus = typeof PAYMENT_STATUSES[number];
 
 export const AUDIO_QUALITIES = [`HQ`, `LQ`] as const;
 export type AudioQuality = typeof AUDIO_QUALITIES[number];

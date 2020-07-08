@@ -4,8 +4,8 @@ import CheckoutService from './CheckoutService';
 
 const states = {
   cart: {
-    async next(this: CheckoutMachine) {
-      await this.transitionTo(`delivery`);
+    next(this: CheckoutMachine) {
+      this.transitionTo(`delivery`);
       // don't await, fire & forget to wakeup in background
       this.service.sendWakeup();
     },
@@ -21,26 +21,14 @@ const states = {
 
   calculateFees: {
     onEnter: `Service.calculateFees`,
-    success(this: CheckoutMachine) {
-      if (!this.service.orderId) {
-        this.transitionTo(`createOrder`);
-      } else {
-        this.transitionTo(`updateOrder`);
-      }
-    },
+    success: `createPaymentIntent`,
     failure(this: CheckoutMachine, err: string) {
       this.transitionTo(err === Err.SHIPPING_NOT_POSSIBLE ? `delivery` : `brickSession`);
     },
   },
 
-  createOrder: {
-    onEnter: `Service.createOrder`,
-    success: `payment`,
-    failure: `brickSession`,
-  },
-
-  updateOrder: {
-    onEnter: `Service.updateOrder`,
+  createPaymentIntent: {
+    onEnter: `Service.createPaymentIntent`,
     success: `payment`,
     failure: `brickSession`,
   },
@@ -48,17 +36,17 @@ const states = {
   payment: {
     async next(
       this: CheckoutMachine,
-      authorizePayment: () => Promise<Record<string, any>>,
+      chargeCreditCard: () => Promise<Record<string, any>>,
     ) {
-      await this.transitionTo(`authorizingPayment`);
-      const err = await this.service.authorizePayment(authorizePayment);
+      await this.transitionTo(`chargeCreditCard`);
+      const err = await this.service.chargeCreditCard(chargeCreditCard);
       await this.dispatch(err ? `failure` : `success`, err);
     },
     back: `delivery`,
   },
 
-  authorizingPayment: {
-    success: `createPrintJob`,
+  chargeCreditCard: {
+    success: `createOrder`,
     failure(this: CheckoutMachine) {
       // we've got a user-actionable stripe error, display it on payment screen
       if (this.service.peekStripeError()) {
@@ -70,26 +58,8 @@ const states = {
     },
   },
 
-  createPrintJob: {
-    onEnter: `Service.createPrintJob`,
-    success: `verifyPrintJob`,
-    failure: `brickSession`,
-  },
-
-  verifyPrintJob: {
-    onEnter: `Service.verifyPrintJobAccepted`,
-    success: `updateOrderPrintJobStatus`,
-    failure: `brickSession`,
-  },
-
-  updateOrderPrintJobStatus: {
-    onEnter: `Service.updateOrderPrintJobStatus`,
-    success: `capturePayment`,
-    failure: `capturePayment`,
-  },
-
-  capturePayment: {
-    onEnter: `Service.capturePayment`,
+  createOrder: {
+    onEnter: `Service.createOrder`,
     success: `confirmation`,
     failure: `brickSession`,
   },

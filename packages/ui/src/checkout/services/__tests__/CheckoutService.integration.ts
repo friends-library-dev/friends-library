@@ -30,61 +30,27 @@ describe(`CheckoutService()`, () => {
     // step 1: calculate fees
     err = await service.calculateFees();
     expect(service.fees).toEqual({ shipping: 399, taxes: 0, ccFeeOffset: 42 });
+    expect(service.shippingLevel).toBe(`MAIL`);
+    expect(service.orderId).toBe(``);
 
-    // step 2, create order and authorize payment
-    err = await service.createOrder();
+    // step 2, create payment intent
+    err = await service.createPaymentIntent();
     expect(err).toBeUndefined();
     expect(service.paymentIntentId).toMatch(/^pi_\w+$/i);
     expect(service.paymentIntentClientSecret).toMatch(/^pi_\w+?_secret_\w+$/i);
     expect(service.orderId).toMatch(/^[a-f\d-]{36}$/i);
 
-    // step 2.5 (testing only, because not using stripe js client)
-    err = await service.__testonly__authorizePayment();
-    expect(err).toBeUndefined();
+    // step 2.5: at this point from the client we charge the credit card
+    // using `stripe.confirmCardPayment()` but no need to spoof that here
 
     // step 3: verify that the order was created
-    let orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({
-      paymentId: service.paymentIntentId,
-      shipping: 399,
-      taxes: 0,
-      ccFeeOffset: 42,
-    });
-
-    // step 4: crate the print job
-    err = await service.createPrintJob();
-
-    // step 5: verify order updated
-    orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({
-      printJobId: service.printJobId,
-      printJobStatus: `pending`,
-    });
-
-    // step 6: wait for print job validation
-    err = await service.verifyPrintJobAccepted();
+    err = await service.createOrder();
     expect(err).toBeUndefined();
 
-    // step 7: update order print job status
-    err = await service.updateOrderPrintJobStatus();
+    // step 4: send order confirmation email
+    err = await service.sendOrderConfirmationEmail();
     expect(err).toBeUndefined();
-
-    // step 8: verify print job status updated
-    orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({ printJobStatus: `accepted` });
-
-    // step 9: capture the payment
-    err = await service.capturePayment();
-    expect(err).toBeUndefined();
-
-    // step 10: verify order payment status updated
-    orderRes = await api.getOrder(service.orderId);
-    expect(orderRes.data).toMatchObject({ paymentStatus: `captured` });
-
-    // step 11: send order confirmation email
-    const confirmRes = await api.sendOrderConfirmationEmail(service.orderId);
-    expect(confirmRes.statusCode).toBe(204);
-  }, 30000);
+  }, 40000);
 });
 
 function getCart(): Cart {
@@ -100,6 +66,7 @@ function getCart(): Cart {
     `https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf`,
   ];
   testCart.items = [item];
+  testCart.email = `integration@test.com`;
   return testCart;
 }
 

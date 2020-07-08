@@ -1,9 +1,6 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import logDownload from './log-download';
 import createOrder from './order-create';
-import updateOrder from './order-update';
-import capturePayment from './payment-capture';
-import authorizePayment from './payment-authorize';
 import printJobFees from './print-job-fees';
 import createPrintJob from './print-job-create';
 import printJobStatus from './print-job-status';
@@ -14,6 +11,7 @@ import brickOrder from './order-brick';
 import Responder from '../lib/Responder';
 import checkOrders from './orders-check';
 import sendOrderConfirmationEmail from './order-send-confirmation-email';
+import createPaymentIntent from './payment-intent-create';
 
 export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
   const method = event.httpMethod;
@@ -40,20 +38,16 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
 
   if (method === `POST`) {
     switch (path) {
-      case `payment/capture`:
-        return capturePayment(event, respond);
-      case `payment/authorize`:
-        return authorizePayment(event, respond);
+      case `payment-intent`:
+        return createPaymentIntent(event, respond);
       case `print-job/fees`:
         return printJobFees(event, respond);
       case `print-job`:
         return createPrintJob(event, respond);
       case `orders/check`:
         return checkOrders(event, respond);
-      case `orders/create`:
+      case `orders`:
         return createOrder(event, respond);
-      case `orders/update`:
-        return updateOrder(event, respond);
       case `orders/update-print-job-status`:
         return updateOrderPrintJobStatus(event, respond);
       case `orders/brick`:

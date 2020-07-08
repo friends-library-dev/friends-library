@@ -44,8 +44,8 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
         />
       );
     case `delivery`:
-    case `createOrder`:
     case `calculateFees`:
+    case `createPaymentIntent`:
       return (
         <Delivery
           throbbing={state !== `delivery`}
@@ -61,11 +61,8 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
         />
       );
     case `payment`:
-    case `authorizingPayment`:
-    case `createPrintJob`:
-    case `verifyPrintJob`:
-    case `updateOrderPrintJobStatus`:
-    case `capturePayment`:
+    case `chargeCreditCard`:
+    case `createOrder`:
       return (
         <StripeProvider
           apiKey={
@@ -84,7 +81,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
               shipping={machine.service.fees.shipping}
               taxes={machine.service.fees.taxes}
               ccFeeOffset={machine.service.fees.ccFeeOffset}
-              onPay={getToken => machine.dispatch(`next`, getToken)}
+              onPay={chargeCard => machine.dispatch(`next`, chargeCard)}
             />
           </Elements>
         </StripeProvider>

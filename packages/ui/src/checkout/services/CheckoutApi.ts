@@ -15,16 +15,18 @@ export default class CheckoutApi {
     stateHistory: string[],
     orderId: string,
     paymentIntentId: string,
-    printJobId: number,
   ): Promise<ApiResponse> {
     const payload = {
       stateHistory,
       orderId,
       paymentIntentId,
-      printJobId,
       userAgent: navigator ? navigator.userAgent : null,
     };
     return this.post(`/orders/brick`, payload);
+  }
+
+  public async createPaymentIntent(payload: { amount: number }): Promise<ApiResponse> {
+    return this.post(`/payment-intent`, payload);
   }
 
   public async calculateFees(payload: Record<string, any>): Promise<ApiResponse> {
@@ -32,28 +34,20 @@ export default class CheckoutApi {
   }
 
   public async createOrder(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post(`/orders/create`, payload);
+    return this.post(`/orders`, payload);
   }
 
-  public async updateOrder(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post(`/orders/update`, payload);
-  }
-
-  public async capturePayment(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post(`/payment/capture`, payload);
-  }
-
-  public async authorizePayment(
-    authorize: () => Promise<Record<string, any>>,
+  public async chargeCreditCard(
+    charge: () => Promise<Record<string, any>>,
   ): Promise<ApiResponse> {
     try {
-      var res = await authorize();
+      var res = await charge();
     } catch (error) {
       return {
         ok: false,
         statusCode: 500,
         data: {
-          msg: Err.ERROR_AUTHORIZING_STRIPE_PAYMENT_INTENT,
+          msg: Err.ERROR_CONFIRMING_STRIPE_CARD_PAYMENT,
           details: error.message,
         },
       };
@@ -64,46 +58,13 @@ export default class CheckoutApi {
         ok: false,
         statusCode: 500,
         data: {
-          msg: Err.ERROR_AUTHORIZING_STRIPE_PAYMENT_INTENT,
+          msg: Err.ERROR_CONFIRMING_STRIPE_CARD_PAYMENT,
           userMsg: res.error.message,
         },
       };
     }
 
-    if (res.paymentIntent.status !== `requires_capture`) {
-      return {
-        ok: false,
-        statusCode: 500,
-        data: { msg: Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED },
-      };
-    }
-
     return { ok: true, statusCode: 200, data: {} };
-  }
-
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  public async __testonly__authorizePayment(payload: {
-    paymentIntentId: string;
-  }): Promise<ApiResponse> {
-    return this.post(`/payment/authorize`, payload);
-  }
-
-  public async createPrintJob(payload: Record<string, any>): Promise<ApiResponse> {
-    return this.post(`/print-job`, payload);
-  }
-
-  public async updateOrderPrintJobStatus(
-    payload: Record<string, any>,
-  ): Promise<ApiResponse> {
-    return this.post(`/orders/update-print-job-status`, payload);
-  }
-
-  public async getPrintJobStatus(printJobId: number): Promise<ApiResponse> {
-    return this.get(`/print-job/${printJobId}/status`);
-  }
-
-  public async getOrder(orderId: string): Promise<ApiResponse> {
-    return this.get(`/orders/${orderId}`);
   }
 
   public async sendOrderConfirmationEmail(orderId: string): Promise<ApiResponse> {

@@ -1,7 +1,6 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import fetch from 'node-fetch';
-import { CheckoutError, checkoutErrors as Err } from '@friends-library/types';
-import stripeClient from '../lib/stripe';
+import { checkoutErrors as Err } from '@friends-library/types';
 import Responder from '../lib/Responder';
 import { PrintSize } from '@friends-library/types';
 import env from '../lib/env';
@@ -18,12 +17,6 @@ export default async function createPrintJob(
   if (data instanceof Error) {
     log.error(`invalid body for /print-job`, { body, error: data });
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, detail: data.message }, 400);
-  }
-
-  const invalidPaymentIntentMsg = await verifyPaymentIntent(data.paymentIntentId);
-  if (invalidPaymentIntentMsg) {
-    log.info(`Skipping failure to verify payment intent: ${data.paymentIntentId}`);
-    // return respond.json({ msg: invalidPaymentIntentMsg }, 403);
   }
 
   const [findError, order] = await findById(data.orderId);
@@ -97,26 +90,6 @@ function createOrderPayload(data: typeof schema.example): Record<string, any> {
     },
     shipping_level: data.shippingLevel,
   };
-}
-
-async function verifyPaymentIntent(
-  paymentIntentId: string,
-): Promise<CheckoutError | void> {
-  try {
-    const intent = await stripeClient().paymentIntents.retrieve(paymentIntentId);
-    if (intent.status === `succeeded`) {
-      log.error(`verify payment intent fail: intent ${paymentIntentId} already captured`);
-      return Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED;
-    }
-  } catch (error) {
-    if (error.statusCode === 404) {
-      log.error(`non-existent payment intent id: ${paymentIntentId}`);
-      return Err.STRIPE_PAYMENT_INTENT_NOT_FOUND;
-    }
-
-    log.error(`error retrieving payment intent ${paymentIntentId}`, { error });
-    return Err.ERROR_RETRIEVING_STRIPE_PAYMENT_INTENT;
-  }
 }
 
 export const schema = {

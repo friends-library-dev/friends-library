@@ -37,6 +37,12 @@ export default async function sendOrderConfirmationEmail(
     log.error(`Error sending order submitted slack`, { error, order });
   }
 
+  if (order.email === `integration@test.com`) {
+    log.info(`Not sending confirmation email for integration test.`);
+    respond.noContent();
+    return;
+  }
+
   try {
     mailer.setApiKey(env(`SENDGRID_API_KEY`));
     const [res] = await mailer.send({

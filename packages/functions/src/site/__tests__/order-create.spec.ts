@@ -5,23 +5,11 @@ import { create } from '../../lib/order';
 
 const createIntent = jest.fn();
 
-jest.mock(`uuid/v4`, () => {
-  return jest.fn(() => `generated-uuid`);
-});
-
-jest.mock(`stripe`, () => {
-  return jest.fn().mockImplementation(() => ({
-    paymentIntents: {
-      create: createIntent,
-    },
-  }));
-});
-
 jest.mock(`../../lib/order`, () => ({
   create: jest.fn(() => Promise.resolve([null, true])),
 }));
 
-describe(`/orders/create handler`, () => {
+describe(`/orders create handler`, () => {
   it(`should return 201 with correct data if successful`, async () => {
     createIntent.mockResolvedValue({
       id: `intent_id`,
@@ -30,22 +18,10 @@ describe(`/orders/create handler`, () => {
     const { res, json } = await invokeCb(auth, { body: JSON.stringify(schema.example) });
 
     expect(res.statusCode).toBe(201);
-    expect(json).toMatchObject({
-      paymentIntentId: `intent_id`,
-      paymentIntentClientSecret: `intent_id_secret`,
-      orderId: `generated-uuid`,
-    });
-    expect(createIntent.mock.calls[0][0]).toMatchObject({
-      amount: 1111,
-      currency: `usd`,
-      capture_method: `manual`,
-      payment_method_types: [`card`],
-      metadata: { orderId: `generated-uuid` },
-    });
+    expect(json).toMatchObject({ id: schema.example.id });
     expect((<jest.Mock>create).mock.calls[0][0]).toMatchObject({
-      id: `generated-uuid`,
-      paymentId: `intent_id`,
-      paymentStatus: `authorized`,
+      id: schema.example.id,
+      paymentId: schema.example.paymentId,
       amount: 1111,
       taxes: 0,
       ccFeeOffset: 42,
@@ -58,17 +34,6 @@ describe(`/orders/create handler`, () => {
     const { res, json } = await invokeCb(auth, { body: JSON.stringify(schema.example) });
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe(Err.ERROR_CREATING_FLP_ORDER);
-  });
-
-  it(`returns 403 with error code from stripe in case of error`, async () => {
-    createIntent.mockImplementation(() => {
-      throw { code: `card_expired` };
-    });
-    const { res, json } = await invokeCb(auth, {
-      body: JSON.stringify(schema.example),
-    });
-    expect(res.statusCode).toBe(403);
-    expect(json).toMatchObject({ msg: Err.ERROR_CREATING_STRIPE_PAYMENT_INTENT });
   });
 
   it(`should return 400 if missing body`, async () => {
