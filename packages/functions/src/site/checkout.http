@@ -37,14 +37,25 @@ content-type: application/json
 
 ###
 
-# Create a FLP order and initialize a Stripe PaymentIntent object
-# @see https://stripe.com/docs/testing for more tokens including error tokens
+# Create payment intent
+POST {{base}}/payment-intent HTTP/1.1
+content-type: application/json
+
+{
+  "amount": 3248
+}
+
+###
+
+# Create a FLP order
 # @name createOrder
-POST {{base}}/orders/create HTTP/1.1
+POST {{base}}/orders HTTP/1.1
 content-type: application/json
 
 {
   "lang": "en",
+  "orderId": "08b168a2-4ac6-4e6b-a9c9-9a1a8653f94b",
+  "paymentId": "pi_1H2KlREswFkMHmtg1SqtdS4x",
   "amount": 1632,
   "email": "jared@netrivet.com",
   "items": [{
@@ -87,18 +98,6 @@ content-type: application/json
     }
   ],
   "address": {{address}}
-}
-
-###
-
-# Capture an authorized payment (create usable paymentIntentId w/ `/orders/create`
-# @name capturePayment
-POST {{base}}/payment/capture HTTP/1.1
-content-type: application/json
-
-{
-  "paymentIntentId": "{{paymentIntentId}}",
-  "orderId": "{{orderId}}"
 }
 
 ###

@@ -15,15 +15,6 @@ jest.mock(`client-oauth2`, () => {
   return jest.fn().mockImplementation(() => ({ credentials: { getToken } }));
 });
 
-const retrieveIntent = jest.fn(() => ({ id: `pi_abc123`, status: `requires_capture` }));
-jest.mock(`stripe`, () => {
-  return jest.fn().mockImplementation(() => ({
-    paymentIntents: {
-      retrieve: retrieveIntent,
-    },
-  }));
-});
-
 jest.mock(`node-fetch`);
 const { Response } = jest.requireActual(`node-fetch`);
 const mockFetch = <jest.Mock>(<unknown>fetch);
@@ -50,37 +41,6 @@ describe(`createOrder()`, () => {
     const body = JSON.stringify(data);
     const { res } = await invokeCb(createOrder, { body });
     expect(res.statusCode).toBe(400);
-  });
-
-  it.skip(`returns 403 if the stripe API doesn’t recognize the payment intent`, async () => {
-    retrieveIntent.mockImplementationOnce(() => {
-      throw { statusCode: 404 };
-    });
-
-    const { res, json } = await invokeCb(createOrder, { body: testBody });
-
-    expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe(Err.STRIPE_PAYMENT_INTENT_NOT_FOUND);
-  });
-
-  it.skip(`returns 403 if the payment intent has already been captured`, async () => {
-    retrieveIntent.mockImplementationOnce(() => ({ id: ``, status: `succeeded` }));
-
-    const { res, json } = await invokeCb(createOrder, { body: testBody });
-
-    expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe(Err.STRIPE_PAYMENT_INTENT_ALREADY_CAPTURED);
-  });
-
-  it.skip(`returns 403 and passes on unknown stripe error`, async () => {
-    retrieveIntent.mockImplementationOnce(() => {
-      throw { statusCode: 500, code: `unknown_stripe_error` };
-    });
-
-    const { res, json } = await invokeCb(createOrder, { body: testBody });
-
-    expect(res.statusCode).toBe(403);
-    expect(json.msg).toBe(Err.ERROR_RETRIEVING_STRIPE_PAYMENT_INTENT);
   });
 
   it(`responds 404 if order cannot be retrieved`, async () => {

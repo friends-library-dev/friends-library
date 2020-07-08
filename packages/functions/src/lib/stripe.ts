@@ -22,10 +22,9 @@ function calculatePercentageOffset(amt: number, carry = 0): number {
   return calculatePercentageOffset(offset, carry + offset);
 }
 
-let clientInstance: Stripe;
-
 export default function client(): Stripe {
-  if (clientInstance) return clientInstance;
-  clientInstance = new Stripe(env(`STRIPE_SECRET_KEY`));
-  return clientInstance;
+  return new Stripe(env(`STRIPE_SECRET_KEY`), {
+    apiVersion: `2020-03-02`,
+    maxNetworkRetries: 3,
+  });
 }

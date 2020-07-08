@@ -5,9 +5,8 @@
 type Order @collection(name: "orders") {
   externalId: String!
   paymentId: String!
-  paymentStatus: PaymentStatus!
+  printJobStatus: PrintJobStatus!
   printJobId: Int
-  printJobStatus: PrintJobStatus
   amount: Int!
   shipping: Int!
   taxes: Int!
@@ -80,16 +79,11 @@ enum EditionType {
 }
 
 enum PrintJobStatus {
+  presubmit
   pending
   accepted
   rejected
   shipped
-  canceled
-}
-
-enum PaymentStatus {
-  authorized
-  captured
   canceled
 }
 

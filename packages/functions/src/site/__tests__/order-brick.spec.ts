@@ -4,10 +4,15 @@ import brick from '../order-brick';
 jest.mock(`@friends-library/slack`);
 
 const cancelIntent = jest.fn();
+const createRefund = jest.fn();
+
 jest.mock(`stripe`, () => {
   return jest.fn().mockImplementation(() => ({
     paymentIntents: {
       cancel: cancelIntent,
+    },
+    refunds: {
+      create: createRefund,
     },
   }));
 });
@@ -24,8 +29,16 @@ describe(`/orders/brick handler`, () => {
     };
   });
 
+  it(`attempts to refund the payment`, async () => {
+    await invokeCb(brick, { body: JSON.stringify(body) });
+    expect(createRefund).toHaveBeenCalledWith(
+      { payment_intent: `pi_123abc` },
+      { maxNetworkRetries: 5 },
+    );
+  });
+
   it(`attempts to cancel the payment intent`, async () => {
     await invokeCb(brick, { body: JSON.stringify(body) });
-    expect(cancelIntent).toHaveBeenCalledWith(`pi_123abc`);
+    expect(cancelIntent).toHaveBeenCalledWith(`pi_123abc`, { maxNetworkRetries: 5 });
   });
 });

@@ -32,14 +32,14 @@ export default class MockCheckoutApi extends CheckoutApi {
         data: {},
       },
     },
-    authorizePayment: {
+    chargeCreditCard: {
       default: {
         ok: true,
         statusCode: 200,
         data: {},
       },
     },
-    createOrder: {
+    createPaymentIntent: {
       default: {
         ok: true,
         statusCode: 201,
@@ -50,57 +50,13 @@ export default class MockCheckoutApi extends CheckoutApi {
         },
       },
     },
-    updateOrder: {
-      default: {
-        ok: true,
-        statusCode: 204,
-        data: {},
-      },
-    },
-    createPrintJob: {
+    createOrder: {
       default: {
         ok: true,
         statusCode: 201,
         data: {
-          printJobId: 123,
+          orderId: `order-id`,
         },
-      },
-    },
-    getPrintJobStatus: {
-      default: {
-        ok: true,
-        statusCode: 200,
-        delay: 250,
-        data: { status: `accepted` },
-      },
-      stack: [
-        {
-          ok: true,
-          statusCode: 200,
-          delay: 250,
-          data: { status: `pending` },
-        },
-      ],
-    },
-    capturePayment: {
-      default: {
-        ok: true,
-        statusCode: 204,
-        data: {},
-      },
-    },
-    updateOrderPrintJobStatus: {
-      default: {
-        ok: true,
-        statusCode: 200,
-        data: { id: `order-id`, printJobStatus: `accepted` },
-      },
-    },
-    getOrder: {
-      default: {
-        ok: true,
-        statusCode: 200,
-        data: { id: `order-id ` },
       },
     },
     sendOrderConfirmationEmail: {
@@ -124,36 +80,20 @@ export default class MockCheckoutApi extends CheckoutApi {
     return this.getResponse(`calculateFees`);
   }
 
+  public async createPaymentIntent(): Promise<ApiResponse> {
+    return this.getResponse(`createPaymentIntent`);
+  }
+
   public async createOrder(): Promise<ApiResponse> {
     return this.getResponse(`createOrder`);
   }
 
-  public async updateOrder(): Promise<ApiResponse> {
-    return this.getResponse(`updateOrder`);
-  }
-
-  public async authorizePayment(): Promise<ApiResponse> {
-    return this.getResponse(`authorizePayment`);
-  }
-
-  public async capturePayment(): Promise<ApiResponse> {
-    return this.getResponse(`capturePayment`);
-  }
-
-  public async createPrintJob(): Promise<ApiResponse> {
-    return this.getResponse(`createPrintJob`);
+  public async chargeCreditCard(): Promise<ApiResponse> {
+    return this.getResponse(`chargeCreditCard`);
   }
 
   public async brickOrder(): Promise<ApiResponse> {
     return this.getResponse(`brickOrder`);
-  }
-
-  public async updateOrderPrintJobStatus(): Promise<ApiResponse> {
-    return this.getResponse(`updateOrderPrintJobStatus`);
-  }
-
-  public async getPrintJobStatus(): Promise<ApiResponse> {
-    return this.getResponse(`getPrintJobStatus`);
   }
 
   public async sendOrderConfirmationEmail(): Promise<ApiResponse> {
