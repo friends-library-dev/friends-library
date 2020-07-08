@@ -1,5 +1,5 @@
 import { Validator, Schema } from 'jsonschema';
-import { SHIPPING_LEVELS } from './lulu';
+import { SHIPPING_LEVELS } from '@friends-library/types';
 
 const validator = new Validator();
 
@@ -56,7 +56,4 @@ validator.addSchema({ type: `integer`, minimum: 4 }, `/pages`);
 validator.addSchema({ type: `integer`, minimum: 1 }, `/book-qty`);
 validator.addSchema({ type: `string`, pattern: UUID }, `/uuid`);
 validator.addSchema({ type: `string`, pattern: /\S+@\S+\.\S+/ }, `/email`);
-validator.addSchema(
-  { enum: (SHIPPING_LEVELS as unknown) as any[] },
-  `/lulu-shipping-level`,
-);
+validator.addSchema({ enum: [...SHIPPING_LEVELS] }, `/lulu-shipping-level`);

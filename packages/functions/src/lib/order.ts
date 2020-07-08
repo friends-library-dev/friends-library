@@ -5,6 +5,7 @@ import {
   PrintJobStatus,
   EditionType,
   syntax as graphql,
+  ShippingLevel,
 } from '@friends-library/types';
 
 export interface Order {
@@ -15,6 +16,7 @@ export interface Order {
   amount: number;
   taxes: number;
   shipping: number;
+  shippingLevel: ShippingLevel;
   ccFeeOffset: number;
   email: string;
   created: string;
