@@ -11,6 +11,7 @@ type Order @collection(name: "orders") {
   shipping: Int!
   taxes: Int!
   ccFeeOffset: Int!
+  shippingLevel: ShippingLevel!
   email: String!
   items: [OrderItem!]!
   address: Address!
@@ -90,6 +91,15 @@ enum PrintJobStatus {
 enum AudioQuality {
   HQ
   LQ
+}
+
+enum ShippingLevel {
+  MAIL
+  PRIORITY_MAIL
+  GROUND_HD
+  GROUND
+  EXPEDITED
+  EXPRESS
 }
 
 # --------------------------------------

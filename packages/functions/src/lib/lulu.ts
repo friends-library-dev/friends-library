@@ -33,14 +33,3 @@ export async function getAuthToken(): Promise<string> {
 
   return accessToken;
 }
-
-export const SHIPPING_LEVELS = [
-  `MAIL`,
-  `PRIORITY_MAIL`,
-  `GROUND_HD`,
-  `GROUND`,
-  `EXPEDITED`,
-  `EXPRESS`,
-] as const;
-
-export type ShippingLevel = typeof SHIPPING_LEVELS[number];

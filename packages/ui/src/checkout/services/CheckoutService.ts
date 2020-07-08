@@ -148,6 +148,7 @@ export default class CheckoutService {
       taxes,
       ccFeeOffset,
       email: this.cart.email,
+      shippingLevel: this.shippingLevel,
       address: {
         name: this.cart.address.name,
         street: this.cart.address.street,

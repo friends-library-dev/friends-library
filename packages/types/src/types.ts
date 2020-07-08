@@ -66,8 +66,17 @@ export const PRINT_JOB_STATUSES = [
   `rejected`,
   `canceled`,
 ] as const;
-
 export type PrintJobStatus = typeof PRINT_JOB_STATUSES[number];
+
+export const SHIPPING_LEVELS = [
+  `MAIL`,
+  `PRIORITY_MAIL`,
+  `GROUND_HD`,
+  `GROUND`,
+  `EXPEDITED`,
+  `EXPRESS`,
+] as const;
+export type ShippingLevel = typeof SHIPPING_LEVELS[number];
 
 export const AUDIO_QUALITIES = [`HQ`, `LQ`] as const;
 export type AudioQuality = typeof AUDIO_QUALITIES[number];

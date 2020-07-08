@@ -1,12 +1,17 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import { PrintSize, checkoutErrors as Err } from '@friends-library/types';
+import {
+  PrintSize,
+  checkoutErrors as Err,
+  ShippingLevel,
+  SHIPPING_LEVELS,
+} from '@friends-library/types';
 import env from '../lib/env';
 import fetch from 'node-fetch';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
 import log from '../lib/log';
 import { feeOffset } from '../lib/stripe';
-import { getAuthToken, podPackageId, ShippingLevel, SHIPPING_LEVELS } from '../lib/lulu';
+import { getAuthToken, podPackageId } from '../lib/lulu';
 
 export default async function printJobFees(
   { body }: APIGatewayEvent,

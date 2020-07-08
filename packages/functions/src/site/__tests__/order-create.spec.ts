@@ -21,6 +21,7 @@ describe(`/orders create handler`, () => {
     expect(json).toMatchObject({ id: schema.example.id });
     expect((<jest.Mock>create).mock.calls[0][0]).toMatchObject({
       id: schema.example.id,
+      shippingLevel: schema.example.shippingLevel,
       paymentId: schema.example.paymentId,
       amount: 1111,
       taxes: 0,

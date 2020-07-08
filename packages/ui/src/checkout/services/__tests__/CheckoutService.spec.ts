@@ -86,6 +86,7 @@ describe(`CheckoutService()`, () => {
     beforeEach(() => createOrder.mockClear());
 
     it(`passes correct payload to api`, async () => {
+      service.shippingLevel = `EXPEDITED`;
       service.paymentIntentId = `pi_123abc`;
       service.fees = { shipping: 1, taxes: 0, ccFeeOffset: 1 };
       createOrder.mockResolvedValue({ ok: true, data: {} });
@@ -96,6 +97,7 @@ describe(`CheckoutService()`, () => {
         lang: `en`,
         amount: service.cart.subTotal() + 2, // 2 = sum of all fees
         paymentId: service.paymentIntentId,
+        shippingLevel: service.shippingLevel,
         id: service.orderId,
         shipping: 1,
         taxes: 0,

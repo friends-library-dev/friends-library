@@ -20,6 +20,7 @@ export default async function orderCreateHandler(
     id: data.id,
     lang: data.lang === `en` ? `en` : `es`,
     email: data.email,
+    shippingLevel: data.shippingLevel,
     created: now,
     updated: now,
     items: data.items as Order['items'],
@@ -51,6 +52,7 @@ export const schema = {
     shipping: { type: `integer`, required: true },
     paymentId: { type: `string`, required: true },
     ccFeeOffset: { type: `integer`, required: true },
+    shippingLevel: { $ref: `/lulu-shipping-level`, required: true },
     lang: { $ref: `/lang`, required: true },
     items: {
       type: `array`,
@@ -76,6 +78,7 @@ export const schema = {
     ccFeeOffset: 42,
     paymentId: `pi_123abc`,
     email: `user@example.com`,
+    shippingLevel: `MAIL` as const,
     lang: `en`,
     items: [
       {
