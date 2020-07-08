@@ -156,6 +156,13 @@ describe(`prepareAsciidoc()`, () => {
       Question: Foo bar?
 
       [.discourse-part]
+      Question. After period,
+
+      [.discourse-part]
+      Answer:
+      Next line.
+
+      [.discourse-part]
       Answer: Hash baz.
 
       [.discourse-part]
@@ -165,15 +172,22 @@ describe(`prepareAsciidoc()`, () => {
       Objection: Qux!
 
       [.discourse-part]
+      Objection.
+      Foobar
+
+      [.discourse-part]
       Inquiry 13: Foo
     `).trim();
 
     const prepared = prepareAsciidoc(adoc);
 
-    expect(prepared).toContain(`_Question:_`);
-    expect(prepared).toContain(`_Answer:_`);
+    expect(prepared).toContain(`_Question:_ Foo bar?`);
+    expect(prepared).toContain(`_Question._ After period,`);
+    expect(prepared).toContain(`_Answer:_ Hash baz.`);
+    expect(prepared).toContain(`_Answer:_\nNext line.`);
     expect(prepared).toContain(`_Answer 143:_`);
-    expect(prepared).toContain(`_Objection:_`);
+    expect(prepared).toContain(`_Objection:_ Qux!`);
+    expect(prepared).toContain(`_Objection._\nFoobar`);
     expect(prepared).toContain(`_Inquiry 13:_`);
   });
 

@@ -100,7 +100,7 @@ function preparePostscripts(adoc: Asciidoc): Asciidoc {
 
 function prepareDiscourseParts(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
-    /(?<=\[\.discourse-part\]\n)(Question:|Pregunta:|(?:Answer|Respuesta)(?: [0-9]+)?:|Objection:|Objeción:|Inquiry [0-9]+:)( |\n)/gim,
+    /(?<=\[\.discourse-part\]\n)(Question(?:\.|:)|Pregunta(?:\.|:)|(?:Answer|Respuesta)(?: [0-9]+)?(?:\.|:)|Objection(?:\.|:)|Objeción(?:\.|:)|Inquiry [0-9]+(?:\.|:))( |\n)/gim,
     `_$1_$2`,
   );
 }
