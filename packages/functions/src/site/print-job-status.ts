@@ -1,7 +1,7 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err } from '@friends-library/types';
+import { log } from '@friends-library/slack';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
 import luluClient from '../lib/lulu';
 
 export default async function getPrintJobStatus(

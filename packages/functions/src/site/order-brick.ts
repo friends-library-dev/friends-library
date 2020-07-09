@@ -1,7 +1,7 @@
 import { APIGatewayEvent } from 'aws-lambda';
+import { log } from '@friends-library/slack';
 import stripeClient from '../lib/stripe';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
 
 export default async function brickOrder(
   { body }: APIGatewayEvent,

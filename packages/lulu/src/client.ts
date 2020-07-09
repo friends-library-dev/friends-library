@@ -27,7 +27,7 @@ export default class LuluClient {
     return this.post<LuluAPI.PrintJob>(`print-jobs/`, payload);
   }
 
-  public async printJobCostCalculations(
+  public async printJobCosts(
     payload: LuluAPI.PrintJobCostsPayload,
   ): Promise<[LuluAPI.PrintJobCostsResponse, number]> {
     return this.post<LuluAPI.PrintJobCostsResponse>(

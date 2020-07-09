@@ -1,11 +1,12 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err, PrintSize } from '@friends-library/types';
 import { podPackageId, LuluAPI } from '@friends-library/lulu';
+import { Client as DbClient } from '@friends-library/db';
+import { log } from '@friends-library/slack';
 import Responder from '../lib/Responder';
 import validateJson from '../lib/validate-json';
-import log from '../lib/log';
-import { findById, save as saveOrder } from '../lib/order';
 import luluClient from '../lib/lulu';
+import env from '../lib/env';
 
 export default async function createPrintJob(
   { body }: APIGatewayEvent,
@@ -17,7 +18,8 @@ export default async function createPrintJob(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, detail: data.message }, 400);
   }
 
-  const [findError, order] = await findById(data.orderId);
+  const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
+  const [findError, order] = await db.orders.findById(data.orderId);
   if (!order) {
     log.error(`order not found for print job creation`, { data, error: findError });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
@@ -32,7 +34,7 @@ export default async function createPrintJob(
 
   order.printJobStatus = `pending`;
   order.printJobId = json.id;
-  const [saveError] = await saveOrder(order);
+  const [saveError] = await db.orders.save(order);
 
   if (saveError) {
     log.error(`error updating order with print_job details`, {

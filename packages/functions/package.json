@@ -18,6 +18,7 @@
     "@babel/plugin-transform-object-assign": "^7.2.0",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/runtime": "^7.7.2",
+    "@friends-library/db": "1.0.0",
     "@friends-library/env": "1.0.0",
     "@friends-library/lulu": "1.0.0",
     "@friends-library/slack": "1.0.0",

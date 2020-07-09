@@ -1,10 +1,10 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
+import { log } from '@friends-library/slack';
+import { Client as DbClient } from '@friends-library/db';
 import env from '../lib/env';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
-import { findById } from '../lib/order';
 import { orderConfirmationEmail, emailFrom } from '../lib/email';
 
 export default async function sendOrderConfirmationEmail(
@@ -18,7 +18,9 @@ export default async function sendOrderConfirmationEmail(
   }
 
   const [, orderId] = pathMatch;
-  const [findError, order] = await findById(orderId);
+  const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
+  const [findError, order] = await db.orders.findById(orderId);
+
   if (!order) {
     log.error(`order ${orderId} not found`, { error: findError });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);

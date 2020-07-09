@@ -1,9 +1,10 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err, PRINT_JOB_STATUSES } from '@friends-library/types';
+import { log } from '@friends-library/slack';
+import { Client as DbClient } from '@friends-library/db';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
-import { findById, save as saveOrder } from '../lib/order';
 import validateJson from '../lib/validate-json';
+import env from '../lib/env';
 
 export default async function updateOrderPrintJobStatus(
   { body }: APIGatewayEvent,
@@ -16,13 +17,14 @@ export default async function updateOrderPrintJobStatus(
   }
 
   const { orderId, printJobStatus } = data;
-  const [findError, order] = await findById(orderId);
+  const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
+  const [findError, order] = await db.orders.findById(orderId);
   if (!order) {
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND, error: findError }, 404);
   }
 
   order.printJobStatus = printJobStatus;
-  const [error] = await saveOrder(order);
+  const [error] = await db.orders.save(order);
   if (error) {
     log.error(`error updating order`, { error });
     return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDER, error }, 500);

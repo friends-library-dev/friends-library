@@ -1,11 +1,11 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import { checkoutErrors as Err, Lang } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
+import { checkoutErrors as Err, Lang } from '@friends-library/types';
+import { log } from '@friends-library/slack';
 import env from '../lib/env';
 import Responder from '../lib/Responder';
 import validateJson from '../lib/validate-json';
 import { emailFrom } from '../lib/email';
-import log from '../lib/log';
 
 export default async function submitContactForm(
   { body }: APIGatewayEvent,

@@ -6,9 +6,9 @@ import {
   SHIPPING_LEVELS,
 } from '@friends-library/types';
 import { LuluAPI, LuluClient, podPackageId } from '@friends-library/lulu';
+import { log } from '@friends-library/slack';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
 import { feeOffset } from '../lib/stripe';
 import luluClient from '../lib/lulu';
 
@@ -75,10 +75,10 @@ async function calculateForType(
   client: LuluClient,
 ): Promise<{
   statusCode: number;
-  json: LuluAPI.PrintJobCostCalculationsResponse;
+  json: LuluAPI.PrintJobCostsResponse;
   shippingLevel: ShippingLevel;
 }> {
-  const [json, statusCode] = await client.printJobCostCalculations({
+  const [json, statusCode] = await client.printJobCosts({
     line_items: data.items.map(item => ({
       page_count: item.pages,
       quantity: item.quantity,

@@ -2,10 +2,10 @@ import mailer from '@sendgrid/mail';
 import { APIGatewayEvent } from 'aws-lambda';
 import { CheckoutError, checkoutErrors as Err, isDefined } from '@friends-library/types';
 import { LuluAPI } from '@friends-library/lulu';
+import { log } from '@friends-library/slack';
+import { Client as DbClient, Db } from '@friends-library/db';
 import env from '../lib/env';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
-import { findByPrintJobStatus, saveAll, Order } from '../lib/order';
 import luluClient from '../lib/lulu';
 import { orderShippedEmail, emailFrom } from '../lib/email';
 
@@ -13,7 +13,8 @@ export default async function checkOrders(
   event: APIGatewayEvent,
   respond: Responder,
 ): Promise<void> {
-  const [error, orders] = await findByPrintJobStatus(`accepted`);
+  const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
+  const [error, orders] = await db.orders.findByPrintJobStatus(`accepted`);
   if (error || !orders) {
     log.error(`Error retrieving orders for /orders/check`, { error, orders });
     return respond.json({ msg: Err.ERROR_RETRIEVING_FLP_ORDERS }, 500);
@@ -30,8 +31,8 @@ export default async function checkOrders(
     return respond.json({ msg: printJobErr }, 500);
   }
 
-  const updatedOrders: Order[] = [];
-  const recentlyShippedOrders: Order[] = [];
+  const updatedOrders: Db.Order[] = [];
+  const recentlyShippedOrders: Db.Order[] = [];
 
   jobs.forEach(job => {
     const status = job.status.name;
@@ -66,7 +67,7 @@ export default async function checkOrders(
   });
 
   if (updatedOrders.length) {
-    const [error] = await saveAll(updatedOrders);
+    const [error] = await db.orders.saveAll(updatedOrders);
     if (error) {
       log.error(`error persisting updated orders`, { error });
       return respond.json({ msg: Err.ERROR_UPDATING_FLP_ORDERS, error }, 500);
@@ -88,7 +89,7 @@ export default async function checkOrders(
 }
 
 async function getPrintJobs(
-  orders: Order[],
+  orders: Db.Order[],
 ): Promise<[null | CheckoutError, LuluAPI.PrintJob[]]> {
   const ids = orders.map(o => o.printJobId).filter(isDefined);
   const [json, status] = await luluClient().listPrintJobs(ids);
@@ -102,7 +103,7 @@ async function getPrintJobs(
 
 async function sendShipmentTrackingEmails(
   jobs: LuluAPI.PrintJob[],
-  orders: Order[],
+  orders: Db.Order[],
 ): Promise<void> {
   const shippedJobs = jobs.filter(job => job.status.name === `SHIPPED`);
 
