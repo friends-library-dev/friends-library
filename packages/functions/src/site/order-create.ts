@@ -35,6 +35,7 @@ export default async function orderCreateHandler(
 
   const [error] = await createOrder(order);
   if (error) {
+    console.log(error);
     log.error(`error creating flp order`, { error });
     return respond.json({ msg: Err.ERROR_CREATING_FLP_ORDER }, 500);
   }
