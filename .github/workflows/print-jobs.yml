@@ -4,5 +4,12 @@ on: [push]
 
 jobs:
   print_jobs:
-    - name: do-a-thing
-      uses: friends-library/friends-library/actions/should-deploy@actions-print-jobs
+    name: do-a-thing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: friends-library/friends-library/actions/should-deploy@actions-print-jobs
+        with:
+          lulu_client_key: ${{ secrets.TEST_LULU_CLIENT_KEY }}
+          lulu_client_secret: ${{ secrets.TEST_LULU_CLIENT_SECRET }}
+          lulu_is_sandbox: true
+          fauna_server_secret: ${{ secrets.TEST_FAUNA_SERVER_SECRET }}
