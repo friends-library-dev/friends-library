@@ -18,6 +18,11 @@ async function main(): Promise<void> {
     return;
   }
 
+  if (orders.length === 0) {
+    log.debug(`No orders in state \`presubmit\` to process from gh action.`);
+    return;
+  }
+
   for (let order of orders) {
     try {
       var payload = createPrintJobPayload(order, meta);
@@ -35,8 +40,9 @@ async function main(): Promise<void> {
       continue;
     }
 
-    if (printJob.status.name !== `CREATED`) {
-      log.error(`Unexpected print job status for order ${order.id}`, { printJob });
+    const jobStatus = printJob.status.name;
+    if (jobStatus !== `CREATED`) {
+      log.error(`Unexpected print job status ${jobStatus} for order ${order.id}`);
       continue;
     }
 

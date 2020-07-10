@@ -3571,7 +3571,7 @@ var slack_1 = __webpack_require__(261);
 var friends_1 = __webpack_require__(204);
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var db, lulu, meta, _a, err, orders, orders_1, orders_1_1, order, payload, _b, printJob, status_1, orderUpdated, DELAYS_1, DELAYS_1_1, delay, _c, err_1, e_1_1, _d, res, httpStatus, _e, err_2, e_2_1;
+        var db, lulu, meta, _a, err, orders, orders_1, orders_1_1, order, payload, _b, printJob, status_1, jobStatus, orderUpdated, DELAYS_1, DELAYS_1_1, delay, _c, err_1, e_1_1, _d, res, httpStatus, _e, err_2, e_2_1;
         var e_2, _f, e_1, _g;
         return __generator(this, function (_h) {
             switch (_h.label) {
@@ -3587,6 +3587,10 @@ function main() {
                     _a = __read.apply(void 0, [_h.sent(), 2]), err = _a[0], orders = _a[1];
                     if (err || !orders) {
                         slack_1.log.error("Error retrieving presubmit orders from db", { err: err, orders: orders });
+                        return [2 /*return*/];
+                    }
+                    if (orders.length === 0) {
+                        slack_1.log.debug("No orders in state `presubmit` to process from gh action.");
                         return [2 /*return*/];
                     }
                     _h.label = 3;
@@ -3614,8 +3618,9 @@ function main() {
                         });
                         return [3 /*break*/, 18];
                     }
-                    if (printJob.status.name !== "CREATED") {
-                        slack_1.log.error("Unexpected print job status for order " + order.id, { printJob: printJob });
+                    jobStatus = printJob.status.name;
+                    if (jobStatus !== "CREATED") {
+                        slack_1.log.error("Unexpected print job status " + jobStatus + " for order " + order.id);
                         return [3 /*break*/, 18];
                     }
                     slack_1.log.order("Created print job " + printJob.id + " for order " + order.id);
@@ -56649,11 +56654,11 @@ function sendAndLog(_a) {
     try {
         if (data) {
             send_1.sendJson(msg, data, channel, emoji);
-            console[logMethod](msg, channel, data);
+            console[logMethod]("#" + channel + ": " + msg, data);
             return;
         }
         send_1.send(msg, channel, emoji);
-        console[logMethod](msg, channel);
+        console[logMethod]("#" + channel + ": " + msg, channel);
     }
     catch (error) {
         console.error("Error sending slack", { error: error, msg: msg, channel: channel, emoji: emoji, data: data });
