@@ -145,6 +145,7 @@ function editions(): Map<string, Edition> {
   friends.forEach(friend =>
     friend.documents.forEach(document =>
       document.editions.forEach(edition => {
+        core.info(`set: ${friend.lang}/${document.id}/${edition.type}`);
         editionMap.set(`${friend.lang}/${document.id}/${edition.type}`, edition);
       }),
     ),
