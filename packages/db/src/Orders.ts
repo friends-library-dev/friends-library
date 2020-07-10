@@ -98,6 +98,7 @@ const ORDERS_BY_PRINT_JOB_STATUS = graphql`
         }
         printJobId
         printJobStatus
+        shippingLevel
         address {
           name
           street
@@ -135,6 +136,7 @@ const FIND_BY_ID = graphql`
       }
       printJobId
       printJobStatus
+      shippingLevel
       address {
         name
         street

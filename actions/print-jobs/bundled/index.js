@@ -3755,11 +3755,9 @@ function editions() {
         return editionMap;
     }
     var friends = friends_1.getAllFriends("en").concat(friends_1.getAllFriends("es"));
-    core.info("num friends: " + friends.length);
     friends.forEach(function (friend) {
         return friend.documents.forEach(function (document) {
             return document.editions.forEach(function (edition) {
-                core.info("set: " + friend.lang + "/" + document.id + "/" + edition.type);
                 editionMap.set(friend.lang + "/" + document.id + "/" + edition.type, edition);
             });
         });
