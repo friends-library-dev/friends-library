@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: friends-library/friends-library/actions/print-jobs@actions-print-jobs
+      - uses: friends-library/friends-library/actions/print-jobs@69d5484f
         with:
           lulu_client_key: ${{ secrets.TEST_LULU_CLIENT_KEY }}
           lulu_client_secret: ${{ secrets.TEST_LULU_CLIENT_SECRET }}
