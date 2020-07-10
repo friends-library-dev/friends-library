@@ -9131,16 +9131,19 @@ var js_yaml_1 = __webpack_require__(449);
 var map_1 = __importDefault(__webpack_require__(468));
 function getFriend(slug, lang) {
     if (lang === void 0) { lang = "en"; }
-    var path = path_1.resolve(__dirname, "../yml/" + lang + "/" + slug + ".yml");
+    var path = ymlPath(lang + "/" + slug + ".yml");
     var file = fs_1.readFileSync(path);
     var data = js_yaml_1.safeLoad(file.toString());
     return map_1.default(__assign({ lang: lang }, data));
 }
 exports.getFriend = getFriend;
+function ymlPath(end) {
+    return path_1.resolve(process.env.FRIENDS_YML_PATH || __dirname + "/../yml", end);
+}
 function getAllFriends(lang, withCompilations) {
     if (lang === void 0) { lang = "en"; }
     if (withCompilations === void 0) { withCompilations = false; }
-    var pattern = path_1.resolve(__dirname, "../yml/" + lang + "/*.yml");
+    var pattern = ymlPath(lang + "/*.yml");
     var friends = glob_1.sync(pattern).map(function (path) { return getFriend(path_1.basename(path, ".yml"), lang); });
     if (withCompilations) {
         return friends;
