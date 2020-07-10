@@ -5,13 +5,12 @@ import {
   ShippingLevel,
   SHIPPING_LEVELS,
 } from '@friends-library/types';
-import env from '../lib/env';
-import fetch from 'node-fetch';
+import { LuluAPI, LuluClient, podPackageId } from '@friends-library/lulu';
+import { log } from '@friends-library/slack';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
 import { feeOffset } from '../lib/stripe';
-import { getAuthToken, podPackageId } from '../lib/lulu';
+import luluClient from '../lib/lulu';
 
 export default async function printJobFees(
   { body }: APIGatewayEvent,
@@ -23,17 +22,8 @@ export default async function printJobFees(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, details: data.message }, 400);
   }
 
-  try {
-    var token = await getAuthToken();
-  } catch (error) {
-    log.error(`error acquiring lulu oauth token`, { error });
-    return respond.json(
-      { msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN, error: error.message },
-      500,
-    );
-  }
-
-  const cheapest = await calculateCheapest(data, token);
+  const client = luluClient();
+  const cheapest = await calculateCheapest(data, client);
   if (!cheapest) {
     log.error(`shipping not possible`, { address: data.address });
     return respond.json({ msg: Err.SHIPPING_NOT_POSSIBLE }, 400);
@@ -50,7 +40,7 @@ export default async function printJobFees(
  */
 async function calculateCheapest(
   data: typeof schema.example,
-  token: string,
+  client: LuluClient,
 ): Promise<null | {
   shippingLevel: ShippingLevel;
   shipping: number;
@@ -58,7 +48,7 @@ async function calculateCheapest(
   ccFeeOffset: number;
 }> {
   const results = await Promise.all(
-    SHIPPING_LEVELS.map(level => calculateForType(data, token, level)),
+    SHIPPING_LEVELS.map(level => calculateForType(data, level, client)),
   );
 
   const [cheapest] = results
@@ -81,39 +71,30 @@ async function calculateCheapest(
 
 async function calculateForType(
   data: typeof schema.example,
-  token: string,
   shippingLevel: ShippingLevel,
+  client: LuluClient,
 ): Promise<{
   statusCode: number;
-  json: typeof luluResponse;
+  json: LuluAPI.PrintJobCostsResponse;
   shippingLevel: ShippingLevel;
 }> {
-  const res = await fetch(`${env(`LULU_API_ENDPOINT`)}/print-job-cost-calculations/`, {
-    method: `POST`,
-    headers: {
-      'Cache-Control': `no-cache`,
-      'Content-Type': `application/json`,
-      Authorization: `Bearer ${token}`,
+  const [json, statusCode] = await client.printJobCosts({
+    line_items: data.items.map(item => ({
+      page_count: item.pages,
+      quantity: item.quantity,
+      pod_package_id: podPackageId(item.printSize, item.pages),
+    })),
+    shipping_address: {
+      name: data.address.name,
+      street1: data.address.street,
+      country_code: data.address.country,
+      city: data.address.city,
+      state_code: data.address.state,
+      postcode: data.address.zip,
     },
-    body: JSON.stringify({
-      line_items: data.items.map(item => ({
-        page_count: item.pages,
-        quantity: item.quantity,
-        pod_package_id: podPackageId(item.printSize, item.pages),
-      })),
-      shipping_address: {
-        name: data.address.name,
-        street1: data.address.street,
-        country_code: data.address.country,
-        city: data.address.city,
-        state_code: data.address.state,
-        postcode: data.address.zip,
-      },
-      shipping_option: shippingLevel,
-    }),
+    shipping_option: shippingLevel,
   });
-  const json = await res.json();
-  return { statusCode: res.status, json, shippingLevel };
+  return { statusCode, json, shippingLevel };
 }
 
 function toCents(strNum: string): number {
@@ -155,31 +136,4 @@ export const schema = {
       },
     ],
   },
-};
-
-const luluResponse = {
-  line_item_costs: [
-    {
-      cost_excl_discounts: `4.81`,
-      total_tax: `0.00`,
-      tax_rate: `0.000000`,
-      quantity: 1,
-      total_cost_excl_tax: `4.81`,
-      total_cost_excl_discounts: `4.81`,
-      total_cost_incl_tax: `4.81`,
-      discounts: [],
-      unit_tier_cost: null,
-    },
-  ],
-  shipping_cost: {
-    total_cost_excl_tax: `3.99`,
-    total_cost_incl_tax: `3.99`,
-    total_tax: `0.00`,
-    tax_rate: `0.00`,
-  },
-  total_tax: `0.00`,
-  total_cost_excl_tax: `8.80`,
-  total_cost_incl_tax: `8.80`,
-  total_discount_amount: `0.00`,
-  currency: `USD`,
 };

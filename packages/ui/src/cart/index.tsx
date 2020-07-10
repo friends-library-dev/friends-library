@@ -43,7 +43,6 @@ const CartComponent: React.FC<Props> = ({
         {...item}
         key={`item-${index}`}
         price={new CartItem(item).price()}
-        title={item.title[0]}
         changeQty={(qty: number) => {
           items[index].quantity = qty;
           setItems([...items]);

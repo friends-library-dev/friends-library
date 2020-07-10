@@ -32,7 +32,7 @@ const StatefulCartItem: React.FC = () => {
     <CartItem
       edition="updated"
       displayTitle={data.displayTitle}
-      title={data.title[0]}
+      title={data.title}
       author={data.author}
       quantity={qty}
       price={422}

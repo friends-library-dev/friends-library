@@ -41,6 +41,7 @@ jobs:
           yarn compile cloud
           yarn compile lulu
           yarn compile doc-html
+          yarn compile db
       - name: test
         run: yarn test -w=2
 

@@ -113,7 +113,7 @@ describe(`CheckoutService()`, () => {
           country: service.cart.address!.country,
         },
         items: service.cart.items.map(i => ({
-          title: i.printJobTitle(0),
+          title: i.printJobTitle(),
           documentId: i.documentId,
           edition: i.edition,
           quantity: i.quantity,

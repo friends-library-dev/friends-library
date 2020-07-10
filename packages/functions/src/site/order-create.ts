@@ -1,9 +1,10 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err } from '@friends-library/types';
+import { Client as DbClient, Db } from '@friends-library/db';
+import { log } from '@friends-library/slack';
 import validateJson from '../lib/validate-json';
 import Responder from '../lib/Responder';
-import { create as createOrder, Order } from '../lib/order';
-import log from '../lib/log';
+import env from '../lib/env';
 
 export default async function orderCreateHandler(
   { body }: APIGatewayEvent,
@@ -16,14 +17,14 @@ export default async function orderCreateHandler(
   }
 
   const now = new Date().toISOString();
-  const order: Order = {
+  const order: Db.Order = {
     id: data.id,
     lang: data.lang === `en` ? `en` : `es`,
     email: data.email,
     shippingLevel: data.shippingLevel,
     created: now,
     updated: now,
-    items: data.items as Order['items'],
+    items: data.items as Db.Order['items'],
     address: data.address,
     amount: data.amount,
     shipping: data.shipping,
@@ -33,7 +34,8 @@ export default async function orderCreateHandler(
     printJobStatus: `presubmit`,
   };
 
-  const [error] = await createOrder(order);
+  const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
+  const [error] = await db.orders.create(order);
   if (error) {
     log.error(`error creating flp order`, { error });
     return respond.json({ msg: Err.ERROR_CREATING_FLP_ORDER }, 500);

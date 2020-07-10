@@ -9,7 +9,6 @@ import { red } from '@friends-library/cli-utils/color';
 import {
   allFriends,
   allDocsMap,
-  cartItemData,
   justHeadings,
   htmlTitle,
   htmlShortTitle,
@@ -118,7 +117,6 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
 
         return {
           ...edition.toJSON(),
-          ...cartItemData(edition, pages),
           ...published(editionMeta.published, LANG),
           friendSlug: friend.slug,
           documentSlug: document.slug,

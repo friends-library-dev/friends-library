@@ -10,9 +10,9 @@ import {
 } from '@friends-library/types';
 import useragent from 'express-useragent';
 import isbot from 'isbot';
-import { create as createDownload, Download } from '../lib/download';
+import { Client as DbClient, Db } from '@friends-library/db';
+import { log } from '@friends-library/slack';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
 
 async function logDownload(
   { path, headers = {} }: APIGatewayEvent,
@@ -92,7 +92,7 @@ async function logDownload(
     }
   }
 
-  const download: Download = {
+  const download: Db.Download = {
     documentId: docId,
     edition: editionType,
     format,
@@ -108,7 +108,8 @@ async function logDownload(
     userAgent,
   };
 
-  const [error] = await createDownload(download);
+  const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
+  const [error] = await db.downloads.create(download);
   if (error) {
     log.error(`error adding download to db`, { error });
   } else {
@@ -133,12 +134,14 @@ function sendSlack(
   const from = referrer ? `, from url: \`${referrer}\`` : ``;
 
   let where = ``;
-  if (location.latitude) {
-    const mapUrl = `https://www.google.com/maps/@${location.latitude},${location.longitude},14z`;
+  if (location.city) {
     const parts = [location.city, location.region, location.postalCode, location.country]
       .filter(Boolean)
       .join(` / `);
-    where = `, location: \`${parts}\` ${mapUrl}`;
+    const mapUrl = location.latitude
+      ? ` https://www.google.com/maps/@${location.latitude},${location.longitude},14z`
+      : ``;
+    where = `, location: \`${parts}\`${mapUrl}`;
   }
 
   log.download(`Download: \`${cloudPath}\`, device: \`${device}\`${from}${where}`);

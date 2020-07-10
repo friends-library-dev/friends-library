@@ -38,6 +38,7 @@ content-type: application/json
 ###
 
 # Create payment intent
+# @name createPaymentIntent
 POST {{base}}/payment-intent HTTP/1.1
 content-type: application/json
 
@@ -54,8 +55,9 @@ content-type: application/json
 
 {
   "lang": "en",
-  "orderId": "08b168a2-4ac6-4e6b-a9c9-9a1a8653f94b",
-  "paymentId": "pi_1H2KlREswFkMHmtg1SqtdS4x",
+  "id": "{{orderId}}",
+  "paymentId": "{{paymentIntentId}}",
+  "shippingLevel": "MAIL",
   "amount": 1632,
   "email": "jared@netrivet.com",
   "items": [{
@@ -142,8 +144,8 @@ content-type: application/json
 
 ###
 @base = http://localhost:2345/.netlify/functions/site
-@paymentIntentId = {{createOrder.response.body.$.paymentIntentId}}
-@orderId = {{createOrder.response.body.$.orderId}}
+@paymentIntentId = {{createPaymentIntent.response.body.$.paymentIntentId}}
+@orderId = {{createPaymentIntent.response.body.$.orderId}}
 @printJobId = {{createPrintJob.response.body.$.printJobId}}
 @address = {"name":"Bo","street":"1 Rd","city":"Cody","state":"WY","zip":"82414","country": "US"}
 @pdfUrlBase = https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized

@@ -1,4 +1,3 @@
-import env from '@friends-library/env';
 import { toRoman } from 'roman-numerals';
 import { getAllFriends, Friend, Document, Edition } from '@friends-library/friends';
 import { Slug, ISBN, Asciidoc } from '@friends-library/types';
@@ -18,27 +17,6 @@ export function justHeadings(adoc: Asciidoc): Asciidoc {
     .split(`\n\n`)
     .slice(0, 1)
     .join(``);
-}
-
-export function cartItemData(
-  edition: Edition,
-  pages: number[],
-): Record<string, string[]> {
-  const isMulti = pages.length > 1;
-  const vols = pages.map((_, idx) => idx + 1);
-  const cloudUrl = env.require(`CLOUD_STORAGE_BUCKET_URL`).CLOUD_STORAGE_BUCKET_URL;
-  const url = `${cloudUrl}/${edition.path}`;
-  return {
-    cartItemTitles: vols.map(
-      v => `${edition.document.title}${isMulti ? `, vol. ${v}` : ``}`,
-    ),
-    cartItemInteriorPdfUrls: vols.map(
-      v => `${url}/${edition.filename(`paperback-interior`, isMulti ? v : undefined)}`,
-    ),
-    cartItemCoverPdfUrls: vols.map(
-      v => `${url}/${edition.filename(`paperback-cover`, isMulti ? v : undefined)}`,
-    ),
-  };
 }
 
 let friends: Friend[] = [];

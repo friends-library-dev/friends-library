@@ -56,15 +56,9 @@ describe(`CheckoutService()`, () => {
 function getCart(): Cart {
   const testCart = cartPlusData();
   const item = testCart.items[0];
-  item.title = [`Journal of Ambrose Rigge (modernized)`];
+  item.title = `Journal of Ambrose Rigge (modernized)`;
   item.numPages = [166];
   item.printSize = `m`;
-  item.coverPdfUrl = [
-    `https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--cover.pdf`,
-  ];
-  item.interiorPdfUrl = [
-    `https://flp-assets.nyc3.digitaloceanspaces.com/en/ambrose-rigge/journal-and-writings/modernized/Journal_of_Ambrose_Rigge--modernized--(print).pdf`,
-  ];
   testCart.items = [item];
   testCart.email = `integration@test.com`;
   return testCart;

@@ -1,10 +1,13 @@
 import logDownload from '../log-download';
 import { invokeCb } from './invoke';
-import { create } from '../../lib/download';
 
 jest.mock(`@friends-library/slack`);
-jest.mock(`../../lib/download`, () => ({
-  create: jest.fn(() => [null, true]),
+
+const create = jest.fn(() => Promise.resolve([null, true]));
+jest.mock(`@friends-library/db`, () => ({
+  Client: class {
+    downloads = { create };
+  },
 }));
 
 describe(`logDownload()`, () => {

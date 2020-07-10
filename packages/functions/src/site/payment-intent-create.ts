@@ -1,8 +1,8 @@
 import uuid from 'uuid/v4';
 import { APIGatewayEvent } from 'aws-lambda';
 import { checkoutErrors as Err } from '@friends-library/types';
+import { log } from '@friends-library/slack';
 import Responder from '../lib/Responder';
-import log from '../lib/log';
 import validateJson from '../lib/validate-json';
 import stripeClient from '../lib/stripe';
 

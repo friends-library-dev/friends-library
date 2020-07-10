@@ -1,15 +1,16 @@
+import { Environment } from '@friends-library/types';
 import baseEnv from '@friends-library/env';
 
-let context: 'TEST' | 'PROD' = `PROD`;
+let context: Environment = `production`;
 
 export default function env(key: string): string {
-  if (context === `PROD`) {
+  if (context === `production`) {
     const prodKey = `PROD_${key}`;
     const prodValue = baseEnv.get(prodKey)[prodKey];
     if (prodValue !== ``) return prodValue;
   }
 
-  if (context === `TEST`) {
+  if (context === `staging`) {
     const testKey = `TEST_${key}`;
     const testValue = baseEnv.get(testKey)[testKey];
     if (testValue !== ``) return testValue;
@@ -18,7 +19,7 @@ export default function env(key: string): string {
   return baseEnv.require(key)[key];
 }
 
-env.getContext = function(): 'TEST' | 'PROD' {
+env.getContext = function(): Environment {
   return context;
 };
 
@@ -33,7 +34,7 @@ env.setContext = function(lambdaContext?: {
   try {
     const json = JSON.parse(str);
     if (typeof json === `object` && typeof json?.site_url === `string`) {
-      context = (json.site_url as string).includes(`netlify`) ? `TEST` : `PROD`;
+      context = (json.site_url as string).includes(`netlify`) ? `staging` : `production`;
     }
   } catch {
     // ¯\_(ツ)_/¯

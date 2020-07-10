@@ -21,9 +21,6 @@ type Edition @dontInfer {
   price: Int!
   editor: String
   splits: [Int!]
-  cartItemTitles: [String!]!
-  cartItemInteriorPdfUrls: [String!]!
-  cartItemCoverPdfUrls: [String!]!
   downloadUrl: EditionDownloadUrl!
   publishedTimestamp: Int!
   publishedDate: String!

@@ -1,17 +1,17 @@
 import { Lang } from '@friends-library/types';
-import { Order } from './order';
+import { Db } from '@friends-library/db';
 import env from './env';
 
 export function emailFrom(lang: Lang): string {
   let name = lang === `en` ? `Friends Library` : `Biblioteca de los Amigos`;
-  if (env.getContext() === `TEST`) {
-    name += ` [TEST]`;
+  if (env.getContext() === `staging`) {
+    name += ` [staging]`;
   }
   return `${name} <app@friendslibrary.com>`;
 }
 
 export function orderShippedEmail(
-  order: Order,
+  order: Db.Order,
   trackingUrl?: string,
 ): { subject: string; text: string } {
   const lang = order.lang;
@@ -30,7 +30,9 @@ export function orderShippedEmail(
   };
 }
 
-export function orderConfirmationEmail(order: Order): { subject: string; text: string } {
+export function orderConfirmationEmail(
+  order: Db.Order,
+): { subject: string; text: string } {
   const lang = order.lang;
   return {
     subject:
@@ -44,7 +46,7 @@ export function orderConfirmationEmail(order: Order): { subject: string; text: s
   };
 }
 
-function salutation(order: Order, fallback: string): string {
+function salutation(order: Db.Order, fallback: string): string {
   const name = order.address.name;
   if (typeof name === `string`) {
     return name.split(` `).shift() + `,`;
@@ -52,7 +54,7 @@ function salutation(order: Order, fallback: string): string {
   return fallback;
 }
 
-function lineItems(order: Order): string {
+function lineItems(order: Db.Order): string {
   const items: { title: string; quantity: number }[] = order.items || [];
   return items.map(item => `* (${item.quantity}) ${item.title}`).join(`\n`);
 }

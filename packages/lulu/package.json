@@ -8,5 +8,9 @@
   "scripts": {
     "test": "cd ../.. && yarn jest packages/lulu",
     "compile": "cd ../../ && yarn compile lulu"
+  },
+  "dependencies": {
+    "client-oauth2": "^4.3.0",
+    "node-fetch": "^2.6.0"
   }
 }

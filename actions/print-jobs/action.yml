@@ -1,0 +1,15 @@
+name: print-jobs
+inputs:
+  lulu_client_key:
+    required: true
+  lulu_client_secret:
+    required: true
+  lulu_is_sandbox:
+    required: true
+  fauna_server_secret:
+    required: true
+  cloud_storage_bucket_url:
+    required: true
+runs:
+  using: node12
+  main: ./bundled/index.js
