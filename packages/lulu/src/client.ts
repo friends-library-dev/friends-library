@@ -17,7 +17,7 @@ export default class LuluClient {
   public async listPrintJobs(
     ids?: number[],
   ): Promise<[LuluAPI.ListPrintJobsResponse, number]> {
-    let route = `print-jobs/${ids ? `?id=${ids.join(`&id=`)}` : ``}`;
+    const route = `print-jobs/${ids ? `?id=${ids.join(`&id=`)}` : ``}`;
     return this.get<LuluAPI.ListPrintJobsResponse>(route);
   }
 
@@ -83,7 +83,7 @@ export default class LuluClient {
       const { accessToken } = await client.credentials.getToken();
       this.accessToken = accessToken;
     } catch (err) {
-      throw new Error(`Error retieving Lulu auth token`);
+      throw new Error(`Error retrieving Lulu auth token`);
     }
   }
 }

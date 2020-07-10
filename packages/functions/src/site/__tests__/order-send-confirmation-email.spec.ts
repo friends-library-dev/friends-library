@@ -2,7 +2,6 @@ import { checkoutErrors as Err } from '@friends-library/types';
 import mailer from '@sendgrid/mail';
 import sendConfirmation from '../order-send-confirmation-email';
 import { invokeCb } from './invoke';
-import { findById } from '../../lib/order';
 
 jest.mock(`@friends-library/slack`);
 
@@ -19,8 +18,12 @@ const mockOrder = {
     name: `Jared Henderson`,
   },
 };
-jest.mock(`../../lib/order`, () => ({
-  findById: jest.fn(() => Promise.resolve([null, mockOrder])),
+
+const findById = jest.fn(() => Promise.resolve([null, mockOrder]));
+jest.mock(`@friends-library/db`, () => ({
+  Client: class {
+    orders = { findById };
+  },
 }));
 
 describe(`sendOrderConfirmationEmail()`, () => {

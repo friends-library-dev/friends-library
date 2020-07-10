@@ -1,30 +1,33 @@
-import { checkoutErrors as Err } from '@friends-library/types';
 import printJobFees, { schema } from '../print-job-fees';
 import { invokeCb } from './invoke';
-import fetch from 'node-fetch';
 
-const getToken = jest.fn(() => `oauth-token`);
-jest.mock(`client-oauth2`, () => {
-  return jest.fn().mockImplementation(() => ({ credentials: { getToken } }));
-});
-
-jest.mock(`node-fetch`);
-const { Response } = jest.requireActual(`node-fetch`);
-const mockFetch = <jest.Mock>(<unknown>fetch);
+const printJobCosts = jest.fn(() =>
+  Promise.resolve([
+    {
+      line_item_costs: [
+        {
+          cost_excl_discounts: `4.81`,
+        },
+      ],
+      shipping_cost: {
+        total_cost_incl_tax: `3.99`,
+        total_cost_excl_tax: `3.99`,
+      },
+      total_tax: `0.00`,
+      total_cost_excl_tax: `8.80`,
+      total_cost_incl_tax: `8.80`,
+    },
+    201,
+  ]),
+);
+jest.mock(`@friends-library/lulu`, () => ({
+  podPackageId: () => `pod-package-id`,
+  LuluClient: class {
+    printJobCosts = printJobCosts;
+  },
+}));
 
 describe(`printJobFees()`, () => {
-  it(`should return 500 response if oauth token acquisition fails`, async () => {
-    const body = JSON.stringify(schema.example);
-    getToken.mockImplementationOnce(() => {
-      throw new Error(`some error`);
-    });
-
-    const { res, json } = await invokeCb(printJobFees, { body });
-
-    expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe(Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN);
-  });
-
   it(`responds 400 if bad body passed`, async () => {
     const data = JSON.parse(JSON.stringify(schema.example));
     data.items[0].quantity = 0; // <-- invalid quantity!
@@ -34,14 +37,13 @@ describe(`printJobFees()`, () => {
   });
 
   it(`translates passed body into correct body to pass to lulu`, async () => {
-    mockFetch.mockImplementation(() => new Response(`{}`));
     const body = JSON.stringify(schema.example);
     await invokeCb(printJobFees, { body });
-    expect(JSON.parse(mockFetch.mock.calls[0][1].body)).toMatchObject({
+    expect(printJobCosts).toHaveBeenCalledWith({
       line_items: [
         {
           page_count: schema.example.items[0].pages,
-          pod_package_id: `0550X0850BWSTDPB060UW444GXX`,
+          pod_package_id: `pod-package-id`,
           quantity: schema.example.items[0].quantity,
         },
       ],
@@ -50,6 +52,7 @@ describe(`printJobFees()`, () => {
         street1: schema.example.address.street,
         country_code: schema.example.address.country,
         state_code: schema.example.address.state,
+        city: schema.example.address.city,
         postcode: schema.example.address.zip,
       },
       shipping_option: `MAIL`,
@@ -57,33 +60,41 @@ describe(`printJobFees()`, () => {
   });
 
   it(`returns cheapest re-formatted fee information`, async () => {
-    // prettier-ignore
-    mockFetch.mockReturnValueOnce(new Response(JSON.stringify({
-      line_item_costs: [{
-        cost_excl_discounts: `4.81`,
-      }],
-      shipping_cost: {
-        total_cost_incl_tax: `3.99`,
-        total_cost_excl_tax: `3.99`,
+    printJobCosts.mockResolvedValueOnce([
+      {
+        line_item_costs: [
+          {
+            cost_excl_discounts: `4.81`,
+          },
+        ],
+        shipping_cost: {
+          total_cost_incl_tax: `3.99`,
+          total_cost_excl_tax: `3.99`,
+        },
+        total_tax: `0.00`,
+        total_cost_excl_tax: `8.80`,
+        total_cost_incl_tax: `8.80`,
       },
-      total_tax: `0.00`,
-      total_cost_excl_tax: `8.80`,
-      total_cost_incl_tax: `8.80`
-    }), { status: 201 }));
+      201,
+    ]);
 
-    // prettier-ignore
-    mockFetch.mockResolvedValue({ status: 201, json: () => Promise.resolve({
-      line_item_costs: [{
-        cost_excl_discounts: `4.81`,
-      }],
-      shipping_cost: {
-        total_cost_incl_tax: `6.99`,
-        total_cost_excl_tax: `6.99`, // <-- more expensive!
+    printJobCosts.mockResolvedValue([
+      {
+        line_item_costs: [
+          {
+            cost_excl_discounts: `4.81`,
+          },
+        ],
+        shipping_cost: {
+          total_cost_incl_tax: `6.99`,
+          total_cost_excl_tax: `6.99`, // <-- more expensive!
+        },
+        total_tax: `0.00`,
+        total_cost_excl_tax: `8.80`,
+        total_cost_incl_tax: `11.80`,
       },
-      total_tax: `0.00`,
-      total_cost_excl_tax: `8.80`,
-      total_cost_incl_tax: `11.80`
-    })});
+      201,
+    ]);
 
     const body = JSON.stringify(schema.example);
     const { res, json } = await invokeCb(printJobFees, { body });

@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import { log } from '@friends-library/slack';
 import Orders from './Orders';
 import Downloads from './Downloads';
@@ -25,6 +26,7 @@ export default class Client {
 
       const json = await res.json();
       if (json.errors || !json.data) {
+        console.log({ json, query, variables });
         log.error(`graphql error`, { json, query, variables });
       }
 

@@ -1,11 +1,14 @@
 import { checkoutErrors as Err } from '@friends-library/types';
 import updateOrderPrintJobStatus from '../order-update-print-job-status';
 import { invokeCb } from './invoke';
-import { findById, save } from '../../lib/order';
 
-jest.mock(`../../lib/order`, () => ({
-  findById: jest.fn(),
-  save: jest.fn(),
+const findById = jest.fn();
+const save = jest.fn();
+
+jest.mock(`@friends-library/db`, () => ({
+  Client: class {
+    orders = { findById, save };
+  },
 }));
 
 describe(`updateOrderPrintJobStatus()`, () => {
