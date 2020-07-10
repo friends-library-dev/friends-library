@@ -162,7 +162,7 @@ export default class CheckoutService {
       items: this.cart.items
         .filter(i => i.quantity > 0)
         .map(item => ({
-          title: item.printJobTitle(0),
+          title: item.printJobTitle(),
           documentId: item.documentId,
           edition: item.edition,
           quantity: item.quantity,

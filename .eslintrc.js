@@ -14,6 +14,7 @@ module.exports = {
     'react/no-unescaped-entities': 'error',
     'no-only-tests/no-only-tests': 'error',
     'no-useless-constructor': 'off',
+    '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',

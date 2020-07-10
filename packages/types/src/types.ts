@@ -26,6 +26,8 @@ export {
 } from './doc';
 export { checkoutErrors, CheckoutError } from './errors';
 
+export type Environment = `production` | `staging` | `development`;
+
 export const GENDERS = [`male`, `female`] as const;
 export type Gender = typeof GENDERS[number];
 

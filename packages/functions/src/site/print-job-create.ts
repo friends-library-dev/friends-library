@@ -1,13 +1,12 @@
 import { APIGatewayEvent } from 'aws-lambda';
-import fetch from 'node-fetch';
-import { checkoutErrors as Err } from '@friends-library/types';
+import { checkoutErrors as Err, PrintSize } from '@friends-library/types';
+import { podPackageId, LuluAPI } from '@friends-library/lulu';
+import { Client as DbClient } from '@friends-library/db';
+import { log } from '@friends-library/slack';
 import Responder from '../lib/Responder';
-import { PrintSize } from '@friends-library/types';
-import env from '../lib/env';
 import validateJson from '../lib/validate-json';
-import log from '../lib/log';
-import { findById, save as saveOrder } from '../lib/order';
-import { getAuthToken, podPackageId } from '../lib/lulu';
+import luluClient from '../lib/lulu';
+import env from '../lib/env';
 
 export default async function createPrintJob(
   { body }: APIGatewayEvent,
@@ -19,39 +18,23 @@ export default async function createPrintJob(
     return respond.json({ msg: Err.INVALID_FN_REQUEST_BODY, detail: data.message }, 400);
   }
 
-  const [findError, order] = await findById(data.orderId);
+  const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
+  const [findError, order] = await db.orders.findById(data.orderId);
   if (!order) {
     log.error(`order not found for print job creation`, { data, error: findError });
     return respond.json({ msg: Err.FLP_ORDER_NOT_FOUND }, 404);
   }
 
-  try {
-    var token = await getAuthToken();
-  } catch (error) {
-    log.error(`error acquiring lulu oauth token`, { error });
-    return respond.json({ msg: Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN }, 500);
-  }
-
-  const payload = createOrderPayload(data);
-  const res = await fetch(`${env(`LULU_API_ENDPOINT`)}/print-jobs/`, {
-    method: `POST`,
-    headers: {
-      'Cache-Control': `no-cache`,
-      'Content-Type': `application/json`,
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(payload),
-  });
-
-  const json = await res.json();
-  if (res.status > 201) {
-    log.error(`bad request (${res.status}) to lulu api`, { json, payload });
+  const payload = createPrintJobPayload(data);
+  const [json, status] = await luluClient().createPrintJob(payload);
+  if (status > 201) {
+    log.error(`bad request (${status}) to lulu api`, { json, payload });
     return respond.json({ msg: Err.ERROR_CREATING_PRINT_JOB }, 500);
   }
 
   order.printJobStatus = `pending`;
   order.printJobId = json.id;
-  const [saveError] = await saveOrder(order);
+  const [saveError] = await db.orders.save(order);
 
   if (saveError) {
     log.error(`error updating order with print_job details`, {
@@ -69,7 +52,9 @@ export default async function createPrintJob(
   log.info(`print job ${order.printJobId} created`);
 }
 
-function createOrderPayload(data: typeof schema.example): Record<string, any> {
+function createPrintJobPayload(
+  data: typeof schema.example,
+): LuluAPI.CreatePrintJobPayload {
   return {
     external_id: data.orderId,
     contact_email: data.email,
@@ -83,6 +68,7 @@ function createOrderPayload(data: typeof schema.example): Record<string, any> {
     shipping_address: {
       name: data.address.name,
       street1: data.address.street,
+      ...(data.address.street2 ? { street2: data.address.street2 } : {}),
       city: data.address.city,
       country_code: data.address.country,
       state_code: data.address.state,
@@ -120,7 +106,7 @@ export const schema = {
   example: {
     orderId: `flp-order-id`,
     email: `jared@netrivet.com`,
-    shippingLevel: `MAIL`,
+    shippingLevel: `MAIL` as const,
     paymentIntentId: `ch_123abc`,
     items: [
       {
@@ -135,6 +121,7 @@ export const schema = {
     address: {
       name: `Jared Henderson`,
       street: `123 Mulberry Ln.`,
+      street2: ``,
       city: `Wadsworth`,
       state: `OH`,
       zip: `44281`,

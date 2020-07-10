@@ -2,7 +2,6 @@ import { checkoutErrors as Err } from '@friends-library/types';
 import fetch from 'node-fetch';
 import mailer from '@sendgrid/mail';
 import checkOrders from '../orders-check';
-import { findByPrintJobStatus, saveAll } from '../../lib/order';
 import { invokeCb } from './invoke';
 
 jest.mock(`@sendgrid/mail`, () => ({
@@ -10,11 +9,15 @@ jest.mock(`@sendgrid/mail`, () => ({
   send: jest.fn(() => Promise.resolve([{ statusCode: 202 }])),
 }));
 
-jest.mock(`../../lib/order`, () => ({
-  findByPrintJobStatus: jest.fn(() =>
-    Promise.resolve([null, [{ printJobId: 123, address: { name: `Bo` } }]]),
-  ),
-  saveAll: jest.fn(() => Promise.resolve([null, true])),
+const saveAll = jest.fn(() => Promise.resolve([null, true]));
+const findByPrintJobStatus = jest.fn(() =>
+  Promise.resolve([null, [{ printJobId: 123, address: { name: `Bo` } }]]),
+);
+
+jest.mock(`@friends-library/db`, () => ({
+  Client: class {
+    orders = { saveAll, findByPrintJobStatus };
+  },
 }));
 
 const getToken = jest.fn(() => `oauth-token`);
@@ -38,15 +41,6 @@ describe(`checkOrders()`, () => {
     expect(mockFetch).not.toHaveBeenCalled();
   });
 
-  it(`should return 500 response if oauth token acquisition fails`, async () => {
-    getToken.mockImplementationOnce(() => {
-      throw new Error(`some error`);
-    });
-    const { res, json } = await invokeCb(checkOrders, {});
-    expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe(Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN);
-  });
-
   it(`hits lulu api with ids of interesting orders`, async () => {
     (<jest.Mock>findByPrintJobStatus).mockResolvedValueOnce([
       null,
@@ -57,7 +51,7 @@ describe(`checkOrders()`, () => {
   });
 
   it(`returns 500 if bad response from lulu`, async () => {
-    mockFetch.mockResolvedValueOnce(new Response(``, { status: 500 }));
+    mockFetch.mockResolvedValueOnce(new Response(`{}`, { status: 500 }));
     const { res, json } = await invokeCb(checkOrders, {});
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe(Err.ERROR_RETRIEVING_PRINT_JOB_DATA);

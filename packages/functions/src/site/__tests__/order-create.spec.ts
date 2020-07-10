@@ -1,12 +1,14 @@
 import { checkoutErrors as Err } from '@friends-library/types';
 import auth, { schema } from '../order-create';
 import { invokeCb } from './invoke';
-import { create } from '../../lib/order';
 
 const createIntent = jest.fn();
+const create = jest.fn(() => Promise.resolve([null, true]));
 
-jest.mock(`../../lib/order`, () => ({
-  create: jest.fn(() => Promise.resolve([null, true])),
+jest.mock(`@friends-library/db`, () => ({
+  Client: class {
+    orders = { create };
+  },
 }));
 
 describe(`/orders create handler`, () => {

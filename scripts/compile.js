@@ -29,6 +29,7 @@ const pkgs = [
   'styleguide',
   'ui',
   'fell',
+  'db',
   'all',
 ];
 

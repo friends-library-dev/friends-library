@@ -1,12 +1,15 @@
 import { checkoutErrors as Err } from '@friends-library/types';
 import fetchOrder from '../order-fetch';
 import { invokeCb } from './invoke';
-import { findById } from '../../lib/order';
 
 const id = `6b0e134d-8d2e-48bc-8fa3-e8fc79793804`;
 const mockOrder = { id };
-jest.mock(`../../lib/order`, () => ({
-  findById: jest.fn(() => Promise.resolve([null, mockOrder])),
+const findById = jest.fn(() => Promise.resolve([null, mockOrder]));
+
+jest.mock(`@friends-library/db`, () => ({
+  Client: class {
+    orders = { findById };
+  },
 }));
 
 describe(`fetchOrder()`, () => {

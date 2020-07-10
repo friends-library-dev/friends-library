@@ -9,14 +9,14 @@ import Document from './Document';
 import friendFromJS from './map';
 
 export function getFriend(slug: Slug, lang: Lang = `en`): Friend {
-  const path = resolve(__dirname, `../yml/${lang}/${slug}.yml`);
+  const path = ymlPath(`${lang}/${slug}.yml`);
   const file = readFileSync(path);
   const data = safeLoad(file.toString());
   return friendFromJS({ lang, ...data });
 }
 
 export function getAllFriends(lang: Lang = `en`, withCompilations = false): Friend[] {
-  const pattern = resolve(__dirname, `../yml/${lang}/*.yml`);
+  const pattern = ymlPath(`${lang}/*.yml`);
   const friends = glob(pattern).map(path => getFriend(basename(path, `.yml`), lang));
   if (withCompilations) {
     return friends;
@@ -49,4 +49,8 @@ export function allPublishedAudiobooks(lang: Lang): Edition[] {
 
 export function numPublishedBooks(lang: Lang): number {
   return allPublishedBooks(lang).length;
+}
+
+function ymlPath(end: string): string {
+  return resolve(process.env.FRIENDS_YML_PATH || `${__dirname}/../yml`, end);
 }

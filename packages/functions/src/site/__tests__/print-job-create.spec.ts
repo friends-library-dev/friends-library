@@ -1,39 +1,29 @@
 import { checkoutErrors as Err } from '@friends-library/types';
+import { podPackageId } from '@friends-library/lulu';
 import createOrder, { schema } from '../print-job-create';
 import { invokeCb } from './invoke';
-import { podPackageId } from '../../lib/lulu';
-import { findById, save } from '../../lib/order';
-import fetch from 'node-fetch';
 
-jest.mock(`../../lib/order`, () => ({
-  findById: jest.fn(() => Promise.resolve([null, { id: `order-id` }])),
-  save: jest.fn(() => Promise.resolve([null, true])),
+const createPrintJob = jest.fn(() => Promise.resolve([{ id: 123 }, 201]));
+const findById = jest.fn(() => Promise.resolve([null, { id: `order-id` }]));
+const save = jest.fn(() => Promise.resolve([null, true]));
+
+jest.mock(`@friends-library/lulu`, () => ({
+  podPackageId: () => `podpackageid`,
+  LuluClient: class {
+    createPrintJob = createPrintJob;
+  },
 }));
 
-const getToken = jest.fn(() => `oauth-token`);
-jest.mock(`client-oauth2`, () => {
-  return jest.fn().mockImplementation(() => ({ credentials: { getToken } }));
-});
-
-jest.mock(`node-fetch`);
-const { Response } = jest.requireActual(`node-fetch`);
-const mockFetch = <jest.Mock>(<unknown>fetch);
+jest.mock(`@friends-library/db`, () => ({
+  Client: class {
+    orders = { findById, save };
+  },
+}));
 
 describe(`createOrder()`, () => {
   beforeEach(() => jest.clearAllMocks());
 
   const testBody = JSON.stringify(schema.example);
-
-  it(`should return 500 response if oauth token acquisition fails`, async () => {
-    getToken.mockImplementationOnce(() => {
-      throw new Error(`some error`);
-    });
-
-    const { res, json } = await invokeCb(createOrder, { body: testBody });
-
-    expect(res.statusCode).toBe(500);
-    expect(json.msg).toBe(Err.ERROR_ACQUIRING_LULU_OAUTH_TOKEN);
-  });
 
   it(`responds 400 if bad body passed`, async () => {
     const data = JSON.parse(testBody);
@@ -53,9 +43,8 @@ describe(`createOrder()`, () => {
   });
 
   it(`translates passed body into correct body to pass to lulu`, async () => {
-    mockFetch.mockImplementation(() => new Response(`{}`));
     await invokeCb(createOrder, { body: testBody });
-    expect(JSON.parse(mockFetch.mock.calls[0][1].body)).toMatchObject({
+    expect(createPrintJob).toHaveBeenCalledWith({
       external_id: schema.example.orderId,
       contact_email: schema.example.email,
       line_items: [
@@ -83,24 +72,22 @@ describe(`createOrder()`, () => {
   });
 
   it(`returns 500 if the request to lulu is invalid`, async () => {
-    mockFetch.mockImplementation(() => new Response(`{}`, { status: 400 }));
+    createPrintJob.mockResolvedValueOnce([500, 500]);
     const { res, json } = await invokeCb(createOrder, { body: testBody });
     expect(res.statusCode).toBe(500);
     expect(json.msg).toBe(Err.ERROR_CREATING_PRINT_JOB);
   });
 
   it(`returns 201 with lulu order id if successful`, async () => {
-    mockFetch.mockImplementation(() => new Response(`{"id":6}`, { status: 201 }));
     const { res, json } = await invokeCb(createOrder, { body: testBody });
     expect(res.statusCode).toBe(201);
-    expect(json).toMatchObject({ printJobId: 6 });
+    expect(json).toMatchObject({ printJobId: 123 });
   });
 
   it(`updates order with print job order and status on success`, async () => {
-    mockFetch.mockImplementation(() => new Response(`{"id":6}`, { status: 201 }));
     await invokeCb(createOrder, { body: testBody });
     expect((<jest.Mock>save).mock.calls[0][0]).toMatchObject({
-      printJobId: 6,
+      printJobId: 123,
       printJobStatus: `pending`,
     });
   });

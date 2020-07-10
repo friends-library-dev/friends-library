@@ -29,9 +29,6 @@ type Props = Omit<CoverProps, 'pages'> & {
   pages: number[];
   isComplete: boolean;
   editions: {
-    title: string[];
-    interiorPdfUrl: string[];
-    coverPdfUrl: string[];
     type: EditionType;
     printSize: PrintSize;
     numPages: number[];
@@ -122,15 +119,13 @@ const DocBlock: React.FC<Props> = props => {
     store.cart.addItem(
       new CartItem({
         displayTitle: props.htmlShortTitle,
-        title: edition.title,
+        title: document.title,
         documentId: props.documentId,
         edition: edition.type,
         quantity: 1,
         printSize: edition.printSize,
         numPages: edition.numPages,
         author,
-        interiorPdfUrl: edition.interiorPdfUrl,
-        coverPdfUrl: edition.coverPdfUrl,
       }),
     );
   };

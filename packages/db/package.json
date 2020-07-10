@@ -1,0 +1,16 @@
+{
+  "name": "@friends-library/db",
+  "version": "1.0.0",
+  "description": "db stuff",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "cd ../.. && yarn jest packages/db",
+    "compile": "cd ../../ && yarn compile db"
+  },
+  "dependencies": {
+    "@friends-library/slack": "1.0.0",
+    "node-fetch": "^2.6.0"
+  }
+}

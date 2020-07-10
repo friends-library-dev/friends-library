@@ -3,9 +3,7 @@ import { EditionType, PrintSize } from '@friends-library/types';
 
 export interface CartItemData {
   displayTitle: string;
-  title: string[];
-  interiorPdfUrl: string[];
-  coverPdfUrl: string[];
+  title: string;
   documentId: string;
   edition: EditionType;
   quantity: number;
@@ -16,15 +14,13 @@ export interface CartItemData {
 
 export default class CartItem {
   public displayTitle: string;
-  public title: string[];
+  public title: string;
   public documentId: string;
   public edition: EditionType;
   public quantity: number;
   public printSize: PrintSize;
   public numPages: number[];
   public author: string;
-  public interiorPdfUrl: string[];
-  public coverPdfUrl: string[];
 
   public constructor(config: CartItemData) {
     this.displayTitle = config.displayTitle;
@@ -35,12 +31,10 @@ export default class CartItem {
     this.printSize = config.printSize;
     this.numPages = config.numPages;
     this.author = config.author;
-    this.interiorPdfUrl = config.interiorPdfUrl;
-    this.coverPdfUrl = config.coverPdfUrl;
   }
 
-  public printJobTitle(index: number): string {
-    let title = this.title[index];
+  public printJobTitle(): string {
+    let title = this.title;
     if (this.edition !== `updated`) {
       title += ` (${this.edition})`;
     }
@@ -65,8 +59,6 @@ export default class CartItem {
       quantity: this.quantity,
       printSize: this.printSize,
       numPages: this.numPages,
-      interiorPdfUrl: this.interiorPdfUrl,
-      coverPdfUrl: this.coverPdfUrl,
     };
   }
 }

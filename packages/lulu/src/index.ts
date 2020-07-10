@@ -1,4 +1,8 @@
 import { PrintSize, PrintSizeDetails, PageData } from '@friends-library/types';
+import LuluClient from './client';
+import { LuluAPI } from './types';
+
+export { LuluClient, LuluAPI };
 
 const defaultMargins = {
   top: 0.85,
@@ -24,6 +28,25 @@ export function bookDims(
     ...sizes[size].dims,
     depth: numPages * (1 / PAGES_PER_INCH),
   };
+}
+
+export function podPackageId(printSize: PrintSize, numPages: number): string {
+  const dimensions = {
+    s: `0425X0687`,
+    m: `0550X0850`,
+    xl: `0600X0900`,
+  };
+
+  return [
+    dimensions[printSize],
+    `BW`, // interior color
+    `STD`, // standard quality
+    numPages < 32 ? `SS` : `PB`, // saddle-stitch || perfect bound
+    `060UW444`, // 60# uncoated white paper, bulk = 444 pages/inch
+    `G`, // glossy cover (`M`: matte)
+    `X`, // no linen,
+    `X`, // no foil
+  ].join(``);
 }
 
 export const sizes: { [K in PrintSize]: PrintSizeDetails } = {

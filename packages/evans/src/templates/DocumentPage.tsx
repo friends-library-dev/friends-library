@@ -49,9 +49,6 @@ interface Props {
           mobi: string;
           epub: string;
         };
-        cartItemTitles: string[];
-        cartItemCoverPdfUrls: string[];
-        cartItemInteriorPdfUrls: string[];
         chapterHeadings: Heading[];
         code: {
           css: { cover: null | string };
@@ -145,9 +142,7 @@ const DocumentPage: React.FC<Props> = ({
         {...coverProps}
         pages={mainEdition.pages}
         editions={document.editions.map(edition => ({
-          title: edition.cartItemTitles,
-          interiorPdfUrl: edition.cartItemInteriorPdfUrls,
-          coverPdfUrl: edition.cartItemCoverPdfUrls,
+          title: document.title,
           type: edition.type,
           printSize: edition.printSize,
           numPages: edition.pages,
@@ -223,9 +218,6 @@ export const query = graphql`
           mobi
           epub
         }
-        cartItemTitles
-        cartItemCoverPdfUrls
-        cartItemInteriorPdfUrls
         ...CoverCode
         chapterHeadings {
           id

@@ -1,7 +1,7 @@
 import { Handler, Context, Callback, APIGatewayEvent } from 'aws-lambda';
+import { log } from '@friends-library/slack';
 import Responder from './lib/Responder';
 import router from './site/router';
-import log from './lib/log';
 import env from './lib/env';
 
 const handler: Handler = (
@@ -11,6 +11,7 @@ const handler: Handler = (
 ) => {
   // @ts-ignore
   env.setContext(context);
+  log.setEnv(env.getContext());
   router(event, new Responder(callback));
   log.debug(`*/site fn invocation*`, {
     event: {
