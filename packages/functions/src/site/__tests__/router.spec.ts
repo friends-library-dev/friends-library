@@ -1,9 +1,7 @@
 import router from '../router';
 import { invokeCb } from './invoke';
-import printJobStatus from '../print-job-status';
 import sendOrderConfirmationEmail from '../order-send-confirmation-email';
 
-jest.mock(`../print-job-status`);
 jest.mock(`../order-send-confirmation-email`);
 
 describe(`site fn`, () => {
@@ -28,25 +26,6 @@ describe(`site fn`, () => {
     const { err, res } = await invokeCb(router, event);
     expect(res).toMatchObject({ statusCode: 404, body: `Not Found` });
     expect(err).toBeNull();
-  });
-
-  const badPrintJobStatusPaths = [
-    [`/site/print-job/123/status/41234/nope`],
-    [`/site/print-job/123/status?foo=bar`],
-    [`/site/print-job/letters/status`],
-    [`/site/print-job/123/status/`], // <-- trailing slash
-    [`/site/print-job/abc123/status`],
-  ];
-
-  test.each(badPrintJobStatusPaths)(`%s is invalid path`, async path => {
-    const { res } = await invokeCb(router, { path });
-    expect(res.statusCode).toBe(404);
-  });
-
-  it(`good print job status url handled`, async () => {
-    (<jest.Mock>printJobStatus).mockImplementation((_, respond) => respond.noContent());
-    await invokeCb(router, { path: `/site/print-job/123/status` });
-    expect(printJobStatus).toHaveBeenCalled();
   });
 
   it(`good send confirmation email request handled correctly`, async () => {
