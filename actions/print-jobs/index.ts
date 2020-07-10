@@ -21,8 +21,6 @@ async function main(): Promise<void> {
   for (let order of orders) {
     try {
       var payload = createPrintJobPayload(order, meta);
-      core.warning(`payload:`);
-      console.log(payload);
     } catch (err) {
       log.error((err as Error).message);
       continue;
@@ -61,6 +59,7 @@ async function main(): Promise<void> {
     }
 
     // allow time for Lulu to validate the print job
+    core.info(`Waiting ${VERIFY_DELAY / 1000} seconds before verifying acceptance...`);
     await sleep(VERIFY_DELAY);
 
     const [res, httpStatus] = await lulu.printJobStatus(printJob.id);

@@ -50,12 +50,12 @@ function sendAndLog({ msg, data, channel: prodChannel, emoji }: SlackData): void
   try {
     if (data) {
       sendJson(msg, data, channel, emoji);
-      console[logMethod](msg, channel, data);
+      console[logMethod](`#${channel}: ${msg}`, data);
       return;
     }
 
     send(msg, channel, emoji);
-    console[logMethod](msg, channel);
+    console[logMethod](`#${channel}: ${msg}`, channel);
   } catch (error) {
     console.error(`Error sending slack`, { error, msg, channel, emoji, data });
   }

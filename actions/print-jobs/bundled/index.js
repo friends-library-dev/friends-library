@@ -3599,8 +3599,6 @@ function main() {
                     order = orders_1_1.value;
                     try {
                         payload = createPrintJobPayload(order, meta);
-                        core.warning("payload:");
-                        console.log(payload);
                     }
                     catch (err) {
                         slack_1.log.error(err.message);
@@ -3664,9 +3662,9 @@ function main() {
                         return [3 /*break*/, 18];
                     }
                     // allow time for Lulu to validate the print job
+                    core.info("Waiting " + VERIFY_DELAY / 1000 + " seconds before verifying acceptance...");
                     return [4 /*yield*/, sleep(VERIFY_DELAY)];
                 case 15:
-                    // allow time for Lulu to validate the print job
                     _h.sent();
                     return [4 /*yield*/, lulu.printJobStatus(printJob.id)];
                 case 16:
