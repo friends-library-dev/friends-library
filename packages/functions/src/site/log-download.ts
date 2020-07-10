@@ -116,7 +116,11 @@ async function logDownload(
     log.debug(`Download added to db:`, { download });
   }
 
-  sendSlack(parsedUserAgent, referrer, cloudPath, location);
+  if (cloudPath.endsWith(`podcast.rss`)) {
+    log.debug(`RSS download added: ${cloudPath}`, { location });
+  } else {
+    sendSlack(parsedUserAgent, referrer, cloudPath, location);
+  }
 }
 
 export default logDownload;
