@@ -6,6 +6,8 @@ import { log } from '@friends-library/slack';
 import { getAllFriends, Edition } from '@friends-library/friends';
 
 async function main(): Promise<void> {
+  log.setEnv(`staging`); // @TEMP
+
   const db = new DbClient(process.env.INPUT_FAUNA_SERVER_SECRET || ``);
   const lulu = getLuluClient();
   const meta = await fetchMeta();
@@ -19,6 +21,8 @@ async function main(): Promise<void> {
   for (let order of orders) {
     try {
       var payload = createPrintJobPayload(order, meta);
+      core.warning(`payload:`);
+      console.log(payload);
     } catch (err) {
       log.error((err as Error).message);
       continue;

@@ -3576,6 +3576,7 @@ function main() {
         return __generator(this, function (_h) {
             switch (_h.label) {
                 case 0:
+                    slack_1.log.setEnv("staging"); // @TEMP
                     db = new db_1.Client(process.env.INPUT_FAUNA_SERVER_SECRET || "");
                     lulu = getLuluClient();
                     return [4 /*yield*/, document_meta_1.fetch()];
@@ -3598,6 +3599,8 @@ function main() {
                     order = orders_1_1.value;
                     try {
                         payload = createPrintJobPayload(order, meta);
+                        core.warning("payload:");
+                        console.log(payload);
                     }
                     catch (err) {
                         slack_1.log.error(err.message);
