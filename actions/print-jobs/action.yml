@@ -8,6 +8,8 @@ inputs:
     required: true
   fauna_server_secret:
     required: true
+  cloud_storage_bucket_url:
+    required: true
 runs:
   using: node12
   main: ./bundled/index.js

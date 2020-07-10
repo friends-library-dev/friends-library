@@ -13,3 +13,4 @@ jobs:
           lulu_client_secret: ${{ secrets.TEST_LULU_CLIENT_SECRET }}
           lulu_is_sandbox: true
           fauna_server_secret: ${{ secrets.TEST_FAUNA_SERVER_SECRET }}
+          cloud_storage_bucket_url: ${{ secrets.CLOUD_STORAGE_BUCKET_URL }}

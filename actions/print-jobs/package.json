@@ -10,6 +10,8 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@friends-library/db": "1.0.0",
+    "@friends-library/document-meta": "1.0.0",
+    "@friends-library/friends": "1.0.0",
     "@friends-library/lulu": "1.0.0"
   }
 }
