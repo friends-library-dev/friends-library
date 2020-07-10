@@ -2,11 +2,7 @@ import { APIGatewayEvent } from 'aws-lambda';
 import logDownload from './log-download';
 import createOrder from './order-create';
 import printJobFees from './print-job-fees';
-import createPrintJob from './print-job-create';
-import printJobStatus from './print-job-status';
 import submitContactForm from './submit-contact-form';
-import fetchOrder from './order-fetch';
-import updateOrderPrintJobStatus from './order-update-print-job-status';
 import brickOrder from './order-brick';
 import Responder from '../lib/Responder';
 import checkOrders from './orders-check';
@@ -23,14 +19,6 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return respond.noContent();
     }
 
-    if (path.startsWith(`orders/`)) {
-      return fetchOrder(event, respond);
-    }
-
-    if (path.match(/^print-job\/\d+\/status$/)) {
-      return printJobStatus(event, respond);
-    }
-
     if (path.startsWith(`log/download/`)) {
       return logDownload(event, respond);
     }
@@ -42,14 +30,10 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return createPaymentIntent(event, respond);
       case `print-job/fees`:
         return printJobFees(event, respond);
-      case `print-job`:
-        return createPrintJob(event, respond);
       case `orders/check`:
         return checkOrders(event, respond);
       case `orders`:
         return createOrder(event, respond);
-      case `orders/update-print-job-status`:
-        return updateOrderPrintJobStatus(event, respond);
       case `orders/brick`:
         return brickOrder(event, respond);
       case `contact`:
