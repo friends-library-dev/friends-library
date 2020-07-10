@@ -63,6 +63,7 @@ export default async function checkOrders(
         order.printJobStatus = `shipped`;
         updatedOrders.push(order);
         recentlyShippedOrders.push(order);
+        break;
     }
   });
 
