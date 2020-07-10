@@ -2,6 +2,11 @@ name: print-jobs
 
 on: [push]
 
+env:
+  DOCUMENT_META_AUTH_TOKEN: ${{ secrets.DOCUMENT_META_AUTH_TOKEN }}
+  DOCUMENT_META_GIST_ID: ${{ secrets.DOCUMENT_META_GIST_ID }}
+  DOCUMENT_META_GIST_FILENAME: ${{ secrets.DOCUMENT_META_GIST_FILENAME }}
+
 jobs:
   print_jobs:
     name: do-a-thing
