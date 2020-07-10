@@ -1,0 +1,8 @@
+name: print-jobs
+
+on: [push]
+
+jobs:
+  print_jobs:
+    - name: do-a-thing
+      uses: friends-library/friends-library/actions/should-deploy@actions-print-jobs
