@@ -9141,9 +9141,6 @@ function getFriend(slug, lang) {
     return map_1.default(__assign({ lang: lang }, data));
 }
 exports.getFriend = getFriend;
-function ymlPath(end) {
-    return path_1.resolve(process.env.FRIENDS_YML_PATH || __dirname + "/../yml", end);
-}
 function getAllFriends(lang, withCompilations) {
     if (lang === void 0) { lang = "en"; }
     if (withCompilations === void 0) { withCompilations = false; }
@@ -9182,6 +9179,9 @@ function numPublishedBooks(lang) {
     return allPublishedBooks(lang).length;
 }
 exports.numPublishedBooks = numPublishedBooks;
+function ymlPath(end) {
+    return path_1.resolve(process.env.FRIENDS_YML_PATH || __dirname + "/../yml", end);
+}
 
 
 /***/ }),
