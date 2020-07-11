@@ -58,7 +58,7 @@ jobs:
         uses: matken11235/slack-cleaner@v1
         with:
           group: debug
-          before: ${{ env.ONE_DAY_AGO }}
+          before: ${{ env.THREE_DAYS_AGO }}
           rate: '1'
           message: true
           bot: true
