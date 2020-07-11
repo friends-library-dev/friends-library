@@ -21,7 +21,7 @@ export default async function checkOrders(
   }
 
   if (orders.length === 0) {
-    log.info(`No accepted print jobs to process`);
+    log.debug(`No accepted print jobs to process`);
     return respond.json({ msg: `No accepted print jobs to process` });
   }
 
