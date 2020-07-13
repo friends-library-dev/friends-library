@@ -11,7 +11,16 @@ interface CartData {
 export default class Cart extends EventEmitter {
   public static fromJson(json: CartData): Cart {
     const cart = new Cart(
-      json.items.map(itemData => new CartItem(itemData)),
+      json.items
+        .map(itemData => {
+          // Temporary migration of cart data from legacy format
+          // remove after Oct 1, 2020
+          if (Array.isArray(itemData.title)) {
+            itemData.title = itemData.title[0];
+          }
+          return itemData;
+        })
+        .map(itemData => new CartItem(itemData)),
       json.address,
       json.email,
     );
