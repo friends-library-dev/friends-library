@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import CartItem, { CartItemData } from './CartItem';
 import { Address } from '../types';
+import { isAddress, isItem, migrateArrayTitle } from './integrity';
 
 interface CartData {
   items: CartItemData[];
@@ -9,23 +10,37 @@ interface CartData {
 }
 
 export default class Cart extends EventEmitter {
-  public static fromJson(json: CartData): Cart {
-    const cart = new Cart(
-      json.items
-        .map(itemData => {
-          // Temporary migration of cart data from legacy format
-          // remove after Oct 1, 2020
-          if (Array.isArray(itemData.title)) {
-            itemData.title = itemData.title[0];
-          }
-          return itemData;
-        })
-        .map(itemData => new CartItem(itemData)),
-      json.address,
-      json.email,
-    );
+  public static fromJson(json: unknown): Cart {
+    if (typeof json !== `object` || json === null) {
+      return new Cart([]);
+    }
 
-    return cart;
+    try {
+      const { items, address, email } = json as Record<string, unknown>;
+
+      let validEmail: string | undefined;
+      if (typeof email === `string`) {
+        validEmail = email;
+      }
+
+      let validAddress: Address | undefined;
+      if (isAddress(address)) {
+        validAddress = address;
+      }
+
+      let validItems: CartItemData[] = [];
+      if (Array.isArray(items)) {
+        validItems = items.map(migrateArrayTitle).filter(isItem);
+      }
+
+      return new Cart(
+        validItems.map(d => new CartItem(d)),
+        validAddress,
+        validEmail,
+      );
+    } catch (err) {
+      return new Cart([]);
+    }
   }
 
   public constructor(

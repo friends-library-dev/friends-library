@@ -207,6 +207,20 @@ export function isNotFalse<T>(x: T | false): x is T {
   return x !== false;
 }
 
+export function isPrintSize(x: unknown): x is PrintSize {
+  if (typeof x !== `string`) {
+    return false;
+  }
+  return ([...PRINT_SIZES] as string[]).includes(x);
+}
+
+export function isEdition(x: unknown): x is EditionType {
+  if (typeof x !== `string`) {
+    return false;
+  }
+  return ([...EDITION_TYPES] as string[]).includes(x);
+}
+
 export const ADOC_SYNTAX = {
   LEFT_DOUBLE_QUOTE: `"\``,
   RIGHT_DOUBLE_QUOTE: `\`"`,
