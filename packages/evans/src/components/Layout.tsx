@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import cx from 'classnames';
 import smoothscroll from 'smoothscroll-polyfill';
@@ -20,6 +20,7 @@ import {
 import Checkout from './Checkout';
 import Slideover from './Slideover';
 import { LANG } from '../env';
+import ErrorBoundary from './ErrorBoundary';
 import './Layout.css';
 
 const store = CartStore.getSingleton();
@@ -76,7 +77,7 @@ const Layout: React.FC = ({ children }) => {
   `);
 
   return (
-    <Fragment>
+    <ErrorBoundary location="root">
       <Helmet>
         <html
           lang={LANG}
@@ -132,7 +133,7 @@ const Layout: React.FC = ({ children }) => {
         <Footer bgImg={data.mountains.childImageSharp.fluid} />
       </div>
       <Checkout isOpen={checkoutModalOpen} />
-    </Fragment>
+    </ErrorBoundary>
   );
 };
 

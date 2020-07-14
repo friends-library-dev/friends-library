@@ -8,6 +8,7 @@ import Responder from '../lib/Responder';
 import checkOrders from './orders-check';
 import sendOrderConfirmationEmail from './order-send-confirmation-email';
 import createPaymentIntent from './payment-intent-create';
+import logError from './log-error';
 
 export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
   const method = event.httpMethod;
@@ -38,6 +39,8 @@ export default async function(event: APIGatewayEvent, respond: Responder): Promi
         return brickOrder(event, respond);
       case `contact`:
         return submitContactForm(event, respond);
+      case `log-error`:
+        return logError(event, respond);
     }
 
     if (path.match(/^orders\/[a-z0-9-]+\/confirmation-email$/)) {

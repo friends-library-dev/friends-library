@@ -143,6 +143,26 @@ content-type: application/json
 }
 
 ###
+
+# log runtime error
+POST {{base}}/log-error HTTP/1.1
+content-type: application/json
+
+{
+  "error": {
+    "message": "error.message",
+    "name": "error.name",
+    "stack": null
+  },
+  "info": {
+    "foo": "bar"
+  },
+  "url": "http://localhost:9222",
+  "userAgent": "user-agent"
+}
+
+
+###
 @base = http://localhost:2345/.netlify/functions/site
 @paymentIntentId = {{createPaymentIntent.response.body.$.paymentIntentId}}
 @orderId = {{createPaymentIntent.response.body.$.orderId}}
