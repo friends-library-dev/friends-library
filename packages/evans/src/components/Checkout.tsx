@@ -9,6 +9,7 @@ import {
   CheckoutFlow,
 } from '@friends-library/ui';
 import { cover3dFromQuery } from '../lib/covers';
+import ErrorBoundary from './ErrorBoundary';
 
 const store = CartStore.getSingleton();
 const api = new CheckoutApi(`/.netlify/functions/site`);
@@ -86,7 +87,9 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
 
   return (
     <CheckoutModal onClose={() => machine.close()}>
-      <CheckoutFlow machine={machine} recommendedBooks={recommended} />
+      <ErrorBoundary location="checkout">
+        <CheckoutFlow machine={machine} recommendedBooks={recommended} />
+      </ErrorBoundary>
     </CheckoutModal>
   );
 };
