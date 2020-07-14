@@ -108,6 +108,10 @@ async function logDownload(
     userAgent,
   };
 
+  if (download.browser === `AirPodcasts` && location.city === `Pensacola`) {
+    return; // don't record or slack strange repetative requests from CB
+  }
+
   const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
   const [error] = await db.downloads.create(download);
   if (error) {
