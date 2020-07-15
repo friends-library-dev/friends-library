@@ -36,6 +36,7 @@ jobs:
           yarn compile types
           yarn compile env
           yarn compile adoc-utils
+          yarn compile adoc-convert
           yarn compile adoc-lint
           yarn compile slack
           yarn compile cloud
