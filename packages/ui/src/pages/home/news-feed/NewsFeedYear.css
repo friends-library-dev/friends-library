@@ -1,0 +1,14 @@
+.NewsFeedYear + .NewsFeedYear {
+  @apply mt-6;
+}
+
+@screen sm {
+  .NewsFeedYear + .NewsFeedYear {
+    @apply mt-2;
+  }
+
+  .NewsFeedYear__Year {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+  }
+}

@@ -199,6 +199,13 @@ export interface FluidImageObject {
   media?: string;
 }
 
+export type NewsFeedType =
+  | `book`
+  | `audiobook`
+  | `spanish_translation`
+  | `feature`
+  | `chapter`;
+
 export function isDefined<T>(x: T | undefined): x is T {
   return typeof x !== `undefined`;
 }

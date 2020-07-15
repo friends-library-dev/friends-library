@@ -1,6 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { FluidBgImageObject, FluidImageObject } from '@friends-library/types';
+import {
+  FluidBgImageObject,
+  FluidImageObject,
+  NewsFeedType,
+} from '@friends-library/types';
 import Layout from '../components/Layout';
 import ExploreBooksBlock from '../components/ExploreBooksBlock';
 import { LANG } from '../env';
@@ -12,12 +16,15 @@ import {
   HomeGettingStartedBlock,
   HomeFeaturedBooksBlock,
   HomeFormatsBlock,
+  NewsFeedBlock,
 } from '@friends-library/ui';
 import { coverPropsFromQueryData } from '../lib/covers';
 
 const HomePage: React.FC<Props> = ({ data }) => {
   const {
     site,
+    newsFeed,
+    books11,
     london,
     deviceArray,
     paperback,
@@ -38,6 +45,7 @@ const HomePage: React.FC<Props> = ({ data }) => {
         imgIPhone={iPhone.image.fluid}
         numTotalBooks={numBooks}
       />
+      <NewsFeedBlock bgImg={books11.image.fluid} items={newsFeed.items} />
       <HomeFeaturedBooksBlock
         books={Object.values(featured)
           .filter(Boolean)
@@ -62,6 +70,17 @@ export default HomePage;
 interface Props {
   data: {
     site: SiteMetadata;
+    newsFeed: {
+      items: {
+        title: string;
+        day: string;
+        month: string;
+        year: string;
+        description: string;
+        url: string;
+        type: NewsFeedType;
+      }[];
+    };
     en_titip: any | null;
     en_turford: any | null;
     en_ip_1: any | null;
@@ -71,6 +90,7 @@ interface Props {
     es_ip_1: any | null;
     es_ip_2: any | null;
     es_penn_ncnc: any | null;
+    books11: { image: { fluid: FluidBgImageObject } };
     london: { image: { fluid: FluidBgImageObject } };
     deviceArray: { image: { fluid: FluidImageObject } };
     iPad: { image: { fluid: FluidImageObject } };
@@ -85,6 +105,17 @@ export const query = graphql`
   query HomePage {
     site {
       ...SiteMetadata
+    }
+    newsFeed: allNewsFeedItem {
+      items: nodes {
+        title
+        day
+        month
+        year
+        description
+        type
+        url
+      }
     }
     en_titip: document(
       slug: { eq: "truth-in-the-inward-parts" }
@@ -150,6 +181,13 @@ export const query = graphql`
       featuredDesc: featuredDescription
     }
     london: file(relativePath: { eq: "london.jpg" }) {
+      image: childImageSharp {
+        fluid(quality: 90, maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+    books11: file(relativePath: { eq: "Books11.jpg" }) {
       image: childImageSharp {
         fluid(quality: 90, maxWidth: 1920) {
           ...GatsbyImageSharpFluid_withWebp
