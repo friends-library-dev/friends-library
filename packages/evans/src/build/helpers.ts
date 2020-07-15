@@ -1,16 +1,5 @@
-import { toRoman } from 'roman-numerals';
 import { getAllFriends, Friend, Document, Edition } from '@friends-library/friends';
 import { Slug, ISBN, Asciidoc } from '@friends-library/types';
-
-export function htmlShortTitle(title: string): string {
-  return htmlTitle(title.replace(/\bvolumen? \b/i, `Vol.&nbsp;`));
-}
-
-export function htmlTitle(title: string): string {
-  return title.replace(/ -- /g, ` &mdash; `).replace(/\b\d+$/, digits => {
-    return toRoman(Number(digits));
-  });
-}
 
 export function justHeadings(adoc: Asciidoc): Asciidoc {
   return adoc

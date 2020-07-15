@@ -3,6 +3,7 @@ import { sync as glob } from 'glob';
 import { safeLoad as ymlToJs } from 'js-yaml';
 import algoliasearch from 'algoliasearch';
 import { t, translate } from '@friends-library/locale';
+import { htmlShortTitle } from '@friends-library/adoc-convert';
 import {
   Friend,
   Document,
@@ -12,7 +13,7 @@ import {
   allPublishedUpdatedEditions,
 } from '@friends-library/friends';
 import env from '@friends-library/env';
-import { allFriends, htmlShortTitle } from './helpers';
+import { allFriends } from './helpers';
 import { friendUrl, documentUrl } from '../lib/url';
 import { LANG } from '../env';
 import { PAGE_META_DESCS } from '../lib/seo';

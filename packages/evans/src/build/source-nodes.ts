@@ -6,13 +6,8 @@ import { price } from '@friends-library/lulu';
 import { fetch } from '@friends-library/document-meta';
 import { query, hydrate } from '@friends-library/dpc-fs';
 import { red } from '@friends-library/cli-utils/color';
-import {
-  allFriends,
-  allDocsMap,
-  justHeadings,
-  htmlTitle,
-  htmlShortTitle,
-} from './helpers';
+import { htmlShortTitle, htmlTitle } from '@friends-library/adoc-convert';
+import { allFriends, allDocsMap, justHeadings } from './helpers';
 import { getDpcCache, persistDpcCache, EditionCache } from './dpc-cache';
 import residences from './residences';
 import * as url from '../lib/url';

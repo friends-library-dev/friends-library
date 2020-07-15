@@ -1,10 +1,10 @@
 import { DocumentMeta } from '@friends-library/document-meta';
 import { Friend, Edition, Document } from '@friends-library/friends';
 import { Lang, NewsFeedType } from '@friends-library/types';
+import { htmlShortTitle } from '@friends-library/adoc-convert';
 import { spanishShortMonth } from '../lib/date';
 import { documentUrl } from '../lib/url';
 import { APP_ALT_URL } from '../env';
-import { htmlShortTitle } from './helpers';
 
 interface FeedItem {
   month: string;
