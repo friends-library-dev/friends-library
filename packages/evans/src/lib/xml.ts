@@ -18,6 +18,7 @@ export function podcast(
   }
 
   const { CLOUD_STORAGE_BUCKET_URL: CLOUD_URL } = env.require(`CLOUD_STORAGE_BUCKET_URL`);
+  const launchDate = moment(`2020-03-27`);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss
@@ -77,7 +78,10 @@ export function podcast(
         audio,
         quality,
       )} pt-${num} at ${APP_URL}</guid>
-      <pubDate>${moment().format(`ddd, DD MMM YYYY hh:mm:ss ZZ`)}</pubDate>
+      <pubDate>${(moment(audio.added).isBefore(launchDate)
+        ? launchDate
+        : moment(audio.added)
+      ).format(`ddd, DD MMM YYYY hh:mm:ss ZZ`)}</pubDate>
       <itunes:duration>${part.seconds}</itunes:duration>
       <itunes:order>${num}</itunes:order>
       <itunes:explicit>clean</itunes:explicit>
