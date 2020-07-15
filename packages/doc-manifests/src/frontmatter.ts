@@ -2,6 +2,7 @@ import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
 import { Html, DocPrecursor, FileManifest } from '@friends-library/types';
 import { capitalizeTitle, ucfirst, br7, epigraph } from '@friends-library/doc-html';
+import { htmlTitle } from '@friends-library/adoc-convert';
 import { addVolumeSuffix } from './faux-volumes';
 
 export const frontmatter = memoize(
@@ -26,7 +27,11 @@ export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
     },
   } = dpc;
 
-  let markup = `<h1>${addVolumeSuffix(title, volIdx)}</h1>`;
+  const prettyTitle = htmlTitle(addVolumeSuffix(title, volIdx)).replace(
+    name,
+    name.replace(/ /g, '&nbsp;'),
+  );
+  let markup = `<h1>${prettyTitle}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
   if (!nameInTitle && !dpc.isCompilation) {
     markup = `${markup}\n<p class="byline">${br7}${

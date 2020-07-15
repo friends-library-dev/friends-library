@@ -9,6 +9,7 @@
     "compile": "cd ../../ && yarn compile doc-manifests"
   },
   "dependencies": {
+    "@friends-library/adoc-convert": "1.0.0",
     "@friends-library/cover-component": "1.0.0",
     "@friends-library/doc-css": "1.0.0",
     "@friends-library/doc-html": "1.0.0",
