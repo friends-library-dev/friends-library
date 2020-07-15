@@ -19,6 +19,7 @@ import * as url from '../lib/url';
 import { documentDate, periodFromDate, published } from '../lib/date';
 import { documentRegion } from '../lib/region';
 import { APP_ALT_URL, LANG } from '../env';
+import { getNewsFeedItems } from './news-feed';
 
 const humansize = filesize.partial({ round: 0, spacer: `` });
 
@@ -31,6 +32,18 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   const friends = allFriends().filter(f => f.lang === LANG && f.hasNonDraftDocument);
   const docs = allDocsMap();
   const dpcCache = getDpcCache();
+
+  const newsFeedItems = getNewsFeedItems(allFriends(), meta, LANG);
+  newsFeedItems.forEach(feedItem => {
+    createNode({
+      ...feedItem,
+      id: createNodeId(`feed-item-${feedItem.date}${feedItem.title}${feedItem.url}`),
+      internal: {
+        type: `NewsFeedItem`,
+        contentDigest: createContentDigest(feedItem),
+      },
+    });
+  });
 
   friends.forEach(friend => {
     const documents = friend.documents.filter(doc => doc.hasNonDraftEdition);

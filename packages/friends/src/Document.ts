@@ -104,7 +104,11 @@ export default class Document {
     return this.data.related_documents;
   }
 
-  public toJSON(): Omit<Document, 'friend' | 'editions' | 'toJSON'> {
+  public get primaryEdition(): Edition {
+    return this.editions[0];
+  }
+
+  public toJSON(): Omit<Document, 'friend' | 'editions' | 'toJSON' | 'primaryEdition'> {
     return {
       id: this.id,
       title: this.title,

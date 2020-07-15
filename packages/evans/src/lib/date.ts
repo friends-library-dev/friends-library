@@ -74,7 +74,7 @@ export function published(
   };
 }
 
-function spanishShortMonth(short: string): string {
+export function spanishShortMonth(short: string): string {
   switch (short.toLowerCase()) {
     case `jan`:
       return `Ene`;
