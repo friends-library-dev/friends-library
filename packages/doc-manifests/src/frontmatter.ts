@@ -29,7 +29,7 @@ export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
 
   const prettyTitle = htmlTitle(addVolumeSuffix(title, volIdx)).replace(
     name,
-    name.replace(/ /g, '&nbsp;'),
+    name.replace(/ /g, `&nbsp;`),
   );
   let markup = `<h1>${prettyTitle}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
