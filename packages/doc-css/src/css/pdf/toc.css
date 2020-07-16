@@ -48,3 +48,16 @@
 .toc-intermediate-title + p {
   margin-top: 0;
 }
+
+.multicol-toc-entry > a {
+  display: flex;
+}
+
+.multicol-toc-entry .multicol-toc-chapter {
+  flex-basis: 2.5em;
+  text-align: center;
+}
+
+.multicol-toc-entry .multicol-toc-main {
+  padding: 0 2em 0 1em;
+}
