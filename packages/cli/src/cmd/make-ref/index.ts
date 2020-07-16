@@ -10,7 +10,7 @@ import send from '../make/send';
 
 export const command = `make:ref [basename]`;
 
-export const describe = `publish reference asciidoc document at given path`;
+export const describe = `make reference asciidoc document at given path`;
 
 export const builder: CommandBuilder = async function(yargs) {
   if (typeof makeBuilder !== `function`) throw new Error(`Unexpected lack of builder fn`);
@@ -24,10 +24,10 @@ export const builder: CommandBuilder = async function(yargs) {
 export async function handler(
   argv: Arguments<MakeOptions & { basename: string }>,
 ): Promise<void> {
-  deleteNamespaceDir(`fl-publish-ref`);
+  deleteNamespaceDir(`fl-make-ref`);
   const dpc = dpcFromPath(argv.basename);
   hydrate.process(dpc);
-  const files = await makeDpc(dpc, { ...argv, skipLint: true }, `fl-publish-ref`);
+  const files = await makeDpc(dpc, { ...argv, skipLint: true }, `fl-make-ref`);
   !argv.noOpen && files.forEach(file => execSync(`open "${file}"`));
   argv.send && send(files, argv.email);
 }
