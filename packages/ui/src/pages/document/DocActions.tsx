@@ -24,7 +24,7 @@ const DocActions: React.FC<Props> = ({
       className={className}
       buttons={[
         {
-          text: t`Download`,
+          text: t`Free Download`,
           icon: `cloud`,
           onClick: download,
         },
@@ -34,7 +34,7 @@ const DocActions: React.FC<Props> = ({
           onClick: addToCart,
         },
         ...(hasAudio
-          ? [{ text: t`Audiobook`, icon: `headphones`, onClick: gotoAudio }]
+          ? [{ text: t`Free Audiobook`, icon: `headphones`, onClick: gotoAudio }]
           : []),
       ]}
     />

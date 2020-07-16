@@ -23,7 +23,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .MultiPill > button:lang(es) {
     width: 300px !important;
   }
