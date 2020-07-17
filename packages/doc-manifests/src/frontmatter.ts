@@ -1,6 +1,11 @@
 import moment from 'moment';
 import { memoize, pickBy } from 'lodash';
-import { Html, DocPrecursor, FileManifest } from '@friends-library/types';
+import {
+  HTML_DEC_ENTITIES,
+  Html,
+  DocPrecursor,
+  FileManifest,
+} from '@friends-library/types';
 import { capitalizeTitle, ucfirst, br7, epigraph } from '@friends-library/doc-html';
 import { htmlTitle } from '@friends-library/adoc-convert';
 import { addVolumeSuffix } from './faux-volumes';
@@ -29,8 +34,9 @@ export function halfTitle(dpc: DocPrecursor, volIdx?: number): Html {
 
   const prettyTitle = htmlTitle(addVolumeSuffix(title, volIdx)).replace(
     name,
-    name.replace(/ /g, `&nbsp;`),
+    name.replace(/ /g, HTML_DEC_ENTITIES.NON_BREAKING_SPACE),
   );
+
   let markup = `<h1>${prettyTitle}</h1>`;
   const nameInTitle = title.indexOf(name) !== -1;
   if (!nameInTitle && !dpc.isCompilation) {
