@@ -243,6 +243,7 @@ export const HTML_DEC_ENTITIES = {
   MDASH: `&#8212;`,
   AMPERSAND: `&#38;`,
   ELLIPSES: `&#8230;`,
+  NON_BREAKING_SPACE: `&#160;`,
 };
 
 // identity passthrough tagged template literal for getting vscode syntax
