@@ -5,6 +5,14 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `ing`,
+      search: /([^A-Za-z]+)\bing\b/,
+      replace: (full: string, prev: string) => {
+        return full.replace(prev, ``);
+      },
+      fixable: true,
+    },
+    {
       test: `f`,
       search: /( |^)(F|f) /g,
       replace: `$1I `,

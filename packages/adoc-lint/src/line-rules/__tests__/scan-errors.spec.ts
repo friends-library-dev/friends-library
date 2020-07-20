@@ -22,6 +22,14 @@ describe(`scanErrors()`, () => {
     [`The next, and last lime of Rebecca`, `The next, and last time of Rebecca`],
     [`in England in limes of suffering`, `in England in times of suffering`],
 
+    // *** `ing`
+    [`and will reward us accord, ing to`, `and will reward us according to`],
+    [`in the morn.ing, we sounded`, `in the morning, we sounded`],
+    [`sum not exceed\`' ing ten pounds`, `sum not exceeding ten pounds`],
+    [`In the morn ing`, `In the morning`],
+    [`feeble, totter, ing child`, `feeble, tottering child`],
+    [`in the bury-ing-place all`, `in the burying-place all`],
+
     // *** Wc > We ***
     [`Wc went`, `We went`],
     [`Then wc went`, `Then we went`],
