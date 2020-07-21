@@ -17,7 +17,7 @@ const NewsFeed: React.FC<Props> = ({ items, className }) => {
   return (
     <div className={cx(className, `flex flex-col items-center`)}>
       {years.map(props => (
-        <NewsFeedYear {...props} />
+        <NewsFeedYear key={props.year} {...props} />
       ))}
       {showing < items.length && (
         <button
