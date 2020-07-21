@@ -26,7 +26,7 @@ const rule: LineRule = (
   if (isAsciidocBracketLine(line)) {
     return [];
   }
-  return runner.getLineLintResults(line, lineNumber, lintOptions);
+  return runner.getLineLintResults(line, lineNumber, lines, lintOptions);
 };
 
 rule.slug = `spaced-punctuation`;

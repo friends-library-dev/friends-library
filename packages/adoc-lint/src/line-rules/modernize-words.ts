@@ -75,7 +75,7 @@ const rule: LineRule = (
   if (lintOptions.lang !== `en` || lintOptions.editionType !== `modernized`) {
     return [];
   }
-  return runner.getLineLintResults(line, lineNumber, lintOptions);
+  return runner.getLineLintResults(line, lineNumber, lines, lintOptions);
 };
 
 rule.slug = `modernize-words`;

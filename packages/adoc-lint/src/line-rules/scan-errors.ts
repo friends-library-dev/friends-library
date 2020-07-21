@@ -111,7 +111,7 @@ const rule: LineRule = (
   if (lintOptions.lang !== `en`) {
     return [];
   }
-  return runner.getLineLintResults(line, lineNumber, lintOptions);
+  return runner.getLineLintResults(line, lineNumber, lines, lintOptions);
 };
 
 rule.slug = `scan-errors`;
