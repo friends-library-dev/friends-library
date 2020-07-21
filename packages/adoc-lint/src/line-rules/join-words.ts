@@ -6,6 +6,8 @@ import { LineRule } from '../types';
 const sets = [
   [`yoke`, `mate`, ``],
   [`yoke`, `mates`, ``],
+  [`yoke`, `fellow`, ``],
+  [`yoke`, `fellows`, ``],
   [`grave`, `yard`, ``],
   [`every`, `where`, ``],
   [`every`, `thing`, ``],

@@ -9,9 +9,9 @@ const runner = new RegexLintRunner([
     replace: `$1rchangel`,
   },
   {
-    test: `yoke-mate`,
-    search: /\b(Y|y)oke-mate/g,
-    replace: `$1okemate`,
+    test: `yoke-`,
+    search: /\b(Y|y)oke-(mate|fellow)(s)?/g,
+    replace: `$1oke$2$3`,
   },
   {
     test: `back-yard`,

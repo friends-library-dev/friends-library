@@ -24,6 +24,8 @@ describe(`unhyphenedWords()`, () => {
     [`Foo to-day`, `Foo today`],
     [`Bed-side foo`, `Bedside foo`],
     [`Foo bed-side`, `Foo bedside`],
+    [`Foo yoke-fellow`, `Foo yokefellow`],
+    [`Foo yoke-mates`, `Foo yokemates`],
     [`Slave-holder foo`, `Slaveholder foo`],
     [`The slave-holders bar`, `The slaveholders bar`],
     [`By the road-side we`, `By the roadside we`],
