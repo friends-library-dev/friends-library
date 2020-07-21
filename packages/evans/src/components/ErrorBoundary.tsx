@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dual } from '@friends-library/ui';
+import { NODE_ENV } from '../env';
 
 interface State {
   hasError: boolean;
@@ -17,6 +18,10 @@ export default class ErrorBoundary extends React.Component<Props, State> {
   }
 
   public componentDidCatch(error: any, errorInfo: any): void {
+    if (NODE_ENV === `development`) {
+      return;
+    }
+
     let err = error;
     if (error instanceof Error) {
       err = {
