@@ -39,9 +39,12 @@ const Delivery: React.FC<{
   const [zipBlurred, setZipBlurred] = useState<boolean>(false);
   const [country, setCountry] = useState<string>(stored.country || ``);
   const [countryBlurred, setCountryBlurred] = useState<boolean>(false);
-  const filledOutCompletely = !!(
+
+  const allFieldsValid = !!(
     name &&
     street &&
+    street.length < 30 &&
+    street2.length < 30 &&
     city &&
     state &&
     zip &&
@@ -59,7 +62,7 @@ const Delivery: React.FC<{
         className="mt-8 relative"
         onSubmit={e => {
           e.preventDefault();
-          if (filledOutCompletely && !throbbing) {
+          if (allFieldsValid && !throbbing) {
             onSubmit({
               name,
               street,
@@ -172,7 +175,7 @@ const Delivery: React.FC<{
         <Back className={cx(throbbing && `blur`)} onClick={onBack}>
           {t`Back to Order`}
         </Back>
-        <Button shadow className="mx-auto" disabled={!filledOutCompletely || throbbing}>
+        <Button shadow className="mx-auto" disabled={!allFieldsValid || throbbing}>
           {t`Payment`} &nbsp;&rsaquo;
         </Button>
       </form>
