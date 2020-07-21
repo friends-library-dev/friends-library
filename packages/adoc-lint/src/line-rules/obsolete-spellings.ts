@@ -15,6 +15,13 @@ const runner = new RegexLintRunner([
     },
   },
   {
+    test: `intreat`,
+    search: /\b(I|i)ntreat/g,
+    replace: (_, i) => {
+      return `${i === `I` ? `E` : `e`}ntreat`;
+    },
+  },
+  {
     test: `despatch`,
     search: /\b(D|d)espatch/g,
     replace: `$1ispatch`,
