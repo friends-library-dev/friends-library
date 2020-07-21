@@ -43,6 +43,8 @@ describe(`joinWords()`, () => {
     [`be praised for ever--the great`, `be praised forever--the great`],
 
     [`hope I shall for evermore.`, `hope I shall forevermore.`],
+    [`Court house foo`, `Courthouse foo`],
+    [`foo court house foo`, `foo courthouse foo`],
   ];
 
   test.each(violations)(`"%s" adoc should become "%s"`, (adoc, fixed) => {
