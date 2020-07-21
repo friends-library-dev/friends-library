@@ -4,6 +4,7 @@ import { LineRule } from '../types';
 
 // @see https://books.google.com/ngrams for data backing up choices
 const sets = [
+  [`after`, `wards`, ``],
   [`yoke`, `mate`, ``],
   [`yoke`, `mates`, ``],
   [`yoke`, `fellow`, ``],
