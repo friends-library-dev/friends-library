@@ -46,8 +46,8 @@ class App extends React.Component<Props> {
     const query = new URLSearchParams(window.location.search);
     if (query.has(`access_token`)) {
       receiveAccessToken(query.get(`access_token`));
-      // wait for indexeddb to store query token before refreshing
-      Promise.resolve().then(() => window.location.replace(`/`));
+      // remove query param from url
+      window.history.pushState({}, ``, `/`);
     }
   }
 
