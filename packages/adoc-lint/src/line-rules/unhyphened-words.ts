@@ -29,6 +29,11 @@ const runner = new RegexLintRunner([
     replace: `$1arehouse`,
   },
   {
+    test: `fire`,
+    search: /\b(F|f)ire-side/g,
+    replace: `$1ireside`,
+  },
+  {
     test: `grand-children`,
     search: /\b(G|g)rand-child/g,
     replace: `$1randchild`,

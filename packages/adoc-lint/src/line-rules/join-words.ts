@@ -9,6 +9,7 @@ const sets = [
   [`yoke`, `fellow`, ``],
   [`yoke`, `fellows`, ``],
   [`head`, `quarters`, ``],
+  [`fire`, `side`, ``],
   [`grave`, `yard`, ``],
   [`every`, `where`, ``],
   [`every`, `thing`, ``],
