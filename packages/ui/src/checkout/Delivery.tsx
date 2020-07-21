@@ -98,16 +98,20 @@ const Delivery: React.FC<{
             onBlur={() => setStreetBlurred(true)}
             value={street}
             placeholder={t`Street address, P.O. Box, C/O`}
-            invalidMsg={t`Street address is required`}
-            valid={!streetBlurred || !!street}
+            invalidMsg={
+              street.trim() === ``
+                ? t`Street address is required`
+                : t`Must be less than 30 characters`
+            }
+            valid={!streetBlurred || (!!street && street.length < 30)}
           />
           <Input
             className="order-4"
-            invalidMsg=""
-            valid={true}
             onChange={val => setStreet2(val)}
             value={street2}
             placeholder={t`Apartment, suite, unit, etc.`}
+            invalidMsg={t`Must be less than 30 characters`}
+            valid={street2.length < 30}
           />
           <Input
             className="order-5"

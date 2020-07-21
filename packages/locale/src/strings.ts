@@ -172,6 +172,7 @@ const strings: { [k: string]: string } = {
   'Try Again': `Intentar Nuevamente`,
   Close: `Cerrar`,
   'Confirmed!': `¡Confirmado!`,
+  'Must be less than 30 characters': `No puede tener más de 30 caracteres`,
 
   // geography
   Bristol: `Bristol`,
