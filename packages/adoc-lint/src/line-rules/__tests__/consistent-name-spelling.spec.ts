@@ -13,18 +13,28 @@ describe(`consistentNameSpelling()`, () => {
       type: `error`,
       rule: `consistent-name-spelling`,
       recommendation: `James Nayler and I`,
-      message: `James Nayler's last name should always be spelled "Nayler"`,
+      message: `James Nayler's last name must always be spelled "Nayler"`,
     });
+  });
+
+  it(`finds catharine payton across two lines`, () => {
+    const adoc = `Went to meeting with Catharine\nPayton`;
+    const lines = adoc.split(`\n`);
+    const results = consistentNameSpelling(lines[0], lines, 1, opts);
+    expect(results).toHaveLength(1);
+    expect(results[0].fixable).toBe(false);
   });
 
   const violations: [string, string][] = [
     [`By the preaching of James Naylor`, `By the preaching of James Nayler`],
+    [`Catharine Payton came to meeting`, `Catherine Payton came to meeting`],
   ];
 
   test.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
     const results = consistentNameSpelling(line, [], 1, opts);
     expect(results).toHaveLength(1);
     expect(results[0].recommendation).toBe(reco);
+    expect(results[0].fixable).toBe(true);
   });
 
   const allowed: [string][] = [

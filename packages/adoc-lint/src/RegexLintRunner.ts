@@ -17,6 +17,7 @@ export default class RegexLintRunner {
   public getLineLintResults(
     line: Asciidoc,
     lineNumber: number,
+    lines: Asciidoc[],
     options: LintOptions,
   ): LintResult[] {
     let results: LintResult[] = [];
@@ -27,9 +28,9 @@ export default class RegexLintRunner {
 
     this.lints.forEach(lint => {
       if (shouldLint(lint, options)) {
-        const matches = this.getLineMatches(lint, line);
+        const matches = this.getLineMatches(lint, line, lines, lineNumber);
         results = results.concat(
-          matches.map(match => this.getLintResult(match, lineNumber, lint)),
+          matches.map(match => this.getLintResult(match, line, lineNumber, lint)),
         );
       }
     });
@@ -37,10 +38,23 @@ export default class RegexLintRunner {
     return results;
   }
 
-  protected getLineMatches(lint: RegexLint, line: Asciidoc): RegExpExecArray[] {
+  protected getLineMatches(
+    lint: RegexLint,
+    line: Asciidoc,
+    lines: Asciidoc[],
+    lineNumber: number,
+  ): RegExpExecArray[] {
     const matches: RegExpExecArray[] = [];
     if (lint.allowIfNear && line.match(lint.allowIfNear)) {
       return matches;
+    }
+
+    if (lint.includeNextLineFirstWord && lines[lineNumber]) {
+      line += ` ${lines[lineNumber]
+        .split(` `)
+        .filter(Boolean)
+        .shift() || ``}`;
+      line = line.trim();
     }
 
     if (lint.search.global) {
@@ -57,6 +71,7 @@ export default class RegexLintRunner {
 
   protected getLintResult(
     match: RegExpExecArray,
+    line: Asciidoc,
     lineNumber: number,
     lint: RegexLint,
   ): LintResult {
@@ -67,7 +82,7 @@ export default class RegexLintRunner {
     return {
       line: lineNumber,
       column: getColumn(match, recommendation),
-      fixable: lint.isFixable(),
+      fixable: lint.isFixable(match, line, lineNumber),
       type: `error`,
       rule: this.rule,
       message: lint.message(match[0]),

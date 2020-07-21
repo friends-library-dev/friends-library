@@ -1,11 +1,11 @@
-import { Lang, EditionType } from '@friends-library/types';
+import { Lang, EditionType, Asciidoc } from '@friends-library/types';
 
 interface ReplacerFn {
   (substr: string, ...args: any[]): string;
 }
 
 interface FixableFn {
-  (): boolean;
+  (match: RegExpMatchArray, line: Asciidoc, lineNumber: number): boolean;
 }
 
 export interface RegexLintOptions {
@@ -15,6 +15,7 @@ export interface RegexLintOptions {
   editions: EditionType[];
   message: string;
   recommend: boolean;
+  includeNextLineFirstWord: boolean;
 }
 
 export interface RegexLintData {
@@ -32,6 +33,7 @@ export default class RegexLint {
     editions: [`original`, `modernized`, `updated`],
     message: `"<found>" <shouldBecome> "<fixed>" <inContext>`,
     recommend: true,
+    includeNextLineFirstWord: false,
   };
 
   protected data: RegexLintData & RegexLintOptions;
@@ -40,6 +42,7 @@ export default class RegexLint {
   public langs: Lang[];
   public editions: EditionType[];
   public allowIfNear?: RegExp;
+  public includeNextLineFirstWord: boolean;
 
   /**
    * Quick and dirty test to see if we should run the full
@@ -55,11 +58,12 @@ export default class RegexLint {
     this.langs = this.data.langs;
     this.editions = this.data.editions;
     this.allowIfNear = this.data.allowIfNear;
+    this.includeNextLineFirstWord = this.data.includeNextLineFirstWord;
   }
 
-  public isFixable(): boolean {
+  public isFixable(match: RegExpMatchArray, line: Asciidoc, lineNumber: number): boolean {
     const { fixable } = this.data;
-    return typeof fixable === `function` ? fixable() : fixable;
+    return typeof fixable === `function` ? fixable(match, line, lineNumber) : fixable;
   }
 
   public message(found: string): string {
