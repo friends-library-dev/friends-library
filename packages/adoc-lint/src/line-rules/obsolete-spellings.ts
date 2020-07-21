@@ -33,6 +33,11 @@ const runner = new RegexLintRunner([
     message: `"cotemporary" should be replaced with "contemporary" in all editions`,
   },
   {
+    test: `catched`,
+    search: /\b(C|c)atched\b/g,
+    replace: `$1aught`,
+  },
+  {
     test: `staid`,
     search: /\b(S|s)taid\b/g,
     replace: `$1tayed`,
