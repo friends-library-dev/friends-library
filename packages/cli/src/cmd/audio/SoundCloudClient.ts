@@ -122,7 +122,7 @@ export default class SoundCloudClient {
 
   public async updateTrackAttrs(
     trackId: number,
-    attrs: Record<string, string>,
+    attrs: Record<string, string | boolean>,
   ): Promise<Record<string, any>> {
     if (!this.token) await this.getToken();
 

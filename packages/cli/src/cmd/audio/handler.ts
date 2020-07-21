@@ -106,8 +106,8 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
         sharing: `public`,
         embeddable_by: `all`,
         track_type: `spoken`,
-        commentable: `false`,
-        downloadable: `true`,
+        commentable: false,
+        downloadable: true,
         label_name: `Friends Library Publishing`,
       };
       await client.updateTrackAttrs(part.externalIdHq, attrs);
