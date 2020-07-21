@@ -14,7 +14,11 @@ const NewsFeedYear: React.FC<Props> = ({ year, items }) => (
     </div>
     <div className="flex-grow">
       {items.map((item, idx) => (
-        <NewsFeedItem {...item} alt={idx % 2 !== 0} />
+        <NewsFeedItem
+          key={`${item.title}${item.url}${item.type}${item.day}`}
+          {...item}
+          alt={idx % 2 !== 0}
+        />
       ))}
     </div>
   </div>
