@@ -36,6 +36,7 @@ describe(`joinWords()`, () => {
     [`faint hearted`, `fainthearted`],
     [`broken hearted`, `brokenhearted`],
     [`light hearted`, `lighthearted`],
+    [`foo head quarters`, `foo headquarters`],
 
     [`to his Name for ever!`, `to his Name forever!`],
     [`Glory to his Name for\never and ever!`, `Glory to his Name\nforever and ever!`],
