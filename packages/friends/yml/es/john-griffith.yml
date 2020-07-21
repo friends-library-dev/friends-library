@@ -64,3 +64,15 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-203-5
+        audio:
+          reader: Keren Alvaredo
+          added: 2020-07-21T18:56:36.160Z
+          parts:
+            - title: Selección del Diario de John Griffith
+              external_id_hq: 862048561
+              external_id_lq: 862048036
+              filesize_hq: 63606969
+              filesize_lq: 14928732
+              seconds: 3732
+              chapters:
+                - 0

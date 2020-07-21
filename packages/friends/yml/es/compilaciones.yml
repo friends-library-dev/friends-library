@@ -92,3 +92,11 @@ documents:
               seconds: 2481
               chapters:
                 - 5
+            - title: Selección del Diario de John Griffith
+              external_id_hq: 861901432
+              external_id_lq: 861902434
+              filesize_hq: 62512911
+              filesize_lq: 18684644
+              seconds: 3737
+              chapters:
+                - 6
