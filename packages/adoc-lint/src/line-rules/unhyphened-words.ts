@@ -4,6 +4,12 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `mis-spen`,
+    search: /\b(M|m)is-spen/g,
+    replace: `$1isspen`,
+    message: `"mis-spent" should be replaced with "misspent" in all editions`,
+  },
+  {
     test: `court-house`,
     search: /\b(C|c)ourt-house/g,
     replace: `$1ourthouse`,
