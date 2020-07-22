@@ -4,6 +4,11 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `meeting-house`,
+    search: /\b(M|m)eeting-house/g,
+    replace: `$1eetinghouse`,
+  },
+  {
     test: `down-stairs`,
     search: /\b(D|d)own-stairs/g,
     replace: `$1ownstairs`,
