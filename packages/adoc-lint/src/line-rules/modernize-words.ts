@@ -5,6 +5,12 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `esp`,
+      search: /\b(E|e)sp(y|ied)\b/g,
+      message: `espy should be replaced in modernized editions (catch sight of, notice, spot, discover)`,
+      fixable: false,
+    },
+    {
       test: `amongst`,
       search: /\b(A|a)mongst\b/g,
       replace: `$1mong`,
