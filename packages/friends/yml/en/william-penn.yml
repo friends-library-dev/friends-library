@@ -226,8 +226,22 @@ documents:
     title: The Life of William Penn
     slug: life
     filename: Life_of_William_Penn
-    description: TODO
-    partial_description: TODO
+    description:
+      William Penn was a prominent figure in the 17th and early 18th century, celebrated
+      as an author, a minister of the gospel, and a statesman. He is best known as the
+      founder of the Province of Pennsylvania, but his Christian virtue, deep spiritual
+      understanding, and self-denying life are the real and lasting testimonies to his
+      worth as a man. The “Life of William Penn” by Enoch Lewis contains both a historical
+      and spiritual biography of this eminent minister, and also includes a considerable
+      collection of his most famous writings, including “Primitive Christianity Revived,”
+      “A Brief Account of the Rise and Progress of the People called Quakers,” “A Key,
+      “William Penn’s Advice to His Children,” and many other valuable epistles and
+      treatises.
+    partial_description:
+      William Penn was a prominent figure in the 17th and early 18th century, celebrated
+      as an author, a minister of the gospel, and a statesman. The “Life of William Penn”
+      by Enoch Lewis contains both a historical and spiritual biography of this eminent
+      minister, and also includes a considerable collection of his most famous writings.
     tags:
       - journal
       - history
@@ -236,7 +250,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-220-2
-        draft: true
       - type: modernized
         isbn: 978-1-64476-221-9
-        draft: true
