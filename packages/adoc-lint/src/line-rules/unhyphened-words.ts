@@ -4,6 +4,12 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `care-tak`,
+    search: /\b(C|c)are-tak/g,
+    replace: `$1aretak`,
+    message: `"care-taker" should be replaced with "caretaker" in all editions`,
+  },
+  {
     test: `meeting-house`,
     search: /\b(M|m)eeting-house/g,
     replace: `$1eetinghouse`,
