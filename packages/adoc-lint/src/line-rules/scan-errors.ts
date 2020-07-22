@@ -5,17 +5,23 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `f`,
+      search: /( |^)(F|f)( |$)/g,
+      replace: `$1I `,
+    },
+    {
+      test: `"|'|\``, // --> detached quote marks
+      search: /(^| )('|"|`){2}( |$)/g,
+      replace: ` `,
+      message: `detached quotation mark scan error should be corrected`,
+    },
+    {
       test: `ing`,
       search: /([^A-Za-z]+)\bing\b/,
       replace: (full: string, prev: string) => {
         return full.replace(prev, ``);
       },
       fixable: true,
-    },
-    {
-      test: `f`,
-      search: /( |^)(F|f) /g,
-      replace: `$1I `,
     },
     {
       test: `mmd`,
