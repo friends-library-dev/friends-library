@@ -84,3 +84,29 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-009-3
+  - id: a40a3ac1-af68-474f-bf76-66028ca17b49
+    title: Selection from the Journal of Catherine Payton
+    slug: journal-selection
+    filename: Selection_Journal_of_Catherine_Payton
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: updated
+        isbn: 978-1-64476-232-5
+        draft: true
+        editor: Jason R. Henderson
+        audio:
+          added: 2020-07-22T16:41:21.725Z
+          reader: Jason R. Henderson
+          parts:
+            - title: Selection from the Journal of Catherine Payton
+              external_id_hq: 862574746
+              external_id_lq: 862574338
+              filesize_hq: 75939921
+              filesize_lq: 20552922
+              seconds: 4110
+              chapters:
+                - 0
