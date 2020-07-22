@@ -5,6 +5,13 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `imprest`,
+      search: /\b(I|i)mprest\b/g,
+      message: `imprest should be replaced in modernized editions (imprinted, stamped, fixed in the mind, convinced)`,
+      replace: `$1mprinted`,
+      fixable: false,
+    },
+    {
       test: `esp`,
       search: /\b(E|e)sp(y|ied)\b/g,
       message: `espy should be replaced in modernized editions (catch sight of, notice, spot, discover)`,
