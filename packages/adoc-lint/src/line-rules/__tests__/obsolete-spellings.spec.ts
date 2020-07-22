@@ -57,6 +57,8 @@ describe(`obsoleteSpellings()`, () => {
     [`High uninclosed country`, `High unenclosed country`],
     [`Inclosed you will find`, `Enclosed you will find`],
     [`a few lines inclosed`, `a few lines enclosed`],
+    [`I intreat thee not to`, `I entreat thee not to`],
+    [`She was intrusted with`, `She was entrusted with`],
   ];
 
   test.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
