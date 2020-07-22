@@ -20,6 +20,11 @@ const runner = new RegexLintRunner([
     replace: (_, i, end) => `${i === `I` ? `E` : `e`}ntr${end}`,
   },
   {
+    test: `stile`,
+    search: /\b(S|s)tile\b/g,
+    replace: `$1tyle`,
+  },
+  {
     test: `despatch`,
     search: /\b(D|d)espatch/g,
     replace: `$1ispatch`,
