@@ -55,7 +55,7 @@ const runner = new RegexLintRunner([
     replace: `$1ireside`,
   },
   {
-    test: `grand-children`,
+    test: `grand-child`,
     search: /\b(G|g)rand-child/g,
     replace: `$1randchild`,
   },
