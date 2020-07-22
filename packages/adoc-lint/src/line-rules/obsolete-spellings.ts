@@ -4,6 +4,11 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `leathern`,
+    search: /\b(L|l)eathern\b/g,
+    replace: `$1eather`,
+  },
+  {
     test: `inclose`,
     search: /\b(Un|un)?(I|i)nclose?/g,
     replace: (_, un, i) => {
