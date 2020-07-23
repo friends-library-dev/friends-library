@@ -78,7 +78,7 @@ export default class RegexLintRunner {
     if (!this.rule) {
       throw new Error(`Must set RegexLintRunner.rule property`);
     }
-    const recommendation = lint.recommendation(match);
+    const recommendation = lint.recommendation(match, line);
     return {
       line: lineNumber,
       column: getColumn(match, recommendation),

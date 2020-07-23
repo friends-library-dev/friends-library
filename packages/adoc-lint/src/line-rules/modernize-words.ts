@@ -5,6 +5,14 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `you`,
+      search: /\b(Y|y)ou wilt\b/g,
+      replace: `$1ou will`,
+      fixable: (_, line) => !!line.match(/\byou wilt\b/i),
+      message: `"you wilt" is an automated modernization error and should be replaced with "you will"`,
+      includeNextLineFirstWord: true,
+    },
+    {
       test: `issue`,
       search: /\b(I|i)ssue\b/g,
       fixable: false,
