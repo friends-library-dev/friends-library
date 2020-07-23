@@ -4,6 +4,11 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `incumb`,
+    search: /\b(I|i)ncumb(er|ered|ering|ers|rance)\b/g,
+    replace: (_, i, end) => `${i === `I` ? `E` : `e`}ncumb${end}`,
+  },
+  {
     test: `potatoe`,
     search: /\b(P|p)otatoe\b/g,
     replace: `$1otato`,
