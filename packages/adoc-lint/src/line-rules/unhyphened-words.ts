@@ -4,6 +4,11 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `birth-day`,
+    search: /\b(B|b)irth-(days?)\b/g,
+    replace: `$1irth$2`,
+  },
+  {
     test: `short`,
     search: /\b(S|s)hort(-| )comings?\b/g,
     replace: `$1hortcomings`,
