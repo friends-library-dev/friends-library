@@ -88,18 +88,29 @@ documents:
     title: Selection from the Journal of Catherine Payton
     slug: journal-selection
     filename: Selection_Journal_of_Catherine_Payton
-    description: TODO
-    partial_description: TODO
+    description:
+      Catherine Payton (1727-1794, also known by her married name, Catherine Phillips) was
+      a well-known and highly-esteemed minister in the Society of Friends, whose labors in
+      the gospel turned many from  darkness to light, and from the power of Satan to God.
+      This selection from her journal contains an autobiographical portion, in which
+      Catherine describes her early experiences of the mercies and judgments of the Lord,
+      and her call to the ministry, followed by a sample of her letters which manifest her
+      extraordinary gift of administering heavenly counsel and admonition to a variety of
+      spiritual conditions.
+    partial_description:
+      A selection from the Life and Letters of Catherine Payton (1727-1794, also known by
+      her married name, Catherine Phillips) containing a biographical narrative of her
+      upbringing and early surrender to the Lord, along with four remarkable letters,
+      written to individuals in a variety of spiritual conditions.
     tags:
       - journal
       - letters
     editions:
       - type: updated
         isbn: 978-1-64476-232-5
-        draft: true
         editor: Jason R. Henderson
         audio:
-          added: 2020-07-22T16:41:21.725Z
+          added: 2020-07-23T18:16:10.297Z
           reader: Jason R. Henderson
           parts:
             - title: Selection from the Journal of Catherine Payton
