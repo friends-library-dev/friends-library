@@ -5,6 +5,13 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `holden`,
+      search: /\b(H|h)olden\b/g,
+      replace: `$1eld`,
+      allowIfNear: /Cave/,
+      fixable: false,
+    },
+    {
       test: `you`,
       search: /\b(Y|y)ou wilt\b/g,
       replace: `$1ou will`,
