@@ -66,9 +66,9 @@ const runner = new RegexLintRunner([
     replace: `$1ireside`,
   },
   {
-    test: `grand-child`,
-    search: /\b(G|g)rand-child/g,
-    replace: `$1randchild`,
+    test: `grand-`,
+    search: /\b(G|g)rand-(child(ren)?|fathers?|mothers?)/g,
+    replace: `$1rand$2`,
   },
   {
     test: `fellow-`,
