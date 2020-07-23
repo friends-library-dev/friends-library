@@ -5,6 +5,15 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `you`,
+      search: /\b(Believe|Go|Seek|Get|Come) (Y|y)ou\b/g,
+      replace: `$1`,
+      fixable: false,
+      message: `"<verb> you" is often an automated modernization error and should be replaced with "<verb>"`,
+      includeNextLineFirstWord: true,
+      allowIfNear: /(go|come) you (cursed|blessed|workers)/i,
+    },
+    {
       test: `holden`,
       search: /\b(H|h)olden\b/g,
       replace: `$1eld`,
