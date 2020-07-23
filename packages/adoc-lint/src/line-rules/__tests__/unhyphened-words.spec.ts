@@ -54,6 +54,9 @@ describe(`unhyphenedWords()`, () => {
     [`foo inn-keeper\`'s bar`, `foo innkeeper\`'s bar`],
     [`the judgment-seat of`, `the judgment seat of`],
     [`some spiritually-minded people`, `some spiritually minded people`],
+    [`Foo grand-child bar`, `Foo grandchild bar`],
+    [`Foo grand-mothers bar`, `Foo grandmothers bar`],
+    [`Foo grand-father bar`, `Foo grandfather bar`],
   ];
 
   test.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
