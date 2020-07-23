@@ -83,12 +83,11 @@ export default class RegexLint {
       .trim();
   }
 
-  public recommendation(match: RegExpExecArray): string | undefined {
+  public recommendation(match: RegExpExecArray, line: string): string | undefined {
     if (!this.data.recommend) {
       return;
     }
 
-    const line = match.input || ``;
     const index = match.index || 0;
     const parts = [
       line.substring(0, index),
