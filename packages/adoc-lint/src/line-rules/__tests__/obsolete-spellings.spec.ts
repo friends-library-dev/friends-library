@@ -59,6 +59,7 @@ describe(`obsoleteSpellings()`, () => {
     [`a few lines inclosed`, `a few lines enclosed`],
     [`I intreat thee not to`, `I entreat thee not to`],
     [`She was intrusted with`, `She was entrusted with`],
+    [`one sweet potatoe was`, `one sweet potato was`],
   ];
 
   test.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
@@ -67,10 +68,10 @@ describe(`obsoleteSpellings()`, () => {
     expect(results[0].recommendation).toBe(reco);
   });
 
-  // prettier-ignore
   const allowed = [
     [`fooconnexion bar`],
     [`Aaron Vail, Paul Upton`],
+    [`We dined on sweet potatoes and rice`, `We dined on sweet potatoes and rice`],
   ];
 
   test.each(allowed)(`%s is not a lint violation`, line => {
