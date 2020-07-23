@@ -5,6 +5,13 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `issue`,
+      search: /\b(I|i)ssue\b/g,
+      fixable: false,
+      isMaybe: true,
+      message: `"issue" should sometimes be replaced in modernized editions (result, outcome, consequence, offspring)`,
+    },
+    {
       test: `yesternight`,
       search: /\b(Y|y)esternight\b/g,
       replace: (_, y) => `${y === `Y` ? `L` : `l`}ast night`,
