@@ -4,6 +4,11 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `short`,
+    search: /\b(S|s)hort(-| )comings?\b/g,
+    replace: `$1hortcomings`,
+  },
+  {
     test: `heart-felt`,
     search: /\b(H|h)eart-felt\b/g,
     replace: `$1eartfelt`,
