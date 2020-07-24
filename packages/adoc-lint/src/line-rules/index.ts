@@ -45,3 +45,4 @@ export { default as bookTitleSpacing } from './book-title-spacing';
 export { default as bookTitleStart } from './book-title-start';
 export { default as bookTitleUnclosed } from './book-title-unclosed';
 export { default as personMismatch } from './person-mismatch';
+export { default as etcPeriod } from './etc-period';
