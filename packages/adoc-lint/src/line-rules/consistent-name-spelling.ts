@@ -5,6 +5,15 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `mount`,
+      search: /\bmount(-| )?mell?ick?\b/gi,
+      replace: `Mountmellick`,
+      fixable: (_, line) => !!line.match(/\bmount(-| )?mell?ick?\b/i),
+      message: `Mountmellick should always be spelled "Mountmellick"`,
+      allowIfNear: /Mountmellick/,
+      includeNextLineFirstWord: true,
+    },
+    {
       test: `mary`,
       search: /\bMary Ridgeway\b/g,
       replace: `Mary Ridgway`,
