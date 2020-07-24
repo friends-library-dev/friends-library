@@ -65,6 +65,11 @@ export const builder: CommandBuilder = function(yargs) {
       describe: `bypass asciidoc linting`,
       default: false,
     })
+    .option(`toc`, {
+      type: `boolean`,
+      describe: `only render chapter titles (useful for quickly working on table of contents TOC)`,
+      default: false,
+    })
     .option(`fix`, {
       type: `boolean`,
       describe: `auto-fix asciidoc lint errors`,
