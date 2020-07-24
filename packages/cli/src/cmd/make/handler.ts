@@ -32,6 +32,7 @@ export interface MakeOptions {
   fix: boolean;
   skipLint: boolean;
   head: boolean;
+  toc: boolean;
 }
 
 export default async function handler(argv: Arguments<MakeOptions>): Promise<void> {
@@ -50,6 +51,10 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
         .slice(0, 100)
         .join(`\n`);
     };
+  }
+
+  if (argv.toc) {
+    mutator = adoc => adoc.split(`\n\n`).shift() || ``;
   }
 
   dpcs.forEach(hydrate.meta);
