@@ -38,6 +38,17 @@ describe(`consistentNameSpelling()`, () => {
   const violations: [string, string][] = [
     [`By the preaching of James Naylor`, `By the preaching of James Nayler`],
     [`Catharine Payton came to meeting`, `Catherine Payton came to meeting`],
+    [`Foo Mount Mellick`, `Foo Mountmellick`],
+    [`Foo Mount-Mellick`, `Foo Mountmellick`],
+    [`Foo Mount-melick`, `Foo Mountmellick`],
+    [`Foo Mount-melic`, `Foo Mountmellick`],
+    [`Foo Mountmelic`, `Foo Mountmellick`],
+    [`Foo Mountmellic`, `Foo Mountmellick`],
+    [`Foo Mount-Melick`, `Foo Mountmellick`],
+    [`Foo Mount melick`, `Foo Mountmellick`],
+    [`Foo Mount-mellick`, `Foo Mountmellick`],
+    [`Foo Mount Melick`, `Foo Mountmellick`],
+    [`Foo Mountmelick`, `Foo Mountmellick`],
   ];
 
   test.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
@@ -51,6 +62,7 @@ describe(`consistentNameSpelling()`, () => {
     [`By the preaching of James Nayler`],
     [`Sir Isaac Pennington, Sr.`],
     [`Pennington Sr. was tried for treason`],
+    [`Came to Mountmellick for a meeting`],
   ];
 
   test.each(allowed)(`%s is not a lint violation`, line => {
