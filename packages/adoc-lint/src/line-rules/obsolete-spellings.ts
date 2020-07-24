@@ -4,6 +4,13 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `doings`,
+    search: /\bLord`'s doings\b/g,
+    replace: `Lord\`'s doing`,
+    fixable: false,
+    message: `Obsolete grammar from references to archaic KJV of Ps. 118:23 should be carefully updated`,
+  },
+  {
     test: `jun`,
     search: /\bjun\./g,
     replace: `Jr.`,
