@@ -47,3 +47,4 @@ export { default as bookTitleUnclosed } from './book-title-unclosed';
 export { default as personMismatch } from './person-mismatch';
 export { default as etcPeriod } from './etc-period';
 export { default as titleLength } from './title-length';
+export { default as unexpectedAsterisk } from './unexpected-asterisk';
