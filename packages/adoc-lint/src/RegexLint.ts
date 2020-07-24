@@ -16,6 +16,7 @@ export interface RegexLintOptions {
   message: string;
   recommend: boolean;
   includeNextLineFirstWord: boolean;
+  discardIfIdenticalRecommendation: boolean;
 }
 
 export interface RegexLintData {
@@ -34,6 +35,7 @@ export default class RegexLint {
     message: `"<found>" <shouldBecome> "<fixed>" <inContext>`,
     recommend: true,
     includeNextLineFirstWord: false,
+    discardIfIdenticalRecommendation: false,
   };
 
   protected data: RegexLintData & RegexLintOptions;
@@ -43,6 +45,7 @@ export default class RegexLint {
   public editions: EditionType[];
   public allowIfNear?: RegExp;
   public includeNextLineFirstWord: boolean;
+  public discardIfIdenticalRecommendation: boolean;
 
   /**
    * Quick and dirty test to see if we should run the full
@@ -59,6 +62,7 @@ export default class RegexLint {
     this.editions = this.data.editions;
     this.allowIfNear = this.data.allowIfNear;
     this.includeNextLineFirstWord = this.data.includeNextLineFirstWord;
+    this.discardIfIdenticalRecommendation = this.data.discardIfIdenticalRecommendation;
   }
 
   public isFixable(match: RegExpMatchArray, line: Asciidoc, lineNumber: number): boolean {
