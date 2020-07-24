@@ -30,7 +30,13 @@ export default class RegexLintRunner {
       if (shouldLint(lint, options)) {
         const matches = this.getLineMatches(lint, line, lines, lineNumber);
         results = results.concat(
-          matches.map(match => this.getLintResult(match, line, lineNumber, lint)),
+          matches
+            .map(match => this.getLintResult(match, line, lineNumber, lint))
+            .filter(result =>
+              lint.discardIfIdenticalRecommendation
+                ? !result.recommendation || line !== result.recommendation
+                : true,
+            ),
         );
       }
     });
