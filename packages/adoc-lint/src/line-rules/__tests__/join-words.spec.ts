@@ -34,6 +34,7 @@ describe(`joinWords()`, () => {
     [`A honest hearted man`, `A honest-hearted man`],
     [`He was a honest\nhearted man`, `He was a\nhonest-hearted man`],
     [`faint hearted`, `fainthearted`],
+    [`Faint Hearted`, `Fainthearted`],
     [`broken hearted`, `brokenhearted`],
     [`light hearted`, `lighthearted`],
     [`foo head quarters`, `foo headquarters`],

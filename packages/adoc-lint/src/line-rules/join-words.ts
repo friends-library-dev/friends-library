@@ -107,7 +107,10 @@ const rule: LineRule = (
           first,
           second,
           joiner,
-          line.replace(sameLine, `$1${joiner}$3`),
+          line.replace(
+            sameLine,
+            (_, first, __, second) => `${first}${joiner}${second.toLowerCase()}`,
+          ),
         ),
       );
       return;
@@ -129,7 +132,7 @@ const rule: LineRule = (
       return;
     }
 
-    let reco;
+    let reco: string;
     if (line.length < nextLine.length) {
       reco = `${line}${joiner}${second}\n${nextLine.replace(nextLineStart, ``).trim()}`;
     } else {
