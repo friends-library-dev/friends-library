@@ -10,7 +10,12 @@ const rule: LineRule = (
     return [];
   }
 
-  if (line.startsWith(`|`) || line.match(/^\* .+/) || line.includes(`+++*`)) {
+  if (
+    line.startsWith(`|`) ||
+    line.match(/^\* .+/) ||
+    line.includes(`+++*`) ||
+    line.match(/( |^)\*\w.*(\w|,|\.)\*( |-|$)/)
+  ) {
     return [];
   }
 
