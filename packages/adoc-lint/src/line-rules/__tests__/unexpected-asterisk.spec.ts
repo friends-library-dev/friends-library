@@ -31,6 +31,9 @@ describe(`unexpectedAsterisk()`, () => {
     [`* chapter synopsis list item`],
     [`| **in a table** | ** foo bar ** | baz |`],
     [`+++*+++ escaped is OK`],
+    [`*rare intentional bold* is ok too`],
+    [`*Foobar*--is ok too`],
+    [`*Foobar,* is ok too`],
   ];
 
   test.each(allowed)(`%s is not a lint violation`, line => {
