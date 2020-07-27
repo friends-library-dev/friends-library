@@ -5,11 +5,18 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `sedberg`,
+      search: /\bSedberg\b/g,
+      replace: `Sedbergh`,
+      fixable: true,
+      message: `The city of Sedbergh must always be spelled "Sedbergh"`,
+    },
+    {
       test: `mount`,
       search: /\bmount(-| )?mell?ick?\b/gi,
       replace: `Mountmellick`,
       fixable: (_, line) => !!line.match(/\bmount(-| )?mell?ick?\b/i),
-      message: `Mountmellick should always be spelled "Mountmellick"`,
+      message: `Mountmellick must always be spelled "Mountmellick"`,
       allowIfNear: /Mountmellick/,
       includeNextLineFirstWord: true,
     },
