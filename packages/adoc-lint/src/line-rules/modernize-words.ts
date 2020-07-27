@@ -5,6 +5,13 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `proffer`,
+      search: /\b(P|p)roffer/g,
+      replace: (_, p) => `${p === `P` ? `O` : `o`}ffer`,
+      message: `"proffer" should be replaced in modernized editions (offer, tender, propose)`,
+      fixable: false,
+    },
+    {
       test: `builded`,
       search: /\b(B|b)uilded\b/g,
       replace: `$1uilt`,
