@@ -23,6 +23,7 @@ describe(`modernizeWords()`, () => {
   const violations: [string, string][] = [
     [`Amongst a rude mob`, `Among a rude mob`],
     [`and amongst enemies`, `and among enemies`],
+    [`Foo mine eyes have seen`, `Foo my eyes have seen`],
   ];
 
   test.each(violations)(`\`%s\` should become "%s"`, (line, reco) => {
@@ -31,7 +32,10 @@ describe(`modernizeWords()`, () => {
     expect(results[0].recommendation).toBe(reco);
   });
 
-  const allowed: [string][] = [[`Samual Amongstrong came to meeting`]];
+  const allowed: [string][] = [
+    [`Samual Amongstrong came to meeting`],
+    [`This weight of burden of mine is too great to bear`],
+  ];
 
   test.each(allowed)(`%s is not a lint violation`, line => {
     expect(modernizeWords(line, [], 1, opts)).toHaveLength(0);
