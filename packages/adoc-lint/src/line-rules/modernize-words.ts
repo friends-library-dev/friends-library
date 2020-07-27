@@ -5,6 +5,11 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `builded`,
+      search: /\b(B|b)uilded\b/g,
+      replace: `$1uilt`,
+    },
+    {
       test: `min`,
       search: /\b(M|m)ine (a|e|i|o|u)/g,
       fixable: (match, line) => {
