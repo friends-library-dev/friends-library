@@ -5,6 +5,19 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `min`,
+      search: /\b(M|m)ine (a|e|i|o|u)/g,
+      fixable: (match, line) => {
+        const check = line.substr(match.index || 0).toLowerCase();
+        return !!check.match(
+          /^mine (eyes?|ears?|afflictions?|enem(y|ies)|own|anointed|acquaintances?|anger|elect|iniquit(y|ies)|inheritance|adversar(y|ies)|offen(s|c)es?|altars?|accusers?|infirmit(y|ies)|exercises?|unfitness)\b/,
+        );
+      },
+      replace: `$1y $2`,
+      allowIfNear: /\bmine (and|in|is|of|at|as|or|unites|on|are|ascend|also|often|inherit|unto|appeared|into|under)\b/i,
+      message: `"mine" used as the modern "my" (e.g. "mine eyes have seen") should be updated to "my"`,
+    },
+    {
       test: `you`,
       search: /\b(Believe|Go|Seek|Get|Come) (Y|y)ou\b/g,
       replace: `$1`,
