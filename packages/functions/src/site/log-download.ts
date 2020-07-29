@@ -86,6 +86,9 @@ async function logDownload(
           latitude: nullableLocationProp(`number`, json.latitude),
           longitude: nullableLocationProp(`number`, json.longitude),
         };
+        if (!location.ip) {
+          log.debug(`Unexpected location api json response`, { json, headers });
+        }
       }
     } catch (err) {
       log.debug(`Error retrieving location data`, { error: err, userAgent });
