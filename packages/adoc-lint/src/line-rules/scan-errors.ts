@@ -32,7 +32,7 @@ const runner = new RegexLintRunner(
       test: `lime|limes`, // --> time/s
       search: /\blime(s)?\b/g,
       replace: `time$1`,
-      allowIfNear: /(lemon|orange|kiln|fruit|manure|white|stone|juice|chloride)/i,
+      allowIfNear: /(ashes|lemon|orange|kiln|fruit|manure|white|stone|juice|chloride)/i,
     },
     {
       test: `wc`, // --> we
