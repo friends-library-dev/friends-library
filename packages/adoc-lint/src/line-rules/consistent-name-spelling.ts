@@ -5,6 +5,13 @@ import RegexLintRunner from '../RegexLintRunner';
 const runner = new RegexLintRunner(
   [
     {
+      test: `rappahannoc`,
+      search: /\bRappahannoc\b/g,
+      replace: `Rappahannock`,
+      fixable: true,
+      message: `The river Rappahannock must always be spelled "Rappahannock"`,
+    },
+    {
       test: `sedberg`,
       search: /\bSedberg\b/g,
       replace: `Sedbergh`,
