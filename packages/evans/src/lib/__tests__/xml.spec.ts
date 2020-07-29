@@ -1,5 +1,40 @@
 import { getFriend, Audio, Document } from '@friends-library/friends';
-import { partTitle, partDesc } from '../xml';
+import { Lang } from '@friends-library/types';
+import { partTitle, partDesc, subtitle } from '../xml';
+
+describe(`subtitle()`, () => {
+  const cases: [Lang, string, string, string][] = [
+    [
+      `en`,
+      `elizabeth-webb`,
+      `letter`,
+      `Audiobook of Elizabeth Webb's "A Letter of Elizabeth Webb" from The Friends Library. Read by Jason R. Henderson.`,
+    ],
+    [
+      `en`,
+      `compilations`,
+      `truth-in-the-inward-parts`,
+      `Audiobook of "Truth in the Inward Parts" from The Friends Library. Read by Jason R. Henderson.`,
+    ],
+    [
+      `es`,
+      `elizabeth-webb`,
+      `carta`,
+      `Audiolibro de "La Carta de Elizabeth Webb" escrito por Elizabeth Webb, de la Biblioteca de los Amigos. Leído por Keren Alvaredo.`,
+    ],
+    [
+      `es`,
+      `compilaciones`,
+      `verdad-en-lo-intimo`,
+      `Audiolibro de "La Verdad en Lo Íntimo", de la Biblioteca de los Amigos. Leído por Keren Alvaredo.`,
+    ],
+  ];
+
+  test.each(cases)(`subtitle for %s/%s/%s`, (lang, friend, doc, expected) => {
+    const [audio] = getAudio(friend, doc, lang);
+    expect(subtitle(audio)).toBe(expected);
+  });
+});
 
 describe(`partTitle()`, () => {
   it(`should use full title for standalone audio part`, () => {
@@ -16,6 +51,38 @@ describe(`partTitle()`, () => {
 });
 
 describe(`partDesc()`, () => {
+  const cases: [Lang, string, string, string][] = [
+    [
+      `en`,
+      `robert-barclay`,
+      `saved-to-the-uttermost`,
+      `Ch. 1 - The Condition of Man in the Fall. Part 1 of 6 of the audiobook version of "Saved to the Uttermost" by Robert Barclay`,
+    ],
+    [
+      `en`,
+      `elizabeth-webb`,
+      `letter`,
+      `Audiobook version of "A Letter of Elizabeth Webb" by Elizabeth Webb`,
+    ],
+    [
+      `es`,
+      `isaac-penington`,
+      `escritos-volumen-1`,
+      `Cp. 1. Parte 1 de 19 del audiolibro de "Los Escritos de Isaac Penington -- Volumen 1" escrito por Isaac Penington`,
+    ],
+    [
+      `es`,
+      `elizabeth-webb`,
+      `carta`,
+      `Audiolibro de "La Carta de Elizabeth Webb" escrito por Elizabeth Webb`,
+    ],
+  ];
+
+  test.each(cases)(`partDesc() for %s/%s/%s`, (lang, friend, doc, expected) => {
+    const [audio] = getAudio(friend, doc, lang);
+    expect(partDesc(audio.parts[0], 1, audio.parts.length)).toBe(expected);
+  });
+
   it(`should return correct description for multi-part audio`, () => {
     const [audio] = getMultiPartAudio();
     expect(partDesc(audio.parts[0], 1, audio.parts.length)).toBe(
@@ -57,8 +124,12 @@ function getMultiPartAudio(): [Audio, Document] {
   return [audio, doc];
 }
 
-function getAudio(friendSlug: string, docSlug: string): [Audio, Document] {
-  const friend = getFriend(friendSlug, `en`);
+function getAudio(
+  friendSlug: string,
+  docSlug: string,
+  lang: Lang = `en`,
+): [Audio, Document] {
+  const friend = getFriend(friendSlug, lang);
   const doc = friend.documents.find(d => d.slug === docSlug);
   const edition = doc!.editions.find(e => e.audio);
   const audio = edition!.audio!;

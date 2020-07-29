@@ -1,6 +1,6 @@
 import { encode } from 'he';
 import moment from 'moment';
-import { Document, Edition, AudioPart } from '@friends-library/friends';
+import { Audio, Document, Edition, AudioPart } from '@friends-library/friends';
 import { AudioQuality } from '@friends-library/types';
 import env from '@friends-library/env';
 import { LANG, APP_URL } from '../env';
@@ -33,11 +33,7 @@ export function podcast(
       type="application/rss+xml"
     />
     <title>${encode(document.title)}</title>
-    <itunes:subtitle>
-      Audiobook of ${document.isCompilation ? `` : `${friend.name}'s`} "${
-    document.title
-  }" from The Friends Library. Read by ${audio.reader}.
-    </itunes:subtitle>
+    <itunes:subtitle>${subtitle(audio)}</itunes:subtitle>
     <link>${APP_URL}${podcastUrl(audio, quality)}</link>
     <language>${LANG}</language>
     <itunes:author>${encode(friend.name)}</itunes:author>
@@ -94,20 +90,37 @@ export function podcast(
 `;
 }
 
+export function subtitle(audio: Audio): string {
+  const doc = audio.edition.document;
+  const friend = doc.friend;
+  if (friend.lang === `es`) {
+    return `Audiolibro de "${doc.title}"${
+      doc.isCompilation ? `` : ` escrito por ${friend.name}`
+    }, de la Biblioteca de los Amigos. Leído por ${audio.reader}.`;
+  }
+  return `Audiobook of ${doc.isCompilation ? `` : `${friend.name}'s `}"${
+    doc.title
+  }" from The Friends Library. Read by ${audio.reader}.`;
+}
+
 export function partDesc(part: AudioPart, partNumber: number, numParts: number): string {
   const document = part.audio.edition.document;
-  const byLine = `"${encode(document.title)}" by ${encode(document.friend.name)}`;
+  const lang = document.friend.lang;
+  const by = lang === `en` ? `by` : `escrito por`;
+  const Of = lang === `en` ? `of` : `de`;
+  const Part = lang === `en` ? `Part` : `Parte`;
+  const byLine = `"${encode(document.title)}" ${by} ${encode(document.friend.name)}`;
   if (numParts === 1) {
-    return `Audiobook version of ${byLine}`;
+    return lang === `en` ? `Audiobook version of ${byLine}` : `Audiolibro de ${byLine}`;
   }
 
   let desc = [
-    `Part ${partNumber} of ${part.audio.parts.length}`,
-    `of the audiobook version of`,
+    `${Part} ${partNumber} ${Of} ${part.audio.parts.length}`,
+    lang === `en` ? `of the audiobook version of` : `del audiolibro de`,
     byLine,
   ].join(` `);
 
-  if (part.title !== `Part ${partNumber}`) {
+  if (part.title !== `${Part} ${partNumber}`) {
     desc = `${part.title}. ${desc}`;
   }
 
