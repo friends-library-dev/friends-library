@@ -409,6 +409,7 @@ dt {
   text-indent: -1.5em;
 }
 
+.emphasized p em,
 .blurb > em,
 .section-summary-preface p em,
 .section-author p em,
