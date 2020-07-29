@@ -87,8 +87,8 @@ async function logDownload(
           longitude: nullableLocationProp(`number`, json.longitude),
         };
       }
-    } catch {
-      // ¯\_(ツ)_/¯
+    } catch (err) {
+      log.debug(`Error retrieving location data`, { error: err, userAgent });
     }
   }
 
