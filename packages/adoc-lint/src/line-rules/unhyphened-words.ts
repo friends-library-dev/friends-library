@@ -4,6 +4,21 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `New-York`,
+    search: /\bNew-York/g,
+    replace: `New York`,
+  },
+  {
+    test: `New-Jersey`,
+    search: /\bNew-Jersey/g,
+    replace: `New Jersey`,
+  },
+  {
+    test: `Long-Island`,
+    search: /\bLong-Island/g,
+    replace: `Long Island`,
+  },
+  {
     test: `birth-day`,
     search: /\b(B|b)irth-(days?)\b/g,
     replace: `$1irth$2`,
