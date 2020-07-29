@@ -11,7 +11,7 @@ import * as actions from '../actions';
 import Centered from './Centered';
 import StyledEditor from './StyledEditor';
 import { addKeyCommands } from './editor-key-commands';
-import { lintOptions } from '../lib/lint';
+import { editorSubsetLintOptions } from '../lib/lint';
 import './adoc-mode';
 import './adoc-snippets';
 import 'brace/theme/tomorrow_night';
@@ -165,7 +165,7 @@ const mapState = (state: State): Omit<StateProps, 'size'> => {
   const task = requireCurrentTask(state);
   const file = task.files[task.editingFile || ``];
   return {
-    lintOptions: lintOptions(file ? file.path : ``),
+    lintOptions: editorSubsetLintOptions(file ? file.path : ``),
     githubUser: state.github.token ? state.github.user : ``,
     fontSize: state.prefs.editorFontSize,
     searching: state.search.searching,
