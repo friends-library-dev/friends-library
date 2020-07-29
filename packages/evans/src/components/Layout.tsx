@@ -103,6 +103,7 @@ const Layout: React.FC = ({ children }) => {
           href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css"
           rel="stylesheet prefetch"
         />
+        <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.2.0/dist/fetch.umd.min.js" />
         <body className={cx({ webp, 'no-webp': webp === false, 'no-js': !jsEnabled })} />
       </Helmet>
       {itemJustAdded && (
