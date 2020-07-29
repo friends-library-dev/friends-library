@@ -4,6 +4,16 @@ import RegexLintRunner from '../RegexLintRunner';
 
 const runner = new RegexLintRunner([
   {
+    test: `Staten-Island`,
+    search: /\bStaten-Island/gi,
+    replace: `Staten Island`,
+  },
+  {
+    test: `Rhode-Island`,
+    search: /\bRhode-Island/gi,
+    replace: `Rhode Island`,
+  },
+  {
     test: `New-York`,
     search: /\bNew-York/g,
     replace: `New York`,
