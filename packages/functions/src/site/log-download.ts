@@ -62,7 +62,7 @@ async function logDownload(
     audioQuality = filename.match(/--lq\.(zip|m4b)$/) ? `LQ` : `HQ`;
   }
 
-  respond.redirect(redirUri);
+  respond.redirect(redirUri, format === `podcast` ? 301 : 302);
 
   const userAgent = headers[`user-agent`] || ``;
   const parsedUserAgent = useragent.parse(userAgent);
@@ -71,12 +71,17 @@ async function logDownload(
     return;
   }
 
-  let location: Record<string, string | number | null> = {};
-  if (headers[`client-ip`]) {
+  let location: Record<string, string | number | null> = {
+    ip: headers[`client-ip`] || null,
+  };
+
+  if (location.ip) {
     try {
-      const ipRes = await fetch(`https://ipapi.co/${headers[`client-ip`]}/json/`);
+      const ipRes = await fetch(
+        `https://ipapi.co/${location.ip}/json/?key=${env(`LOCATION_API_KEY`)}`,
+      );
       const json = await ipRes.json();
-      if (typeof json === `object`) {
+      if (typeof json === `object` && !json.error) {
         location = {
           ip: nullableLocationProp(`string`, json.ip),
           city: nullableLocationProp(`string`, json.city),
@@ -86,12 +91,11 @@ async function logDownload(
           latitude: nullableLocationProp(`number`, json.latitude),
           longitude: nullableLocationProp(`number`, json.longitude),
         };
-        if (!location.ip) {
-          log.debug(`Unexpected location api json response`, { json, headers });
-        }
+      } else if (typeof json === `object` && json.error) {
+        log.error(`Location api error`, { json, headers });
       }
-    } catch (err) {
-      log.debug(`Error retrieving location data`, { error: err, userAgent });
+    } catch {
+      // ¯\_(ツ)_/¯
     }
   }
 
@@ -111,10 +115,6 @@ async function logDownload(
     userAgent,
   };
 
-  if (download.browser === `AirPodcasts` && location.city === `Pensacola`) {
-    return; // don't record or slack strange repetative requests from CB
-  }
-
   const db = new DbClient(env(`FAUNA_SERVER_SECRET`));
   const [error] = await db.downloads.create(download);
   if (error) {
@@ -123,11 +123,7 @@ async function logDownload(
     log.debug(`Download added to db:`, { download });
   }
 
-  if (cloudPath.endsWith(`podcast.rss`)) {
-    log.debug(`RSS download added: ${cloudPath}`, { location });
-  } else {
-    sendSlack(parsedUserAgent, referrer, cloudPath, location);
-  }
+  sendSlack(parsedUserAgent, referrer, cloudPath, location);
 }
 
 export default logDownload;
