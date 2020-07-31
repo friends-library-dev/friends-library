@@ -24,9 +24,12 @@ description:
   away.”
 documents:
   - id: 99ecfc4d-8a51-411d-805e-f5243d4879ed
-    title: Two Letters of Samuel Crisp
-    slug: letters
-    filename: Letters_of_Samuel_Crisp
+    title: Life and Letters of Samuel Crisp
+    slug: life-letters
+    filename: Life_and_Letters_of_Samuel_Crisp
+    original_title:
+      Letters and Extracts from a Treatise Written by Samuel Crisp; to which is prefixed a
+      short Memoir of His Life.
     description:
       Samuel Crisp (1670—1704) was a brilliant young priest in the Church of England whose
       hunger for truth and righteousness led him to leave off all formal, shadowy religion
@@ -36,33 +39,28 @@ documents:
       Son in him, “at the brightness of whose appearance the clouds are scattered and the
       shadows flee away.”
     partial_description:
-      Two valuable letters of Samuel Crisp, with extracts from his work entitled “A
+      Three valuable letters of Samuel Crisp, with extracts from his work entitled “A
       Vindication of the People Called Quakers,” to which is prefixed a short memoir of
       his life.
     tags:
       - letters
     editions:
+      - type: original
+        isbn: 978-1-64476-233-2
       - type: modernized
+        isbn: 978-1-64476-234-9
+      - type: updated
         isbn: 978-1-64476-120-5
+        editor: Jason R. Henderson
         audio:
-          added: 2018-03-22T04:00:00.000Z
+          added: 2020-07-31T19:54:19.915Z
           reader: Jason R. Henderson
-          external_playlist_id_hq: 971895424
-          external_playlist_id_lq: 971902252
           parts:
-            - title: Part 1
-              external_id_hq: 417771204
-              external_id_lq: 417771228
-              filesize_hq: 29533411
-              filesize_lq: 10218966
-              seconds: 1703
+            - title: Life and Letters of Samuel Crisp
+              external_id_hq: 868065337
+              external_id_lq: 868064755
+              filesize_hq: 77365312
+              filesize_lq: 20464758
+              seconds: 4092
               chapters:
                 - 0
-            - title: Part 2
-              external_id_hq: 417772568
-              external_id_lq: 417772596
-              filesize_hq: 36602636
-              filesize_lq: 12572718
-              seconds: 2095
-              chapters:
-                - 1
