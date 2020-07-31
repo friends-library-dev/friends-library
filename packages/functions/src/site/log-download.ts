@@ -75,6 +75,11 @@ async function logDownload(
     ip: headers[`client-ip`] || null,
   };
 
+  if (format === `podcast` && location.ip === `2600:8807:8100:52b:c465:1e8e:7ac:8ccb`) {
+    // ignore repeated requests for same podcasts from troublesome IP
+    return;
+  }
+
   if (location.ip) {
     try {
       const ipRes = await fetch(
