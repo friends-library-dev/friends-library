@@ -1,8 +1,5 @@
 .SlideoverMenu .Logo {
   width: 140px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .SlideoverMenu .Logo:lang(es) {

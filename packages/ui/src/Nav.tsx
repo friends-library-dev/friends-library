@@ -61,7 +61,7 @@ const Nav: React.FC<Props> = ({
         })}
         to="/"
       >
-        <Logo className="h-full block mx-auto" />
+        <Logo className="block mx-auto" />
       </Link>
       <TopNavSearch className="flex" searching={searching} setSearching={setSearching} />
       {showCartBadge && (

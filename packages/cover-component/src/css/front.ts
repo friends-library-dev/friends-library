@@ -85,7 +85,7 @@ const front: CoverCssModule = (scaler, scope) => {
     .Cover .front .author {
       text-align: center;
       font-size: 10%;
-      height: 14.5%;
+      min-height: 14.5%; /* instead of height, to help out old Safari versions */
       margin-top: 3.5%;
     }
 

@@ -13,6 +13,7 @@ interface Props {
 
 interface State {
   perspective: Perspective;
+  shouldRotate: boolean;
   controlled: boolean;
   showBackTimeout?: number;
   backToFrontTimeout?: number;
@@ -22,9 +23,16 @@ export default class RotatableCover extends React.Component<Props, State> {
   public state: State = {
     perspective: `angle-front`,
     controlled: false,
+    shouldRotate: false,
   };
 
   public componentDidMount(): void {
+    if (window.CSS && window.CSS.supports(`writing-mode`, `vertical-lr`)) {
+      this.setState({ shouldRotate: true });
+    } else {
+      return;
+    }
+
     const showBackTimeout = window.setTimeout(
       () => this.setState({ perspective: `angle-back` }),
       10000,
@@ -44,7 +52,7 @@ export default class RotatableCover extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     const { className, coverProps } = this.props;
-    const { perspective, showBackTimeout, backToFrontTimeout } = this.state;
+    const { perspective, shouldRotate, showBackTimeout, backToFrontTimeout } = this.state;
     return (
       <div className={cx(className, `flex flex-col items-center`)}>
         <div className="hidden xl:block">
@@ -54,7 +62,7 @@ export default class RotatableCover extends React.Component<Props, State> {
           <ThreeD {...coverProps} perspective={perspective} scaler={3 / 5} scope="3-5" />
         </div>
         <button
-          className="focus:outline-none pt-1"
+          className={cx(`focus:outline-none pt-1`, !shouldRotate && `hidden`)}
           onClick={() => {
             [showBackTimeout, backToFrontTimeout].forEach(clearTimeout);
             this.setState({

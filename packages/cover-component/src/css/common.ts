@@ -51,6 +51,7 @@ const common: CoverCssModule = (scaler, scope) => {
       position: absolute;
       z-index: 0;
       top: 0;
+      left: 0;
       height: 13%;
       width: 100%;
       background-color: white;
