@@ -35,3 +35,10 @@
     font-size: 130px;
   }
 }
+
+@supports (writing-mode: vertical-lr) {
+  #TimelineBlock .YearBar {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+  }
+}

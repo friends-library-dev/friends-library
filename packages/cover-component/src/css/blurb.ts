@@ -22,7 +22,6 @@ const blurb: CoverCssModule = (scaler, scope) => {
       cursor: text;
       margin: 0 8%;
       position: relative;
-      top: 23%;
       font-size: 2.9%;
       line-height: 160%;
       text-align: center;
@@ -31,7 +30,6 @@ const blurb: CoverCssModule = (scaler, scope) => {
     }
 
     .Cover.trim--s .blurb {
-      top: 18%;
       min-height: 38%;
       max-height: 42%;
     }
@@ -46,7 +44,6 @@ const blurb: CoverCssModule = (scaler, scope) => {
     }
 
     .Cover.trim--xl .blurb {
-      top: 25%;
       max-height: 42%;
     }
 
@@ -69,7 +66,21 @@ const blurb: CoverCssModule = (scaler, scope) => {
     ${sizingCss}
   `;
 
-  return [staticCss, dynamifyCss(``, scope, scaler)];
+  const dynamicCss = css`
+    .Cover.trim--s .blurb {
+      top: 1.15in;
+    }
+
+    .Cover.trim--m .blurb {
+      top: 1.84in;
+    }
+
+    .Cover.trim--xl .blurb {
+      top: 2.13in;
+    }
+  `;
+
+  return [staticCss, dynamifyCss(dynamicCss, scope, scaler)];
 };
 
 export default blurb;

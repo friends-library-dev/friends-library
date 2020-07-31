@@ -37,6 +37,7 @@ const spine: CoverCssModule = (scaler, scope) => {
 
     .spine__title,
     .spine__author {
+      opacity: 0;
       font-size: 4.7%;
       left: 50%;
       transform: translateX(-50%);
@@ -44,6 +45,13 @@ const spine: CoverCssModule = (scaler, scope) => {
       position: absolute;
       writing-mode: vertical-rl;
       top: 20%;
+    }
+
+    @supports (writing-mode: vertical-lr) {
+      .spine__title,
+      .spine__author {
+        opacity: 1;
+      }
     }
 
     .trim--s .spine__title {

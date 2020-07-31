@@ -79,10 +79,7 @@ const TimelineBlock: React.FC<Props> = ({ books, bgImg }) => {
         {date}
       </div>
       <div className="flex flex-col md:flex-row md:justify-center items-center pt-20 sm:pt-12 sm:-mt-32 mb-8">
-        <div
-          className="hidden md:block bg-flgold text-white box-content h-48 py-2 px-2 mr-4 -mt-48 text-center text-xl transform rotate-180"
-          style={{ writingMode: `vertical-rl` }}
-        >
+        <div className="YearBar hidden md:block bg-flgold text-white box-content h-48 py-2 px-2 mr-4 -mt-48 text-center text-xl">
           {date}
         </div>
         <BookSlider

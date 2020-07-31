@@ -14,7 +14,7 @@ const SlideoverMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const Logo = LANG === `en` ? FriendsLogo : AmigosLogo;
   return (
     <nav className="SlideoverMenu bg-flmaroon text-white">
-      <header className="p-5 flex border-b-4 border-flprimary-800">
+      <header className="p-5 flex border-b-4 border-flprimary-800 items-center">
         <span className="w-12 text-xl md:text-2xl p-1" onClick={onClose}>
           &#x2715;
         </span>

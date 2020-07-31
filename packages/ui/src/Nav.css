@@ -3,6 +3,10 @@
   padding: 0 10px 0 0;
 }
 
+.Nav .Logo {
+  height: 69px; /* help out old versions of Safari */
+}
+
 .Nav .Logo:lang(es) {
   width: 160px;
   transform: translateY(4px);
