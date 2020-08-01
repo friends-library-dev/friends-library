@@ -8,6 +8,7 @@ target 'FriendsLibrary' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+
   target 'FriendsLibraryTests' do
     inherit! :complete
     # Pods for testing
