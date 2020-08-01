@@ -41,7 +41,7 @@ files.forEach((file) => {
 
     try {
       fileContents = readFileSync(file.path, `utf8`);
-      friend = safeLoad(fileContents);
+      friend = safeLoad(fileContents) as FriendData;
       friend.lang = file.path.includes(`/es/`) ? `es` : `en`;
       friends.push(friend);
       documents = friend.documents; // eslint-disable-line prefer-destructuring

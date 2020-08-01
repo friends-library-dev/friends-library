@@ -1,0 +1,44 @@
+{
+  "name": "@friends-library/app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+  },
+  "dependencies": {
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/netinfo": "^5.9.5",
+    "@react-navigation/native": "^5.7.2",
+    "@react-navigation/stack": "^5.8.0",
+    "get-yarn-workspaces": "^1.0.2",
+    "react": "16.13.1",
+    "react-native": "0.63.0",
+    "react-native-fs": "^2.16.6",
+    "react-native-gesture-handler": "^1.7.0",
+    "react-native-reanimated": "^1.10.1",
+    "react-native-safe-area-context": "^3.1.1",
+    "react-native-screens": "^2.9.0",
+    "react-native-scrubber": "bakkerjoeri/react-native-scrubber#bugfix/set-use-native-driver",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-swift": "^1.2.3",
+    "react-native-track-player": "^1.2.3",
+    "react-native-vector-icons": "^7.0.0",
+    "tailwind-rn": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/runtime": "^7.8.4",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@types/react-native": "^0.63.1",
+    "@types/react-native-vector-icons": "^6.4.5",
+    "@types/react-test-renderer": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "react-test-renderer": "16.13.1"
+  }
+}

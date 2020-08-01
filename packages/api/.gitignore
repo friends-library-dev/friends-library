@@ -1,0 +1,6 @@
+.netlify/
+build/
+built-functions/
+
+# Local Netlify folder
+.netlify

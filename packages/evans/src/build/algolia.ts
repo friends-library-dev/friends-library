@@ -119,7 +119,7 @@ function mdxRecords(): Record<string, string | null>[] {
   return paths.flatMap((filePath) => {
     const content = fs.readFileSync(filePath).toString();
     const [, yaml, text] = content.split(/---\n/m);
-    const frontmatter = ymlToJs(yaml);
+    const frontmatter = ymlToJs(yaml) as Record<string, string>;
     const records: Record<string, string | null>[] = [
       {
         title: frontmatter.title,
