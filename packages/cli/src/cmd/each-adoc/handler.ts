@@ -10,9 +10,9 @@ export default async function handler({ pattern }: { pattern: string }): Promise
     process.exit(1);
   }
 
-  dpcs.forEach(dpc => {
+  dpcs.forEach((dpc) => {
     const files = glob(`${dpc.fullPath}/*.adoc`);
-    files.forEach(path => {
+    files.forEach((path) => {
       const adoc = fs.readFileSync(path).toString();
       console.log(adoc);
     });

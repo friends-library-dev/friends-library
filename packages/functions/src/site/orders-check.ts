@@ -34,13 +34,13 @@ export default async function checkOrders(
   const updatedOrders: Db.Order[] = [];
   const recentlyShippedOrders: Db.Order[] = [];
 
-  jobs.forEach(job => {
+  jobs.forEach((job) => {
     const status = job.status.name;
     if (status === `IN_PRODUCTION`) {
       return;
     }
 
-    const order = orders.find(o => o.printJobId === job.id);
+    const order = orders.find((o) => o.printJobId === job.id);
     if (!order) {
       return;
     }
@@ -92,7 +92,7 @@ export default async function checkOrders(
 async function getPrintJobs(
   orders: Db.Order[],
 ): Promise<[null | CheckoutError, LuluAPI.PrintJob[]]> {
-  const ids = orders.map(o => o.printJobId).filter(isDefined);
+  const ids = orders.map((o) => o.printJobId).filter(isDefined);
   const [json, status] = await luluClient().listPrintJobs(ids);
   if (status !== 200) {
     log.error(`error retrieving print job data`, { msg: json });
@@ -106,10 +106,10 @@ async function sendShipmentTrackingEmails(
   jobs: LuluAPI.PrintJob[],
   orders: Db.Order[],
 ): Promise<void> {
-  const shippedJobs = jobs.filter(job => job.status.name === `SHIPPED`);
+  const shippedJobs = jobs.filter((job) => job.status.name === `SHIPPED`);
 
-  const emails = shippedJobs.map(job => {
-    const order = orders.find(o => o.printJobId === job.id);
+  const emails = shippedJobs.map((job) => {
+    const order = orders.find((o) => o.printJobId === job.id);
     if (!order) throw new Error(`Matching order not found!`);
     return {
       ...orderShippedEmail(order, trackingUrl(job)),
@@ -124,7 +124,7 @@ async function sendShipmentTrackingEmails(
     const sendResult = await mailer.send(emails);
     // typings are bad, sending multiple emails returns multiple responses, like below
     const responses = (sendResult[0] as unknown) as [{ statusCode: number } | undefined];
-    const failed = responses.filter(r => r && r.statusCode >= 300);
+    const failed = responses.filter((r) => r && r.statusCode >= 300);
     if (failed.length) {
       log.error(`bad send shipment tracking email response`, { error: failed });
     }

@@ -12,15 +12,15 @@ html {
   }
 }
 
-@page:left {
+@page: left{
   margin-left: var(--page-outer-margin);
   margin-right: var(--page-inner-margin);
-}
+};
 
-@page:right {
+@page: right{
   margin-left: var(--page-inner-margin);
   margin-right: var(--page-outer-margin);
-}
+};
 
 h2 {
   /* forces new page & allows target @page:first for pages starting chapters */

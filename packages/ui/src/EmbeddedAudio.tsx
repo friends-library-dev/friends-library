@@ -52,7 +52,7 @@ function src(
   };
 
   const query = Object.keys(params)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     .join(`&`);
 
   return `https://w.soundcloud.com/player/?${query}`;

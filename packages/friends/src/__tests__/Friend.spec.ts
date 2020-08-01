@@ -12,7 +12,7 @@ describe(`Friend`, () => {
 
   describe(`.path`, () => {
     it(`returns combo of lang and slug`, () => {
-      const friend = testFriend(f => {
+      const friend = testFriend((f) => {
         f.lang = `en`;
         f.slug = `george-fox`;
       });
@@ -22,24 +22,24 @@ describe(`Friend`, () => {
 
   describe(`.alphabeticalName`, () => {
     it(`returns lastname then firstname`, () => {
-      const friend = testFriend(f => (f.name = `Jared Henderson`));
+      const friend = testFriend((f) => (f.name = `Jared Henderson`));
       expect(friend.alphabeticalName).toBe(`Henderson, Jared`);
     });
 
     it(`can handle maiden names`, () => {
-      const friend = testFriend(f => (f.name = `Catherine (Payton) Phillips`));
+      const friend = testFriend((f) => (f.name = `Catherine (Payton) Phillips`));
       expect(friend.alphabeticalName).toBe(`Phillips, Catherine (Payton)`);
     });
 
     it(`can handle middle initials`, () => {
-      const friend = testFriend(f => (f.name = `Sarah R. Grubb`));
+      const friend = testFriend((f) => (f.name = `Sarah R. Grubb`));
       expect(friend.alphabeticalName).toBe(`Grubb, Sarah R.`);
     });
   });
 
   describe(`.primaryResidence`, () => {
     it(`returns un-dated residence if only one`, () => {
-      const friend = testFriend(f => {
+      const friend = testFriend((f) => {
         f.residences = [
           {
             city: `Sheffield`,
@@ -54,7 +54,7 @@ describe(`Friend`, () => {
     });
 
     it(`returns residence with longest duration if several`, () => {
-      const friend = testFriend(f => {
+      const friend = testFriend((f) => {
         f.born = 1700;
         f.died = 1780;
         f.residences = [
@@ -77,7 +77,7 @@ describe(`Friend`, () => {
     });
 
     it(`discounts growing up years when choosing primary residence`, () => {
-      const friend = testFriend(f => {
+      const friend = testFriend((f) => {
         f.born = 1700;
         f.died = 1724;
         f.residences = [

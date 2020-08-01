@@ -101,7 +101,7 @@ const runner = new RegexLintRunner(
       search: /\bmc\b/g,
       replace: `me`,
     },
-  ].map(d => ({ ...d, test: `\\b${d.test}\\b` })),
+  ].map((d) => ({ ...d, test: `\\b${d.test}\\b` })),
   {
     fixable: false,
     message: `"<found>" is often a scanning error and should be corrected to "<fixed>"`,

@@ -25,7 +25,7 @@ describe(`midWordUppercase()`, () => {
     [`His righteous laW,`],
   ];
 
-  test.each(violations)(`\`%s\` should be a lint violation`, line => {
+  test.each(violations)(`\`%s\` should be a lint violation`, (line) => {
     const results = midWordUppercase(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
@@ -39,7 +39,7 @@ describe(`midWordUppercase()`, () => {
     [`footnote:[Galatians 2:20 KJV, LitV]`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(midWordUppercase(line, [], 1, opts)).toHaveLength(0);
   });
 });

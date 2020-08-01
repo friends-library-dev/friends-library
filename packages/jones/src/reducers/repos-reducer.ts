@@ -12,7 +12,7 @@ export default createReducer([], {
     state: Repo[],
     { payload: repos }: { payload: GitHubRepo[] },
   ) => {
-    return repos.map(repo => ({
+    return repos.map((repo) => ({
       id: repo.id,
       slug: repo.name,
       friendName:

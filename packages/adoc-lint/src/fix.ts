@@ -11,8 +11,8 @@ export default function fix(
   unfixable: LintResult[];
 } {
   const lints = lint(adoc, options);
-  const fixable = lints.filter(l => l.fixable === true);
-  const unfixable = lints.filter(l => l.fixable !== true);
+  const fixable = lints.filter((l) => l.fixable === true);
+  const unfixable = lints.filter((l) => l.fixable !== true);
   if (fixable.length === 0) {
     return { fixed: adoc, numFixed: 0, unfixable };
   }

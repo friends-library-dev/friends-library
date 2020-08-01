@@ -19,7 +19,7 @@ type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
   className?: string;
 };
 
-const Audiobook: React.FC<Props> = props => (
+const Audiobook: React.FC<Props> = (props) => (
   <div
     className={cx(
       props.className,

@@ -33,7 +33,7 @@ export function clearSearchResultHighlights(): void {
 
   try {
     const session = editor.getSession();
-    Object.values(session.getMarkers()).forEach(m => {
+    Object.values(session.getMarkers()).forEach((m) => {
       const marker = m as AceMarker;
       if (marker.clazz === `search-result`) {
         session.removeMarker(marker.id);

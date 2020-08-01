@@ -45,7 +45,7 @@ describe(`bookTitleSpacing()`, () => {
     [`[.book-title]#Barclays Apology#`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(bookTitleSpacing(line, [], 1, opts)).toHaveLength(0);
   });
 });

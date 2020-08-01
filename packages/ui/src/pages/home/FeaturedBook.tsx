@@ -7,7 +7,7 @@ import { LANG } from '../../env';
 import Button from '../../Button';
 import { FeaturedBookProps } from './FeaturedBooksBlock';
 
-const Book: React.FC<FeaturedBookProps & { isCurrent: boolean }> = props => {
+const Book: React.FC<FeaturedBookProps & { isCurrent: boolean }> = (props) => {
   const {
     featuredDesc,
     documentUrl,

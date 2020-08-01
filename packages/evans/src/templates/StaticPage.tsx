@@ -48,7 +48,7 @@ const components: { [key: string]: React.FC } = {
     <h3 className="font-sans text-flprimary mb-2 text-2xl">{children}</h3>
   ),
 
-  a: props => (
+  a: (props) => (
     <a className="text-flprimary fl-underline" {...props}>
       {props.children}
     </a>

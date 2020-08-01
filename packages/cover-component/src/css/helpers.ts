@@ -43,7 +43,9 @@ export function allSizesDocDims(): { [k in PrintSize]: DocDims } {
 
 export function withSizes(fn: (dims: DocDims, size: PrintSize) => Css): Css {
   const sizes: PrintSize[] = [`s`, `m`, `xl`];
-  return sizes.map(size => fn(docDims(size), size).replace(/__SIZE__/g, size)).join(`\n`);
+  return sizes
+    .map((size) => fn(docDims(size), size).replace(/__SIZE__/g, size))
+    .join(`\n`);
 }
 
 export function wrapClasses(

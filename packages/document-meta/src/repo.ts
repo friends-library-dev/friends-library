@@ -23,7 +23,7 @@ export async function fetchSingleton(): Promise<DocumentMeta> {
     return metaPromise;
   }
 
-  metaPromise = fetch().then(fetched => {
+  metaPromise = fetch().then((fetched) => {
     meta = fetched;
     return meta;
   });

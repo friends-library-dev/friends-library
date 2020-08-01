@@ -21,7 +21,7 @@ const SampleToc: React.FC<Props> = ({ chapters, onClose, className = `` }) => {
         Table of Contents
       </h5>
       <ul className="font-serif">
-        {chapters.map(chapter => (
+        {chapters.map((chapter) => (
           <Chapter key={chapter.id} {...chapter} />
         ))}
       </ul>

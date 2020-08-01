@@ -48,7 +48,7 @@ async function calculateCheapest(
   ccFeeOffset: number;
 }> {
   const results = await Promise.all(
-    SHIPPING_LEVELS.map(level => calculateForType(data, level, client)),
+    SHIPPING_LEVELS.map((level) => calculateForType(data, level, client)),
   );
 
   const [cheapest] = results
@@ -79,7 +79,7 @@ async function calculateForType(
   shippingLevel: ShippingLevel;
 }> {
   const [json, statusCode] = await client.printJobCosts({
-    line_items: data.items.map(item => ({
+    line_items: data.items.map((item) => ({
       page_count: item.pages,
       quantity: item.quantity,
       pod_package_id: podPackageId(item.printSize, item.pages),

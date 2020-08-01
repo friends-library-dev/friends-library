@@ -56,7 +56,7 @@ function salutation(order: Db.Order, fallback: string): string {
 
 function lineItems(order: Db.Order): string {
   const items: { title: string; quantity: number }[] = order.items || [];
-  return items.map(item => `* (${item.quantity}) ${item.title}`).join(`\n`);
+  return items.map((item) => `* (${item.quantity}) ${item.title}`).join(`\n`);
 }
 
 const CONFIRMATION_EMAIL_EN = `

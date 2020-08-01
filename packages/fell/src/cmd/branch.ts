@@ -11,7 +11,7 @@ export async function handler({ exclude }: Argv): Promise<void> {
   [...branchMap].forEach(([branch, branchRepos]) => {
     log(`${branchRepos.length} repos on branch ${chalk.green(`<${branch}>`)}`);
     if (branch !== `master`) {
-      branchRepos.forEach(repo => {
+      branchRepos.forEach((repo) => {
         log(`  ${chalk.grey(`↳`)} ${chalk.yellow(relPath(repo))}`);
       });
     }

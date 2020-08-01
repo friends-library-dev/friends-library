@@ -19,7 +19,7 @@ describe(`floatingClass()`, () => {
 
   const violations = [[`== Ch1\n\n[#foo]\n\nbar.`], [`[.bar]\n`]];
 
-  test.each(violations)(`%s should be linted`, adoc => {
+  test.each(violations)(`%s should be linted`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, index) => {
@@ -35,7 +35,7 @@ describe(`floatingClass()`, () => {
     [`[.book-title]#Collection of Writings,# 1704, p. 29.]\n\nFoo.`],
   ];
 
-  test.each(allowed)(`%s should not be linted`, adoc => {
+  test.each(allowed)(`%s should not be linted`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, index) => {

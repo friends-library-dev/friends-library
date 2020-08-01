@@ -22,7 +22,7 @@ describe(`bookTitleStart()`, () => {
     [`Foo [.book-title]#Bar#, baz[.book-title]#Jim#`],
   ];
 
-  test.each(violations)(`\`%s\` is a violation of 'book-title-start' rule`, line => {
+  test.each(violations)(`\`%s\` is a violation of 'book-title-start' rule`, (line) => {
     const results = bookTitleStart(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
@@ -35,7 +35,7 @@ describe(`bookTitleStart()`, () => {
     [`footnote:[[.book-title]#Apology#]`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(bookTitleStart(line, [], 1, opts)).toHaveLength(0);
   });
 });

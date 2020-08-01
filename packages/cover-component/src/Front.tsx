@@ -8,7 +8,7 @@ type Props = Omit<CoverProps, 'blurb' | 'pages'> & {
   shadow?: boolean;
 };
 
-const CoverFront: React.FC<Props> = props => {
+const CoverFront: React.FC<Props> = (props) => {
   return (
     <div
       id={`Cover--${props.isbn}`}

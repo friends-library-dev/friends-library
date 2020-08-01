@@ -60,7 +60,7 @@ const Delivery: React.FC<{
       {error && <ShippingError />}
       <form
         className="mt-8 relative"
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault();
           if (allFieldsValid && !throbbing) {
             onSubmit({
@@ -86,7 +86,7 @@ const Delivery: React.FC<{
           <Input
             {...(throbbing ? {} : { autofocus: true })}
             className="order-1"
-            onChange={val => setName(val)}
+            onChange={(val) => setName(val)}
             onBlur={() => setNameBlurred(true)}
             onFocus={() => setNameBlurred(false)}
             value={name}
@@ -96,7 +96,7 @@ const Delivery: React.FC<{
           />
           <Input
             className="order-3"
-            onChange={val => setStreet(val)}
+            onChange={(val) => setStreet(val)}
             onFocus={() => setStreetBlurred(false)}
             onBlur={() => setStreetBlurred(true)}
             value={street}
@@ -110,7 +110,7 @@ const Delivery: React.FC<{
           />
           <Input
             className="order-4"
-            onChange={val => setStreet2(val)}
+            onChange={(val) => setStreet2(val)}
             value={street2}
             placeholder={t`Apartment, suite, unit, etc.`}
             invalidMsg={t`Must be less than 30 characters`}
@@ -120,7 +120,7 @@ const Delivery: React.FC<{
             className="order-5"
             invalidMsg={t`City is required`}
             valid={!cityBlurred || !!city}
-            onChange={val => setCity(val)}
+            onChange={(val) => setCity(val)}
             onFocus={() => setCityBlurred(false)}
             onBlur={() => setCityBlurred(true)}
             value={city}
@@ -130,7 +130,7 @@ const Delivery: React.FC<{
             className="order-6"
             invalidMsg={t`State / Province / Region is required`}
             valid={!stateBlurred || !!state}
-            onChange={val => setState(val)}
+            onChange={(val) => setState(val)}
             onFocus={() => setStateBlurred(false)}
             onBlur={() => setStateBlurred(true)}
             value={state}
@@ -140,7 +140,7 @@ const Delivery: React.FC<{
             className="order-7"
             invalidMsg={t`ZIP / Postal Code is required`}
             valid={!zipBlurred || !!zip}
-            onChange={val => setZip(val)}
+            onChange={(val) => setZip(val)}
             onFocus={() => setZipBlurred(false)}
             onBlur={() => setZipBlurred(true)}
             value={zip}
@@ -164,7 +164,7 @@ const Delivery: React.FC<{
             className="order-2"
             invalidMsg={email ? t`Valid email is required` : t`Email is required`}
             valid={!emailBlurred || !!email.match(/^\S+@\S+$/)}
-            onChange={val => setEmail(val)}
+            onChange={(val) => setEmail(val)}
             onFocus={() => setEmailBlurred(false)}
             onBlur={() => setEmailBlurred(true)}
             value={email}

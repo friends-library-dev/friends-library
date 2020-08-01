@@ -61,7 +61,7 @@ const reducer = (state: any = defaultState, action: Action): any => {
   return sliceReducer(state, action);
 };
 
-export default async function(): Promise<any> {
+export default async function (): Promise<any> {
   const savedState = await loadState();
   const store = configureStore({
     reducer,

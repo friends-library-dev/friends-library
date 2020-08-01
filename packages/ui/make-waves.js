@@ -19,8 +19,8 @@ const points =
   'M 0 270 Q 70 230 160 290 Q 235 340 295 260 Q 385 145 468 246 Q 530 320 597 267 Q 685 195 760 290 Q 820 360 880 295 Q 960 205 1045 275 Q 1105 325 1155 295 Q 1225 250 1295 300 Q 1355 340 1400 295 Q 1460 230 1545 270 Q 1635 310 1692 264 Q 1745 220 1800 235 L 1800 640 L 0 640 Z';
 
 Object.keys(colors)
-  .filter(c => c.match(/^fl(blue|gold|maroon|green)-\d00$/))
-  .forEach(name => {
+  .filter((c) => c.match(/^fl(blue|gold|maroon|green)-\d00$/))
+  .forEach((name) => {
     const rgb = colors[name];
     const svgPath = `${__dirname}/src/images/waves/${name.replace(/^fl/, '')}.svg`;
     fs.writeFileSync(

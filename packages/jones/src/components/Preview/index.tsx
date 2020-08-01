@@ -136,7 +136,7 @@ class Component extends React.Component<Props, State> {
 const mapState = (state: AppState, { taskId, file }: OwnProps): Props => {
   const getHtml = (): Html => {
     const [html, conversionLogs] = chapterHtml(state, taskId, file);
-    conversionLogs.forEach(log => {
+    conversionLogs.forEach((log) => {
       console.warn(
         `${log.getSeverity()}: ${log.getText()}${
           log.getSourceLocation()

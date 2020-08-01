@@ -29,8 +29,8 @@ describe(`CheckoutService()`, () => {
 
       expect(calculateFees).toHaveBeenCalledWith({
         address: service.cart.address,
-        items: service.cart.items.flatMap(i =>
-          i.numPages.map(pages => ({
+        items: service.cart.items.flatMap((i) =>
+          i.numPages.map((pages) => ({
             pages,
             printSize: i.printSize,
             quantity: i.quantity,
@@ -112,7 +112,7 @@ describe(`CheckoutService()`, () => {
           zip: service.cart.address!.zip,
           country: service.cart.address!.country,
         },
-        items: service.cart.items.map(i => ({
+        items: service.cart.items.map((i) => ({
           title: i.printJobTitle(),
           documentId: i.documentId,
           edition: i.edition,

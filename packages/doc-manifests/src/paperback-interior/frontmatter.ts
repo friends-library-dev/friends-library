@@ -34,9 +34,9 @@ function toc({ lang, sections }: DocPrecursor): Html {
 export function useMultiColLayout(
   sections: { heading: Omit<Heading, 'id'>; isIntermediateTitle?: boolean }[],
 ): boolean {
-  const regularSections = sections.filter(s => !s.isIntermediateTitle);
-  const headings = regularSections.map(s => s.heading);
-  const namedChapterHeadings = headings.filter(h => h.text && h.sequence);
+  const regularSections = sections.filter((s) => !s.isIntermediateTitle);
+  const headings = regularSections.map((s) => s.heading);
+  const namedChapterHeadings = headings.filter((h) => h.text && h.sequence);
   return namedChapterHeadings.length / headings.length > 0.45;
 }
 

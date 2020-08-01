@@ -31,7 +31,7 @@ describe(`unintentionalListItem()`, () => {
 
   const allowed = [[`Mr. Foo came`], [`1772 was a good year`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(unintentionalListItem(line, [], 1, opts)).toHaveLength(0);
   });
 });

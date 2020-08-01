@@ -123,7 +123,7 @@ export async function isAheadOfMaster(repoPath: Repo): Promise<boolean> {
     return false;
   }
 
-  const priorShas: string[] = await new Promise(resolve => {
+  const priorShas: string[] = await new Promise((resolve) => {
     const stream = masterCommit.history();
     stream.on(`end`, (commits: NodeGit.Commit[]) =>
       resolve(commits.map((commit: NodeGit.Commit) => commit.sha())),

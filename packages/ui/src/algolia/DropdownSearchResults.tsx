@@ -19,7 +19,8 @@ const DropdownSearchResults: React.FC<Props> = ({
   allSearchResults: allResults,
   searchState: { query = `` },
 }) => {
-  const hasResults = allResults && Object.values(allResults).some(r => r && r.nbHits > 0);
+  const hasResults =
+    allResults && Object.values(allResults).some((r) => r && r.nbHits > 0);
   if (!hasResults && query.length < 3) {
     return (
       <div className={cx(query.length < 3 && `hidden`)}>

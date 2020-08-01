@@ -10,7 +10,7 @@ export function printLints(lints: DirLints, limit: false | number = false): void
       return;
     }
     const lines = adoc.split(`\n`);
-    fileLints.forEach(lint => {
+    fileLints.forEach((lint) => {
       if (limit && printed >= limit) {
         return;
       }

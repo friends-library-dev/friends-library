@@ -12,20 +12,20 @@ const createPagesStatefully: GatsbyNode['createPagesStatefully'] = ({
   actions: { createPage },
 }: CreatePagesArgs) => {
   allFriends()
-    .filter(f => f.lang === LANG)
-    .filter(f => f.hasNonDraftDocument)
-    .forEach(friend => {
+    .filter((f) => f.lang === LANG)
+    .filter((f) => f.hasNonDraftDocument)
+    .forEach((friend) => {
       createPage({
         path: friend.isCompilationsQuasiFriend ? friend.slug : friendUrl(friend),
         component: FriendPage,
         context: {
           slug: friend.slug,
-          relatedDocumentIds: friend.relatedDocuments.map(rd => rd.id),
+          relatedDocumentIds: friend.relatedDocuments.map((rd) => rd.id),
         },
       });
 
       friend.documents
-        .filter(d => d.hasNonDraftEdition)
+        .filter((d) => d.hasNonDraftEdition)
         .forEach((document: Document) => {
           createPage({
             path: documentUrl(document),

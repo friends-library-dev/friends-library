@@ -20,7 +20,7 @@ export default async function handler({ pattern }: { pattern: string }): Promise
   fs.ensureDirSync(dir);
   ensureDockerImage(TAG, __dirname);
 
-  dpcs.forEach(dpc => {
+  dpcs.forEach((dpc) => {
     hydrate.entities(dpc);
     const docxFilepath = makeDocx(dpc, dir);
     green(`.docx created at path: ${docxFilepath}`);
@@ -53,7 +53,7 @@ function dockerRun(cmd: string, volume: string): void {
 
 function getJoinedAsciidoc(fullPath: string): Asciidoc {
   return glob(`${fullPath}/*.adoc`)
-    .map(path => fs.readFileSync(path, `utf8`))
+    .map((path) => fs.readFileSync(path, `utf8`))
     .join(`\n\n`);
 }
 

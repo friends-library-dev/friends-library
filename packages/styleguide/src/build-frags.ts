@@ -32,7 +32,7 @@ function regen(): void {
   const files = glob(adocGlob);
   const frags: { [k: string]: { html: Html; adoc: Asciidoc } } = {};
 
-  files.forEach(file => {
+  files.forEach((file) => {
     const adoc = normalizeAdoc(fs.readFileSync(file).toString());
     const { sections, epigraphs } = processDocument(adoc);
     const id = path.basename(file).replace(/\.adoc$/, ``);

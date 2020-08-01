@@ -31,7 +31,7 @@ export default class Orders {
   }
 
   public async saveAll(orders: Db.Order[]): Promise<[Db.QueryError, boolean]> {
-    const results = await Promise.all(orders.map(o => this.save(o)));
+    const results = await Promise.all(orders.map((o) => this.save(o)));
     let error: Db.QueryError = null;
     let allSucceeded = true;
     results.forEach(([err, result]) => {

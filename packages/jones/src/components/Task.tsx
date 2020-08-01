@@ -264,14 +264,14 @@ const mapState = (
   state: AppState,
   { task }: OwnProps,
 ): Pick<Props, 'task' | 'repo' | 'taskHasWork'> => {
-  const repo = state.repos.find(r => r.id === task.repoId);
+  const repo = state.repos.find((r) => r.id === task.repoId);
   if (!repo) {
     throw new Error(`Could not find repo with id ${task.repoId}`);
   }
   return {
     task,
     repo,
-    taskHasWork: !!Object.values(task.files).find(f => !!f.editedContent),
+    taskHasWork: !!Object.values(task.files).find((f) => !!f.editedContent),
   };
 };
 

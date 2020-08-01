@@ -19,7 +19,7 @@ const RegionBlock: React.FC<Props> = ({ books }) => {
       <div className="-mt-12 flex flex-col items-center">
         <BookSlider
           className="z-10"
-          books={books.filter(book => book.region === region)}
+          books={books.filter((book) => book.region === region)}
         />
       </div>
     </BgWordBlock>

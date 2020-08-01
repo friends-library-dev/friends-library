@@ -12,7 +12,7 @@ export const command = `make:ref [basename]`;
 
 export const describe = `make reference asciidoc document at given path`;
 
-export const builder: CommandBuilder = async function(yargs) {
+export const builder: CommandBuilder = async function (yargs) {
   if (typeof makeBuilder !== `function`) throw new Error(`Unexpected lack of builder fn`);
   return (await makeBuilder(yargs)).positional(`basename`, {
     type: `string`,
@@ -28,7 +28,7 @@ export async function handler(
   const dpc = dpcFromPath(argv.basename);
   hydrate.process(dpc);
   const files = await makeDpc(dpc, { ...argv, skipLint: true }, `fl-make-ref`);
-  !argv.noOpen && files.forEach(file => execSync(`open "${file}"`));
+  !argv.noOpen && files.forEach((file) => execSync(`open "${file}"`));
   argv.send && send(files, argv.email);
 }
 

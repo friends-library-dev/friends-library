@@ -64,7 +64,7 @@ function extractRef(book: string, chapter: number, match: RegExpExecArray): Ref 
     },
   };
 
-  strategies.forEach(strategy => {
+  strategies.forEach((strategy) => {
     if (ref.position.end !== -1) {
       return;
     }
@@ -90,10 +90,10 @@ function extractRef(book: string, chapter: number, match: RegExpExecArray): Ref 
 
 export function find(str: string): Ref[] {
   const refs: Ref[] = [];
-  books.forEach(book => {
+  books.forEach((book) => {
     let pattern = book.abbreviations
       .concat([book.name])
-      .map(abbrev => abbrev.replace(`.`, `\\.`))
+      .map((abbrev) => abbrev.replace(`.`, `\\.`))
       .join(`|`);
 
     pattern = `(?:${pattern})(?:\\.|,)? (${ARAB}|${ROM})`;

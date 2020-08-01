@@ -43,7 +43,7 @@ type Props = Omit<CoverProps, 'pages'> & {
 
 const store = CartStore.getSingleton();
 
-const DocBlock: React.FC<Props> = props => {
+const DocBlock: React.FC<Props> = (props) => {
   const { authorUrl, pages, author, description, editions } = props;
   const wrap = useRef<HTMLDivElement | null>(null);
   const [downloading, setDownloading] = useState<boolean>(false);
@@ -60,7 +60,7 @@ const DocBlock: React.FC<Props> = props => {
     }
     // i should lose my React license for this
     let visibleBtnRect: DOMRect | undefined;
-    document.querySelectorAll(`.DocBlock .MultiPill > button`).forEach(btn => {
+    document.querySelectorAll(`.DocBlock .MultiPill > button`).forEach((btn) => {
       const rect = btn.getBoundingClientRect();
       if (!rect.width && !rect.height) {
         return;
@@ -115,7 +115,7 @@ const DocBlock: React.FC<Props> = props => {
   }, [downloading, addingToCart]);
 
   const addToCart = (editionType: EditionType): void => {
-    const edition = editions.find(e => e.type === editionType);
+    const edition = editions.find((e) => e.type === editionType);
     if (!edition) throw new Error(`Error selecting edition: ${editionType}`);
     store.cart.addItem(
       new CartItem({
@@ -139,8 +139,8 @@ const DocBlock: React.FC<Props> = props => {
       {addingToCart && (
         <AddToCartWizard
           {...wizardOffset}
-          editions={props.editions.map(e => e.type)}
-          onSelect={editionType => {
+          editions={props.editions.map((e) => e.type)}
+          onSelect={(editionType) => {
             addToCart(editionType);
             setAddingToCart(false);
             setWizardOffset({ top: -9999, left: -9999 });
@@ -152,7 +152,7 @@ const DocBlock: React.FC<Props> = props => {
           {...wizardOffset}
           eBookTypeRecommendation={recoEbookType}
           onSelect={(editionType, fileType) => {
-            const edition = props.editions.find(e => e.type === editionType);
+            const edition = props.editions.find((e) => e.type === editionType);
             if (edition) {
               setTimeout(() => {
                 setDownloading(false);
@@ -161,7 +161,7 @@ const DocBlock: React.FC<Props> = props => {
               window.location.href = edition.downloadUrl[fileType];
             }
           }}
-          editions={props.editions.map(e => e.type)}
+          editions={props.editions.map((e) => e.type)}
         />
       )}
       <div className="TopWrap md:flex">
@@ -271,7 +271,7 @@ function LinksAndMeta(
           {LANG === `en` && <li className="capitalize">{edition} Edition</li>}
           <li>{dimensions(size, pages)}</li>
           <li>{numChapters > 1 ? t`${numChapters} chapters` : t`1 chapter`}</li>
-          <li>{pages.map(p => t`${p} pages`).join(`, `)}</li>
+          <li>{pages.map((p) => t`${p} pages`).join(`, `)}</li>
           <li>
             <Dual.Frag>
               <>Language: English</>
@@ -296,12 +296,12 @@ function LinksAndMeta(
 function dimensions(size: PrintSize, pages: number[]): string {
   return (
     pages
-      .map(p => bookDims(size, p))
-      .map(dims =>
+      .map((p) => bookDims(size, p))
+      .map((dims) =>
         [dims.width, dims.height, dims.depth]
-          .map(n => (LANG === `en` ? n : n * CENTIMETERS_IN_INCH))
-          .map(n => n.toPrecision(2))
-          .map(s => s.replace(/\.0+$/, ``))
+          .map((n) => (LANG === `en` ? n : n * CENTIMETERS_IN_INCH))
+          .map((n) => n.toPrecision(2))
+          .map((s) => s.replace(/\.0+$/, ``))
           .join(` x `),
       )
       .join(`, `) + `${LANG === `en` ? ` in` : ` cm`}`

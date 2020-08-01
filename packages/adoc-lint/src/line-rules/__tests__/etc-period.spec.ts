@@ -35,7 +35,7 @@ describe(`etcPeriod()`, () => {
 
   const allowed: [string][] = [[`Foo etc. bar`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(etcPeriod(line, [], 1, opts)).toHaveLength(0);
   });
 });

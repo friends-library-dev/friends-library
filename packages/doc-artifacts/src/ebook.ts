@@ -20,7 +20,7 @@ export async function writeEbookManifest(
   const zip = new Zip();
   const promises: Promise<any>[] = [];
 
-  Object.keys(manifest).forEach(path => {
+  Object.keys(manifest).forEach((path) => {
     zip.file(path, manifest[path]);
     promises.push(
       fs.outputFile(
@@ -49,7 +49,7 @@ export async function writeEbookManifest(
 }
 
 function logEpubCheckFail(filename: string, warnings: any[]): void {
-  const simplified = warnings.map(msg => ({
+  const simplified = warnings.map((msg) => ({
     location: `${msg.file.replace(/^\.\//, ``)}:${msg.line} (${msg.col})`,
     error: `${msg.msg} ${msg.type}`,
   }));

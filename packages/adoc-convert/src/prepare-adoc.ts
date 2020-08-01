@@ -129,10 +129,7 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
     /\[\.chapter-subtitle--blurb\]\n([\s\S]+?)(?=\n\n)/gim,
     (_, inner) => {
-      const joined = inner
-        .trim()
-        .split(`\n`)
-        .join(` `);
+      const joined = inner.trim().split(`\n`).join(` `);
       return raw(`<h3 class="chapter-subtitle--blurb">${joined}</h3>`);
     },
   );

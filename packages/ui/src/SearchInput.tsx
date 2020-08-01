@@ -23,13 +23,13 @@ const SearchInput: React.FC<Props> = ({
   const size = small ? 10 : 12;
   return (
     <form
-      onSubmit={e => e.preventDefault()}
+      onSubmit={(e) => e.preventDefault()}
       className={`rounded-full bg-white relative h-${size}`}
     >
       <input
         type="text"
         value={query}
-        onChange={e => setQuery(e.target.value)}
+        onChange={(e) => setQuery(e.target.value)}
         className={cx(
           `SearchInput__input`,
           // purgeCSS: border-flgray-400 border-flprimary

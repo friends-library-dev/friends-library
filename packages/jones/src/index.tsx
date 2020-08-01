@@ -5,7 +5,7 @@ import store from './store';
 import App from './App';
 import './index.css';
 
-store().then(store => {
+store().then((store) => {
   render(
     <Provider store={store}>
       <App />

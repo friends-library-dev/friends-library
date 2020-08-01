@@ -12,7 +12,7 @@ type Props = CoverProps & {
   onlyFront?: boolean;
 };
 
-const ThreeD: React.FC<Props> = props => {
+const ThreeD: React.FC<Props> = (props) => {
   const { isbn, size, pages, shadow, scaler = 1, className = ``, onlyFront } = props;
   const { width, height } = docDims(size);
   const spineWidth = threeDSpineWidth(pages);

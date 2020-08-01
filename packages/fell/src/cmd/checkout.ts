@@ -18,14 +18,14 @@ export async function handler({
 }: Argv): Promise<void> {
   const repos = await getRepos(exclude, scope);
   const { clean } = await getStatusGroups(repos);
-  const exists = await Promise.all(clean.map(repo => git.hasBranch(repo, branch)));
+  const exists = await Promise.all(clean.map((repo) => git.hasBranch(repo, branch)));
 
   if (!createBranch) {
     if (!exists.every(Boolean)) {
       throw new Error(`Can't checkout ${branch}, doesn't exist on every repo.`);
     }
 
-    await Promise.all(clean.map(repo => git.checkoutBranch(repo, branch)));
+    await Promise.all(clean.map((repo) => git.checkoutBranch(repo, branch)));
     green(`${clean.length} branches checked out branch: ${branch}`);
     return;
   }
@@ -34,7 +34,7 @@ export async function handler({
     throw new Error(`Can't create ${branch}, exists on at least one repo.`);
   }
 
-  await Promise.all(clean.map(repo => git.checkoutNewBranch(repo, branch)));
+  await Promise.all(clean.map((repo) => git.checkoutNewBranch(repo, branch)));
   green(`${clean.length} branches checked out new branch: ${branch}`);
 }
 

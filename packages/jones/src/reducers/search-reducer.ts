@@ -10,7 +10,7 @@ export const defaultState = {
 
 export default createReducer(defaultState, {
   UPDATE_SEARCH: (state: Search, { payload }: any) => {
-    Object.keys(payload).forEach(key => {
+    Object.keys(payload).forEach((key) => {
       // @ts-ignore
       state[key] = payload[key];
     });

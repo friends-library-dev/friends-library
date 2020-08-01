@@ -89,7 +89,7 @@ class Search extends React.Component<Props, State> {
     }
   }
 
-  protected changeSearchTerm: (searchTerm: string) => void = searchTerm => {
+  protected changeSearchTerm: (searchTerm: string) => void = (searchTerm) => {
     keepSearchTerm = searchTerm;
     this.setState({
       searchTerm,
@@ -98,7 +98,7 @@ class Search extends React.Component<Props, State> {
     });
   };
 
-  protected changeReplaceTerm: (replaceTerm: string) => void = replaceTerm => {
+  protected changeReplaceTerm: (replaceTerm: string) => void = (replaceTerm) => {
     this.setState({
       replaceTerm,
     });

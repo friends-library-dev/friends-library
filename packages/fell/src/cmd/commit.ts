@@ -12,7 +12,7 @@ type Argv = BaseArgv & {
 export async function handler({ exclude, scope, message }: Argv): Promise<void> {
   const repos = await getRepos(exclude, scope);
   const { dirty } = await getStatusGroups(repos);
-  await Promise.all(dirty.map(repo => git.commitAll(repo, message)));
+  await Promise.all(dirty.map((repo) => git.commitAll(repo, message)));
   green(`${dirty.length} repos added new commit "${message}"`);
 }
 

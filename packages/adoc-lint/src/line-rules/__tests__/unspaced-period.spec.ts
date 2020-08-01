@@ -20,14 +20,14 @@ describe(`unspacedPeriod()`, () => {
     [`Quarterly Meeting.Being two days`],
   ];
 
-  test.each(violations)(`\`%s\` should become "%s"`, line => {
+  test.each(violations)(`\`%s\` should become "%s"`, (line) => {
     const results = unspacedPeriod(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
   const allowed: [string][] = [[`friend T.E. (the bearer of this letter)`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(unspacedPeriod(line, [], 1, opts)).toHaveLength(0);
   });
 });

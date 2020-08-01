@@ -13,7 +13,7 @@ declare module 'gmail-send' {
   export interface SendFn {
     (opts: SendOptions, cb?: (err: object | null, res?: string) => void): void;
   }
-  export default function(opts: SendOptions): SendFn;
+  export default function (opts: SendOptions): SendFn;
 }
 
 declare module 'pdf-parse' {

@@ -17,7 +17,7 @@ describe(`unexpectedUnderscore()`, () => {
 
   const violations: [string][] = [[`be not false to the_trust reposed`]];
 
-  test.each(violations)(`\`%s\` should become "%s"`, line => {
+  test.each(violations)(`\`%s\` should become "%s"`, (line) => {
     const results = unexpectedUnderscore(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
@@ -30,7 +30,7 @@ describe(`unexpectedUnderscore()`, () => {
     [`Foo bar._`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(unexpectedUnderscore(line, [], 1, opts)).toHaveLength(0);
   });
 });

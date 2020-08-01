@@ -113,7 +113,7 @@ describe(`scanErrors()`, () => {
     `appearances were discouraging, the fife and fiddle playing,`,
   ];
 
-  test.each(allowed)(`\`%s\` is not a lint violation`, line => {
+  test.each(allowed)(`\`%s\` is not a lint violation`, (line) => {
     expect(scanErrors(line, [], 1, opts)).toHaveLength(0);
   });
 });

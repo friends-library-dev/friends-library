@@ -3,7 +3,7 @@ import { firstEdition } from './helpers';
 describe(`Edition`, () => {
   describe(`filename()`, () => {
     it(`should give the right filename`, () => {
-      const edition = firstEdition(f => {
+      const edition = firstEdition((f) => {
         f.documents[0].filename = `Journal_of_George_Fox`;
         f.documents[0].editions[0].type = `updated`;
       });
@@ -31,21 +31,21 @@ describe(`Edition`, () => {
 
   describe(`paperbackCoverBlurb`, () => {
     it(`returns edition description, if exists`, () => {
-      const edition = firstEdition(f => {
+      const edition = firstEdition((f) => {
         f.documents[0].editions[0].description = `Edition desc.`;
       });
       expect(edition.paperbackCoverBlurb).toBe(`Edition desc.`);
     });
 
     it(`returns document description, if no edition description`, () => {
-      const edition = firstEdition(f => {
+      const edition = firstEdition((f) => {
         f.documents[0].description = `Document desc.`;
       });
       expect(edition.paperbackCoverBlurb).toBe(`Document desc.`);
     });
 
     it(`returns friend description, if no edition or doc desc`, () => {
-      const edition = firstEdition(f => {
+      const edition = firstEdition((f) => {
         f.description = `Friend desc.`;
         delete f.documents[0].description;
       });

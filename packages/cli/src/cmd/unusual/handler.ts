@@ -16,28 +16,28 @@ export default function handler(argv: Argv): void {
   pathFiles.forEach(({ adoc }) => {
     const textLines = adoc
       .split(`\n`)
-      .filter(l => l !== ``)
-      .filter(l => l !== `--`)
-      .filter(l => l !== `____`)
-      .filter(l => !l.match(/^\[.+\]$/))
-      .filter(l => !l.includes(`]#`))
-      .filter(l => l.length > 1)
-      .map(l => l.toLowerCase())
-      .map(l => l.replace(/footnote:\[/, ``))
-      .map(l => l.replace(/=+ /, ``));
+      .filter((l) => l !== ``)
+      .filter((l) => l !== `--`)
+      .filter((l) => l !== `____`)
+      .filter((l) => !l.match(/^\[.+\]$/))
+      .filter((l) => !l.includes(`]#`))
+      .filter((l) => l.length > 1)
+      .map((l) => l.toLowerCase())
+      .map((l) => l.replace(/footnote:\[/, ``))
+      .map((l) => l.replace(/=+ /, ``));
 
-    textLines.forEach(line => {
+    textLines.forEach((line) => {
       const words = line
         .replace(/--/g, ` `)
         .replace(/&hellip;/, ` `)
         .split(` `)
-        .map(w => w.replace(/^[^a-z]+/, ``))
-        .map(w => w.replace(/[^a-z]+$/, ``))
-        .map(w => w.replace(/`'s/g, ``))
-        .map(w => w.trim())
-        .filter(w => w !== ``);
+        .map((w) => w.replace(/^[^a-z]+/, ``))
+        .map((w) => w.replace(/[^a-z]+$/, ``))
+        .map((w) => w.replace(/`'s/g, ``))
+        .map((w) => w.trim())
+        .filter((w) => w !== ``);
 
-      words.forEach(word => {
+      words.forEach((word) => {
         if (map.has(word)) {
           map.set(word, (map.get(word) || 0) + 1);
         } else {

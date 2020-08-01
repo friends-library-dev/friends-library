@@ -46,26 +46,23 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
   let mutator = (adoc: string): string => adoc;
   if (argv.head) {
     mutator = (adoc: string): string => {
-      return adoc
-        .split(`\n`)
-        .slice(0, 100)
-        .join(`\n`);
+      return adoc.split(`\n`).slice(0, 100).join(`\n`);
     };
   }
 
   if (argv.toc) {
-    mutator = adoc => adoc.split(`\n\n`).shift() || ``;
+    mutator = (adoc) => adoc.split(`\n\n`).shift() || ``;
   }
 
   dpcs.forEach(hydrate.meta);
   dpcs.forEach(hydrate.revision);
   dpcs.forEach(hydrate.config);
   dpcs.forEach(hydrate.customCode);
-  dpcs.forEach(dpc => hydrate.asciidoc(dpc, isolate, mutator));
+  dpcs.forEach((dpc) => hydrate.asciidoc(dpc, isolate, mutator));
 
   // lint before hydrate.process so linter catches adoc > html errors
   if (!skipLint) {
-    dpcs.forEach(dpc => lint(dpc.fullPath, fix, isolate));
+    dpcs.forEach((dpc) => lint(dpc.fullPath, fix, isolate));
   }
 
   dpcs.forEach(hydrate.process);
@@ -78,7 +75,7 @@ export default async function handler(argv: Arguments<MakeOptions>): Promise<voi
     files = files.concat(await makeDpc(dpc, argv, namespace));
   }
 
-  !noOpen && files.forEach(file => execSync(`open "${file}"`));
+  !noOpen && files.forEach((file) => execSync(`open "${file}"`));
   argv.send && send(files, email);
 }
 
@@ -142,7 +139,7 @@ function makeFilename(dpc: DocPrecursor, idx: number, type: ArtifactType): strin
     dpc.editionType,
     suffix,
   ]
-    .filter(p => !!p)
+    .filter((p) => !!p)
     .join(`--`);
 }
 

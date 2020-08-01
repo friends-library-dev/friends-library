@@ -70,7 +70,7 @@ export async function deleteBotCommentsContaining(str: string): Promise<void> {
     issue_number: prNumber,
   });
 
-  comments.forEach(comment => {
+  comments.forEach((comment) => {
     if (comment.user.type === `Bot` && comment.body.includes(str)) {
       client.issues.deleteComment({ owner, repo, comment_id: comment.id });
     }

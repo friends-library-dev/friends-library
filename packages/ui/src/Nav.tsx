@@ -28,7 +28,7 @@ const Nav: React.FC<Props> = ({
   const Logo = LANG === `es` ? AmigosLogo : FriendsLogo;
 
   useEffect(() => {
-    const vimActivate: (e: KeyboardEvent) => any = e => {
+    const vimActivate: (e: KeyboardEvent) => any = (e) => {
       if (!searching && e.keyCode === FORWARD_SLASH && !e.shiftKey) {
         e.preventDefault();
         setSearching(true);

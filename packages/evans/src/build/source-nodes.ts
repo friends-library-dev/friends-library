@@ -24,12 +24,12 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
   createContentDigest,
 }: SourceNodesArgs) => {
   const meta = await fetch();
-  const friends = allFriends().filter(f => f.lang === LANG && f.hasNonDraftDocument);
+  const friends = allFriends().filter((f) => f.lang === LANG && f.hasNonDraftDocument);
   const docs = allDocsMap();
   const dpcCache = getDpcCache();
 
   const newsFeedItems = getNewsFeedItems(allFriends(), meta, LANG);
-  newsFeedItems.forEach(feedItem => {
+  newsFeedItems.forEach((feedItem) => {
     createNode({
       ...feedItem,
       id: createNodeId(`feed-item-${feedItem.date}${feedItem.title}${feedItem.url}`),
@@ -40,8 +40,8 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     });
   });
 
-  friends.forEach(friend => {
-    const documents = friend.documents.filter(doc => doc.hasNonDraftEdition);
+  friends.forEach((friend) => {
+    const documents = friend.documents.filter((doc) => doc.hasNonDraftEdition);
     const friendProps = {
       ...friend.toJSON(),
       friendId: friend.id,
@@ -52,14 +52,14 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
     createNode({
       ...friendProps,
       id: createNodeId(`friend-${friend.id}`),
-      children: documents.map(d => createNodeId(`document-${d.id}`)),
+      children: documents.map((d) => createNodeId(`document-${d.id}`)),
       internal: {
         type: `Friend`,
         contentDigest: createContentDigest(friendProps),
       },
     });
 
-    documents.forEach(document => {
+    documents.forEach((document) => {
       const documentProps: Record<string, any> = {
         ...document.toJSON(),
         htmlTitle: htmlTitle(document.title),
@@ -82,8 +82,8 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
         }
       }
 
-      const filteredEditions = document.editions.filter(ed => !ed.isDraft);
-      const editions = filteredEditions.map(edition => {
+      const filteredEditions = document.editions.filter((ed) => !ed.isDraft);
+      const editions = filteredEditions.map((edition) => {
         const editionMeta = meta.get(edition.path);
         let printSize: PrintSize = `m`;
         let pages = [175];
@@ -106,7 +106,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
             hydrate.process(dpc);
             hydrate.customCode(dpc);
             dpcData = {
-              headings: dpc.sections.map(sect => sect.heading),
+              headings: dpc.sections.map((sect) => sect.heading),
               customCode: dpc.customCode,
             };
             dpcCache.set(edition.path, dpcData);
@@ -147,7 +147,7 @@ const sourceNodes: GatsbyNode['sourceNodes'] = async ({
                 duration: edition.audio.duration,
                 publishedDate: published(edition.audio.added.toISOString(), LANG)
                   .publishedDate,
-                parts: edition.audio.parts.map(part => part.toJSON()),
+                parts: edition.audio.parts.map((part) => part.toJSON()),
                 m4bFilesizeHq: humansize(editionMeta.audioFilesizes?.m4bHq || 0),
                 m4bFilesizeLq: humansize(editionMeta.audioFilesizes?.m4bLq || 0),
                 mp3ZipFilesizeHq: humansize(editionMeta.audioFilesizes?.mp3ZipHq || 0),

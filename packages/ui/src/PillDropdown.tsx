@@ -17,7 +17,7 @@ const PillDropdown: React.FC<Props> = ({
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    const click: (event: any) => any = event => {
+    const click: (event: any) => any = (event) => {
       if (
         ref.current &&
         (!ref.current.contains(event.target) || (autoHide && dropdownVisible))

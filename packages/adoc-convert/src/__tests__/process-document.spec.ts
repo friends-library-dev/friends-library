@@ -201,7 +201,7 @@ describe(`createSourceSpec()`, () => {
     `signed-section-context-close`,
   ];
 
-  test.each(removeParagraphClass)(`it removes the .paragraph class on div.%s`, kls => {
+  test.each(removeParagraphClass)(`it removes the .paragraph class on div.%s`, (kls) => {
     const adoc = `== Ch1\n\n[.${kls}]\nFoobar.`;
 
     const {

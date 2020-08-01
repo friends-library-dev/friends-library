@@ -41,7 +41,7 @@ const BookTeaserCards: React.FC<Props> = ({
       >
         {title}
       </TitleEl>
-      {books.map(book => (
+      {books.map((book) => (
         <BookTeaserCard
           className="pt-16 md:pt-0 md:mb-16 xl:mx-6"
           key={book.documentUrl}

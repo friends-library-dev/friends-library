@@ -43,7 +43,7 @@ describe(`lineLength()`, () => {
     ],
   ];
 
-  test.each(allowedLongLines)(`allows %s to exceed length`, line => {
+  test.each(allowedLongLines)(`allows %s to exceed length`, (line) => {
     const results = lineLength(line, [], 4, opts);
     expect(results).toHaveLength(0);
   });

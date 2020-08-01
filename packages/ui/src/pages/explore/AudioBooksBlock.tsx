@@ -28,7 +28,7 @@ const AudioBooksBlock: React.FC<Props> = ({ books, bgImg }) => (
         `lg:mx-8`,
       )}
     >
-      {books.slice(0, 4).map(book => (
+      {books.slice(0, 4).map((book) => (
         <Link
           to={`${book.documentUrl}#audiobook`}
           className={cx(

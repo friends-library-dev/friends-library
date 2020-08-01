@@ -56,14 +56,14 @@ function comma(
 
   const verseNumbers = match
     .slice(1, 10)
-    .filter(v => !!v)
-    .map(v => parseInt(v, 10))
+    .filter((v) => !!v)
+    .map((v) => parseInt(v, 10))
     .sort();
 
   ref.position.end = start + match[0].length;
 
   let last = 0;
-  verseNumbers.forEach(current => {
+  verseNumbers.forEach((current) => {
     if (last && current - last > 1) {
       ref.contiguous = false;
     }

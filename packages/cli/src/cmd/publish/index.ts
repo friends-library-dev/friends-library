@@ -4,7 +4,7 @@ export const command = `publish`;
 
 export const describe = `publish book assets`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs
     .option(`check`, {
       alias: `c`,

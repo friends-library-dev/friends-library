@@ -11,7 +11,7 @@ export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
       <h2>${dpc.lang === `en` ? `Table of Contents` : `Índice`}</h2>
       <ol>
         ${tocItems(dpc)
-          .map(item => {
+          .map((item) => {
             const hidden = item.hidden ? ` hidden=""` : ``;
             return `<li${hidden}><a href="${item.href}">${item.text}</a></li>`;
           })
@@ -22,7 +22,7 @@ export function nav(dpc: DocPrecursor, conf: EbookConfig): Html {
       <ol>
         ${landmarks(conf, dpc.lang)
           .map(
-            item =>
+            (item) =>
               `<li><a href="${item.href}" epub:type="${item.type}">${item.text}</a></li>`,
           )
           .join(`\n        `)}
@@ -46,7 +46,7 @@ export function tocItems({ sections, lang }: DocPrecursor): TocItem[] {
     text: lang === `en` ? `Title page` : `Portada`,
   });
 
-  sections.forEach(section => {
+  sections.forEach((section) => {
     const text = navText(section.heading);
     items.push({
       href: `${section.id}.xhtml`,

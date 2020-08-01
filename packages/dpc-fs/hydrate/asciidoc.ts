@@ -18,7 +18,7 @@ export default function asciidoc(
   }
 
   const asciidoc = glob(`${dpc.fullPath}/${pattern}.adoc`)
-    .map(path => ({ path, adoc: fs.readFileSync(path).toString() }))
+    .map((path) => ({ path, adoc: fs.readFileSync(path).toString() }))
     .map(mutator ? ({ path, adoc }, idx) => mutator(adoc, path, idx) : ({ adoc }) => adoc)
     .join(`\n`);
 

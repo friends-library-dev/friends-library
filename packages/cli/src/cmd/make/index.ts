@@ -4,7 +4,7 @@ export const command = `make <pattern>`;
 
 export const describe = `make consumable artifacts from a local path`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs
     .positional(`pattern`, {
       type: `string`,
@@ -78,7 +78,7 @@ export const builder: CommandBuilder = function(yargs) {
     .option(`target`, {
       alias: `t`,
       type: `array`,
-      coerce: targets => {
+      coerce: (targets) => {
         return targets.reduce((acc: string[], target: string) => {
           switch (target) {
             case `ebook`:

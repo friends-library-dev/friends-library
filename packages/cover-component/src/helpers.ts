@@ -86,7 +86,7 @@ export function getHtmlFragments(html: Html): Record<string, Html> {
     const lines = match[0]
       .trim()
       .split(`\n`)
-      .map(s => s.trim());
+      .map((s) => s.trim());
     lines.pop();
     const classMatch = (lines.shift() || ``).match(/class="([^ "]+)/);
     if (classMatch) {

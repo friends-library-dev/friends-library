@@ -182,7 +182,7 @@ describe(`logDownload()`, () => {
     `Mozilla/5.0 (Linux; Android 5.0) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; Bytespider; https://zhanzhang.toutiao.com/)`,
   ];
 
-  test.each(botCases)(`bot user agents should not be saved`, async userAgent => {
+  test.each(botCases)(`bot user agents should not be saved`, async (userAgent) => {
     const path = `/site/log/download/doc-id/en/george-fox/journal/modernized/podcast/podcast--lq.rss`;
     await invokeCb(logDownload, {
       path,

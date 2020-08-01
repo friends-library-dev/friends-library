@@ -24,7 +24,7 @@ describe(`bookTitleUnclosed()`, () => {
     [`Foo [.book-title]#Bar.\nBaz [.book-title]#Foo#`],
   ];
 
-  test.each(violations)(`multiline adoc should have lint error`, adoc => {
+  test.each(violations)(`multiline adoc should have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {
@@ -40,7 +40,7 @@ describe(`bookTitleUnclosed()`, () => {
     [`Foo [.book-title]#Bar\nBaz\nJim\nJam.#`],
   ];
 
-  test.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  test.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

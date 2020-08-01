@@ -9,7 +9,7 @@ export default function lintPath(
 ): DirLints {
   const files = filesFromPath(path);
   const lints = new DirLints();
-  files.forEach(file =>
+  files.forEach((file) =>
     lints.set(file.path, {
       lints: lint(file.adoc, {
         ...options,

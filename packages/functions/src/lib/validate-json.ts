@@ -22,7 +22,7 @@ export default function validateJson<Data>(
     const json = JSON.parse(body);
     const result = validator.validate(json, schema);
     if (result.errors.length) {
-      const errors = result.errors.map(e => e.stack).join(`, `);
+      const errors = result.errors.map((e) => e.stack).join(`, `);
       return new Error(`Invalid JSON body: ${errors}`);
     }
     return json;

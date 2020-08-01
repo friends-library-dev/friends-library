@@ -27,7 +27,7 @@ describe(`capitalize()`, () => {
 
   const allowed = [[`Satan foo`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(capitalize(line, [], 1, opts)).toHaveLength(0);
   });
 });

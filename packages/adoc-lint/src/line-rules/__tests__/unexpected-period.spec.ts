@@ -17,7 +17,7 @@ describe(`unexpectedPeriod()`, () => {
 
   const violations: [string][] = [[`Let us. seek the Lord`]];
 
-  test.each(violations)(`\`%s\` should become "%s"`, line => {
+  test.each(violations)(`\`%s\` should become "%s"`, (line) => {
     const results = unexpectedPeriod(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
@@ -47,7 +47,7 @@ describe(`unexpectedPeriod()`, () => {
     [`chap. xii. foo`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(unexpectedPeriod(line, [], 1, opts)).toHaveLength(0);
   });
 });

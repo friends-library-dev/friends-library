@@ -5,7 +5,7 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
   const modifiedLines = new Set();
   const lines = adoc.split(`\n`) as (string | null)[];
 
-  lints.forEach(lint => {
+  lints.forEach((lint) => {
     const lineIndex = lint.line - 1;
     const line = lines[lineIndex];
     if (!lint.fixable || typeof lint.recommendation !== `string`) {
@@ -42,7 +42,7 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
         .split(`,`)
         .map(Number);
 
-      remove.forEach(lineNumber => {
+      remove.forEach((lineNumber) => {
         if (!modifiedLines.has(lineNumber)) {
           lines[lineNumber - 1] = null;
           modifiedLines.add(lineNumber);
@@ -95,5 +95,5 @@ export default function fix(adoc: Asciidoc, lints: LintResult[]): [Asciidoc, num
     modifiedLines.add(lint.line);
   });
 
-  return [lines.filter(l => l !== null).join(`\n`), numUnfixedFixables];
+  return [lines.filter((l) => l !== null).join(`\n`), numUnfixedFixables];
 }

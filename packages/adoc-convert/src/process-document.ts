@@ -34,10 +34,10 @@ export default function processDocument(
 function htmlToSections(docHtml: Html, shortHeadings: Map<string, string>): DocSection[] {
   return docHtml
     .split(/(?=<div class="sect1[^>]+?>)/gim)
-    .filter(html => !!html.trim())
+    .filter((html) => !!html.trim())
     .map(addSignedSectionClass)
     .map((html: Html, i: number) => ({ index: i, id: `section${i + 1}`, html }))
-    .map(section => extractHeading(section, shortHeadings));
+    .map((section) => extractHeading(section, shortHeadings));
 }
 
 function addSignedSectionClass(html: Html): Html {

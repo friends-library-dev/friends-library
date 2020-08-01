@@ -6,7 +6,7 @@ export function htmlShortTitle(title: Asciidoc): Html {
 }
 
 export function htmlTitle(title: Asciidoc): Html {
-  return title.replace(/ -- /g, ` ${HEX.MDASH} `).replace(/\b\d+$/, digits => {
+  return title.replace(/ -- /g, ` ${HEX.MDASH} `).replace(/\b\d+$/, (digits) => {
     return toRoman(Number(digits));
   });
 }

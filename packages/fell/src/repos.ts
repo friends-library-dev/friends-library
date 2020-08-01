@@ -9,7 +9,7 @@ export async function getRepos(exclude: string[], branch?: string): Promise<stri
   const enRepos = glob.sync(path.resolve(cwd, `en`, `*`));
   const esRepos = glob.sync(path.resolve(cwd, `es`, `*`));
   const repos = [...enRepos, ...esRepos];
-  const notExcluded = repos.filter(repo => {
+  const notExcluded = repos.filter((repo) => {
     return exclude.reduce((bool, str) => {
       return bool === false ? false : repo.indexOf(str) === -1;
     }, true as boolean);
@@ -20,7 +20,7 @@ export async function getRepos(exclude: string[], branch?: string): Promise<stri
   }
 
   const branches = await Promise.all(
-    notExcluded.map(async repo => git.getCurrentBranch(repo)),
+    notExcluded.map(async (repo) => git.getCurrentBranch(repo)),
   );
 
   return branches
@@ -36,7 +36,7 @@ export async function getStatusGroups(
   const clean: Repo[] = [];
   const dirty: Repo[] = [];
   await Promise.all(
-    repos.map(async repo => {
+    repos.map(async (repo) => {
       const isClean = await git.isStatusClean(repo);
       if (isClean) {
         clean.push(repo);
@@ -51,7 +51,7 @@ export async function getStatusGroups(
 export async function getBranchMap(repos: Repo[]): Promise<Map<string, Repo[]>> {
   const repoBranches = new Map();
   await Promise.all(
-    repos.map(async repo => {
+    repos.map(async (repo) => {
       const branch = await git.getCurrentBranch(repo);
       repoBranches.set(repo, branch);
     }),

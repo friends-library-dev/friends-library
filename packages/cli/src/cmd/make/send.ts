@@ -20,12 +20,12 @@ export default function send(paths: string[], email?: string): void {
     {
       subject: `[fl cli make] test docs @ ${time}`,
       html: `Attached files:<br /><ul>${paths
-        .map(p => `<li>${basename(p)}</li>`)
+        .map((p) => `<li>${basename(p)}</li>`)
         .join(``)}</ul>`,
       to: email || CLI_MAKE_CMD_GMAIL_USER,
       files: paths,
     },
-    err => {
+    (err) => {
       if (err) console.warn(err);
     },
   );

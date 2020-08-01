@@ -20,7 +20,7 @@ describe(`unxpectedIdentifier()`, () => {
     [`[quote.slapigraph, , Ps. 101]`],
   ];
 
-  test.each(violations)(`\`%s\` should become "%s"`, line => {
+  test.each(violations)(`\`%s\` should become "%s"`, (line) => {
     const results = unxpectedIdentifier(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
@@ -39,7 +39,7 @@ describe(`unxpectedIdentifier()`, () => {
     [`[cols="3,3,2"]`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(unxpectedIdentifier(line, [], 1, opts)).toHaveLength(0);
   });
 });

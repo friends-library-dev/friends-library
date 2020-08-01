@@ -114,9 +114,9 @@ class Component extends React.Component<Props, State> {
     changeReplaceTerm(replaceTerm);
   }, 500);
 
-  protected handleReplaceTermChange: (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => void = e => {
+  protected handleReplaceTermChange: (e: React.ChangeEvent<HTMLInputElement>) => void = (
+    e,
+  ) => {
     this.setState({ replaceTerm: e.target.value }, this.changeReplaceTerm);
   };
 
@@ -125,9 +125,9 @@ class Component extends React.Component<Props, State> {
     this.props.replaceAll();
   };
 
-  protected handleSpecialKeys: (
-    event: React.KeyboardEvent<HTMLInputElement>,
-  ) => void = event => {
+  protected handleSpecialKeys: (event: React.KeyboardEvent<HTMLInputElement>) => void = (
+    event,
+  ) => {
     const { undo, redo, cancelSearch } = this.props;
     if (event.key === `z` && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
@@ -183,8 +183,8 @@ class Component extends React.Component<Props, State> {
             ref={this.searchInput}
             value={searchTerm}
             placeholder="Find"
-            onChange={e => changeSearchTerm(e.target.value)}
-            onKeyDown={event => {
+            onChange={(e) => changeSearchTerm(e.target.value)}
+            onKeyDown={(event) => {
               this.handleSpecialKeys(event);
               if (event.key === `Enter`) {
                 search();
