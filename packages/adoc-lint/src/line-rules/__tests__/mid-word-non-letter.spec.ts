@@ -21,7 +21,7 @@ describe(`midWordNonLetter()`, () => {
     [`To the meeting} we went`],
   ];
 
-  test.each(violations)(`\`%s\` is a lint violation`, line => {
+  test.each(violations)(`\`%s\` is a lint violation`, (line) => {
     const results = midWordNonLetter(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
@@ -35,7 +35,7 @@ describe(`midWordNonLetter()`, () => {
     [`Foo *bar* `],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(midWordNonLetter(line, [], 1, opts)).toHaveLength(0);
   });
 });

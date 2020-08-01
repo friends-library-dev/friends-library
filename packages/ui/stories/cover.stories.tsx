@@ -54,7 +54,7 @@ addStaticCoverCss(
 
 storiesOf(`Cover`, module)
   .addDecorator(centered)
-  .addDecorator(storyFn => <div className="Cover-storybook-bg">{storyFn()}</div>)
+  .addDecorator((storyFn) => <div className="Cover-storybook-bg">{storyFn()}</div>)
   .add(`back (s, m, xl)`, () => (
     <div className="all-sizes">
       <Wrapped type="back" {...{ scope: `s`, size: `s` }} />
@@ -78,7 +78,7 @@ storiesOf(`Cover`, module)
   .add(`front-main (multi)`, () => {
     const books: [string, string, string][] = [];
     // @ts-ignore
-    (window.FRIENDS as any).forEach(friend => {
+    (window.FRIENDS as any).forEach((friend) => {
       friend.documents.forEach((doc: any) => {
         books.push([doc.id, doc.title, friend.name]);
       });
@@ -194,7 +194,7 @@ storiesOf(`Cover`, module)
     const sizes: PrintSize[] = [`s`, `m`, `xl`];
     return (
       <div>
-        {sizes.map(size => {
+        {sizes.map((size) => {
           return (
             <>
               <Wrapped
@@ -250,10 +250,12 @@ const Style: React.FC<{
   );
 };
 
-const Wrapped: React.FC<Partial<CoverProps> & {
-  type: 'back' | 'spine';
-  style?: Record<string, string | number>;
-}> = wProps => {
+const Wrapped: React.FC<
+  Partial<CoverProps> & {
+    type: 'back' | 'spine';
+    style?: Record<string, string | number>;
+  }
+> = (wProps) => {
   const useProps = p(wProps);
   return (
     <div

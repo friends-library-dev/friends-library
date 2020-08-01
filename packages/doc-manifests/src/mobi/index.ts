@@ -11,8 +11,8 @@ export default async function mobi(
 }
 
 export function mobiFromEbook(manifests: FileManifest[]): FileManifest[] {
-  return manifests.map(manifest => {
-    return mapValues(manifest, content => {
+  return manifests.map((manifest) => {
+    return mapValues(manifest, (content) => {
       if (typeof content !== `string`) return content;
       return content.replace(
         /<meta charset="UTF-8"\/>/gm,

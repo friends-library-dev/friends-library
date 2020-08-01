@@ -20,10 +20,7 @@ export default function chapterize({ file, dest, chStart }: ChapterizeOptions): 
   const destPath = path.resolve(DOCS_REPOS_ROOT, dest);
   fs.ensureDirSync(destPath);
 
-  const adoc = fs
-    .readFileSync(file)
-    .toString()
-    .trim();
+  const adoc = fs.readFileSync(file).toString().trim();
 
   const parts = adoc.split(/(?<=\n)(?=== )/);
   const frontmatterParts = [`preface`, `forward`, `introduction`];

@@ -35,12 +35,12 @@ function kindlegen(precursorPath: string, filenameNoExt: string): Promise<void> 
 
   return new Promise((resolve, reject) => {
     let errors: string[] = [];
-    stream.stdout.on(`data`, data => {
+    stream.stdout.on(`data`, (data) => {
       const lines: string[] = data.toString().split(`\n`);
-      errors = errors.concat(lines.filter(l => l.match(/^Error/)));
+      errors = errors.concat(lines.filter((l) => l.match(/^Error/)));
     });
 
-    stream.on(`close`, code => {
+    stream.on(`close`, (code) => {
       if ([0, 1, 2].includes(code) === false || errors.length) {
         const errorsString = errors.length ? `\n${errors.join(`\n`)}` : ``;
         reject(new Error(`kindlegen returned code ${code}${errorsString}`));

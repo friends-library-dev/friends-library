@@ -19,7 +19,7 @@ const QualitySwitch: React.FC<Props> = ({ className, quality, onChange }) => (
       height={36}
       offColor="#5f8c9e"
       onColor="#6c3142"
-      onChange={isLq => onChange(isLq ? `HQ` : `LQ`)}
+      onChange={(isLq) => onChange(isLq ? `HQ` : `LQ`)}
       uncheckedIcon={<Label className="pl-0 -ml-2 w-16">LO-FI</Label>}
       checkedIcon={<Label className="pl-6 w-16">HI-FI</Label>}
       aria-label="Audio download quality"
@@ -31,7 +31,7 @@ const QualitySwitch: React.FC<Props> = ({ className, quality, onChange }) => (
       height={36}
       offColor="#5f8c9e"
       onColor="#6c3142"
-      onChange={isLq => onChange(isLq ? `HQ` : `LQ`)}
+      onChange={(isLq) => onChange(isLq ? `HQ` : `LQ`)}
       uncheckedIcon={<Label className="pl-1 -ml-12 w-24">Baja Calidad</Label>}
       checkedIcon={<Label className="pl-3 w-24">&nbsp;Alta Calidad</Label>}
       aria-label="Audio download quality"

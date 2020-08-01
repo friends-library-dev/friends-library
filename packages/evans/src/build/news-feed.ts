@@ -72,7 +72,9 @@ export function getNewsFeedItems(
     }
 
     if (!outOfBandEvents) {
-      outOfBandEvents = getOutOfBandEvents(formatter).filter(e => e.lang.includes(lang));
+      outOfBandEvents = getOutOfBandEvents(formatter).filter((e) =>
+        e.lang.includes(lang),
+      );
       items.push(...outOfBandEvents);
     }
   }
@@ -112,10 +114,10 @@ function dateFields(
 function entityMaps(friends: Friend[]): [Map<string, Edition>, Map<string, Document>] {
   const editionMap = new Map<string, Edition>();
   const docMap = new Map<string, Document>();
-  friends.forEach(friend =>
-    friend.documents.forEach(document => {
+  friends.forEach((friend) =>
+    friend.documents.forEach((document) => {
       docMap.set(document.id, document);
-      return document.editions.forEach(edition => {
+      return document.editions.forEach((edition) => {
         if (!edition.isDraft) {
           editionMap.set(edition.path, edition);
         }

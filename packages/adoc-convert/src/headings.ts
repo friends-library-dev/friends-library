@@ -54,7 +54,7 @@ function parseHeading(text: string): Pick<DocSection['heading'], 'text' | 'seque
   return {
     text: adocFragmentToHtml(body || ``),
     sequence: {
-      type: type.replace(/^\w/, c => c.toUpperCase()),
+      type: type.replace(/^\w/, (c) => c.toUpperCase()),
       number: Number.isNaN(+number) ? toArabic(number) : +number,
     },
   };

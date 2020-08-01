@@ -66,8 +66,8 @@ storiesOf(`Explore Books Page`, module)
       bgImg={{ aspectRatio: 1, src: Castle, srcSet: `` }}
       books={[
         ...pileOfBooks,
-        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/2/${b.documentUrl}` })),
-        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/3/${b.documentUrl}` })),
+        ...pileOfBooks.map((b) => ({ ...b, documentUrl: `/2/${b.documentUrl}` })),
+        ...pileOfBooks.map((b) => ({ ...b, documentUrl: `/3/${b.documentUrl}` })),
       ]}
     />
   ))
@@ -75,8 +75,8 @@ storiesOf(`Explore Books Page`, module)
     <RegionBlock
       books={[
         ...pileOfBooks,
-        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/2/${b.documentUrl}` })),
-        ...pileOfBooks.map(b => ({ ...b, documentUrl: `/3/${b.documentUrl}` })),
+        ...pileOfBooks.map((b) => ({ ...b, documentUrl: `/2/${b.documentUrl}` })),
+        ...pileOfBooks.map((b) => ({ ...b, documentUrl: `/3/${b.documentUrl}` })),
       ]}
     />
   ))

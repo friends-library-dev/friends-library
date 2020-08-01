@@ -71,7 +71,7 @@ export async function uploadFile(
         ContentType: getContentType(localFilePath),
         ACL: `public-read`,
       },
-      err => {
+      (err) => {
         if (err) {
           reject(err);
           return;
@@ -96,7 +96,7 @@ export async function uploadFiles(
 
   return Promise.all(promises).then(() => {
     return [...files.values()].map(
-      cloudPath => `${CLOUD_STORAGE_BUCKET_URL}/${cloudPath}`,
+      (cloudPath) => `${CLOUD_STORAGE_BUCKET_URL}/${cloudPath}`,
     );
   });
 }
@@ -125,7 +125,7 @@ export async function rimraf(path: CloudFilePath): Promise<CloudFilePath[]> {
               Objects: (listData.Contents || [])
                 .map(({ Key }) => Key)
                 .filter(isDefined)
-                .map(Key => ({ Key })),
+                .map((Key) => ({ Key })),
             },
           },
           (deleteErr, deleteData) => {

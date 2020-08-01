@@ -36,7 +36,7 @@ describe(`invalidHeading()`, () => {
     [`=== `],
   ];
 
-  test.each(violations)(`%s should be a lint violation`, line => {
+  test.each(violations)(`%s should be a lint violation`, (line) => {
     const results = invalidHeading(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
@@ -52,7 +52,7 @@ describe(`invalidHeading()`, () => {
     [`// salad = yummy`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(invalidHeading(line, [], 1, opts)).toHaveLength(0);
   });
 });

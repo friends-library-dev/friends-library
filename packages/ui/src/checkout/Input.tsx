@@ -34,7 +34,7 @@ const Input: React.FC<Props> = ({
       type={type}
       placeholder={valid ? placeholder : invalidMsg}
       value={value || ``}
-      onChange={e => onChange(e.target.value)}
+      onChange={(e) => onChange(e.target.value)}
       onBlur={onBlur || (() => {})}
       onFocus={onFocus || (() => {})}
     />

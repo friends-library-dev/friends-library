@@ -20,7 +20,7 @@ export type Props = Omit<CoverProps, 'size' | 'pages' | 'blurb'> & {
   className?: string;
 };
 
-const BookTeaserCard: React.FC<Props> = props => {
+const BookTeaserCard: React.FC<Props> = (props) => {
   const {
     htmlShortTitle,
     author,

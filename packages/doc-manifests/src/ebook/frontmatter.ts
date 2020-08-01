@@ -58,7 +58,7 @@ function contentToc({ sections, lang }: DocPrecursor): Html {
     <h1>${lang === `en` ? `Table of Contents` : `Índice`}</h1>
     ${sections
       .map(
-        sect =>
+        (sect) =>
           `<div>
         ${br7}
         <a href="${sect.id}.xhtml">

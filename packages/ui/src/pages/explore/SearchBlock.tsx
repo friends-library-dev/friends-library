@@ -41,7 +41,7 @@ const SearchBlock: React.FC<Props> = ({ books, initialFilters, bgImg, initialUse
       />
       {matches.length > 0 && (
         <div className="flex flex-wrap justify-center py-8 bg-flgray-100">
-          {matches.map(book => (
+          {matches.map((book) => (
             <SearchResult key={`${book.documentUrl}/${book.edition}`} {...book} />
           ))}
         </div>
@@ -70,7 +70,7 @@ function match(books: Props['books'], filters: string[], search: string): Props[
     return [];
   }
 
-  return books.filter(book => {
+  return books.filter((book) => {
     if (search && search.length > 1) {
       if (
         !book.title.toLowerCase().includes(search) &&

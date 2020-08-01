@@ -25,7 +25,7 @@ const ActiveFilters: React.FC<Props> = ({ groups, clearAll }) => {
         <>Filtros Activos:</>
       </Dual.span>
       <div className="flex flex-col md:flex-row md:flex-wrap">
-        {groups.map(group => (
+        {groups.map((group) => (
           <div
             className={cx(
               `ActiveFilters__Group bg-blue-200* my-1 mb-2`,
@@ -38,7 +38,7 @@ const ActiveFilters: React.FC<Props> = ({ groups, clearAll }) => {
                 {group.label}:
               </h5>
               <div className="w-3/4 sm:w-4/5 md:flex md:w-auto">
-                {group.filters.map(filter => (
+                {group.filters.map((filter) => (
                   <FilterBtn
                     className="m-1 capitalize"
                     key={filter.text}

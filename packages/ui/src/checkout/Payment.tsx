@@ -48,9 +48,9 @@ class Payment extends React.Component<Props, State> {
     cvcComplete: false,
   };
 
-  private handleSubmit: (
-    ev: React.FormEvent<HTMLFormElement>,
-  ) => Promise<void> = async ev => {
+  private handleSubmit: (ev: React.FormEvent<HTMLFormElement>) => Promise<void> = async (
+    ev,
+  ) => {
     ev.preventDefault();
     if (!this.valid() || this.props.throbbing) {
       return;
@@ -107,7 +107,7 @@ class Payment extends React.Component<Props, State> {
                 <CardNumberElement
                   className={cx(`CartInput`, { invalid: !!numberError })}
                   placeholder="Credit Card Number"
-                  onReady={el => el.focus()}
+                  onReady={(el) => el.focus()}
                   onChange={({ error, brand, complete }) => {
                     this.setState({
                       cardBrand: brand,

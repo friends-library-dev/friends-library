@@ -34,7 +34,7 @@ files.forEach(({ path, json }) => {
 
     const result = validator.validate(json, useSchema);
     if (result.errors.length) {
-      throw new Error(`${result.errors.map(e => e.stack).join(`\n`)}`);
+      throw new Error(`${result.errors.map((e) => e.stack).join(`\n`)}`);
     }
   });
 });

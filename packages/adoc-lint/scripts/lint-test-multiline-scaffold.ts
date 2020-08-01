@@ -36,7 +36,7 @@ describe(`myRule()`, () => {
     // [`Not a violation`],
   ];
 
-  xtest.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  xtest.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

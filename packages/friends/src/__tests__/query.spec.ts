@@ -17,7 +17,7 @@ describe(`getAllFriends()`, () => {
   it(`return an array of friends`, () => {
     const friends = getAllFriends();
 
-    friends.forEach(friend => {
+    friends.forEach((friend) => {
       expect(friend).toBeInstanceOf(Friend);
     });
   });
@@ -25,7 +25,7 @@ describe(`getAllFriends()`, () => {
   it(`does not return the "compilations" pseudo friend`, () => {
     const friends = getAllFriends();
 
-    friends.forEach(friend => {
+    friends.forEach((friend) => {
       expect(friend.slug).not.toBe(`compilations`);
     });
   });

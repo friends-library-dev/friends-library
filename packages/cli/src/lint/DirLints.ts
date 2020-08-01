@@ -22,11 +22,11 @@ export default class DirLints {
   }
 
   public fixable(): LintResult[] {
-    return this.all().filter(lint => lint.fixable === true);
+    return this.all().filter((lint) => lint.fixable === true);
   }
 
   public unfixable(): LintResult[] {
-    return this.all().filter(lint => lint.fixable !== true);
+    return this.all().filter((lint) => lint.fixable !== true);
   }
 
   public all(): LintResult[] {

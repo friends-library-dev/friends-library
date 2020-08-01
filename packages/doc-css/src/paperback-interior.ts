@@ -79,7 +79,7 @@ export function printDimsVars(size: PrintSizeDetails): Record<string, string> {
       '--page-inner-margin': size.margins.inner,
       '--running-head-margin-top': size.margins.runningHeadTop,
     },
-    v => `${v}in`,
+    (v) => `${v}in`,
   );
 }
 

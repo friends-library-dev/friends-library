@@ -30,11 +30,11 @@ export async function handler({ exec }: { exec: boolean }): Promise<void> {
       magenta(`Received job, initiating...`);
       execSync(`cd ${process.cwd()} && yarn fl cover:watch --exec`);
     }
-    await new Promise(res => setTimeout(res, 750));
+    await new Promise((res) => setTimeout(res, 750));
   }
 }
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs.option(`exec`, {
     type: `boolean`,
     default: false,

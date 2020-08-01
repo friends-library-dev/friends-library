@@ -93,7 +93,7 @@ storiesOf(`Home Blocks`, module)
   .add(`Hero`, () => <HomeHeroBlock />);
 
 storiesOf(`MultiPill`, module)
-  .addDecorator(storyFn => (
+  .addDecorator((storyFn) => (
     <div style={{ maxWidth: 1000, padding: `3em` }}>{storyFn()}</div>
   ))
   .add(`3-part`, () => (

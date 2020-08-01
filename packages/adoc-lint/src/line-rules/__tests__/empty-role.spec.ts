@@ -33,7 +33,7 @@ describe(`emptyRole()`, () => {
     [`[quote.scripture, , Matt. 11:28-30.]`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(emptyRole(line, [], 1, opts)).toHaveLength(0);
   });
 });

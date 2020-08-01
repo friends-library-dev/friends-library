@@ -22,7 +22,7 @@ export default function responsiveDocumentTitle(
     names.push(`${nameParts[0]} ${nameParts[2]}`);
   }
 
-  names.forEach(name => {
+  names.forEach((name) => {
     title = title.replace(` of ${name}`, REPLACE);
     title = title.replace(`${name}'s `, REPLACE);
   });

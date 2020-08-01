@@ -130,8 +130,8 @@ function getAudio(
   lang: Lang = `en`,
 ): [Audio, Document] {
   const friend = getFriend(friendSlug, lang);
-  const doc = friend.documents.find(d => d.slug === docSlug);
-  const edition = doc!.editions.find(e => e.audio);
+  const doc = friend.documents.find((d) => d.slug === docSlug);
+  const edition = doc!.editions.find((e) => e.audio);
   const audio = edition!.audio!;
   return [audio, doc!];
 }

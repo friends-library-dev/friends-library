@@ -5,7 +5,7 @@ export default function migrate(state: SavedState): SavedState {
   const migrations = [prNumberToPullRequestObject];
   let newState = state;
 
-  migrations.forEach(migration => {
+  migrations.forEach((migration) => {
     newState = migration(newState);
   });
 

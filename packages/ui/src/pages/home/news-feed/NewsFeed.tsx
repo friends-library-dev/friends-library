@@ -16,7 +16,7 @@ const NewsFeed: React.FC<Props> = ({ items, className }) => {
   const years = groupYears(items.slice(0, showing));
   return (
     <div className={cx(className, `flex flex-col items-center`)}>
-      {years.map(props => (
+      {years.map((props) => (
         <NewsFeedYear key={props.year} {...props} />
       ))}
       {showing < items.length && (
@@ -42,7 +42,7 @@ function groupYears(items: Props['items']): { year: string; items: ItemProps[] }
   const years: string[] = [];
   const groups: { year: string; items: ItemProps[] }[] = [];
 
-  items.forEach(item => {
+  items.forEach((item) => {
     if (!years.includes(item.year)) {
       years.push(item.year);
       idx++;

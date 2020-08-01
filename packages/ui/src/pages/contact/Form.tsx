@@ -21,7 +21,7 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
   return (
     <div className={cx(className, `ContactForm bg-cover lg:bg-white`)}>
       <form
-        onSubmit={async event => {
+        onSubmit={async (event) => {
           event.preventDefault();
           setSuccess(false);
           setState(`submitting`);
@@ -72,7 +72,7 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
           <input
             value={name}
             required
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             className={inputClasses()}
             autoFocus
             type="text"
@@ -85,7 +85,7 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
           <Label htmlFor="email">{t`Email`}</Label>
           <input
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className={inputClasses()}
             type="email"
             name="email"
@@ -127,7 +127,7 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
           <textarea
             required
             value={message}
-            onChange={event => setMessage(event.target.value)}
+            onChange={(event) => setMessage(event.target.value)}
             className={inputClasses()}
             name="message"
             id="message"

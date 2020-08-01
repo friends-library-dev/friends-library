@@ -24,7 +24,7 @@ describe(`personMismatch()`, () => {
     [`As to my bodily state, if you\npleases`],
   ];
 
-  test.each(violations)(`multiline adoc should have lint error`, adoc => {
+  test.each(violations)(`multiline adoc should have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {
@@ -39,7 +39,7 @@ describe(`personMismatch()`, () => {
     [`You his lambs`],
   ];
 
-  test.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  test.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

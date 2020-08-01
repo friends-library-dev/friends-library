@@ -24,14 +24,14 @@ describe(`postscriptHeader()`, () => {
     [`Postscript`],
   ];
 
-  test.each(violations)(`\`%s\` is a lint violation`, line => {
+  test.each(violations)(`\`%s\` is a lint violation`, (line) => {
     const results = postscriptHeader(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
   const allowed: [string][] = [[`Postscript: Foo bar.`], [`[.postscript]`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(postscriptHeader(line, [], 1, opts)).toHaveLength(0);
   });
 });

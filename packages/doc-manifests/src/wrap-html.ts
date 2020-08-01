@@ -18,7 +18,7 @@ export default function wrapHtmlBody(
       ${opts.isUtf8 ? `<meta charset="UTF-8"/>` : ``}
       ${opts.title ? `<title>${opts.title}</title>` : ``}
       ${(opts.css || []).map(
-        href => `<link href="${href}" rel="stylesheet" type="text/css" />`,
+        (href) => `<link href="${href}" rel="stylesheet" type="text/css" />`,
       )}
     </head>
     <body${opts.bodyClass ? ` class="${opts.bodyClass}"` : ``}>

@@ -10,7 +10,10 @@ import sendOrderConfirmationEmail from './order-send-confirmation-email';
 import createPaymentIntent from './payment-intent-create';
 import logError from './log-error';
 
-export default async function(event: APIGatewayEvent, respond: Responder): Promise<void> {
+export default async function (
+  event: APIGatewayEvent,
+  respond: Responder,
+): Promise<void> {
   const method = event.httpMethod;
   const path = event.path.replace(/^(\/\.netlify\/functions)?\/site\//, ``);
 

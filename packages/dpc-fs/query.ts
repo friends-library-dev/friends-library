@@ -10,9 +10,9 @@ export function getByPattern(pattern?: string): FsDocPrecursor[] {
   }
 
   return allFiles
-    .filter(path => !pattern || path.includes(pattern))
-    .map(path => path.replace(/\/$/, ``))
-    .map(path => new FsDocPrecursor(path, path.replace(DOCS_REPOS_ROOT, ``)));
+    .filter((path) => !pattern || path.includes(pattern))
+    .map((path) => path.replace(/\/$/, ``))
+    .map((path) => new FsDocPrecursor(path, path.replace(DOCS_REPOS_ROOT, ``)));
 }
 
 let allFiles: string[] | undefined;

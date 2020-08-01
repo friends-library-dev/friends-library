@@ -113,7 +113,7 @@ function createPrintJobPayload(
       state_code: order.address.state,
       postcode: order.address.zip,
     },
-    line_items: order.items.flatMap(item => printJobLineItem(item, meta, order)),
+    line_items: order.items.flatMap((item) => printJobLineItem(item, meta, order)),
   };
 }
 
@@ -149,9 +149,9 @@ function editions(): Map<string, Edition> {
   }
 
   const friends = getAllFriends(`en`, true).concat(getAllFriends(`es`, true));
-  friends.forEach(friend =>
-    friend.documents.forEach(document =>
-      document.editions.forEach(edition => {
+  friends.forEach((friend) =>
+    friend.documents.forEach((document) =>
+      document.editions.forEach((edition) => {
         editionMap.set(`${friend.lang}/${document.id}/${edition.type}`, edition);
       }),
     ),
@@ -169,5 +169,5 @@ function getLuluClient(): LuluClient {
 
 function sleep(ms: number): Promise<void> {
   if (ms === 0) return Promise.resolve();
-  return new Promise(res => setTimeout(res, ms));
+  return new Promise((res) => setTimeout(res, ms));
 }

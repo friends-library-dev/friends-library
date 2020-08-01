@@ -10,8 +10,8 @@ export default class RegexLintRunner {
     lintData: (RegexLintData & Partial<RegexLintOptions>)[],
     options: Partial<RegexLintOptions> = {},
   ) {
-    this.lints = lintData.map(data => new RegexLint({ ...options, ...data }));
-    this.testPattern = new RegExp(this.lints.map(l => l.test).join(`|`), `i`);
+    this.lints = lintData.map((data) => new RegexLint({ ...options, ...data }));
+    this.testPattern = new RegExp(this.lints.map((l) => l.test).join(`|`), `i`);
   }
 
   public getLineLintResults(
@@ -26,13 +26,13 @@ export default class RegexLintRunner {
       return results;
     }
 
-    this.lints.forEach(lint => {
+    this.lints.forEach((lint) => {
       if (shouldLint(lint, options)) {
         const matches = this.getLineMatches(lint, line, lines, lineNumber);
         results = results.concat(
           matches
-            .map(match => this.getLintResult(match, line, lineNumber, lint))
-            .filter(result =>
+            .map((match) => this.getLintResult(match, line, lineNumber, lint))
+            .filter((result) =>
               lint.discardIfIdenticalRecommendation
                 ? !result.recommendation || line !== result.recommendation
                 : true,
@@ -56,10 +56,7 @@ export default class RegexLintRunner {
     }
 
     if (lint.includeNextLineFirstWord && lines[lineNumber]) {
-      line += ` ${lines[lineNumber]
-        .split(` `)
-        .filter(Boolean)
-        .shift() || ``}`;
+      line += ` ${lines[lineNumber].split(` `).filter(Boolean).shift() || ``}`;
       line = line.trim();
     }
 

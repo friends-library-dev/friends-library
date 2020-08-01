@@ -15,7 +15,7 @@ export default async function pdf(
   fs.ensureDirSync(SRC_DIR);
 
   await Promise.all(
-    Object.keys(manifest).map(path =>
+    Object.keys(manifest).map((path) =>
       fs.outputFile(
         `${SRC_DIR}/${path}`,
         manifest[path],
@@ -30,16 +30,16 @@ export default async function pdf(
 
   let output = ``;
   await new Promise((resolve, reject) => {
-    stream.stderr.on(`data`, data => {
+    stream.stderr.on(`data`, (data) => {
       output = output.concat(data.toString());
     });
 
-    stream.on(`close`, code => {
+    stream.on(`close`, (code) => {
       output = output
         .trim()
         .split(`\n`)
         .filter(filterPrinceOutput)
-        .map(opts.formatOutput || (l => l))
+        .map(opts.formatOutput || ((l) => l))
         .join(`\n`);
 
       if (output) {

@@ -36,7 +36,7 @@ const Pagination: React.FC<Props> = ({
                 !isActive && `bg-flgray-400 text-flgray-500`,
               )}
               href={createURL(page)}
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 refine(page);
               }}

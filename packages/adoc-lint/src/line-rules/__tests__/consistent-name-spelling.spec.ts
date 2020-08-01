@@ -65,7 +65,7 @@ describe(`consistentNameSpelling()`, () => {
     [`Came to Mountmellick for a meeting`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(consistentNameSpelling(line, [], 1, opts)).toHaveLength(0);
   });
 });

@@ -19,7 +19,7 @@ const TopNavSearchInput: React.FC<Props> = ({ searching, refine }) => {
       textColor="flgray-600"
       open={searching}
       query={query}
-      setQuery={newQuery => {
+      setQuery={(newQuery) => {
         setQuery(newQuery);
         throttledSearch.current && throttledSearch.current(newQuery);
       }}

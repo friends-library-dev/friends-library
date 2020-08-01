@@ -19,11 +19,11 @@ export default function env(key: string): string {
   return baseEnv.require(key)[key];
 }
 
-env.getContext = function(): Environment {
+env.getContext = function (): Environment {
   return context;
 };
 
-env.setContext = function(lambdaContext?: {
+env.setContext = function (lambdaContext?: {
   clientContext?: { custom?: { netlify?: string } };
 }): void {
   const encoded = lambdaContext?.clientContext?.custom?.netlify;

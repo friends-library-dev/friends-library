@@ -4,7 +4,7 @@ export const command = `audio`;
 
 export const describe = `handle audio-related tasks`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs
     .option(`all`, {
       alias: `a`,

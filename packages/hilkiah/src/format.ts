@@ -14,7 +14,7 @@ export function format({ book, verses, contiguous, match }: Ref, opts = {}): str
   };
 
   let str = book;
-  const found = books.find(b => b.name === book);
+  const found = books.find((b) => b.name === book);
   if (!found) throw new Error(`Invalid book name ${book}`);
   const { short } = found;
 
@@ -37,6 +37,6 @@ export function format({ book, verses, contiguous, match }: Ref, opts = {}): str
 
   return `${str},${verses
     .slice(1)
-    .map(v => v.verse)
+    .map((v) => v.verse)
     .join(`,`)}`;
 }

@@ -74,7 +74,7 @@ describe(`obsoleteSpellings()`, () => {
     [`We dined on sweet potatoes and rice`, `We dined on sweet potatoes and rice`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(obsoleteSpellings(line, [], 1, opts)).toHaveLength(0);
   });
 });

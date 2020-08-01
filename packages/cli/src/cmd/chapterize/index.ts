@@ -4,7 +4,7 @@ export const command = `chapterize <file> <dest> [chStart]`;
 
 export const describe = `covert docbook xml to asciidoc`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs
     .positional(`file`, {
       type: `string`,

@@ -27,7 +27,7 @@ interface Props {
   playlistIdHq?: number | null;
 }
 
-const ListenBlock: React.FC<Props> = props => {
+const ListenBlock: React.FC<Props> = (props) => {
   const [quality, setQuality] = useState<AudioQuality>(`HQ`);
   const {
     trackIdLq,

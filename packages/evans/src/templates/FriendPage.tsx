@@ -70,8 +70,8 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
         description={friendPageMetaDesc(
           friend.name,
           friend.description,
-          friend.documents.map(d => d.htmlShortTitle),
-          friend.documents.filter(d => d.hasAudio).length,
+          friend.documents.map((d) => d.htmlShortTitle),
+          friend.documents.filter((d) => d.hasAudio).length,
           friend.isCompilationsQuasiFriend,
           LANG,
         )}
@@ -91,7 +91,7 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
             'lg:flex-row lg:justify-between lg:flex-wrap lg:items-stretch': !isOnlyBook,
           })}
         >
-          {friend.documents.map(doc => {
+          {friend.documents.map((doc) => {
             const props = coverPropsFromQueryData(doc);
             return (
               <BookByFriend
@@ -114,10 +114,10 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
         <MapBlock
           bgImg={booksBg.image.fluid}
           friendName={friend.name}
-          residences={friend.residences.flatMap(r => {
+          residences={friend.residences.flatMap((r) => {
             const place = `${translate(r.city)}, ${translate(r.region)}`;
             if (r.durations) {
-              return r.durations.map(d => `${place} (${d.start} - ${d.end})`);
+              return r.durations.map((d) => `${place} (${d.start} - ${d.end})`);
             }
             let residence = place;
             if (friend.born && friend.died) {
@@ -128,7 +128,7 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
             return residence;
           })}
           map={friend.residences[0].map}
-          markers={friend.residences.map(r => ({
+          markers={friend.residences.map((r) => ({
             label: `${translate(r.city)}, ${translate(r.region)}`,
             top: r.top,
             left: r.left,
@@ -137,7 +137,7 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
       )}
       {quotes.length > 1 && (
         <TestimonialsBlock
-          testimonials={quotes.slice(1).map(q => ({ cite: q.source, quote: q.text }))}
+          testimonials={quotes.slice(1).map((q) => ({ cite: q.source, quote: q.text }))}
         />
       )}
       <BookTeaserCards
@@ -145,8 +145,10 @@ const FriendPage: React.FC<Props> = ({ data: { friend, relatedDocuments, booksBg
         titleTextColor="flblack"
         title={t`Related Books`}
         titleEl="h3"
-        books={relatedDocuments.nodes.map(relatedDoc => {
-          const friendDoc = friend.relatedDocuments.find(doc => doc.id === relatedDoc.id);
+        books={relatedDocuments.nodes.map((relatedDoc) => {
+          const friendDoc = friend.relatedDocuments.find(
+            (doc) => doc.id === relatedDoc.id,
+          );
           if (!friendDoc) throw new Error(`Missing related doc`);
           return {
             ...relatedDoc,

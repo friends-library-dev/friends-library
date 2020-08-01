@@ -3,7 +3,7 @@ import { c, log } from '@friends-library/cli-utils/color';
 
 export default function handler(): void {
   let err = false;
-  query.getByPattern().forEach(dpc => {
+  query.getByPattern().forEach((dpc) => {
     hydrate.entities(dpc);
     hydrate.asciidoc(dpc);
     if (!dpc.edition) {

@@ -4,7 +4,7 @@ export const command = `docx <pattern>`;
 
 export const describe = `convert asciidoc to docx format`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs.positional(`pattern`, {
     type: `string`,
     required: true,

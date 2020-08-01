@@ -8,7 +8,7 @@ export function makeSplitLines(
   return (input: string): string => {
     const sentences = splitIntoSentences(input);
     const validLines = sentences
-      .map(sentence => {
+      .map((sentence) => {
         if (sentence.length <= maxLen || lineIsHeading(sentence)) {
           return sentence;
         }
@@ -84,7 +84,7 @@ function splitByPunctuation(sentence: string): string[] {
 
 const rejoinShortPhrases: (
   maxLen: number,
-) => (acc: string[], part: string) => string[] = maxLen => {
+) => (acc: string[], part: string) => string[] = (maxLen) => {
   return (acc, part) => {
     const lastIndex = acc.length - 1;
     const lastLine = acc[lastIndex];
@@ -132,7 +132,7 @@ function splitBetweenWords(
 function getWordSplitCandidate(words: string[], splitLen: number): string[] {
   const chunks: string[][] = [[]];
   let lineIndex = 0;
-  words.forEach(word => {
+  words.forEach((word) => {
     if (chunks[lineIndex].join(` `).length < splitLen) {
       chunks[lineIndex].push(word);
       return;
@@ -140,13 +140,13 @@ function getWordSplitCandidate(words: string[], splitLen: number): string[] {
     lineIndex++;
     chunks[lineIndex] = [word];
   });
-  return chunks.map(chunk => chunk.join(` `));
+  return chunks.map((chunk) => chunk.join(` `));
 }
 
 function scoreSplitBetweenWords(arr: string[], minLen: number, maxLen: number): number {
   let score = 0;
   let prev: string;
-  arr.forEach(part => {
+  arr.forEach((part) => {
     score += maxLen - part.length;
     if (part.length < minLen) {
       score += 20;
@@ -258,7 +258,7 @@ function lineIsHeading(line: string): boolean {
 const regex = {
   assemble(arr: (string | RegExp)[], flags?: string): RegExp {
     return new RegExp(
-      arr.map(p => (typeof p === `string` ? p : p.source)).join(``),
+      arr.map((p) => (typeof p === `string` ? p : p.source)).join(``),
       flags,
     );
   },

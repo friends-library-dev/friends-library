@@ -42,7 +42,7 @@ describe(`Cart`, () => {
       ],
     ];
 
-    test.each(badInputs)(`bad input creates empty cart without error`, input => {
+    test.each(badInputs)(`bad input creates empty cart without error`, (input) => {
       const cart = Cart.fromJson(input);
       expect(cart.items).toHaveLength(0);
       expect(cart.address).toBeUndefined();

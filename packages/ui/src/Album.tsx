@@ -11,7 +11,7 @@ type Props = Omit<CoverProps, 'blurb' | 'pages' | 'size'> & {
   className?: string;
 };
 
-const Album: React.FC<Props> = props => {
+const Album: React.FC<Props> = (props) => {
   const Logo = LANG === `en` ? LogoFriends : LogoAmigos;
   return (
     <div className={cx(props.className, `Album box-content shadow-xl relative`)}>

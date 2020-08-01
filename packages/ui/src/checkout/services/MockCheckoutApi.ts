@@ -135,6 +135,6 @@ export default class MockCheckoutApi extends CheckoutApi {
     if (delay === 0) {
       return Promise.resolve(mockResponse);
     }
-    return new Promise(resolve => setTimeout(() => resolve(mockResponse), delay));
+    return new Promise((resolve) => setTimeout(() => resolve(mockResponse), delay));
   }
 }

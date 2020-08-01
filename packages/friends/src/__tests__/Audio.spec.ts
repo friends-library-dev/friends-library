@@ -33,5 +33,5 @@ describe(`Audio`, () => {
 });
 
 function partsFromSeconds(...secondses: number[]): AudioPart[] {
-  return secondses.map(seconds => ({ seconds })) as AudioPart[];
+  return secondses.map((seconds) => ({ seconds })) as AudioPart[];
 }

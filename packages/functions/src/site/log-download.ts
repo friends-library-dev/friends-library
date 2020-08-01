@@ -144,7 +144,7 @@ function sendSlack(
   location: Record<string, string | number | null>,
 ): void {
   const device = [ua.platform, ua.os, ua.browser, ua.isMobile ? `mobile` : `non-mobile`]
-    .filter(part => part !== `unknown`)
+    .filter((part) => part !== `unknown`)
     .join(` / `);
 
   const from = referrer ? `, from url: \`${referrer}\`` : ``;

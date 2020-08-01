@@ -14,7 +14,7 @@ export async function handler({ exclude, scope }: Argv): Promise<void> {
   }
 
   red(`🚽  Uncommitted changes found in ${dirty.length} repos:`);
-  dirty.forEach(repo => {
+  dirty.forEach((repo) => {
     console.log(`   ${chalk.grey(`↳`)} ${chalk.yellow(relPath(repo))}`);
   });
 }

@@ -71,7 +71,7 @@ const ExplorePage: React.FC<Props> = ({
     </BooksBgBlock>
     <ExploreNavBlock />
     <ExploreUpdatedEditionsBlock
-      books={updatedEditions.nodes.map(data => ({
+      books={updatedEditions.nodes.map((data) => ({
         ...coverPropsFromQueryData(data),
         htmlShortTitle: data.htmlShortTitle,
         documentUrl: data.documentUrl,
@@ -81,14 +81,14 @@ const ExplorePage: React.FC<Props> = ({
     <ExploreGettingStartedLinkBlock bgImg={books3.image.fluid} />
     <ExploreAudioBooksBlock
       bgImg={headphones.image.fluid}
-      books={audioBooks.nodes.map(data => ({
+      books={audioBooks.nodes.map((data) => ({
         ...coverPropsFromQueryData(data),
         htmlShortTitle: data.htmlShortTitle,
         documentUrl: data.documentUrl,
       }))}
     />
     <ExploreNewBooksBlock
-      books={newBooks.nodes.slice(0, LANG === `es` ? 2 : 4).map(data => ({
+      books={newBooks.nodes.slice(0, LANG === `es` ? 2 : 4).map((data) => ({
         ...coverPropsFromQueryData(data),
         documentUrl: data.documentUrl,
         htmlShortTitle: data.htmlShortTitle,
@@ -101,7 +101,7 @@ const ExplorePage: React.FC<Props> = ({
     />
     {LANG === `en` && (
       <ExploreRegionBlock
-        books={regionBooks.nodes.map(data => ({
+        books={regionBooks.nodes.map((data) => ({
           ...coverPropsFromQueryData(data),
           htmlShortTitle: data.htmlShortTitle,
           region: data.region as any,
@@ -113,7 +113,7 @@ const ExplorePage: React.FC<Props> = ({
     {LANG === `en` && (
       <ExploreTimelineBlock
         bgImg={castle.image.fluid}
-        books={booksByDate.nodes.map(data => ({
+        books={booksByDate.nodes.map((data) => ({
           ...coverPropsFromQueryData(data),
           htmlShortTitle: data.htmlShortTitle,
           date: data.date,
@@ -128,8 +128,8 @@ const ExplorePage: React.FC<Props> = ({
     />
     <ExploreSearchBlock
       bgImg={waterPath.image.fluid}
-      books={searchBooks.nodes.flatMap(data =>
-        data.editions.map(edition => ({
+      books={searchBooks.nodes.flatMap((data) =>
+        data.editions.map((edition) => ({
           ...coverPropsFromQueryData({ ...data, editions: [edition] }),
           htmlShortTitle: data.htmlShortTitle,
           tags: data.tags,

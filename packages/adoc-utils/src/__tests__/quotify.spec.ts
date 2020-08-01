@@ -30,11 +30,11 @@ const fixtureCases = fs
   .toString()
   .trim()
   .split(`\n\n`)
-  .map(pair =>
+  .map((pair) =>
     pair
       .split(`\n`)
-      .map(line => line.trim())
-      .filter(line => !line.startsWith(`//`)),
+      .map((line) => line.trim())
+      .filter((line) => !line.startsWith(`//`)),
   );
 
 describe(`quotify()`, () => {

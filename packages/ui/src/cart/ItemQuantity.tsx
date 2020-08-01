@@ -32,7 +32,7 @@ const Component: React.FC<Props> = ({ quantity, changeQuantity }) => {
           )}
           type="input"
           value={strQty}
-          onChange={evt => {
+          onChange={(evt) => {
             let val = evt.target.value.trim();
             if (val !== `` && !val.match(/^\d+$/)) {
               val = `1`;

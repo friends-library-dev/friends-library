@@ -20,7 +20,7 @@ type Props = Omit<CoverProps, 'pages'> & {
   className?: string;
 };
 
-const BookByFriend: React.FC<Props> = props => {
+const BookByFriend: React.FC<Props> = (props) => {
   const { className, isAlone, hasAudio, description, pages } = props;
   return (
     <div

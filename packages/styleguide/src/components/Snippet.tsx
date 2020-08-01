@@ -82,7 +82,7 @@ export default Snippet;
 const Expansion: React.FC<{ expansion: string }> = ({ expansion }) => {
   const html = expansion
     .split(`\n`)
-    .map(part => `<span class="expansion">${part}</span>`)
+    .map((part) => `<span class="expansion">${part}</span>`)
     .join(` and `);
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 };

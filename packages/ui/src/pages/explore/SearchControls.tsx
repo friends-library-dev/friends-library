@@ -69,31 +69,31 @@ function groupify(
     region: { label: `Regions`, filters: [] },
   };
 
-  filters.forEach(filter => {
+  filters.forEach((filter) => {
     const [type, value] = filter.split(`.`) as [FilterType, string];
 
-    const makeItem: (fn: (book: Props['books'][0]) => boolean) => Filter = fn => ({
+    const makeItem: (fn: (book: Props['books'][0]) => boolean) => Filter = (fn) => ({
       text: `${translate(value.replace(/-us$/, ` US`))} (${books.filter(fn).length})`,
-      clear: () => setFilters(filters.filter(f => f !== filter)),
+      clear: () => setFilters(filters.filter((f) => f !== filter)),
     });
 
     switch (type) {
       case `edition`:
-        groups.edition.filters.push(makeItem(b => b.edition === value));
+        groups.edition.filters.push(makeItem((b) => b.edition === value));
         break;
       case `tag`:
-        groups.tag.filters.push(makeItem(b => b.tags.includes(value)));
+        groups.tag.filters.push(makeItem((b) => b.tags.includes(value)));
         break;
       case `period`:
-        groups.period.filters.push(makeItem(b => b.period === value));
+        groups.period.filters.push(makeItem((b) => b.period === value));
         break;
       case `region`:
         groups.region.filters.push(
-          makeItem(b => b.region.toLowerCase().replace(/ /, `-`) === value),
+          makeItem((b) => b.region.toLowerCase().replace(/ /, `-`) === value),
         );
         break;
     }
   });
 
-  return Object.values(groups).filter(group => group.filters.length);
+  return Object.values(groups).filter((group) => group.filters.length);
 }

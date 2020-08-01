@@ -40,7 +40,7 @@ const Layout: React.FC = ({ children }) => {
   useEffect(() => {
     const img = new Image();
     img.onerror = () => setWebp(false);
-    img.onload = event => {
+    img.onload = (event) => {
       setWebp(event?.type === `load` ? img.width === 1 : false);
     };
     img.src = `data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA=`;

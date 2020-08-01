@@ -1,6 +1,6 @@
 function getEnv<T extends string>(required: boolean, ...keys: T[]): { [k in T]: string } {
   const obj = {} as { [k in T]: string };
-  keys.forEach(key => {
+  keys.forEach((key) => {
     const val = process.env[key];
     if (
       required &&

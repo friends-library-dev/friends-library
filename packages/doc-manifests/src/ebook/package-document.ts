@@ -43,7 +43,7 @@ export function packageDocument(dpc: DocPrecursor, conf: EbookConfig): Xml {
 </manifest>
 <spine>
   ${spineItems(dpc, conf)
-    .map(id => `<itemref idref="${id}"/>`)
+    .map((id) => `<itemref idref="${id}"/>`)
     .join(`\n  `)}
 </spine>
 </package>
@@ -107,7 +107,7 @@ export function manifestItems(dpc: DocPrecursor, conf: EbookConfig): Map<string,
     });
   }
 
-  Object.keys(ebookFrontmatter(dpc, conf.subType)).forEach(slug =>
+  Object.keys(ebookFrontmatter(dpc, conf.subType)).forEach((slug) =>
     items.set(slug, {
       href: `${slug}.xhtml`,
       'media-type': `application/xhtml+xml`,
@@ -120,7 +120,7 @@ export function manifestItems(dpc: DocPrecursor, conf: EbookConfig): Map<string,
 export function spineItems(dpc: DocPrecursor, conf: EbookConfig): string[] {
   const { sections, notes } = dpc;
   let items = Object.keys(ebookFrontmatter(dpc, conf.subType));
-  items = items.concat(sections.map(section => section.id));
+  items = items.concat(sections.map((section) => section.id));
 
   if (notes.size) {
     items.push(`notes`);

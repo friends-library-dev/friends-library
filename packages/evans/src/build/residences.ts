@@ -8,11 +8,11 @@ interface Position {
   map: Map;
 }
 
-export default function(residences: Friend['residences']): Record<string, any>[] {
+export default function (residences: Friend['residences']): Record<string, any>[] {
   const positions = residences.map(position);
   const map = deriveMap(positions);
 
-  return residences.map(res => {
+  return residences.map((res) => {
     const pos = position(res);
     if (pos.map !== map) {
       pos.top = -1000;

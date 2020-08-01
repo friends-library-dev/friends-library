@@ -28,7 +28,7 @@ const FriendsPageHero: React.FC<Props> = ({ numFriends, bgImg }) => (
         <a
           href="#ControlsBlock"
           className="underline"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             makeScroller(`#ControlsBlock`)();
           }}
@@ -40,7 +40,7 @@ const FriendsPageHero: React.FC<Props> = ({ numFriends, bgImg }) => (
         <a
           href="#ControlsBlock"
           className="underline"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             makeScroller(`#ControlsBlock`)();
           }}
@@ -59,7 +59,7 @@ const FriendsPageHero: React.FC<Props> = ({ numFriends, bgImg }) => (
         <a
           href="#ControlsBlock"
           className="underline"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             makeScroller(`#ControlsBlock`)();
           }}
@@ -70,7 +70,7 @@ const FriendsPageHero: React.FC<Props> = ({ numFriends, bgImg }) => (
         <a
           href="#ControlsBlock"
           className="underline"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             makeScroller(`#ControlsBlock`)();
           }}

@@ -56,7 +56,7 @@ describe(`doubledPunctuation()`, () => {
     [`obey, etc.!`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(doubledPunctuation(line, [], 1, opts)).toHaveLength(0);
   });
 });

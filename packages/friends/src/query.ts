@@ -17,34 +17,34 @@ export function getFriend(slug: Slug, lang: Lang = `en`): Friend {
 
 export function getAllFriends(lang: Lang = `en`, withCompilations = false): Friend[] {
   const pattern = ymlPath(`${lang}/*.yml`);
-  const friends = glob(pattern).map(path => getFriend(basename(path, `.yml`), lang));
+  const friends = glob(pattern).map((path) => getFriend(basename(path, `.yml`), lang));
   if (withCompilations) {
     return friends;
   }
   const compilations = lang === `en` ? `compilations` : `compilaciones`;
-  return friends.filter(friend => friend.slug !== compilations);
+  return friends.filter((friend) => friend.slug !== compilations);
 }
 
 export function allPublishedBooks(lang: Lang): Document[] {
   return getAllFriends(lang, true)
-    .flatMap(friend => friend.documents)
-    .filter(document => document.hasNonDraftEdition);
+    .flatMap((friend) => friend.documents)
+    .filter((document) => document.hasNonDraftEdition);
 }
 
 export function allPublishedUpdatedEditions(lang: Lang): Edition[] {
   return allPublishedBooks(lang)
-    .flatMap(doc => doc.editions)
-    .filter(edition => edition.type === `updated`);
+    .flatMap((doc) => doc.editions)
+    .filter((edition) => edition.type === `updated`);
 }
 
 export function allPublishedFriends(lang: Lang): Friend[] {
-  return getAllFriends(lang, true).filter(friend => friend.hasNonDraftDocument);
+  return getAllFriends(lang, true).filter((friend) => friend.hasNonDraftDocument);
 }
 
 export function allPublishedAudiobooks(lang: Lang): Edition[] {
   return allPublishedBooks(lang)
-    .flatMap(doc => doc.editions)
-    .filter(edition => !!edition.audio);
+    .flatMap((doc) => doc.editions)
+    .filter((edition) => !!edition.audio);
 }
 
 export function numPublishedBooks(lang: Lang): number {

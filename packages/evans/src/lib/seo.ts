@@ -42,7 +42,7 @@ export function friendPageMetaDesc(
   isCompilationsQuasiFriend: boolean,
   lang: Lang,
 ): string {
-  const quotedTitles = titles.map(t => `&ldquo;${t}&rdquo;`);
+  const quotedTitles = titles.map((t) => `&ldquo;${t}&rdquo;`);
   const comp = isCompilationsQuasiFriend;
   const EN = lang === `en`;
   const ES = lang === `es`;

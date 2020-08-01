@@ -18,7 +18,7 @@ http
     }
 
     let chunks = [];
-    req.on('data', chunk => chunks.push(chunk));
+    req.on('data', (chunk) => chunks.push(chunk));
     req.on('end', () => {
       const json = JSON.parse(chunks.join(''));
       fs.writeFileSync(`${__dirname}/cover.json`, JSON.stringify(json, null, 2));

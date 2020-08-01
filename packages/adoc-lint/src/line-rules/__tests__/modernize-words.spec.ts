@@ -37,7 +37,7 @@ describe(`modernizeWords()`, () => {
     [`This weight of burden of mine is too great to bear`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(modernizeWords(line, [], 1, opts)).toHaveLength(0);
   });
 
@@ -81,7 +81,7 @@ describe(`modernizeWords()`, () => {
     `often ejaculating with earnestness, "\`O blessed Saviour`,
   ];
 
-  test.each(ejacCases)(`%s is a lint vilation`, adoc => {
+  test.each(ejacCases)(`%s is a lint vilation`, (adoc) => {
     expect(modernizeWords(adoc, [], 1, opts)).toHaveLength(1);
   });
 });

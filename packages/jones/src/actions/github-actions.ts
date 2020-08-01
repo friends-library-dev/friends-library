@@ -19,7 +19,7 @@ export function deleteTask(id: Uuid): ReduxThunk {
       return;
     }
 
-    const repo = repos.find(r => r.id === task.repoId);
+    const repo = repos.find((r) => r.id === task.repoId);
     if (!repo) {
       return;
     }
@@ -39,7 +39,7 @@ export function syncPullRequestStatus(task: Task): ReduxThunk {
     }
 
     const state = getState();
-    const repo = state.repos.find(r => r.id === task.repoId);
+    const repo = state.repos.find((r) => r.id === task.repoId);
     if (!repo) {
       return;
     }
@@ -87,7 +87,7 @@ export function submitTask(task: Task): ReduxThunk {
 }
 
 function lintFix(task: Task, dispatch: Dispatch, getState: () => State): Task {
-  Object.keys(task.files).forEach(path => {
+  Object.keys(task.files).forEach((path) => {
     const file = task.files[path];
     if (typeof file.editedContent !== `string` || file.editedContent === file.content) {
       return;
@@ -150,7 +150,7 @@ export function checkout(task: Task): ReduxThunk {
           acc[file.path] = file;
           return acc;
         }, {} as any);
-        const yml = await fetch(friendYmlUrl(repoSlug)).then(r => r.text());
+        const yml = await fetch(friendYmlUrl(repoSlug)).then((r) => r.text());
         const { documents } = ymlToJs(yml);
         const documentTitles = documents.reduce((acc: any, doc: any) => {
           acc[doc.slug] = doc.title;
@@ -190,7 +190,7 @@ export function fetchFriendRepos(): ReduxThunk {
       const ymlsPath = `/repos/friends-library/:repo/contents/packages/friends/yml/${gh.LANG}`;
       const { data: ymls } = await gh.req(ymlsPath, { repo: `friends-library` });
       // filter out any friend repos that don't have a yml file yet
-      repos = friendRepos.filter(repo => {
+      repos = friendRepos.filter((repo) => {
         return !!ymls.find((y: Named) => y.name === `${repo.name}.yml`);
       });
     } catch (e) {

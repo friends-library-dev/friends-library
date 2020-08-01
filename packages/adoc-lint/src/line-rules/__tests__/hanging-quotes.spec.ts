@@ -20,7 +20,7 @@ describe(`hangingQuotes()`, () => {
 
   const violations = [`== Ch\n\nFoo bar "\`\njim jam.\`"`];
 
-  test.each(violations)(`multiline adoc should have lint error`, adoc => {
+  test.each(violations)(`multiline adoc should have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

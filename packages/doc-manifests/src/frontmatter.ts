@@ -18,7 +18,7 @@ export const frontmatter = memoize(
       copyright: copyright(dpc),
       epigraph: epigraph(dpc),
     };
-    return pickBy(files, html => html !== ``);
+    return pickBy(files, (html) => html !== ``);
   },
 );
 
@@ -85,7 +85,7 @@ export function copyright(dpc: DocPrecursor): Html {
   if (lang === `es`) {
     time = time
       .split(` `)
-      .map(p => (p === `de` ? p : ucfirst(p)))
+      .map((p) => (p === `de` ? p : ucfirst(p)))
       .join(` `);
   }
 

@@ -90,7 +90,7 @@ function cardProps(
     died: friend.died || undefined,
     gender: friend.gender,
     url: friend.url,
-    numBooks: friend.documents.filter(doc => doc.hasNonDraftEdition).length,
+    numBooks: friend.documents.filter((doc) => doc.hasNonDraftEdition).length,
   };
 }
 
@@ -111,7 +111,7 @@ function makeSorter(
 }
 
 function makeFilter(query: string, sortOption: string): (friend: FriendData) => boolean {
-  return friend => {
+  return (friend) => {
     if (sortOption === `Death Date` && !friend.died) {
       return false;
     }

@@ -2,10 +2,7 @@ import { getAllFriends, Friend, Document, Edition } from '@friends-library/frien
 import { Slug, ISBN, Asciidoc } from '@friends-library/types';
 
 export function justHeadings(adoc: Asciidoc): Asciidoc {
-  return adoc
-    .split(`\n\n`)
-    .slice(0, 1)
-    .join(``);
+  return adoc.split(`\n\n`).slice(0, 1).join(``);
 }
 
 let friends: Friend[] = [];
@@ -14,7 +11,7 @@ export function allFriends(): Friend[] {
   if (!friends.length) {
     friends = getAllFriends(`en`, true)
       .concat(getAllFriends(`es`, true))
-      .filter(f => ![`Jane Doe`, `John Doe`].includes(f.name));
+      .filter((f) => ![`Jane Doe`, `John Doe`].includes(f.name));
   }
   return friends;
 }
@@ -49,9 +46,9 @@ interface EditionCallback {
 }
 
 export function eachEdition(cb: EditionCallback): void {
-  allFriends().forEach(friend => {
-    friend.documents.forEach(document => {
-      document.editions.forEach(edition => {
+  allFriends().forEach((friend) => {
+    friend.documents.forEach((document) => {
+      document.editions.forEach((edition) => {
         cb({ friend, document, edition });
       });
     });

@@ -7,7 +7,7 @@ function log(msg: string, data?: Record<string, any>, channel?: string): void {
 
 log.env = `production` as Environment;
 
-log.setEnv = function(env: Environment): void {
+log.setEnv = function (env: Environment): void {
   log.env = env;
 };
 
