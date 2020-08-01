@@ -49,7 +49,7 @@ export default class CodeEditor extends React.Component<Props> {
           />
         </div>
         <div className="panel panel--css">
-          <h1>/* Custom CSS */</h1>
+          <h1>{`/* Custom CSS */`}</h1>
           <AceEditor
             ref={this.cssEditor}
             theme="pastel_on_dark"

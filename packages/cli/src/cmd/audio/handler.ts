@@ -159,7 +159,7 @@ async function replaceExternalTracks(audio: Audio, paths: string[]): Promise<voi
       const trackId = part[key];
       await getClient().replaceTrack(
         trackId,
-        paths.find(p => p.endsWith(audio.partFilename(i, quality))) || ``,
+        paths.find((p) => p.endsWith(audio.partFilename(i, quality))) || ``,
       );
       const title = audio.edition.document.title;
       yellow(`replacing file for track ${trackId}: ${title}, pt. ${i + 1}`);

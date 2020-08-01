@@ -7,12 +7,13 @@ import Friend from './Friend';
 import Edition from './Edition';
 import Document from './Document';
 import friendFromJS from './map';
+import { FriendData } from './types';
 
 export function getFriend(slug: Slug, lang: Lang = `en`): Friend {
   const path = ymlPath(`${lang}/${slug}.yml`);
   const file = readFileSync(path);
-  const data = safeLoad(file.toString());
-  return friendFromJS({ lang, ...data });
+  const data = safeLoad(file.toString()) as FriendData;
+  return friendFromJS({ ...data, lang });
 }
 
 export function getAllFriends(lang: Lang = `en`, withCompilations = false): Friend[] {

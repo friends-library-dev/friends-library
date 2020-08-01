@@ -8,6 +8,8 @@
     "coverage": true,
     "yarn.lock": true,
     "actions/**/bundled": true,
+    "packages/api/built-functions": true,
+    "packages/api/build": true,
     "packages/evans/.cache": true,
     "packages/evans/public": true,
     "packages/evans/src/build/.dpc-cache.json": true,
