@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "prettier": "^1.16.4",
+    "prettier": "^2.0.5",
     "typescript": "3.9.5"
   },
   "devDependencies": {
