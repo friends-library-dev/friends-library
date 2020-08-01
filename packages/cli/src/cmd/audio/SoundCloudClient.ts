@@ -49,7 +49,7 @@ export default class SoundCloudClient {
   ): Promise<boolean> {
     const body = {
       playlist: {
-        tracks: trackIds.map(id => ({ id })),
+        tracks: trackIds.map((id) => ({ id })),
       },
     };
 
@@ -103,7 +103,7 @@ export default class SoundCloudClient {
     const res = await this.sendJson(`playlists`, {
       playlist: {
         title: playlist.title,
-        tracks: playlist.tracks.map(id => ({ id })),
+        tracks: playlist.tracks.map((id) => ({ id })),
         tag_list: playlist.tags.join(` `),
         description: playlist.description,
         label_name: `Friends Library Publishing`,
@@ -208,10 +208,7 @@ export default class SoundCloudClient {
   private async getToken(): Promise<void> {
     const cachedTokenPath = `${__dirname}/.soundcloud-token`;
     if (fs.existsSync(cachedTokenPath)) {
-      this.token = fs
-        .readFileSync(cachedTokenPath)
-        .toString()
-        .trim();
+      this.token = fs.readFileSync(cachedTokenPath).toString().trim();
       return;
     }
 

@@ -25,7 +25,7 @@ function incorrectJohannine({ book, position: { start } }: Ref, input: string): 
     `3rd`,
   ];
 
-  prefs.forEach(pref => {
+  prefs.forEach((pref) => {
     if (bool) {
       return;
     }

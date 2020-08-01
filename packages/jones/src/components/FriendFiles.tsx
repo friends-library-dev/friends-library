@@ -168,7 +168,7 @@ class FriendFiles extends React.Component<Props> {
     return collapsed[key] || false;
   }
 
-  protected renderDoc: (doc: Document) => JSX.Element = doc => {
+  protected renderDoc: (doc: Document) => JSX.Element = (doc) => {
     const { collapseTask, taskId } = this.props;
     const key = doc.slug;
     const isCollapsed = this.isCollapsed(key);
@@ -180,7 +180,7 @@ class FriendFiles extends React.Component<Props> {
         />
         <IconSearch onClick={() => this.search(key)} />
         {doc.title}
-        <ul>{doc.editions.map(ed => this.renderEdition(ed, doc))}</ul>
+        <ul>{doc.editions.map((ed) => this.renderEdition(ed, doc))}</ul>
       </li>
     );
   };
@@ -203,12 +203,12 @@ class FriendFiles extends React.Component<Props> {
         />
         <IconSearch onClick={() => this.search(key)} isEdition />
         <span className="edition-type">{ed.type}</span> edition:
-        <ul>{ed.files.map(file => this.renderFile(file))}</ul>
+        <ul>{ed.files.map((file) => this.renderFile(file))}</ul>
       </EditionLi>
     );
   };
 
-  protected renderFile: (file: DocumentFile) => JSX.Element = file => {
+  protected renderFile: (file: DocumentFile) => JSX.Element = (file) => {
     const { editingFile, updateTask, taskId } = this.props;
     const editing = file.path === editingFile;
     return (

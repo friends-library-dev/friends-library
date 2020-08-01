@@ -12,7 +12,7 @@ export default async function epub(
 }
 
 export function epubFromEbook(manifests: FileManifest[]): FileManifest[] {
-  return manifests.map(manifest =>
-    mapValues(manifest, val => (typeof val === `string` ? removeMobi7Tags(val) : val)),
+  return manifests.map((manifest) =>
+    mapValues(manifest, (val) => (typeof val === `string` ? removeMobi7Tags(val) : val)),
   );
 }

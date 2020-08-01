@@ -94,7 +94,7 @@ export const sizes: { [K in PrintSize]: PrintSizeDetails } = {
 export function getPrintSizeDetails(id: string): PrintSizeDetails {
   let size;
 
-  Object.values(sizes).forEach(s => {
+  Object.values(sizes).forEach((s) => {
     if (s && (s.luluName === id || s.abbrev === id)) {
       size = s;
     }

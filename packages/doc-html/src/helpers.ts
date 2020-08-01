@@ -3,7 +3,7 @@ import { Lang, Html } from '@friends-library/types';
 export const br7 = `<br class="m7"/>`;
 
 export function ucfirst(lower: string): string {
-  return lower.replace(/^\w/, c => c.toUpperCase());
+  return lower.replace(/^\w/, (c) => c.toUpperCase());
 }
 
 const smallEn = `a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|via`.split(`|`);

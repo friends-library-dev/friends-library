@@ -74,7 +74,7 @@ const AudiobooksPage: React.FC<Props> = ({
         xl="0"
         className="md:px-6 lg:px-24 xl:px-0 xl:flex flex-wrap justify-center"
       >
-        {recent.nodes.map(book => (
+        {recent.nodes.map((book) => (
           <BookTeaserCard
             key={book.documentUrl}
             className="xl:w-2/5 xl:mx-8 xl:mb-12"

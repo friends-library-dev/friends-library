@@ -14,8 +14,8 @@ const { DOCS_REPOS_ROOT: ROOT } = env.require(`DOCS_REPOS_ROOT`);
   const data: FriendData[] = Object.values(
     getAllFriends(`en`, true)
       .concat(getAllFriends(`es`, true))
-      .filter(friend => ![`Jane Doe`, `John Doe`].includes(friend.name))
-      .filter(friend => friend.hasNonDraftDocument)
+      .filter((friend) => ![`Jane Doe`, `John Doe`].includes(friend.name))
+      .filter((friend) => friend.hasNonDraftDocument)
       .reduce((acc, friend: Friend) => {
         if (!acc[friend.name]) {
           acc[friend.name] = {
@@ -42,8 +42,8 @@ const { DOCS_REPOS_ROOT: ROOT } = env.require(`DOCS_REPOS_ROOT`);
 })();
 
 function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents'] {
-  const documents = friend.documents.filter(doc => doc.hasNonDraftEdition);
-  return documents.map(document => {
+  const documents = friend.documents.filter((doc) => doc.hasNonDraftEdition);
+  return documents.map((document) => {
     const path = `${friend.lang}/${friend.slug}/${document.slug}`;
     const fullPath = `${ROOT}${path}`;
     let customCss = null;
@@ -65,8 +65,8 @@ function mapDocuments(friend: Friend, meta: DocumentMeta): FriendData['documents
       customCss,
       customHtml,
       editions: document.editions
-        .filter(e => !e.isDraft)
-        .map(edition => {
+        .filter((e) => !e.isDraft)
+        .map((edition) => {
           const editionMeta = meta.get(`${path}/${edition.type}`);
           if (!editionMeta) red(`No edition meta found for ${edition.path}`);
           return {

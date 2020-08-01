@@ -30,7 +30,7 @@ describe(`myRule()`, () => {
     // [`Not a violation`],
   ];
 
-  xtest.each(allowed)(`%s is not a lint violation`, line => {
+  xtest.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(myRule(line, [], 1, opts)).toHaveLength(0);
   });
 });

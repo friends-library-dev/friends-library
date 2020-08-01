@@ -11,7 +11,7 @@ interface Props {
   setSelected: (selected: string[]) => any;
 }
 
-const FilterSelectDropdown: React.FC<Props> = props => (
+const FilterSelectDropdown: React.FC<Props> = (props) => (
   <PillDropdownDropdown className="FilterSelectDropdown" accordion>
     {LANG === `en` && (
       <AccordionItem className="border-tx">
@@ -117,10 +117,10 @@ const Option: React.FC<Props & { value: string }> = ({
   return (
     <Item
       selected={isSelected}
-      onClick={e => {
+      onClick={(e) => {
         setSelected(
           isSelected
-            ? selected.filter(existing => existing !== value)
+            ? selected.filter((existing) => existing !== value)
             : addFilter(value, selected),
         );
         e.stopPropagation();
@@ -156,7 +156,7 @@ function addFilter(toAdd: string, current: string[]): string[] {
     return current.concat(toAdd);
   }
   return current
-    .filter(existing => {
+    .filter((existing) => {
       const existingType = existing.split(`.`)[0];
       return existingType !== toAddType;
     })

@@ -141,7 +141,7 @@ const DocumentPage: React.FC<Props> = ({
         isComplete={document.isComplete}
         {...coverProps}
         pages={mainEdition.pages}
-        editions={document.editions.map(edition => ({
+        editions={document.editions.map((edition) => ({
           title: document.title,
           type: edition.type,
           printSize: edition.printSize,
@@ -177,7 +177,7 @@ const DocumentPage: React.FC<Props> = ({
         titleEl="h2"
         bgColor="flgray-100"
         titleTextColor="flblack"
-        books={otherBooks.map(book => ({
+        books={otherBooks.map((book) => ({
           ...book,
           ...coverPropsFromQueryData(book),
         }))}

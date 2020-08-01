@@ -115,7 +115,7 @@ async function handlePaperbackAndCover(
     published: existingMeta?.published || new Date().toISOString(),
     updated: new Date().toISOString(),
     adocLength: dpc.asciidoc.length,
-    numSections: dpc.sections.filter(s => !s.isIntermediateTitle).length,
+    numSections: dpc.sections.filter((s) => !s.isIntermediateTitle).length,
     revision: dpc.revision.sha,
     productionRevision: getProductionRevision(),
     paperback: paperbackMeta,
@@ -146,9 +146,7 @@ async function handleEbooks(
   const coverImg = await makeScreenshot(dpc.path, `ebook`);
   // to get a cover image .png file, see epub src files in `artifacts` dir after publish
   const config = { coverImg, frontmatter: true };
-  const base = edition(dpc)
-    .filename(`epub`)
-    .replace(/\..*$/, ``);
+  const base = edition(dpc).filename(`epub`).replace(/\..*$/, ``);
 
   log(c`   {gray Creating epub artifact...}`);
   const [epubManifest] = await manifest.epub(dpc, { ...config, subType: `epub` });
@@ -193,9 +191,7 @@ function getFileId(dpc: DocPrecursor): string {
 
 const getProductionRevision: () => Sha = memoize(() => {
   const cmd = `git log --max-count=1 --pretty="%h" -- .`;
-  return execSync(cmd, { cwd: process.cwd() })
-    .toString()
-    .trim();
+  return execSync(cmd, { cwd: process.cwd() }).toString().trim();
 });
 
 function edition(dpc: FsDocPrecursor): Edition {

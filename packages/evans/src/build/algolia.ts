@@ -31,8 +31,8 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
 
   const client = algoliasearch(GATSBY_ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY);
   const friends = allFriends()
-    .filter(f => f.lang === LANG)
-    .filter(f => f.hasNonDraftDocument);
+    .filter((f) => f.lang === LANG)
+    .filter((f) => f.hasNonDraftDocument);
 
   const friendsIndex = client.initIndex(`${LANG}_friends`);
   await friendsIndex.replaceAllObjects(friends.map(friendRecord));
@@ -46,8 +46,8 @@ export async function sendSearchDataToAlgolia(): Promise<void> {
   const docsIndex = client.initIndex(`${LANG}_docs`);
   await docsIndex.replaceAllObjects(
     friends
-      .flatMap(f => f.documents)
-      .filter(d => d.hasNonDraftEdition)
+      .flatMap((f) => f.documents)
+      .filter((d) => d.hasNonDraftEdition)
       .map(documentRecord),
   );
   await docsIndex.setSettings({
@@ -89,12 +89,12 @@ function friendRecord(friend: Friend): Record<string, string> {
     bookTitles:
       `“` +
       friend.documents
-        .filter(d => d.hasNonDraftEdition)
-        .map(d => shortTitle(d.title))
+        .filter((d) => d.hasNonDraftEdition)
+        .map((d) => shortTitle(d.title))
         .join(`”, “`) +
       `”`,
     residences: friend.residences
-      .map(r => `${translate(r.city)}, ${translate(r.region)}`)
+      .map((r) => `${translate(r.city)}, ${translate(r.region)}`)
       .join(` — `),
     description: friend.description,
   };
@@ -116,7 +116,7 @@ function documentRecord(doc: Document): Record<string, string | undefined> {
 
 function mdxRecords(): Record<string, string | null>[] {
   const paths = glob(`${__dirname}/../mdx/*.${LANG}.mdx`);
-  return paths.flatMap(filePath => {
+  return paths.flatMap((filePath) => {
     const content = fs.readFileSync(filePath).toString();
     const [, yaml, text] = content.split(/---\n/m);
     const frontmatter = ymlToJs(yaml);
@@ -214,7 +214,7 @@ function replaceCounts(str: string): string {
 function sanitizeMdParagraph(paragraph: string): string {
   return paragraph
     .split(`\n`)
-    .filter(l => !l.match(/^<\/?Lead>/))
+    .filter((l) => !l.match(/^<\/?Lead>/))
     .join(` `)
     .replace(/<\/?iframe(.*?)>/g, ``)
     .replace(/ {2,}/g, ` `)

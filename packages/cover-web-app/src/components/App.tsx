@@ -220,7 +220,7 @@ export default class App extends React.Component<{}, State> {
     this.setState({ perspective: next[perspective] });
   };
 
-  public updateBlurb: (blurb: string) => void = blurb => {
+  public updateBlurb: (blurb: string) => void = (blurb) => {
     const key = this.coverKey();
     const { customBlurbs } = this.state;
     this.setState({
@@ -417,8 +417,8 @@ export default class App extends React.Component<{}, State> {
             <Select
               label="Friend"
               value={friendIndex}
-              options={friendData.map(f => f.name)}
-              onChange={e => {
+              options={friendData.map((f) => f.name)}
+              onChange={(e) => {
                 this.setState({
                   friendIndex: Number(e.target.value),
                   docIndex: 0,
@@ -431,8 +431,8 @@ export default class App extends React.Component<{}, State> {
             <Select
               label="Document"
               value={docIndex}
-              options={documents(friendIndex).map(d => d.title)}
-              onChange={e => {
+              options={documents(friendIndex).map((d) => d.title)}
+              onChange={(e) => {
                 this.setState({
                   docIndex: Number(e.target.value),
                   edIndex: 0,
@@ -444,8 +444,8 @@ export default class App extends React.Component<{}, State> {
             <Select
               label="Edition"
               value={edIndex}
-              options={editions(friendIndex, docIndex).map(e => e.type)}
-              onChange={e => this.setState({ edIndex: Number(e.target.value) })}
+              options={editions(friendIndex, docIndex).map((e) => e.type)}
+              onChange={(e) => this.setState({ edIndex: Number(e.target.value) })}
             />
           </FormControl>
         </form>
@@ -479,8 +479,8 @@ export default class App extends React.Component<{}, State> {
           <CodeEditor
             css={this.getCustomCss()}
             html={this.getCustomHtml()}
-            updateCss={css => this.updateCustomCss(css)}
-            updateHtml={html => this.updateCustomHtml(html)}
+            updateCss={(css) => this.updateCustomCss(css)}
+            updateHtml={(html) => this.updateCustomHtml(html)}
           />
         )}
         <Toolbar

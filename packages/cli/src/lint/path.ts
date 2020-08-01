@@ -20,7 +20,7 @@ export function filesFromPath(
       throw new Error(`No files globbed from <path>: ${path}`);
     }
   }
-  return files.map(file => ({
+  return files.map((file) => ({
     path: file,
     adoc: fs.readFileSync(file).toString(),
   }));

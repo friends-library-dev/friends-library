@@ -152,7 +152,7 @@ class EditTask extends React.Component<Props, State> {
           <FriendList>
             {friends
               .sort((a, b) => (a.name < b.name ? -1 : 1))
-              .map(friend => (
+              .map((friend) => (
                 <li
                   key={friend.repoId}
                   className={repoId === friend.repoId ? `selected` : ``}
@@ -181,7 +181,7 @@ class EditTask extends React.Component<Props, State> {
 }
 
 const mapState = (state: AppState): Pick<Props, 'friends' | 'task'> => ({
-  friends: state.repos.map(r => ({
+  friends: state.repos.map((r) => ({
     repoId: r.id,
     name: r.friendName,
     slug: r.slug,

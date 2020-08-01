@@ -4,7 +4,7 @@ import { MultiBookBgBlock } from '@friends-library/ui';
 
 type Props = Omit<React.ComponentProps<typeof MultiBookBgBlock>, 'bgImg'>;
 
-const BooksBgBlock: React.FC<Props> = props => {
+const BooksBgBlock: React.FC<Props> = (props) => {
   const data = useStaticQuery(graphql`
     query BooksBgBlock {
       books: file(relativePath: { eq: "explore-books.jpg" }) {

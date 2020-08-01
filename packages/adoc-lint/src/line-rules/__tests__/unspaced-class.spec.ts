@@ -49,7 +49,7 @@ describe(`unspacedClass()`, () => {
     [`Foo\n[.book-title]#Collection of Writings,# 1704, p. 29.]`],
   ];
 
-  test.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  test.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

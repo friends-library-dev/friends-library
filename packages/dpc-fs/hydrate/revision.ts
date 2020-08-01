@@ -6,9 +6,7 @@ import { Sha, Url } from '@friends-library/types';
 export default function revision(dpc: FsDocPrecursor): void {
   const cmd = `git log --max-count=1 --pretty="%h|%ct" -- .`;
   const cwd = path.resolve(dpc.fullPath);
-  const [sha, timestamp] = execSync(cmd, { cwd })
-    .toString()
-    .split(`|`);
+  const [sha, timestamp] = execSync(cmd, { cwd }).toString().split(`|`);
 
   if (!sha || !timestamp) {
     throw new Error(`Could not determine git revision info for path: ${path}`);

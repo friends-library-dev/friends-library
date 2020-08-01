@@ -29,7 +29,7 @@ describe(`italicsTouchingFootnote()`, () => {
 
   const allowed: [string][] = [[`Foo __bar.__^`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(italicsTouchingFootnote(line, [], 1, opts)).toHaveLength(0);
   });
 });

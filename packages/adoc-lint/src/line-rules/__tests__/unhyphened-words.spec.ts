@@ -67,7 +67,7 @@ describe(`unhyphenedWords()`, () => {
 
   const allowed = [[`To-dayfoo`], [`toto-daybar`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(unhyphenedWords(line, [], 1, opts)).toHaveLength(0);
   });
 });

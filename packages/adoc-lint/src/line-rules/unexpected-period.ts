@@ -37,10 +37,7 @@ rule.maybe = true;
 export default rule;
 
 function isRomanNumeral(match: RegExpExecArray, line: string): boolean {
-  const lastWord = line
-    .substring(0, match.index)
-    .split(` `)
-    .pop();
+  const lastWord = line.substring(0, match.index).split(` `).pop();
 
   try {
     const num = toArabic(lastWord || ``);

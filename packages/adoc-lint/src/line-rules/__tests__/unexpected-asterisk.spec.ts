@@ -36,7 +36,7 @@ describe(`unexpectedAsterisk()`, () => {
     [`*Foobar,* is ok too`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(unexpectedAsterisk(line, [], 1, opts)).toHaveLength(0);
   });
 });

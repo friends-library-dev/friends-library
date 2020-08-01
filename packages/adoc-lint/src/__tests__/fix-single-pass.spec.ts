@@ -286,7 +286,7 @@ describe(`singlePassFix()`, () => {
     Bar
   `).trim() + `\n`;
 
-  test.each(unspacedOpenBlocks)(`should fix unspaced open block`, adoc => {
+  test.each(unspacedOpenBlocks)(`should fix unspaced open block`, (adoc) => {
     const lints = lint(adoc);
     const [fixed, unfixed] = singlePassFix(adoc, lints);
     expect(fixed).toBe(correctlySpacedOpenBlock);
@@ -343,7 +343,7 @@ describe(`singlePassFix()`, () => {
     Bar
   `).trim() + `\n`;
 
-  test.each(unspacedWrappingBlocks)(`should fix unspaced wrapping block`, adoc => {
+  test.each(unspacedWrappingBlocks)(`should fix unspaced wrapping block`, (adoc) => {
     const lints = lint(adoc);
     const [fixed, unfixed] = singlePassFix(adoc, lints);
     expect(fixed).toBe(correctlySpacedWrappingBlock);

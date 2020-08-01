@@ -10,7 +10,7 @@ export async function handler(): Promise<void> {
   const cwd = process.cwd();
   const repos = await getFriendRepos();
   await Promise.all(
-    repos.map(repo => {
+    repos.map((repo) => {
       const slug = repo.name;
       const lang = repo.full_name.startsWith(`friends-library/`) ? `en` : `es`;
       const repoPath = `${cwd}/${lang}/${slug}`;

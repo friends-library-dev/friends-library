@@ -117,10 +117,10 @@ export default class Audio {
         if (num !== 0) {
           return true;
         }
-        return parts.slice(idx + 1).every(part => part === 0);
+        return parts.slice(idx + 1).every((part) => part === 0);
       })
       .map(String)
-      .map(part => part.padStart(2, `0`))
+      .map((part) => part.padStart(2, `0`))
       .join(`:`)
       .replace(/^0/, ``);
   }

@@ -91,9 +91,10 @@ class Editor extends React.Component<Props> {
 
     const lints = lint(adoc, this.props.lintOptions)
       .filter(
-        l => l.fixable !== true || [`join-words`, `obsolete-spellings`].includes(l.rule),
+        (l) =>
+          l.fixable !== true || [`join-words`, `obsolete-spellings`].includes(l.rule),
       )
-      .filter(l => l.rule !== `temporary-comments`);
+      .filter((l) => l.rule !== `temporary-comments`);
 
     this.annotateLintErrors(lints);
   }
@@ -102,7 +103,7 @@ class Editor extends React.Component<Props> {
     this.editor()
       .getSession()
       .setAnnotations(
-        lints.map(lint => {
+        lints.map((lint) => {
           let text = lint.message;
           if (lint.recommendation) {
             text += `\n\n>> Recommended fix:\n\n${lint.recommendation}`;
@@ -135,7 +136,7 @@ class Editor extends React.Component<Props> {
         ref={this.aceRef}
         mode="adoc"
         theme="tomorrow_night"
-        onChange={debounce(adoc => {
+        onChange={debounce((adoc) => {
           updateFile(adoc);
           this.checkLint(adoc);
         }, 500)}

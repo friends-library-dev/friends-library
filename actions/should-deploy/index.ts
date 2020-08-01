@@ -26,7 +26,7 @@ async function main(): Promise<void> {
     issue_number: PR_NUM,
   });
 
-  const shouldDeploy = !!labels.find(l => l.name === `deploy:${siteId}`);
+  const shouldDeploy = !!labels.find((l) => l.name === `deploy:${siteId}`);
   core.setOutput(`should_deploy_${siteId}`, shouldDeploy);
   core.info(`Set \`should_deploy_${siteId}\` output to ${shouldDeploy}`);
 

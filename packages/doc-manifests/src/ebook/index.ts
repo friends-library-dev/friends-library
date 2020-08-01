@@ -72,8 +72,8 @@ function sectionFiles(dpc: DocPrecursor): Record<string, Html> {
   return sections.reduce((files, section) => {
     files[`OEBPS/${section.id}.xhtml`] = flow([
       replaceFootnoteCalls,
-      html => replaceHeadings(html, section.heading, dpc),
-      html => wrapEbookBodyHtml(html, lang),
+      (html) => replaceHeadings(html, section.heading, dpc),
+      (html) => wrapEbookBodyHtml(html, lang),
     ])(section.html);
     return files;
   }, {} as Record<string, Html>);

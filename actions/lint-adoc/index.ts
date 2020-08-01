@@ -16,11 +16,11 @@ async function main(): Promise<void> {
   await pr.deleteBotCommentsContaining(`lint violations!`);
 
   let errors: Annotation[] = [];
-  newOrModifiedFiles().forEach(path => {
+  newOrModifiedFiles().forEach((path) => {
     const asciidoc = fs.readFileSync(path).toString();
     errors = [
       ...errors,
-      ...lint(asciidoc, lintOptions(path)).map(l => toAnnotation(l, path)),
+      ...lint(asciidoc, lintOptions(path)).map((l) => toAnnotation(l, path)),
     ];
   });
 

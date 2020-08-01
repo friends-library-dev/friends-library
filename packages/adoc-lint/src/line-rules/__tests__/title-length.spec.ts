@@ -21,7 +21,7 @@ describe(`titleLength()`, () => {
 
   const violations: [string][] = [[`== ${FIFTY_CHARS} with So Much More`]];
 
-  test.each(violations)(`multiline adoc should have lint error`, adoc => {
+  test.each(violations)(`multiline adoc should have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {
@@ -39,7 +39,7 @@ describe(`titleLength()`, () => {
     [`== Section 4. ${FIFTY_CHARS}`],
   ];
 
-  test.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  test.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

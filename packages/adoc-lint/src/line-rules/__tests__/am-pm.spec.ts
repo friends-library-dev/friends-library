@@ -37,7 +37,7 @@ describe(`amPm()`, () => {
     [`3 p.m. we arrived at the meetinghouse`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(amPm(line, [], 1, opts)).toHaveLength(0);
   });
 });

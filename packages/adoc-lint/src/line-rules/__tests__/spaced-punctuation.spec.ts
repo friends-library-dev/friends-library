@@ -36,7 +36,7 @@ describe(`spacedPunctuation()`, () => {
 
   const allowed: [string][] = [[`[quote.scripture, , Ps. 101:1]`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(spacedPunctuation(line, [], 1, opts)).toHaveLength(0);
   });
 });

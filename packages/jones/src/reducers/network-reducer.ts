@@ -3,13 +3,13 @@ import { createReducer } from 'redux-starter-kit';
 function pair(start: string, end: string): { [k: string]: (state: string[]) => any } {
   const type = `${start}/${end}`;
   return {
-    [start]: state => {
+    [start]: (state) => {
       if (!state.includes(type)) {
         state.push(type);
       }
     },
-    [end]: state => {
-      return state.filter(t => t !== type);
+    [end]: (state) => {
+      return state.filter((t) => t !== type);
     },
   };
 }

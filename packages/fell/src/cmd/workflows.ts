@@ -9,7 +9,7 @@ import { excludable } from './helpers';
 
 export async function handler({ exclude }: Argv): Promise<void> {
   const workflowFiles = glob(`${__dirname}/../../../../actions/workflows/*.yml`);
-  const workflows = workflowFiles.map(absPath => ({
+  const workflows = workflowFiles.map((absPath) => ({
     basename: path.basename(absPath),
     contents: fs.readFileSync(absPath),
   }));

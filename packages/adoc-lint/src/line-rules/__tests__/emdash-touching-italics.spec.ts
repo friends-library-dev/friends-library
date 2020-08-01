@@ -46,7 +46,7 @@ describe(`emdashTouchingItalic()`, () => {
 
   const allowed: [string][] = [[`Foo--__bar__`], [`Foo\n__bar__`]];
 
-  test.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  test.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

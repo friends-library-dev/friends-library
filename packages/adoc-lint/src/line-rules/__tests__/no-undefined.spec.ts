@@ -22,14 +22,14 @@ describe(`noUndefined()`, () => {
     [`Foo barundefined`],
   ];
 
-  test.each(violations)(`\`%s\` should be a lint violation`, line => {
+  test.each(violations)(`\`%s\` should be a lint violation`, (line) => {
     const results = noUndefined(line, [], 1, opts);
     expect(results).toHaveLength(1);
   });
 
   const allowed: [string][] = [[`Undefined foobar`]];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(noUndefined(line, [], 1, opts)).toHaveLength(0);
   });
 });

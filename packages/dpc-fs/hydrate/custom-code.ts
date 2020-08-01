@@ -7,7 +7,7 @@ import FsDocPrecursor from '../FsDocPrecursor';
 export default function customCode(dpc: FsDocPrecursor): void {
   const docDir = path.resolve(dpc.fullPath, `..`);
   const files = glob(`${docDir}/*.{css,html}`);
-  files.forEach(file => {
+  files.forEach((file) => {
     const type = path.extname(file).replace(/^\./, ``) as 'css' | 'html';
     const target = path
       .basename(file)

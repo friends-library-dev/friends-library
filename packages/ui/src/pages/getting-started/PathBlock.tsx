@@ -38,7 +38,7 @@ const PathBlock: React.FC<Props> = ({ slug, books, title, color, children }) => 
       <h2 className="heading-text mb-6">{title}</h2>
       <p className="body-text mb-12 max-w-4xl mx-auto">{children}</p>
       <div className="PathBooks md:flex flex-wrap text-gray-500 antialiased font-sans tracking-wider text-center relative">
-        {books.slice(0, page * PAGE_SIZE).map(book => (
+        {books.slice(0, page * PAGE_SIZE).map((book) => (
           <div
             key={book.documentUrl}
             className="pt-4 mb-6 md:mb-20 md:w-1/2 xl:w-1/4 relative flex flex-col justify-start"

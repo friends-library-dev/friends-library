@@ -21,7 +21,7 @@ type Props = Pick<
   style?: { [k in string]: number | string };
 };
 
-const FrontInner: React.FC<Props> = props => {
+const FrontInner: React.FC<Props> = (props) => {
   const { lang, author, style, customHtml, customCss, title, isCompilation } = props;
   const fragments = getHtmlFragments(customHtml);
   return (

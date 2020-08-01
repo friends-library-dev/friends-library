@@ -10,7 +10,7 @@ const flags = [`next`, `makeImages`, `makeCsv`] as const;
 type Argv = { [k in typeof flags[number]]: boolean };
 
 export default function handler(argv: Argv): void {
-  if (!flags.some(f => argv[f])) {
+  if (!flags.some((f) => argv[f])) {
     const optionList = flags.map(optionify).join(` `);
     log(c`\n{red Supply at least one option:} {green ${optionList}}\n`);
     process.exit(1);
@@ -23,14 +23,14 @@ export default function handler(argv: Argv): void {
 
 function makeCsv(): void {
   const editions = [...getAllFriends(`en`, true), ...getAllFriends(`es`, true)]
-    .flatMap(friend => friend.documents)
-    .flatMap(document => document.editions);
+    .flatMap((friend) => friend.documents)
+    .flatMap((document) => document.editions);
 
   const rows: [string, string, string, string, string, string][] = [
     [`ISBN`, `Title`, `Author Last`, `Author First`, `Editor Last`, `Editor First`],
   ];
 
-  editions.forEach(edition => {
+  editions.forEach((edition) => {
     const document = edition.document;
     const [authorFirst, authorLast = ``] = splitName(document.friend.name);
     const [editorFirst, editorLast = ``] = splitName(edition.editor || ``);
@@ -55,9 +55,9 @@ function makeCsv(): void {
 
 function next(): void {
   const used: ISBN[] = [];
-  [...getAllFriends(`en`, true), ...getAllFriends(`es`, true)].forEach(friend => {
-    friend.documents.forEach(doc => {
-      doc.editions.forEach(edition => used.push(edition.isbn));
+  [...getAllFriends(`en`, true), ...getAllFriends(`es`, true)].forEach((friend) => {
+    friend.documents.forEach((doc) => {
+      doc.editions.forEach((edition) => used.push(edition.isbn));
     });
   });
 
@@ -77,14 +77,14 @@ function next(): void {
 function makeImgs(): void {
   const url = `http://bwipjs-api.metafloor.com/?bcid=isbn&includetext&guardwhitespace`;
   const imgDir = `${process.cwd()}/packages/cover-web-app/public/images/isbn/`;
-  isbns.forEach(isbn => {
+  isbns.forEach((isbn) => {
     execSync(`curl -Ss "${url}&text=${isbn}&scale=3&height=16" > ${imgDir}/${isbn}.png`);
   });
 }
 
 function toCsvString(rows: string[][]): string {
   return rows
-    .map(row => row.map(col => (col.includes(`,`) ? `"${col}"` : col)).join(`,`))
+    .map((row) => row.map((col) => (col.includes(`,`) ? `"${col}"` : col)).join(`,`))
     .join(`\n`);
 }
 

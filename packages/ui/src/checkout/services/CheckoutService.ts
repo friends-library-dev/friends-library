@@ -35,9 +35,9 @@ export default class CheckoutService {
     const payload = {
       address: this.cart.address,
       items: this.cart.items
-        .filter(i => i.quantity > 0)
-        .flatMap(item =>
-          item.numPages.map(pages => ({
+        .filter((i) => i.quantity > 0)
+        .flatMap((item) =>
+          item.numPages.map((pages) => ({
             pages,
             printSize: item.printSize,
             quantity: item.quantity,
@@ -160,8 +160,8 @@ export default class CheckoutService {
       },
       lang: LANG,
       items: this.cart.items
-        .filter(i => i.quantity > 0)
-        .map(item => ({
+        .filter((i) => i.quantity > 0)
+        .map((item) => ({
           title: item.printJobTitle(),
           documentId: item.documentId,
           edition: item.edition,

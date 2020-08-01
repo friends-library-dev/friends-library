@@ -34,7 +34,7 @@ export default class FsDocPrecursor implements DocPrecursor {
     this.friendSlug = friendSlug;
     this.documentSlug = docSlug;
     this.editionType = editionType as DocPrecursor['editionType'];
-    this.friendInitials = friendSlug.split(`-`).map(s => s[0].toUpperCase());
+    this.friendInitials = friendSlug.split(`-`).map((s) => s[0].toUpperCase());
     this.meta = {
       title: ``,
       isbn: ``,

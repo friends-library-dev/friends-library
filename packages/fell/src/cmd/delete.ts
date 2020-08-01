@@ -11,7 +11,7 @@ type Argv = BaseArgv & {
 
 export async function handler({ exclude, branch, scope }: Argv): Promise<void> {
   const repos = await getRepos(exclude, scope);
-  repos.forEach(async repo => {
+  repos.forEach(async (repo) => {
     const currentBranch = await git.getCurrentBranch(repo);
     if (currentBranch === branch) {
       red(`Can't delete ${branch} from repo ${repo}, it is checked out.`);
@@ -34,7 +34,7 @@ export const command = `delete <branch>`;
 
 export const describe = `delete a branch from all selected repos`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs
     .positional(`branch`, {
       type: `string`,

@@ -52,7 +52,7 @@ export async function pullRequestStatus(
 
 export async function getFriendRepos(): Promise<Record<string, any>[]> {
   const repos = await gh.paginate(`/orgs/${ORG}/repos`);
-  return repos.filter(repo => repo.name !== ORG);
+  return repos.filter((repo) => repo.name !== ORG);
 }
 
 export async function getRepoSlug(repoId: number): Promise<Slug> {
@@ -80,7 +80,7 @@ export async function getHeadSha(
 
 export async function getAdocFiles(repo: RepoSlug, sha: Sha): Promise<GitFile[]> {
   const tree = await getTree(repo, sha);
-  const filePromises = tree.filter(isAsciidoc).map(async blob => {
+  const filePromises = tree.filter(isAsciidoc).map(async (blob) => {
     const {
       data: { content },
     } = await req(`/repos/:owner/:repo/git/blobs/:sha`, {
@@ -120,7 +120,7 @@ async function createFork(repo: RepoSlug, user: string): Promise<void> {
   await req(`POST /repos/:owner/:repo/forks`, {
     repo,
   });
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const interval = setInterval(async () => {
       const forkExists = await hasFork(repo, user);
       if (forkExists) {
@@ -279,7 +279,7 @@ async function createTree(
     base_tree: baseTreeSha,
     tree: Object.values(files)
       .filter(validContent)
-      .map(f => ({
+      .map((f) => ({
         path: f.path,
         mode: `100644`,
         type: `blob`,

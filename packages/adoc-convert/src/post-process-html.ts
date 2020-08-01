@@ -8,16 +8,16 @@ export const postProcessHtml: (html: Html) => Html = memoize(
     closeColTags,
     changeVerseMarkup,
     modifyOldStyleHeadings,
-    html => html.replace(/<hr>/gim, `<hr />`),
-    html => html.replace(/<br>/gim, `<br />`),
-    html => html.replace(/<blockquote>/gim, `<blockquote>${br7}`),
+    (html) => html.replace(/<hr>/gim, `<hr />`),
+    (html) => html.replace(/<br>/gim, `<br />`),
+    (html) => html.replace(/<blockquote>/gim, `<blockquote>${br7}`),
     removeParagraphClass,
-    html =>
+    (html) =>
       html.replace(
         /(?<=<div class="offset">\n)([\s\S]*?)(?=<\/div>)/gim,
         `${br7}$1${br7}`,
       ),
-    html =>
+    (html) =>
       html.replace(
         /<div class="discourse-part">/gm,
         `<div class="discourse-part">${br7}`,

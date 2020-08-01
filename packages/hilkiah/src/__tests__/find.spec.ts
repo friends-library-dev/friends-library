@@ -468,7 +468,7 @@ describe(`find()`, () => {
 
   test.each(multiVerses)(`finds all verses from "%s"`, (input, expected) => {
     const [ref] = find(input);
-    Object.keys(expected).forEach(key => {
+    Object.keys(expected).forEach((key) => {
       // @ts-ignore
       expect(ref[key]).toEqual(expected[key]);
     });

@@ -33,7 +33,7 @@ describe(`confusingBracket()`, () => {
     [`[.some-random-class, short="foo"]`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(confusingBracket(line, [], 1, opts)).toHaveLength(0);
   });
 });

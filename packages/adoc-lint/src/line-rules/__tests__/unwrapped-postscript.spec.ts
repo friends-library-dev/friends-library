@@ -19,7 +19,7 @@ describe(`unwrappedPostscript()`, () => {
 
   const violations = [[`[.postscript.emphasized]\nFoo bar.`]];
 
-  test.each(violations)(`multiline adoc should have lint error`, adoc => {
+  test.each(violations)(`multiline adoc should have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {
@@ -30,7 +30,7 @@ describe(`unwrappedPostscript()`, () => {
 
   const allowed = [[`[.postscript]\n====\n\nFoo bar\n\n====\n\n`]];
 
-  test.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  test.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

@@ -11,9 +11,9 @@ function getYmls(): { friend: Friend; path: string; raw: string; repoPath: strin
   const { DOCS_REPOS_ROOT } = env.require(`DOCS_REPOS_ROOT`);
   const friends = getAllFriends(`en`, true)
     .concat(getAllFriends(`es`, true))
-    .filter(friend => friend.name.endsWith(` Doe`) === false);
+    .filter((friend) => friend.name.endsWith(` Doe`) === false);
 
-  return friends.map(friend => {
+  return friends.map((friend) => {
     const path = `${__dirname}/../../../../friends/yml/${friend.path}.yml`;
     return {
       friend,

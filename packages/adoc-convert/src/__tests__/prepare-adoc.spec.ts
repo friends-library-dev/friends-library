@@ -225,7 +225,7 @@ describe(`prepareAsciidoc()`, () => {
     [`blurb.centered`],
   ];
 
-  test.each(discretes)(`it makes headers with certain classes discrete`, kls => {
+  test.each(discretes)(`it makes headers with certain classes discrete`, (kls) => {
     const adoc = `== Ch\n\n[.${kls}]\n=== H3\n\n[.${kls}]\n==== H4`;
 
     const prepared = prepareAsciidoc(adoc);
@@ -240,7 +240,7 @@ describe(`prepareAsciidoc()`, () => {
     [`== Ch1\n\n[.embedded-content-document]\n--\n\n[.foo]\n=== Foo\n\n--\n`],
   ];
 
-  test.each(headingsInOpenBlocks)(`heading in open block is discrete`, adoc => {
+  test.each(headingsInOpenBlocks)(`heading in open block is discrete`, (adoc) => {
     const prepared = prepareAsciidoc(adoc);
     expect(prepared).toMatch(/\[discrete(\.(foo|blurb))?\]\n=== Foo/m);
   });

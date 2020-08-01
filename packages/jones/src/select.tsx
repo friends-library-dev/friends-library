@@ -20,7 +20,7 @@ export function currentTaskFriendName(state: State): string {
     return ``;
   }
 
-  const repo = state.repos.find(r => r.id === task.repoId);
+  const repo = state.repos.find((r) => r.id === task.repoId);
   if (!repo) {
     return ``;
   }
@@ -35,7 +35,7 @@ export function searchedFiles(state: State): File[] {
     return [];
   }
 
-  return Object.values(task.files).filter(file => {
+  return Object.values(task.files).filter((file) => {
     const [docSlug, edType, basename] = file.path.split(`/`);
     if (documentSlug && docSlug !== documentSlug) {
       return false;
@@ -75,7 +75,7 @@ export function documentTree(task: Task): Document[] {
   let documents: Document[] = [];
   documents = Object.values(task.files).reduce((docs: Document[], file: File) => {
     const [docSlug, edType, filename] = file.path.split(`/`);
-    let document = docs.find(d => d.slug === docSlug);
+    let document = docs.find((d) => d.slug === docSlug);
     if (!document) {
       document = {
         slug: docSlug,
@@ -84,7 +84,7 @@ export function documentTree(task: Task): Document[] {
       };
       docs.push(document);
     }
-    let edition = document.editions.find(e => e.type === edType);
+    let edition = document.editions.find((e) => e.type === edType);
     if (!edition) {
       edition = {
         path: file.path,
@@ -101,7 +101,7 @@ export function documentTree(task: Task): Document[] {
     return docs;
   }, documents);
 
-  documents.forEach(doc => {
+  documents.forEach((doc) => {
     doc.editions = doc.editions.sort(({ type }) => {
       switch (type) {
         case `updated`:

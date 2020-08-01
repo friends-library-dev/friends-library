@@ -16,7 +16,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
   const cart = machine.service.cart;
   const [state, setState] = useState<string>(machine.getState());
   const [cartItems, setCartItems] = useState<CartItemData[]>(
-    cart.items.map(i => i.toJSON()),
+    cart.items.map((i) => i.toJSON()),
   );
 
   useEffect(() => {
@@ -34,8 +34,8 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
       return (
         <Cart
           items={cartItems}
-          setItems={items => {
-            cart.items = items.map(i => new CartItem(i));
+          setItems={(items) => {
+            cart.items = items.map((i) => new CartItem(i));
             setCartItems(items);
           }}
           subTotal={cart.subTotal()}
@@ -52,7 +52,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
           onBack={() => machine.dispatch(`back`)}
           error={!!cart.address?.unusable}
           stored={{ ...cart.address, ...(cart.email ? { email: cart.email } : {}) }}
-          onSubmit={data => {
+          onSubmit={(data) => {
             const { email, ...address } = data;
             cart.email = email;
             cart.address = address;
@@ -81,7 +81,7 @@ const CheckoutFlow: React.FC<Props> = ({ machine, recommendedBooks }) => {
               shipping={machine.service.fees.shipping}
               taxes={machine.service.fees.taxes}
               ccFeeOffset={machine.service.fees.ccFeeOffset}
-              onPay={chargeCard => machine.dispatch(`next`, chargeCard)}
+              onPay={(chargeCard) => machine.dispatch(`next`, chargeCard)}
             />
           </Elements>
         </StripeProvider>

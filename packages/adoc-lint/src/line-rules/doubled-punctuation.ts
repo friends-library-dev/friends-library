@@ -30,7 +30,7 @@ const rule: LineRule = (
   ];
 
   const lints: LintResult[] = [];
-  doubles.forEach(double => {
+  doubles.forEach((double) => {
     if (!line.includes(double)) {
       return;
     }
@@ -99,10 +99,7 @@ function specialCase(double: string, line: string, column: number): boolean {
   }
 
   // catch roman numerals
-  const lastWord = line
-    .substring(0, column)
-    .split(` `)
-    .pop();
+  const lastWord = line.substring(0, column).split(` `).pop();
 
   try {
     const num = toArabic(lastWord || ``);

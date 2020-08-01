@@ -23,7 +23,7 @@ import PopUnder from '../src/PopUnder';
 storiesOf(`Doc Page`, module)
   .addDecorator(coverSizes)
   .addDecorator(centered)
-  .addDecorator(storyFn => (
+  .addDecorator((storyFn) => (
     <div className="bg-gray-800 w-screen h-screen">{storyFn()}</div>
   ))
   .add(`QualitySwitch`, () => <StatefulSwitch />)

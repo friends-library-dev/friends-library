@@ -4,7 +4,7 @@ import { Uuid } from '@friends-library/types';
 
 function fastForward(task: Task, commit: string): void {
   task.parentCommit = commit;
-  Object.values(task.files).forEach(file => {
+  Object.values(task.files).forEach((file) => {
     file.content = file.editedContent || file.content;
     file.editedContent = null;
   });
@@ -79,7 +79,7 @@ export default createReducer(
       const task = state[taskId];
       if (task) {
         const adjust = new Map();
-        results.forEach(r => replaceInResult(r, replace, task.files, adjust));
+        results.forEach((r) => replaceInResult(r, replace, task.files, adjust));
       }
     },
 
@@ -197,7 +197,7 @@ export default createReducer(
     UPDATE_TASK: (state: Tasks, { payload }: Action) => {
       const task = state[payload.id];
       if (task) {
-        Object.keys(payload.data).forEach(key => {
+        Object.keys(payload.data).forEach((key) => {
           // @ts-ignore
           task[key] = payload.data[key];
         });

@@ -4,7 +4,7 @@ export const command = `isbns`;
 
 export const describe = `interact with our block of isbns`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs
     .option(`next`, {
       type: `boolean`,

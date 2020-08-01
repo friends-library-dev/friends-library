@@ -4,7 +4,7 @@ export const command = `unusual <path> [compare]`;
 
 export const describe = `find unusual words in documents at given path`;
 
-export const builder: CommandBuilder = function(yargs) {
+export const builder: CommandBuilder = function (yargs) {
   return yargs
     .positional(`path`, {
       type: `string`,

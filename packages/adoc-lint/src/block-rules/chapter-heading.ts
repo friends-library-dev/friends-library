@@ -27,7 +27,7 @@ const rule: BlockRule = (block: Asciidoc): LintResult[] => {
     ];
   }
 
-  return chapterHeadings.slice(1).map(line => ({
+  return chapterHeadings.slice(1).map((line) => ({
     line,
     column: false,
     type: `error`,

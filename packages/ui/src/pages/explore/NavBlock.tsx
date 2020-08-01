@@ -49,7 +49,7 @@ const Link: React.FC<LinkProps> = ({ label, index, bg, block }) => (
       `lg:bg-fl${bg} lg:w-1/6 lg:flex-grow lg:border-0`,
     )}
     href={`#${block}`}
-    onClick={e => {
+    onClick={(e) => {
       e.preventDefault();
       makeScroller(`#${block}`)();
     }}

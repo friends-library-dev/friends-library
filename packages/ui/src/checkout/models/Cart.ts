@@ -34,7 +34,7 @@ export default class Cart extends EventEmitter {
       }
 
       return new Cart(
-        validItems.map(d => new CartItem(d)),
+        validItems.map((d) => new CartItem(d)),
         validAddress,
         validEmail,
       );
@@ -88,7 +88,7 @@ export default class Cart extends EventEmitter {
 
   public toJSON(): CartData {
     return {
-      items: this.items.map(item => item.toJSON()),
+      items: this.items.map((item) => item.toJSON()),
       ...(this.address ? { address: this.address } : {}),
       ...(this.email ? { email: this.email } : {}),
     };

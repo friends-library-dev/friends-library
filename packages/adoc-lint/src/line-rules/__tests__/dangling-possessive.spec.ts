@@ -35,7 +35,7 @@ describe(`danglingPossessive()`, () => {
 
   const allowed: [string][] = [[`'\`A single quote\`'\nsomething after`]];
 
-  test.each(allowed)(`multiline adoc should not have lint error`, adoc => {
+  test.each(allowed)(`multiline adoc should not have lint error`, (adoc) => {
     const lines = adoc.split(`\n`);
     let results: any[] = [];
     lines.forEach((line, i) => {

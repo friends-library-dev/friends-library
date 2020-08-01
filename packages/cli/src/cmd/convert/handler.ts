@@ -25,10 +25,10 @@ export default function convertHandler({ file, skipRefs }: ConvertOptions): void
 
   const processed = flow(
     combineLines,
-    skipRefs ? s => s : replaceScriptureReferences,
+    skipRefs ? (s) => s : replaceScriptureReferences,
     splitLines,
     processAsciidoc,
-    skipRefs ? s => s : refUnmutate,
+    skipRefs ? (s) => s : refUnmutate,
   )(fs.readFileSync(target).toString());
 
   fs.writeFileSync(target, processed);
@@ -91,10 +91,10 @@ function generateRawAsciiDoc(src: string, target: string): void {
 function replaceScriptureReferences(input: string): string {
   return input
     .split(`\n`)
-    .map(line => {
+    .map((line) => {
       let replaced = line;
       const refs = hilkiah.find(line);
-      refs.forEach(ref => {
+      refs.forEach((ref) => {
         replaced = replaced.replace(ref.match, refMutate(hilkiah.format(ref)));
       });
       return replaced;

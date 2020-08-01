@@ -111,7 +111,7 @@ export default class Friend {
   }
 
   public get relatedDocuments(): { id: Uuid; description: Description }[] {
-    return this.documents.flatMap(doc => doc.relatedDocuments).filter(isDefined);
+    return this.documents.flatMap((doc) => doc.relatedDocuments).filter(isDefined);
   }
 
   public toJSON(): Omit<Friend, 'toJSON' | 'documents'> {

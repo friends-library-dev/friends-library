@@ -11,7 +11,7 @@ export async function start(): Promise<number> {
   green(`Serving cover app`);
   stop(port);
   exec(`cd ${cwd}/packages/cli && yarn serve -l ${port} ../cover-web-app/build`);
-  await new Promise(res => setTimeout(res, 1000));
+  await new Promise((res) => setTimeout(res, 1000));
   return port;
 }
 

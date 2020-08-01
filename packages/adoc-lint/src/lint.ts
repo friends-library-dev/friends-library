@@ -19,10 +19,10 @@ export default function lint(
       return acc;
     }
 
-    lineRules.forEach(rule => {
+    lineRules.forEach((rule) => {
       if (runRule(rule, options, lines[index - 1])) {
         const ruleResults = rule(line, lines, index + 1, options);
-        ruleResults.forEach(result => acc.push(result));
+        ruleResults.forEach((result) => acc.push(result));
       }
     });
     return acc;

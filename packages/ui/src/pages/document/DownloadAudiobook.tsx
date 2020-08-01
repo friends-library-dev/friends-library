@@ -24,7 +24,7 @@ interface Props {
   setQuality: (quality: AudioQuality) => any;
 }
 
-const DownloadLinks: React.FC<Props> = props => {
+const DownloadLinks: React.FC<Props> = (props) => {
   let links = {
     mp3Zip: props.mp3ZipUrlHq,
     zipSize: props.mp3ZipFilesizeHq,

@@ -137,6 +137,6 @@ function filename(dpc: FsDocPrecursor, variant: string, volumeNumber?: number): 
     variant,
     volumeNumber,
   ]
-    .filter(part => !!part)
+    .filter((part) => !!part)
     .join(`--`);
 }

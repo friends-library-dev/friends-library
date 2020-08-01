@@ -7,7 +7,7 @@ export function useEscapeable(
 ): void {
   useEffect(() => {
     const node = document.querySelector(selector);
-    const click: (event: any) => any = event => {
+    const click: (event: any) => any = (event) => {
       if (isOpen && node && !node.contains(event.target)) {
         setIsOpen(false);
       }

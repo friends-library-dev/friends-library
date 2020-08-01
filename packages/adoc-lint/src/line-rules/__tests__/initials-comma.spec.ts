@@ -31,7 +31,7 @@ describe(`initialsComma()`, () => {
     [`Came with S. C., and J. H., and S. G., lately returned from Russia`],
   ];
 
-  test.each(allowed)(`%s is not a lint violation`, line => {
+  test.each(allowed)(`%s is not a lint violation`, (line) => {
     expect(initialsComma(line, [], 1, opts)).toHaveLength(0);
   });
 });

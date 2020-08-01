@@ -30,7 +30,7 @@ export async function getFriendRepos(): Promise<
 > {
   const gh = getClient();
   let enRepos = await gh.paginate(`/orgs/friends-library/repos`);
-  enRepos = enRepos.filter(repo => repo.name !== `friends-library`);
+  enRepos = enRepos.filter((repo) => repo.name !== `friends-library`);
   const esRepos = await gh.paginate(`/orgs/biblioteca-de-los-amigos/repos`);
   return [...enRepos, ...esRepos];
 }

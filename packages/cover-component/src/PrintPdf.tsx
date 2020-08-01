@@ -9,7 +9,7 @@ type Props = CoverProps & {
   bleed?: boolean;
 };
 
-const PrintPdf: React.FC<Props> = props => {
+const PrintPdf: React.FC<Props> = (props) => {
   return (
     <div
       id={`Cover--${props.isbn}`}
