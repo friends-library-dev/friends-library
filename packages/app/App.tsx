@@ -1,10 +1,11 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
+import * as RNFS from 'react-native-fs';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <SafeAreaView>
-      <Text>It's a working</Text>
+      <Text>{RNFS.DocumentDirectoryPath}</Text>
     </SafeAreaView>
   );
 };
