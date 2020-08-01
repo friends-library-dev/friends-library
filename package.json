@@ -75,8 +75,14 @@
     "ts-jest": "^25.0.0",
     "webpack-cli": "^3.2.3"
   },
-  "workspaces": [
-    "packages/*",
-    "actions/*"
-  ]
+  "workspaces": {
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**"
+    ],
+    "packages": [
+      "packages/*",
+      "actions/*"
+    ]
+  }
 }
