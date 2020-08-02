@@ -12,6 +12,21 @@ const App: React.FC = () => {
   const [playing, setPlaying] = useState<boolean>(false);
 
   useEffect(() => {
+    TrackPlayer.setupPlayer({
+      iosCategoryMode: 'spokenAudio',
+    });
+    TrackPlayer.updateOptions({
+      stopWithApp: false,
+      capabilities: [
+        TrackPlayer.CAPABILITY_PLAY,
+        TrackPlayer.CAPABILITY_PAUSE,
+        TrackPlayer.CAPABILITY_SEEK_TO,
+        TrackPlayer.CAPABILITY_STOP,
+        TrackPlayer.CAPABILITY_SKIP,
+        TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+        TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+      ],
+    });
     fs.exists(LOCAL).then((exists) => {
       if (exists) setDownloaded(true);
     });
@@ -39,10 +54,11 @@ const App: React.FC = () => {
             TrackPlayer.add({
               id: 'lol',
               url: `file://${LOCAL}`,
-              title: 'letter',
+              title: 'A Letter of Elizabeth Webb',
               album: 'Friends Library',
               artist: 'Elizabeth Webb',
               genre: 'Spoken',
+              pitchAlgorithm: TrackPlayer.PITCH_ALGORITHM_VOICE,
               date: '2020-05-20T07:00:00+00:00',
               artwork:
                 'https://flp-assets.nyc3.digitaloceanspaces.com/en/elizabeth-webb/letter/updated/Letter_of_Elizabeth_Webb--updated--audio.png',
@@ -56,7 +72,7 @@ const App: React.FC = () => {
         <TouchableOpacity
           onPress={() => {
             setPlaying(false);
-            TrackPlayer.stop();
+            TrackPlayer.pause();
           }}>
           <Text>STOP</Text>
         </TouchableOpacity>
