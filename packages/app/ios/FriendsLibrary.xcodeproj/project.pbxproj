@@ -178,7 +178,6 @@
 				D5B2C53165757B8DB1E88994 /* Pods-FriendsLibrary-FriendsLibraryTests.debug.xcconfig */,
 				920AE01196CF291853BA329C /* Pods-FriendsLibrary-FriendsLibraryTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -277,6 +276,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;

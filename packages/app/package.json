@@ -13,7 +13,9 @@
     "get-yarn-workspaces": "^1.0.2",
     "react": "16.13.1",
     "react-native": "0.63.0",
-    "react-native-fs": "^2.16.6"
+    "react-native-fs": "^2.16.6",
+    "react-native-swift": "^1.2.3",
+    "react-native-track-player": "^1.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
