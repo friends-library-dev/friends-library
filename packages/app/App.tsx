@@ -38,10 +38,15 @@ const App: React.FC = () => {
         <TouchableOpacity
           onPress={async () => {
             setDownloading(true);
-            const dl = fs.downloadFile({ fromUrl: MP3, toFile: LOCAL });
-            const result = await dl.promise;
+            try {
+              const dl = fs.downloadFile({ fromUrl: MP3, toFile: LOCAL });
+              const result = await dl.promise;
+              console.log(result);
+              setDownloaded(true);
+            } catch (err) {
+              console.error(err);
+            }
             setDownloading(false);
-            setDownloaded(true);
           }}>
           <Text>Download File</Text>
         </TouchableOpacity>
