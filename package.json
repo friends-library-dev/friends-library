@@ -78,9 +78,14 @@
   },
   "workspaces": {
     "nohoist": [
+      "**/@react-native-community",
+      "**/@react-native-community/**",
+      "**/@react-navigation",
+      "**/@react-navigation/**",
       "**/react-native",
       "**/react-native/**",
-      "**react-native**"
+      "**react-native**",
+      "**@react-native-community**"
     ],
     "packages": [
       "packages/*",
