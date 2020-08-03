@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { StackParamList, AudioResource } from '../types';
@@ -25,16 +25,22 @@ const Audio: React.FC<Props> = ({ navigation }) => {
     fetchAudio();
   }, []);
 
+  const renderItem = ({ item }: { item: AudioResource }) => (
+    <AudioListItem
+      key={item.id}
+      title={item.title}
+      friend={item.friend}
+      artworkUrl={item.artwork}
+    />
+  );
+
   return (
     <View>
-      {audioResources.map((audio) => (
-        <AudioListItem
-          key={audio.id}
-          title={audio.title}
-          friend={audio.friend}
-          artworkUrl={audio.artwork}
-        />
-      ))}
+      <FlatList
+        data={audioResources}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 };
