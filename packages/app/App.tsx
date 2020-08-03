@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, TouchableOpacity, Text } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
+import SplashScreen from 'react-native-splash-screen';
 import * as fs from 'react-native-fs';
 
 const MP3 = `https://flp-assets.nyc3.digitaloceanspaces.com/en/elizabeth-webb/letter/updated/Letter_of_Elizabeth_Webb--lq.mp3`;
@@ -10,6 +11,10 @@ const App: React.FC = () => {
   const [downloaded, setDownloaded] = useState<boolean>(false);
   const [downloading, setDownloading] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   useEffect(() => {
     TrackPlayer.setupPlayer({
