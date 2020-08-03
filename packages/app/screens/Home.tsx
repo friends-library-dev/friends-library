@@ -5,15 +5,16 @@ import { RouteProp } from '@react-navigation/native';
 import { StackParamList } from '../types';
 
 interface Props {
-  navigation: StackNavigationProp<StackParamList, 'Home'>;
-  route: RouteProp<StackParamList, 'Home'>;
+  navigation: StackNavigationProp<StackParamList, 'Audio'>;
+  route: RouteProp<StackParamList, 'Audio'>;
 }
 
 const Home: React.FC<Props> = ({ navigation }) => (
   <View>
+    <Button onPress={() => navigation.navigate(`Audio`)} title="Go to Audio" />
     <Button
       onPress={() => navigation.navigate(`Settings`)}
-      title="Go to the Settings"
+      title="Go to Settings"
     />
   </View>
 );

@@ -11,7 +11,7 @@ interface Props {
 
 const Home: React.FC<Props> = ({ navigation }) => (
   <View>
-    <Button onPress={() => navigation.navigate(`Home`)} title="Go Home" />
+    <Button onPress={() => navigation.navigate(`Audio`)} title="Go Home" />
   </View>
 );
 
