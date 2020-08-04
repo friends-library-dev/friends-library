@@ -59,3 +59,16 @@ documents:
       - type: updated
         isbn: 978-1-64476-054-3
         editor: Jason R. Henderson
+  - id: 3b301c59-f8dd-4029-b650-644b737a70ed
+    title: Selection from the Life of Jane Pearson
+    slug: life-selection
+    filename: Selection_Life_of_Jane_Pearson
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+    editions:
+      - type: updated
+        editor: Jason R. Henderson
+        draft: true
+        isbn: 978-1-64476-235-6
