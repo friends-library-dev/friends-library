@@ -78,6 +78,8 @@
   },
   "workspaces": {
     "nohoist": [
+      "**/tailwind-rn",
+      "**/tailwind-rn/**",
       "**/@react-native-community",
       "**/@react-native-community/**",
       "**/@react-navigation",
