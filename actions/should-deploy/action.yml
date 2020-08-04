@@ -6,9 +6,11 @@ inputs:
     required: true
 outputs:
   should_deploy_<inputs.site_id>:
-    String "true" or "false", whether the site indicated by the `inputs.site_id` should be
-    deployed for this event
-  deploy_context: Netlify deploy context -- "production" or "preview"
+    description:
+      String "true" or "false", whether the site indicated by the `inputs.site_id` should
+      be deployed for this event
+  deploy_context:
+    description: Netlify deploy context -- "production" or "preview"
 runs:
   using: node12
   main: ./bundled/index.js
