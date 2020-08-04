@@ -15,7 +15,8 @@ inputs:
     description: path to functions dir from repo root
     required: false
 outputs:
-  url: url of deploy
+  url:
+    description: url of deploy
 runs:
   using: node12
   main: ./bundled/index.js
