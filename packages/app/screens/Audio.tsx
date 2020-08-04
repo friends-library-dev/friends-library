@@ -27,7 +27,7 @@ const Audio: React.FC<Props> = ({ navigation }) => {
 
   const renderItem = ({ item }: { item: AudioResource }) => (
     <AudioListItem
-      key={item.id}
+      id={item.id}
       title={item.title}
       friend={item.friend}
       artworkUrl={item.artwork}

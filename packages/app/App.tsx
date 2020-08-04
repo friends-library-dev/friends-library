@@ -6,12 +6,17 @@ import Home from './screens/Home';
 import Audio from './screens/Audio';
 import Settings from './screens/Settings';
 import { StackParamList } from './types';
+import Fs from './lib/FileSystem';
 
 const Stack = createStackNavigator<StackParamList>();
 
 const App: React.FC = () => {
   useEffect(() => {
-    SplashScreen.hide();
+    async function initApp() {
+      await Fs.init();
+      SplashScreen.hide();
+    }
+    initApp();
   }, []);
 
   return (
