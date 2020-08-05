@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { StackParamList, AudioResource } from '../types';
@@ -14,12 +14,15 @@ interface Props {
 const AllAudio: React.FC<Props> = ({ navigation }) => {
   const [, audiosArray] = useAudios();
   const renderItem = ({ item }: { item: AudioResource }) => (
-    <AudioListItem
-      id={item.id}
-      title={item.title}
-      friend={item.friend}
-      artworkUrl={item.artwork}
-    />
+    <TouchableOpacity
+      onPress={() => navigation.navigate(`Audio`, { id: item.id })}>
+      <AudioListItem
+        id={item.id}
+        title={item.title}
+        friend={item.friend}
+        artworkUrl={item.artwork}
+      />
+    </TouchableOpacity>
   );
 
   return (

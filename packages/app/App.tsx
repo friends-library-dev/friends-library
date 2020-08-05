@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from 'react-native-splash-screen';
 import Home from './screens/Home';
 import AllAudios from './screens/AllAudios';
+import Audio from './screens/Audio';
 import Settings from './screens/Settings';
 import { StackParamList } from './types';
 import Fs from './lib/FileSystem';
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="All Audiobooks" component={AllAudios} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Audio" component={Audio} />
       </Stack.Navigator>
     </NavigationContainer>
   );
