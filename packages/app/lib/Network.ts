@@ -1,0 +1,17 @@
+import NetInfo from '@react-native-community/netinfo';
+
+class Network {
+  private connected = false;
+
+  public init() {
+    NetInfo.addEventListener((state) => {
+      this.connected = state.isConnected && state.isInternetReachable === true;
+    });
+  }
+
+  public get isConnected(): boolean {
+    return this.connected;
+  }
+}
+
+export default new Network();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import tw from 'tailwind-rn';
 import { Sans, Serif } from './Text';
 import Artwork from './Artwork';

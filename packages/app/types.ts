@@ -1,5 +1,6 @@
 export type StackParamList = {
   Home: undefined;
+  'All Audiobooks': undefined;
   Audio: undefined;
   Settings: undefined;
 };

@@ -1,4 +1,5 @@
 import RNFS, { DownloadResult } from 'react-native-fs';
+import Network from './Network';
 
 class FileSystem {
   private manifest: Map<string, number> = new Map();
@@ -7,15 +8,54 @@ class FileSystem {
   public async init(): Promise<void> {
     await Promise.all([
       RNFS.mkdir(this.path(`artwork/`), { NSURLIsExcludedFromBackupKey: true }),
-      RNFS.mkdir(this.path(`audio/`)),
-      RNFS.mkdir(this.path(`settings/`)),
+      RNFS.mkdir(this.path(`audio/`), { NSURLIsExcludedFromBackupKey: true }),
+      RNFS.mkdir(this.path(`data/`)),
     ]);
-    const artworkFiles = await RNFS.readDir(this.path(`artwork/`));
-    artworkFiles
-      .filter((f) => f.isFile())
-      .forEach((f) =>
-        this.manifest.set(`artwork/${basename(f.path)}`, Number(f.size)),
-      );
+    for (const dir of [`artwork`, `audio`, `data`]) {
+      const files = await RNFS.readDir(this.path(`${dir}/`));
+      files
+        .filter((f) => f.isFile())
+        .forEach((f) =>
+          this.manifest.set(`${dir}/${basename(f.path)}`, Number(f.size)),
+        );
+    }
+  }
+
+  public hasFile(path: string): boolean {
+    return this.manifest.has(path);
+  }
+
+  public writeFile(
+    path: string,
+    contents: string,
+    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = 'utf8',
+  ): Promise<void> {
+    const writePromise = RNFS.writeFile(
+      this.path(path),
+      contents,
+      encoding === `binary` ? `base64` : encoding,
+    );
+    writePromise.then(() => this.manifest.set(path, contents.length));
+    return writePromise;
+  }
+
+  public readFile(
+    path: string,
+    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = 'utf8',
+  ): Promise<string> {
+    return RNFS.readFile(
+      this.path(path),
+      encoding === `binary` ? `base64` : encoding,
+    );
+  }
+
+  public async readJson(path: string): Promise<any> {
+    const json = await this.readFile(path);
+    try {
+      return JSON.parse(json);
+    } catch {
+      return null;
+    }
   }
 
   public artworkImageUri(audioId: string, networkUrl: string): string {
@@ -28,6 +68,10 @@ class FileSystem {
   }
 
   private download(relPath: string, networkUrl: string): void {
+    if (!Network.isConnected) {
+      return;
+    }
+
     if (this.downloads.has(relPath)) {
       return;
     }

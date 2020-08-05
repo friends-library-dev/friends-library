@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, FlatList } from 'react-native';
+import React from 'react';
+import { Text } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { StackParamList, AudioResource } from '../types';
-import AudioListItem from '../components/AudioListItem';
+import { useAudios } from '../lib/hooks';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Audio'>;
@@ -11,38 +11,8 @@ interface Props {
 }
 
 const Audio: React.FC<Props> = ({ navigation }) => {
-  const [audioResources, setAudioResources] = useState<AudioResource[]>([]);
-  useEffect(() => {
-    async function fetchAudio() {
-      try {
-        const res = await fetch(`https://api.friendslibrary.com/app-audios`);
-        const resources = (await res.json()) as AudioResource[];
-        setAudioResources(resources);
-      } catch {
-        // ¯\_(ツ)_/¯
-      }
-    }
-    fetchAudio();
-  }, []);
-
-  const renderItem = ({ item }: { item: AudioResource }) => (
-    <AudioListItem
-      id={item.id}
-      title={item.title}
-      friend={item.friend}
-      artworkUrl={item.artwork}
-    />
-  );
-
-  return (
-    <View>
-      <FlatList
-        data={audioResources}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
-  );
+  const [audios] = useAudios();
+  return <Text>some audio</Text>;
 };
 
 export default Audio;
