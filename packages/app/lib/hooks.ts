@@ -1,18 +1,11 @@
-import { useState, useEffect } from 'react';
-import { AudioResource } from '../types';
-import Data from './Data';
+import { useContext } from 'react';
+import { AudioResource, UserSettings } from '../types';
+import { SettingsContext, AudiosContext } from './context';
 
-export function useAudios(): [Map<string, AudioResource>, AudioResource[]] {
-  const [audios, setAudios] = useState<Map<string, AudioResource>>(
-    Data.audioResources,
-  );
+export function useAudios(): Map<string, AudioResource> {
+  return useContext(AudiosContext);
+}
 
-  useEffect(() => {
-    Data.addListener(`updated:audio-resources`, setAudios);
-    return () => {
-      Data.removeListener(`updated:audio-resources`, setAudios);
-    };
-  }, [Data, setAudios]);
-
-  return [audios, [...audios.values()]];
+export function useSettings(): UserSettings {
+  return useContext(SettingsContext);
 }

@@ -1,12 +1,32 @@
 import { EventEmitter } from 'events';
-import { AudioResource } from 'types';
+import { AudioResource, UserSettings } from 'types';
 import FS from './FileSystem';
 import Network from './Network';
 
 class Data extends EventEmitter {
   public audioResources: Map<string, AudioResource> = new Map();
+  public userSettings: UserSettings = { audioQuality: `HQ` };
 
   public async init(): Promise<void> {
+    await Promise.all([this.initAudioResources(), this.initUserSettings()]);
+  }
+
+  private async initUserSettings(): Promise<void> {
+    if (FS.hasFile(`data/user-settings.json`)) {
+      const settings = await FS.readJson(`data/user-settings.json`);
+      if (settingsValid(settings)) {
+        this.userSettings = settings;
+        this.emit(`updated:user-settings`, settings);
+      }
+    } else {
+      FS.writeFile(
+        `data/user-settings.json`,
+        JSON.stringify(this.userSettings),
+      );
+    }
+  }
+
+  private async initAudioResources(): Promise<void> {
     if (FS.hasFile(`audio/resources.json`)) {
       const resources = await FS.readJson(`audio/resources.json`);
       if (resourcesValid(resources)) {
@@ -41,5 +61,11 @@ function resourcesValid(resources: any): resources is AudioResource[] {
     resources.every((r) => {
       return typeof r.artwork === `string` && Array.isArray(r.parts);
     })
+  );
+}
+
+function settingsValid(settings: any): settings is UserSettings {
+  return (
+    typeof settings === `object` && [`HQ`, `LQ`].includes(settings.audioQuality)
   );
 }

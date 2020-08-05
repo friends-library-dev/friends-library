@@ -22,13 +22,15 @@ exports.handler = async function (event) {
           artwork: `${CLOUD_URL}/${audio.imagePath}`,
           description: doc.description,
           shortDescription: doc.partialDescription,
-          parts: audio.parts.map((part, idx) => ({
+          parts: audio.parts.map((part, index) => ({
+            audioId: `${doc.id}--${edition.type}`,
+            index,
             title: part.title,
             duration: part.seconds,
             size: part.filesizeHq,
             sizeLq: part.filesizeLq,
-            url: `${CLOUD_URL}/${audio.partFilepath(idx, `HQ`)}`,
-            urlLq: `${CLOUD_URL}/${audio.partFilepath(idx, `LQ`)}`,
+            url: `${CLOUD_URL}/${audio.partFilepath(index, `HQ`)}`,
+            urlLq: `${CLOUD_URL}/${audio.partFilepath(index, `LQ`)}`,
           })),
         });
       });

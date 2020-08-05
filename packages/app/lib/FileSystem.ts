@@ -1,5 +1,7 @@
 import RNFS, { DownloadResult } from 'react-native-fs';
 import Network from './Network';
+import { AudioQuality } from '@friends-library/types';
+import { AudioPart } from 'types';
 
 class FileSystem {
   private manifest: Map<string, number> = new Map();
@@ -19,6 +21,35 @@ class FileSystem {
           this.manifest.set(`${dir}/${basename(f.path)}`, Number(f.size)),
         );
     }
+  }
+
+  public async downloadAudio(
+    part: AudioPart,
+    quality: AudioQuality,
+    onProgress: (percentComplete: number) => any,
+    onComplete: (result: boolean) => any,
+  ): Promise<any> {
+    const path = `audio/${part.audioId}--${part.index}--${quality}.mp3`;
+    const url = quality === `HQ` ? part.url : part.urlLq;
+    try {
+      const { promise } = RNFS.downloadFile({
+        fromUrl: url,
+        toFile: this.path(path),
+        progressInterval: 50,
+        progress: ({ contentLength, bytesWritten }) =>
+          onProgress((bytesWritten / contentLength) * 100),
+      });
+      const { bytesWritten } = await promise;
+      this.manifest.set(path, bytesWritten);
+      onComplete(true);
+    } catch {
+      onComplete(false);
+    }
+  }
+
+  public hasAudio(part: AudioPart, quality: AudioQuality): boolean {
+    const path = `audio/${part.audioId}--${part.index}--${quality}.mp3`;
+    return this.hasFile(path);
   }
 
   public hasFile(path: string): boolean {
