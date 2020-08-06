@@ -35,6 +35,7 @@ class FileSystem {
       const { promise } = RNFS.downloadFile({
         fromUrl: url,
         toFile: this.path(path),
+        begin: () => {}, // i don't seem to get progress without a `begin`
         progressInterval: 50,
         progress: ({ contentLength, bytesWritten }) =>
           onProgress((bytesWritten / contentLength) * 100),

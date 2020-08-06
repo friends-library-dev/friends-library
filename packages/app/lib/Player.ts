@@ -18,6 +18,10 @@ class Player extends EventEmitter {
     playbackState: `NONE`,
   };
 
+  public play(): void {
+    RNTrackPlayer.play();
+  }
+
   public pause(): void {
     RNTrackPlayer.pause();
   }
@@ -86,4 +90,5 @@ const STATE_MAP: { [k in string]: PlayerState['playbackState'] } = {
   [RNTrackPlayer.STATE_PAUSED]: `PAUSED`,
   [RNTrackPlayer.STATE_STOPPED]: `STOPPED`,
   [RNTrackPlayer.STATE_BUFFERING]: `BUFFERING`,
+  buffering: `BUFFERING`,
 };

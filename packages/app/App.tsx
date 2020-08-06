@@ -28,15 +28,12 @@ const App: React.FC = () => {
   const [audios, setAudios] = useState<Map<string, AudioResource>>(
     Data.audioResources,
   );
-  console.log('render!');
 
   useEffect(() => {
-    Player.getInstance().addListener(`state:updated`, (newstate) => {
-      setPlayerState(newstate);
-      console.log({ emiddted: newstate });
-    });
+    const updateState = (state: PlayerState) => setPlayerState({ ...state });
+    Player.getInstance().addListener(`state:updated`, updateState);
     return () => {
-      Player.getInstance().removeListener(`state:updated`, setPlayerState);
+      Player.getInstance().removeListener(`state:updated`, updateState);
     };
   }, [Player.getInstance(), setPlayerState]);
 

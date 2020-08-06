@@ -21,7 +21,6 @@ const Audio: React.FC<Props> = ({ route }) => {
   const audios = useAudios();
   const audio = audios.get(id);
   if (!audio) return <Text>Error loading audiobook.</Text>;
-  console.log({ AudioState: state });
   const playing = state.playing && state.trackAudioId === audio.id;
   return (
     <View>
@@ -33,7 +32,11 @@ const Audio: React.FC<Props> = ({ route }) => {
               Player.pause();
               return;
             }
-            Player.playPart(audio.parts[0], quality);
+            if (state.trackAudioId === audio.id) {
+              Player.play();
+            } else {
+              Player.playPart(audio.parts[0], quality);
+            }
           }}>
           <Serif size={50}>{playing ? 'PAUSE' : `PLAY`}</Serif>
         </TouchableOpacity>
