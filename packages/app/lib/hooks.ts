@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { AudioResource, UserSettings } from '../types';
-import { SettingsContext, AudiosContext } from './context';
+import { AudioResource, UserSettings, PlayerState } from '../types';
+import { SettingsContext, AudiosContext, PlayerContext } from './context';
+import Player from './Player';
 
 export function useAudios(): Map<string, AudioResource> {
   return useContext(AudiosContext);
@@ -8,4 +9,8 @@ export function useAudios(): Map<string, AudioResource> {
 
 export function useSettings(): UserSettings {
   return useContext(SettingsContext);
+}
+
+export function usePlayer(): [PlayerState, Player] {
+  return [useContext(PlayerContext), Player.getInstance()];
 }

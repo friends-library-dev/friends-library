@@ -52,6 +52,11 @@ class FileSystem {
     return this.hasFile(path);
   }
 
+  public audioFile(part: AudioPart, quality: AudioQuality): string {
+    const path = `audio/${part.audioId}--${part.index}--${quality}.mp3`;
+    return `file://${this.path(path)}`;
+  }
+
   public hasFile(path: string): boolean {
     return this.manifest.has(path);
   }

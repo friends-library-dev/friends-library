@@ -19,7 +19,7 @@ const DownloadableChapter: React.FC<Props> = ({ part }) => {
   );
 
   return (
-    <View style={tw(`px-4 py-3 flex-row justify-between`)}>
+    <View style={tw(`px-4 py-2 flex-row justify-between`)}>
       <Sans>{part.title}</Sans>
       {downloading && <Sans>{progress}</Sans>}
       {downloaded && <Sans>DOWNLOADED!</Sans>}

@@ -1,11 +1,17 @@
 import { AudioQuality } from '@friends-library/types';
 
-export type StackParamList = {
-  Home: undefined;
-  'All Audiobooks': undefined;
-  Audio: { id: string };
-  Settings: undefined;
-};
+export interface PlayerState {
+  playing: boolean;
+  playbackState:
+    | 'NONE'
+    | 'PLAYING'
+    | 'PAUSED'
+    | 'STOPPED'
+    | 'READY'
+    | 'BUFFERING';
+  trackAudioId?: string;
+  trackPartIndex?: number;
+}
 
 export interface AudioPart {
   audioId: string;
@@ -33,3 +39,10 @@ export interface AudioResource {
 export interface UserSettings {
   audioQuality: AudioQuality;
 }
+
+export type StackParamList = {
+  Home: undefined;
+  'All Audiobooks': undefined;
+  Audio: { id: string };
+  Settings: undefined;
+};
