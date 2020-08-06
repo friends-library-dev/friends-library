@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
-import path from 'path';
 import { spawn } from 'child_process';
 import { FileManifest } from '@friends-library/types';
+import env from '@friends-library/env';
 import { EbookOptions } from './types';
 import { writeEbookManifest } from './ebook';
 import { red } from '@friends-library/cli-utils/color';
@@ -25,18 +25,9 @@ export default async function mobi(
 }
 
 function kindlegen(precursorPath: string, filenameNoExt: string): Promise<void> {
-  const bin = path.resolve(
-    path.dirname(require.main!.filename), // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    `../../../node_modules/kindlegen/bin/kindlegen`,
-  );
-
-  if (!fs.existsSync(bin)) {
-    throw new Error(`kindlegen binary not found at path: \`${bin}\``);
-  }
-
-  const stream = spawn(bin, [
+  const { KINDLEGEN_BIN } = env.require(`KINDLEGEN_BIN`);
+  const stream = spawn(KINDLEGEN_BIN, [
     precursorPath,
-    `-c2`,
     `-verbose`,
     `-o`,
     `${filenameNoExt}.mobi`,
