@@ -10,4 +10,7 @@ coverage/
 *.tsbuildinfo
 **/dist/
 deploy.http
+
+# temp, while App under development
 packages/app/
+packages/api/
