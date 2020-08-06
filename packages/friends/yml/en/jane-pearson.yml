@@ -23,32 +23,39 @@ residences:
       - start: 1791
         end: 1816
 description:
-  The story of Jane Pearson (1735–1816) is both heartbreaking and deeply inspiring. Her
-  life was fraught with inward and outward trials beyond description. For fourteen years
-  she wrestled with a variety of inward enemies as she sought to truly know and be
-  conformed to the Beloved of her soul. And when at last she came to a measure of peace
-  and stability in the Truth, she was then made to suffer the loss of her husband and
-  seven children to a variety of illnesses. But the more she lost of the world, the more
-  she seemed to gain of Christ, and her experiences of God’s power and mercy in her latter
-  years are indescribably beautiful.
+  Jane Pearson (1735-1816) was a minister in the Society of Friends whose life, in many
+  ways, resembled that of Job. About a year after her marriage, having begun in earnest to
+  take up her cross and follow the Lord, she found that her “false rest was broken,” and
+  for a period of fourteen years was made to wade through inward troubles and afflictions
+  that were “far beyond her power of description.” And when there was at last an abatement
+  of inward trials, then outward troubles poured in like a flood, and over the course of
+  some years, she lost her husband and seven children to a variety of illnesses. But
+  according to Christ’s promise, the more she gave up of this world and its treasures, the
+  more she gained of eternal riches, and her experiences of God’s power and mercy in her
+  latter years were truly a hundredfold more than all she had lost.
 documents:
   - id: 0f940360-9aaf-41d1-9601-e8ce60cfd4d7
     title: The Life and Experiences of Jane Pearson
-    slug: journal
+    slug: life
     filename: Life_and_Experiences_of_Jane_Pearson
+    original_title: Sketches of the Life and Religious Experiences of Jane Pearson
     description:
-      The story of Jane Pearson (1735–1816) is both heartbreaking and deeply inspiring.
-      Her life was fraught with inward and outward trials beyond description. For fourteen
-      years she wrestled with a variety of inward enemies as she sought to truly know and
-      be conformed to the Beloved of her soul. And when at last she came to a measure of
-      peace and stability in the Truth, she was then made to suffer the loss of her
-      husband and seven children to a variety of illnesses. But the more she lost of the
-      world, the more she seemed to gain of Christ, and her experiences of God’s power and
-      mercy in her latter years are indescribably beautiful.
+      Jane Pearson (1735-1816) was a minister in the Society of Friends whose life, in
+      many ways, resembled that of Job. About a year after her marriage, having begun in
+      earnest to take up her cross and follow the Lord, she found that her “false rest was
+      broken,” and for a period of fourteen years was made to wade through inward troubles
+      and afflictions that were “far beyond her power of description.” And when there was
+      at last an abatement of inward trials, then outward troubles poured in like a flood,
+      and over the course of some years, she lost her husband and seven children to a
+      variety of illnesses. But according to Christ’s promise, the more she gave up of
+      this world and its treasures, the more she gained of eternal riches, and her
+      experiences of God’s power and mercy in her latter years were truly a hundredfold
+      more than all she had lost.
     partial_description:
-      The Journal of Jane Pearson, giving and account of her early dedication to the Lord,
-      her uncommon trials (both inward and outward), her labors as a minister in the
-      Society of Friends, and her extraordinary religious experiences in later years.
+      The Life and Experiences of Jane Pearson, giving and account of her early dedication
+      to the Lord, her uncommon trials (both inward and outward), her labors as a minister
+      in the Society of Friends, and her extraordinary religious experiences in later
+      years.
     tags:
       - journal
     editions:
@@ -63,12 +70,38 @@ documents:
     title: Selection from the Life of Jane Pearson
     slug: life-selection
     filename: Selection_Life_of_Jane_Pearson
-    description: TODO
-    partial_description: TODO
+    description:
+      Jane Pearson (1735-1816) was a minister in the Society of Friends whose life, in
+      many ways, resembled that of Job. About a year after her marriage, having begun in
+      earnest to take up her cross and follow the Lord, she found that her “false rest was
+      broken,” and for a period of fourteen years was made to wade through inward troubles
+      and afflictions that were “far beyond her power of description.” And when there was
+      at last an abatement of inward trials, then outward troubles poured in like a flood,
+      and over the course of some years, she lost her husband and seven children to a
+      variety of illnesses. But according to Christ’s promise, the more she gave up of
+      this world and its treasures, the more she gained of eternal riches, and her
+      experiences of God’s power and mercy in her latter years were truly a hundredfold
+      more than all she had lost.
+    partial_description:
+      A selection from The Life and Experiences of Jane Pearson, giving and account of her
+      early dedication to the Lord, her uncommon trials (both inward and outward), her
+      labors as a minister in the Society of Friends, and her extraordinary religious
+      experiences in later years.
     tags:
       - journal
     editions:
       - type: updated
         editor: Jason R. Henderson
-        draft: true
         isbn: 978-1-64476-235-6
+        audio:
+          reader: Jason R. Henderson
+          added: 2020-08-06T17:09:22.615Z
+          parts:
+            - title: Selection from the life of Jane Pearson
+              external_id_hq: 871404019
+              external_id_lq: 871403554
+              filesize_hq: 98971957
+              filesize_lq: 21673619
+              seconds: 5418
+              chapters:
+                - 0
