@@ -427,6 +427,10 @@ dt {
   text-indent: 0 !important;
 }
 
+.section-author + .heading-continuation-blurb {
+  margin-top: 1.5em;
+}
+
 .section-date {
   margin: 1.5em 0;
 }
