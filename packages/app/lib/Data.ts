@@ -2,6 +2,7 @@ import { EventEmitter } from 'events';
 import { AudioResource, UserSettings } from 'types';
 import FS from './FileSystem';
 import Network from './Network';
+import { AudioQuality } from '@friends-library/types';
 
 class Data extends EventEmitter {
   public audioResources: Map<string, AudioResource> = new Map();
@@ -9,6 +10,22 @@ class Data extends EventEmitter {
 
   public async init(): Promise<void> {
     await Promise.all([this.initAudioResources(), this.initUserSettings()]);
+  }
+
+  public setAudioQualityPreference(quality: AudioQuality): void {
+    if (quality === this.userSettings.audioQuality) {
+      return;
+    }
+    this.userSettings = { ...this.userSettings, audioQuality: quality };
+    this.emit(`updated:user-settings`, this.userSettings);
+    this.saveUserSettings();
+  }
+
+  private saveUserSettings(): Promise<void> {
+    return FS.writeFile(
+      `data/user-settings.json`,
+      JSON.stringify(this.userSettings),
+    );
   }
 
   private async initUserSettings(): Promise<void> {

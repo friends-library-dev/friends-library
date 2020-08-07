@@ -19,20 +19,29 @@ const DownloadableChapter: React.FC<Props> = ({ part }) => {
   );
 
   return (
-    <View style={tw(`px-4 py-2 flex-row justify-between`)}>
-      <Sans>{part.title}</Sans>
-      {downloading && <Sans>{progress}</Sans>}
-      {downloaded && <Sans>DOWNLOADED!</Sans>}
-      {!downloaded && !downloading && (
-        <TouchableOpacity
-          onPress={async () => {
-            setDownloading(true);
-            await FS.downloadAudio(part, quality, setProgress, setDownloaded);
-            setDownloading(false);
-          }}>
-          <Sans>Download</Sans>
-        </TouchableOpacity>
-      )}
+    <View>
+      <View style={tw(`px-4 py-2 flex-row justify-between`)}>
+        <Sans>{part.title}</Sans>
+        {downloaded && <Sans>Play</Sans>}
+        {!downloaded && !downloading && (
+          <TouchableOpacity
+            onPress={async () => {
+              setDownloading(true);
+              await FS.downloadAudio(part, quality, setProgress, setDownloaded);
+              setDownloading(false);
+            }}>
+            <Sans>Download</Sans>
+          </TouchableOpacity>
+        )}
+      </View>
+      <View
+        style={{
+          opacity: downloading ? 1 : 0,
+          height: 3,
+          width: `${progress}%`,
+          ...tw(`bg-green-400`),
+        }}
+      />
     </View>
   );
 };

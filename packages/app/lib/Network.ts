@@ -5,7 +5,7 @@ class Network {
 
   public init() {
     NetInfo.addEventListener((state) => {
-      this.connected = state.isConnected && state.isInternetReachable === true;
+      this.connected = state.isConnected && state.isInternetReachable !== false;
     });
   }
 

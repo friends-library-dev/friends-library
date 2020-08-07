@@ -21,7 +21,9 @@ const Audio: React.FC<Props> = ({ route }) => {
   const audios = useAudios();
   const audio = audios.get(id);
   if (!audio) return <Text>Error loading audiobook.</Text>;
-  const playing = state.playing && state.trackAudioId === audio.id;
+  const playing =
+    ![`STOPPED`, `PAUSED`].includes(state.playbackState) &&
+    state.trackAudioId === audio.id;
   return (
     <View>
       <View style={tw(`flex-row`)}>
