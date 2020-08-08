@@ -13,8 +13,8 @@ describe(`subtitle()`, () => {
     [
       `en`,
       `compilations`,
-      `truth-in-the-inward-parts`,
-      `Audiobook of "Truth in the Inward Parts" from The Friends Library. Read by Jason R. Henderson.`,
+      `truth-in-the-inward-parts-v1`,
+      `Audiobook of "Truth in the Inward Parts -- Volume 1" from The Friends Library. Read by Jason R. Henderson.`,
     ],
     [
       `es`,

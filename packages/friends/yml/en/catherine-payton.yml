@@ -85,9 +85,9 @@ documents:
       - type: modernized
         isbn: 978-1-64476-009-3
   - id: a40a3ac1-af68-474f-bf76-66028ca17b49
-    title: Selection from the Journal of Catherine Payton
-    slug: journal-selection
-    filename: Selection_Journal_of_Catherine_Payton
+    title: Selection from the Life and Letters of Catherine Payton
+    slug: life-and-letters-selection
+    filename: Selection_Life_and_Letters_of_Catherine_Payton
     description:
       Catherine Payton (1727-1794, also known by her married name, Catherine Phillips) was
       a well-known and highly-esteemed minister in the Society of Friends, whose labors in
@@ -113,7 +113,7 @@ documents:
           added: 2020-07-23T18:16:10.297Z
           reader: Jason R. Henderson
           parts:
-            - title: Selection from the Journal of Catherine Payton
+            - title: Selection from the Life and Letters of Catherine Payton
               external_id_hq: 862574746
               external_id_lq: 862574338
               filesize_hq: 75939921

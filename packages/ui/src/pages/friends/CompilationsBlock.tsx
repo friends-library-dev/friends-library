@@ -28,7 +28,7 @@ const CompilationsBlock: React.FC<Props> = ({ bgImg }) => (
         some were compiled more recently by the editors of this website. Among the latter
         group is the book{` `}
         <Link
-          to="/compilations/truth-in-the-inward-parts"
+          to="/compilations/truth-in-the-inward-parts-v1"
           className="subtle-link text-white"
         >
           Truth in the Inward Parts
