@@ -25,7 +25,7 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
   const data = useStaticQuery(graphql`
     query EmptyCartBooks {
       doc1: document(
-        slug: { eq: "truth-in-the-inward-parts" }
+        slug: { eq: "truth-in-the-inward-parts-v1" }
         friendSlug: { eq: "compilations" }
       ) {
         url

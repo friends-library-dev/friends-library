@@ -11,9 +11,9 @@ description:
 documents:
   - id: 6793d8a5-4352-4c10-901c-7d1afbff80a6
     alt_language_id: 110bb5b7-267e-4d70-9b4d-64b6e46729f2
-    title: Truth in the Inward Parts
-    slug: truth-in-the-inward-parts
-    filename: Truth_in_the_Inward_Parts
+    title: Truth in the Inward Parts -- Volume 1
+    slug: truth-in-the-inward-parts-v1
+    filename: Truth_in_the_Inward_Parts_v1
     featured_description:
       This book contains the autobiographical accounts of ten men and women who
       experienced the transforming power of “Truth in the inward parts” (Psalm 51:6).
@@ -258,3 +258,109 @@ documents:
         isbn: 978-1-64476-194-6
       - type: original
         isbn: 978-1-64476-195-3
+  - id: 778b9e77-1c50-4044-b6e5-487d629fb08b
+    title: Truth in the Inward Parts -- Volume 2
+    slug: truth-in-the-inward-parts-v2
+    filename: Truth_in_the_Inward_Parts_v2
+    featured_description:
+      This book contains the autobiographical accounts of nine men and women who
+      experienced the transforming power of “Truth in the inward parts” (Psalm 51:6).
+      Amidst a sea of Christian opinions and traditions, these believers would settle for
+      nothing less than the light, power, and righteousness of Christ reigning in their
+      purified hearts.
+    description:
+      This book contains the stories of nine men and women who knew the transforming work
+      of “Truth in the inward parts.” Amidst a sea of Christian practice and profession,
+      these believers would settle for nothing less than the light, power, and
+      righteousness of Christ reigning in their purified vessels. They not only found the
+      Pearl of great price by His own inward appearing, but they then sold all to buy this
+      treasure, counting all things loss for the excellence of the knowledge of Christ
+      Jesus their Lord. (Compiled and edited by Jason R. Henderson)
+    partial_description:
+      This book contains the autobiographical accounts of nine men and women who
+      experienced the transforming power of “Truth in the inward parts.” (Psalm 51:6)
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: updated
+        isbn: 978-1-64476-236-3
+        editor: Jason R. Henderson
+        audio:
+          reader: Jason R. Henderson
+          external_playlist_id_hq: 1107172696
+          external_playlist_id_lq: 1107172831
+          added: 2020-08-08T19:06:16.659Z
+          parts:
+            - title: Selection from the Journal of Job Scott
+              external_id_hq: 872349178
+              external_id_lq: 872348896
+              filesize_lq: 18259037
+              filesize_hq: 84426405
+              seconds: 4444
+              chapters:
+                - 0
+            - title: Selection from the Journal of John Gratton
+              external_id_hq: 872349547
+              external_id_lq: 872349220
+              filesize_lq: 20679131
+              filesize_hq: 97443642
+              seconds: 5169
+              chapters:
+                - 1
+            - title: The Life and Letters of Samuel Crisp
+              external_id_lq: 872349622
+              external_id_hq: 872349916
+              filesize_lq: 16390755
+              filesize_hq: 77654611
+              seconds: 4097
+              chapters:
+                - 2
+            - title: Selection from the Journal of George Whitehead
+              external_id_lq: 872349988
+              external_id_hq: 872350267
+              filesize_lq: 19385764
+              filesize_hq: 87701300
+              seconds: 4846
+              chapters:
+                - 3
+            - title: Selection from the Journal of George Fox
+              external_id_lq: 872350387
+              external_id_hq: 872350858
+              filesize_lq: 25395170
+              filesize_hq: 117430784
+              seconds: 6348
+              chapters:
+                - 4
+            - title: Selection from the Life and Letters of Catherine Payton
+              external_id_lq: 872350960
+              external_id_hq: 872351218
+              filesize_lq: 16466642
+              filesize_hq: 76239095
+              seconds: 4116
+              chapters:
+                - 5
+            - title: Selection from the Journal of John Conran
+              external_id_lq: 872351263
+              external_id_hq: 872351599
+              filesize_lq: 15911782
+              filesize_hq: 76622674
+              seconds: 3977
+              chapters:
+                - 6
+            - title: Selection from the Journal of John Banks
+              external_id_lq: 872351656
+              external_id_hq: 872351836
+              filesize_lq: 14460208
+              filesize_hq: 65877334
+              seconds: 3614
+              chapters:
+                - 7
+            - title: Selection from the Life of Jane Pearson
+              external_id_lq: 872351899
+              external_id_hq: 872352223
+              filesize_lq: 21701561
+              filesize_hq: 99091740
+              seconds: 5424
+              chapters:
+                - 8

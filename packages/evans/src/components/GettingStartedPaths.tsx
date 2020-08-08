@@ -142,7 +142,7 @@ const GettingStartedPaths: React.FC<Props> = ({
         ...RecommendedBook
       }
       en_titip: document(
-        slug: { eq: "truth-in-the-inward-parts" }
+        slug: { eq: "truth-in-the-inward-parts-v1" }
         friendSlug: { eq: "compilations" }
       ) {
         ...RecommendedBook
