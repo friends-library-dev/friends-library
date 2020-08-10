@@ -27,12 +27,12 @@ description:
 documents:
   - id: cf6f05e2-e5c9-4ec3-8096-d283f3e4c020
     alt_language_id: 8fbadbad-0fc1-4dfa-9fb4-d96e7c00ff58
-    title: Life of John Crook
+    title: Selection from the Life of John Crook
     original_title:
       Selections from the Writings of That Ancient, Faithful Servant of Christ Jesus John
       Crook. To which is Prefixed a Short Account of His Life Written by Himself.
-    slug: life
-    filename: Life_of_John_Crook
+    slug: life-selection
+    filename: Selection_Life_of_John_Crook
     description:
       Like many other early Quakers, John Crook (1617-1699) was a seeker of truth from his
       earliest days. He was educated in London, and for a time held the office of Justice
@@ -59,8 +59,8 @@ documents:
             - title: The Life of John Crook
               external_id_hq: 748334620
               external_id_lq: 748334257
-              filesize_hq: 59009075
-              filesize_lq: 19747590
-              seconds: 3291
+              filesize_hq: 59981386
+              filesize_lq: 13143695
+              seconds: 3285
               chapters:
                 - 0

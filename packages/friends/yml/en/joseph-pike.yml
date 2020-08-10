@@ -57,9 +57,9 @@ documents:
             - title: The Life of Joseph Pike
               external_id_hq: 748335853
               external_id_lq: 748335676
-              filesize_hq: 39920794
-              filesize_lq: 13279038
-              seconds: 2213
+              filesize_hq: 40473148
+              filesize_lq: 8833597
+              seconds: 2208
               chapters:
                 - 0
     related_documents:

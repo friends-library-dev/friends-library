@@ -65,9 +65,9 @@ documents:
             - title: Selection from the Journal of John Richardson
               external_id_hq: 748335568
               external_id_lq: 748335253
-              filesize_hq: 59021156
-              filesize_lq: 19906998
-              seconds: 3318
+              filesize_hq: 59460459
+              filesize_lq: 13252482
+              seconds: 3312
               chapters:
                 - 0
   - id: 1e81ab5f-4f72-4570-93a1-e446e1e70267

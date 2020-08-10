@@ -67,9 +67,9 @@ documents:
             - title: Selection from the Journal of John Burnyeat
               external_id_hq: 748334119
               external_id_lq: 748333786
-              filesize_hq: 64074294
-              filesize_lq: 21090894
-              seconds: 3515
+              filesize_hq: 64945342
+              filesize_lq: 14042525
+              seconds: 3510
               chapters:
                 - 0
   - id: 2bb79cd9-88c3-4801-ae66-ac70970c97bc
