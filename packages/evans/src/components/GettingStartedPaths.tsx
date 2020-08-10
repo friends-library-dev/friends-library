@@ -141,8 +141,14 @@ const GettingStartedPaths: React.FC<Props> = ({
       ) {
         ...RecommendedBook
       }
-      en_titip: document(
+      en_titip_v1: document(
         slug: { eq: "truth-in-the-inward-parts-v1" }
+        friendSlug: { eq: "compilations" }
+      ) {
+        ...RecommendedBook
+      }
+      en_titip_v2: document(
+        slug: { eq: "truth-in-the-inward-parts-v2" }
         friendSlug: { eq: "compilations" }
       ) {
         ...RecommendedBook
@@ -333,7 +339,8 @@ const GettingStartedPaths: React.FC<Props> = ({
         slug="journal"
         title={LANG === `en` ? `Journals` : `Biográfico`}
         books={prepareBooks([
-          data.en_titip,
+          data.en_titip_v1,
+          data.en_titip_v2,
           data.en_richardson_journal,
           data.en_pearson_life,
           data.en_gratton_journal,
