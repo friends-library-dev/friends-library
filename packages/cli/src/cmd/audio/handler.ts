@@ -25,6 +25,7 @@ interface Argv {
   uploadExternalTracks: boolean;
   createMissingPlaylists: boolean;
   recreateIndividualTitip: boolean;
+  replaceExternalTracks: boolean;
   storeFilesizes: boolean;
   pattern?: string;
 }
@@ -63,6 +64,10 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
   let paths: string[] = [];
   if (shouldVerifyAudioPaths(argv)) {
     paths = verifyAudioPaths(audio);
+  }
+
+  if (argv.all || argv.replaceExternalTracks) {
+    await replaceExternalTracks(audio, paths);
   }
 
   if (argv.all || argv.storeFilesizes) {
@@ -142,6 +147,23 @@ async function handleAudio(audio: Audio, argv: Argv): Promise<void> {
 
   if (needArtwork(argv)) {
     fs.removeSync(tmpDir);
+  }
+}
+
+async function replaceExternalTracks(audio: Audio, paths: string[]): Promise<void> {
+  for (let i = 0; i < audio.parts.length; i++) {
+    const part = audio.parts[i];
+    const qualities: AudioQuality[] = [`LQ`, `HQ`];
+    for (const quality of qualities) {
+      const key = quality === `HQ` ? `externalIdHq` : `externalIdLq`;
+      const trackId = part[key];
+      await getClient().replaceTrack(
+        trackId,
+        paths.find(p => p.endsWith(audio.partFilename(i, quality))) || ``,
+      );
+      const title = audio.edition.document.title;
+      yellow(`replacing file for track ${trackId}: ${title}, pt. ${i + 1}`);
+    }
   }
 }
 
@@ -333,6 +355,7 @@ function shouldVerifyAudioPaths(argv: Argv): boolean {
     argv.all ||
     argv.verifyLocalFilepaths ||
     argv.uploadExternalTracks ||
+    argv.replaceExternalTracks ||
     argv.uploadM4BFiles ||
     argv.uploadMp3Files ||
     argv.uploadMp3Zips ||

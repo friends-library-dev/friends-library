@@ -57,6 +57,12 @@ export const builder: CommandBuilder = function(yargs) {
       default: false,
       demand: false,
     })
+    .option(`replace-external-tracks`, {
+      type: `boolean`,
+      description: `replace soundcloud tracks with new files`,
+      default: false,
+      demand: false,
+    })
     .option(`verify-local-filepaths`, {
       type: `boolean`,
       description: `verify existence of local mp3 files in ~/Sync`,
