@@ -133,6 +133,25 @@ export default class SoundCloudClient {
     return await res.json();
   }
 
+  public async replaceTrack(trackId: number, audioPath: string): Promise<boolean> {
+    if (!this.token) await this.getToken();
+
+    const fd = new FormData();
+    fd.append(`oauth_token`, this.token);
+    fd.append(`track[asset_data]`, fs.createReadStream(audioPath));
+
+    const res = await fetch(this.endpoint(`tracks/${trackId}`), {
+      method: `put`,
+      body: fd,
+    });
+
+    if (res.status >= 300) {
+      throw new Error(`Error replacing soundcloud track`);
+    }
+
+    return true;
+  }
+
   public async uploadTrack(track: Track): Promise<number> {
     if (!this.token) await this.getToken();
 
