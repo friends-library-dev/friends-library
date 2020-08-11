@@ -26,20 +26,23 @@ describe(`site fns integration`, () => {
     expect(status).toBe(302);
   });
 
-  test(`POST /print-job/fees endpoint`, async () => {
-    const res = await fetch(`${endpoint}/print-job/fees`, {
-      method: `POST`,
-      body: JSON.stringify(feesSchema.example),
-      headers,
-    });
-    expect(res.status).toBe(200);
-    expect(await res.json()).toMatchObject({
-      shippingLevel: `MAIL`,
-      shipping: 399,
-      taxes: 0,
-      ccFeeOffset: 42,
-    });
-  }, 10000);
+  // getting lots of false-negative failures due to slow lulu sandbox responses on CI
+  if (!process.env.CI) {
+    test(`POST /print-job/fees endpoint`, async () => {
+      const res = await fetch(`${endpoint}/print-job/fees`, {
+        method: `POST`,
+        body: JSON.stringify(feesSchema.example),
+        headers,
+      });
+      expect(res.status).toBe(200);
+      expect(await res.json()).toMatchObject({
+        shippingLevel: `MAIL`,
+        shipping: 399,
+        taxes: 0,
+        ccFeeOffset: 42,
+      });
+    }, 10000);
+  }
 
   test(`sequential, stateful checkout fns`, async () => {
     /**
