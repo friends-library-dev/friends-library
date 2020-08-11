@@ -1,7 +1,8 @@
 import React, { useReducer, useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, ScrollView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import tw from 'tailwind-rn';
 import { StackParamList, AudioPart } from '../types';
 import { usePlayer, useSettings } from '../lib/hooks';
@@ -32,8 +33,9 @@ const Audio: React.FC<Props> = ({ route }) => {
     await FS.downloadAudio(
       part,
       quality,
-      progress => dispatch({ type: `SET_PROGRESS`, idx, progress }),
-      success => dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
+      (progress) => dispatch({ type: `SET_PROGRESS`, idx, progress }),
+      (success) =>
+        dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
     );
     dispatch({ type: `SET_DOWNLOADING`, idx, downloading: false });
   };
@@ -53,11 +55,11 @@ const Audio: React.FC<Props> = ({ route }) => {
     }
   };
 
-  const allPartsDownloaded = audio.parts.every(p => FS.hasAudio(p, quality));
-  const noPartsDownloaded = !audio.parts.some(p => FS.hasAudio(p, quality));
+  const allPartsDownloaded = audio.parts.every((p) => FS.hasAudio(p, quality));
+  const noPartsDownloaded = !audio.parts.some((p) => FS.hasAudio(p, quality));
 
   return (
-    <View>
+    <ScrollView>
       <View style={tw(`flex-row`)}>
         <Artwork id={audio.id} url={audio.artwork} size={200} />
         <TouchableOpacity
@@ -74,7 +76,7 @@ const Audio: React.FC<Props> = ({ route }) => {
               Player.playPart(audio.parts[selectedPart], quality);
             }
           }}>
-          <Serif size={50}>{playing ? 'PAUSE' : `PLAY`}</Serif>
+          <Icon name={playing ? `pause` : `play`} />
         </TouchableOpacity>
       </View>
       <Serif size={30}>{audio.title}</Serif>
@@ -82,7 +84,7 @@ const Audio: React.FC<Props> = ({ route }) => {
         <TouchableOpacity
           onPress={() => {
             partsState
-              .filter(s => !s.downloaded && !s.downloading)
+              .filter((s) => !s.downloaded && !s.downloading)
               .forEach((_, idx) => downloadPart(audio.parts[idx]));
           }}>
           <Sans>Download All</Sans>
@@ -93,6 +95,7 @@ const Audio: React.FC<Props> = ({ route }) => {
           key={`${audio.id}--${part.index}`}
           download={() => downloadPart(part)}
           part={part}
+          selected={idx === selectedPart}
           play={() => {
             setSelectedPart(idx);
             if (Player.isAudioPartSelected(audio.id, idx)) {
@@ -104,7 +107,7 @@ const Audio: React.FC<Props> = ({ route }) => {
           {...partsState[idx]}
         />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
