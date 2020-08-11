@@ -8,6 +8,7 @@ import { PartState } from '../screens/audio-part-state';
 type Props = {
   part: AudioPart;
   download: () => any;
+  play: () => any;
 } & PartState;
 
 const DownloadableChapter: React.FC<Props> = ({
@@ -16,12 +17,17 @@ const DownloadableChapter: React.FC<Props> = ({
   progress,
   downloaded,
   download,
+  play,
 }) => {
   return (
     <View>
       <View style={tw(`px-4 py-2 flex-row justify-between`)}>
         <Sans>{part.title}</Sans>
-        {downloaded && <Sans>Play</Sans>}
+        {downloaded && (
+          <TouchableOpacity onPress={play}>
+            <Sans>Play</Sans>
+          </TouchableOpacity>
+        )}
         {!downloaded && !downloading && (
           <TouchableOpacity onPress={download}>
             <Sans>Download</Sans>

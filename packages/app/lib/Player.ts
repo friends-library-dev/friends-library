@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import RNTrackPlayer from 'react-native-track-player';
-import { PlayerState, AudioPart } from '../types';
+import { PlayerState, AudioPart, AudioResource } from '../types';
 import { AudioQuality } from '@friends-library/types';
 import Data from './Data';
 import FS from './FileSystem';
@@ -18,7 +18,30 @@ class Player extends EventEmitter {
     playbackState: `NONE`,
   };
 
-  public play(): void {
+  public isAudioPartSelected(audioId: string, partIndex: number): boolean {
+    return (
+      this.isAudioSelected(audioId) && this.state.trackPartIndex === partIndex
+    );
+  }
+
+  public isAudioSelected(audioId: string): boolean {
+    return this.state.trackAudioId === audioId;
+  }
+
+  public isPlayingAudio(audioId: string): boolean {
+    return (
+      this.isAudioSelected(audioId) &&
+      ![`STOPPED`, `PAUSED`].includes(this.state.playbackState)
+    );
+  }
+
+  public isPlayingAudioPart(audioId: string, partIndex: number): boolean {
+    return (
+      this.isPlayingAudio(audioId) && this.state.trackPartIndex === partIndex
+    );
+  }
+
+  public resume(): void {
     RNTrackPlayer.play();
   }
 
@@ -72,7 +95,7 @@ class Player extends EventEmitter {
       ],
     });
 
-    RNTrackPlayer.addEventListener(`playback-state`, (data) => {
+    RNTrackPlayer.addEventListener(`playback-state`, data => {
       const playbackState = STATE_MAP[data.state] || `NONE`;
       this.state.playbackState = playbackState;
       this.state.playing = playbackState === `PLAYING`;

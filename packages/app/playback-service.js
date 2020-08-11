@@ -22,6 +22,6 @@ module.exports = async function () {
   ];
 
   for (const event of events) {
-    // TrackPlayer.addEventListener(event, (...args) => console.log(event, args));
+    TrackPlayer.addEventListener(event, (...args) => console.log(event, args));
   }
 };

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
@@ -19,6 +19,8 @@ interface Props {
 const Audio: React.FC<Props> = ({ route }) => {
   const { audioQuality: quality } = useSettings();
   const audio = route.params.audio;
+  const [selectedPart, setSelectedPart] = useState<number>(0);
+
   const [partsState, dispatch] = useReducer(
     partsReducer,
     initialPartsState(audio.parts, quality),
@@ -37,27 +39,39 @@ const Audio: React.FC<Props> = ({ route }) => {
   };
 
   const [playerState, Player] = usePlayer();
-  const playing =
-    ![`STOPPED`, `PAUSED`].includes(playerState.playbackState) &&
-    playerState.trackAudioId === audio.id;
+  const playing = Player.isPlayingAudio(audio.id);
 
-  const allPartsDownloaded =
-    audio.parts.filter(p => !FS.hasAudio(p, quality)).length === 0;
+  const togglePlayback = () => {
+    if (playing) {
+      Player.pause();
+      return;
+    }
+    if (playerState.trackAudioId === audio.id) {
+      Player.resume();
+    } else {
+      Player.playPart(audio.parts[selectedPart], quality);
+    }
+  };
+
+  const allPartsDownloaded = audio.parts.every(p => FS.hasAudio(p, quality));
+  const noPartsDownloaded = !audio.parts.some(p => FS.hasAudio(p, quality));
 
   return (
     <View>
       <View style={tw(`flex-row`)}>
         <Artwork id={audio.id} url={audio.artwork} size={200} />
         <TouchableOpacity
-          onPress={() => {
-            if (playing) {
-              Player.pause();
-              return;
-            }
-            if (playerState.trackAudioId === audio.id) {
-              Player.play();
+          onPress={async () => {
+            if (noPartsDownloaded) {
+              setSelectedPart(0);
+              await downloadPart(audio.parts[0]);
+              return Player.playPart(audio.parts[0], quality);
+            } else if (playing) {
+              return Player.pause();
+            } else if (Player.isAudioPartSelected(audio.id, selectedPart)) {
+              return Player.resume();
             } else {
-              Player.playPart(audio.parts[0], quality);
+              Player.playPart(audio.parts[selectedPart], quality);
             }
           }}>
           <Serif size={50}>{playing ? 'PAUSE' : `PLAY`}</Serif>
@@ -79,6 +93,14 @@ const Audio: React.FC<Props> = ({ route }) => {
           key={`${audio.id}--${part.index}`}
           download={() => downloadPart(part)}
           part={part}
+          play={() => {
+            setSelectedPart(idx);
+            if (Player.isAudioPartSelected(audio.id, idx)) {
+              return Player.resume();
+            } else {
+              Player.playPart(audio.parts[idx], quality);
+            }
+          }}
           {...partsState[idx]}
         />
       ))}
