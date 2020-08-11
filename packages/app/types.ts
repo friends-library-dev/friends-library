@@ -43,6 +43,6 @@ export interface UserSettings {
 export type StackParamList = {
   Home: undefined;
   'All Audiobooks': undefined;
-  Audio: { id: string };
+  Audio: { audio: AudioResource };
   Settings: undefined;
 };

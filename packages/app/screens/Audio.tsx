@@ -1,13 +1,15 @@
-import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import React, { useReducer } from 'react';
+import { View, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import tw from 'tailwind-rn';
-import { StackParamList } from '../types';
-import { useAudios, usePlayer, useSettings } from '../lib/hooks';
+import { StackParamList, AudioPart } from '../types';
+import { usePlayer, useSettings } from '../lib/hooks';
+import FS from '../lib/FileSystem';
 import Artwork from '../components/Artwork';
 import { Serif, Sans } from '../components/Text';
-import DownloadableChapter from '../components/DownloadableChapter';
+import DownloadablePart from '../components/DownloadablePart';
+import { partsReducer, initialPartsState } from './audio-part-state';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Audio'>;
@@ -16,14 +18,32 @@ interface Props {
 
 const Audio: React.FC<Props> = ({ route }) => {
   const { audioQuality: quality } = useSettings();
-  const [state, Player] = usePlayer();
-  const id = route.params.id;
-  const audios = useAudios();
-  const audio = audios.get(id);
-  if (!audio) return <Text>Error loading audiobook.</Text>;
+  const audio = route.params.audio;
+  const [partsState, dispatch] = useReducer(
+    partsReducer,
+    initialPartsState(audio.parts, quality),
+  );
+
+  const downloadPart = async (part: AudioPart) => {
+    const idx = part.index;
+    dispatch({ type: `SET_DOWNLOADING`, idx, downloading: true });
+    await FS.downloadAudio(
+      part,
+      quality,
+      progress => dispatch({ type: `SET_PROGRESS`, idx, progress }),
+      success => dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
+    );
+    dispatch({ type: `SET_DOWNLOADING`, idx, downloading: false });
+  };
+
+  const [playerState, Player] = usePlayer();
   const playing =
-    ![`STOPPED`, `PAUSED`].includes(state.playbackState) &&
-    state.trackAudioId === audio.id;
+    ![`STOPPED`, `PAUSED`].includes(playerState.playbackState) &&
+    playerState.trackAudioId === audio.id;
+
+  const allPartsDownloaded =
+    audio.parts.filter(p => !FS.hasAudio(p, quality)).length === 0;
+
   return (
     <View>
       <View style={tw(`flex-row`)}>
@@ -34,7 +54,7 @@ const Audio: React.FC<Props> = ({ route }) => {
               Player.pause();
               return;
             }
-            if (state.trackAudioId === audio.id) {
+            if (playerState.trackAudioId === audio.id) {
               Player.play();
             } else {
               Player.playPart(audio.parts[0], quality);
@@ -44,8 +64,23 @@ const Audio: React.FC<Props> = ({ route }) => {
         </TouchableOpacity>
       </View>
       <Serif size={30}>{audio.title}</Serif>
-      {audio.parts.map((part) => (
-        <DownloadableChapter key={`${audio.id}--${part.index}`} part={part} />
+      {audio.parts.length > 1 && !allPartsDownloaded && (
+        <TouchableOpacity
+          onPress={() => {
+            partsState
+              .filter(s => !s.downloaded && !s.downloading)
+              .forEach((_, idx) => downloadPart(audio.parts[idx]));
+          }}>
+          <Sans>Download All</Sans>
+        </TouchableOpacity>
+      )}
+      {audio.parts.map((part, idx) => (
+        <DownloadablePart
+          key={`${audio.id}--${part.index}`}
+          download={() => downloadPart(part)}
+          part={part}
+          {...partsState[idx]}
+        />
       ))}
     </View>
   );
