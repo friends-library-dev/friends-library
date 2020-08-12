@@ -148,7 +148,7 @@ function editions(): Map<string, Edition> {
     return editionMap;
   }
 
-  const friends = getAllFriends(`en`).concat(getAllFriends(`es`));
+  const friends = getAllFriends(`en`, true).concat(getAllFriends(`es`, true));
   friends.forEach(friend =>
     friend.documents.forEach(document =>
       document.editions.forEach(edition => {
