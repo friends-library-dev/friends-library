@@ -86,6 +86,7 @@ enum PrintJobStatus {
   rejected
   shipped
   canceled
+  bricked
 }
 
 enum AudioQuality {

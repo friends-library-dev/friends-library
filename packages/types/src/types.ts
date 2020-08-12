@@ -67,6 +67,7 @@ export const PRINT_JOB_STATUSES = [
   `shipped`,
   `rejected`,
   `canceled`,
+  `bricked`,
 ] as const;
 export type PrintJobStatus = typeof PRINT_JOB_STATUSES[number];
 
