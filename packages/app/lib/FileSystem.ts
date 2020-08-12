@@ -36,7 +36,7 @@ class FileSystem {
         fromUrl: url,
         toFile: this.path(path),
         begin: () => {}, // i don't seem to get progress without a `begin`
-        progressInterval: 50,
+        progressInterval: 25,
         progress: ({ contentLength, bytesWritten }) =>
           onProgress((bytesWritten / contentLength) * 100),
       });

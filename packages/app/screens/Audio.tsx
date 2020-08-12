@@ -34,8 +34,9 @@ const Audio: React.FC<Props> = ({ route }) => {
     await FS.downloadAudio(
       part,
       quality,
-      progress => dispatch({ type: `SET_PROGRESS`, idx, progress }),
-      success => dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
+      (progress) => dispatch({ type: `SET_PROGRESS`, idx, progress }),
+      (success) =>
+        dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
     );
     dispatch({ type: `SET_DOWNLOADING`, idx, downloading: false });
   };
@@ -43,8 +44,8 @@ const Audio: React.FC<Props> = ({ route }) => {
   const [, Player] = usePlayer();
   const playing = Player.isPlayingAudio(audio.id);
 
-  const allPartsDownloaded = audio.parts.every(p => FS.hasAudio(p, quality));
-  const noPartsDownloaded = !audio.parts.some(p => FS.hasAudio(p, quality));
+  const allPartsDownloaded = audio.parts.every((p) => FS.hasAudio(p, quality));
+  const noPartsDownloaded = !audio.parts.some((p) => FS.hasAudio(p, quality));
 
   return (
     <ScrollView>
@@ -82,12 +83,14 @@ const Audio: React.FC<Props> = ({ route }) => {
           />
         </View>
       </View>
-      <Serif size={30}>{audio.title}</Serif>
+      <Serif size={30} style={tw(`text-center p-4`)}>
+        {audio.title}
+      </Serif>
       {audio.parts.length > 1 && !allPartsDownloaded && (
         <TouchableOpacity
           onPress={() => {
             partsState
-              .filter(s => !s.downloaded && !s.downloading)
+              .filter((s) => !s.downloaded && !s.downloading)
               .forEach((_, idx) => downloadPart(audio.parts[idx]));
           }}>
           <Sans>Download All</Sans>
@@ -98,7 +101,7 @@ const Audio: React.FC<Props> = ({ route }) => {
           key={`${audio.id}--${part.index}`}
           download={() => downloadPart(part)}
           part={part}
-          selected={idx === selectedPart}
+          playing={idx === selectedPart && playing}
           play={() => {
             setSelectedPart(idx);
             if (Player.isPlayingAudioPart(audio.id, idx)) {
