@@ -43,18 +43,6 @@ const Audio: React.FC<Props> = ({ route }) => {
   const [playerState, Player] = usePlayer();
   const playing = Player.isPlayingAudio(audio.id);
 
-  const togglePlayback = () => {
-    if (playing) {
-      Player.pause();
-      return;
-    }
-    if (playerState.trackAudioId === audio.id) {
-      Player.resume();
-    } else {
-      Player.playPart(audio.parts[selectedPart], quality);
-    }
-  };
-
   const allPartsDownloaded = audio.parts.every((p) => FS.hasAudio(p, quality));
   const noPartsDownloaded = !audio.parts.some((p) => FS.hasAudio(p, quality));
 
@@ -76,7 +64,13 @@ const Audio: React.FC<Props> = ({ route }) => {
               Player.playPart(audio.parts[selectedPart], quality);
             }
           }}>
-          <Icon name={playing ? `pause` : `play`} />
+          <View style={tw(`flex-grow items-center justify-center ml-12`)}>
+            <Icon
+              size={90}
+              color="#6c3142"
+              name={playing ? `pause-circle` : `play-circle`}
+            />
+          </View>
         </TouchableOpacity>
       </View>
       <Serif size={30}>{audio.title}</Serif>
