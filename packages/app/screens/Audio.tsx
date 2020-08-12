@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { View, TouchableOpacity, ScrollView } from 'react-native';
+import { View, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -11,6 +11,7 @@ import Artwork from '../components/Artwork';
 import { Serif, Sans } from '../components/Text';
 import DownloadablePart from '../components/DownloadablePart';
 import { partsReducer, initialPartsState } from './audio-part-state';
+import Progress from '../components/Progress';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Audio'>;
@@ -33,52 +34,60 @@ const Audio: React.FC<Props> = ({ route }) => {
     await FS.downloadAudio(
       part,
       quality,
-      (progress) => dispatch({ type: `SET_PROGRESS`, idx, progress }),
-      (success) =>
-        dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
+      progress => dispatch({ type: `SET_PROGRESS`, idx, progress }),
+      success => dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
     );
     dispatch({ type: `SET_DOWNLOADING`, idx, downloading: false });
   };
 
-  const [playerState, Player] = usePlayer();
+  const [, Player] = usePlayer();
   const playing = Player.isPlayingAudio(audio.id);
 
-  const allPartsDownloaded = audio.parts.every((p) => FS.hasAudio(p, quality));
-  const noPartsDownloaded = !audio.parts.some((p) => FS.hasAudio(p, quality));
+  const allPartsDownloaded = audio.parts.every(p => FS.hasAudio(p, quality));
+  const noPartsDownloaded = !audio.parts.some(p => FS.hasAudio(p, quality));
 
   return (
     <ScrollView>
       <View style={tw(`flex-row`)}>
-        <Artwork id={audio.id} url={audio.artwork} size={200} />
-        <TouchableOpacity
-          onPress={async () => {
-            if (noPartsDownloaded) {
-              setSelectedPart(0);
-              await downloadPart(audio.parts[0]);
-              return Player.playPart(audio.parts[0], quality);
-            } else if (playing) {
-              return Player.pause();
-            } else if (Player.isAudioPartSelected(audio.id, selectedPart)) {
-              return Player.resume();
-            } else {
-              Player.playPart(audio.parts[selectedPart], quality);
-            }
-          }}>
-          <View style={tw(`flex-grow items-center justify-center ml-12`)}>
+        <Artwork
+          id={audio.id}
+          url={audio.artwork}
+          size={Dimensions.get(`window`).width / 2}
+        />
+        <View style={tw(`flex-grow p-4 justify-center`)}>
+          <TouchableOpacity
+            style={tw(`items-center justify-center`)}
+            onPress={async () => {
+              if (noPartsDownloaded) {
+                setSelectedPart(0);
+                await downloadPart(audio.parts[0]);
+                return Player.playPart(audio.parts[0], quality);
+              } else if (playing) {
+                return Player.pause();
+              } else if (Player.isAudioPartSelected(audio.id, selectedPart)) {
+                return Player.resume();
+              } else {
+                Player.playPart(audio.parts[selectedPart], quality);
+              }
+            }}>
             <Icon
-              size={90}
+              size={80}
               color="#6c3142"
               name={playing ? `pause-circle` : `play-circle`}
             />
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+          <Progress
+            playing={playing}
+            partDuration={audio.parts[selectedPart].duration}
+          />
+        </View>
       </View>
       <Serif size={30}>{audio.title}</Serif>
       {audio.parts.length > 1 && !allPartsDownloaded && (
         <TouchableOpacity
           onPress={() => {
             partsState
-              .filter((s) => !s.downloaded && !s.downloading)
+              .filter(s => !s.downloaded && !s.downloading)
               .forEach((_, idx) => downloadPart(audio.parts[idx]));
           }}>
           <Sans>Download All</Sans>
@@ -92,7 +101,9 @@ const Audio: React.FC<Props> = ({ route }) => {
           selected={idx === selectedPart}
           play={() => {
             setSelectedPart(idx);
-            if (Player.isAudioPartSelected(audio.id, idx)) {
+            if (Player.isPlayingAudioPart(audio.id, idx)) {
+              return;
+            } else if (Player.isAudioPartSelected(audio.id, idx)) {
               return Player.resume();
             } else {
               Player.playPart(audio.parts[idx], quality);
