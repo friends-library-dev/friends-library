@@ -41,6 +41,10 @@ class Player extends EventEmitter {
     );
   }
 
+  public reset(): void {
+    RNTrackPlayer.reset();
+  }
+
   public resume(): void {
     RNTrackPlayer.play();
   }
@@ -95,7 +99,7 @@ class Player extends EventEmitter {
       ],
     });
 
-    RNTrackPlayer.addEventListener(`playback-state`, data => {
+    RNTrackPlayer.addEventListener(`playback-state`, (data) => {
       const playbackState = STATE_MAP[data.state] || `NONE`;
       this.state.playbackState = playbackState;
       this.state.playing = playbackState === `PLAYING`;

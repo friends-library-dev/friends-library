@@ -44,11 +44,13 @@ const Audio: React.FC<Props> = ({ route }) => {
   const [, Player] = usePlayer();
   const playing = Player.isPlayingAudio(audio.id);
 
-  const allPartsDownloaded = audio.parts.every((p) => FS.hasAudio(p, quality));
+  const partDownloading = partsState.some((p) => p.downloading);
   const noPartsDownloaded = !audio.parts.some((p) => FS.hasAudio(p, quality));
+  const showDownloadAll =
+    partsState.filter((p) => !p.downloaded && !p.downloading).length > 0;
 
   return (
-    <ScrollView>
+    <ScrollView style={tw(``)}>
       <View style={tw(`flex-row`)}>
         <Artwork
           id={audio.id}
@@ -60,6 +62,7 @@ const Audio: React.FC<Props> = ({ route }) => {
             style={tw(`items-center justify-center`)}
             onPress={async () => {
               if (noPartsDownloaded) {
+                Player.reset();
                 setSelectedPart(0);
                 await downloadPart(audio.parts[0]);
                 return Player.playPart(audio.parts[0], quality);
@@ -68,6 +71,7 @@ const Audio: React.FC<Props> = ({ route }) => {
               } else if (Player.isAudioPartSelected(audio.id, selectedPart)) {
                 return Player.resume();
               } else {
+                Player.reset();
                 Player.playPart(audio.parts[selectedPart], quality);
               }
             }}>
@@ -86,35 +90,57 @@ const Audio: React.FC<Props> = ({ route }) => {
       <Serif size={30} style={tw(`text-center p-4`)}>
         {audio.title}
       </Serif>
-      {audio.parts.length > 1 && !allPartsDownloaded && (
+      {showDownloadAll && (
         <TouchableOpacity
+          style={tw(`pb-2 px-4 flex-row justify-center`)}
           onPress={() => {
-            partsState
-              .filter((s) => !s.downloaded && !s.downloading)
-              .forEach((_, idx) => downloadPart(audio.parts[idx]));
+            partsState.forEach((part, idx) => {
+              if (!part.downloaded && !part.downloading) {
+                downloadPart(audio.parts[idx]);
+              }
+            });
           }}>
-          <Sans>Download All</Sans>
+          <View style={tw(`bg-blue-200 flex-row px-6 py-2 rounded-full`)}>
+            <Icon
+              name="cloud-download"
+              size={21}
+              style={tw(`pr-2 text-blue-800`)}
+            />
+            <Sans size={15} style={tw(`text-blue-800`)}>
+              Download {audio.parts.length > 1 ? `all` : ``}
+            </Sans>
+          </View>
         </TouchableOpacity>
       )}
-      {audio.parts.map((part, idx) => (
-        <DownloadablePart
-          key={`${audio.id}--${part.index}`}
-          download={() => downloadPart(part)}
-          part={part}
-          playing={idx === selectedPart && playing}
-          play={() => {
-            setSelectedPart(idx);
-            if (Player.isPlayingAudioPart(audio.id, idx)) {
-              return;
-            } else if (Player.isAudioPartSelected(audio.id, idx)) {
-              return Player.resume();
-            } else {
-              Player.playPart(audio.parts[idx], quality);
-            }
-          }}
-          {...partsState[idx]}
-        />
-      ))}
+      <Serif
+        style={{
+          ...tw(`px-6 pt-2 pb-4 text-justify text-gray-800`),
+          lineHeight: 26,
+        }}
+        size={18}>
+        {audio.shortDescription}
+      </Serif>
+      {(audio.parts.length > 1 || partDownloading) &&
+        audio.parts.map((part, idx) => (
+          <DownloadablePart
+            key={`${audio.id}--${part.index}`}
+            isOnlyPart={audio.parts.length === 1}
+            download={() => downloadPart(part)}
+            part={part}
+            playing={idx === selectedPart && playing}
+            play={() => {
+              setSelectedPart(idx);
+              if (Player.isPlayingAudioPart(audio.id, idx)) {
+                return;
+              } else if (Player.isAudioPartSelected(audio.id, idx)) {
+                return Player.resume();
+              } else {
+                Player.playPart(audio.parts[idx], quality);
+              }
+            }}
+            {...partsState[idx]}
+          />
+        ))}
     </ScrollView>
   );
 };
