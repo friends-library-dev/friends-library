@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, Platform } from 'react-native';
+import { Text, Platform, TextStyle } from 'react-native';
 
 interface TextProps {
   size?: number;
-  style?: Record<string, string | number>;
+  style?: TextStyle;
 }
 
 export const Serif: React.FC<TextProps> = ({

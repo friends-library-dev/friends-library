@@ -11,7 +11,7 @@ import Artwork from '../components/Artwork';
 import { Serif, Sans } from '../components/Text';
 import DownloadablePart from '../components/DownloadablePart';
 import { partsReducer, initialPartsState } from './audio-part-state';
-import Progress from '../components/Progress';
+import AudioControls from '../components/AudioControls';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Audio'>;
@@ -51,41 +51,44 @@ const Audio: React.FC<Props> = ({ route }) => {
 
   return (
     <ScrollView style={tw(``)}>
-      <View style={tw(`flex-row`)}>
-        <Artwork
-          id={audio.id}
-          url={audio.artwork}
-          size={Dimensions.get(`window`).width / 2}
+      <Artwork
+        id={audio.id}
+        url={audio.artwork}
+        size={Dimensions.get(`window`).width * 0.8}
+        style={{
+          marginTop: `8%`,
+          alignSelf: 'center',
+          elevation: 2,
+          shadowColor: '#000',
+          shadowOffset: { width: 3, height: 3 },
+          shadowOpacity: 0.5,
+          shadowRadius: 5,
+        }}
+      />
+      <View style={tw(`flex-grow py-4 px-8 justify-center`)}>
+        <AudioControls
+          playing={playing}
+          duration={audio.parts[selectedPart].duration}
+          numParts={audio.parts.length}
+          currentPartIndex={selectedPart}
+          downloading={partsState[selectedPart].downloading}
+          progress={partsState[selectedPart].progress}
+          togglePlayback={async () => {
+            if (noPartsDownloaded) {
+              Player.reset();
+              setSelectedPart(0);
+              await downloadPart(audio.parts[0]);
+              return Player.playPart(audio.parts[0], quality);
+            } else if (playing) {
+              return Player.pause();
+            } else if (Player.isAudioPartSelected(audio.id, selectedPart)) {
+              return Player.resume();
+            } else {
+              Player.reset();
+              Player.playPart(audio.parts[selectedPart], quality);
+            }
+          }}
         />
-        <View style={tw(`flex-grow p-4 justify-center`)}>
-          <TouchableOpacity
-            style={tw(`items-center justify-center`)}
-            onPress={async () => {
-              if (noPartsDownloaded) {
-                Player.reset();
-                setSelectedPart(0);
-                await downloadPart(audio.parts[0]);
-                return Player.playPart(audio.parts[0], quality);
-              } else if (playing) {
-                return Player.pause();
-              } else if (Player.isAudioPartSelected(audio.id, selectedPart)) {
-                return Player.resume();
-              } else {
-                Player.reset();
-                Player.playPart(audio.parts[selectedPart], quality);
-              }
-            }}>
-            <Icon
-              size={80}
-              color="#6c3142"
-              name={playing ? `pause-circle` : `play-circle`}
-            />
-          </TouchableOpacity>
-          <Progress
-            playing={playing}
-            partDuration={audio.parts[selectedPart].duration}
-          />
-        </View>
       </View>
       <Serif size={30} style={tw(`text-center p-4`)}>
         {audio.title}
@@ -124,7 +127,6 @@ const Audio: React.FC<Props> = ({ route }) => {
         audio.parts.map((part, idx) => (
           <DownloadablePart
             key={`${audio.id}--${part.index}`}
-            isOnlyPart={audio.parts.length === 1}
             download={() => downloadPart(part)}
             part={part}
             playing={idx === selectedPart && playing}

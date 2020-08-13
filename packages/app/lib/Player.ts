@@ -32,7 +32,6 @@ class Player extends EventEmitter {
   public async seekTo(requestedPosition: number): Promise<void> {
     const { trackAudioId, trackPartIndex } = this.state;
     if (!trackAudioId || trackPartIndex === undefined) {
-      console.log(1, this.state);
       return;
     }
 
@@ -45,7 +44,6 @@ class Player extends EventEmitter {
     }
 
     if (duration < 0) {
-      console.log(2);
       return;
     }
 

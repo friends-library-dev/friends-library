@@ -11,7 +11,6 @@ type Props = {
   download: () => any;
   play: () => any;
   playing: boolean;
-  isOnlyPart: boolean;
 } & PartState;
 
 const winWidth = Dimensions.get(`window`).width;
@@ -25,7 +24,6 @@ const DownloadableChapter: React.FC<Props> = ({
   download,
   play,
   playing,
-  isOnlyPart,
 }) => {
   return (
     <TouchableOpacity
@@ -47,7 +45,7 @@ const DownloadableChapter: React.FC<Props> = ({
             size={9}
           />
           <Sans style={tw(`flex-grow`)} size={14}>
-            {isOnlyPart ? `Downloading...` : part.title}
+            {part.title}
           </Sans>
         </View>
         {!downloaded && !downloading && (
