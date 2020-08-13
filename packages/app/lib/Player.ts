@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import RNTrackPlayer from 'react-native-track-player';
-import { PlayerState, AudioPart, AudioResource } from '../types';
+import { PlayerState, AudioPart } from '../types';
 import { AudioQuality } from '@friends-library/types';
 import Data from './Data';
 import FS from './FileSystem';
@@ -17,6 +17,47 @@ class Player extends EventEmitter {
     playing: false,
     playbackState: `NONE`,
   };
+
+  public addEventListener(
+    event: RNTrackPlayer.EventType,
+    listener: (data: any) => void,
+  ): RNTrackPlayer.EmitterSubscription {
+    return RNTrackPlayer.addEventListener(event, listener);
+  }
+
+  public getPosition(): Promise<number> {
+    return RNTrackPlayer.getPosition();
+  }
+
+  public async seekTo(requestedPosition: number): Promise<void> {
+    const { trackAudioId, trackPartIndex } = this.state;
+    if (!trackAudioId || trackPartIndex === undefined) {
+      console.log(1, this.state);
+      return;
+    }
+
+    let duration = -1;
+    const audio = Data.audioResources.get(trackAudioId);
+    if (!audio) {
+      duration = Math.floor(await RNTrackPlayer.getDuration());
+    } else {
+      duration = audio.parts[trackPartIndex].duration;
+    }
+
+    if (duration < 0) {
+      console.log(2);
+      return;
+    }
+
+    let position = requestedPosition;
+    if (position < 0) {
+      position = 0;
+    } else if (position > duration) {
+      position = duration;
+    }
+
+    return RNTrackPlayer.seekTo(position);
+  }
 
   public isAudioPartSelected(audioId: string, partIndex: number): boolean {
     return (
@@ -70,12 +111,14 @@ class Player extends EventEmitter {
       artist: audio.friend,
       artwork: FS.artworkImageUri(audio.id, audio.artwork),
       pitchAlgorithm: RNTrackPlayer.PITCH_ALGORITHM_VOICE,
+      duration: part.duration,
     });
     RNTrackPlayer.play();
   }
 
   public static getInstance(): Player {
     if (!Player.instance) {
+      console.log('make a new player!');
       Player.instance = new Player();
       Player.instance.init();
       return Player.instance;
@@ -91,11 +134,14 @@ class Player extends EventEmitter {
 
     RNTrackPlayer.updateOptions({
       stopWithApp: true,
+      jumpInterval: 30,
       capabilities: [
         RNTrackPlayer.CAPABILITY_PLAY,
         RNTrackPlayer.CAPABILITY_PAUSE,
         RNTrackPlayer.CAPABILITY_SEEK_TO,
         RNTrackPlayer.CAPABILITY_STOP,
+        RNTrackPlayer.CAPABILITY_JUMP_FORWARD,
+        RNTrackPlayer.CAPABILITY_JUMP_BACKWARD,
       ],
     });
 
