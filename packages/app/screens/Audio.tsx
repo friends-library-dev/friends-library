@@ -70,7 +70,10 @@ const Audio: React.FC<Props> = ({ route }) => {
           playing={playing}
           duration={audio.parts[selectedPart].duration}
           numParts={audio.parts.length}
-          currentPartIndex={selectedPart}
+          isCurrentAudioPart={Player.isAudioPartSelected(
+            audio.id,
+            selectedPart,
+          )}
           downloading={partsState[selectedPart].downloading}
           progress={partsState[selectedPart].progress}
           togglePlayback={async () => {

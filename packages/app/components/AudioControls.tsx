@@ -10,9 +10,9 @@ interface Props {
   playing: boolean;
   duration: number;
   numParts: number;
-  currentPartIndex: number;
   downloading: boolean;
   progress: number;
+  isCurrentAudioPart: boolean;
 }
 
 const AudioControls: React.FC<Props> = ({
@@ -21,11 +21,12 @@ const AudioControls: React.FC<Props> = ({
   duration,
   downloading,
   progress,
+  isCurrentAudioPart,
 }) => {
   return (
     <>
       <TouchableOpacity
-        style={tw(`items-center justify-center`)}
+        style={tw(`items-center justify-center mb-2`)}
         onPress={togglePlayback}>
         <Icon
           size={80}
@@ -45,6 +46,7 @@ const AudioControls: React.FC<Props> = ({
         downloadingProgress={progress}
         playing={playing}
         partDuration={duration}
+        inUse={isCurrentAudioPart}
       />
     </>
   );

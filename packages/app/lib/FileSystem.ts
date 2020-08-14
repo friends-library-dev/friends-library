@@ -1,9 +1,10 @@
+import { EventEmitter } from 'events';
 import RNFS, { DownloadResult } from 'react-native-fs';
 import Network from './Network';
 import { AudioQuality } from '@friends-library/types';
 import { AudioPart } from 'types';
 
-class FileSystem {
+class FileSystem extends EventEmitter {
   private manifest: Map<string, number> = new Map();
   private downloads: Map<string, Promise<DownloadResult>> = new Map();
 
@@ -23,39 +24,69 @@ class FileSystem {
     }
   }
 
+  public setOnlyListener(
+    eventName: string,
+    listener: (...args: any[]) => any,
+  ): void {
+    this.removeAllListeners(eventName);
+    this.on(eventName, listener);
+  }
+
   public async downloadAudio(
     part: AudioPart,
     quality: AudioQuality,
-    onProgress: (percentComplete: number) => any,
-    onComplete: (result: boolean) => any,
-  ): Promise<any> {
+    onProgress: (percentComplete: number) => any = () => {},
+    onComplete: (result: boolean) => any = () => {},
+  ): Promise<void> {
     const path = `audio/${part.audioId}--${part.index}--${quality}.mp3`;
+    if (this.downloads.has(path)) {
+      return;
+    }
     const url = quality === `HQ` ? part.url : part.urlLq;
     try {
+      this.emit(`download:start`, part, quality);
       const { promise } = RNFS.downloadFile({
         fromUrl: url,
         toFile: this.path(path),
         begin: () => {}, // i don't seem to get progress without a `begin`
         progressInterval: 25,
-        progress: ({ contentLength, bytesWritten }) =>
-          onProgress((bytesWritten / contentLength) * 100),
+        progress: ({ contentLength, bytesWritten }) => {
+          const progress = (bytesWritten / contentLength) * 100;
+          this.emit(`download:progress`, progress, part, quality);
+          onProgress((bytesWritten / contentLength) * 100);
+        },
       });
+      this.downloads.set(path, promise);
       const { bytesWritten } = await promise;
       this.manifest.set(path, bytesWritten);
       onComplete(true);
+      this.emit(`download:complete`, part, quality);
     } catch {
       onComplete(false);
+      this.emit(`download:failed`, part, quality);
     }
+    this.downloads.delete(path);
   }
 
   public hasAudio(part: AudioPart, quality: AudioQuality): boolean {
-    const path = `audio/${part.audioId}--${part.index}--${quality}.mp3`;
-    return this.hasFile(path);
+    const hqPath = `audio/${part.audioId}--${part.index}--HQ.mp3`;
+    const lqPath = `audio/${part.audioId}--${part.index}--LQ.mp3`;
+    if (quality === `HQ`) {
+      return this.hasFile(hqPath);
+    }
+    // if we have a HQ version, that's an acceptable replacement for a
+    // requested LQ version
+    return this.hasFile(hqPath) || this.hasFile(lqPath);
   }
 
-  public audioFile(part: AudioPart, quality: AudioQuality): string {
-    const path = `audio/${part.audioId}--${part.index}--${quality}.mp3`;
-    return `file://${this.path(path)}`;
+  public audioFile(part: AudioPart): string {
+    const hqPath = `audio/${part.audioId}--${part.index}--HQ.mp3`;
+    const lqPath = `audio/${part.audioId}--${part.index}--LQ.mp3`;
+    // always use the HQ if we've got it
+    if (this.hasAudio(part, 'HQ')) {
+      return `file://${this.path(hqPath)}`;
+    }
+    return `file://${this.path(lqPath)}`;
   }
 
   public hasFile(path: string): boolean {

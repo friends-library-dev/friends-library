@@ -1,11 +1,12 @@
 import { EventEmitter } from 'events';
 import RNTrackPlayer from 'react-native-track-player';
-import { PlayerState, AudioPart } from '../types';
+import { PlayerState, AudioPart, AudioResource } from '../types';
 import { AudioQuality } from '@friends-library/types';
 import Data from './Data';
 import FS from './FileSystem';
 
 class Player extends EventEmitter {
+  public static DURATION_UNKNOWN = -1;
   private static instance: Player;
 
   public static defaultState: PlayerState = {
@@ -35,20 +36,13 @@ class Player extends EventEmitter {
       return;
     }
 
-    let duration = -1;
-    const audio = Data.audioResources.get(trackAudioId);
-    if (!audio) {
-      duration = Math.floor(await RNTrackPlayer.getDuration());
-    } else {
-      duration = audio.parts[trackPartIndex].duration;
-    }
-
+    const duration = await this.getCurrentTrackDuration();
     if (duration < 0) {
       return;
     }
 
     let position = requestedPosition;
-    if (position < 0) {
+    if (position == Player.DURATION_UNKNOWN) {
       position = 0;
     } else if (position > duration) {
       position = duration;
@@ -57,10 +51,51 @@ class Player extends EventEmitter {
     return RNTrackPlayer.seekTo(position);
   }
 
+  public getPrevAudioPart(): AudioPart | null {
+    const audio = this.getCurrentTrackAudioResource();
+    if (!audio || !this.state.trackPartIndex) {
+      return null;
+    }
+    return audio.parts[this.state.trackPartIndex - 1] || null;
+  }
+
+  public getNextAudioPart(): AudioPart | null {
+    const audio = this.getCurrentTrackAudioResource();
+    if (!audio || !this.state.trackPartIndex) {
+      return null;
+    }
+    return audio.parts[this.state.trackPartIndex + 1] || null;
+  }
+
+  public getCurrentTrackAudioResource(): AudioResource | null {
+    return Data.audioResources.get(this.state.trackAudioId || ``) || null;
+  }
+
+  public async getCurrentTrackDuration(): Promise<number> {
+    const { trackAudioId, trackPartIndex } = this.state;
+
+    let duration = Player.DURATION_UNKNOWN;
+    if (!trackAudioId || trackPartIndex === undefined) {
+      return duration;
+    }
+
+    const audio = this.getCurrentTrackAudioResource();
+    if (!audio) {
+      duration = Math.floor(await RNTrackPlayer.getDuration());
+    } else {
+      duration = audio.parts[trackPartIndex].duration;
+    }
+    return duration;
+  }
+
   public isAudioPartSelected(audioId: string, partIndex: number): boolean {
     return (
       this.isAudioSelected(audioId) && this.state.trackPartIndex === partIndex
     );
+  }
+
+  public clearUpcomingTracks(): void {
+    RNTrackPlayer.removeUpcomingTracks();
   }
 
   public isAudioSelected(audioId: string): boolean {
@@ -104,7 +139,7 @@ class Player extends EventEmitter {
     this.emit(`state:updated`, this.state);
     RNTrackPlayer.add({
       id: `${part.audioId}--${part.index}`,
-      url: FS.audioFile(part, quality),
+      url: FS.audioFile(part),
       title: part.title,
       artist: audio.friend,
       artwork: FS.artworkImageUri(audio.id, audio.artwork),
@@ -116,7 +151,6 @@ class Player extends EventEmitter {
 
   public static getInstance(): Player {
     if (!Player.instance) {
-      console.log('make a new player!');
       Player.instance = new Player();
       Player.instance.init();
       return Player.instance;

@@ -1,63 +1,62 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
+import Scrubber from 'react-native-scrubber';
 import tw from 'tailwind-rn';
 import TrackPlayer from 'react-native-track-player';
+import Player from '../lib/Player';
 import { Sans } from './Text';
+import { HEX_MAROON } from '../lib/constants';
 
 interface Props {
   playing: boolean;
   downloading: boolean;
   downloadingProgress: number;
   partDuration: number;
+  inUse: boolean;
 }
 
 export default class Progress extends TrackPlayer.ProgressComponent<Props> {
-  render() {
+  public render(): JSX.Element {
     const { position } = this.state;
     const {
       partDuration,
       playing,
       downloading,
       downloadingProgress,
+      inUse,
     } = this.props;
     return (
       <View style={{ opacity: playing || downloading ? 1 : 0.6 }}>
-        <View style={tw(`mt-6 h-2`)}>
-          <View
-            style={tw(`w-full border-b border-2 border-gray-300 absolute`)}
-          />
-          <View
-            style={{
-              ...tw(`border-b border-2 border-gray-500 absolute`),
-              width: `${
-                downloading
-                  ? downloadingProgress
-                  : (position / partDuration) * 100
-              }%`,
+        {!downloading && (
+          <Scrubber
+            value={inUse ? position : 0}
+            bufferedValue={0}
+            scrubbedColor={HEX_MAROON}
+            totalDuration={partDuration}
+            onSlidingComplete={(position) => {
+              if (!inUse) return;
+              this.setState({ position });
+              Player.getInstance().seekTo(position);
             }}
           />
-          {!downloading && (
-            <View
-              style={{
-                ...tw(`rounded-full absolute bg-gray-500`),
-                width: 9,
-                height: 9,
-                marginTop: -2.5,
-                left: `${(position / partDuration) * 100}%`,
-              }}
-            />
-          )}
-        </View>
-        {!downloading && (
-          <View style={tw(`flex-row justify-between`)}>
-            <Sans size={13}>{formatTime(this.state.position)}</Sans>
-            <Sans size={13}>{formatTime(partDuration)}</Sans>
-          </View>
         )}
         {downloading && (
-          <View style={tw(`flex-row justify-center`)}>
-            <Sans size={13}>Downloading...</Sans>
-          </View>
+          <>
+            <View style={tw(`mt-3 h-2`)}>
+              <View
+                style={tw(`w-full border-b border-2 border-gray-300 absolute`)}
+              />
+              <View
+                style={{
+                  ...tw(`border-b border-2 border-gray-500 absolute`),
+                  width: `${downloadingProgress}%`,
+                }}
+              />
+            </View>
+            <View style={tw(`flex-row justify-center`)}>
+              <Sans size={13}>Downloading...</Sans>
+            </View>
+          </>
         )}
       </View>
     );
