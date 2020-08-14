@@ -62,7 +62,7 @@ const Audio: React.FC<Props> = ({ route }) => {
     };
   }, []);
 
-  const downloadPart: (part: AudioPart) => void = async (part) => {
+  const downloadPart: (part: AudioPart) => Promise<void> = async (part) => {
     const idx = part.index;
     dispatch({ type: `SET_DOWNLOADING`, idx, downloading: true });
     await FS.downloadAudio(
@@ -73,6 +73,15 @@ const Audio: React.FC<Props> = ({ route }) => {
     );
     dispatch({ type: `SET_DOWNLOADING`, idx, downloading: false });
   };
+
+  async function skipTo(index: number): Promise<void> {
+    Player.reset();
+    setSelectedPart(index);
+    if (!FS.hasAudio(audio.parts[index], quality)) {
+      await downloadPart(audio.parts[index]);
+    }
+    return Player.playPart(audio.parts[index], quality);
+  }
 
   const [, Player] = usePlayer();
   const playing = Player.isPlayingAudio(audio.id);
@@ -106,6 +115,16 @@ const Audio: React.FC<Props> = ({ route }) => {
           isCurrentAudioPart={Player.isAudioPartSelected(audio.id, selectedPart)}
           downloading={partsState[selectedPart].downloading}
           progress={partsState[selectedPart].progress}
+          skipNext={
+            audio.parts[selectedPart + 1] !== undefined
+              ? () => skipTo(selectedPart + 1)
+              : undefined
+          }
+          skipBack={
+            audio.parts[selectedPart - 1] !== undefined
+              ? () => skipTo(selectedPart - 1)
+              : undefined
+          }
           togglePlayback={async () => {
             if (noPartsDownloaded) {
               Player.reset();
