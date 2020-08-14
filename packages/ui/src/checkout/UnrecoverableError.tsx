@@ -19,7 +19,7 @@ const UnrecoverableError: React.FC<Props> = ({ onRetry, onClose }) => (
         😬
       </span>
       {` `}
-      <Dual.frag>
+      <Dual.Frag>
         <>
           Whoops! We’re very sorry &mdash; the checkout process encountered a rare and
           unexpected error. Don’t worry, your credit card <i>was not charged.</i> Please
@@ -43,7 +43,7 @@ const UnrecoverableError: React.FC<Props> = ({ onRetry, onClose }) => (
           {` `}
           para que puedas recibir ayuda para completar tu pedido..
         </>
-      </Dual.frag>
+      </Dual.Frag>
     </ErrorMsg>
     <div className="flex flex-col items-center mt-8 md:flex-row md:justify-center">
       <Button className="mb-6 md:mb-0 md:mr-6" shadow onClick={onRetry}>

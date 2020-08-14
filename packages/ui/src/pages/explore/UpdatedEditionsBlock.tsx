@@ -19,7 +19,7 @@ const UpdatedEditionsBlock: React.FC<Props> = ({ books }) => (
     word={LANG === `en` ? `Updated` : `Libros`}
     title={LANG === `en` ? `Updated Editions` : `Libros`}
   >
-    <Dual.p className="body-text pb-12 max-w-screen-md leading-loose">
+    <Dual.P className="body-text pb-12 max-w-screen-md leading-loose">
       <>
         We currently have <b>{books.length}</b> books available in an{` `}
         <em>updated edition</em>, with more being added regularly. Our updated editions
@@ -39,7 +39,7 @@ const UpdatedEditionsBlock: React.FC<Props> = ({ books }) => (
         </Link>
         .
       </>
-    </Dual.p>
+    </Dual.P>
     <BookSlider books={books} />
   </BgWordBlock>
 );

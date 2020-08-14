@@ -11,7 +11,7 @@ interface Props {
 }
 
 const QualitySwitch: React.FC<Props> = ({ className, quality, onChange }) => (
-  <Dual.frag>
+  <Dual.Frag>
     <Switch
       className={className}
       checked={quality === `HQ`}
@@ -36,7 +36,7 @@ const QualitySwitch: React.FC<Props> = ({ className, quality, onChange }) => (
       checkedIcon={<Label className="pl-3 w-24">&nbsp;Alta Calidad</Label>}
       aria-label="Audio download quality"
     />
-  </Dual.frag>
+  </Dual.Frag>
 );
 
 export default QualitySwitch;

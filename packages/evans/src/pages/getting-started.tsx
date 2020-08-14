@@ -37,12 +37,12 @@ const GettingStartedPage: React.FC<Props> = ({
     />
     <BooksBgBlock className="flex flex-col items-center">
       <Heading darkBg className="text-white">
-        <Dual.frag>
+        <Dual.Frag>
           <>Not sure where to get started?</>
           <>¿No estás seguro de dónde empezar?</>
-        </Dual.frag>
+        </Dual.Frag>
       </Heading>
-      <Dual.p className="text-center body-text text-white text-lg leading-loose max-w-4xl md:text-left">
+      <Dual.P className="text-center body-text text-white text-lg leading-loose max-w-4xl md:text-left">
         <>
           Interested in reading something from the early Quakers, but picking from{` `}
           {LANG === `en` ? meta.numEnglishBooks : meta.numSpanishBooks} books seems
@@ -57,15 +57,15 @@ const GettingStartedPage: React.FC<Props> = ({
           decidir. Además, hemos puesto un audio introductorio para ayudarte a conocer
           quienes fueron los primeros Amigos.
         </>
-      </Dual.p>
+      </Dual.P>
     </BooksBgBlock>
     <DuoToneWaveBlock className="pt-12 px-6 pb-32">
       <div className="flex flex-col sm:items-center">
-        <Dual.h2 className="font-sans text-3xl px-6 text-center mb-6 tracking-wide md:text-left">
+        <Dual.H2 className="font-sans text-3xl px-6 text-center mb-6 tracking-wide md:text-left">
           <>Step 1: Audio Introduction</>
           <>Paso 1: Audio Introductorio</>
-        </Dual.h2>
-        <Dual.p className="body-text text-center px-6 mb-10 text-lg leading-loose max-w-3xl md:pr-20">
+        </Dual.H2>
+        <Dual.P className="body-text text-center px-6 mb-10 text-lg leading-loose max-w-3xl md:pr-20">
           <>
             If you haven’t listened to our introductory audio explaining who the early
             Quakers were, we recommend you start here by clicking the play button below:
@@ -75,7 +75,7 @@ const GettingStartedPage: React.FC<Props> = ({
             los primeros Cuáqueros, te recomendamos que empieces por aquí, haciendo clic
             al botón de reproducir a continuación:
           </>
-        </Dual.p>
+        </Dual.P>
         <div className="max-w-3xl sm:w-3/4">
           <EmbeddedAudio
             trackId={LANG === `es` ? 783137959 : 242345955}
@@ -90,11 +90,11 @@ const GettingStartedPage: React.FC<Props> = ({
       </div>
     </DuoToneWaveBlock>
     <div className="bg-flgray-100 py-12 px-16">
-      <Dual.h2 className="font-sans text-3xl text-center mb-6 tracking-wide">
+      <Dual.H2 className="font-sans text-3xl text-center mb-6 tracking-wide">
         <>Step 2: Choose A Path</>
         <>Paso 2: Escoge un Camino</>
-      </Dual.h2>
-      <Dual.p className="body-text text-lg text-center max-w-3xl mx-auto">
+      </Dual.H2>
+      <Dual.P className="body-text text-lg text-center max-w-3xl mx-auto">
         <>
           Now for the only decision you need to make: of the four categories below, which
           one interests you the most? Click one of the colored boxes below to see our
@@ -105,7 +105,7 @@ const GettingStartedPage: React.FC<Props> = ({
           continuación ¿Cuál es la que más te interesa? Haz clic en uno de los cuadros a
           continuación para ver nuestras recomendaciones para esa categoría en particular.
         </>
-      </Dual.p>
+      </Dual.P>
     </div>
     <div className="md:flex flex-wrap">
       <PathIntro
@@ -194,7 +194,7 @@ export const query = graphql`
 `;
 
 export const DevotionalBlurb: React.FC = () => (
-  <Dual.frag>
+  <Dual.Frag>
     <>
       Early Friends left behind a precious treasury of devotional writings which, when
       read by hungry hearts, greatly tend to kindle love towards God, faithfulness in
@@ -207,11 +207,11 @@ export const DevotionalBlurb: React.FC = () => (
       fidelidad en la obediencia, mansedumbre para con todos, y un profundo sentido de
       humildad y sobriedad durante el tiempo de nuestra estancia en el cuerpo.
     </>
-  </Dual.frag>
+  </Dual.Frag>
 );
 
 export const JournalsBlurb: React.FC = () => (
-  <Dual.frag>
+  <Dual.Frag>
     <>
       The most common of all Quaker writings are their journals. These are incredibly
       inspiring and instructive records of real men and women who walked in the
@@ -226,11 +226,11 @@ export const JournalsBlurb: React.FC = () => (
       amor—venciendo al mundo, no por su propia fuerza, sino por aferrarse a la gracia de
       Jesucristo que brota en el corazón.
     </>
-  </Dual.frag>
+  </Dual.Frag>
 );
 
 export const DoctrineBlurb: React.FC = () => (
-  <Dual.frag>
+  <Dual.Frag>
     <>
       Although they hold much in common with other Bible-believing Christian groups, there
       are a number of distinctive doctrines, principles, and testimonies that they were
@@ -243,11 +243,11 @@ export const DoctrineBlurb: React.FC = () => (
       Cuáqueros fueron llevados por el Espíritu de la Verdad a abrazar y mantener, cosas
       que los diferenciaban de otras comunidades cristianas.
     </>
-  </Dual.frag>
+  </Dual.Frag>
 );
 
 export const HistoryBlurb: React.FC = () => (
-  <Dual.frag>
+  <Dual.Frag>
     <>
       Get a feel for the history of the early Society of Friends from their own
       contemporary historians. Learn about the context in which they emerged, the great
@@ -262,5 +262,5 @@ export const HistoryBlurb: React.FC = () => (
       fue su surgimiento, sus grandes sufrimientos y fidelidad, y la difusión de la Verdad
       en Gran Bretaña, Europa, las colonias de América y más allá.
     </>
-  </Dual.frag>
+  </Dual.Frag>
 );

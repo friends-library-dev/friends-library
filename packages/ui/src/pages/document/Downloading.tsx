@@ -4,10 +4,10 @@ import ChoiceStep from './ChoiceStep';
 
 const Downloading: React.FC = () => (
   <ChoiceStep title="Download">
-    <Dual.p className="p-8 body-text text-white text-center bg-flblue-700">
+    <Dual.P className="p-8 body-text text-white text-center bg-flblue-700">
       <>Your download should begin shortly.</>
       <>Tu descarga debería comenzar en breve.</>
-    </Dual.p>
+    </Dual.P>
   </ChoiceStep>
 );
 

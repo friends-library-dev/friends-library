@@ -18,7 +18,7 @@ const GettingStartedLinkBlock: React.FC<Props> = ({ bgImg }) => {
       id="GettingStartedLinkBlock"
       className="p-16 bg-cover sm:p-20 md:p-24"
     >
-      <Dual.h3 className="text-white text-center font-sans leading-loose tracking-wider text-lg antialiased">
+      <Dual.H3 className="text-white text-center font-sans leading-loose tracking-wider text-lg antialiased">
         <>
           Looking for just a few hand-picked recommendations? Head on over to our{` `}
           <Link className="fl-underline" to={t`/getting-started`}>
@@ -35,7 +35,7 @@ const GettingStartedLinkBlock: React.FC<Props> = ({ bgImg }) => {
           </Link>
           .
         </>
-      </Dual.h3>
+      </Dual.H3>
     </BackgroundImage>
   );
 };

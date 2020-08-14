@@ -24,10 +24,10 @@ const NewsFeed: React.FC<Props> = ({ items, className }) => {
           className="flex subtle-focus items-center justify-center text-white text-center m-2 mb-0 py-0 px-4 rounded-lg uppercase sans-widest text-sm"
           onClick={() => setShowing(showing + 5)}
         >
-          <Dual.span>
+          <Dual.Span>
             <>Load More</>
             <>Ver Más</>
-          </Dual.span>
+          </Dual.Span>
           <span className="pl-3 text-4xl mb-2 tracking-tighter">• • •</span>
         </button>
       )}

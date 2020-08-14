@@ -18,12 +18,12 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
   return (
     <div>
       <Header>
-        <Dual.frag>
+        <Dual.Frag>
           <>Empty Cart</>
           <>Tu carrito está vacío</>
-        </Dual.frag>
+        </Dual.Frag>
       </Header>
-      <Dual.p className="body-text text-center">
+      <Dual.P className="body-text text-center">
         <>
           There’s nothing in your cart! Below are a few recommendations, or you can check
           out our{` `}
@@ -48,7 +48,7 @@ const EmptyCart: React.FC<Props> = ({ recommendedBooks }) => {
           </Link>
           .
         </>
-      </Dual.p>
+      </Dual.P>
       <div className="flex flex-col items-center md:flex-row md:justify-center md:items-start mt-8 px-6">
         {recommendedBooks.map(({ Cover, title, path }, idx) => (
           <Link

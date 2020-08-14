@@ -19,7 +19,7 @@ const NotFoundHeroBlock: React.FC<Props> = ({ bgImg }) => (
     className="text-center text-white px-10 py-20 sm:px-16 sm:py-24 md:py-24 xl:py-32"
   >
     <h1 className="sans-wider text-4xl font-bold">{t`Not Found`}</h1>
-    <Dual.p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
+    <Dual.P className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       <>
         Sorry, it looks like you followed a broken link, or tried a URL that doesn’t
         exist. try searching below for what you’re looking for, or you can contact us if
@@ -32,7 +32,7 @@ const NotFoundHeroBlock: React.FC<Props> = ({ bgImg }) => (
         contactarnos si crees que has encontrado un problema con el sitio web &mdash; ¡Nos
         encantaría saberlo para poder solucionarlo lo antes posible!!
       </>
-    </Dual.p>
+    </Dual.P>
     <form
       action="https://google.com/search"
       className="flex flex-col md:flex-row p-3 sm:p-8 max-w-screen-md rounded-md mx-auto"

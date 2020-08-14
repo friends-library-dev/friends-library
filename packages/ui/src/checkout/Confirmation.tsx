@@ -12,7 +12,7 @@ const Confirmation: React.FC<{ onClose: () => void; email: string }> = ({
   <div className="md:py-12">
     <Header>{t`Confirmed!`}</Header>
     <Progress step="Confirmation" />
-    <Dual.p className="bg-orange-600 font-sans text-white py-4 px-8 mt-10 -mb-2">
+    <Dual.P className="bg-orange-600 font-sans text-white py-4 px-8 mt-10 -mb-2">
       <>
         Note: Due to complications with shipping having to do with the ongoing COVID-19
         pandemic, your book order may arrive as much as 10-15 days later than normal.
@@ -23,8 +23,8 @@ const Confirmation: React.FC<{ onClose: () => void; email: string }> = ({
         COVID-19, tu pedido de libros puede demorar en llegar hasta 10-15 días más de lo
         normal. Lamentamos las molestias que esto pueda ocasionarte.
       </>
-    </Dual.p>
-    <Dual.p className="body-text text-center mt-10">
+    </Dual.P>
+    <Dual.P className="body-text text-center mt-10">
       <>
         We’ve processed your order. You will receive an email to <code>{email}</code> with
         a confirmation shortly, and in a few days we’ll also send you a tracking number
@@ -37,7 +37,7 @@ const Confirmation: React.FC<{ onClose: () => void; email: string }> = ({
         enviaremos el número de seguimiento de tu paquete, una vez que haya sido enviado.
         ¡Realmente esperamos que disfrutes y obtengas provecho del libro que has pedido!
       </>
-    </Dual.p>
+    </Dual.P>
     <Button className="mx-auto mt-10" shadow onClick={onClose}>
       {t`Close`}
     </Button>

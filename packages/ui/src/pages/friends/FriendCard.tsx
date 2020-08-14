@@ -86,7 +86,7 @@ const FriendCard: React.FC<Props> = ({
             {region}
           </Item>
           <Item key="logo" Icon={ThinLogo}>
-            <Dual.frag>
+            <Dual.Frag>
               <>
                 {numBooks} book{numBooks > 1 ? `s` : ``} available
               </>
@@ -94,7 +94,7 @@ const FriendCard: React.FC<Props> = ({
                 {numBooks} libro{numBooks > 1 ? `s` : ``} disponible
                 {numBooks > 1 ? `s` : ``}
               </>
-            </Dual.frag>
+            </Dual.Frag>
           </Item>
         </Stack>
       </div>
