@@ -187,7 +187,7 @@ export default Delivery;
 
 const ShippingError: React.FC = () => (
   <ErrorMsg>
-    <Dual.frag>
+    <Dual.Frag>
       <>
         Sorry, we’re not able to ship to that address. Please double-check for any{` `}
         <i>errors,</i> or try an <i>alternate address</i> where you could receive a
@@ -210,6 +210,6 @@ const ShippingError: React.FC = () => (
         {` `}
         para acordar un envío alternativo.
       </>
-    </Dual.frag>
+    </Dual.Frag>
   </ErrorMsg>
 );

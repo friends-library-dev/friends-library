@@ -49,7 +49,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
   render(): React.ReactNode {
     if (this.state.hasError) {
       return (
-        <Dual.h1 className="p-6 text-center text-white bg-red-700">
+        <Dual.H1 className="p-6 text-center text-white bg-red-700">
           <>
             Sorry, an unexpected error occurred. We&rsquo;ve been notified of the problem
             and will look into it as soon as possible. Please refresh the page and try
@@ -60,7 +60,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
             problema y lo investigaremos lo antes posible. Actualiza la página e inténtalo
             de nuevo. Lamentamos cualquier inconveniente.
           </>
-        </Dual.h1>
+        </Dual.H1>
       );
     }
 

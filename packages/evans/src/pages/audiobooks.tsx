@@ -65,10 +65,10 @@ const AudiobooksPage: React.FC<Props> = ({
       numBooks={audioBooks.nodes.length}
     />
     <div className="bg-flgray-200 py-12 xl:pb-6">
-      <Dual.h2 className="sans-wider text-center text-2xl md:text-3xl mb-12 px-10">
+      <Dual.H2 className="sans-wider text-center text-2xl md:text-3xl mb-12 px-10">
         <>Recently Added Audio Books</>
         <>Audiolibros añadidos recientemente</>
-      </Dual.h2>
+      </Dual.H2>
       <Stack
         space="16"
         xl="0"
@@ -94,7 +94,7 @@ const AudiobooksPage: React.FC<Props> = ({
     </div>
     <div className="pt-16">
       <h2 className="sans-wider text-center text-3xl mb-8 px-8">{t`All Audio Books`}</h2>
-      <Dual.p className="body-text text-center text-lg mb-12 px-8 sm:px-10">
+      <Dual.P className="body-text text-center text-lg mb-12 px-8 sm:px-10">
         <>
           Browse all {audioBooks.nodes.length} audiobooks below, or{` `}
           <Link to={t`/audio-help`} className="subtle-link">
@@ -109,7 +109,7 @@ const AudiobooksPage: React.FC<Props> = ({
           </Link>
           .
         </>
-      </Dual.p>
+      </Dual.P>
       <div className="flex flex-col md:flex-row flex-wrap items-center md:items-stretch justify-center">
         {audioBooks.nodes.map((book, idx) => (
           <Audiobook

@@ -112,10 +112,10 @@ const Layout: React.FC = ({ children }) => {
           style={{ position: `fixed`, right: 7, top: 73, zIndex: 1000 }}
           tailwindBgColor="flprimary"
         >
-          <Dual.p className="text-white px-8 py-4 font-sans antialiased">
+          <Dual.P className="text-white px-8 py-4 font-sans antialiased">
             <>An item was added to your cart</>
             <>Un artículo fue añadido a tu carrito</>
-          </Dual.p>
+          </Dual.P>
         </PopUnder>
       )}
       <CoverWebStylesAllStatic />

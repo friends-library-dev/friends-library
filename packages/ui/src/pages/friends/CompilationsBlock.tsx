@@ -21,7 +21,7 @@ const CompilationsBlock: React.FC<Props> = ({ bgImg }) => (
     className="text-center text-white px-16 py-24 md:py-24 xl:py-32"
   >
     <h1 className="sans-wider text-4xl font-bold">{t`Compilations`}</h1>
-    <Dual.p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
+    <Dual.P className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       <>
         We also have books that contain a collection of writings from several different
         authors. Some of these books were compiled and published by early Friends, and
@@ -47,7 +47,7 @@ const CompilationsBlock: React.FC<Props> = ({ bgImg }) => (
         , el cual contiene extractos de los diarios y cartas de 10 antiguos Amigos que
         describen su descubrimiento de la verdad y su crecimiento espiritual.
       </>
-    </Dual.p>
+    </Dual.P>
     <Button to={t`/compilations`} className="mt-4 mx-auto">
       {t`View Compilations`} &rarr;
     </Button>

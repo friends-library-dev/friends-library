@@ -19,7 +19,7 @@ const FriendsPageHero: React.FC<Props> = ({ numFriends, bgImg }) => (
     className="text-center text-white px-16 py-16 md:py-24 xl:py-32"
   >
     <h1 className="sans-wider text-4xl font-bold">{t`Authors`}</h1>
-    <Dual.p className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
+    <Dual.P className="body-text text-white py-8 text-lg leading-loose max-w-screen-sm mx-auto">
       <>
         Friends Library currently contains books written by{` `}
         <span className="font-bold">{numFriends}</span> early Friends, and more authors
@@ -80,7 +80,7 @@ const FriendsPageHero: React.FC<Props> = ({ numFriends, bgImg }) => (
         {` `}
         para hallar exactamente lo que estás buscando.
       </>
-    </Dual.p>
+    </Dual.P>
   </BackgroundImage>
 );
 

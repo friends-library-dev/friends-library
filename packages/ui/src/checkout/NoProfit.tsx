@@ -5,7 +5,7 @@ import SpanishFreeBooksNote from '../SpanishFreeBooksNote';
 
 const NoProfit: React.FC<{ className?: string }> = ({ className }) => (
   <>
-    <Dual.p
+    <Dual.P
       className={cx(
         className,
         `text-center font-serif text-md md:text-lg tracking-wide leading-relaxed text-gray-800 antialiased px-4 md:px-6 mb-8`,
@@ -23,7 +23,7 @@ const NoProfit: React.FC<{ className?: string }> = ({ className }) => (
         calculamos que nos costará exactamente imprimir y enviar los libros a través de la
         imprenta que nos presta este servicio.
       </>
-    </Dual.p>
+    </Dual.P>
     <SpanishFreeBooksNote className="font-serif text-sm md:text-lg tracking-wide leading-relaxed text-gray-800 antialiased px-4 md:px-6 mb-8" />
   </>
 );

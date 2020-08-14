@@ -18,22 +18,22 @@ const DualComponent: React.FC<Props> = (props) => {
   return <Tag {...forwardProps}>{useChildren}</Tag>;
 };
 
-const p: React.FC<PartialProps> = (props) => <DualComponent el="p" {...props} />;
-const a: React.FC<PartialProps> = (props) => <DualComponent el="a" {...props} />;
-const span: React.FC<PartialProps> = (props) => <DualComponent el="span" {...props} />;
-const h1: React.FC<PartialProps> = (props) => <DualComponent el="h1" {...props} />;
-const h2: React.FC<PartialProps> = (props) => <DualComponent el="h2" {...props} />;
-const h3: React.FC<PartialProps> = (props) => <DualComponent el="h3" {...props} />;
-const h4: React.FC<PartialProps> = (props) => <DualComponent el="h4" {...props} />;
-const frag: React.FC<PartialProps> = (props) => <DualComponent {...props} />;
+const P: React.FC<PartialProps> = (props) => <DualComponent el="p" {...props} />;
+const A: React.FC<PartialProps> = (props) => <DualComponent el="a" {...props} />;
+const Span: React.FC<PartialProps> = (props) => <DualComponent el="span" {...props} />;
+const H1: React.FC<PartialProps> = (props) => <DualComponent el="h1" {...props} />;
+const H2: React.FC<PartialProps> = (props) => <DualComponent el="h2" {...props} />;
+const H3: React.FC<PartialProps> = (props) => <DualComponent el="h3" {...props} />;
+const H4: React.FC<PartialProps> = (props) => <DualComponent el="h4" {...props} />;
+const Frag: React.FC<PartialProps> = (props) => <DualComponent {...props} />;
 
 export default {
-  p,
-  a,
-  h1,
-  h2,
-  h3,
-  h4,
-  span,
-  frag,
+  P,
+  A,
+  H1,
+  H2,
+  H3,
+  H4,
+  Span,
+  Frag,
 };

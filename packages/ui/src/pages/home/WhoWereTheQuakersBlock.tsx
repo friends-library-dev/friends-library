@@ -20,12 +20,12 @@ const WhoWereTheQuakersBlock: React.FC<Props> = ({ bgImg }) => (
     className="bg-flmaroon text-white flex flex-col items-center py-12 sm:py-16 px-12  md:px-16 lg:px-20 lg:py-24"
   >
     <Heading darkBg>
-      <Dual.frag>
+      <Dual.Frag>
         <>Who were the Quakers?</>
         <>¿Quiénes eran los Cuáqueros?</>
-      </Dual.frag>
+      </Dual.Frag>
     </Heading>
-    <Dual.p className="font-serif text-lg sm:text-xl opacity-75 leading-relaxed max-w-6xl">
+    <Dual.P className="font-serif text-lg sm:text-xl opacity-75 leading-relaxed max-w-6xl">
       <>
         The early Quakers arose in the mid 1600&rsquo;s in England. Dissatisfied with
         lifeless religion, outward forms and ceremonies, their hearts longed to experience
@@ -44,7 +44,7 @@ const WhoWereTheQuakersBlock: React.FC<Props> = ({ bgImg }) => (
         nuestra salvación a medida que nos purifica y nos cambia verdaderamente desde
         nuestro interior.
       </>
-    </Dual.p>
+    </Dual.P>
 
     <Button to={t`/quakers`} className="mt-12" bg="blue" shadow>
       {t`Find out more`}
