@@ -18,7 +18,7 @@ const files = yamlGlob(path.resolve(__dirname, `../../yml/*/*.yml`))
       path: path.resolve(__dirname, `../../src/__tests__/fixture.yml`),
     },
   ])
-  .map(({ short, path }) => ({ path: short, contents: readFileSync(path, `UTF-8`) }))
+  .map(({ short, path }) => ({ path: short, contents: readFileSync(path, `utf8`) }))
   .map(({ path, contents }) => ({ path, json: safeLoad(contents) }));
 
 files.forEach(({ path, json }) => {
