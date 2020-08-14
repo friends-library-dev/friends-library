@@ -31,23 +31,27 @@ const AudioControls: React.FC<Props> = ({
   const [, player] = usePlayer();
   return (
     <>
-      <View style={tw(`flex-row justify-between items-center px-2`)}>
-        <TouchableOpacity onPress={skipBack}>
-          <Icon
-            style={{ opacity: skipBack ? 1 : 0 }}
-            name="step-backward"
-            size={25}
-            color={HEX_BLUE}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => player.seekBackward(30)}>
-          <Icon
-            style={{ transform: [{ scaleX: -1 }] }}
-            name="repeat"
-            size={25}
-            color={HEX_BLUE}
-          />
-        </TouchableOpacity>
+      <View style={tw(`flex-row items-center px-2`, downloading ? `justify-center` : `justify-between`)}>
+        {!downloading && (
+          <TouchableOpacity onPress={skipBack}>
+            <Icon
+              style={{ opacity: skipBack ? 1 : 0 }}
+              name="step-backward"
+              size={25}
+              color={HEX_BLUE}
+            />
+          </TouchableOpacity>
+        )}
+        {!downloading && (
+          <TouchableOpacity onPress={() => player.seekBackward(30)}>
+            <Icon
+              style={{ transform: [{ scaleX: -1 }] }}
+              name="repeat"
+              size={25}
+              color={HEX_BLUE}
+            />
+          </TouchableOpacity>
+        )}
         <TouchableOpacity
           style={tw(`items-center justify-center mb-2`)}
           onPress={togglePlayback}
@@ -61,22 +65,21 @@ const AudioControls: React.FC<Props> = ({
             }
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => player.seekForward(30)}>
-          <Icon
-            // style={{ transform: [{ scaleX: -1 }] }}
-            name="repeat"
-            size={25}
-            color={HEX_BLUE}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={skipNext}>
-          <Icon
-            style={{ opacity: skipNext ? 1 : 0 }}
-            name="step-forward"
-            size={25}
-            color={HEX_BLUE}
-          />
-        </TouchableOpacity>
+        {!downloading && (
+          <TouchableOpacity onPress={() => player.seekForward(30)}>
+            <Icon name="repeat" size={25} color={HEX_BLUE} />
+          </TouchableOpacity>
+        )}
+        {!downloading && (
+          <TouchableOpacity onPress={skipNext}>
+            <Icon
+              style={{ opacity: skipNext ? 1 : 0 }}
+              name="step-forward"
+              size={25}
+              color={HEX_BLUE}
+            />
+          </TouchableOpacity>
+        )}
       </View>
       <Progress
         downloading={downloading}

@@ -173,7 +173,7 @@ const Audio: React.FC<Props> = ({ route }) => {
       >
         {audio.shortDescription}
       </Serif>
-      {(audio.parts.length > 1 || partDownloading) &&
+      {audio.parts.length > 1 &&
         audio.parts.map((part, idx) => (
           <DownloadablePart
             key={`${audio.id}--${part.index}`}
