@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { View, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
@@ -12,6 +12,7 @@ import { Serif, Sans } from '../components/Text';
 import DownloadablePart from '../components/DownloadablePart';
 import { partsReducer, initialPartsState } from './audio-part-state';
 import AudioControls from '../components/AudioControls';
+import { AudioQuality } from '@friends-library/types';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Audio'>;
@@ -27,6 +28,39 @@ const Audio: React.FC<Props> = ({ route }) => {
     partsReducer,
     initialPartsState(audio.parts, quality),
   );
+
+  useEffect(() => {
+    FS.setOnlyListener(`download:start`, (part: AudioPart, dlQuality: AudioQuality) => {
+      if (part.audioId != audio.id || quality !== dlQuality) return;
+      dispatch({ type: `SET_DOWNLOADING`, idx: part.index, downloading: true });
+    });
+    FS.setOnlyListener(
+      `download:progress`,
+      (progress: number, part: AudioPart, dlQuality: AudioQuality) => {
+        if (part.audioId != audio.id || quality !== dlQuality) return;
+        dispatch({ type: `SET_PROGRESS`, idx: part.index, progress });
+      },
+    );
+    FS.setOnlyListener(`download:failed`, (part: AudioPart, dlQuality: AudioQuality) => {
+      if (part.audioId != audio.id || quality !== dlQuality) return;
+      dispatch({ type: `SET_DOWNLOADING`, idx: part.index, downloading: false });
+      dispatch({ type: `SET_DOWNLOADED`, idx: part.index, downloaded: false });
+    });
+    FS.setOnlyListener(
+      `download:complete`,
+      (part: AudioPart, dlQuality: AudioQuality) => {
+        if (part.audioId != audio.id || quality !== dlQuality) return;
+        dispatch({ type: `SET_DOWNLOADED`, idx: part.index, downloaded: true });
+        dispatch({ type: `SET_DOWNLOADING`, idx: part.index, downloading: false });
+      },
+    );
+    return () => {
+      FS.removeAllListeners(`download:start`);
+      FS.removeAllListeners(`download:complete`);
+      FS.removeAllListeners(`download:failed`);
+      FS.removeAllListeners(`download:progress`);
+    };
+  }, []);
 
   const downloadPart: (part: AudioPart) => void = async (part) => {
     const idx = part.index;

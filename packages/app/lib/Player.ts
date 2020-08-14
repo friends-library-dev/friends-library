@@ -53,7 +53,7 @@ class Player extends EventEmitter {
 
   public getPrevAudioPart(): AudioPart | null {
     const audio = this.getCurrentTrackAudioResource();
-    if (!audio || !this.state.trackPartIndex) {
+    if (!audio || this.state.trackPartIndex === undefined) {
       return null;
     }
     return audio.parts[this.state.trackPartIndex - 1] || null;
@@ -61,7 +61,7 @@ class Player extends EventEmitter {
 
   public getNextAudioPart(): AudioPart | null {
     const audio = this.getCurrentTrackAudioResource();
-    if (!audio || !this.state.trackPartIndex) {
+    if (!audio || this.state.trackPartIndex === undefined) {
       return null;
     }
     return audio.parts[this.state.trackPartIndex + 1] || null;

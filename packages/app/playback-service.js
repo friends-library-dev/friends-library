@@ -23,7 +23,7 @@ module.exports = async function () {
   });
 
   setInterval(async () => {
-    const { playbackState, trackPartIndex } = player.state;
+    const { playbackState } = player.state;
     const quality = Data.userSettings.audioQuality;
 
     // download next chapter after 75% of current played
