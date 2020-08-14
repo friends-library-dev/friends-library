@@ -30,6 +30,16 @@ class Player extends EventEmitter {
     return RNTrackPlayer.getPosition();
   }
 
+  public async seekBackward(seconds: number): Promise<void> {
+    const currentPosition = await this.getPosition();
+    return this.seekTo(currentPosition - seconds);
+  }
+
+  public async seekForward(seconds: number): Promise<void> {
+    const currentPosition = await this.getPosition();
+    return this.seekTo(currentPosition + seconds);
+  }
+
   public async seekTo(requestedPosition: number): Promise<void> {
     const { trackAudioId, trackPartIndex } = this.state;
     if (!trackAudioId || trackPartIndex === undefined) {

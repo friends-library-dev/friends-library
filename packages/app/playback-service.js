@@ -8,14 +8,12 @@ module.exports = async function () {
   player.addEventListener(`remote-pause`, () => player.pause());
   player.addEventListener(`remote-play`, () => player.resume());
 
-  player.addEventListener(`remote-jump-forward`, async ({ interval }) => {
-    const currentPosition = await player.getPosition();
-    player.seekTo(currentPosition + interval);
+  player.addEventListener(`remote-jump-forward`, ({ interval }) => {
+    player.seekForward(interval);
   });
 
-  player.addEventListener(`remote-jump-backward`, async ({ interval }) => {
-    const currentPosition = await player.getPosition();
-    player.seekTo(currentPosition - interval);
+  player.addEventListener(`remote-jump-backward`, ({ interval }) => {
+    player.seekBackward(interval);
   });
 
   player.addEventListener(`remote-seek`, async ({ position }) => {
