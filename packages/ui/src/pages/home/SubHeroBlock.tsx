@@ -32,7 +32,7 @@ const SubHeroBlock: React.FC<Props> = ({
     <Heading darkBg className="text-white md:hidden">
       {t`Our Books`}
     </Heading>
-    <Dual.p className="font-serif text-white antialiased text-lg sm:text-xl leading-relaxed md:w-2/3 lg:w-4/5 lg:pr-24 md:pr-8 xl:text-2xl xl:max-w-6xl xl:mb-16">
+    <Dual.P className="font-serif text-white antialiased text-lg sm:text-xl leading-relaxed md:w-2/3 lg:w-4/5 lg:pr-24 md:pr-8 xl:text-2xl xl:max-w-6xl xl:mb-16">
       <>
         Our {numTotalBooks} books are available for free download in multiple editions and
         digital formats, and a growing number of them are also recorded as audiobooks. Or,
@@ -45,7 +45,7 @@ const SubHeroBlock: React.FC<Props> = ({
         están siendo grabados como audiolibros. O si lo prefieres, puedes pedir un libro
         impreso; vas a pagar única y exactamente el costo de impresión y envío.
       </>
-    </Dual.p>
+    </Dual.P>
     <ul className="flex flex-wrap font-sans text-white uppercase tracking-wider mt-8 mb-12 justify-center antialiased md:justify-start md:max-w-xl lg:max-w-none">
       <li className="Format Format--audio">{t`Audiobooks`}</li>
       <li className="Format Format--paperback">{t`Paperbacks`}</li>

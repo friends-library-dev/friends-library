@@ -20,10 +20,10 @@ interface Props {
 const ActiveFilters: React.FC<Props> = ({ groups, clearAll }) => {
   return (
     <div className="bg-flgray-300 p-6 flex flex-col">
-      <Dual.span className="text-flgray-500 font-sans tracking-wider uppercase text-center text-base antialiased mb-2">
+      <Dual.Span className="text-flgray-500 font-sans tracking-wider uppercase text-center text-base antialiased mb-2">
         <>Active Filters:</>
         <>Filtros Activos:</>
-      </Dual.span>
+      </Dual.Span>
       <div className="flex flex-col md:flex-row md:flex-wrap">
         {groups.map(group => (
           <div
@@ -54,19 +54,19 @@ const ActiveFilters: React.FC<Props> = ({ groups, clearAll }) => {
         ))}
         <div className="hidden md:flex flex-grow xl:flex-grow-0 mt-2 ml-auto justify-center">
           <FilterBtn key="clear-all" onClick={clearAll}>
-            <Dual.frag>
+            <Dual.Frag>
               <>Clear All Filters</>
               <>Borrar todos los Filtros</>
-            </Dual.frag>
+            </Dual.Frag>
           </FilterBtn>
         </div>
       </div>
       <div className="mt-4 flex justify-center md:hidden">
         <FilterBtn key="clear-all" onClick={clearAll}>
-          <Dual.frag>
+          <Dual.Frag>
             <>Clear All Filters</>
             <>Borrar todos los Filtros</>
-          </Dual.frag>
+          </Dual.Frag>
         </FilterBtn>
       </div>
     </div>

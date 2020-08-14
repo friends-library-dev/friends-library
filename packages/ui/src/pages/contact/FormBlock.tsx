@@ -24,7 +24,7 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit, bgImg }) => (
         </h1>
         {/* purgeCSS: mb-6 lg:mb-8 */}
         <Stack space="6" lg="8">
-          <Dual.p key="p1">
+          <Dual.P key="p1">
             <>
               Got a question? &mdash; or are you having any sort of technical trouble with
               our books or website?
@@ -33,12 +33,12 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit, bgImg }) => (
               ¿Tienes alguna pregunta? &mdash; ¿o estás teniendo algún tipo de problema
               técnico con nuestros libros o con el sitio?
             </>
-          </Dual.p>
-          <Dual.p key="p2">
+          </Dual.P>
+          <Dual.P key="p2">
             <>Want to reach out for any other reason?</>
             <>¿Quieres ponerte en contacto por alguna otra razón?</>
-          </Dual.p>
-          <Dual.p key="p3">
+          </Dual.P>
+          <Dual.P key="p3">
             <>
               We’d love to hear from you! You can expect to hear back within a day or two.
             </>
@@ -46,7 +46,7 @@ const ContactFormBlock: React.FC<Props> = ({ onSubmit, bgImg }) => (
               ¡Nos encantaría escucharte! Puedes contar con nuestra respuesta en un día o
               dos.
             </>
-          </Dual.p>
+          </Dual.P>
         </Stack>
       </div>
       <Form onSubmit={onSubmit} className="lg:flex-grow p-6 m-2 sm:m-6 lg:m-0 lg:py-12" />

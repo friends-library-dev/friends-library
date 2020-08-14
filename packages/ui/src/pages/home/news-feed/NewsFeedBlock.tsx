@@ -18,10 +18,10 @@ const NewsFeedBlock: React.FC<Props> = ({ bgImg, items }) => {
       className="pt-8 pb-6 sm:p-8 md:p-10 lg:p-12 flex flex-col items-center"
       fluid={[bgLayer([0, 0, 0], 0.8), bgImg, bgLayer(`black`)]}
     >
-      <Dual.h1 className="sans-widest text-3xl font-bold mb-6 antialiased text-white text-center px-6">
+      <Dual.H1 className="sans-widest text-3xl font-bold mb-6 antialiased text-white text-center px-6">
         <>What&rsquo;s New</>
         <>Añadidos Recientemente</>
-      </Dual.h1>
+      </Dual.H1>
       <div className="flex self-stretch justify-center">
         <NewsFeed className="max-w-screen-lg flex-grow self-stretch" items={items} />
       </div>

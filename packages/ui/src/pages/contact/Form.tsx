@@ -36,13 +36,13 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
         className="bg-white p-8 sm:p-10"
       >
         {state === `submitted` && success && (
-          <Dual.p className="FormResultMsg bg-green-700 text-white py-4 px-6 mb-6">
+          <Dual.P className="FormResultMsg bg-green-700 text-white py-4 px-6 mb-6">
             <>Success! You should hear back from us shortly.</>
             <>¡Enviado exitosamente! Pronto recibirás una respuesta de nosotros.</>
-          </Dual.p>
+          </Dual.P>
         )}
         {state === `submitted` && !success && (
-          <Dual.p className="FormResultMsg bg-red-800 text-white py-4 px-6 mb-6">
+          <Dual.P className="FormResultMsg bg-red-800 text-white py-4 px-6 mb-6">
             <>
               Sorry! There was a problem sending your request. Please try again, or{` `}
               <a
@@ -65,7 +65,7 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
               </a>
               .
             </>
-          </Dual.p>
+          </Dual.P>
         )}
         <fieldset>
           <Label htmlFor="name">{t`Name`}</Label>
@@ -103,10 +103,10 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
               className="sr-only"
               onChange={() => setSubject(`tech`)}
             />
-            <Dual.span>
+            <Dual.Span>
               <>Website / technical questions</>
               <>Sitio Web / Preguntas técnicas</>
-            </Dual.span>
+            </Dual.Span>
           </label>
           <label htmlFor="subject-other" className="cursor-pointer">
             <input
@@ -116,10 +116,10 @@ const ContactForm: React.FC<Props> = ({ className, onSubmit }) => {
               id="subject-other"
               className="sr-only"
             />
-            <Dual.span>
+            <Dual.Span>
               <>All other subjects</>
               <>Cualquier otro asunto</>
-            </Dual.span>
+            </Dual.Span>
           </label>
         </div>
         <fieldset>

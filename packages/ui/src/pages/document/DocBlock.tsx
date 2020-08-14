@@ -181,7 +181,7 @@ const DocBlock: React.FC<Props> = props => {
             </h2>
           )}
           {!props.isComplete && (
-            <Dual.p className="font-serif text-xl md:text-lg antialiased italic leading-relaxed mb-4 text-flprimary-800">
+            <Dual.P className="font-serif text-xl md:text-lg antialiased italic leading-relaxed mb-4 text-flprimary-800">
               <>
                 <sup>*</sup>
                 This book is not yet completely published. Since individual chapters are
@@ -192,7 +192,7 @@ const DocBlock: React.FC<Props> = props => {
                 Este libro aun está siendo traducido, sin embargo, dado que cada capítulo
                 es muy valioso, estarán disponibles a medida que se vayan completando.
               </>
-            </Dual.p>
+            </Dual.P>
           )}
           <p className="font-serif text-xl md:text-lg antialiased leading-relaxed">
             {description}
@@ -273,17 +273,17 @@ function LinksAndMeta(
           <li>{numChapters > 1 ? t`${numChapters} chapters` : t`1 chapter`}</li>
           <li>{pages.map(p => t`${p} pages`).join(`, `)}</li>
           <li>
-            <Dual.frag>
+            <Dual.Frag>
               <>Language: English</>
               <>Idioma: Español</>
-            </Dual.frag>
+            </Dual.Frag>
           </li>
           {altLanguageUrl && (
             <li>
-              <Dual.a href={altLanguageUrl}>
+              <Dual.A href={altLanguageUrl}>
                 <>Spanish Version</>
                 <>Versión en inglés</>
-              </Dual.a>
+              </Dual.A>
             </li>
           )}
         </ul>

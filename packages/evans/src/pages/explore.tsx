@@ -49,11 +49,11 @@ const ExplorePage: React.FC<Props> = ({
     />
     <BooksBgBlock bright>
       <div className="bg-white text-center py-12 md:py-16 lg:py-20 px-10 sm:px-16 my-6 max-w-screen-md mx-auto">
-        <Dual.h1 className="sans-wider text-3xl mb-6">
+        <Dual.H1 className="sans-wider text-3xl mb-6">
           <>Explore Books</>
           <>Explorar Libros</>
-        </Dual.h1>
-        <Dual.p className="body-text">
+        </Dual.H1>
+        <Dual.P className="body-text">
           <>
             We currently have {meta.numEnglishBooks} books freely available on this site.
             Overwhelmed? On this page you can browse all the titles by edition, region,
@@ -66,7 +66,7 @@ const ExplorePage: React.FC<Props> = ({
             En nuestra página de “Explorar” puedes navegar por todos nuestros libros y
             audiolibros, o buscar libros en la categoría particular que más te interese.
           </>
-        </Dual.p>
+        </Dual.P>
       </div>
     </BooksBgBlock>
     <ExploreNavBlock />

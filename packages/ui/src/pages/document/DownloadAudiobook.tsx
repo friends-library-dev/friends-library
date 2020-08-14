@@ -45,7 +45,7 @@ const DownloadLinks: React.FC<Props> = props => {
     <div id="audiobook" className={cx(props.className, `bg-white font-sans p-8`)}>
       <h3 className="text-2xl text-center mb-6">{t`Download Audiobook`}</h3>
       {!props.complete && (
-        <Dual.p className="text-center sm:pl-10 max-w-sm mx-auto -mt-2 italic font-serif mb-6 text-flblue">
+        <Dual.P className="text-center sm:pl-10 max-w-sm mx-auto -mt-2 italic font-serif mb-6 text-flblue">
           <>
             <sup>*</sup> The audio for this book is incomplete. The remaining chapters
             will be added soon.
@@ -54,7 +54,7 @@ const DownloadLinks: React.FC<Props> = props => {
             <sup>*</sup> El audio de este libro está incompleto. Los capítulos que faltan
             serán añadidios pronto.
           </>
-        </Dual.p>
+        </Dual.P>
       )}
       <div className="tracking-widest antialiased flex flex-col items-center">
         <dl className="text-flgray-900 inline-block">
@@ -78,14 +78,14 @@ const DownloadLinks: React.FC<Props> = props => {
             </a>
           </dt>
           <dd className="text-flgray-500 text-xs mb-4 pb-1">
-            <Dual.frag>
+            <Dual.Frag>
               <>(use in iTunes, or any music app)</>
               <>(Para usar en iTunes, o en cualquier aplicación de música)</>
-            </Dual.frag>
+            </Dual.Frag>
           </dd>
           <dt className="uppercase text-md mb-1">
             <a href={links.m4b} className="hover:underline">
-              <Dual.frag>
+              <Dual.Frag>
                 <>
                   Download .M4B Audiobook <span className="hidden sm:inline">File</span> -
                   {` `}
@@ -94,12 +94,12 @@ const DownloadLinks: React.FC<Props> = props => {
                   Descargar Audiolibro{` `}
                   <span className="hidden sm:inline">en archivo</span> M4b -{` `}
                 </>
-              </Dual.frag>
+              </Dual.Frag>
               <span className="text-flprimary">({links.m4bSize})</span>
             </a>
           </dt>
           <dd className="text-flgray-500 text-xs mb-4 pb-1">
-            <Dual.frag>
+            <Dual.Frag>
               <>
                 (Audiobook format for{` `}
                 <span className="hidden sm:inline">Apple Books, </span>
@@ -110,7 +110,7 @@ const DownloadLinks: React.FC<Props> = props => {
                 <span className="hidden sm:inline">Aplicación de Libros, </span>
                 iTunes, etc.)
               </>
-            </Dual.frag>
+            </Dual.Frag>
           </dd>
         </dl>
       </div>

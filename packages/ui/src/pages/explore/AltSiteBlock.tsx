@@ -25,7 +25,7 @@ const AltSiteBlock: React.FC<{ numBooks: number; url: string }> = ({ numBooks, u
         iconColor="white"
         friendsColor="white"
       />
-      <Dual.h3 className="relative z-50">
+      <Dual.H3 className="relative z-50">
         <>
           We also have {numBooks} books{` `}
           <Link to="/spanish-translations" className="subtle-link text-white">
@@ -44,7 +44,7 @@ const AltSiteBlock: React.FC<{ numBooks: number; url: string }> = ({ numBooks, u
             sitio en inglés aquí.
           </a>
         </>
-      </Dual.h3>
+      </Dual.H3>
     </div>
   );
 };
