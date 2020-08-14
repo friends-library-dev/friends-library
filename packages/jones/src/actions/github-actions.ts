@@ -151,7 +151,7 @@ export function checkout(task: Task): ReduxThunk {
           return acc;
         }, {} as any);
         const yml = await fetch(friendYmlUrl(repoSlug)).then((r) => r.text());
-        const { documents } = ymlToJs(yml);
+        const { documents } = ymlToJs(yml) as any;
         const documentTitles = documents.reduce((acc: any, doc: any) => {
           acc[doc.slug] = doc.title;
           return acc;
