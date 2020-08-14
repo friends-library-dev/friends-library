@@ -22,6 +22,25 @@ class FileSystem extends EventEmitter {
     }
   }
 
+  public getDeletableBytes(): number {
+    return [...this.manifest].reduce(
+      (acc, [path, bytes]) => (acc += path.endsWith(`.mp3`) ? bytes : 0),
+      0,
+    );
+  }
+
+  public deleteAllDeletable(): Promise<void> {
+    const promises = [...this.manifest].map(([path]) => {
+      return path.endsWith(`.mp3`) ? this.delete(path) : Promise.resolve();
+    });
+    return Promise.all(promises).then(() => {});
+  }
+
+  public delete(path: string): Promise<void> {
+    this.manifest.delete(path);
+    return RNFS.unlink(this.path(path));
+  }
+
   public setOnlyListener(eventName: string, listener: (...args: any[]) => any): void {
     this.removeAllListeners(eventName);
     this.on(eventName, listener);
