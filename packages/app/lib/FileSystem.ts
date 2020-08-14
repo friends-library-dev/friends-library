@@ -18,16 +18,11 @@ class FileSystem extends EventEmitter {
       const files = await RNFS.readDir(this.path(`${dir}/`));
       files
         .filter((f) => f.isFile())
-        .forEach((f) =>
-          this.manifest.set(`${dir}/${basename(f.path)}`, Number(f.size)),
-        );
+        .forEach((f) => this.manifest.set(`${dir}/${basename(f.path)}`, Number(f.size)));
     }
   }
 
-  public setOnlyListener(
-    eventName: string,
-    listener: (...args: any[]) => any,
-  ): void {
+  public setOnlyListener(eventName: string, listener: (...args: any[]) => any): void {
     this.removeAllListeners(eventName);
     this.on(eventName, listener);
   }
@@ -83,7 +78,7 @@ class FileSystem extends EventEmitter {
     const hqPath = `audio/${part.audioId}--${part.index}--HQ.mp3`;
     const lqPath = `audio/${part.audioId}--${part.index}--LQ.mp3`;
     // always use the HQ if we've got it
-    if (this.hasAudio(part, 'HQ')) {
+    if (this.hasAudio(part, `HQ`)) {
       return `file://${this.path(hqPath)}`;
     }
     return `file://${this.path(lqPath)}`;
@@ -96,7 +91,7 @@ class FileSystem extends EventEmitter {
   public writeFile(
     path: string,
     contents: string,
-    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = 'utf8',
+    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = `utf8`,
   ): Promise<void> {
     const writePromise = RNFS.writeFile(
       this.path(path),
@@ -109,12 +104,9 @@ class FileSystem extends EventEmitter {
 
   public readFile(
     path: string,
-    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = 'utf8',
+    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = `utf8`,
   ): Promise<string> {
-    return RNFS.readFile(
-      this.path(path),
-      encoding === `binary` ? `base64` : encoding,
-    );
+    return RNFS.readFile(this.path(path), encoding === `binary` ? `base64` : encoding);
   }
 
   public async readJson(path: string): Promise<any> {
@@ -159,7 +151,7 @@ class FileSystem extends EventEmitter {
 
   private path(path?: string): string {
     return `${RNFS.DocumentDirectoryPath}/__FLP_APP_FILES__${
-      path ? `/${path.replace(/^\//, '')}` : ``
+      path ? `/${path.replace(/^\//, ``)}` : ``
     }`;
   }
 }

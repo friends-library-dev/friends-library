@@ -28,15 +28,14 @@ const Audio: React.FC<Props> = ({ route }) => {
     initialPartsState(audio.parts, quality),
   );
 
-  const downloadPart = async (part: AudioPart) => {
+  const downloadPart: (part: AudioPart) => void = async (part) => {
     const idx = part.index;
     dispatch({ type: `SET_DOWNLOADING`, idx, downloading: true });
     await FS.downloadAudio(
       part,
       quality,
       (progress) => dispatch({ type: `SET_PROGRESS`, idx, progress }),
-      (success) =>
-        dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
+      (success) => dispatch({ type: `SET_DOWNLOADED`, idx, downloaded: success }),
     );
     dispatch({ type: `SET_DOWNLOADING`, idx, downloading: false });
   };
@@ -57,9 +56,9 @@ const Audio: React.FC<Props> = ({ route }) => {
         size={Dimensions.get(`window`).width * 0.8}
         style={{
           marginTop: `8%`,
-          alignSelf: 'center',
+          alignSelf: `center`,
           elevation: 2,
-          shadowColor: '#000',
+          shadowColor: `#000`,
           shadowOffset: { width: 3, height: 3 },
           shadowOpacity: 0.5,
           shadowRadius: 5,
@@ -70,10 +69,7 @@ const Audio: React.FC<Props> = ({ route }) => {
           playing={playing}
           duration={audio.parts[selectedPart].duration}
           numParts={audio.parts.length}
-          isCurrentAudioPart={Player.isAudioPartSelected(
-            audio.id,
-            selectedPart,
-          )}
+          isCurrentAudioPart={Player.isAudioPartSelected(audio.id, selectedPart)}
           downloading={partsState[selectedPart].downloading}
           progress={partsState[selectedPart].progress}
           togglePlayback={async () => {
@@ -105,13 +101,10 @@ const Audio: React.FC<Props> = ({ route }) => {
                 downloadPart(audio.parts[idx]);
               }
             });
-          }}>
+          }}
+        >
           <View style={tw(`bg-blue-200 flex-row px-6 py-2 rounded-full`)}>
-            <Icon
-              name="cloud-download"
-              size={21}
-              style={tw(`pr-2 text-blue-800`)}
-            />
+            <Icon name="cloud-download" size={21} style={tw(`pr-2 text-blue-800`)} />
             <Sans size={15} style={tw(`text-blue-800`)}>
               Download {audio.parts.length > 1 ? `all` : ``}
             </Sans>
@@ -123,7 +116,8 @@ const Audio: React.FC<Props> = ({ route }) => {
           ...tw(`px-6 pt-2 pb-4 text-justify text-gray-800`),
           lineHeight: 26,
         }}
-        size={18}>
+        size={18}
+      >
         {audio.shortDescription}
       </Serif>
       {(audio.parts.length > 1 || partDownloading) &&

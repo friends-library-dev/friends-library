@@ -17,9 +17,7 @@ module.exports = {
   ],
 
   resolver: {
-    blacklistRE: blacklist([
-      /node_modules\/.*\/node_modules\/react-native\/.*/,
-    ]),
+    blacklistRE: blacklist([/node_modules\/.*\/node_modules\/react-native\/.*/]),
 
     // https://github.com/facebook/metro/issues/1#issuecomment-453450709
     extraNodeModules: new Proxy(

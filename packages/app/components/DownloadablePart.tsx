@@ -30,11 +30,11 @@ const DownloadableChapter: React.FC<Props> = ({
       onPress={() => {
         if (!downloaded) return;
         play();
-      }}>
+      }}
+    >
       <View
-        style={tw(
-          `pr-0 pl-2 py-2 flex-row border-b border-gray-300 justify-between`,
-        )}>
+        style={tw(`pr-0 pl-2 py-2 flex-row border-b border-gray-300 justify-between`)}
+      >
         <View style={{ ...tw(`flex-row`), width: winWidth - RIGHT_COL_WIDTH }}>
           <Icon
             style={{
@@ -51,7 +51,8 @@ const DownloadableChapter: React.FC<Props> = ({
         {!downloaded && !downloading && (
           <TouchableOpacity
             style={{ ...tw(`items-center pl-2`), width: RIGHT_COL_WIDTH }}
-            onPress={download}>
+            onPress={download}
+          >
             <Icon name="cloud-download" size={17} style={tw(`text-gray-500`)} />
           </TouchableOpacity>
         )}

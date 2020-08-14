@@ -13,9 +13,8 @@ interface Props {
 
 const AllAudio: React.FC<Props> = ({ navigation }) => {
   const audios = useAudios();
-  const renderItem = ({ item }: { item: AudioResource }) => (
-    <TouchableOpacity
-      onPress={() => navigation.navigate(`Audio`, { audio: item })}>
+  const renderItem: (props: { item: AudioResource }) => JSX.Element = ({ item }) => (
+    <TouchableOpacity onPress={() => navigation.navigate(`Audio`, { audio: item })}>
       <AudioListItem
         id={item.id}
         title={item.title}
@@ -29,7 +28,7 @@ const AllAudio: React.FC<Props> = ({ navigation }) => {
     <FlatList
       data={[...audios.values()]}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      keyExtractor={(item) => item.id}
     />
   );
 };

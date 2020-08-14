@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View } from 'react-native';
 import Scrubber from 'react-native-scrubber';
 import tw from 'tailwind-rn';
 import TrackPlayer from 'react-native-track-player';
@@ -18,13 +18,7 @@ interface Props {
 export default class Progress extends TrackPlayer.ProgressComponent<Props> {
   public render(): JSX.Element {
     const { position } = this.state;
-    const {
-      partDuration,
-      playing,
-      downloading,
-      downloadingProgress,
-      inUse,
-    } = this.props;
+    const { partDuration, playing, downloading, downloadingProgress, inUse } = this.props;
     return (
       <View style={{ opacity: playing || downloading ? 1 : 0.6 }}>
         {!downloading && (
@@ -43,9 +37,7 @@ export default class Progress extends TrackPlayer.ProgressComponent<Props> {
         {downloading && (
           <>
             <View style={tw(`mt-3 h-2`)}>
-              <View
-                style={tw(`w-full border-b border-2 border-gray-300 absolute`)}
-              />
+              <View style={tw(`w-full border-b border-2 border-gray-300 absolute`)} />
               <View
                 style={{
                   ...tw(`border-b border-2 border-gray-500 absolute`),
@@ -63,7 +55,7 @@ export default class Progress extends TrackPlayer.ProgressComponent<Props> {
   }
 }
 
-function formatTime(totalSeconds: number): string {
+export function formatTime(totalSeconds: number): string {
   const hours = Math.floor(totalSeconds / (60 * 60));
   const minutes = Math.floor((totalSeconds - hours * 60 * 60) / 60);
   const seconds = Math.floor(totalSeconds % 60);

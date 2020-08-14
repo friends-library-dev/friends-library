@@ -27,18 +27,13 @@ const AudioControls: React.FC<Props> = ({
     <>
       <TouchableOpacity
         style={tw(`items-center justify-center mb-2`)}
-        onPress={togglePlayback}>
+        onPress={togglePlayback}
+      >
         <Icon
           size={80}
           color={HEX_BLUE}
           style={{ opacity: downloading ? 0.5 : 1 }}
-          name={
-            downloading
-              ? `cloud-download`
-              : playing
-              ? `pause-circle`
-              : `play-circle`
-          }
+          name={downloading ? `cloud-download` : playing ? `pause-circle` : `play-circle`}
         />
       </TouchableOpacity>
       <Progress

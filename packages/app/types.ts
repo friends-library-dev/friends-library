@@ -2,13 +2,7 @@ import { AudioQuality } from '@friends-library/types';
 
 export interface PlayerState {
   playing: boolean;
-  playbackState:
-    | 'NONE'
-    | 'PLAYING'
-    | 'PAUSED'
-    | 'STOPPED'
-    | 'READY'
-    | 'BUFFERING';
+  playbackState: 'NONE' | 'PLAYING' | 'PAUSED' | 'STOPPED' | 'READY' | 'BUFFERING';
   trackAudioId?: string;
   trackPartIndex?: number;
 }

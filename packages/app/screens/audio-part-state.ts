@@ -13,10 +13,7 @@ export type PartAction =
   | { type: 'SET_DOWNLOADING'; idx: number; downloading: boolean }
   | { type: 'SET_DOWNLOADED'; idx: number; downloaded: boolean };
 
-export function partsReducer(
-  state: PartState[],
-  action: PartAction,
-): PartState[] {
+export function partsReducer(state: PartState[], action: PartAction): PartState[] {
   const part = state[action.idx];
   switch (action.type) {
     case `SET_DOWNLOADED`:
@@ -38,7 +35,7 @@ export function initialPartsState(
   parts: AudioPart[],
   quality: AudioQuality,
 ): PartState[] {
-  return parts.map(part => ({
+  return parts.map((part) => ({
     downloading: false,
     progress: 0,
     downloaded: FS.hasAudio(part, quality),

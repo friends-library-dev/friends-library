@@ -22,10 +22,7 @@ class Data extends EventEmitter {
   }
 
   private saveUserSettings(): Promise<void> {
-    return FS.writeFile(
-      `data/user-settings.json`,
-      JSON.stringify(this.userSettings),
-    );
+    return FS.writeFile(`data/user-settings.json`, JSON.stringify(this.userSettings));
   }
 
   private async initUserSettings(): Promise<void> {
@@ -36,10 +33,7 @@ class Data extends EventEmitter {
         this.emit(`updated:user-settings`, settings);
       }
     } else {
-      FS.writeFile(
-        `data/user-settings.json`,
-        JSON.stringify(this.userSettings),
-      );
+      FS.writeFile(`data/user-settings.json`, JSON.stringify(this.userSettings));
     }
   }
 
@@ -82,7 +76,5 @@ function resourcesValid(resources: any): resources is AudioResource[] {
 }
 
 function settingsValid(settings: any): settings is UserSettings {
-  return (
-    typeof settings === `object` && [`HQ`, `LQ`].includes(settings.audioQuality)
-  );
+  return typeof settings === `object` && [`HQ`, `LQ`].includes(settings.audioQuality);
 }

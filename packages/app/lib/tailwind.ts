@@ -21,7 +21,7 @@ export default function tw(...args: Arg[]): ViewStyle | TextStyle {
     if (typeof arg === `string`) {
       classNames.push(arg);
     } else if (Array.isArray(arg)) {
-      classNames = [...classNames, ...arg.map((str) => String(arg).trim())];
+      classNames = [...classNames, ...arg.map((str) => String(str).trim())];
     } else if (typeof arg === `object` && arg !== null) {
       const keys = Object.keys(arg);
       const values = Object.values(arg);

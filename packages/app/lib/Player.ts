@@ -42,7 +42,7 @@ class Player extends EventEmitter {
     }
 
     let position = requestedPosition;
-    if (position == Player.DURATION_UNKNOWN) {
+    if (position === Player.DURATION_UNKNOWN) {
       position = 0;
     } else if (position > duration) {
       position = duration;
@@ -89,9 +89,7 @@ class Player extends EventEmitter {
   }
 
   public isAudioPartSelected(audioId: string, partIndex: number): boolean {
-    return (
-      this.isAudioSelected(audioId) && this.state.trackPartIndex === partIndex
-    );
+    return this.isAudioSelected(audioId) && this.state.trackPartIndex === partIndex;
   }
 
   public clearUpcomingTracks(): void {
@@ -110,9 +108,7 @@ class Player extends EventEmitter {
   }
 
   public isPlayingAudioPart(audioId: string, partIndex: number): boolean {
-    return (
-      this.isPlayingAudio(audioId) && this.state.trackPartIndex === partIndex
-    );
+    return this.isPlayingAudio(audioId) && this.state.trackPartIndex === partIndex;
   }
 
   public reset(): void {
@@ -161,7 +157,7 @@ class Player extends EventEmitter {
 
   private init(): void {
     RNTrackPlayer.setupPlayer({
-      iosCategoryMode: 'spokenAudio',
+      iosCategoryMode: `spokenAudio`,
     });
 
     RNTrackPlayer.updateOptions({

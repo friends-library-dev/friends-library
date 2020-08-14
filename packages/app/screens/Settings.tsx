@@ -14,9 +14,7 @@ interface Props {
 
 const Home: React.FC<Props> = ({ navigation }) => {
   const settings = useSettings();
-  const [enabled, setEnabled] = useState<boolean>(
-    settings.audioQuality === `HQ`,
-  );
+  const [enabled, setEnabled] = useState<boolean>(settings.audioQuality === `HQ`);
 
   return (
     <View>
@@ -24,8 +22,8 @@ const Home: React.FC<Props> = ({ navigation }) => {
       <View style={tw(`flex-row justify-between p-3`)}>
         <Text style={{ fontSize: 18 }}>Hi quality audio</Text>
         <Switch
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
-          thumbColor={enabled ? '#f5dd4b' : '#f4f3f4'}
+          trackColor={{ false: `#767577`, true: `#81b0ff` }}
+          thumbColor={enabled ? `#f5dd4b` : `#f4f3f4`}
           ios_backgroundColor="#3e3e3e"
           onValueChange={() => {
             Data.setAudioQualityPreference(enabled ? `LQ` : `HQ`);

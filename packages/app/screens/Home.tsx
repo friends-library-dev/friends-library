@@ -40,7 +40,8 @@ const HomeButton: React.FC<{
       ...tw(`self-stretch mx-12 mb-6 px-8 py-4 rounded-full`),
       backgroundColor: bgColor,
     }}
-    onPress={onPress}>
+    onPress={onPress}
+  >
     <Sans size={20} style={{ ...tw(`text-white text-center`) }}>
       {title}
     </Sans>

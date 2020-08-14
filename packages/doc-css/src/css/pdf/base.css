@@ -23,23 +23,23 @@
   }
 }
 
-@page: left{
+@page: left {
   @top-center {
     content: var(--running-head-title);
   }
-};
+}
 
-@page: right{
+@page: right {
   @top-center {
     content: string(chapter, last);
   }
-};
+}
 
-@page: first{
+@page: first {
   @top-center {
     content: normal;
   }
-};
+}
 
 .letter-heading,
 .letter-heading p {
@@ -119,14 +119,14 @@ div.asterism {
   }
 }
 
-@page: blank{
+@page: blank {
   @bottom-center {
     content: normal;
   }
   @top-center {
     content: normal;
   }
-};
+}
 
 .embedded-content-document {
   margin-left: 1.3em;

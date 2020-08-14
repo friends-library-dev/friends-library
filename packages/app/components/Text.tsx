@@ -6,38 +6,32 @@ interface TextProps {
   style?: TextStyle;
 }
 
-export const Serif: React.FC<TextProps> = ({
-  size = 12,
-  style = {},
-  children,
-}) => (
+export const Serif: React.FC<TextProps> = ({ size = 12, style = {}, children }) => (
   <Text
     style={{
       ...style,
       fontSize: size,
       ...Platform.select({
-        ios: { fontFamily: 'Baskerville' },
-        android: { fontFamily: 'serif', fontSize: size - 3 },
+        ios: { fontFamily: `Baskerville` },
+        android: { fontFamily: `serif`, fontSize: size - 3 },
       }),
-    }}>
+    }}
+  >
     {children}
   </Text>
 );
 
-export const Sans: React.FC<TextProps> = ({
-  size = 12,
-  style = {},
-  children,
-}) => (
+export const Sans: React.FC<TextProps> = ({ size = 12, style = {}, children }) => (
   <Text
     style={{
       ...style,
       fontSize: size,
       ...Platform.select({
-        ios: { fontFamily: 'HelveticaNeue-Light' },
-        android: { fontFamily: 'sans-serif' },
+        ios: { fontFamily: `HelveticaNeue-Light` },
+        android: { fontFamily: `sans-serif` },
       }),
-    }}>
+    }}
+  >
     {children}
   </Text>
 );
