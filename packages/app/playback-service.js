@@ -21,27 +21,37 @@ module.exports = async function () {
   });
 
   setInterval(async () => {
-    const { playbackState } = player.state;
+    const { playbackState, trackPartIndex } = player.state;
     const quality = Data.userSettings.audioQuality;
+    const audio = player.getCurrentTrackAudioResource();
 
-    // download next chapter after 75% of current played
     if (playbackState === `PLAYING`) {
-      const audio = player.getCurrentTrackAudioResource();
       if (!audio) return;
-      if (audio.parts.length === 1) {
-        player.clearUpcomingTracks();
-        return;
+
+      Data.setLastPlayedAudio(audio.id);
+      if (trackPartIndex !== undefined) {
+        Data.setLastPlayedPart(audio.id, trackPartIndex);
       }
 
-      const nextAudioPart = player.getNextAudioPart();
-      if (!nextAudioPart || FS.hasAudio(nextAudioPart, quality)) {
-        return;
+      if (audio.parts.length === 1) {
+        player.clearUpcomingTracks();
       }
 
       const position = await player.getPosition();
       const duration = await player.getCurrentTrackDuration();
-      if (position / duration > 0.75) {
-        FS.downloadAudio(nextAudioPart, quality);
+      const nextAudioPart = player.getNextAudioPart();
+
+      if (nextAudioPart && !FS.hasAudio(nextAudioPart, quality)) {
+        if (position / duration > 0.75) {
+          FS.downloadAudio(nextAudioPart, quality);
+        }
+      }
+
+      if (duration - position < 10 && trackPartIndex !== undefined) {
+        Data.clearLastPlayedPart(audio.id);
+        Data.clearPartPosition(audio.id, trackPartIndex);
+      } else if (trackPartIndex !== undefined) {
+        Data.setPartPosition(audio.id, trackPartIndex, position);
       }
     }
   }, BACKGROUND_JOBS_TICK_RATE);

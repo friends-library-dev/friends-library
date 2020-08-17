@@ -31,7 +31,12 @@ const AudioControls: React.FC<Props> = ({
   const [, player] = usePlayer();
   return (
     <>
-      <View style={tw(`flex-row items-center px-2`, downloading ? `justify-center` : `justify-between`)}>
+      <View
+        style={tw(
+          `flex-row items-center px-2`,
+          downloading ? `justify-center` : `justify-between`,
+        )}
+      >
         {!downloading && (
           <TouchableOpacity onPress={skipBack}>
             <Icon

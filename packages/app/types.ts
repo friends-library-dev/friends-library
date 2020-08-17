@@ -34,6 +34,16 @@ export interface UserSettings {
   audioQuality: AudioQuality;
 }
 
+export interface ResumeState {
+  lastPlayedAudio: string | null;
+  lastPlayedPart: {
+    [audioId: string]: number;
+  };
+  partPositions: {
+    [partId: string]: number;
+  };
+}
+
 export type StackParamList = {
   Home: undefined;
   'All Audiobooks': undefined;
