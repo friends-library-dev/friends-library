@@ -18,7 +18,7 @@ jobs:
       - name: compile-actions-js
         run: yarn actions:compile
       - name: modify-gitignore
-        run: echo "!**/bundled/index.js" >> ./actions/.gitignore
+        run: echo "!**/bundled/*.js" >> ./actions/.gitignore
       - name: commit
         run: |
           git config --local user.email "jared@netrivet.com"
