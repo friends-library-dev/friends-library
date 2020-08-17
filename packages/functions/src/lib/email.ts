@@ -68,8 +68,6 @@ Thanks for ordering from Friends Library Publishing! Your order was successfully
 
 For your reference, your order id is: {{orderId}}. We'll be sending you one more email in a few days with your tracking number, as soon as it ships. For many shipping addresses, a normal delivery date is around 7 to 14 days after purchase.
 
-** Note: Due to complications with shipping having to do with the ongoing COVID-19 pandemic, your book order may arrive as much as 10-15 days later than normal. We’re sorry for the inconvenience. **
-
 Please don't hesitate to let us know if you have any questions!
 
 - Friends Library Publishing
@@ -83,8 +81,6 @@ const CONFIRMATION_EMAIL_ES = `
 {{lineItems}}
 
 Para tu información, el número de referencia de tu pedido es: {{orderId}}. Dentro de unos pocos días, cuando el envío sea realizado, vamos a enviarte otro correo electrónico con tu número de rastreo. En la mayoría de los casos, el tiempo normal de entrega es de unos 7 a 14 días después de la compra.
-
-** Nota: Debido a las complicaciones que tienen los envíos por la pandemia del COVID-19, tu pedido de libros puede demorar en llegar hasta 10-15 días más de lo normal. Lamentamos las molestias que esto pueda ocasionarte. **
 
 ¡Por favor no dudes en hacernos saber si tienes alguna pregunta! 
 
