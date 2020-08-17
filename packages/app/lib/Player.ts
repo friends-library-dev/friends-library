@@ -133,7 +133,11 @@ class Player extends EventEmitter {
     RNTrackPlayer.pause();
   }
 
-  public async playPart(part: AudioPart, quality: AudioQuality): Promise<void> {
+  public async playPart(
+    part: AudioPart,
+    quality: AudioQuality,
+    play = true,
+  ): Promise<void> {
     const audio = Data.audioResources.get(part.audioId);
     if (!audio || !FS.hasAudio(part, quality)) {
       return;
@@ -152,7 +156,9 @@ class Player extends EventEmitter {
       pitchAlgorithm: RNTrackPlayer.PITCH_ALGORITHM_VOICE,
       duration: part.duration,
     });
-    RNTrackPlayer.play();
+    if (play) {
+      return RNTrackPlayer.play();
+    }
   }
 
   public static getInstance(): Player {

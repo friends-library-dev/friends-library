@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import tw from 'tailwind-rn';
 import { StackParamList, AudioPart } from '../types';
 import { usePlayer, useSettings } from '../lib/hooks';
+import Data from '../lib/Data';
 import FS from '../lib/FileSystem';
 import Artwork from '../components/Artwork';
 import { Serif, Sans } from '../components/Text';
@@ -20,9 +21,27 @@ interface Props {
 }
 
 const Audio: React.FC<Props> = ({ route }) => {
+  const [, Player] = usePlayer();
   const { audioQuality: quality } = useSettings();
   const audio = route.params.audio;
   const [selectedPart, setSelectedPart] = useState<number>(0);
+
+  useEffect(() => {
+    const { lastPlayedPart, partPositions } = Data.resumeState;
+    if (lastPlayedPart[audio.id] === undefined) {
+      return;
+    }
+    const partIndex = lastPlayedPart[audio.id];
+    setSelectedPart(partIndex);
+    const partId = `${audio.id}--${partIndex}`;
+    if (partPositions[partId]) {
+      const resumePosition = partPositions[partId];
+      Player.reset();
+      Player.playPart(audio.parts[partIndex], quality).then(() => {
+        Player.seekTo(resumePosition);
+      });
+    }
+  }, [Player, audio.id, audio.parts, quality]);
 
   const [partsState, dispatch] = useReducer(
     partsReducer,
@@ -31,25 +50,25 @@ const Audio: React.FC<Props> = ({ route }) => {
 
   useEffect(() => {
     FS.setOnlyListener(`download:start`, (part: AudioPart, dlQuality: AudioQuality) => {
-      if (part.audioId != audio.id || quality !== dlQuality) return;
+      if (part.audioId !== audio.id || quality !== dlQuality) return;
       dispatch({ type: `SET_DOWNLOADING`, idx: part.index, downloading: true });
     });
     FS.setOnlyListener(
       `download:progress`,
       (progress: number, part: AudioPart, dlQuality: AudioQuality) => {
-        if (part.audioId != audio.id || quality !== dlQuality) return;
+        if (part.audioId !== audio.id || quality !== dlQuality) return;
         dispatch({ type: `SET_PROGRESS`, idx: part.index, progress });
       },
     );
     FS.setOnlyListener(`download:failed`, (part: AudioPart, dlQuality: AudioQuality) => {
-      if (part.audioId != audio.id || quality !== dlQuality) return;
+      if (part.audioId !== audio.id || quality !== dlQuality) return;
       dispatch({ type: `SET_DOWNLOADING`, idx: part.index, downloading: false });
       dispatch({ type: `SET_DOWNLOADED`, idx: part.index, downloaded: false });
     });
     FS.setOnlyListener(
       `download:complete`,
       (part: AudioPart, dlQuality: AudioQuality) => {
-        if (part.audioId != audio.id || quality !== dlQuality) return;
+        if (part.audioId !== audio.id || quality !== dlQuality) return;
         dispatch({ type: `SET_DOWNLOADED`, idx: part.index, downloaded: true });
         dispatch({ type: `SET_DOWNLOADING`, idx: part.index, downloading: false });
       },
@@ -60,7 +79,7 @@ const Audio: React.FC<Props> = ({ route }) => {
       FS.removeAllListeners(`download:failed`);
       FS.removeAllListeners(`download:progress`);
     };
-  }, []);
+  }, [audio.id, quality]);
 
   const downloadPart: (part: AudioPart) => Promise<void> = async (part) => {
     const idx = part.index;
@@ -83,10 +102,7 @@ const Audio: React.FC<Props> = ({ route }) => {
     return Player.playPart(audio.parts[index], quality);
   }
 
-  const [, Player] = usePlayer();
   const playing = Player.isPlayingAudio(audio.id);
-
-  const partDownloading = partsState.some((p) => p.downloading);
   const noPartsDownloaded = !audio.parts.some((p) => FS.hasAudio(p, quality));
   const showDownloadAll =
     partsState.filter((p) => !p.downloaded && !p.downloading).length > 0;
