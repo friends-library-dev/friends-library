@@ -23,7 +23,7 @@ const rule: BlockRule = (block: Asciidoc): LintResult[] => {
     if (
       idx > 0 &&
       level !== 1 &&
-      lines[idx - 1].match(/^\[.*(\.blurb|\.alt|\.centered|discrete).*\]$/)
+      lines[idx - 1].match(/^\[.*(\.blurb|\.alt|\.centered|\.inline|discrete).*\]$/)
     ) {
       return;
     }

@@ -413,6 +413,7 @@ dt {
 .blurb > em,
 .section-summary-preface p em,
 .section-author p em,
+.section-author-context p em,
 .heading-continuation-blurb p em {
   font-variant: small-caps;
   font-style: normal;
@@ -421,13 +422,24 @@ dt {
   hyphens: none !important;
 }
 
-.section-author p {
+.section-author p,
+.section-author-context p {
   font-style: italic;
   text-align: center !important;
   text-indent: 0 !important;
 }
 
-.section-author + .heading-continuation-blurb {
+.section-author-context {
+  margin-top: 0.65em;
+  margin-bottom: 1.75em;
+}
+
+.section-author-context p {
+  font-size: 90%;
+}
+
+.section-author + .heading-continuation-blurb,
+.section-author-context + .heading-continuation-blurb {
   margin-top: 1.5em;
 }
 
@@ -460,4 +472,22 @@ dt {
 .section-epigraph blockquote .paragraph p {
   font-size: 0.9em;
   padding-left: 0;
+}
+
+h3.inline,
+h4.inline,
+h5.inline {
+  padding-left: 1.5em;
+  font-size: 1em;
+  text-indent: -1.5em;
+  margin: 1.333em 0;
+}
+
+h3.inline em,
+h4.inline em,
+h5.inline em {
+  font-variant: small-caps;
+  font-style: normal;
+  font-size: 1.07em;
+  hyphens: none !important;
 }
