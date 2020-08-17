@@ -137,7 +137,7 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
 
 function discreteize(adoc: Asciidoc): Asciidoc {
   return adoc.replace(
-    /\[((?:\.blurb|\.alt|\.centered)+)\]\n(====?) /gm,
+    /\[((?:\.blurb|\.alt|\.centered|\.inline)+)\]\n(====?) /gm,
     `[discrete$1]\n$2 `,
   );
 }

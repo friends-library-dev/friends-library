@@ -54,6 +54,18 @@ const SubHeadings: React.FC = () => (
     </Para>
     <Pair id="blurb-heading" emphasize={[1]} />
 
+    <H2 id="inline-headings">Inline Headings</H2>
+    <Para>
+      The <Code>[.inline]</Code> designation for a heading sometimes is useful for
+      headings that should be visually less-emphasized than normal headings. This is
+      sometimes desirable in similar locations to where a <Code>[.blurb]</Code> might be
+      used, that is, when a heading is more like a sentence or mini-paragraph, with the
+      distinction that an <Code>[.inline]</Code> heading will take up less space and feel
+      less visually and structurally significant, while still retaining a sense of
+      introducing a new section.
+    </Para>
+    <Pair id="inline-heading" emphasize={[1]} />
+
     <H2>Combining Stylistic Classes</H2>
     <Para>
       It is possible to combine style classes on sub-headings for presentational reasons.

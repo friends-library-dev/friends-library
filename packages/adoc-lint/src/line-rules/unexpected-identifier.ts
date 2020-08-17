@@ -114,9 +114,11 @@ const CLASSES = [
   `table-tail-align-right`,
   `table-tail-align-center`,
   `section-author`,
+  `section-author-context`,
   `section-date`,
   `heading-continuation-blurb`,
   `section-summary-preface`,
+  `inline`,
   `the-end`,
 ];
 

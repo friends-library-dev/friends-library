@@ -118,6 +118,14 @@ const ChapterHeadings: React.FC = () => (
     </Para>
     <Pair id="section-author" emphasize={[10]} />
 
+    <H2 id="section-author-context">Section Author Context</H2>
+    <Para>
+      The <Code>[.section-author-context]</Code> designation should be used in the{` `}
+      <em>rare cases</em> when a section author designation is{` `}
+      <em>followed by a short phrase indicating the context of the authorship</em>
+    </Para>
+    <Pair id="section-author-context" emphasize={[13]} />
+
     <H2 id="section-date">Section Date</H2>
     <Para>
       The <Code>[.section-date]</Code> designation should be used when a chapter or
