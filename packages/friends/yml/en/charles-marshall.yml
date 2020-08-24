@@ -111,6 +111,18 @@ documents:
       - type: updated
         editor: Jason R. Henderson
         isbn: 978-1-64476-214-1
+        audio:
+          reader: Jason R. Henderson
+          added: 2020-08-24T17:58:02.626Z
+          parts:
+            - title: The Way of Life Revealed and the Way of Death Discovered
+              external_id_hq: 881273452
+              external_id_lq: 881272624
+              filesize_hq: 100130447
+              filesize_lq: 26645591
+              seconds: 5328
+              chapters:
+                - 0
       - type: modernized
         isbn: 978-1-64476-011-6
       - type: original
