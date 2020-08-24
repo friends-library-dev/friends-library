@@ -37,7 +37,7 @@ const books = [
     title: `Life and Letters of Catherine Payton`,
     author: `Catherine Payton`,
     edition: `modernized` as const,
-    documentUrl: `/catherine-payton/life-letters`,
+    documentUrl: `/catherine-payton/life-and-letters`,
     authorUrl: `/`,
     hasAudio: false,
   },
