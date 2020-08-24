@@ -1,0 +1,32 @@
+id: a0090598-2c85-4b6a-8cb4-e99396aa18ce
+name: Frederick Smith
+slug: frederick-smith
+gender: male
+# TODO set real date
+added: 2000-00-00T00:00:00.000Z
+born: 1757
+died: 1823
+residences:
+  - city: London
+    region: England
+description: TODO
+documents:
+  - id: dd809ae4-b0c0-46b4-8091-37329545d2d1
+    title: The Life of Frederick Smith
+    slug: life
+    filename: Life_of_Frederick_Smith
+    original_title:
+      Memoirs of Frederick Smith Who Died at Croydon in Surrey The 22nd of The Fourth
+      Month, 1823.
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: original
+        isbn: 978-1-64476-239-4
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-240-0
+        draft: true
