@@ -1,0 +1,33 @@
+id: 513af207-8b68-475a-ac6d-757a9484b0f6
+name: Richard Shackleton
+slug: richard-shackleton
+gender: male
+# TODO set real date
+added: 2000-00-00T00:00:00.000Z
+born: 1726
+died: 1792
+residences:
+  - city: Ballitore
+    region: Ireland
+description: TODO
+documents:
+  - id: a2e8dd81-d87a-4287-b1a6-b67254eb4727
+    title: The Life and Letters of Richard and Elizabeth Shackleton
+    slug: life-and-letters
+    filename: Life_and_Letters_of_Richard_Elizabeth_Shackleton
+    original_title:
+      Memoirs and Letters of Richard and Elizabeth Shackleton late of Ballitore, Ireland
+      Compiled by their Daughter Mary Leadbeater Including a Concise Biographical Sketch,
+      and some Letters of Abraham Shackleton.
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: original
+        isbn: 978-1-64476-237-0
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-238-7
+        draft: true
