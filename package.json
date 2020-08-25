@@ -84,10 +84,14 @@
       "**/@react-native-community/**",
       "**/@react-navigation",
       "**/@react-navigation/**",
-      "**/react-native",
+       "**/react-native",
       "**/react-native/**",
       "**react-native**",
-      "**@react-native-community**"
+      "**@react-native-community**",
+      "**/@storybook/addon-ondevice-actions",
+      "**/@storybook/addon-ondevice-actions/**",
+      "**/@storybook/addon-ondevice-knobs",
+      "**/@storybook/addon-ondevice-knobs/**"
     ],
     "packages": [
       "packages/*",

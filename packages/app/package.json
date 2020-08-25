@@ -5,15 +5,18 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "start": "cp -f ./index.app.js ./index.js && react-native start",
+    "storybook": "cp -f ./index.storybook.js ./index.js && react-native start"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.5",
     "@react-navigation/native": "^5.7.2",
     "@react-navigation/stack": "^5.8.0",
+    "@storybook/addon-actions": "^6.0.16",
+    "@storybook/addon-knobs": "^6.0.16",
+    "@storybook/addon-ondevice-actions": "^5.3.19",
+    "@storybook/addon-ondevice-knobs": "^5.3.19",
     "filesize": "^6.1.0",
     "get-yarn-workspaces": "^1.0.2",
     "react": "16.10.1",
@@ -34,12 +37,21 @@
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
+    "@storybook/addon-actions": "^6.0.16",
+    "@storybook/addon-essentials": "^6.0.16",
+    "@storybook/addon-links": "^6.0.16",
+    "@storybook/addon-ondevice-actions": "^5.3.19",
+    "@storybook/react-native": "^5.3.19",
+    "@storybook/react-native-server": "^5.3.19",
     "@types/react-native": "^0.63.1",
     "@types/react-native-vector-icons": "^6.4.5",
     "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
+    "babel-loader": "^8.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "react-dom": "16.10.1",
+    "react-is": "16.10.1",
     "react-test-renderer": "16.10.1"
   }
 }
