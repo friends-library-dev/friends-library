@@ -27,12 +27,12 @@ h2 {
   }
 }
 
-@page: left {
+@page:left {
   margin-left: 0.55in;
   margin-right: 0.75in;
 }
 
-@page: right {
+@page:right {
   margin-left: 0.75in;
   margin-right: 0.55in;
 }

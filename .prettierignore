@@ -4,4 +4,5 @@ packages/jones/public/asciidoctor.min.js
 packages/jones/build
 packages/cover-web-app/build
 packages/doc-artifacts/artifacts
+packages/doc-css/**/*.css
 .cache
