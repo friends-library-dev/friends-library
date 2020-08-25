@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
-import { Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Home from './screens/Home';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -12,9 +14,9 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <View>
-      <Text>Hello App</Text>
-    </View>
+    <Provider store={store}>
+      <Home />
+    </Provider>
   );
 };
 

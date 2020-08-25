@@ -13,6 +13,7 @@
     "@react-native-community/netinfo": "^5.9.5",
     "@react-navigation/native": "^5.7.2",
     "@react-navigation/stack": "^5.8.0",
+    "@reduxjs/toolkit": "^1.4.0",
     "@storybook/addon-actions": "^6.0.16",
     "@storybook/addon-knobs": "^6.0.16",
     "@storybook/addon-ondevice-actions": "^5.3.19",
@@ -31,6 +32,7 @@
     "react-native-swift": "^1.2.3",
     "react-native-track-player": "^1.2.3",
     "react-native-vector-icons": "^7.0.0",
+    "react-redux": "7.2.1",
     "tailwind-rn": "^1.1.1"
   },
   "devDependencies": {
@@ -45,6 +47,7 @@
     "@storybook/react-native-server": "^5.3.19",
     "@types/react-native": "^0.63.1",
     "@types/react-native-vector-icons": "^6.4.5",
+    "@types/react-redux": "^7.1.9",
     "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
