@@ -2,9 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AudioQuality } from '@friends-library/types';
 import { AudioResource } from '../types';
 import Service from '../lib/service';
-import FS from '../lib/fs';
-import * as keys from '../lib/keys';
-import { set as setLocalAudioFile } from './local-audio-files';
+import { setUndownloadedAudios } from './filesystem';
 import { Thunk, Dispatch } from '.';
 
 type AudioResourcesState = Record<string, AudioResource>;
@@ -31,7 +29,7 @@ export const loadAudios = (): Thunk => async (dispatch, getState) => {
   const audios = await Service.loadAudios();
   if (audios && Object.keys(getState().audioResources).length === 0) {
     dispatch(replace(audios));
-    setAllLocalAudioFileState(dispatch, audios);
+    setAllUndownloadedAudios(dispatch, audios);
   }
 };
 
@@ -39,33 +37,35 @@ export const fetchAudios = (): Thunk => async (dispatch) => {
   const audios = await Service.fetchAudios();
   if (audios) {
     dispatch(replace(audios));
-    setAllLocalAudioFileState(dispatch, audios);
+    setAllUndownloadedAudios(dispatch, audios);
   }
 };
 
-async function setAllLocalAudioFileState(
+async function setAllUndownloadedAudios(
   dispatch: Dispatch,
   audioResources: AudioResource[],
 ) {
-  const files: { id: string; partIndex: number; quality: AudioQuality }[] = [];
+  const files: {
+    audioId: string;
+    partIndex: number;
+    quality: AudioQuality;
+    numBytes: number;
+  }[] = [];
   for (let audio of audioResources) {
-    for (let partIndex = 0; partIndex < audio.parts.length; partIndex++) {
-      files.push({ id: audio.id, partIndex, quality: `HQ` });
-      files.push({ id: audio.id, partIndex, quality: `LQ` });
+    for (let part of audio.parts) {
+      files.push({
+        audioId: audio.id,
+        partIndex: part.index,
+        quality: `HQ`,
+        numBytes: part.size,
+      });
+      files.push({
+        audioId: audio.id,
+        partIndex: part.index,
+        quality: `LQ`,
+        numBytes: part.sizeLq,
+      });
     }
   }
-
-  files.forEach(async ({ id, partIndex, quality }) => {
-    const downloaded = await FS.hasAudio(id, partIndex, quality);
-    dispatch(
-      setLocalAudioFile({
-        id: keys.partWithQuality(id, partIndex, quality),
-        fileState: {
-          downloaded,
-          downloading: false,
-          percentDownloaded: downloaded ? 100 : 0,
-        },
-      }),
-    );
-  });
+  dispatch(setUndownloadedAudios(files));
 }

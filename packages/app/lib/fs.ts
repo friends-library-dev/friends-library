@@ -1,25 +1,24 @@
-import RNFS from 'react-native-fs';
+import RNFS, { DownloadResult } from 'react-native-fs';
 import { AudioQuality } from '@friends-library/types';
 import * as keys from './keys';
 
 class FileSystem {
+  public manifest: Record<string, number> = {};
+  private downloads: Record<string, Promise<DownloadResult>> = {};
+
   public async init(): Promise<void> {
     await Promise.all([
       RNFS.mkdir(this.path(`artwork/`), { NSURLIsExcludedFromBackupKey: true }),
       RNFS.mkdir(this.path(`audio/`), { NSURLIsExcludedFromBackupKey: true }),
       RNFS.mkdir(this.path(`data/`)),
     ]);
-  }
 
-  public hasAudio(
-    audioId: string,
-    partIndex: number,
-    quality: AudioQuality,
-  ): Promise<boolean> {
-    const path = this.path(
-      `audio/${keys.partWithQuality(audioId, partIndex, quality)}.mp3`,
-    );
-    return RNFS.exists(path);
+    for (const dir of [`artwork`, `audio`, `data`]) {
+      const files = await RNFS.readDir(this.path(`${dir}/`));
+      files
+        .filter((f) => f.isFile())
+        .forEach((f) => (this.manifest[`${dir}/${basename(f.path)}`] = Number(f.size)));
+    }
   }
 
   private path(path?: string): string {

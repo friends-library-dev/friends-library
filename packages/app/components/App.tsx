@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StackParamList } from '../types';
 import { loadAudios, fetchAudios } from '../state/audio-resources';
+import { batchSet as batchSetFilesystem, FilesystemState } from '../state/filesystem';
 import { useDispatch } from '../state';
 import FS from '../lib/fs';
 import Home from '../screens/Home';
@@ -16,6 +17,14 @@ const App: React.FC = () => {
   useEffect(() => {
     async function initApp(): Promise<void> {
       await FS.init();
+      dispatch(
+        batchSetFilesystem(
+          Object.keys(FS.manifest).reduce((acc, path) => {
+            acc[path] = { totalBytes: FS.manifest[path], bytesOnDisk: FS.manifest[path] };
+            return acc;
+          }, {} as FilesystemState),
+        ),
+      );
       dispatch(loadAudios());
       dispatch(fetchAudios());
       SplashScreen.hide();
