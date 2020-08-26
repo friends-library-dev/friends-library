@@ -1,8 +1,15 @@
 import { AudioResource } from 'types';
+import FS from './fs';
 
 export default class Service {
+  public static async downloadFile(
+    relPath: string,
+    networkUrl: string,
+  ): Promise<number | null> {
+    return FS.download(relPath, networkUrl);
+  }
   public static async loadAudios(): Promise<AudioResource[] | null> {
-    //
+    // @TODO
     return null;
   }
 

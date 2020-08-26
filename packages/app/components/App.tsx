@@ -17,6 +17,7 @@ const App: React.FC = () => {
   useEffect(() => {
     async function initApp(): Promise<void> {
       await FS.init();
+      // await FS.deleteAll();
       dispatch(
         batchSetFilesystem(
           Object.keys(FS.manifest).reduce((acc, path) => {
