@@ -8,13 +8,12 @@ interface Props {
   id: string;
   title: string;
   friend: string;
-  artworkUrl: string;
 }
 
-const AudioListItem: React.FC<Props> = ({ id, title, friend, artworkUrl }) => {
+const AudioListItem: React.FC<Props> = ({ id, title, friend }) => {
   return (
     <View style={tw(`flex-row p-2 border-b border-gray-500`)}>
-      <Artwork id={id} url={artworkUrl} size={90} />
+      <Artwork id={id} size={90} />
       <View style={tw(`flex-col m-2 flex-shrink`)}>
         <Serif size={22}>{title}</Serif>
         <Sans size={16}>{friend}</Sans>

@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface PlaybackState {
-  audio: string | null;
+  audioId: string | null;
   partIndex: number | null;
   position: number | null;
+  state: 'STOPPED' | 'PLAYING' | 'PAUSED';
 }
 
-const initialState: PlaybackState = {
-  audio: null,
+export const initialState: PlaybackState = {
+  audioId: null,
   partIndex: null,
   position: null,
+  state: 'STOPPED',
 };
 
 const playback = createSlice({

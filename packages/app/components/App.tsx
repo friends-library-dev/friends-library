@@ -9,6 +9,7 @@ import { useDispatch } from '../state';
 import FS from '../lib/fs';
 import Home from '../screens/Home';
 import AllAudios from '../screens/AllAudios';
+import Audio from '../screens/Audio';
 
 const Stack = createStackNavigator<StackParamList>();
 
@@ -38,8 +39,8 @@ const App: React.FC = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="All Audiobooks" component={AllAudios} />
-        {/* <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="Audio" component={Audio} /> */}
+        <Stack.Screen name="Audio" component={Audio} />
+        {/* <Stack.Screen name="Settings" component={Settings} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

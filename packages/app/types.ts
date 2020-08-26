@@ -24,6 +24,6 @@ export interface AudioResource {
 export type StackParamList = {
   Home: undefined;
   'All Audiobooks': undefined;
-  Audio: { audio: AudioResource };
+  Audio: { audioId: string };
   Settings: undefined;
 };

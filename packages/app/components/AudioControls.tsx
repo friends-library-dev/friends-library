@@ -16,7 +16,6 @@ interface Props {
   numParts: number;
   downloading: boolean;
   progress: number;
-  isCurrentAudioPart: boolean;
   position: number | null;
 }
 
@@ -26,7 +25,6 @@ const AudioControls: React.FC<Props> = ({
   duration,
   downloading,
   progress,
-  isCurrentAudioPart,
   seekForward,
   seekBackward,
   skipBack,
@@ -95,7 +93,6 @@ const AudioControls: React.FC<Props> = ({
         downloadingProgress={progress}
         playing={playing}
         partDuration={duration}
-        inUse={isCurrentAudioPart}
         position={position}
         seekTo={() => {}}
       />

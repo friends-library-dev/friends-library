@@ -10,7 +10,6 @@ interface Props {
   downloading: boolean;
   downloadingProgress: number;
   partDuration: number;
-  inUse: boolean;
   position: number | null;
   seekTo: (newPosition: number) => any;
 }
@@ -21,18 +20,17 @@ const Scrubber: React.FC<Props> = ({
   playing,
   downloading,
   downloadingProgress,
-  inUse,
   seekTo,
 }) => {
   return (
     <View style={{ opacity: playing || downloading ? 1 : 0.6 }}>
       {!downloading && (
         <RNScrubber
-          value={inUse && position ? position : 0}
+          value={playing && position ? position : 0}
           bufferedValue={0}
           scrubbedColor={HEX_MAROON}
           totalDuration={partDuration}
-          onSlidingComplete={(newPosition) => inUse && seekTo(newPosition)}
+          onSlidingComplete={(newPosition) => playing && seekTo(newPosition)}
         />
       )}
       {downloading && (

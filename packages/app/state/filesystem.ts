@@ -11,7 +11,7 @@ export interface FileState {
 
 export type FilesystemState = Record<string, FileState>;
 
-const initialState: FilesystemState = {};
+export const initialState: FilesystemState = {};
 
 const filesystemSlice = createSlice({
   name: `filesystem`,
