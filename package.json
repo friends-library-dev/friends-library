@@ -86,6 +86,8 @@
       "**/@react-navigation/**",
       "**/@reduxjs/toolkit",
       "**/@reduxjs/toolkit/**",
+      "**/redux",
+      "**/redux/**",
       "**/react-redux",
       "**/react-redux/**",
       "**/react-native",

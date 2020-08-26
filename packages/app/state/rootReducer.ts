@@ -1,8 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import audios from './audios';
+import audioResources from './audio-resources';
+import localAudioFiles from './local-audio-files';
 
 const rootReducer = combineReducers({
-  audios,
+  audioResources,
+  localAudioFiles,
 });
 
 export type State = ReturnType<typeof rootReducer>;

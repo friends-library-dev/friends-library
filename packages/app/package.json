@@ -33,6 +33,7 @@
     "react-native-track-player": "^1.2.3",
     "react-native-vector-icons": "^7.0.0",
     "react-redux": "7.2.1",
+    "redux": "^4.0.5",
     "tailwind-rn": "^1.1.1"
   },
   "devDependencies": {
