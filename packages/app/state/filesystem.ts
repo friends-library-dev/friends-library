@@ -57,3 +57,15 @@ export const downloadFile = (path: string, url: string): Thunk => async (dispatc
     dispatch(set({ id: path, fileState: { totalBytes: bytes, bytesOnDisk: bytes } }));
   }
 };
+
+export function isDownloaded({ bytesOnDisk, totalBytes }: FileState): boolean {
+  return bytesOnDisk === totalBytes;
+}
+
+export function isDownloading({ bytesOnDisk, totalBytes }: FileState): boolean {
+  return bytesOnDisk > 0 && bytesOnDisk < totalBytes;
+}
+
+export function downloadProgress({ bytesOnDisk, totalBytes }: FileState): number {
+  return (bytesOnDisk / totalBytes) * 100;
+}
