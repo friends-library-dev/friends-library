@@ -74,6 +74,8 @@ const WHITELIST: Record<string, number> = {
   thanks: 1,
   afterwards: 1,
   fees: 1,
+  suspicious: 1,
+  kiss: 1,
   numerous: 1,
   his: 1,
   is: 1,
