@@ -134,6 +134,14 @@ function getOutOfBandEvents(
     {
       lang: [`es`],
       type: `chapter`,
+      title: `Historia de los Cuáqueros &mdash; (Capítulo 3)`,
+      description: `El tercer capítulo de la Historia de los Cuáqueros ya está disponible y se puede descargar gratuitamente.`,
+      ...dateFields(`2020-08-27T22:15:32.822Z`, formatter, `es`),
+      url: `/william-sewel/historia-de-los-cuaqueros`,
+    },
+    {
+      lang: [`es`],
+      type: `chapter`,
       title: `Historia de los Cuáqueros &mdash; (Capítulo 2)`,
       description: `El segundo capítulo de la Historia de los Cuáqueros ya está disponible y se puede descargar gratuitamente.`,
       ...dateFields(`2020-07-14T12:00:01.000Z`, formatter, `es`),
