@@ -86,3 +86,36 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-032-1
+  - id: 7ce161fc-7ca9-47fc-aac9-929eaad5480a # change to existing ID above ^
+    title: The Journal of George Whitehead
+    published: 1725
+    original_title:
+      The Christian Progress of that Ancient Servant and Minister of Jesus Christ, George
+      Whitehead. Historically Relating His Experience, Ministry, Sufferings, Trials and
+      Service, in Defence of the Truth, and God’s Persecuted People, Commonly Called
+      Quakers.
+    slug: journal-temp # change to just `journal`
+    filename: Journal_of_George_Whitehead
+    description:
+      George Whitehead (1636-1723) was one of the most well-known and influential
+      ministers in the early Society of Friends. He was convinced of the Truth when only
+      17 years old, and through faithfulness grew quickly in the life and power of Christ.
+      In his services for the gospel he was frequently abused and persecuted by
+      unreasonable and wicked men. He was imprisoned many times and once publicly whipped
+      for his testimony to the Truth, but through all he clung to the cross, and became a
+      pillar and elder in the church of God, constantly laboring for the advancement of
+      Truth and many times appearing before kings and magistrates to plead the cause of
+      his persecuted brethren.
+    partial_description:
+      The Journal of George Whitehead, relating his pursuit of the living God from a
+      child, his growth in grace and usefulness to the church, and his many appearances
+      before kings and magistrates to plead the cause of his persecuted brethren.
+    tags:
+      - journal
+    editions:
+      - type: original
+        isbn: 978-1-64476-241-7
+        draft: true
+      - type: modernized
+        draft: true
+        isbn: 978-1-64476-242-4 # change for existing modernized ISBN above ^
