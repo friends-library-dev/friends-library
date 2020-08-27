@@ -38,6 +38,7 @@ export const fetchAudios = (): Thunk => async (dispatch) => {
   if (audios) {
     dispatch(replace(audios));
     setAllUndownloadedAudios(dispatch, audios);
+    Service.saveFreshAudioResources(audios);
   }
 };
 

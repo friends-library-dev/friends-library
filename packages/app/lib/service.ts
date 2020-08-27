@@ -2,14 +2,26 @@ import { AudioResource } from 'types';
 import FS from './fs';
 
 export default class Service {
+  public static saveFreshAudioResources(resources: AudioResource[]): Promise<void> {
+    return FS.writeFile(`audio/resources.json`, JSON.stringify(resources));
+  }
+
   public static async downloadFile(
     relPath: string,
     networkUrl: string,
   ): Promise<number | null> {
     return FS.download(relPath, networkUrl);
   }
+
   public static async loadAudios(): Promise<AudioResource[] | null> {
-    // @TODO
+    try {
+      const resources = await FS.readJson(`audio/resources.json`);
+      if (resourcesValid(resources)) {
+        return resources;
+      }
+    } catch (err) {
+      // ¯\_(ツ)_/¯
+    }
     return null;
   }
 
@@ -21,7 +33,7 @@ export default class Service {
         return resources;
       }
     } catch (err) {
-      return null;
+      // ¯\_(ツ)_/¯
     }
     return null;
   }

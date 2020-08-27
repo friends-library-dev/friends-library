@@ -47,6 +47,36 @@ class FileSystem {
     await Promise.all(promises);
   }
 
+  public readFile(
+    path: string,
+    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = `utf8`,
+  ): Promise<string> {
+    return RNFS.readFile(this.abspath(path), encoding === `binary` ? `base64` : encoding);
+  }
+
+  public writeFile(
+    path: string,
+    contents: string,
+    encoding: 'utf8' | 'ascii' | 'binary' | 'base64' = `utf8`,
+  ): Promise<void> {
+    const writePromise = RNFS.writeFile(
+      this.abspath(path),
+      contents,
+      encoding === `binary` ? `base64` : encoding,
+    );
+    writePromise.then(() => (this.manifest[path] = contents.length));
+    return writePromise;
+  }
+
+  public async readJson(path: string): Promise<any> {
+    const json = await this.readFile(path);
+    try {
+      return JSON.parse(json);
+    } catch {
+      return null;
+    }
+  }
+
   public abspath(path?: string): string {
     return `${RNFS.DocumentDirectoryPath}/__FLP_APP_FILES__${
       path ? `/${path.replace(/^\//, ``)}` : ``
