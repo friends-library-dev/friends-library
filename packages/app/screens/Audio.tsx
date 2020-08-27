@@ -7,6 +7,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Serif, Sans } from '../components/Text';
 import Artwork from '../components/Artwork';
 import AudioControls from '../components/AudioControls';
+import DownloadablePart from '../components/DownloadablePart';
 import tw from '../lib/tailwind';
 import { useSelector, useDispatch } from '../state';
 import {
@@ -96,6 +97,19 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       >
         {audio.shortDescription}
       </Serif>
+      {audio.parts.length > 1 &&
+        audio.parts.map((part, idx) => (
+          <DownloadablePart
+            key={`${audio.id}--${part.index}`}
+            download={() => {}}
+            part={part}
+            playing={idx === activePart && playingThisAudio}
+            play={() => {}}
+            downloading={isDownloading(partFiles[idx])}
+            progress={downloadProgress(partFiles[idx])}
+            downloaded={isDownloaded(partFiles[idx])}
+          />
+        ))}
     </ScrollView>
   );
 };
