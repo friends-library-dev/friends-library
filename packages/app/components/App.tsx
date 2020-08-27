@@ -7,6 +7,7 @@ import { loadAudios, fetchAudios } from '../state/audio-resources';
 import { batchSet as batchSetFilesystem, FilesystemState } from '../state/filesystem';
 import { useDispatch } from '../state';
 import FS from '../lib/fs';
+import Player from '../lib/player';
 import Home from '../screens/Home';
 import AllAudios from '../screens/AllAudios';
 import Audio from '../screens/Audio';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     async function initApp(): Promise<void> {
+      Player.init();
       await FS.init();
       // await FS.deleteAll();
       dispatch(

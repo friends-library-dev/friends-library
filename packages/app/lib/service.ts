@@ -1,7 +1,16 @@
 import { AudioResource } from 'types';
 import FS from './fs';
+import Player from './player';
 
 export default class Service {
+  public static resumeAudioPlayback(): void {
+    return Player.resume();
+  }
+
+  public static pauseAudioPlayback(): void {
+    return Player.pause();
+  }
+
   public static saveFreshAudioResources(resources: AudioResource[]): Promise<void> {
     return FS.writeFile(`audio/resources.json`, JSON.stringify(resources));
   }

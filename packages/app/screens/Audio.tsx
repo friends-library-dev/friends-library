@@ -10,6 +10,7 @@ import AudioControls from '../components/AudioControls';
 import DownloadablePart from '../components/DownloadablePart';
 import tw from '../lib/tailwind';
 import { useSelector, useDispatch } from '../state';
+import { togglePlayback } from '../state/playback';
 import {
   FileState,
   isDownloading,
@@ -24,11 +25,14 @@ interface Props {
 }
 
 const AudioScreen: React.FC<Props> = ({ route }) => {
+  const dispatch = useDispatch();
   const { audio, playback, partFiles } = useSelector((state) => {
+    const quality = state.preferences.audioQuality;
     const resource = state.audioResources[route.params.audioId];
+    console.log({ resource });
     const parts: FileState[] = [];
     resource.parts.forEach((part) => {
-      const path = keys.audioFilePath(resource.id, part.index, `HQ`);
+      const path = keys.audioFilePath(resource.id, part.index, quality);
       parts.push(state.filesystem[path]);
     });
     return {
@@ -67,7 +71,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
           numParts={audio.parts.length}
           downloading={isDownloading(activePartFile)}
           progress={downloadProgress(activePartFile)}
-          togglePlayback={() => {}}
+          togglePlayback={() => dispatch(togglePlayback(audio.id))}
           seekForward={() => {}}
           seekBackward={() => {}}
           position={playingThisAudio ? playback.position : null}

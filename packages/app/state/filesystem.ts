@@ -3,6 +3,7 @@ import { AudioQuality } from '@friends-library/types';
 import * as keys from '../lib/keys';
 import { Thunk } from '.';
 import Service from '../lib/service';
+import FS from '../lib/fs';
 
 export interface FileState {
   totalBytes: number;
@@ -35,26 +36,78 @@ const filesystemSlice = createSlice({
         }
       });
     },
+    completeDownload: (state, action: PayloadAction<string>) => {
+      const path = action.payload;
+      if (state[path]) return state;
+      state[path].bytesOnDisk = state[path].totalBytes;
+    },
+    resetDownload: (state, action: PayloadAction<string>) => {
+      const path = action.payload;
+      if (state[path]) return state;
+      state[path].bytesOnDisk = 0;
+    },
     batchSet: (state, action: PayloadAction<FilesystemState>) => {
       return {
         ...state,
         ...action.payload,
       };
     },
-    set: (state, action: PayloadAction<{ id: string; fileState: FileState }>) => {
-      const { id, fileState } = action.payload;
-      state[id] = fileState;
+    setBytesOnDisk: (
+      state,
+      action: PayloadAction<{ path: string; bytesOnDisk: number }>,
+    ) => {
+      const { path, bytesOnDisk } = action.payload;
+      if (state[path]) return state;
+      state[path].bytesOnDisk = bytesOnDisk;
+    },
+    setTotalBytes: (
+      state,
+      action: PayloadAction<{ path: string; totalBytes: number }>,
+    ) => {
+      const { path, totalBytes } = action.payload;
+      if (state[path]) return state;
+      state[path].totalBytes = totalBytes;
+    },
+    set: (state, action: PayloadAction<{ path: string; fileState: FileState }>) => {
+      const { path, fileState } = action.payload;
+      state[path] = fileState;
     },
   },
 });
 
-export const { batchSet, setUndownloadedAudios, set } = filesystemSlice.actions;
+export const {
+  batchSet,
+  setUndownloadedAudios,
+  set,
+  setBytesOnDisk,
+  setTotalBytes,
+  completeDownload,
+  resetDownload,
+} = filesystemSlice.actions;
 export default filesystemSlice.reducer;
+
+export const downloadAudio = (
+  audioId: string,
+  partIndex: number,
+  quality: AudioQuality,
+): Thunk => async (dispatch, getState) => {
+  const audio = getState().audioResources[audioId];
+  const path = keys.audioFilePath(audioId, partIndex, quality);
+  const url = audio.parts[partIndex][quality === `HQ` ? `url` : `urlLq`];
+  return FS.eventedDownload(
+    path,
+    url,
+    (totalBytes) => dispatch(setTotalBytes({ path, totalBytes })),
+    (bytesWritten, totalBytes) =>
+      dispatch(set({ path, fileState: { bytesOnDisk: bytesWritten, totalBytes } })),
+    (success) => dispatch(success ? completeDownload(path) : resetDownload(path)),
+  );
+};
 
 export const downloadFile = (path: string, url: string): Thunk => async (dispatch) => {
   const bytes = await Service.downloadFile(path, url);
   if (bytes) {
-    dispatch(set({ id: path, fileState: { totalBytes: bytes, bytesOnDisk: bytes } }));
+    dispatch(set({ path, fileState: { totalBytes: bytes, bytesOnDisk: bytes } }));
   }
 };
 

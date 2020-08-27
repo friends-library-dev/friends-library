@@ -22,7 +22,6 @@ storiesOf(`AudioControls`, module)
         downloading={false}
         numParts={1}
         progress={3}
-        isCurrentAudioPart
       />
     </View>
   ))
@@ -40,7 +39,6 @@ storiesOf(`AudioControls`, module)
         downloading={false}
         numParts={1}
         progress={3}
-        isCurrentAudioPart
       />
     </View>
   ));

@@ -5,4 +5,4 @@ import AppShell from './components/AppShell';
 import { name as appName } from './app.json';
 
 AppRegistry.registerComponent(appName, () => AppShell);
-// TrackPlayer.registerPlaybackService(() => require(`./playback-service`));
+TrackPlayer.registerPlaybackService(() => require(`./playback-service`));

@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import { State } from '../state';
 import { initialState as playbackInitialState } from '../state/playback';
 import { initialState as fsInitialState } from '../state/filesystem';
+import { initialState as prefsInitialState } from '../state/preferences';
 import './rn-addons';
 
 const store = createStore(() => {
@@ -41,6 +42,7 @@ const store = createStore(() => {
         ],
       },
     },
+    preferences: prefsInitialState,
     filesystem: fsInitialState,
     playback: playbackInitialState,
   };

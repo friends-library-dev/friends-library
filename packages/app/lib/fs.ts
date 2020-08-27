@@ -40,6 +40,32 @@ class FileSystem {
     return this.downloads[relPath];
   }
 
+  public async eventedDownload(
+    relPath: string,
+    networkUrl: string,
+    onStart: (totalBytes: number) => any = () => {},
+    onProgress: (bytesWritten: number, totalBytes: number) => any = () => {},
+    onComplete: (result: boolean) => any = () => {},
+  ): Promise<void> {
+    try {
+      const { promise } = RNFS.downloadFile({
+        fromUrl: networkUrl,
+        toFile: this.abspath(relPath),
+        begin: ({ contentLength }) => onStart(contentLength),
+        progressInterval: 50,
+        progress: ({ contentLength, bytesWritten }) =>
+          onProgress(bytesWritten, contentLength),
+      });
+      this.downloads[relPath] = promise.then(({ bytesWritten }) => bytesWritten);
+      const { bytesWritten } = await promise;
+      this.manifest[relPath] = bytesWritten;
+      onComplete(true);
+    } catch {
+      onComplete(false);
+    }
+    delete this.downloads[relPath];
+  }
+
   public async deleteAll(): Promise<void> {
     const promises = Object.keys(this.manifest).map((path) => {
       RNFS.unlink(this.abspath(path)).then(() => delete this.manifest[path]);
