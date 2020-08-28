@@ -23,6 +23,9 @@ const playback = createSlice({
   name: `playback`,
   initialState,
   reducers: {
+    set: (state, action: PayloadAction<PlaybackState>) => {
+      return action.payload;
+    },
     setState: (state, action: PayloadAction<PlaybackState['state']>) => {
       state.state = action.payload;
     },
@@ -32,7 +35,7 @@ const playback = createSlice({
   },
 });
 
-export const { setPosition, setState } = playback.actions;
+export const { setPosition, setState, set } = playback.actions;
 export default playback.reducer;
 
 export const resume = (): Thunk => async (dispatch) => {
@@ -49,7 +52,7 @@ export const play = (
   Service.playAudioTrack(
     trackData(audioId, partIndex, state.preferences.audioQuality, state),
   );
-  dispatch(setState(`PLAYING`));
+  dispatch(set({ audioId, partIndex, position, state: `PLAYING` }));
 };
 
 export const pause = (): Thunk => async (dispatch) => {

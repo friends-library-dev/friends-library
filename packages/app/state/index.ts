@@ -8,9 +8,10 @@ import { ThunkAction } from 'redux-thunk';
 import { State } from './rootReducer';
 import store from './store';
 
+export type { State };
 export type Dispatch = typeof store.dispatch;
 export type Thunk = ThunkAction<void, State, unknown, Action<string>>;
+export const useSelector: TypedUseSelectorHook<State> = RDXUseSelector;
+
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useDispatch = () => RDXUseDispatch<Dispatch>();
-export const useSelector: TypedUseSelectorHook<State> = RDXUseSelector;
-export type { State };

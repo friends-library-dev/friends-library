@@ -21,12 +21,12 @@ export interface AudioResource {
   parts: AudioPart[];
 }
 
-export interface StackParamList {
+export type StackParamList = {
   Home: undefined;
   'All Audiobooks': undefined;
   Audio: { audioId: string };
   Settings: undefined;
-}
+};
 
 export interface TrackData {
   id: string;

@@ -1,14 +1,34 @@
 import { EventEmitter } from 'events';
 import RNTrackPlayer from 'react-native-track-player';
 import { TrackData } from '../types';
+import { Dispatch } from '../state';
 
 class Player extends EventEmitter {
+  public dispatch: Dispatch = (): any => {};
+
   public resume(): void {
     RNTrackPlayer.play();
   }
 
   public pause(): void {
     RNTrackPlayer.pause();
+  }
+
+  public getPosition(): Promise<number> {
+    return RNTrackPlayer.getPosition();
+  }
+
+  public async getState(): Promise<'PLAYING' | 'PAUSED' | 'STOPPED'> {
+    const RNState = await RNTrackPlayer.getState();
+    switch (RNState) {
+      case RNTrackPlayer.STATE_PLAYING:
+      case RNTrackPlayer.STATE_BUFFERING:
+        return `PLAYING`;
+      case RNTrackPlayer.STATE_PAUSED:
+        return `PAUSED`;
+      default:
+        return `STOPPED`;
+    }
   }
 
   public async playPart(track: TrackData): Promise<void> {

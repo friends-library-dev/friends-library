@@ -1,4 +1,5 @@
 import Player from './lib/player';
+import { setPosition } from './state/playback';
 
 module.exports = async function () {
   Player.addEventListener(`remote-pause`, () => Player.pause());
@@ -15,6 +16,16 @@ module.exports = async function () {
   Player.addEventListener(`remote-seek`, async ({ position }) => {
     // Player.seekTo(position);
   });
+
+  setInterval(async () => {
+    const [position, state] = await Promise.all([
+      Player.getPosition(),
+      Player.getState(),
+    ]);
+    if (state === `PLAYING`) {
+      Player.dispatch(setPosition(position));
+    }
+  }, 1000);
 
   const events = [
     `playback-state`,

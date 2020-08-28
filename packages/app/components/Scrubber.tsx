@@ -26,7 +26,7 @@ const Scrubber: React.FC<Props> = ({
     <View style={{ opacity: playing || downloading ? 1 : 0.6 }}>
       {!downloading && (
         <RNScrubber
-          value={playing && position ? position : 0}
+          value={position || 0}
           bufferedValue={0}
           scrubbedColor={HEX_MAROON}
           totalDuration={partDuration}

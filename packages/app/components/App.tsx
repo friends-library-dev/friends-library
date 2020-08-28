@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     async function initApp(): Promise<void> {
+      Player.dispatch = dispatch;
       Player.init();
       await FS.init();
       // await FS.deleteAll();

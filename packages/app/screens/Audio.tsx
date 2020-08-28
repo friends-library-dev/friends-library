@@ -79,7 +79,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
           togglePlayback={() => dispatch(togglePlayback(audio.id))}
           seekForward={() => {}}
           seekBackward={() => {}}
-          position={playingThisAudio ? playback.position : null}
+          position={audioSelected ? playback.position : null}
         />
       </View>
       <Serif size={30} style={tw(`text-center p-4`)}>
