@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,6 +15,7 @@ import Audio from '../screens/Audio';
 const Stack = createStackNavigator<StackParamList>();
 
 const App: React.FC = () => {
+  const [ready, setReady] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     async function initApp(): Promise<void> {
@@ -29,12 +30,17 @@ const App: React.FC = () => {
           }, {} as FilesystemState),
         ),
       );
-      dispatch(loadAudios());
       dispatch(fetchAudios());
+      await dispatch(loadAudios());
+      setReady(true);
       SplashScreen.hide();
     }
     initApp();
   }, []);
+
+  if (!ready) {
+    return null;
+  }
 
   return (
     <NavigationContainer>

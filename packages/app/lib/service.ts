@@ -1,10 +1,14 @@
-import { AudioResource } from 'types';
+import { AudioResource, TrackData } from '../types';
 import FS from './fs';
 import Player from './player';
 
 export default class Service {
   public static resumeAudioPlayback(): void {
     return Player.resume();
+  }
+
+  public static playAudioTrack(track: TrackData): Promise<void> {
+    return Player.playPart(track);
   }
 
   public static pauseAudioPlayback(): void {

@@ -1,11 +1,15 @@
 import { AudioQuality } from '@friends-library/types';
 
+export function part(audioId: string, partIndex: number): string {
+  return `${audioId}--${partIndex}`;
+}
+
 export function partWithQuality(
   audioId: string,
   partIndex: number,
   quality: AudioQuality,
 ): string {
-  return `${audioId}--${partIndex}--${quality}`;
+  return `${part(audioId, partIndex)}--${quality}`;
 }
 
 export function audioFilePath(

@@ -29,11 +29,12 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
   const { audio, playback, partFiles } = useSelector((state) => {
     const quality = state.preferences.audioQuality;
     const resource = state.audioResources[route.params.audioId];
-    console.log({ resource });
     const parts: FileState[] = [];
-    resource.parts.forEach((part) => {
+    (resource || { parts: [] }).parts.forEach((part) => {
       const path = keys.audioFilePath(resource.id, part.index, quality);
-      parts.push(state.filesystem[path]);
+      if (path in state.filesystem) {
+        parts.push(state.filesystem[path]);
+      }
     });
     return {
       audio: resource,
@@ -42,12 +43,16 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
     };
   });
 
+  if (!audio) return null;
+
   const audioSelected = audio.id === playback.audioId;
   const playingThisAudio = audioSelected && playback.state === 'PLAYING';
   const activePart = audioSelected && playback.partIndex ? playback.partIndex : 0;
   const activePartFile = partFiles[activePart];
   const showDownloadAll =
     partFiles.filter((p) => !isDownloading(p) && !isDownloaded(p)).length > 0;
+
+  if (!activePartFile) return null;
 
   return (
     <ScrollView>

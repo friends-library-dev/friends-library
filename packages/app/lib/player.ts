@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events';
 import RNTrackPlayer from 'react-native-track-player';
+import { TrackData } from '../types';
 
 class Player extends EventEmitter {
   public resume(): void {
@@ -8,6 +9,20 @@ class Player extends EventEmitter {
 
   public pause(): void {
     RNTrackPlayer.pause();
+  }
+
+  public async playPart(track: TrackData): Promise<void> {
+    await RNTrackPlayer.stop();
+    RNTrackPlayer.add({
+      id: track.id,
+      url: track.filepath,
+      title: track.title,
+      artist: track.artist,
+      artwork: track.artworkUrl,
+      duration: track.duration,
+      pitchAlgorithm: RNTrackPlayer.PITCH_ALGORITHM_VOICE,
+    });
+    return RNTrackPlayer.play();
   }
 
   public init(): void {

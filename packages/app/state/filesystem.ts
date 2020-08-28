@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 import { AudioQuality } from '@friends-library/types';
 import * as keys from '../lib/keys';
 import { Thunk } from '.';
@@ -38,12 +38,12 @@ const filesystemSlice = createSlice({
     },
     completeDownload: (state, action: PayloadAction<string>) => {
       const path = action.payload;
-      if (state[path]) return state;
+      if (!state[path]) return state;
       state[path].bytesOnDisk = state[path].totalBytes;
     },
     resetDownload: (state, action: PayloadAction<string>) => {
       const path = action.payload;
-      if (state[path]) return state;
+      if (!state[path]) return state;
       state[path].bytesOnDisk = 0;
     },
     batchSet: (state, action: PayloadAction<FilesystemState>) => {

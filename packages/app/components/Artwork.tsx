@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Image, ViewStyle } from 'react-native';
 import { useSelector, useDispatch } from '../state';
 import { downloadFile } from '../state/filesystem';
-import * as keys from '../lib/keys';
-import FS from '../lib/fs';
+import { artwork } from '../state/selectors';
 
 interface Props {
   id: string;
@@ -13,27 +12,19 @@ interface Props {
 
 const Artwork: React.FC<Props> = ({ id, size, style = {} }) => {
   const dispatch = useDispatch();
-  const artworkPath = keys.artworkFilePath(id);
-  const { audio, artworkDownloaded } = useSelector((state) => ({
-    audio: state.audioResources[id],
-    artworkDownloaded: artworkPath in state.filesystem,
-  }));
+  const { path, uri, networkUrl, downloaded } = useSelector((state) =>
+    artwork(id, state),
+  );
 
   useEffect(() => {
-    if (!artworkDownloaded) {
-      dispatch(downloadFile(artworkPath, audio.artwork));
+    if (!downloaded) {
+      dispatch(downloadFile(path, networkUrl));
     }
-  }, [artworkDownloaded, audio.artwork]);
+  }, [downloaded, networkUrl, path]);
 
   return (
     <View style={{ width: size, height: size, ...style }}>
-      <Image
-        source={{
-          uri: artworkDownloaded ? `file://${FS.abspath(artworkPath)}` : audio.artwork,
-          width: size,
-          height: size,
-        }}
-      />
+      <Image source={{ uri, width: size, height: size }} />
     </View>
   );
 };

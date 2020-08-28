@@ -3,6 +3,7 @@ import { Thunk } from './';
 import Service from '../lib/service';
 import * as keys from '../lib/keys';
 import { downloadAudio } from './filesystem';
+import { trackData } from './selectors';
 
 export interface PlaybackState {
   audioId: string | null;
@@ -39,6 +40,18 @@ export const resume = (): Thunk => async (dispatch) => {
   dispatch(setState(`PLAYING`));
 };
 
+export const play = (
+  audioId: string,
+  partIndex: number,
+  position: number,
+): Thunk => async (dispatch, getState) => {
+  const state = getState();
+  Service.playAudioTrack(
+    trackData(audioId, partIndex, state.preferences.audioQuality, state),
+  );
+  dispatch(setState(`PLAYING`));
+};
+
 export const pause = (): Thunk => async (dispatch) => {
   Service.pauseAudioPlayback();
   dispatch(setState(`PAUSED`));
@@ -47,6 +60,7 @@ export const pause = (): Thunk => async (dispatch) => {
 export const togglePlayback = (audioId: string): Thunk => async (dispatch, getState) => {
   const { playback, preferences: prefs, filesystem: fs } = getState();
   const partIndex = 0; // in the future, grab from RESUME state
+  const position = 0; // maybe grab this from RESUME state too?
   const path = keys.audioFilePath(audioId, partIndex, prefs.audioQuality);
   const hasFile = path in fs && fs[path].bytesOnDisk === fs[path].totalBytes;
 
@@ -65,7 +79,7 @@ export const togglePlayback = (audioId: string): Thunk => async (dispatch, getSt
   }
 
   if (playback.state === `STOPPED`) {
-    dispatch(resume());
+    dispatch(play(audioId, partIndex, position));
     return;
   }
 };
