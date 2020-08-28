@@ -9,6 +9,8 @@ import { State } from '../state';
 import { initialState as playbackInitialState } from '../state/playback';
 import { initialState as fsInitialState } from '../state/filesystem';
 import { initialState as prefsInitialState } from '../state/preferences';
+import { initialState as positionInitialState } from '../state/track-position';
+import { initialState as activePartInitialState } from '../state/active-part';
 import './rn-addons';
 
 const store = createStore(() => {
@@ -42,9 +44,11 @@ const store = createStore(() => {
         ],
       },
     },
+    trackPosition: positionInitialState,
     preferences: prefsInitialState,
     filesystem: fsInitialState,
     playback: playbackInitialState,
+    activePart: activePartInitialState,
   };
   return state;
 }, applyMiddleware(thunk));

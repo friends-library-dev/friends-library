@@ -10,7 +10,7 @@ export interface FileState {
   bytesOnDisk: number;
 }
 
-export type FilesystemState = Record<string, FileState>;
+export type FilesystemState = Record<string, FileState | undefined>;
 
 export const initialState: FilesystemState = {};
 

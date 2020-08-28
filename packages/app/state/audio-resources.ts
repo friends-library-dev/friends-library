@@ -5,7 +5,7 @@ import Service from '../lib/service';
 import { setUndownloadedAudios } from './filesystem';
 import { Thunk, Dispatch } from '.';
 
-type AudioResourcesState = Record<string, AudioResource>;
+type AudioResourcesState = Record<string, AudioResource | undefined>;
 
 const initialState: AudioResourcesState = {};
 

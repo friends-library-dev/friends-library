@@ -4,6 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Scrubber from './Scrubber';
 import { HEX_BLUE } from '../lib/constants';
 import tw from '../lib/tailwind';
+import { State, Dispatch, useSelector, useDispatch } from '../state';
+import * as select from '../state/selectors';
+import { togglePlayback } from '../state/playback';
+import { downloadProgress, isDownloading } from '../state/filesystem';
 
 interface Props {
   skipNext?: () => any;
@@ -100,4 +104,38 @@ const AudioControls: React.FC<Props> = ({
   );
 };
 
-export default AudioControls;
+interface ContainerProps {
+  audioId: string;
+}
+
+export const propSelector: (
+  ownProps: ContainerProps,
+  dispatch: Dispatch,
+) => (state: State) => null | Props = ({ audioId }, dispatch) => {
+  return (state) => {
+    const audioWithPart = select.audioWithActivePart(audioId, state);
+    if (!audioWithPart) return null;
+    const { audio, part, activePartIndex: partIndex } = audioWithPart;
+    const file = select.audioPartFile(audioId, partIndex, state);
+    const audioSelected = select.isAudioSelected(audioId, state);
+    return {
+      playing: select.isAudioPlaying(audioId, state),
+      duration: part.duration,
+      numParts: audio.parts.length,
+      progress: downloadProgress(file),
+      downloading: isDownloading(file),
+      position: audioSelected ? select.trackPosition(audioId, partIndex, state) : null,
+      togglePlayback: () => dispatch(togglePlayback(audioId)),
+      seekForward: () => {},
+      seekBackward: () => {},
+    };
+  };
+};
+
+const AudioControlsContainer: React.FC<ContainerProps> = (ownProps) => {
+  const props = useSelector(propSelector(ownProps, useDispatch()));
+  if (!props) return null;
+  return <AudioControls {...props} />;
+};
+
+export default AudioControlsContainer;

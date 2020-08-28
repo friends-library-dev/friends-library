@@ -1,5 +1,5 @@
 import Player from './lib/player';
-import { setPosition } from './state/playback';
+import { setCurrentTrackPosition } from './state/track-position';
 
 module.exports = async function () {
   Player.addEventListener(`remote-pause`, () => Player.pause());
@@ -23,7 +23,7 @@ module.exports = async function () {
       Player.getState(),
     ]);
     if (state === `PLAYING`) {
-      Player.dispatch(setPosition(position));
+      Player.dispatch(setCurrentTrackPosition(position));
     }
   }, 1000);
 

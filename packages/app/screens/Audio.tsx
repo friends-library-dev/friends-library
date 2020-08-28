@@ -9,15 +9,9 @@ import Artwork from '../components/Artwork';
 import AudioControls from '../components/AudioControls';
 import DownloadablePart from '../components/DownloadablePart';
 import tw from '../lib/tailwind';
-import { useSelector, useDispatch } from '../state';
-import { togglePlayback } from '../state/playback';
-import {
-  FileState,
-  isDownloading,
-  isDownloaded,
-  downloadProgress,
-} from '../state/filesystem';
-import * as keys from '../lib/keys';
+import { useSelector } from '../state';
+import { isDownloading, isDownloaded } from '../state/filesystem';
+import * as select from '../state/selectors';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Audio'>;
@@ -25,34 +19,19 @@ interface Props {
 }
 
 const AudioScreen: React.FC<Props> = ({ route }) => {
-  const dispatch = useDispatch();
-  const { audio, playback, partFiles } = useSelector((state) => {
-    const quality = state.preferences.audioQuality;
-    const resource = state.audioResources[route.params.audioId];
-    const parts: FileState[] = [];
-    (resource || { parts: [] }).parts.forEach((part) => {
-      const path = keys.audioFilePath(resource.id, part.index, quality);
-      if (path in state.filesystem) {
-        parts.push(state.filesystem[path]);
-      }
-    });
+  const selection = useSelector((state) => {
+    const audio = select.audio(route.params.audioId, state);
+    const files = select.audioFiles(route.params.audioId, state);
+    if (!audio || !files) return null;
     return {
-      audio: resource,
-      playback: state.playback,
-      partFiles: parts,
+      audio,
+      showDownloadAll:
+        files.filter((p) => !isDownloading(p) && !isDownloaded(p)).length > 0,
     };
   });
 
-  if (!audio) return null;
-
-  const audioSelected = audio.id === playback.audioId;
-  const playingThisAudio = audioSelected && playback.state === 'PLAYING';
-  const activePart = audioSelected && playback.partIndex ? playback.partIndex : 0;
-  const activePartFile = partFiles[activePart];
-  const showDownloadAll =
-    partFiles.filter((p) => !isDownloading(p) && !isDownloaded(p)).length > 0;
-
-  if (!activePartFile) return null;
+  if (!selection) return null;
+  const { audio, showDownloadAll } = selection;
 
   return (
     <ScrollView>
@@ -70,17 +49,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
         }}
       />
       <View style={tw(`flex-grow py-4 px-8 justify-center`)}>
-        <AudioControls
-          playing={playingThisAudio}
-          duration={audio.parts[activePart].duration}
-          numParts={audio.parts.length}
-          downloading={isDownloading(activePartFile)}
-          progress={downloadProgress(activePartFile)}
-          togglePlayback={() => dispatch(togglePlayback(audio.id))}
-          seekForward={() => {}}
-          seekBackward={() => {}}
-          position={audioSelected ? playback.position : null}
-        />
+        <AudioControls audioId={audio.id} />
       </View>
       <Serif size={30} style={tw(`text-center p-4`)}>
         {audio.title}
@@ -107,16 +76,11 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
         {audio.shortDescription}
       </Serif>
       {audio.parts.length > 1 &&
-        audio.parts.map((part, idx) => (
+        audio.parts.map((part) => (
           <DownloadablePart
             key={`${audio.id}--${part.index}`}
-            download={() => {}}
-            part={part}
-            playing={idx === activePart && playingThisAudio}
-            play={() => {}}
-            downloading={isDownloading(partFiles[idx])}
-            progress={downloadProgress(partFiles[idx])}
-            downloaded={isDownloaded(partFiles[idx])}
+            audioId={audio.id}
+            partIndex={part.index}
           />
         ))}
     </ScrollView>

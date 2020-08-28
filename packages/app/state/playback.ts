@@ -3,19 +3,16 @@ import { Thunk } from './';
 import Service from '../lib/service';
 import * as keys from '../lib/keys';
 import { downloadAudio } from './filesystem';
+import { set as setActivePart } from './active-part';
 import { trackData } from './selectors';
 
 export interface PlaybackState {
   audioId: string | null;
-  partIndex: number | null;
-  position: number | null;
   state: 'STOPPED' | 'PLAYING' | 'PAUSED';
 }
 
 export const initialState: PlaybackState = {
   audioId: null,
-  partIndex: null,
-  position: null,
   state: 'STOPPED',
 };
 
@@ -29,17 +26,14 @@ const playback = createSlice({
     setState: (state, action: PayloadAction<PlaybackState['state']>) => {
       state.state = action.payload;
     },
-    setPosition: (state, action: PayloadAction<number>) => {
-      state.position = action.payload;
-    },
   },
 });
 
-export const { setPosition, setState, set } = playback.actions;
+export const { setState, set } = playback.actions;
 export default playback.reducer;
 
 export const resume = (): Thunk => async (dispatch) => {
-  Service.resumeAudioPlayback();
+  Service.audioResume();
   dispatch(setState(`PLAYING`));
 };
 
@@ -49,14 +43,15 @@ export const play = (
   position: number,
 ): Thunk => async (dispatch, getState) => {
   const state = getState();
-  Service.playAudioTrack(
+  Service.audioPlayTrack(
     trackData(audioId, partIndex, state.preferences.audioQuality, state),
   );
-  dispatch(set({ audioId, partIndex, position, state: `PLAYING` }));
+  dispatch(setActivePart({ audioId, partIndex }));
+  dispatch(set({ audioId, state: `PLAYING` }));
 };
 
 export const pause = (): Thunk => async (dispatch) => {
-  Service.pauseAudioPlayback();
+  Service.audioPause();
   dispatch(setState(`PAUSED`));
 };
 
@@ -65,9 +60,11 @@ export const togglePlayback = (audioId: string): Thunk => async (dispatch, getSt
   const partIndex = 0; // in the future, grab from RESUME state
   const position = 0; // maybe grab this from RESUME state too?
   const path = keys.audioFilePath(audioId, partIndex, prefs.audioQuality);
-  const hasFile = path in fs && fs[path].bytesOnDisk === fs[path].totalBytes;
+  const file = fs[path];
+  const hasFile = file && file.bytesOnDisk === file.totalBytes;
 
   if (!hasFile) {
+    // typings are incorrect here, this actually DOES return a promise
     await dispatch(downloadAudio(audioId, partIndex, prefs.audioQuality));
   }
 

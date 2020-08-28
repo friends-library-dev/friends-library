@@ -2,14 +2,85 @@ import { AudioQuality } from '@friends-library/types';
 import { State } from './';
 import FS from '../lib/fs';
 import * as keys from '../lib/keys';
-import { TrackData } from '../types';
+import { TrackData, AudioResource, AudioPart } from '../types';
+import { FileState } from './filesystem';
+
+export function isAudioPartPlaying(
+  audioId: string,
+  partIndex: number,
+  state: State,
+): boolean {
+  return (
+    isAudioPlaying(audioId, state) && partIndex === audioActivePartIndex(audioId, state)
+  );
+}
+
+export function audio(audioId: string, state: State): AudioResource | null {
+  return state.audioResources[audioId] || null;
+}
+
+export function trackPosition(audioId: string, partIndex: number, state: State): number {
+  const key = keys.part(audioId, partIndex);
+  return state.trackPosition[key] ?? 0;
+}
+
+export function audioWithActivePart(
+  audioId: string,
+  state: State,
+): null | { audio: AudioResource; part: AudioPart; activePartIndex: number } {
+  const audioResource = audio(audioId, state);
+  if (!audioResource) return null;
+  const activePartIndex = audioActivePartIndex(audioId, state);
+  const part = audioResource.parts[activePartIndex];
+  if (!audio) return null;
+  return { audio: audioResource, part, activePartIndex };
+}
+
+export function isAudioPlaying(audioId: string, state: State): boolean {
+  return isAudioSelected(audioId, state) && state.playback.state === `PLAYING`;
+}
+
+export function isAudioSelected(audioId: string, state: State): boolean {
+  return state.playback.audioId === audioId;
+}
+
+export function audioActivePartIndex(audioId: string, state: State): number {
+  return state.activePart[audioId] ?? 0;
+}
+
+export function audioFiles(audioId: string, state: State): null | FileState[] {
+  const audioResource = audio(audioId, state);
+  if (!audioResource) return null;
+  return audioResource.parts.map((part, index) => audioPartFile(audioId, index, state));
+}
+
+export function audioPartFile(
+  audioId: string,
+  partIndex: number,
+  state: State,
+): FileState {
+  const quality = state.preferences.audioQuality;
+  const audioPath = keys.audioFilePath(audioId, partIndex, quality);
+  const audio = state.audioResources[audioId];
+  let fallbackSize = 10000;
+  if (audio && audio.parts[partIndex]) {
+    fallbackSize = audio.parts[partIndex][quality === `HQ` ? `size` : `sizeLq`];
+  }
+  return (
+    state.filesystem[audioPath] || {
+      totalBytes: fallbackSize,
+      bytesOnDisk: 0,
+    }
+  );
+}
 
 export function artwork(
   audioId: string,
   { filesystem, audioResources }: State,
-): { path: string; uri: string; networkUrl: string; downloaded: boolean } {
+): { path: string; uri: string; networkUrl: string; downloaded: boolean } | null {
   const path = keys.artworkFilePath(audioId);
   const audio = audioResources[audioId];
+  if (!audio) return null;
   const networkUrl = audio.artwork;
   let uri = networkUrl;
   let downloaded = false;
@@ -25,20 +96,22 @@ export function trackData(
   partIndex: number,
   quality: AudioQuality,
   state: State,
-): TrackData {
+): TrackData | null {
   const { audioResources } = state;
   const audioPath = keys.audioFilePath(audioId, partIndex, quality);
   const audio = audioResources[audioId];
-  const { uri: artworkUri } = artwork(audioId, state);
+  const artworkData = artwork(audioId, state);
+  if (!audio || !artworkData) {
+    return null;
+  }
   const part = audio.parts[partIndex];
 
-  console.log({ filepath: `file://${FS.abspath(audioPath)}` });
   return {
     id: keys.part(audioId, partIndex),
     filepath: `file://${FS.abspath(audioPath)}`,
     title: part.title,
     artist: audio.friend,
-    artworkUrl: artworkUri,
+    artworkUrl: artworkData.uri,
     duration: part.duration,
   };
 }

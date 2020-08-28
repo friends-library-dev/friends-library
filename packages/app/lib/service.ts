@@ -3,15 +3,15 @@ import FS from './fs';
 import Player from './player';
 
 export default class Service {
-  public static resumeAudioPlayback(): void {
+  public static audioResume(): void {
     return Player.resume();
   }
 
-  public static playAudioTrack(track: TrackData): Promise<void> {
+  public static audioPlayTrack(track: TrackData): Promise<void> {
     return Player.playPart(track);
   }
 
-  public static pauseAudioPlayback(): void {
+  public static audioPause(): void {
     return Player.pause();
   }
 
