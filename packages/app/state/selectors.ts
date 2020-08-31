@@ -24,16 +24,23 @@ export function trackPosition(audioId: string, partIndex: number, state: State):
   return state.trackPosition[key] ?? 0;
 }
 
-export function audioWithActivePart(
+export function audioPart(
   audioId: string,
+  partIndex: number,
   state: State,
-): null | { audio: AudioResource; part: AudioPart; activePartIndex: number } {
+): null | [AudioPart, AudioResource] {
   const audioResource = audio(audioId, state);
   if (!audioResource) return null;
-  const activePartIndex = audioActivePartIndex(audioId, state);
-  const part = audioResource.parts[activePartIndex];
-  if (!audio) return null;
-  return { audio: audioResource, part, activePartIndex };
+  const part = audioResource.parts[partIndex];
+  if (!part) return null;
+  return [part, audioResource];
+}
+
+export function activeAudioPart(
+  audioId: string,
+  state: State,
+): null | [AudioPart, AudioResource] {
+  return audioPart(audioId, audioActivePartIndex(audioId, state), state);
 }
 
 export function isAudioPlaying(audioId: string, state: State): boolean {
@@ -94,11 +101,10 @@ export function artwork(
 export function trackData(
   audioId: string,
   partIndex: number,
-  quality: AudioQuality,
   state: State,
 ): TrackData | null {
-  const { audioResources } = state;
-  const audioPath = keys.audioFilePath(audioId, partIndex, quality);
+  const { audioResources, preferences: prefs } = state;
+  const audioPath = keys.audioFilePath(audioId, partIndex, prefs.audioQuality);
   const audio = audioResources[audioId];
   const artworkData = artwork(audioId, state);
   if (!audio || !artworkData) {

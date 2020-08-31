@@ -28,26 +28,9 @@ class Player extends EventEmitter {
   //   return this.seekTo(currentPosition + seconds);
   // }
 
-  // public async seekTo(requestedPosition: number): Promise<void> {
-  //   const { trackAudioId, trackPartIndex } = this.state;
-  //   if (!trackAudioId || trackPartIndex === undefined) {
-  //     return;
-  //   }
-
-  //   const duration = await this.getCurrentTrackDuration();
-  //   if (duration < 0) {
-  //     return;
-  //   }
-
-  //   let position = requestedPosition;
-  //   if (position === Player.DURATION_UNKNOWN) {
-  //     position = 0;
-  //   } else if (position > duration) {
-  //     position = duration;
-  //   }
-
-  //   return RNTrackPlayer.seekTo(position);
-  // }
+  public seekTo(position: number): Promise<void> {
+    return RNTrackPlayer.seekTo(position);
+  }
 
   public async getState(): Promise<'PLAYING' | 'PAUSED' | 'STOPPED'> {
     const RNState = await RNTrackPlayer.getState();

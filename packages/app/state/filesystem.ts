@@ -36,15 +36,24 @@ const filesystemSlice = createSlice({
         }
       });
     },
-    completeDownload: (state, action: PayloadAction<string>) => {
-      const path = action.payload;
-      if (!state[path]) return state;
-      state[path].bytesOnDisk = state[path].totalBytes;
+    completeDownload: (state, { payload: path }: PayloadAction<string>) => {
+      const file = state[path];
+      if (!file) {
+        state[path] = {
+          bytesOnDisk: ERROR_FALLBACK_SIZE,
+          totalBytes: ERROR_FALLBACK_SIZE,
+        };
+        return;
+      }
+      file.bytesOnDisk = file.totalBytes;
     },
-    resetDownload: (state, action: PayloadAction<string>) => {
-      const path = action.payload;
-      if (!state[path]) return state;
-      state[path].bytesOnDisk = 0;
+    resetDownload: (state, { payload: path }: PayloadAction<string>) => {
+      const file = state[path];
+      if (!file) {
+        state[path] = { bytesOnDisk: 0, totalBytes: ERROR_FALLBACK_SIZE };
+        return;
+      }
+      file.bytesOnDisk = 0;
     },
     batchSet: (state, action: PayloadAction<FilesystemState>) => {
       return {
@@ -57,16 +66,24 @@ const filesystemSlice = createSlice({
       action: PayloadAction<{ path: string; bytesOnDisk: number }>,
     ) => {
       const { path, bytesOnDisk } = action.payload;
-      if (state[path]) return state;
-      state[path].bytesOnDisk = bytesOnDisk;
+      const file = state[path];
+      if (!file) {
+        state[path] = { bytesOnDisk, totalBytes: ERROR_FALLBACK_SIZE };
+        return;
+      }
+      file.bytesOnDisk = bytesOnDisk;
     },
     setTotalBytes: (
       state,
       action: PayloadAction<{ path: string; totalBytes: number }>,
     ) => {
       const { path, totalBytes } = action.payload;
-      if (state[path]) return state;
-      state[path].totalBytes = totalBytes;
+      const file = state[path];
+      if (!file) {
+        state[path] = { totalBytes, bytesOnDisk: 0 };
+        return;
+      }
+      file.totalBytes = totalBytes;
     },
     set: (state, action: PayloadAction<{ path: string; fileState: FileState }>) => {
       const { path, fileState } = action.payload;
@@ -92,6 +109,7 @@ export const downloadAudio = (
   quality: AudioQuality,
 ): Thunk => async (dispatch, getState) => {
   const audio = getState().audioResources[audioId];
+  if (!audio) return Promise.resolve();
   const path = keys.audioFilePath(audioId, partIndex, quality);
   const url = audio.parts[partIndex][quality === `HQ` ? `url` : `urlLq`];
   return FS.eventedDownload(
@@ -122,3 +140,5 @@ export function isDownloading({ bytesOnDisk, totalBytes }: FileState): boolean {
 export function downloadProgress({ bytesOnDisk, totalBytes }: FileState): number {
   return (bytesOnDisk / totalBytes) * 100;
 }
+
+const ERROR_FALLBACK_SIZE = 10000;

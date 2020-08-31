@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Thunk } from './';
 import Service from '../lib/service';
-import * as keys from '../lib/keys';
-import { downloadAudio } from './filesystem';
+import { downloadAudio, isDownloaded } from './filesystem';
 import { set as setActivePart } from './active-part';
-import { trackData } from './selectors';
+import * as select from './selectors';
+import { seekTo } from './track-position';
 
 export interface PlaybackState {
   audioId: string | null;
@@ -42,12 +42,13 @@ export const play = (
   partIndex: number,
   position: number,
 ): Thunk => async (dispatch, getState) => {
-  const state = getState();
-  Service.audioPlayTrack(
-    trackData(audioId, partIndex, state.preferences.audioQuality, state),
-  );
-  dispatch(setActivePart({ audioId, partIndex }));
-  dispatch(set({ audioId, state: `PLAYING` }));
+  const track = select.trackData(audioId, partIndex, getState());
+  if (track) {
+    dispatch(setActivePart({ audioId, partIndex }));
+    dispatch(set({ audioId, state: `PLAYING` }));
+    return Service.audioPlayTrack(track);
+  }
+  return Promise.resolve();
 };
 
 export const pause = (): Thunk => async (dispatch) => {
@@ -56,16 +57,17 @@ export const pause = (): Thunk => async (dispatch) => {
 };
 
 export const togglePlayback = (audioId: string): Thunk => async (dispatch, getState) => {
-  const { playback, preferences: prefs, filesystem: fs } = getState();
-  const partIndex = 0; // in the future, grab from RESUME state
-  const position = 0; // maybe grab this from RESUME state too?
-  const path = keys.audioFilePath(audioId, partIndex, prefs.audioQuality);
-  const file = fs[path];
-  const hasFile = file && file.bytesOnDisk === file.totalBytes;
+  const state = getState();
+  const { playback, preferences: prefs } = state;
+  const audioPart = select.activeAudioPart(audioId, state);
+  if (!audioPart) return;
+  const [part] = audioPart;
+  const position = select.trackPosition(audioId, part.index, state);
+  const file = select.audioPartFile(audioId, part.index, state);
 
-  if (!hasFile) {
+  if (!isDownloaded(file)) {
     // typings are incorrect here, this actually DOES return a promise
-    await dispatch(downloadAudio(audioId, partIndex, prefs.audioQuality));
+    await dispatch(downloadAudio(audioId, part.index, prefs.audioQuality));
   }
 
   if (audioId === playback.audioId && playback.state === `PLAYING`) {
@@ -74,14 +76,13 @@ export const togglePlayback = (audioId: string): Thunk => async (dispatch, getSt
   }
 
   if (audioId === playback.audioId && playback.state === `PAUSED`) {
+    dispatch(seekTo(audioId, part.index, position));
     dispatch(resume());
     return;
   }
 
-  if (playback.state === `STOPPED`) {
-    dispatch(play(audioId, partIndex, position));
-    return;
-  }
+  await dispatch(play(audioId, part.index, position));
+  dispatch(seekTo(audioId, part.index, position));
 };
 
 /* 

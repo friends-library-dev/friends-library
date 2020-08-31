@@ -3,6 +3,10 @@ import FS from './fs';
 import Player from './player';
 
 export default class Service {
+  public static audioSeekTo(position: number): Promise<void> {
+    return Player.seekTo(position);
+  }
+
   public static audioResume(): void {
     return Player.resume();
   }

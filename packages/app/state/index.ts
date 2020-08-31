@@ -15,3 +15,8 @@ export const useSelector: TypedUseSelectorHook<State> = RDXUseSelector;
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useDispatch = () => RDXUseDispatch<Dispatch>();
+
+export type PropSelector<OwnProps, Props> = (
+  ownProps: OwnProps,
+  dispatch: Dispatch,
+) => (state: State) => null | Props;
