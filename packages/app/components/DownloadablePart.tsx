@@ -6,7 +6,6 @@ import { useSelector, useDispatch, State, Dispatch } from '../state';
 import { isDownloading, isDownloaded, downloadProgress } from '../state/filesystem';
 import { AudioPart } from '../types';
 import { Sans } from './Text';
-import * as keys from '../lib/keys';
 import { isAudioPartPlaying, audioPartFile } from '../state/selectors';
 
 interface ContainerProps {
@@ -22,6 +21,7 @@ type Props = {
   downloading: boolean;
   progress: number;
   downloaded: boolean;
+  queued: boolean;
 };
 
 const winWidth = Dimensions.get(`window`).width;
@@ -35,6 +35,7 @@ const DownloadablePart: React.FC<Props> = ({
   download,
   play,
   playing,
+  queued,
 }) => {
   return (
     <TouchableOpacity
@@ -56,6 +57,7 @@ const DownloadablePart: React.FC<Props> = ({
           />
           <Sans style={tw(`flex-grow`)} size={14}>
             {part.title}
+            {queued ? ` (queued)` : ``}
           </Sans>
         </View>
         {!downloaded && !downloading && (
@@ -97,6 +99,7 @@ export const propSelector: (
       downloaded: isDownloaded(file),
       downloading: isDownloading(file),
       progress: downloadProgress(file),
+      queued: file.queued === true,
     };
   };
 };

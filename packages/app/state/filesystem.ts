@@ -1,13 +1,16 @@
-import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import pLimit from 'p-limit';
 import { AudioQuality } from '@friends-library/types';
 import * as keys from '../lib/keys';
-import { Thunk } from '.';
+import { Thunk, Dispatch, State } from '.';
 import Service from '../lib/service';
 import FS from '../lib/fs';
+import * as select from '../state/selectors';
 
 export interface FileState {
   totalBytes: number;
   bytesOnDisk: number;
+  queued?: boolean;
 }
 
 export type FilesystemState = Record<string, FileState | undefined>;
@@ -73,6 +76,15 @@ const filesystemSlice = createSlice({
       }
       file.bytesOnDisk = bytesOnDisk;
     },
+    setQueued: (state, action: PayloadAction<{ path: string; queued: boolean }>) => {
+      const { path, queued } = action.payload;
+      const file = state[path];
+      if (!file) {
+        state[path] = { totalBytes: 0, bytesOnDisk: ERROR_FALLBACK_SIZE, queued };
+        return;
+      }
+      file.queued = queued;
+    },
     setTotalBytes: (
       state,
       action: PayloadAction<{ path: string; totalBytes: number }>,
@@ -96,6 +108,7 @@ export const {
   batchSet,
   setUndownloadedAudios,
   set,
+  setQueued,
   setBytesOnDisk,
   setTotalBytes,
   completeDownload,
@@ -103,24 +116,76 @@ export const {
 } = filesystemSlice.actions;
 export default filesystemSlice.reducer;
 
-export const downloadAudio = (
+export const deleteAllAudios = (): Thunk => async (dispatch, getState) => {
+  const filesystem = getState().filesystem;
+  const deleted = Object.keys(filesystem).reduce((acc, path) => {
+    const file = filesystem[path];
+    if (file && path.endsWith(`.mp3`)) {
+      acc[path] = { totalBytes: file.totalBytes, bytesOnDisk: 0 };
+    }
+    return acc;
+  }, {} as FilesystemState);
+  dispatch(batchSet(deleted));
+  Service.fsDeleteAllAudios();
+};
+
+const limit = pLimit(3);
+
+export const downloadAllAudios = (audioId: string): Thunk => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const parts = select.audioFiles(audioId, state);
+  const quality = state.preferences.audioQuality;
+  if (!parts) return;
+  const downloadIndexes = parts
+    .map((part, index) => ({ part, partIndex: index }))
+    .filter(({ part }) => !isDownloaded(part) && !isDownloading(part))
+    .map(({ partIndex }) => partIndex);
+
+  downloadIndexes.forEach((partIndex) => {
+    const path = keys.audioFilePath(audioId, partIndex, quality);
+    dispatch(setQueued({ path, queued: true }));
+  });
+
+  const batchedPromises = downloadIndexes.map((partIndex) =>
+    limit(() => execDownloadAudio(audioId, partIndex, dispatch, state)),
+  );
+
+  return Promise.all(batchedPromises);
+};
+
+export const downloadAudio = (audioId: string, partIndex: number): Thunk => async (
+  dispatch,
+  getState,
+) => {
+  return execDownloadAudio(audioId, partIndex, dispatch, getState());
+};
+
+function execDownloadAudio(
   audioId: string,
   partIndex: number,
-  quality: AudioQuality,
-): Thunk => async (dispatch, getState) => {
-  const audio = getState().audioResources[audioId];
+  dispatch: Dispatch,
+  state: State,
+): Promise<void> {
+  const quality = state.preferences.audioQuality;
+  const audio = state.audioResources[audioId];
   if (!audio) return Promise.resolve();
   const path = keys.audioFilePath(audioId, partIndex, quality);
   const url = audio.parts[partIndex][quality === `HQ` ? `url` : `urlLq`];
   return FS.eventedDownload(
     path,
     url,
-    (totalBytes) => dispatch(setTotalBytes({ path, totalBytes })),
+    (totalBytes) => {
+      dispatch(set({ path, fileState: { bytesOnDisk: 0, totalBytes } }));
+      dispatch(setQueued({ path, queued: false }));
+    },
     (bytesWritten, totalBytes) =>
       dispatch(set({ path, fileState: { bytesOnDisk: bytesWritten, totalBytes } })),
     (success) => dispatch(success ? completeDownload(path) : resetDownload(path)),
   );
-};
+}
 
 export const downloadFile = (path: string, url: string): Thunk => async (dispatch) => {
   const bytes = await Service.downloadFile(path, url);

@@ -9,8 +9,8 @@ import Artwork from '../components/Artwork';
 import AudioControls from '../components/AudioControls';
 import DownloadablePart from '../components/DownloadablePart';
 import tw from '../lib/tailwind';
-import { useSelector } from '../state';
-import { isDownloading, isDownloaded } from '../state/filesystem';
+import { useSelector, useDispatch } from '../state';
+import { isDownloading, isDownloaded, downloadAllAudios } from '../state/filesystem';
 import * as select from '../state/selectors';
 
 interface Props {
@@ -19,6 +19,7 @@ interface Props {
 }
 
 const AudioScreen: React.FC<Props> = ({ route }) => {
+  const dispatch = useDispatch();
   const selection = useSelector((state) => {
     const audio = select.audio(route.params.audioId, state);
     const files = select.audioFiles(route.params.audioId, state);
@@ -57,7 +58,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       {showDownloadAll && (
         <TouchableOpacity
           style={tw(`pb-2 px-4 flex-row justify-center`)}
-          onPress={() => {}}
+          onPress={() => dispatch(downloadAllAudios(audio.id))}
         >
           <View style={tw(`bg-blue-200 flex-row px-6 py-2 rounded-full`)}>
             <Icon name="cloud-download" size={21} style={tw(`pr-2 text-blue-800`)} />

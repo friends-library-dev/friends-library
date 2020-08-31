@@ -57,7 +57,7 @@ export const pause = (): Thunk => async (dispatch) => {
 
 export const togglePlayback = (audioId: string): Thunk => async (dispatch, getState) => {
   const state = getState();
-  const { playback, preferences: prefs } = state;
+  const { playback } = state;
   const audioPart = select.activeAudioPart(audioId, state);
   if (!audioPart) return;
   const [part] = audioPart;
@@ -66,7 +66,7 @@ export const togglePlayback = (audioId: string): Thunk => async (dispatch, getSt
 
   if (!isDownloaded(file)) {
     // typings are incorrect here, this actually DOES return a promise
-    await dispatch(downloadAudio(audioId, part.index, prefs.audioQuality));
+    await dispatch(downloadAudio(audioId, part.index));
   }
 
   if (audioId === playback.audioId && playback.state === `PLAYING`) {

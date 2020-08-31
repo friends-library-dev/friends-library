@@ -19,6 +19,10 @@ export default class Service {
     return Player.pause();
   }
 
+  public static fsDeleteAllAudios(): Promise<void> {
+    return FS.deleteAllAudios();
+  }
+
   public static saveFreshAudioResources(resources: AudioResource[]): Promise<void> {
     return FS.writeFile(`audio/resources.json`, JSON.stringify(resources));
   }

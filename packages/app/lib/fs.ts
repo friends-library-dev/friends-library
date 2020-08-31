@@ -47,12 +47,16 @@ class FileSystem {
     onProgress: (bytesWritten: number, totalBytes: number) => any = () => {},
     onComplete: (result: boolean) => any = () => {},
   ): Promise<void> {
+    if (this.downloads[relPath]) {
+      return;
+    }
+
     try {
       const { promise } = RNFS.downloadFile({
         fromUrl: networkUrl,
         toFile: this.abspath(relPath),
         begin: ({ contentLength }) => onStart(contentLength),
-        progressInterval: 50,
+        progressInterval: 100,
         progress: ({ contentLength, bytesWritten }) =>
           onProgress(bytesWritten, contentLength),
       });
@@ -71,6 +75,18 @@ class FileSystem {
       RNFS.unlink(this.abspath(path)).then(() => delete this.manifest[path]);
     });
     await Promise.all(promises);
+  }
+
+  public async deleteAllAudios(): Promise<void> {
+    const promises = Object.keys(this.manifest).map((path) => {
+      return path.endsWith(`.mp3`) ? this.delete(path) : Promise.resolve();
+    });
+    await Promise.all(promises);
+  }
+
+  public delete(path: string): Promise<void> {
+    delete this.manifest[path];
+    return RNFS.unlink(this.abspath(path));
   }
 
   public readFile(

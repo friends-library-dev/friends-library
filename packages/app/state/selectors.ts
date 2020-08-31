@@ -1,4 +1,3 @@
-import { AudioQuality } from '@friends-library/types';
 import { State } from './';
 import FS from '../lib/fs';
 import * as keys from '../lib/keys';

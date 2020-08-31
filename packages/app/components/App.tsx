@@ -11,6 +11,7 @@ import Player from '../lib/player';
 import Home from '../screens/Home';
 import AllAudios from '../screens/AllAudios';
 import Audio from '../screens/Audio';
+import Settings from '../screens/Settings';
 
 const Stack = createStackNavigator<StackParamList>();
 
@@ -49,7 +50,7 @@ const App: React.FC = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="All Audiobooks" component={AllAudios} />
         <Stack.Screen name="Audio" component={Audio} />
-        {/* <Stack.Screen name="Settings" component={Settings} /> */}
+        <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
   );
