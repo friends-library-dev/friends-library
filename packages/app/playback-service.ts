@@ -2,20 +2,12 @@ import Player from './lib/player';
 import { setCurrentTrackPosition } from './state/track-position';
 
 module.exports = async function () {
-  Player.addEventListener(`remote-pause`, () => Player.pause());
   Player.addEventListener(`remote-play`, () => Player.resume());
+  Player.addEventListener(`remote-pause`, () => Player.pause());
 
-  Player.addEventListener(`remote-jump-forward`, ({ interval }) => {
-    // Player.seekForward(interval);
-  });
-
-  Player.addEventListener(`remote-jump-backward`, ({ interval }) => {
-    // Player.seekBackward(interval);
-  });
-
-  Player.addEventListener(`remote-seek`, async ({ position }) => {
-    // Player.seekTo(position);
-  });
+  Player.addEventListener(`remote-jump-forward`, () => Player.seekRelative(30));
+  Player.addEventListener(`remote-jump-backward`, () => Player.seekRelative(-30));
+  Player.addEventListener(`remote-seek`, ({ position }) => Player.seekTo(position));
 
   setInterval(async () => {
     const [position, state] = await Promise.all([

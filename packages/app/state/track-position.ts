@@ -48,9 +48,9 @@ export const seekTo = (
 export const seekRelative = (
   audioId: string,
   partIndex: number,
-  seconds: number,
+  delta: number,
 ): Thunk => async (dispatch, getState) => {
-  return seek(audioId, partIndex, (current) => current + seconds, getState, dispatch);
+  return seek(audioId, partIndex, (current) => current + delta, getState, dispatch);
 };
 
 function seek(

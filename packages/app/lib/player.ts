@@ -18,18 +18,13 @@ class Player extends EventEmitter {
     return RNTrackPlayer.getPosition();
   }
 
-  // public async seekBackward(seconds: number): Promise<void> {
-  //   const currentPosition = await this.getPosition();
-  //   return this.seekTo(currentPosition - seconds);
-  // }
-
-  // public async seekForward(seconds: number): Promise<void> {
-  //   const currentPosition = await this.getPosition();
-  //   return this.seekTo(currentPosition + seconds);
-  // }
-
   public seekTo(position: number): Promise<void> {
     return RNTrackPlayer.seekTo(position);
+  }
+
+  public async seekRelative(delta: number): Promise<void> {
+    const currentPosition = await RNTrackPlayer.getPosition();
+    this.seekTo(currentPosition + delta);
   }
 
   public async getState(): Promise<'PLAYING' | 'PAUSED' | 'STOPPED'> {
@@ -65,7 +60,7 @@ class Player extends EventEmitter {
     });
 
     RNTrackPlayer.updateOptions({
-      stopWithApp: true,
+      stopWithApp: false,
       jumpInterval: 30,
       capabilities: [
         RNTrackPlayer.CAPABILITY_PLAY,

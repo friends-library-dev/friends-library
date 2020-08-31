@@ -4,11 +4,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Scrubber from './Scrubber';
 import { HEX_BLUE } from '../lib/constants';
 import tw from '../lib/tailwind';
-import { PropSelector, State, Dispatch, useSelector, useDispatch } from '../state';
+import { PropSelector, useSelector, useDispatch } from '../state';
 import * as select from '../state/selectors';
 import { togglePlayback } from '../state/playback';
 import { downloadProgress, isDownloading } from '../state/filesystem';
-import { seekRelative } from '../state/track-position';
+import { seekRelative, seekTo } from '../state/track-position';
 
 interface Props {
   skipNext?: () => any;
@@ -16,6 +16,7 @@ interface Props {
   seekForward: () => any;
   seekBackward: () => any;
   togglePlayback: () => any;
+  seekTo: (position: number) => any;
   playing: boolean;
   duration: number;
   numParts: number;
@@ -35,6 +36,7 @@ const AudioControls: React.FC<Props> = ({
   skipBack,
   skipNext,
   position,
+  seekTo,
 }) => {
   return (
     <>
@@ -99,7 +101,7 @@ const AudioControls: React.FC<Props> = ({
         playing={playing}
         partDuration={duration}
         position={position}
-        seekTo={() => {}}
+        seekTo={seekTo}
       />
     </>
   );
@@ -115,17 +117,17 @@ export const propSelector: PropSelector<OwnProps, Props> = ({ audioId }, dispatc
     if (!activePart) return null;
     const [part, audio] = activePart;
     const file = select.audioPartFile(audioId, part.index, state);
-    const audioSelected = select.isAudioSelected(audioId, state);
     return {
       playing: select.isAudioPlaying(audioId, state),
       duration: part.duration,
       numParts: audio.parts.length,
       progress: downloadProgress(file),
       downloading: isDownloading(file),
-      position: audioSelected ? select.trackPosition(audioId, part.index, state) : null,
+      position: select.trackPosition(audioId, part.index, state),
       togglePlayback: () => dispatch(togglePlayback(audioId)),
       seekForward: () => dispatch(seekRelative(audioId, part.index, 30)),
       seekBackward: () => dispatch(seekRelative(audioId, part.index, -30)),
+      seekTo: (position: number) => dispatch(seekTo(audioId, part.index, position)),
     };
   };
 };

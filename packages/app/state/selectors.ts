@@ -24,6 +24,12 @@ export function trackPosition(audioId: string, partIndex: number, state: State):
   return state.trackPosition[key] ?? 0;
 }
 
+export function currentlyPlayingPart(state: State): null | [AudioPart, AudioResource] {
+  const audioId = state.playback.audioId;
+  if (!audioId) return null;
+  return activeAudioPart(audioId, state);
+}
+
 export function audioPart(
   audioId: string,
   partIndex: number,

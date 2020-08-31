@@ -37,11 +37,10 @@ export const resume = (): Thunk => async (dispatch) => {
   dispatch(setState(`PLAYING`));
 };
 
-export const play = (
-  audioId: string,
-  partIndex: number,
-  position: number,
-): Thunk => async (dispatch, getState) => {
+export const play = (audioId: string, partIndex: number): Thunk => async (
+  dispatch,
+  getState,
+) => {
   const track = select.trackData(audioId, partIndex, getState());
   if (track) {
     dispatch(setActivePart({ audioId, partIndex }));
@@ -81,7 +80,7 @@ export const togglePlayback = (audioId: string): Thunk => async (dispatch, getSt
     return;
   }
 
-  await dispatch(play(audioId, part.index, position));
+  await dispatch(play(audioId, part.index));
   dispatch(seekTo(audioId, part.index, position));
 };
 
