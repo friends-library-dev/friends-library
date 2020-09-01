@@ -21,18 +21,21 @@ interface Props {
 const AudioScreen: React.FC<Props> = ({ route }) => {
   const dispatch = useDispatch();
   const selection = useSelector((state) => {
-    const audio = select.audio(route.params.audioId, state);
+    const audioPart = select.activeAudioPart(route.params.audioId, state);
     const files = select.audioFiles(route.params.audioId, state);
-    if (!audio || !files) return null;
+    if (!audioPart || !files) return null;
+    const [part, audio] = audioPart;
     return {
       audio,
+      activePartIndex: part.index,
       showDownloadAll:
         files.filter((p) => !isDownloading(p) && !isDownloaded(p)).length > 0,
     };
   });
 
   if (!selection) return null;
-  const { audio, showDownloadAll } = selection;
+  const { audio, showDownloadAll, activePartIndex } = selection;
+  const isMultipart = audio.parts.length > 1;
 
   return (
     <ScrollView>
@@ -51,6 +54,13 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       />
       <View style={tw(`flex-grow py-4 px-8 justify-center`)}>
         <AudioControls audioId={audio.id} />
+        {isMultipart && (
+          <View style={tw(`flex-row justify-center -mt-4`)}>
+            <Sans size={13} style={tw(`text-gray-600`)}>
+              Part {activePartIndex + 1} of {audio.parts.length}
+            </Sans>
+          </View>
+        )}
       </View>
       <Serif size={30} style={tw(`text-center p-4`)}>
         {audio.title}
@@ -63,7 +73,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
           <View style={tw(`bg-blue-200 flex-row px-6 py-2 rounded-full`)}>
             <Icon name="cloud-download" size={21} style={tw(`pr-2 text-blue-800`)} />
             <Sans size={15} style={tw(`text-blue-800`)}>
-              Download {audio.parts.length > 1 ? `all` : ``}
+              Download {isMultipart ? `all` : ``}
             </Sans>
           </View>
         </TouchableOpacity>
@@ -76,7 +86,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       >
         {audio.shortDescription}
       </Serif>
-      {audio.parts.length > 1 &&
+      {isMultipart &&
         audio.parts.map((part) => (
           <DownloadablePart
             key={`${audio.id}--${part.index}`}
