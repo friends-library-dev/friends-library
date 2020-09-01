@@ -6,6 +6,7 @@ import { set as setActivePart } from './active-part';
 import * as select from './selectors';
 import { seekTo } from './track-position';
 import { AudioPart } from '../types';
+import * as keys from '../lib/keys';
 
 export interface PlaybackState {
   audioId: string | null;
@@ -33,6 +34,31 @@ const playback = createSlice({
 export const { setState, set } = playback.actions;
 export default playback.reducer;
 
+export const skipNext = (): Thunk => async (dispatch, getState) => {
+  skip(true, dispatch, getState());
+};
+
+export const skipBack = (): Thunk => async (dispatch, getState) => {
+  skip(false, dispatch, getState());
+};
+
+async function skip(forward: boolean, dispatch: Dispatch, state: State): Promise<void> {
+  const current = select.currentlyPlayingPart(state);
+  if (!current) return;
+  const [part, audio] = current;
+  const nextIndex = part.index + (forward ? 1 : -1);
+  const next = audio.parts[nextIndex];
+  if (!next) return;
+  dispatch(setActivePart({ audioId: audio.id, partIndex: next.index }));
+  Service.audioPause();
+  const file = select.audioPartFile(audio.id, next.index, state);
+  if (!isDownloaded(file)) {
+    // typings are incorrect here, this actually DOES return a promise
+    await dispatch(downloadAudio(audio.id, next.index));
+  }
+  forward ? Service.audioSkipNext() : Service.audioSkipBack();
+}
+
 export const resume = (): Thunk => async (dispatch) => {
   Service.audioResume();
   dispatch(setState(`PLAYING`));
@@ -42,11 +68,11 @@ export const play = (audioId: string, partIndex: number): Thunk => async (
   dispatch,
   getState,
 ) => {
-  const track = select.trackData(audioId, partIndex, getState());
-  if (track) {
+  const queue = select.trackQueue(audioId, getState());
+  if (queue) {
     dispatch(setActivePart({ audioId, partIndex }));
     dispatch(set({ audioId, state: `PLAYING` }));
-    return Service.audioPlayTrack(track);
+    return Service.audioPlayTrack(keys.part(audioId, partIndex), queue);
   }
   return Promise.resolve();
 };

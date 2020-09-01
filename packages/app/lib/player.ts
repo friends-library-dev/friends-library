@@ -6,12 +6,20 @@ import { Dispatch } from '../state';
 class Player extends EventEmitter {
   public dispatch: Dispatch = (): any => {};
 
-  public resume(): void {
-    RNTrackPlayer.play();
+  public skipNext(): Promise<void> {
+    return RNTrackPlayer.skipToNext();
   }
 
-  public pause(): void {
-    RNTrackPlayer.pause();
+  public skipBack(): Promise<void> {
+    return RNTrackPlayer.skipToPrevious();
+  }
+
+  public resume(): Promise<void> {
+    return RNTrackPlayer.play();
+  }
+
+  public pause(): Promise<void> {
+    return RNTrackPlayer.pause();
   }
 
   public getPosition(): Promise<number> {
@@ -40,17 +48,20 @@ class Player extends EventEmitter {
     }
   }
 
-  public async playPart(track: TrackData): Promise<void> {
-    await RNTrackPlayer.stop();
-    RNTrackPlayer.add({
-      id: track.id,
-      url: track.filepath,
-      title: track.title,
-      artist: track.artist,
-      artwork: track.artworkUrl,
-      duration: track.duration,
-      pitchAlgorithm: RNTrackPlayer.PITCH_ALGORITHM_VOICE,
-    });
+  public async playPart(trackId: string, tracks: TrackData[]): Promise<void> {
+    await RNTrackPlayer.reset();
+    RNTrackPlayer.add(
+      tracks.map((track) => ({
+        id: track.id,
+        url: track.filepath,
+        title: track.title,
+        artist: track.artist,
+        artwork: track.artworkUrl,
+        duration: track.duration,
+        pitchAlgorithm: RNTrackPlayer.PITCH_ALGORITHM_VOICE,
+      })),
+    );
+    await RNTrackPlayer.skip(trackId);
     return RNTrackPlayer.play();
   }
 

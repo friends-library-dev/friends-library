@@ -1,3 +1,4 @@
+import { isNotNull } from '@friends-library/types';
 import { State } from './';
 import FS from '../lib/fs';
 import * as keys from '../lib/keys';
@@ -114,6 +115,15 @@ export function artwork(
     downloaded = true;
   }
   return { path, uri, networkUrl, downloaded };
+}
+
+export function trackQueue(audioId: string, state: State): null | TrackData[] {
+  const audioResource = audio(audioId, state);
+  if (!audioResource) return null;
+  const tracks = audioResource.parts
+    .map((part) => trackData(audioId, part.index, state))
+    .filter(isNotNull);
+  return tracks.length > 0 ? tracks : null;
 }
 
 export function trackData(

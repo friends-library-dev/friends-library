@@ -6,7 +6,7 @@ import { HEX_BLUE } from '../lib/constants';
 import tw from '../lib/tailwind';
 import { PropSelector, useSelector, useDispatch } from '../state';
 import * as select from '../state/selectors';
-import { togglePlayback } from '../state/playback';
+import { togglePlayback, skipNext, skipBack } from '../state/playback';
 import { downloadProgress, isDownloading } from '../state/filesystem';
 import { seekRelative, seekTo } from '../state/track-position';
 
@@ -23,6 +23,7 @@ interface Props {
   downloading: boolean;
   progress: number;
   position: number | null;
+  multipart: boolean;
 }
 
 const AudioControls: React.FC<Props> = ({
@@ -37,6 +38,7 @@ const AudioControls: React.FC<Props> = ({
   skipNext,
   position,
   seekTo,
+  multipart,
 }) => {
   return (
     <>
@@ -49,7 +51,7 @@ const AudioControls: React.FC<Props> = ({
         {!downloading && (
           <TouchableOpacity onPress={skipBack}>
             <Icon
-              style={{ opacity: skipBack ? 1 : 0 }}
+              style={{ opacity: multipart ? (skipBack ? 1 : 0.2) : 0 }}
               name="step-backward"
               size={25}
               color={HEX_BLUE}
@@ -87,7 +89,7 @@ const AudioControls: React.FC<Props> = ({
         {!downloading && (
           <TouchableOpacity onPress={skipNext}>
             <Icon
-              style={{ opacity: skipNext ? 1 : 0 }}
+              style={{ opacity: multipart ? (skipNext ? 1 : 0.2) : 0 }}
               name="step-forward"
               size={25}
               color={HEX_BLUE}
@@ -117,7 +119,13 @@ export const propSelector: PropSelector<OwnProps, Props> = ({ audioId }, dispatc
     if (!activePart) return null;
     const [part, audio] = activePart;
     const file = select.audioPartFile(audioId, part.index, state);
+    const multipart = audio.parts.length > 1;
+    const canSkipNext = multipart && part.index < audio.parts.length - 1;
+    const canSkipBack = multipart && part.index > 0;
     return {
+      multipart,
+      skipNext: canSkipNext ? () => dispatch(skipNext()) : undefined,
+      skipBack: canSkipBack ? () => dispatch(skipBack()) : undefined,
       playing: select.isAudioPlaying(audioId, state),
       duration: part.duration,
       numParts: audio.parts.length,

@@ -25,8 +25,10 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
     const files = select.audioFiles(route.params.audioId, state);
     if (!audioPart || !files) return null;
     const [part, audio] = audioPart;
+    const activeFile = select.audioPartFile(audio.id, part.index, state);
     return {
       audio,
+      downloadingActivePart: isDownloading(activeFile),
       activePartIndex: part.index,
       showDownloadAll:
         files.filter((p) => !isDownloading(p) && !isDownloaded(p)).length > 0,
@@ -34,7 +36,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
   });
 
   if (!selection) return null;
-  const { audio, showDownloadAll, activePartIndex } = selection;
+  const { audio, showDownloadAll, activePartIndex, downloadingActivePart } = selection;
   const isMultipart = audio.parts.length > 1;
 
   return (
@@ -54,7 +56,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       />
       <View style={tw(`flex-grow py-4 px-8 justify-center`)}>
         <AudioControls audioId={audio.id} />
-        {isMultipart && (
+        {isMultipart && !downloadingActivePart && (
           <View style={tw(`flex-row justify-center -mt-4`)}>
             <Sans size={13} style={tw(`text-gray-600`)}>
               Part {activePartIndex + 1} of {audio.parts.length}
