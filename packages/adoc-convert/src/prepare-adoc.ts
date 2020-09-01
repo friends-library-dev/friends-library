@@ -5,6 +5,7 @@ import {
   htmlEntitiesToDecimal,
 } from '@friends-library/adoc-utils';
 import { br7 } from '@friends-library/doc-html';
+import adocToHtml from './adoc-to-html';
 
 export const prepareAsciidoc: (adoc: Asciidoc) => Asciidoc = memoize(
   flow([
@@ -130,7 +131,13 @@ function changeChapterSubtitleBlurbMarkup(adoc: Asciidoc): Asciidoc {
     /\[\.chapter-subtitle--blurb\]\n([\s\S]+?)(?=\n\n)/gim,
     (_, inner) => {
       const joined = inner.trim().split(`\n`).join(` `);
-      return raw(`<h3 class="chapter-subtitle--blurb">${joined}</h3>`);
+      const [html] = adocToHtml(joined);
+      const innerHtml = html
+        .trim()
+        .replace(/\n/g, ``)
+        .replace(/^<div class="paragraph"><p>/, ``)
+        .replace(/<\/p><\/div>$/, ``);
+      return raw(`<h3 class="chapter-subtitle--blurb">${innerHtml}</h3>`);
     },
   );
 }

@@ -100,6 +100,23 @@ describe(`prepareAsciidoc()`, () => {
     );
   });
 
+  it(`converts inner markup for chapter-subtitle-blurb`, () => {
+    const adoc = stripIndent(`
+      == Chapter 1
+
+      [.chapter-subtitle--blurb]
+      Foo [.book-title]#bar#
+
+      Para.
+    `).trim();
+
+    const prepared = prepareAsciidoc(adoc);
+
+    expect(prepared).toContain(
+      `++++\n<h3 class="chapter-subtitle--blurb">Foo <span class="book-title">bar</span></h3>\n++++`,
+    );
+  });
+
   const psCases = [
     // english
     [`P+++.+++ S. Foo`, `_P+++.+++ S._ Foo`],
