@@ -1,11 +1,13 @@
 import { Platform } from 'react-native';
 import { configureStore, getDefaultMiddleware, Store, AnyAction } from '@reduxjs/toolkit';
+import SplashScreen from 'react-native-splash-screen';
 import throttle from 'lodash/throttle';
 import rootReducer from './rootReducer';
 import FS from '../lib/fs';
 import Player from '../lib/player';
 import { INITIAL_STATE, State } from './';
 import { batchSet as batchSetFilesystem } from './filesystem';
+import { fetchAudios } from './audio-resources';
 
 export default async function getStore(): Promise<Store<any, AnyAction>> {
   Player.init();
@@ -40,10 +42,11 @@ export default async function getStore(): Promise<Store<any, AnyAction>> {
     ),
   );
 
+  store.dispatch(fetchAudios());
+
   store.subscribe(
     throttle(
       () => {
-        console.log('saving state!');
         const state = store.getState();
         const saveState: State = {
           audioResources: state.audioResources,
@@ -59,6 +62,8 @@ export default async function getStore(): Promise<Store<any, AnyAction>> {
       { leading: false, trailing: true },
     ),
   );
+
+  SplashScreen.hide();
 
   return store;
 }

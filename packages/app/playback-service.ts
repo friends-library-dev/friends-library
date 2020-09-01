@@ -1,9 +1,17 @@
 import Player from './lib/player';
 import { setCurrentTrackPosition } from './state/track-position';
+import { setState as setPlaybackState } from './state/playback';
 
 module.exports = async function () {
-  Player.addEventListener(`remote-play`, () => Player.resume());
-  Player.addEventListener(`remote-pause`, () => Player.pause());
+  Player.addEventListener(`remote-play`, () => {
+    Player.resume();
+    Player.dispatch(setPlaybackState(`PLAYING`));
+  });
+
+  Player.addEventListener(`remote-pause`, () => {
+    Player.pause();
+    Player.dispatch(setPlaybackState(`PAUSED`));
+  });
 
   Player.addEventListener(`remote-jump-forward`, () => Player.seekRelative(30));
   Player.addEventListener(`remote-jump-backward`, () => Player.seekRelative(-30));
