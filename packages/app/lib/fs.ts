@@ -40,6 +40,10 @@ class FileSystem {
     return this.downloads[relPath];
   }
 
+  public hasFile(relPath: string): boolean {
+    return relPath in this.manifest;
+  }
+
   public async eventedDownload(
     relPath: string,
     networkUrl: string,

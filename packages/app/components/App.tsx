@@ -20,20 +20,20 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     async function initApp(): Promise<void> {
-      Player.dispatch = dispatch;
-      Player.init();
-      await FS.init();
+      // Player.dispatch = dispatch;
+      // Player.init();
+      // await FS.init();
       // await FS.deleteAll();
-      dispatch(
-        batchSetFilesystem(
-          Object.keys(FS.manifest).reduce((acc, path) => {
-            acc[path] = { totalBytes: FS.manifest[path], bytesOnDisk: FS.manifest[path] };
-            return acc;
-          }, {} as FilesystemState),
-        ),
-      );
+      // dispatch(
+      //   batchSetFilesystem(
+      //     Object.keys(FS.manifest).reduce((acc, path) => {
+      //       acc[path] = { totalBytes: FS.manifest[path], bytesOnDisk: FS.manifest[path] };
+      //       return acc;
+      //     }, {} as FilesystemState),
+      //   ),
+      // );
       dispatch(fetchAudios());
-      await dispatch(loadAudios());
+      // await dispatch(loadAudios());
       setReady(true);
       SplashScreen.hide();
     }

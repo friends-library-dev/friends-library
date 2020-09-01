@@ -7,7 +7,7 @@ import { Thunk, Dispatch } from '.';
 
 type AudioResourcesState = Record<string, AudioResource | undefined>;
 
-const initialState: AudioResourcesState = {};
+export const initialState: AudioResourcesState = {};
 
 const audioResourcesSlice = createSlice({
   name: `audio-resources`,

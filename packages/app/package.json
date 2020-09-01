@@ -20,6 +20,7 @@
     "@storybook/addon-ondevice-knobs": "^5.3.19",
     "filesize": "^6.1.0",
     "get-yarn-workspaces": "^1.0.2",
+    "lodash": "^4.17.20",
     "p-limit": "^3.0.2",
     "react": "16.10.1",
     "react-native": "0.63.0",
