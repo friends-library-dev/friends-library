@@ -51,12 +51,14 @@ async function skip(forward: boolean, dispatch: Dispatch, state: State): Promise
   if (!next) return;
   dispatch(setActivePart({ audioId: audio.id, partIndex: next.index }));
   Service.audioPause();
+  dispatch(setState(`PAUSED`));
   const file = select.audioPartFile(audio.id, next.index, state);
   if (!isDownloaded(file)) {
     // typings are incorrect here, this actually DOES return a promise
     await dispatch(downloadAudio(audio.id, next.index));
   }
   forward ? Service.audioSkipNext() : Service.audioSkipBack();
+  dispatch(setState(`PLAYING`));
 }
 
 export const resume = (): Thunk => async (dispatch) => {
