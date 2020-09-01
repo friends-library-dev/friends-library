@@ -24,6 +24,14 @@ export function isAudioPartPaused(
   );
 }
 
+export function isAudioPartActive(
+  audioId: string,
+  partIndex: number,
+  state: State,
+): boolean {
+  return partIndex === audioActivePartIndex(audioId, state);
+}
+
 export function audio(audioId: string, state: State): AudioResource | null {
   return state.audioResources[audioId] || null;
 }

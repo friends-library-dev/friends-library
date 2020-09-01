@@ -30,7 +30,7 @@ const Scrubber: React.FC<Props> = ({
           bufferedValue={0}
           scrubbedColor={HEX_MAROON}
           totalDuration={partDuration}
-          onSlidingComplete={(newPosition) => playing && seekTo(newPosition)}
+          onSlidingComplete={(newPosition) => seekTo(newPosition)}
         />
       )}
       {downloading && (

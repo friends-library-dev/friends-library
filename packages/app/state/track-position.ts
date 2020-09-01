@@ -70,7 +70,7 @@ function seek(
     Math.min(part.duration, getNewPosition(currentPosition)),
   );
   dispatch(setTrackPosition({ audioId, partIndex, position: newPosition }));
-  if (select.isAudioPartPlaying(audioId, partIndex, state)) {
+  if (select.isAudioPartActive(audioId, partIndex, state)) {
     Service.audioSeekTo(newPosition);
   }
 }
