@@ -3,7 +3,13 @@ import { View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import tw from '../lib/tailwind';
 import { useSelector, useDispatch, State, Dispatch } from '../state';
-import { isDownloading, isDownloaded, downloadProgress } from '../state/filesystem';
+import {
+  isDownloading,
+  isDownloaded,
+  downloadProgress,
+  downloadAudio,
+} from '../state/filesystem';
+import { togglePartPlayback } from '../state/playback';
 import { AudioPart } from '../types';
 import { Sans } from './Text';
 import { isAudioPartPlaying, audioPartFile } from '../state/selectors';
@@ -84,7 +90,7 @@ const DownloadablePart: React.FC<Props> = ({
 export const propSelector: (
   ownProps: ContainerProps,
   dispatch: Dispatch,
-) => (state: State) => null | Props = ({ audioId, partIndex }) => {
+) => (state: State) => null | Props = ({ audioId, partIndex }, dispatch) => {
   return (state) => {
     const audio = state.audioResources[audioId];
     if (!audio) return null;
@@ -92,8 +98,8 @@ export const propSelector: (
     if (!part) return null;
     const file = audioPartFile(audioId, partIndex, state);
     return {
-      play: () => {},
-      download: () => {},
+      play: () => dispatch(togglePartPlayback(audioId, partIndex)),
+      download: () => dispatch(downloadAudio(audioId, partIndex)),
       playing: isAudioPartPlaying(audioId, partIndex, state),
       part,
       downloaded: isDownloaded(file),

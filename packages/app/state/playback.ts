@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Thunk } from './';
 import Service from '../lib/service';
+import { State, Dispatch, Thunk } from './';
 import { downloadAudio, isDownloaded } from './filesystem';
 import { set as setActivePart } from './active-part';
 import * as select from './selectors';
 import { seekTo } from './track-position';
+import { AudioPart } from '../types';
 
 export interface PlaybackState {
   audioId: string | null;
@@ -55,13 +56,31 @@ export const pause = (): Thunk => async (dispatch) => {
   dispatch(setState(`PAUSED`));
 };
 
+export const togglePartPlayback = (audioId: string, partIndex: number): Thunk => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const audioPart = select.audioPart(audioId, partIndex, state);
+  if (!audioPart) return;
+  const [part] = audioPart;
+  execTogglePartPlayback(audioId, part, dispatch, state);
+};
+
 export const togglePlayback = (audioId: string): Thunk => async (dispatch, getState) => {
   const state = getState();
-  const { playback } = state;
   const audioPart = select.activeAudioPart(audioId, state);
   if (!audioPart) return;
   const [part] = audioPart;
-  const position = select.trackPosition(audioId, part.index, state);
+  execTogglePartPlayback(audioId, part, dispatch, state);
+};
+
+async function execTogglePartPlayback(
+  audioId: string,
+  part: AudioPart,
+  dispatch: Dispatch,
+  state: State,
+): Promise<void> {
   const file = select.audioPartFile(audioId, part.index, state);
 
   if (!isDownloaded(file)) {
@@ -69,12 +88,13 @@ export const togglePlayback = (audioId: string): Thunk => async (dispatch, getSt
     await dispatch(downloadAudio(audioId, part.index));
   }
 
-  if (audioId === playback.audioId && playback.state === `PLAYING`) {
+  if (select.isAudioPartPlaying(audioId, part.index, state)) {
     dispatch(pause());
     return;
   }
 
-  if (audioId === playback.audioId && playback.state === `PAUSED`) {
+  const position = select.trackPosition(audioId, part.index, state);
+  if (select.isAudioPartPaused(audioId, part.index, state)) {
     dispatch(seekTo(audioId, part.index, position));
     dispatch(resume());
     return;
@@ -82,25 +102,4 @@ export const togglePlayback = (audioId: string): Thunk => async (dispatch, getSt
 
   await dispatch(play(audioId, part.index));
   dispatch(seekTo(audioId, part.index, position));
-};
-
-/* 
-1) player is actively playing the audio
-  -> PAUSE playback
-
-2) player is puased playing the audio
-  -> RESUME playback
-
-3) player is STOPPED (nothing is playing)
-  -> WAIT for track to DOWNLOAD (if necessary)
-  -> PLAY track at position X (X = 0 for now, but might become stored RESUME STATE)
-
-4) player is PLAYING a DIFFERENT audio altogether
-  -> STOP the current track
-  -> goto 3)
-
-5) player is PAUSED on a DIFFERENT audio altogether
-  -> STOP the current track ???
-  -> goto 3)
-
-*/
+}
