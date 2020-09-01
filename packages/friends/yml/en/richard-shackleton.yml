@@ -9,7 +9,17 @@ died: 1792
 residences:
   - city: Ballitore
     region: Ireland
-description: TODO
+description:
+  Richard Shackleton (1726-1792) was the son of the beloved and brilliant elder in the
+  Society of Friends, Abraham Shackleton, who founded a prominent boarding school in
+  Ballitore, Ireland, in 1726. Like his father, Richard was endowed with uncommon
+  intellectual and literary giftings, and there was no art or science at which he did not
+  excel. But finding no true satisfaction in anything outside of the presence and power of
+  his God, he brought both his will and his intellect under the yoke of the cross, and so
+  became a fruitful branch in the church of Christ, and an “elder worthy of double honor.”
+  Neither he nor his wife Elizabeth (1726-1804) were ministers in the Society of Friends,
+  but their deep humility, spiritual wisdom, and unaffected virtue shined conspicuously in
+  all that they did, and made them preachers of righteousness wherever they were.
 documents:
   - id: a2e8dd81-d87a-4287-b1a6-b67254eb4727
     title: The Life and Letters of Richard and Elizabeth Shackleton
@@ -19,8 +29,24 @@ documents:
       Memoirs and Letters of Richard and Elizabeth Shackleton late of Ballitore, Ireland
       Compiled by their Daughter Mary Leadbeater Including a Concise Biographical Sketch,
       and some Letters of Abraham Shackleton.
-    description: TODO
-    partial_description: TODO
+    description:
+      Richard Shackleton (1726-1792) was the son of the beloved and brilliant elder in the
+      Society of Friends, Abraham Shackleton, who founded a prominent boarding school in
+      Ballitore, Ireland, in 1726. Like his father, Richard was endowed with uncommon
+      intellectual and literary giftings, and there was no art or science at which he did
+      not excel. But finding no true satisfaction in anything outside of the presence and
+      power of his God, he brought both his will and his intellect under the yoke of the
+      cross, and so became a fruitful branch in the church of Christ, and an “elder worthy
+      of double honor.” Neither he nor his wife Elizabeth (1726-1804) were ministers in
+      the Society of Friends, but their deep humility, spiritual wisdom, and unaffected
+      virtue shined conspicuously in all that they did, and made them preachers of
+      righteousness wherever they were.
+    partial_description:
+      A memoir of Richard and Elizabeth Shackleton, containing biographical accounts of
+      their lives (provided by their daughter Mary Leadbeater), and an extensive
+      collection of letters addressed to a variety of recipients over the course of many
+      decades; also containing a short biographical relation of Richard’s father, Abraham
+      Shackleton.
     tags:
       - journal
       - letters
