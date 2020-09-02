@@ -2,8 +2,7 @@ id: 513af207-8b68-475a-ac6d-757a9484b0f6
 name: Richard Shackleton
 slug: richard-shackleton
 gender: male
-# TODO set real date
-added: 2000-00-00T00:00:00.000Z
+added: 2020-09-02T15:23:17.449Z
 born: 1726
 died: 1792
 residences:
@@ -53,7 +52,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-237-0
-        draft: true
       - type: modernized
         isbn: 978-1-64476-238-7
-        draft: true

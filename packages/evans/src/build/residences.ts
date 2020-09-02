@@ -146,6 +146,8 @@ function position(residence: { city: string; region: string }): Position {
       return { top: 54.3, left: 56.6, map: `UK` };
     case `Wakefield, England`:
       return { top: 51.0, left: 54.6, map: `UK` };
+    case `Ballitore, Ireland`:
+      return { top: 58.0, left: 34.3, map: `UK` };
     case `Mountmellick, Ireland`:
       return { top: 56.4, left: 32.6, map: `UK` };
     case `Cork, Ireland`:
