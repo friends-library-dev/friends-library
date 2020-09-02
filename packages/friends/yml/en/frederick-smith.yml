@@ -2,8 +2,7 @@ id: a0090598-2c85-4b6a-8cb4-e99396aa18ce
 name: Frederick Smith
 slug: frederick-smith
 gender: male
-# TODO set real date
-added: 2000-00-00T00:00:00.000Z
+added: 2020-09-02T15:23:15.449Z
 born: 1757
 died: 1823
 residences:
@@ -11,7 +10,7 @@ residences:
     region: England
 description:
   Frederick Smith (1757-1823) was not born into the Society of Friends, and according to
-  his own relation, spent the first part of his life in great rebellion against the
+  his own account, spent the first part of his life in great rebellion against both the
   convictions of the Spirit and the admonitions of his parents. By nine years of age, he
   had become “a little monster of iniquity,” and by twenty, he claims “there were few that
   exceeded me in vicious conduct.” But the Lord, in His mercy, met him in the path of
@@ -30,19 +29,19 @@ documents:
       Month, 1823.
     description:
       Frederick Smith (1757-1823) was not born into the Society of Friends, and according
-      to his own relation, spent the first part of his life in great rebellion against the
-      convictions of the Spirit and the admonitions of his parents. By nine years of age,
-      he had become “a little monster of iniquity,” and by twenty, he claims “there were
-      few that exceeded me in vicious conduct.” But the Lord, in His mercy, met him in the
-      path of destruction and called him down from the heights of his pride and ambition.
-      And though changing his course after such a career of iniquity brought him into many
-      “agonizing tortures” in both family and career, and into judgments mixed with mercy
-      in the depths of his own heart, his life became an undeniable instance of the
-      “washing of regeneration and renewing of the Holy Spirit.”
+      to his own account, spent the first part of his life in great rebellion against both
+      the convictions of the Spirit and the admonitions of his parents. By nine years of
+      age, he had become “a little monster of iniquity,” and by twenty, he claims “there
+      were few that exceeded me in vicious conduct.” But the Lord, in His mercy, met him
+      in the path of destruction and called him down from the heights of his pride and
+      ambition. And though changing his course after such a career of iniquity brought him
+      into many “agonizing tortures” in both family and career, and into judgments mixed
+      with mercy in the depths of his own heart, his life became an undeniable instance of
+      the “washing of regeneration and renewing of the Holy Spirit.”
     partial_description:
       The journal of Frederick Smith, giving an account of his early rebellion against the
       convictions of the  Spirit and the admonitions of his parents, his awakening out of
-      the sleep of sin to follow the Lord with  uncompromising conviction, and the various
+      the sleep of sin to follow the Lord with uncompromising conviction, and the various
       inward and outward trials through which he was brought to a settlement in the Truth.
     tags:
       - journal
@@ -50,7 +49,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-239-4
-        draft: true
       - type: modernized
         isbn: 978-1-64476-240-0
-        draft: true
