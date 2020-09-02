@@ -29,6 +29,7 @@ export default async function getStore(): Promise<Store<any, AnyAction>> {
         Platform.OS === `ios` ? { warnAfter: 100, ignoredPaths: [`audios`] } : false,
       immutableCheck: Platform.OS === `ios` ? { warnAfter: 100 } : false,
     }),
+    devTools: Platform.OS === `ios`,
   });
 
   Player.dispatch = store.dispatch;

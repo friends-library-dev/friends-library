@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Platform } from 'react-native';
 import Service from '../lib/service';
 import { State, Dispatch, Thunk } from './';
 import { downloadAudio, isDownloaded } from './filesystem';
@@ -58,6 +59,9 @@ async function skip(forward: boolean, dispatch: Dispatch, state: State): Promise
     await dispatch(downloadAudio(audio.id, next.index));
   }
   forward ? Service.audioSkipNext() : Service.audioSkipBack();
+  if (Platform.OS === `android`) {
+    Service.audioResume();
+  }
   dispatch(setState(`PLAYING`));
 }
 

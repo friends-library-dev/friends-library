@@ -7,15 +7,15 @@ export default class Service {
     return Player.seekTo(position);
   }
 
-  public static audioSkipBack(): void {
+  public static audioSkipBack(): Promise<void> {
     return Player.skipBack();
   }
 
-  public static audioSkipNext(): void {
+  public static audioSkipNext(): Promise<void> {
     return Player.skipNext();
   }
 
-  public static audioResume(): void {
+  public static audioResume(): Promise<void> {
     return Player.resume();
   }
 
@@ -23,7 +23,7 @@ export default class Service {
     return Player.playPart(trackId, tracks);
   }
 
-  public static audioPause(): void {
+  public static audioPause(): Promise<void> {
     return Player.pause();
   }
 
