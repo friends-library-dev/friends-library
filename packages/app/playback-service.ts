@@ -1,5 +1,7 @@
 import Player from './lib/player';
 import { setCurrentTrackPosition } from './state/track-position';
+import { maybeDownloadNextQueuedTrack } from './state/filesystem';
+import { maybeAdvanceQueue } from './state/active-part';
 import { setState as setPlaybackState } from './state/playback';
 
 module.exports = async function () {
@@ -17,13 +19,28 @@ module.exports = async function () {
   Player.addEventListener(`remote-jump-backward`, () => Player.seekRelative(-30));
   Player.addEventListener(`remote-seek`, ({ position }) => Player.seekTo(position));
 
+  Player.addEventListener(
+    `playback-track-changed`,
+    ({ nextTrack }: { nextTrack: null | string }) => {
+      if (nextTrack) {
+        Player.dispatch(maybeAdvanceQueue(nextTrack));
+      }
+    },
+  );
+
+  let counter = 0;
   setInterval(async () => {
+    counter++;
     const [position, state] = await Promise.all([
       Player.getPosition(),
       Player.getState(),
     ]);
-    if (state === `PLAYING`) {
-      Player.dispatch(setCurrentTrackPosition(position));
+    if (state !== `PLAYING`) {
+      return;
+    }
+    Player.dispatch(setCurrentTrackPosition(position));
+    if (counter % 5 === 0) {
+      Player.dispatch(maybeDownloadNextQueuedTrack(position));
     }
   }, 1000);
 

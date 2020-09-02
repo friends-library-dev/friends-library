@@ -163,6 +163,34 @@ export const downloadAudio = (audioId: string, partIndex: number): Thunk => asyn
   return execDownloadAudio(audioId, partIndex, dispatch, getState());
 };
 
+export const maybeDownloadNextQueuedTrack = (position: number): Thunk => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const current = select.currentlyPlayingPart(state);
+  if (!current) return;
+  const [part, audio] = current;
+  if (audio.parts.length === 1 || part.index === audio.parts.length - 1) {
+    return; // no next track to download
+  }
+
+  const nextPart = audio.parts[part.index + 1];
+  if (!nextPart) {
+    return;
+  }
+
+  // only pre-download when they've hit 75% of current track
+  if (position / part.duration < 0.75) {
+    return;
+  }
+
+  const nextFile = select.audioPartFile(audio.id, nextPart.index, state);
+  if (!isDownloaded(nextFile) && !isDownloading(nextFile)) {
+    execDownloadAudio(audio.id, nextPart.index, dispatch, state);
+  }
+};
+
 function execDownloadAudio(
   audioId: string,
   partIndex: number,
