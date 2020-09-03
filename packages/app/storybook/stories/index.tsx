@@ -6,7 +6,26 @@ import { AudioControls } from '../../components/AudioControls';
 import tw from '../../lib/tailwind';
 
 storiesOf(`AudioListItem`, module).add(`default`, () => (
-  <AudioListItem id="webb" title="A Letter of Elizabeth Webb" friend="Elizabeth Webb" />
+  <View style={{ backgroundColor: `#f2f2f2` }}>
+    <AudioListItem
+      id="webb"
+      title="A Letter of Elizabeth Webb"
+      friend="Elizabeth Webb"
+      progress={0}
+    />
+    <AudioListItem
+      id="webb"
+      title="A Letter of Elizabeth Webb"
+      friend="Elizabeth Webb"
+      progress={33}
+    />
+    <AudioListItem
+      id="webb"
+      title="A Letter of Elizabeth Webb"
+      friend="Elizabeth Webb"
+      progress={98}
+    />
+  </View>
 ));
 
 storiesOf(`AudioControls`, module)
