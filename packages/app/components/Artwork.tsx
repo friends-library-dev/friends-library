@@ -20,7 +20,7 @@ const Artwork: React.FC<Props> = ({ id, size, style = {} }) => {
     if (!downloaded) {
       dispatch(downloadFile(path, networkUrl));
     }
-  }, [downloaded, networkUrl, path]);
+  }, [dispatch, downloaded, networkUrl, path]);
 
   return (
     <View style={{ width: size, height: size, ...style }}>

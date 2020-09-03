@@ -61,8 +61,11 @@ module.exports = async function () {
     `playback-queue-ended`,
   ];
 
+  const debugEvents = false;
   for (const event of events) {
-    // @ts-ignore
-    // Player.addEventListener(event, (...args) => console.log(event, args));
+    if (debugEvents) {
+      // @ts-ignore
+      Player.addEventListener(event, (...args) => console.log(event, args));
+    }
   }
 };

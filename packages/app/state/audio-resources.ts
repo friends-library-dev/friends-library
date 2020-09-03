@@ -42,18 +42,18 @@ export const fetchAudios = (): Thunk => async (dispatch) => {
   }
 };
 
-async function setAllUndownloadedAudios(
+function setAllUndownloadedAudios(
   dispatch: Dispatch,
   audioResources: AudioResource[],
-) {
+): void {
   const files: {
     audioId: string;
     partIndex: number;
     quality: AudioQuality;
     numBytes: number;
   }[] = [];
-  for (let audio of audioResources) {
-    for (let part of audio.parts) {
+  for (const audio of audioResources) {
+    for (const part of audio.parts) {
       files.push({
         audioId: audio.id,
         partIndex: part.index,

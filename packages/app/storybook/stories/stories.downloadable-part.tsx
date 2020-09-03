@@ -10,20 +10,20 @@ const fns = {
 
 storiesOf(`DownloadablePart`, module).add(`multi`, () => (
   <View>
-    <DownloadablePart {...fns} part={{ title: 'Chapter 2' }} state="playing" />
-    <DownloadablePart {...fns} part={{ title: 'Chapter 2' }} state="downloaded" />
+    <DownloadablePart {...fns} part={{ title: `Chapter 2` }} state="playing" />
+    <DownloadablePart {...fns} part={{ title: `Chapter 2` }} state="downloaded" />
     <DownloadablePart
       {...fns}
-      part={{ title: 'Chapter 3' }}
+      part={{ title: `Chapter 3` }}
       state="downloading"
       progress={33}
     />
     <DownloadablePart
       {...fns}
-      part={{ title: 'Chapter 4' }}
+      part={{ title: `Chapter 4` }}
       state="queued_for_download"
     />
-    <DownloadablePart {...fns} part={{ title: 'Chapter 5' }} state="not_downloaded" />
+    <DownloadablePart {...fns} part={{ title: `Chapter 5` }} state="not_downloaded" />
     <DownloadablePart {...fns} part={{ title: longTitle }} state="playing" />
     <DownloadablePart {...fns} part={{ title: longTitle }} state="downloaded" />
     <DownloadablePart

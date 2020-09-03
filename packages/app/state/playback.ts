@@ -16,7 +16,7 @@ export interface PlaybackState {
 
 export const initialState: PlaybackState = {
   audioId: null,
-  state: 'STOPPED',
+  state: `STOPPED`,
 };
 
 const playback = createSlice({

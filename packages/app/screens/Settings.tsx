@@ -22,7 +22,9 @@ const Home: React.FC<Props> = () => {
   const { quality, deletableBytes } = useSelector((state) => ({
     quality: state.preferences.audioQuality,
     deletableBytes: Object.keys(state.filesystem).reduce((acc, path) => {
-      return path.endsWith(`.mp3`) ? acc + state.filesystem[path]!.bytesOnDisk : acc;
+      return path.endsWith(`.mp3`)
+        ? acc + (state.filesystem[path] || { bytesOnDisk: 0 }).bytesOnDisk
+        : acc;
     }, 0),
   }));
   const hqEnabled = quality === `HQ`;

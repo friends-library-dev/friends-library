@@ -15,7 +15,9 @@ class FileSystem {
       const files = await RNFS.readDir(this.abspath(`${dir}/`));
       files
         .filter((f) => f.isFile())
-        .forEach((f) => (this.manifest[`${dir}/${basename(f.path)}`] = Number(f.size)));
+        .forEach((f) => {
+          this.manifest[`${dir}/${basename(f.path)}`] = Number(f.size);
+        });
     }
   }
 
@@ -76,7 +78,7 @@ class FileSystem {
 
   public async deleteAll(): Promise<void> {
     const promises = Object.keys(this.manifest).map((path) => {
-      RNFS.unlink(this.abspath(path)).then(() => delete this.manifest[path]);
+      return RNFS.unlink(this.abspath(path)).then(() => delete this.manifest[path]);
     });
     await Promise.all(promises);
   }

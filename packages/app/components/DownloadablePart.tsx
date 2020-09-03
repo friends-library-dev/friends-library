@@ -50,7 +50,7 @@ export const DownloadablePart: React.FC<Props> = (props) => {
     >
       <View
         style={tw(`absolute bg-white h-full`, {
-          width: props.state === `downloading` ? `${props.progress}%` : '0%',
+          width: props.state === `downloading` ? `${props.progress}%` : `0%`,
         })}
       />
       <View style={tw(`p-2 pl-1 pr-6 flex-row`)}>
