@@ -29,6 +29,8 @@
     // 👇 doesn't work https://github.com/microsoft/vscode/issues/869
     "packages/ui/src/globals.d.ts": false,
     "packages/ui/.storybook/manager-head.html": true,
+    "packages/app/ios/Pods": true,
+    "packages/app/index.js": true,
     "design": true
   }
 }
