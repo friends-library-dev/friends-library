@@ -206,7 +206,7 @@ function execDownloadAudio(
     path,
     url,
     (totalBytes) => {
-      dispatch(set({ path, fileState: { bytesOnDisk: 0, totalBytes } }));
+      dispatch(set({ path, fileState: { bytesOnDisk: 1, totalBytes } }));
       dispatch(setQueued({ path, queued: false }));
     },
     (bytesWritten, totalBytes) =>

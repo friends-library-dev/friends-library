@@ -44,9 +44,12 @@ export const DownloadablePart: React.FC<Props> = (props) => {
     rightColWidth = 60;
   }
   return (
-    <TouchableOpacity onPress={state === `downloaded` ? play : undefined}>
+    <TouchableOpacity
+      style={tw(`border-b border-gray-300`)}
+      onPress={state === `downloaded` ? play : undefined}
+    >
       <View
-        style={tw(`absolute bg-blue-100 h-full`, {
+        style={tw(`absolute bg-white h-full`, {
           width: props.state === `downloading` ? `${props.progress}%` : '0%',
         })}
       />
@@ -93,6 +96,7 @@ export const propSelector: (
       download: () => dispatch(downloadAudio(audioId, partIndex)),
       part,
     };
+    // return { ...common, state: `downloading`, progress: 33 };
 
     if (isDownloading(file)) {
       return { ...common, state: `downloading`, progress: downloadProgress(file) };
