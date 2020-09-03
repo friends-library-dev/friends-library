@@ -67,6 +67,11 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       <Serif size={30} style={tw(`text-center p-4`)}>
         {audio.title}
       </Serif>
+      {!audio.title.includes(audio.friend) && (
+        <Serif size={22} style={tw(`text-center italic text-gray-700 mb-6 -mt-2`)}>
+          by {audio.friend}
+        </Serif>
+      )}
       {showDownloadAll && (
         <View style={tw(`pb-2 px-4 flex-row justify-center`)}>
           <TouchableOpacity
