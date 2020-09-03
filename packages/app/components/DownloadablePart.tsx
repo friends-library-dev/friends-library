@@ -14,11 +14,6 @@ import { AudioPart } from '../types';
 import { Sans } from './Text';
 import { isAudioPartPlaying, audioPartFile } from '../state/selectors';
 
-interface ContainerProps {
-  audioId: string;
-  partIndex: number;
-}
-
 type CommonProps = {
   part: Pick<AudioPart, 'title'>;
   download: () => any;
@@ -37,57 +32,45 @@ type Props =
   | (CommonProps & { state: 'downloading'; progress: number });
 
 const winWidth = Dimensions.get(`window`).width;
-const RIGHT_COL_WIDTH = 75;
 
 export const DownloadablePart: React.FC<Props> = (props) => {
   const { part, download, play, state } = props;
+  let rightColWidth = 33;
+  if (state === `downloading`) {
+    rightColWidth = 110;
+  } else if (state === `queued_for_download`) {
+    rightColWidth = 85;
+  } else if (state === `not_downloaded`) {
+    rightColWidth = 60;
+  }
   return (
     <TouchableOpacity onPress={state === `downloaded` ? play : undefined}>
-      <View style={tw(`h-10 flex-row border-b border-gray-300 justify-between`)}>
-        <View
-          style={tw(`absolute bg-blue-100 self-stretch`, {
-            width: props.state === `downloading` ? `${props.progress}%` : '0%',
-            height: 39,
-          })}
+      <View
+        style={tw(`absolute bg-blue-100 h-full`, {
+          width: props.state === `downloading` ? `${props.progress}%` : '0%',
+        })}
+      />
+      <View style={tw(`p-2 pl-1 pr-6 flex-row`)}>
+        <Icon
+          style={{
+            ...tw(`mt-1 ml-1 mr-1 text-blue-500`),
+            opacity: state === `playing` ? 1 : 0,
+          }}
+          name="play"
+          size={9}
         />
-        <View>
-          <View
-            style={tw(`absolute ml-2 flex-row`, {
-              width: winWidth - RIGHT_COL_WIDTH,
-              marginTop: 11,
-            })}
-          >
-            <Icon
-              style={tw(`mx-1 pt-1 pr-px text-blue-500`, {
-                opacity: state === `playing` ? 1 : 0,
-              })}
-              name="play"
-              size={9}
-            />
-            <View style={tw(`flex-grow flex-row`)}>
-              <Sans style={tw(``)} size={14} numberOfLines={1}>
-                {part.title}
-              </Sans>
-            </View>
-          </View>
-        </View>
+        <Sans size={14} numberOfLines={1} style={{ width: winWidth - rightColWidth }}>
+          {part.title}
+        </Sans>
+        {(state === `queued_for_download` || state === `downloading`) && (
+          <Sans size={12} style={tw(`italic text-gray-500 ml-4`)}>
+            {state === `downloading` ? state : `queued`}
+          </Sans>
+        )}
         {state === `not_downloaded` && (
-          <TouchableOpacity
-            style={tw(`items-center pl-2`, { width: RIGHT_COL_WIDTH, marginTop: 13 })}
-            onPress={download}
-          >
+          <TouchableOpacity style={tw(`items-center pl-2`)} onPress={download}>
             <Icon name="cloud-download" size={17} style={tw(`text-gray-500`)} />
           </TouchableOpacity>
-        )}
-        {state === `queued_for_download` && (
-          <Sans style={tw(`italic p-3 text-gray-500`)} size={14}>
-            downloading
-          </Sans>
-        )}
-        {state === `queued_for_download` && (
-          <Sans style={tw(`italic pl-3 text-gray-500`)} size={14}>
-            queued
-          </Sans>
         )}
       </View>
     </TouchableOpacity>
@@ -103,12 +86,14 @@ export const propSelector: (
     if (!audio) return null;
     const part = audio.parts[partIndex];
     if (!part) return null;
+
     const file = audioPartFile(audioId, partIndex, state);
     const common = {
       play: () => dispatch(togglePartPlayback(audioId, partIndex)),
       download: () => dispatch(downloadAudio(audioId, partIndex)),
       part,
     };
+
     if (isDownloading(file)) {
       return { ...common, state: `downloading`, progress: downloadProgress(file) };
     }
@@ -126,6 +111,11 @@ export const propSelector: (
     return { ...common, state: `not_downloaded` };
   };
 };
+
+interface ContainerProps {
+  audioId: string;
+  partIndex: number;
+}
 
 const DownloadablePartContainer: React.FC<ContainerProps> = (ownProps) => {
   const props = useSelector(propSelector(ownProps, useDispatch()));
