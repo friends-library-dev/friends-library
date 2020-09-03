@@ -157,3 +157,24 @@ export function trackData(
     duration: part.duration,
   };
 }
+
+export function progress(audioId: string, state: State): number {
+  const active = activeAudioPart(audioId, state);
+  if (!active) return 0;
+  const [activePart, audio] = active;
+  const position = trackPosition(audioId, activePart.index, state);
+  if (activePart.index === 0 && position === 0) {
+    return 0;
+  }
+  const totalDuration = audio.parts.reduce((total, part) => (total += part.duration), 0);
+  let listened = 0;
+  audio.parts.forEach((part) => {
+    if (part.index < activePart.index) {
+      listened += part.duration;
+    } else if (part.index === activePart.index) {
+      listened += position;
+    }
+  });
+
+  return Math.floor((listened / totalDuration) * 100);
+}
