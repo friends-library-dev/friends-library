@@ -68,17 +68,17 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
         {audio.title}
       </Serif>
       {showDownloadAll && (
-        <TouchableOpacity
-          style={tw(`pb-2 px-4 flex-row justify-center`)}
-          onPress={() => dispatch(downloadAllAudios(audio.id))}
-        >
-          <View style={tw(`bg-blue-200 flex-row px-6 py-2 rounded-full`)}>
+        <View style={tw(`pb-2 px-4 flex-row justify-center`)}>
+          <TouchableOpacity
+            onPress={() => dispatch(downloadAllAudios(audio.id))}
+            style={tw(`bg-blue-200 flex-row px-6 py-2 rounded-full`)}
+          >
             <Icon name="cloud-download" size={21} style={tw(`pr-2 text-blue-800`)} />
             <Sans size={15} style={tw(`text-blue-800`)}>
               Download {isMultipart ? `all` : ``}
             </Sans>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       )}
       <Serif
         style={tw(`px-6 pt-2 pb-4 text-justify text-gray-800`, {
