@@ -1,12 +1,3 @@
-import { AudioQuality } from '@friends-library/types';
-
-export interface PlayerState {
-  playing: boolean;
-  playbackState: 'NONE' | 'PLAYING' | 'PAUSED' | 'STOPPED' | 'READY' | 'BUFFERING';
-  trackAudioId?: string;
-  trackPartIndex?: number;
-}
-
 export interface AudioPart {
   audioId: string;
   index: number;
@@ -30,23 +21,18 @@ export interface AudioResource {
   parts: AudioPart[];
 }
 
-export interface UserSettings {
-  audioQuality: AudioQuality;
-}
-
-export interface ResumeState {
-  lastPlayedAudio: string | null;
-  lastPlayedPart: {
-    [audioId: string]: number;
-  };
-  partPositions: {
-    [partId: string]: number;
-  };
-}
-
 export type StackParamList = {
   Home: undefined;
   'All Audiobooks': undefined;
-  Audio: { audio: AudioResource };
+  Audio: { audioId: string };
   Settings: undefined;
 };
+
+export interface TrackData {
+  id: string;
+  filepath: string;
+  title: string;
+  artist: string;
+  artworkUrl: string;
+  duration: number;
+}

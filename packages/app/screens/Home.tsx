@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import tw from 'tailwind-rn';
 import { RouteProp } from '@react-navigation/native';
 import { StackParamList } from '../types';
 import { Sans } from '../components/Text';
-import { useAudios } from '../lib/hooks';
+import tw from '../lib/tailwind';
+import { useSelector } from '../state';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Audio'>;
@@ -13,18 +13,18 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ navigation }) => {
-  const audios = useAudios();
+  const numAudios = useSelector((s) => Object.keys(s.audioResources).length);
   return (
     <View style={tw(`flex-grow items-center justify-center`)}>
       <HomeButton
-        title={`All Audiobooks (${audios.size})`}
+        title={`All Audiobooks (${numAudios})`}
         onPress={() => navigation.navigate(`All Audiobooks`)}
-        bgColor="#6c3142"
+        backgroundColor="#6c3142"
       />
       <HomeButton
         title="Go to Settings"
         onPress={() => navigation.navigate(`Settings`)}
-        bgColor="#999"
+        backgroundColor="#999"
       />
     </View>
   );
@@ -33,16 +33,13 @@ const Home: React.FC<Props> = ({ navigation }) => {
 const HomeButton: React.FC<{
   onPress: () => any;
   title: string;
-  bgColor: string;
-}> = ({ onPress, title, bgColor }) => (
+  backgroundColor: string;
+}> = ({ onPress, title, backgroundColor }) => (
   <TouchableOpacity
-    style={{
-      ...tw(`self-stretch mx-12 mb-6 px-8 py-4 rounded-full`),
-      backgroundColor: bgColor,
-    }}
+    style={tw(`self-stretch mx-12 mb-6 px-8 py-4 rounded-full`, { backgroundColor })}
     onPress={onPress}
   >
-    <Sans size={20} style={{ ...tw(`text-white text-center`) }}>
+    <Sans size={20} style={tw(`text-white text-center`)}>
       {title}
     </Sans>
   </TouchableOpacity>

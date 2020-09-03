@@ -32,8 +32,7 @@ export default function tw(...args: Arg[]): ViewStyle | TextStyle {
           }
         });
       } else {
-        // @ts-ignore
-        styles = { ...styles, arg };
+        styles = { ...styles, ...arg };
       }
     }
   });

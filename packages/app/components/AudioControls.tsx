@@ -1,34 +1,44 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Progress from './Progress';
+import Scrubber from './Scrubber';
 import { HEX_BLUE } from '../lib/constants';
 import tw from '../lib/tailwind';
-import { usePlayer } from '../lib/hooks';
+import { PropSelector, useSelector, useDispatch } from '../state';
+import * as select from '../state/selectors';
+import { togglePlayback, skipNext, skipBack } from '../state/playback';
+import { downloadProgress, isDownloading } from '../state/filesystem';
+import { seekRelative, seekTo } from '../state/track-position';
 
 interface Props {
   skipNext?: () => any;
   skipBack?: () => any;
+  seekForward: () => any;
+  seekBackward: () => any;
   togglePlayback: () => any;
+  seekTo: (position: number) => any;
   playing: boolean;
   duration: number;
-  numParts: number;
   downloading: boolean;
   progress: number;
-  isCurrentAudioPart: boolean;
+  position: number | null;
+  multipart: boolean;
 }
 
-const AudioControls: React.FC<Props> = ({
+export const AudioControls: React.FC<Props> = ({
   playing,
   togglePlayback,
   duration,
   downloading,
   progress,
-  isCurrentAudioPart,
+  seekForward,
+  seekBackward,
   skipBack,
   skipNext,
+  position,
+  seekTo,
+  multipart,
 }) => {
-  const [, player] = usePlayer();
   return (
     <>
       <View
@@ -40,7 +50,7 @@ const AudioControls: React.FC<Props> = ({
         {!downloading && (
           <TouchableOpacity onPress={skipBack}>
             <Icon
-              style={{ opacity: skipBack ? 1 : 0 }}
+              style={{ opacity: multipart ? (skipBack ? 1 : 0.2) : 0 }}
               name="step-backward"
               size={25}
               color={HEX_BLUE}
@@ -48,7 +58,7 @@ const AudioControls: React.FC<Props> = ({
           </TouchableOpacity>
         )}
         {!downloading && (
-          <TouchableOpacity onPress={() => player.seekBackward(30)}>
+          <TouchableOpacity onPress={seekBackward}>
             <Icon
               style={{ transform: [{ scaleX: -1 }] }}
               name="repeat"
@@ -71,14 +81,14 @@ const AudioControls: React.FC<Props> = ({
           />
         </TouchableOpacity>
         {!downloading && (
-          <TouchableOpacity onPress={() => player.seekForward(30)}>
+          <TouchableOpacity onPress={seekForward}>
             <Icon name="repeat" size={25} color={HEX_BLUE} />
           </TouchableOpacity>
         )}
         {!downloading && (
           <TouchableOpacity onPress={skipNext}>
             <Icon
-              style={{ opacity: skipNext ? 1 : 0 }}
+              style={{ opacity: multipart ? (skipNext ? 1 : 0.2) : 0 }}
               name="step-forward"
               size={25}
               color={HEX_BLUE}
@@ -86,15 +96,53 @@ const AudioControls: React.FC<Props> = ({
           </TouchableOpacity>
         )}
       </View>
-      <Progress
+      <Scrubber
         downloading={downloading}
         downloadingProgress={progress}
         playing={playing}
         partDuration={duration}
-        inUse={isCurrentAudioPart}
+        position={position}
+        seekTo={seekTo}
       />
     </>
   );
 };
 
-export default AudioControls;
+interface OwnProps {
+  audioId: string;
+}
+
+export const propSelector: PropSelector<OwnProps, Props> = ({ audioId }, dispatch) => {
+  return (state) => {
+    const activePart = select.activeAudioPart(audioId, state);
+    if (!activePart) return null;
+    const [part, audio] = activePart;
+    const file = select.audioPartFile(audioId, part.index, state);
+    const multipart = audio.parts.length > 1;
+    const canSkipNext = multipart && part.index < audio.parts.length - 1;
+    const canSkipBack = multipart && part.index > 0;
+    return {
+      multipart,
+      skipNext: canSkipNext ? () => dispatch(skipNext()) : undefined,
+      skipBack: canSkipBack ? () => dispatch(skipBack()) : undefined,
+      playing: select.isAudioPlaying(audioId, state),
+      duration: part.duration,
+      numParts: audio.parts.length,
+      progress: downloadProgress(file),
+      downloading: isDownloading(file),
+      position: select.trackPosition(audioId, part.index, state),
+      togglePlayback: () => dispatch(togglePlayback(audioId)),
+      seekForward: () => dispatch(seekRelative(audioId, part.index, 30)),
+      seekBackward: () => dispatch(seekRelative(audioId, part.index, -30)),
+      seekTo: (position: number) => dispatch(seekTo(audioId, part.index, position)),
+    };
+  };
+};
+
+const AudioControlsContainer: React.FC<OwnProps> = (ownProps) => {
+  const props = useSelector(propSelector(ownProps, useDispatch()));
+  if (!props) return null;
+  return <AudioControls {...props} />;
+};
+
+export default AudioControlsContainer;
