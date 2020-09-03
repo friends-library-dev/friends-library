@@ -55,7 +55,8 @@ addDecorator((Story: any) => (
 // import stories
 configure(() => {
   require(`./stories`);
-  require(`./stories/scrubber`);
+  require(`./stories/stories.scrubber`);
+  require(`./stories/stories.downloadable-part`);
 }, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters

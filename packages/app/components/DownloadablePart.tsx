@@ -19,70 +19,77 @@ interface ContainerProps {
   partIndex: number;
 }
 
-type Props = {
-  part: AudioPart;
+type CommonProps = {
+  part: Pick<AudioPart, 'title'>;
   download: () => any;
   play: () => any;
-  playing: boolean;
-  downloading: boolean;
-  progress: number;
-  downloaded: boolean;
-  queued: boolean;
 };
+
+type PartState =
+  | 'downloading'
+  | 'downloaded'
+  | 'queued_for_download'
+  | 'playing'
+  | 'not_downloaded';
+
+type Props =
+  | (CommonProps & { state: Exclude<PartState, 'downloading'> })
+  | (CommonProps & { state: 'downloading'; progress: number });
 
 const winWidth = Dimensions.get(`window`).width;
 const RIGHT_COL_WIDTH = 75;
 
-const DownloadablePart: React.FC<Props> = ({
-  part,
-  downloading,
-  progress,
-  downloaded,
-  download,
-  play,
-  playing,
-  queued,
-}) => {
+export const DownloadablePart: React.FC<Props> = (props) => {
+  const { part, download, play, state } = props;
   return (
-    <TouchableOpacity
-      onPress={() => {
-        if (!downloaded) return;
-        play();
-      }}
-    >
-      <View
-        style={tw(`pr-0 pl-2 py-2 flex-row border-b border-gray-300 justify-between`)}
-      >
-        <View style={tw(`flex-row`, { width: winWidth - RIGHT_COL_WIDTH })}>
-          <Icon
-            style={tw(`mx-1 pt-1 text-blue-500`, {
-              opacity: playing ? 1 : 0,
+    <TouchableOpacity onPress={state === `downloaded` ? play : undefined}>
+      <View style={tw(`h-10 flex-row border-b border-gray-300 justify-between`)}>
+        <View
+          style={tw(`absolute bg-blue-100 self-stretch`, {
+            width: props.state === `downloading` ? `${props.progress}%` : '0%',
+            height: 39,
+          })}
+        />
+        <View>
+          <View
+            style={tw(`absolute ml-2 flex-row`, {
+              width: winWidth - RIGHT_COL_WIDTH,
+              marginTop: 11,
             })}
-            name="play"
-            size={9}
-          />
-          <Sans style={tw(`flex-grow`)} size={14}>
-            {part.title}
-            {queued ? ` (queued)` : ``}
-          </Sans>
+          >
+            <Icon
+              style={tw(`mx-1 pt-1 pr-px text-blue-500`, {
+                opacity: state === `playing` ? 1 : 0,
+              })}
+              name="play"
+              size={9}
+            />
+            <View style={tw(`flex-grow flex-row`)}>
+              <Sans style={tw(``)} size={14} numberOfLines={1}>
+                {part.title}
+              </Sans>
+            </View>
+          </View>
         </View>
-        {!downloaded && !downloading && (
+        {state === `not_downloaded` && (
           <TouchableOpacity
-            style={tw(`items-center pl-2`, { width: RIGHT_COL_WIDTH })}
+            style={tw(`items-center pl-2`, { width: RIGHT_COL_WIDTH, marginTop: 13 })}
             onPress={download}
           >
             <Icon name="cloud-download" size={17} style={tw(`text-gray-500`)} />
           </TouchableOpacity>
         )}
+        {state === `queued_for_download` && (
+          <Sans style={tw(`italic p-3 text-gray-500`)} size={14}>
+            downloading
+          </Sans>
+        )}
+        {state === `queued_for_download` && (
+          <Sans style={tw(`italic pl-3 text-gray-500`)} size={14}>
+            queued
+          </Sans>
+        )}
       </View>
-      <View
-        style={tw(`bg-green-400`, {
-          opacity: downloading ? 1 : 0,
-          height: 3,
-          width: `${progress}%`,
-          ...tw(`bg-green-400`),
-        })}
-      />
     </TouchableOpacity>
   );
 };
@@ -97,16 +104,26 @@ export const propSelector: (
     const part = audio.parts[partIndex];
     if (!part) return null;
     const file = audioPartFile(audioId, partIndex, state);
-    return {
+    const common = {
       play: () => dispatch(togglePartPlayback(audioId, partIndex)),
       download: () => dispatch(downloadAudio(audioId, partIndex)),
-      playing: isAudioPartPlaying(audioId, partIndex, state),
       part,
-      downloaded: isDownloaded(file),
-      downloading: isDownloading(file),
-      progress: downloadProgress(file),
-      queued: file.queued === true,
     };
+    if (isDownloading(file)) {
+      return { ...common, state: `downloading`, progress: downloadProgress(file) };
+    }
+
+    if (isAudioPartPlaying(audioId, partIndex, state)) {
+      return { ...common, state: `playing` };
+    }
+
+    if (isDownloaded(file)) {
+      return { ...common, state: `downloaded` };
+    }
+    if (file.queued === true) {
+      return { ...common, state: `queued_for_download` };
+    }
+    return { ...common, state: `not_downloaded` };
   };
 };
 

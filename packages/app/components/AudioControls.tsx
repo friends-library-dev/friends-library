@@ -19,14 +19,13 @@ interface Props {
   seekTo: (position: number) => any;
   playing: boolean;
   duration: number;
-  numParts: number;
   downloading: boolean;
   progress: number;
   position: number | null;
   multipart: boolean;
 }
 
-const AudioControls: React.FC<Props> = ({
+export const AudioControls: React.FC<Props> = ({
   playing,
   togglePlayback,
   duration,

@@ -21,7 +21,6 @@ const TestScrubber: React.FC<Partial<React.ComponentProps<typeof Scrubber>>> = (
         downloading={false}
         downloadingProgress={0}
         partDuration={3333}
-        inUse
         position={pos}
         seekTo={setPos}
         {...props}
