@@ -152,7 +152,7 @@ export function trackData(
     id: keys.part(audioId, partIndex),
     filepath: `file://${FS.abspath(audioPath)}`,
     title: part.title,
-    artist: audio.friend,
+    artist: audio.friend.startsWith(`Compila`) ? `Friends Library` : audio.friend,
     artworkUrl: artworkData.uri,
     duration: part.duration,
   };

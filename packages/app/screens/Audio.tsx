@@ -9,6 +9,7 @@ import Artwork from '../components/Artwork';
 import AudioControls from '../components/AudioControls';
 import DownloadablePart from '../components/DownloadablePart';
 import tw from '../lib/tailwind';
+import { shortTitle } from '../lib/utils';
 import { useSelector, useDispatch } from '../state';
 import { isDownloading, isDownloaded, downloadAllAudios } from '../state/filesystem';
 import * as select from '../state/selectors';
@@ -64,10 +65,10 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
           </View>
         )}
       </View>
-      <Serif size={30} style={tw(`text-center p-4`)}>
-        {audio.title}
+      <Serif size={30} style={tw(`text-center py-4 px-8`)}>
+        {shortTitle(audio.title)}
       </Serif>
-      {!audio.title.includes(audio.friend) && (
+      {!audio.title.includes(audio.friend) && !audio.friend.startsWith(`Compila`) && (
         <Serif size={22} style={tw(`text-center italic text-gray-700 mb-6 -mt-2`)}>
           by {audio.friend}
         </Serif>
