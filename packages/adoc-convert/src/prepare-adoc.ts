@@ -1,4 +1,5 @@
-import { flow, memoize } from 'lodash';
+import flow from 'lodash/flow';
+import memoize from 'lodash/memoize';
 import { Asciidoc } from '@friends-library/types';
 import {
   backtickQuotesToEntities,

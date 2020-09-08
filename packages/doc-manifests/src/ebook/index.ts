@@ -8,11 +8,11 @@ import {
 } from '@friends-library/types';
 import { replaceHeadings } from '@friends-library/doc-html';
 import { mobi as mobiCss, epub as epubCss } from '@friends-library/doc-css';
+import flow from 'lodash/flow';
 import { packageDocument } from './package-document';
 import wrapHtmlBody from '../wrap-html';
 import { nav } from './nav';
 import { makeFootnoteCallReplacer, notesMarkup } from './notes';
-import { flow } from 'lodash';
 import { frontmatter } from '../frontmatter';
 
 export default async function ebook(

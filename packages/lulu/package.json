@@ -5,6 +5,10 @@
   "main": "dist/index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
+  "sideEffects": false,
+  "browser": {
+    "./dist/client.js": false
+  },
   "scripts": {
     "test": "cd ../.. && yarn jest packages/lulu",
     "compile": "cd ../../ && yarn compile lulu"

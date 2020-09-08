@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "finds scripture references embedded in text",
   "main": "dist/index.js",
+  "browser": {
+    "./dist/index.js": false
+  },
   "author": "jared@netrivet.com",
   "license": "MIT",
+  "sideEffects": false,
   "scripts": {
     "compile": "cd ../../ && yarn compile hilkiah",
     "test": "cd ../../ && yarn jest packages/hilkiah"

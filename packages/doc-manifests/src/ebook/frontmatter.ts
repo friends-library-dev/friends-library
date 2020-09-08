@@ -1,4 +1,4 @@
-import { memoize } from 'lodash';
+import memoize from 'lodash/memoize';
 import { Html, DocPrecursor, FileManifest } from '@friends-library/types';
 import { frontmatter as commonFrontmatter } from '../frontmatter';
 import { callMarkup, useSymbols } from './notes';

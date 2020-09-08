@@ -1,5 +1,6 @@
 import moment from 'moment';
-import { memoize, pickBy } from 'lodash';
+import memoize from 'lodash/memoize';
+import pickBy from 'lodash/pickBy';
 import {
   HTML_DEC_ENTITIES,
   Html,

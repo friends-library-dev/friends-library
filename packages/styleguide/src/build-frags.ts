@@ -7,7 +7,7 @@ import chalk from 'chalk';
 import { sync as glob } from 'glob';
 import path from 'path';
 import chokidar from 'chokidar';
-import { throttle } from 'lodash';
+import throttle from 'lodash/throttle';
 
 const notify = throttle(
   () => console.log(chalk.magenta(`🚁  styleguide fragments regenerated`)),

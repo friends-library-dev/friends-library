@@ -1,5 +1,5 @@
 import path from 'path';
-import { kebabCase } from 'lodash';
+import kebabCase from 'lodash/kebabCase';
 import { safeLoad } from 'js-yaml';
 import { readFileSync } from 'fs';
 import { yamlGlob, editions, hasProp } from '../test-helpers';

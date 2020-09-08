@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
+  "sideEffects": false,
   "scripts": {
     "compile": "cd ../../ && yarn compile cover-component",
     "test": "cd ../../ && yarn jest packages/cover-component"
