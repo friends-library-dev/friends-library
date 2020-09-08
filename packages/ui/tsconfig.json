@@ -22,6 +22,7 @@
   },
   "references": [
     { "path": "../types" },
+    { "path": "../color" },
     { "path": "../env" },
     { "path": "../cover-component" },
     { "path": "../locale" },

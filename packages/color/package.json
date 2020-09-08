@@ -1,0 +1,13 @@
+{
+  "name": "@friends-library/color",
+  "version": "1.0.0",
+  "description": "FLP color",
+  "main": "dist/index.js",
+  "author": "Jared Henderson <jared@netrivet.com>",
+  "license": "MIT",
+  "sideEffects": false,
+  "scripts": {
+    "compile": "cd ../../ && yarn compile color"
+  },
+  "dependencies": {}
+}
