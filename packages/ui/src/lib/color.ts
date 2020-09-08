@@ -1,4 +1,5 @@
-import tailwind from '../../tailwind.config';
+import { MAROON_RGB, GOLD_RGB, BLUE_RGB, BLACK_RGB } from '@friends-library/color';
+import { LANG } from '../env';
 
 export function bgLayer(
   color: string | [number, number, number],
@@ -6,10 +7,23 @@ export function bgLayer(
 ): string {
   let colorStr = ``;
   if (typeof color === `string`) {
-    colorStr = color;
-    const tailwindColors = tailwind.theme.extend.colors;
-    if (color in tailwindColors) {
-      colorStr = tailwindColors[color as keyof typeof tailwindColors];
+    switch (color) {
+      case `flprimary`:
+        colorStr =
+          LANG === `en` ? `rgb(${MAROON_RGB.join(`,`)})` : `rgb(${GOLD_RGB.join(`,`)})`;
+        break;
+      case `flblue`:
+        colorStr = `rgb(${BLUE_RGB.join(`,`)})`;
+        break;
+      case `black`:
+        colorStr = `rgb(${BLACK_RGB.join(`,`)})`;
+        break;
+      default:
+        if (color.startsWith(`#`)) {
+          colorStr = color;
+        } else {
+          throw new Error(`Unsupported color string: ${color}`);
+        }
     }
   } else {
     colorStr = `rgb(${color.join(`, `)})`;

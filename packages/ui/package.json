@@ -17,6 +17,7 @@
     "test:integration": "cd ../../ && yarn test --config packages/ui/src/checkout/services/__tests__/jest.config.js --testRegex=packages/ui/.*/.*\\.integration\\.ts"
   },
   "dependencies": {
+    "@friends-library/color": "1.0.0",
     "@friends-library/cover-component": "1.0.0",
     "@friends-library/env": "1.0.0",
     "@friends-library/friends": "1.0.0",

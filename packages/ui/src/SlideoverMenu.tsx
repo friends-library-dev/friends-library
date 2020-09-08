@@ -84,7 +84,7 @@ const LinkGroup: React.FC<{ links: LinkItem[] }> = ({ links }) => (
     {links
       .filter(([, , lang]) => !lang || lang === LANG)
       .map((link, idx) => {
-        if (typeof link == `function`) {
+        if (typeof link === `function`) {
           return (
             <li className="py-2" key={`fn-${idx}`}>
               {link()}

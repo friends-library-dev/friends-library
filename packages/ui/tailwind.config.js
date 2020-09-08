@@ -1,56 +1,51 @@
-'use strict';
-exports.__esModule = true;
-// @ts-ignore
-var defaultTheme_1 = require('tailwindcss/defaultTheme');
-var LANG = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
-var maroonRgb = '108, 49, 66';
-var goldRgb = '193, 140, 89';
-var blackRgb = '45, 42, 41';
-var grayRgb = '107, 108, 108';
-var blueRgb = '95, 140, 158';
-var greenRgb = '157, 157, 128';
+// @ts-check
+const { fontFamily } = require('tailwindcss/defaultTheme');
+const c = require('@friends-library/color');
+
+const LANG = process.env.GATSBY_LANG === 'es' ? 'es' : 'en';
+
 module.exports = {
   theme: {
     fontFamily: {
-      sans: ['Cabin'].concat(defaultTheme_1.fontFamily.sans),
-      serif: ['Baskerville'].concat(defaultTheme_1.fontFamily.serif),
-      mono: defaultTheme_1.fontFamily.mono,
+      sans: ['Cabin'].concat(fontFamily.sans),
+      serif: ['Baskerville'].concat(fontFamily.serif),
+      mono: fontFamily.mono,
     },
     extend: {
       colors: {
-        flprimary: 'rgb(' + (LANG === 'en' ? maroonRgb : goldRgb) + ')',
-        flgold: 'rgb(' + goldRgb + ')',
-        flmaroon: 'rgb(' + maroonRgb + ')',
-        flblue: 'rgb(' + blueRgb + ')',
-        flgreen: 'rgb(' + greenRgb + ')',
-        flgray: 'rgb(' + grayRgb + ')',
-        flblack: 'rgb(' + blackRgb + ')',
-        'flprimary-800': 'rgb(' + (LANG === 'en' ? '88, 44, 56' : '162, 112, 67') + ')',
-        'flprimary-600': 'rgb(' + (LANG === 'en' ? maroonRgb : goldRgb) + ')',
-        'flprimary-500': 'rgb(' + (LANG === 'en' ? '132, 60, 81' : '152, 115, 79') + ')',
-        'flprimary-400': 'rgb(' + (LANG === 'en' ? '147, 64, 89' : '172, 127, 85') + ')',
-        'flmaroon-800': 'rgb(88, 44, 56)',
-        'flmaroon-600': 'rgb(' + maroonRgb + ')',
-        'flmaroon-500': 'rgb(132, 60, 81)',
-        'flmaroon-400': 'rgb(147, 64, 89)',
-        'flgreen-800': 'rgb(142, 142, 113)',
-        'flgreen-700': 'rgb(152, 152, 123)',
-        'flgreen-600': 'rgb(' + greenRgb + ')',
-        'flgreen-400': 'rgb(193, 193, 139)',
-        'flblue-800': 'rgb(72, 105, 118)',
-        'flblue-700': 'rgb(73, 112, 127)',
-        'flblue-600': 'rgb(' + blueRgb + ')',
-        'flblue-400': 'rgb(152, 200, 220)',
-        'flgold-800': 'rgb(162, 112, 67)',
-        'flgold-600': 'rgb(' + goldRgb + ')',
-        'flgold-500': 'rgb(152, 115, 79)',
-        'flgold-400': 'rgb(172, 127, 85)',
-        'flgray-900': 'rgb(44, 42, 41)',
-        'flgray-500': 'rgb(146, 146, 146)',
-        'flgray-400': 'rgb(218, 218, 218)',
-        'flgray-300': 'rgb(233, 233, 233)',
-        'flgray-200': 'rgb(241, 241, 241)',
-        'flgray-100': 'rgb(249, 249, 249)',
+        flprimary: rgb(LANG === `en` ? c.MAROON_RGB : c.GOLD_RGB),
+        flgold: rgb(c.GOLD_RGB),
+        flmaroon: rgb(c.MAROON_RGB),
+        flblue: rgb(c.BLUE_RGB),
+        flgreen: rgb(c.GREEN_RGB),
+        flgray: rgb(c.GRAY_RGB),
+        flblack: rgb(c.BLACK_RGB),
+        'flprimary-800': rgb(LANG === `en` ? c.MAROON_800_RGB : c.GOLD_800_RGB),
+        'flprimary-600': rgb(LANG === `en` ? c.MAROON_600_RGB : c.GOLD_600_RGB),
+        'flprimary-500': rgb(LANG === `en` ? c.MAROON_500_RGB : c.GOLD_500_RGB),
+        'flprimary-400': rgb(LANG === `en` ? c.MAROON_400_RGB : c.GOLD_400_RGB),
+        'flmaroon-800': rgb(c.MAROON_800_RGB),
+        'flmaroon-600': rgb(c.MAROON_600_RGB),
+        'flmaroon-500': rgb(c.MAROON_500_RGB),
+        'flmaroon-400': rgb(c.MAROON_400_RGB),
+        'flgreen-800': rgb(c.GREEN_800_RGB),
+        'flgreen-700': rgb(c.GREEN_700_RGB),
+        'flgreen-600': rgb(c.GREEN_600_RGB),
+        'flgreen-400': rgb(c.GREEN_400_RGB),
+        'flblue-800': rgb(c.BLUE_800_RGB),
+        'flblue-700': rgb(c.BLUE_700_RGB),
+        'flblue-600': rgb(c.BLUE_600_RGB),
+        'flblue-400': rgb(c.BLUE_400_RGB),
+        'flgold-800': rgb(c.GOLD_800_RGB),
+        'flgold-600': rgb(c.GOLD_600_RGB),
+        'flgold-500': rgb(c.GOLD_500_RGB),
+        'flgold-400': rgb(c.GOLD_400_RGB),
+        'flgray-900': rgb(c.GRAY_900_RGB),
+        'flgray-500': rgb(c.GRAY_500_RGB),
+        'flgray-400': rgb(c.GRAY_400_RGB),
+        'flgray-300': rgb(c.GRAY_300_RGB),
+        'flgray-200': rgb(c.GRAY_200_RGB),
+        'flgray-100': rgb(c.GRAY_100_RGB),
       },
       fontSize: {
         '1-5xl': '1.375rem',
@@ -80,3 +75,11 @@ module.exports = {
   ],
   plugins: [],
 };
+
+/**
+ * @param {[number, number, number]} color
+ * @returns string
+ */
+function rgb(color) {
+  return `rgb(${color.join(`, `)})`;
+}
