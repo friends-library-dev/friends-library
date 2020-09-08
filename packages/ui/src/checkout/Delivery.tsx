@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { CountryDropdown } from 'react-country-region-selector';
 import Link from 'gatsby-link';
 import cx from 'classnames';
 import { t } from '@friends-library/locale';
@@ -13,6 +12,7 @@ import Back from './Back';
 import NoProfit from './NoProfit';
 import ErrorMsg from './ErrorMsg';
 import { Address } from './types';
+import countries from './countries.json';
 import './Delivery.css';
 
 type AddressWithEmail = Address & { email: string };
@@ -146,20 +146,24 @@ const Delivery: React.FC<{
             value={zip}
             placeholder={t`ZIP / Postal Code`}
           />
-          <CountryDropdown
-            classes={cx(
+          <select
+            value={country}
+            className={cx(
               `CartInput text-gray-500 order-8`,
               countryBlurred && !country && `invalid text-red-600`,
             )}
-            defaultOptionLabel={
-              !countryBlurred || country ? t`Select Country` : t`Select a Country`
-            }
-            value={country}
-            valueType="short"
-            onChange={(country: string) => setCountry(country)}
             onBlur={() => setCountryBlurred(true)}
-            priorityOptions={[`US`, `GB`]}
-          />
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            <option>
+              {!countryBlurred || country ? t`Select Country` : t`Select a Country`}
+            </option>
+            {Object.keys(countries).map((code) => (
+              <option key={code} value={code}>
+                {countries[code]}
+              </option>
+            ))}
+          </select>
           <Input
             className="order-2"
             invalidMsg={email ? t`Valid email is required` : t`Email is required`}
