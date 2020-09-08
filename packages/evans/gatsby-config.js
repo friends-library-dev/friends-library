@@ -1,6 +1,6 @@
 const path = require('path');
 const proxy = require('http-proxy-middleware');
-const { getAllFriends, numPublishedBooks } = require('@friends-library/friends');
+const { numPublishedBooks } = require('@friends-library/friends');
 
 require('dotenv').config({ path: path.resolve(__dirname, '..', '..', '.env') });
 
@@ -76,17 +76,30 @@ module.exports = {
         },
       },
     },
+    ...(process.env.ANALYZE_BUNDLE_SIZE
+      ? []
+      : [
+          {
+            resolve: 'gatsby-plugin-purgecss',
+            options: {
+              tailwind: true,
+              printRejected: true,
+              purgeOnly: [path.join(__dirname, '../ui/src/Tailwind.css')],
+              whitelistPatterns: [/:lang/],
+              content: [
+                path.join(__dirname, './src/**/!(*.d).{ts,tsx,mdx}'),
+                path.join(__dirname, '../ui/src/**/!(*.d).{ts,tsx}'),
+              ],
+            },
+          },
+        ]),
     {
-      resolve: 'gatsby-plugin-purgecss',
+      resolve: `gatsby-plugin-webpack-bundle-analyzer`,
       options: {
-        tailwind: true,
-        printRejected: true,
-        purgeOnly: [path.join(__dirname, '../ui/src/Tailwind.css')],
-        whitelistPatterns: [/:lang/],
-        content: [
-          path.join(__dirname, './src/**/!(*.d).{ts,tsx,mdx}'),
-          path.join(__dirname, '../ui/src/**/!(*.d).{ts,tsx}'),
-        ],
+        production: true,
+        disable: !process.env.ANALYZE_BUNDLE_SIZE,
+        generateStatsFile: true,
+        analyzerMode: `static`,
       },
     },
   ],
