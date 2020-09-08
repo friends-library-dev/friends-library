@@ -18,7 +18,8 @@
     "develop:en:site": "GATSBY_LANG=en GATSBY_PORT=9222 GATSBY_ALT_PORT=9333 gatsby develop --port 9222",
     "develop:es:site": "GATSBY_LANG=es GATSBY_PORT=9333 GATSBY_ALT_PORT=9222 gatsby develop --port 9333",
     "develop:en": "run-p develop:en:site develop:functions",
-    "develop:es": "run-p develop:es:site develop:functions"
+    "develop:es": "run-p develop:es:site develop:functions",
+    "analyze": "ANALYZE_BUNDLE_SIZE=true yarn build:en"
   },
   "dependencies": {
     "@actions/core": "^1.2.4",
@@ -86,6 +87,7 @@
     "@types/react-dom": "^16.8.3",
     "@types/react-helmet": "^5.0.11",
     "@types/smoothscroll-polyfill": "^0.3.1",
-    "eslint-config-react-app": "^3.0.8"
+    "eslint-config-react-app": "^3.0.8",
+    "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5"
   }
 }
