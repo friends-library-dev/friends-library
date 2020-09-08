@@ -1,4 +1,17 @@
+const { RelativeCiAgentWebpackPlugin } = require('@relative-ci/agent');
 require('ts-node').register();
+
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  if (
+    stage === `build-javascript` &&
+    process.env.CI &&
+    process.env.GATSBY_LANG === `en`
+  ) {
+    actions.setWebpackConfig({
+      plugins: [new RelativeCiAgentWebpackPlugin()],
+    });
+  }
+};
 
 exports.sourceNodes = require('./src/build/source-nodes').default;
 exports.createPagesStatefully = require('./src/build/create-pages-statefully').default;
