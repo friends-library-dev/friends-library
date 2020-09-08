@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "author": "jared@netrivet.com",
   "license": "MIT",
+  "browser": {
+    "./dist/index.js": false
+  },
   "scripts": {
     "compile": "cd ../../ && yarn compile hilkiah",
     "test": "cd ../../ && yarn jest packages/hilkiah"

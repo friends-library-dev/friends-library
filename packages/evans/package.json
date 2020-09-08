@@ -19,7 +19,7 @@
     "develop:es:site": "GATSBY_LANG=es GATSBY_PORT=9333 GATSBY_ALT_PORT=9222 gatsby develop --port 9333",
     "develop:en": "run-p develop:en:site develop:functions",
     "develop:es": "run-p develop:es:site develop:functions",
-    "analyze": "ANALYZE_BUNDLE_SIZE=true yarn build:en"
+    "analyze": "rm -rf ./functions && ANALYZE_BUNDLE_SIZE=true yarn build:en"
   },
   "dependencies": {
     "@actions/core": "^1.2.4",

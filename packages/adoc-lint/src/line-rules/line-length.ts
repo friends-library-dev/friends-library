@@ -54,7 +54,9 @@ function lengthOk(line: Asciidoc): boolean {
 }
 
 function getRecommendation(line: Asciidoc): Asciidoc | false {
-  const refs = hilkiah.find(line);
+  // hilkiah will be undefined in the browser, for bundle-size management
+  const refs: ReturnType<typeof hilkiah.find> =
+    hilkiah && typeof hilkiah.find === `function` ? hilkiah.find(line) : [];
 
   // pull out scripture refs for splitting
   const withoutRefs = refs.reduce((ln, ref, index) => {
