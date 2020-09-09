@@ -1,5 +1,5 @@
+// @ts-check
 const { execSync } = require(`child_process`);
-const os = require(`os`);
 
 const [, , pkg, ...rest] = process.argv;
 
@@ -18,6 +18,8 @@ const pkgs = [
   `lulu`,
   `locale`,
   `env`,
+  `color`,
+  `ui`,
   `evans`,
   `cli-utils`,
   `cloud`,
@@ -27,10 +29,8 @@ const pkgs = [
   `hilkiah`,
   `types`,
   `styleguide`,
-  `ui`,
   `fell`,
   `db`,
-  `color`,
   `all`,
 ];
 
@@ -40,14 +40,17 @@ if (!pkg || pkgs.includes(pkg) === false) {
 
 if (pkg === `all`) {
   pkgs.filter((p) => p !== `all`).forEach(compilePkg);
+} else if (pkg === `evans`) {
+  // funky implicit dependency on non-composite package
+  // but keeping `ui` non-composite seems to GREATLY help
+  // webpack tree-shaking
+  compilePkg(`ui`);
+  compilePkg(pkg);
 } else {
   compilePkg(pkg);
 }
 
 function compilePkg(pkg) {
-  let cwd = process.cwd();
-  const opts = { cwd, stdio: `inherit` };
-
   let args = rest.length ? ` ${rest.join(` `)}` : ``;
   let cmd = `yarn tsc --build packages/${pkg}${args}`;
 
@@ -56,10 +59,5 @@ function compilePkg(pkg) {
     args += ` --verbose`;
   }
 
-  if (pkg === `cover`) {
-    cwd += `/packages/cover`;
-    cmd = `yarn compile${args}`;
-  }
-
-  execSync(cmd, opts);
+  execSync(cmd, { cwd: process.cwd(), stdio: `inherit` });
 }
