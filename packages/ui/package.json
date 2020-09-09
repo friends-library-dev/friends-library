@@ -6,7 +6,9 @@
   "types": "./src/index.ts",
   "author": "jared@netrivet.com",
   "license": "MIT",
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "make:waves": "node ./make-waves.js",
     "compile": "cd ../../ && yarn compile ui",
