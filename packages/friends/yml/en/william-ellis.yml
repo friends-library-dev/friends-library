@@ -1,0 +1,29 @@
+id: d005ca1a-85d9-4134-8240-0ef1453832f8
+name: William Ellis
+slug: william-ellis
+gender: male
+# TODO change to real date
+added: 2018-08-09T19:47:41.000Z
+born: 1658
+died: 1709
+description: TODO
+residences:
+  - city: Airton
+    region: England
+documents:
+  - id: 02742c56-b5af-491b-a1bf-ea1e1fc65bdf
+    title: The Life and Letters of William and Alice Ellis
+    slug: life-and-letters
+    filename: Life_and_Letters_of_William_Alice_Ellis
+    description: TODO
+    partial_description: TODO
+    tags:
+      - journal
+      - letters
+    editions:
+      - type: modernized
+        isbn: 978-1-64476-243-1
+        draft: true
+      - type: original
+        isbn: 978-1-64476-244-8
+        draft: true
