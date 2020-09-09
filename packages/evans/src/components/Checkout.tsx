@@ -1,25 +1,12 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import {
-  CartStore,
-  CheckoutApi,
-  CheckoutService,
-  CheckoutMachine,
-  CheckoutModal,
-  CheckoutFlow,
-} from '@friends-library/ui';
 import { cover3dFromQuery } from '../lib/covers';
-import ErrorBoundary from './ErrorBoundary';
-
-const store = CartStore.getSingleton();
-const api = new CheckoutApi(`/.netlify/functions/site`);
-const service = new CheckoutService(store.cart, api);
-const machine = new CheckoutMachine(service);
-machine.on(`close`, () => store.close());
 
 interface Props {
   isOpen: boolean;
 }
+
+const LazyCheckout = React.lazy(() => import(`./CheckoutLazy`));
 
 const Checkout: React.FC<Props> = ({ isOpen }) => {
   const data = useStaticQuery(graphql`
@@ -75,7 +62,7 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
     }
   `);
 
-  if (!isOpen) return null;
+  if (!isOpen || typeof window === `undefined`) return null;
 
   const recommended = Object.values(data)
     .filter(Boolean)
@@ -86,11 +73,9 @@ const Checkout: React.FC<Props> = ({ isOpen }) => {
     }));
 
   return (
-    <CheckoutModal onClose={() => machine.close()}>
-      <ErrorBoundary location="checkout">
-        <CheckoutFlow machine={machine} recommendedBooks={recommended} />
-      </ErrorBoundary>
-    </CheckoutModal>
+    <React.Suspense fallback={<div />}>
+      <LazyCheckout isOpen={isOpen} recommended={recommended} />
+    </React.Suspense>
   );
 };
 
