@@ -4,6 +4,7 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "main": "dist/index.js",
+  "sideEffects": false,
   "scripts": {
     "compile": "cd ../../ && yarn compile adoc-utils",
     "test": "cd ../../ && yarn jest packages/adoc-utils"
