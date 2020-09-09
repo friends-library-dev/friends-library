@@ -1,6 +1,6 @@
 [build]
   command = "yarn build"
-  functions = "packages/api/built-functions/"
+  functions = "./packages/api/built-functions"
 
 [[redirects]]
   from = "/*"
