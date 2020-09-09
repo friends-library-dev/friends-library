@@ -6,6 +6,11 @@
   "author": "Jared Henderson <jared@netrivet.com>",
   "license": "MIT",
   "sideEffects": false,
+  "browser": {
+    "./dist/Logo.js": "./dist/Logo.web.js",
+    "./dist/LogoIcon.js": "./dist/LogoIcon.web.js",
+    "./dist/LogoSpanish.js": "./dist/LogoSpanish.web.js"
+  },
   "scripts": {
     "compile": "cd ../../ && yarn compile cover-component",
     "test": "cd ../../ && yarn jest packages/cover-component"
