@@ -11,7 +11,7 @@
     "develop:functions": "cd ../functions && yarn start",
     "build:functions": "cd ../functions && yarn build",
     "symlink:functions": "ln -s ../functions/dist functions",
-    "build": "gatsby clean && gatsby build && yarn build:functions && yarn symlink:functions && cp ./_redirects ./public/",
+    "build": "rm -rf ./functions && gatsby clean && gatsby build && yarn build:functions && yarn symlink:functions && cp ./_redirects ./public/",
     "build:en": "GATSBY_LANG=en yarn build",
     "build:es": "GATSBY_LANG=es yarn build",
     "dpc-cache:clean": "rm -f src/build/.dpc-cache.json",
