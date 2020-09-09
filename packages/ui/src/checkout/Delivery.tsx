@@ -12,7 +12,7 @@ import Back from './Back';
 import NoProfit from './NoProfit';
 import ErrorMsg from './ErrorMsg';
 import { Address } from './types';
-import countries from './countries.json';
+import countries from './countries';
 import './Delivery.css';
 
 type AddressWithEmail = Address & { email: string };
@@ -158,7 +158,7 @@ const Delivery: React.FC<{
             <option>
               {!countryBlurred || country ? t`Select Country` : t`Select a Country`}
             </option>
-            {Object.keys(countries).map((code) => (
+            {(Object.keys(countries) as Array<keyof typeof countries>).map((code) => (
               <option key={code} value={code}>
                 {countries[code]}
               </option>
