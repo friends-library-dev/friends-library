@@ -39,6 +39,7 @@ const FriendCard: React.FC<Props> = ({
   const buttonBgColor = color.replace(/^fl/, ``) as any;
   return (
     <Stack
+      // purgeCSS: mb-8
       space="8"
       className={cx(className, textColorClass, `FriendCard flex flex-col items-center`, {
         'md:flex-row md:justify-center md:pt-12 md:pb-6': featured,

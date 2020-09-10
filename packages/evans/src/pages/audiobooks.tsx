@@ -70,6 +70,7 @@ const AudiobooksPage: React.FC<Props> = ({
         <>Audiolibros añadidos recientemente</>
       </Dual.H2>
       <Stack
+        // purgeCSS: mb-16 xl:mb-0
         space="16"
         xl="0"
         className="md:px-6 lg:px-24 xl:px-0 xl:flex flex-wrap justify-center"
