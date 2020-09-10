@@ -93,6 +93,8 @@ const Delivery: React.FC<{
             valid={!nameBlurred || !!name}
             placeholder={t`Full name`}
             invalidMsg={t`Name is required`}
+            autoComplete="name"
+            name="name"
           />
           <Input
             className="order-3"
@@ -107,6 +109,8 @@ const Delivery: React.FC<{
                 : t`Must be less than 30 characters`
             }
             valid={!streetBlurred || (!!street && street.length < 30)}
+            autoComplete="address-line1"
+            name="address"
           />
           <Input
             className="order-4"
@@ -115,6 +119,7 @@ const Delivery: React.FC<{
             placeholder={t`Apartment, suite, unit, etc.`}
             invalidMsg={t`Must be less than 30 characters`}
             valid={street2.length < 30}
+            autoComplete="address-line2"
           />
           <Input
             className="order-5"
@@ -125,6 +130,8 @@ const Delivery: React.FC<{
             onBlur={() => setCityBlurred(true)}
             value={city}
             placeholder={t`City`}
+            autoComplete="locality"
+            name="city"
           />
           <Input
             className="order-6"
@@ -135,6 +142,8 @@ const Delivery: React.FC<{
             onBlur={() => setStateBlurred(true)}
             value={state}
             placeholder={t`State / Province / Region`}
+            autoComplete="shippping region"
+            name="region"
           />
           <Input
             className="order-7"
@@ -145,6 +154,8 @@ const Delivery: React.FC<{
             onBlur={() => setZipBlurred(true)}
             value={zip}
             placeholder={t`ZIP / Postal Code`}
+            autoComplete="postal-code"
+            name="postal"
           />
           <select
             value={country}
@@ -154,8 +165,10 @@ const Delivery: React.FC<{
             )}
             onBlur={() => setCountryBlurred(true)}
             onChange={(e) => setCountry(e.target.value)}
+            autoComplete="country"
+            name="country"
           >
-            <option>
+            <option value="">
               {!countryBlurred || country ? t`Select Country` : t`Select a Country`}
             </option>
             {(Object.keys(countries) as Array<keyof typeof countries>).map((code) => (
