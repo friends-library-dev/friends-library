@@ -19,8 +19,10 @@
     "develop:es:site": "GATSBY_LANG=es GATSBY_PORT=9333 GATSBY_ALT_PORT=9222 gatsby develop --port 9333",
     "develop:en": "run-p develop:en:site develop:functions",
     "develop:es": "run-p develop:es:site develop:functions",
-    "manual-deploy:en": "yarn netlify deploy --dir=public --functions=functions --site=$DEPLOY_SITE_ID_EN",
-    "manual-deploy:es": "yarn netlify deploy --dir=public --functions=functions --site=$DEPLOY_SITE_ID_ES",
+    "manual-deploy:en": "DEPLOYING=true GATSBY_NETLIFY_CONTEXT=preview yarn build:en && yarn netlify deploy --dir=public --functions=functions --site=$DEPLOY_SITE_ID_EN",
+    "manual-deploy:es": "DEPLOYING=true GATSBY_NETLIFY_CONTEXT=preview yarn build:es && yarn netlify deploy --dir=public --functions=functions --site=$DEPLOY_SITE_ID_ES",
+    "manual-deploy:en:prod": "DEPLOYING=true GATSBY_NETLIFY_CONTEXT=production yarn build:en && yarn netlify deploy --dir=public --functions=functions --site=$DEPLOY_SITE_ID_EN --prod",
+    "manual-deploy:es:prod": "DEPLOYING=true GATSBY_NETLIFY_CONTEXT=production yarn build:es && yarn netlify deploy --dir=public --functions=functions --site=$DEPLOY_SITE_ID_ES --prod",
     "analyze": "rm -rf ./functions && ANALYZE_BUNDLE_SIZE=true yarn build:en"
   },
   "dependencies": {
