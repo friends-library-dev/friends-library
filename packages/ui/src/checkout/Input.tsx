@@ -13,6 +13,8 @@ interface Props {
   onFocus?: () => void;
   autofocus?: boolean;
   type?: string;
+  autoComplete?: string;
+  name?: string;
 }
 
 const Input: React.FC<Props> = ({
@@ -25,10 +27,14 @@ const Input: React.FC<Props> = ({
   onBlur,
   onFocus,
   className,
+  autoComplete,
+  name,
   type = `text`,
 }) => (
   <div className="relative">
     <input
+      name={name}
+      autoComplete={autoComplete}
       autoFocus={autofocus}
       className={cx(className, `CartInput`, { invalid: !valid })}
       type={type}
