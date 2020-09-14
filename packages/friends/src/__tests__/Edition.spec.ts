@@ -43,13 +43,5 @@ describe(`Edition`, () => {
       });
       expect(edition.paperbackCoverBlurb).toBe(`Document desc.`);
     });
-
-    it(`returns friend description, if no edition or doc desc`, () => {
-      const edition = firstEdition((f) => {
-        f.description = `Friend desc.`;
-        delete f.documents[0].description;
-      });
-      expect(edition.paperbackCoverBlurb).toBe(`Friend desc.`);
-    });
   });
 });
