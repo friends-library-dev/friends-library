@@ -52,7 +52,7 @@ export default class Orders {
 }
 
 function faunaize(order: Db.Order): Record<string, any> {
-  const data = { ...order, externalId: order.id };
+  const data: Record<string, any> = { ...order, externalId: order.id };
   delete data.id;
   delete data.faunaId;
   return data;

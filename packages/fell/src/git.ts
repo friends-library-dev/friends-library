@@ -57,6 +57,7 @@ export async function sync(repoPath: Repo): Promise<void> {
 export async function clone(repoPath: Repo, url: string): Promise<NodeGit.Repository> {
   const opts = { fetchOpts: remoteCallbacks };
   if (url.startsWith(`https`)) {
+    // @ts-ignore
     delete opts.fetchOpts.callbacks.credentials;
   }
   try {
