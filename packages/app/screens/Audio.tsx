@@ -94,14 +94,17 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       >
         {audio.shortDescription}
       </Serif>
-      {isMultipart &&
-        audio.parts.map((part) => (
-          <DownloadablePart
-            key={`${audio.id}--${part.index}`}
-            audioId={audio.id}
-            partIndex={part.index}
-          />
-        ))}
+      {isMultipart && (
+        <View style={tw(`mb-16`)}>
+          {audio.parts.map((part) => (
+            <DownloadablePart
+              key={`${audio.id}--${part.index}`}
+              audioId={audio.id}
+              partIndex={part.index}
+            />
+          ))}
+        </View>
+      )}
     </ScrollView>
   );
 };
