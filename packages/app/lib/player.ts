@@ -67,12 +67,16 @@ class Player extends EventEmitter {
 
   public init(): void {
     RNTrackPlayer.setupPlayer({
+      iosCategory: `playback`,
       iosCategoryMode: `spokenAudio`,
+      iosCategoryOptions: [`allowAirPlay`],
     });
 
     RNTrackPlayer.updateOptions({
       stopWithApp: false,
       jumpInterval: 30,
+      // @ts-ignore
+      alwaysPauseOnInterruption: true,
       capabilities: [
         RNTrackPlayer.CAPABILITY_PLAY,
         RNTrackPlayer.CAPABILITY_PAUSE,
