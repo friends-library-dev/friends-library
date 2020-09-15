@@ -6,6 +6,7 @@ class FileSystem {
 
   public async init(): Promise<void> {
     await Promise.all([
+      RNFS.mkdir(this.abspath()),
       RNFS.mkdir(this.abspath(`artwork/`), { NSURLIsExcludedFromBackupKey: true }),
       RNFS.mkdir(this.abspath(`audio/`), { NSURLIsExcludedFromBackupKey: true }),
       RNFS.mkdir(this.abspath(`data/`)),
