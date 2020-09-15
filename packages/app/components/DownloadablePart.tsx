@@ -72,7 +72,7 @@ export const DownloadablePart: React.FC<Props> = (props) => {
         )}
         {state === `not_downloaded` && (
           <TouchableOpacity style={tw(`items-center pl-2`)} onPress={download}>
-            <Icon name="cloud-download" size={17} style={tw(`text-gray-500`)} />
+            <Icon name="cloud-download" size={17} style={tw(`text-gray-500 p-2 -m-2`)} />
           </TouchableOpacity>
         )}
       </View>
