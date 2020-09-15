@@ -13,6 +13,30 @@ export default async function brickOrder(
     return;
   }
 
-  log.error(`Runtime JS error`, { data });
+  if (!shouldIgnoreError(data)) {
+    log.error(`Runtime JS error`, { data });
+  }
+
   respond.noContent();
+}
+
+function shouldIgnoreError(data: any): boolean {
+  if (typeof data !== `object`) {
+    return false;
+  }
+
+  if (typeof data.event !== `string` || typeof data.userAgent !== `string`) {
+    return false;
+  }
+
+  const event: string = data.event;
+  const userAgent: string = data.userAgent;
+
+  // can't replicate these google-bot only window.onerror errors
+  // seemed to be introduced by a gatsby upgrade, should probably test
+  // at some point to see if this ignore rule is necessary with later versions
+  return (
+    userAgent.includes(`Googlebot`) &&
+    event.includes(`The node to be removed is not a child of this node`)
+  );
 }
