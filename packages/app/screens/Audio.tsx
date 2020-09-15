@@ -11,7 +11,12 @@ import DownloadablePart from '../components/DownloadablePart';
 import tw from '../lib/tailwind';
 import { shortTitle } from '../lib/utils';
 import { useSelector, useDispatch } from '../state';
-import { isDownloading, isDownloaded, downloadAllAudios } from '../state/filesystem';
+import {
+  isDownloading,
+  isQueued,
+  isDownloaded,
+  downloadAllAudios,
+} from '../state/filesystem';
 import * as select from '../state/selectors';
 
 interface Props {
@@ -32,7 +37,8 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
       downloadingActivePart: isDownloading(activeFile),
       activePartIndex: part.index,
       showDownloadAll:
-        files.filter((p) => !isDownloading(p) && !isDownloaded(p)).length > 0,
+        files.filter((p) => !isDownloading(p) && !isDownloaded(p) && !isQueued(p))
+          .length > 0,
     };
   });
 

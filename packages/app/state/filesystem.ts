@@ -222,6 +222,10 @@ export const downloadFile = (path: string, url: string): Thunk => async (dispatc
   }
 };
 
+export function isQueued({ queued }: FileState): boolean {
+  return queued === true;
+}
+
 export function isDownloaded({ bytesOnDisk, totalBytes }: FileState): boolean {
   return bytesOnDisk === totalBytes;
 }
