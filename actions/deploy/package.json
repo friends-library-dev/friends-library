@@ -10,6 +10,6 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@octokit/action": "^2.7.1",
-    "netlify": "^4.3.0"
+    "netlify": "^4.3.13"
   }
 }
