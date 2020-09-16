@@ -9,7 +9,7 @@ import Artwork from '../components/Artwork';
 import AudioControls from '../components/AudioControls';
 import DownloadablePart from '../components/DownloadablePart';
 import tw from '../lib/tailwind';
-import { shortTitle } from '../lib/utils';
+import { shortTitle, humansize } from '../lib/utils';
 import { useSelector, useDispatch } from '../state';
 import {
   isDownloading,
@@ -27,13 +27,29 @@ interface Props {
 const AudioScreen: React.FC<Props> = ({ route }) => {
   const dispatch = useDispatch();
   const selection = useSelector((state) => {
+    const quality = state.preferences.audioQuality;
     const audioPart = select.activeAudioPart(route.params.audioId, state);
     const files = select.audioFiles(route.params.audioId, state);
     if (!audioPart || !files) return null;
     const [part, audio] = audioPart;
     const activeFile = select.audioPartFile(audio.id, part.index, state);
+    const size = quality === `HQ` ? `size` : `sizeLq`;
     return {
       audio,
+      unDownloaded: audio.parts.reduce((acc, part, idx) => {
+        const file = files[idx];
+        if (file && !isDownloaded(file)) {
+          return acc + part[size];
+        }
+        return acc;
+      }, 0),
+      downloaded: audio.parts.reduce((acc, part, idx) => {
+        const file = files[idx];
+        if (file && isDownloaded(file)) {
+          return acc + part[size];
+        }
+        return acc;
+      }, 0),
       downloadingActivePart: isDownloading(activeFile),
       activePartIndex: part.index,
       showDownloadAll:
@@ -43,7 +59,15 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
   });
 
   if (!selection) return null;
-  const { audio, showDownloadAll, activePartIndex, downloadingActivePart } = selection;
+
+  const {
+    audio,
+    downloaded,
+    unDownloaded,
+    showDownloadAll,
+    activePartIndex,
+    downloadingActivePart,
+  } = selection;
   const isMultipart = audio.parts.length > 1;
 
   return (
@@ -86,9 +110,17 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
             style={tw(`bg-blue-200 flex-row px-6 py-2 rounded-full`)}
           >
             <Icon name="cloud-download" size={21} style={tw(`pr-2 text-blue-800`)} />
-            <Sans size={15} style={tw(`text-blue-800`)}>
-              Download {isMultipart ? `all` : ``}
-            </Sans>
+            <View style={tw(`flex-row`)}>
+              <Sans size={15} style={tw(`text-blue-800`)}>
+                Download{isMultipart ? ` all` : ``}
+              </Sans>
+              <Sans
+                size={11}
+                style={tw(`text-blue-700`, { marginTop: 3, marginLeft: 5 })}
+              >
+                ({humansize(unDownloaded)})
+              </Sans>
+            </View>
           </TouchableOpacity>
         </View>
       )}
