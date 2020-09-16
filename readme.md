@@ -10,3 +10,5 @@ Only a few packages have readme's:
 - [fell docs](packages/fell/readme.md) _(group manipulation of document source repos)_
 - [jones docs](packages/jones/readme.md) _(online asciidoc editor for source docs)_
 - [hilkiah docs](packages/hilkiah/readme.md) _(extract scripture references from text)_
+
+Testing deploy.
