@@ -1,5 +1,4 @@
 import React from 'react';
-import filesize from 'filesize';
 import { View, Switch, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
@@ -9,8 +8,7 @@ import { Sans } from '../components/Text';
 import { useDispatch, useSelector } from '../state/';
 import { toggleQuality } from '../state/preferences';
 import { deleteAllAudios } from '../state/filesystem';
-
-const humansize = filesize.partial({ round: 0, spacer: `` });
+import { humansize } from '../lib/utils';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Settings'>;
