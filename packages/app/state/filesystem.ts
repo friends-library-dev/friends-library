@@ -129,6 +129,30 @@ export const deleteAllAudios = (): Thunk => async (dispatch, getState) => {
   Service.fsDeleteAllAudios();
 };
 
+export const deleteAllAudioParts = (audioId: string): Thunk => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const filesystem = state.filesystem;
+  const audio = select.audio(audioId, state);
+  if (!audio) return;
+  const deletedFiles: FilesystemState = {};
+  audio.parts.forEach((part, idx) => {
+    ([`HQ`, `LQ`] as const).forEach((quality) => {
+      const path = keys.audioFilePath(audioId, idx, quality);
+      const file = filesystem[path];
+      deletedFiles[path] = {
+        totalBytes: file ? file.totalBytes : ERROR_FALLBACK_SIZE,
+        bytesOnDisk: 0,
+        queued: false,
+      };
+    });
+  });
+  dispatch(batchSet(deletedFiles));
+  Service.fsBatchDelete(Object.keys(deletedFiles));
+};
+
 const limit = pLimit(3);
 
 export const downloadAllAudios = (audioId: string): Thunk => async (

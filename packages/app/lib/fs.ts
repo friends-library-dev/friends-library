@@ -86,6 +86,12 @@ class FileSystem {
     await Promise.all(promises);
   }
 
+  public async batchDelete(paths: string[]): Promise<void> {
+    await Promise.all(
+      paths.filter((path) => this.manifest[path]).map((path) => this.delete(path)),
+    );
+  }
+
   public async deleteAllAudios(): Promise<void> {
     const promises = Object.keys(this.manifest).map((path) => {
       return path.endsWith(`.mp3`) ? this.delete(path) : Promise.resolve();

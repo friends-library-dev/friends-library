@@ -31,6 +31,10 @@ export default class Service {
     return FS.deleteAllAudios();
   }
 
+  public static fsBatchDelete(paths: string[]): Promise<void> {
+    return FS.batchDelete(paths);
+  }
+
   public static fsSaveAudioResources(resources: AudioResource[]): Promise<void> {
     return FS.writeFile(`audio/resources.json`, JSON.stringify(resources));
   }
