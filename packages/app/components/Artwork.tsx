@@ -18,7 +18,8 @@ const Artwork: React.FC<Props> = ({ id, size, style = {} }) => {
     if (artwork && !artwork.downloaded) {
       dispatch(downloadFile(artwork.path, artwork.networkUrl));
     }
-  }, [dispatch, artwork]);
+    // select.artwork always returns a new object, so we can't include it as a dep
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!artwork) return null;
 
