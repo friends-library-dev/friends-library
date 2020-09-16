@@ -30,6 +30,8 @@ class FileSystem {
     const { promise } = RNFS.downloadFile({
       fromUrl: networkUrl,
       toFile: this.abspath(relPath),
+      progressInterval: 100000,
+      progressDivider: 100,
     });
 
     this.downloads[relPath] = promise
@@ -63,7 +65,7 @@ class FileSystem {
         fromUrl: networkUrl,
         toFile: this.abspath(relPath),
         begin: ({ contentLength }) => onStart(contentLength),
-        progressInterval: 100,
+        progressInterval: 300,
         progress: ({ contentLength, bytesWritten }) =>
           onProgress(bytesWritten, contentLength),
       });
