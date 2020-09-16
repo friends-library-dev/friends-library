@@ -15,6 +15,11 @@ module.exports = async function () {
     Player.dispatch(setPlaybackState(`PAUSED`));
   });
 
+  Player.addEventListener(`remote-stop`, () => {
+    Player.pause();
+    Player.dispatch(setPlaybackState(`PAUSED`));
+  });
+
   Player.addEventListener(`remote-jump-forward`, () => Player.seekRelative(30));
   Player.addEventListener(`remote-jump-backward`, () => Player.seekRelative(-30));
   Player.addEventListener(`remote-seek`, ({ position }) => Player.seekTo(position));
