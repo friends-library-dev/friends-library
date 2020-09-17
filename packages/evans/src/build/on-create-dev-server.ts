@@ -1,5 +1,5 @@
+import { eachEdition } from '@friends-library/friends';
 import { GatsbyNode, CreateDevServerArgs } from 'gatsby';
-import { eachEdition } from './helpers';
 import { podcast } from '../lib/xml';
 
 const onCreateDevServer: GatsbyNode['onCreateDevServer'] = ({

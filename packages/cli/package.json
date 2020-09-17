@@ -26,6 +26,7 @@
     "gmail-send": "^1.8.10",
     "moment": "^2.24.0",
     "node-fetch": "^2.6.0",
+    "p-limit": "^3.0.2",
     "pdf-parse": "^1.1.1",
     "pretty-ms": "^5.0.0",
     "puppeteer-core": "^2.0.0",
