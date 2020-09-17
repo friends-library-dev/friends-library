@@ -10,6 +10,7 @@
   "include": ["./src"],
   "references": [
     { "path": "../types" },
+    { "path": "../adoc-convert" },
     { "path": "../doc-css" },
     { "path": "../cover-component" },
     { "path": "../doc-html" }

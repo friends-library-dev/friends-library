@@ -46,6 +46,10 @@ export default class Edition {
     return this.data.isbn;
   }
 
+  public filepath(type: ArtifactType, volumeNumber?: number): string {
+    return `${this.path}/${this.filename(type, volumeNumber)}`;
+  }
+
   public filename(type: ArtifactType, volumeNumber?: number): string {
     const volSuffix = typeof volumeNumber === `number` ? `--v${volumeNumber}` : ``;
     switch (type) {
@@ -72,7 +76,7 @@ export default class Edition {
     );
   }
 
-  public toJSON(): Omit<Edition, 'filename' | 'document' | 'toJSON'> & {
+  public toJSON(): Omit<Edition, 'filename' | 'filepath' | 'document' | 'toJSON'> & {
     filename: { [k in ArtifactType]: string };
   } {
     return {

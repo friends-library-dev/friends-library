@@ -52,6 +52,31 @@ export function numPublishedBooks(lang: Lang): number {
   return allPublishedBooks(lang).length;
 }
 
+let friends: Friend[] = [];
+
+export function allFriends(): Friend[] {
+  if (!friends.length) {
+    friends = getAllFriends(`en`, true)
+      .concat(getAllFriends(`es`, true))
+      .filter((f) => ![`Jane Doe`, `John Doe`].includes(f.name));
+  }
+  return friends;
+}
+
+export interface EditionCallback {
+  (obj: { friend: Friend; document: Document; edition: Edition }): void;
+}
+
+export function eachEdition(cb: EditionCallback): void {
+  allFriends().forEach((friend) => {
+    friend.documents.forEach((document) => {
+      document.editions.forEach((edition) => {
+        cb({ friend, document, edition });
+      });
+    });
+  });
+}
+
 function ymlPath(end: string): string {
   return resolve(process.env.FRIENDS_YML_PATH || `${__dirname}/../yml`, end);
 }

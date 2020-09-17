@@ -12,4 +12,7 @@ export {
   allPublishedFriends,
   allPublishedAudiobooks,
   allPublishedUpdatedEditions,
+  eachEdition,
+  allFriends,
+  EditionCallback,
 } from './query';

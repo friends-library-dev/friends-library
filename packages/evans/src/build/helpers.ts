@@ -1,19 +1,8 @@
-import { getAllFriends, Friend, Document, Edition } from '@friends-library/friends';
+import { allFriends, Friend, Document } from '@friends-library/friends';
 import { Slug, ISBN, Asciidoc } from '@friends-library/types';
 
 export function justHeadings(adoc: Asciidoc): Asciidoc {
   return adoc.split(`\n\n`).slice(0, 1).join(``);
-}
-
-let friends: Friend[] = [];
-
-export function allFriends(): Friend[] {
-  if (!friends.length) {
-    friends = getAllFriends(`en`, true)
-      .concat(getAllFriends(`es`, true))
-      .filter((f) => ![`Jane Doe`, `John Doe`].includes(f.name));
-  }
-  return friends;
 }
 
 const friendsMap: Map<Slug, Friend> = new Map();
@@ -39,18 +28,4 @@ export function allDocsMap(): Map<Slug | ISBN, Document> {
     }
   }
   return docsMap;
-}
-
-interface EditionCallback {
-  (obj: { friend: Friend; document: Document; edition: Edition }): void;
-}
-
-export function eachEdition(cb: EditionCallback): void {
-  allFriends().forEach((friend) => {
-    friend.documents.forEach((document) => {
-      document.editions.forEach((edition) => {
-        cb({ friend, document, edition });
-      });
-    });
-  });
 }

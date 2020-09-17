@@ -34,6 +34,14 @@ export default class Audio {
     return `${this.edition.document.filenameBase}--lq.m4b`;
   }
 
+  public get m4bFilepathLq(): string {
+    return `${this.edition.path}/${this.m4bFilenameLq}`;
+  }
+
+  public get m4bFilepathHq(): string {
+    return `${this.edition.path}/${this.m4bFilenameHq}`;
+  }
+
   public get zipFilenameHq(): string {
     return this.zipFilenameLq.replace(/--lq\.zip$/, `.zip`);
   }
@@ -150,6 +158,8 @@ export default class Audio {
       zipFilepathLq: this.zipFilepathLq,
       m4bFilenameLq: this.m4bFilenameLq,
       m4bFilenameHq: this.m4bFilenameHq,
+      m4bFilepathLq: this.m4bFilepathLq,
+      m4bFilepathHq: this.m4bFilepathHq,
       duration: this.duration,
       added: this.added,
     };

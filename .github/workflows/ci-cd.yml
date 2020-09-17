@@ -46,6 +46,25 @@ jobs:
       - name: test
         run: yarn test -w=2
 
+  verify:
+    name: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bahmutov/npm-install@v1
+      - name: compile
+        run: |
+          yarn compile env
+          yarn compile doc-manifests
+          yarn compile doc-artifacts
+          yarn compile adoc-lint
+          yarn compile document-meta
+          yarn compile cloud
+      - name: verify
+        run: |
+          yarn fl check-intake
+          yarn fl verify-assets
+
   ts-lint:
     name: ts-lint
     runs-on: ubuntu-latest

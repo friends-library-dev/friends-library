@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import { GatsbyNode } from 'gatsby';
 import env from '@friends-library/env';
-import { eachEdition } from './helpers';
+import { eachEdition } from '@friends-library/friends';
 import { podcast } from '../lib/xml';
 import { sendSearchDataToAlgolia } from './algolia';
 import { LANG } from '../env';

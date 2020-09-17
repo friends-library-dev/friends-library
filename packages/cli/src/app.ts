@@ -16,6 +16,7 @@ import * as eachYml from './cmd/each-yml';
 import * as eachAdoc from './cmd/each-adoc';
 import * as publishRef from './cmd/make-ref';
 import * as docx from './cmd/docx';
+import * as verifyAssets from './cmd/verify-assets';
 
 prettifyErrors();
 
@@ -24,6 +25,7 @@ yargs
   .scriptName(`yarn fl`)
   // @ts-ignore
   .command(make)
+  .command(verifyAssets)
   .command(cover)
   .command(coverWatch)
   .command(publish)
