@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Switch, TouchableOpacity } from 'react-native';
+import { View, Switch, TouchableOpacity, Platform } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import tw from '../lib/tailwind';
@@ -32,11 +32,11 @@ const Home: React.FC<Props> = () => {
       <View
         style={tw(`flex-row justify-between p-4 border-b border-gray-400 items-center`)}
       >
-        <Sans size={18}>Hi quality audio</Sans>
+        <Sans size={18}>High quality audio</Sans>
         <Switch
-          trackColor={{ false: `#767577`, true: `#ddd` }}
-          thumbColor={hqEnabled ? `green` : `#f4f3f4`}
-          ios_backgroundColor="#777"
+          trackColor={{ true: `#3bc256`, false: Platform.OS === `ios` ? `#fff` : `#ccc` }}
+          thumbColor={`white`}
+          ios_backgroundColor="#eee"
           onValueChange={() => dispatch(toggleQuality())}
           value={hqEnabled}
         />

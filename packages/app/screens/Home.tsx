@@ -8,8 +8,8 @@ import tw from '../lib/tailwind';
 import { useSelector } from '../state';
 
 interface Props {
-  navigation: StackNavigationProp<StackParamList, 'Audio'>;
-  route: RouteProp<StackParamList, 'Audio'>;
+  navigation: StackNavigationProp<StackParamList, 'Home'>;
+  route: RouteProp<StackParamList, 'Home'>;
 }
 
 const Home: React.FC<Props> = ({ navigation }) => {
@@ -17,12 +17,12 @@ const Home: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={tw(`flex-grow items-center justify-center`)}>
       <HomeButton
-        title={`All Audiobooks (${numAudios})`}
-        onPress={() => navigation.navigate(`All Audiobooks`)}
+        title={`Audiobooks (${numAudios})`}
+        onPress={() => navigation.navigate(`Audiobooks`)}
         backgroundColor="#6c3142"
       />
       <HomeButton
-        title="Go to Settings"
+        title="Settings"
         onPress={() => navigation.navigate(`Settings`)}
         backgroundColor="#999"
       />

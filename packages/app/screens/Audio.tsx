@@ -21,8 +21,8 @@ import {
 import * as select from '../state/selectors';
 
 interface Props {
-  navigation: StackNavigationProp<StackParamList, 'Audio'>;
-  route: RouteProp<StackParamList, 'Audio'>;
+  navigation: StackNavigationProp<StackParamList, 'Listen'>;
+  route: RouteProp<StackParamList, 'Listen'>;
 }
 
 const AudioScreen: React.FC<Props> = ({ route }) => {
