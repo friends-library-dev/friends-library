@@ -14,8 +14,8 @@ const App: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="All Audiobooks" component={AllAudios} />
-        <Stack.Screen name="Audio" component={Audio} />
+        <Stack.Screen name="Audiobooks" component={AllAudios} />
+        <Stack.Screen name="Listen" component={Audio} />
         <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>

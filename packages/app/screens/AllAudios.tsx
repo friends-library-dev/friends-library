@@ -9,8 +9,8 @@ import { useSelector } from '../state';
 import * as select from '../state/selectors';
 
 interface Props {
-  navigation: StackNavigationProp<StackParamList, 'All Audiobooks'>;
-  route: RouteProp<StackParamList, 'All Audiobooks'>;
+  navigation: StackNavigationProp<StackParamList, 'Audiobooks'>;
+  route: RouteProp<StackParamList, 'Audiobooks'>;
 }
 
 const AllAudio: React.FC<Props> = ({ navigation }) => {
@@ -26,7 +26,7 @@ const AllAudio: React.FC<Props> = ({ navigation }) => {
   const renderItem: (props: {
     item: AudioResource & { progress: number };
   }) => JSX.Element = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate(`Audio`, { audioId: item.id })}>
+    <TouchableOpacity onPress={() => navigation.navigate(`Listen`, { audioId: item.id })}>
       <AudioListItem
         id={item.id}
         title={item.title}
