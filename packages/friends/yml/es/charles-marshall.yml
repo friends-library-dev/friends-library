@@ -47,3 +47,16 @@ documents:
     editions:
       - type: updated
         isbn: 978-1-64476-206-6
+  - id: 4c88539f-f168-4972-89d7-be945dc62863
+    alt_language_id: 769b12e4-b909-4fb0-9177-b74a1bef9f35
+    title: El Camino de la Vida Revelado y El Camino de la Muerte Descubierto
+    slug: camino-de-vida-revelado
+    filename: Camino_de_Vida_Revelado
+    description: TODO
+    partial_description: TODO
+    tags:
+      - treatise
+    editions:
+      - type: updated
+        isbn: 978-1-64476-245-5
+        draft: true
