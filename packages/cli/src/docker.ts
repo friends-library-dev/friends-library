@@ -1,5 +1,5 @@
 import { spawnSync } from 'child_process';
-import { red } from '@friends-library/cli-utils/color';
+import { red, magenta } from '@friends-library/cli-utils/color';
 
 export function ensureDockerImage(tag: string, dir: string): void {
   const opts = { cwd: dir };
@@ -13,6 +13,7 @@ export function ensureDockerImage(tag: string, dir: string): void {
   const imageExists = spawnSync(`docker`, [`image`, `inspect`, tag], opts).status === 0;
   if (!imageExists) {
     // build an image according to specs in ./Dockerfile
+    magenta(`building docker image ${tag}...`);
     spawnSync(`docker`, [`build`, `-t`, tag, `.`], opts);
   }
 }
