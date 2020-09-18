@@ -16,6 +16,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* FriendsLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FriendsLibraryTests.m */; };
 		6DE1035BF7DE317FE9E328C2 /* libPods-FriendsLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B32E30124374EF66F22F144 /* libPods-FriendsLibrary.a */; };
+		7FB37B3325153BFE0059F6F3 /* BuildHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB37B3225153BFE0059F6F3 /* BuildHelper.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C5A2E9E15985BB9A5A338FCD /* libPods-FriendsLibrary-FriendsLibraryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F36FD6641BD6D81442298FE /* libPods-FriendsLibrary-FriendsLibraryTests.a */; };
 /* End PBXBuildFile section */
@@ -53,6 +54,8 @@
 		2D02E47B1E0B4A5D006451C7 /* FriendsLibrary-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FriendsLibrary-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* FriendsLibrary-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FriendsLibrary-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F3083A624E3334E00556DA0 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		7FB37AB925153A920059F6F3 /* FriendsLibrary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FriendsLibrary-Bridging-Header.h"; sourceTree = "<group>"; };
+		7FB37B3225153BFE0059F6F3 /* BuildHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildHelper.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FriendsLibrary/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		920AE01196CF291853BA329C /* Pods-FriendsLibrary-FriendsLibraryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendsLibrary-FriendsLibraryTests.release.xcconfig"; path = "Target Support Files/Pods-FriendsLibrary-FriendsLibraryTests/Pods-FriendsLibrary-FriendsLibraryTests.release.xcconfig"; sourceTree = "<group>"; };
 		A73D6623F5213E78782B8867 /* Pods-FriendsLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendsLibrary.release.xcconfig"; path = "Target Support Files/Pods-FriendsLibrary/Pods-FriendsLibrary.release.xcconfig"; sourceTree = "<group>"; };
@@ -157,12 +160,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7FB37B3225153BFE0059F6F3 /* BuildHelper.swift */,
 				13B07FAE1A68108700A75B9A /* FriendsLibrary */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FriendsLibraryTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				896751923113820FB4EA36BE /* Pods */,
+				7FB37AB925153A920059F6F3 /* FriendsLibrary-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -287,7 +292,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = WFN83LM943;
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1200;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -588,6 +593,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				7FB37B3325153BFE0059F6F3 /* BuildHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +634,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5B2C53165757B8DB1E88994 /* Pods-FriendsLibrary-FriendsLibraryTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = WFN83LM943;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -652,6 +659,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 920AE01196CF291853BA329C /* Pods-FriendsLibrary-FriendsLibraryTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = WFN83LM943;
@@ -687,6 +695,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.friendslibrary.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = FriendsLibrary;
+				SWIFT_OBJC_BRIDGING_HEADER = "FriendsLibrary-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -710,6 +719,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.friendslibrary.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = FriendsLibrary;
+				SWIFT_OBJC_BRIDGING_HEADER = "FriendsLibrary-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
