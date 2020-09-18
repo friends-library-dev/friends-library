@@ -52,11 +52,20 @@ documents:
     title: El Camino de la Vida Revelado y El Camino de la Muerte Descubierto
     slug: camino-de-vida-revelado
     filename: Camino_de_Vida_Revelado
-    description: TODO
-    partial_description: TODO
+    description:
+      Charles Marshall (1637-1698) fue convencido de la verdad a los diecisiete años de
+      edad por el poderoso ministerio de John Audland John Camm, y eventualmente él mismo
+      se volvió un honorable ministro y anciano en la antigua Sociedad de los Amigos. Este
+      corto tratado, escrito en 1673, describe la condición miserable del hombre en la
+      caída, el medio por el cual Dios restaura al alma arrepentida a la imagen de Dios, y
+      muchas de las trampas, engaños y tentaciones que son presentadas por el enemigo de
+      la felicidad del hombre.
+    partial_description:
+      El Camino de la Vida Revelado y El Camino de la Muerte Descubierto — Donde se
+      declara el estado de felicidad del hombre antes de la caída, su estado miserable en
+      la caída, y el camino para ser restaurado de la caída, a la imagen de Dios.
     tags:
       - treatise
     editions:
       - type: updated
         isbn: 978-1-64476-245-5
-        draft: true
