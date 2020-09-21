@@ -5,6 +5,7 @@ import playback from './playback';
 import preferences from './preferences';
 import trackPosition from './track-position';
 import activePart from './active-part';
+import network from './network';
 
 const rootReducer = combineReducers({
   audioResources,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   preferences,
   trackPosition,
   activePart,
+  network,
 });
 
 export type State = ReturnType<typeof rootReducer>;

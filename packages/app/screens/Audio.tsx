@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView, Dimensions, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { ScrollView, Dimensions, View, Alert } from 'react-native';
 import { AudioResource, StackParamList } from '../types';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -28,6 +28,14 @@ interface Props {
 const AudioScreen: React.FC<Props> = ({ route }) => {
   const dispatch = useDispatch();
   const selection = useSelector(selector({ audioId: route.params.audioId }, dispatch));
+  const showNetworkFail = selection && selection.showNetworkFail === true;
+
+  useEffect(() => {
+    if (showNetworkFail) {
+      Alert.alert(`No internet`, `Unable to download at this time.`, [{ text: `OK` }]);
+    }
+  }, [showNetworkFail]);
+
   if (!selection) return null;
 
   const {
@@ -130,6 +138,7 @@ const selector: PropSelector<
     activePartIndex: number;
     notDownloading: boolean;
     showDownloadAll: boolean;
+    showNetworkFail: boolean;
   }
 > = ({ audioId }) => (state) => {
   const quality = state.preferences.audioQuality;
@@ -141,6 +150,7 @@ const selector: PropSelector<
   const size = quality === `HQ` ? `size` : `sizeLq`;
   return {
     audio,
+    showNetworkFail: state.network.recentFailedAttempt,
     unDownloaded: audio.parts.reduce((acc, part, idx) => {
       const file = files[idx];
       if (file && !isDownloaded(file)) {
