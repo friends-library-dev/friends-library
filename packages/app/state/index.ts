@@ -12,6 +12,7 @@ import { initialState as fsInitialState } from './filesystem';
 import { initialState as prefsInitialState } from './preferences';
 import { initialState as positionInitialState } from './track-position';
 import { initialState as activePartInitialState } from './active-part';
+import { initialState as networkInitialState } from './network';
 
 export const INITIAL_STATE: State = {
   audioResources: audioResourcesInitialState,
@@ -20,6 +21,7 @@ export const INITIAL_STATE: State = {
   filesystem: fsInitialState,
   playback: playbackInitialState,
   activePart: activePartInitialState,
+  network: networkInitialState,
 };
 
 export type { State };

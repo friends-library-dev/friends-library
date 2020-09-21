@@ -7,6 +7,7 @@ import { set as setActivePart } from './active-part';
 import * as select from './selectors';
 import { seekTo } from './track-position';
 import { AudioPart } from '../types';
+import { canDownloadNow } from '../state/network';
 import * as keys from '../lib/keys';
 
 export interface PlaybackState {
@@ -116,6 +117,9 @@ async function execTogglePartPlayback(
   const file = select.audioPartFile(audioId, part.index, state);
 
   if (!isDownloaded(file)) {
+    if (!canDownloadNow(state, dispatch)) {
+      return;
+    }
     // typings are incorrect here, this actually DOES return a promise
     await dispatch(downloadAudio(audioId, part.index));
   }
@@ -135,3 +139,42 @@ async function execTogglePartPlayback(
   await dispatch(play(audioId, part.index));
   dispatch(seekTo(audioId, part.index, position));
 }
+
+/**
+ * When a track ends, RNTP will proceed to the next track queued
+ * if there is one. The only way we can know this, is by the
+ * `playback-track-changed` event, which also fires at other times
+ * when the queue is not auto-advancing. This determines
+ * which changes were caused by queue auto-advancing, and therefore
+ * which ones we need to opt in to updating out state with.
+ */
+export const maybeAdvanceQueue = (nextTrackId: string): Thunk => async (
+  dispatch,
+  getState,
+) => {
+  const state = getState();
+  const current = select.currentlyPlayingPart(state);
+  if (!current) return;
+  const [part, audio] = current;
+  const currentPartId = keys.part(audio.id, part.index);
+  if (currentPartId === nextTrackId) {
+    // we already know we're playing this track
+    return;
+  }
+
+  const nextIndex = part.index + 1;
+  if (!audio.parts[nextIndex]) return;
+  const nextPartId = keys.part(audio.id, nextIndex);
+  if (nextPartId !== nextTrackId) {
+    return;
+  }
+
+  const file = select.audioPartFile(audio.id, nextIndex, state);
+  if (!state.network.connected && !isDownloaded(file)) {
+    // we can't go to the next track, because we don't have the track or internet
+    dispatch(pause());
+    return;
+  }
+
+  dispatch(setActivePart({ audioId: audio.id, partIndex: nextIndex }));
+};

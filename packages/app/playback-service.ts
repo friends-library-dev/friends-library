@@ -1,8 +1,7 @@
 import Player from './lib/player';
 import { setCurrentTrackPosition } from './state/track-position';
 import { maybeDownloadNextQueuedTrack } from './state/filesystem';
-import { maybeAdvanceQueue } from './state/active-part';
-import { setState as setPlaybackState } from './state/playback';
+import { setState as setPlaybackState, maybeAdvanceQueue } from './state/playback';
 
 module.exports = async function () {
   Player.addEventListener(`remote-play`, () => {

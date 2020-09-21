@@ -13,7 +13,10 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ navigation }) => {
-  const numAudios = useSelector((s) => Object.keys(s.audioResources).length);
+  const { numAudios, connected } = useSelector((s) => ({
+    numAudios: Object.keys(s.audioResources).length,
+    connected: s.network.connected,
+  }));
   return (
     <View style={tw(`flex-grow items-center justify-center`)}>
       <HomeButton
@@ -26,6 +29,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
         onPress={() => navigation.navigate(`Settings`)}
         backgroundColor="#999"
       />
+      {!connected && <Sans>No internet connection.</Sans>}
     </View>
   );
 };

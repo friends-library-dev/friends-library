@@ -6,6 +6,7 @@ import { Thunk, Dispatch, State } from '.';
 import Service from '../lib/service';
 import FS from '../lib/fs';
 import * as select from '../state/selectors';
+import { canDownloadNow } from '../state/network';
 
 export interface FileState {
   totalBytes: number;
@@ -162,7 +163,10 @@ export const downloadAllAudios = (audioId: string): Thunk => async (
   const state = getState();
   const parts = select.audioFiles(audioId, state);
   const quality = state.preferences.audioQuality;
-  if (!parts) return;
+
+  if (!parts || !canDownloadNow(state, dispatch)) {
+    return;
+  }
   const downloadIndexes = parts
     .map((part, index) => ({ part, partIndex: index }))
     .filter(({ part }) => !isDownloaded(part) && !isDownloading(part))
@@ -184,7 +188,9 @@ export const downloadAudio = (audioId: string, partIndex: number): Thunk => asyn
   dispatch,
   getState,
 ) => {
-  return execDownloadAudio(audioId, partIndex, dispatch, getState());
+  const state = getState();
+  if (!canDownloadNow(state, dispatch)) return;
+  return execDownloadAudio(audioId, partIndex, dispatch, state);
 };
 
 export const maybeDownloadNextQueuedTrack = (position: number): Thunk => async (
@@ -193,7 +199,10 @@ export const maybeDownloadNextQueuedTrack = (position: number): Thunk => async (
 ) => {
   const state = getState();
   const current = select.currentlyPlayingPart(state);
-  if (!current) return;
+  if (!current || !state.network.connected) {
+    return;
+  }
+
   const [part, audio] = current;
   if (audio.parts.length === 1 || part.index === audio.parts.length - 1) {
     return; // no next track to download
@@ -239,7 +248,12 @@ function execDownloadAudio(
   );
 }
 
-export const downloadFile = (path: string, url: string): Thunk => async (dispatch) => {
+export const downloadFile = (path: string, url: string): Thunk => async (
+  dispatch,
+  getState,
+) => {
+  const { network } = getState();
+  if (!network.connected) return;
   const bytes = await Service.fsDownloadFile(path, url);
   if (bytes) {
     dispatch(set({ path, fileState: { totalBytes: bytes, bytesOnDisk: bytes } }));
