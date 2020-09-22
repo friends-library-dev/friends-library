@@ -4,6 +4,7 @@ import FS from '../lib/fs';
 import * as keys from '../lib/keys';
 import { TrackData, AudioResource, AudioPart } from '../types';
 import { FileState } from './filesystem';
+import { backgroundPartTitle, shortTitle } from '../lib/utils';
 
 export function isAudioPartPlaying(
   audioId: string,
@@ -147,12 +148,13 @@ export function trackData(
     return null;
   }
   const part = audio.parts[partIndex];
-
+  const title = shortTitle(audio.title);
   return {
     id: keys.part(audioId, partIndex),
     filepath: `file://${FS.abspath(audioPath)}`,
-    title: part.title,
-    artist: audio.friend.startsWith(`Compila`) ? `Friends Library` : audio.friend,
+    title: backgroundPartTitle(part.title, title),
+    artist: audio.friend.startsWith(`Compila`) ? title : audio.friend,
+    album: audio.friend.startsWith(`Compila`) ? `Friends Library` : audio.friend,
     artworkUrl: artworkData.uri,
     duration: part.duration,
   };

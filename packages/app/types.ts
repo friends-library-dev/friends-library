@@ -34,5 +34,6 @@ export interface TrackData {
   title: string;
   artist: string;
   artworkUrl: string;
+  album: string;
   duration: number;
 }
