@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { t } from '@friends-library/locale';
 import tw from '../lib/tailwind';
 import { useSelector, useDispatch, State, Dispatch } from '../state';
 import {
@@ -13,6 +14,7 @@ import { togglePartPlayback } from '../state/playback';
 import { AudioPart } from '../types';
 import { Sans } from './Text';
 import { isAudioPartPlaying, audioPartFile } from '../state/selectors';
+import { LANG } from '../env';
 
 type CommonProps = {
   part: Pick<AudioPart, 'title'>;
@@ -39,7 +41,7 @@ export const DownloadablePart: React.FC<Props> = (props) => {
   if (state === `downloading`) {
     rightColWidth = 110;
   } else if (state === `queued_for_download`) {
-    rightColWidth = 85;
+    rightColWidth = LANG === `en` ? 85 : 96;
   } else if (state === `not_downloaded`) {
     rightColWidth = 60;
   }
@@ -66,8 +68,8 @@ export const DownloadablePart: React.FC<Props> = (props) => {
           {part.title}
         </Sans>
         {(state === `queued_for_download` || state === `downloading`) && (
-          <Sans size={12} style={tw(`italic text-gray-500 ml-4`)}>
-            {state === `downloading` ? state : `queued`}
+          <Sans size={12} style={tw(`italic lowercase text-gray-500 ml-4`)}>
+            {state === `downloading` ? t`Downloading` : t`queued`}
           </Sans>
         )}
         {state === `not_downloaded` && (

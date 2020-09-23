@@ -3,6 +3,7 @@ import { ScrollView, Dimensions, View, Alert } from 'react-native';
 import { AudioResource, StackParamList } from '../types';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { t } from '@friends-library/locale';
 import { Serif, Sans } from '../components/Text';
 import IconButton from '../components/IconButton';
 import Artwork from '../components/Artwork';
@@ -19,6 +20,7 @@ import {
   deleteAllAudioParts,
 } from '../state/filesystem';
 import * as select from '../state/selectors';
+import { LANG } from '../env';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Listen'>;
@@ -32,7 +34,9 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
 
   useEffect(() => {
     if (showNetworkFail) {
-      Alert.alert(`No internet`, `Unable to download at this time.`, [{ text: `OK` }]);
+      Alert.alert(t`No internet`, `${t`Unable to download at this time`}.`, [
+        { text: `OK` },
+      ]);
     }
   }, [showNetworkFail]);
 
@@ -69,7 +73,9 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
         {isMultipart && !downloadingActivePart && (
           <View style={tw(`flex-row justify-center -mt-4`)}>
             <Sans size={13} style={tw(`text-gray-600`)}>
-              Part {activePartIndex + 1} of {audio.parts.length}
+              Part{LANG === `es` ? `e` : ``} {activePartIndex + 1}
+              {` `}
+              {LANG === `es` ? `de` : `of`} {audio.parts.length}
             </Sans>
           </View>
         )}
@@ -86,7 +92,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
         <IconButton
           onPress={() => dispatch(downloadAllAudios(audio.id))}
           icon="cloud-download"
-          text={`Download${isMultipart ? ` all` : ``}`}
+          text={isMultipart ? t`Download all` : t`Download`}
           secondaryText={`(${humansize(unDownloaded)})`}
         />
       )}
@@ -113,7 +119,7 @@ const AudioScreen: React.FC<Props> = ({ route }) => {
         <IconButton
           onPress={() => dispatch(deleteAllAudioParts(audio.id))}
           icon="trash"
-          text={`Delete${isMultipart ? ` all` : ``}`}
+          text={isMultipart ? t`Delete all` : t`Delete`}
           secondaryText={`(${humansize(downloaded)})`}
           textTailwindClass="text-gray-700"
           bgTailwindClass="bg-red-200"

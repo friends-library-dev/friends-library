@@ -1,6 +1,7 @@
 import { AudioResource, TrackData } from '../types';
 import FS from './fs';
 import Player from './player';
+import { LANG } from '../env';
 
 export default class Service {
   public static audioSeekTo(position: number): Promise<void> {
@@ -60,7 +61,7 @@ export default class Service {
 
   public static async networkFetchAudios(): Promise<AudioResource[] | null> {
     try {
-      const res = await fetch(`https://api.friendslibrary.com/app-audios`);
+      const res = await fetch(`https://api.friendslibrary.com/app-audios?lang=${LANG}`);
       const resources = await res.json();
       if (resourcesValid(resources)) {
         return resources;

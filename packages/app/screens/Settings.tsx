@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Switch, TouchableOpacity, Platform } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import { t } from '@friends-library/locale';
 import tw from '../lib/tailwind';
 import { StackParamList } from '../types';
 import { Sans } from '../components/Text';
@@ -32,7 +33,7 @@ const Home: React.FC<Props> = () => {
       <View
         style={tw(`flex-row justify-between p-4 border-b border-gray-400 items-center`)}
       >
-        <Sans size={18}>High quality audio</Sans>
+        <Sans size={18}>{t`High quality audio`}</Sans>
         <Switch
           trackColor={{ true: `#3bc256`, false: Platform.OS === `ios` ? `#fff` : `#ccc` }}
           thumbColor={`white`}
@@ -44,10 +45,12 @@ const Home: React.FC<Props> = () => {
       <View
         style={tw(`flex-row justify-between p-4 border-b border-gray-400 items-center`)}
       >
-        <Sans size={18}>Downloaded audio: {humansize(deletableBytes)}</Sans>
+        <Sans size={18}>
+          {t`Downloaded audio`}: {humansize(deletableBytes)}
+        </Sans>
         <TouchableOpacity onPress={() => dispatch(deleteAllAudios())}>
           <Sans size={18} style={tw(`text-red-600`)}>
-            {deletableBytes === 0 ? `` : `Delete`}
+            {deletableBytes === 0 ? `` : t`Delete`}
           </Sans>
         </TouchableOpacity>
       </View>

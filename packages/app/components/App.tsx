@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { t } from '@friends-library/locale';
 import { StackParamList } from '../types';
 import Home from '../screens/Home';
 import AllAudios from '../screens/AllAudios';
@@ -23,10 +24,18 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Audiobooks" component={AllAudios} />
-        <Stack.Screen name="Listen" component={Audio} />
-        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Home" options={{ title: t`Home` }} component={Home} />
+        <Stack.Screen
+          name="Audiobooks"
+          options={{ title: t`Audiobooks` }}
+          component={AllAudios}
+        />
+        <Stack.Screen name="Listen" options={{ title: t`Listen` }} component={Audio} />
+        <Stack.Screen
+          name="Settings"
+          options={{ title: t`Settings` }}
+          component={Settings}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

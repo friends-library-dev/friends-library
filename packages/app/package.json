@@ -21,9 +21,10 @@
     "storybook": "cp -f ./index.storybook.js ./index.js && react-native start"
   },
   "dependencies": {
-    "@friends-library/types": "1.0.0",
-    "@friends-library/color": "1.0.0",
     "@friends-library/adoc-convert": "1.0.0",
+    "@friends-library/color": "1.0.0",
+    "@friends-library/locale": "1.0.0",
+    "@friends-library/types": "1.0.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "^5.9.5",
     "@react-navigation/native": "^5.7.2",
