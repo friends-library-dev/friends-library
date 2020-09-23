@@ -4,3 +4,4 @@
 console.log(`\x1b[2m[git hook \`pre-commit\`]\x1b[0m`);
 
 require('./actions').handleBundledActionJs(true);
+require('./app').restoreBundleIdentifier();
