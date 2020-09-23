@@ -5,6 +5,8 @@
   "scripts": {
     "env:en": "npx ts-node ./env/set-lang.ts en",
     "env:es": "npx ts-node ./env/set-lang.ts es",
+    "xcode:en": "yarn env:en && open ./ios/FriendsLibrary.xcworkspace/",
+    "xcode:es": "yarn env:es && open ./ios/FriendsLibrary.xcworkspace/",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "cp -f ./index.app.js ./index.js && react-native start",

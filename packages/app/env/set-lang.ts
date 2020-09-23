@@ -43,8 +43,8 @@ function main(): void {
   const workspacePath = `${APP_DIR}/ios/FriendsLibrary.xcodeproj/project.pbxproj`;
   const workspaceCode = fs.readFileSync(workspacePath, `utf8`);
   const updatedCode = workspaceCode.replace(
-    /com\.friendslibrary\.\$\(PRODUCT_NAME:rfc1034identifier\)/g,
-    APP_IDENTIFIER,
+    /PRODUCT_BUNDLE_IDENTIFIER = "com\.friendslibrary\..+";/g,
+    `PRODUCT_BUNDLE_IDENTIFIER = "${APP_IDENTIFIER}";`,
   );
   fs.writeFileSync(workspacePath, updatedCode);
 }
