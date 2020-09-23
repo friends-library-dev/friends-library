@@ -174,6 +174,20 @@ const strings: { [k: string]: string } = {
   'Confirmed!': `¡Confirmado!`,
   'Must be less than 30 characters': `No puede tener más de 30 caracteres`,
 
+  // app
+  Home: `Inicio`,
+  Settings: `Configuraciones`,
+  'High quality audio': `Audio de Alta Calidad`,
+  'Downloaded audio': `Descargar Audio`,
+  Delete: `Borrar`,
+  Downloading: `Descargando`,
+  'Download all': `Descargar todos`,
+  'Delete all': `Borrar todos`,
+  queued: `en espera`,
+  'No internet': `No hay internet`,
+  'Unable to download at this time': `No se puede descargar en este momento`,
+  'No internet connection': `No hay conexión de internet`,
+
   // geography
   Bristol: `Bristol`,
   Gloucester: `Gloucester`,

@@ -28,13 +28,21 @@ export function setLocale(set: Lang): void {
 }
 
 function localeFromEnv(): Lang {
-  // !!! keep full, exact token: `process.env.GATSBY_LANG` for Webpack.definePlugin !!!
-  if (typeof process !== `undefined` && process.env && process.env.GATSBY_LANG === `es`) {
-    return `es`;
-  }
+  try {
+    if (
+      typeof process !== `undefined` &&
+      process.env &&
+      // !!! keep full, exact token: `process.env.GATSBY_LANG` for Webpack.definePlugin !!!
+      process.env.GATSBY_LANG === `es`
+    ) {
+      return `es`;
+    }
 
-  if (typeof window !== `undefined`) {
-    return document.documentElement.lang === `es` ? `es` : `en`;
+    if (typeof window !== `undefined`) {
+      return document.documentElement.lang === `es` ? `es` : `en`;
+    }
+  } catch (err) {
+    console.error(`Error determining locale from env`, err);
   }
 
   return `en`;
