@@ -8,7 +8,7 @@ import { BUILD_SEMVER_STRING, BUILD_NUM } from './build-constants';
 const LANG: Lang = process.argv[2] === `es` ? `es` : `en`;
 const ENV_DIR = __dirname;
 const APP_DIR = path.resolve(ENV_DIR, `..`);
-const ENV_FILE = `${ENV_DIR}/index.ts`;
+const ENV = `${ENV_DIR}/index.ts`;
 const APP_NAME = LANG === `en` ? `Friends Library` : `Biblioteca de los Amigos`;
 const PRIMARY_COLOR_HEX = LANG === `en` ? MAROON_HEX : GOLD_HEX;
 const SPLASH_ICON_WIDTH = LANG === `en` ? 200 : 239;
@@ -19,9 +19,11 @@ const BUILD_TYPE: `release` | `beta` =
 const APP_IDENTIFIER = getAppIdentifier();
 
 function main(): void {
-  exec.exit(`printf "import { Lang } from '@friends-library/types';\n\n" > ${ENV_FILE}`);
-  exec.exit(`echo "export const LANG: Lang = '${LANG}';" >> ${ENV_FILE}`);
-  exec.exit(`cat ${ENV_DIR}/build-constants.ts >> ${ENV_FILE}`);
+  exec.exit(`printf "import { Lang } from '@friends-library/types';\n\n" > ${ENV}`);
+  exec.exit(`echo "export const LANG: Lang = '${LANG}';" >> ${ENV}`);
+  exec.exit(`cat ${ENV_DIR}/build-constants.ts >> ${ENV}`);
+  exec.exit(`echo "export const PRIMARY_COLOR_HEX = '${PRIMARY_COLOR_HEX}';" >> ${ENV}`);
+  exec.exit(`echo "export const APP_NAME = '${APP_NAME}';" >> ${ENV}`);
 
   copyFileWithEnv(`android/colors.xml`, `android/app/src/main/res/values/colors.xml`);
   copyFileWithEnv(`android/strings.xml`, `android/app/src/main/res/values/strings.xml`);
