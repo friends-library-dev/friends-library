@@ -1,18 +1,18 @@
 # FLP
 #
 index.js
-env/index.ts
 android/app/src/main/res/values/strings.xml
 android/app/src/main/res/values/colors.xml
-ios/FriendsLibrary/Info.plist
-ios/FriendsLibrary/Images.xcassets/AppIcon.appiconset/
-ios/FriendsLibrary/Images.xcassets/SplashIcon.imageset/
 android/app/src/main/res/drawable
 android/app/src/main/res/mipmap-hdpi
 android/app/src/main/res/mipmap-mdpi
 android/app/src/main/res/mipmap-xhdpi
 android/app/src/main/res/mipmap-xxhdpi
 android/app/src/main/res/mipmap-xxxhdpi
+env/index.ts
+ios/FriendsLibrary/Info.plist
+ios/FriendsLibrary/Images.xcassets/AppIcon.appiconset/
+ios/FriendsLibrary/Images.xcassets/SplashIcon.imageset/
 
 # OSX
 #
