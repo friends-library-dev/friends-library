@@ -26,6 +26,10 @@ function main(): void {
   copyFileWithEnv(`android/colors.xml`, `android/app/src/main/res/values/colors.xml`);
   copyFileWithEnv(`android/strings.xml`, `android/app/src/main/res/values/strings.xml`);
   copyFileWithEnv(`ios/Info.plist`, `ios/FriendsLibrary/Info.plist`);
+  copyFileWithEnv(
+    `ios/${LANG}/LaunchScreen.storyboard`,
+    `ios/FriendsLibrary/LaunchScreen.storyboard`,
+  );
 
   copyDir(`ios/${LANG}/AppIcon.appiconset`, `ios/FriendsLibrary/Images.xcassets`);
   copyDir(`ios/${LANG}/SplashIcon.imageset`, `ios/FriendsLibrary/Images.xcassets`);
