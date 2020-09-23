@@ -1,6 +1,7 @@
 // @ts-check
 const path = require(`path`);
 const fs = require(`fs`);
+const { execSync } = require('child_process');
 
 const MONO_REPO_ROOT = path.resolve(__dirname, `..`);
 const XCODE_PROJ_PATH = `${MONO_REPO_ROOT}/packages/app/ios/FriendsLibrary.xcodeproj/project.pbxproj`;
@@ -14,6 +15,7 @@ function restoreBundleIdentifier() {
       `$1PRODUCT_BUNDLE_IDENTIFIER = "com.friendslibrary.$(PRODUCT_NAME:rfc1034identifier)"`,
     ),
   );
+  execSync(`git add ${XCODE_PROJ_PATH}`);
 }
 
 module.exports = { restoreBundleIdentifier };
