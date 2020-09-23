@@ -11,6 +11,7 @@ android/app/src/main/res/mipmap-xxhdpi
 android/app/src/main/res/mipmap-xxxhdpi
 env/index.ts
 ios/FriendsLibrary/Info.plist
+ios/FriendsLibrary/LaunchScreen.storyboard
 ios/FriendsLibrary/Images.xcassets/AppIcon.appiconset/
 ios/FriendsLibrary/Images.xcassets/SplashIcon.imageset/
 
