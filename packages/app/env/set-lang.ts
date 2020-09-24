@@ -25,6 +25,7 @@ function main(): void {
   exec.exit(`echo "export const PRIMARY_COLOR_HEX = '${PRIMARY_COLOR_HEX}';" >> ${ENV}`);
   exec.exit(`echo "export const APP_NAME = '${APP_NAME}';" >> ${ENV}`);
 
+  copyFileWithEnv(`android/build.gradle`, `android/app/build.gradle`);
   copyFileWithEnv(`android/colors.xml`, `android/app/src/main/res/values/colors.xml`);
   copyFileWithEnv(`android/strings.xml`, `android/app/src/main/res/values/strings.xml`);
   copyFileWithEnv(`ios/Info.plist`, `ios/FriendsLibrary/Info.plist`);
