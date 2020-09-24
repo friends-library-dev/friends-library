@@ -11,7 +11,6 @@ const APP_DIR = path.resolve(ENV_DIR, `..`);
 const ENV = `${ENV_DIR}/index.ts`;
 const APP_NAME = LANG === `en` ? `Friends Library` : `Biblioteca de los Amigos`;
 const PRIMARY_COLOR_HEX = LANG === `en` ? MAROON_HEX : GOLD_HEX;
-const SPLASH_ICON_WIDTH = LANG === `en` ? 200 : 239;
 
 const BUILD_TYPE: `release` | `beta` =
   exec.exit(`git branch --show-current`) === `master` ? `release` : `beta`;
@@ -68,13 +67,13 @@ function copyFileWithEnv(src: string, dest: string): void {
   let code = fs.readFileSync(`${ENV_DIR}/files/${src}`, `utf8`);
 
   const replacements = [
-    [`{PRIMARY_COLOR_HEX}`, PRIMARY_COLOR_HEX],
+    [`{LANG}`, LANG],
     [`{APP_NAME}`, APP_NAME],
-    [`{BUILD_SEMVER_STRING}`, BUILD_SEMVER_STRING],
     [`{BUILD_NUM}`, String(BUILD_NUM)],
-    [`{ALLOW_INSECURE_LOCALHOST}`, ALLOW_INSECURE_LOCALHOST],
     [`{APP_IDENTIFIER}`, APP_IDENTIFIER],
-    [`{SPLASH_ICON_WIDTH}`, String(SPLASH_ICON_WIDTH)],
+    [`{BUILD_SEMVER_STRING}`, BUILD_SEMVER_STRING],
+    [`{PRIMARY_COLOR_HEX}`, PRIMARY_COLOR_HEX],
+    [`{ALLOW_INSECURE_LOCALHOST}`, ALLOW_INSECURE_LOCALHOST],
   ];
   replacements.forEach(([pattern, value]) => {
     code = code.replace(new RegExp(pattern, `g`), value);
