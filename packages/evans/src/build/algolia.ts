@@ -11,9 +11,9 @@ import {
   allPublishedFriends,
   allPublishedAudiobooks,
   allPublishedUpdatedEditions,
+  allFriends,
 } from '@friends-library/friends';
 import env from '@friends-library/env';
-import { allFriends } from './helpers';
 import { friendUrl, documentUrl } from '../lib/url';
 import { LANG } from '../env';
 import { PAGE_META_DESCS } from '../lib/seo';
