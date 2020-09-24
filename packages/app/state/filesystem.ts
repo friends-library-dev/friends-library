@@ -18,7 +18,7 @@ export type FilesystemState = Record<string, FileState | undefined>;
 
 export const initialState: FilesystemState = {};
 
-const filesystemSlice = createSlice({
+const filesystem = createSlice({
   name: `filesystem`,
   initialState,
   reducers: {
@@ -114,8 +114,8 @@ export const {
   setTotalBytes,
   completeDownload,
   resetDownload,
-} = filesystemSlice.actions;
-export default filesystemSlice.reducer;
+} = filesystem.actions;
+export default filesystem.reducer;
 
 export const deleteAllAudios = (): Thunk => async (dispatch, getState) => {
   const filesystem = getState().filesystem;

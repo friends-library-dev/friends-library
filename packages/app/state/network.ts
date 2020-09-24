@@ -13,7 +13,7 @@ export const initialState: NetworkState = {
   recentFailedAttempt: false,
 };
 
-const preferences = createSlice({
+const network = createSlice({
   name: `network`,
   initialState,
   reducers: {
@@ -29,8 +29,8 @@ const preferences = createSlice({
   },
 });
 
-export const { setConnected, setShowModal, setRecentFailedAttempt } = preferences.actions;
-export default preferences.reducer;
+export const { setConnected, setShowModal, setRecentFailedAttempt } = network.actions;
+export default network.reducer;
 
 export function canDownloadNow({ network }: State, dispatch: Dispatch): boolean {
   if (network.connected) return true;
