@@ -53,6 +53,7 @@ export default async function getStore(): Promise<Store<any, AnyAction>> {
           audioResources: state.audioResources,
           preferences: state.preferences,
           trackPosition: state.trackPosition,
+          network: INITIAL_STATE.network,
           filesystem: {},
           playback: { ...state.playback, state: `STOPPED` },
           activePart: state.activePart,
