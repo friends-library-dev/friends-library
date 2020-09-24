@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from '../state/';
 import { toggleQuality } from '../state/preferences';
 import { deleteAllAudios } from '../state/filesystem';
 import { humansize } from '../lib/utils';
+import { BUILD_SEMVER_STRING, APP_NAME } from '../env';
 
 interface Props {
   navigation: StackNavigationProp<StackParamList, 'Settings'>;
@@ -54,6 +55,9 @@ const Home: React.FC<Props> = () => {
           </Sans>
         </TouchableOpacity>
       </View>
+      <Sans size={11} style={tw(`text-center text-black opacity-50 mt-6`)}>
+        {APP_NAME} v{BUILD_SEMVER_STRING}
+      </Sans>
     </View>
   );
 };
