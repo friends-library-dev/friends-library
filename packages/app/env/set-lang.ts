@@ -100,10 +100,9 @@ function getAppIdentifier(): string {
   return `${base}.${LANG}.${BUILD_TYPE}`;
 }
 
-const ALLOW_INSECURE_LOCALHOST =
-  BUILD_TYPE === `release`
-    ? `<!-- omit localhost http exception for release -->`
-    : `<key>NSExceptionDomains</key>
+const ALLOW_INSECURE_LOCALHOST = process.argv.includes(`--release`)
+  ? `<!-- omit localhost http exception for release -->`
+  : `<key>NSExceptionDomains</key>
        <dict>
          <key>localhost</key>
          <dict>

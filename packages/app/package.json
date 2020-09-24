@@ -5,8 +5,11 @@
   "scripts": {
     "env:en": "npx ts-node ./env/set-lang.ts en",
     "env:es": "npx ts-node ./env/set-lang.ts es",
-    "xcode:en": "yarn env:en && open ./ios/FriendsLibrary.xcworkspace/",
-    "xcode:es": "yarn env:es && open ./ios/FriendsLibrary.xcworkspace/",
+    "xcode": "open ./ios/FriendsLibrary.xcworkspace/",
+    "xcode:en": "yarn env:en && yarn xcode",
+    "xcode:es": "yarn env:es && yarn xcode",
+    "xcode:release:en": "yarn env:en --release && yarn xcode",
+    "xcode:release:es": "yarn env:es --release && yarn xcode",
     "android:en": "yarn env:en && react-native run-android",
     "android:es": "yarn env:es && react-native run-android",
     "ios:en": "yarn env:en && react-native run-ios",
