@@ -78,4 +78,4 @@ function verify(path: string, result: { success: boolean }): Promise<void> {
   });
 }
 
-const limit = pLimit(100);
+const limit = pLimit(process.env.CI ? 10 : 100);
