@@ -17,10 +17,12 @@
     "start": "cp -f ./index.app.js ./index.js && react-native start",
     "start:en": "yarn env:en && yarn start",
     "start:es": "yarn env:es && yarn start",
-    "build:android:apk:en": "yarn env:en && cd ./android && ./gradlew clean && ./gradlew assembleRelease -x bundleReleaseJsAndAssets",
-    "build:android:apk:es": "yarn env:es && cd ./android && ./gradlew clean && ./gradlew assembleRelease -x bundleReleaseJsAndAssets",
-    "build:android:aab:en": "yarn env:en && cd ./android && ./gradlew clean && ./gradlew bundleRelease",
-    "build:android:aab:es": "yarn env:es && cd ./android && ./gradlew clean && ./gradlew bundleRelease",
+    "android:prep-release": "mkdir -p ./android/app/src/main/assets && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
+    "build:android:apk:en": "yarn env:en && cd ./android && ./gradlew clean && yarn android:prep-release && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && yarn open-android-build-dir",
+    "build:android:apk:es": "yarn env:es && cd ./android && ./gradlew clean && yarn android:prep-release && ./gradlew assembleRelease -x bundleReleaseJsAndAssets && yarn open-android-build-dir",
+    "build:android:aab:en": "yarn env:en && cd ./android && ./gradlew clean && yarn android:prep-release && ./gradlew bundleRelease -x bundleReleaseJsAndAssets && yarn open-android-build-dir",
+    "build:android:aab:es": "yarn env:es && cd ./android && ./gradlew clean && yarn android:prep-release && ./gradlew bundleRelease -x bundleReleaseJsAndAssets && yarn open-android-build-dir",
+    "open-android-build-dir": "open ./android/app/build/outputs/apk/release",
     "storybook": "cp -f ./index.storybook.js ./index.js && react-native start"
   },
   "dependencies": {

@@ -30,6 +30,7 @@
     "packages/ui/.storybook/manager-head.html": true,
     "packages/app/ios/Pods": true,
     "packages/app/android/app/build": true,
+    "packages/app/android/app/build.gradle": true,
     "packages/app/index.js": true,
     "design": true
   }
