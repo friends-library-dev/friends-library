@@ -51,3 +51,10 @@ documents:
       - type: original
         isbn: 978-1-64476-244-8
         draft: true
+    related_documents:
+      - id: b61fceff-a434-43f4-9443-342a9137202e
+        description:
+          William Edmundson was an intimate friend and spiritual father to the younger
+          William Ellis. The Life and Letters of William and Alice Ellis contains a number
+          of interesting and edifying letters both to and from this eminent minister in
+          the early Society of Friends.
