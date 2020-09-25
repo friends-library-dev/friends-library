@@ -6,7 +6,17 @@ gender: male
 added: 2018-08-09T19:47:41.000Z
 born: 1658
 died: 1709
-description: TODO
+description:
+  William Ellis (1658-1709) was convinced of the blessed Truth at eighteen years of age
+  when working as an apprentice to a linen-weaver in Skipton, England. Both he and his
+  wife Alice became faithful laborers in the harvest of the Lord, giving themselves to
+  spend and be spent in Truth’s service, in feeding and overseeing the flock of Christ in
+  England and abroad. The letters and papers contained in this memoir plainly manifest the
+  uncompromising submission to the Spirit of Truth which so characterized the early
+  Society of Friends. The lives and gospel labors of this pious couple shined with true
+  Christian humility, honesty, and single-hearted devotion, and with a genuine concern
+  that all the Lord’s people walk in the beauty of holiness under government of the
+  Spirit.
 residences:
   - city: Airton
     region: England
@@ -15,8 +25,22 @@ documents:
     title: The Life and Letters of William and Alice Ellis
     slug: life-and-letters
     filename: Life_and_Letters_of_William_Alice_Ellis
-    description: TODO
-    partial_description: TODO
+    description:
+      William Ellis (1658-1709) was convinced of the blessed Truth at eighteen years of
+      age when working as an apprentice to a linen-waver in Skipton, England. Both he and
+      his wife Alice became faithful laborers in the harvest of the Lord, giving
+      themselves to spend and be spent in Truth’s service, in feeding and overseeing the
+      flock of Christ in England and abroad. The letters and papers contained in this
+      memoir plainly manifest the uncompromising submission to the Spirit of Truth which
+      so characterized the early Society of Friends. The lives and gospel labors of this
+      pious couple shined with true Christian humility, honesty, and single-hearted
+      devotion, and with a genuine concern that all the Lord’s people walk in the beauty
+      of holiness under government of the Spirit.
+    partial_description:
+      The Lives and Letters of William and Alice Ellis, containing a biographical account
+      of this worthy couple, a large collection of personal letters both to and from
+      prominent early Friends (like William Edmundson, John Richardson, etc.), and a short
+      history of the first gathering of Friends in Settle Monthly Meeting.
     tags:
       - journal
       - letters
