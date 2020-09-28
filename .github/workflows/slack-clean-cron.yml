@@ -84,6 +84,16 @@ jobs:
           bot: true
           perform: true
           token: ${{ secrets.SLACK_CLEANER_TOKEN }}
+      - name: clean audio channel
+        uses: matken11235/slack-cleaner@v1
+        with:
+          group: audio-downloads
+          before: ${{ env.ONE_DAY_AGO }}
+          rate: '1'
+          message: true
+          bot: true
+          perform: true
+          token: ${{ secrets.SLACK_CLEANER_TOKEN }}
       - name: clean spendable channel
         uses: matken11235/slack-cleaner@v1
         with:

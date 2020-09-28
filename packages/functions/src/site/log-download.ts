@@ -75,19 +75,13 @@ async function logDownload(
     ip: headers[`client-ip`] || null,
   };
 
-  if (
-    format === `podcast` &&
-    typeof location.ip === `string` &&
-    location.ip.startsWith(`2600:8807:8100:52b`)
-  ) {
-    // ignore repeated requests for same podcasts from troublesome IP
-    return;
-  }
-
-  if (location.ip) {
+  // fetch location data for only 5% of podcast requests, to stay within rate limits
+  if (location.ip && (format !== `podcast` || Math.random() < 0.05)) {
     try {
       const ipRes = await fetch(
-        `https://ipapi.co/${location.ip}/json/?key=${env(`LOCATION_API_KEY`)}`,
+        // `https://ipapi.co/${location.ip}/json/?key=${env(`LOCATION_API_KEY`)}`,
+        // temporarily be anonymous, while rate limits reset
+        `https://ipapi.co/${location.ip}/json/`,
       );
       const json = await ipRes.json();
       if (typeof json === `object` && !json.error) {
@@ -132,7 +126,7 @@ async function logDownload(
     log.debug(`Download added to db:`, { download });
   }
 
-  sendSlack(parsedUserAgent, referrer, cloudPath, location);
+  sendSlack(parsedUserAgent, referrer, cloudPath, location, format);
 }
 
 export default logDownload;
@@ -142,6 +136,7 @@ function sendSlack(
   referrer: string,
   cloudPath: string,
   location: Record<string, string | number | null>,
+  format: DownloadFormat,
 ): void {
   const device = [ua.platform, ua.os, ua.browser, ua.isMobile ? `mobile` : `non-mobile`]
     .filter((part) => part !== `unknown`)
@@ -160,7 +155,8 @@ function sendSlack(
     where = `, location: \`${parts}\`${mapUrl}`;
   }
 
-  log.download(`Download: \`${cloudPath}\`, device: \`${device}\`${from}${where}`);
+  const channel = [`mp3`, `podcast`].includes(format) ? `audio` : `download`;
+  log[channel](`Download: \`${cloudPath}\`, device: \`${device}\`${from}${where}`);
 }
 
 function nullableLocationProp(
