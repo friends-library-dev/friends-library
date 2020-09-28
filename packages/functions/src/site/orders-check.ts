@@ -79,7 +79,9 @@ export default async function checkOrders(
     await sendShipmentTrackingEmails(jobs, recentlyShippedOrders);
   }
 
-  log.info(
+  const channel =
+    updatedOrders.length + recentlyShippedOrders.length > 0 ? `info` : `debug`;
+  log[channel](
     `Updated ${updatedOrders.length} orders, and sent ${recentlyShippedOrders.length} tracking emails`,
   );
 
