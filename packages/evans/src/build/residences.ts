@@ -144,6 +144,8 @@ function position(residence: { city: string; region: string }): Position {
       return { top: 41.0, left: 46.9, map: `UK` };
     case `Retford, England`:
       return { top: 54.3, left: 56.6, map: `UK` };
+    case `Airton, England`:
+      return { top: 47.0, left: 52.3, map: `UK` };
     case `Wakefield, England`:
       return { top: 51.0, left: 54.6, map: `UK` };
     case `Ballitore, Ireland`:

@@ -2,8 +2,7 @@ id: d005ca1a-85d9-4134-8240-0ef1453832f8
 name: William Ellis
 slug: william-ellis
 gender: male
-# TODO change to real date
-added: 2018-08-09T19:47:41.000Z
+added: 2020-09-27T23:35:05.932Z
 born: 1658
 died: 1709
 description:
@@ -47,10 +46,8 @@ documents:
     editions:
       - type: modernized
         isbn: 978-1-64476-243-1
-        draft: true
       - type: original
         isbn: 978-1-64476-244-8
-        draft: true
     related_documents:
       - id: b61fceff-a434-43f4-9443-342a9137202e
         description:
