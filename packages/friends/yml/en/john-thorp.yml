@@ -1,0 +1,61 @@
+id: 728947b2-c789-4f1e-98a2-f8233daa6c9f
+name: John Thorp
+slug: john-thorp
+gender: male
+# TODO: change to real date
+added: 2020-09-28T17:30:54.200Z
+born: 1712
+died: 1776
+residences:
+  - city: Manchester
+    region: England
+description:
+  John Thorp (1742-1817) was not brought up a member of the Society of Friends, but from
+  very early life, was aware of the workings of evil in his own heart, and also the
+  manifestation of the divine Seed of light and grace which showed him the evil. Finding
+  himself very frequently confounded and sorrowful because of the strength of his
+  unrestrained self-will, he was led to consider whether this was the irrevocable lot of
+  man, or whether there was a possibility of deliverance from such a state. In this humble
+  and seeking condition, he was taught to deny himself and bear the cross patiently, and
+  thus it became more and more his delight to walk in that law which is light, and to live
+  continually as in the Lord’s holy presence. John Thorp’s deep experience of the trials
+  and perplexities of the Christian race, and his patient wading through seasons of great
+  weakness, barrenness, and suffering, made him conspicuous for his ability to “comfort
+  others with the comfort with which he himself was comforted by God.”
+documents:
+  - id: 609192d0-3eef-4a47-85e8-59d3d2127bbd
+    title: The Letters of John Thorp
+    slug: letters
+    filename: Letters_of_John_Thorp
+    original_title:
+      'Letters of the Late John Thorp, of Manchester, A Minister of the Gospel In the
+      Society of Friends: To Which Is Prefixed, A Memoir of the Life of the Writer.'
+    description:
+      John Thorp (1742-1817) was not brought up a member of the Society of Friends, but
+      from very early life, was aware of the workings of evil in his own heart, and also
+      the manifestation of the divine Seed of light and grace which showed him the evil.
+      Finding himself very frequently confounded and sorrowful because of the strength of
+      his unrestrained self-will, he was led to consider whether this was the irrevocable
+      lot of man, or whether there was a possibility of deliverance from such a state. In
+      this humble and seeking condition, he was taught to deny himself and bear the cross
+      patiently, and thus it became more and more his delight to walk in that law which is
+      light, and to live continually as in the Lord’s holy presence. John Thorp’s deep
+      experience of the trials and perplexities of the Christian race, and his patient
+      wading through seasons of great weakness, barrenness, and suffering, made him
+      conspicuous for his ability to “comfort others with the comfort with which he
+      himself was comforted by God.”
+    partial_description:
+      A collection of letters written by John Thorp, evincing his deep experience of the
+      trials, perplexities, and joys of the Christian race, and his remarkable ability to
+      “comfort others with the comfort with which he himself was comforted by God;” to
+      which is prefixed a memoir of his life, written by his intimate friend, John
+      Bradshaw.
+    tags:
+      - letters
+    editions:
+      - type: original
+        isbn: 978-1-64476-246-2
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-247-9
+        draft: true

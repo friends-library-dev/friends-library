@@ -1,0 +1,51 @@
+id: 49ec059f-5e42-4da0-a514-c7f129516ba0
+name: Margaret Lucas
+slug: margaret-lucas
+gender: female
+# TODO: update date
+added: 2020-09-28T17:55:36.820Z
+born: 1701
+died: 1769
+residences:
+  - city: Leek
+    region: England
+description:
+  Margaret Lucas (1701-1769) was the youngest of fourteen children, and upon the death of
+  her parents, was taken in and raised by her aunt and uncle. When about sixteen years of
+  age, “upon a strict review” of herself, she concluded that she had “no evidence of the
+  hope of eternal life abiding in her,” and so began to turn her mind to a more serious
+  consideration of eternal things. Not finding peace or satisfaction in the ceremonies and
+  opinions of the national church, she yearned for a true, inward acquaintance with the
+  Spirit of God, and in time began to attend some meetings of the Society of Friends. But
+  it soon became distressingly evident that following the voice of the Good Shepherd would
+  cause her to be ridiculed by the world, and rejected and abused by her own family.
+documents:
+  - id: 61583c71-4b03-4c37-9bfd-c1ee78d0907e
+    title: The Life of Margaret Lucas
+    slug: life
+    filename: Life_of_Margaret_Lucas
+    description:
+      Margaret Lucas (1701-1769) was the youngest of fourteen children, and upon the death
+      of her parents, was taken in and raised by her aunt and uncle. When about sixteen
+      years of age, “upon a strict review” of herself, she concluded that she had “no
+      evidence of the hope of eternal life abiding in her,” and so began to turn her mind
+      to a more serious consideration of eternal things. Not finding peace or satisfaction
+      in the ceremonies and opinions of the national church, she yearned for a true,
+      inward acquaintance with the Spirit of God, and in time began to attend some
+      meetings of the Society of Friends. But it soon became distressingly evident that
+      following the voice of the Good Shepherd would cause her to be ridiculed by the
+      world, and rejected and abused by her own family.
+    partial_description:
+      An account of the life of Margaret Lucas, relating her convincement of the truth
+      when young, the difficulties and painful trials she endured because of her
+      faithfulness to Christ, and the great struggle she later met with for resisting the
+      Lord’s call to be a minister in the Society of Friends.
+    tags:
+      - journal
+    editions:
+      - type: original
+        isbn: 978-1-64476-248-6
+        draft: true
+      - type: modernized
+        isbn: 978-1-64476-249-3
+        draft: true
