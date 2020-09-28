@@ -27,6 +27,10 @@ log.download = function download(msg: string, data?: Record<string, any>): void 
   sendAndLog({ msg, data, channel: `downloads` });
 };
 
+log.audio = function download(msg: string, data?: Record<string, any>): void {
+  sendAndLog({ msg, data, channel: `audio-downloads` });
+};
+
 log.debug = function debug(msg: string, data?: Record<string, any>): void {
   sendAndLog({ msg, data, channel: `debug` });
 };
