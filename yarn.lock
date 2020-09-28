@@ -26730,9 +26730,10 @@ react-native-screens@^2.9.0:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.10.1.tgz#06d22fae87ef0ce51c616c34a199726db1403b95"
   integrity sha512-Z2kKSk4AwWRQNCBmTjViuBQK0/Lx0jc25TZptn/2gKYUCOuVRvCekoA26u0Tsb3BIQ8tWDsZW14OwDlFUXW1aw==
 
-react-native-scrubber@bakkerjoeri/react-native-scrubber#bugfix/set-use-native-driver:
-  version "1.1.4"
-  resolved "https://codeload.github.com/bakkerjoeri/react-native-scrubber/tar.gz/13803b8911df84c0e1d423a71972b92195537f02"
+react-native-scrubber@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-scrubber/-/react-native-scrubber-1.1.5.tgz#21c41c607f2d8decd6befb238933d456f7a168f3"
+  integrity sha512-7kceYBVrFQ8drt4gop5FK/zWIr0y5GdsuDupOyFP/zp28E/uX4qk8SuO6QRUw13gelqVxlSUS6NBYQyk/DNhwQ==
 
 react-native-splash-screen@^3.2.0:
   version "3.2.0"
