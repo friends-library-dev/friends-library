@@ -50,7 +50,7 @@
     "react-native-reanimated": "^1.10.1",
     "react-native-safe-area-context": "^3.1.1",
     "react-native-screens": "^2.9.0",
-    "react-native-scrubber": "bakkerjoeri/react-native-scrubber#bugfix/set-use-native-driver",
+    "react-native-scrubber": "^1.1.5",
     "react-native-splash-screen": "^3.2.0",
     "react-native-swift": "^1.2.3",
     "react-native-track-player": "^1.2.3",
