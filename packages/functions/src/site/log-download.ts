@@ -79,9 +79,7 @@ async function logDownload(
   if (location.ip && (format !== `podcast` || Math.random() < 0.05)) {
     try {
       const ipRes = await fetch(
-        // `https://ipapi.co/${location.ip}/json/?key=${env(`LOCATION_API_KEY`)}`,
-        // temporarily be anonymous, while rate limits reset
-        `https://ipapi.co/${location.ip}/json/`,
+        `https://ipapi.co/${location.ip}/json/?key=${env(`LOCATION_API_KEY`)}`,
       );
       const json = await ipRes.json();
       if (typeof json === `object` && !json.error) {
