@@ -2,8 +2,7 @@ id: 49ec059f-5e42-4da0-a514-c7f129516ba0
 name: Margaret Lucas
 slug: margaret-lucas
 gender: female
-# TODO: update date
-added: 2020-09-28T17:55:36.820Z
+added: 2020-10-01T13:00:48.283Z
 born: 1701
 died: 1769
 residences:
@@ -45,7 +44,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-248-6
-        draft: true
       - type: modernized
         isbn: 978-1-64476-249-3
-        draft: true
