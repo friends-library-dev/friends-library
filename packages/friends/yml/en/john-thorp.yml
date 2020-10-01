@@ -2,8 +2,7 @@ id: 728947b2-c789-4f1e-98a2-f8233daa6c9f
 name: John Thorp
 slug: john-thorp
 gender: male
-# TODO: change to real date
-added: 2020-09-28T17:30:54.200Z
+added: 2020-10-01T13:01:08.994Z
 born: 1712
 died: 1776
 residences:
@@ -55,7 +54,5 @@ documents:
     editions:
       - type: original
         isbn: 978-1-64476-246-2
-        draft: true
       - type: modernized
         isbn: 978-1-64476-247-9
-        draft: true
