@@ -135,7 +135,7 @@ function getOutOfBandEvents(
       lang: [`es`],
       type: `chapter`,
       title: `Historia de los Cuáqueros &mdash; (Capítulo 4)`,
-      description: `El tercer capítulo de la Historia de los Cuáqueros ya está disponible y se puede descargar gratuitamente.`,
+      description: `El cuarto capítulo de la Historia de los Cuáqueros ya está disponible y se puede descargar gratuitamente.`,
       ...dateFields(`2020-10-05T14:05:02.893Z`, formatter, `es`),
       url: `/william-sewel/historia-de-los-cuaqueros`,
     },
