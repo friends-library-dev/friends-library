@@ -1,8 +1,17 @@
 name: print-jobs
 
+# handled by new `cron` package in `friends-library-dev` org
+# this file just left for historical purposes
+# the `on` value below should guarantee this file never runs
 on:
-  schedule:
-    - cron: 0 * * * *
+  push:
+    branches:
+      - never-run-ca0bdbb3-1ee5-4027-b6df-9f5a803423d6
+
+# below was original `on`
+# on:
+#   schedule:
+#     - cron: 0 * * * *
 
 env:
   FRIENDS_YML_PATH: ${{ github.workspace }}/packages/friends/yml
