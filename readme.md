@@ -1,3 +1,7 @@
+# ARCHIVED
+
+> This repo is archived, legacy, read-only. It used to be the monorepo for all FLP engineering, but the individual modules/packages were broken apart.
+
 # 🚀 Friends Library Monorepo
 
 > Dedicated to the preservation and free distribution of early Quaker writings
